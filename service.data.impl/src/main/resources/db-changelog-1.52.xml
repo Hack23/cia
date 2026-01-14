@@ -351,4 +351,961 @@ xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
 </changeSet>
 
 
+<!-- ========================================================================= -->
+<!-- 2. COMPARATIVE ANALYSIS - ENHANCED WITH STATISTICAL FUNCTIONS            -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative-analytics" id="1.52-drop-comparative-view" failOnError="false">
+    <comment>Drop existing v1.51 comparative analysis view for replacement</comment>
+    <sql>DROP VIEW IF EXISTS view_election_cycle_comparative_analysis CASCADE;</sql>
+</changeSet>
+
+<changeSet author="intelligence-operative-analytics" id="1.52-election-cycle-comparative-enhanced" failOnError="true">
+    <comment>
+        CREATE VIEW: view_election_cycle_comparative_analysis (ENHANCED v1.52)
+        
+        Framework: Comparative Analysis with Statistical Rankings
+        
+        New Columns (+12 from v1.51):
+        1. rank_by_performance - Party ranking by performance score
+        2. rank_by_discipline - Party ranking by compliance
+        3. percent_rank_performance - Percentile positioning
+        4. ntile_party_tier - Quartile classification (1-4)
+        5. prev_cycle_performance - Previous cycle performance for comparison
+        6. prev_cycle_documents - Previous cycle document output
+        7. change_performance_pct - % change vs previous cycle
+        8. change_documents_pct - % change in productivity
+        9. stddev_performance - Performance volatility
+        10. performance_trend - Classification: improving/stable/declining
+        11. discipline_score - Composite discipline rating (0-100)
+        12. competitiveness_index - Relative competitive positioning
+    </comment>
+    
+    <sql><![CDATA[
+        CREATE VIEW view_election_cycle_comparative_analysis AS
+        WITH base_metrics AS (
+            SELECT
+                CONCAT(
+                    EXTRACT(YEAR FROM pbt.data_date)::TEXT,
+                    '-',
+                    (EXTRACT(YEAR FROM pbt.data_date) + 3)::TEXT
+                ) AS election_cycle_id,
+                
+                CASE
+                    WHEN MOD(EXTRACT(YEAR FROM pbt.data_date)::INTEGER - 1994, 4) = 0 THEN 1
+                    WHEN MOD(EXTRACT(YEAR FROM pbt.data_date)::INTEGER - 1994, 4) = 1 THEN 2
+                    WHEN MOD(EXTRACT(YEAR FROM pbt.data_date)::INTEGER - 1994, 4) = 2 THEN 3
+                    ELSE 4
+                END AS cycle_year,
+                
+                EXTRACT(YEAR FROM pbt.data_date)::INTEGER AS calendar_year,
+                
+                CASE
+                    WHEN EXTRACT(MONTH FROM pbt.data_date) >= 9 OR EXTRACT(MONTH FROM pbt.data_date) <= 1 
+                    THEN 'autumn'
+                    ELSE 'spring'
+                END AS semester,
+                
+                pbt.party,
+                
+                -- Party performance metrics from view_party_performance_metrics
+                ROUND(AVG(ppm.performance_score)::NUMERIC, 2) AS performance_score,
+                COUNT(DISTINCT pbt.politician_id) AS active_members,
+                SUM(pbt.ma_rule_violations) AS party_violations,
+                ROUND(AVG(pbt.won_rate)::NUMERIC, 2) AS party_win_rate,
+                ROUND(AVG(pbt.attendance_rate)::NUMERIC, 2) AS party_participation_rate,
+                
+                -- Document productivity from view_committee_productivity_matrix
+                MAX(ppm.documents_last_year) AS documents_last_year,
+                ROUND(AVG(pbt.rebel_rate)::NUMERIC, 2) AS party_avg_rebel_rate,
+                
+                -- Committee engagement
+                COUNT(DISTINCT cpm.committee_code) AS committees_active
+                
+            FROM view_politician_behavioral_trends pbt
+            LEFT JOIN view_party_performance_metrics ppm
+                ON pbt.party = ppm.party
+            LEFT JOIN view_committee_productivity_matrix cpm
+                ON EXTRACT(YEAR FROM pbt.data_date) = EXTRACT(YEAR FROM cpm.period_start)
+            
+            GROUP BY
+                election_cycle_id,
+                cycle_year,
+                calendar_year,
+                semester,
+                pbt.party
+        ),
+        
+        windowed_metrics AS (
+            SELECT
+                bm.*,
+                
+                RANK() OVER (
+                    PARTITION BY bm.election_cycle_id, bm.semester
+                    ORDER BY bm.performance_score DESC NULLS LAST
+                ) AS rank_by_performance,
+                
+                RANK() OVER (
+                    PARTITION BY bm.election_cycle_id, bm.semester
+                    ORDER BY bm.party_violations ASC NULLS LAST
+                ) AS rank_by_discipline,
+                
+                PERCENT_RANK() OVER (
+                    PARTITION BY bm.election_cycle_id, bm.semester
+                    ORDER BY bm.performance_score ASC NULLS LAST
+                ) AS percent_rank_performance,
+                
+                NTILE(4) OVER (
+                    PARTITION BY bm.election_cycle_id, bm.semester
+                    ORDER BY bm.performance_score DESC NULLS LAST
+                ) AS ntile_party_tier,
+                
+                LAG(bm.performance_score) OVER (
+                    PARTITION BY bm.party
+                    ORDER BY bm.election_cycle_id, bm.cycle_year, bm.semester
+                ) AS prev_cycle_performance,
+                
+                LAG(bm.documents_last_year) OVER (
+                    PARTITION BY bm.party
+                    ORDER BY bm.election_cycle_id, bm.cycle_year, bm.semester
+                ) AS prev_cycle_documents,
+                
+                STDDEV_POP(bm.performance_score) OVER (
+                    PARTITION BY bm.party
+                ) AS stddev_performance
+                
+            FROM base_metrics bm
+        )
+        
+        SELECT
+            wm.election_cycle_id,
+            wm.cycle_year,
+            wm.calendar_year,
+            wm.semester,
+            wm.party,
+            
+            -- Original v1.51 metrics
+            wm.performance_score,
+            wm.active_members,
+            wm.party_violations,
+            wm.party_win_rate,
+            wm.party_participation_rate,
+            wm.documents_last_year,
+            wm.party_avg_rebel_rate,
+            wm.committees_active,
+            
+            -- NEW v1.52: Rankings
+            wm.rank_by_performance,
+            wm.rank_by_discipline,
+            ROUND(wm.percent_rank_performance::NUMERIC, 4) AS percent_rank_performance,
+            wm.ntile_party_tier,
+            
+            -- NEW v1.52: Previous cycle comparison
+            wm.prev_cycle_performance,
+            wm.prev_cycle_documents,
+            
+            CASE
+                WHEN wm.prev_cycle_performance IS NOT NULL AND wm.prev_cycle_performance > 0
+                THEN ROUND(((wm.performance_score - wm.prev_cycle_performance) / 
+                           NULLIF(wm.prev_cycle_performance, 0) * 100)::NUMERIC, 2)
+                ELSE NULL
+            END AS change_performance_pct,
+            
+            CASE
+                WHEN wm.prev_cycle_documents IS NOT NULL AND wm.prev_cycle_documents > 0
+                THEN ROUND(((wm.documents_last_year - wm.prev_cycle_documents) / 
+                           NULLIF(wm.prev_cycle_documents, 0) * 100)::NUMERIC, 2)
+                ELSE NULL
+            END AS change_documents_pct,
+            
+            -- NEW v1.52: Volatility
+            ROUND(wm.stddev_performance::NUMERIC, 2) AS stddev_performance,
+            
+            -- NEW v1.52: Trend classification
+            CASE
+                WHEN wm.prev_cycle_performance IS NOT NULL
+                THEN
+                    CASE
+                        WHEN wm.performance_score > wm.prev_cycle_performance * 1.05 THEN 'improving'
+                        WHEN wm.performance_score < wm.prev_cycle_performance * 0.95 THEN 'declining'
+                        ELSE 'stable'
+                    END
+                ELSE NULL
+            END AS performance_trend,
+            
+            -- NEW v1.52: Discipline score (0-100)
+            ROUND((
+                100.0 - (wm.party_violations::NUMERIC / NULLIF(wm.active_members, 0) * 100) * 0.5 +
+                COALESCE(100.0 - wm.party_avg_rebel_rate, 0) * 0.5
+            )::NUMERIC, 2) AS discipline_score,
+            
+            -- NEW v1.52: Competitiveness index
+            ROUND((
+                COALESCE(wm.performance_score, 0) * 0.4 +
+                COALESCE(wm.party_win_rate, 0) * 0.3 +
+                COALESCE(wm.party_participation_rate, 0) * 0.3
+            )::NUMERIC, 2) AS competitiveness_index
+            
+        FROM windowed_metrics wm
+        ORDER BY wm.election_cycle_id, wm.semester, wm.rank_by_performance;
+    ]]></sql>
+</changeSet>
+
+
+<!-- ========================================================================= -->
+<!-- 3. ANOMALY PATTERN - ENHANCED WITH STATISTICAL FUNCTIONS                  -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative-analytics" id="1.52-drop-anomaly-view" failOnError="false">
+    <comment>Drop existing v1.51 anomaly pattern view for replacement</comment>
+    <sql>DROP VIEW IF EXISTS view_election_cycle_anomaly_pattern CASCADE;</sql>
+</changeSet>
+
+<changeSet author="intelligence-operative-analytics" id="1.52-election-cycle-anomaly-enhanced" failOnError="true">
+    <comment>
+        CREATE VIEW: view_election_cycle_anomaly_pattern (ENHANCED v1.52)
+        
+        Framework: Pattern Recognition with Anomaly Acceleration
+        
+        New Columns (+10 from v1.51):
+        1. rank_by_risk - Ranking by risk severity
+        2. rank_by_anomalies - Ranking by anomaly count
+        3. percent_rank_risk - Percentile risk positioning
+        4. ntile_risk_level - Risk tier classification (1-4)
+        5. prev_semester_risk - Previous period risk score
+        6. prev_semester_anomalies - Previous period anomaly count
+        7. change_risk_pct - % change in risk level
+        8. change_anomalies_pct - % change in anomaly frequency
+        9. risk_trend - Classification: escalating/stable/improving
+        10. anomaly_acceleration - Rate of anomaly increase
+    </comment>
+    
+    <sql><![CDATA[
+        CREATE VIEW view_election_cycle_anomaly_pattern AS
+        WITH base_metrics AS (
+            SELECT
+                CONCAT(
+                    EXTRACT(YEAR FROM vrad.data_date)::TEXT,
+                    '-',
+                    (EXTRACT(YEAR FROM vrad.data_date) + 3)::TEXT
+                ) AS election_cycle_id,
+                
+                CASE
+                    WHEN MOD(EXTRACT(YEAR FROM vrad.data_date)::INTEGER - 1994, 4) = 0 THEN 1
+                    WHEN MOD(EXTRACT(YEAR FROM vrad.data_date)::INTEGER - 1994, 4) = 1 THEN 2
+                    WHEN MOD(EXTRACT(YEAR FROM vrad.data_date)::INTEGER - 1994, 4) = 2 THEN 3
+                    ELSE 4
+                END AS cycle_year,
+                
+                EXTRACT(YEAR FROM vrad.data_date)::INTEGER AS calendar_year,
+                
+                CASE
+                    WHEN EXTRACT(MONTH FROM vrad.data_date) >= 9 OR EXTRACT(MONTH FROM vrad.data_date) <= 1 
+                    THEN 'autumn'
+                    ELSE 'spring'
+                END AS semester,
+                
+                vrad.anomaly_classification AS anomaly_type,
+                
+                -- Anomaly metrics from view_riksdagen_voting_anomaly_detection
+                COUNT(DISTINCT vrad.politician_id) AS high_anomaly_count,
+                ROUND(AVG(vrad.total_rebellions)::NUMERIC, 2) AS avg_total_rebellions,
+                ROUND(AVG(vrad.strong_consensus_rebellions)::NUMERIC, 2) AS strong_consensus_rebels,
+                
+                -- Risk metrics from view_politician_risk_summary
+                COUNT(DISTINCT prs.person_id) AS politician_count_with_risk,
+                ROUND(AVG(prs.risk_score)::NUMERIC, 2) AS avg_risk_score,
+                SUM(CASE WHEN prs.risk_level = 'HIGH' THEN 1 ELSE 0 END) AS high_risk_politicians,
+                
+                -- Risk evolution from view_risk_score_evolution
+                ROUND(AVG(COALESCE(prs.risk_score, 0))::NUMERIC, 2) AS avg_risk_score_prs
+                
+            FROM view_riksdagen_voting_anomaly_detection vrad
+            LEFT JOIN view_politician_risk_summary prs
+                ON vrad.politician_id = prs.person_id
+            
+            GROUP BY
+                election_cycle_id,
+                cycle_year,
+                calendar_year,
+                semester,
+                vrad.anomaly_classification
+        ),
+        
+        windowed_metrics AS (
+            SELECT
+                bm.*,
+                
+                RANK() OVER (
+                    PARTITION BY bm.election_cycle_id
+                    ORDER BY bm.avg_risk_score DESC NULLS LAST
+                ) AS rank_by_risk,
+                
+                RANK() OVER (
+                    PARTITION BY bm.election_cycle_id
+                    ORDER BY bm.high_anomaly_count DESC NULLS LAST
+                ) AS rank_by_anomalies,
+                
+                PERCENT_RANK() OVER (
+                    PARTITION BY bm.election_cycle_id
+                    ORDER BY bm.avg_risk_score ASC NULLS LAST
+                ) AS percent_rank_risk,
+                
+                NTILE(4) OVER (
+                    PARTITION BY bm.election_cycle_id
+                    ORDER BY bm.avg_risk_score DESC NULLS LAST
+                ) AS ntile_risk_level,
+                
+                LAG(bm.avg_risk_score) OVER (
+                    PARTITION BY bm.election_cycle_id
+                    ORDER BY bm.cycle_year, bm.semester
+                ) AS prev_semester_risk,
+                
+                LAG(bm.high_anomaly_count) OVER (
+                    PARTITION BY bm.election_cycle_id
+                    ORDER BY bm.cycle_year, bm.semester
+                ) AS prev_semester_anomalies
+                
+            FROM base_metrics bm
+        )
+        
+        SELECT
+            wm.election_cycle_id,
+            wm.cycle_year,
+            wm.calendar_year,
+            wm.semester,
+            wm.anomaly_type,
+            
+            -- Original v1.51 metrics
+            wm.politician_count_with_risk,
+            wm.avg_risk_score,
+            wm.high_risk_politicians,
+            wm.high_anomaly_count,
+            wm.avg_total_rebellions,
+            wm.strong_consensus_rebels,
+            wm.avg_risk_score_prs,
+            
+            -- NEW v1.52: Rankings
+            wm.rank_by_risk,
+            wm.rank_by_anomalies,
+            ROUND(wm.percent_rank_risk::NUMERIC, 4) AS percent_rank_risk,
+            wm.ntile_risk_level,
+            
+            -- NEW v1.52: Previous period comparison
+            wm.prev_semester_risk,
+            wm.prev_semester_anomalies,
+            
+            CASE
+                WHEN wm.prev_semester_risk IS NOT NULL AND wm.prev_semester_risk > 0
+                THEN ROUND(((wm.avg_risk_score - wm.prev_semester_risk) / 
+                           NULLIF(wm.prev_semester_risk, 0) * 100)::NUMERIC, 2)
+                ELSE NULL
+            END AS change_risk_pct,
+            
+            CASE
+                WHEN wm.prev_semester_anomalies IS NOT NULL AND wm.prev_semester_anomalies > 0
+                THEN ROUND(((wm.high_anomaly_count - wm.prev_semester_anomalies) / 
+                           NULLIF(wm.prev_semester_anomalies, 0) * 100)::NUMERIC, 2)
+                ELSE NULL
+            END AS change_anomalies_pct,
+            
+            -- NEW v1.52: Trend classification
+            CASE
+                WHEN wm.prev_semester_risk IS NOT NULL
+                THEN
+                    CASE
+                        WHEN wm.avg_risk_score > wm.prev_semester_risk * 1.05 THEN 'escalating'
+                        WHEN wm.avg_risk_score < wm.prev_semester_risk * 0.95 THEN 'improving'
+                        ELSE 'stable'
+                    END
+                ELSE NULL
+            END AS risk_trend,
+            
+            -- NEW v1.52: Anomaly acceleration
+            CASE
+                WHEN wm.prev_semester_anomalies IS NOT NULL AND wm.prev_semester_anomalies > 0
+                THEN ROUND(
+                    ((wm.high_anomaly_count - wm.prev_semester_anomalies)::NUMERIC / 
+                     NULLIF(wm.prev_semester_anomalies, 0))::NUMERIC, 3
+                )
+                ELSE NULL
+            END AS anomaly_acceleration
+            
+        FROM windowed_metrics wm
+        ORDER BY wm.election_cycle_id, wm.cycle_year, wm.semester, wm.rank_by_risk;
+    ]]></sql>
+</changeSet>
+
+
+<!-- ========================================================================= -->
+<!-- 4. PREDICTIVE INTELLIGENCE - ENHANCED WITH STATISTICAL FUNCTIONS          -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative-analytics" id="1.52-drop-predictive-view" failOnError="false">
+    <comment>Drop existing v1.51 predictive intelligence view for replacement</comment>
+    <sql>DROP VIEW IF EXISTS view_election_cycle_predictive_intelligence CASCADE;</sql>
+</changeSet>
+
+<changeSet author="intelligence-operative-analytics" id="1.52-election-cycle-predictive-enhanced" failOnError="true">
+    <comment>
+        CREATE VIEW: view_election_cycle_predictive_intelligence (ENHANCED v1.52)
+        
+        Framework: Predictive Intelligence with Forecasting Metrics
+        
+        New Columns (+11 from v1.51):
+        1. rank_by_risk_score - Risk ranking within cycle
+        2. percent_rank_risk - Percentile risk positioning
+        3. ntile_forecast_group - Forecast tier (1-4)
+        4. prev_semester_risk - Previous period risk for trend
+        5. change_risk_pct - % change in risk level
+        6. stddev_risk - Risk volatility metric
+        7. risk_trajectory - Classification: escalating/stable/improving
+        8. forecast_confidence - Confidence score (0-100)
+        9. corr_risk_violations - Correlation between risk and violations
+        10. lead_semester_risk - Forward-looking risk indicator
+        11. predictive_alert_level - Alert status: high/medium/low
+    </comment>
+    
+    <sql><![CDATA[
+        CREATE VIEW view_election_cycle_predictive_intelligence AS
+        WITH base_metrics AS (
+            SELECT
+                CONCAT(
+                    EXTRACT(YEAR FROM rse.data_date)::TEXT,
+                    '-',
+                    (EXTRACT(YEAR FROM rse.data_date) + 3)::TEXT
+                ) AS election_cycle_id,
+                
+                CASE
+                    WHEN MOD(EXTRACT(YEAR FROM rse.data_date)::INTEGER - 1994, 4) = 0 THEN 1
+                    WHEN MOD(EXTRACT(YEAR FROM rse.data_date)::INTEGER - 1994, 4) = 1 THEN 2
+                    WHEN MOD(EXTRACT(YEAR FROM rse.data_date)::INTEGER - 1994, 4) = 2 THEN 3
+                    ELSE 4
+                END AS cycle_year,
+                
+                EXTRACT(YEAR FROM rse.data_date)::INTEGER AS calendar_year,
+                
+                CASE
+                    WHEN EXTRACT(MONTH FROM rse.data_date) >= 9 OR EXTRACT(MONTH FROM rse.data_date) <= 1 
+                    THEN 'autumn'
+                    ELSE 'spring'
+                END AS semester,
+                
+                prs.risk_level AS risk_forecast_category,
+                
+                -- Risk metrics from view_risk_score_evolution
+                COUNT(DISTINCT prs.person_id) AS politicians_at_risk,
+                ROUND(AVG(rse.current_score - rse.previous_score)::NUMERIC, 2) AS avg_risk_score_change,
+                
+                -- Ministry metrics from view_ministry_decision_impact
+                COUNT(DISTINCT mdi.ministry_code) AS ministries_at_risk,
+                ROUND(AVG(mdi.approval_rate)::NUMERIC, 2) AS avg_ministry_productivity,
+                
+                -- Party trends
+                ROUND(AVG(pbt.won_rate)::NUMERIC, 2) AS avg_party_win_rate_trend,
+                SUM(CASE WHEN pbt.ma_absence > 5 THEN 1 ELSE 0 END) AS parties_with_increasing_absence
+                
+            FROM view_risk_score_evolution rse
+            LEFT JOIN view_politician_risk_summary prs
+                ON rse.person_id = prs.person_id
+            LEFT JOIN view_ministry_decision_impact mdi
+                ON EXTRACT(YEAR FROM rse.data_date) = mdi.decision_year
+            LEFT JOIN view_politician_behavioral_trends pbt
+                ON rse.person_id = pbt.politician_id
+                AND EXTRACT(YEAR FROM rse.data_date) = EXTRACT(YEAR FROM pbt.data_date)
+            
+            GROUP BY
+                election_cycle_id,
+                cycle_year,
+                calendar_year,
+                semester,
+                prs.risk_level
+        ),
+        
+        windowed_metrics AS (
+            SELECT
+                bm.*,
+                
+                RANK() OVER (
+                    PARTITION BY bm.election_cycle_id
+                    ORDER BY bm.avg_risk_score_change DESC NULLS LAST
+                ) AS rank_by_risk_score,
+                
+                PERCENT_RANK() OVER (
+                    PARTITION BY bm.election_cycle_id
+                    ORDER BY bm.avg_risk_score_change ASC NULLS LAST
+                ) AS percent_rank_risk,
+                
+                NTILE(4) OVER (
+                    PARTITION BY bm.election_cycle_id
+                    ORDER BY bm.avg_risk_score_change DESC NULLS LAST
+                ) AS ntile_forecast_group,
+                
+                LAG(bm.avg_risk_score_change) OVER (
+                    PARTITION BY bm.election_cycle_id
+                    ORDER BY bm.cycle_year, bm.semester
+                ) AS prev_semester_risk,
+                
+                LEAD(bm.avg_risk_score_change) OVER (
+                    PARTITION BY bm.election_cycle_id
+                    ORDER BY bm.cycle_year, bm.semester
+                ) AS lead_semester_risk,
+                
+                STDDEV_POP(bm.avg_risk_score_change) OVER (
+                    PARTITION BY bm.election_cycle_id
+                ) AS stddev_risk,
+                
+                CORR(bm.avg_risk_score_change, bm.parties_with_increasing_absence::NUMERIC) OVER (
+                    PARTITION BY bm.election_cycle_id
+                ) AS corr_risk_violations
+                
+            FROM base_metrics bm
+        )
+        
+        SELECT
+            wm.election_cycle_id,
+            wm.cycle_year,
+            wm.calendar_year,
+            wm.semester,
+            wm.risk_forecast_category,
+            
+            -- Original v1.51 metrics
+            wm.politicians_at_risk,
+            wm.avg_risk_score_change,
+            wm.ministries_at_risk,
+            wm.avg_ministry_productivity,
+            wm.avg_party_win_rate_trend,
+            wm.parties_with_increasing_absence,
+            
+            -- NEW v1.52: Rankings
+            wm.rank_by_risk_score,
+            ROUND(wm.percent_rank_risk::NUMERIC, 4) AS percent_rank_risk,
+            wm.ntile_forecast_group,
+            
+            -- NEW v1.52: Temporal comparison
+            wm.prev_semester_risk,
+            wm.lead_semester_risk,
+            
+            CASE
+                WHEN wm.prev_semester_risk IS NOT NULL AND wm.prev_semester_risk != 0
+                THEN ROUND(((wm.avg_risk_score_change - wm.prev_semester_risk) / 
+                           NULLIF(ABS(wm.prev_semester_risk), 0) * 100)::NUMERIC, 2)
+                ELSE NULL
+            END AS change_risk_pct,
+            
+            -- NEW v1.52: Volatility and correlation
+            ROUND(wm.stddev_risk::NUMERIC, 2) AS stddev_risk,
+            ROUND(wm.corr_risk_violations::NUMERIC, 4) AS corr_risk_violations,
+            
+            -- NEW v1.52: Trajectory classification
+            CASE
+                WHEN wm.prev_semester_risk IS NOT NULL
+                THEN
+                    CASE
+                        WHEN wm.avg_risk_score_change > wm.prev_semester_risk * 1.05 THEN 'escalating'
+                        WHEN wm.avg_risk_score_change < wm.prev_semester_risk * 0.95 THEN 'improving'
+                        ELSE 'stable'
+                    END
+                ELSE NULL
+            END AS risk_trajectory,
+            
+            -- NEW v1.52: Forecast confidence (based on volatility)
+            ROUND((
+                100.0 - LEAST(COALESCE(wm.stddev_risk, 0) * 10, 100)
+            )::NUMERIC, 2) AS forecast_confidence,
+            
+            -- NEW v1.52: Alert level
+            CASE
+                WHEN wm.avg_risk_score_change > 5 THEN 'high'
+                WHEN wm.avg_risk_score_change > 2 THEN 'medium'
+                ELSE 'low'
+            END AS predictive_alert_level
+            
+        FROM windowed_metrics wm
+        ORDER BY wm.election_cycle_id, wm.cycle_year, wm.semester, wm.rank_by_risk_score;
+    ]]></sql>
+</changeSet>
+
+
+<!-- ========================================================================= -->
+<!-- 5. NETWORK ANALYSIS - ENHANCED WITH STATISTICAL FUNCTIONS                 -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative-analytics" id="1.52-drop-network-view" failOnError="false">
+    <comment>Drop existing v1.51 network analysis view for replacement</comment>
+    <sql>DROP VIEW IF EXISTS view_election_cycle_network_analysis CASCADE;</sql>
+</changeSet>
+
+<changeSet author="intelligence-operative-analytics" id="1.52-election-cycle-network-enhanced" failOnError="true">
+    <comment>
+        CREATE VIEW: view_election_cycle_network_analysis (ENHANCED v1.52)
+        
+        Framework: Network Analysis with Coalition Dynamics
+        
+        New Columns (+9 from v1.51):
+        1. rank_by_alignment - Coalition alignment ranking
+        2. percent_rank_alignment - Percentile positioning
+        3. ntile_coalition_strength - Coalition tier (1-4)
+        4. prev_semester_alignment - Previous period alignment rate
+        5. change_alignment_pct - % change in alignment
+        6. stddev_alignment - Alignment volatility
+        7. coalition_stability_trend - Classification: strengthening/stable/weakening
+        8. network_density - Overall network connectivity score
+        9. coalition_momentum - Rate of alignment change
+    </comment>
+    
+    <sql><![CDATA[
+        CREATE VIEW view_election_cycle_network_analysis AS
+        WITH base_metrics AS (
+            SELECT
+                CONCAT(
+                    EXTRACT(YEAR FROM rcam.data_date)::TEXT,
+                    '-',
+                    (EXTRACT(YEAR FROM rcam.data_date) + 3)::TEXT
+                ) AS election_cycle_id,
+                
+                CASE
+                    WHEN MOD(EXTRACT(YEAR FROM rcam.data_date)::INTEGER - 1994, 4) = 0 THEN 1
+                    WHEN MOD(EXTRACT(YEAR FROM rcam.data_date)::INTEGER - 1994, 4) = 1 THEN 2
+                    WHEN MOD(EXTRACT(YEAR FROM rcam.data_date)::INTEGER - 1994, 4) = 2 THEN 3
+                    ELSE 4
+                END AS cycle_year,
+                
+                EXTRACT(YEAR FROM rcam.data_date)::INTEGER AS calendar_year,
+                
+                CASE
+                    WHEN EXTRACT(MONTH FROM rcam.data_date) >= 9 OR EXTRACT(MONTH FROM rcam.data_date) <= 1 
+                    THEN 'autumn'
+                    ELSE 'spring'
+                END AS semester,
+                
+                rcam.party1,
+                rcam.party2,
+                
+                -- Coalition metrics from view_riksdagen_coalition_alignment_matrix
+                ROUND(AVG(rcam.alignment_rate)::NUMERIC, 2) AS alignment_rate,
+                
+                -- Coalition strength calculation
+                ROUND(AVG(rcam.alignment_rate * rcam.total_common_votes / 100.0)::NUMERIC, 2) AS coalition_strength,
+                
+                -- Network influence (placeholder, would need actual influence metrics)
+                COUNT(DISTINCT rpdf.person_id) AS influential_politicians,
+                
+                -- Network centrality (simplified calculation)
+                ROUND(AVG(rcam.total_common_votes::NUMERIC / 100.0), 2) AS avg_network_centrality,
+                
+                -- Power brokers (high influence politicians)
+                COUNT(DISTINCT CASE WHEN rcam.alignment_rate > 75 THEN rcam.party1 END) AS power_broker_count
+                
+            FROM view_riksdagen_coalition_alignment_matrix rcam
+            LEFT JOIN view_riksdagen_party_decision_flow rpdf
+                ON rcam.party1 = rpdf.party
+                AND EXTRACT(YEAR FROM rcam.data_date) = EXTRACT(YEAR FROM rpdf.data_date)
+            
+            GROUP BY
+                election_cycle_id,
+                cycle_year,
+                calendar_year,
+                semester,
+                rcam.party1,
+                rcam.party2
+        ),
+        
+        windowed_metrics AS (
+            SELECT
+                bm.*,
+                
+                RANK() OVER (
+                    PARTITION BY bm.election_cycle_id, bm.semester
+                    ORDER BY bm.alignment_rate DESC NULLS LAST
+                ) AS rank_by_alignment,
+                
+                PERCENT_RANK() OVER (
+                    PARTITION BY bm.election_cycle_id, bm.semester
+                    ORDER BY bm.alignment_rate ASC NULLS LAST
+                ) AS percent_rank_alignment,
+                
+                NTILE(4) OVER (
+                    PARTITION BY bm.election_cycle_id, bm.semester
+                    ORDER BY bm.coalition_strength DESC NULLS LAST
+                ) AS ntile_coalition_strength,
+                
+                LAG(bm.alignment_rate) OVER (
+                    PARTITION BY bm.party1, bm.party2
+                    ORDER BY bm.election_cycle_id, bm.cycle_year, bm.semester
+                ) AS prev_semester_alignment,
+                
+                STDDEV_POP(bm.alignment_rate) OVER (
+                    PARTITION BY bm.party1, bm.party2
+                ) AS stddev_alignment
+                
+            FROM base_metrics bm
+        )
+        
+        SELECT
+            wm.election_cycle_id,
+            wm.cycle_year,
+            wm.calendar_year,
+            wm.semester,
+            wm.party1,
+            wm.party2,
+            
+            -- Original v1.51 metrics
+            wm.alignment_rate,
+            wm.coalition_strength,
+            wm.influential_politicians,
+            wm.avg_network_centrality,
+            wm.power_broker_count,
+            
+            -- NEW v1.52: Rankings
+            wm.rank_by_alignment,
+            ROUND(wm.percent_rank_alignment::NUMERIC, 4) AS percent_rank_alignment,
+            wm.ntile_coalition_strength,
+            
+            -- NEW v1.52: Temporal comparison
+            wm.prev_semester_alignment,
+            
+            CASE
+                WHEN wm.prev_semester_alignment IS NOT NULL AND wm.prev_semester_alignment > 0
+                THEN ROUND(((wm.alignment_rate - wm.prev_semester_alignment) / 
+                           NULLIF(wm.prev_semester_alignment, 0) * 100)::NUMERIC, 2)
+                ELSE NULL
+            END AS change_alignment_pct,
+            
+            -- NEW v1.52: Volatility
+            ROUND(wm.stddev_alignment::NUMERIC, 2) AS stddev_alignment,
+            
+            -- NEW v1.52: Stability trend
+            CASE
+                WHEN wm.prev_semester_alignment IS NOT NULL
+                THEN
+                    CASE
+                        WHEN wm.alignment_rate > wm.prev_semester_alignment * 1.05 THEN 'strengthening'
+                        WHEN wm.alignment_rate < wm.prev_semester_alignment * 0.95 THEN 'weakening'
+                        ELSE 'stable'
+                    END
+                ELSE NULL
+            END AS coalition_stability_trend,
+            
+            -- NEW v1.52: Network density (overall connectivity)
+            ROUND((
+                COALESCE(wm.alignment_rate, 0) * 0.6 +
+                COALESCE(wm.coalition_strength, 0) * 0.4
+            )::NUMERIC, 2) AS network_density,
+            
+            -- NEW v1.52: Coalition momentum
+            CASE
+                WHEN wm.prev_semester_alignment IS NOT NULL AND wm.prev_semester_alignment > 0
+                THEN ROUND(
+                    ((wm.alignment_rate - wm.prev_semester_alignment) / 
+                     NULLIF(wm.prev_semester_alignment, 0))::NUMERIC, 3
+                )
+                ELSE NULL
+            END AS coalition_momentum
+            
+        FROM windowed_metrics wm
+        ORDER BY wm.election_cycle_id, wm.semester, wm.rank_by_alignment;
+    ]]></sql>
+</changeSet>
+
+
+<!-- ========================================================================= -->
+<!-- 6. DECISION INTELLIGENCE - ENHANCED WITH STATISTICAL FUNCTIONS            -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative-analytics" id="1.52-drop-decision-view" failOnError="false">
+    <comment>Drop existing v1.51 decision intelligence view for replacement</comment>
+    <sql>DROP VIEW IF EXISTS view_election_cycle_decision_intelligence CASCADE;</sql>
+</changeSet>
+
+<changeSet author="intelligence-operative-analytics" id="1.52-election-cycle-decision-enhanced" failOnError="true">
+    <comment>
+        CREATE VIEW: view_election_cycle_decision_intelligence (ENHANCED v1.52)
+        
+        Framework: Decision Intelligence with Effectiveness Metrics
+        
+        New Columns (+10 from v1.51):
+        1. rank_by_success_rate - Ranking by decision approval
+        2. rank_by_proposals - Ranking by legislative activity
+        3. percent_rank_success - Percentile success positioning
+        4. ntile_effectiveness - Effectiveness tier (1-4)
+        5. prev_semester_success - Previous period success rate
+        6. prev_semester_proposals - Previous period proposal count
+        7. change_success_pct - % change in success rate
+        8. change_proposals_pct - % change in activity level
+        9. decision_trend - Classification: improving/stable/declining
+        10. legislative_momentum - Rate of productivity change
+    </comment>
+    
+    <sql><![CDATA[
+        CREATE VIEW view_election_cycle_decision_intelligence AS
+        WITH base_metrics AS (
+            SELECT
+                CONCAT(
+                    EXTRACT(YEAR FROM dtt.data_date)::TEXT,
+                    '-',
+                    (EXTRACT(YEAR FROM dtt.data_date) + 3)::TEXT
+                ) AS election_cycle_id,
+                
+                CASE
+                    WHEN MOD(EXTRACT(YEAR FROM dtt.data_date)::INTEGER - 1994, 4) = 0 THEN 1
+                    WHEN MOD(EXTRACT(YEAR FROM dtt.data_date)::INTEGER - 1994, 4) = 1 THEN 2
+                    WHEN MOD(EXTRACT(YEAR FROM dtt.data_date)::INTEGER - 1994, 4) = 2 THEN 3
+                    ELSE 4
+                END AS cycle_year,
+                
+                EXTRACT(YEAR FROM dtt.data_date)::INTEGER AS calendar_year,
+                
+                CASE
+                    WHEN EXTRACT(MONTH FROM dtt.data_date) >= 9 OR EXTRACT(MONTH FROM dtt.data_date) <= 1 
+                    THEN 'autumn'
+                    ELSE 'spring'
+                END AS semester,
+                
+                rpdf.party,
+                
+                -- Decision metrics from view_riksdagen_party_decision_flow
+                SUM(rpdf.total_proposals) AS total_proposals,
+                SUM(rpdf.approved_count) AS approved_proposals,
+                SUM(rpdf.rejected_count) AS rejected_proposals,
+                
+                -- Success rate calculation
+                ROUND((SUM(rpdf.approved_count)::NUMERIC / 
+                      NULLIF(SUM(rpdf.total_proposals), 0) * 100), 2) AS avg_approval_rate,
+                
+                -- Decision temporal metrics from view_decision_temporal_trends
+                ROUND(AVG(dtt.approval_rate)::NUMERIC, 2) AS temporal_approval_rate,
+                SUM(dtt.total_decisions) AS temporal_decision_count,
+                
+                -- Ministry impact from view_ministry_decision_impact
+                ROUND(AVG(mdi.approval_rate * mdi.total_decisions / 100.0)::NUMERIC, 2) AS ministry_impact_score,
+                COUNT(DISTINCT mdi.ministry_code) AS ministries_with_decisions,
+                
+                -- Effectiveness score
+                ROUND((
+                    COALESCE(AVG(dtt.approval_rate), 0) * 0.5 +
+                    COALESCE(SUM(rpdf.approved_count)::NUMERIC / NULLIF(SUM(rpdf.total_proposals), 0) * 100, 0) * 0.5
+                )::NUMERIC, 2) AS decision_effectiveness
+                
+            FROM view_decision_temporal_trends dtt
+            LEFT JOIN view_riksdagen_party_decision_flow rpdf
+                ON EXTRACT(YEAR FROM dtt.data_date) = EXTRACT(YEAR FROM rpdf.data_date)
+            LEFT JOIN view_ministry_decision_impact mdi
+                ON dtt.decision_year = mdi.decision_year
+            
+            GROUP BY
+                election_cycle_id,
+                cycle_year,
+                calendar_year,
+                semester,
+                rpdf.party
+        ),
+        
+        windowed_metrics AS (
+            SELECT
+                bm.*,
+                
+                RANK() OVER (
+                    PARTITION BY bm.election_cycle_id, bm.semester
+                    ORDER BY bm.avg_approval_rate DESC NULLS LAST
+                ) AS rank_by_success_rate,
+                
+                RANK() OVER (
+                    PARTITION BY bm.election_cycle_id, bm.semester
+                    ORDER BY bm.total_proposals DESC NULLS LAST
+                ) AS rank_by_proposals,
+                
+                PERCENT_RANK() OVER (
+                    PARTITION BY bm.election_cycle_id, bm.semester
+                    ORDER BY bm.decision_effectiveness ASC NULLS LAST
+                ) AS percent_rank_success,
+                
+                NTILE(4) OVER (
+                    PARTITION BY bm.election_cycle_id, bm.semester
+                    ORDER BY bm.decision_effectiveness DESC NULLS LAST
+                ) AS ntile_effectiveness,
+                
+                LAG(bm.avg_approval_rate) OVER (
+                    PARTITION BY bm.party
+                    ORDER BY bm.election_cycle_id, bm.cycle_year, bm.semester
+                ) AS prev_semester_success,
+                
+                LAG(bm.total_proposals) OVER (
+                    PARTITION BY bm.party
+                    ORDER BY bm.election_cycle_id, bm.cycle_year, bm.semester
+                ) AS prev_semester_proposals
+                
+            FROM base_metrics bm
+        )
+        
+        SELECT
+            wm.election_cycle_id,
+            wm.cycle_year,
+            wm.calendar_year,
+            wm.semester,
+            wm.party,
+            
+            -- Original v1.51 metrics
+            wm.total_proposals,
+            wm.approved_proposals,
+            wm.rejected_proposals,
+            wm.avg_approval_rate,
+            wm.decision_effectiveness,
+            wm.temporal_approval_rate,
+            wm.temporal_decision_count,
+            wm.ministry_impact_score,
+            wm.ministries_with_decisions,
+            
+            -- NEW v1.52: Rankings
+            wm.rank_by_success_rate,
+            wm.rank_by_proposals,
+            ROUND(wm.percent_rank_success::NUMERIC, 4) AS percent_rank_success,
+            wm.ntile_effectiveness,
+            
+            -- NEW v1.52: Temporal comparison
+            wm.prev_semester_success,
+            wm.prev_semester_proposals,
+            
+            CASE
+                WHEN wm.prev_semester_success IS NOT NULL AND wm.prev_semester_success > 0
+                THEN ROUND(((wm.avg_approval_rate - wm.prev_semester_success) / 
+                           NULLIF(wm.prev_semester_success, 0) * 100)::NUMERIC, 2)
+                ELSE NULL
+            END AS change_success_pct,
+            
+            CASE
+                WHEN wm.prev_semester_proposals IS NOT NULL AND wm.prev_semester_proposals > 0
+                THEN ROUND(((wm.total_proposals - wm.prev_semester_proposals) / 
+                           NULLIF(wm.prev_semester_proposals, 0) * 100)::NUMERIC, 2)
+                ELSE NULL
+            END AS change_proposals_pct,
+            
+            -- NEW v1.52: Trend classification
+            CASE
+                WHEN wm.prev_semester_success IS NOT NULL
+                THEN
+                    CASE
+                        WHEN wm.avg_approval_rate > wm.prev_semester_success * 1.05 THEN 'improving'
+                        WHEN wm.avg_approval_rate < wm.prev_semester_success * 0.95 THEN 'declining'
+                        ELSE 'stable'
+                    END
+                ELSE NULL
+            END AS decision_trend,
+            
+            -- NEW v1.52: Legislative momentum
+            CASE
+                WHEN wm.prev_semester_proposals IS NOT NULL AND wm.prev_semester_proposals > 0
+                THEN ROUND(
+                    ((wm.total_proposals - wm.prev_semester_proposals)::NUMERIC / 
+                     NULLIF(wm.prev_semester_proposals, 0))::NUMERIC, 3
+                )
+                ELSE NULL
+            END AS legislative_momentum
+            
+        FROM windowed_metrics wm
+        ORDER BY wm.election_cycle_id, wm.semester, wm.rank_by_success_rate;
+    ]]></sql>
+</changeSet>
+
+
 </databaseChangeLog>
