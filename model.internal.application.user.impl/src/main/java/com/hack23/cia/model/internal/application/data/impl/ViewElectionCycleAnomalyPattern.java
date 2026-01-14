@@ -107,135 +107,183 @@ protected Long highRiskPoliticians;
 
 @EmbeddedId
 public ViewElectionCycleEmbeddedId getEmbeddedId() {
- embeddedId;
+		return embeddedId;
 }
 
 public void setEmbeddedId(final ViewElectionCycleEmbeddedId value) {
-= value;
+
+
+	this.embeddedId = value;
+
+
 }
 
 @Basic
 @Column(name = "CYCLE_YEAR")
 public Integer getCycleYear() {
- cycleYear;
+		return cycleYear;
 }
 
 public void setCycleYear(final Integer value) {
-cleYear = value;
+
+
+	this.cycleYear = value;
+
+
 }
 
 @Basic
 @Column(name = "CALENDAR_YEAR")
 public Integer getCalendarYear() {
- calendarYear;
+		return calendarYear;
 }
 
 public void setCalendarYear(final Integer value) {
-darYear = value;
+
+
+	this.calendarYear = value;
+
+
 }
 
 @Basic
 @Column(name = "ANOMALY_TYPE", length = 50)
 public String getAnomalyType() {
- anomalyType;
+		return anomalyType;
 }
 
 public void setAnomalyType(final String value) {
-omalyType = value;
+
+
+	this.anomalyType = value;
+
+
 }
 
 @Basic
 @Column(name = "POLITICIAN_COUNT_WITH_RISK", precision = 20)
 public Long getPoliticianCountWithRisk() {
- politicianCountWithRisk;
+		return politicianCountWithRisk;
 }
 
 public void setPoliticianCountWithRisk(final Long value) {
-CountWithRisk = value;
+
+
+	this.politicianCountWithRisk = value;
+
+
 }
 
 @Basic
 @Column(name = "AVG_RISK_SCORE", precision = 5, scale = 2)
 public BigDecimal getAvgRiskScore() {
- avgRiskScore;
+		return avgRiskScore;
 }
 
 public void setAvgRiskScore(final BigDecimal value) {
-= value;
+
+
+	this.avgRiskScore = value;
+
+
 }
 
 @Basic
 @Column(name = "RISK_ESCALATIONS", precision = 20)
 public Long getRiskEscalations() {
- riskEscalations;
+		return riskEscalations;
 }
 
 public void setRiskEscalations(final Long value) {
-s = value;
+
+
+	this.riskEscalations = value;
+
+
 }
 
 @Basic
 @Column(name = "HIGH_ANOMALY_COUNT", precision = 20)
 public Long getHighAnomalyCount() {
- highAnomalyCount;
+		return highAnomalyCount;
 }
 
 public void setHighAnomalyCount(final Long value) {
-omalyCount = value;
+
+
+	this.highAnomalyCount = value;
+
+
 }
 
 @Basic
 @Column(name = "AVG_TOTAL_REBELLIONS", precision = 5, scale = 2)
 public BigDecimal getAvgTotalRebellions() {
- avgTotalRebellions;
+		return avgTotalRebellions;
 }
 
 public void setAvgTotalRebellions(final BigDecimal value) {
-s = value;
+
+
+	this.avgTotalRebellions = value;
+
+
 }
 
 @Basic
 @Column(name = "STRONG_CONSENSUS_REBELS", precision = 20)
 public Long getStrongConsensusRebels() {
- strongConsensusRebels;
+		return strongConsensusRebels;
 }
 
 public void setStrongConsensusRebels(final Long value) {
-gConsensusRebels = value;
+
+
+	this.strongConsensusRebels = value;
+
+
 }
 
 @Basic
 @Column(name = "AVG_RISK_SCORE_PRS", precision = 5, scale = 2)
 public BigDecimal getAvgRiskScorePrs() {
- avgRiskScorePrs;
+		return avgRiskScorePrs;
 }
 
 public void setAvgRiskScorePrs(final BigDecimal value) {
-= value;
+
+
+	this.avgRiskScorePrs = value;
+
+
 }
 
 @Basic
 @Column(name = "HIGH_RISK_POLITICIANS", precision = 20)
 public Long getHighRiskPoliticians() {
- highRiskPoliticians;
+		return highRiskPoliticians;
 }
 
 public void setHighRiskPoliticians(final Long value) {
-s = value;
+
+
+	this.highRiskPoliticians = value;
+
+
 }
 
 @Override
 public final String toString() {
- ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 }
 
 @Override
 public final boolean equals(final Object obj) {
- EqualsBuilder.reflectionEquals(this, obj);
+		return EqualsBuilder.reflectionEquals(this, obj);
 }
 
 @Override
 public final int hashCode() {
- HashCodeBuilder.reflectionHashCode(this);
+		return HashCodeBuilder.reflectionHashCode(this);
 }
 }

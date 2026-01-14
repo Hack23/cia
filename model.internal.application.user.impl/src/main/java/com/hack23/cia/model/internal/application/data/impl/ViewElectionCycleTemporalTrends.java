@@ -131,165 +131,225 @@ protected BigDecimal avgCommitteeProductivity;
 
 @EmbeddedId
 public ViewElectionCycleTemporalTrendsEmbeddedId getEmbeddedId() {
- embeddedId;
+		return embeddedId;
 }
 
 public void setEmbeddedId(final ViewElectionCycleTemporalTrendsEmbeddedId value) {
-= value;
+
+
+	this.embeddedId = value;
+
+
 }
 
 @Basic
 @Column(name = "CALENDAR_YEAR")
 public Integer getCalendarYear() {
- calendarYear;
+		return calendarYear;
 }
 
 public void setCalendarYear(final Integer value) {
-darYear = value;
+
+
+	this.calendarYear = value;
+
+
 }
 
 @Basic
 @Column(name = "IS_PRE_ELECTION_SEMESTER")
 public Boolean getIsPreElectionSemester() {
- isPreElectionSemester;
+		return isPreElectionSemester;
 }
 
 public void setIsPreElectionSemester(final Boolean value) {
-Semester = value;
+
+
+	this.isPreElectionSemester = value;
+
+
 }
 
 @Basic
 @Column(name = "MONTHS_UNTIL_ELECTION")
 public Integer getMonthsUntilElection() {
- monthsUntilElection;
+		return monthsUntilElection;
 }
 
 public void setMonthsUntilElection(final Integer value) {
-thsUntilElection = value;
+
+
+	this.monthsUntilElection = value;
+
+
 }
 
 @Basic
 @Column(name = "ACTIVE_POLITICIANS", precision = 20)
 public Long getActivePoliticians() {
- activePoliticians;
+		return activePoliticians;
 }
 
 public void setActivePoliticians(final Long value) {
-s = value;
+
+
+	this.activePoliticians = value;
+
+
 }
 
 @Basic
 @Column(name = "AVG_ATTENDANCE_RATE", precision = 5, scale = 2)
 public BigDecimal getAvgAttendanceRate() {
- avgAttendanceRate;
+		return avgAttendanceRate;
 }
 
 public void setAvgAttendanceRate(final BigDecimal value) {
-danceRate = value;
+
+
+	this.avgAttendanceRate = value;
+
+
 }
 
 @Basic
 @Column(name = "TOTAL_BALLOTS", precision = 20)
 public Long getTotalBallots() {
- totalBallots;
+		return totalBallots;
 }
 
 public void setTotalBallots(final Long value) {
-= value;
+
+
+	this.totalBallots = value;
+
+
 }
 
 @Basic
 @Column(name = "TOTAL_VOTES", precision = 20)
 public Long getTotalVotes() {
- totalVotes;
+		return totalVotes;
 }
 
 public void setTotalVotes(final Long value) {
-= value;
+
+
+	this.totalVotes = value;
+
+
 }
 
 @Basic
 @Column(name = "AVG_WIN_RATE", precision = 5, scale = 2)
 public BigDecimal getAvgWinRate() {
- avgWinRate;
+		return avgWinRate;
 }
 
 public void setAvgWinRate(final BigDecimal value) {
-Rate = value;
+
+
+	this.avgWinRate = value;
+
+
 }
 
 @Basic
 @Column(name = "AVG_REBEL_RATE", precision = 5, scale = 2)
 public BigDecimal getAvgRebelRate() {
- avgRebelRate;
+		return avgRebelRate;
 }
 
 public void setAvgRebelRate(final BigDecimal value) {
-= value;
+
+
+	this.avgRebelRate = value;
+
+
 }
 
 @Basic
 @Column(name = "VIOLATION_COUNT", precision = 20)
 public Long getViolationCount() {
- violationCount;
+		return violationCount;
 }
 
 public void setViolationCount(final Long value) {
-Count = value;
+
+
+	this.violationCount = value;
+
+
 }
 
 @Basic
 @Column(name = "AVG_MA_ABSENCE", precision = 5, scale = 2)
 public BigDecimal getAvgMaAbsence() {
- avgMaAbsence;
+		return avgMaAbsence;
 }
 
 public void setAvgMaAbsence(final BigDecimal value) {
-ce = value;
+
+
+	this.avgMaAbsence = value;
+
+
 }
 
 @Basic
 @Column(name = "AVG_APPROVAL_RATE", precision = 5, scale = 2)
 public BigDecimal getAvgApprovalRate() {
- avgApprovalRate;
+		return avgApprovalRate;
 }
 
 public void setAvgApprovalRate(final BigDecimal value) {
-= value;
+
+
+	this.avgApprovalRate = value;
+
+
 }
 
 @Basic
 @Column(name = "TOTAL_DECISIONS", precision = 20)
 public Long getTotalDecisions() {
- totalDecisions;
+		return totalDecisions;
 }
 
 public void setTotalDecisions(final Long value) {
-s = value;
+
+
+	this.totalDecisions = value;
+
+
 }
 
 @Basic
 @Column(name = "AVG_COMMITTEE_PRODUCTIVITY", precision = 5, scale = 2)
 public BigDecimal getAvgCommitteeProductivity() {
- avgCommitteeProductivity;
+		return avgCommitteeProductivity;
 }
 
 public void setAvgCommitteeProductivity(final BigDecimal value) {
- = value;
+
+
+	this.avgCommitteeProductivity = value;
+
+
 }
 
 @Override
 public final String toString() {
- ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 }
 
 @Override
 public final boolean equals(final Object obj) {
- EqualsBuilder.reflectionEquals(this, obj);
+		return EqualsBuilder.reflectionEquals(this, obj);
 }
 
 @Override
 public final int hashCode() {
- HashCodeBuilder.reflectionHashCode(this);
+		return HashCodeBuilder.reflectionHashCode(this);
 }
 }

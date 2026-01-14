@@ -52,115 +52,155 @@ protected Long partiesWithIncreasingAbsence;
 
 @EmbeddedId
 public ViewElectionCycleEmbeddedId getEmbeddedId() {
- embeddedId;
+		return embeddedId;
 }
 
 public void setEmbeddedId(final ViewElectionCycleEmbeddedId value) {
-= value;
+
+
+	this.embeddedId = value;
+
+
 }
 
 @Basic
 @Column(name = "CYCLE_YEAR")
 public Integer getCycleYear() {
- cycleYear;
+		return cycleYear;
 }
 
 public void setCycleYear(final Integer value) {
-cleYear = value;
+
+
+	this.cycleYear = value;
+
+
 }
 
 @Basic
 @Column(name = "CALENDAR_YEAR")
 public Integer getCalendarYear() {
- calendarYear;
+		return calendarYear;
 }
 
 public void setCalendarYear(final Integer value) {
-darYear = value;
+
+
+	this.calendarYear = value;
+
+
 }
 
 @Basic
 @Column(name = "RISK_FORECAST_CATEGORY", length = 50)
 public String getRiskForecastCategory() {
- riskForecastCategory;
+		return riskForecastCategory;
 }
 
 public void setRiskForecastCategory(final String value) {
- = value;
+
+
+	this.riskForecastCategory = value;
+
+
 }
 
 @Basic
 @Column(name = "POLITICIANS_AT_RISK", precision = 20)
 public Long getPoliticiansAtRisk() {
- politiciansAtRisk;
+		return politiciansAtRisk;
 }
 
 public void setPoliticiansAtRisk(final Long value) {
-sAtRisk = value;
+
+
+	this.politiciansAtRisk = value;
+
+
 }
 
 @Basic
 @Column(name = "AVG_RISK_SCORE_CHANGE", precision = 5, scale = 2)
 public BigDecimal getAvgRiskScoreChange() {
- avgRiskScoreChange;
+		return avgRiskScoreChange;
 }
 
 public void setAvgRiskScoreChange(final BigDecimal value) {
-ge = value;
+
+
+	this.avgRiskScoreChange = value;
+
+
 }
 
 @Basic
 @Column(name = "MINISTRIES_AT_RISK", precision = 20)
 public Long getMinistriesAtRisk() {
- ministriesAtRisk;
+		return ministriesAtRisk;
 }
 
 public void setMinistriesAtRisk(final Long value) {
-istriesAtRisk = value;
+
+
+	this.ministriesAtRisk = value;
+
+
 }
 
 @Basic
 @Column(name = "AVG_MINISTRY_PRODUCTIVITY", precision = 5, scale = 2)
 public BigDecimal getAvgMinistryProductivity() {
- avgMinistryProductivity;
+		return avgMinistryProductivity;
 }
 
 public void setAvgMinistryProductivity(final BigDecimal value) {
-istryProductivity = value;
+
+
+	this.avgMinistryProductivity = value;
+
+
 }
 
 @Basic
 @Column(name = "AVG_PARTY_WIN_RATE_TREND", precision = 5, scale = 2)
 public BigDecimal getAvgPartyWinRateTrend() {
- avgPartyWinRateTrend;
+		return avgPartyWinRateTrend;
 }
 
 public void setAvgPartyWinRateTrend(final BigDecimal value) {
-WinRateTrend = value;
+
+
+	this.avgPartyWinRateTrend = value;
+
+
 }
 
 @Basic
 @Column(name = "PARTIES_WITH_INCREASING_ABSENCE", precision = 20)
 public Long getPartiesWithIncreasingAbsence() {
- partiesWithIncreasingAbsence;
+		return partiesWithIncreasingAbsence;
 }
 
 public void setPartiesWithIncreasingAbsence(final Long value) {
-creasingAbsence = value;
+
+
+	this.partiesWithIncreasingAbsence = value;
+
+
 }
 
 @Override
 public final String toString() {
- ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 }
 
 @Override
 public final boolean equals(final Object obj) {
- EqualsBuilder.reflectionEquals(this, obj);
+		return EqualsBuilder.reflectionEquals(this, obj);
 }
 
 @Override
 public final int hashCode() {
- HashCodeBuilder.reflectionHashCode(this);
+		return HashCodeBuilder.reflectionHashCode(this);
 }
 }

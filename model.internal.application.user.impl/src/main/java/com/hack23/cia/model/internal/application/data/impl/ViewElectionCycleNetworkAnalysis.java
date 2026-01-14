@@ -52,115 +52,155 @@ protected Long powerBrokerCount;
 
 @EmbeddedId
 public ViewElectionCycleEmbeddedId getEmbeddedId() {
- embeddedId;
+		return embeddedId;
 }
 
 public void setEmbeddedId(final ViewElectionCycleEmbeddedId value) {
-= value;
+
+
+	this.embeddedId = value;
+
+
 }
 
 @Basic
 @Column(name = "CYCLE_YEAR")
 public Integer getCycleYear() {
- cycleYear;
+		return cycleYear;
 }
 
 public void setCycleYear(final Integer value) {
-cleYear = value;
+
+
+	this.cycleYear = value;
+
+
 }
 
 @Basic
 @Column(name = "CALENDAR_YEAR")
 public Integer getCalendarYear() {
- calendarYear;
+		return calendarYear;
 }
 
 public void setCalendarYear(final Integer value) {
-darYear = value;
+
+
+	this.calendarYear = value;
+
+
 }
 
 @Basic
 @Column(name = "PARTY1", length = 50)
 public String getParty1() {
- party1;
+		return party1;
 }
 
 public void setParty1(final String value) {
-1 = value;
+
+
+	this.party1 = value;
+
+
 }
 
 @Basic
 @Column(name = "PARTY2", length = 50)
 public String getParty2() {
- party2;
+		return party2;
 }
 
 public void setParty2(final String value) {
-2 = value;
+
+
+	this.party2 = value;
+
+
 }
 
 @Basic
 @Column(name = "ALIGNMENT_RATE", precision = 5, scale = 2)
 public BigDecimal getAlignmentRate() {
- alignmentRate;
+		return alignmentRate;
 }
 
 public void setAlignmentRate(final BigDecimal value) {
-mentRate = value;
+
+
+	this.alignmentRate = value;
+
+
 }
 
 @Basic
 @Column(name = "COALITION_STRENGTH", length = 50)
 public String getCoalitionStrength() {
- coalitionStrength;
+		return coalitionStrength;
 }
 
 public void setCoalitionStrength(final String value) {
-Strength = value;
+
+
+	this.coalitionStrength = value;
+
+
 }
 
 @Basic
 @Column(name = "INFLUENTIAL_POLITICIANS", precision = 20)
 public Long getInfluentialPoliticians() {
- influentialPoliticians;
+		return influentialPoliticians;
 }
 
 public void setInfluentialPoliticians(final Long value) {
-fluentialPoliticians = value;
+
+
+	this.influentialPoliticians = value;
+
+
 }
 
 @Basic
 @Column(name = "AVG_NETWORK_CENTRALITY", precision = 5, scale = 2)
 public BigDecimal getAvgNetworkCentrality() {
- avgNetworkCentrality;
+		return avgNetworkCentrality;
 }
 
 public void setAvgNetworkCentrality(final BigDecimal value) {
-etworkCentrality = value;
+
+
+	this.avgNetworkCentrality = value;
+
+
 }
 
 @Basic
 @Column(name = "POWER_BROKER_COUNT", precision = 20)
 public Long getPowerBrokerCount() {
- powerBrokerCount;
+		return powerBrokerCount;
 }
 
 public void setPowerBrokerCount(final Long value) {
-t = value;
+
+
+	this.powerBrokerCount = value;
+
+
 }
 
 @Override
 public final String toString() {
- ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 }
 
 @Override
 public final boolean equals(final Object obj) {
- EqualsBuilder.reflectionEquals(this, obj);
+		return EqualsBuilder.reflectionEquals(this, obj);
 }
 
 @Override
 public final int hashCode() {
- HashCodeBuilder.reflectionHashCode(this);
+		return HashCodeBuilder.reflectionHashCode(this);
 }
 }

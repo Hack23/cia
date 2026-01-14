@@ -107,135 +107,183 @@ protected Long committeesActive;
 
 @EmbeddedId
 public ViewElectionCycleEmbeddedId getEmbeddedId() {
- embeddedId;
+		return embeddedId;
 }
 
 public void setEmbeddedId(final ViewElectionCycleEmbeddedId value) {
-= value;
+
+
+	this.embeddedId = value;
+
+
 }
 
 @Basic
 @Column(name = "CYCLE_YEAR")
 public Integer getCycleYear() {
- cycleYear;
+		return cycleYear;
 }
 
 public void setCycleYear(final Integer value) {
-cleYear = value;
+
+
+	this.cycleYear = value;
+
+
 }
 
 @Basic
 @Column(name = "CALENDAR_YEAR")
 public Integer getCalendarYear() {
- calendarYear;
+		return calendarYear;
 }
 
 public void setCalendarYear(final Integer value) {
-darYear = value;
+
+
+	this.calendarYear = value;
+
+
 }
 
 @Basic
 @Column(name = "PARTY", length = 50)
 public String getParty() {
- party;
+		return party;
 }
 
 public void setParty(final String value) {
- = value;
+
+
+	this.party = value;
+
+
 }
 
 @Basic
 @Column(name = "PERFORMANCE_SCORE", precision = 10, scale = 2)
 public BigDecimal getPerformanceScore() {
- performanceScore;
+		return performanceScore;
 }
 
 public void setPerformanceScore(final BigDecimal value) {
-ceScore = value;
+
+
+	this.performanceScore = value;
+
+
 }
 
 @Basic
 @Column(name = "ACTIVE_MEMBERS", precision = 20)
 public Long getActiveMembers() {
- activeMembers;
+		return activeMembers;
 }
 
 public void setActiveMembers(final Long value) {
-= value;
+
+
+	this.activeMembers = value;
+
+
 }
 
 @Basic
 @Column(name = "PARTY_VIOLATIONS", precision = 20)
 public Long getPartyViolations() {
- partyViolations;
+		return partyViolations;
 }
 
 public void setPartyViolations(final Long value) {
-Violations = value;
+
+
+	this.partyViolations = value;
+
+
 }
 
 @Basic
 @Column(name = "PARTY_WIN_RATE", precision = 5, scale = 2)
 public BigDecimal getPartyWinRate() {
- partyWinRate;
+		return partyWinRate;
 }
 
 public void setPartyWinRate(final BigDecimal value) {
-WinRate = value;
+
+
+	this.partyWinRate = value;
+
+
 }
 
 @Basic
 @Column(name = "PARTY_PARTICIPATION_RATE", precision = 5, scale = 2)
 public BigDecimal getPartyParticipationRate() {
- partyParticipationRate;
+		return partyParticipationRate;
 }
 
 public void setPartyParticipationRate(final BigDecimal value) {
-ParticipationRate = value;
+
+
+	this.partyParticipationRate = value;
+
+
 }
 
 @Basic
 @Column(name = "DOCUMENTS_LAST_YEAR", precision = 20)
 public Long getDocumentsLastYear() {
- documentsLastYear;
+		return documentsLastYear;
 }
 
 public void setDocumentsLastYear(final Long value) {
-tsLastYear = value;
+
+
+	this.documentsLastYear = value;
+
+
 }
 
 @Basic
 @Column(name = "PARTY_AVG_REBEL_RATE", precision = 5, scale = 2)
 public BigDecimal getPartyAvgRebelRate() {
- partyAvgRebelRate;
+		return partyAvgRebelRate;
 }
 
 public void setPartyAvgRebelRate(final BigDecimal value) {
-AvgRebelRate = value;
+
+
+	this.partyAvgRebelRate = value;
+
+
 }
 
 @Basic
 @Column(name = "COMMITTEES_ACTIVE", precision = 20)
 public Long getCommitteesActive() {
- committeesActive;
+		return committeesActive;
 }
 
 public void setCommitteesActive(final Long value) {
-= value;
+
+
+	this.committeesActive = value;
+
+
 }
 
 @Override
 public final String toString() {
- ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 }
 
 @Override
 public final boolean equals(final Object obj) {
- EqualsBuilder.reflectionEquals(this, obj);
+		return EqualsBuilder.reflectionEquals(this, obj);
 }
 
 @Override
 public final int hashCode() {
- HashCodeBuilder.reflectionHashCode(this);
+		return HashCodeBuilder.reflectionHashCode(this);
 }
 }
