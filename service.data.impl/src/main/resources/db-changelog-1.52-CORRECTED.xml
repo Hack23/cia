@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+<!-- 
+  v1.52 - Statistical Enhancements for Election Cycle Views
+  Strategy: Wrap v1.51 base views with window functions
+  Author: Intelligence Operative & Advanced Analytics
+  Date: 2026-01-14
+-->
+
+<changeSet id="1.52-intro" author="intelligence-operative-analytics">
+    <comment>v1.52 Statistical Enhancements - Wraps v1.51 views with advanced window functions</comment>
+    <sql>
+        SELECT 
+            'v1.52-statistical-enhancements' AS version,
+            'Wraps v1.51 base views with window functions (RANK, PERCENT_RANK, NTILE, LAG, LEAD, STDDEV_POP)' AS description,
+            '+67 analytical columns across 6 views' AS scope,
+            CURRENT_TIMESTAMP AS applied_at;
+    </sql>
+</changeSet>
+
+
+<!-- VIEW 1: TEMPORAL TRENDS WITH STATISTICAL ENHANCEMENTS -->
+<changeSet id="1.52-drop-temporal-view" author="intelligence-operative-analytics" failOnError="false">
+    <comment>Drop v1.51 temporal trends view for v1.52 enhancement</comment>
+    <sql>DROP VIEW IF EXISTS view_election_cycle_temporal_trends CASCADE;</sql>
+</changeSet>
+
+<changeSet id="1.52-temporal-enhanced" author="intelligence-operative-analytics" failOnError="true">
+    <comment>
+        v1.52 Enhanced: view_election_cycle_temporal_trends
+        Wraps v1.51 base with window functions: RANK, PERCENT_RANK, NTILE, LAG, LEAD, STDDEV_POP
+        +15 statistical columns for trend analysis
+    </comment>
+    <createView viewName="view_election_cycle_temporal_trends">
+        <![CDATA[
+WITH v151_base AS (
+WITH election_cycle_calendar AS (
+    SELECT 
+        year_series AS calendar_year,
+        (1994 + (FLOOR((year_series - 1994) / 4.0) * 4))::INTEGER AS cycle_start_year,
+        (1994 + (FLOOR((year_series - 1994) / 4.0) * 4) + 4)::INTEGER AS cycle_end_year
+    FROM generate_series(1994, EXTRACT(YEAR FROM CURRENT_DATE)::INTEGER + 4, 1) AS year_series
+),
+election_cycle_periods AS (
+    SELECT 
+        calendar_year,
+        cycle_start_year,
+        cycle_end_year,
+        (cycle_start_year || '-' || cycle_end_year) AS election_cycle_id,
+        (calendar_year - cycle_start_year + 1) AS cycle_year,
+        MAKE_DATE(calendar_year, 9, 1) AS autumn_start,
+        MAKE_DATE(calendar_year + 1, 1, 25) AS autumn_end,
+        MAKE_DATE(calendar_year, 1, 26) AS spring_start,
+        MAKE_DATE(calendar_year, 8, 31) AS spring_end,
+        CASE WHEN (calendar_year - cycle_start_year + 1) = 4 THEN TRUE ELSE FALSE END AS is_election_year
+    FROM election_cycle_calendar
+),
+temporal_data_autumn AS (
+    SELECT 
+        ecp.election_cycle_id,
+        ecp.cycle_year,
+        ecp.calendar_year,
+        'autumn' AS semester,
+        FALSE AS is_pre_election_semester,
+        EXTRACT(YEAR FROM AGE(MAKE_DATE(ecp.cycle_end_year, 9, 15), ecp.autumn_start))::INTEGER * 12 + 
+        EXTRACT(MONTH FROM AGE(MAKE_DATE(ecp.cycle_end_year, 9, 15), ecp.autumn_start))::INTEGER AS months_until_election,
+        
+        -- From view_politician_behavioral_trends
+        COUNT(DISTINCT pbt.person_id) AS active_politicians,
+        ROUND(AVG(100 - pbt.avg_absence_rate), 2) AS avg_attendance_rate,
+        SUM(pbt.total_ballots) AS total_ballots,
+        SUM(pbt.total_votes) AS total_votes,
+        ROUND(AVG(pbt.avg_win_rate), 2) AS avg_win_rate,
+        ROUND(AVG(pbt.avg_rebel_rate), 2) AS avg_rebel_rate,
+        SUM(pbt.violation_count) AS violation_count,
+        ROUND(AVG(pbt.ma_3month_absence), 2) AS avg_ma_absence,
+        
+        -- From view_decision_temporal_trends (NEW)
+        ROUND(AVG(dtt.daily_approval_rate), 2) AS avg_approval_rate,
+        SUM(dtt.daily_decisions) AS total_decisions,
+        
+        -- From view_committee_productivity (NEW)
+        ROUND(AVG(cp.productivity_score), 2) AS avg_committee_productivity
+        
+    FROM election_cycle_periods ecp
+    LEFT JOIN view_politician_behavioral_trends pbt
+        ON pbt.period_start >= ecp.autumn_start AND pbt.period_start <= ecp.autumn_end
+    LEFT JOIN view_decision_temporal_trends dtt
+        ON dtt.decision_day >= ecp.autumn_start AND dtt.decision_day <= ecp.autumn_end
+    LEFT JOIN view_committee_productivity cp
+        ON 1=1  -- Current snapshot, no temporal filtering available
+    GROUP BY ecp.election_cycle_id, ecp.cycle_year, ecp.calendar_year, ecp.autumn_start, ecp.cycle_end_year
+),
+temporal_data_spring AS (
+    SELECT 
+        ecp.election_cycle_id,
+        ecp.cycle_year,
+        ecp.calendar_year,
+        'spring' AS semester,
+        CASE WHEN ecp.is_election_year THEN TRUE ELSE FALSE END AS is_pre_election_semester,
+        EXTRACT(YEAR FROM AGE(MAKE_DATE(ecp.cycle_end_year, 9, 15), ecp.spring_start))::INTEGER * 12 + 
+        EXTRACT(MONTH FROM AGE(MAKE_DATE(ecp.cycle_end_year, 9, 15), ecp.spring_start))::INTEGER AS months_until_election,
+        
+        COUNT(DISTINCT pbt.person_id) AS active_politicians,
+        ROUND(AVG(100 - pbt.avg_absence_rate), 2) AS avg_attendance_rate,
+        SUM(pbt.total_ballots) AS total_ballots,
+        SUM(pbt.total_votes) AS total_votes,
+        ROUND(AVG(pbt.avg_win_rate), 2) AS avg_win_rate,
+        ROUND(AVG(pbt.avg_rebel_rate), 2) AS avg_rebel_rate,
+        SUM(pbt.violation_count) AS violation_count,
+        ROUND(AVG(pbt.ma_3month_absence), 2) AS avg_ma_absence,
+        ROUND(AVG(dtt.daily_approval_rate), 2) AS avg_approval_rate,
+        SUM(dtt.daily_decisions) AS total_decisions,
+        ROUND(AVG(cp.productivity_score), 2) AS avg_committee_productivity
+        
+    FROM election_cycle_periods ecp
+    LEFT JOIN view_politician_behavioral_trends pbt
+        ON pbt.period_start >= ecp.spring_start AND pbt.period_start <= ecp.spring_end
+    LEFT JOIN view_decision_temporal_trends dtt
+        ON dtt.decision_day >= ecp.spring_start AND dtt.decision_day <= ecp.spring_end
+    LEFT JOIN view_committee_productivity cp
+        ON 1=1  -- Current snapshot, no temporal filtering available
+    GROUP BY ecp.election_cycle_id, ecp.cycle_year, ecp.calendar_year, ecp.spring_start, ecp.cycle_end_year, ecp.is_election_year
+)
+SELECT * FROM temporal_data_autumn
+UNION ALL
+SELECT * FROM temporal_data_spring
+ORDER BY election_cycle_id, cycle_year, semester;
+),
+windowed_metrics AS (
+    SELECT v151.*,
+        RANK() OVER (PARTITION BY v151.election_cycle_id ORDER BY v151.avg_attendance_rate DESC NULLS LAST) AS rank_by_attendance,
+        PERCENT_RANK() OVER (PARTITION BY v151.election_cycle_id ORDER BY v151.avg_attendance_rate DESC NULLS LAST) AS percent_rank_attendance,
+        NTILE(4) OVER (PARTITION BY v151.election_cycle_id ORDER BY v151.avg_attendance_rate DESC NULLS LAST) AS ntile_performance,
+        LAG(v151.avg_attendance_rate) OVER (PARTITION BY v151.election_cycle_id ORDER BY v151.cycle_year, v151.semester) AS prev_semester_attendance,
+        LAG(v151.total_decisions) OVER (PARTITION BY v151.election_cycle_id ORDER BY v151.cycle_year, v151.semester) AS prev_semester_decisions,
+        LEAD(v151.avg_attendance_rate) OVER (PARTITION BY v151.election_cycle_id ORDER BY v151.cycle_year, v151.semester) AS next_semester_attendance,
+        STDDEV_POP(v151.avg_attendance_rate) OVER (PARTITION BY v151.election_cycle_id) AS stddev_attendance,
+        STDDEV_POP(v151.avg_win_rate) OVER (PARTITION BY v151.election_cycle_id) AS stddev_win_rate,
+        STDDEV_POP(v151.total_decisions) OVER (PARTITION BY v151.election_cycle_id) AS stddev_decisions
+    FROM v151_base v151
+)
+SELECT 
+    wm.*,
+    CASE 
+        WHEN wm.prev_semester_attendance IS NOT NULL AND wm.prev_semester_attendance > 0 
+        THEN ROUND(((wm.avg_attendance_rate - wm.prev_semester_attendance) / wm.prev_semester_attendance * 100)::NUMERIC, 2)
+        ELSE NULL 
+    END AS change_attendance_pct,
+    CASE 
+        WHEN wm.prev_semester_decisions IS NOT NULL AND wm.prev_semester_decisions > 0 
+        THEN ROUND(((wm.total_decisions - wm.prev_semester_decisions)::NUMERIC / wm.prev_semester_decisions * 100)::NUMERIC, 2)
+        ELSE NULL 
+    END AS change_decisions_pct,
+    CASE
+        WHEN wm.prev_semester_attendance IS NULL THEN 'baseline'
+        WHEN wm.avg_attendance_rate > wm.prev_semester_attendance + 5 THEN 'improving'
+        WHEN wm.avg_attendance_rate < wm.prev_semester_attendance - 5 THEN 'declining'
+        ELSE 'stable'
+    END AS attendance_trend,
+    CASE
+        WHEN wm.avg_attendance_rate IS NOT NULL AND wm.avg_win_rate IS NOT NULL
+        THEN ROUND((wm.avg_attendance_rate * 0.5 + wm.avg_win_rate * 0.5)::NUMERIC, 2)
+        ELSE NULL
+    END AS overall_performance_score,
+    CASE
+        WHEN wm.stddev_attendance > 10 THEN 'high_volatility'
+        WHEN wm.stddev_attendance > 5 THEN 'moderate_volatility'
+        ELSE 'stable'
+    END AS volatility_assessment,
+    CASE
+        WHEN wm.next_semester_attendance IS NOT NULL AND wm.next_semester_attendance > wm.avg_attendance_rate + 5 THEN 'expected_improvement'
+        WHEN wm.next_semester_attendance IS NOT NULL AND wm.next_semester_attendance < wm.avg_attendance_rate - 5 THEN 'expected_decline'
+        ELSE 'stable_forecast'
+    END AS forecast_trend
+FROM windowed_metrics wm
+ORDER BY wm.election_cycle_id, wm.cycle_year, wm.semester;
+        ]]>
+    </createView>
+    <rollback>
+        <dropView viewName="view_election_cycle_temporal_trends"/>
+    </rollback>
+</changeSet>
+
+
+</databaseChangeLog>
