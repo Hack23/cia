@@ -201,7 +201,8 @@ windowed AS (
         NTILE(4) OVER (PARTITION BY v.election_cycle_id ORDER BY v.performance_score DESC NULLS LAST) AS ntile_party_tier,
         LAG(v.performance_score) OVER (PARTITION BY v.election_cycle_id, v.party ORDER BY v.cycle_year) AS prev_cycle_performance,
         LAG(v.documents_last_year) OVER (PARTITION BY v.election_cycle_id, v.party ORDER BY v.cycle_year) AS prev_cycle_documents,
-        STDDEV_POP(v.performance_score) OVER (PARTITION BY v.election_cycle_id) AS stddev_performance
+        STDDEV_POP(v.performance_score) OVER (PARTITION BY v.election_cycle_id) AS stddev_performance,
+        COUNT(*) OVER (PARTITION BY v.election_cycle_id) AS cycle_party_count
     FROM v151_base v
 )
 SELECT w.*,
@@ -216,7 +217,7 @@ SELECT w.*,
          WHEN w.performance_score < w.prev_cycle_performance - 10 THEN 'declining'
          ELSE 'stable' END AS performance_trend,
     ROUND((w.performance_score * 0.4 + w.party_win_rate * 0.3 + w.party_participation_rate * 0.3)::NUMERIC, 2) AS discipline_score,
-    ROUND((w.rank_by_performance::NUMERIC / NULLIF((SELECT COUNT(*) FROM windowed w2 WHERE w2.election_cycle_id = w.election_cycle_id), 0)) * 100, 2) AS competitiveness_index
+    ROUND((w.rank_by_performance::NUMERIC / NULLIF(w.cycle_party_count, 0)) * 100, 2) AS competitiveness_index
 FROM windowed w;
         ]]>
     </createView>
@@ -274,27 +275,27 @@ ORDER BY election_cycle_id, cycle_year, semester
 ),
 windowed AS (
     SELECT v.*,
-        RANK() OVER (PARTITION BY v.election_cycle_id ORDER BY v.risk_score DESC NULLS LAST) AS rank_by_risk,
-        RANK() OVER (PARTITION BY v.election_cycle_id ORDER BY v.anomaly_count DESC NULLS LAST) AS rank_by_anomalies,
-        PERCENT_RANK() OVER (PARTITION BY v.election_cycle_id ORDER BY v.risk_score DESC NULLS LAST) AS percent_rank_risk,
-        NTILE(4) OVER (PARTITION BY v.election_cycle_id ORDER BY v.risk_score DESC NULLS LAST) AS ntile_risk_level,
-        LAG(v.risk_score) OVER (PARTITION BY v.election_cycle_id, v.party ORDER BY v.cycle_year, v.semester) AS prev_semester_risk,
-        LAG(v.anomaly_count) OVER (PARTITION BY v.election_cycle_id, v.party ORDER BY v.cycle_year, v.semester) AS prev_semester_anomalies
+        RANK() OVER (PARTITION BY v.election_cycle_id ORDER BY v.avg_risk_score DESC NULLS LAST) AS rank_by_risk,
+        RANK() OVER (PARTITION BY v.election_cycle_id ORDER BY v.high_anomaly_count DESC NULLS LAST) AS rank_by_anomalies,
+        PERCENT_RANK() OVER (PARTITION BY v.election_cycle_id ORDER BY v.avg_risk_score DESC NULLS LAST) AS percent_rank_risk,
+        NTILE(4) OVER (PARTITION BY v.election_cycle_id ORDER BY v.avg_risk_score DESC NULLS LAST) AS ntile_risk_level,
+        LAG(v.avg_risk_score) OVER (PARTITION BY v.election_cycle_id ORDER BY v.cycle_year, v.semester) AS prev_semester_risk,
+        LAG(v.high_anomaly_count) OVER (PARTITION BY v.election_cycle_id ORDER BY v.cycle_year, v.semester) AS prev_semester_anomalies
     FROM v151_base v
 )
 SELECT w.*,
     CASE WHEN w.prev_semester_risk IS NOT NULL AND w.prev_semester_risk > 0 
-         THEN ROUND(((w.risk_score - w.prev_semester_risk) / w.prev_semester_risk * 100)::NUMERIC, 2)
+         THEN ROUND(((w.avg_risk_score - w.prev_semester_risk) / w.prev_semester_risk * 100)::NUMERIC, 2)
          ELSE NULL END AS change_risk_pct,
     CASE WHEN w.prev_semester_anomalies IS NOT NULL AND w.prev_semester_anomalies > 0 
-         THEN ROUND(((w.anomaly_count - w.prev_semester_anomalies)::NUMERIC / w.prev_semester_anomalies * 100)::NUMERIC, 2)
+         THEN ROUND(((w.high_anomaly_count - w.prev_semester_anomalies)::NUMERIC / w.prev_semester_anomalies * 100)::NUMERIC, 2)
          ELSE NULL END AS change_anomalies_pct,
     CASE WHEN w.prev_semester_risk IS NULL THEN 'baseline'
-         WHEN w.risk_score > w.prev_semester_risk + 10 THEN 'escalating'
-         WHEN w.risk_score < w.prev_semester_risk - 10 THEN 'improving'
+         WHEN w.avg_risk_score > w.prev_semester_risk + 10 THEN 'escalating'
+         WHEN w.avg_risk_score < w.prev_semester_risk - 10 THEN 'improving'
          ELSE 'stable' END AS risk_trend,
     CASE WHEN w.prev_semester_anomalies IS NOT NULL 
-         THEN w.anomaly_count - w.prev_semester_anomalies ELSE 0 END AS anomaly_acceleration
+         THEN w.high_anomaly_count - w.prev_semester_anomalies ELSE 0 END AS anomaly_acceleration
 FROM windowed w;
         ]]>
     </createView>
@@ -516,7 +517,8 @@ windowed AS (
         PERCENT_RANK() OVER (PARTITION BY v.election_cycle_id ORDER BY v.avg_approval_rate DESC NULLS LAST) AS percent_rank_success,
         NTILE(4) OVER (PARTITION BY v.election_cycle_id ORDER BY v.avg_approval_rate DESC NULLS LAST) AS ntile_effectiveness,
         LAG(v.avg_approval_rate) OVER (PARTITION BY v.election_cycle_id, v.party ORDER BY v.cycle_year, v.semester) AS prev_semester_success,
-        LAG(v.total_proposals) OVER (PARTITION BY v.election_cycle_id, v.party ORDER BY v.cycle_year, v.semester) AS prev_semester_proposals
+        LAG(v.total_proposals) OVER (PARTITION BY v.election_cycle_id, v.party ORDER BY v.cycle_year, v.semester) AS prev_semester_proposals,
+        MAX(v.total_proposals) OVER (PARTITION BY v.election_cycle_id) AS max_cycle_proposals
     FROM v151_base v
 )
 SELECT w.*,
@@ -530,7 +532,7 @@ SELECT w.*,
          WHEN w.avg_approval_rate > w.prev_semester_success + 10 THEN 'improving'
          WHEN w.avg_approval_rate < w.prev_semester_success - 10 THEN 'declining'
          ELSE 'stable' END AS decision_trend,
-    ROUND((w.avg_approval_rate * 0.6 + (w.total_proposals::NUMERIC / NULLIF((SELECT MAX(total_proposals) FROM windowed w2 WHERE w2.election_cycle_id = w.election_cycle_id), 0)) * 40)::NUMERIC, 2) AS legislative_momentum
+    ROUND((w.avg_approval_rate * 0.6 + (w.total_proposals::NUMERIC / NULLIF(w.max_cycle_proposals, 0)) * 40)::NUMERIC, 2) AS legislative_momentum
 FROM windowed w;
         ]]>
     </createView>
