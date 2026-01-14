@@ -107,7 +107,7 @@ protected Long committeesActive;
 
 @EmbeddedId
 public ViewElectionCycleEmbeddedId getEmbeddedId() {
-	return embeddedId;
+ embeddedId;
 }
 
 public void setEmbeddedId(final ViewElectionCycleEmbeddedId value) {
@@ -117,7 +117,7 @@ public void setEmbeddedId(final ViewElectionCycleEmbeddedId value) {
 @Basic
 @Column(name = "CYCLE_YEAR")
 public Integer getCycleYear() {
-	return cycleYear;
+ cycleYear;
 }
 
 public void setCycleYear(final Integer value) {
@@ -127,7 +127,7 @@ cleYear = value;
 @Basic
 @Column(name = "CALENDAR_YEAR")
 public Integer getCalendarYear() {
-	return calendarYear;
+ calendarYear;
 }
 
 public void setCalendarYear(final Integer value) {
@@ -137,7 +137,7 @@ darYear = value;
 @Basic
 @Column(name = "PARTY", length = 50)
 public String getParty() {
-	return party;
+ party;
 }
 
 public void setParty(final String value) {
@@ -147,7 +147,7 @@ public void setParty(final String value) {
 @Basic
 @Column(name = "PERFORMANCE_SCORE", precision = 10, scale = 2)
 public BigDecimal getPerformanceScore() {
-	return performanceScore;
+ performanceScore;
 }
 
 public void setPerformanceScore(final BigDecimal value) {
@@ -157,7 +157,7 @@ ceScore = value;
 @Basic
 @Column(name = "ACTIVE_MEMBERS", precision = 20)
 public Long getActiveMembers() {
-	return activeMembers;
+ activeMembers;
 }
 
 public void setActiveMembers(final Long value) {
@@ -167,37 +167,37 @@ public void setActiveMembers(final Long value) {
 @Basic
 @Column(name = "PARTY_VIOLATIONS", precision = 20)
 public Long getPartyViolations() {
-	return partyViolations;
+ partyViolations;
 }
 
 public void setPartyViolations(final Long value) {
-		this.Violations = value;
+Violations = value;
 }
 
 @Basic
 @Column(name = "PARTY_WIN_RATE", precision = 5, scale = 2)
 public BigDecimal getPartyWinRate() {
-	return partyWinRate;
+ partyWinRate;
 }
 
 public void setPartyWinRate(final BigDecimal value) {
-		this.WinRate = value;
+WinRate = value;
 }
 
 @Basic
 @Column(name = "PARTY_PARTICIPATION_RATE", precision = 5, scale = 2)
 public BigDecimal getPartyParticipationRate() {
-	return partyParticipationRate;
+ partyParticipationRate;
 }
 
 public void setPartyParticipationRate(final BigDecimal value) {
-		this.ParticipationRate = value;
+ParticipationRate = value;
 }
 
 @Basic
 @Column(name = "DOCUMENTS_LAST_YEAR", precision = 20)
 public Long getDocumentsLastYear() {
-	return documentsLastYear;
+ documentsLastYear;
 }
 
 public void setDocumentsLastYear(final Long value) {
@@ -207,17 +207,17 @@ tsLastYear = value;
 @Basic
 @Column(name = "PARTY_AVG_REBEL_RATE", precision = 5, scale = 2)
 public BigDecimal getPartyAvgRebelRate() {
-	return partyAvgRebelRate;
+ partyAvgRebelRate;
 }
 
 public void setPartyAvgRebelRate(final BigDecimal value) {
-		this.AvgRebelRate = value;
+AvgRebelRate = value;
 }
 
 @Basic
 @Column(name = "COMMITTEES_ACTIVE", precision = 20)
 public Long getCommitteesActive() {
-	return committeesActive;
+ committeesActive;
 }
 
 public void setCommitteesActive(final Long value) {

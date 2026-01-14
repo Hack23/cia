@@ -52,7 +52,7 @@ protected Long powerBrokerCount;
 
 @EmbeddedId
 public ViewElectionCycleEmbeddedId getEmbeddedId() {
-	return embeddedId;
+ embeddedId;
 }
 
 public void setEmbeddedId(final ViewElectionCycleEmbeddedId value) {
@@ -62,7 +62,7 @@ public void setEmbeddedId(final ViewElectionCycleEmbeddedId value) {
 @Basic
 @Column(name = "CYCLE_YEAR")
 public Integer getCycleYear() {
-	return cycleYear;
+ cycleYear;
 }
 
 public void setCycleYear(final Integer value) {
@@ -72,7 +72,7 @@ cleYear = value;
 @Basic
 @Column(name = "CALENDAR_YEAR")
 public Integer getCalendarYear() {
-	return calendarYear;
+ calendarYear;
 }
 
 public void setCalendarYear(final Integer value) {
@@ -82,7 +82,7 @@ darYear = value;
 @Basic
 @Column(name = "PARTY1", length = 50)
 public String getParty1() {
-	return party1;
+ party1;
 }
 
 public void setParty1(final String value) {
@@ -92,7 +92,7 @@ public void setParty1(final String value) {
 @Basic
 @Column(name = "PARTY2", length = 50)
 public String getParty2() {
-	return party2;
+ party2;
 }
 
 public void setParty2(final String value) {
@@ -102,7 +102,7 @@ public void setParty2(final String value) {
 @Basic
 @Column(name = "ALIGNMENT_RATE", precision = 5, scale = 2)
 public BigDecimal getAlignmentRate() {
-	return alignmentRate;
+ alignmentRate;
 }
 
 public void setAlignmentRate(final BigDecimal value) {
@@ -112,17 +112,17 @@ mentRate = value;
 @Basic
 @Column(name = "COALITION_STRENGTH", length = 50)
 public String getCoalitionStrength() {
-	return coalitionStrength;
+ coalitionStrength;
 }
 
 public void setCoalitionStrength(final String value) {
-		this.Strength = value;
+Strength = value;
 }
 
 @Basic
 @Column(name = "INFLUENTIAL_POLITICIANS", precision = 20)
 public Long getInfluentialPoliticians() {
-	return influentialPoliticians;
+ influentialPoliticians;
 }
 
 public void setInfluentialPoliticians(final Long value) {
@@ -132,7 +132,7 @@ fluentialPoliticians = value;
 @Basic
 @Column(name = "AVG_NETWORK_CENTRALITY", precision = 5, scale = 2)
 public BigDecimal getAvgNetworkCentrality() {
-	return avgNetworkCentrality;
+ avgNetworkCentrality;
 }
 
 public void setAvgNetworkCentrality(final BigDecimal value) {
@@ -142,7 +142,7 @@ etworkCentrality = value;
 @Basic
 @Column(name = "POWER_BROKER_COUNT", precision = 20)
 public Long getPowerBrokerCount() {
-	return powerBrokerCount;
+ powerBrokerCount;
 }
 
 public void setPowerBrokerCount(final Long value) {

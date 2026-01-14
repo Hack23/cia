@@ -52,7 +52,7 @@ protected Long partiesWithIncreasingAbsence;
 
 @EmbeddedId
 public ViewElectionCycleEmbeddedId getEmbeddedId() {
-	return embeddedId;
+ embeddedId;
 }
 
 public void setEmbeddedId(final ViewElectionCycleEmbeddedId value) {
@@ -62,7 +62,7 @@ public void setEmbeddedId(final ViewElectionCycleEmbeddedId value) {
 @Basic
 @Column(name = "CYCLE_YEAR")
 public Integer getCycleYear() {
-	return cycleYear;
+ cycleYear;
 }
 
 public void setCycleYear(final Integer value) {
@@ -72,7 +72,7 @@ cleYear = value;
 @Basic
 @Column(name = "CALENDAR_YEAR")
 public Integer getCalendarYear() {
-	return calendarYear;
+ calendarYear;
 }
 
 public void setCalendarYear(final Integer value) {
@@ -82,7 +82,7 @@ darYear = value;
 @Basic
 @Column(name = "RISK_FORECAST_CATEGORY", length = 50)
 public String getRiskForecastCategory() {
-	return riskForecastCategory;
+ riskForecastCategory;
 }
 
 public void setRiskForecastCategory(final String value) {
@@ -92,7 +92,7 @@ public void setRiskForecastCategory(final String value) {
 @Basic
 @Column(name = "POLITICIANS_AT_RISK", precision = 20)
 public Long getPoliticiansAtRisk() {
-	return politiciansAtRisk;
+ politiciansAtRisk;
 }
 
 public void setPoliticiansAtRisk(final Long value) {
@@ -102,7 +102,7 @@ sAtRisk = value;
 @Basic
 @Column(name = "AVG_RISK_SCORE_CHANGE", precision = 5, scale = 2)
 public BigDecimal getAvgRiskScoreChange() {
-	return avgRiskScoreChange;
+ avgRiskScoreChange;
 }
 
 public void setAvgRiskScoreChange(final BigDecimal value) {
@@ -112,7 +112,7 @@ ge = value;
 @Basic
 @Column(name = "MINISTRIES_AT_RISK", precision = 20)
 public Long getMinistriesAtRisk() {
-	return ministriesAtRisk;
+ ministriesAtRisk;
 }
 
 public void setMinistriesAtRisk(final Long value) {
@@ -122,7 +122,7 @@ istriesAtRisk = value;
 @Basic
 @Column(name = "AVG_MINISTRY_PRODUCTIVITY", precision = 5, scale = 2)
 public BigDecimal getAvgMinistryProductivity() {
-	return avgMinistryProductivity;
+ avgMinistryProductivity;
 }
 
 public void setAvgMinistryProductivity(final BigDecimal value) {
@@ -132,17 +132,17 @@ istryProductivity = value;
 @Basic
 @Column(name = "AVG_PARTY_WIN_RATE_TREND", precision = 5, scale = 2)
 public BigDecimal getAvgPartyWinRateTrend() {
-	return avgPartyWinRateTrend;
+ avgPartyWinRateTrend;
 }
 
 public void setAvgPartyWinRateTrend(final BigDecimal value) {
-		this.WinRateTrend = value;
+WinRateTrend = value;
 }
 
 @Basic
 @Column(name = "PARTIES_WITH_INCREASING_ABSENCE", precision = 20)
 public Long getPartiesWithIncreasingAbsence() {
-	return partiesWithIncreasingAbsence;
+ partiesWithIncreasingAbsence;
 }
 
 public void setPartiesWithIncreasingAbsence(final Long value) {

@@ -107,7 +107,7 @@ protected Long highRiskPoliticians;
 
 @EmbeddedId
 public ViewElectionCycleEmbeddedId getEmbeddedId() {
-	return embeddedId;
+ embeddedId;
 }
 
 public void setEmbeddedId(final ViewElectionCycleEmbeddedId value) {
@@ -117,7 +117,7 @@ public void setEmbeddedId(final ViewElectionCycleEmbeddedId value) {
 @Basic
 @Column(name = "CYCLE_YEAR")
 public Integer getCycleYear() {
-	return cycleYear;
+ cycleYear;
 }
 
 public void setCycleYear(final Integer value) {
@@ -127,7 +127,7 @@ cleYear = value;
 @Basic
 @Column(name = "CALENDAR_YEAR")
 public Integer getCalendarYear() {
-	return calendarYear;
+ calendarYear;
 }
 
 public void setCalendarYear(final Integer value) {
@@ -137,7 +137,7 @@ darYear = value;
 @Basic
 @Column(name = "ANOMALY_TYPE", length = 50)
 public String getAnomalyType() {
-	return anomalyType;
+ anomalyType;
 }
 
 public void setAnomalyType(final String value) {
@@ -147,17 +147,17 @@ omalyType = value;
 @Basic
 @Column(name = "POLITICIAN_COUNT_WITH_RISK", precision = 20)
 public Long getPoliticianCountWithRisk() {
-	return politicianCountWithRisk;
+ politicianCountWithRisk;
 }
 
 public void setPoliticianCountWithRisk(final Long value) {
-		this.CountWithRisk = value;
+CountWithRisk = value;
 }
 
 @Basic
 @Column(name = "AVG_RISK_SCORE", precision = 5, scale = 2)
 public BigDecimal getAvgRiskScore() {
-	return avgRiskScore;
+ avgRiskScore;
 }
 
 public void setAvgRiskScore(final BigDecimal value) {
@@ -167,7 +167,7 @@ public void setAvgRiskScore(final BigDecimal value) {
 @Basic
 @Column(name = "RISK_ESCALATIONS", precision = 20)
 public Long getRiskEscalations() {
-	return riskEscalations;
+ riskEscalations;
 }
 
 public void setRiskEscalations(final Long value) {
@@ -177,7 +177,7 @@ s = value;
 @Basic
 @Column(name = "HIGH_ANOMALY_COUNT", precision = 20)
 public Long getHighAnomalyCount() {
-	return highAnomalyCount;
+ highAnomalyCount;
 }
 
 public void setHighAnomalyCount(final Long value) {
@@ -187,7 +187,7 @@ omalyCount = value;
 @Basic
 @Column(name = "AVG_TOTAL_REBELLIONS", precision = 5, scale = 2)
 public BigDecimal getAvgTotalRebellions() {
-	return avgTotalRebellions;
+ avgTotalRebellions;
 }
 
 public void setAvgTotalRebellions(final BigDecimal value) {
@@ -197,7 +197,7 @@ s = value;
 @Basic
 @Column(name = "STRONG_CONSENSUS_REBELS", precision = 20)
 public Long getStrongConsensusRebels() {
-	return strongConsensusRebels;
+ strongConsensusRebels;
 }
 
 public void setStrongConsensusRebels(final Long value) {
@@ -207,7 +207,7 @@ gConsensusRebels = value;
 @Basic
 @Column(name = "AVG_RISK_SCORE_PRS", precision = 5, scale = 2)
 public BigDecimal getAvgRiskScorePrs() {
-	return avgRiskScorePrs;
+ avgRiskScorePrs;
 }
 
 public void setAvgRiskScorePrs(final BigDecimal value) {
@@ -217,7 +217,7 @@ public void setAvgRiskScorePrs(final BigDecimal value) {
 @Basic
 @Column(name = "HIGH_RISK_POLITICIANS", precision = 20)
 public Long getHighRiskPoliticians() {
-	return highRiskPoliticians;
+ highRiskPoliticians;
 }
 
 public void setHighRiskPoliticians(final Long value) {

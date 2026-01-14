@@ -61,7 +61,7 @@ protected Long ministriesWithDecisions;
 
 @EmbeddedId
 public ViewElectionCycleEmbeddedId getEmbeddedId() {
-	return embeddedId;
+ embeddedId;
 }
 
 public void setEmbeddedId(final ViewElectionCycleEmbeddedId value) {
@@ -71,7 +71,7 @@ public void setEmbeddedId(final ViewElectionCycleEmbeddedId value) {
 @Basic
 @Column(name = "CYCLE_YEAR")
 public Integer getCycleYear() {
-	return cycleYear;
+ cycleYear;
 }
 
 public void setCycleYear(final Integer value) {
@@ -81,7 +81,7 @@ cleYear = value;
 @Basic
 @Column(name = "CALENDAR_YEAR")
 public Integer getCalendarYear() {
-	return calendarYear;
+ calendarYear;
 }
 
 public void setCalendarYear(final Integer value) {
@@ -91,7 +91,7 @@ darYear = value;
 @Basic
 @Column(name = "PARTY", length = 50)
 public String getParty() {
-	return party;
+ party;
 }
 
 public void setParty(final String value) {
@@ -101,7 +101,7 @@ public void setParty(final String value) {
 @Basic
 @Column(name = "TOTAL_PROPOSALS", precision = 20)
 public Long getTotalProposals() {
-	return totalProposals;
+ totalProposals;
 }
 
 public void setTotalProposals(final Long value) {
@@ -111,7 +111,7 @@ public void setTotalProposals(final Long value) {
 @Basic
 @Column(name = "APPROVED_PROPOSALS", precision = 20)
 public Long getApprovedProposals() {
-	return approvedProposals;
+ approvedProposals;
 }
 
 public void setApprovedProposals(final Long value) {
@@ -121,7 +121,7 @@ public void setApprovedProposals(final Long value) {
 @Basic
 @Column(name = "REJECTED_PROPOSALS", precision = 20)
 public Long getRejectedProposals() {
-	return rejectedProposals;
+ rejectedProposals;
 }
 
 public void setRejectedProposals(final Long value) {
@@ -131,7 +131,7 @@ public void setRejectedProposals(final Long value) {
 @Basic
 @Column(name = "AVG_APPROVAL_RATE", precision = 5, scale = 2)
 public BigDecimal getAvgApprovalRate() {
-	return avgApprovalRate;
+ avgApprovalRate;
 }
 
 public void setAvgApprovalRate(final BigDecimal value) {
@@ -141,17 +141,17 @@ public void setAvgApprovalRate(final BigDecimal value) {
 @Basic
 @Column(name = "DECISION_EFFECTIVENESS", length = 50)
 public String getDecisionEffectiveness() {
-	return decisionEffectiveness;
+ decisionEffectiveness;
 }
 
 public void setDecisionEffectiveness(final String value) {
-		this.Effectiveness = value;
+Effectiveness = value;
 }
 
 @Basic
 @Column(name = "TEMPORAL_APPROVAL_RATE", precision = 5, scale = 2)
 public BigDecimal getTemporalApprovalRate() {
-	return temporalApprovalRate;
+ temporalApprovalRate;
 }
 
 public void setTemporalApprovalRate(final BigDecimal value) {
@@ -161,17 +161,17 @@ public void setTemporalApprovalRate(final BigDecimal value) {
 @Basic
 @Column(name = "TEMPORAL_DECISION_COUNT", precision = 20)
 public Long getTemporalDecisionCount() {
-	return temporalDecisionCount;
+ temporalDecisionCount;
 }
 
 public void setTemporalDecisionCount(final Long value) {
-		this.Count = value;
+Count = value;
 }
 
 @Basic
 @Column(name = "MINISTRY_IMPACT_SCORE", precision = 5, scale = 2)
 public BigDecimal getMinistryImpactScore() {
-	return ministryImpactScore;
+ ministryImpactScore;
 }
 
 public void setMinistryImpactScore(final BigDecimal value) {
@@ -181,7 +181,7 @@ istryImpactScore = value;
 @Basic
 @Column(name = "MINISTRIES_WITH_DECISIONS", precision = 20)
 public Long getMinistriesWithDecisions() {
-	return ministriesWithDecisions;
+ ministriesWithDecisions;
 }
 
 public void setMinistriesWithDecisions(final Long value) {
