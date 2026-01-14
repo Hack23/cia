@@ -209,7 +209,7 @@ protected String performanceTrajectory;
 
 @EmbeddedId
 public ViewElectionCycleTemporalTrendsEmbeddedId getEmbeddedId() {
- embeddedId;
+	return embeddedId;
 }
 
 public void setEmbeddedId(final ViewElectionCycleTemporalTrendsEmbeddedId value) {
@@ -219,7 +219,7 @@ public void setEmbeddedId(final ViewElectionCycleTemporalTrendsEmbeddedId value)
 @Basic
 @Column(name = "CALENDAR_YEAR")
 public Integer getCalendarYear() {
- calendarYear;
+	return calendarYear;
 }
 
 public void setCalendarYear(final Integer value) {
@@ -229,17 +229,17 @@ darYear = value;
 @Basic
 @Column(name = "IS_PRE_ELECTION_SEMESTER")
 public Boolean getIsPreElectionSemester() {
- isPreElectionSemester;
+	return isPreElectionSemester;
 }
 
 public void setIsPreElectionSemester(final Boolean value) {
-Semester = value;
+		this.Semester = value;
 }
 
 @Basic
 @Column(name = "MONTHS_UNTIL_ELECTION")
 public Integer getMonthsUntilElection() {
- monthsUntilElection;
+	return monthsUntilElection;
 }
 
 public void setMonthsUntilElection(final Integer value) {
@@ -249,7 +249,7 @@ thsUntilElection = value;
 @Basic
 @Column(name = "ACTIVE_POLITICIANS", precision = 20)
 public Long getActivePoliticians() {
- activePoliticians;
+	return activePoliticians;
 }
 
 public void setActivePoliticians(final Long value) {
@@ -259,7 +259,7 @@ s = value;
 @Basic
 @Column(name = "AVG_ATTENDANCE_RATE", precision = 5, scale = 2)
 public BigDecimal getAvgAttendanceRate() {
- avgAttendanceRate;
+	return avgAttendanceRate;
 }
 
 public void setAvgAttendanceRate(final BigDecimal value) {
@@ -269,7 +269,7 @@ danceRate = value;
 @Basic
 @Column(name = "TOTAL_BALLOTS", precision = 20)
 public Long getTotalBallots() {
- totalBallots;
+	return totalBallots;
 }
 
 public void setTotalBallots(final Long value) {
@@ -279,7 +279,7 @@ public void setTotalBallots(final Long value) {
 @Basic
 @Column(name = "TOTAL_VOTES", precision = 20)
 public Long getTotalVotes() {
- totalVotes;
+	return totalVotes;
 }
 
 public void setTotalVotes(final Long value) {
@@ -289,17 +289,17 @@ public void setTotalVotes(final Long value) {
 @Basic
 @Column(name = "AVG_WIN_RATE", precision = 5, scale = 2)
 public BigDecimal getAvgWinRate() {
- avgWinRate;
+	return avgWinRate;
 }
 
 public void setAvgWinRate(final BigDecimal value) {
-Rate = value;
+		this.Rate = value;
 }
 
 @Basic
 @Column(name = "AVG_REBEL_RATE", precision = 5, scale = 2)
 public BigDecimal getAvgRebelRate() {
- avgRebelRate;
+	return avgRebelRate;
 }
 
 public void setAvgRebelRate(final BigDecimal value) {
@@ -309,17 +309,17 @@ public void setAvgRebelRate(final BigDecimal value) {
 @Basic
 @Column(name = "VIOLATION_COUNT", precision = 20)
 public Long getViolationCount() {
- violationCount;
+	return violationCount;
 }
 
 public void setViolationCount(final Long value) {
-Count = value;
+		this.Count = value;
 }
 
 @Basic
 @Column(name = "AVG_MA_ABSENCE", precision = 5, scale = 2)
 public BigDecimal getAvgMaAbsence() {
- avgMaAbsence;
+	return avgMaAbsence;
 }
 
 public void setAvgMaAbsence(final BigDecimal value) {
@@ -329,7 +329,7 @@ ce = value;
 @Basic
 @Column(name = "AVG_APPROVAL_RATE", precision = 5, scale = 2)
 public BigDecimal getAvgApprovalRate() {
- avgApprovalRate;
+	return avgApprovalRate;
 }
 
 public void setAvgApprovalRate(final BigDecimal value) {
@@ -339,7 +339,7 @@ public void setAvgApprovalRate(final BigDecimal value) {
 @Basic
 @Column(name = "TOTAL_DECISIONS", precision = 20)
 public Long getTotalDecisions() {
- totalDecisions;
+	return totalDecisions;
 }
 
 public void setTotalDecisions(final Long value) {

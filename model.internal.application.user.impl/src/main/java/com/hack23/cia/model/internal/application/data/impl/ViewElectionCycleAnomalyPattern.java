@@ -60,17 +60,7 @@ import com.hack23.cia.model.common.api.ModelObject;
     "avgTotalRebellions",
     "strongConsensusRebels",
     "avgRiskScorePrs",
-    "highRiskPoliticians",
-    "rankByRisk",
-    "rankByAnomalies",
-    "percentRankRisk",
-    "ntileRiskLevel",
-    "prevSemesterRisk",
-    "prevSemesterAnomalies",
-    "changeRiskPct",
-    "changeAnomaliesPct",
-    "riskTrend",
-    "anomalyAcceleration"
+    "highRiskPoliticians"
 })
 @Entity(name = "ViewElectionCycleAnomalyPattern")
 @Table(name = "view_election_cycle_anomaly_pattern")
@@ -115,40 +105,9 @@ protected BigDecimal avgRiskScorePrs;
 @XmlElement(name = "high_risk_politicians")
 protected Long highRiskPoliticians;
 
-// NEW v1.52: Statistical enhancement fields
-@XmlElement(name = "rank_by_risk")
-protected Long rankByRisk;
-
-@XmlElement(name = "rank_by_anomalies")
-protected Long rankByAnomalies;
-
-@XmlElement(name = "percent_rank_risk")
-protected BigDecimal percentRankRisk;
-
-@XmlElement(name = "ntile_risk_level")
-protected Integer ntileRiskLevel;
-
-@XmlElement(name = "prev_semester_risk")
-protected BigDecimal prevSemesterRisk;
-
-@XmlElement(name = "prev_semester_anomalies")
-protected Long prevSemesterAnomalies;
-
-@XmlElement(name = "change_risk_pct")
-protected BigDecimal changeRiskPct;
-
-@XmlElement(name = "change_anomalies_pct")
-protected BigDecimal changeAnomaliesPct;
-
-@XmlElement(name = "risk_trend")
-protected String riskTrend;
-
-@XmlElement(name = "anomaly_acceleration")
-protected BigDecimal anomalyAcceleration;
-
 @EmbeddedId
 public ViewElectionCycleEmbeddedId getEmbeddedId() {
- embeddedId;
+	return embeddedId;
 }
 
 public void setEmbeddedId(final ViewElectionCycleEmbeddedId value) {
@@ -158,7 +117,7 @@ public void setEmbeddedId(final ViewElectionCycleEmbeddedId value) {
 @Basic
 @Column(name = "CYCLE_YEAR")
 public Integer getCycleYear() {
- cycleYear;
+	return cycleYear;
 }
 
 public void setCycleYear(final Integer value) {
@@ -168,7 +127,7 @@ cleYear = value;
 @Basic
 @Column(name = "CALENDAR_YEAR")
 public Integer getCalendarYear() {
- calendarYear;
+	return calendarYear;
 }
 
 public void setCalendarYear(final Integer value) {
@@ -178,7 +137,7 @@ darYear = value;
 @Basic
 @Column(name = "ANOMALY_TYPE", length = 50)
 public String getAnomalyType() {
- anomalyType;
+	return anomalyType;
 }
 
 public void setAnomalyType(final String value) {
@@ -188,17 +147,17 @@ omalyType = value;
 @Basic
 @Column(name = "POLITICIAN_COUNT_WITH_RISK", precision = 20)
 public Long getPoliticianCountWithRisk() {
- politicianCountWithRisk;
+	return politicianCountWithRisk;
 }
 
 public void setPoliticianCountWithRisk(final Long value) {
-CountWithRisk = value;
+		this.CountWithRisk = value;
 }
 
 @Basic
 @Column(name = "AVG_RISK_SCORE", precision = 5, scale = 2)
 public BigDecimal getAvgRiskScore() {
- avgRiskScore;
+	return avgRiskScore;
 }
 
 public void setAvgRiskScore(final BigDecimal value) {
@@ -208,7 +167,7 @@ public void setAvgRiskScore(final BigDecimal value) {
 @Basic
 @Column(name = "RISK_ESCALATIONS", precision = 20)
 public Long getRiskEscalations() {
- riskEscalations;
+	return riskEscalations;
 }
 
 public void setRiskEscalations(final Long value) {
@@ -218,7 +177,7 @@ s = value;
 @Basic
 @Column(name = "HIGH_ANOMALY_COUNT", precision = 20)
 public Long getHighAnomalyCount() {
- highAnomalyCount;
+	return highAnomalyCount;
 }
 
 public void setHighAnomalyCount(final Long value) {
@@ -228,7 +187,7 @@ omalyCount = value;
 @Basic
 @Column(name = "AVG_TOTAL_REBELLIONS", precision = 5, scale = 2)
 public BigDecimal getAvgTotalRebellions() {
- avgTotalRebellions;
+	return avgTotalRebellions;
 }
 
 public void setAvgTotalRebellions(final BigDecimal value) {
@@ -238,7 +197,7 @@ s = value;
 @Basic
 @Column(name = "STRONG_CONSENSUS_REBELS", precision = 20)
 public Long getStrongConsensusRebels() {
- strongConsensusRebels;
+	return strongConsensusRebels;
 }
 
 public void setStrongConsensusRebels(final Long value) {
@@ -248,7 +207,7 @@ gConsensusRebels = value;
 @Basic
 @Column(name = "AVG_RISK_SCORE_PRS", precision = 5, scale = 2)
 public BigDecimal getAvgRiskScorePrs() {
- avgRiskScorePrs;
+	return avgRiskScorePrs;
 }
 
 public void setAvgRiskScorePrs(final BigDecimal value) {
@@ -258,112 +217,11 @@ public void setAvgRiskScorePrs(final BigDecimal value) {
 @Basic
 @Column(name = "HIGH_RISK_POLITICIANS", precision = 20)
 public Long getHighRiskPoliticians() {
- highRiskPoliticians;
+	return highRiskPoliticians;
 }
 
 public void setHighRiskPoliticians(final Long value) {
 s = value;
-}
-
-// NEW v1.52: Statistical enhancement getters and setters
-@Basic
-@Column(name = "RANK_BY_RISK", precision = 20)
-public Long getRankByRisk() {
- rankByRisk;
-}
-
-public void setRankByRisk(final Long value) {
-ByRisk = value;
-}
-
-@Basic
-@Column(name = "RANK_BY_ANOMALIES", precision = 20)
-public Long getRankByAnomalies() {
- rankByAnomalies;
-}
-
-public void setRankByAnomalies(final Long value) {
-ByAnomalies = value;
-}
-
-@Basic
-@Column(name = "PERCENT_RANK_RISK", precision = 5, scale = 4)
-public BigDecimal getPercentRankRisk() {
-kRisk;
-}
-
-public void setPercentRankRisk(final BigDecimal value) {
-RankRisk = value;
-}
-
-@Basic
-@Column(name = "NTILE_RISK_LEVEL")
-public Integer getNtileRiskLevel() {
- ntileRiskLevel;
-}
-
-public void setNtileRiskLevel(final Integer value) {
-skLevel = value;
-}
-
-@Basic
-@Column(name = "PREV_SEMESTER_RISK", precision = 5, scale = 2)
-public BigDecimal getPrevSemesterRisk() {
- prevSemesterRisk;
-}
-
-public void setPrevSemesterRisk(final BigDecimal value) {
-esterRisk = value;
-}
-
-@Basic
-@Column(name = "PREV_SEMESTER_ANOMALIES", precision = 20)
-public Long getPrevSemesterAnomalies() {
- prevSemesterAnomalies;
-}
-
-public void setPrevSemesterAnomalies(final Long value) {
-rAnomalies = value;
-}
-
-@Basic
-@Column(name = "CHANGE_RISK_PCT", precision = 5, scale = 2)
-public BigDecimal getChangeRiskPct() {
- changeRiskPct;
-}
-
-public void setChangeRiskPct(final BigDecimal value) {
-kPct = value;
-}
-
-@Basic
-@Column(name = "CHANGE_ANOMALIES_PCT", precision = 5, scale = 2)
-public BigDecimal getChangeAnomaliesPct() {
- changeAnomaliesPct;
-}
-
-public void setChangeAnomaliesPct(final BigDecimal value) {
-AnomaliesPct = value;
-}
-
-@Basic
-@Column(name = "RISK_TREND", length = 50)
-public String getRiskTrend() {
- riskTrend;
-}
-
-public void setRiskTrend(final String value) {
- = value;
-}
-
-@Basic
-@Column(name = "ANOMALY_ACCELERATION", precision = 5, scale = 2)
-public BigDecimal getAnomalyAcceleration() {
- anomalyAcceleration;
-}
-
-public void setAnomalyAcceleration(final BigDecimal value) {
-yAcceleration = value;
 }
 
 @Override
