@@ -242,11 +242,11 @@ SELECT
     MAX(ppm.total_violations) AS party_violations,
     ROUND(AVG(ppm.avg_win_rate), 2) AS party_win_rate,
     ROUND(AVG(ppm.avg_participation_rate), 2) AS party_participation_rate,
-    MAX(ppm.documents_produced) AS documents_produced,
+    MAX(ppm.documents_last_year) AS documents_last_year,
     ROUND(AVG(ppm.avg_rebel_rate), 2) AS party_avg_rebel_rate,
     
     -- From view_committee_productivity_matrix (NEW - multi-committee dimension)
-    COUNT(DISTINCT cpm.committee_org) AS committees_active
+    COUNT(DISTINCT cpm.committee_code) AS committees_active
     
 FROM election_cycle_periods ecp
 CROSS JOIN view_party_performance_metrics ppm
@@ -306,8 +306,8 @@ SELECT
     COUNT(DISTINCT vad.person_id) FILTER (WHERE vad.strong_consensus_rebellions >= 5) AS strong_consensus_rebels,
     
     -- From view_politician_risk_summary (NEW - aggregated risk profiles)
-    ROUND(AVG(prs.total_risk_score), 2) AS avg_total_risk_score,
-    COUNT(DISTINCT prs.person_id) FILTER (WHERE prs.risk_category IN ('HIGH_RISK', 'CRITICAL_RISK')) AS high_risk_politicians
+    ROUND(AVG(prs.risk_score), 2) AS avg_risk_score_prs,
+    COUNT(DISTINCT prs.person_id) FILTER (WHERE prs.risk_level IN ('HIGH', 'CRITICAL')) AS high_risk_politicians
     
 FROM election_cycle_periods ecp
 LEFT JOIN view_risk_score_evolution rse
