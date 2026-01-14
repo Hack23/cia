@@ -60,7 +60,17 @@ import com.hack23.cia.model.common.api.ModelObject;
     "avgTotalRebellions",
     "strongConsensusRebels",
     "avgRiskScorePrs",
-    "highRiskPoliticians"
+    "highRiskPoliticians",
+    "rankByRisk",
+    "rankByAnomalies",
+    "percentRankRisk",
+    "ntileRiskLevel",
+    "prevSemesterRisk",
+    "prevSemesterAnomalies",
+    "changeRiskPct",
+    "changeAnomaliesPct",
+    "riskTrend",
+    "anomalyAcceleration"
 })
 @Entity(name = "ViewElectionCycleAnomalyPattern")
 @Table(name = "view_election_cycle_anomaly_pattern")
@@ -104,6 +114,37 @@ protected BigDecimal avgRiskScorePrs;
 
 @XmlElement(name = "high_risk_politicians")
 protected Long highRiskPoliticians;
+
+// NEW v1.52: Statistical enhancement fields
+@XmlElement(name = "rank_by_risk")
+protected Long rankByRisk;
+
+@XmlElement(name = "rank_by_anomalies")
+protected Long rankByAnomalies;
+
+@XmlElement(name = "percent_rank_risk")
+protected BigDecimal percentRankRisk;
+
+@XmlElement(name = "ntile_risk_level")
+protected Integer ntileRiskLevel;
+
+@XmlElement(name = "prev_semester_risk")
+protected BigDecimal prevSemesterRisk;
+
+@XmlElement(name = "prev_semester_anomalies")
+protected Long prevSemesterAnomalies;
+
+@XmlElement(name = "change_risk_pct")
+protected BigDecimal changeRiskPct;
+
+@XmlElement(name = "change_anomalies_pct")
+protected BigDecimal changeAnomaliesPct;
+
+@XmlElement(name = "risk_trend")
+protected String riskTrend;
+
+@XmlElement(name = "anomaly_acceleration")
+protected BigDecimal anomalyAcceleration;
 
 @EmbeddedId
 public ViewElectionCycleEmbeddedId getEmbeddedId() {
@@ -222,6 +263,107 @@ public Long getHighRiskPoliticians() {
 
 public void setHighRiskPoliticians(final Long value) {
 s = value;
+}
+
+// NEW v1.52: Statistical enhancement getters and setters
+@Basic
+@Column(name = "RANK_BY_RISK", precision = 20)
+public Long getRankByRisk() {
+ rankByRisk;
+}
+
+public void setRankByRisk(final Long value) {
+ByRisk = value;
+}
+
+@Basic
+@Column(name = "RANK_BY_ANOMALIES", precision = 20)
+public Long getRankByAnomalies() {
+ rankByAnomalies;
+}
+
+public void setRankByAnomalies(final Long value) {
+ByAnomalies = value;
+}
+
+@Basic
+@Column(name = "PERCENT_RANK_RISK", precision = 5, scale = 4)
+public BigDecimal getPercentRankRisk() {
+kRisk;
+}
+
+public void setPercentRankRisk(final BigDecimal value) {
+RankRisk = value;
+}
+
+@Basic
+@Column(name = "NTILE_RISK_LEVEL")
+public Integer getNtileRiskLevel() {
+ ntileRiskLevel;
+}
+
+public void setNtileRiskLevel(final Integer value) {
+skLevel = value;
+}
+
+@Basic
+@Column(name = "PREV_SEMESTER_RISK", precision = 5, scale = 2)
+public BigDecimal getPrevSemesterRisk() {
+ prevSemesterRisk;
+}
+
+public void setPrevSemesterRisk(final BigDecimal value) {
+esterRisk = value;
+}
+
+@Basic
+@Column(name = "PREV_SEMESTER_ANOMALIES", precision = 20)
+public Long getPrevSemesterAnomalies() {
+ prevSemesterAnomalies;
+}
+
+public void setPrevSemesterAnomalies(final Long value) {
+rAnomalies = value;
+}
+
+@Basic
+@Column(name = "CHANGE_RISK_PCT", precision = 5, scale = 2)
+public BigDecimal getChangeRiskPct() {
+ changeRiskPct;
+}
+
+public void setChangeRiskPct(final BigDecimal value) {
+kPct = value;
+}
+
+@Basic
+@Column(name = "CHANGE_ANOMALIES_PCT", precision = 5, scale = 2)
+public BigDecimal getChangeAnomaliesPct() {
+ changeAnomaliesPct;
+}
+
+public void setChangeAnomaliesPct(final BigDecimal value) {
+AnomaliesPct = value;
+}
+
+@Basic
+@Column(name = "RISK_TREND", length = 50)
+public String getRiskTrend() {
+ riskTrend;
+}
+
+public void setRiskTrend(final String value) {
+ = value;
+}
+
+@Basic
+@Column(name = "ANOMALY_ACCELERATION", precision = 5, scale = 2)
+public BigDecimal getAnomalyAcceleration() {
+ anomalyAcceleration;
+}
+
+public void setAnomalyAcceleration(final BigDecimal value) {
+yAcceleration = value;
 }
 
 @Override

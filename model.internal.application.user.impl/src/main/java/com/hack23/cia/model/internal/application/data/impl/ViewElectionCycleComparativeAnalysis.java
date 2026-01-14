@@ -60,7 +60,19 @@ import com.hack23.cia.model.common.api.ModelObject;
     "partyParticipationRate",
     "documentsLastYear",
     "partyAvgRebelRate",
-    "committeesActive"
+    "committeesActive",
+    "rankByPerformance",
+    "rankByDiscipline",
+    "percentRankPerformance",
+    "ntilePartyTier",
+    "prevCyclePerformance",
+    "prevCycleDocuments",
+    "changePerformancePct",
+    "changeDocumentsPct",
+    "stddevPerformance",
+    "performanceTrend",
+    "disciplineScore",
+    "competitivenessIndex"
 })
 @Entity(name = "ViewElectionCycleComparativeAnalysis")
 @Table(name = "view_election_cycle_comparative_analysis")
@@ -104,6 +116,43 @@ protected BigDecimal partyAvgRebelRate;
 
 @XmlElement(name = "committees_active")
 protected Long committeesActive;
+
+// NEW v1.52: Statistical enhancement fields
+@XmlElement(name = "rank_by_performance")
+protected Long rankByPerformance;
+
+@XmlElement(name = "rank_by_discipline")
+protected Long rankByDiscipline;
+
+@XmlElement(name = "percent_rank_performance")
+protected BigDecimal percentRankPerformance;
+
+@XmlElement(name = "ntile_party_tier")
+protected Integer ntilePartyTier;
+
+@XmlElement(name = "prev_cycle_performance")
+protected BigDecimal prevCyclePerformance;
+
+@XmlElement(name = "prev_cycle_documents")
+protected Long prevCycleDocuments;
+
+@XmlElement(name = "change_performance_pct")
+protected BigDecimal changePerformancePct;
+
+@XmlElement(name = "change_documents_pct")
+protected BigDecimal changeDocumentsPct;
+
+@XmlElement(name = "stddev_performance")
+protected BigDecimal stddevPerformance;
+
+@XmlElement(name = "performance_trend")
+protected String performanceTrend;
+
+@XmlElement(name = "discipline_score")
+protected BigDecimal disciplineScore;
+
+@XmlElement(name = "competitiveness_index")
+protected BigDecimal competitivenessIndex;
 
 @EmbeddedId
 public ViewElectionCycleEmbeddedId getEmbeddedId() {
@@ -222,6 +271,127 @@ public Long getCommitteesActive() {
 
 public void setCommitteesActive(final Long value) {
 = value;
+}
+
+// NEW v1.52: Statistical enhancement getters and setters
+@Basic
+@Column(name = "RANK_BY_PERFORMANCE", precision = 20)
+public Long getRankByPerformance() {
+ rankByPerformance;
+}
+
+public void setRankByPerformance(final Long value) {
+ByPerformance = value;
+}
+
+@Basic
+@Column(name = "RANK_BY_DISCIPLINE", precision = 20)
+public Long getRankByDiscipline() {
+ rankByDiscipline;
+}
+
+public void setRankByDiscipline(final Long value) {
+ = value;
+}
+
+@Basic
+@Column(name = "PERCENT_RANK_PERFORMANCE", precision = 5, scale = 4)
+public BigDecimal getPercentRankPerformance() {
+kPerformance;
+}
+
+public void setPercentRankPerformance(final BigDecimal value) {
+RankPerformance = value;
+}
+
+@Basic
+@Column(name = "NTILE_PARTY_TIER")
+public Integer getNtilePartyTier() {
+ ntilePartyTier;
+}
+
+public void setNtilePartyTier(final Integer value) {
+artyTier = value;
+}
+
+@Basic
+@Column(name = "PREV_CYCLE_PERFORMANCE", precision = 5, scale = 2)
+public BigDecimal getPrevCyclePerformance() {
+ prevCyclePerformance;
+}
+
+public void setPrevCyclePerformance(final BigDecimal value) {
+yclePerformance = value;
+}
+
+@Basic
+@Column(name = "PREV_CYCLE_DOCUMENTS", precision = 20)
+public Long getPrevCycleDocuments() {
+ prevCycleDocuments;
+}
+
+public void setPrevCycleDocuments(final Long value) {
+= value;
+}
+
+@Basic
+@Column(name = "CHANGE_PERFORMANCE_PCT", precision = 5, scale = 2)
+public BigDecimal getChangePerformancePct() {
+ changePerformancePct;
+}
+
+public void setChangePerformancePct(final BigDecimal value) {
+= value;
+}
+
+@Basic
+@Column(name = "CHANGE_DOCUMENTS_PCT", precision = 5, scale = 2)
+public BigDecimal getChangeDocumentsPct() {
+ changeDocumentsPct;
+}
+
+public void setChangeDocumentsPct(final BigDecimal value) {
+DocumentsPct = value;
+}
+
+@Basic
+@Column(name = "STDDEV_PERFORMANCE", precision = 5, scale = 2)
+public BigDecimal getStddevPerformance() {
+ stddevPerformance;
+}
+
+public void setStddevPerformance(final BigDecimal value) {
+vPerformance = value;
+}
+
+@Basic
+@Column(name = "PERFORMANCE_TREND", length = 50)
+public String getPerformanceTrend() {
+ performanceTrend;
+}
+
+public void setPerformanceTrend(final String value) {
+ceTrend = value;
+}
+
+@Basic
+@Column(name = "DISCIPLINE_SCORE", precision = 5, scale = 2)
+public BigDecimal getDisciplineScore() {
+ disciplineScore;
+}
+
+public void setDisciplineScore(final BigDecimal value) {
+ = value;
+}
+
+@Basic
+@Column(name = "COMPETITIVENESS_INDEX", precision = 5, scale = 2)
+public BigDecimal getCompetitivenessIndex() {
+ competitivenessIndex;
+}
+
+public void setCompetitivenessIndex(final BigDecimal value) {
+venessIndex = value;
 }
 
 @Override
