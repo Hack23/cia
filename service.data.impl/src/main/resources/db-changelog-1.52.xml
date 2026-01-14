@@ -353,28 +353,27 @@ ORDER BY election_cycle_id, cycle_year, semester
 ),
 windowed AS (
     SELECT v.*,
-        RANK() OVER (PARTITION BY v.election_cycle_id ORDER BY v.risk_score DESC NULLS LAST) AS rank_by_risk_score,
-        PERCENT_RANK() OVER (PARTITION BY v.election_cycle_id ORDER BY v.risk_score DESC NULLS LAST) AS percent_rank_risk,
-        NTILE(4) OVER (PARTITION BY v.election_cycle_id ORDER BY v.risk_score DESC NULLS LAST) AS ntile_forecast_group,
-        LAG(v.risk_score) OVER (PARTITION BY v.election_cycle_id, v.party ORDER BY v.cycle_year, v.semester) AS prev_semester_risk,
-        LEAD(v.risk_score) OVER (PARTITION BY v.election_cycle_id, v.party ORDER BY v.cycle_year, v.semester) AS lead_semester_risk,
-        STDDEV_POP(v.risk_score) OVER (PARTITION BY v.election_cycle_id) AS stddev_risk,
-        CORR(v.risk_score, v.violation_count) OVER (PARTITION BY v.election_cycle_id) AS corr_risk_violations
+        RANK() OVER (PARTITION BY v.election_cycle_id ORDER BY v.avg_risk_score_change DESC NULLS LAST) AS rank_by_risk_score,
+        PERCENT_RANK() OVER (PARTITION BY v.election_cycle_id ORDER BY v.avg_risk_score_change DESC NULLS LAST) AS percent_rank_risk,
+        NTILE(4) OVER (PARTITION BY v.election_cycle_id ORDER BY v.avg_risk_score_change DESC NULLS LAST) AS ntile_forecast_group,
+        LAG(v.avg_risk_score_change) OVER (PARTITION BY v.election_cycle_id ORDER BY v.cycle_year, v.semester) AS prev_semester_risk,
+        LEAD(v.avg_risk_score_change) OVER (PARTITION BY v.election_cycle_id ORDER BY v.cycle_year, v.semester) AS lead_semester_risk,
+        STDDEV_POP(v.avg_risk_score_change) OVER (PARTITION BY v.election_cycle_id) AS stddev_risk
     FROM v151_base v
 )
 SELECT w.*,
     CASE WHEN w.prev_semester_risk IS NOT NULL AND w.prev_semester_risk > 0 
-         THEN ROUND(((w.risk_score - w.prev_semester_risk) / w.prev_semester_risk * 100)::NUMERIC, 2)
+         THEN ROUND(((w.avg_risk_score_change - w.prev_semester_risk) / w.prev_semester_risk * 100)::NUMERIC, 2)
          ELSE NULL END AS change_risk_pct,
     CASE WHEN w.prev_semester_risk IS NULL THEN 'baseline'
-         WHEN w.risk_score > w.prev_semester_risk + 10 THEN 'increasing'
-         WHEN w.risk_score < w.prev_semester_risk - 10 THEN 'decreasing'
+         WHEN w.avg_risk_score_change > w.prev_semester_risk + 10 THEN 'increasing'
+         WHEN w.avg_risk_score_change < w.prev_semester_risk - 10 THEN 'decreasing'
          ELSE 'stable' END AS risk_trajectory,
     CASE WHEN w.stddev_risk < 5 THEN 'high_confidence'
          WHEN w.stddev_risk < 10 THEN 'moderate_confidence'
          ELSE 'low_confidence' END AS forecast_confidence,
-    CASE WHEN w.risk_score > 75 THEN 'high'
-         WHEN w.risk_score > 50 THEN 'medium'
+    CASE WHEN w.avg_risk_score_change > 75 THEN 'high'
+         WHEN w.avg_risk_score_change > 50 THEN 'medium'
          ELSE 'low' END AS predictive_alert_level
 FROM windowed w;
         ]]>
@@ -428,24 +427,24 @@ ORDER BY election_cycle_id, cycle_year, alignment_rate DESC
 ),
 windowed AS (
     SELECT v.*,
-        RANK() OVER (PARTITION BY v.election_cycle_id ORDER BY v.alignment_score DESC NULLS LAST) AS rank_by_alignment,
-        PERCENT_RANK() OVER (PARTITION BY v.election_cycle_id ORDER BY v.alignment_score DESC NULLS LAST) AS percent_rank_alignment,
-        NTILE(4) OVER (PARTITION BY v.election_cycle_id ORDER BY v.alignment_score DESC NULLS LAST) AS ntile_coalition_strength,
-        LAG(v.alignment_score) OVER (PARTITION BY v.election_cycle_id, v.party1, v.party2 ORDER BY v.cycle_year, v.semester) AS prev_semester_alignment,
-        STDDEV_POP(v.alignment_score) OVER (PARTITION BY v.election_cycle_id) AS stddev_alignment
+        RANK() OVER (PARTITION BY v.election_cycle_id ORDER BY v.alignment_rate DESC NULLS LAST) AS rank_by_alignment,
+        PERCENT_RANK() OVER (PARTITION BY v.election_cycle_id ORDER BY v.alignment_rate DESC NULLS LAST) AS percent_rank_alignment,
+        NTILE(4) OVER (PARTITION BY v.election_cycle_id ORDER BY v.alignment_rate DESC NULLS LAST) AS ntile_coalition_strength,
+        LAG(v.alignment_rate) OVER (PARTITION BY v.election_cycle_id, v.party1, v.party2 ORDER BY v.cycle_year, v.semester) AS prev_semester_alignment,
+        STDDEV_POP(v.alignment_rate) OVER (PARTITION BY v.election_cycle_id) AS stddev_alignment
     FROM v151_base v
 )
 SELECT w.*,
     CASE WHEN w.prev_semester_alignment IS NOT NULL AND w.prev_semester_alignment > 0 
-         THEN ROUND(((w.alignment_score - w.prev_semester_alignment) / w.prev_semester_alignment * 100)::NUMERIC, 2)
+         THEN ROUND(((w.alignment_rate - w.prev_semester_alignment) / w.prev_semester_alignment * 100)::NUMERIC, 2)
          ELSE NULL END AS change_alignment_pct,
     CASE WHEN w.prev_semester_alignment IS NULL THEN 'baseline'
-         WHEN w.alignment_score > w.prev_semester_alignment + 10 THEN 'strengthening'
-         WHEN w.alignment_score < w.prev_semester_alignment - 10 THEN 'weakening'
+         WHEN w.alignment_rate > w.prev_semester_alignment + 10 THEN 'strengthening'
+         WHEN w.alignment_rate < w.prev_semester_alignment - 10 THEN 'weakening'
          ELSE 'stable' END AS coalition_stability_trend,
-    ROUND((w.alignment_score / 100.0) * (100.0 / NULLIF(w.stddev_alignment, 0)), 2) AS network_density,
-    CASE WHEN w.alignment_score > 70 THEN 'strong'
-         WHEN w.alignment_score > 40 THEN 'moderate'
+    ROUND((w.alignment_rate / 100.0) * (100.0 / NULLIF(w.stddev_alignment, 0)), 2) AS network_density,
+    CASE WHEN w.alignment_rate > 70 THEN 'strong'
+         WHEN w.alignment_rate > 40 THEN 'moderate'
          ELSE 'weak' END AS coalition_momentum
 FROM windowed w;
         ]]>
@@ -512,26 +511,26 @@ ORDER BY election_cycle_id, cycle_year, semester, party
 ),
 windowed AS (
     SELECT v.*,
-        RANK() OVER (PARTITION BY v.election_cycle_id ORDER BY v.success_rate DESC NULLS LAST) AS rank_by_success_rate,
-        RANK() OVER (PARTITION BY v.election_cycle_id ORDER BY v.proposals_submitted DESC NULLS LAST) AS rank_by_proposals,
-        PERCENT_RANK() OVER (PARTITION BY v.election_cycle_id ORDER BY v.success_rate DESC NULLS LAST) AS percent_rank_success,
-        NTILE(4) OVER (PARTITION BY v.election_cycle_id ORDER BY v.success_rate DESC NULLS LAST) AS ntile_effectiveness,
-        LAG(v.success_rate) OVER (PARTITION BY v.election_cycle_id, v.party ORDER BY v.cycle_year, v.semester) AS prev_semester_success,
-        LAG(v.proposals_submitted) OVER (PARTITION BY v.election_cycle_id, v.party ORDER BY v.cycle_year, v.semester) AS prev_semester_proposals
+        RANK() OVER (PARTITION BY v.election_cycle_id ORDER BY v.avg_approval_rate DESC NULLS LAST) AS rank_by_success_rate,
+        RANK() OVER (PARTITION BY v.election_cycle_id ORDER BY v.total_proposals DESC NULLS LAST) AS rank_by_proposals,
+        PERCENT_RANK() OVER (PARTITION BY v.election_cycle_id ORDER BY v.avg_approval_rate DESC NULLS LAST) AS percent_rank_success,
+        NTILE(4) OVER (PARTITION BY v.election_cycle_id ORDER BY v.avg_approval_rate DESC NULLS LAST) AS ntile_effectiveness,
+        LAG(v.avg_approval_rate) OVER (PARTITION BY v.election_cycle_id, v.party ORDER BY v.cycle_year, v.semester) AS prev_semester_success,
+        LAG(v.total_proposals) OVER (PARTITION BY v.election_cycle_id, v.party ORDER BY v.cycle_year, v.semester) AS prev_semester_proposals
     FROM v151_base v
 )
 SELECT w.*,
     CASE WHEN w.prev_semester_success IS NOT NULL AND w.prev_semester_success > 0 
-         THEN ROUND(((w.success_rate - w.prev_semester_success) / w.prev_semester_success * 100)::NUMERIC, 2)
+         THEN ROUND(((w.avg_approval_rate - w.prev_semester_success) / w.prev_semester_success * 100)::NUMERIC, 2)
          ELSE NULL END AS change_success_pct,
     CASE WHEN w.prev_semester_proposals IS NOT NULL AND w.prev_semester_proposals > 0 
-         THEN ROUND(((w.proposals_submitted - w.prev_semester_proposals)::NUMERIC / w.prev_semester_proposals * 100)::NUMERIC, 2)
+         THEN ROUND(((w.total_proposals - w.prev_semester_proposals)::NUMERIC / w.prev_semester_proposals * 100)::NUMERIC, 2)
          ELSE NULL END AS change_proposals_pct,
     CASE WHEN w.prev_semester_success IS NULL THEN 'baseline'
-         WHEN w.success_rate > w.prev_semester_success + 10 THEN 'improving'
-         WHEN w.success_rate < w.prev_semester_success - 10 THEN 'declining'
+         WHEN w.avg_approval_rate > w.prev_semester_success + 10 THEN 'improving'
+         WHEN w.avg_approval_rate < w.prev_semester_success - 10 THEN 'declining'
          ELSE 'stable' END AS decision_trend,
-    ROUND((w.success_rate * 0.6 + (w.proposals_submitted::NUMERIC / NULLIF((SELECT MAX(proposals_submitted) FROM windowed w2 WHERE w2.election_cycle_id = w.election_cycle_id), 0)) * 40)::NUMERIC, 2) AS legislative_momentum
+    ROUND((w.avg_approval_rate * 0.6 + (w.total_proposals::NUMERIC / NULLIF((SELECT MAX(total_proposals) FROM windowed w2 WHERE w2.election_cycle_id = w.election_cycle_id), 0)) * 40)::NUMERIC, 2) AS legislative_momentum
 FROM windowed w;
         ]]>
     </createView>
