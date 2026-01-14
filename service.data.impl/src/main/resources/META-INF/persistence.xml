@@ -196,16 +196,6 @@
 		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianDocumentDailySummary</class>
 		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianDocumentSummary</class>
 
-		<!-- V1.51 Election Cycle Trend Views -->
-		<class>com.hack23.cia.model.internal.application.data.impl.ViewElectionCycleTemporalTrends</class>
-		<class>com.hack23.cia.model.internal.application.data.impl.ViewElectionCycleTemporalTrendsEmbeddedId</class>
-		<class>com.hack23.cia.model.internal.application.data.impl.ViewElectionCycleComparativeAnalysis</class>
-		<class>com.hack23.cia.model.internal.application.data.impl.ViewElectionCycleAnomalyPattern</class>
-		<class>com.hack23.cia.model.internal.application.data.impl.ViewElectionCyclePredictiveIntelligence</class>
-		<class>com.hack23.cia.model.internal.application.data.impl.ViewElectionCycleNetworkAnalysis</class>
-		<class>com.hack23.cia.model.internal.application.data.impl.ViewElectionCycleDecisionIntelligence</class>
-		<class>com.hack23.cia.model.internal.application.data.impl.ViewElectionCycleEmbeddedId</class>
-
 		<class>com.hack23.cia.model.internal.application.data.impl.ViewWorldbankIndicatorDataCountrySummary</class>
 		<class>com.hack23.cia.model.internal.application.data.rules.impl.RuleViolation</class>
 
