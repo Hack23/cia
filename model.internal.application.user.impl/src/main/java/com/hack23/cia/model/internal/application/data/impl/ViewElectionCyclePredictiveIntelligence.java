@@ -1,0 +1,166 @@
+/*
+ * Copyright 2010-2026 James Pether Sörling
+ */
+package com.hack23.cia.model.internal.application.data.impl;
+
+import java.math.BigDecimal;
+import javax.persistence.*;
+import javax.xml.bind.annotation.*;
+import org.apache.commons.lang3.builder.*;
+import com.hack23.cia.model.common.api.ModelObject;
+
+/**
+ * The Class ViewElectionCyclePredictiveIntelligence.
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "ViewElectionCyclePredictiveIntelligence")
+@Entity(name = "ViewElectionCyclePredictiveIntelligence")
+@Table(name = "view_election_cycle_predictive_intelligence")
+@Inheritance(strategy = InheritanceType.JOINED)
+public class ViewElectionCyclePredictiveIntelligence implements ModelObject {
+private static final long serialVersionUID = 1L;
+
+@XmlElement(required = true)
+protected ViewElectionCycleEmbeddedId embeddedId;
+
+@XmlElement(name = "cycle_year")
+protected Integer cycleYear;
+
+@XmlElement(name = "calendar_year")
+protected Integer calendarYear;
+
+@XmlElement(name = "risk_forecast_category")
+protected String riskForecastCategory;
+
+@XmlElement(name = "politicians_at_risk")
+protected Long politiciansAtRisk;
+
+@XmlElement(name = "avg_risk_score_change")
+protected BigDecimal avgRiskScoreChange;
+
+@XmlElement(name = "ministries_at_risk")
+protected Long ministriesAtRisk;
+
+@XmlElement(name = "avg_ministry_productivity")
+protected BigDecimal avgMinistryProductivity;
+
+@XmlElement(name = "avg_party_win_rate_trend")
+protected BigDecimal avgPartyWinRateTrend;
+
+@XmlElement(name = "parties_with_increasing_absence")
+protected Long partiesWithIncreasingAbsence;
+
+@EmbeddedId
+public ViewElectionCycleEmbeddedId getEmbeddedId() {
+ embeddedId;
+}
+
+public void setEmbeddedId(final ViewElectionCycleEmbeddedId value) {
+= value;
+}
+
+@Basic
+@Column(name = "CYCLE_YEAR")
+public Integer getCycleYear() {
+ cycleYear;
+}
+
+public void setCycleYear(final Integer value) {
+cleYear = value;
+}
+
+@Basic
+@Column(name = "CALENDAR_YEAR")
+public Integer getCalendarYear() {
+ calendarYear;
+}
+
+public void setCalendarYear(final Integer value) {
+darYear = value;
+}
+
+@Basic
+@Column(name = "RISK_FORECAST_CATEGORY", length = 50)
+public String getRiskForecastCategory() {
+ riskForecastCategory;
+}
+
+public void setRiskForecastCategory(final String value) {
+ = value;
+}
+
+@Basic
+@Column(name = "POLITICIANS_AT_RISK", precision = 20)
+public Long getPoliticiansAtRisk() {
+ politiciansAtRisk;
+}
+
+public void setPoliticiansAtRisk(final Long value) {
+sAtRisk = value;
+}
+
+@Basic
+@Column(name = "AVG_RISK_SCORE_CHANGE", precision = 5, scale = 2)
+public BigDecimal getAvgRiskScoreChange() {
+ avgRiskScoreChange;
+}
+
+public void setAvgRiskScoreChange(final BigDecimal value) {
+ge = value;
+}
+
+@Basic
+@Column(name = "MINISTRIES_AT_RISK", precision = 20)
+public Long getMinistriesAtRisk() {
+ ministriesAtRisk;
+}
+
+public void setMinistriesAtRisk(final Long value) {
+istriesAtRisk = value;
+}
+
+@Basic
+@Column(name = "AVG_MINISTRY_PRODUCTIVITY", precision = 5, scale = 2)
+public BigDecimal getAvgMinistryProductivity() {
+ avgMinistryProductivity;
+}
+
+public void setAvgMinistryProductivity(final BigDecimal value) {
+istryProductivity = value;
+}
+
+@Basic
+@Column(name = "AVG_PARTY_WIN_RATE_TREND", precision = 5, scale = 2)
+public BigDecimal getAvgPartyWinRateTrend() {
+ avgPartyWinRateTrend;
+}
+
+public void setAvgPartyWinRateTrend(final BigDecimal value) {
+WinRateTrend = value;
+}
+
+@Basic
+@Column(name = "PARTIES_WITH_INCREASING_ABSENCE", precision = 20)
+public Long getPartiesWithIncreasingAbsence() {
+ partiesWithIncreasingAbsence;
+}
+
+public void setPartiesWithIncreasingAbsence(final Long value) {
+creasingAbsence = value;
+}
+
+@Override
+public final String toString() {
+ ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+}
+
+@Override
+public final boolean equals(final Object obj) {
+ EqualsBuilder.reflectionEquals(this, obj);
+}
+
+@Override
+public final int hashCode() {
+ HashCodeBuilder.reflectionHashCode(this);
+}
+}
