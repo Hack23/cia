@@ -162,7 +162,7 @@ temporal_data_autumn AS (
     LEFT JOIN view_decision_temporal_trends dtt
         ON dtt.decision_day >= ecp.autumn_start AND dtt.decision_day <= ecp.autumn_end
     LEFT JOIN view_committee_productivity cp
-        ON cp.data_year = ecp.calendar_year
+        ON 1=1  -- Current snapshot, no temporal filtering available
     GROUP BY ecp.election_cycle_id, ecp.cycle_year, ecp.calendar_year, ecp.autumn_start, ecp.cycle_end_year
 ),
 temporal_data_spring AS (
@@ -196,7 +196,7 @@ temporal_data_spring AS (
     LEFT JOIN view_decision_temporal_trends dtt
         ON dtt.decision_day >= ecp.spring_start AND dtt.decision_day <= ecp.spring_end
     LEFT JOIN view_committee_productivity cp
-        ON cp.data_year = ecp.calendar_year
+        ON 1=1  -- Current snapshot, no temporal filtering available
     GROUP BY ecp.election_cycle_id, ecp.cycle_year, ecp.calendar_year, ecp.spring_start, ecp.cycle_end_year, ecp.is_election_year
 )
 SELECT * FROM temporal_data_autumn
@@ -267,7 +267,7 @@ LEFT JOIN view_riksdagen_vote_data_ballot_party_summary_monthly vps
 LEFT JOIN view_party_performance_metrics ppm
     ON ppm.party = vps.party
 LEFT JOIN view_committee_productivity_matrix cpm
-    ON EXTRACT(YEAR FROM cpm.data_date) = ecp.calendar_year
+    ON EXTRACT(YEAR FROM cpm.period_start) = ecp.calendar_year
 WHERE vps.party IS NOT NULL
 GROUP BY ecp.election_cycle_id, ecp.cycle_year, ecp.calendar_year, 
     CASE WHEN EXTRACT(MONTH FROM vps.embedded_id_vote_date) >= 9 OR EXTRACT(MONTH FROM vps.embedded_id_vote_date) <= 1 THEN 'autumn' ELSE 'spring' END, 
@@ -318,10 +318,10 @@ SELECT
     ROUND(AVG(rse.risk_score), 2) AS avg_risk_score,
     COUNT(*) FILTER (WHERE rse.severity_transition LIKE 'ESCALATION%') AS risk_escalations,
     
-    -- From view_riksdagen_voting_anomaly_detection (NEW - detects defections, discipline issues)
-    COUNT(DISTINCT vad.person_id) FILTER (WHERE vad.defection_risk = 'HIGH') AS high_defection_risk_count,
-    COUNT(DISTINCT vad.person_id) FILTER (WHERE vad.party_discipline = 'LOW') AS low_discipline_count,
-    ROUND(AVG(vad.rebellion_rate), 2) AS avg_rebellion_rate,
+    -- From view_riksdagen_voting_anomaly_detection (NEW - uses actual columns: total_rebellions, anomaly_classification)
+    COUNT(DISTINCT vad.person_id) FILTER (WHERE vad.anomaly_classification IN ('FREQUENT_STRONG_REBEL', 'CONSISTENT_REBEL')) AS high_anomaly_count,
+    ROUND(AVG(vad.total_rebellions), 2) AS avg_total_rebellions,
+    COUNT(DISTINCT vad.person_id) FILTER (WHERE vad.strong_consensus_rebellions >= 5) AS strong_consensus_rebels,
     
     -- From view_politician_risk_summary (NEW - aggregated risk profiles)
     ROUND(AVG(prs.total_risk_score), 2) AS avg_total_risk_score,
@@ -331,7 +331,7 @@ FROM election_cycle_periods ecp
 LEFT JOIN view_risk_score_evolution rse
     ON EXTRACT(YEAR FROM rse.assessment_period) = ecp.calendar_year
 LEFT JOIN view_riksdagen_voting_anomaly_detection vad
-    ON EXTRACT(YEAR FROM vad.vote_date) = ecp.calendar_year
+    ON 1=1  -- Current snapshot (3-year rolling window), no temporal filtering available
 LEFT JOIN view_politician_risk_summary prs
     ON 1=1  -- Current snapshot, not time-filtered
 GROUP BY ecp.election_cycle_id, ecp.cycle_year, ecp.calendar_year, 
