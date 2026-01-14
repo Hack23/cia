@@ -75,7 +75,23 @@ import com.hack23.cia.model.common.api.ModelObject;
     "avgMaAbsence",
     "avgApprovalRate",
     "totalDecisions",
-    "avgCommitteeProductivity"
+    "avgCommitteeProductivity",
+    // v1.52 Statistical Enhancements
+    "rankByAttendance",
+    "rankByViolations",
+    "percentRankAttendance",
+    "percentRankViolations",
+    "ntilePerformance",
+    "prevSemesterAttendance",
+    "prevSemesterViolations",
+    "changeAttendancePct",
+    "changeViolationsPct",
+    "stddevAttendance",
+    "stddevViolations",
+    "attendanceTrend",
+    "violationTrend",
+    "overallPerformanceScore",
+    "performanceTrajectory"
 })
 @Entity(name = "ViewElectionCycleTemporalTrends")
 @Table(name = "view_election_cycle_temporal_trends")
@@ -128,6 +144,68 @@ protected Long totalDecisions;
 
 @XmlElement(name = "avg_committee_productivity")
 protected BigDecimal avgCommitteeProductivity;
+
+// v1.52 Statistical Enhancement Fields (+15 columns)
+
+/** Rank of periods by attendance rate within election cycle (v1.52 window function). */
+@XmlElement(name = "rank_by_attendance")
+protected Long rankByAttendance;
+
+/** Rank of periods by violation count within election cycle (v1.52 window function). */
+@XmlElement(name = "rank_by_violations")
+protected Long rankByViolations;
+
+/** Percentile rank of attendance (0.0-1.0) for relative positioning (v1.52 window function). */
+@XmlElement(name = "percent_rank_attendance")
+protected BigDecimal percentRankAttendance;
+
+/** Percentile rank of violations (0.0-1.0) for relative positioning (v1.52 window function). */
+@XmlElement(name = "percent_rank_violations")
+protected BigDecimal percentRankViolations;
+
+/** Performance quartile tier: 1=top 25%, 4=bottom 25% (v1.52 window function). */
+@XmlElement(name = "ntile_performance")
+protected Integer ntilePerformance;
+
+/** Previous semester's attendance rate for change detection (v1.52 LAG function). */
+@XmlElement(name = "prev_semester_attendance")
+protected BigDecimal prevSemesterAttendance;
+
+/** Previous semester's violation count for trend analysis (v1.52 LAG function). */
+@XmlElement(name = "prev_semester_violations")
+protected Long prevSemesterViolations;
+
+/** Percentage change in attendance vs previous semester (v1.52 calculated). */
+@XmlElement(name = "change_attendance_pct")
+protected BigDecimal changeAttendancePct;
+
+/** Percentage change in violations vs previous semester (v1.52 calculated). */
+@XmlElement(name = "change_violations_pct")
+protected BigDecimal changeViolationsPct;
+
+/** Standard deviation of attendance across cycle for volatility assessment (v1.52 STDDEV_POP). */
+@XmlElement(name = "stddev_attendance")
+protected BigDecimal stddevAttendance;
+
+/** Standard deviation of violations across cycle for volatility assessment (v1.52 STDDEV_POP). */
+@XmlElement(name = "stddev_violations")
+protected BigDecimal stddevViolations;
+
+/** Attendance trend classification: "improving", "stable", "declining" (v1.52 computed). */
+@XmlElement(name = "attendance_trend")
+protected String attendanceTrend;
+
+/** Violation trend classification: "improving", "stable", "declining" (v1.52 computed). */
+@XmlElement(name = "violation_trend")
+protected String violationTrend;
+
+/** Overall performance composite score (0-100 scale) (v1.52 weighted average). */
+@XmlElement(name = "overall_performance_score")
+protected BigDecimal overallPerformanceScore;
+
+/** Performance trajectory assessment: "escalating", "stable", "improving" (v1.52 computed). */
+@XmlElement(name = "performance_trajectory")
+protected String performanceTrajectory;
 
 @EmbeddedId
 public ViewElectionCycleTemporalTrendsEmbeddedId getEmbeddedId() {
@@ -271,11 +349,163 @@ s = value;
 @Basic
 @Column(name = "AVG_COMMITTEE_PRODUCTIVITY", precision = 5, scale = 2)
 public BigDecimal getAvgCommitteeProductivity() {
- avgCommitteeProductivity;
+return avgCommitteeProductivity;
 }
 
 public void setAvgCommitteeProductivity(final BigDecimal value) {
- = value;
+this.avgCommitteeProductivity = value;
+}
+
+// v1.52 Statistical Enhancement Getters/Setters
+
+@Basic
+@Column(name = "RANK_BY_ATTENDANCE", precision = 20)
+public Long getRankByAttendance() {
+return rankByAttendance;
+}
+
+public void setRankByAttendance(final Long value) {
+this.rankByAttendance = value;
+}
+
+@Basic
+@Column(name = "RANK_BY_VIOLATIONS", precision = 20)
+public Long getRankByViolations() {
+return rankByViolations;
+}
+
+public void setRankByViolations(final Long value) {
+this.rankByViolations = value;
+}
+
+@Basic
+@Column(name = "PERCENT_RANK_ATTENDANCE", precision = 5, scale = 4)
+public BigDecimal getPercentRankAttendance() {
+return percentRankAttendance;
+}
+
+public void setPercentRankAttendance(final BigDecimal value) {
+this.percentRankAttendance = value;
+}
+
+@Basic
+@Column(name = "PERCENT_RANK_VIOLATIONS", precision = 5, scale = 4)
+public BigDecimal getPercentRankViolations() {
+return percentRankViolations;
+}
+
+public void setPercentRankViolations(final BigDecimal value) {
+this.percentRankViolations = value;
+}
+
+@Basic
+@Column(name = "NTILE_PERFORMANCE")
+public Integer getNtilePerformance() {
+return ntilePerformance;
+}
+
+public void setNtilePerformance(final Integer value) {
+this.ntilePerformance = value;
+}
+
+@Basic
+@Column(name = "PREV_SEMESTER_ATTENDANCE", precision = 5, scale = 2)
+public BigDecimal getPrevSemesterAttendance() {
+return prevSemesterAttendance;
+}
+
+public void setPrevSemesterAttendance(final BigDecimal value) {
+this.prevSemesterAttendance = value;
+}
+
+@Basic
+@Column(name = "PREV_SEMESTER_VIOLATIONS", precision = 20)
+public Long getPrevSemesterViolations() {
+return prevSemesterViolations;
+}
+
+public void setPrevSemesterViolations(final Long value) {
+this.prevSemesterViolations = value;
+}
+
+@Basic
+@Column(name = "CHANGE_ATTENDANCE_PCT", precision = 5, scale = 2)
+public BigDecimal getChangeAttendancePct() {
+return changeAttendancePct;
+}
+
+public void setChangeAttendancePct(final BigDecimal value) {
+this.changeAttendancePct = value;
+}
+
+@Basic
+@Column(name = "CHANGE_VIOLATIONS_PCT", precision = 5, scale = 2)
+public BigDecimal getChangeViolationsPct() {
+return changeViolationsPct;
+}
+
+public void setChangeViolationsPct(final BigDecimal value) {
+this.changeViolationsPct = value;
+}
+
+@Basic
+@Column(name = "STDDEV_ATTENDANCE", precision = 5, scale = 2)
+public BigDecimal getStddevAttendance() {
+return stddevAttendance;
+}
+
+public void setStddevAttendance(final BigDecimal value) {
+this.stddevAttendance = value;
+}
+
+@Basic
+@Column(name = "STDDEV_VIOLATIONS", precision = 5, scale = 2)
+public BigDecimal getStddevViolations() {
+return stddevViolations;
+}
+
+public void setStddevViolations(final BigDecimal value) {
+this.stddevViolations = value;
+}
+
+@Basic
+@Column(name = "ATTENDANCE_TREND", length = 50)
+public String getAttendanceTrend() {
+return attendanceTrend;
+}
+
+public void setAttendanceTrend(final String value) {
+this.attendanceTrend = value;
+}
+
+@Basic
+@Column(name = "VIOLATION_TREND", length = 50)
+public String getViolationTrend() {
+return violationTrend;
+}
+
+public void setViolationTrend(final String value) {
+this.violationTrend = value;
+}
+
+@Basic
+@Column(name = "OVERALL_PERFORMANCE_SCORE", precision = 5, scale = 2)
+public BigDecimal getOverallPerformanceScore() {
+return overallPerformanceScore;
+}
+
+public void setOverallPerformanceScore(final BigDecimal value) {
+this.overallPerformanceScore = value;
+}
+
+@Basic
+@Column(name = "PERFORMANCE_TRAJECTORY", length = 50)
+public String getPerformanceTrajectory() {
+return performanceTrajectory;
+}
+
+public void setPerformanceTrajectory(final String value) {
+this.performanceTrajectory = value;
 }
 
 @Override
