@@ -144,9 +144,6 @@ temporal_data_autumn AS (
         SUM(pbt.violation_count) AS violation_count,
         ROUND(AVG(pbt.ma_3month_absence), 2) AS avg_ma_absence,
         
-        -- From view_riksdagen_vote_data_ballot_politician_summary_monthly
-        COUNT(DISTINCT vms.embedded_id_ballot_id) AS distinct_ballots,
-        
         -- From view_decision_temporal_trends (NEW)
         ROUND(AVG(dtt.daily_approval_rate), 2) AS avg_approval_rate,
         SUM(dtt.daily_decisions) AS total_decisions,
@@ -157,8 +154,6 @@ temporal_data_autumn AS (
     FROM election_cycle_periods ecp
     LEFT JOIN view_politician_behavioral_trends pbt
         ON pbt.period_start >= ecp.autumn_start AND pbt.period_start <= ecp.autumn_end
-    LEFT JOIN view_riksdagen_vote_data_ballot_politician_summary_monthly vms
-        ON vms.embedded_id_vote_date >= ecp.autumn_start AND vms.embedded_id_vote_date <= ecp.autumn_end
     LEFT JOIN view_decision_temporal_trends dtt
         ON dtt.decision_day >= ecp.autumn_start AND dtt.decision_day <= ecp.autumn_end
     LEFT JOIN view_committee_productivity cp
@@ -183,7 +178,6 @@ temporal_data_spring AS (
         ROUND(AVG(pbt.avg_rebel_rate), 2) AS avg_rebel_rate,
         SUM(pbt.violation_count) AS violation_count,
         ROUND(AVG(pbt.ma_3month_absence), 2) AS avg_ma_absence,
-        COUNT(DISTINCT vms.embedded_id_ballot_id) AS distinct_ballots,
         ROUND(AVG(dtt.daily_approval_rate), 2) AS avg_approval_rate,
         SUM(dtt.daily_decisions) AS total_decisions,
         ROUND(AVG(cp.productivity_score), 2) AS avg_committee_productivity
@@ -191,8 +185,6 @@ temporal_data_spring AS (
     FROM election_cycle_periods ecp
     LEFT JOIN view_politician_behavioral_trends pbt
         ON pbt.period_start >= ecp.spring_start AND pbt.period_start <= ecp.spring_end
-    LEFT JOIN view_riksdagen_vote_data_ballot_politician_summary_monthly vms
-        ON vms.embedded_id_vote_date >= ecp.spring_start AND vms.embedded_id_vote_date <= ecp.spring_end
     LEFT JOIN view_decision_temporal_trends dtt
         ON dtt.decision_day >= ecp.spring_start AND dtt.decision_day <= ecp.spring_end
     LEFT JOIN view_committee_productivity cp
@@ -241,14 +233,8 @@ SELECT
     ecp.election_cycle_id,
     ecp.cycle_year,
     ecp.calendar_year,
-    CASE WHEN EXTRACT(MONTH FROM vps.embedded_id_vote_date) >= 9 OR EXTRACT(MONTH FROM vps.embedded_id_vote_date) <= 1 THEN 'autumn' ELSE 'spring' END AS semester,
-    vps.party,
-    
-    -- From view_riksdagen_vote_data_ballot_party_summary_monthly
-    SUM(vps.total_votes) AS total_votes_party,
-    ROUND(AVG(vps.percentage_yes), 2) AS avg_yes_percentage,
-    ROUND(AVG(vps.percentage_absent), 2) AS avg_absence_percentage,
-    ROUND(AVG(vps.rebel_percentage), 2) AS avg_rebel_percentage,
+    'annual' AS semester,  -- Simplified: aggregate by year since source views are current snapshots
+    ppm.party,
     
     -- From view_party_performance_metrics (NEW - provides comprehensive party analytics)
     MAX(ppm.performance_score) AS performance_score,
@@ -257,21 +243,17 @@ SELECT
     ROUND(AVG(ppm.avg_win_rate), 2) AS party_win_rate,
     ROUND(AVG(ppm.avg_participation_rate), 2) AS party_participation_rate,
     MAX(ppm.documents_produced) AS documents_produced,
+    ROUND(AVG(ppm.avg_rebel_rate), 2) AS party_avg_rebel_rate,
     
     -- From view_committee_productivity_matrix (NEW - multi-committee dimension)
     COUNT(DISTINCT cpm.committee_org) AS committees_active
     
 FROM election_cycle_periods ecp
-LEFT JOIN view_riksdagen_vote_data_ballot_party_summary_monthly vps
-    ON EXTRACT(YEAR FROM vps.embedded_id_vote_date) = ecp.calendar_year
-LEFT JOIN view_party_performance_metrics ppm
-    ON ppm.party = vps.party
+CROSS JOIN view_party_performance_metrics ppm
 LEFT JOIN view_committee_productivity_matrix cpm
     ON EXTRACT(YEAR FROM cpm.period_start) = ecp.calendar_year
-WHERE vps.party IS NOT NULL
-GROUP BY ecp.election_cycle_id, ecp.cycle_year, ecp.calendar_year, 
-    CASE WHEN EXTRACT(MONTH FROM vps.embedded_id_vote_date) >= 9 OR EXTRACT(MONTH FROM vps.embedded_id_vote_date) <= 1 THEN 'autumn' ELSE 'spring' END, 
-    vps.party
+WHERE ppm.party IS NOT NULL
+GROUP BY ecp.election_cycle_id, ecp.cycle_year, ecp.calendar_year, ppm.party
 ORDER BY election_cycle_id, cycle_year, semester, party;
         ]]>
     </createView>
