@@ -367,20 +367,20 @@ SELECT
     ROUND(AVG(rse.risk_score_change), 2) AS avg_risk_score_change,
     
     -- From view_ministry_risk_evolution (NEW - government stability forecasting)
-    COUNT(DISTINCT mre.ministry_name) FILTER (WHERE mre.risk_trajectory = 'INCREASING') AS ministries_at_risk,
-    ROUND(AVG(mre.ministry_risk_score), 2) AS avg_ministry_risk,
+    COUNT(DISTINCT mre.name) FILTER (WHERE mre.risk_level IN ('HIGH', 'CRITICAL')) AS ministries_at_risk,
+    ROUND(AVG(mre.rolling_avg_documents), 2) AS avg_ministry_productivity,
     
     -- From view_party_effectiveness_trends (NEW - party performance forecasting)
-    ROUND(AVG(pet.effectiveness_trend_slope), 2) AS avg_party_effectiveness_trend,
-    COUNT(DISTINCT pet.party) FILTER (WHERE pet.trend_direction = 'DECLINING') AS parties_declining
+    ROUND(AVG(pet.win_rate_trend), 2) AS avg_party_win_rate_trend,
+    COUNT(DISTINCT pet.party) FILTER (WHERE pet.absence_trend > 0) AS parties_with_increasing_absence
     
 FROM election_cycle_periods ecp
 LEFT JOIN view_risk_score_evolution rse
     ON EXTRACT(YEAR FROM rse.assessment_period) = ecp.calendar_year
 LEFT JOIN view_ministry_risk_evolution mre
-    ON EXTRACT(YEAR FROM mre.assessment_date) = ecp.calendar_year
+    ON EXTRACT(YEAR FROM mre.assessment_period) = ecp.calendar_year
 LEFT JOIN view_party_effectiveness_trends pet
-    ON EXTRACT(YEAR FROM pet.trend_date) = ecp.calendar_year
+    ON EXTRACT(YEAR FROM pet.period_start) = ecp.calendar_year
 GROUP BY ecp.election_cycle_id, ecp.cycle_year, ecp.calendar_year, 
     CASE WHEN EXTRACT(MONTH FROM rse.assessment_period) >= 9 OR EXTRACT(MONTH FROM rse.assessment_period) <= 1 THEN 'autumn' ELSE 'spring' END
 ORDER BY election_cycle_id, cycle_year, semester;
@@ -420,27 +420,27 @@ SELECT
     'aggregate' AS semester,
     
     -- From view_riksdagen_coalition_alignment_matrix
-    cam.party_a,
-    cam.party_b,
-    cam.alignment_score,
+    cam.party1,
+    cam.party2,
+    cam.alignment_rate,
     CASE 
-        WHEN cam.alignment_score >= 80 THEN 'STRONG_COALITION'
-        WHEN cam.alignment_score >= 60 THEN 'MODERATE_COALITION'
+        WHEN cam.alignment_rate >= 80 THEN 'STRONG_COALITION'
+        WHEN cam.alignment_rate >= 60 THEN 'MODERATE_COALITION'
         ELSE 'WEAK_COALITION'
     END AS coalition_strength,
     
     -- From view_riksdagen_politician_influence_metrics (NEW - network analysis)
-    COUNT(DISTINCT pim.person_id) FILTER (WHERE pim.influence_level IN ('HIGH', 'VERY_HIGH')) AS influential_politicians,
-    ROUND(AVG(pim.network_centrality_score), 2) AS avg_network_centrality,
-    COUNT(DISTINCT pim.person_id) FILTER (WHERE pim.broker_status = 'POWER_BROKER') AS power_broker_count
+    COUNT(DISTINCT pim.person_id) FILTER (WHERE pim.influence_classification IN ('HIGH_INFLUENCE', 'VERY_HIGH_INFLUENCE')) AS influential_politicians,
+    ROUND(AVG(pim.network_median), 2) AS avg_network_centrality,
+    COUNT(DISTINCT pim.person_id) FILTER (WHERE pim.broker_classification = 'POWER_BROKER') AS power_broker_count
     
 FROM election_cycle_periods ecp
 CROSS JOIN view_riksdagen_coalition_alignment_matrix cam
 LEFT JOIN view_riksdagen_politician_influence_metrics pim
     ON 1=1  -- Current snapshot
-WHERE cam.party_a IS NOT NULL AND cam.party_b IS NOT NULL
-GROUP BY ecp.election_cycle_id, ecp.cycle_year, ecp.calendar_year, cam.party_a, cam.party_b, cam.alignment_score
-ORDER BY election_cycle_id, cycle_year, alignment_score DESC;
+WHERE cam.party1 IS NOT NULL AND cam.party2 IS NOT NULL
+GROUP BY ecp.election_cycle_id, ecp.cycle_year, ecp.calendar_year, cam.party1, cam.party2, cam.alignment_rate
+ORDER BY election_cycle_id, cycle_year, alignment_rate DESC;
         ]]>
     </createView>
     <rollback><dropView viewName="view_election_cycle_network_analysis"/></rollback>
