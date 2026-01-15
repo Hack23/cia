@@ -74,12 +74,12 @@ This document describes the sample data extraction process for the 3 new party l
 - COLLAPSING: seat_count_proxy decrease >10
 
 **Party Size Categories**:
-- DOMINANT: seat_count_proxy >= 100
-- MAJOR: seat_count_proxy >= 75
-- LARGE: seat_count_proxy >= 50
-- MEDIUM: seat_count_proxy >= 30
-- SMALL: seat_count_proxy >= 15
-- MINOR: seat_count_proxy < 15
+- DOMINANT_PARTY: seat_count_proxy >= 100
+- MAJOR_PARTY: seat_count_proxy >= 75
+- LARGE_PARTY: seat_count_proxy >= 50
+- MEDIUM_PARTY: seat_count_proxy >= 30
+- SMALL_PARTY: seat_count_proxy >= 15
+- MINOR_PARTY: seat_count_proxy < 15
 
 ## Sample Data Extraction Commands
 
@@ -185,33 +185,33 @@ ORDER BY election_cycle_id;
 ## Expected Results
 
 ### Party Performance (example for S - Social Democrats)
-| election_cycle_id | win_rate | trajectory | performance_tier |
-|-------------------|----------|------------|------------------|
-| 2002-2005         | 52.3     | BASELINE   | STRONG           |
-| 2006-2009         | 48.1     | DECLINING  | COMPETITIVE      |
-| 2010-2013         | 45.7     | DESCENDING | COMPETITIVE      |
-| 2014-2017         | 44.2     | DESCENDING | COMPETITIVE      |
-| 2018-2021         | 46.8     | RECOVERING | COMPETITIVE      |
-| 2022-2025         | 49.5     | ASCENDING  | COMPETITIVE      |
+| election_cycle_id | win_rate | trajectory_win_rate | performance_tier   |
+|-------------------|----------|---------------------|-------------------|
+| 2002-2005         | 52.3     | BASELINE            | STRONG_PERFORMER   |
+| 2006-2009         | 48.1     | DECLINING           | MODERATE_PERFORMER |
+| 2010-2013         | 45.7     | DESCENDING          | MODERATE_PERFORMER |
+| 2014-2017         | 44.2     | DESCENDING          | MODERATE_PERFORMER |
+| 2018-2021         | 46.8     | RECOVERING          | MODERATE_PERFORMER |
+| 2022-2025         | 49.5     | ASCENDING           | MODERATE_PERFORMER |
 
 ### Coalition Evolution (example for M-C alignment)
-| election_cycle_id | avg_alignment | coalition_strength | coalition_trend |
-|-------------------|---------------|-------------------|-----------------|
-| 2002-2005         | 45.2          | OPPOSITION        | BASELINE        |
-| 2006-2009         | 78.5          | STRONG_COALITION  | STRENGTHENING   |
-| 2010-2013         | 81.3          | STRONG_COALITION  | STABLE          |
-| 2014-2017         | 76.2          | STRONG_COALITION  | STABLE          |
-| 2018-2021         | 68.4          | MODERATE_COALITION| WEAKENING       |
-| 2022-2025         | 62.1          | MODERATE_COALITION| DECLINING       |
+| election_cycle_id | alignment_rate | coalition_strength | coalition_trend |
+|-------------------|----------------|-------------------|-----------------|
+| 2002-2005         | 45.2           | OPPOSITION        | BASELINE        |
+| 2006-2009         | 78.5           | STRONG_COALITION  | STRENGTHENING   |
+| 2010-2013         | 81.3           | STRONG_COALITION  | STABLE          |
+| 2014-2017         | 76.2           | STRONG_COALITION  | STABLE          |
+| 2018-2021         | 68.4           | MODERATE_COALITION| WEAKENING       |
+| 2022-2025         | 62.1           | MODERATE_COALITION| DECLINING       |
 
 ### Electoral Trends (example for SD)
-| election_cycle_id | seat_count | electoral_trend | party_size_category |
-|-------------------|------------|-----------------|---------------------|
-| 2006-2009         | 0          | BASELINE        | MINOR_PARTY         |
-| 2010-2013         | 20         | STRONG_GROWTH   | MEDIUM_PARTY        |
-| 2014-2017         | 49         | STRONG_GROWTH   | MEDIUM_PARTY        |
-| 2018-2021         | 62         | GROWTH          | LARGE_PARTY         |
-| 2022-2025         | 73         | GROWTH          | LARGE_PARTY         |
+| election_cycle_id | seat_count_proxy | electoral_trend | party_size_category |
+|-------------------|------------------|-----------------|---------------------|
+| 2006-2009         | 0                | BASELINE        | MINOR_PARTY         |
+| 2010-2013         | 20               | STRONG_GROWTH   | MEDIUM_PARTY        |
+| 2014-2017         | 49               | STRONG_GROWTH   | MEDIUM_PARTY        |
+| 2018-2021         | 62               | GROWTH          | LARGE_PARTY         |
+| 2022-2025         | 73               | GROWTH          | LARGE_PARTY         |
 
 ## Integration with Analysis Frameworks
 
