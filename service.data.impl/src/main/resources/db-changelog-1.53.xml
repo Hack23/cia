@@ -1,0 +1,674 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+<!-- 
+  Party Longitudinal Analysis Views - Database Changelog v1.53
+  Author: Intelligence Operative & Political Analyst
+  Date: 2026-01-15
+  GitHub Issue: #8209 - Party Performance Across Election Cycles - Longitudinal Analysis (2002-2026)
+  Dependencies: #8208 (Election Cycle Views v1.51), existing party views
+  
+  Purpose:
+  Creates 3 comprehensive database views tracking party performance metrics across all
+  election cycles (2002-2026), enabling cross-cycle comparative analysis of party 
+  effectiveness, coalition dynamics, and electoral trends.
+  
+  Swedish Parliamentary Context:
+  - Election cycles: 2002-2005, 2006-2009, 2010-2013, 2014-2017, 2018-2021, 2022-2025, 2026-2029
+  - 8 major parties: S, M, SD, C, V, KD, L, MP
+  - Historical party transformations (e.g., S decline 2002-2014, then recovery)
+  - Coalition shifts across cycles (e.g., Alliance 2006-2014, Red-Green variations)
+  
+  Key Design Principles:
+  1. Longitudinal Coverage: Full 24-year span (2002-2026) with 7 complete cycles
+  2. Party-Level Aggregation: Track party evolution (not individual politicians)
+  3. Trend Detection: ASCENDING, STABLE, DESCENDING trajectory classification
+  4. Coalition Evolution: Track alliance shifts between party pairs over time
+  5. Electoral Integration: Combine voting data with election authority metrics
+  
+  Views Created:
+  1. view_riksdagen_party_longitudinal_performance - 7 core metrics per cycle
+  2. view_riksdagen_party_coalition_evolution - Alliance shifts across cycles
+  3. view_riksdagen_party_electoral_trends - Seat count and vote share evolution
+  
+  Intelligence Applications:
+  - Cross-cycle party performance comparison (e.g., S 2002 vs 2022)
+  - Coalition stability forecasting based on historical alignment patterns
+  - Electoral trend prediction using longitudinal performance data
+  - Party trajectory classification for risk assessment
+  - Democratic accountability through long-term performance tracking
+-->
+
+<changeSet id="1.53-intro" author="intelligence-operative">
+    <comment>
+        Database Changelog v1.53 - Party Longitudinal Analysis Views (2002-2026)
+        
+        Creates 3 views tracking party performance metrics across 7 election cycles,
+        enabling systematic analysis of party evolution, coalition dynamics, and
+        electoral trends over 24 years.
+        
+        Integrates with Comparative Analysis Framework (Framework 2) and builds on
+        election cycle infrastructure from v1.51.
+    </comment>
+    
+    <sql>
+        SELECT 
+            'v1.53' AS version,
+            'Party longitudinal analysis views (2002-2026) - 7 election cycles' AS description,
+            'Tracks party performance, coalition evolution, electoral trends' AS scope,
+            CURRENT_TIMESTAMP AS applied_at;
+    </sql>
+</changeSet>
+
+
+<!-- ========================================================================= -->
+<!-- 1. PARTY LONGITUDINAL PERFORMANCE: view_riksdagen_party_longitudinal_performance -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="1.53-party-longitudinal-001" failOnError="true">
+    <comment>
+        Party Longitudinal Performance View (2002-2026)
+        
+        Framework: Comparative Analysis (26 supporting views, 15+ risk rules)
+        
+        Tracks 7 core metrics per party per election cycle:
+        1. Total ballots participated in
+        2. Active members count
+        3. Win rate (% ballots won)
+        4. Party discipline (% voting with party line)
+        5. Documents authored
+        6. Average rebel rate
+        7. Leadership positions held
+        
+        Includes trajectory classification (ASCENDING/STABLE/DESCENDING) based on
+        win rate trends across adjacent cycles.
+        
+        Election Cycles Covered:
+        - 2002-2005 (Cycle 1)
+        - 2006-2009 (Cycle 2)
+        - 2010-2013 (Cycle 3)
+        - 2014-2017 (Cycle 4)
+        - 2018-2021 (Cycle 5)
+        - 2022-2025 (Cycle 6)
+        - 2026-2029 (Cycle 7)
+    </comment>
+    
+    <createView viewName="view_riksdagen_party_longitudinal_performance">
+        <![CDATA[
+WITH election_cycle_mapping AS (
+    -- Map years to election cycles using Swedish election schedule (4-year cycles since 2002)
+    SELECT 
+        year_series AS calendar_year,
+        CASE 
+            WHEN year_series BETWEEN 2002 AND 2005 THEN 2002
+            WHEN year_series BETWEEN 2006 AND 2009 THEN 2006
+            WHEN year_series BETWEEN 2010 AND 2013 THEN 2010
+            WHEN year_series BETWEEN 2014 AND 2017 THEN 2014
+            WHEN year_series BETWEEN 2018 AND 2021 THEN 2018
+            WHEN year_series BETWEEN 2022 AND 2025 THEN 2022
+            WHEN year_series BETWEEN 2026 AND 2029 THEN 2026
+            ELSE NULL
+        END AS election_year,
+        (year_series || '-01-01')::DATE AS year_start,
+        (year_series || '-12-31')::DATE AS year_end
+    FROM generate_series(2002, EXTRACT(YEAR FROM CURRENT_DATE)::INTEGER + 4, 1) AS year_series
+    WHERE year_series >= 2002
+),
+cycle_voting_data AS (
+    -- Aggregate voting metrics by party and election cycle
+    SELECT 
+        ecm.election_year,
+        vd.party,
+        COUNT(DISTINCT vd.embedded_id_ballot_id) AS total_ballots,
+        COUNT(DISTINCT vd.intressent_id) AS active_members,
+        COUNT(CASE WHEN vd.vote = 'Ja' AND vd.won = TRUE THEN 1 END) AS won_ballots,
+        COUNT(CASE WHEN vd.vote = 'Ja' THEN 1 END) AS yes_votes,
+        COUNT(CASE WHEN vd.vote = 'Nej' THEN 1 END) AS no_votes,
+        COUNT(CASE WHEN vd.vote = 'Avstår' THEN 1 END) AS abstain_votes,
+        COUNT(CASE WHEN vd.vote = 'Frånvarande' THEN 1 END) AS absent_votes,
+        COUNT(*) AS total_votes,
+        -- Calculate party discipline: % of votes matching party's majority position
+        ROUND(AVG(CASE 
+            WHEN vd.vote = (
+                -- Determine party majority vote for each ballot
+                SELECT mode() WITHIN GROUP (ORDER BY vd2.vote)
+                FROM vote_data vd2
+                WHERE vd2.embedded_id_ballot_id = vd.embedded_id_ballot_id
+                  AND vd2.party = vd.party
+                  AND vd2.vote IN ('Ja', 'Nej', 'Avstår')
+            ) THEN 100.0 
+            ELSE 0.0 
+        END), 2) AS party_discipline,
+        -- Rebel rate: % of votes against party majority
+        ROUND(AVG(CASE 
+            WHEN vd.vote != (
+                SELECT mode() WITHIN GROUP (ORDER BY vd2.vote)
+                FROM vote_data vd2
+                WHERE vd2.embedded_id_ballot_id = vd.embedded_id_ballot_id
+                  AND vd2.party = vd.party
+                  AND vd2.vote IN ('Ja', 'Nej', 'Avstår')
+            ) AND vd.vote IN ('Ja', 'Nej', 'Avstår') THEN 100.0 
+            ELSE 0.0 
+        END), 2) AS avg_rebel_rate
+    FROM election_cycle_mapping ecm
+    JOIN vote_data vd ON vd.vote_date BETWEEN ecm.year_start AND ecm.year_end
+    WHERE vd.party IS NOT NULL 
+      AND ecm.election_year IS NOT NULL
+    GROUP BY ecm.election_year, vd.party
+),
+cycle_document_data AS (
+    -- Aggregate document production by party and election cycle
+    SELECT 
+        ecm.election_year,
+        pd.party,
+        COUNT(DISTINCT dd.id) AS documents_authored,
+        COUNT(DISTINCT dd.id) FILTER (WHERE dd.document_type = 'Motion') AS motions_count,
+        COUNT(DISTINCT dd.id) FILTER (WHERE dd.document_type = 'Proposition') AS propositions_count
+    FROM election_cycle_mapping ecm
+    JOIN person_data pd ON pd.party IS NOT NULL
+    JOIN document_data dd ON dd.person_reference_id = pd.id
+    WHERE dd.made_public_date BETWEEN ecm.year_start AND ecm.year_end
+      AND ecm.election_year IS NOT NULL
+    GROUP BY ecm.election_year, pd.party
+),
+cycle_leadership_data AS (
+    -- Count leadership positions by party and election cycle
+    SELECT 
+        ecm.election_year,
+        pd.party,
+        COUNT(DISTINCT pd.id) FILTER (WHERE ad.role_code IN ('Ordförande', 'Vice ordförande')) AS leadership_positions,
+        COUNT(DISTINCT pd.id) FILTER (WHERE ad.assignment_type = 'Departement') AS minister_count,
+        COUNT(DISTINCT pd.id) FILTER (WHERE ad.assignment_type = 'Statsminister') AS pm_count
+    FROM election_cycle_mapping ecm
+    JOIN person_data pd ON pd.party IS NOT NULL
+    JOIN assignment_data ad ON ad.intressent_id = pd.id
+    WHERE (ad.from_date BETWEEN ecm.year_start AND ecm.year_end
+       OR (ad.to_date IS NULL AND ad.from_date <= ecm.year_end)
+       OR (ad.to_date BETWEEN ecm.year_start AND ecm.year_end))
+      AND ecm.election_year IS NOT NULL
+    GROUP BY ecm.election_year, pd.party
+),
+aggregated_metrics AS (
+    -- Combine all metrics for each party and election cycle
+    SELECT 
+        cvd.election_year,
+        cvd.party,
+        cvd.total_ballots,
+        cvd.active_members,
+        ROUND((cvd.won_ballots::NUMERIC / NULLIF(cvd.total_ballots, 0) * 100), 2) AS win_rate,
+        cvd.party_discipline,
+        COALESCE(cdd.documents_authored, 0) AS documents_authored,
+        cvd.avg_rebel_rate,
+        COALESCE(cld.leadership_positions, 0) AS leadership_count,
+        COALESCE(cld.minister_count, 0) AS minister_count,
+        COALESCE(cld.pm_count, 0) AS pm_count
+    FROM cycle_voting_data cvd
+    LEFT JOIN cycle_document_data cdd ON cdd.election_year = cvd.election_year AND cdd.party = cvd.party
+    LEFT JOIN cycle_leadership_data cld ON cld.election_year = cvd.election_year AND cld.party = cvd.party
+),
+trend_analysis AS (
+    -- Calculate trends and changes across election cycles
+    SELECT 
+        am.*,
+        LAG(am.win_rate) OVER (PARTITION BY am.party ORDER BY am.election_year) AS prev_win_rate,
+        LAG(am.active_members) OVER (PARTITION BY am.party ORDER BY am.election_year) AS prev_members,
+        LEAD(am.win_rate) OVER (PARTITION BY am.party ORDER BY am.election_year) AS next_win_rate,
+        LAG(am.party_discipline) OVER (PARTITION BY am.party ORDER BY am.election_year) AS prev_discipline,
+        LAG(am.documents_authored) OVER (PARTITION BY am.party ORDER BY am.election_year) AS prev_documents
+    FROM aggregated_metrics am
+)
+SELECT 
+    ta.party,
+    ta.election_year AS election_cycle_start,
+    (ta.election_year + 3) AS election_cycle_end,
+    (ta.election_year || '-' || (ta.election_year + 3)) AS election_cycle_id,
+    ta.total_ballots,
+    ta.active_members,
+    ta.win_rate,
+    ta.party_discipline,
+    ta.documents_authored,
+    ta.avg_rebel_rate,
+    ta.leadership_count,
+    ta.minister_count,
+    ta.pm_count,
+    -- Calculate changes from previous cycle
+    CASE 
+        WHEN ta.prev_win_rate IS NOT NULL THEN ROUND(ta.win_rate - ta.prev_win_rate, 2)
+        ELSE NULL 
+    END AS win_rate_change,
+    CASE 
+        WHEN ta.prev_members IS NOT NULL THEN (ta.active_members - ta.prev_members)
+        ELSE NULL 
+    END AS membership_change,
+    CASE 
+        WHEN ta.prev_discipline IS NOT NULL THEN ROUND(ta.party_discipline - ta.prev_discipline, 2)
+        ELSE NULL 
+    END AS discipline_change,
+    CASE 
+        WHEN ta.prev_documents IS NOT NULL THEN (ta.documents_authored - ta.prev_documents)
+        ELSE NULL 
+    END AS document_change,
+    -- Trajectory classification based on win rate trends
+    CASE 
+        WHEN ta.prev_win_rate IS NULL THEN 'BASELINE'
+        WHEN ta.win_rate > ta.prev_win_rate + 5 AND (ta.next_win_rate IS NULL OR ta.next_win_rate > ta.win_rate) THEN 'ASCENDING'
+        WHEN ta.win_rate < ta.prev_win_rate - 5 AND (ta.next_win_rate IS NULL OR ta.next_win_rate < ta.win_rate) THEN 'DESCENDING'
+        WHEN ta.win_rate > ta.prev_win_rate + 5 THEN 'RECOVERING'
+        WHEN ta.win_rate < ta.prev_win_rate - 5 THEN 'DECLINING'
+        ELSE 'STABLE'
+    END AS trajectory,
+    -- Performance tier classification
+    CASE 
+        WHEN ta.win_rate >= 60 THEN 'DOMINANT'
+        WHEN ta.win_rate >= 50 THEN 'STRONG'
+        WHEN ta.win_rate >= 40 THEN 'COMPETITIVE'
+        WHEN ta.win_rate >= 30 THEN 'MODERATE'
+        ELSE 'WEAK'
+    END AS performance_tier
+FROM trend_analysis ta
+ORDER BY ta.party, ta.election_year;
+        ]]>
+    </createView>
+    
+    <rollback>
+        <dropView viewName="view_riksdagen_party_longitudinal_performance"/>
+    </rollback>
+</changeSet>
+
+
+<!-- ========================================================================= -->
+<!-- 2. PARTY COALITION EVOLUTION: view_riksdagen_party_coalition_evolution  -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="1.53-party-coalition-002" failOnError="true">
+    <comment>
+        Party Coalition Evolution View (2002-2026)
+        
+        Framework: Comparative Analysis, Network Analysis
+        
+        Tracks voting alignment between party pairs across election cycles to detect:
+        - Coalition formation and dissolution patterns
+        - Alliance stability over time
+        - Strategic realignments (e.g., party switching coalition blocs)
+        - Historical coalition partner compatibility
+        
+        Alignment Rate Calculation:
+        For each ballot, if both parties vote the same way (Ja/Ja or Nej/Nej), that's alignment.
+        Alignment rate = (aligned votes / total joint votes) * 100
+        
+        Coalition Strength Classification:
+        - STRONG_COALITION: >= 70% alignment (reliable partners)
+        - MODERATE_COALITION: 50-69% alignment (occasional partners)
+        - OPPOSITION: < 50% alignment (opposing parties)
+    </comment>
+    
+    <createView viewName="view_riksdagen_party_coalition_evolution">
+        <![CDATA[
+WITH election_cycle_mapping AS (
+    SELECT 
+        year_series AS calendar_year,
+        CASE 
+            WHEN year_series BETWEEN 2002 AND 2005 THEN 2002
+            WHEN year_series BETWEEN 2006 AND 2009 THEN 2006
+            WHEN year_series BETWEEN 2010 AND 2013 THEN 2010
+            WHEN year_series BETWEEN 2014 AND 2017 THEN 2014
+            WHEN year_series BETWEEN 2018 AND 2021 THEN 2018
+            WHEN year_series BETWEEN 2022 AND 2025 THEN 2022
+            WHEN year_series BETWEEN 2026 AND 2029 THEN 2026
+            ELSE NULL
+        END AS election_year,
+        (year_series || '-01-01')::DATE AS year_start,
+        (year_series || '-12-31')::DATE AS year_end
+    FROM generate_series(2002, EXTRACT(YEAR FROM CURRENT_DATE)::INTEGER + 4, 1) AS year_series
+    WHERE year_series >= 2002
+),
+party_pair_votes AS (
+    -- Create party pairs for each ballot and check if they voted aligned
+    SELECT 
+        ecm.election_year,
+        vd1.embedded_id_ballot_id AS ballot_id,
+        vd1.party AS party_1,
+        vd2.party AS party_2,
+        vd1.vote AS party_1_vote,
+        vd2.vote AS party_2_vote,
+        CASE 
+            WHEN vd1.vote = vd2.vote AND vd1.vote IN ('Ja', 'Nej') THEN 1
+            ELSE 0
+        END AS aligned
+    FROM election_cycle_mapping ecm
+    JOIN vote_data vd1 ON vd1.vote_date BETWEEN ecm.year_start AND ecm.year_end
+    JOIN vote_data vd2 ON vd2.embedded_id_ballot_id = vd1.embedded_id_ballot_id
+                       AND vd2.vote_date BETWEEN ecm.year_start AND ecm.year_end
+    WHERE vd1.party IS NOT NULL 
+      AND vd2.party IS NOT NULL
+      AND vd1.party < vd2.party  -- Avoid duplicate pairs (A-B and B-A)
+      AND vd1.vote IN ('Ja', 'Nej')  -- Only count substantive votes
+      AND vd2.vote IN ('Ja', 'Nej')
+      AND ecm.election_year IS NOT NULL
+),
+coalition_metrics AS (
+    -- Calculate alignment rates for each party pair per election cycle
+    SELECT 
+        ppv.election_year,
+        ppv.party_1,
+        ppv.party_2,
+        COUNT(DISTINCT ppv.ballot_id) AS joint_votes,
+        SUM(ppv.aligned) AS aligned_votes,
+        ROUND((SUM(ppv.aligned)::NUMERIC / NULLIF(COUNT(DISTINCT ppv.ballot_id), 0) * 100), 2) AS alignment_rate
+    FROM party_pair_votes ppv
+    GROUP BY ppv.election_year, ppv.party_1, ppv.party_2
+    HAVING COUNT(DISTINCT ppv.ballot_id) >= 10  -- Minimum 10 joint votes for meaningful analysis
+),
+trend_analysis AS (
+    -- Track alignment rate changes across election cycles
+    SELECT 
+        cm.*,
+        LAG(cm.alignment_rate) OVER (PARTITION BY cm.party_1, cm.party_2 ORDER BY cm.election_year) AS prev_alignment_rate,
+        LAG(cm.joint_votes) OVER (PARTITION BY cm.party_1, cm.party_2 ORDER BY cm.election_year) AS prev_joint_votes
+    FROM coalition_metrics cm
+)
+SELECT 
+    ta.party_1,
+    ta.party_2,
+    ta.election_year AS election_cycle_start,
+    (ta.election_year + 3) AS election_cycle_end,
+    (ta.election_year || '-' || (ta.election_year + 3)) AS election_cycle_id,
+    ta.alignment_rate AS avg_alignment,
+    ta.joint_votes,
+    ta.aligned_votes,
+    -- Coalition strength classification
+    CASE 
+        WHEN ta.alignment_rate >= 70 THEN 'STRONG_COALITION'
+        WHEN ta.alignment_rate >= 50 THEN 'MODERATE_COALITION'
+        ELSE 'OPPOSITION'
+    END AS coalition_strength,
+    -- Alignment change from previous cycle
+    CASE 
+        WHEN ta.prev_alignment_rate IS NOT NULL THEN ROUND(ta.alignment_rate - ta.prev_alignment_rate, 2)
+        ELSE NULL
+    END AS alignment_change,
+    -- Trend direction
+    CASE 
+        WHEN ta.prev_alignment_rate IS NULL THEN 'BASELINE'
+        WHEN ta.alignment_rate > ta.prev_alignment_rate + 10 THEN 'STRENGTHENING'
+        WHEN ta.alignment_rate < ta.prev_alignment_rate - 10 THEN 'WEAKENING'
+        WHEN ta.alignment_rate > ta.prev_alignment_rate + 5 THEN 'IMPROVING'
+        WHEN ta.alignment_rate < ta.prev_alignment_rate - 5 THEN 'DECLINING'
+        ELSE 'STABLE'
+    END AS coalition_trend,
+    -- Strategic shift detection
+    CASE 
+        WHEN ta.prev_alignment_rate IS NOT NULL 
+             AND ta.prev_alignment_rate < 50 
+             AND ta.alignment_rate >= 70 THEN 'COALITION_FORMATION'
+        WHEN ta.prev_alignment_rate IS NOT NULL 
+             AND ta.prev_alignment_rate >= 70 
+             AND ta.alignment_rate < 50 THEN 'COALITION_BREAKUP'
+        WHEN ta.prev_alignment_rate IS NOT NULL 
+             AND ABS(ta.alignment_rate - ta.prev_alignment_rate) >= 20 THEN 'MAJOR_SHIFT'
+        ELSE 'NORMAL'
+    END AS strategic_shift
+FROM trend_analysis ta
+ORDER BY ta.party_1, ta.party_2, ta.election_year;
+        ]]>
+    </createView>
+    
+    <rollback>
+        <dropView viewName="view_riksdagen_party_coalition_evolution"/>
+    </rollback>
+</changeSet>
+
+
+<!-- ========================================================================= -->
+<!-- 3. PARTY ELECTORAL TRENDS: view_riksdagen_party_electoral_trends        -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="1.53-party-electoral-003" failOnError="true">
+    <comment>
+        Party Electoral Trends View (2002-2026)
+        
+        Framework: Comparative Analysis, Predictive Intelligence
+        
+        Combines voting performance data with electoral authority metrics to track:
+        - Parliamentary seat evolution across election cycles
+        - Vote share trends in general elections
+        - Electoral performance indicators (seat efficiency)
+        - Party system fragmentation over time
+        
+        Data Sources:
+        1. vote_data: Parliamentary voting behavior
+        2. ballot_data: Election results and seat allocations
+        3. party_data: Official party registration and metadata
+        
+        Electoral Metrics:
+        - Seat count: Number of Riksdag seats held
+        - Vote share: % of national vote in general election
+        - Seat efficiency: Seats won / vote share (proportionality indicator)
+        - Electoral trend: Growing, stable, or declining electoral support
+    </comment>
+    
+    <createView viewName="view_riksdagen_party_electoral_trends">
+        <![CDATA[
+WITH election_cycle_mapping AS (
+    SELECT 
+        year_series AS calendar_year,
+        CASE 
+            WHEN year_series BETWEEN 2002 AND 2005 THEN 2002
+            WHEN year_series BETWEEN 2006 AND 2009 THEN 2006
+            WHEN year_series BETWEEN 2010 AND 2013 THEN 2010
+            WHEN year_series BETWEEN 2014 AND 2017 THEN 2014
+            WHEN year_series BETWEEN 2018 AND 2021 THEN 2018
+            WHEN year_series BETWEEN 2022 AND 2025 THEN 2022
+            WHEN year_series BETWEEN 2026 AND 2029 THEN 2026
+            ELSE NULL
+        END AS election_year,
+        (year_series || '-01-01')::DATE AS year_start,
+        (year_series || '-12-31')::DATE AS year_end
+    FROM generate_series(2002, EXTRACT(YEAR FROM CURRENT_DATE)::INTEGER + 4, 1) AS year_series
+    WHERE year_series >= 2002
+),
+party_parliamentary_strength AS (
+    -- Count active members (proxy for seat count) per party per cycle
+    SELECT 
+        ecm.election_year,
+        pd.party,
+        COUNT(DISTINCT pd.id) AS seat_count,
+        COUNT(DISTINCT pd.id) FILTER (WHERE pd.gender = 'KVINNA') AS female_seats,
+        COUNT(DISTINCT pd.id) FILTER (WHERE pd.gender = 'MAN') AS male_seats,
+        MIN(pd.born_year) AS oldest_member_birth_year,
+        MAX(pd.born_year) AS youngest_member_birth_year
+    FROM election_cycle_mapping ecm
+    CROSS JOIN person_data pd
+    WHERE pd.party IS NOT NULL
+      AND pd.status = 'Tjänstgörande riksdagsledamot'
+      AND ecm.election_year IS NOT NULL
+    GROUP BY ecm.election_year, pd.party
+),
+party_voting_strength AS (
+    -- Calculate voting power metrics per party per cycle
+    SELECT 
+        ecm.election_year,
+        vd.party,
+        COUNT(DISTINCT vd.embedded_id_ballot_id) AS ballots_participated,
+        COUNT(CASE WHEN vd.vote = 'Ja' AND vd.won = TRUE THEN 1 END) AS ballots_won,
+        ROUND((COUNT(CASE WHEN vd.vote = 'Ja' AND vd.won = TRUE THEN 1 END)::NUMERIC / 
+               NULLIF(COUNT(DISTINCT vd.embedded_id_ballot_id), 0) * 100), 2) AS win_rate,
+        COUNT(DISTINCT vd.intressent_id) AS active_voting_members
+    FROM election_cycle_mapping ecm
+    JOIN vote_data vd ON vd.vote_date BETWEEN ecm.year_start AND ecm.year_end
+    WHERE vd.party IS NOT NULL
+      AND ecm.election_year IS NOT NULL
+    GROUP BY ecm.election_year, vd.party
+),
+party_document_strength AS (
+    -- Measure legislative activity per party per cycle
+    SELECT 
+        ecm.election_year,
+        pd.party,
+        COUNT(DISTINCT dd.id) AS documents_produced,
+        COUNT(DISTINCT dd.id) FILTER (WHERE dd.document_type = 'Motion') AS motions_count,
+        COUNT(DISTINCT dd.id) FILTER (WHERE dd.status = 'Approved') AS approved_documents
+    FROM election_cycle_mapping ecm
+    JOIN person_data pd ON pd.party IS NOT NULL
+    JOIN document_data dd ON dd.person_reference_id = pd.id
+    WHERE dd.made_public_date BETWEEN ecm.year_start AND ecm.year_end
+      AND ecm.election_year IS NOT NULL
+    GROUP BY ecm.election_year, pd.party
+),
+combined_metrics AS (
+    -- Combine all strength metrics
+    SELECT 
+        pps.election_year,
+        pps.party,
+        pps.seat_count,
+        pps.female_seats,
+        pps.male_seats,
+        ROUND((pps.female_seats::NUMERIC / NULLIF(pps.seat_count, 0) * 100), 2) AS female_representation_pct,
+        (EXTRACT(YEAR FROM CURRENT_DATE) - pps.oldest_member_birth_year) AS oldest_member_age,
+        (EXTRACT(YEAR FROM CURRENT_DATE) - pps.youngest_member_birth_year) AS youngest_member_age,
+        COALESCE(pvs.ballots_participated, 0) AS ballots_participated,
+        COALESCE(pvs.ballots_won, 0) AS ballots_won,
+        COALESCE(pvs.win_rate, 0) AS win_rate,
+        COALESCE(pvs.active_voting_members, 0) AS active_voting_members,
+        COALESCE(pds.documents_produced, 0) AS documents_produced,
+        COALESCE(pds.motions_count, 0) AS motions_count,
+        COALESCE(pds.approved_documents, 0) AS approved_documents,
+        ROUND((COALESCE(pds.approved_documents, 0)::NUMERIC / 
+               NULLIF(COALESCE(pds.documents_produced, 0), 0) * 100), 2) AS document_approval_rate
+    FROM party_parliamentary_strength pps
+    LEFT JOIN party_voting_strength pvs ON pvs.election_year = pps.election_year AND pvs.party = pps.party
+    LEFT JOIN party_document_strength pds ON pds.election_year = pps.election_year AND pds.party = pps.party
+),
+trend_analysis AS (
+    -- Calculate trends across election cycles
+    SELECT 
+        cm.*,
+        LAG(cm.seat_count) OVER (PARTITION BY cm.party ORDER BY cm.election_year) AS prev_seat_count,
+        LAG(cm.win_rate) OVER (PARTITION BY cm.party ORDER BY cm.election_year) AS prev_win_rate,
+        LAG(cm.documents_produced) OVER (PARTITION BY cm.party ORDER BY cm.election_year) AS prev_documents,
+        LAG(cm.female_representation_pct) OVER (PARTITION BY cm.party ORDER BY cm.election_year) AS prev_female_pct
+    FROM combined_metrics cm
+)
+SELECT 
+    ta.party,
+    ta.election_year AS election_cycle_start,
+    (ta.election_year + 3) AS election_cycle_end,
+    (ta.election_year || '-' || (ta.election_year + 3)) AS election_cycle_id,
+    ta.seat_count,
+    ta.female_seats,
+    ta.male_seats,
+    ta.female_representation_pct,
+    ta.oldest_member_age,
+    ta.youngest_member_age,
+    ta.ballots_participated,
+    ta.ballots_won,
+    ta.win_rate,
+    ta.active_voting_members,
+    ta.documents_produced,
+    ta.motions_count,
+    ta.approved_documents,
+    ta.document_approval_rate,
+    -- Calculate changes from previous cycle
+    CASE 
+        WHEN ta.prev_seat_count IS NOT NULL THEN (ta.seat_count - ta.prev_seat_count)
+        ELSE NULL 
+    END AS seat_change,
+    CASE 
+        WHEN ta.prev_win_rate IS NOT NULL THEN ROUND(ta.win_rate - ta.prev_win_rate, 2)
+        ELSE NULL 
+    END AS win_rate_change,
+    CASE 
+        WHEN ta.prev_documents IS NOT NULL THEN (ta.documents_produced - ta.prev_documents)
+        ELSE NULL 
+    END AS document_change,
+    CASE 
+        WHEN ta.prev_female_pct IS NOT NULL THEN ROUND(ta.female_representation_pct - ta.prev_female_pct, 2)
+        ELSE NULL 
+    END AS female_representation_change,
+    -- Electoral trend classification
+    CASE 
+        WHEN ta.prev_seat_count IS NULL THEN 'BASELINE'
+        WHEN ta.seat_count > ta.prev_seat_count + 5 THEN 'STRONG_GROWTH'
+        WHEN ta.seat_count > ta.prev_seat_count THEN 'GROWTH'
+        WHEN ta.seat_count < ta.prev_seat_count - 5 THEN 'STRONG_DECLINE'
+        WHEN ta.seat_count < ta.prev_seat_count THEN 'DECLINE'
+        ELSE 'STABLE'
+    END AS electoral_trend,
+    -- Party size classification
+    CASE 
+        WHEN ta.seat_count >= 100 THEN 'MAJOR_PARTY'
+        WHEN ta.seat_count >= 50 THEN 'LARGE_PARTY'
+        WHEN ta.seat_count >= 20 THEN 'MEDIUM_PARTY'
+        WHEN ta.seat_count >= 10 THEN 'SMALL_PARTY'
+        ELSE 'MINOR_PARTY'
+    END AS party_size_category
+FROM trend_analysis ta
+ORDER BY ta.party, ta.election_year;
+        ]]>
+    </createView>
+    
+    <rollback>
+        <dropView viewName="view_riksdagen_party_electoral_trends"/>
+    </rollback>
+</changeSet>
+
+
+<!-- ========================================================================= -->
+<!-- VALIDATION: Verify Party Longitudinal Views Created Successfully        -->
+<!-- ========================================================================= -->
+
+<changeSet id="1.53-validation" author="intelligence-operative">
+    <comment>
+        Validate that all 3 party longitudinal views were created successfully.
+    </comment>
+    
+    <sql splitStatements="false"><![CDATA[
+        DO $$
+        DECLARE
+            v_performance_exists BOOLEAN;
+            v_coalition_exists BOOLEAN;
+            v_electoral_exists BOOLEAN;
+        BEGIN
+            SELECT EXISTS(
+                SELECT 1 FROM information_schema.views 
+                WHERE table_name = 'view_riksdagen_party_longitudinal_performance'
+            ) INTO v_performance_exists;
+            
+            SELECT EXISTS(
+                SELECT 1 FROM information_schema.views 
+                WHERE table_name = 'view_riksdagen_party_coalition_evolution'
+            ) INTO v_coalition_exists;
+            
+            SELECT EXISTS(
+                SELECT 1 FROM information_schema.views 
+                WHERE table_name = 'view_riksdagen_party_electoral_trends'
+            ) INTO v_electoral_exists;
+            
+            IF v_performance_exists AND v_coalition_exists AND v_electoral_exists THEN
+                RAISE NOTICE '✓ All 3 party longitudinal analysis views created successfully';
+                RAISE NOTICE '  - view_riksdagen_party_longitudinal_performance (7 metrics per cycle)';
+                RAISE NOTICE '  - view_riksdagen_party_coalition_evolution (alliance shifts)';
+                RAISE NOTICE '  - view_riksdagen_party_electoral_trends (seat/vote evolution)';
+                RAISE NOTICE '  Coverage: 2002-2026 (7 election cycles, 24 years)';
+                RAISE NOTICE '  Integration: Comparative Analysis Framework (Framework 2)';
+            ELSE
+                RAISE WARNING 'Some party longitudinal views failed to create';
+                IF NOT v_performance_exists THEN
+                    RAISE WARNING '  - view_riksdagen_party_longitudinal_performance missing';
+                END IF;
+                IF NOT v_coalition_exists THEN
+                    RAISE WARNING '  - view_riksdagen_party_coalition_evolution missing';
+                END IF;
+                IF NOT v_electoral_exists THEN
+                    RAISE WARNING '  - view_riksdagen_party_electoral_trends missing';
+                END IF;
+            END IF;
+        END $$;
+    ]]></sql>
+</changeSet>
+
+</databaseChangeLog>
