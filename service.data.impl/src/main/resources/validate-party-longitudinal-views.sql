@@ -161,8 +161,8 @@ SELECT
     coalition_trend,
     strategic_shift
 FROM view_riksdagen_party_coalition_evolution
-WHERE (party_1 IN ('M', 'C', 'L', 'FP', 'KD') AND party_2 IN ('M', 'C', 'L', 'FP', 'KD'))
-   OR (party_1 = 'M' AND party_2 = 'C')  -- Key Alliance pair
+WHERE party_1 IN ('M', 'C', 'L', 'FP', 'KD') 
+  AND party_2 IN ('M', 'C', 'L', 'FP', 'KD')
 ORDER BY party_1, party_2, election_cycle_start;
 
 \echo ''
@@ -176,8 +176,8 @@ SELECT
     coalition_trend,
     strategic_shift
 FROM view_riksdagen_party_coalition_evolution
-WHERE (party_1 IN ('S', 'V', 'MP') AND party_2 IN ('S', 'V', 'MP'))
-   OR (party_1 = 'S' AND party_2 = 'V')  -- Key Red-Green pair
+WHERE party_1 IN ('S', 'V', 'MP') 
+  AND party_2 IN ('S', 'V', 'MP')
 ORDER BY party_1, party_2, election_cycle_start;
 
 \echo ''
