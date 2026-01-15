@@ -6,75 +6,80 @@ This document describes the sample data extraction process for the 3 new party l
 ## Views Created
 
 ### 1. view_riksdagen_party_longitudinal_performance
-**Purpose**: Track 7 core metrics per party per election cycle (2002-2026)
+**Purpose**: Track core metrics per party per election cycle with semester granularity (2002-2026)
 
 **Key Metrics**:
 - total_ballots: Number of ballots participated in
 - active_members: Count of active party members
 - win_rate: Percentage of ballots won
-- party_discipline: Percentage voting with party line
-- documents_authored: Documents produced by party members
 - avg_rebel_rate: Average rebellion rate against party line
-- leadership_count: Number of leadership positions held
+- documents_last_year: Documents produced by party members
+- participation_rate: Percentage of ballots party participated in
+- approval_rate: Percentage of decisions party approved
 
 **Trajectory Classifications**:
 - BASELINE: First cycle (no previous data for comparison)
-- ASCENDING: Sustained improvement (win_rate increasing >5% across 2+ cycles)
-- DESCENDING: Sustained decline (win_rate decreasing >5% across 2+ cycles)
-- RECOVERING: Single-cycle improvement after decline
-- DECLINING: Single-cycle decline after improvement
+- ASCENDING: Sustained improvement (win_rate increasing >5% across 2+ semesters)
+- DESCENDING: Sustained decline (win_rate decreasing >5% across 2+ semesters)
+- RECOVERING: Single-semester improvement after decline
+- DECLINING: Single-semester decline after improvement
 - STABLE: Win rate change within ±5%
 
-**Performance Tiers**:
-- DOMINANT: win_rate >= 60%
-- STRONG: win_rate >= 50%
-- COMPETITIVE: win_rate >= 40%
-- MODERATE: win_rate >= 30%
-- WEAK: win_rate < 30%
+**Performance Tiers** (based on PERCENT_RANK):
+- ELITE_PERFORMER: percentile >= 0.75
+- STRONG_PERFORMER: percentile >= 0.50
+- MODERATE_PERFORMER: percentile >= 0.25
+- WEAK_PERFORMER: percentile < 0.25
 
 ### 2. view_riksdagen_party_coalition_evolution
-**Purpose**: Track voting alignment between party pairs across election cycles
+**Purpose**: Track voting alignment between party pairs across election cycles with semester granularity
 
 **Key Metrics**:
-- avg_alignment: Percentage of ballots where both parties voted the same way (Ja/Ja or Nej/Nej)
-- joint_votes: Number of ballots where both parties participated
-- aligned_votes: Number of ballots where parties voted the same
+- alignment_rate: Percentage of ballots where both parties voted the same way (Ja/Ja or Nej/Nej)
+- joint_ballots: Number of ballots where both parties participated
+- aligned_ballots: Number of ballots where parties voted the same
 - coalition_strength: Classification of relationship strength
 
 **Coalition Strength Classifications**:
-- STRONG_COALITION: avg_alignment >= 70% (reliable partners)
-- MODERATE_COALITION: avg_alignment 50-69% (occasional partners)
-- OPPOSITION: avg_alignment < 50% (opposing parties)
+- VERY_STRONG_COALITION: alignment_rate >= 80% (extremely reliable partners)
+- STRONG_COALITION: alignment_rate >= 65% (reliable partners)
+- MODERATE_COALITION: alignment_rate >= 50% (occasional partners)
+- WEAK_COALITION: alignment_rate >= 35% (weak alignment)
+- OPPOSITION: alignment_rate < 35% (opposing parties)
 
 **Strategic Shift Detection**:
 - COALITION_FORMATION: Alignment increases from <50% to >=70%
 - COALITION_BREAKUP: Alignment decreases from >=70% to <50%
-- MAJOR_SHIFT: Alignment changes by >=20 percentage points
-- NORMAL: Other changes
+- MAJOR_REALIGNMENT: Alignment changes by >=25 percentage points
+- SIGNIFICANT_SHIFT: Alignment changes by >=15 percentage points
+- MINOR_SHIFT: Other changes
 
 ### 3. view_riksdagen_party_electoral_trends
-**Purpose**: Track seat count and electoral performance across cycles
+**Purpose**: Track seat count and electoral performance across cycles with semester granularity
 
 **Key Metrics**:
-- seat_count: Number of Riksdag seats held (proxy from active members)
+- seat_count_proxy: Number of Riksdag seats held (proxy from active members)
 - win_rate: Ballot win rate in parliament
 - documents_produced: Legislative activity
-- female_representation_pct: Gender diversity
+- participation_rate: Party voting participation rate
 - electoral_trend: Growth/decline classification
 
 **Electoral Trend Classifications**:
-- STRONG_GROWTH: seat_count increase >5
-- GROWTH: seat_count increase >0
-- STABLE: No change in seat count
-- DECLINE: seat_count decrease >0
-- STRONG_DECLINE: seat_count decrease >5
+- SURGING: seat_count_proxy increase >10
+- STRONG_GROWTH: seat_count_proxy increase >5
+- GROWTH: seat_count_proxy increase >0
+- STABLE: No change in seat_count_proxy
+- DECLINE: seat_count_proxy decrease >0
+- STRONG_DECLINE: seat_count_proxy decrease >5
+- COLLAPSING: seat_count_proxy decrease >10
 
 **Party Size Categories**:
-- MAJOR_PARTY: seat_count >= 100
-- LARGE_PARTY: seat_count >= 50
-- MEDIUM_PARTY: seat_count >= 20
-- SMALL_PARTY: seat_count >= 10
-- MINOR_PARTY: seat_count < 10
+- DOMINANT: seat_count_proxy >= 100
+- MAJOR: seat_count_proxy >= 75
+- LARGE: seat_count_proxy >= 50
+- MEDIUM: seat_count_proxy >= 30
+- SMALL: seat_count_proxy >= 15
+- MINOR: seat_count_proxy < 15
 
 ## Sample Data Extraction Commands
 
@@ -83,7 +88,7 @@ This document describes the sample data extraction process for the 3 new party l
 psql -h localhost -U eris -d cia_dev -c "COPY (
   SELECT * FROM view_riksdagen_party_longitudinal_performance 
   WHERE party IN ('S', 'M', 'SD', 'C', 'V', 'KD', 'L', 'MP')
-  ORDER BY party, election_cycle_start
+  ORDER BY party, election_cycle_id, cycle_year, semester
   LIMIT 20
 ) TO STDOUT WITH CSV HEADER" > party_longitudinal_performance_sample.csv
 ```
@@ -94,7 +99,7 @@ psql -h localhost -U eris -d cia_dev -c "COPY (
   SELECT * FROM view_riksdagen_party_coalition_evolution 
   WHERE (party_1 = 'M' AND party_2 = 'C') 
      OR (party_1 = 'S' AND party_2 = 'V')
-  ORDER BY party_1, party_2, election_cycle_start
+  ORDER BY party_1, party_2, election_cycle_id, cycle_year, semester
   LIMIT 20
 ) TO STDOUT WITH CSV HEADER" > party_coalition_evolution_sample.csv
 ```

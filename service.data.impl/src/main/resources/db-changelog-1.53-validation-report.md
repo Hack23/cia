@@ -1,23 +1,41 @@
-# Party Longitudinal Views v1.53 - SQL Validation Report
+# Party Longitudinal Views v1.53 - SQL Validation Report (CORRECTED)
 ## PostgreSQL 16.11 Validation Results
 
-**Date**: 2026-01-15
+**Date**: 2026-01-15 (Updated)
 **Database**: cia_dev (PostgreSQL 16.11)
 **Test Type**: Syntax and Structure Validation (Empty Database)
+**Status**: ✅ CORRECTED - Validation script and documentation updated
 
 ---
 
 ## Executive Summary
 
-✅ **ALL QUERIES VALIDATED SUCCESSFULLY**
+✅ **ALL QUERIES VALIDATED SUCCESSFULLY** (after corrections)
 
 All 3 party longitudinal analysis views in `db-changelog-1.53.xml` have been validated for:
 - SQL syntax correctness
-- Column name accuracy
+- Column name accuracy (corrections applied to validation script)
 - Query structure validity
 - Advanced statistical function usage
 - Swedish parliament semester logic
 - Classification algorithms
+
+### 🔧 Corrections Applied
+
+**Issue Identified**: The validation script `validate-party-longitudinal-views.sql` and documentation `test_2_4_party_longitudinal.md` contained column name mismatches with the actual view definitions.
+
+**Corrections Made**:
+1. `election_cycle_start` → `election_cycle_id` or `calendar_year`
+2. `election_cycle_end` → removed (not in views)
+3. `party_discipline` → `avg_rebel_rate`
+4. `trajectory` → `trajectory_win_rate` or `trajectory_participation`
+5. `seat_count` → `seat_count_proxy`
+6. `avg_alignment` → `alignment_rate`
+7. `win_rate_change` → `win_rate_change_absolute` or `win_rate_change_pct`
+8. `seat_change` → `seat_change_absolute`
+9. Documentation updated to reflect actual classifications and metrics
+
+All validation queries now use correct column names matching the view definitions.
 
 ---
 
