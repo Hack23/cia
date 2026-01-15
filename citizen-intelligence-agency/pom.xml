@@ -20,14 +20,15 @@
     <url>https://github.com/Hack23/cia/tree/master/</url>
   </scm>
   <distributionManagement>
-    <!-- http://maven.apache.org/plugins/maven-site-plugin/examples/site-deploy-to-sourceforge.net.html -->
+    <!--
+    http://maven.apache.org/plugins/maven-site-plugin/examples/site-deploy-to-sourceforge.net.html -->
     <site>
       <id>github</id>
       <url>scm:git:ssh://git@github.com/Hack23/cia.git</url>
     </site>
   </distributionManagement>
   <properties>
-    <cia.project.versions.selenium>4.38.0</cia.project.versions.selenium>
+    <cia.project.versions.selenium>4.39.0</cia.project.versions.selenium>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -1527,7 +1528,7 @@
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
         <version>3.6.1</version>
-        <?m2e ignore ?>
+        <?m2e ignore?>
         <executions>
           <execution>
             <goals>
@@ -1548,7 +1549,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
-        <?m2e ignore ?>
+        <?m2e ignore?>
         <executions>
           <execution>
             <id>unpack</id>
