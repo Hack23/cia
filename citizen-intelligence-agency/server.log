@@ -1,742 +1,287 @@
-Picked up JAVA_TOOL_OPTIONS:     --add-exports=java.base/sun.nio.ch=ALL-UNNAMED     --add-exports=java.base/jdk.internal.ref=ALL-UNNAMED     --add-opens=java.base/java.lang=ALL-UNNAMED     --add-opens=java.base/java.lang.reflect=ALL-UNNAMED     --add-opens=java.base/java.util=ALL-UNNAMED
-[INFO] Scanning for projects...
-[INFO] ------------------------------------------------------------------------
-[INFO] Detecting the operating system and CPU architecture
-[INFO] ------------------------------------------------------------------------
-[INFO] os.detected.name: linux
-[INFO] os.detected.arch: x86_64
-[INFO] os.detected.bitness: 64
-[INFO] os.detected.version: 6.8
-[INFO] os.detected.version.major: 6
-[INFO] os.detected.version.minor: 8
-[INFO] os.detected.release: debian
-[INFO] os.detected.release.version: 12
-[INFO] os.detected.release.like.debian: true
-[INFO] os.detected.classifier: linux-x86_64
-[INFO] 
-[INFO] -------------< com.hack23.cia:citizen-intelligence-agency >-------------
-[INFO] Building Citizen Intelligence Agency 2025-SNAPSHOT
-[INFO]   from pom.xml
-[INFO] --------------------------------[ war ]---------------------------------
-[WARNING] The artifact com.google.gwt:gwt-dev:jar:2.10.0 has been relocated to org.gwtproject:gwt-dev:jar:2.10.0
-[WARNING] The artifact com.google.gwt:gwt-user:jar:2.10.0 has been relocated to org.gwtproject:gwt-user:jar:2.10.0
-[INFO] 
-[INFO] --- exec:3.6.1:java (default-cli) @ citizen-intelligence-agency ---
-2026-01-12 17:34:29,127 [com.hack23.cia.systemintegrationtest.CitizenIntelligenceAgencyServer.main()] INFO  o.e.j.s.Server - jetty-10.0.26; built: 2025-08-14T15:56:56.454Z; git: 65a55c55a68c56d5f2e8232164439bd6e76e53d1; jvm 21.0.9+10-LTS
-2026-01-12 17:34:29,520 [com.hack23.cia.systemintegrationtest.CitizenIntelligenceAgencyServer.main()] INFO  o.s.w.c.ContextLoader - Root WebApplicationContext: initialization started
-2026-01-12T16:34:31.734753480Z com.hack23.cia.systemintegrationtest.CitizenIntelligenceAgencyServer.main() ERROR Log4j API could not find a logging provider.
-2026-01-12 17:34:33,883 [com.hack23.cia.systemintegrationtest.CitizenIntelligenceAgencyServer.main()] ERROR l.changelog - ChangeSet db-changelog-1.51.xml::cia-db-update-v1.51::intelligence-operative encountered an exception.
-liquibase.exception.DatabaseException: ERROR: relation "view_riksdagen_politician_ballot_won_summary" does not exist
-  Position: 1347 [Failed SQL: (0) CREATE OR REPLACE VIEW view_riksdagen_politician_ballot_summary AS 
- SELECT person.id AS person_id,
-    person.first_name,
-    person.last_name,
-    person.party,
-    vote.total_votes,
-    ticket.total_votes_present,
-    ticket.total_votes_absent,
-    ticket.total_votes_abstained,
-    ticket.total_votes_yes,
-    ticket.total_votes_no,
-    ((ticket.total_votes_present)::double precision / (vote.total_votes)::double precision) AS presence_rate,
-    ((ticket.total_votes_absent)::double precision / (vote.total_votes)::double precision) AS absence_rate,
-    COALESCE(won.number_ballots_won, (0)::bigint) AS number_ballots_won,
-    COALESCE(won.number_ballots_lost, (0)::bigint) AS number_ballots_lost,
-    COALESCE(party_rebel.number_ballots_rebel, (0)::bigint) AS number_ballots_party_rebel,
-    ((COALESCE(won.number_ballots_won, (0)::bigint))::double precision / (vote.total_votes)::double precision) AS success_rate,
-    ((COALESCE(party_rebel.number_ballots_rebel, (0)::bigint))::double precision / (vote.total_votes)::double precision) AS rebel_rate
-   FROM ((((view_riksdagen_politician person
-     LEFT JOIN view_riksdagen_politician_vote_summary vote ON (((person.id)::text = (vote.person_id)::text)))
-     LEFT JOIN view_riksdagen_vote_data_politician_summary ticket ON (((person.id)::text = (ticket.person_id)::text)))
-     LEFT JOIN view_riksdagen_politician_ballot_won_summary won ON (((person.id)::text = (won.person_id)::text)))
-     LEFT JOIN view_riksdagen_politician_ballot_party_rebel_summary party_rebel ON (((person.id)::text = (party_rebel.person_id)::text)))]
-	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:520)
-	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:85)
-	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:188)
-	at liquibase.executor.AbstractExecutor.execute(AbstractExecutor.java:148)
-	at liquibase.database.AbstractJdbcDatabase.executeStatements(AbstractJdbcDatabase.java:1198)
-	at liquibase.changelog.ChangeSet.execute(ChangeSet.java:860)
-	at liquibase.changelog.visitor.UpdateVisitor.executeAcceptedChange(UpdateVisitor.java:127)
-	at liquibase.changelog.visitor.UpdateVisitor.visit(UpdateVisitor.java:71)
-	at liquibase.changelog.ChangeLogIterator.lambda$run$0(ChangeLogIterator.java:133)
-	at liquibase.Scope.lambda$child$0(Scope.java:214)
-	at liquibase.Scope.child(Scope.java:223)
-	at liquibase.Scope.child(Scope.java:213)
-	at liquibase.Scope.child(Scope.java:192)
-	at liquibase.changelog.ChangeLogIterator.lambda$run$1(ChangeLogIterator.java:122)
-	at liquibase.Scope.lambda$child$0(Scope.java:214)
-	at liquibase.Scope.child(Scope.java:223)
-	at liquibase.Scope.child(Scope.java:213)
-	at liquibase.Scope.child(Scope.java:192)
-	at liquibase.Scope.child(Scope.java:280)
-	at liquibase.Scope.child(Scope.java:284)
-	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:91)
-	at liquibase.command.core.AbstractUpdateCommandStep.lambda$run$1(AbstractUpdateCommandStep.java:117)
-	at liquibase.Scope.lambda$child$0(Scope.java:214)
-	at liquibase.Scope.child(Scope.java:223)
-	at liquibase.Scope.child(Scope.java:213)
-	at liquibase.Scope.child(Scope.java:192)
-	at liquibase.command.core.AbstractUpdateCommandStep.run(AbstractUpdateCommandStep.java:115)
-	at liquibase.command.core.UpdateCommandStep.run(UpdateCommandStep.java:100)
-	at liquibase.command.CommandScope.lambda$execute$6(CommandScope.java:263)
-	at liquibase.Scope.child(Scope.java:223)
-	at liquibase.Scope.child(Scope.java:199)
-	at liquibase.command.CommandScope.execute(CommandScope.java:251)
-	at liquibase.Liquibase.lambda$update$0(Liquibase.java:216)
-	at liquibase.Scope.lambda$child$0(Scope.java:214)
-	at liquibase.Scope.child(Scope.java:223)
-	at liquibase.Scope.child(Scope.java:213)
-	at liquibase.Scope.child(Scope.java:192)
-	at liquibase.Liquibase.runInScope(Liquibase.java:1366)
-	at liquibase.Liquibase.update(Liquibase.java:205)
-	at liquibase.Liquibase.update(Liquibase.java:188)
-	at liquibase.integration.spring.SpringLiquibase.performUpdate(SpringLiquibase.java:327)
-	at liquibase.integration.spring.SpringLiquibase.lambda$afterPropertiesSet$0(SpringLiquibase.java:279)
-	at liquibase.Scope.lambda$child$0(Scope.java:214)
-	at liquibase.Scope.child(Scope.java:223)
-	at liquibase.Scope.child(Scope.java:213)
-	at liquibase.Scope.child(Scope.java:192)
-	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:272)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:336)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:334)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:209)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:209)
-	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1171)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:922)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:591)
-	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:399)
-	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:278)
-	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:103)
-	at org.eclipse.jetty.server.handler.ContextHandler.callContextInitialized(ContextHandler.java:1049)
-	at org.eclipse.jetty.servlet.ServletContextHandler.callContextInitialized(ServletContextHandler.java:624)
-	at org.eclipse.jetty.server.handler.ContextHandler.contextInitialized(ContextHandler.java:984)
-	at org.eclipse.jetty.servlet.ServletHandler.initialize(ServletHandler.java:740)
-	at org.eclipse.jetty.servlet.ServletContextHandler.startContext(ServletContextHandler.java:392)
-	at org.eclipse.jetty.webapp.WebAppContext.startContext(WebAppContext.java:1304)
-	at org.eclipse.jetty.server.handler.ContextHandler.doStart(ContextHandler.java:901)
-	at org.eclipse.jetty.servlet.ServletContextHandler.doStart(ServletContextHandler.java:306)
-	at org.eclipse.jetty.webapp.WebAppContext.doStart(WebAppContext.java:532)
-	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:93)
-	at org.eclipse.jetty.util.component.ContainerLifeCycle.start(ContainerLifeCycle.java:171)
-	at org.eclipse.jetty.util.component.ContainerLifeCycle.doStart(ContainerLifeCycle.java:121)
-	at org.eclipse.jetty.server.handler.AbstractHandler.doStart(AbstractHandler.java:89)
-	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:93)
-	at org.eclipse.jetty.util.component.ContainerLifeCycle.start(ContainerLifeCycle.java:171)
-	at org.eclipse.jetty.server.Server.start(Server.java:470)
-	at org.eclipse.jetty.util.component.ContainerLifeCycle.doStart(ContainerLifeCycle.java:114)
-	at org.eclipse.jetty.server.handler.AbstractHandler.doStart(AbstractHandler.java:89)
-	at org.eclipse.jetty.server.Server.doStart(Server.java:415)
-	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:93)
-	at com.hack23.cia.systemintegrationtest.CitizenIntelligenceAgencyServer.start(CitizenIntelligenceAgencyServer.java:221)
-	at com.hack23.cia.systemintegrationtest.CitizenIntelligenceAgencyServer.startServer(CitizenIntelligenceAgencyServer.java:233)
-	at com.hack23.cia.systemintegrationtest.CitizenIntelligenceAgencyServer.main(CitizenIntelligenceAgencyServer.java:105)
-	at org.codehaus.mojo.exec.ExecJavaMojo.doExec(ExecJavaMojo.java:371)
-	at org.codehaus.mojo.exec.ExecJavaMojo.lambda$execute$0(ExecJavaMojo.java:289)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-Caused by: org.postgresql.util.PSQLException: ERROR: relation "view_riksdagen_politician_ballot_won_summary" does not exist
-  Position: 1347
-	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2736)
-	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2421)
-	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:372)
-	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:525)
-	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:435)
-	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:357)
-	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:342)
-	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:318)
-	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:313)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.postgresql.ds.PGPooledConnection$StatementHandler.invoke(PGPooledConnection.java:450)
-	at jdk.proxy3/jdk.proxy3.$Proxy116.execute(Unknown Source)
-	at org.apache.commons.dbcp2.DelegatingStatement.execute(DelegatingStatement.java:189)
-	at org.apache.commons.dbcp2.DelegatingStatement.execute(DelegatingStatement.java:189)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at net.bull.javamelody.JdbcWrapper.doExecute(JdbcWrapper.java:428)
-	at net.bull.javamelody.JdbcWrapper$StatementInvocationHandler.invoke(JdbcWrapper.java:145)
-	at net.bull.javamelody.JdbcWrapper$DelegatingInvocationHandler.invoke(JdbcWrapper.java:306)
-	at jdk.proxy3/jdk.proxy3.$Proxy117.execute(Unknown Source)
-	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:512)
-	... 88 common frames omitted
-2026-01-12 17:34:34,071 [com.hack23.cia.systemintegrationtest.CitizenIntelligenceAgencyServer.main()] WARN  o.s.w.c.s.XmlWebApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [META-INF/application-context-service-data.xml]: Invocation of init method failed; nested exception is liquibase.exception.LiquibaseException: liquibase.exception.CommandExecutionException: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db-changelog-1.51.xml::cia-db-update-v1.51::intelligence-operative:
-     Reason: liquibase.exception.DatabaseException: ERROR: relation "view_riksdagen_politician_ballot_won_summary" does not exist
-  Position: 1347 [Failed SQL: (0) CREATE OR REPLACE VIEW view_riksdagen_politician_ballot_summary AS 
- SELECT person.id AS person_id,
-    person.first_name,
-    person.last_name,
-    person.party,
-    vote.total_votes,
-    ticket.total_votes_present,
-    ticket.total_votes_absent,
-    ticket.total_votes_abstained,
-    ticket.total_votes_yes,
-    ticket.total_votes_no,
-    ((ticket.total_votes_present)::double precision / (vote.total_votes)::double precision) AS presence_rate,
-    ((ticket.total_votes_absent)::double precision / (vote.total_votes)::double precision) AS absence_rate,
-    COALESCE(won.number_ballots_won, (0)::bigint) AS number_ballots_won,
-    COALESCE(won.number_ballots_lost, (0)::bigint) AS number_ballots_lost,
-    COALESCE(party_rebel.number_ballots_rebel, (0)::bigint) AS number_ballots_party_rebel,
-    ((COALESCE(won.number_ballots_won, (0)::bigint))::double precision / (vote.total_votes)::double precision) AS success_rate,
-    ((COALESCE(party_rebel.number_ballots_rebel, (0)::bigint))::double precision / (vote.total_votes)::double precision) AS rebel_rate
-   FROM ((((view_riksdagen_politician person
-     LEFT JOIN view_riksdagen_politician_vote_summary vote ON (((person.id)::text = (vote.person_id)::text)))
-     LEFT JOIN view_riksdagen_vote_data_politician_summary ticket ON (((person.id)::text = (ticket.person_id)::text)))
-     LEFT JOIN view_riksdagen_politician_ballot_won_summary won ON (((person.id)::text = (won.person_id)::text)))
-     LEFT JOIN view_riksdagen_politician_ballot_party_rebel_summary party_rebel ON (((person.id)::text = (party_rebel.person_id)::text)))]
-2026-01-12 17:34:34,098 [com.hack23.cia.systemintegrationtest.CitizenIntelligenceAgencyServer.main()] ERROR o.s.w.c.ContextLoader - Context initialization failed
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [META-INF/application-context-service-data.xml]: Invocation of init method failed; nested exception is liquibase.exception.LiquibaseException: liquibase.exception.CommandExecutionException: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db-changelog-1.51.xml::cia-db-update-v1.51::intelligence-operative:
-     Reason: liquibase.exception.DatabaseException: ERROR: relation "view_riksdagen_politician_ballot_won_summary" does not exist
-  Position: 1347 [Failed SQL: (0) CREATE OR REPLACE VIEW view_riksdagen_politician_ballot_summary AS 
- SELECT person.id AS person_id,
-    person.first_name,
-    person.last_name,
-    person.party,
-    vote.total_votes,
-    ticket.total_votes_present,
-    ticket.total_votes_absent,
-    ticket.total_votes_abstained,
-    ticket.total_votes_yes,
-    ticket.total_votes_no,
-    ((ticket.total_votes_present)::double precision / (vote.total_votes)::double precision) AS presence_rate,
-    ((ticket.total_votes_absent)::double precision / (vote.total_votes)::double precision) AS absence_rate,
-    COALESCE(won.number_ballots_won, (0)::bigint) AS number_ballots_won,
-    COALESCE(won.number_ballots_lost, (0)::bigint) AS number_ballots_lost,
-    COALESCE(party_rebel.number_ballots_rebel, (0)::bigint) AS number_ballots_party_rebel,
-    ((COALESCE(won.number_ballots_won, (0)::bigint))::double precision / (vote.total_votes)::double precision) AS success_rate,
-    ((COALESCE(party_rebel.number_ballots_rebel, (0)::bigint))::double precision / (vote.total_votes)::double precision) AS rebel_rate
-   FROM ((((view_riksdagen_politician person
-     LEFT JOIN view_riksdagen_politician_vote_summary vote ON (((person.id)::text = (vote.person_id)::text)))
-     LEFT JOIN view_riksdagen_vote_data_politician_summary ticket ON (((person.id)::text = (ticket.person_id)::text)))
-     LEFT JOIN view_riksdagen_politician_ballot_won_summary won ON (((person.id)::text = (won.person_id)::text)))
-     LEFT JOIN view_riksdagen_politician_ballot_party_rebel_summary party_rebel ON (((person.id)::text = (party_rebel.person_id)::text)))]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:336)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:334)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:209)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:209)
-	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1171)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:922)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:591)
-	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:399)
-	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:278)
-	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:103)
-	at org.eclipse.jetty.server.handler.ContextHandler.callContextInitialized(ContextHandler.java:1049)
-	at org.eclipse.jetty.servlet.ServletContextHandler.callContextInitialized(ServletContextHandler.java:624)
-	at org.eclipse.jetty.server.handler.ContextHandler.contextInitialized(ContextHandler.java:984)
-	at org.eclipse.jetty.servlet.ServletHandler.initialize(ServletHandler.java:740)
-	at org.eclipse.jetty.servlet.ServletContextHandler.startContext(ServletContextHandler.java:392)
-	at org.eclipse.jetty.webapp.WebAppContext.startContext(WebAppContext.java:1304)
-	at org.eclipse.jetty.server.handler.ContextHandler.doStart(ContextHandler.java:901)
-	at org.eclipse.jetty.servlet.ServletContextHandler.doStart(ServletContextHandler.java:306)
-	at org.eclipse.jetty.webapp.WebAppContext.doStart(WebAppContext.java:532)
-	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:93)
-	at org.eclipse.jetty.util.component.ContainerLifeCycle.start(ContainerLifeCycle.java:171)
-	at org.eclipse.jetty.util.component.ContainerLifeCycle.doStart(ContainerLifeCycle.java:121)
-	at org.eclipse.jetty.server.handler.AbstractHandler.doStart(AbstractHandler.java:89)
-	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:93)
-	at org.eclipse.jetty.util.component.ContainerLifeCycle.start(ContainerLifeCycle.java:171)
-	at org.eclipse.jetty.server.Server.start(Server.java:470)
-	at org.eclipse.jetty.util.component.ContainerLifeCycle.doStart(ContainerLifeCycle.java:114)
-	at org.eclipse.jetty.server.handler.AbstractHandler.doStart(AbstractHandler.java:89)
-	at org.eclipse.jetty.server.Server.doStart(Server.java:415)
-	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:93)
-	at com.hack23.cia.systemintegrationtest.CitizenIntelligenceAgencyServer.start(CitizenIntelligenceAgencyServer.java:221)
-	at com.hack23.cia.systemintegrationtest.CitizenIntelligenceAgencyServer.startServer(CitizenIntelligenceAgencyServer.java:233)
-	at com.hack23.cia.systemintegrationtest.CitizenIntelligenceAgencyServer.main(CitizenIntelligenceAgencyServer.java:105)
-	at org.codehaus.mojo.exec.ExecJavaMojo.doExec(ExecJavaMojo.java:371)
-	at org.codehaus.mojo.exec.ExecJavaMojo.lambda$execute$0(ExecJavaMojo.java:289)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-Caused by: liquibase.exception.LiquibaseException: liquibase.exception.CommandExecutionException: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db-changelog-1.51.xml::cia-db-update-v1.51::intelligence-operative:
-     Reason: liquibase.exception.DatabaseException: ERROR: relation "view_riksdagen_politician_ballot_won_summary" does not exist
-  Position: 1347 [Failed SQL: (0) CREATE OR REPLACE VIEW view_riksdagen_politician_ballot_summary AS 
- SELECT person.id AS person_id,
-    person.first_name,
-    person.last_name,
-    person.party,
-    vote.total_votes,
-    ticket.total_votes_present,
-    ticket.total_votes_absent,
-    ticket.total_votes_abstained,
-    ticket.total_votes_yes,
-    ticket.total_votes_no,
-    ((ticket.total_votes_present)::double precision / (vote.total_votes)::double precision) AS presence_rate,
-    ((ticket.total_votes_absent)::double precision / (vote.total_votes)::double precision) AS absence_rate,
-    COALESCE(won.number_ballots_won, (0)::bigint) AS number_ballots_won,
-    COALESCE(won.number_ballots_lost, (0)::bigint) AS number_ballots_lost,
-    COALESCE(party_rebel.number_ballots_rebel, (0)::bigint) AS number_ballots_party_rebel,
-    ((COALESCE(won.number_ballots_won, (0)::bigint))::double precision / (vote.total_votes)::double precision) AS success_rate,
-    ((COALESCE(party_rebel.number_ballots_rebel, (0)::bigint))::double precision / (vote.total_votes)::double precision) AS rebel_rate
-   FROM ((((view_riksdagen_politician person
-     LEFT JOIN view_riksdagen_politician_vote_summary vote ON (((person.id)::text = (vote.person_id)::text)))
-     LEFT JOIN view_riksdagen_vote_data_politician_summary ticket ON (((person.id)::text = (ticket.person_id)::text)))
-     LEFT JOIN view_riksdagen_politician_ballot_won_summary won ON (((person.id)::text = (won.person_id)::text)))
-     LEFT JOIN view_riksdagen_politician_ballot_party_rebel_summary party_rebel ON (((person.id)::text = (party_rebel.person_id)::text)))]
-	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:289)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
-	... 40 common frames omitted
-Caused by: liquibase.exception.CommandExecutionException: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db-changelog-1.51.xml::cia-db-update-v1.51::intelligence-operative:
-     Reason: liquibase.exception.DatabaseException: ERROR: relation "view_riksdagen_politician_ballot_won_summary" does not exist
-  Position: 1347 [Failed SQL: (0) CREATE OR REPLACE VIEW view_riksdagen_politician_ballot_summary AS 
- SELECT person.id AS person_id,
-    person.first_name,
-    person.last_name,
-    person.party,
-    vote.total_votes,
-    ticket.total_votes_present,
-    ticket.total_votes_absent,
-    ticket.total_votes_abstained,
-    ticket.total_votes_yes,
-    ticket.total_votes_no,
-    ((ticket.total_votes_present)::double precision / (vote.total_votes)::double precision) AS presence_rate,
-    ((ticket.total_votes_absent)::double precision / (vote.total_votes)::double precision) AS absence_rate,
-    COALESCE(won.number_ballots_won, (0)::bigint) AS number_ballots_won,
-    COALESCE(won.number_ballots_lost, (0)::bigint) AS number_ballots_lost,
-    COALESCE(party_rebel.number_ballots_rebel, (0)::bigint) AS number_ballots_party_rebel,
-    ((COALESCE(won.number_ballots_won, (0)::bigint))::double precision / (vote.total_votes)::double precision) AS success_rate,
-    ((COALESCE(party_rebel.number_ballots_rebel, (0)::bigint))::double precision / (vote.total_votes)::double precision) AS rebel_rate
-   FROM ((((view_riksdagen_politician person
-     LEFT JOIN view_riksdagen_politician_vote_summary vote ON (((person.id)::text = (vote.person_id)::text)))
-     LEFT JOIN view_riksdagen_vote_data_politician_summary ticket ON (((person.id)::text = (ticket.person_id)::text)))
-     LEFT JOIN view_riksdagen_politician_ballot_won_summary won ON (((person.id)::text = (won.person_id)::text)))
-     LEFT JOIN view_riksdagen_politician_ballot_party_rebel_summary party_rebel ON (((person.id)::text = (party_rebel.person_id)::text)))]
-	at liquibase.command.CommandScope.lambda$execute$6(CommandScope.java:310)
-	at liquibase.Scope.child(Scope.java:223)
-	at liquibase.Scope.child(Scope.java:199)
-	at liquibase.command.CommandScope.execute(CommandScope.java:251)
-	at liquibase.Liquibase.lambda$update$0(Liquibase.java:216)
-	at liquibase.Scope.lambda$child$0(Scope.java:214)
-	at liquibase.Scope.child(Scope.java:223)
-	at liquibase.Scope.child(Scope.java:213)
-	at liquibase.Scope.child(Scope.java:192)
-	at liquibase.Liquibase.runInScope(Liquibase.java:1366)
-	at liquibase.Liquibase.update(Liquibase.java:205)
-	at liquibase.Liquibase.update(Liquibase.java:188)
-	at liquibase.integration.spring.SpringLiquibase.performUpdate(SpringLiquibase.java:327)
-	at liquibase.integration.spring.SpringLiquibase.lambda$afterPropertiesSet$0(SpringLiquibase.java:279)
-	at liquibase.Scope.lambda$child$0(Scope.java:214)
-	at liquibase.Scope.child(Scope.java:223)
-	at liquibase.Scope.child(Scope.java:213)
-	at liquibase.Scope.child(Scope.java:192)
-	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:272)
-	... 42 common frames omitted
-Caused by: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db-changelog-1.51.xml::cia-db-update-v1.51::intelligence-operative:
-     Reason: liquibase.exception.DatabaseException: ERROR: relation "view_riksdagen_politician_ballot_won_summary" does not exist
-  Position: 1347 [Failed SQL: (0) CREATE OR REPLACE VIEW view_riksdagen_politician_ballot_summary AS 
- SELECT person.id AS person_id,
-    person.first_name,
-    person.last_name,
-    person.party,
-    vote.total_votes,
-    ticket.total_votes_present,
-    ticket.total_votes_absent,
-    ticket.total_votes_abstained,
-    ticket.total_votes_yes,
-    ticket.total_votes_no,
-    ((ticket.total_votes_present)::double precision / (vote.total_votes)::double precision) AS presence_rate,
-    ((ticket.total_votes_absent)::double precision / (vote.total_votes)::double precision) AS absence_rate,
-    COALESCE(won.number_ballots_won, (0)::bigint) AS number_ballots_won,
-    COALESCE(won.number_ballots_lost, (0)::bigint) AS number_ballots_lost,
-    COALESCE(party_rebel.number_ballots_rebel, (0)::bigint) AS number_ballots_party_rebel,
-    ((COALESCE(won.number_ballots_won, (0)::bigint))::double precision / (vote.total_votes)::double precision) AS success_rate,
-    ((COALESCE(party_rebel.number_ballots_rebel, (0)::bigint))::double precision / (vote.total_votes)::double precision) AS rebel_rate
-   FROM ((((view_riksdagen_politician person
-     LEFT JOIN view_riksdagen_politician_vote_summary vote ON (((person.id)::text = (vote.person_id)::text)))
-     LEFT JOIN view_riksdagen_vote_data_politician_summary ticket ON (((person.id)::text = (ticket.person_id)::text)))
-     LEFT JOIN view_riksdagen_politician_ballot_won_summary won ON (((person.id)::text = (won.person_id)::text)))
-     LEFT JOIN view_riksdagen_politician_ballot_party_rebel_summary party_rebel ON (((person.id)::text = (party_rebel.person_id)::text)))]
-	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:155)
-	at liquibase.command.core.AbstractUpdateCommandStep.lambda$run$1(AbstractUpdateCommandStep.java:117)
-	at liquibase.Scope.lambda$child$0(Scope.java:214)
-	at liquibase.Scope.child(Scope.java:223)
-	at liquibase.Scope.child(Scope.java:213)
-	at liquibase.Scope.child(Scope.java:192)
-	at liquibase.command.core.AbstractUpdateCommandStep.run(AbstractUpdateCommandStep.java:115)
-	at liquibase.command.core.UpdateCommandStep.run(UpdateCommandStep.java:100)
-	at liquibase.command.CommandScope.lambda$execute$6(CommandScope.java:263)
-	... 60 common frames omitted
-Caused by: liquibase.exception.MigrationFailedException: Migration failed for changeset db-changelog-1.51.xml::cia-db-update-v1.51::intelligence-operative:
-     Reason: liquibase.exception.DatabaseException: ERROR: relation "view_riksdagen_politician_ballot_won_summary" does not exist
-  Position: 1347 [Failed SQL: (0) CREATE OR REPLACE VIEW view_riksdagen_politician_ballot_summary AS 
- SELECT person.id AS person_id,
-    person.first_name,
-    person.last_name,
-    person.party,
-    vote.total_votes,
-    ticket.total_votes_present,
-    ticket.total_votes_absent,
-    ticket.total_votes_abstained,
-    ticket.total_votes_yes,
-    ticket.total_votes_no,
-    ((ticket.total_votes_present)::double precision / (vote.total_votes)::double precision) AS presence_rate,
-    ((ticket.total_votes_absent)::double precision / (vote.total_votes)::double precision) AS absence_rate,
-    COALESCE(won.number_ballots_won, (0)::bigint) AS number_ballots_won,
-    COALESCE(won.number_ballots_lost, (0)::bigint) AS number_ballots_lost,
-    COALESCE(party_rebel.number_ballots_rebel, (0)::bigint) AS number_ballots_party_rebel,
-    ((COALESCE(won.number_ballots_won, (0)::bigint))::double precision / (vote.total_votes)::double precision) AS success_rate,
-    ((COALESCE(party_rebel.number_ballots_rebel, (0)::bigint))::double precision / (vote.total_votes)::double precision) AS rebel_rate
-   FROM ((((view_riksdagen_politician person
-     LEFT JOIN view_riksdagen_politician_vote_summary vote ON (((person.id)::text = (vote.person_id)::text)))
-     LEFT JOIN view_riksdagen_vote_data_politician_summary ticket ON (((person.id)::text = (ticket.person_id)::text)))
-     LEFT JOIN view_riksdagen_politician_ballot_won_summary won ON (((person.id)::text = (won.person_id)::text)))
-     LEFT JOIN view_riksdagen_politician_ballot_party_rebel_summary party_rebel ON (((person.id)::text = (party_rebel.person_id)::text)))]
-	at liquibase.changelog.ChangeSet.execute(ChangeSet.java:918)
-	at liquibase.changelog.visitor.UpdateVisitor.executeAcceptedChange(UpdateVisitor.java:127)
-	at liquibase.changelog.visitor.UpdateVisitor.visit(UpdateVisitor.java:71)
-	at liquibase.changelog.ChangeLogIterator.lambda$run$0(ChangeLogIterator.java:133)
-	at liquibase.Scope.lambda$child$0(Scope.java:214)
-	at liquibase.Scope.child(Scope.java:223)
-	at liquibase.Scope.child(Scope.java:213)
-	at liquibase.Scope.child(Scope.java:192)
-	at liquibase.changelog.ChangeLogIterator.lambda$run$1(ChangeLogIterator.java:122)
-	at liquibase.Scope.lambda$child$0(Scope.java:214)
-	at liquibase.Scope.child(Scope.java:223)
-	at liquibase.Scope.child(Scope.java:213)
-	at liquibase.Scope.child(Scope.java:192)
-	at liquibase.Scope.child(Scope.java:280)
-	at liquibase.Scope.child(Scope.java:284)
-	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:91)
-	... 68 common frames omitted
-Caused by: liquibase.exception.DatabaseException: ERROR: relation "view_riksdagen_politician_ballot_won_summary" does not exist
-  Position: 1347 [Failed SQL: (0) CREATE OR REPLACE VIEW view_riksdagen_politician_ballot_summary AS 
- SELECT person.id AS person_id,
-    person.first_name,
-    person.last_name,
-    person.party,
-    vote.total_votes,
-    ticket.total_votes_present,
-    ticket.total_votes_absent,
-    ticket.total_votes_abstained,
-    ticket.total_votes_yes,
-    ticket.total_votes_no,
-    ((ticket.total_votes_present)::double precision / (vote.total_votes)::double precision) AS presence_rate,
-    ((ticket.total_votes_absent)::double precision / (vote.total_votes)::double precision) AS absence_rate,
-    COALESCE(won.number_ballots_won, (0)::bigint) AS number_ballots_won,
-    COALESCE(won.number_ballots_lost, (0)::bigint) AS number_ballots_lost,
-    COALESCE(party_rebel.number_ballots_rebel, (0)::bigint) AS number_ballots_party_rebel,
-    ((COALESCE(won.number_ballots_won, (0)::bigint))::double precision / (vote.total_votes)::double precision) AS success_rate,
-    ((COALESCE(party_rebel.number_ballots_rebel, (0)::bigint))::double precision / (vote.total_votes)::double precision) AS rebel_rate
-   FROM ((((view_riksdagen_politician person
-     LEFT JOIN view_riksdagen_politician_vote_summary vote ON (((person.id)::text = (vote.person_id)::text)))
-     LEFT JOIN view_riksdagen_vote_data_politician_summary ticket ON (((person.id)::text = (ticket.person_id)::text)))
-     LEFT JOIN view_riksdagen_politician_ballot_won_summary won ON (((person.id)::text = (won.person_id)::text)))
-     LEFT JOIN view_riksdagen_politician_ballot_party_rebel_summary party_rebel ON (((person.id)::text = (party_rebel.person_id)::text)))]
-	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:520)
-	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:85)
-	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:188)
-	at liquibase.executor.AbstractExecutor.execute(AbstractExecutor.java:148)
-	at liquibase.database.AbstractJdbcDatabase.executeStatements(AbstractJdbcDatabase.java:1198)
-	at liquibase.changelog.ChangeSet.execute(ChangeSet.java:860)
-	... 83 common frames omitted
-Caused by: org.postgresql.util.PSQLException: ERROR: relation "view_riksdagen_politician_ballot_won_summary" does not exist
-  Position: 1347
-	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2736)
-	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2421)
-	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:372)
-	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:525)
-	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:435)
-	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:357)
-	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:342)
-	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:318)
-	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:313)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.postgresql.ds.PGPooledConnection$StatementHandler.invoke(PGPooledConnection.java:450)
-	at jdk.proxy3/jdk.proxy3.$Proxy116.execute(Unknown Source)
-	at org.apache.commons.dbcp2.DelegatingStatement.execute(DelegatingStatement.java:189)
-	at org.apache.commons.dbcp2.DelegatingStatement.execute(DelegatingStatement.java:189)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at net.bull.javamelody.JdbcWrapper.doExecute(JdbcWrapper.java:428)
-	at net.bull.javamelody.JdbcWrapper$StatementInvocationHandler.invoke(JdbcWrapper.java:145)
-	at net.bull.javamelody.JdbcWrapper$DelegatingInvocationHandler.invoke(JdbcWrapper.java:306)
-	at jdk.proxy3/jdk.proxy3.$Proxy117.execute(Unknown Source)
-	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:512)
-	... 88 common frames omitted
-2026-01-12 17:34:34,100 [com.hack23.cia.systemintegrationtest.CitizenIntelligenceAgencyServer.main()] WARN  o.e.j.w.WebAppContext - Failed startup of context o.e.j.w.WebAppContext@33bfeb65{/,file:///workspaces/cia/citizen-intelligence-agency/src/main/webapp/,UNAVAILABLE}{src/main/webapp}
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [META-INF/application-context-service-data.xml]: Invocation of init method failed; nested exception is liquibase.exception.LiquibaseException: liquibase.exception.CommandExecutionException: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db-changelog-1.51.xml::cia-db-update-v1.51::intelligence-operative:
-     Reason: liquibase.exception.DatabaseException: ERROR: relation "view_riksdagen_politician_ballot_won_summary" does not exist
-  Position: 1347 [Failed SQL: (0) CREATE OR REPLACE VIEW view_riksdagen_politician_ballot_summary AS 
- SELECT person.id AS person_id,
-    person.first_name,
-    person.last_name,
-    person.party,
-    vote.total_votes,
-    ticket.total_votes_present,
-    ticket.total_votes_absent,
-    ticket.total_votes_abstained,
-    ticket.total_votes_yes,
-    ticket.total_votes_no,
-    ((ticket.total_votes_present)::double precision / (vote.total_votes)::double precision) AS presence_rate,
-    ((ticket.total_votes_absent)::double precision / (vote.total_votes)::double precision) AS absence_rate,
-    COALESCE(won.number_ballots_won, (0)::bigint) AS number_ballots_won,
-    COALESCE(won.number_ballots_lost, (0)::bigint) AS number_ballots_lost,
-    COALESCE(party_rebel.number_ballots_rebel, (0)::bigint) AS number_ballots_party_rebel,
-    ((COALESCE(won.number_ballots_won, (0)::bigint))::double precision / (vote.total_votes)::double precision) AS success_rate,
-    ((COALESCE(party_rebel.number_ballots_rebel, (0)::bigint))::double precision / (vote.total_votes)::double precision) AS rebel_rate
-   FROM ((((view_riksdagen_politician person
-     LEFT JOIN view_riksdagen_politician_vote_summary vote ON (((person.id)::text = (vote.person_id)::text)))
-     LEFT JOIN view_riksdagen_vote_data_politician_summary ticket ON (((person.id)::text = (ticket.person_id)::text)))
-     LEFT JOIN view_riksdagen_politician_ballot_won_summary won ON (((person.id)::text = (won.person_id)::text)))
-     LEFT JOIN view_riksdagen_politician_ballot_party_rebel_summary party_rebel ON (((person.id)::text = (party_rebel.person_id)::text)))]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:336)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:334)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:209)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:209)
-	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1171)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:922)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:591)
-	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:399)
-	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:278)
-	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:103)
-	at org.eclipse.jetty.server.handler.ContextHandler.callContextInitialized(ContextHandler.java:1049)
-	at org.eclipse.jetty.servlet.ServletContextHandler.callContextInitialized(ServletContextHandler.java:624)
-	at org.eclipse.jetty.server.handler.ContextHandler.contextInitialized(ContextHandler.java:984)
-	at org.eclipse.jetty.servlet.ServletHandler.initialize(ServletHandler.java:740)
-	at org.eclipse.jetty.servlet.ServletContextHandler.startContext(ServletContextHandler.java:392)
-	at org.eclipse.jetty.webapp.WebAppContext.startContext(WebAppContext.java:1304)
-	at org.eclipse.jetty.server.handler.ContextHandler.doStart(ContextHandler.java:901)
-	at org.eclipse.jetty.servlet.ServletContextHandler.doStart(ServletContextHandler.java:306)
-	at org.eclipse.jetty.webapp.WebAppContext.doStart(WebAppContext.java:532)
-	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:93)
-	at org.eclipse.jetty.util.component.ContainerLifeCycle.start(ContainerLifeCycle.java:171)
-	at org.eclipse.jetty.util.component.ContainerLifeCycle.doStart(ContainerLifeCycle.java:121)
-	at org.eclipse.jetty.server.handler.AbstractHandler.doStart(AbstractHandler.java:89)
-	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:93)
-	at org.eclipse.jetty.util.component.ContainerLifeCycle.start(ContainerLifeCycle.java:171)
-	at org.eclipse.jetty.server.Server.start(Server.java:470)
-	at org.eclipse.jetty.util.component.ContainerLifeCycle.doStart(ContainerLifeCycle.java:114)
-	at org.eclipse.jetty.server.handler.AbstractHandler.doStart(AbstractHandler.java:89)
-	at org.eclipse.jetty.server.Server.doStart(Server.java:415)
-	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:93)
-	at com.hack23.cia.systemintegrationtest.CitizenIntelligenceAgencyServer.start(CitizenIntelligenceAgencyServer.java:221)
-	at com.hack23.cia.systemintegrationtest.CitizenIntelligenceAgencyServer.startServer(CitizenIntelligenceAgencyServer.java:233)
-	at com.hack23.cia.systemintegrationtest.CitizenIntelligenceAgencyServer.main(CitizenIntelligenceAgencyServer.java:105)
-	at org.codehaus.mojo.exec.ExecJavaMojo.doExec(ExecJavaMojo.java:371)
-	at org.codehaus.mojo.exec.ExecJavaMojo.lambda$execute$0(ExecJavaMojo.java:289)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-Caused by: liquibase.exception.LiquibaseException: liquibase.exception.CommandExecutionException: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db-changelog-1.51.xml::cia-db-update-v1.51::intelligence-operative:
-     Reason: liquibase.exception.DatabaseException: ERROR: relation "view_riksdagen_politician_ballot_won_summary" does not exist
-  Position: 1347 [Failed SQL: (0) CREATE OR REPLACE VIEW view_riksdagen_politician_ballot_summary AS 
- SELECT person.id AS person_id,
-    person.first_name,
-    person.last_name,
-    person.party,
-    vote.total_votes,
-    ticket.total_votes_present,
-    ticket.total_votes_absent,
-    ticket.total_votes_abstained,
-    ticket.total_votes_yes,
-    ticket.total_votes_no,
-    ((ticket.total_votes_present)::double precision / (vote.total_votes)::double precision) AS presence_rate,
-    ((ticket.total_votes_absent)::double precision / (vote.total_votes)::double precision) AS absence_rate,
-    COALESCE(won.number_ballots_won, (0)::bigint) AS number_ballots_won,
-    COALESCE(won.number_ballots_lost, (0)::bigint) AS number_ballots_lost,
-    COALESCE(party_rebel.number_ballots_rebel, (0)::bigint) AS number_ballots_party_rebel,
-    ((COALESCE(won.number_ballots_won, (0)::bigint))::double precision / (vote.total_votes)::double precision) AS success_rate,
-    ((COALESCE(party_rebel.number_ballots_rebel, (0)::bigint))::double precision / (vote.total_votes)::double precision) AS rebel_rate
-   FROM ((((view_riksdagen_politician person
-     LEFT JOIN view_riksdagen_politician_vote_summary vote ON (((person.id)::text = (vote.person_id)::text)))
-     LEFT JOIN view_riksdagen_vote_data_politician_summary ticket ON (((person.id)::text = (ticket.person_id)::text)))
-     LEFT JOIN view_riksdagen_politician_ballot_won_summary won ON (((person.id)::text = (won.person_id)::text)))
-     LEFT JOIN view_riksdagen_politician_ballot_party_rebel_summary party_rebel ON (((person.id)::text = (party_rebel.person_id)::text)))]
-	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:289)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
-	... 40 common frames omitted
-Caused by: liquibase.exception.CommandExecutionException: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db-changelog-1.51.xml::cia-db-update-v1.51::intelligence-operative:
-     Reason: liquibase.exception.DatabaseException: ERROR: relation "view_riksdagen_politician_ballot_won_summary" does not exist
-  Position: 1347 [Failed SQL: (0) CREATE OR REPLACE VIEW view_riksdagen_politician_ballot_summary AS 
- SELECT person.id AS person_id,
-    person.first_name,
-    person.last_name,
-    person.party,
-    vote.total_votes,
-    ticket.total_votes_present,
-    ticket.total_votes_absent,
-    ticket.total_votes_abstained,
-    ticket.total_votes_yes,
-    ticket.total_votes_no,
-    ((ticket.total_votes_present)::double precision / (vote.total_votes)::double precision) AS presence_rate,
-    ((ticket.total_votes_absent)::double precision / (vote.total_votes)::double precision) AS absence_rate,
-    COALESCE(won.number_ballots_won, (0)::bigint) AS number_ballots_won,
-    COALESCE(won.number_ballots_lost, (0)::bigint) AS number_ballots_lost,
-    COALESCE(party_rebel.number_ballots_rebel, (0)::bigint) AS number_ballots_party_rebel,
-    ((COALESCE(won.number_ballots_won, (0)::bigint))::double precision / (vote.total_votes)::double precision) AS success_rate,
-    ((COALESCE(party_rebel.number_ballots_rebel, (0)::bigint))::double precision / (vote.total_votes)::double precision) AS rebel_rate
-   FROM ((((view_riksdagen_politician person
-     LEFT JOIN view_riksdagen_politician_vote_summary vote ON (((person.id)::text = (vote.person_id)::text)))
-     LEFT JOIN view_riksdagen_vote_data_politician_summary ticket ON (((person.id)::text = (ticket.person_id)::text)))
-     LEFT JOIN view_riksdagen_politician_ballot_won_summary won ON (((person.id)::text = (won.person_id)::text)))
-     LEFT JOIN view_riksdagen_politician_ballot_party_rebel_summary party_rebel ON (((person.id)::text = (party_rebel.person_id)::text)))]
-	at liquibase.command.CommandScope.lambda$execute$6(CommandScope.java:310)
-	at liquibase.Scope.child(Scope.java:223)
-	at liquibase.Scope.child(Scope.java:199)
-	at liquibase.command.CommandScope.execute(CommandScope.java:251)
-	at liquibase.Liquibase.lambda$update$0(Liquibase.java:216)
-	at liquibase.Scope.lambda$child$0(Scope.java:214)
-	at liquibase.Scope.child(Scope.java:223)
-	at liquibase.Scope.child(Scope.java:213)
-	at liquibase.Scope.child(Scope.java:192)
-	at liquibase.Liquibase.runInScope(Liquibase.java:1366)
-	at liquibase.Liquibase.update(Liquibase.java:205)
-	at liquibase.Liquibase.update(Liquibase.java:188)
-	at liquibase.integration.spring.SpringLiquibase.performUpdate(SpringLiquibase.java:327)
-	at liquibase.integration.spring.SpringLiquibase.lambda$afterPropertiesSet$0(SpringLiquibase.java:279)
-	at liquibase.Scope.lambda$child$0(Scope.java:214)
-	at liquibase.Scope.child(Scope.java:223)
-	at liquibase.Scope.child(Scope.java:213)
-	at liquibase.Scope.child(Scope.java:192)
-	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:272)
-	... 42 common frames omitted
-Caused by: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db-changelog-1.51.xml::cia-db-update-v1.51::intelligence-operative:
-     Reason: liquibase.exception.DatabaseException: ERROR: relation "view_riksdagen_politician_ballot_won_summary" does not exist
-  Position: 1347 [Failed SQL: (0) CREATE OR REPLACE VIEW view_riksdagen_politician_ballot_summary AS 
- SELECT person.id AS person_id,
-    person.first_name,
-    person.last_name,
-    person.party,
-    vote.total_votes,
-    ticket.total_votes_present,
-    ticket.total_votes_absent,
-    ticket.total_votes_abstained,
-    ticket.total_votes_yes,
-    ticket.total_votes_no,
-    ((ticket.total_votes_present)::double precision / (vote.total_votes)::double precision) AS presence_rate,
-    ((ticket.total_votes_absent)::double precision / (vote.total_votes)::double precision) AS absence_rate,
-    COALESCE(won.number_ballots_won, (0)::bigint) AS number_ballots_won,
-    COALESCE(won.number_ballots_lost, (0)::bigint) AS number_ballots_lost,
-    COALESCE(party_rebel.number_ballots_rebel, (0)::bigint) AS number_ballots_party_rebel,
-    ((COALESCE(won.number_ballots_won, (0)::bigint))::double precision / (vote.total_votes)::double precision) AS success_rate,
-    ((COALESCE(party_rebel.number_ballots_rebel, (0)::bigint))::double precision / (vote.total_votes)::double precision) AS rebel_rate
-   FROM ((((view_riksdagen_politician person
-     LEFT JOIN view_riksdagen_politician_vote_summary vote ON (((person.id)::text = (vote.person_id)::text)))
-     LEFT JOIN view_riksdagen_vote_data_politician_summary ticket ON (((person.id)::text = (ticket.person_id)::text)))
-     LEFT JOIN view_riksdagen_politician_ballot_won_summary won ON (((person.id)::text = (won.person_id)::text)))
-     LEFT JOIN view_riksdagen_politician_ballot_party_rebel_summary party_rebel ON (((person.id)::text = (party_rebel.person_id)::text)))]
-	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:155)
-	at liquibase.command.core.AbstractUpdateCommandStep.lambda$run$1(AbstractUpdateCommandStep.java:117)
-	at liquibase.Scope.lambda$child$0(Scope.java:214)
-	at liquibase.Scope.child(Scope.java:223)
-	at liquibase.Scope.child(Scope.java:213)
-	at liquibase.Scope.child(Scope.java:192)
-	at liquibase.command.core.AbstractUpdateCommandStep.run(AbstractUpdateCommandStep.java:115)
-	at liquibase.command.core.UpdateCommandStep.run(UpdateCommandStep.java:100)
-	at liquibase.command.CommandScope.lambda$execute$6(CommandScope.java:263)
-	... 60 common frames omitted
-Caused by: liquibase.exception.MigrationFailedException: Migration failed for changeset db-changelog-1.51.xml::cia-db-update-v1.51::intelligence-operative:
-     Reason: liquibase.exception.DatabaseException: ERROR: relation "view_riksdagen_politician_ballot_won_summary" does not exist
-  Position: 1347 [Failed SQL: (0) CREATE OR REPLACE VIEW view_riksdagen_politician_ballot_summary AS 
- SELECT person.id AS person_id,
-    person.first_name,
-    person.last_name,
-    person.party,
-    vote.total_votes,
-    ticket.total_votes_present,
-    ticket.total_votes_absent,
-    ticket.total_votes_abstained,
-    ticket.total_votes_yes,
-    ticket.total_votes_no,
-    ((ticket.total_votes_present)::double precision / (vote.total_votes)::double precision) AS presence_rate,
-    ((ticket.total_votes_absent)::double precision / (vote.total_votes)::double precision) AS absence_rate,
-    COALESCE(won.number_ballots_won, (0)::bigint) AS number_ballots_won,
-    COALESCE(won.number_ballots_lost, (0)::bigint) AS number_ballots_lost,
-    COALESCE(party_rebel.number_ballots_rebel, (0)::bigint) AS number_ballots_party_rebel,
-    ((COALESCE(won.number_ballots_won, (0)::bigint))::double precision / (vote.total_votes)::double precision) AS success_rate,
-    ((COALESCE(party_rebel.number_ballots_rebel, (0)::bigint))::double precision / (vote.total_votes)::double precision) AS rebel_rate
-   FROM ((((view_riksdagen_politician person
-     LEFT JOIN view_riksdagen_politician_vote_summary vote ON (((person.id)::text = (vote.person_id)::text)))
-     LEFT JOIN view_riksdagen_vote_data_politician_summary ticket ON (((person.id)::text = (ticket.person_id)::text)))
-     LEFT JOIN view_riksdagen_politician_ballot_won_summary won ON (((person.id)::text = (won.person_id)::text)))
-     LEFT JOIN view_riksdagen_politician_ballot_party_rebel_summary party_rebel ON (((person.id)::text = (party_rebel.person_id)::text)))]
-	at liquibase.changelog.ChangeSet.execute(ChangeSet.java:918)
-	at liquibase.changelog.visitor.UpdateVisitor.executeAcceptedChange(UpdateVisitor.java:127)
-	at liquibase.changelog.visitor.UpdateVisitor.visit(UpdateVisitor.java:71)
-	at liquibase.changelog.ChangeLogIterator.lambda$run$0(ChangeLogIterator.java:133)
-	at liquibase.Scope.lambda$child$0(Scope.java:214)
-	at liquibase.Scope.child(Scope.java:223)
-	at liquibase.Scope.child(Scope.java:213)
-	at liquibase.Scope.child(Scope.java:192)
-	at liquibase.changelog.ChangeLogIterator.lambda$run$1(ChangeLogIterator.java:122)
-	at liquibase.Scope.lambda$child$0(Scope.java:214)
-	at liquibase.Scope.child(Scope.java:223)
-	at liquibase.Scope.child(Scope.java:213)
-	at liquibase.Scope.child(Scope.java:192)
-	at liquibase.Scope.child(Scope.java:280)
-	at liquibase.Scope.child(Scope.java:284)
-	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:91)
-	... 68 common frames omitted
-Caused by: liquibase.exception.DatabaseException: ERROR: relation "view_riksdagen_politician_ballot_won_summary" does not exist
-  Position: 1347 [Failed SQL: (0) CREATE OR REPLACE VIEW view_riksdagen_politician_ballot_summary AS 
- SELECT person.id AS person_id,
-    person.first_name,
-    person.last_name,
-    person.party,
-    vote.total_votes,
-    ticket.total_votes_present,
-    ticket.total_votes_absent,
-    ticket.total_votes_abstained,
-    ticket.total_votes_yes,
-    ticket.total_votes_no,
-    ((ticket.total_votes_present)::double precision / (vote.total_votes)::double precision) AS presence_rate,
-    ((ticket.total_votes_absent)::double precision / (vote.total_votes)::double precision) AS absence_rate,
-    COALESCE(won.number_ballots_won, (0)::bigint) AS number_ballots_won,
-    COALESCE(won.number_ballots_lost, (0)::bigint) AS number_ballots_lost,
-    COALESCE(party_rebel.number_ballots_rebel, (0)::bigint) AS number_ballots_party_rebel,
-    ((COALESCE(won.number_ballots_won, (0)::bigint))::double precision / (vote.total_votes)::double precision) AS success_rate,
-    ((COALESCE(party_rebel.number_ballots_rebel, (0)::bigint))::double precision / (vote.total_votes)::double precision) AS rebel_rate
-   FROM ((((view_riksdagen_politician person
-     LEFT JOIN view_riksdagen_politician_vote_summary vote ON (((person.id)::text = (vote.person_id)::text)))
-     LEFT JOIN view_riksdagen_vote_data_politician_summary ticket ON (((person.id)::text = (ticket.person_id)::text)))
-     LEFT JOIN view_riksdagen_politician_ballot_won_summary won ON (((person.id)::text = (won.person_id)::text)))
-     LEFT JOIN view_riksdagen_politician_ballot_party_rebel_summary party_rebel ON (((person.id)::text = (party_rebel.person_id)::text)))]
-	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:520)
-	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:85)
-	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:188)
-	at liquibase.executor.AbstractExecutor.execute(AbstractExecutor.java:148)
-	at liquibase.database.AbstractJdbcDatabase.executeStatements(AbstractJdbcDatabase.java:1198)
-	at liquibase.changelog.ChangeSet.execute(ChangeSet.java:860)
-	... 83 common frames omitted
-Caused by: org.postgresql.util.PSQLException: ERROR: relation "view_riksdagen_politician_ballot_won_summary" does not exist
-  Position: 1347
-	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2736)
-	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2421)
-	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:372)
-	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:525)
-	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:435)
-	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:357)
-	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:342)
-	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:318)
-	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:313)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.postgresql.ds.PGPooledConnection$StatementHandler.invoke(PGPooledConnection.java:450)
-	at jdk.proxy3/jdk.proxy3.$Proxy116.execute(Unknown Source)
-	at org.apache.commons.dbcp2.DelegatingStatement.execute(DelegatingStatement.java:189)
-	at org.apache.commons.dbcp2.DelegatingStatement.execute(DelegatingStatement.java:189)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at net.bull.javamelody.JdbcWrapper.doExecute(JdbcWrapper.java:428)
-	at net.bull.javamelody.JdbcWrapper$StatementInvocationHandler.invoke(JdbcWrapper.java:145)
-	at net.bull.javamelody.JdbcWrapper$DelegatingInvocationHandler.invoke(JdbcWrapper.java:306)
-	at jdk.proxy3/jdk.proxy3.$Proxy117.execute(Unknown Source)
-	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:512)
-	... 88 common frames omitted
-2026-01-12 17:34:34,161 [com.hack23.cia.systemintegrationtest.CitizenIntelligenceAgencyServer.main()] INFO  o.e.j.s.Server - Started Server@3fc53fee{STARTING}[10.0.26,sto=0] @8494ms
-2026-01-12 17:34:34,161 [com.hack23.cia.systemintegrationtest.CitizenIntelligenceAgencyServer.main()] INFO  c.h.c.s.CitizenIntelligenceAgencyServer - Server Started
-2026-01-12 17:34:34,161 [com.hack23.cia.systemintegrationtest.CitizenIntelligenceAgencyServer.main()] INFO  c.h.c.s.CitizenIntelligenceAgencyServer - Application ready at https://localhost:28443/
+Buildfile: /home/runner/work/cia/cia/citizen-intelligence-agency/build.xml
+[echoproperties] #Ant properties
+[echoproperties] #Wed Jan 14 10:20:31 UTC 2026
+[echoproperties] ant.core.lib=/usr/share/ant/lib/ant.jar
+[echoproperties] ant.file=/home/runner/work/cia/cia/citizen-intelligence-agency/build.xml
+[echoproperties] ant.file.citizen-intelligence-agency=/home/runner/work/cia/cia/citizen-intelligence-agency/build.xml
+[echoproperties] ant.file.type=file
+[echoproperties] ant.file.type.citizen-intelligence-agency=file
+[echoproperties] ant.home=/usr/share/ant
+[echoproperties] ant.java.version=25
+[echoproperties] ant.library.dir=/usr/share/ant/lib
+[echoproperties] ant.project.invoked-targets=start
+[echoproperties] ant.project.name=citizen-intelligence-agency
+[echoproperties] ant.version=Apache Ant(TM) version 1.10.14 compiled on September 25 2023
+[echoproperties] basedir=/home/runner/work/cia/cia/citizen-intelligence-agency
+[echoproperties] env.ACCEPT_EULA=Y
+[echoproperties] env.ACTIONS_RUNNER_ACTION_ARCHIVE_CACHE=/opt/actionarchivecache
+[echoproperties] env.AGENT_TOOLSDIRECTORY=/opt/hostedtoolcache
+[echoproperties] env.ANDROID_HOME=/usr/local/lib/android/sdk
+[echoproperties] env.ANDROID_NDK=/usr/local/lib/android/sdk/ndk/27.3.13750724
+[echoproperties] env.ANDROID_NDK_HOME=/usr/local/lib/android/sdk/ndk/27.3.13750724
+[echoproperties] env.ANDROID_NDK_LATEST_HOME=/usr/local/lib/android/sdk/ndk/29.0.14206865
+[echoproperties] env.ANDROID_NDK_ROOT=/usr/local/lib/android/sdk/ndk/27.3.13750724
+[echoproperties] env.ANDROID_SDK_ROOT=/usr/local/lib/android/sdk
+[echoproperties] env.ANT_HOME=/usr/share/ant
+[echoproperties] env.AZURE_EXTENSION_DIR=/opt/az/azcliextensions
+[echoproperties] env.BLACKBIRD_MODE=disabled
+[echoproperties] env.BOOTSTRAP_HASKELL_NONINTERACTIVE=1
+[echoproperties] env.CAROOT=/home/runner/work/_temp/runtime-logs/mkcert
+[echoproperties] env.CHROMEWEBDRIVER=/usr/local/share/chromedriver-linux64
+[echoproperties] env.CHROME_BIN=/usr/bin/google-chrome
+[echoproperties] env.CI=true
+[echoproperties] env.CONDA=/usr/share/miniconda
+[echoproperties] env.COPILOT_AGENT_ACTION=fix-pr-comment
+[echoproperties] env.COPILOT_AGENT_BASE_COMMIT=copilot/add-historical-election-trends
+[echoproperties] env.COPILOT_AGENT_BRANCH_NAME=copilot/add-historical-election-trends
+[echoproperties] env.COPILOT_AGENT_CALLBACK_URL=https\://api.githubcopilot.com/agents/swe/agent
+[echoproperties] env.COPILOT_AGENT_COMMIT_EMAIL=198982749+Copilot@users.noreply.github.com
+[echoproperties] env.COPILOT_AGENT_COMMIT_LOGIN=copilot-swe-agent[bot]
+[echoproperties] env.COPILOT_AGENT_CONTENT_FILTER_MODE=markdown
+[echoproperties] env.COPILOT_AGENT_DEBUG=false
+[echoproperties] env.COPILOT_AGENT_FIREWALL_ENABLE_RULESET_ALLOW_LIST=true
+[echoproperties] env.COPILOT_AGENT_FIREWALL_LOG_FILE=/home/runner/work/_temp/runtime-logs/fw.jsonl
+[echoproperties] env.COPILOT_AGENT_FIREWALL_RULESET_ALLOW_LIST=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\=
+[echoproperties] env.COPILOT_AGENT_INJECTED_SECRET_NAMES=COPILOT_MCP_GITHUB_PERSONAL_ACCESS_TOKEN
+[echoproperties] env.COPILOT_AGENT_ISSUE_NUMBER=0
+[echoproperties] env.COPILOT_AGENT_MCP_SERVER_TEMP=/home/runner/work/_temp/mcp-server
+[echoproperties] env.COPILOT_AGENT_ONLINE_EVALUATION_DISABLED=false
+[echoproperties] env.COPILOT_AGENT_PR_COMMIT_COUNT=13
+[echoproperties] env.COPILOT_AGENT_PR_NUMBER=
+[echoproperties] env.COPILOT_AGENT_RUNTIME_VERSION=runtime-497bb9b8d850dff210bf15051d49acf4020ca60d
+[echoproperties] env.COPILOT_AGENT_SOURCE_ENVIRONMENT=production
+[echoproperties] env.COPILOT_AGENT_START_TIME_SEC=1768385798
+[echoproperties] env.COPILOT_AGENT_TIMEOUT_MIN=59
+[echoproperties] env.COPILOT_API_URL=https\://api.githubcopilot.com
+[echoproperties] env.COPILOT_EXPERIMENTS=ghpad_aa\:true
+[echoproperties] env.COPILOT_EXPERIMENT_ASSIGNMENT_CONTEXT=copilot_t_ci\:31333650;ghpad_aa_t\:31385605;
+[echoproperties] env.COPILOT_FEATURE_FLAGS=copilot_swe_agent_firewall_enabled_by_default,copilot_swe_agent_vision,copilot_swe_agent_parallel_tool_execution,copilot_swe_agent_enable_security_tool,copilot_swe_agent_code_review,copilot_swe_agent_validation_agent_dependencies,copilot_swe_agent_secret_scanning_hook,copilot_swe_agent_enable_dependabot_checker,copilot-feature-agentic-memory
+[echoproperties] env.COPILOT_JOB_EVENT_TYPE=pull_request_comment
+[echoproperties] env.COPILOT_MCP_ENABLED=true
+[echoproperties] env.COPILOT_USE_ASYNC_SESSIONS=false
+[echoproperties] env.COPILOT_USE_SESSIONS=true
+[echoproperties] env.CPD_SAVE_TRAJECTORY_OUTPUT=/home/runner/work/_temp/copilot-developer-action-main/dist/trajectory.md
+[echoproperties] env.CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+[echoproperties] env.DBUS_SESSION_BUS_ADDRESS=unix\:path\=/run/user/0/bus
+[echoproperties] env.DEBIAN_FRONTEND=noninteractive
+[echoproperties] env.DOTNET_MULTILEVEL_LOOKUP=0
+[echoproperties] env.DOTNET_NOLOGO=1
+[echoproperties] env.DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
+[echoproperties] env.DOTNET_SYSTEM_NET_DISABLEIPV6=1
+[echoproperties] env.EDGEWEBDRIVER=/usr/local/share/edge_driver
+[echoproperties] env.ENABLE_RUNNER_TRACING=true
+[echoproperties] env.FIREWALL_RULESET_CONTENT=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\=
+[echoproperties] env.GECKOWEBDRIVER=/usr/local/share/gecko_driver
+[echoproperties] env.GHCUP_INSTALL_BASE_PREFIX=/usr/local
+[echoproperties] env.GITHUB_ACTION=__run_80
+[echoproperties] env.GITHUB_ACTIONS=true
+[echoproperties] env.GITHUB_ACTION_REF=
+[echoproperties] env.GITHUB_ACTION_REPOSITORY=
+[echoproperties] env.GITHUB_ACTOR=copilot-swe-agent[bot]
+[echoproperties] env.GITHUB_ACTOR_ID=198982749
+[echoproperties] env.GITHUB_API_URL=https\://api.github.com
+[echoproperties] env.GITHUB_BASE_REF=
+[echoproperties] env.GITHUB_DOWNLOADS_URL=https\://api.github.com/internal/user-attachments/assets
+[echoproperties] env.GITHUB_ENV=/home/runner/work/_temp/_runner_file_commands/set_env_db67cb4a-5875-4488-be2b-f3438a0dbf65
+[echoproperties] env.GITHUB_EVENT_NAME=dynamic
+[echoproperties] env.GITHUB_EVENT_PATH=/home/runner/work/_temp/_github_workflow/event.json
+[echoproperties] env.GITHUB_GRAPHQL_URL=https\://api.github.com/graphql
+[echoproperties] env.GITHUB_HEAD_REF=
+[echoproperties] env.GITHUB_JOB=copilot
+[echoproperties] env.GITHUB_OUTPUT=/home/runner/work/_temp/_runner_file_commands/set_output_db67cb4a-5875-4488-be2b-f3438a0dbf65
+[echoproperties] env.GITHUB_PATH=/home/runner/work/_temp/_runner_file_commands/add_path_db67cb4a-5875-4488-be2b-f3438a0dbf65
+[echoproperties] env.GITHUB_REF=refs/heads/copilot/add-historical-election-trends
+[echoproperties] env.GITHUB_REF_NAME=copilot/add-historical-election-trends
+[echoproperties] env.GITHUB_REF_PROTECTED=false
+[echoproperties] env.GITHUB_REF_TYPE=branch
+[echoproperties] env.GITHUB_REPOSITORY=Hack23/cia
+[echoproperties] env.GITHUB_REPOSITORY_ID=40047080
+[echoproperties] env.GITHUB_REPOSITORY_OWNER=Hack23
+[echoproperties] env.GITHUB_REPOSITORY_OWNER_ID=13600698
+[echoproperties] env.GITHUB_RETENTION_DAYS=90
+[echoproperties] env.GITHUB_RUN_ATTEMPT=1
+[echoproperties] env.GITHUB_RUN_ID=20990496725
+[echoproperties] env.GITHUB_RUN_NUMBER=503
+[echoproperties] env.GITHUB_SERVER_URL=https\://github.com
+[echoproperties] env.GITHUB_SHA=39aba3e361838bee6d3620de3508ad033089cd4b
+[echoproperties] env.GITHUB_STATE=/home/runner/work/_temp/_runner_file_commands/save_state_db67cb4a-5875-4488-be2b-f3438a0dbf65
+[echoproperties] env.GITHUB_STEP_SUMMARY=/home/runner/work/_temp/_runner_file_commands/step_summary_db67cb4a-5875-4488-be2b-f3438a0dbf65
+[echoproperties] env.GITHUB_TRIGGERING_ACTOR=copilot-swe-agent[bot]
+[echoproperties] env.GITHUB_UPLOADS_URL=https\://uploads.github.com/user-attachments/assets
+[echoproperties] env.GITHUB_WORKFLOW=dynamic/copilot-swe-agent/copilot
+[echoproperties] env.GITHUB_WORKFLOW_REF=Hack23/cia/dynamic/copilot-swe-agent/copilot@refs/heads/copilot/add-historical-election-trends
+[echoproperties] env.GITHUB_WORKFLOW_SHA=39aba3e361838bee6d3620de3508ad033089cd4b
+[echoproperties] env.GITHUB_WORKSPACE=/home/runner/work/cia/cia
+[echoproperties] env.GOROOT_1_22_X64=/opt/hostedtoolcache/go/1.22.12/x64
+[echoproperties] env.GOROOT_1_23_X64=/opt/hostedtoolcache/go/1.23.12/x64
+[echoproperties] env.GOROOT_1_24_X64=/opt/hostedtoolcache/go/1.24.11/x64
+[echoproperties] env.GOROOT_1_25_X64=/opt/hostedtoolcache/go/1.25.5/x64
+[echoproperties] env.GRADLE_HOME=/usr/share/gradle-9.2.1
+[echoproperties] env.HOME=/home/runner
+[echoproperties] env.HOMEBREW_CLEANUP_PERIODIC_FULL_DAYS=3650
+[echoproperties] env.HOMEBREW_NO_AUTO_UPDATE=1
+[echoproperties] env.INVOCATION_ID=6a883fc9e078482a957a0f93bcf8e038
+[echoproperties] env.ImageOS=ubuntu24
+[echoproperties] env.ImageVersion=20260105.202.1
+[echoproperties] env.JAVA_HOME=/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.1-8/x64
+[echoproperties] env.JAVA_HOME_11_X64=/usr/lib/jvm/temurin-11-jdk-amd64
+[echoproperties] env.JAVA_HOME_17_X64=/usr/lib/jvm/temurin-17-jdk-amd64
+[echoproperties] env.JAVA_HOME_21_X64=/usr/lib/jvm/temurin-21-jdk-amd64
+[echoproperties] env.JAVA_HOME_25_X64=/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.1-8/x64
+[echoproperties] env.JAVA_HOME_8_X64=/usr/lib/jvm/temurin-8-jdk-amd64
+[echoproperties] env.JOURNAL_STREAM=9\:10983
+[echoproperties] env.LANG=C.UTF-8
+[echoproperties] env.LOGNAME=runner
+[echoproperties] env.MAIL=/var/mail/runner
+[echoproperties] env.MEMORY_PRESSURE_WATCH=/sys/fs/cgroup/system.slice/hosted-compute-agent.service/memory.pressure
+[echoproperties] env.MEMORY_PRESSURE_WRITE=c29tZSAyMDAwMDAgMjAwMDAwMAA\=
+[echoproperties] env.NODE_EXTRA_CA_CERTS=/home/runner/work/_temp/runtime-logs/mkcert/rootCA.pem
+[echoproperties] env.NVM_DIR=/home/runner/.nvm
+[echoproperties] env.OLDPWD=/home/runner/work/cia/cia
+[echoproperties] env.PATH=/opt/hostedtoolcache/maven/3.9.9/x64/bin\:/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/25.0.1-8/x64/bin\:/snap/bin\:/home/runner/.local/bin\:/opt/pipx_bin\:/home/runner/.cargo/bin\:/home/runner/.config/composer/vendor/bin\:/usr/local/.ghcup/bin\:/home/runner/.dotnet/tools\:/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/usr/games\:/usr/local/games\:/snap/bin
+[echoproperties] env.PIPX_BIN_DIR=/opt/pipx_bin
+[echoproperties] env.PIPX_HOME=/opt/pipx
+[echoproperties] env.POWERSHELL_DISTRIBUTION_CHANNEL=GitHub-Actions-ubuntu24
+[echoproperties] env.PWD=/home/runner/work/cia/cia/citizen-intelligence-agency
+[echoproperties] env.REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+[echoproperties] env.RUNNER_ARCH=X64
+[echoproperties] env.RUNNER_ENVIRONMENT=github-hosted
+[echoproperties] env.RUNNER_NAME=GitHub Actions 1000130703
+[echoproperties] env.RUNNER_OS=Linux
+[echoproperties] env.RUNNER_TEMP=/home/runner/work/_temp
+[echoproperties] env.RUNNER_TOOL_CACHE=/opt/hostedtoolcache
+[echoproperties] env.RUNNER_TRACKING_ID=github_3c60e8a9-935b-47d9-9b09-ddada5a49792
+[echoproperties] env.RUNNER_WORKSPACE=/home/runner/work/cia
+[echoproperties] env.SECRET_SCANNING_URL=https\://scanning-api.github.com/api/v1/scan/multipart
+[echoproperties] env.SELENIUM_JAR_PATH=/usr/share/java/selenium-server.jar
+[echoproperties] env.SGX_AESM_ADDR=1
+[echoproperties] env.SHELL=/bin/bash
+[echoproperties] env.SHLVL=3
+[echoproperties] env.SHOULD_CONTINUE=true
+[echoproperties] env.SSL_CERT_DIR=/etc/ssl/certs
+[echoproperties] env.SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
+[echoproperties] env.SUDO_COMMAND=/usr/bin/su -c /home/runner/work/_temp/runtime-logs/wrapper.sh
+[echoproperties] env.SUDO_GID=1001
+[echoproperties] env.SUDO_UID=1001
+[echoproperties] env.SUDO_USER=runner
+[echoproperties] env.SWIFT_PATH=/usr/share/swift/usr/bin
+[echoproperties] env.SYSTEMD_EXEC_PID=1916
+[echoproperties] env.TERM=xterm-color
+[echoproperties] env.USER=runner
+[echoproperties] env.VCPKG_INSTALLATION_ROOT=/usr/local/share/vcpkg
+[echoproperties] env.XDG_CONFIG_HOME=/home/runner/.config
+[echoproperties] env.XDG_RUNTIME_DIR=/run/user/1001
+[echoproperties] env.XDG_SESSION_CLASS=background
+[echoproperties] env.XDG_SESSION_ID=c1
+[echoproperties] env.XDG_SESSION_TYPE=unspecified
+[echoproperties] env._=/usr/bin/timeout
+[echoproperties] file.encoding=UTF-8
+[echoproperties] file.separator=/
+[echoproperties] java.class.path=/usr/share/ant/lib/ant-launcher.jar\:/usr/share/ant/lib/ant-jmf.jar\:/usr/share/ant/lib/ant-javamail.jar\:/usr/share/ant/lib/ant-apache-regexp.jar\:/usr/share/ant/lib/ant-apache-bsf.jar\:/usr/share/ant/lib/ant-apache-bcel.jar\:/usr/share/ant/lib/ant-jsch.jar\:/usr/share/ant/lib/ant-junitlauncher.jar\:/usr/share/ant/lib/ant.jar\:/usr/share/ant/lib/ant-apache-resolver.jar\:/usr/share/ant/lib/ant-apache-oro.jar\:/usr/share/ant/lib/ant-apache-xalan2.jar\:/usr/share/ant/lib/ant-commons-net.jar\:/usr/share/ant/lib/ant-jdepend.jar\:/usr/share/ant/lib/ant-launcher.jar\:/usr/share/ant/lib/ant-apache-log4j.jar\:/usr/share/ant/lib/ant-junit.jar\:/usr/share/ant/lib/ant-swing.jar\:/usr/share/ant/lib/ant-testutil.jar\:/usr/share/ant/lib/ant-commons-logging.jar\:/usr/share/ant/lib/ant-junit4.jar\:/usr/share/ant/lib/ant-xz.jar\:/usr/share/ant/lib/ant-antlr.jar
+[echoproperties] java.class.version=69.0
+[echoproperties] java.home=/usr/lib/jvm/temurin-25-jdk-amd64
+[echoproperties] java.io.tmpdir=/tmp
+[echoproperties] java.library.path=/usr/java/packages/lib\:/usr/lib64\:/lib64\:/lib\:/usr/lib
+[echoproperties] java.runtime.name=OpenJDK Runtime Environment
+[echoproperties] java.runtime.version=25.0.1+8-LTS
+[echoproperties] java.specification.name=Java Platform API Specification
+[echoproperties] java.specification.vendor=Oracle Corporation
+[echoproperties] java.specification.version=25
+[echoproperties] java.vendor=Eclipse Adoptium
+[echoproperties] java.vendor.url=https\://adoptium.net/
+[echoproperties] java.vendor.url.bug=https\://github.com/adoptium/adoptium-support/issues
+[echoproperties] java.vendor.version=Temurin-25.0.1+8
+[echoproperties] java.version=25.0.1
+[echoproperties] java.version.date=2025-10-21
+[echoproperties] java.vm.compressedOopsMode=Zero based
+[echoproperties] java.vm.info=mixed mode, sharing
+[echoproperties] java.vm.name=OpenJDK 64-Bit Server VM
+[echoproperties] java.vm.specification.name=Java Virtual Machine Specification
+[echoproperties] java.vm.specification.vendor=Oracle Corporation
+[echoproperties] java.vm.specification.version=25
+[echoproperties] java.vm.vendor=Eclipse Adoptium
+[echoproperties] java.vm.version=25.0.1+8-LTS
+[echoproperties] jdk.debug=release
+[echoproperties] line.separator=\n
+[echoproperties] native.encoding=UTF-8
+[echoproperties] os.arch=amd64
+[echoproperties] os.name=Linux
+[echoproperties] os.version=6.11.0-1018-azure
+[echoproperties] path.separator=\:
+[echoproperties] stderr.encoding=UTF-8
+[echoproperties] stdin.encoding=UTF-8
+[echoproperties] stdout.encoding=UTF-8
+[echoproperties] sun.arch.data.model=64
+[echoproperties] sun.boot.library.path=/usr/lib/jvm/temurin-25-jdk-amd64/lib
+[echoproperties] sun.cpu.endian=little
+[echoproperties] sun.io.unicode.encoding=UnicodeLittle
+[echoproperties] sun.java.command=org.apache.tools.ant.launch.Launcher -cp  start
+[echoproperties] sun.java.launcher=SUN_STANDARD
+[echoproperties] sun.jnu.encoding=UTF-8
+[echoproperties] sun.management.compiler=HotSpot 64-Bit Tiered Compilers
+[echoproperties] user.dir=/home/runner/work/cia/cia/citizen-intelligence-agency
+[echoproperties] user.home=/home/runner
+[echoproperties] user.language=en
+[echoproperties] user.name=runner
+
+init:
+     [echo] MAVEN binary = mvn
+
+start:
+     [exec] WARNING: A restricted method in java.lang.System has been called
+     [exec] WARNING: java.lang.System::load has been called by org.fusesource.jansi.internal.JansiLoader in an unnamed module (file:/opt/hostedtoolcache/maven/3.9.9/x64/lib/jansi-2.4.1.jar)
+     [exec] WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+     [exec] WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+     [exec] 
+     [exec] WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+     [exec] WARNING: sun.misc.Unsafe::objectFieldOffset has been called by com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper (file:/opt/hostedtoolcache/maven/3.9.9/x64/lib/guava-33.2.1-jre.jar)
+     [exec] WARNING: Please consider reporting this to the maintainers of class com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper
+     [exec] WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+     [exec] [INFO] Scanning for projects...
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Detecting the operating system and CPU architecture
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] os.detected.name: linux
+     [exec] [INFO] os.detected.arch: x86_64
+     [exec] [INFO] os.detected.bitness: 64
+     [exec] [INFO] os.detected.version: 6.11
+     [exec] [INFO] os.detected.version.major: 6
+     [exec] [INFO] os.detected.version.minor: 11
+     [exec] [INFO] os.detected.release: ubuntu
+     [exec] [INFO] os.detected.release.version: 24.04
+     [exec] [INFO] os.detected.release.like.ubuntu: true
+     [exec] [INFO] os.detected.release.like.debian: true
+     [exec] [INFO] os.detected.classifier: linux-x86_64
+     [exec] [INFO] 
+     [exec] [INFO] -------------< com.hack23.cia:citizen-intelligence-agency >-------------
+     [exec] [INFO] Building Citizen Intelligence Agency 2025-SNAPSHOT
+     [exec] [INFO]   from pom.xml
+     [exec] [INFO] --------------------------------[ war ]---------------------------------
+     [exec] [WARNING] The artifact com.google.gwt:gwt-dev:jar:2.10.0 has been relocated to org.gwtproject:gwt-dev:jar:2.10.0
+     [exec] [WARNING] The artifact com.google.gwt:gwt-user:jar:2.10.0 has been relocated to org.gwtproject:gwt-user:jar:2.10.0
+     [exec] [INFO] 
+     [exec] [INFO] --- exec:3.6.1:java (default-cli) @ citizen-intelligence-agency ---
+     [exec] [WARNING] 
+     [exec] java.lang.ClassNotFoundException: com.hack23.cia.systemintegrationtest.CitizenIntelligenceAgencyServer
+     [exec]     at org.codehaus.mojo.exec.URLClassLoaderBuilder$ExecJavaClassLoader.loadClass (URLClassLoaderBuilder.java:211)
+     [exec]     at java.lang.ClassLoader.loadClass (ClassLoader.java:490)
+     [exec]     at org.codehaus.mojo.exec.ExecJavaMojo.doExec (ExecJavaMojo.java:366)
+     [exec]     at org.codehaus.mojo.exec.ExecJavaMojo.lambda$execute$0 (ExecJavaMojo.java:289)
+     [exec]     at java.lang.Thread.run (Thread.java:1474)
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] BUILD FAILURE
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [INFO] Total time:  2.052 s
+     [exec] [INFO] Finished at: 2026-01-14T10:20:34Z
+     [exec] [INFO] ------------------------------------------------------------------------
+     [exec] [ERROR] Failed to execute goal org.codehaus.mojo:exec-maven-plugin:3.6.1:java (default-cli) on project citizen-intelligence-agency: An exception occurred while executing the Java class. com.hack23.cia.systemintegrationtest.CitizenIntelligenceAgencyServer -> [Help 1]
+     [exec] [ERROR] 
+     [exec] [ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+     [exec] [ERROR] Re-run Maven using the -X switch to enable full debug logging.
+     [exec] [ERROR] 
+     [exec] [ERROR] For more information about the errors and possible solutions, please read the following articles:
+     [exec] [ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+     [exec] Result: 1
+
+BUILD SUCCESSFUL
+Total time: 3 seconds
