@@ -48,10 +48,10 @@ This document describes the sample data extraction process for the 3 new party l
 - OPPOSITION: alignment_rate < 35% (opposing parties)
 
 **Strategic Shift Detection**:
-- COALITION_FORMATION: Alignment increases from <50% to >=70%
-- COALITION_BREAKUP: Alignment decreases from >=70% to <50%
-- MAJOR_REALIGNMENT: Alignment changes by >=25 percentage points
-- SIGNIFICANT_SHIFT: Alignment changes by >=15 percentage points
+- COALITION_FORMATION: Alignment increases from <50% to >=65%
+- COALITION_BREAKUP: Alignment decreases from >=65% to <50%
+- MAJOR_REALIGNMENT: Alignment changes by >=20 percentage points
+- SIGNIFICANT_SHIFT: Alignment changes by >=10 percentage points
 - MINOR_SHIFT: Other changes
 
 ### 3. view_riksdagen_party_electoral_trends
