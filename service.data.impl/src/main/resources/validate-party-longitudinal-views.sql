@@ -201,7 +201,6 @@ SELECT
 FROM view_riksdagen_party_longitudinal_performance
 GROUP BY election_cycle_id, trajectory_win_rate
 ORDER BY election_cycle_id, trajectory_win_rate;
-ORDER BY election_cycle_id, trajectory;
 
 \echo ''
 \echo '6.2 Performance Tier Distribution:'
@@ -213,11 +212,10 @@ FROM view_riksdagen_party_longitudinal_performance
 GROUP BY election_cycle_id, performance_tier
 ORDER BY election_cycle_id, 
          CASE performance_tier 
-             WHEN 'DOMINANT' THEN 1 
-             WHEN 'STRONG' THEN 2 
-             WHEN 'COMPETITIVE' THEN 3 
-             WHEN 'MODERATE' THEN 4 
-             WHEN 'WEAK' THEN 5 
+             WHEN 'ELITE_PERFORMER' THEN 1 
+             WHEN 'STRONG_PERFORMER' THEN 2 
+             WHEN 'MODERATE_PERFORMER' THEN 3 
+             WHEN 'WEAK_PERFORMER' THEN 4 
          END;
 
 \echo ''

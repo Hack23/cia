@@ -109,7 +109,7 @@ psql -h localhost -U eris -d cia_dev -c "COPY (
 psql -h localhost -U eris -d cia_dev -c "COPY (
   SELECT * FROM view_riksdagen_party_electoral_trends 
   WHERE party IN ('S', 'M', 'SD')
-  ORDER BY party, election_cycle_start
+  ORDER BY party, election_cycle_id, cycle_year, semester
   LIMIT 20
 ) TO STDOUT WITH CSV HEADER" > party_electoral_trends_sample.csv
 ```
@@ -140,13 +140,13 @@ SELECT
   party, 
   election_cycle_id, 
   win_rate, 
-  trajectory, 
+  trajectory_win_rate, 
   performance_tier,
-  win_rate_change
+  win_rate_change_absolute
 FROM view_riksdagen_party_longitudinal_performance
 WHERE party = 'S' 
-  AND election_cycle_start BETWEEN 2002 AND 2014
-ORDER BY election_cycle_start;
+  AND calendar_year BETWEEN 2002 AND 2014
+ORDER BY calendar_year;
 ```
 
 ### 4. Validate Coalition Formation: Alliance Parties 2006-2009
@@ -156,7 +156,7 @@ SELECT
   party_1, 
   party_2, 
   election_cycle_id, 
-  avg_alignment, 
+  alignment_rate, 
   coalition_strength
 FROM view_riksdagen_party_coalition_evolution
 WHERE election_cycle_id = '2006-2009'
@@ -173,13 +173,13 @@ ORDER BY party_1, party_2;
 SELECT 
   party, 
   election_cycle_id, 
-  seat_count, 
+  seat_count_proxy, 
   electoral_trend, 
   party_size_category,
-  seat_change
+  seat_change_absolute
 FROM view_riksdagen_party_electoral_trends
 WHERE party = 'SD'
-ORDER BY election_cycle_start;
+ORDER BY election_cycle_id;
 ```
 
 ## Expected Results

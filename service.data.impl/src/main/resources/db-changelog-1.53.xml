@@ -157,6 +157,10 @@ election_cycle_periods AS (
 -- BUILD ON EXISTING VIEW: view_riksdagen_vote_data_ballot_party_summary_annual
 party_semester_data AS (
     SELECT 
+        -- Swedish Parliament Semester Structure (simplified month-based implementation)
+        -- Note: Actual parliamentary structure is Sep 1-Jan 25 (autumn), Jan 26-Aug 31 (spring)
+        -- This implementation uses full months for simplicity: Sep-Jan (months 9,10,11,12,1) = autumn, Feb-Aug (months 2-8) = spring
+        -- The simplified approach is acceptable for longitudinal analysis at semester-level granularity
         ecp.election_cycle_id,
         ecp.cycle_year,
         ecp.calendar_year,
@@ -383,8 +387,6 @@ ORDER BY ws.party, ws.election_cycle_id, ws.cycle_year, ws.semester;
         <dropView viewName="view_riksdagen_party_longitudinal_performance"/>
     </rollback>
 </changeSet>
-
-</databaseChangeLog>
 
 <!-- ========================================================================= -->
 <!-- 2. PARTY COALITION EVOLUTION (OPTIMIZED WITH COMPREHENSIVE KPIs)         -->
