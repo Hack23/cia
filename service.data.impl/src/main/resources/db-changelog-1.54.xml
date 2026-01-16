@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+<changeSet id="1.54-intro" author="intelligence-operative-analytics">
+    <comment>v1.54 Government Body Data Integration from ESV</comment>
+    <sql>SELECT 'v1.54' AS version, CURRENT_TIMESTAMP AS applied_at;</sql>
+</changeSet>
+
+<!-- Create government_body_data table -->
+<changeSet id="1.54-create-government-body-data-table" author="intelligence-operative-analytics" failOnError="true">
+    <comment>Create government_body_data table to store Swedish government body information from ESV</comment>
+    <createTable tableName="government_body_data">
+        <column name="id" type="BIGSERIAL">
+            <constraints primaryKey="true" nullable="false"/>
+        </column>
+        <column name="year" type="INTEGER">
+            <constraints nullable="false"/>
+        </column>
+        <column name="name" type="VARCHAR(500)">
+            <constraints nullable="false"/>
+        </column>
+        <column name="consecutive_number" type="INTEGER"/>
+        <column name="government_body_id" type="VARCHAR(100)"/>
+        <column name="m_code" type="VARCHAR(50)"/>
+        <column name="ministry" type="VARCHAR(500)"/>
+        <column name="org_number" type="VARCHAR(50)"/>
+        <column name="head_count" type="INTEGER"/>
+        <column name="annual_work_head_count" type="INTEGER"/>
+        <column name="vat" type="VARCHAR(50)"/>
+        <column name="comment" type="VARCHAR(1000)"/>
+    </createTable>
+</changeSet>
+
+<!-- Add indexes for performance -->
+<changeSet id="1.54-add-government-body-indexes" author="intelligence-operative-analytics" failOnError="true">
+    <comment>Add indexes to government_body_data table for query performance</comment>
+    
+    <createIndex indexName="idx_gov_body_year" tableName="government_body_data">
+        <column name="year"/>
+    </createIndex>
+    
+    <createIndex indexName="idx_gov_body_name" tableName="government_body_data">
+        <column name="name"/>
+    </createIndex>
+    
+    <createIndex indexName="idx_gov_body_ministry" tableName="government_body_data">
+        <column name="ministry"/>
+    </createIndex>
+    
+    <createIndex indexName="idx_gov_body_org_number" tableName="government_body_data">
+        <column name="org_number"/>
+    </createIndex>
+</changeSet>
+
+<!-- Add comments to table and columns for documentation -->
+<changeSet id="1.54-add-government-body-comments" author="intelligence-operative-analytics" failOnError="true">
+    <comment>Add documentation comments to government_body_data table and columns</comment>
+    
+    <sql>
+        COMMENT ON TABLE government_body_data IS 'Swedish government body information from ESV (Economic Security and Vulnerability Authority). Source: Myndighetsinformation.xls';
+        COMMENT ON COLUMN government_body_data.id IS 'Primary key';
+        COMMENT ON COLUMN government_body_data.year IS 'Year of the data record';
+        COMMENT ON COLUMN government_body_data.name IS 'Name of the government body (Myndighetsnamn)';
+        COMMENT ON COLUMN government_body_data.consecutive_number IS 'Consecutive number identifier';
+        COMMENT ON COLUMN government_body_data.government_body_id IS 'Government body identifier code';
+        COMMENT ON COLUMN government_body_data.m_code IS 'Ministry code (M-kod)';
+        COMMENT ON COLUMN government_body_data.ministry IS 'Ministry name (Departement)';
+        COMMENT ON COLUMN government_body_data.org_number IS 'Organization number (Organisationsnummer)';
+        COMMENT ON COLUMN government_body_data.head_count IS 'Head count (Antal anställda)';
+        COMMENT ON COLUMN government_body_data.annual_work_head_count IS 'Annual work head count (Årsarbetskrafter)';
+        COMMENT ON COLUMN government_body_data.vat IS 'VAT information (Momsuppgift)';
+        COMMENT ON COLUMN government_body_data.comment IS 'Additional comments or notes';
+    </sql>
+</changeSet>
+
+</databaseChangeLog>

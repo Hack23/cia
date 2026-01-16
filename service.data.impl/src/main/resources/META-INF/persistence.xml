@@ -100,6 +100,9 @@
 		<class>com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenGovermentRolesEmbeddedId</class>
 		<class>com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenGovermentProposals</class>
 
+		<!-- V1.54 Government Body Data -->
+		<class>com.hack23.cia.model.internal.application.data.ministry.impl.GovernmentBodyData</class>
+
 		<!-- V2.0 Missing OSINT Framework Views - Phase 2 HIGH PRIORITY -->
 		<class>com.hack23.cia.model.internal.application.data.ministry.impl.ViewMinistryEffectivenessTrends</class>
 		<class>com.hack23.cia.model.internal.application.data.ministry.impl.ViewMinistryProductivityMatrix</class>
