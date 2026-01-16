@@ -41,6 +41,7 @@ open module com.hack23.cia.model.internal.application.user.impl {
 
     requires java.xml.bind;
     requires java.persistence;
+    requires org.hibernate.orm.core;
     requires org.hibernate.orm.jpamodelgen;
     requires org.slf4j;
     requires org.apache.commons.lang3;

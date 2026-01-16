@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict 2jBR1sZYUdN7c3C4atoMEGOW1oZkRbWIa1vYHrj9jo8ziDkUBNmv45YQ5OeLTFP
+\restrict PTTwc9JYgzS80xYwpQHHhzUBVD1ymcHsn8fmlcrz95MGI0rIyeb0OBeOEG9kvNK
 
 -- Dumped from database version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
@@ -9666,6 +9666,393 @@ CREATE VIEW public.view_riksdagen_party_coalation_against_annual_summary AS
 
 
 --
+-- Name: view_riksdagen_vote_data_ballot_party_summary_daily; Type: MATERIALIZED VIEW; Schema: public; Owner: -
+--
+
+CREATE MATERIALIZED VIEW public.view_riksdagen_vote_data_ballot_party_summary_daily AS
+ WITH daily_stats AS (
+         SELECT view_riksdagen_vote_data_ballot_party_summary.vote_date AS embedded_id_vote_date,
+            view_riksdagen_vote_data_ballot_party_summary.embedded_id_party,
+            count(*) AS number_ballots,
+            sum(view_riksdagen_vote_data_ballot_party_summary.total_votes) AS total_votes,
+            sum(view_riksdagen_vote_data_ballot_party_summary.yes_votes) AS yes_votes,
+            sum(view_riksdagen_vote_data_ballot_party_summary.no_votes) AS no_votes,
+            sum(view_riksdagen_vote_data_ballot_party_summary.abstain_votes) AS abstain_votes,
+            sum(view_riksdagen_vote_data_ballot_party_summary.absent_votes) AS absent_votes,
+            sum(view_riksdagen_vote_data_ballot_party_summary.party_total_votes) AS party_total_votes,
+            sum(view_riksdagen_vote_data_ballot_party_summary.party_yes_votes) AS party_yes_votes,
+            sum(view_riksdagen_vote_data_ballot_party_summary.party_no_votes) AS party_no_votes,
+            sum(view_riksdagen_vote_data_ballot_party_summary.party_abstain_votes) AS party_abstain_votes,
+            sum(view_riksdagen_vote_data_ballot_party_summary.party_absent_votes) AS party_absent_votes,
+            sum(
+                CASE
+                    WHEN view_riksdagen_vote_data_ballot_party_summary.party_won THEN 1
+                    ELSE 0
+                END) AS party_won_total,
+            sum(
+                CASE
+                    WHEN view_riksdagen_vote_data_ballot_party_summary.approved THEN 1
+                    ELSE 0
+                END) AS approved_total,
+            round(avg(view_riksdagen_vote_data_ballot_party_summary.avg_born_year), 0) AS avg_born_year,
+            round(avg(view_riksdagen_vote_data_ballot_party_summary.party_avg_born_year), 0) AS party_avg_born_year,
+            max(view_riksdagen_vote_data_ballot_party_summary.total_votes) AS avg_total_votes,
+            avg(view_riksdagen_vote_data_ballot_party_summary.percentage_yes) AS orig_percentage_yes,
+            avg(view_riksdagen_vote_data_ballot_party_summary.percentage_no) AS orig_percentage_no,
+            avg(view_riksdagen_vote_data_ballot_party_summary.percentage_absent) AS orig_percentage_absent,
+            avg(view_riksdagen_vote_data_ballot_party_summary.percentage_abstain) AS orig_percentage_abstain,
+            avg(view_riksdagen_vote_data_ballot_party_summary.percentage_male) AS orig_percentage_male,
+            avg(view_riksdagen_vote_data_ballot_party_summary.party_percentage_male) AS orig_party_percentage_male
+           FROM public.view_riksdagen_vote_data_ballot_party_summary
+          GROUP BY view_riksdagen_vote_data_ballot_party_summary.embedded_id_party, view_riksdagen_vote_data_ballot_party_summary.vote_date
+        )
+ SELECT embedded_id_vote_date,
+    embedded_id_party,
+    number_ballots,
+    avg_born_year,
+    avg_total_votes,
+    round((yes_votes / (NULLIF(number_ballots, 0))::numeric), 2) AS avg_yes_votes,
+    round((no_votes / (NULLIF(number_ballots, 0))::numeric), 2) AS avg_no_votes,
+    round((abstain_votes / (NULLIF(number_ballots, 0))::numeric), 2) AS avg_abstain_votes,
+    round((absent_votes / (NULLIF(number_ballots, 0))::numeric), 2) AS avg_absent_votes,
+    round(((100.0 * (approved_total)::numeric) / (NULLIF(number_ballots, 0))::numeric), 2) AS percentage_approved,
+    round(orig_percentage_yes, 2) AS avg_percentage_yes,
+    round(orig_percentage_no, 2) AS avg_percentage_no,
+    round(orig_percentage_absent, 2) AS avg_percentage_absent,
+    round(orig_percentage_abstain, 2) AS avg_percentage_abstain,
+    round(orig_percentage_male, 2) AS avg_percentage_male,
+    total_votes,
+    yes_votes,
+    no_votes,
+    abstain_votes,
+    absent_votes,
+    party_total_votes,
+    party_yes_votes,
+    party_no_votes,
+    party_abstain_votes,
+    party_absent_votes,
+    party_avg_born_year,
+    round(orig_party_percentage_male, 2) AS party_avg_percentage_male,
+    round(((100.0 * party_yes_votes) / NULLIF(party_total_votes, (0)::numeric)), 2) AS party_percentage_yes,
+    round(((100.0 * party_no_votes) / NULLIF(party_total_votes, (0)::numeric)), 2) AS party_percentage_no,
+    round(((100.0 * party_abstain_votes) / NULLIF(party_total_votes, (0)::numeric)), 2) AS party_percentage_abstain,
+    round(((100.0 * party_absent_votes) / NULLIF(party_total_votes, (0)::numeric)), 2) AS party_percentage_absent,
+    round(((100.0 * yes_votes) / NULLIF(total_votes, (0)::numeric)), 2) AS percentage_yes,
+    round(((100.0 * no_votes) / NULLIF(total_votes, (0)::numeric)), 2) AS percentage_no,
+    round(((100.0 * abstain_votes) / NULLIF(total_votes, (0)::numeric)), 2) AS percentage_abstain,
+    round(((100.0 * absent_votes) / NULLIF(total_votes, (0)::numeric)), 2) AS percentage_absent,
+    party_won_total,
+    round(((100.0 * (party_won_total)::numeric) / (NULLIF(number_ballots, 0))::numeric), 2) AS party_won_percentage,
+    approved_total,
+    round(((100.0 * (approved_total)::numeric) / (NULLIF(number_ballots, 0))::numeric), 2) AS approved_percentage
+   FROM daily_stats
+  ORDER BY embedded_id_vote_date, embedded_id_party
+  WITH NO DATA;
+
+
+--
+-- Name: MATERIALIZED VIEW view_riksdagen_vote_data_ballot_party_summary_daily; Type: COMMENT; Schema: public; Owner: -
+--
+
+COMMENT ON MATERIALIZED VIEW public.view_riksdagen_vote_data_ballot_party_summary_daily IS 'Daily party-level voting statistics with detailed metrics and success rates';
+
+
+--
+-- Name: view_riksdagen_vote_data_ballot_party_summary_annual; Type: MATERIALIZED VIEW; Schema: public; Owner: -
+--
+
+CREATE MATERIALIZED VIEW public.view_riksdagen_vote_data_ballot_party_summary_annual AS
+ SELECT date(date_trunc('year'::text, (embedded_id_vote_date)::timestamp with time zone)) AS embedded_id_vote_date,
+    embedded_id_party,
+    sum(number_ballots) AS number_ballots,
+    round(avg(avg_born_year), 0) AS avg_born_year,
+    round(avg(avg_percentage_yes), 2) AS avg_percentage_yes,
+    round(avg(avg_percentage_no), 2) AS avg_percentage_no,
+    round(avg(avg_percentage_absent), 2) AS avg_percentage_absent,
+    round(avg(avg_percentage_abstain), 2) AS avg_percentage_abstain,
+    round(avg(avg_percentage_male), 2) AS avg_percentage_male,
+    sum(total_votes) AS total_votes,
+    sum(yes_votes) AS yes_votes,
+    sum(no_votes) AS no_votes,
+    sum(abstain_votes) AS abstain_votes,
+    sum(absent_votes) AS absent_votes,
+    sum(party_total_votes) AS party_total_votes,
+    sum(party_yes_votes) AS party_yes_votes,
+    sum(party_no_votes) AS party_no_votes,
+    sum(party_abstain_votes) AS party_abstain_votes,
+    sum(party_absent_votes) AS party_absent_votes,
+    round(avg(party_avg_born_year), 0) AS party_avg_born_year,
+    round(avg(party_avg_percentage_male), 2) AS party_avg_percentage_male,
+    round(((100.0 * sum(party_yes_votes)) / sum(party_total_votes)), 2) AS party_percentage_yes,
+    round(((100.0 * sum(party_no_votes)) / sum(party_total_votes)), 2) AS party_percentage_no,
+    round(((100.0 * sum(party_abstain_votes)) / sum(party_total_votes)), 2) AS party_percentage_abstain,
+    round(((100.0 * sum(party_absent_votes)) / sum(party_total_votes)), 2) AS party_percentage_absent,
+    sum(party_won_total) AS party_won_total,
+    round((((100)::numeric * sum(party_won_total)) / sum(number_ballots)), 2) AS party_won_percentage,
+    sum(approved_total) AS approved_total,
+    round((((100)::numeric * sum(approved_total)) / sum(number_ballots)), 2) AS approved_percentage,
+    round(((100.0 * sum(yes_votes)) / sum(total_votes)), 2) AS percentage_yes,
+    round(((100.0 * sum(no_votes)) / sum(total_votes)), 2) AS percentage_no,
+    round(((100.0 * sum(abstain_votes)) / sum(total_votes)), 2) AS percentage_abstain,
+    round(((100.0 * sum(absent_votes)) / sum(total_votes)), 2) AS percentage_absent,
+    round(avg(percentage_approved), 2) AS avg_percentage_approved
+   FROM public.view_riksdagen_vote_data_ballot_party_summary_daily
+  GROUP BY (date(date_trunc('year'::text, (embedded_id_vote_date)::timestamp with time zone))), embedded_id_party
+  WITH NO DATA;
+
+
+--
+-- Name: view_riksdagen_party_coalition_evolution; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.view_riksdagen_party_coalition_evolution AS
+ WITH election_cycle_periods AS (
+         SELECT year_series.year_series AS calendar_year,
+                CASE
+                    WHEN ((year_series.year_series >= 2002) AND (year_series.year_series <= 2005)) THEN 2002
+                    WHEN ((year_series.year_series >= 2006) AND (year_series.year_series <= 2009)) THEN 2006
+                    WHEN ((year_series.year_series >= 2010) AND (year_series.year_series <= 2013)) THEN 2010
+                    WHEN ((year_series.year_series >= 2014) AND (year_series.year_series <= 2017)) THEN 2014
+                    WHEN ((year_series.year_series >= 2018) AND (year_series.year_series <= 2021)) THEN 2018
+                    WHEN ((year_series.year_series >= 2022) AND (year_series.year_series <= 2025)) THEN 2022
+                    WHEN ((year_series.year_series >= 2026) AND (year_series.year_series <= 2029)) THEN 2026
+                    ELSE NULL::integer
+                END AS election_year,
+            ((year_series.year_series -
+                CASE
+                    WHEN ((year_series.year_series >= 2002) AND (year_series.year_series <= 2005)) THEN 2002
+                    WHEN ((year_series.year_series >= 2006) AND (year_series.year_series <= 2009)) THEN 2006
+                    WHEN ((year_series.year_series >= 2010) AND (year_series.year_series <= 2013)) THEN 2010
+                    WHEN ((year_series.year_series >= 2014) AND (year_series.year_series <= 2017)) THEN 2014
+                    WHEN ((year_series.year_series >= 2018) AND (year_series.year_series <= 2021)) THEN 2018
+                    WHEN ((year_series.year_series >= 2022) AND (year_series.year_series <= 2025)) THEN 2022
+                    WHEN ((year_series.year_series >= 2026) AND (year_series.year_series <= 2029)) THEN 2026
+                    ELSE NULL::integer
+                END) + 1) AS cycle_year,
+            ((
+                CASE
+                    WHEN ((year_series.year_series >= 2002) AND (year_series.year_series <= 2005)) THEN 2002
+                    WHEN ((year_series.year_series >= 2006) AND (year_series.year_series <= 2009)) THEN 2006
+                    WHEN ((year_series.year_series >= 2010) AND (year_series.year_series <= 2013)) THEN 2010
+                    WHEN ((year_series.year_series >= 2014) AND (year_series.year_series <= 2017)) THEN 2014
+                    WHEN ((year_series.year_series >= 2018) AND (year_series.year_series <= 2021)) THEN 2018
+                    WHEN ((year_series.year_series >= 2022) AND (year_series.year_series <= 2025)) THEN 2022
+                    WHEN ((year_series.year_series >= 2026) AND (year_series.year_series <= 2029)) THEN 2026
+                    ELSE NULL::integer
+                END || '-'::text) ||
+                CASE
+                    WHEN ((year_series.year_series >= 2002) AND (year_series.year_series <= 2005)) THEN 2005
+                    WHEN ((year_series.year_series >= 2006) AND (year_series.year_series <= 2009)) THEN 2009
+                    WHEN ((year_series.year_series >= 2010) AND (year_series.year_series <= 2013)) THEN 2013
+                    WHEN ((year_series.year_series >= 2014) AND (year_series.year_series <= 2017)) THEN 2017
+                    WHEN ((year_series.year_series >= 2018) AND (year_series.year_series <= 2021)) THEN 2021
+                    WHEN ((year_series.year_series >= 2022) AND (year_series.year_series <= 2025)) THEN 2025
+                    WHEN ((year_series.year_series >= 2026) AND (year_series.year_series <= 2029)) THEN 2029
+                    ELSE NULL::integer
+                END) AS election_cycle_id,
+            make_date(year_series.year_series, 9, 1) AS autumn_start,
+            make_date((year_series.year_series + 1), 1, 25) AS autumn_end,
+            make_date(year_series.year_series, 1, 26) AS spring_start,
+            make_date(year_series.year_series, 8, 31) AS spring_end
+           FROM generate_series(2002, ((EXTRACT(year FROM CURRENT_DATE))::integer + 4), 1) year_series(year_series)
+          WHERE (year_series.year_series >= 2002)
+        ), coalition_semester_data AS (
+         SELECT ecp.election_cycle_id,
+            ecp.cycle_year,
+            ecp.calendar_year,
+                CASE
+                    WHEN ((EXTRACT(month FROM vbps1.embedded_id_vote_date) >= (9)::numeric) OR (EXTRACT(month FROM vbps1.embedded_id_vote_date) <= (1)::numeric)) THEN 'autumn'::text
+                    ELSE 'spring'::text
+                END AS semester,
+            vbps1.embedded_id_party AS party_1,
+            vbps2.embedded_id_party AS party_2,
+            count(DISTINCT vbps1.embedded_id_vote_date) AS joint_voting_days,
+            sum(vbps1.number_ballots) AS joint_ballots,
+            sum(
+                CASE
+                    WHEN ((vbps1.party_percentage_yes > (50)::numeric) AND (vbps2.party_percentage_yes > (50)::numeric)) THEN vbps1.number_ballots
+                    WHEN ((vbps1.party_percentage_no > (50)::numeric) AND (vbps2.party_percentage_no > (50)::numeric)) THEN vbps1.number_ballots
+                    ELSE (0)::numeric
+                END) AS aligned_ballots,
+            round(((sum(
+                CASE
+                    WHEN ((vbps1.party_percentage_yes > (50)::numeric) AND (vbps2.party_percentage_yes > (50)::numeric)) THEN vbps1.number_ballots
+                    WHEN ((vbps1.party_percentage_no > (50)::numeric) AND (vbps2.party_percentage_no > (50)::numeric)) THEN vbps1.number_ballots
+                    ELSE (0)::numeric
+                END) / NULLIF(sum(vbps1.number_ballots), (0)::numeric)) * (100)::numeric), 2) AS alignment_rate,
+            round(avg(abs((vbps1.party_percentage_yes - vbps2.party_percentage_yes))), 2) AS avg_vote_divergence,
+            round(stddev_pop(abs((vbps1.party_percentage_yes - vbps2.party_percentage_yes))), 2) AS vote_divergence_stddev
+           FROM ((election_cycle_periods ecp
+             JOIN public.view_riksdagen_vote_data_ballot_party_summary_annual vbps1 ON ((date_part('year'::text, vbps1.embedded_id_vote_date) = (ecp.calendar_year)::double precision)))
+             JOIN public.view_riksdagen_vote_data_ballot_party_summary_annual vbps2 ON (((vbps2.embedded_id_vote_date = vbps1.embedded_id_vote_date) AND ((vbps2.embedded_id_party)::text > (vbps1.embedded_id_party)::text))))
+          WHERE ((vbps1.embedded_id_party IS NOT NULL) AND (vbps2.embedded_id_party IS NOT NULL) AND (ecp.election_year IS NOT NULL))
+          GROUP BY ecp.election_cycle_id, ecp.cycle_year, ecp.calendar_year,
+                CASE
+                    WHEN ((EXTRACT(month FROM vbps1.embedded_id_vote_date) >= (9)::numeric) OR (EXTRACT(month FROM vbps1.embedded_id_vote_date) <= (1)::numeric)) THEN 'autumn'::text
+                    ELSE 'spring'::text
+                END, vbps1.embedded_id_party, vbps2.embedded_id_party
+         HAVING (count(DISTINCT vbps1.embedded_id_vote_date) >= 5)
+        ), windowed_statistics AS (
+         SELECT csd.election_cycle_id,
+            csd.cycle_year,
+            csd.calendar_year,
+            csd.semester,
+            csd.party_1,
+            csd.party_2,
+            csd.joint_voting_days,
+            csd.joint_ballots,
+            csd.aligned_ballots,
+            csd.alignment_rate,
+            csd.avg_vote_divergence,
+            csd.vote_divergence_stddev,
+            rank() OVER (PARTITION BY csd.election_cycle_id, csd.semester ORDER BY csd.alignment_rate DESC NULLS LAST) AS rank_by_alignment,
+            rank() OVER (PARTITION BY csd.election_cycle_id, csd.semester ORDER BY csd.joint_ballots DESC NULLS LAST) AS rank_by_activity,
+            rank() OVER (PARTITION BY csd.election_cycle_id, csd.semester ORDER BY csd.vote_divergence_stddev) AS rank_by_consistency,
+            percent_rank() OVER (PARTITION BY csd.election_cycle_id, csd.semester ORDER BY csd.alignment_rate DESC NULLS LAST) AS percentile_alignment,
+            percent_rank() OVER (PARTITION BY csd.election_cycle_id, csd.semester ORDER BY csd.avg_vote_divergence) AS percentile_cohesion,
+            ntile(4) OVER (PARTITION BY csd.election_cycle_id, csd.semester ORDER BY csd.alignment_rate DESC NULLS LAST) AS quartile_coalition_strength,
+            lag(csd.alignment_rate) OVER (PARTITION BY csd.party_1, csd.party_2 ORDER BY csd.election_cycle_id, csd.cycle_year, csd.semester) AS prev_semester_alignment,
+            lag(csd.joint_ballots) OVER (PARTITION BY csd.party_1, csd.party_2 ORDER BY csd.election_cycle_id, csd.cycle_year, csd.semester) AS prev_semester_joint_ballots,
+            lag(csd.avg_vote_divergence) OVER (PARTITION BY csd.party_1, csd.party_2 ORDER BY csd.election_cycle_id, csd.cycle_year, csd.semester) AS prev_semester_divergence,
+            lead(csd.alignment_rate) OVER (PARTITION BY csd.party_1, csd.party_2 ORDER BY csd.election_cycle_id, csd.cycle_year, csd.semester) AS next_semester_alignment,
+            lead(csd.avg_vote_divergence) OVER (PARTITION BY csd.party_1, csd.party_2 ORDER BY csd.election_cycle_id, csd.cycle_year, csd.semester) AS next_semester_divergence,
+            stddev_pop(csd.alignment_rate) OVER (PARTITION BY csd.election_cycle_id, csd.semester) AS stddev_alignment_sector,
+            stddev_pop(csd.alignment_rate) OVER (PARTITION BY csd.party_1, csd.party_2) AS stddev_alignment_pair,
+            stddev_pop(csd.avg_vote_divergence) OVER (PARTITION BY csd.party_1, csd.party_2) AS stddev_divergence_pair,
+            avg(csd.alignment_rate) OVER (PARTITION BY csd.party_1, csd.party_2 ORDER BY csd.election_cycle_id, csd.cycle_year, csd.semester ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS ma_3semester_alignment
+           FROM coalition_semester_data csd
+        )
+ SELECT election_cycle_id,
+    cycle_year,
+    calendar_year,
+    semester,
+    party_1,
+    party_2,
+    joint_voting_days,
+    joint_ballots,
+    aligned_ballots,
+    alignment_rate,
+    avg_vote_divergence,
+    vote_divergence_stddev,
+    rank_by_alignment,
+    rank_by_activity,
+    rank_by_consistency,
+    percentile_alignment,
+    percentile_cohesion,
+    quartile_coalition_strength,
+    prev_semester_alignment,
+    prev_semester_joint_ballots,
+    prev_semester_divergence,
+    next_semester_alignment,
+    next_semester_divergence,
+    stddev_alignment_sector,
+    stddev_alignment_pair,
+    stddev_divergence_pair,
+    ma_3semester_alignment,
+        CASE
+            WHEN (prev_semester_alignment IS NOT NULL) THEN round((alignment_rate - prev_semester_alignment), 2)
+            ELSE NULL::numeric
+        END AS alignment_change_absolute,
+        CASE
+            WHEN ((prev_semester_alignment IS NOT NULL) AND (prev_semester_alignment > (0)::numeric)) THEN round((((alignment_rate - prev_semester_alignment) / prev_semester_alignment) * (100)::numeric), 2)
+            ELSE NULL::numeric
+        END AS alignment_change_pct,
+        CASE
+            WHEN (prev_semester_joint_ballots IS NOT NULL) THEN (joint_ballots - prev_semester_joint_ballots)
+            ELSE NULL::numeric
+        END AS activity_change,
+        CASE
+            WHEN (prev_semester_divergence IS NOT NULL) THEN round((avg_vote_divergence - prev_semester_divergence), 2)
+            ELSE NULL::numeric
+        END AS divergence_change,
+        CASE
+            WHEN (alignment_rate >= (80)::numeric) THEN 'VERY_STRONG_COALITION'::text
+            WHEN (alignment_rate >= (65)::numeric) THEN 'STRONG_COALITION'::text
+            WHEN (alignment_rate >= (50)::numeric) THEN 'MODERATE_COALITION'::text
+            WHEN (alignment_rate >= (35)::numeric) THEN 'WEAK_COALITION'::text
+            ELSE 'OPPOSITION'::text
+        END AS coalition_strength,
+        CASE
+            WHEN (prev_semester_alignment IS NULL) THEN 'BASELINE'::text
+            WHEN (alignment_rate > (prev_semester_alignment + (15)::numeric)) THEN 'RAPIDLY_STRENGTHENING'::text
+            WHEN (alignment_rate > (prev_semester_alignment + (8)::numeric)) THEN 'STRENGTHENING'::text
+            WHEN (alignment_rate > (prev_semester_alignment + (3)::numeric)) THEN 'IMPROVING'::text
+            WHEN (alignment_rate < (prev_semester_alignment - (15)::numeric)) THEN 'RAPIDLY_WEAKENING'::text
+            WHEN (alignment_rate < (prev_semester_alignment - (8)::numeric)) THEN 'WEAKENING'::text
+            WHEN (alignment_rate < (prev_semester_alignment - (3)::numeric)) THEN 'DECLINING'::text
+            ELSE 'STABLE'::text
+        END AS coalition_trend,
+        CASE
+            WHEN ((prev_semester_alignment IS NOT NULL) AND (prev_semester_alignment < (50)::numeric) AND (alignment_rate >= (65)::numeric)) THEN 'COALITION_FORMATION'::text
+            WHEN ((prev_semester_alignment IS NOT NULL) AND (prev_semester_alignment >= (65)::numeric) AND (alignment_rate < (50)::numeric)) THEN 'COALITION_BREAKUP'::text
+            WHEN ((prev_semester_alignment IS NOT NULL) AND (abs((alignment_rate - prev_semester_alignment)) >= (20)::numeric)) THEN 'MAJOR_REALIGNMENT'::text
+            WHEN ((prev_semester_alignment IS NOT NULL) AND (abs((alignment_rate - prev_semester_alignment)) >= (10)::numeric)) THEN 'SIGNIFICANT_SHIFT'::text
+            WHEN ((prev_semester_alignment IS NOT NULL) AND (abs((alignment_rate - prev_semester_alignment)) >= (5)::numeric)) THEN 'MINOR_SHIFT'::text
+            ELSE 'STABLE'::text
+        END AS strategic_shift,
+        CASE
+            WHEN (stddev_alignment_pair > (15)::numeric) THEN 'HIGHLY_VOLATILE_PAIR'::text
+            WHEN (stddev_alignment_pair > (10)::numeric) THEN 'MODERATELY_VOLATILE_PAIR'::text
+            WHEN (stddev_alignment_pair > (5)::numeric) THEN 'SLIGHTLY_VOLATILE_PAIR'::text
+            ELSE 'STABLE_PAIR'::text
+        END AS volatility_classification,
+        CASE
+            WHEN (vote_divergence_stddev > (20)::numeric) THEN 'INCONSISTENT_ALIGNMENT'::text
+            WHEN (vote_divergence_stddev > (10)::numeric) THEN 'MODERATE_CONSISTENCY'::text
+            ELSE 'HIGH_CONSISTENCY'::text
+        END AS consistency_classification,
+        CASE
+            WHEN (next_semester_alignment IS NULL) THEN 'NO_FORECAST'::text
+            WHEN (next_semester_alignment > (alignment_rate + (10)::numeric)) THEN 'EXPECTED_STRENGTHENING'::text
+            WHEN (next_semester_alignment < (alignment_rate - (10)::numeric)) THEN 'EXPECTED_WEAKENING'::text
+            WHEN (next_semester_alignment > (alignment_rate + (5)::numeric)) THEN 'EXPECTED_IMPROVEMENT'::text
+            WHEN (next_semester_alignment < (alignment_rate - (5)::numeric)) THEN 'EXPECTED_DECLINE'::text
+            ELSE 'EXPECTED_STABLE'::text
+        END AS forecast_trend,
+    round((ma_3semester_alignment - alignment_rate), 2) AS alignment_deviation_from_ma,
+        CASE
+            WHEN (ma_3semester_alignment > (alignment_rate + (5)::numeric)) THEN 'BELOW_TREND'::text
+            WHEN (ma_3semester_alignment < (alignment_rate - (5)::numeric)) THEN 'ABOVE_TREND'::text
+            ELSE 'ON_TREND'::text
+        END AS trend_position,
+        CASE
+            WHEN (percentile_alignment >= (0.75)::double precision) THEN 'ELITE_COALITION'::text
+            WHEN (percentile_alignment >= (0.50)::double precision) THEN 'STRONG_COALITION_TIER'::text
+            WHEN (percentile_alignment >= (0.25)::double precision) THEN 'MODERATE_COALITION_TIER'::text
+            ELSE 'WEAK_COALITION_TIER'::text
+        END AS coalition_tier,
+        CASE
+            WHEN ((prev_semester_alignment IS NOT NULL) AND (stddev_alignment_pair > (0)::numeric)) THEN round(((alignment_rate - prev_semester_alignment) / NULLIF(stddev_alignment_pair, (0)::numeric)), 2)
+            ELSE NULL::numeric
+        END AS momentum_z_score,
+    round((((alignment_rate * 0.4) + (((100)::numeric - COALESCE(avg_vote_divergence, (0)::numeric)) * 0.3)) + (((100)::numeric - COALESCE(vote_divergence_stddev, (0)::numeric)) * 0.3)), 2) AS stability_score,
+        CASE
+            WHEN ((alignment_rate < (50)::numeric) AND (prev_semester_alignment >= (65)::numeric)) THEN 90.0
+            WHEN ((alignment_rate < (50)::numeric) AND (stddev_alignment_pair > (15)::numeric)) THEN 75.0
+            WHEN ((alignment_rate < (65)::numeric) AND ((alignment_rate - prev_semester_alignment) < ('-10'::integer)::numeric)) THEN 60.0
+            WHEN (stddev_alignment_pair > (15)::numeric) THEN 50.0
+            WHEN (alignment_rate < (50)::numeric) THEN 40.0
+            WHEN ((alignment_rate - prev_semester_alignment) < ('-8'::integer)::numeric) THEN 30.0
+            ELSE 10.0
+        END AS breakup_risk_score,
+        CASE
+            WHEN ((stddev_alignment_pair > (15)::numeric) AND (abs((alignment_rate - prev_semester_alignment)) > (10)::numeric)) THEN 'HIGH_PROBABILITY'::text
+            WHEN ((stddev_alignment_pair > (10)::numeric) OR (abs((alignment_rate - prev_semester_alignment)) > (15)::numeric)) THEN 'MODERATE_PROBABILITY'::text
+            WHEN (abs((alignment_rate - prev_semester_alignment)) > (5)::numeric) THEN 'LOW_PROBABILITY'::text
+            ELSE 'VERY_LOW_PROBABILITY'::text
+        END AS realignment_probability,
+    round(((alignment_rate * joint_ballots) / NULLIF(max(joint_ballots) OVER (PARTITION BY election_cycle_id, semester), (0)::numeric)), 2) AS coalition_density_score,
+        CASE
+            WHEN ((percentile_alignment >= (0.75)::double precision) AND (percentile_cohesion >= (0.75)::double precision)) THEN 'CORE_COALITION_BRIDGE'::text
+            WHEN (percentile_alignment >= (0.50)::double precision) THEN 'STRONG_BRIDGE'::text
+            WHEN (percentile_alignment >= (0.25)::double precision) THEN 'MODERATE_BRIDGE'::text
+            ELSE 'WEAK_BRIDGE'::text
+        END AS bridge_classification
+   FROM windowed_statistics ws
+  ORDER BY party_1, party_2, election_cycle_id, cycle_year, semester;
+
+
+--
 -- Name: view_riksdagen_party_document_daily_summary; Type: MATERIALIZED VIEW; Schema: public; Owner: -
 --
 
@@ -9679,6 +10066,585 @@ CREATE MATERIALIZED VIEW public.view_riksdagen_party_document_daily_summary AS
    FROM public.view_riksdagen_politician_document
   GROUP BY made_public_date, document_type, party_short_code
   WITH NO DATA;
+
+
+--
+-- Name: view_riksdagen_party_electoral_trends; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.view_riksdagen_party_electoral_trends AS
+ WITH election_cycle_periods AS (
+         SELECT year_series.year_series AS calendar_year,
+                CASE
+                    WHEN ((year_series.year_series >= 2002) AND (year_series.year_series <= 2005)) THEN 2002
+                    WHEN ((year_series.year_series >= 2006) AND (year_series.year_series <= 2009)) THEN 2006
+                    WHEN ((year_series.year_series >= 2010) AND (year_series.year_series <= 2013)) THEN 2010
+                    WHEN ((year_series.year_series >= 2014) AND (year_series.year_series <= 2017)) THEN 2014
+                    WHEN ((year_series.year_series >= 2018) AND (year_series.year_series <= 2021)) THEN 2018
+                    WHEN ((year_series.year_series >= 2022) AND (year_series.year_series <= 2025)) THEN 2022
+                    WHEN ((year_series.year_series >= 2026) AND (year_series.year_series <= 2029)) THEN 2026
+                    ELSE NULL::integer
+                END AS election_year,
+            ((year_series.year_series -
+                CASE
+                    WHEN ((year_series.year_series >= 2002) AND (year_series.year_series <= 2005)) THEN 2002
+                    WHEN ((year_series.year_series >= 2006) AND (year_series.year_series <= 2009)) THEN 2006
+                    WHEN ((year_series.year_series >= 2010) AND (year_series.year_series <= 2013)) THEN 2010
+                    WHEN ((year_series.year_series >= 2014) AND (year_series.year_series <= 2017)) THEN 2014
+                    WHEN ((year_series.year_series >= 2018) AND (year_series.year_series <= 2021)) THEN 2018
+                    WHEN ((year_series.year_series >= 2022) AND (year_series.year_series <= 2025)) THEN 2022
+                    WHEN ((year_series.year_series >= 2026) AND (year_series.year_series <= 2029)) THEN 2026
+                    ELSE NULL::integer
+                END) + 1) AS cycle_year,
+            ((
+                CASE
+                    WHEN ((year_series.year_series >= 2002) AND (year_series.year_series <= 2005)) THEN 2002
+                    WHEN ((year_series.year_series >= 2006) AND (year_series.year_series <= 2009)) THEN 2006
+                    WHEN ((year_series.year_series >= 2010) AND (year_series.year_series <= 2013)) THEN 2010
+                    WHEN ((year_series.year_series >= 2014) AND (year_series.year_series <= 2017)) THEN 2014
+                    WHEN ((year_series.year_series >= 2018) AND (year_series.year_series <= 2021)) THEN 2018
+                    WHEN ((year_series.year_series >= 2022) AND (year_series.year_series <= 2025)) THEN 2022
+                    WHEN ((year_series.year_series >= 2026) AND (year_series.year_series <= 2029)) THEN 2026
+                    ELSE NULL::integer
+                END || '-'::text) ||
+                CASE
+                    WHEN ((year_series.year_series >= 2002) AND (year_series.year_series <= 2005)) THEN 2005
+                    WHEN ((year_series.year_series >= 2006) AND (year_series.year_series <= 2009)) THEN 2009
+                    WHEN ((year_series.year_series >= 2010) AND (year_series.year_series <= 2013)) THEN 2013
+                    WHEN ((year_series.year_series >= 2014) AND (year_series.year_series <= 2017)) THEN 2017
+                    WHEN ((year_series.year_series >= 2018) AND (year_series.year_series <= 2021)) THEN 2021
+                    WHEN ((year_series.year_series >= 2022) AND (year_series.year_series <= 2025)) THEN 2025
+                    WHEN ((year_series.year_series >= 2026) AND (year_series.year_series <= 2029)) THEN 2029
+                    ELSE NULL::integer
+                END) AS election_cycle_id
+           FROM generate_series(2002, ((EXTRACT(year FROM CURRENT_DATE))::integer + 4), 1) year_series(year_series)
+          WHERE (year_series.year_series >= 2002)
+        ), electoral_semester_data AS (
+         SELECT ecp.election_cycle_id,
+            ecp.cycle_year,
+            ecp.calendar_year,
+                CASE
+                    WHEN ((EXTRACT(month FROM vbps.embedded_id_vote_date) >= (9)::numeric) OR (EXTRACT(month FROM vbps.embedded_id_vote_date) <= (1)::numeric)) THEN 'autumn'::text
+                    ELSE 'spring'::text
+                END AS semester,
+            vbps.embedded_id_party AS party,
+            sum(vbps.number_ballots) AS ballots_participated,
+            round(avg(vbps.party_won_percentage), 2) AS win_rate,
+            round(avg(vbps.party_percentage_yes), 2) AS yes_rate,
+            round(avg(vbps.approved_percentage), 2) AS approval_rate,
+            round(avg(((100)::numeric - vbps.party_percentage_absent)), 2) AS participation_rate,
+            max(ppm.active_members) AS seat_count_proxy,
+            max(ppm.documents_last_year) AS documents_produced,
+            round(avg(ppm.avg_rebel_rate), 2) AS avg_rebel_rate
+           FROM ((election_cycle_periods ecp
+             JOIN public.view_riksdagen_vote_data_ballot_party_summary_annual vbps ON ((date_part('year'::text, vbps.embedded_id_vote_date) = (ecp.calendar_year)::double precision)))
+             LEFT JOIN public.view_party_performance_metrics ppm ON (((ppm.party)::text = (vbps.embedded_id_party)::text)))
+          WHERE ((vbps.embedded_id_party IS NOT NULL) AND (ecp.election_year IS NOT NULL))
+          GROUP BY ecp.election_cycle_id, ecp.cycle_year, ecp.calendar_year,
+                CASE
+                    WHEN ((EXTRACT(month FROM vbps.embedded_id_vote_date) >= (9)::numeric) OR (EXTRACT(month FROM vbps.embedded_id_vote_date) <= (1)::numeric)) THEN 'autumn'::text
+                    ELSE 'spring'::text
+                END, vbps.embedded_id_party
+        ), windowed_statistics AS (
+         SELECT esd.election_cycle_id,
+            esd.cycle_year,
+            esd.calendar_year,
+            esd.semester,
+            esd.party,
+            esd.ballots_participated,
+            esd.win_rate,
+            esd.yes_rate,
+            esd.approval_rate,
+            esd.participation_rate,
+            esd.seat_count_proxy,
+            esd.documents_produced,
+            esd.avg_rebel_rate,
+            rank() OVER (PARTITION BY esd.election_cycle_id, esd.semester ORDER BY esd.seat_count_proxy DESC NULLS LAST) AS rank_by_seats,
+            rank() OVER (PARTITION BY esd.election_cycle_id, esd.semester ORDER BY esd.win_rate DESC NULLS LAST) AS rank_by_win_rate,
+            rank() OVER (PARTITION BY esd.election_cycle_id, esd.semester ORDER BY esd.documents_produced DESC NULLS LAST) AS rank_by_productivity,
+            rank() OVER (PARTITION BY esd.election_cycle_id, esd.semester ORDER BY esd.participation_rate DESC NULLS LAST) AS rank_by_engagement,
+            rank() OVER (PARTITION BY esd.election_cycle_id, esd.semester ORDER BY esd.approval_rate DESC NULLS LAST) AS rank_by_effectiveness,
+            percent_rank() OVER (PARTITION BY esd.election_cycle_id, esd.semester ORDER BY esd.seat_count_proxy DESC NULLS LAST) AS percentile_seats,
+            percent_rank() OVER (PARTITION BY esd.election_cycle_id, esd.semester ORDER BY esd.win_rate DESC NULLS LAST) AS percentile_win_rate,
+            percent_rank() OVER (PARTITION BY esd.election_cycle_id, esd.semester ORDER BY esd.documents_produced DESC NULLS LAST) AS percentile_productivity,
+            ntile(4) OVER (PARTITION BY esd.election_cycle_id, esd.semester ORDER BY esd.seat_count_proxy DESC NULLS LAST) AS quartile_by_size,
+            ntile(4) OVER (PARTITION BY esd.election_cycle_id, esd.semester ORDER BY esd.win_rate DESC NULLS LAST) AS quartile_by_performance,
+            lag(esd.seat_count_proxy) OVER (PARTITION BY esd.party ORDER BY esd.election_cycle_id, esd.cycle_year, esd.semester) AS prev_semester_seats,
+            lag(esd.win_rate) OVER (PARTITION BY esd.party ORDER BY esd.election_cycle_id, esd.cycle_year, esd.semester) AS prev_semester_win_rate,
+            lag(esd.documents_produced) OVER (PARTITION BY esd.party ORDER BY esd.election_cycle_id, esd.cycle_year, esd.semester) AS prev_semester_documents,
+            lag(esd.participation_rate) OVER (PARTITION BY esd.party ORDER BY esd.election_cycle_id, esd.cycle_year, esd.semester) AS prev_semester_participation,
+            lead(esd.seat_count_proxy) OVER (PARTITION BY esd.party ORDER BY esd.election_cycle_id, esd.cycle_year, esd.semester) AS next_semester_seats,
+            lead(esd.win_rate) OVER (PARTITION BY esd.party ORDER BY esd.election_cycle_id, esd.cycle_year, esd.semester) AS next_semester_win_rate,
+            stddev_pop(esd.seat_count_proxy) OVER (PARTITION BY esd.election_cycle_id, esd.semester) AS stddev_seats_sector,
+            stddev_pop(esd.win_rate) OVER (PARTITION BY esd.election_cycle_id, esd.semester) AS stddev_win_rate_sector,
+            stddev_pop(esd.seat_count_proxy) OVER (PARTITION BY esd.party) AS stddev_seats_party,
+            stddev_pop(esd.win_rate) OVER (PARTITION BY esd.party) AS stddev_win_rate_party,
+            avg(esd.seat_count_proxy) OVER (PARTITION BY esd.party ORDER BY esd.election_cycle_id, esd.cycle_year, esd.semester ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS ma_3semester_seats,
+            avg(esd.win_rate) OVER (PARTITION BY esd.party ORDER BY esd.election_cycle_id, esd.cycle_year, esd.semester ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS ma_3semester_win_rate
+           FROM electoral_semester_data esd
+        )
+ SELECT election_cycle_id,
+    cycle_year,
+    calendar_year,
+    semester,
+    party,
+    ballots_participated,
+    win_rate,
+    yes_rate,
+    approval_rate,
+    participation_rate,
+    seat_count_proxy,
+    documents_produced,
+    avg_rebel_rate,
+    rank_by_seats,
+    rank_by_win_rate,
+    rank_by_productivity,
+    rank_by_engagement,
+    rank_by_effectiveness,
+    percentile_seats,
+    percentile_win_rate,
+    percentile_productivity,
+    quartile_by_size,
+    quartile_by_performance,
+    prev_semester_seats,
+    prev_semester_win_rate,
+    prev_semester_documents,
+    prev_semester_participation,
+    next_semester_seats,
+    next_semester_win_rate,
+    stddev_seats_sector,
+    stddev_win_rate_sector,
+    stddev_seats_party,
+    stddev_win_rate_party,
+    ma_3semester_seats,
+    ma_3semester_win_rate,
+        CASE
+            WHEN (prev_semester_seats IS NOT NULL) THEN (seat_count_proxy - prev_semester_seats)
+            ELSE NULL::bigint
+        END AS seat_change_absolute,
+        CASE
+            WHEN ((prev_semester_seats IS NOT NULL) AND (prev_semester_seats > 0)) THEN round(((((seat_count_proxy - prev_semester_seats))::numeric / (prev_semester_seats)::numeric) * (100)::numeric), 2)
+            ELSE NULL::numeric
+        END AS seat_change_pct,
+        CASE
+            WHEN (prev_semester_win_rate IS NOT NULL) THEN round((win_rate - prev_semester_win_rate), 2)
+            ELSE NULL::numeric
+        END AS win_rate_change_absolute,
+        CASE
+            WHEN ((prev_semester_win_rate IS NOT NULL) AND (prev_semester_win_rate > (0)::numeric)) THEN round((((win_rate - prev_semester_win_rate) / prev_semester_win_rate) * (100)::numeric), 2)
+            ELSE NULL::numeric
+        END AS win_rate_change_pct,
+        CASE
+            WHEN (prev_semester_documents IS NOT NULL) THEN (documents_produced - prev_semester_documents)
+            ELSE NULL::bigint
+        END AS documents_change,
+        CASE
+            WHEN (prev_semester_seats IS NULL) THEN 'BASELINE'::text
+            WHEN (seat_count_proxy > (prev_semester_seats + 10)) THEN 'SURGING'::text
+            WHEN (seat_count_proxy > (prev_semester_seats + 5)) THEN 'STRONG_GROWTH'::text
+            WHEN (seat_count_proxy > prev_semester_seats) THEN 'GROWTH'::text
+            WHEN (seat_count_proxy < (prev_semester_seats - 10)) THEN 'COLLAPSING'::text
+            WHEN (seat_count_proxy < (prev_semester_seats - 5)) THEN 'STRONG_DECLINE'::text
+            WHEN (seat_count_proxy < prev_semester_seats) THEN 'DECLINE'::text
+            ELSE 'STABLE'::text
+        END AS electoral_trend,
+        CASE
+            WHEN (seat_count_proxy >= 100) THEN 'DOMINANT_PARTY'::text
+            WHEN (seat_count_proxy >= 75) THEN 'MAJOR_PARTY'::text
+            WHEN (seat_count_proxy >= 50) THEN 'LARGE_PARTY'::text
+            WHEN (seat_count_proxy >= 30) THEN 'MEDIUM_PARTY'::text
+            WHEN (seat_count_proxy >= 15) THEN 'SMALL_PARTY'::text
+            ELSE 'MINOR_PARTY'::text
+        END AS party_size_category,
+        CASE
+            WHEN (stddev_seats_party > (15)::numeric) THEN 'HIGHLY_VOLATILE'::text
+            WHEN (stddev_seats_party > (10)::numeric) THEN 'MODERATELY_VOLATILE'::text
+            WHEN (stddev_seats_party > (5)::numeric) THEN 'SLIGHTLY_VOLATILE'::text
+            ELSE 'STABLE_PARTY'::text
+        END AS volatility_classification,
+        CASE
+            WHEN (next_semester_seats IS NULL) THEN 'NO_FORECAST'::text
+            WHEN (next_semester_seats > (seat_count_proxy + 5)) THEN 'EXPECTED_GROWTH'::text
+            WHEN (next_semester_seats < (seat_count_proxy - 5)) THEN 'EXPECTED_DECLINE'::text
+            WHEN (next_semester_seats > seat_count_proxy) THEN 'EXPECTED_SLIGHT_GROWTH'::text
+            WHEN (next_semester_seats < seat_count_proxy) THEN 'EXPECTED_SLIGHT_DECLINE'::text
+            ELSE 'EXPECTED_STABLE'::text
+        END AS seat_forecast,
+        CASE
+            WHEN (next_semester_win_rate IS NULL) THEN 'NO_FORECAST'::text
+            WHEN (next_semester_win_rate > (win_rate + (5)::numeric)) THEN 'EXPECTED_IMPROVEMENT'::text
+            WHEN (next_semester_win_rate < (win_rate - (5)::numeric)) THEN 'EXPECTED_DETERIORATION'::text
+            ELSE 'EXPECTED_STABLE'::text
+        END AS performance_forecast,
+    round(((seat_count_proxy)::numeric - ma_3semester_seats), 2) AS seat_deviation_from_ma,
+        CASE
+            WHEN (ma_3semester_seats > ((seat_count_proxy + 5))::numeric) THEN 'SIGNIFICANTLY_BELOW_TREND'::text
+            WHEN (ma_3semester_seats > ((seat_count_proxy + 2))::numeric) THEN 'BELOW_TREND'::text
+            WHEN (ma_3semester_seats < ((seat_count_proxy - 5))::numeric) THEN 'SIGNIFICANTLY_ABOVE_TREND'::text
+            WHEN (ma_3semester_seats < ((seat_count_proxy - 2))::numeric) THEN 'ABOVE_TREND'::text
+            ELSE 'ON_TREND'::text
+        END AS trend_position_seats,
+        CASE
+            WHEN (percentile_seats >= (0.75)::double precision) THEN 'TOP_ELECTORAL_TIER'::text
+            WHEN (percentile_seats >= (0.50)::double precision) THEN 'UPPER_MID_TIER'::text
+            WHEN (percentile_seats >= (0.25)::double precision) THEN 'LOWER_MID_TIER'::text
+            ELSE 'BOTTOM_TIER'::text
+        END AS electoral_tier,
+        CASE
+            WHEN ((prev_semester_seats IS NOT NULL) AND (stddev_seats_party > (0)::numeric)) THEN round((((seat_count_proxy - prev_semester_seats))::numeric / NULLIF(stddev_seats_party, (0)::numeric)), 2)
+            ELSE NULL::numeric
+        END AS momentum_z_score_seats,
+        CASE
+            WHEN ((prev_semester_win_rate IS NOT NULL) AND (stddev_win_rate_party > (0)::numeric)) THEN round(((win_rate - prev_semester_win_rate) / NULLIF(stddev_win_rate_party, (0)::numeric)), 2)
+            ELSE NULL::numeric
+        END AS momentum_z_score_win_rate,
+    round((((((seat_count_proxy)::numeric / (NULLIF(max(seat_count_proxy) OVER (PARTITION BY election_cycle_id, semester), 0))::numeric) * (50)::numeric) + (win_rate * 0.3)) + (((documents_produced)::numeric / (NULLIF(max(documents_produced) OVER (PARTITION BY election_cycle_id, semester), 0))::numeric) * (20)::numeric)), 2) AS composite_electoral_score,
+    round(((((win_rate * 0.35) + (participation_rate * 0.25)) + (approval_rate * 0.25)) + (((100)::numeric - COALESCE(avg_rebel_rate, (0)::numeric)) * 0.15)), 2) AS legislative_effectiveness_index,
+        CASE
+            WHEN ((cycle_year = 4) AND (semester = 'spring'::text)) THEN round((((((win_rate * 0.30) + (participation_rate * 0.20)) + (approval_rate * 0.20)) + ((((seat_count_proxy)::numeric / (NULLIF(max(seat_count_proxy) OVER (PARTITION BY election_cycle_id, semester), 0))::numeric) * (100)::numeric) * 0.20)) + ((((documents_produced)::numeric / (NULLIF(max(documents_produced) OVER (PARTITION BY election_cycle_id, semester), 0))::numeric) * (100)::numeric) * 0.10)), 2)
+            ELSE NULL::numeric
+        END AS election_readiness_score,
+        CASE
+            WHEN ((prev_semester_seats IS NOT NULL) AND (next_semester_seats IS NOT NULL)) THEN round((((next_semester_seats - prev_semester_seats))::numeric / 2.0), 1)
+            WHEN (prev_semester_seats IS NOT NULL) THEN round(((seat_count_proxy - prev_semester_seats))::numeric, 1)
+            ELSE NULL::numeric
+        END AS projected_seat_change,
+        CASE
+            WHEN (seat_count_proxy < (prev_semester_seats - 10)) THEN 'CRITICAL_SEAT_LOSS'::text
+            WHEN (seat_count_proxy < (prev_semester_seats - 5)) THEN 'SIGNIFICANT_SEAT_LOSS'::text
+            WHEN (win_rate < (prev_semester_win_rate - (10)::numeric)) THEN 'CRITICAL_PERFORMANCE_DROP'::text
+            WHEN (participation_rate < (prev_semester_participation - (10)::numeric)) THEN 'CRITICAL_ENGAGEMENT_DROP'::text
+            WHEN (seat_count_proxy < prev_semester_seats) THEN 'SEAT_LOSS'::text
+            WHEN (win_rate < (prev_semester_win_rate - (5)::numeric)) THEN 'PERFORMANCE_WARNING'::text
+            ELSE 'NORMAL'::text
+        END AS electoral_warning_flag,
+        CASE
+            WHEN ((cycle_year = 4) AND (semester = 'spring'::text)) THEN true
+            ELSE false
+        END AS is_pre_election_period,
+        CASE
+            WHEN ((cycle_year = 4) AND (semester = 'autumn'::text)) THEN true
+            ELSE false
+        END AS is_election_period,
+        CASE
+            WHEN ((cycle_year = 1) AND (semester = 'spring'::text)) THEN true
+            ELSE false
+        END AS is_post_election_period
+   FROM windowed_statistics ws
+  ORDER BY party, election_cycle_id, cycle_year, semester;
+
+
+--
+-- Name: view_riksdagen_party_longitudinal_performance; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.view_riksdagen_party_longitudinal_performance AS
+ WITH election_cycle_calendar AS (
+         SELECT year_series.year_series AS calendar_year,
+                CASE
+                    WHEN ((year_series.year_series >= 2002) AND (year_series.year_series <= 2005)) THEN 2002
+                    WHEN ((year_series.year_series >= 2006) AND (year_series.year_series <= 2009)) THEN 2006
+                    WHEN ((year_series.year_series >= 2010) AND (year_series.year_series <= 2013)) THEN 2010
+                    WHEN ((year_series.year_series >= 2014) AND (year_series.year_series <= 2017)) THEN 2014
+                    WHEN ((year_series.year_series >= 2018) AND (year_series.year_series <= 2021)) THEN 2018
+                    WHEN ((year_series.year_series >= 2022) AND (year_series.year_series <= 2025)) THEN 2022
+                    WHEN ((year_series.year_series >= 2026) AND (year_series.year_series <= 2029)) THEN 2026
+                    ELSE NULL::integer
+                END AS election_year,
+            ((year_series.year_series -
+                CASE
+                    WHEN ((year_series.year_series >= 2002) AND (year_series.year_series <= 2005)) THEN 2002
+                    WHEN ((year_series.year_series >= 2006) AND (year_series.year_series <= 2009)) THEN 2006
+                    WHEN ((year_series.year_series >= 2010) AND (year_series.year_series <= 2013)) THEN 2010
+                    WHEN ((year_series.year_series >= 2014) AND (year_series.year_series <= 2017)) THEN 2014
+                    WHEN ((year_series.year_series >= 2018) AND (year_series.year_series <= 2021)) THEN 2018
+                    WHEN ((year_series.year_series >= 2022) AND (year_series.year_series <= 2025)) THEN 2022
+                    WHEN ((year_series.year_series >= 2026) AND (year_series.year_series <= 2029)) THEN 2026
+                    ELSE NULL::integer
+                END) + 1) AS cycle_year
+           FROM generate_series(2002, ((EXTRACT(year FROM CURRENT_DATE))::integer + 4), 1) year_series(year_series)
+          WHERE (year_series.year_series >= 2002)
+        ), election_cycle_periods AS (
+         SELECT election_cycle_calendar.calendar_year,
+            election_cycle_calendar.election_year,
+            election_cycle_calendar.cycle_year,
+            ((election_cycle_calendar.election_year || '-'::text) || (election_cycle_calendar.election_year + 3)) AS election_cycle_id,
+            make_date(election_cycle_calendar.calendar_year, 9, 1) AS autumn_start,
+            make_date((election_cycle_calendar.calendar_year + 1), 1, 25) AS autumn_end,
+            make_date(election_cycle_calendar.calendar_year, 1, 26) AS spring_start,
+            make_date(election_cycle_calendar.calendar_year, 8, 31) AS spring_end,
+                CASE
+                    WHEN (election_cycle_calendar.cycle_year = 4) THEN true
+                    ELSE false
+                END AS is_election_year
+           FROM election_cycle_calendar
+          WHERE (election_cycle_calendar.election_year IS NOT NULL)
+        ), party_semester_data AS (
+         SELECT ecp.election_cycle_id,
+            ecp.cycle_year,
+            ecp.calendar_year,
+                CASE
+                    WHEN ((EXTRACT(month FROM vbps.embedded_id_vote_date) >= (9)::numeric) OR (EXTRACT(month FROM vbps.embedded_id_vote_date) <= (1)::numeric)) THEN 'autumn'::text
+                    ELSE 'spring'::text
+                END AS semester,
+            ecp.is_election_year,
+            vbps.embedded_id_party AS party,
+            sum(vbps.number_ballots) AS total_ballots,
+            round(avg(((100)::numeric - vbps.party_percentage_absent)), 2) AS participation_rate,
+            round(avg(vbps.party_won_percentage), 2) AS win_rate,
+            round(avg(vbps.party_percentage_yes), 2) AS yes_rate,
+            round(avg(vbps.party_percentage_no), 2) AS no_rate,
+            round(avg(vbps.approved_percentage), 2) AS approval_rate,
+            sum(vbps.party_total_votes) AS total_votes,
+            sum(vbps.party_yes_votes) AS yes_votes,
+            sum(vbps.party_won_total) AS ballots_won,
+            sum(vbps.approved_total) AS decisions_approved
+           FROM (election_cycle_periods ecp
+             JOIN public.view_riksdagen_vote_data_ballot_party_summary_annual vbps ON ((date_part('year'::text, vbps.embedded_id_vote_date) = (ecp.calendar_year)::double precision)))
+          WHERE (vbps.embedded_id_party IS NOT NULL)
+          GROUP BY ecp.election_cycle_id, ecp.cycle_year, ecp.calendar_year,
+                CASE
+                    WHEN ((EXTRACT(month FROM vbps.embedded_id_vote_date) >= (9)::numeric) OR (EXTRACT(month FROM vbps.embedded_id_vote_date) <= (1)::numeric)) THEN 'autumn'::text
+                    ELSE 'spring'::text
+                END, ecp.is_election_year, vbps.embedded_id_party
+        ), enhanced_metrics AS (
+         SELECT psd.election_cycle_id,
+            psd.cycle_year,
+            psd.calendar_year,
+            psd.semester,
+            psd.is_election_year,
+            psd.party,
+            psd.total_ballots,
+            psd.participation_rate,
+            psd.win_rate,
+            psd.yes_rate,
+            psd.no_rate,
+            psd.approval_rate,
+            psd.total_votes,
+            psd.yes_votes,
+            psd.ballots_won,
+            psd.decisions_approved,
+            ppm.active_members,
+            ppm.documents_last_year,
+            ppm.avg_rebel_rate,
+            ppm.performance_score AS current_performance_score
+           FROM (party_semester_data psd
+             LEFT JOIN public.view_party_performance_metrics ppm ON (((ppm.party)::text = (psd.party)::text)))
+        ), windowed_statistics AS (
+         SELECT em.election_cycle_id,
+            em.cycle_year,
+            em.calendar_year,
+            em.semester,
+            em.is_election_year,
+            em.party,
+            em.total_ballots,
+            em.participation_rate,
+            em.win_rate,
+            em.yes_rate,
+            em.no_rate,
+            em.approval_rate,
+            em.total_votes,
+            em.yes_votes,
+            em.ballots_won,
+            em.decisions_approved,
+            em.active_members,
+            em.documents_last_year,
+            em.avg_rebel_rate,
+            em.current_performance_score,
+            rank() OVER (PARTITION BY em.election_cycle_id, em.semester ORDER BY em.win_rate DESC NULLS LAST) AS rank_by_win_rate,
+            rank() OVER (PARTITION BY em.election_cycle_id, em.semester ORDER BY em.participation_rate DESC NULLS LAST) AS rank_by_participation,
+            rank() OVER (PARTITION BY em.election_cycle_id, em.semester ORDER BY em.active_members DESC NULLS LAST) AS rank_by_size,
+            rank() OVER (PARTITION BY em.election_cycle_id, em.semester ORDER BY em.approval_rate DESC NULLS LAST) AS rank_by_approval,
+            rank() OVER (PARTITION BY em.election_cycle_id, em.semester ORDER BY em.documents_last_year DESC NULLS LAST) AS rank_by_productivity,
+            rank() OVER (PARTITION BY em.election_cycle_id, em.semester ORDER BY em.avg_rebel_rate) AS rank_by_discipline,
+            percent_rank() OVER (PARTITION BY em.election_cycle_id, em.semester ORDER BY em.win_rate DESC NULLS LAST) AS percentile_win_rate,
+            percent_rank() OVER (PARTITION BY em.election_cycle_id, em.semester ORDER BY em.participation_rate DESC NULLS LAST) AS percentile_participation,
+            percent_rank() OVER (PARTITION BY em.election_cycle_id, em.semester ORDER BY em.approval_rate DESC NULLS LAST) AS percentile_approval,
+            percent_rank() OVER (PARTITION BY em.election_cycle_id, em.semester ORDER BY em.documents_last_year DESC NULLS LAST) AS percentile_productivity,
+            ntile(4) OVER (PARTITION BY em.election_cycle_id, em.semester ORDER BY em.win_rate DESC NULLS LAST) AS quartile_by_win_rate,
+            ntile(4) OVER (PARTITION BY em.election_cycle_id, em.semester ORDER BY em.current_performance_score DESC NULLS LAST) AS quartile_by_overall_performance,
+            lag(em.win_rate) OVER (PARTITION BY em.party ORDER BY em.election_cycle_id, em.cycle_year, em.semester) AS prev_semester_win_rate,
+            lag(em.participation_rate) OVER (PARTITION BY em.party ORDER BY em.election_cycle_id, em.cycle_year, em.semester) AS prev_semester_participation,
+            lag(em.active_members) OVER (PARTITION BY em.party ORDER BY em.election_cycle_id, em.cycle_year, em.semester) AS prev_semester_members,
+            lag(em.approval_rate) OVER (PARTITION BY em.party ORDER BY em.election_cycle_id, em.cycle_year, em.semester) AS prev_semester_approval,
+            lag(em.documents_last_year) OVER (PARTITION BY em.party ORDER BY em.election_cycle_id, em.cycle_year, em.semester) AS prev_semester_documents,
+            lag(em.avg_rebel_rate) OVER (PARTITION BY em.party ORDER BY em.election_cycle_id, em.cycle_year, em.semester) AS prev_semester_rebel_rate,
+            lead(em.win_rate) OVER (PARTITION BY em.party ORDER BY em.election_cycle_id, em.cycle_year, em.semester) AS next_semester_win_rate,
+            lead(em.participation_rate) OVER (PARTITION BY em.party ORDER BY em.election_cycle_id, em.cycle_year, em.semester) AS next_semester_participation,
+            lead(em.active_members) OVER (PARTITION BY em.party ORDER BY em.election_cycle_id, em.cycle_year, em.semester) AS next_semester_members,
+            stddev_pop(em.win_rate) OVER (PARTITION BY em.election_cycle_id, em.semester) AS stddev_win_rate_sector,
+            stddev_pop(em.participation_rate) OVER (PARTITION BY em.election_cycle_id, em.semester) AS stddev_participation_sector,
+            stddev_pop(em.win_rate) OVER (PARTITION BY em.party) AS stddev_win_rate_party,
+            stddev_pop(em.participation_rate) OVER (PARTITION BY em.party) AS stddev_participation_party,
+            avg(em.win_rate) OVER (PARTITION BY em.party ORDER BY em.election_cycle_id, em.cycle_year, em.semester ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS ma_3semester_win_rate,
+            avg(em.participation_rate) OVER (PARTITION BY em.party ORDER BY em.election_cycle_id, em.cycle_year, em.semester ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS ma_3semester_participation
+           FROM enhanced_metrics em
+        )
+ SELECT election_cycle_id,
+    cycle_year,
+    calendar_year,
+    semester,
+    is_election_year,
+    party,
+    total_ballots,
+    participation_rate,
+    win_rate,
+    yes_rate,
+    no_rate,
+    approval_rate,
+    total_votes,
+    yes_votes,
+    ballots_won,
+    decisions_approved,
+    active_members,
+    documents_last_year,
+    avg_rebel_rate,
+    current_performance_score,
+    rank_by_win_rate,
+    rank_by_participation,
+    rank_by_size,
+    rank_by_approval,
+    rank_by_productivity,
+    rank_by_discipline,
+    percentile_win_rate,
+    percentile_participation,
+    percentile_approval,
+    percentile_productivity,
+    quartile_by_win_rate,
+    quartile_by_overall_performance,
+    prev_semester_win_rate,
+    prev_semester_participation,
+    prev_semester_members,
+    prev_semester_approval,
+    prev_semester_documents,
+    prev_semester_rebel_rate,
+    next_semester_win_rate,
+    next_semester_participation,
+    next_semester_members,
+    stddev_win_rate_sector,
+    stddev_participation_sector,
+    stddev_win_rate_party,
+    stddev_participation_party,
+    ma_3semester_win_rate,
+    ma_3semester_participation,
+        CASE
+            WHEN (prev_semester_win_rate IS NOT NULL) THEN round((win_rate - prev_semester_win_rate), 2)
+            ELSE NULL::numeric
+        END AS win_rate_change_absolute,
+        CASE
+            WHEN ((prev_semester_win_rate IS NOT NULL) AND (prev_semester_win_rate > (0)::numeric)) THEN round((((win_rate - prev_semester_win_rate) / prev_semester_win_rate) * (100)::numeric), 2)
+            ELSE NULL::numeric
+        END AS win_rate_change_pct,
+        CASE
+            WHEN (prev_semester_participation IS NOT NULL) THEN round((participation_rate - prev_semester_participation), 2)
+            ELSE NULL::numeric
+        END AS participation_change_absolute,
+        CASE
+            WHEN (prev_semester_members IS NOT NULL) THEN (active_members - prev_semester_members)
+            ELSE NULL::bigint
+        END AS membership_change,
+        CASE
+            WHEN (prev_semester_approval IS NOT NULL) THEN round((approval_rate - prev_semester_approval), 2)
+            ELSE NULL::numeric
+        END AS approval_rate_change,
+        CASE
+            WHEN (prev_semester_documents IS NOT NULL) THEN (documents_last_year - prev_semester_documents)
+            ELSE NULL::bigint
+        END AS documents_change,
+        CASE
+            WHEN (prev_semester_rebel_rate IS NOT NULL) THEN round((avg_rebel_rate - prev_semester_rebel_rate), 2)
+            ELSE NULL::numeric
+        END AS discipline_change,
+        CASE
+            WHEN (prev_semester_win_rate IS NULL) THEN 'BASELINE'::text
+            WHEN ((win_rate > (prev_semester_win_rate + (5)::numeric)) AND ((next_semester_win_rate IS NULL) OR (next_semester_win_rate > win_rate))) THEN 'ASCENDING'::text
+            WHEN ((win_rate < (prev_semester_win_rate - (5)::numeric)) AND ((next_semester_win_rate IS NULL) OR (next_semester_win_rate < win_rate))) THEN 'DESCENDING'::text
+            WHEN (win_rate > (prev_semester_win_rate + (5)::numeric)) THEN 'RECOVERING'::text
+            WHEN (win_rate < (prev_semester_win_rate - (5)::numeric)) THEN 'DECLINING'::text
+            ELSE 'STABLE'::text
+        END AS trajectory_win_rate,
+        CASE
+            WHEN (prev_semester_participation IS NULL) THEN 'BASELINE'::text
+            WHEN (participation_rate > (prev_semester_participation + (5)::numeric)) THEN 'IMPROVING'::text
+            WHEN (participation_rate < (prev_semester_participation - (5)::numeric)) THEN 'DECLINING'::text
+            ELSE 'STABLE'::text
+        END AS trajectory_participation,
+    round((((((win_rate * 0.35) + (participation_rate * 0.25)) + (approval_rate * 0.20)) + ((((active_members)::numeric / (NULLIF(max(active_members) OVER (PARTITION BY election_cycle_id, semester), 0))::numeric) * (100)::numeric) * 0.10)) + ((((documents_last_year)::numeric / (NULLIF(max(documents_last_year) OVER (PARTITION BY election_cycle_id, semester), 0))::numeric) * (100)::numeric) * 0.10)), 2) AS composite_performance_index,
+    round(((participation_rate * 0.5) + (((100)::numeric - COALESCE(avg_rebel_rate, (0)::numeric)) * 0.5)), 2) AS discipline_effectiveness_score,
+    round(((approval_rate * 0.6) + (yes_rate * 0.4)), 2) AS legislative_effectiveness_score,
+        CASE
+            WHEN (stddev_win_rate_party > (10)::numeric) THEN 'HIGH_VOLATILITY'::text
+            WHEN (stddev_win_rate_party > (5)::numeric) THEN 'MODERATE_VOLATILITY'::text
+            ELSE 'LOW_VOLATILITY'::text
+        END AS volatility_classification,
+        CASE
+            WHEN (stddev_participation_party > (10)::numeric) THEN 'UNSTABLE'::text
+            WHEN (stddev_participation_party > (5)::numeric) THEN 'MODERATELY_STABLE'::text
+            ELSE 'STABLE'::text
+        END AS stability_classification,
+        CASE
+            WHEN (next_semester_win_rate IS NULL) THEN 'NO_FORECAST'::text
+            WHEN (next_semester_win_rate > (win_rate + (5)::numeric)) THEN 'EXPECTED_IMPROVEMENT'::text
+            WHEN (next_semester_win_rate < (win_rate - (5)::numeric)) THEN 'EXPECTED_DECLINE'::text
+            ELSE 'EXPECTED_STABLE'::text
+        END AS forecast_trend,
+    round((ma_3semester_win_rate - win_rate), 2) AS trend_deviation_from_ma,
+        CASE
+            WHEN (ma_3semester_win_rate > (win_rate + (3)::numeric)) THEN 'UNDERPERFORMING_VS_TREND'::text
+            WHEN (ma_3semester_win_rate < (win_rate - (3)::numeric)) THEN 'OVERPERFORMING_VS_TREND'::text
+            ELSE 'ON_TREND'::text
+        END AS trend_position,
+        CASE
+            WHEN ((prev_semester_win_rate IS NOT NULL) AND (stddev_win_rate_party > (0)::numeric)) THEN round(((win_rate - prev_semester_win_rate) / NULLIF(stddev_win_rate_party, (0)::numeric)), 2)
+            ELSE NULL::numeric
+        END AS momentum_z_score_win_rate,
+        CASE
+            WHEN ((prev_semester_participation IS NOT NULL) AND (stddev_participation_party > (0)::numeric)) THEN round(((participation_rate - prev_semester_participation) / NULLIF(stddev_participation_party, (0)::numeric)), 2)
+            ELSE NULL::numeric
+        END AS momentum_z_score_participation,
+        CASE
+            WHEN (percentile_win_rate >= (0.75)::double precision) THEN 'ELITE_PERFORMER'::text
+            WHEN (percentile_win_rate >= (0.50)::double precision) THEN 'STRONG_PERFORMER'::text
+            WHEN (percentile_win_rate >= (0.25)::double precision) THEN 'MODERATE_PERFORMER'::text
+            ELSE 'WEAK_PERFORMER'::text
+        END AS performance_tier,
+        CASE
+            WHEN (percentile_productivity >= (0.75)::double precision) THEN 'HIGHLY_PRODUCTIVE'::text
+            WHEN (percentile_productivity >= (0.50)::double precision) THEN 'MODERATELY_PRODUCTIVE'::text
+            WHEN (percentile_productivity >= (0.25)::double precision) THEN 'LOW_PRODUCTIVITY'::text
+            ELSE 'VERY_LOW_PRODUCTIVITY'::text
+        END AS productivity_tier,
+        CASE
+            WHEN (win_rate < (prev_semester_win_rate - (10)::numeric)) THEN 'CRITICAL_DECLINE'::text
+            WHEN (win_rate < (prev_semester_win_rate - (5)::numeric)) THEN 'MODERATE_DECLINE'::text
+            WHEN (participation_rate < (prev_semester_participation - (10)::numeric)) THEN 'CRITICAL_PARTICIPATION_DROP'::text
+            WHEN (participation_rate < (prev_semester_participation - (5)::numeric)) THEN 'MODERATE_PARTICIPATION_DROP'::text
+            ELSE 'NORMAL'::text
+        END AS early_warning_flag,
+        CASE
+            WHEN ((next_semester_win_rate IS NOT NULL) AND (prev_semester_win_rate IS NOT NULL)) THEN round(
+            CASE
+                WHEN ((win_rate > prev_semester_win_rate) AND (next_semester_win_rate > win_rate)) THEN 85.0
+                WHEN ((win_rate < prev_semester_win_rate) AND (next_semester_win_rate < win_rate)) THEN 85.0
+                WHEN ((win_rate = prev_semester_win_rate) AND (next_semester_win_rate = win_rate)) THEN 80.0
+                ELSE 50.0
+            END, 2)
+            ELSE NULL::numeric
+        END AS trajectory_confidence_score,
+        CASE
+            WHEN ((semester = 'spring'::text) AND is_election_year) THEN true
+            ELSE false
+        END AS is_pre_election_spring,
+        CASE
+            WHEN ((semester = 'autumn'::text) AND is_election_year) THEN true
+            ELSE false
+        END AS is_election_autumn,
+        CASE
+            WHEN (cycle_year = 4) THEN true
+            ELSE false
+        END AS is_election_cycle_end
+   FROM windowed_statistics ws
+  ORDER BY party, election_cycle_id, cycle_year, semester;
 
 
 --
@@ -10695,142 +11661,6 @@ CREATE VIEW public.view_riksdagen_politician_experience_summary AS
         END) AS political_analysis_comment
    FROM political_analysis
   ORDER BY total_weighted_exp DESC;
-
-
---
--- Name: view_riksdagen_vote_data_ballot_party_summary_daily; Type: MATERIALIZED VIEW; Schema: public; Owner: -
---
-
-CREATE MATERIALIZED VIEW public.view_riksdagen_vote_data_ballot_party_summary_daily AS
- WITH daily_stats AS (
-         SELECT view_riksdagen_vote_data_ballot_party_summary.vote_date AS embedded_id_vote_date,
-            view_riksdagen_vote_data_ballot_party_summary.embedded_id_party,
-            count(*) AS number_ballots,
-            sum(view_riksdagen_vote_data_ballot_party_summary.total_votes) AS total_votes,
-            sum(view_riksdagen_vote_data_ballot_party_summary.yes_votes) AS yes_votes,
-            sum(view_riksdagen_vote_data_ballot_party_summary.no_votes) AS no_votes,
-            sum(view_riksdagen_vote_data_ballot_party_summary.abstain_votes) AS abstain_votes,
-            sum(view_riksdagen_vote_data_ballot_party_summary.absent_votes) AS absent_votes,
-            sum(view_riksdagen_vote_data_ballot_party_summary.party_total_votes) AS party_total_votes,
-            sum(view_riksdagen_vote_data_ballot_party_summary.party_yes_votes) AS party_yes_votes,
-            sum(view_riksdagen_vote_data_ballot_party_summary.party_no_votes) AS party_no_votes,
-            sum(view_riksdagen_vote_data_ballot_party_summary.party_abstain_votes) AS party_abstain_votes,
-            sum(view_riksdagen_vote_data_ballot_party_summary.party_absent_votes) AS party_absent_votes,
-            sum(
-                CASE
-                    WHEN view_riksdagen_vote_data_ballot_party_summary.party_won THEN 1
-                    ELSE 0
-                END) AS party_won_total,
-            sum(
-                CASE
-                    WHEN view_riksdagen_vote_data_ballot_party_summary.approved THEN 1
-                    ELSE 0
-                END) AS approved_total,
-            round(avg(view_riksdagen_vote_data_ballot_party_summary.avg_born_year), 0) AS avg_born_year,
-            round(avg(view_riksdagen_vote_data_ballot_party_summary.party_avg_born_year), 0) AS party_avg_born_year,
-            max(view_riksdagen_vote_data_ballot_party_summary.total_votes) AS avg_total_votes,
-            avg(view_riksdagen_vote_data_ballot_party_summary.percentage_yes) AS orig_percentage_yes,
-            avg(view_riksdagen_vote_data_ballot_party_summary.percentage_no) AS orig_percentage_no,
-            avg(view_riksdagen_vote_data_ballot_party_summary.percentage_absent) AS orig_percentage_absent,
-            avg(view_riksdagen_vote_data_ballot_party_summary.percentage_abstain) AS orig_percentage_abstain,
-            avg(view_riksdagen_vote_data_ballot_party_summary.percentage_male) AS orig_percentage_male,
-            avg(view_riksdagen_vote_data_ballot_party_summary.party_percentage_male) AS orig_party_percentage_male
-           FROM public.view_riksdagen_vote_data_ballot_party_summary
-          GROUP BY view_riksdagen_vote_data_ballot_party_summary.embedded_id_party, view_riksdagen_vote_data_ballot_party_summary.vote_date
-        )
- SELECT embedded_id_vote_date,
-    embedded_id_party,
-    number_ballots,
-    avg_born_year,
-    avg_total_votes,
-    round((yes_votes / (NULLIF(number_ballots, 0))::numeric), 2) AS avg_yes_votes,
-    round((no_votes / (NULLIF(number_ballots, 0))::numeric), 2) AS avg_no_votes,
-    round((abstain_votes / (NULLIF(number_ballots, 0))::numeric), 2) AS avg_abstain_votes,
-    round((absent_votes / (NULLIF(number_ballots, 0))::numeric), 2) AS avg_absent_votes,
-    round(((100.0 * (approved_total)::numeric) / (NULLIF(number_ballots, 0))::numeric), 2) AS percentage_approved,
-    round(orig_percentage_yes, 2) AS avg_percentage_yes,
-    round(orig_percentage_no, 2) AS avg_percentage_no,
-    round(orig_percentage_absent, 2) AS avg_percentage_absent,
-    round(orig_percentage_abstain, 2) AS avg_percentage_abstain,
-    round(orig_percentage_male, 2) AS avg_percentage_male,
-    total_votes,
-    yes_votes,
-    no_votes,
-    abstain_votes,
-    absent_votes,
-    party_total_votes,
-    party_yes_votes,
-    party_no_votes,
-    party_abstain_votes,
-    party_absent_votes,
-    party_avg_born_year,
-    round(orig_party_percentage_male, 2) AS party_avg_percentage_male,
-    round(((100.0 * party_yes_votes) / NULLIF(party_total_votes, (0)::numeric)), 2) AS party_percentage_yes,
-    round(((100.0 * party_no_votes) / NULLIF(party_total_votes, (0)::numeric)), 2) AS party_percentage_no,
-    round(((100.0 * party_abstain_votes) / NULLIF(party_total_votes, (0)::numeric)), 2) AS party_percentage_abstain,
-    round(((100.0 * party_absent_votes) / NULLIF(party_total_votes, (0)::numeric)), 2) AS party_percentage_absent,
-    round(((100.0 * yes_votes) / NULLIF(total_votes, (0)::numeric)), 2) AS percentage_yes,
-    round(((100.0 * no_votes) / NULLIF(total_votes, (0)::numeric)), 2) AS percentage_no,
-    round(((100.0 * abstain_votes) / NULLIF(total_votes, (0)::numeric)), 2) AS percentage_abstain,
-    round(((100.0 * absent_votes) / NULLIF(total_votes, (0)::numeric)), 2) AS percentage_absent,
-    party_won_total,
-    round(((100.0 * (party_won_total)::numeric) / (NULLIF(number_ballots, 0))::numeric), 2) AS party_won_percentage,
-    approved_total,
-    round(((100.0 * (approved_total)::numeric) / (NULLIF(number_ballots, 0))::numeric), 2) AS approved_percentage
-   FROM daily_stats
-  ORDER BY embedded_id_vote_date, embedded_id_party
-  WITH NO DATA;
-
-
---
--- Name: MATERIALIZED VIEW view_riksdagen_vote_data_ballot_party_summary_daily; Type: COMMENT; Schema: public; Owner: -
---
-
-COMMENT ON MATERIALIZED VIEW public.view_riksdagen_vote_data_ballot_party_summary_daily IS 'Daily party-level voting statistics with detailed metrics and success rates';
-
-
---
--- Name: view_riksdagen_vote_data_ballot_party_summary_annual; Type: MATERIALIZED VIEW; Schema: public; Owner: -
---
-
-CREATE MATERIALIZED VIEW public.view_riksdagen_vote_data_ballot_party_summary_annual AS
- SELECT date(date_trunc('year'::text, (embedded_id_vote_date)::timestamp with time zone)) AS embedded_id_vote_date,
-    embedded_id_party,
-    sum(number_ballots) AS number_ballots,
-    round(avg(avg_born_year), 0) AS avg_born_year,
-    round(avg(avg_percentage_yes), 2) AS avg_percentage_yes,
-    round(avg(avg_percentage_no), 2) AS avg_percentage_no,
-    round(avg(avg_percentage_absent), 2) AS avg_percentage_absent,
-    round(avg(avg_percentage_abstain), 2) AS avg_percentage_abstain,
-    round(avg(avg_percentage_male), 2) AS avg_percentage_male,
-    sum(total_votes) AS total_votes,
-    sum(yes_votes) AS yes_votes,
-    sum(no_votes) AS no_votes,
-    sum(abstain_votes) AS abstain_votes,
-    sum(absent_votes) AS absent_votes,
-    sum(party_total_votes) AS party_total_votes,
-    sum(party_yes_votes) AS party_yes_votes,
-    sum(party_no_votes) AS party_no_votes,
-    sum(party_abstain_votes) AS party_abstain_votes,
-    sum(party_absent_votes) AS party_absent_votes,
-    round(avg(party_avg_born_year), 0) AS party_avg_born_year,
-    round(avg(party_avg_percentage_male), 2) AS party_avg_percentage_male,
-    round(((100.0 * sum(party_yes_votes)) / sum(party_total_votes)), 2) AS party_percentage_yes,
-    round(((100.0 * sum(party_no_votes)) / sum(party_total_votes)), 2) AS party_percentage_no,
-    round(((100.0 * sum(party_abstain_votes)) / sum(party_total_votes)), 2) AS party_percentage_abstain,
-    round(((100.0 * sum(party_absent_votes)) / sum(party_total_votes)), 2) AS party_percentage_absent,
-    sum(party_won_total) AS party_won_total,
-    round((((100)::numeric * sum(party_won_total)) / sum(number_ballots)), 2) AS party_won_percentage,
-    sum(approved_total) AS approved_total,
-    round((((100)::numeric * sum(approved_total)) / sum(number_ballots)), 2) AS approved_percentage,
-    round(((100.0 * sum(yes_votes)) / sum(total_votes)), 2) AS percentage_yes,
-    round(((100.0 * sum(no_votes)) / sum(total_votes)), 2) AS percentage_no,
-    round(((100.0 * sum(abstain_votes)) / sum(total_votes)), 2) AS percentage_abstain,
-    round(((100.0 * sum(absent_votes)) / sum(total_votes)), 2) AS percentage_absent,
-    round(avg(percentage_approved), 2) AS avg_percentage_approved
-   FROM public.view_riksdagen_vote_data_ballot_party_summary_daily
-  GROUP BY (date(date_trunc('year'::text, (embedded_id_vote_date)::timestamp with time zone))), embedded_id_party
-  WITH NO DATA;
 
 
 --
@@ -13279,13 +14109,13 @@ ALTER TABLE ONLY public.jv_snapshot
 -- PostgreSQL database dump complete
 --
 
-\unrestrict 2jBR1sZYUdN7c3C4atoMEGOW1oZkRbWIa1vYHrj9jo8ziDkUBNmv45YQ5OeLTFP
+\unrestrict PTTwc9JYgzS80xYwpQHHhzUBVD1ymcHsn8fmlcrz95MGI0rIyeb0OBeOEG9kvNK
 
 --
 -- PostgreSQL database dump
 --
 
-\restrict Qc1QQ7zDkDEguGGncRujSCSaW5En1f29zB05jcWfBOnK2uE9L0ud9aM4u01CQFb
+\restrict EEX6nCaCIMdb3ZCvG9mudlPgnn94sy0vF0O7zWhQC6FCNChdEuNs1RTY35bpcd2
 
 -- Dumped from database version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
@@ -13521,6 +14351,7 @@ COPY public.databasechangelog (id, author, filename, dateexecuted, orderexecuted
 1416258476613-211	pether (generated)	db-changelog-1.1.xml	2026-01-15 02:32:07.376573	211	EXECUTED	9:908f681226f2fb5abe4b199126d26a6b	createTable tableName=document_proposal_data		\N	5.0.1	\N	\N	8440723750
 1416258476613-212	pether (generated)	db-changelog-1.1.xml	2026-01-15 02:32:07.381224	212	EXECUTED	9:3e0f9abc6d66f9b8582632524ec3806a	addColumn tableName=document_status_container; dropColumn columnName=document_proposal, tableName=document_status_container		\N	5.0.1	\N	\N	8440723750
 1416258476613-213	pether (generated)	db-changelog-1.1.xml	2026-01-15 02:32:07.386353	213	EXECUTED	9:f866ec1b7098b04250e282bf216ce46b	addPrimaryKey constraintName=document_proposal_container_pkey, tableName=document_proposal_container		\N	5.0.1	\N	\N	8440723750
+1.53-intro	intelligence-operative	db-changelog-1.53.xml	2026-01-16 11:43:40.76298	479	EXECUTED	9:51e2954d1bceee0aa41653aed4cf412c	sql	Database Changelog v1.53 (OPTIMIZED & ENHANCED)	\N	5.0.1	\N	\N	0000000000
 1416258476613-214	pether (generated)	db-changelog-1.1.xml	2026-01-15 02:32:07.391233	214	EXECUTED	9:758bf9de406141115f5a3dea3f38d224	addPrimaryKey constraintName=document_proposal_data_pkey, tableName=document_proposal_data		\N	5.0.1	\N	\N	8440723750
 1416258476613-215	pether (generated)	db-changelog-1.1.xml	2026-01-15 02:32:07.395062	215	EXECUTED	9:bc8c5511c4210514433a23a9802a16ea	addForeignKeyConstraint baseTableName=document_proposal_container, constraintName=fk_m55tt4vaimgb5qk7xj9mgxmry, referencedTableName=document_proposal_data		\N	5.0.1	\N	\N	8440723750
 1416258476613-216	pether (generated)	db-changelog-1.1.xml	2026-01-15 02:32:07.398336	216	EXECUTED	9:824a2b5b89c1f8445fe03bce8a1ed4a3	addForeignKeyConstraint baseTableName=document_status_container, constraintName=fk_iirofquegnrpnuonvnydf6wfb, referencedTableName=document_proposal_container		\N	5.0.1	\N	\N	8440723750
@@ -13784,10 +14615,10 @@ fix-rebel-calculation-risk-score-evolution-1.50-001	intelligence-operative	db-ch
 1.52-network	intelligence-operative-analytics	db-changelog-1.52.xml	2026-01-15 02:32:11.38768	476	EXECUTED	9:00b61c34f8f941fbc6e8550c81c067b1	createView viewName=view_election_cycle_network_analysis		\N	5.0.1	\N	\N	8440723750
 1.52-drop-decision	intelligence-operative-analytics	db-changelog-1.52.xml	2026-01-15 02:32:11.391241	477	EXECUTED	9:2188e8b401150b744ff73f0b717339a7	sql		\N	5.0.1	\N	\N	8440723750
 1.52-decision	intelligence-operative-analytics	db-changelog-1.52.xml	2026-01-15 02:32:11.399463	478	EXECUTED	9:085fba297cc8a8d3dfa640203a9c0c07	createView viewName=view_election_cycle_decision_intelligence		\N	5.0.1	\N	\N	8440723750
-1.54-intro	intelligence-operative-analytics	db-changelog-1.54.xml	2026-01-16 14:39:03.781978	479	EXECUTED	9:5297d4ff56363d1961c9ed8022a2f2e0	sql	v1.54 Government Body Data Integration from ESV	\N	5.0.1	\N	\N	8574341180
-1.54-create-government-body-data-table	intelligence-operative-analytics	db-changelog-1.54.xml	2026-01-16 14:39:03.798401	480	EXECUTED	9:4046bda4557c0246facda447e089f602	createTable tableName=government_body_data	Create government_body_data table to store Swedish government body information from ESV	\N	5.0.1	\N	\N	8574341180
-1.54-add-government-body-indexes	intelligence-operative-analytics	db-changelog-1.54.xml	2026-01-16 14:39:03.809343	481	EXECUTED	9:d4611e87e7ecd3c83c57c45009042471	createIndex indexName=idx_gov_body_year, tableName=government_body_data; createIndex indexName=idx_gov_body_name, tableName=government_body_data; createIndex indexName=idx_gov_body_ministry, tableName=government_body_data; createIndex indexName=id...	Add indexes to government_body_data table for query performance	\N	5.0.1	\N	\N	8574341180
-1.54-add-government-body-comments	intelligence-operative-analytics	db-changelog-1.54.xml	2026-01-16 14:39:03.830193	482	EXECUTED	9:72d9e688519a72ac461c65c1842e91b9	sql	Add documentation comments to government_body_data table and columns	\N	5.0.1	\N	\N	8574341180
+1.53-party-longitudinal-001	intelligence-operative	db-changelog-1.53.xml	2026-01-16 11:43:40.76298	480	EXECUTED	9:f7a20e73ce0c531579fc4f4a0b523a03	createView viewName=view_riksdagen_party_longitudinal_performance	Party Longitudinal Performance View (2002-2026) - OPTIMIZED & ENHANCED	\N	5.0.1	\N	\N	0000000000
+1.53-party-coalition-002	intelligence-operative	db-changelog-1.53.xml	2026-01-16 11:43:40.76298	481	EXECUTED	9:ec3bbe899a38b29840da3ec8c3985238	createView viewName=view_riksdagen_party_coalition_evolution	Party Coalition Evolution View (2002-2026) - OPTIMIZED & ENHANCED	\N	5.0.1	\N	\N	0000000000
+1.53-party-electoral-003	intelligence-operative	db-changelog-1.53.xml	2026-01-16 11:43:40.76298	482	EXECUTED	9:141eb5d459791ae1848b861a93771dff	createView viewName=view_riksdagen_party_electoral_trends	Party Electoral Trends View (2002-2026) - OPTIMIZED & ENHANCED	\N	5.0.1	\N	\N	0000000000
+1.53-validation	intelligence-operative	db-changelog-1.53.xml	2026-01-16 11:43:40.76298	483	EXECUTED	9:ea784e6f23a71274961868a13943099e	sql	Validate optimized party longitudinal views	\N	5.0.1	\N	\N	0000000000
 \.
 
 
@@ -13804,5 +14635,5 @@ COPY public.databasechangeloglock (id, locked, lockgranted, lockedby) FROM stdin
 -- PostgreSQL database dump complete
 --
 
-\unrestrict Qc1QQ7zDkDEguGGncRujSCSaW5En1f29zB05jcWfBOnK2uE9L0ud9aM4u01CQFb
+\unrestrict EEX6nCaCIMdb3ZCvG9mudlPgnn94sy0vF0O7zWhQC6FCNChdEuNs1RTY35bpcd2
 

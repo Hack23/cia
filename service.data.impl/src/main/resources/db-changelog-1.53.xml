@@ -1,0 +1,1060 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+<!-- 
+  Party Longitudinal Analysis Views - Database Changelog v1.53 (OPTIMIZED &amp; ENHANCED)
+  Author: Intelligence Operative &amp; Political Analyst
+  Date: 2026-01-15
+  GitHub Issue: #8209 - Party Performance Across Election Cycles - Longitudinal Analysis (2002-2026)
+  Dependencies: #8208 (Election Cycle Views v1.51), #8218 (Statistical Enhancements v1.52)
+  
+  OPTIMIZATIONS &amp; ENHANCEMENTS (Based on PR review feedback):
+  - Builds on existing advanced party views (view_riksdagen_vote_data_ballot_party_summary_annual, 
+    view_party_performance_metrics, view_party_effectiveness_trends)
+  - Advanced statistical functions: RANK, PERCENT_RANK, NTILE, LAG, LEAD, STDDEV_POP
+  - Swedish parliament cycle structure: autumn/spring semesters
+  - Comprehensive KPIs: 25+ metrics per view for trends, monitoring, and predictions
+  - Predictive indicators: Forecast scores, momentum indicators, volatility assessments
+  - Trend detection: Multi-dimensional trajectory classification
+  
+  Purpose:
+  Creates 3 comprehensive database views tracking party performance metrics across all
+  election cycles (2002-2026), using Swedish parliamentary semester structure, leveraging
+  existing optimized views, and providing advanced statistical analysis with comprehensive
+  KPIs and predictive indicators.
+  
+  Swedish Parliamentary Context:
+  - Election cycles: 2002-2005, 2006-2009, 2010-2013, 2014-2017, 2018-2021, 2022-2025, 2026-2029
+  - Semester structure:
+    * Autumn semester: September 1 - January 25 (election campaigns in cycle year 4)
+    * Spring semester: January 26 - August 31 (pre-election in year 4)
+  - 8 major parties: S, M, SD, C, V, KD, L, MP
+  
+  Advanced Statistical Features:
+  1. RANK/PERCENT_RANK: Compare parties within each cycle/semester
+  2. NTILE: Quartile-based performance tiers
+  3. LAG/LEAD: Temporal trend detection (previous/next semester)
+  4. STDDEV_POP: Volatility and consistency measurement
+  5. Change percentages: Period-over-period growth rates
+  6. Composite scores: Multi-metric aggregations
+  7. Predictive KPIs: Forecast scores, early warning indicators
+  
+  Views Created (All with advanced statistics and comprehensive KPIs):
+  1. view_riksdagen_party_longitudinal_performance - 30+ metrics including performance KPIs, trend indicators, predictions
+  2. view_riksdagen_party_coalition_evolution - 25+ metrics including alliance KPIs, strategic shift detection, stability forecasts
+  3. view_riksdagen_party_electoral_trends - 28+ metrics including electoral KPIs, growth forecasts, seat projections
+-->
+
+<changeSet id="1.53-intro" author="intelligence-operative">
+    <comment>
+        Database Changelog v1.53 (OPTIMIZED &amp; ENHANCED) - Party Longitudinal Analysis
+        
+        Creates 3 views tracking party performance using Swedish parliament cycles,
+        building on existing optimized views (view_riksdagen_vote_data_ballot_party_summary_annual,
+        view_party_performance_metrics), with advanced statistical functions and comprehensive
+        KPIs for trends, monitoring, and predictions.
+        
+        OPTIMIZATIONS:
+        - Leverages existing materialized views for performance
+        - Uses view_party_performance_metrics, view_party_effectiveness_trends as base
+        - Adds 25+ KPI columns per view for comprehensive analysis
+        - Includes predictive indicators and forecast scores
+    </comment>
+    
+    <sql>
+        SELECT 
+            'v1.53-optimized' AS version,
+            'Party longitudinal analysis building on existing views with comprehensive KPIs' AS description,
+            'RANK, PERCENT_RANK, NTILE, LAG, LEAD, STDDEV_POP + 25+ KPIs per view' AS statistical_functions,
+            'Autumn/Spring semesters (Swedish parliament cycles)' AS temporal_structure,
+            'Builds on view_party_performance_metrics, view_party_effectiveness_trends' AS optimization,
+            CURRENT_TIMESTAMP AS applied_at;
+    </sql>
+</changeSet>
+
+
+<!-- ========================================================================= -->
+<!-- 1. PARTY LONGITUDINAL PERFORMANCE (OPTIMIZED WITH COMPREHENSIVE KPIs)   -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="1.53-drop-party-performance" failOnError="false">
+    <sql>DROP VIEW IF EXISTS view_riksdagen_party_longitudinal_performance CASCADE;</sql>
+</changeSet>
+
+<changeSet author="intelligence-operative" id="1.53-party-longitudinal-001" failOnError="true">
+    <comment>
+        Party Longitudinal Performance View (2002-2026) - OPTIMIZED &amp; ENHANCED
+        
+        Framework: Comparative Analysis (26 supporting views, 15+ risk rules)
+        
+        OPTIMIZATIONS:
+        - Builds on view_party_performance_metrics (current snapshot)
+        - Uses view_riksdagen_vote_data_ballot_party_summary_annual (historical data)
+        - Leverages existing party effectiveness trends
+        
+        COMPREHENSIVE KPIs (30+ metrics):
+        1. Core Performance: win_rate, participation_rate, discipline_score
+        2. Comparative Metrics: RANK, PERCENT_RANK, NTILE by multiple dimensions
+        3. Trend Indicators: LAG/LEAD changes, trajectory classification
+        4. Volatility Metrics: STDDEV_POP, stability scores
+        5. Predictive KPIs: forecast_score, momentum_index, early_warning_flag
+        6. Composite Scores: overall_performance_index, leadership_effectiveness
+        7. Change Metrics: Period-over-period changes in all core dimensions
+        
+        ENHANCEMENTS:
+        - Swedish parliament semester structure (autumn: Sep-Jan, spring: Jan-Aug)
+        - Advanced statistical functions for all metrics
+        - Multi-dimensional trend detection with volatility assessment
+        - Predictive indicators and forecast trends using LEAD analysis
+        - Early warning system for party performance degradation
+    </comment>
+    
+    <createView viewName="view_riksdagen_party_longitudinal_performance">
+        <![CDATA[
+WITH election_cycle_calendar AS (
+    -- Swedish election cycles with semester structure
+    SELECT 
+        year_series AS calendar_year,
+        CASE 
+            WHEN year_series BETWEEN 2002 AND 2005 THEN 2002
+            WHEN year_series BETWEEN 2006 AND 2009 THEN 2006
+            WHEN year_series BETWEEN 2010 AND 2013 THEN 2010
+            WHEN year_series BETWEEN 2014 AND 2017 THEN 2014
+            WHEN year_series BETWEEN 2018 AND 2021 THEN 2018
+            WHEN year_series BETWEEN 2022 AND 2025 THEN 2022
+            WHEN year_series BETWEEN 2026 AND 2029 THEN 2026
+        END AS election_year,
+        (year_series - CASE 
+            WHEN year_series BETWEEN 2002 AND 2005 THEN 2002
+            WHEN year_series BETWEEN 2006 AND 2009 THEN 2006
+            WHEN year_series BETWEEN 2010 AND 2013 THEN 2010
+            WHEN year_series BETWEEN 2014 AND 2017 THEN 2014
+            WHEN year_series BETWEEN 2018 AND 2021 THEN 2018
+            WHEN year_series BETWEEN 2022 AND 2025 THEN 2022
+            WHEN year_series BETWEEN 2026 AND 2029 THEN 2026
+        END + 1) AS cycle_year
+    FROM generate_series(2002, EXTRACT(YEAR FROM CURRENT_DATE)::INTEGER + 4, 1) AS year_series
+    WHERE year_series >= 2002
+),
+election_cycle_periods AS (
+    SELECT 
+        calendar_year,
+        election_year,
+        cycle_year,
+        (election_year || '-' || (election_year + 3)) AS election_cycle_id,
+        MAKE_DATE(calendar_year, 9, 1) AS autumn_start,
+        MAKE_DATE(calendar_year + 1, 1, 25) AS autumn_end,
+        MAKE_DATE(calendar_year, 1, 26) AS spring_start,
+        MAKE_DATE(calendar_year, 8, 31) AS spring_end,
+        CASE WHEN cycle_year = 4 THEN TRUE ELSE FALSE END AS is_election_year
+    FROM election_cycle_calendar
+    WHERE election_year IS NOT NULL
+),
+-- BUILD ON EXISTING VIEW: view_riksdagen_vote_data_ballot_party_summary_annual
+party_semester_data AS (
+    SELECT 
+        -- Swedish Parliament Semester Structure (simplified month-based implementation)
+        -- Note: Actual parliamentary structure is Sep 1-Jan 25 (autumn), Jan 26-Aug 31 (spring)
+        -- This implementation uses full months for simplicity: Sep-Jan (months 9,10,11,12,1) = autumn, Feb-Aug (months 2-8) = spring
+        -- The simplified approach is acceptable for longitudinal analysis at semester-level granularity
+        ecp.election_cycle_id,
+        ecp.cycle_year,
+        ecp.calendar_year,
+        CASE 
+            WHEN EXTRACT(MONTH FROM vbps.embedded_id_vote_date) >= 9 OR EXTRACT(MONTH FROM vbps.embedded_id_vote_date) <= 1 THEN 'autumn'
+            ELSE 'spring'
+        END AS semester,
+        ecp.is_election_year,
+        vbps.embedded_id_party AS party,
+        -- Core metrics from existing view
+        SUM(vbps.number_ballots) AS total_ballots,
+        ROUND(AVG(100 - vbps.party_percentage_absent), 2) AS participation_rate,
+        ROUND(AVG(vbps.party_won_percentage), 2) AS win_rate,
+        ROUND(AVG(vbps.party_percentage_yes), 2) AS yes_rate,
+        ROUND(AVG(vbps.party_percentage_no), 2) AS no_rate,
+        ROUND(AVG(vbps.approved_percentage), 2) AS approval_rate,
+        SUM(vbps.party_total_votes) AS total_votes,
+        SUM(vbps.party_yes_votes) AS yes_votes,
+        SUM(vbps.party_won_total) AS ballots_won,
+        SUM(vbps.approved_total) AS decisions_approved
+    FROM election_cycle_periods ecp
+    JOIN view_riksdagen_vote_data_ballot_party_summary_annual vbps 
+        ON DATE_PART('year', vbps.embedded_id_vote_date) = ecp.calendar_year
+    WHERE vbps.embedded_id_party IS NOT NULL
+    GROUP BY ecp.election_cycle_id, ecp.cycle_year, ecp.calendar_year, 
+             CASE 
+                 WHEN EXTRACT(MONTH FROM vbps.embedded_id_vote_date) >= 9 OR EXTRACT(MONTH FROM vbps.embedded_id_vote_date) <= 1 THEN 'autumn'
+                 ELSE 'spring'
+             END,
+             ecp.is_election_year, vbps.embedded_id_party
+),
+-- BUILD ON EXISTING VIEW: view_party_performance_metrics for current context
+enhanced_metrics AS (
+    SELECT 
+        psd.*,
+        ppm.active_members,
+        ppm.documents_last_year,
+        ppm.avg_rebel_rate,
+        ppm.performance_score AS current_performance_score
+    FROM party_semester_data psd
+    LEFT JOIN view_party_performance_metrics ppm ON ppm.party = psd.party
+),
+-- APPLY ADVANCED STATISTICAL WINDOW FUNCTIONS
+windowed_statistics AS (
+    SELECT 
+        em.*,
+        -- RANK: Party ranking within each cycle/semester by multiple dimensions
+        RANK() OVER (PARTITION BY em.election_cycle_id, em.semester ORDER BY em.win_rate DESC NULLS LAST) AS rank_by_win_rate,
+        RANK() OVER (PARTITION BY em.election_cycle_id, em.semester ORDER BY em.participation_rate DESC NULLS LAST) AS rank_by_participation,
+        RANK() OVER (PARTITION BY em.election_cycle_id, em.semester ORDER BY em.active_members DESC NULLS LAST) AS rank_by_size,
+        RANK() OVER (PARTITION BY em.election_cycle_id, em.semester ORDER BY em.approval_rate DESC NULLS LAST) AS rank_by_approval,
+        RANK() OVER (PARTITION BY em.election_cycle_id, em.semester ORDER BY em.documents_last_year DESC NULLS LAST) AS rank_by_productivity,
+        RANK() OVER (PARTITION BY em.election_cycle_id, em.semester ORDER BY em.avg_rebel_rate ASC NULLS LAST) AS rank_by_discipline,
+        
+        -- PERCENT_RANK: Percentile positioning (0.0-1.0) for comparative analysis
+        PERCENT_RANK() OVER (PARTITION BY em.election_cycle_id, em.semester ORDER BY em.win_rate DESC NULLS LAST) AS percentile_win_rate,
+        PERCENT_RANK() OVER (PARTITION BY em.election_cycle_id, em.semester ORDER BY em.participation_rate DESC NULLS LAST) AS percentile_participation,
+        PERCENT_RANK() OVER (PARTITION BY em.election_cycle_id, em.semester ORDER BY em.approval_rate DESC NULLS LAST) AS percentile_approval,
+        PERCENT_RANK() OVER (PARTITION BY em.election_cycle_id, em.semester ORDER BY em.documents_last_year DESC NULLS LAST) AS percentile_productivity,
+        
+        -- NTILE: Quartile-based performance tiers (1=top 25%, 4=bottom 25%)
+        NTILE(4) OVER (PARTITION BY em.election_cycle_id, em.semester ORDER BY em.win_rate DESC NULLS LAST) AS quartile_by_win_rate,
+        NTILE(4) OVER (PARTITION BY em.election_cycle_id, em.semester ORDER BY em.current_performance_score DESC NULLS LAST) AS quartile_by_overall_performance,
+        
+        -- LAG: Previous semester metrics for trend detection
+        LAG(em.win_rate) OVER (PARTITION BY em.party ORDER BY em.election_cycle_id, em.cycle_year, em.semester) AS prev_semester_win_rate,
+        LAG(em.participation_rate) OVER (PARTITION BY em.party ORDER BY em.election_cycle_id, em.cycle_year, em.semester) AS prev_semester_participation,
+        LAG(em.active_members) OVER (PARTITION BY em.party ORDER BY em.election_cycle_id, em.cycle_year, em.semester) AS prev_semester_members,
+        LAG(em.approval_rate) OVER (PARTITION BY em.party ORDER BY em.election_cycle_id, em.cycle_year, em.semester) AS prev_semester_approval,
+        LAG(em.documents_last_year) OVER (PARTITION BY em.party ORDER BY em.election_cycle_id, em.cycle_year, em.semester) AS prev_semester_documents,
+        LAG(em.avg_rebel_rate) OVER (PARTITION BY em.party ORDER BY em.election_cycle_id, em.cycle_year, em.semester) AS prev_semester_rebel_rate,
+        
+        -- LEAD: Next semester metrics for predictive forecasting
+        LEAD(em.win_rate) OVER (PARTITION BY em.party ORDER BY em.election_cycle_id, em.cycle_year, em.semester) AS next_semester_win_rate,
+        LEAD(em.participation_rate) OVER (PARTITION BY em.party ORDER BY em.election_cycle_id, em.cycle_year, em.semester) AS next_semester_participation,
+        LEAD(em.active_members) OVER (PARTITION BY em.party ORDER BY em.election_cycle_id, em.cycle_year, em.semester) AS next_semester_members,
+        
+        -- STDDEV_POP: Volatility measurement across parties and time
+        STDDEV_POP(em.win_rate) OVER (PARTITION BY em.election_cycle_id, em.semester) AS stddev_win_rate_sector,
+        STDDEV_POP(em.participation_rate) OVER (PARTITION BY em.election_cycle_id, em.semester) AS stddev_participation_sector,
+        STDDEV_POP(em.win_rate) OVER (PARTITION BY em.party) AS stddev_win_rate_party,
+        STDDEV_POP(em.participation_rate) OVER (PARTITION BY em.party) AS stddev_participation_party,
+        
+        -- Rolling averages for smoothing trends
+        AVG(em.win_rate) OVER (PARTITION BY em.party ORDER BY em.election_cycle_id, em.cycle_year, em.semester ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS ma_3semester_win_rate,
+        AVG(em.participation_rate) OVER (PARTITION BY em.party ORDER BY em.election_cycle_id, em.cycle_year, em.semester ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS ma_3semester_participation
+    FROM enhanced_metrics em
+)
+SELECT 
+    ws.*,
+    -- CHANGE METRICS: Period-over-period changes
+    CASE WHEN ws.prev_semester_win_rate IS NOT NULL 
+         THEN ROUND(ws.win_rate - ws.prev_semester_win_rate, 2)
+         ELSE NULL END AS win_rate_change_absolute,
+    CASE WHEN ws.prev_semester_win_rate IS NOT NULL AND ws.prev_semester_win_rate > 0 
+         THEN ROUND(((ws.win_rate - ws.prev_semester_win_rate) / ws.prev_semester_win_rate * 100)::NUMERIC, 2)
+         ELSE NULL END AS win_rate_change_pct,
+    CASE WHEN ws.prev_semester_participation IS NOT NULL 
+         THEN ROUND(ws.participation_rate - ws.prev_semester_participation, 2)
+         ELSE NULL END AS participation_change_absolute,
+    CASE WHEN ws.prev_semester_members IS NOT NULL 
+         THEN (ws.active_members - ws.prev_semester_members)
+         ELSE NULL END AS membership_change,
+    CASE WHEN ws.prev_semester_approval IS NOT NULL 
+         THEN ROUND(ws.approval_rate - ws.prev_semester_approval, 2)
+         ELSE NULL END AS approval_rate_change,
+    CASE WHEN ws.prev_semester_documents IS NOT NULL 
+         THEN (ws.documents_last_year - ws.prev_semester_documents)
+         ELSE NULL END AS documents_change,
+    CASE WHEN ws.prev_semester_rebel_rate IS NOT NULL 
+         THEN ROUND(ws.avg_rebel_rate - ws.prev_semester_rebel_rate, 2)
+         ELSE NULL END AS discipline_change,
+    
+    -- TRAJECTORY CLASSIFICATION: Multi-dimensional trend detection
+    CASE 
+        WHEN ws.prev_semester_win_rate IS NULL THEN 'BASELINE'
+        WHEN ws.win_rate > ws.prev_semester_win_rate + 5 AND (ws.next_semester_win_rate IS NULL OR ws.next_semester_win_rate > ws.win_rate) THEN 'ASCENDING'
+        WHEN ws.win_rate < ws.prev_semester_win_rate - 5 AND (ws.next_semester_win_rate IS NULL OR ws.next_semester_win_rate < ws.win_rate) THEN 'DESCENDING'
+        WHEN ws.win_rate > ws.prev_semester_win_rate + 5 THEN 'RECOVERING'
+        WHEN ws.win_rate < ws.prev_semester_win_rate - 5 THEN 'DECLINING'
+        ELSE 'STABLE'
+    END AS trajectory_win_rate,
+    CASE 
+        WHEN ws.prev_semester_participation IS NULL THEN 'BASELINE'
+        WHEN ws.participation_rate > ws.prev_semester_participation + 5 THEN 'IMPROVING'
+        WHEN ws.participation_rate < ws.prev_semester_participation - 5 THEN 'DECLINING'
+        ELSE 'STABLE'
+    END AS trajectory_participation,
+    
+    -- COMPOSITE PERFORMANCE SCORES: Multi-metric aggregations
+    ROUND((ws.win_rate * 0.35 + 
+           ws.participation_rate * 0.25 + 
+           ws.approval_rate * 0.20 +
+           (ws.active_members::NUMERIC / NULLIF(MAX(ws.active_members) OVER (PARTITION BY ws.election_cycle_id, ws.semester), 0) * 100 * 0.10) +
+           (ws.documents_last_year::NUMERIC / NULLIF(MAX(ws.documents_last_year) OVER (PARTITION BY ws.election_cycle_id, ws.semester), 0) * 100 * 0.10))::NUMERIC, 2) AS composite_performance_index,
+    ROUND((ws.participation_rate * 0.5 + (100 - COALESCE(ws.avg_rebel_rate, 0)) * 0.5)::NUMERIC, 2) AS discipline_effectiveness_score,
+    ROUND((ws.approval_rate * 0.6 + ws.yes_rate * 0.4)::NUMERIC, 2) AS legislative_effectiveness_score,
+    
+    -- VOLATILITY ASSESSMENT: Stability classification
+    CASE 
+        WHEN ws.stddev_win_rate_party > 10 THEN 'HIGH_VOLATILITY'
+        WHEN ws.stddev_win_rate_party > 5 THEN 'MODERATE_VOLATILITY'
+        ELSE 'LOW_VOLATILITY'
+    END AS volatility_classification,
+    CASE 
+        WHEN ws.stddev_participation_party > 10 THEN 'UNSTABLE'
+        WHEN ws.stddev_participation_party > 5 THEN 'MODERATELY_STABLE'
+        ELSE 'STABLE'
+    END AS stability_classification,
+    
+    -- PREDICTIVE INDICATORS: Forecast trends and early warnings
+    CASE 
+        WHEN ws.next_semester_win_rate IS NULL THEN 'NO_FORECAST'
+        WHEN ws.next_semester_win_rate > ws.win_rate + 5 THEN 'EXPECTED_IMPROVEMENT'
+        WHEN ws.next_semester_win_rate < ws.win_rate - 5 THEN 'EXPECTED_DECLINE'
+        ELSE 'EXPECTED_STABLE'
+    END AS forecast_trend,
+    ROUND((ws.ma_3semester_win_rate - ws.win_rate)::NUMERIC, 2) AS trend_deviation_from_ma,
+    CASE 
+        WHEN ws.ma_3semester_win_rate > ws.win_rate + 3 THEN 'UNDERPERFORMING_VS_TREND'
+        WHEN ws.ma_3semester_win_rate < ws.win_rate - 3 THEN 'OVERPERFORMING_VS_TREND'
+        ELSE 'ON_TREND'
+    END AS trend_position,
+    
+    -- MOMENTUM INDICATORS: Statistical significance of changes
+    CASE 
+        WHEN ws.prev_semester_win_rate IS NOT NULL AND ws.stddev_win_rate_party > 0
+        THEN ROUND(((ws.win_rate - ws.prev_semester_win_rate) / NULLIF(ws.stddev_win_rate_party, 0))::NUMERIC, 2)
+        ELSE NULL 
+    END AS momentum_z_score_win_rate,
+    CASE 
+        WHEN ws.prev_semester_participation IS NOT NULL AND ws.stddev_participation_party > 0
+        THEN ROUND(((ws.participation_rate - ws.prev_semester_participation) / NULLIF(ws.stddev_participation_party, 0))::NUMERIC, 2)
+        ELSE NULL 
+    END AS momentum_z_score_participation,
+    
+    -- PERFORMANCE TIER CLASSIFICATION: Based on percentile ranks
+    CASE 
+        WHEN ws.percentile_win_rate >= 0.75 THEN 'ELITE_PERFORMER'
+        WHEN ws.percentile_win_rate >= 0.50 THEN 'STRONG_PERFORMER'
+        WHEN ws.percentile_win_rate >= 0.25 THEN 'MODERATE_PERFORMER'
+        ELSE 'WEAK_PERFORMER'
+    END AS performance_tier,
+    CASE 
+        WHEN ws.percentile_productivity >= 0.75 THEN 'HIGHLY_PRODUCTIVE'
+        WHEN ws.percentile_productivity >= 0.50 THEN 'MODERATELY_PRODUCTIVE'
+        WHEN ws.percentile_productivity >= 0.25 THEN 'LOW_PRODUCTIVITY'
+        ELSE 'VERY_LOW_PRODUCTIVITY'
+    END AS productivity_tier,
+    
+    -- EARLY WARNING FLAGS: Performance degradation alerts
+    CASE 
+        WHEN ws.win_rate < ws.prev_semester_win_rate - 10 THEN 'CRITICAL_DECLINE'
+        WHEN ws.win_rate < ws.prev_semester_win_rate - 5 THEN 'MODERATE_DECLINE'
+        WHEN ws.participation_rate < ws.prev_semester_participation - 10 THEN 'CRITICAL_PARTICIPATION_DROP'
+        WHEN ws.participation_rate < ws.prev_semester_participation - 5 THEN 'MODERATE_PARTICIPATION_DROP'
+        ELSE 'NORMAL'
+    END AS early_warning_flag,
+    
+    -- PREDICTIVE SCORE: Likelihood of continued trajectory
+    CASE 
+        WHEN ws.next_semester_win_rate IS NOT NULL AND ws.prev_semester_win_rate IS NOT NULL
+        THEN ROUND((
+            CASE WHEN ws.win_rate > ws.prev_semester_win_rate AND ws.next_semester_win_rate > ws.win_rate THEN 85.0
+                 WHEN ws.win_rate < ws.prev_semester_win_rate AND ws.next_semester_win_rate < ws.win_rate THEN 85.0
+                 WHEN ws.win_rate = ws.prev_semester_win_rate AND ws.next_semester_win_rate = ws.win_rate THEN 80.0
+                 ELSE 50.0
+            END
+        )::NUMERIC, 2)
+        ELSE NULL
+    END AS trajectory_confidence_score,
+    
+    -- ELECTION CYCLE CONTEXT FLAGS
+    CASE WHEN ws.semester = 'spring' AND ws.is_election_year THEN TRUE ELSE FALSE END AS is_pre_election_spring,
+    CASE WHEN ws.semester = 'autumn' AND ws.is_election_year THEN TRUE ELSE FALSE END AS is_election_autumn,
+    CASE WHEN ws.cycle_year = 4 THEN TRUE ELSE FALSE END AS is_election_cycle_end
+    
+FROM windowed_statistics ws
+ORDER BY ws.party, ws.election_cycle_id, ws.cycle_year, ws.semester;
+        ]]>
+    </createView>
+    
+    <rollback>
+        <dropView viewName="view_riksdagen_party_longitudinal_performance"/>
+    </rollback>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- 2. PARTY COALITION EVOLUTION (OPTIMIZED WITH COMPREHENSIVE KPIs)         -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="1.53-drop-coalition-evolution" failOnError="false">
+    <sql>DROP VIEW IF EXISTS view_riksdagen_party_coalition_evolution CASCADE;</sql>
+</changeSet>
+
+<changeSet author="intelligence-operative" id="1.53-party-coalition-002" failOnError="true">
+    <comment>
+        Party Coalition Evolution View (2002-2026) - OPTIMIZED &amp; ENHANCED
+        
+        Framework: Comparative Analysis, Network Analysis
+        
+        OPTIMIZATIONS:
+        - Builds on view_riksdagen_vote_data_ballot_party_summary_annual
+        - Leverages existing party pair voting patterns
+        
+        COMPREHENSIVE KPIs (25+ metrics):
+        1. Core Alliance Metrics: alignment_rate, joint_votes, aligned_votes
+        2. Comparative Metrics: RANK, PERCENT_RANK, NTILE by alignment strength
+        3. Trend Indicators: LAG/LEAD changes, coalition trajectory
+        4. Volatility Metrics: STDDEV_POP for alliance stability
+        5. Predictive KPIs: coalition_forecast, stability_score, breakup_risk
+        6. Strategic Indicators: shift_detection, realignment_probability
+        7. Network Metrics: coalition_density, bridge_strength
+        
+        ENHANCEMENTS:
+        - Swedish parliament semester structure
+        - Advanced statistical functions for coalition analysis
+        - Strategic shift detection with statistical significance
+        - Predictive indicators for coalition stability/breakup
+        - Network analysis metrics for coalition structure
+    </comment>
+    
+    <createView viewName="view_riksdagen_party_coalition_evolution">
+        <![CDATA[
+WITH election_cycle_periods AS (
+    SELECT 
+        year_series AS calendar_year,
+        CASE 
+            WHEN year_series BETWEEN 2002 AND 2005 THEN 2002
+            WHEN year_series BETWEEN 2006 AND 2009 THEN 2006
+            WHEN year_series BETWEEN 2010 AND 2013 THEN 2010
+            WHEN year_series BETWEEN 2014 AND 2017 THEN 2014
+            WHEN year_series BETWEEN 2018 AND 2021 THEN 2018
+            WHEN year_series BETWEEN 2022 AND 2025 THEN 2022
+            WHEN year_series BETWEEN 2026 AND 2029 THEN 2026
+        END AS election_year,
+        (year_series - CASE 
+            WHEN year_series BETWEEN 2002 AND 2005 THEN 2002
+            WHEN year_series BETWEEN 2006 AND 2009 THEN 2006
+            WHEN year_series BETWEEN 2010 AND 2013 THEN 2010
+            WHEN year_series BETWEEN 2014 AND 2017 THEN 2014
+            WHEN year_series BETWEEN 2018 AND 2021 THEN 2018
+            WHEN year_series BETWEEN 2022 AND 2025 THEN 2022
+            WHEN year_series BETWEEN 2026 AND 2029 THEN 2026
+        END + 1) AS cycle_year,
+        (CASE 
+            WHEN year_series BETWEEN 2002 AND 2005 THEN 2002
+            WHEN year_series BETWEEN 2006 AND 2009 THEN 2006
+            WHEN year_series BETWEEN 2010 AND 2013 THEN 2010
+            WHEN year_series BETWEEN 2014 AND 2017 THEN 2014
+            WHEN year_series BETWEEN 2018 AND 2021 THEN 2018
+            WHEN year_series BETWEEN 2022 AND 2025 THEN 2022
+            WHEN year_series BETWEEN 2026 AND 2029 THEN 2026
+        END || '-' || (CASE 
+            WHEN year_series BETWEEN 2002 AND 2005 THEN 2005
+            WHEN year_series BETWEEN 2006 AND 2009 THEN 2009
+            WHEN year_series BETWEEN 2010 AND 2013 THEN 2013
+            WHEN year_series BETWEEN 2014 AND 2017 THEN 2017
+            WHEN year_series BETWEEN 2018 AND 2021 THEN 2021
+            WHEN year_series BETWEEN 2022 AND 2025 THEN 2025
+            WHEN year_series BETWEEN 2026 AND 2029 THEN 2029
+        END)) AS election_cycle_id,
+        MAKE_DATE(year_series, 9, 1) AS autumn_start,
+        MAKE_DATE(year_series + 1, 1, 25) AS autumn_end,
+        MAKE_DATE(year_series, 1, 26) AS spring_start,
+        MAKE_DATE(year_series, 8, 31) AS spring_end
+    FROM generate_series(2002, EXTRACT(YEAR FROM CURRENT_DATE)::INTEGER + 4, 1) AS year_series
+    WHERE year_series >= 2002
+),
+-- BUILD ON EXISTING VIEW: view_riksdagen_vote_data_ballot_party_summary_annual for party pairs
+coalition_semester_data AS (
+    SELECT 
+        ecp.election_cycle_id,
+        ecp.cycle_year,
+        ecp.calendar_year,
+        CASE 
+            WHEN EXTRACT(MONTH FROM vbps1.embedded_id_vote_date) >= 9 OR EXTRACT(MONTH FROM vbps1.embedded_id_vote_date) <= 1 THEN 'autumn'
+            ELSE 'spring'
+        END AS semester,
+        vbps1.embedded_id_party AS party_1,
+        vbps2.embedded_id_party AS party_2,
+        COUNT(DISTINCT vbps1.embedded_id_vote_date) AS joint_voting_days,
+        SUM(vbps1.number_ballots) AS joint_ballots,
+        -- Calculate alignment: when both parties vote same direction (both yes or both no)
+        SUM(CASE WHEN vbps1.party_percentage_yes > 50 AND vbps2.party_percentage_yes > 50 THEN vbps1.number_ballots
+                 WHEN vbps1.party_percentage_no > 50 AND vbps2.party_percentage_no > 50 THEN vbps1.number_ballots
+                 ELSE 0 END) AS aligned_ballots,
+        ROUND((SUM(CASE WHEN vbps1.party_percentage_yes > 50 AND vbps2.party_percentage_yes > 50 THEN vbps1.number_ballots
+                        WHEN vbps1.party_percentage_no > 50 AND vbps2.party_percentage_no > 50 THEN vbps1.number_ballots
+                        ELSE 0 END)::NUMERIC / NULLIF(SUM(vbps1.number_ballots), 0) * 100), 2) AS alignment_rate,
+        -- Agreement strength metrics
+        ROUND(AVG(ABS(vbps1.party_percentage_yes - vbps2.party_percentage_yes)), 2) AS avg_vote_divergence,
+        ROUND(STDDEV_POP(ABS(vbps1.party_percentage_yes - vbps2.party_percentage_yes)), 2) AS vote_divergence_stddev
+    FROM election_cycle_periods ecp
+    JOIN view_riksdagen_vote_data_ballot_party_summary_annual vbps1 
+        ON DATE_PART('year', vbps1.embedded_id_vote_date) = ecp.calendar_year
+    JOIN view_riksdagen_vote_data_ballot_party_summary_annual vbps2 
+        ON vbps2.embedded_id_vote_date = vbps1.embedded_id_vote_date
+        AND vbps2.embedded_id_party > vbps1.embedded_id_party
+    WHERE vbps1.embedded_id_party IS NOT NULL 
+      AND vbps2.embedded_id_party IS NOT NULL
+      AND ecp.election_year IS NOT NULL
+    GROUP BY ecp.election_cycle_id, ecp.cycle_year, ecp.calendar_year,
+             CASE 
+                 WHEN EXTRACT(MONTH FROM vbps1.embedded_id_vote_date) >= 9 OR EXTRACT(MONTH FROM vbps1.embedded_id_vote_date) <= 1 THEN 'autumn'
+                 ELSE 'spring'
+             END,
+             vbps1.embedded_id_party, vbps2.embedded_id_party
+    HAVING COUNT(DISTINCT vbps1.embedded_id_vote_date) >= 5
+),
+-- APPLY ADVANCED STATISTICAL WINDOW FUNCTIONS
+windowed_statistics AS (
+    SELECT 
+        csd.*,
+        -- RANK: Coalition strength ranking within each semester
+        RANK() OVER (PARTITION BY csd.election_cycle_id, csd.semester ORDER BY csd.alignment_rate DESC NULLS LAST) AS rank_by_alignment,
+        RANK() OVER (PARTITION BY csd.election_cycle_id, csd.semester ORDER BY csd.joint_ballots DESC NULLS LAST) AS rank_by_activity,
+        RANK() OVER (PARTITION BY csd.election_cycle_id, csd.semester ORDER BY csd.vote_divergence_stddev ASC NULLS LAST) AS rank_by_consistency,
+        
+        -- PERCENT_RANK: Percentile-based coalition comparison
+        PERCENT_RANK() OVER (PARTITION BY csd.election_cycle_id, csd.semester ORDER BY csd.alignment_rate DESC NULLS LAST) AS percentile_alignment,
+        PERCENT_RANK() OVER (PARTITION BY csd.election_cycle_id, csd.semester ORDER BY csd.avg_vote_divergence ASC NULLS LAST) AS percentile_cohesion,
+        
+        -- NTILE: Coalition quartiles (strength tiers)
+        NTILE(4) OVER (PARTITION BY csd.election_cycle_id, csd.semester ORDER BY csd.alignment_rate DESC NULLS LAST) AS quartile_coalition_strength,
+        
+        -- LAG: Previous semester alignment for trend detection
+        LAG(csd.alignment_rate) OVER (PARTITION BY csd.party_1, csd.party_2 ORDER BY csd.election_cycle_id, csd.cycle_year, csd.semester) AS prev_semester_alignment,
+        LAG(csd.joint_ballots) OVER (PARTITION BY csd.party_1, csd.party_2 ORDER BY csd.election_cycle_id, csd.cycle_year, csd.semester) AS prev_semester_joint_ballots,
+        LAG(csd.avg_vote_divergence) OVER (PARTITION BY csd.party_1, csd.party_2 ORDER BY csd.election_cycle_id, csd.cycle_year, csd.semester) AS prev_semester_divergence,
+        
+        -- LEAD: Next semester alignment for predictive forecasting
+        LEAD(csd.alignment_rate) OVER (PARTITION BY csd.party_1, csd.party_2 ORDER BY csd.election_cycle_id, csd.cycle_year, csd.semester) AS next_semester_alignment,
+        LEAD(csd.avg_vote_divergence) OVER (PARTITION BY csd.party_1, csd.party_2 ORDER BY csd.election_cycle_id, csd.cycle_year, csd.semester) AS next_semester_divergence,
+        
+        -- STDDEV_POP: Alliance volatility measurement
+        STDDEV_POP(csd.alignment_rate) OVER (PARTITION BY csd.election_cycle_id, csd.semester) AS stddev_alignment_sector,
+        STDDEV_POP(csd.alignment_rate) OVER (PARTITION BY csd.party_1, csd.party_2) AS stddev_alignment_pair,
+        STDDEV_POP(csd.avg_vote_divergence) OVER (PARTITION BY csd.party_1, csd.party_2) AS stddev_divergence_pair,
+        
+        -- Rolling averages for smoothing trends
+        AVG(csd.alignment_rate) OVER (PARTITION BY csd.party_1, csd.party_2 ORDER BY csd.election_cycle_id, csd.cycle_year, csd.semester ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS ma_3semester_alignment
+    FROM coalition_semester_data csd
+)
+SELECT 
+    ws.*,
+    -- CHANGE METRICS: Period-over-period changes
+    CASE WHEN ws.prev_semester_alignment IS NOT NULL 
+         THEN ROUND(ws.alignment_rate - ws.prev_semester_alignment, 2)
+         ELSE NULL END AS alignment_change_absolute,
+    CASE WHEN ws.prev_semester_alignment IS NOT NULL AND ws.prev_semester_alignment > 0 
+         THEN ROUND(((ws.alignment_rate - ws.prev_semester_alignment) / ws.prev_semester_alignment * 100)::NUMERIC, 2)
+         ELSE NULL END AS alignment_change_pct,
+    CASE WHEN ws.prev_semester_joint_ballots IS NOT NULL 
+         THEN (ws.joint_ballots - ws.prev_semester_joint_ballots)
+         ELSE NULL END AS activity_change,
+    CASE WHEN ws.prev_semester_divergence IS NOT NULL 
+         THEN ROUND(ws.avg_vote_divergence - ws.prev_semester_divergence, 2)
+         ELSE NULL END AS divergence_change,
+    
+    -- COALITION STRENGTH CLASSIFICATION: Based on alignment rate
+    CASE 
+        WHEN ws.alignment_rate >= 80 THEN 'VERY_STRONG_COALITION'
+        WHEN ws.alignment_rate >= 65 THEN 'STRONG_COALITION'
+        WHEN ws.alignment_rate >= 50 THEN 'MODERATE_COALITION'
+        WHEN ws.alignment_rate >= 35 THEN 'WEAK_COALITION'
+        ELSE 'OPPOSITION'
+    END AS coalition_strength,
+    
+    -- COALITION TREND: Direction of alliance movement
+    CASE 
+        WHEN ws.prev_semester_alignment IS NULL THEN 'BASELINE'
+        WHEN ws.alignment_rate > ws.prev_semester_alignment + 15 THEN 'RAPIDLY_STRENGTHENING'
+        WHEN ws.alignment_rate > ws.prev_semester_alignment + 8 THEN 'STRENGTHENING'
+        WHEN ws.alignment_rate > ws.prev_semester_alignment + 3 THEN 'IMPROVING'
+        WHEN ws.alignment_rate < ws.prev_semester_alignment - 15 THEN 'RAPIDLY_WEAKENING'
+        WHEN ws.alignment_rate < ws.prev_semester_alignment - 8 THEN 'WEAKENING'
+        WHEN ws.alignment_rate < ws.prev_semester_alignment - 3 THEN 'DECLINING'
+        ELSE 'STABLE'
+    END AS coalition_trend,
+    
+    -- STRATEGIC SHIFT DETECTION: Major realignments
+    CASE 
+        WHEN ws.prev_semester_alignment IS NOT NULL 
+             AND ws.prev_semester_alignment < 50 
+             AND ws.alignment_rate >= 65 THEN 'COALITION_FORMATION'
+        WHEN ws.prev_semester_alignment IS NOT NULL 
+             AND ws.prev_semester_alignment >= 65 
+             AND ws.alignment_rate < 50 THEN 'COALITION_BREAKUP'
+        WHEN ws.prev_semester_alignment IS NOT NULL 
+             AND ABS(ws.alignment_rate - ws.prev_semester_alignment) >= 20 THEN 'MAJOR_REALIGNMENT'
+        WHEN ws.prev_semester_alignment IS NOT NULL 
+             AND ABS(ws.alignment_rate - ws.prev_semester_alignment) >= 10 THEN 'SIGNIFICANT_SHIFT'
+        WHEN ws.prev_semester_alignment IS NOT NULL 
+             AND ABS(ws.alignment_rate - ws.prev_semester_alignment) >= 5 THEN 'MINOR_SHIFT'
+        ELSE 'STABLE'
+    END AS strategic_shift,
+    
+    -- VOLATILITY CLASSIFICATION: Alliance stability
+    CASE 
+        WHEN ws.stddev_alignment_pair > 15 THEN 'HIGHLY_VOLATILE_PAIR'
+        WHEN ws.stddev_alignment_pair > 10 THEN 'MODERATELY_VOLATILE_PAIR'
+        WHEN ws.stddev_alignment_pair > 5 THEN 'SLIGHTLY_VOLATILE_PAIR'
+        ELSE 'STABLE_PAIR'
+    END AS volatility_classification,
+    CASE 
+        WHEN ws.vote_divergence_stddev > 20 THEN 'INCONSISTENT_ALIGNMENT'
+        WHEN ws.vote_divergence_stddev > 10 THEN 'MODERATE_CONSISTENCY'
+        ELSE 'HIGH_CONSISTENCY'
+    END AS consistency_classification,
+    
+    -- PREDICTIVE INDICATORS: Coalition forecast
+    CASE 
+        WHEN ws.next_semester_alignment IS NULL THEN 'NO_FORECAST'
+        WHEN ws.next_semester_alignment > ws.alignment_rate + 10 THEN 'EXPECTED_STRENGTHENING'
+        WHEN ws.next_semester_alignment < ws.alignment_rate - 10 THEN 'EXPECTED_WEAKENING'
+        WHEN ws.next_semester_alignment > ws.alignment_rate + 5 THEN 'EXPECTED_IMPROVEMENT'
+        WHEN ws.next_semester_alignment < ws.alignment_rate - 5 THEN 'EXPECTED_DECLINE'
+        ELSE 'EXPECTED_STABLE'
+    END AS forecast_trend,
+    ROUND((ws.ma_3semester_alignment - ws.alignment_rate)::NUMERIC, 2) AS alignment_deviation_from_ma,
+    CASE 
+        WHEN ws.ma_3semester_alignment > ws.alignment_rate + 5 THEN 'BELOW_TREND'
+        WHEN ws.ma_3semester_alignment < ws.alignment_rate - 5 THEN 'ABOVE_TREND'
+        ELSE 'ON_TREND'
+    END AS trend_position,
+    
+    -- COALITION TIER: Based on percentile rank
+    CASE 
+        WHEN ws.percentile_alignment >= 0.75 THEN 'ELITE_COALITION'
+        WHEN ws.percentile_alignment >= 0.50 THEN 'STRONG_COALITION_TIER'
+        WHEN ws.percentile_alignment >= 0.25 THEN 'MODERATE_COALITION_TIER'
+        ELSE 'WEAK_COALITION_TIER'
+    END AS coalition_tier,
+    
+    -- MOMENTUM Z-SCORE: Statistical significance of alignment changes
+    CASE 
+        WHEN ws.prev_semester_alignment IS NOT NULL AND ws.stddev_alignment_pair > 0
+        THEN ROUND(((ws.alignment_rate - ws.prev_semester_alignment) / NULLIF(ws.stddev_alignment_pair, 0))::NUMERIC, 2)
+        ELSE NULL 
+    END AS momentum_z_score,
+    
+    -- STABILITY SCORE: Composite measure of alliance reliability
+    ROUND((
+        (ws.alignment_rate * 0.4) +
+        ((100 - COALESCE(ws.avg_vote_divergence, 0)) * 0.3) +
+        ((100 - COALESCE(ws.vote_divergence_stddev, 0)) * 0.3)
+    )::NUMERIC, 2) AS stability_score,
+    
+    -- BREAKUP RISK SCORE: Likelihood of coalition dissolution
+    CASE 
+        WHEN ws.alignment_rate < 50 AND ws.prev_semester_alignment >= 65 THEN 90.0
+        WHEN ws.alignment_rate < 50 AND ws.stddev_alignment_pair > 15 THEN 75.0
+        WHEN ws.alignment_rate < 65 AND (ws.alignment_rate - ws.prev_semester_alignment) < -10 THEN 60.0
+        WHEN ws.stddev_alignment_pair > 15 THEN 50.0
+        WHEN ws.alignment_rate < 50 THEN 40.0
+        WHEN (ws.alignment_rate - ws.prev_semester_alignment) < -8 THEN 30.0
+        ELSE 10.0
+    END AS breakup_risk_score,
+    
+    -- REALIGNMENT PROBABILITY: Likelihood of significant strategic shift
+    CASE 
+        WHEN ws.stddev_alignment_pair > 15 AND ABS(ws.alignment_rate - ws.prev_semester_alignment) > 10 THEN 'HIGH_PROBABILITY'
+        WHEN ws.stddev_alignment_pair > 10 OR ABS(ws.alignment_rate - ws.prev_semester_alignment) > 15 THEN 'MODERATE_PROBABILITY'
+        WHEN ABS(ws.alignment_rate - ws.prev_semester_alignment) > 5 THEN 'LOW_PROBABILITY'
+        ELSE 'VERY_LOW_PROBABILITY'
+    END AS realignment_probability,
+    
+    -- NETWORK METRICS: Coalition structure indicators
+    ROUND((ws.alignment_rate * ws.joint_ballots::NUMERIC / NULLIF(MAX(ws.joint_ballots) OVER (PARTITION BY ws.election_cycle_id, ws.semester), 0))::NUMERIC, 2) AS coalition_density_score,
+    CASE 
+        WHEN ws.percentile_alignment >= 0.75 AND ws.percentile_cohesion >= 0.75 THEN 'CORE_COALITION_BRIDGE'
+        WHEN ws.percentile_alignment >= 0.50 THEN 'STRONG_BRIDGE'
+        WHEN ws.percentile_alignment >= 0.25 THEN 'MODERATE_BRIDGE'
+        ELSE 'WEAK_BRIDGE'
+    END AS bridge_classification
+    
+FROM windowed_statistics ws
+ORDER BY ws.party_1, ws.party_2, ws.election_cycle_id, ws.cycle_year, ws.semester;
+        ]]>
+    </createView>
+    
+    <rollback>
+        <dropView viewName="view_riksdagen_party_coalition_evolution"/>
+    </rollback>
+</changeSet>
+
+
+<!-- ========================================================================= -->
+<!-- 3. PARTY ELECTORAL TRENDS (OPTIMIZED WITH COMPREHENSIVE KPIs)            -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="1.53-drop-electoral-trends" failOnError="false">
+    <sql>DROP VIEW IF EXISTS view_riksdagen_party_electoral_trends CASCADE;</sql>
+</changeSet>
+
+<changeSet author="intelligence-operative" id="1.53-party-electoral-003" failOnError="true">
+    <comment>
+        Party Electoral Trends View (2002-2026) - OPTIMIZED &amp; ENHANCED
+        
+        Framework: Comparative Analysis, Predictive Intelligence
+        
+        OPTIMIZATIONS:
+        - Builds on view_party_performance_metrics (active members, documents)
+        - Uses view_riksdagen_vote_data_ballot_party_summary_annual (win rates)
+        
+        COMPREHENSIVE KPIs (28+ metrics):
+        1. Core Electoral Metrics: seat_count, win_rate, vote_share_proxy
+        2. Comparative Metrics: RANK, PERCENT_RANK, NTILE by multiple dimensions
+        3. Trend Indicators: LAG/LEAD changes, growth trajectory
+        4. Volatility Metrics: STDDEV_POP for electoral stability
+        5. Predictive KPIs: seat_forecast, growth_projection, election_readiness_score
+        6. Demographics: Gender representation, age distribution
+        7. Productivity: Documents, motions, legislative success rate
+        
+        ENHANCEMENTS:
+        - Swedish parliament semester structure
+        - Advanced statistical functions for electoral analysis
+        - Seat count projections using trend analysis
+        - Electoral readiness scores for election cycles
+        - Multi-dimensional growth forecasting
+    </comment>
+    
+    <createView viewName="view_riksdagen_party_electoral_trends">
+        <![CDATA[
+WITH election_cycle_periods AS (
+    SELECT 
+        year_series AS calendar_year,
+        CASE 
+            WHEN year_series BETWEEN 2002 AND 2005 THEN 2002
+            WHEN year_series BETWEEN 2006 AND 2009 THEN 2006
+            WHEN year_series BETWEEN 2010 AND 2013 THEN 2010
+            WHEN year_series BETWEEN 2014 AND 2017 THEN 2014
+            WHEN year_series BETWEEN 2018 AND 2021 THEN 2018
+            WHEN year_series BETWEEN 2022 AND 2025 THEN 2022
+            WHEN year_series BETWEEN 2026 AND 2029 THEN 2026
+        END AS election_year,
+        (year_series - CASE 
+            WHEN year_series BETWEEN 2002 AND 2005 THEN 2002
+            WHEN year_series BETWEEN 2006 AND 2009 THEN 2006
+            WHEN year_series BETWEEN 2010 AND 2013 THEN 2010
+            WHEN year_series BETWEEN 2014 AND 2017 THEN 2014
+            WHEN year_series BETWEEN 2018 AND 2021 THEN 2018
+            WHEN year_series BETWEEN 2022 AND 2025 THEN 2022
+            WHEN year_series BETWEEN 2026 AND 2029 THEN 2026
+        END + 1) AS cycle_year,
+        (CASE 
+            WHEN year_series BETWEEN 2002 AND 2005 THEN 2002
+            WHEN year_series BETWEEN 2006 AND 2009 THEN 2006
+            WHEN year_series BETWEEN 2010 AND 2013 THEN 2010
+            WHEN year_series BETWEEN 2014 AND 2017 THEN 2014
+            WHEN year_series BETWEEN 2018 AND 2021 THEN 2018
+            WHEN year_series BETWEEN 2022 AND 2025 THEN 2022
+            WHEN year_series BETWEEN 2026 AND 2029 THEN 2026
+        END || '-' || (CASE 
+            WHEN year_series BETWEEN 2002 AND 2005 THEN 2005
+            WHEN year_series BETWEEN 2006 AND 2009 THEN 2009
+            WHEN year_series BETWEEN 2010 AND 2013 THEN 2013
+            WHEN year_series BETWEEN 2014 AND 2017 THEN 2017
+            WHEN year_series BETWEEN 2018 AND 2021 THEN 2021
+            WHEN year_series BETWEEN 2022 AND 2025 THEN 2025
+            WHEN year_series BETWEEN 2026 AND 2029 THEN 2029
+        END)) AS election_cycle_id
+    FROM generate_series(2002, EXTRACT(YEAR FROM CURRENT_DATE)::INTEGER + 4, 1) AS year_series
+    WHERE year_series >= 2002
+),
+-- BUILD ON EXISTING VIEWS: Combine party performance metrics with electoral data
+electoral_semester_data AS (
+    SELECT 
+        ecp.election_cycle_id,
+        ecp.cycle_year,
+        ecp.calendar_year,
+        CASE 
+            WHEN EXTRACT(MONTH FROM vbps.embedded_id_vote_date) >= 9 OR EXTRACT(MONTH FROM vbps.embedded_id_vote_date) <= 1 THEN 'autumn'
+            ELSE 'spring'
+        END AS semester,
+        vbps.embedded_id_party AS party,
+        -- From view_riksdagen_vote_data_ballot_party_summary_annual
+        SUM(vbps.number_ballots) AS ballots_participated,
+        ROUND(AVG(vbps.party_won_percentage), 2) AS win_rate,
+        ROUND(AVG(vbps.party_percentage_yes), 2) AS yes_rate,
+        ROUND(AVG(vbps.approved_percentage), 2) AS approval_rate,
+        ROUND(AVG(100 - vbps.party_percentage_absent), 2) AS participation_rate,
+        -- From view_party_performance_metrics (current snapshot - proxy for semester)
+        MAX(ppm.active_members) AS seat_count_proxy,
+        MAX(ppm.documents_last_year) AS documents_produced,
+        ROUND(AVG(ppm.avg_rebel_rate), 2) AS avg_rebel_rate
+    FROM election_cycle_periods ecp
+    JOIN view_riksdagen_vote_data_ballot_party_summary_annual vbps 
+        ON DATE_PART('year', vbps.embedded_id_vote_date) = ecp.calendar_year
+    LEFT JOIN view_party_performance_metrics ppm ON ppm.party = vbps.embedded_id_party
+    WHERE vbps.embedded_id_party IS NOT NULL
+      AND ecp.election_year IS NOT NULL
+    GROUP BY ecp.election_cycle_id, ecp.cycle_year, ecp.calendar_year,
+             CASE 
+                 WHEN EXTRACT(MONTH FROM vbps.embedded_id_vote_date) >= 9 OR EXTRACT(MONTH FROM vbps.embedded_id_vote_date) <= 1 THEN 'autumn'
+                 ELSE 'spring'
+             END,
+             vbps.embedded_id_party
+),
+-- APPLY ADVANCED STATISTICAL WINDOW FUNCTIONS
+windowed_statistics AS (
+    SELECT 
+        esd.*,
+        -- RANK: Electoral performance ranking by multiple dimensions
+        RANK() OVER (PARTITION BY esd.election_cycle_id, esd.semester ORDER BY esd.seat_count_proxy DESC NULLS LAST) AS rank_by_seats,
+        RANK() OVER (PARTITION BY esd.election_cycle_id, esd.semester ORDER BY esd.win_rate DESC NULLS LAST) AS rank_by_win_rate,
+        RANK() OVER (PARTITION BY esd.election_cycle_id, esd.semester ORDER BY esd.documents_produced DESC NULLS LAST) AS rank_by_productivity,
+        RANK() OVER (PARTITION BY esd.election_cycle_id, esd.semester ORDER BY esd.participation_rate DESC NULLS LAST) AS rank_by_engagement,
+        RANK() OVER (PARTITION BY esd.election_cycle_id, esd.semester ORDER BY esd.approval_rate DESC NULLS LAST) AS rank_by_effectiveness,
+        
+        -- PERCENT_RANK: Percentile-based electoral comparison
+        PERCENT_RANK() OVER (PARTITION BY esd.election_cycle_id, esd.semester ORDER BY esd.seat_count_proxy DESC NULLS LAST) AS percentile_seats,
+        PERCENT_RANK() OVER (PARTITION BY esd.election_cycle_id, esd.semester ORDER BY esd.win_rate DESC NULLS LAST) AS percentile_win_rate,
+        PERCENT_RANK() OVER (PARTITION BY esd.election_cycle_id, esd.semester ORDER BY esd.documents_produced DESC NULLS LAST) AS percentile_productivity,
+        
+        -- NTILE: Size-based quartiles for party categorization
+        NTILE(4) OVER (PARTITION BY esd.election_cycle_id, esd.semester ORDER BY esd.seat_count_proxy DESC NULLS LAST) AS quartile_by_size,
+        NTILE(4) OVER (PARTITION BY esd.election_cycle_id, esd.semester ORDER BY esd.win_rate DESC NULLS LAST) AS quartile_by_performance,
+        
+        -- LAG: Previous semester metrics for growth tracking
+        LAG(esd.seat_count_proxy) OVER (PARTITION BY esd.party ORDER BY esd.election_cycle_id, esd.cycle_year, esd.semester) AS prev_semester_seats,
+        LAG(esd.win_rate) OVER (PARTITION BY esd.party ORDER BY esd.election_cycle_id, esd.cycle_year, esd.semester) AS prev_semester_win_rate,
+        LAG(esd.documents_produced) OVER (PARTITION BY esd.party ORDER BY esd.election_cycle_id, esd.cycle_year, esd.semester) AS prev_semester_documents,
+        LAG(esd.participation_rate) OVER (PARTITION BY esd.party ORDER BY esd.election_cycle_id, esd.cycle_year, esd.semester) AS prev_semester_participation,
+        
+        -- LEAD: Next semester metrics for predictive analysis
+        LEAD(esd.seat_count_proxy) OVER (PARTITION BY esd.party ORDER BY esd.election_cycle_id, esd.cycle_year, esd.semester) AS next_semester_seats,
+        LEAD(esd.win_rate) OVER (PARTITION BY esd.party ORDER BY esd.election_cycle_id, esd.cycle_year, esd.semester) AS next_semester_win_rate,
+        
+        -- STDDEV_POP: Electoral volatility measurement
+        STDDEV_POP(esd.seat_count_proxy) OVER (PARTITION BY esd.election_cycle_id, esd.semester) AS stddev_seats_sector,
+        STDDEV_POP(esd.win_rate) OVER (PARTITION BY esd.election_cycle_id, esd.semester) AS stddev_win_rate_sector,
+        STDDEV_POP(esd.seat_count_proxy) OVER (PARTITION BY esd.party) AS stddev_seats_party,
+        STDDEV_POP(esd.win_rate) OVER (PARTITION BY esd.party) AS stddev_win_rate_party,
+        
+        -- Rolling averages for trend smoothing
+        AVG(esd.seat_count_proxy) OVER (PARTITION BY esd.party ORDER BY esd.election_cycle_id, esd.cycle_year, esd.semester ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS ma_3semester_seats,
+        AVG(esd.win_rate) OVER (PARTITION BY esd.party ORDER BY esd.election_cycle_id, esd.cycle_year, esd.semester ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS ma_3semester_win_rate
+    FROM electoral_semester_data esd
+)
+SELECT 
+    ws.*,
+    -- CHANGE METRICS: Period-over-period changes
+    CASE WHEN ws.prev_semester_seats IS NOT NULL 
+         THEN (ws.seat_count_proxy - ws.prev_semester_seats)
+         ELSE NULL END AS seat_change_absolute,
+    CASE WHEN ws.prev_semester_seats IS NOT NULL AND ws.prev_semester_seats > 0 
+         THEN ROUND(((ws.seat_count_proxy - ws.prev_semester_seats)::NUMERIC / ws.prev_semester_seats * 100)::NUMERIC, 2)
+         ELSE NULL END AS seat_change_pct,
+    CASE WHEN ws.prev_semester_win_rate IS NOT NULL 
+         THEN ROUND(ws.win_rate - ws.prev_semester_win_rate, 2)
+         ELSE NULL END AS win_rate_change_absolute,
+    CASE WHEN ws.prev_semester_win_rate IS NOT NULL AND ws.prev_semester_win_rate > 0 
+         THEN ROUND(((ws.win_rate - ws.prev_semester_win_rate) / ws.prev_semester_win_rate * 100)::NUMERIC, 2)
+         ELSE NULL END AS win_rate_change_pct,
+    CASE WHEN ws.prev_semester_documents IS NOT NULL 
+         THEN (ws.documents_produced - ws.prev_semester_documents)
+         ELSE NULL END AS documents_change,
+    
+    -- ELECTORAL TREND CLASSIFICATION: Growth trajectory
+    CASE 
+        WHEN ws.prev_semester_seats IS NULL THEN 'BASELINE'
+        WHEN ws.seat_count_proxy > ws.prev_semester_seats + 10 THEN 'SURGING'
+        WHEN ws.seat_count_proxy > ws.prev_semester_seats + 5 THEN 'STRONG_GROWTH'
+        WHEN ws.seat_count_proxy > ws.prev_semester_seats THEN 'GROWTH'
+        WHEN ws.seat_count_proxy < ws.prev_semester_seats - 10 THEN 'COLLAPSING'
+        WHEN ws.seat_count_proxy < ws.prev_semester_seats - 5 THEN 'STRONG_DECLINE'
+        WHEN ws.seat_count_proxy < ws.prev_semester_seats THEN 'DECLINE'
+        ELSE 'STABLE'
+    END AS electoral_trend,
+    
+    -- PARTY SIZE CATEGORY: Based on seat count
+    CASE 
+        WHEN ws.seat_count_proxy >= 100 THEN 'DOMINANT_PARTY'
+        WHEN ws.seat_count_proxy >= 75 THEN 'MAJOR_PARTY'
+        WHEN ws.seat_count_proxy >= 50 THEN 'LARGE_PARTY'
+        WHEN ws.seat_count_proxy >= 30 THEN 'MEDIUM_PARTY'
+        WHEN ws.seat_count_proxy >= 15 THEN 'SMALL_PARTY'
+        ELSE 'MINOR_PARTY'
+    END AS party_size_category,
+    
+    -- VOLATILITY CLASSIFICATION: Electoral stability
+    CASE 
+        WHEN ws.stddev_seats_party > 15 THEN 'HIGHLY_VOLATILE'
+        WHEN ws.stddev_seats_party > 10 THEN 'MODERATELY_VOLATILE'
+        WHEN ws.stddev_seats_party > 5 THEN 'SLIGHTLY_VOLATILE'
+        ELSE 'STABLE_PARTY'
+    END AS volatility_classification,
+    
+    -- PREDICTIVE INDICATORS: Electoral forecasts
+    CASE 
+        WHEN ws.next_semester_seats IS NULL THEN 'NO_FORECAST'
+        WHEN ws.next_semester_seats > ws.seat_count_proxy + 5 THEN 'EXPECTED_GROWTH'
+        WHEN ws.next_semester_seats < ws.seat_count_proxy - 5 THEN 'EXPECTED_DECLINE'
+        WHEN ws.next_semester_seats > ws.seat_count_proxy THEN 'EXPECTED_SLIGHT_GROWTH'
+        WHEN ws.next_semester_seats < ws.seat_count_proxy THEN 'EXPECTED_SLIGHT_DECLINE'
+        ELSE 'EXPECTED_STABLE'
+    END AS seat_forecast,
+    CASE 
+        WHEN ws.next_semester_win_rate IS NULL THEN 'NO_FORECAST'
+        WHEN ws.next_semester_win_rate > ws.win_rate + 5 THEN 'EXPECTED_IMPROVEMENT'
+        WHEN ws.next_semester_win_rate < ws.win_rate - 5 THEN 'EXPECTED_DETERIORATION'
+        ELSE 'EXPECTED_STABLE'
+    END AS performance_forecast,
+    
+    -- TREND POSITION: Relative to moving average
+    ROUND((ws.seat_count_proxy - ws.ma_3semester_seats)::NUMERIC, 2) AS seat_deviation_from_ma,
+    CASE 
+        WHEN ws.ma_3semester_seats > ws.seat_count_proxy + 5 THEN 'SIGNIFICANTLY_BELOW_TREND'
+        WHEN ws.ma_3semester_seats > ws.seat_count_proxy + 2 THEN 'BELOW_TREND'
+        WHEN ws.ma_3semester_seats < ws.seat_count_proxy - 5 THEN 'SIGNIFICANTLY_ABOVE_TREND'
+        WHEN ws.ma_3semester_seats < ws.seat_count_proxy - 2 THEN 'ABOVE_TREND'
+        ELSE 'ON_TREND'
+    END AS trend_position_seats,
+    
+    -- ELECTORAL TIER: Based on percentile rank
+    CASE 
+        WHEN ws.percentile_seats >= 0.75 THEN 'TOP_ELECTORAL_TIER'
+        WHEN ws.percentile_seats >= 0.50 THEN 'UPPER_MID_TIER'
+        WHEN ws.percentile_seats >= 0.25 THEN 'LOWER_MID_TIER'
+        ELSE 'BOTTOM_TIER'
+    END AS electoral_tier,
+    
+    -- MOMENTUM Z-SCORES: Statistical significance of changes
+    CASE 
+        WHEN ws.prev_semester_seats IS NOT NULL AND ws.stddev_seats_party > 0
+        THEN ROUND(((ws.seat_count_proxy - ws.prev_semester_seats)::NUMERIC / NULLIF(ws.stddev_seats_party, 0))::NUMERIC, 2)
+        ELSE NULL 
+    END AS momentum_z_score_seats,
+    CASE 
+        WHEN ws.prev_semester_win_rate IS NOT NULL AND ws.stddev_win_rate_party > 0
+        THEN ROUND(((ws.win_rate - ws.prev_semester_win_rate) / NULLIF(ws.stddev_win_rate_party, 0))::NUMERIC, 2)
+        ELSE NULL 
+    END AS momentum_z_score_win_rate,
+    
+    -- COMPOSITE SCORES: Multi-dimensional electoral strength
+    ROUND((
+        (ws.seat_count_proxy::NUMERIC / NULLIF(MAX(ws.seat_count_proxy) OVER (PARTITION BY ws.election_cycle_id, ws.semester), 0) * 50) +
+        (ws.win_rate * 0.3) +
+        (ws.documents_produced::NUMERIC / NULLIF(MAX(ws.documents_produced) OVER (PARTITION BY ws.election_cycle_id, ws.semester), 0) * 20)
+    )::NUMERIC, 2) AS composite_electoral_score,
+    ROUND((
+        (ws.win_rate * 0.35) +
+        (ws.participation_rate * 0.25) +
+        (ws.approval_rate * 0.25) +
+        ((100 - COALESCE(ws.avg_rebel_rate, 0)) * 0.15)
+    )::NUMERIC, 2) AS legislative_effectiveness_index,
+    
+    -- ELECTION READINESS SCORE: For election year cycles
+    CASE 
+        WHEN ws.cycle_year = 4 AND ws.semester = 'spring' THEN
+            ROUND((
+                (ws.win_rate * 0.30) +
+                (ws.participation_rate * 0.20) +
+                (ws.approval_rate * 0.20) +
+                (ws.seat_count_proxy::NUMERIC / NULLIF(MAX(ws.seat_count_proxy) OVER (PARTITION BY ws.election_cycle_id, ws.semester), 0) * 100 * 0.20) +
+                ((ws.documents_produced::NUMERIC / NULLIF(MAX(ws.documents_produced) OVER (PARTITION BY ws.election_cycle_id, ws.semester), 0) * 100) * 0.10)
+            )::NUMERIC, 2)
+        ELSE NULL
+    END AS election_readiness_score,
+    
+    -- GROWTH PROJECTION: Linear projection based on trend
+    CASE 
+        WHEN ws.prev_semester_seats IS NOT NULL AND ws.next_semester_seats IS NOT NULL 
+        THEN ROUND((ws.next_semester_seats - ws.prev_semester_seats)::NUMERIC / 2.0, 1)
+        WHEN ws.prev_semester_seats IS NOT NULL 
+        THEN ROUND((ws.seat_count_proxy - ws.prev_semester_seats)::NUMERIC, 1)
+        ELSE NULL
+    END AS projected_seat_change,
+    
+    -- EARLY WARNING FLAGS: Electoral risk alerts
+    CASE 
+        WHEN ws.seat_count_proxy < ws.prev_semester_seats - 10 THEN 'CRITICAL_SEAT_LOSS'
+        WHEN ws.seat_count_proxy < ws.prev_semester_seats - 5 THEN 'SIGNIFICANT_SEAT_LOSS'
+        WHEN ws.win_rate < ws.prev_semester_win_rate - 10 THEN 'CRITICAL_PERFORMANCE_DROP'
+        WHEN ws.participation_rate < ws.prev_semester_participation - 10 THEN 'CRITICAL_ENGAGEMENT_DROP'
+        WHEN ws.seat_count_proxy < ws.prev_semester_seats THEN 'SEAT_LOSS'
+        WHEN ws.win_rate < ws.prev_semester_win_rate - 5 THEN 'PERFORMANCE_WARNING'
+        ELSE 'NORMAL'
+    END AS electoral_warning_flag,
+    
+    -- CYCLE CONTEXT FLAGS
+    CASE WHEN ws.cycle_year = 4 AND ws.semester = 'spring' THEN TRUE ELSE FALSE END AS is_pre_election_period,
+    CASE WHEN ws.cycle_year = 4 AND ws.semester = 'autumn' THEN TRUE ELSE FALSE END AS is_election_period,
+    CASE WHEN ws.cycle_year = 1 AND ws.semester = 'spring' THEN TRUE ELSE FALSE END AS is_post_election_period
+    
+FROM windowed_statistics ws
+ORDER BY ws.party, ws.election_cycle_id, ws.cycle_year, ws.semester;
+        ]]>
+    </createView>
+    
+    <rollback>
+        <dropView viewName="view_riksdagen_party_electoral_trends"/>
+    </rollback>
+</changeSet>
+
+
+<!-- ========================================================================= -->
+<!-- VALIDATION: Verify Optimized Views Created Successfully                  -->
+<!-- ========================================================================= -->
+
+<changeSet id="1.53-validation" author="intelligence-operative">
+    <comment>
+        Validate that all 3 optimized party longitudinal views were created successfully
+        with comprehensive KPIs, advanced statistical functions, and building on existing views.
+    </comment>
+    
+    <sql splitStatements="false"><![CDATA[
+        DO $$
+        DECLARE
+            v_performance_exists BOOLEAN;
+            v_coalition_exists BOOLEAN;
+            v_electoral_exists BOOLEAN;
+        BEGIN
+            SELECT EXISTS(
+                SELECT 1 FROM information_schema.views 
+                WHERE table_name = 'view_riksdagen_party_longitudinal_performance'
+            ) INTO v_performance_exists;
+            
+            SELECT EXISTS(
+                SELECT 1 FROM information_schema.views 
+                WHERE table_name = 'view_riksdagen_party_coalition_evolution'
+            ) INTO v_coalition_exists;
+            
+            SELECT EXISTS(
+                SELECT 1 FROM information_schema.views 
+                WHERE table_name = 'view_riksdagen_party_electoral_trends'
+            ) INTO v_electoral_exists;
+            
+            IF v_performance_exists AND v_coalition_exists AND v_electoral_exists THEN
+                RAISE NOTICE '✓ All 3 OPTIMIZED party longitudinal views created successfully';
+                RAISE NOTICE '  OPTIMIZATIONS APPLIED:';
+                RAISE NOTICE '  - Builds on existing views: view_riksdagen_vote_data_ballot_party_summary_annual, view_party_performance_metrics';
+                RAISE NOTICE '  - Advanced statistics: RANK, PERCENT_RANK, NTILE, LAG, LEAD, STDDEV_POP';
+                RAISE NOTICE '  - Swedish parliament cycles: autumn (Sep-Jan) &amp; spring (Jan-Aug) semesters';
+                RAISE NOTICE '  - Comprehensive KPIs: 30+ metrics in performance view, 25+ in coalition view, 28+ in electoral view';
+                RAISE NOTICE '  - Predictive indicators: forecast scores, momentum z-scores, early warning flags';
+                RAISE NOTICE '  - Trend detection: Multi-dimensional trajectory classification, volatility assessments';
+                RAISE NOTICE '  Coverage: 2002-2026 (7 election cycles, semester-level granularity)';
+            ELSE
+                RAISE WARNING 'Some optimized party longitudinal views failed to create';
+                IF NOT v_performance_exists THEN
+                    RAISE WARNING '  - view_riksdagen_party_longitudinal_performance missing';
+                END IF;
+                IF NOT v_coalition_exists THEN
+                    RAISE WARNING '  - view_riksdagen_party_coalition_evolution missing';
+                END IF;
+                IF NOT v_electoral_exists THEN
+                    RAISE WARNING '  - view_riksdagen_party_electoral_trends missing';
+                END IF;
+            END IF;
+        END $$;
+    ]]></sql>
+</changeSet>
+
+</databaseChangeLog>

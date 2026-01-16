@@ -132,6 +132,13 @@
 		<!-- V2.0 Missing OSINT Framework Views - Phase 1 CRITICAL -->
 		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewPartyPerformanceMetrics</class>
 
+		<!-- V1.53 Party Longitudinal Analysis Views -->
+		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyLongitudinalPerformance</class>
+		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyLongitudinalPerformanceEmbeddedId</class>
+		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyCoalitionEvolution</class>
+		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyCoalitionEvolutionEmbeddedId</class>
+		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyElectoralTrends</class>
+		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyElectoralTrendsEmbeddedId</class>
 
 		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician</class>
 		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianBallotSummary</class>
