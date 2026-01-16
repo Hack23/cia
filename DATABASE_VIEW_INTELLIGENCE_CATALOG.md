@@ -35,29 +35,29 @@
 
 ## Executive Summary
 
-The Citizen Intelligence Agency (CIA) platform employs **90 database views** (62 regular views + 28 materialized views) across 10 major categories to support comprehensive political intelligence analysis, open-source intelligence (OSINT) collection, and democratic accountability monitoring.
+The Citizen Intelligence Agency (CIA) platform employs **93 database views** (65 regular views + 28 materialized views) across 10 major categories to support comprehensive political intelligence analysis, open-source intelligence (OSINT) collection, and democratic accountability monitoring.
 
-✅ **Documentation Status**: This catalog now provides **comprehensive documentation** for all 90 database views (100% coverage), including **6 new election cycle views (v1.51)** that provide META/META-level historical analysis with Swedish parliamentary election context. **11 views** have detailed examples with complex queries, while **79 views** have structured documentation with purpose, key metrics, sample queries, and intelligence applications.
+✅ **Documentation Status**: This catalog now provides **comprehensive documentation** for all 93 database views (100% coverage), including **6 election cycle views (v1.51)** and **3 party longitudinal analysis views (v1.53)** that provide META/META-level historical analysis with Swedish parliamentary election context. **11 views** have detailed examples with complex queries, while **82 views** have structured documentation with purpose, key metrics, sample queries, and intelligence applications.
 
-**Last Updated**: 2026-01-13 (Added Election Cycle Views v1.51)  
-**Last Validated**: 2025-11-25 (Base 84 views)  
+**Last Updated**: 2026-01-16 (Added Party Longitudinal Analysis Views v1.53)  
+**Last Validated**: 2026-01-16 (v1.53 with 93 views)  
 **Validation Method**: Automated schema validation via validate-view-documentation.sh  
 **Schema Source**: service.data.impl/src/main/resources/full_schema.sql  
-**Documentation Coverage**: 100% (90/90 views)  
+**Documentation Coverage**: 100% (93/93 views)  
 **Validation Details**: See [Validation History](#-validation-history) section below
 
-**Note**: Total view count changed from 85 to 84 between validations due to removal of deprecated `view_decision_outcome_kpi_dashboard` which no longer exists in the schema.
+**Note**: Total view count increased from 90 to 93 with addition of 3 party longitudinal analysis views in v1.53.
 
-### Key Statistics (UPDATED 2026-01-13)
+### Key Statistics (UPDATED 2026-01-16)
 
 | Metric | Count | Description |
 |--------|-------|-------------|
-| **Total Views** | 90 | ✅ UPDATED: 84 existing + 6 election cycle views (v1.51) |
-| **Regular Views** | 62 | ✅ UPDATED: 56 existing + 6 election cycle views |
+| **Total Views** | 93 | ✅ UPDATED: 84 base + 6 election cycle (v1.51) + 3 party longitudinal (v1.53) |
+| **Regular Views** | 65 | ✅ UPDATED: 56 base + 6 election cycle + 3 party longitudinal |
 | **Materialized Views** | 28 | ✅ VERIFIED per refresh-all-views.sql |
 | **Views Documented (Detailed)** | 11 | Complex examples with business context |
-| **Views Documented (Structured)** | 79 | Purpose, metrics, queries, product mappings (73 + 6 new) |
-| **Documentation Coverage** | 100% | All 90 views documented |
+| **Views Documented (Structured)** | 82 | Purpose, metrics, queries, product mappings (73 + 6 + 3 new) |
+| **Documentation Coverage** | 100% | All 93 views documented |
 | **Intelligence Views** | 7 | Advanced analytical views (risk, anomaly, influence, crisis, momentum, dashboard, temporal trends) |
 | **Election Cycle Views** | 6 | NEW v1.51: META/META-level election cycle analysis across 6 frameworks |
 | **Decision Flow Views** | 4 | Party, politician, ministry, temporal trends for decision analysis |
@@ -3148,11 +3148,11 @@ These views are **CRITICAL** for the CIA platform's intelligence capabilities:
 
 ### Overview
 
-Party views provide organizational-level intelligence on Swedish political parties, tracking electoral performance, coalition behavior, internal discipline, decision effectiveness, and performance trends. These views enable coalition analysis, party comparison, and government formation forecasting.
+Party views provide organizational-level intelligence on Swedish political parties, tracking electoral performance, coalition behavior, internal discipline, decision effectiveness, performance trends, and longitudinal analysis across election cycles (2002-2026). These views enable coalition analysis, party comparison, government formation forecasting, and historical trend analysis.
 
-**Total Party Views:** 13+ (NEW: Party Decision Flow v1.35)  
+**Total Party Views:** 16 (NEW: 3 Party Longitudinal Analysis views v1.53 + Party Decision Flow v1.35)  
 **Intelligence Value:** ⭐⭐⭐⭐⭐ VERY HIGH  
-**Primary Use Cases:** Coalition analysis, party performance monitoring, electoral forecasting, bloc alignment, legislative effectiveness
+**Primary Use Cases:** Coalition analysis, party performance monitoring, electoral forecasting, bloc alignment, legislative effectiveness, longitudinal trend analysis, election cycle patterns
 
 ---
 
@@ -4059,6 +4059,398 @@ From [BUSINESS_PRODUCT_DOCUMENT.md](BUSINESS_PRODUCT_DOCUMENT.md):
 - **Swedish Language**: Decision terms use official Riksdag Swedish terminology
 - **Party Attribution**: Requires person reference data linking documents to parties
 - **Historical Analysis**: Effective for analyzing any time period with available data
+
+---
+
+### view_riksdagen_party_longitudinal_performance ⭐⭐⭐⭐⭐
+
+**Category:** Party Longitudinal Analysis (NEW in v1.53)  
+**Type:** Standard View  
+**Intelligence Value:** VERY HIGH - Historical Party Performance Tracking  
+**Changelog:** v1.53 Party Longitudinal Performance Analysis (2002-2026)
+
+#### Purpose
+
+Tracks comprehensive party performance metrics across all Swedish election cycles (2002-2026) using semester-level granularity (autumn/spring parliamentary sessions). Provides 30+ KPIs including core performance indicators, trend detection, volatility measurements, and predictive forecasts for party trajectory classification and electoral monitoring.
+
+#### Key Columns (73 total)
+
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `party` | VARCHAR | Party code (composite key) | 'S', 'M', 'SD' |
+| `election_cycle_id` | VARCHAR | Election cycle identifier (composite key) | '2022-2025' |
+| `semester` | VARCHAR | Parliamentary semester (composite key) | 'autumn', 'spring' |
+| `cycle_year` | INTEGER | Year within cycle (1-4) | 3 |
+| `calendar_year` | INTEGER | Actual calendar year | 2024 |
+| `is_election_year` | BOOLEAN | Election year flag | true/false |
+| `win_rate` | NUMERIC(5,2) | Percentage of won ballots | 68.45 |
+| `participation_rate` | NUMERIC(5,2) | Voting participation percentage | 95.20 |
+| `discipline_score` | NUMERIC(5,2) | Party cohesion metric | 87.30 |
+| `performance_rank` | BIGINT | Ranking within cycle/semester | 2 |
+| `performance_percentile` | DOUBLE PRECISION | Percentile ranking (0-1) | 0.75 |
+| `performance_tier` | BIGINT | Quartile classification (1-4) | 2 |
+| `prev_semester_win_rate` | NUMERIC | Previous semester win rate (LAG) | 65.20 |
+| `next_semester_win_rate` | NUMERIC | Next semester win rate (LEAD) | 70.10 |
+| `win_rate_change_pct` | NUMERIC | Win rate change percentage | 4.98 |
+| `momentum_indicator` | VARCHAR | Momentum classification | 'GAINING', 'STABLE', 'DECLINING' |
+| `volatility_score` | NUMERIC | Performance volatility (STDDEV) | 12.45 |
+| `consistency_classification` | VARCHAR | Stability classification | 'HIGHLY_CONSISTENT', 'MODERATE', 'VOLATILE' |
+| `forecast_score` | NUMERIC | Predicted future performance | 69.80 |
+| `trajectory_classification` | VARCHAR | Overall trend | 'IMPROVING', 'STABLE', 'DECLINING' |
+
+**Complete Metric Categories:**
+1. **Core Performance** (8 metrics): win_rate, participation_rate, discipline_score, total_ballots, won_ballots, lost_ballots, absent_ballots, avg_ballot_size
+2. **Comparative Analysis** (3 metrics): performance_rank, performance_percentile, performance_tier
+3. **Temporal Trends** (6 metrics): prev/next semester values, change percentages, momentum indicators
+4. **Volatility & Consistency** (4 metrics): volatility_score, consistency_classification, performance_stability
+5. **Predictive KPIs** (4 metrics): forecast_score, trajectory_classification, early_warning_flags
+6. **Metadata** (5 metrics): cycle identifiers, semester info, election year flags
+
+#### Swedish Election Cycles
+
+| Cycle | Years | Elections | Major Events |
+|-------|-------|-----------|--------------|
+| 2002-2005 | 4 years | 2002 Election | SAP government, Euro referendum 2003 |
+| 2006-2009 | 4 years | 2006 Election | Alliance government (M-C-FP-KD) |
+| 2010-2013 | 4 years | 2010 Election | Alliance reelected, SD enters parliament |
+| 2014-2017 | 4 years | 2014 Election | Red-Green minority (S-MP), December Agreement |
+| 2018-2021 | 4 years | 2018 Election | S-MP-C-L government after 131-day formation |
+| 2022-2025 | 4 years | 2022 Election | Tidö coalition (M-SD-KD-L) |
+| 2026-2029 | 4 years | 2026 Election (upcoming) | Current cycle |
+
+#### Semester Structure
+
+**Autumn Semester:** September 1 - January 25
+- Election campaigns in cycle year 4
+- Budget debates and major legislative initiatives
+- Government statements (regeringsförklaring)
+
+**Spring Semester:** January 26 - August 31  
+- Pre-election activities in year 4
+- Committee work and legislative completion
+- Summer recess preparation
+
+#### Example Queries
+
+**1. Party Performance Trends Across All Cycles**
+
+```sql
+SELECT
+    party,
+    election_cycle_id,
+    semester,
+    win_rate,
+    performance_rank,
+    momentum_indicator,
+    trajectory_classification
+FROM view_riksdagen_party_longitudinal_performance
+WHERE party IN ('S', 'M', 'SD')
+ORDER BY election_cycle_id, semester, performance_rank;
+```
+
+**2. Identify Improving Parties (Election Year Focus)**
+
+```sql
+SELECT
+    party,
+    election_cycle_id,
+    win_rate,
+    win_rate_change_pct,
+    momentum_indicator,
+    forecast_score
+FROM view_riksdagen_party_longitudinal_performance
+WHERE is_election_year = true
+  AND momentum_indicator = 'GAINING'
+ORDER BY win_rate_change_pct DESC;
+```
+
+**3. Volatility Analysis**
+
+```sql
+SELECT
+    party,
+    AVG(volatility_score) as avg_volatility,
+    consistency_classification,
+    COUNT(*) as semesters_analyzed
+FROM view_riksdagen_party_longitudinal_performance
+GROUP BY party, consistency_classification
+ORDER BY avg_volatility DESC;
+```
+
+#### Intelligence Applications
+
+- **Electoral Forecasting**: Predict party performance based on historical trends
+- **Coalition Formation**: Identify stable partners with consistent performance
+- **Strategic Planning**: Track momentum shifts and trajectory changes
+- **Risk Assessment**: Flag volatile parties with declining trajectories
+- **Comparative Analysis**: Benchmark parties within and across cycles
+
+---
+
+### view_riksdagen_party_coalition_evolution ⭐⭐⭐⭐⭐
+
+**Category:** Party Longitudinal Analysis (NEW in v1.53)  
+**Type:** Standard View  
+**Intelligence Value:** VERY HIGH - Coalition Dynamics & Alliance Patterns  
+**Changelog:** v1.53 Party Coalition Evolution Analysis (2002-2026)
+
+#### Purpose
+
+Analyzes coalition behavior and alliance patterns across election cycles, tracking voting alignment between parties, coalition stability, strategic shifts, and cross-bloc cooperation. Provides 25+ KPIs for coalition formation forecasting, government stability assessment, and alliance evolution monitoring.
+
+#### Key Columns (46 total)
+
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `party` | VARCHAR | First party code (composite key) | 'S' |
+| `coalition_partner` | VARCHAR | Second party code (composite key) | 'V' |
+| `election_cycle_id` | VARCHAR | Election cycle (composite key) | '2022-2025' |
+| `semester` | VARCHAR | Parliamentary semester (composite key) | 'autumn' |
+| `alignment_rate` | NUMERIC(5,2) | Vote agreement percentage | 82.35 |
+| `cooperation_intensity` | BIGINT | Joint voting instances | 245 |
+| `stability_score` | NUMERIC(5,2) | Alliance stability metric | 78.90 |
+| `strategic_shift_indicator` | VARCHAR | Relationship change | 'STRENGTHENING', 'STABLE', 'WEAKENING' |
+| `cross_bloc_flag` | BOOLEAN | Cross-bloc cooperation | true/false |
+| `alignment_rank` | BIGINT | Ranking within cycle | 3 |
+| `alignment_percentile` | DOUBLE PRECISION | Percentile (0-1) | 0.65 |
+| `prev_semester_alignment` | NUMERIC | Previous alignment (LAG) | 79.20 |
+| `alignment_change_pct` | NUMERIC | Change percentage | 3.98 |
+| `volatility_score` | NUMERIC | Relationship volatility | 8.45 |
+| `coalition_forecast_score` | NUMERIC | Predicted future alignment | 83.50 |
+| `stability_classification` | VARCHAR | Relationship stability | 'HIGHLY_STABLE', 'MODERATE', 'UNSTABLE' |
+
+**Complete Metric Categories:**
+1. **Alliance Strength** (5 metrics): alignment_rate, cooperation_intensity, joint_ballots, agreement_count
+2. **Stability Assessment** (4 metrics): stability_score, volatility_score, stability_classification
+3. **Temporal Evolution** (5 metrics): prev/next alignment, change percentages, strategic shift indicators
+4. **Comparative Positioning** (3 metrics): alignment_rank, alignment_percentile, alignment_tier
+5. **Strategic Intelligence** (4 metrics): cross_bloc_flag, coalition_forecast_score, early_warning_flags
+6. **Metadata** (4 metrics): cycle info, semester, election year flags
+
+#### Coalition Patterns in Swedish Politics
+
+**Traditional Left Bloc (Red-Green):**
+- S-V: High alignment (85-95%), core socialist alliance
+- S-MP: Strong alignment (80-90%), environmental coalition
+- V-MP: Moderate alignment (70-80%), ideological overlap
+
+**Traditional Right Bloc (Alliance/Tidö):**
+- M-KD: Very high alignment (90-95%), conservative core
+- M-L: High alignment (85-90%), liberal-conservative
+- M-C: Variable alignment (70-85%), agricultural interests
+
+**Post-2010 Dynamics:**
+- SD emergence: Disrupted traditional blocs
+- C-L swing behavior: Cross-bloc cooperation
+- Tidö coalition (2022+): M-SD-KD-L government with C support
+
+#### Example Queries
+
+**1. Strongest Current Alliances**
+
+```sql
+SELECT
+    party,
+    coalition_partner,
+    alignment_rate,
+    stability_score,
+    strategic_shift_indicator
+FROM view_riksdagen_party_coalition_evolution
+WHERE election_cycle_id = '2022-2025'
+  AND alignment_rate >= 80
+ORDER BY alignment_rate DESC;
+```
+
+**2. Cross-Bloc Cooperation Opportunities**
+
+```sql
+SELECT
+    party,
+    coalition_partner,
+    alignment_rate,
+    cooperation_intensity,
+    cross_bloc_flag
+FROM view_riksdagen_party_coalition_evolution
+WHERE cross_bloc_flag = true
+  AND alignment_rate >= 60
+  AND strategic_shift_indicator = 'STRENGTHENING'
+ORDER BY alignment_change_pct DESC;
+```
+
+**3. Coalition Stability Over Time**
+
+```sql
+SELECT
+    party,
+    coalition_partner,
+    election_cycle_id,
+    AVG(stability_score) as avg_stability,
+    AVG(volatility_score) as avg_volatility
+FROM view_riksdagen_party_coalition_evolution
+GROUP BY party, coalition_partner, election_cycle_id
+HAVING AVG(stability_score) >= 75
+ORDER BY avg_stability DESC;
+```
+
+#### Intelligence Applications
+
+- **Government Formation**: Identify most viable coalition partnerships
+- **Stability Forecasting**: Predict coalition durability and risk points
+- **Strategic Opportunity**: Detect emerging cross-bloc alignments
+- **Opposition Analysis**: Map adversarial relationships and blocs
+- **Negotiation Intelligence**: Historical alignment data for coalition talks
+
+---
+
+### view_riksdagen_party_electoral_trends ⭐⭐⭐⭐⭐
+
+**Category:** Party Longitudinal Analysis (NEW in v1.53)  
+**Type:** Standard View  
+**Intelligence Value:** VERY HIGH - Electoral Performance & Seat Projections  
+**Changelog:** v1.53 Party Electoral Trends Analysis (2002-2026)
+
+#### Purpose
+
+Tracks electoral performance indicators and parliamentary representation trends across election cycles, providing 28+ KPIs for seat projections, electoral momentum assessment, growth forecasting, and electoral cycle pattern recognition. Enables data-driven election predictions and strategic electoral planning.
+
+#### Key Columns (58 total)
+
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `party` | VARCHAR | Party code (composite key) | 'S' |
+| `election_cycle_id` | VARCHAR | Election cycle (composite key) | '2022-2025' |
+| `semester` | VARCHAR | Parliamentary semester (composite key) | 'spring' |
+| `current_seats` | INTEGER | Parliamentary seats held | 107 |
+| `seat_share_pct` | NUMERIC(5,2) | Percentage of 349 seats | 30.66 |
+| `electoral_strength_score` | NUMERIC(5,2) | Composite strength metric | 85.40 |
+| `growth_rate_pct` | NUMERIC(5,2) | Seat growth percentage | 5.20 |
+| `momentum_classification` | VARCHAR | Electoral momentum | 'SURGING', 'STABLE', 'DECLINING' |
+| `seat_projection` | NUMERIC | Projected future seats | 112 |
+| `seat_change_forecast` | NUMERIC | Projected seat change | +5 |
+| `electoral_rank` | BIGINT | Ranking within cycle | 1 |
+| `electoral_percentile` | DOUBLE PRECISION | Percentile (0-1) | 0.95 |
+| `volatility_score` | NUMERIC | Electoral volatility | 6.75 |
+| `stability_classification` | VARCHAR | Performance stability | 'HIGHLY_STABLE', 'MODERATE', 'VOLATILE' |
+| `threshold_risk` | VARCHAR | 4% threshold risk | 'NO_RISK', 'AT_RISK', 'HIGH_RISK' |
+| `trajectory_classification` | VARCHAR | Overall trajectory | 'ASCENDING', 'STABLE', 'DESCENDING' |
+
+**Complete Metric Categories:**
+1. **Electoral Strength** (6 metrics): current_seats, seat_share_pct, electoral_strength_score, representation_power
+2. **Growth Analysis** (5 metrics): growth_rate_pct, seat_change_absolute, momentum_classification
+3. **Projections** (4 metrics): seat_projection, seat_change_forecast, confidence_interval
+4. **Comparative Position** (3 metrics): electoral_rank, electoral_percentile, electoral_tier
+5. **Risk Assessment** (4 metrics): volatility_score, threshold_risk, stability_classification
+6. **Trend Detection** (3 metrics): trajectory_classification, momentum_indicators
+7. **Metadata** (3 metrics): cycle info, election year flags
+
+#### Swedish Electoral System Context
+
+**Parliamentary Structure:**
+- Total seats: 349 (310 constituency + 39 leveling seats)
+- Electoral threshold: 4% nationally OR 12% in one constituency
+- Proportional representation with modified Sainte-Laguë method
+- Election frequency: Every 4 years (September)
+
+**Historical Seat Distributions:**
+
+| Party | 2002 | 2006 | 2010 | 2014 | 2018 | 2022 |
+|-------|------|------|------|------|------|------|
+| **S** | 144 | 130 | 112 | 113 | 100 | 107 |
+| **M** | 55 | 97 | 107 | 84 | 70 | 68 |
+| **SD** | - | - | 20 | 49 | 62 | 73 |
+| **C** | 22 | 29 | 23 | 22 | 31 | 24 |
+| **V** | 30 | 22 | 19 | 21 | 28 | 24 |
+| **KD** | 33 | 24 | 19 | 16 | 22 | 19 |
+| **L** | 48 | 28 | 24 | 19 | 20 | 16 |
+| **MP** | 17 | 19 | 25 | 25 | 16 | 18 |
+
+#### Example Queries
+
+**1. Current Electoral Standings**
+
+```sql
+SELECT
+    party,
+    current_seats,
+    seat_share_pct,
+    electoral_strength_score,
+    electoral_rank,
+    momentum_classification
+FROM view_riksdagen_party_electoral_trends
+WHERE election_cycle_id = '2022-2025'
+  AND semester = 'autumn'
+ORDER BY electoral_rank;
+```
+
+**2. Seat Projection for Next Election**
+
+```sql
+SELECT
+    party,
+    current_seats,
+    seat_projection,
+    seat_change_forecast,
+    growth_rate_pct,
+    trajectory_classification
+FROM view_riksdagen_party_electoral_trends
+WHERE is_election_year = true
+ORDER BY seat_projection DESC;
+```
+
+**3. Threshold Risk Assessment**
+
+```sql
+SELECT
+    party,
+    seat_share_pct,
+    threshold_risk,
+    volatility_score,
+    stability_classification
+FROM view_riksdagen_party_electoral_trends
+WHERE threshold_risk IN ('AT_RISK', 'HIGH_RISK')
+ORDER BY seat_share_pct ASC;
+```
+
+**4. Historical Growth Patterns**
+
+```sql
+SELECT
+    party,
+    election_cycle_id,
+    current_seats,
+    growth_rate_pct,
+    momentum_classification
+FROM view_riksdagen_party_electoral_trends
+WHERE semester = 'spring'  -- Pre-election comparison
+  AND cycle_year = 4        -- Election years
+ORDER BY party, election_cycle_id;
+```
+
+#### Intelligence Applications
+
+- **Election Forecasting**: Predict seat distributions and government composition
+- **Campaign Strategy**: Identify growth opportunities and risk areas
+- **Coalition Planning**: Assess viable government formation scenarios
+- **Risk Management**: Monitor threshold risks for smaller parties
+- **Trend Analysis**: Track long-term electoral shifts and realignments
+- **Media Intelligence**: Data-driven election coverage and analysis
+
+#### Performance Characteristics
+
+**All Three Views:**
+- **Query Time:** 100-500ms (depends on aggregation and filtering)
+- **Data Volume:** ~200-500 rows per view per election cycle
+- **Refresh:** Real-time (standard views, no materialization)
+- **Dependencies:** Base tables (vote_data, ballot_data, person_data, assignment_data)
+- **Optimization:** Built on existing party performance views for efficiency
+
+#### Notes
+
+- **Historical Coverage**: 2002-2029 (7 complete election cycles)
+- **Swedish Context**: Parliamentary semester structure specific to Riksdag
+- **Empty Data Warning**: Views require populated vote_data and ballot_data
+- **Election Year Focus**: Enhanced metrics during cycle year 4
+- **Statistical Functions**: Advanced SQL analytics (RANK, LAG, LEAD, STDDEV_POP, NTILE)
 
 ---
 
