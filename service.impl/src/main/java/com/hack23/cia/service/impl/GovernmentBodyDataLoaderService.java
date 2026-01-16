@@ -28,7 +28,6 @@ import javax.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -83,11 +82,8 @@ public class GovernmentBodyDataLoaderService {
 			} else {
 				LOGGER.info("Government body data already exists ({} records), skipping load", existingData.size());
 			}
-		} catch (final DataAccessException e) {
-			LOGGER.error("Database error while loading government body data", e);
-			throw e; // Re-throw to prevent application startup with incomplete data
 		} catch (final Exception e) {
-			LOGGER.error("Unexpected error while loading government body data", e);
+			LOGGER.error("Failed to load government body data - application startup aborted", e);
 			throw new RuntimeException("Failed to initialize government body data", e);
 		} finally {
 			clearAuthentication();

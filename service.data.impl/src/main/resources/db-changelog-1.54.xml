@@ -57,7 +57,7 @@ xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
 </changeSet>
 
 <!-- Add comments to table and columns for documentation -->
-<changeSet id="1.54-add-government-body-comments" author="intelligence-operative-analytics" failOnError="false">
+<changeSet id="1.54-add-government-body-comments" author="intelligence-operative-analytics" failOnError="true">
     <comment>Add documentation comments to government_body_data table and columns</comment>
     
     <sql>

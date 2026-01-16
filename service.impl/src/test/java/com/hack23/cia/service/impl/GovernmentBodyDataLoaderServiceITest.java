@@ -20,6 +20,8 @@ package com.hack23.cia.service.impl;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -27,6 +29,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -54,6 +57,14 @@ public final class GovernmentBodyDataLoaderServiceITest extends AbstractServiceF
 	private EsvApi mockEsvApi;
 
 	/**
+	 * Sets up mocks before each test.
+	 */
+	@Before
+	public void setUp() {
+		MockitoAnnotations.openMocks(this);
+	}
+
+	/**
 	 * Test load government body data if empty successfully loads data.
 	 */
 	@Test
@@ -69,24 +80,23 @@ public final class GovernmentBodyDataLoaderServiceITest extends AbstractServiceF
 			}
 		}
 
-		// Initialize mocks
-		MockitoAnnotations.openMocks(this);
-
-		// Create mock data
+		// Create mock data using constructor (GovernmentBodyAnnualSummary is immutable)
 		final Map<Integer, List<GovernmentBodyAnnualSummary>> mockData = new HashMap<>();
 		final List<GovernmentBodyAnnualSummary> summaries = new ArrayList<>();
 		
-		final GovernmentBodyAnnualSummary summary = new GovernmentBodyAnnualSummary();
-		summary.setName("Test Government Body");
-		summary.setConsecutiveNumber(1);
-		summary.setGovermentBodyId("TEST001");
-		summary.setmCode("TEST");
-		summary.setMinistry("Test Ministry");
-		summary.setOrgNumber("123456-7890");
-		summary.setHeadCount(100);
-		summary.setAnnualWorkHeadCount(95);
-		summary.setVat("Ja");
-		summary.setComment("Test comment");
+		final GovernmentBodyAnnualSummary summary = new GovernmentBodyAnnualSummary(
+			2023,
+			"Test Government Body",
+			1,
+			"TEST001",
+			"TEST",
+			"Test Ministry",
+			"123456-7890",
+			100,
+			95,
+			"Ja",
+			"Test comment"
+		);
 		
 		summaries.add(summary);
 		mockData.put(2023, summaries);
@@ -138,15 +148,23 @@ public final class GovernmentBodyDataLoaderServiceITest extends AbstractServiceF
 		// Get count before load attempt
 		final int countBefore = governmentBodyDataDAO.getAll().size();
 
-		// Initialize mocks
-		MockitoAnnotations.openMocks(this);
-
 		// Create mock data that should NOT be loaded
 		final Map<Integer, List<GovernmentBodyAnnualSummary>> mockData = new HashMap<>();
 		final List<GovernmentBodyAnnualSummary> summaries = new ArrayList<>();
 		
-		final GovernmentBodyAnnualSummary summary = new GovernmentBodyAnnualSummary();
-		summary.setName("Should Not Be Loaded");
+		final GovernmentBodyAnnualSummary summary = new GovernmentBodyAnnualSummary(
+			2024,
+			"Should Not Be Loaded",
+			1,
+			"SKIP001",
+			"SKIP",
+			"Skip Ministry",
+			"888888-8888",
+			10,
+			9,
+			"Nej",
+			"Should not be loaded"
+		);
 		summaries.add(summary);
 		mockData.put(2024, summaries);
 
@@ -160,5 +178,8 @@ public final class GovernmentBodyDataLoaderServiceITest extends AbstractServiceF
 		final int countAfter = governmentBodyDataDAO.getAll().size();
 		assertTrue("Expect data count to remain the same when table is not empty", 
 			countAfter == countBefore);
+		
+		// Verify mock was never called since table was not empty
+		verify(mockEsvApi, never()).getData();
 	}
 }

@@ -22,6 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -151,8 +152,8 @@ public class GovernmentBodyDataTest {
 		final String toString = data.toString();
 		assertNotNull(toString);
 		// Apache Commons Lang reflectionToString format
-		assertEquals(true, toString.contains("id=1"));
-		assertEquals(true, toString.contains("year=2023"));
-		assertEquals(true, toString.contains("name=Test Body"));
+		assertTrue(toString.contains("id=1"));
+		assertTrue(toString.contains("year=2023"));
+		assertTrue(toString.contains("name=Test Body"));
 	}
 }
