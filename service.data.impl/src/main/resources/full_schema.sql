@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict kmKeXd29rQtTpusuTtexq6hceNhJgNgB3QQvVZrh1nX0SFsWQGzIk91urVpNnwL
+\restrict PTTwc9JYgzS80xYwpQHHhzUBVD1ymcHsn8fmlcrz95MGI0rIyeb0OBeOEG9kvNK
 
 -- Dumped from database version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
@@ -13948,13 +13948,13 @@ ALTER TABLE ONLY public.jv_snapshot
 -- PostgreSQL database dump complete
 --
 
-\unrestrict kmKeXd29rQtTpusuTtexq6hceNhJgNgB3QQvVZrh1nX0SFsWQGzIk91urVpNnwL
+\unrestrict PTTwc9JYgzS80xYwpQHHhzUBVD1ymcHsn8fmlcrz95MGI0rIyeb0OBeOEG9kvNK
 
 --
 -- PostgreSQL database dump
 --
 
-\restrict byy5wSYkEp8egcuiORTEPsNeWKgiAvxnzyUk9cDtRkmO0qlL9sg3Engm0vAngaM
+\restrict EEX6nCaCIMdb3ZCvG9mudlPgnn94sy0vF0O7zWhQC6FCNChdEuNs1RTY35bpcd2
 
 -- Dumped from database version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
@@ -14137,7 +14137,6 @@ COPY public.databasechangelog (id, author, filename, dateexecuted, orderexecuted
 1414872417007-159	pether (generated)	db-changelog-1.0.xml	2026-01-15 02:32:07.17537	159	EXECUTED	9:04f0321d6a659c24367adf06b21490ec	addForeignKeyConstraint baseTableName=document_status_container, constraintName=fk_86c52yf22uk0bpcs1qoc3aeyv, referencedTableName=document_attachment_container		\N	5.0.1	\N	\N	8440723750
 1414872417007-160	pether (generated)	db-changelog-1.0.xml	2026-01-15 02:32:07.178769	160	EXECUTED	9:cfb97bbb6da4e55006169e9879f04eea	addForeignKeyConstraint baseTableName=user_account_address, constraintName=fk_8931ymg13vy6vfkrichtst7bj, referencedTableName=user_account		\N	5.0.1	\N	\N	8440723750
 1414872417007-161	pether (generated)	db-changelog-1.0.xml	2026-01-15 02:32:07.181944	161	EXECUTED	9:35323e79371e0ed674f60d54da88447e	addForeignKeyConstraint baseTableName=indicator_element, constraintName=fk_8l1m1pum4e3catw4443rup4q5, referencedTableName=indicators_element		\N	5.0.1	\N	\N	8440723750
-1.53-intro	intelligence-operative	db-changelog-1.53.xml	2026-01-16 11:43:40.76298	479	EXECUTED	9:placeholder	sql	Database Changelog v1.53 (OPTIMIZED & ENHANCED)	\N	5.0.1	\N	\N	0000000000
 1414872417007-162	pether (generated)	db-changelog-1.0.xml	2026-01-15 02:32:07.185195	162	EXECUTED	9:d5d46f2c32f0828c1ad2cab7488c0ced	addForeignKeyConstraint baseTableName=user_account, constraintName=fk_8mmnmcgjut9nc7dfhrgxi598f, referencedTableName=aggregated_country_data		\N	5.0.1	\N	\N	8440723750
 1414872417007-163	pether (generated)	db-changelog-1.0.xml	2026-01-15 02:32:07.188605	163	EXECUTED	9:1e64c99d1c965da030f1f77b7c65d3bd	addForeignKeyConstraint baseTableName=committee_proposal_component_0, constraintName=fk_90arga58ce9bnjkc6lws04uhw, referencedTableName=committee_proposal_container		\N	5.0.1	\N	\N	8440723750
 1414872417007-164	pether (generated)	db-changelog-1.0.xml	2026-01-15 02:32:07.19216	164	EXECUTED	9:4ff16e8d056a87f4c3ccd13acc819aa5	addForeignKeyConstraint baseTableName=indicator_element, constraintName=fk_92h99v4i1pmr69x0y43pocv2a, referencedTableName=topics		\N	5.0.1	\N	\N	8440723750
@@ -14191,6 +14190,7 @@ COPY public.databasechangelog (id, author, filename, dateexecuted, orderexecuted
 1416258476613-211	pether (generated)	db-changelog-1.1.xml	2026-01-15 02:32:07.376573	211	EXECUTED	9:908f681226f2fb5abe4b199126d26a6b	createTable tableName=document_proposal_data		\N	5.0.1	\N	\N	8440723750
 1416258476613-212	pether (generated)	db-changelog-1.1.xml	2026-01-15 02:32:07.381224	212	EXECUTED	9:3e0f9abc6d66f9b8582632524ec3806a	addColumn tableName=document_status_container; dropColumn columnName=document_proposal, tableName=document_status_container		\N	5.0.1	\N	\N	8440723750
 1416258476613-213	pether (generated)	db-changelog-1.1.xml	2026-01-15 02:32:07.386353	213	EXECUTED	9:f866ec1b7098b04250e282bf216ce46b	addPrimaryKey constraintName=document_proposal_container_pkey, tableName=document_proposal_container		\N	5.0.1	\N	\N	8440723750
+1.53-intro	intelligence-operative	db-changelog-1.53.xml	2026-01-16 11:43:40.76298	479	EXECUTED	9:51e2954d1bceee0aa41653aed4cf412c	sql	Database Changelog v1.53 (OPTIMIZED & ENHANCED)	\N	5.0.1	\N	\N	0000000000
 1416258476613-214	pether (generated)	db-changelog-1.1.xml	2026-01-15 02:32:07.391233	214	EXECUTED	9:758bf9de406141115f5a3dea3f38d224	addPrimaryKey constraintName=document_proposal_data_pkey, tableName=document_proposal_data		\N	5.0.1	\N	\N	8440723750
 1416258476613-215	pether (generated)	db-changelog-1.1.xml	2026-01-15 02:32:07.395062	215	EXECUTED	9:bc8c5511c4210514433a23a9802a16ea	addForeignKeyConstraint baseTableName=document_proposal_container, constraintName=fk_m55tt4vaimgb5qk7xj9mgxmry, referencedTableName=document_proposal_data		\N	5.0.1	\N	\N	8440723750
 1416258476613-216	pether (generated)	db-changelog-1.1.xml	2026-01-15 02:32:07.398336	216	EXECUTED	9:824a2b5b89c1f8445fe03bce8a1ed4a3	addForeignKeyConstraint baseTableName=document_status_container, constraintName=fk_iirofquegnrpnuonvnydf6wfb, referencedTableName=document_proposal_container		\N	5.0.1	\N	\N	8440723750
@@ -14454,10 +14454,10 @@ fix-rebel-calculation-risk-score-evolution-1.50-001	intelligence-operative	db-ch
 1.52-network	intelligence-operative-analytics	db-changelog-1.52.xml	2026-01-15 02:32:11.38768	476	EXECUTED	9:00b61c34f8f941fbc6e8550c81c067b1	createView viewName=view_election_cycle_network_analysis		\N	5.0.1	\N	\N	8440723750
 1.52-drop-decision	intelligence-operative-analytics	db-changelog-1.52.xml	2026-01-15 02:32:11.391241	477	EXECUTED	9:2188e8b401150b744ff73f0b717339a7	sql		\N	5.0.1	\N	\N	8440723750
 1.52-decision	intelligence-operative-analytics	db-changelog-1.52.xml	2026-01-15 02:32:11.399463	478	EXECUTED	9:085fba297cc8a8d3dfa640203a9c0c07	createView viewName=view_election_cycle_decision_intelligence		\N	5.0.1	\N	\N	8440723750
-1.53-party-longitudinal-001	intelligence-operative	db-changelog-1.53.xml	2026-01-16 11:43:40.76298	480	EXECUTED	9:placeholder	createView viewName=view_riksdagen_party_longitudinal_performance	Party Longitudinal Performance View (2002-2026) - OPTIMIZED & ENHANCED	\N	5.0.1	\N	\N	0000000000
-1.53-party-coalition-002	intelligence-operative	db-changelog-1.53.xml	2026-01-16 11:43:40.76298	481	EXECUTED	9:placeholder	createView viewName=view_riksdagen_party_coalition_evolution	Party Coalition Evolution View (2002-2026) - OPTIMIZED & ENHANCED	\N	5.0.1	\N	\N	0000000000
-1.53-party-electoral-003	intelligence-operative	db-changelog-1.53.xml	2026-01-16 11:43:40.76298	482	EXECUTED	9:placeholder	createView viewName=view_riksdagen_party_electoral_trends	Party Electoral Trends View (2002-2026) - OPTIMIZED & ENHANCED	\N	5.0.1	\N	\N	0000000000
-1.53-validation	intelligence-operative	db-changelog-1.53.xml	2026-01-16 11:43:40.76298	483	EXECUTED	9:placeholder	sql	Validate optimized party longitudinal views	\N	5.0.1	\N	\N	0000000000
+1.53-party-longitudinal-001	intelligence-operative	db-changelog-1.53.xml	2026-01-16 11:43:40.76298	480	EXECUTED	9:f7a20e73ce0c531579fc4f4a0b523a03	createView viewName=view_riksdagen_party_longitudinal_performance	Party Longitudinal Performance View (2002-2026) - OPTIMIZED & ENHANCED	\N	5.0.1	\N	\N	0000000000
+1.53-party-coalition-002	intelligence-operative	db-changelog-1.53.xml	2026-01-16 11:43:40.76298	481	EXECUTED	9:ec3bbe899a38b29840da3ec8c3985238	createView viewName=view_riksdagen_party_coalition_evolution	Party Coalition Evolution View (2002-2026) - OPTIMIZED & ENHANCED	\N	5.0.1	\N	\N	0000000000
+1.53-party-electoral-003	intelligence-operative	db-changelog-1.53.xml	2026-01-16 11:43:40.76298	482	EXECUTED	9:141eb5d459791ae1848b861a93771dff	createView viewName=view_riksdagen_party_electoral_trends	Party Electoral Trends View (2002-2026) - OPTIMIZED & ENHANCED	\N	5.0.1	\N	\N	0000000000
+1.53-validation	intelligence-operative	db-changelog-1.53.xml	2026-01-16 11:43:40.76298	483	EXECUTED	9:ea784e6f23a71274961868a13943099e	sql	Validate optimized party longitudinal views	\N	5.0.1	\N	\N	0000000000
 \.
 
 
@@ -14474,5 +14474,5 @@ COPY public.databasechangeloglock (id, locked, lockgranted, lockedby) FROM stdin
 -- PostgreSQL database dump complete
 --
 
-\unrestrict byy5wSYkEp8egcuiORTEPsNeWKgiAvxnzyUk9cDtRkmO0qlL9sg3Engm0vAngaM
+\unrestrict EEX6nCaCIMdb3ZCvG9mudlPgnn94sy0vF0O7zWhQC6FCNChdEuNs1RTY35bpcd2
 
