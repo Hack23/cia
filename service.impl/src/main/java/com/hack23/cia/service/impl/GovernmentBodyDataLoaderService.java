@@ -73,7 +73,13 @@ public class GovernmentBodyDataLoaderService {
 		try {
 			configureAuthentication("ROLE_ADMIN");
 			
-			final List<GovernmentBodyData> existingData = governmentBodyDataDAO.getAll();
+			List<GovernmentBodyData> existingData = null;
+			try {
+				existingData = governmentBodyDataDAO.getAll();
+			} catch (final Exception tableException) {
+				// Table may not exist yet (Liquibase hasn't run) - treat as empty
+				LOGGER.debug("Cannot query government_body_data table (may not exist yet): {}", tableException.getMessage());
+			}
 			
 			if (existingData == null || existingData.isEmpty()) {
 				LOGGER.info("Government body data table is empty, loading data from ESV...");
