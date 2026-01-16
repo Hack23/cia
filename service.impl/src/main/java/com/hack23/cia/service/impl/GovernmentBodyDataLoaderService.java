@@ -46,7 +46,7 @@ import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
  * Loads government body data from ESV at application startup if not already loaded.
  */
 @Component
-public final class GovernmentBodyDataLoaderService {
+public class GovernmentBodyDataLoaderService {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(GovernmentBodyDataLoaderService.class);
 
