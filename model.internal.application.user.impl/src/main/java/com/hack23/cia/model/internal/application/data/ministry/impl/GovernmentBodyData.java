@@ -44,42 +44,17 @@ public class GovernmentBodyData implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", nullable = false)
 	private Long id;
-
-	@Column(name = "year", nullable = false)
 	private Integer year;
-
-	@Column(name = "name", nullable = false, length = 500)
 	private String name;
-
-	@Column(name = "consecutive_number")
 	private Integer consecutiveNumber;
-
-	@Column(name = "government_body_id", length = 100)
 	private String governmentBodyId;
-
-	@Column(name = "m_code", length = 50)
 	private String mCode;
-
-	@Column(name = "ministry", length = 500)
 	private String ministry;
-
-	@Column(name = "org_number", length = 50)
 	private String orgNumber;
-
-	@Column(name = "head_count")
 	private Integer headCount;
-
-	@Column(name = "annual_work_head_count")
 	private Integer annualWorkHeadCount;
-
-	@Column(name = "vat", length = 50)
 	private String vat;
-
-	@Column(name = "comment", length = 1000)
 	private String comment;
 
 	/**
@@ -125,6 +100,9 @@ public class GovernmentBodyData implements Serializable {
 	 *
 	 * @return the id
 	 */
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", nullable = false)
 	public Long getId() {
 		return id;
 	}
@@ -143,6 +121,7 @@ public class GovernmentBodyData implements Serializable {
 	 *
 	 * @return the year
 	 */
+	@Column(name = "year", nullable = false)
 	public Integer getYear() {
 		return year;
 	}
@@ -161,6 +140,7 @@ public class GovernmentBodyData implements Serializable {
 	 *
 	 * @return the name
 	 */
+	@Column(name = "name", nullable = false, length = 500)
 	public String getName() {
 		return name;
 	}
@@ -179,6 +159,7 @@ public class GovernmentBodyData implements Serializable {
 	 *
 	 * @return the consecutive number
 	 */
+	@Column(name = "consecutive_number")
 	public Integer getConsecutiveNumber() {
 		return consecutiveNumber;
 	}
@@ -197,6 +178,7 @@ public class GovernmentBodyData implements Serializable {
 	 *
 	 * @return the government body id
 	 */
+	@Column(name = "government_body_id", length = 100)
 	public String getGovernmentBodyId() {
 		return governmentBodyId;
 	}
@@ -215,6 +197,7 @@ public class GovernmentBodyData implements Serializable {
 	 *
 	 * @return the m code
 	 */
+	@Column(name = "m_code", length = 50)
 	public String getmCode() {
 		return mCode;
 	}
@@ -233,6 +216,7 @@ public class GovernmentBodyData implements Serializable {
 	 *
 	 * @return the ministry
 	 */
+	@Column(name = "ministry", length = 500)
 	public String getMinistry() {
 		return ministry;
 	}
@@ -251,6 +235,7 @@ public class GovernmentBodyData implements Serializable {
 	 *
 	 * @return the org number
 	 */
+	@Column(name = "org_number", length = 50)
 	public String getOrgNumber() {
 		return orgNumber;
 	}
@@ -269,6 +254,7 @@ public class GovernmentBodyData implements Serializable {
 	 *
 	 * @return the head count
 	 */
+	@Column(name = "head_count")
 	public Integer getHeadCount() {
 		return headCount;
 	}
@@ -287,6 +273,7 @@ public class GovernmentBodyData implements Serializable {
 	 *
 	 * @return the annual work head count
 	 */
+	@Column(name = "annual_work_head_count")
 	public Integer getAnnualWorkHeadCount() {
 		return annualWorkHeadCount;
 	}
@@ -305,6 +292,7 @@ public class GovernmentBodyData implements Serializable {
 	 *
 	 * @return the vat
 	 */
+	@Column(name = "vat", length = 50)
 	public String getVat() {
 		return vat;
 	}
@@ -323,6 +311,7 @@ public class GovernmentBodyData implements Serializable {
 	 *
 	 * @return the comment
 	 */
+	@Column(name = "comment", length = 1000)
 	public String getComment() {
 		return comment;
 	}
