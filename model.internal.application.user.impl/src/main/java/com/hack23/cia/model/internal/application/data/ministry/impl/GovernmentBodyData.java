@@ -26,7 +26,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Index;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -37,14 +36,10 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * The Class GovernmentBodyData.
  * Represents government body information from ESV (Swedish Financial Management Authority).
  * Data source: Myndighetsinformation.xls
+ * Indexes are managed by Liquibase changelog.
  */
 @Entity
-@Table(name = "government_body_data", indexes = {
-    @Index(name = "idx_gov_body_year", columnList = "year"),
-    @Index(name = "idx_gov_body_name", columnList = "name"),
-    @Index(name = "idx_gov_body_ministry", columnList = "ministry"),
-    @Index(name = "idx_gov_body_org_number", columnList = "org_number")
-})
+@Table(name = "government_body_data")
 public class GovernmentBodyData implements Serializable {
 
 	private static final long serialVersionUID = 1L;

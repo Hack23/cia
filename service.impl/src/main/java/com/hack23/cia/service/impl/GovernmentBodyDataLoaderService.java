@@ -25,7 +25,6 @@ import org.springframework.context.event.ContextRefreshedEvent;
  * 
  * Service responsible for loading government body data from ESV at application startup.
  */
-@FunctionalInterface
 public interface GovernmentBodyDataLoaderService {
 
 	/**
