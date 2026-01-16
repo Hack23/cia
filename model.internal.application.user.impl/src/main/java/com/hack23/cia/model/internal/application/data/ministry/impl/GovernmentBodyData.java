@@ -19,7 +19,6 @@
 package com.hack23.cia.model.internal.application.data.ministry.impl;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,6 +27,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Index;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  * The Class GovernmentBodyData.
@@ -339,34 +343,16 @@ public class GovernmentBodyData implements Serializable {
 
 	@Override
 	public boolean equals(final Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null || getClass() != obj.getClass()) {
-			return false;
-		}
-		final GovernmentBodyData that = (GovernmentBodyData) obj;
-		return Objects.equals(id, that.id) &&
-				Objects.equals(year, that.year) &&
-				Objects.equals(name, that.name) &&
-				Objects.equals(orgNumber, that.orgNumber);
+		return EqualsBuilder.reflectionEquals(this, obj);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, year, name, orgNumber);
+		return HashCodeBuilder.reflectionHashCode(this);
 	}
 
 	@Override
 	public String toString() {
-		return "GovernmentBodyData{" +
-				"id=" + id +
-				", year=" + year +
-				", name='" + name + '\'' +
-				", ministry='" + ministry + '\'' +
-				", orgNumber='" + orgNumber + '\'' +
-				", headCount=" + headCount +
-				", annualWorkHeadCount=" + annualWorkHeadCount +
-				'}';
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 }

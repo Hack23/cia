@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict uaaAO0m41u8C2DiAsweRpCTP5s3MRz0LGCHPDKMUHcwba8cBFcFWOYspwhKovho
+\restrict tdXe9RgW5N3Q6XMeUPt3W4EhFlq7WbtGDir0zAk0sOvooJbgwnHm7GLlTLOBrOk
 
 -- Dumped from database version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
@@ -13279,13 +13279,13 @@ ALTER TABLE ONLY public.jv_snapshot
 -- PostgreSQL database dump complete
 --
 
-\unrestrict uaaAO0m41u8C2DiAsweRpCTP5s3MRz0LGCHPDKMUHcwba8cBFcFWOYspwhKovho
+\unrestrict tdXe9RgW5N3Q6XMeUPt3W4EhFlq7WbtGDir0zAk0sOvooJbgwnHm7GLlTLOBrOk
 
 --
 -- PostgreSQL database dump
 --
 
-\restrict goOrBse2BEt5TWSnffP9tiXErpHV6skGYojVu8VO14Q4OchkDnY9d1mbtR2wNWI
+\restrict uj3go1UHnCJwnCJjhmUhBPYRBN4kmcs9BxldimkcLsajyQ4PWJa1JSPeeFvEXE9
 
 -- Dumped from database version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
@@ -13793,9 +13793,9 @@ fix-rebel-calculation-risk-score-evolution-1.50-001	intelligence-operative	db-ch
 1.53-party-electoral-003	intelligence-operative	db-changelog-1.53.xml	2026-01-16 11:43:40.76298	482	EXECUTED	9:141eb5d459791ae1848b861a93771dff	createView viewName=view_riksdagen_party_electoral_trends	Party Electoral Trends View (2002-2026) - OPTIMIZED & ENHANCED	\N	5.0.1	\N	\N	0000000000
 1.53-validation	intelligence-operative	db-changelog-1.53.xml	2026-01-16 11:43:40.76298	483	EXECUTED	9:ea784e6f23a71274961868a13943099e	sql	Validate optimized party longitudinal views	\N	5.0.1	\N	\N	0000000000
 1.54-intro	intelligence-operative-analytics	db-changelog-1.54.xml	2026-01-16 15:24:57.513864	487	EXECUTED	9:5297d4ff56363d1961c9ed8022a2f2e0	sql	v1.54 Government Body Data Integration from ESV	\N	5.0.1	\N	\N	8577094947
-1.54-create-government-body-data-table	intelligence-operative-analytics	db-changelog-1.54.xml	2026-01-16 15:32:26.196206	488	EXECUTED	9:4046bda4557c0246facda447e089f602	createTable tableName=government_body_data	Create government_body_data table	\N	5.0.1	\N	\N	\N
 1.54-add-government-body-indexes	intelligence-operative-analytics	db-changelog-1.54.xml	2026-01-16 15:32:26.196206	489	EXECUTED	9:d4611e87e7ecd3c83c57c45009042471	createIndex (x4)	Add indexes for query performance	\N	5.0.1	\N	\N	\N
 1.54-add-government-body-comments	intelligence-operative-analytics	db-changelog-1.54.xml	2026-01-16 15:32:26.196206	490	EXECUTED	9:72d9e688519a72ac461c65c1842e91b9	sql	Add table comments	\N	5.0.1	\N	\N	\N
+1.54-create-government-body-data-table	intelligence-operative-analytics	db-changelog-1.54.xml	2026-01-16 15:32:26.196206	488	EXECUTED	9:ececfb8343eaa00195e944896c729962	createTable tableName=government_body_data	Create government_body_data table	\N	5.0.1	\N	\N	\N
 \.
 
 
@@ -13812,5 +13812,5 @@ COPY public.databasechangeloglock (id, locked, lockgranted, lockedby) FROM stdin
 -- PostgreSQL database dump complete
 --
 
-\unrestrict goOrBse2BEt5TWSnffP9tiXErpHV6skGYojVu8VO14Q4OchkDnY9d1mbtR2wNWI
+\unrestrict uj3go1UHnCJwnCJjhmUhBPYRBN4kmcs9BxldimkcLsajyQ4PWJa1JSPeeFvEXE9
 

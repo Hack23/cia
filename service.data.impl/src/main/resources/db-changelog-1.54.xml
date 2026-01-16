@@ -14,7 +14,7 @@ xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
 <changeSet id="1.54-create-government-body-data-table" author="intelligence-operative-analytics" failOnError="true">
     <comment>Create government_body_data table to store Swedish government body information from ESV</comment>
     <createTable tableName="government_body_data">
-        <column name="id" type="BIGINT" autoIncrement="true">
+        <column name="id" type="BIGSERIAL">
             <constraints primaryKey="true" nullable="false"/>
         </column>
         <column name="year" type="INTEGER">

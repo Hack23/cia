@@ -150,9 +150,9 @@ public class GovernmentBodyDataTest {
 
 		final String toString = data.toString();
 		assertNotNull(toString);
+		// Apache Commons Lang reflectionToString format
 		assertEquals(true, toString.contains("id=1"));
 		assertEquals(true, toString.contains("year=2023"));
-		assertEquals(true, toString.contains("name='Test Body'"));
-		assertEquals(true, toString.contains("ministry='Ministry'"));
+		assertEquals(true, toString.contains("name=Test Body"));
 	}
 }

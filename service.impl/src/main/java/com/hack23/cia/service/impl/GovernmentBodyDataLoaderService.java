@@ -18,6 +18,7 @@
  */
 package com.hack23.cia.service.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +28,7 @@ import javax.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -81,20 +83,26 @@ public class GovernmentBodyDataLoaderService {
 			} else {
 				LOGGER.info("Government body data already exists ({} records), skipping load", existingData.size());
 			}
+		} catch (final DataAccessException e) {
+			LOGGER.error("Database error while loading government body data", e);
+			throw e; // Re-throw to prevent application startup with incomplete data
 		} catch (final Exception e) {
-			LOGGER.error("Failed to load government body data", e);
+			LOGGER.error("Unexpected error while loading government body data", e);
+			throw new RuntimeException("Failed to initialize government body data", e);
 		} finally {
 			clearAuthentication();
 		}
 	}
 
 	/**
-	 * Load data from ESV API.
+	 * Load data from ESV API using batch processing for efficiency.
 	 */
 	private void loadDataFromEsv() {
 		final Map<Integer, List<GovernmentBodyAnnualSummary>> data = esvApi.getData();
 		
+		final List<GovernmentBodyData> entitiesToPersist = new ArrayList<>();
 		int recordCount = 0;
+		
 		for (final Map.Entry<Integer, List<GovernmentBodyAnnualSummary>> entry : data.entrySet()) {
 			final Integer year = entry.getKey();
 			final List<GovernmentBodyAnnualSummary> summaries = entry.getValue();
@@ -114,12 +122,18 @@ public class GovernmentBodyDataLoaderService {
 					summary.getComment()
 				);
 				
-				governmentBodyDataDAO.persist(entity);
+				entitiesToPersist.add(entity);
 				recordCount++;
 			}
 		}
 		
-		LOGGER.info("Loaded {} government body records from ESV", recordCount);
+		// Use batch persist for better performance
+		if (!entitiesToPersist.isEmpty()) {
+			governmentBodyDataDAO.persist(entitiesToPersist);
+			LOGGER.info("Loaded {} government body records from ESV", recordCount);
+		} else {
+			LOGGER.warn("No government body records found in ESV data");
+		}
 	}
 
 	/**
