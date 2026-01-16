@@ -20,6 +20,7 @@ package com.hack23.cia.service.impl;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -34,6 +35,7 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import com.hack23.cia.model.internal.application.data.ministry.impl.GovernmentBodyData;
@@ -107,8 +109,9 @@ public final class GovernmentBodyDataLoaderServiceITest extends AbstractServiceF
 		// Replace real EsvApi with mock
 		ReflectionTestUtils.setField(loaderService, "esvApi", mockEsvApi);
 
-		// Execute load
-		loaderService.loadGovernmentBodyDataIfEmpty();
+		// Execute load with mock event
+		final ContextRefreshedEvent mockEvent = mock(ContextRefreshedEvent.class);
+		loaderService.loadGovernmentBodyDataIfEmpty(mockEvent);
 
 		// Verify data was loaded
 		final List<GovernmentBodyData> loadedData = governmentBodyDataDAO.getAll();
@@ -172,7 +175,8 @@ public final class GovernmentBodyDataLoaderServiceITest extends AbstractServiceF
 		ReflectionTestUtils.setField(loaderService, "esvApi", mockEsvApi);
 
 		// Execute load - should skip
-		loaderService.loadGovernmentBodyDataIfEmpty();
+		final ContextRefreshedEvent mockEvent = mock(ContextRefreshedEvent.class);
+		loaderService.loadGovernmentBodyDataIfEmpty(mockEvent);
 
 		// Verify no new data was added
 		final int countAfter = governmentBodyDataDAO.getAll().size();
