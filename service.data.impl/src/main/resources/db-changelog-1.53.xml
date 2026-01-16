@@ -6,13 +6,13 @@ xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
 
 <!-- 
-  Party Longitudinal Analysis Views - Database Changelog v1.53 (OPTIMIZED & ENHANCED)
-  Author: Intelligence Operative & Political Analyst
+  Party Longitudinal Analysis Views - Database Changelog v1.53 (OPTIMIZED &amp; ENHANCED)
+  Author: Intelligence Operative &amp; Political Analyst
   Date: 2026-01-15
   GitHub Issue: #8209 - Party Performance Across Election Cycles - Longitudinal Analysis (2002-2026)
   Dependencies: #8208 (Election Cycle Views v1.51), #8218 (Statistical Enhancements v1.52)
   
-  OPTIMIZATIONS & ENHANCEMENTS (Based on PR review feedback):
+  OPTIMIZATIONS &amp; ENHANCEMENTS (Based on PR review feedback):
   - Builds on existing advanced party views (view_riksdagen_vote_data_ballot_party_summary_annual, 
     view_party_performance_metrics, view_party_effectiveness_trends)
   - Advanced statistical functions: RANK, PERCENT_RANK, NTILE, LAG, LEAD, STDDEV_POP
@@ -51,7 +51,7 @@ xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
 
 <changeSet id="1.53-intro" author="intelligence-operative">
     <comment>
-        Database Changelog v1.53 (OPTIMIZED & ENHANCED) - Party Longitudinal Analysis
+        Database Changelog v1.53 (OPTIMIZED &amp; ENHANCED) - Party Longitudinal Analysis
         
         Creates 3 views tracking party performance using Swedish parliament cycles,
         building on existing optimized views (view_riksdagen_vote_data_ballot_party_summary_annual,
@@ -87,7 +87,7 @@ xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
 
 <changeSet author="intelligence-operative" id="1.53-party-longitudinal-001" failOnError="true">
     <comment>
-        Party Longitudinal Performance View (2002-2026) - OPTIMIZED & ENHANCED
+        Party Longitudinal Performance View (2002-2026) - OPTIMIZED &amp; ENHANCED
         
         Framework: Comparative Analysis (26 supporting views, 15+ risk rules)
         
@@ -398,7 +398,7 @@ ORDER BY ws.party, ws.election_cycle_id, ws.cycle_year, ws.semester;
 
 <changeSet author="intelligence-operative" id="1.53-party-coalition-002" failOnError="true">
     <comment>
-        Party Coalition Evolution View (2002-2026) - OPTIMIZED & ENHANCED
+        Party Coalition Evolution View (2002-2026) - OPTIMIZED &amp; ENHANCED
         
         Framework: Comparative Analysis, Network Analysis
         
@@ -699,7 +699,7 @@ ORDER BY ws.party_1, ws.party_2, ws.election_cycle_id, ws.cycle_year, ws.semeste
 
 <changeSet author="intelligence-operative" id="1.53-party-electoral-003" failOnError="true">
     <comment>
-        Party Electoral Trends View (2002-2026) - OPTIMIZED & ENHANCED
+        Party Electoral Trends View (2002-2026) - OPTIMIZED &amp; ENHANCED
         
         Framework: Comparative Analysis, Predictive Intelligence
         
@@ -1036,7 +1036,7 @@ ORDER BY ws.party, ws.election_cycle_id, ws.cycle_year, ws.semester;
                 RAISE NOTICE '  OPTIMIZATIONS APPLIED:';
                 RAISE NOTICE '  - Builds on existing views: view_riksdagen_vote_data_ballot_party_summary_annual, view_party_performance_metrics';
                 RAISE NOTICE '  - Advanced statistics: RANK, PERCENT_RANK, NTILE, LAG, LEAD, STDDEV_POP';
-                RAISE NOTICE '  - Swedish parliament cycles: autumn (Sep-Jan) & spring (Jan-Aug) semesters';
+                RAISE NOTICE '  - Swedish parliament cycles: autumn (Sep-Jan) &amp; spring (Jan-Aug) semesters';
                 RAISE NOTICE '  - Comprehensive KPIs: 30+ metrics in performance view, 25+ in coalition view, 28+ in electoral view';
                 RAISE NOTICE '  - Predictive indicators: forecast scores, momentum z-scores, early warning flags';
                 RAISE NOTICE '  - Trend detection: Multi-dimensional trajectory classification, volatility assessments';
