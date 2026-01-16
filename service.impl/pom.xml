@@ -274,6 +274,11 @@
     </dependency>
     <dependency>
       <groupId>com.hack23.cia</groupId>
+      <artifactId>service.external.esv</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.hack23.cia</groupId>
       <artifactId>service.data.impl</artifactId>
       <version>${project.version}</version>
       <exclusions>

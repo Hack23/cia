@@ -73,6 +73,7 @@
         <class>com.hack23.cia.model.internal.application.data.ministry.impl.ViewMinistryDecisionImpactEmbeddedId</class>
         <class>com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenGovermentRoleMember</class>
         <class>com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenMinistry</class>
+        <class>com.hack23.cia.model.internal.application.data.ministry.impl.GovernmentBodyData</class>
         <class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenParty</class>
         <class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyBallotSupportAnnualSummary</class>
         <class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyBallotSupportAnnualSummaryEmbeddedId</class>

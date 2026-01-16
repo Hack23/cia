@@ -68,6 +68,7 @@ open module com.hack23.cia.service.impl {
 	requires com.hack23.cia.service.external.riksdagen;
 	requires com.hack23.cia.service.external.val;
 	requires com.hack23.cia.service.external.worldbank;
+	requires com.hack23.cia.service.external.esv;
 
 	requires com.hack23.cia.model.external.val.riksdagsvalkrets.impl;
 	requires com.hack23.cia.model.external.riksdagen.voteringlista.impl;
