@@ -171,8 +171,9 @@ SELECT
     ROUND((post_transition_attendance - pre_transition_attendance)::NUMERIC, 2) AS attendance_change,
     docs_before, docs_after,
     CASE 
-        WHEN months_until_next_election < 12 THEN 'PRE_ELECTION_DEFECTION'
-        WHEN months_until_next_election > 36 THEN 'MID_TERM_DEFECTION'
+        WHEN months_until_next_election IS NULL THEN 'UNKNOWN_TIMING'
+        WHEN months_until_next_election <= 12 THEN 'PRE_ELECTION_DEFECTION'
+        WHEN months_until_next_election >= 36 THEN 'MID_TERM_DEFECTION'
         ELSE 'NORMAL_DEFECTION'
     END AS defection_timing
 FROM defector_performance

@@ -24,8 +24,8 @@ import java.util.Date;
 import java.util.Objects;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -43,9 +43,8 @@ public class ViewRiksdagenPartyDefectorAnalysis implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@Column(name = "person_id", nullable = false)
-	private String personId;
+	@EmbeddedId
+	private ViewRiksdagenPartyDefectorAnalysisEmbeddedId embeddedId;
 
 	@Column(name = "first_name")
 	private String firstName;
@@ -58,10 +57,6 @@ public class ViewRiksdagenPartyDefectorAnalysis implements Serializable {
 
 	@Column(name = "new_party")
 	private String newParty;
-
-	@Temporal(TemporalType.DATE)
-	@Column(name = "transition_date")
-	private Date transitionDate;
 
 	@Column(name = "months_until_next_election")
 	private Integer monthsUntilNextElection;
@@ -92,12 +87,30 @@ public class ViewRiksdagenPartyDefectorAnalysis implements Serializable {
 	}
 
 	/**
+	 * Gets the embedded id.
+	 *
+	 * @return the embedded id
+	 */
+	public ViewRiksdagenPartyDefectorAnalysisEmbeddedId getEmbeddedId() {
+		return embeddedId;
+	}
+
+	/**
+	 * Sets the embedded id.
+	 *
+	 * @param embeddedId the new embedded id
+	 */
+	public void setEmbeddedId(final ViewRiksdagenPartyDefectorAnalysisEmbeddedId embeddedId) {
+		this.embeddedId = embeddedId;
+	}
+
+	/**
 	 * Gets the person id.
 	 *
 	 * @return the person id
 	 */
 	public String getPersonId() {
-		return personId;
+		return embeddedId != null ? embeddedId.getPersonId() : null;
 	}
 
 	/**
@@ -106,7 +119,31 @@ public class ViewRiksdagenPartyDefectorAnalysis implements Serializable {
 	 * @param personId the new person id
 	 */
 	public void setPersonId(final String personId) {
-		this.personId = personId;
+		if (this.embeddedId == null) {
+			this.embeddedId = new ViewRiksdagenPartyDefectorAnalysisEmbeddedId();
+		}
+		this.embeddedId.setPersonId(personId);
+	}
+
+	/**
+	 * Gets the transition date.
+	 *
+	 * @return the transition date
+	 */
+	public Date getTransitionDate() {
+		return embeddedId != null ? embeddedId.getTransitionDate() : null;
+	}
+
+	/**
+	 * Sets the transition date.
+	 *
+	 * @param transitionDate the new transition date
+	 */
+	public void setTransitionDate(final Date transitionDate) {
+		if (this.embeddedId == null) {
+			this.embeddedId = new ViewRiksdagenPartyDefectorAnalysisEmbeddedId();
+		}
+		this.embeddedId.setTransitionDate(transitionDate);
 	}
 
 	/**
@@ -179,24 +216,6 @@ public class ViewRiksdagenPartyDefectorAnalysis implements Serializable {
 	 */
 	public void setNewParty(final String newParty) {
 		this.newParty = newParty;
-	}
-
-	/**
-	 * Gets the transition date.
-	 *
-	 * @return the transition date
-	 */
-	public Date getTransitionDate() {
-		return transitionDate;
-	}
-
-	/**
-	 * Sets the transition date.
-	 *
-	 * @param transitionDate the new transition date
-	 */
-	public void setTransitionDate(final Date transitionDate) {
-		this.transitionDate = transitionDate;
 	}
 
 	/**
@@ -334,24 +353,24 @@ public class ViewRiksdagenPartyDefectorAnalysis implements Serializable {
 			return false;
 		}
 		final ViewRiksdagenPartyDefectorAnalysis that = (ViewRiksdagenPartyDefectorAnalysis) obj;
-		return Objects.equals(personId, that.personId) &&
-				Objects.equals(transitionDate, that.transitionDate);
+		return Objects.equals(getPersonId(), that.getPersonId()) &&
+				Objects.equals(getTransitionDate(), that.getTransitionDate());
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(personId, transitionDate);
+		return Objects.hash(getPersonId(), getTransitionDate());
 	}
 
 	@Override
 	public String toString() {
 		return "ViewRiksdagenPartyDefectorAnalysis{" +
-				"personId='" + personId + '\'' +
+				"personId='" + getPersonId() + '\'' +
 				", firstName='" + firstName + '\'' +
 				", lastName='" + lastName + '\'' +
 				", previousParty='" + previousParty + '\'' +
 				", newParty='" + newParty + '\'' +
-				", transitionDate=" + transitionDate +
+				", transitionDate=" + getTransitionDate() +
 				", monthsUntilNextElection=" + monthsUntilNextElection +
 				", preTransitionAttendance=" + preTransitionAttendance +
 				", postTransitionAttendance=" + postTransitionAttendance +
