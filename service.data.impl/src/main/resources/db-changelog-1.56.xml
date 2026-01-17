@@ -5,16 +5,16 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
 
-<changeSet id="1.55-intro" author="intelligence-operative">
-    <comment>v1.55 Historical Politician Party Transitions - Track MPs leaving their party while serving in Riksdagen</comment>
-    <sql>SELECT 'v1.55' AS version, CURRENT_TIMESTAMP AS applied_at;</sql>
+<changeSet id="1.56-intro" author="intelligence-operative">
+    <comment>v1.56 Historical Politician Party Transitions - Track MPs leaving their party while serving in Riksdagen</comment>
+    <sql>SELECT 'v1.56' AS version, CURRENT_TIMESTAMP AS applied_at;</sql>
 </changeSet>
 
 <!-- ========================================================================= -->
 <!-- VIEW 1: view_riksdagen_party_transition_history                          -->
 <!-- ========================================================================= -->
 
-<changeSet author="intelligence-operative" id="create-party-transition-history-view-1.55-001" failOnError="true">
+<changeSet author="intelligence-operative" id="create-party-transition-history-view-1.56-001" failOnError="true">
     <comment>
         Create view_riksdagen_party_transition_history to track all party changes since 2002.
         
@@ -114,7 +114,7 @@ ORDER BY transition_date DESC
 <!-- VIEW 2: view_riksdagen_party_defector_analysis                           -->
 <!-- ========================================================================= -->
 
-<changeSet author="intelligence-operative" id="create-party-defector-analysis-view-1.55-002" failOnError="true">
+<changeSet author="intelligence-operative" id="create-party-defector-analysis-view-1.56-002" failOnError="true">
     <comment>
         Create view_riksdagen_party_defector_analysis to analyze defector characteristics.
         
@@ -191,7 +191,7 @@ ORDER BY transition_date DESC
 <!-- VIEW 3: view_riksdagen_party_switcher_outcomes                           -->
 <!-- ========================================================================= -->
 
-<changeSet author="intelligence-operative" id="create-party-switcher-outcomes-view-1.55-003" failOnError="true">
+<changeSet author="intelligence-operative" id="create-party-switcher-outcomes-view-1.56-003" failOnError="true">
     <comment>
         Create view_riksdagen_party_switcher_outcomes to measure post-transition career success.
         

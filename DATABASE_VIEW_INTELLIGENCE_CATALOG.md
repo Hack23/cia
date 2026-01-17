@@ -37,23 +37,23 @@
 
 The Citizen Intelligence Agency (CIA) platform employs **96 database views** (68 regular views + 28 materialized views) across 10 major categories to support comprehensive political intelligence analysis, open-source intelligence (OSINT) collection, and democratic accountability monitoring.
 
-✅ **Documentation Status**: This catalog now provides **comprehensive documentation** for all 96 database views (100% coverage), including **6 election cycle views (v1.51)**, **3 party longitudinal analysis views (v1.53)**, and **3 party transition tracking views (v1.55)** that provide META/META-level historical analysis with Swedish parliamentary election context. **11 views** have detailed examples with complex queries, while **85 views** have structured documentation with purpose, key metrics, sample queries, and intelligence applications.
+✅ **Documentation Status**: This catalog now provides **comprehensive documentation** for all 96 database views (100% coverage), including **6 election cycle views (v1.51)**, **3 party longitudinal analysis views (v1.53)**, **3 seasonal trend analysis views (v1.55)**, and **3 party transition tracking views (v1.56)** that provide META/META-level historical analysis with Swedish parliamentary election context. **11 views** have detailed examples with complex queries, while **85 views** have structured documentation with purpose, key metrics, sample queries, and intelligence applications.
 
-**Last Updated**: 2026-01-17 (Added Party Transition Tracking Views v1.55)  
-**Last Validated**: 2026-01-17 (v1.55 with 96 views)  
+**Last Updated**: 2026-01-17 (Added Party Transition Tracking Views v1.56, Seasonal Trend Analysis Views v1.55)  
+**Last Validated**: 2026-01-17 (v1.56 with 96 views)  
 **Validation Method**: Automated schema validation via validate-view-documentation.sh  
 **Schema Source**: service.data.impl/src/main/resources/full_schema.sql  
 **Documentation Coverage**: 100% (96/96 views)  
 **Validation Details**: See [Validation History](#-validation-history) section below
 
-**Note**: Total view count increased from 93 to 96 with addition of 3 party transition tracking views in v1.55.
+**Note**: Total view count increased from 90 to 96 with addition of 3 seasonal trend analysis views in v1.55 and 3 party transition tracking views in v1.56.
 
 ### Key Statistics (UPDATED 2026-01-16)
 
 | Metric | Count | Description |
 |--------|-------|-------------|
-| **Total Views** | 96 | ✅ UPDATED: 84 base + 6 election cycle (v1.51) + 3 party longitudinal (v1.53) + 3 party transition (v1.55) |
-| **Regular Views** | 68 | ✅ UPDATED: 56 base + 6 election cycle + 3 party longitudinal + 3 party transition |
+| **Total Views** | 96 | ✅ UPDATED: 81 base + 6 election cycle (v1.51) + 3 party longitudinal (v1.53) + 3 seasonal trend (v1.55) + 3 party transition (v1.56) |
+| **Regular Views** | 68 | ✅ UPDATED: 53 base + 6 election cycle + 3 party longitudinal + 3 seasonal trend + 3 party transition |
 | **Materialized Views** | 28 | ✅ VERIFIED per refresh-all-views.sql |
 | **Views Documented (Detailed)** | 11 | Complex examples with business context |
 | **Views Documented (Structured)** | 85 | Purpose, metrics, queries, product mappings (73 + 6 + 3 + 3 new) |
