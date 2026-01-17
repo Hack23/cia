@@ -125,7 +125,7 @@ ORDER BY transition_date DESC
         Key Metrics:
         - Pre/post transition attendance rates (6 months window)
         - Document production before/after transition (6 months window)
-        - Defection timing classification (PRE_ELECTION &lt;12mo, MID_TERM &gt;36mo, NORMAL 12-36mo)
+        - Defection timing classification (PRE_ELECTION &lt;=12mo, MID_TERM &gt;=36mo, NORMAL 12-36mo)
         - Attendance change delta
         
         Intelligence Value: VERY HIGH (5/5)

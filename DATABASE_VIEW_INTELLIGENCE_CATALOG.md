@@ -2780,7 +2780,7 @@ This view supports multiple analytical frameworks:
 #### Key Features
 
 - **Attendance Analysis**: 6-month pre/post transition voting attendance patterns from vote_data
-- **Defection Timing Classification**: PRE_ELECTION (<12mo), MID_TERM (>36mo), NORMAL (12-36mo)
+- **Defection Timing Classification**: PRE_ELECTION (≤12mo), MID_TERM (≥36mo), NORMAL (>12mo and <36mo), UNKNOWN_TIMING (post-2026 transitions)
 - **Behavioral Metrics**: Attendance change delta, document production before/after transition
 - **Early Warning Signals**: Declining participation as predictor of party switching
 

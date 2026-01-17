@@ -121,10 +121,24 @@ public class ViewRiksdagenCoalitionAlignmentMatrixEmbeddedId implements Serializ
 		if (other == null) {
 			return 1;
 		}
+		// Null-safe comparison for party1
+		if (this.party1 == null && other.party1 == null) {
+			// Both null, compare party2
+			return Objects.compare(this.party2, other.party2, String::compareTo);
+		}
+		if (this.party1 == null) {
+			return -1;
+		}
+		if (other.party1 == null) {
+			return 1;
+		}
+		
 		int partyCompare = this.party1.compareTo(other.party1);
 		if (partyCompare != 0) {
 			return partyCompare;
 		}
-		return this.party2.compareTo(other.party2);
+		
+		// Null-safe comparison for party2
+		return Objects.compare(this.party2, other.party2, String::compareTo);
 	}
 }

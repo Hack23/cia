@@ -333,24 +333,24 @@ public class ViewRiksdagenPartyTransitionHistory implements Serializable {
 			return false;
 		}
 		final ViewRiksdagenPartyTransitionHistory that = (ViewRiksdagenPartyTransitionHistory) obj;
-		return Objects.equals(personId, that.personId) &&
-				Objects.equals(transitionDate, that.transitionDate);
+		return Objects.equals(getPersonId(), that.getPersonId()) &&
+				Objects.equals(getTransitionDate(), that.getTransitionDate());
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(personId, transitionDate);
+		return Objects.hash(getPersonId(), getTransitionDate());
 	}
 
 	@Override
 	public String toString() {
 		return "ViewRiksdagenPartyTransitionHistory{" +
-				"personId='" + personId + '\'' +
+				"personId='" + getPersonId() + '\'' +
 				", firstName='" + firstName + '\'' +
 				", lastName='" + lastName + '\'' +
 				", previousParty='" + previousParty + '\'' +
 				", newParty='" + newParty + '\'' +
-				", transitionDate=" + transitionDate +
+				", transitionDate=" + getTransitionDate() +
 				", transitionType='" + transitionType + '\'' +
 				", transitionYear=" + transitionYear +
 				", monthsUntilNextElection=" + monthsUntilNextElection +
