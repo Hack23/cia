@@ -139,6 +139,7 @@ SELECT
         ELSE 'IRREGULAR'
     END AS continuity_pattern,
     -- Career life stage
+    -- Age thresholds based on Swedish political norms: 65 (typical retirement), 50 (mature), 35 (mid-career)
     CASE 
         WHEN age_at_career_end IS NULL THEN 'UNKNOWN_AGE'
         WHEN is_currently_active AND age_at_career_end >= 65 THEN 'SENIOR_ACTIVE'

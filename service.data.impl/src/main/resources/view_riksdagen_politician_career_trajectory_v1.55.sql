@@ -20,7 +20,7 @@ WITH career_cycles AS (
         MAX(vd.vote_date) AS last_vote,
         COUNT(*) AS ballot_count,
         -- Attendance rate: percentage of votes where politician was not absent
-        ROUND(AVG(CASE WHEN vd.vote != 'Frånvarande' THEN 1 ELSE 0 END) * 100, 2) AS attendance_rate,
+        ROUND(AVG(CASE WHEN vd.vote != 'FRÅNVARANDE' THEN 1 ELSE 0 END) * 100, 2) AS attendance_rate,
         -- Win rate: percentage of votes where politician voted with winning side
         -- Using party won status from ballot summary as proxy for individual win
         ROUND(AVG(CASE 
@@ -36,6 +36,8 @@ WITH career_cycles AS (
         COUNT(DISTINCT dpr.person_reference_id) AS documents_authored
     FROM person_data p
     JOIN vote_data vd ON p.id = vd.embedded_id_intressent_id
+    -- Note: Party summary join is simplified for performance - uses ballot_id and party as proxy for win rate
+    -- Full composite key match (ballot_id, issue, concern, party) not needed for aggregated metrics
     LEFT JOIN view_riksdagen_vote_data_ballot_party_summary ps 
         ON vd.embedded_id_ballot_id = ps.embedded_id_ballot_id 
         AND vd.party = ps.embedded_id_party
