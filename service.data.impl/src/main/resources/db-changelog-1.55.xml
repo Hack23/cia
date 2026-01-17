@@ -120,13 +120,7 @@ ORDER BY year, quarter
     <changeSet id="1.55-document-seasonal-quarterly-activity-view" author="intelligence-operative" failOnError="true">
         <comment>Add documentation for view_riksdagen_seasonal_quarterly_activity</comment>
         <sql>
-            COMMENT ON VIEW view_riksdagen_seasonal_quarterly_activity IS 
-            'Seasonal quarterly activity aggregation (2002-2026) with election year comparison. '||
-            'Calculates baselines from non-election years and z-score anomaly detection. '||
-            'Framework 3: Pattern Recognition - Seasonal clustering. '||
-            'Data Sources: vote_data, document_data. '||
-            'Election years: 2002, 2006, 2010, 2014, 2018, 2022, 2026. '||
-            'Target Accuracy: 87% for seasonal pattern detection.';
+            COMMENT ON VIEW view_riksdagen_seasonal_quarterly_activity IS 'Seasonal quarterly activity aggregation (2002-2026) with election year comparison. Calculates baselines from non-election years and z-score anomaly detection. Framework 3: Pattern Recognition - Seasonal clustering. Data Sources: vote_data, document_data. Election years: 2002, 2006, 2010, 2014, 2018, 2022, 2026. Target Accuracy: 87% for seasonal pattern detection.';
         </sql>
     </changeSet>
 
@@ -201,13 +195,7 @@ ORDER BY year DESC
     <changeSet id="1.55-document-q4-election-comparison-view" author="intelligence-operative" failOnError="true">
         <comment>Add documentation for view_riksdagen_q4_election_year_comparison</comment>
         <sql>
-            COMMENT ON VIEW view_riksdagen_q4_election_year_comparison IS 
-            'Q4 (October-December) activity comparison: election years vs non-election years. '||
-            'Detects pre-election surge patterns (>150% baseline) and elevated activity (>1 stddev). '||
-            'Enables prediction of electoral behavior based on Q4 activity patterns. '||
-            'Framework 3: Pattern Recognition + Framework 4: Predictive Intelligence. '||
-            'Data Source: view_riksdagen_seasonal_quarterly_activity. '||
-            'Use Case: Query "Q4 2021 (election year) vs Q4 2020 (non-election year) activity"';
+            COMMENT ON VIEW view_riksdagen_q4_election_year_comparison IS 'Q4 (October-December) activity comparison: election years vs non-election years. Detects pre-election surge patterns (>150% baseline) and elevated activity (>1 stddev). Enables prediction of electoral behavior based on Q4 activity patterns. Framework 3: Pattern Recognition + Framework 4: Predictive Intelligence. Data Source: view_riksdagen_seasonal_quarterly_activity. Use Case: Query Q4 2021 (election year) vs Q4 2020 (non-election year) activity';
         </sql>
     </changeSet>
 
@@ -285,14 +273,7 @@ ORDER BY max_z_score DESC, year DESC, quarter DESC
     <changeSet id="1.55-document-seasonal-anomaly-detection-view" author="intelligence-operative" failOnError="true">
         <comment>Add documentation for view_riksdagen_seasonal_anomaly_detection</comment>
         <sql>
-            COMMENT ON VIEW view_riksdagen_seasonal_anomaly_detection IS 
-            'Seasonal anomaly detection identifying quarters with activity >2 standard deviations from baseline. '||
-            'Classifies anomalies by type (ballot/document/attendance), direction (high/low), and severity (critical/high/moderate/low). '||
-            'Filters for elevated activity (z-score > 1.5) to focus on statistically significant deviations. '||
-            'Framework 3: Pattern Recognition - Anomaly detection. '||
-            'Framework 6: Decision Intelligence - Operational warnings. '||
-            'Data Source: view_riksdagen_seasonal_quarterly_activity. '||
-            'Use Case: Crisis detection, electoral behavior anomalies, operational intelligence.';
+            COMMENT ON VIEW view_riksdagen_seasonal_anomaly_detection IS 'Seasonal anomaly detection identifying quarters with activity >2 standard deviations from baseline. Classifies anomalies by type (ballot/document/attendance), direction (high/low), and severity (critical/high/moderate/low). Filters for elevated activity (z-score > 1.5) to focus on statistically significant deviations. Framework 3: Pattern Recognition - Anomaly detection. Framework 6: Decision Intelligence - Operational warnings. Data Source: view_riksdagen_seasonal_quarterly_activity. Use Case: Crisis detection, electoral behavior anomalies, operational intelligence.';
         </sql>
     </changeSet>
 
