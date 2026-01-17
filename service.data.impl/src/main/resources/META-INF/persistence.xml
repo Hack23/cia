@@ -143,6 +143,12 @@
 		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyElectoralTrends</class>
 		<class>com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyElectoralTrendsEmbeddedId</class>
 
+		<!-- V1.55 Seasonal Trend Analysis Views -->
+		<class>com.hack23.cia.model.internal.application.data.seasonal.impl.ViewRiksdagenSeasonalQuarterlyActivity</class>
+		<class>com.hack23.cia.model.internal.application.data.seasonal.impl.ViewRiksdagenSeasonalQuarterlyActivityEmbeddedId</class>
+		<class>com.hack23.cia.model.internal.application.data.seasonal.impl.ViewRiksdagenQ4ElectionYearComparison</class>
+		<class>com.hack23.cia.model.internal.application.data.seasonal.impl.ViewRiksdagenSeasonalAnomalyDetection</class>
+
 		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician</class>
 		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianBallotSummary</class>
 		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianExperienceSummary</class>

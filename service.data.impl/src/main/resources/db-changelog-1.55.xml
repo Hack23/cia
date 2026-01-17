@@ -1,135 +1,298 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <databaseChangeLog
-	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
 
-<!-- 
-  Feature: Politician Career Trajectory Tracking Across Election Cycles
-  Author: Intelligence Operative
-  Date: 2026-01-17
-  Issue: Hack23/cia#8209
-  
-  Documentation References:
-  - Analysis Framework: DATA_ANALYSIS_INTOP_OSINT.md (Predictive Intelligence Framework 4)
-  - Schema Maintenance: service.data.impl/README-SCHEMA-MAINTENANCE.md
-  - View Catalog: DATABASE_VIEW_INTELLIGENCE_CATALOG.md
-  
-  Summary: Create 3 new views for politician career trajectory analysis:
-  1. view_riksdagen_politician_career_trajectory - Performance across election cycles
-  2. view_riksdagen_politician_role_evolution - Role progression and advancement
-  3. view_riksdagen_politician_longevity_analysis - Career duration and activity patterns
-  
-  These views enable:
-  - Career pattern detection (ascending/peak/declining/stable)
-  - Resignation risk prediction based on career trajectories
-  - Role progression analysis (backbencher → committee → minister)
-  - Career longevity forecasting
-  - Retention risk assessment for active politicians
--->
+    <changeSet id="1.55-intro" author="intelligence-operative">
+        <comment>v1.55 Seasonal Trend Analysis - Q4 Pre-Election Activity Patterns</comment>
+        <sql>SELECT 'v1.55' AS version, CURRENT_TIMESTAMP AS applied_at;</sql>
+    </changeSet>
 
-<!-- Career Trajectory View: Track performance across election cycles -->
-<changeSet author="intelligence-operative" id="career-trajectory-1.55-001" failOnError="true">
-    <comment>
-        Create view_riksdagen_politician_career_trajectory to track politician performance 
-        across election cycles (2002-2026). Provides attendance rates, win rates, leadership roles,
-        and documents authored per cycle. Classifies career stages (early/mid/late), 
-        performance trends (improving/declining/stable), and career patterns (peak/decline/rising star).
-        
-        Key Metrics:
-        - Election cycle performance (2002, 2006, 2010, 2014, 2018, 2022, 2026)
-        - Attendance rate per cycle
-        - Win rate per cycle
-        - Leadership roles per cycle
-        - Documents authored per cycle
-        - Performance vs career baseline
-        - Career stage classification
-        - Performance trend detection
-        - Career pattern identification (peak/decline/rising star/consistent)
-        
-        Intelligence Value: ⭐⭐⭐⭐⭐ VERY HIGH
-        Used for: Career trajectory forecasting, resignation risk prediction, talent retention analysis
-    </comment>
-    
-    <sqlFile path="view_riksdagen_politician_career_trajectory_v1.55.sql" 
-             relativeToChangelogFile="true"
-             splitStatements="false"
-             encoding="UTF-8"/>
-    
-    <rollback>
-        <sql>DROP VIEW IF EXISTS view_riksdagen_politician_career_trajectory CASCADE;</sql>
-    </rollback>
-</changeSet>
+    <!-- View 1: Quarterly Activity Aggregation -->
+    <changeSet id="1.55-create-seasonal-quarterly-activity-view" author="intelligence-operative" failOnError="true">
+        <comment>
+            Create view_riksdagen_seasonal_quarterly_activity for quarterly pattern analysis.
+            Aggregates Q1-Q4 activity patterns across 24 years (2002-2026) for election cycle analysis.
+            Includes baseline calculation for non-election years and z-score anomaly detection.
+            Supports Framework 3: Pattern Recognition - Seasonal clustering and election-driven behavioral shifts.
+        </comment>
+        <createView viewName="view_riksdagen_seasonal_quarterly_activity" replaceIfExists="true">
+            <![CDATA[
+WITH election_years AS (
+    SELECT UNNEST(ARRAY[2002, 2006, 2010, 2014, 2018, 2022, 2026])::INT AS election_year
+),
+ballot_quarterly_activity AS (
+    SELECT 
+        EXTRACT(YEAR FROM vote_date) AS year,
+        EXTRACT(QUARTER FROM vote_date) AS quarter,
+        CASE 
+            WHEN ey.election_year IS NOT NULL THEN true 
+            ELSE false 
+        END AS is_election_year,
+        COUNT(DISTINCT embedded_id_ballot_id) AS total_ballots,
+        COUNT(DISTINCT embedded_id_intressent_id) AS active_politicians,
+        AVG(CASE WHEN vote != 'Frånvarande' THEN 1 ELSE 0 END) * 100 AS attendance_rate
+    FROM vote_data
+    LEFT JOIN election_years ey 
+        ON ey.election_year = EXTRACT(YEAR FROM vote_date)
+    WHERE vote_date IS NOT NULL
+    GROUP BY year, quarter, is_election_year
+),
+document_quarterly_activity AS (
+    SELECT 
+        EXTRACT(YEAR FROM made_public_date) AS year,
+        EXTRACT(QUARTER FROM made_public_date) AS quarter,
+        COUNT(DISTINCT id) AS documents_produced
+    FROM document_data
+    WHERE made_public_date IS NOT NULL
+    GROUP BY year, quarter
+),
+quarterly_activity AS (
+    SELECT 
+        bqa.year,
+        bqa.quarter,
+        bqa.is_election_year,
+        COALESCE(bqa.total_ballots, 0) AS total_ballots,
+        COALESCE(bqa.active_politicians, 0) AS active_politicians,
+        COALESCE(bqa.attendance_rate, 0) AS attendance_rate,
+        COALESCE(dqa.documents_produced, 0) AS documents_produced
+    FROM ballot_quarterly_activity bqa
+    LEFT JOIN document_quarterly_activity dqa 
+        ON bqa.year = dqa.year AND bqa.quarter = dqa.quarter
+),
+baseline_calculation AS (
+    SELECT 
+        quarter,
+        AVG(total_ballots) FILTER (WHERE NOT is_election_year) AS q_baseline_ballots,
+        STDDEV(total_ballots) FILTER (WHERE NOT is_election_year) AS q_stddev_ballots,
+        AVG(documents_produced) FILTER (WHERE NOT is_election_year) AS q_baseline_docs,
+        STDDEV(documents_produced) FILTER (WHERE NOT is_election_year) AS q_stddev_docs,
+        AVG(attendance_rate) FILTER (WHERE NOT is_election_year) AS q_baseline_attendance,
+        STDDEV(attendance_rate) FILTER (WHERE NOT is_election_year) AS q_stddev_attendance
+    FROM quarterly_activity
+    GROUP BY quarter
+)
+SELECT 
+    qa.year, 
+    qa.quarter, 
+    qa.is_election_year,
+    qa.total_ballots, 
+    qa.active_politicians, 
+    qa.attendance_rate, 
+    qa.documents_produced,
+    bc.q_baseline_ballots, 
+    bc.q_stddev_ballots,
+    CASE 
+        WHEN bc.q_stddev_ballots > 0 
+        THEN (qa.total_ballots - bc.q_baseline_ballots) / bc.q_stddev_ballots
+        ELSE 0 
+    END AS ballot_z_score,
+    bc.q_baseline_docs, 
+    bc.q_stddev_docs,
+    CASE 
+        WHEN bc.q_stddev_docs > 0 
+        THEN (qa.documents_produced - bc.q_baseline_docs) / bc.q_stddev_docs
+        ELSE 0 
+    END AS doc_z_score,
+    bc.q_baseline_attendance,
+    bc.q_stddev_attendance,
+    CASE 
+        WHEN bc.q_stddev_attendance > 0 
+        THEN (qa.attendance_rate - bc.q_baseline_attendance) / bc.q_stddev_attendance
+        ELSE 0 
+    END AS attendance_z_score,
+    CASE 
+        -- First check: Extreme deviations (>2 or <-2 std dev) in either direction = ANOMALY
+        WHEN ABS(COALESCE((qa.total_ballots - bc.q_baseline_ballots) / NULLIF(bc.q_stddev_ballots, 0), 0)) > 2 
+        THEN 'ANOMALY_DETECTED'
+        -- Second check: Moderate high deviation (>1 std dev) = ELEVATED  
+        WHEN qa.total_ballots > bc.q_baseline_ballots + bc.q_stddev_ballots 
+        THEN 'ELEVATED_ACTIVITY'
+        -- Third check: Moderate low deviation (<-1 std dev) = REDUCED
+        WHEN qa.total_ballots < bc.q_baseline_ballots - bc.q_stddev_ballots 
+        THEN 'REDUCED_ACTIVITY'
+        ELSE 'NORMAL_ACTIVITY'
+    END AS activity_classification
+FROM quarterly_activity qa
+JOIN baseline_calculation bc ON qa.quarter = bc.quarter
+ORDER BY year, quarter
+            ]]>
+        </createView>
+        <rollback>
+            <dropView viewName="view_riksdagen_seasonal_quarterly_activity"/>
+        </rollback>
+    </changeSet>
 
-<!-- Role Evolution View: Track role progression and career advancement -->
-<changeSet author="intelligence-operative" id="role-evolution-1.55-002" failOnError="true">
-    <comment>
-        Create view_riksdagen_politician_role_evolution to track politician career progression
-        through different positions. Classifies roles into tiers (minister/speaker/party leader/
-        committee chair/member/substitute), assigns role weights for progression analysis, 
-        and identifies career patterns (ascending/descending/lateral).
-        
-        Key Metrics:
-        - Role tier classification (minister/speaker/party leader/committee chair/member/substitute)
-        - Role weight (1000 for PM down to 50 for other roles)
-        - Role start and end dates
-        - Years in each role
-        - Role sequence number
-        - Peak role weight achieved
-        - Progression pattern (ascending/descending/lateral/career peak)
-        - Career level (top leadership/senior/mid-level/junior/entry)
-        - Advancement velocity (role weight increase per year)
-        
-        Intelligence Value: ⭐⭐⭐⭐⭐ VERY HIGH
-        Used for: Career advancement prediction, role transition forecasting, leadership pipeline analysis
-    </comment>
-    
-    <sqlFile path="view_riksdagen_politician_role_evolution_v1.55.sql" 
-             relativeToChangelogFile="true"
-             splitStatements="false"
-             encoding="UTF-8"/>
-    
-    <rollback>
-        <sql>DROP VIEW IF EXISTS view_riksdagen_politician_role_evolution CASCADE;</sql>
-    </rollback>
-</changeSet>
+    <!-- Add view documentation -->
+    <changeSet id="1.55-document-seasonal-quarterly-activity-view" author="intelligence-operative" failOnError="true">
+        <comment>Add documentation for view_riksdagen_seasonal_quarterly_activity</comment>
+        <sql>
+            COMMENT ON VIEW view_riksdagen_seasonal_quarterly_activity IS 'Seasonal quarterly activity aggregation (2002-2026) with election year comparison. Calculates baselines from non-election years and z-score anomaly detection. Framework 3: Pattern Recognition - Seasonal clustering. Data Sources: vote_data, document_data. Election years: 2002, 2006, 2010, 2014, 2018, 2022, 2026. Target Accuracy: 87% for seasonal pattern detection.';
+        </sql>
+    </changeSet>
 
-<!-- Longevity Analysis View: Career duration and activity patterns -->
-<changeSet author="intelligence-operative" id="longevity-analysis-1.55-003" failOnError="true">
-    <comment>
-        Create view_riksdagen_politician_longevity_analysis to measure politician career
-        duration and engagement levels. Calculates total career years, election cycles active,
-        activity intensity (votes/assignments per year), and career continuity scores.
-        Classifies politicians by longevity, activity level, and identifies retention risks.
-        
-        Key Metrics:
-        - Career start and end dates
-        - Total career years and days
-        - Age at career start and end
-        - Election cycles active (2002-2026)
-        - Total votes cast and assignments held
-        - Average votes per year (activity intensity)
-        - Average assignments per year
-        - Career continuity score (% of possible cycles active)
-        - Longevity category (veteran/established/mid-career/junior/newcomer)
-        - Activity level (very active/active/moderate/low/minimal)
-        - Continuity pattern (continuous/mostly continuous/intermittent/sporadic)
-        - Career life stage (senior active/mature active/mid-career/early career/retired)
-        - Retention risk (high retirement/moderate attrition/early exit/engagement/low risk)
-        
-        Intelligence Value: ⭐⭐⭐⭐⭐ VERY HIGH
-        Used for: Career longevity forecasting, resignation risk prediction, retention risk assessment
-    </comment>
-    
-    <sqlFile path="view_riksdagen_politician_longevity_analysis_v1.55.sql" 
-             relativeToChangelogFile="true"
-             splitStatements="false"
-             encoding="UTF-8"/>
-    
-    <rollback>
-        <sql>DROP VIEW IF EXISTS view_riksdagen_politician_longevity_analysis CASCADE;</sql>
-    </rollback>
-</changeSet>
+    <!-- View 2: Q4 Election Year Comparison -->
+    <changeSet id="1.55-create-q4-election-comparison-view" author="intelligence-operative" failOnError="true">
+        <comment>
+            Create view_riksdagen_q4_election_year_comparison for Q4 pre-election activity analysis.
+            Compares Q4 activity in election years vs non-election years to detect pre-election surge patterns.
+            Supports predictive modeling of future electoral behavior.
+        </comment>
+        <createView viewName="view_riksdagen_q4_election_year_comparison" replaceIfExists="true">
+            <![CDATA[
+WITH q4_baseline AS (
+    SELECT 
+        AVG(total_ballots) FILTER (WHERE NOT is_election_year) AS baseline_ballots,
+        AVG(documents_produced) FILTER (WHERE NOT is_election_year) AS baseline_docs,
+        AVG(attendance_rate) FILTER (WHERE NOT is_election_year) AS baseline_attendance,
+        STDDEV(total_ballots) FILTER (WHERE NOT is_election_year) AS stddev_ballots,
+        STDDEV(documents_produced) FILTER (WHERE NOT is_election_year) AS stddev_docs,
+        STDDEV(attendance_rate) FILTER (WHERE NOT is_election_year) AS stddev_attendance
+    FROM view_riksdagen_seasonal_quarterly_activity
+    WHERE quarter = 4
+)
+SELECT 
+    sqa.year,
+    sqa.is_election_year,
+    sqa.total_ballots,
+    sqa.active_politicians,
+    sqa.attendance_rate,
+    sqa.documents_produced,
+    qb.baseline_ballots,
+    qb.baseline_docs,
+    qb.baseline_attendance,
+    sqa.total_ballots - qb.baseline_ballots AS ballot_deviation_from_baseline,
+    sqa.documents_produced - qb.baseline_docs AS doc_deviation_from_baseline,
+    sqa.attendance_rate - qb.baseline_attendance AS attendance_deviation_from_baseline,
+    CASE 
+        WHEN qb.baseline_ballots > 0 THEN 
+            ((sqa.total_ballots - qb.baseline_ballots) / qb.baseline_ballots) * 100
+        ELSE 0
+    END AS ballot_percent_change,
+    CASE 
+        WHEN qb.baseline_docs > 0 THEN 
+            ((sqa.documents_produced - qb.baseline_docs) / qb.baseline_docs) * 100
+        ELSE 0
+    END AS doc_percent_change,
+    CASE 
+        -- Pre-election surge: >150% of baseline (significant increase)
+        WHEN sqa.is_election_year AND sqa.total_ballots > 1.5 * qb.baseline_ballots 
+        THEN 'PRE_ELECTION_SURGE'
+        WHEN sqa.is_election_year AND sqa.total_ballots > qb.baseline_ballots + qb.stddev_ballots
+        THEN 'ELEVATED_ELECTION_ACTIVITY'
+        WHEN sqa.is_election_year
+        THEN 'NORMAL_ELECTION_Q4'
+        ELSE 'NORMAL_Q4'
+    END AS q4_pattern,
+    sqa.ballot_z_score,
+    sqa.doc_z_score,
+    sqa.attendance_z_score,
+    sqa.activity_classification
+FROM view_riksdagen_seasonal_quarterly_activity sqa
+CROSS JOIN q4_baseline qb
+WHERE sqa.quarter = 4
+ORDER BY year DESC
+            ]]>
+        </createView>
+        <rollback>
+            <dropView viewName="view_riksdagen_q4_election_year_comparison"/>
+        </rollback>
+    </changeSet>
+
+    <!-- Add view documentation -->
+    <changeSet id="1.55-document-q4-election-comparison-view" author="intelligence-operative" failOnError="true">
+        <comment>Add documentation for view_riksdagen_q4_election_year_comparison</comment>
+        <sql>
+            COMMENT ON VIEW view_riksdagen_q4_election_year_comparison IS 'Q4 (October-December) activity comparison: election years vs non-election years. Detects pre-election surge patterns (>150% baseline) and elevated activity (>1 stddev). Enables prediction of electoral behavior based on Q4 activity patterns. Framework 3: Pattern Recognition + Framework 4: Predictive Intelligence. Data Source: view_riksdagen_seasonal_quarterly_activity. Use Case: Query Q4 2021 (election year) vs Q4 2020 (non-election year) activity';
+        </sql>
+    </changeSet>
+
+    <!-- View 3: Seasonal Anomaly Detection -->
+    <changeSet id="1.55-create-seasonal-anomaly-detection-view" author="intelligence-operative" failOnError="true">
+        <comment>
+            Create view_riksdagen_seasonal_anomaly_detection for identifying activity anomalies.
+            Flags quarters with activity significantly above or below baseline using z-score thresholds (moderate >1.5, high >2, critical >3 standard deviations) for further investigation.
+            Supports operational intelligence and crisis detection workflows.
+        </comment>
+        <createView viewName="view_riksdagen_seasonal_anomaly_detection" replaceIfExists="true">
+            <![CDATA[
+SELECT 
+    year,
+    quarter,
+    is_election_year,
+    total_ballots,
+    active_politicians,
+    attendance_rate,
+    documents_produced,
+    q_baseline_ballots,
+    q_stddev_ballots,
+    ballot_z_score,
+    q_baseline_docs,
+    q_stddev_docs,
+    doc_z_score,
+    q_baseline_attendance,
+    q_stddev_attendance,
+    attendance_z_score,
+    activity_classification,
+    CASE 
+        WHEN quarter = 1 THEN 'Q1_JAN_MAR'
+        WHEN quarter = 2 THEN 'Q2_APR_JUN'
+        WHEN quarter = 3 THEN 'Q3_JUL_SEP'
+        WHEN quarter = 4 THEN 'Q4_OCT_DEC'
+    END AS quarter_label,
+    CASE 
+        WHEN quarter = 1 THEN 'Winter Session'
+        WHEN quarter = 2 THEN 'Spring Session'
+        WHEN quarter = 3 THEN 'Summer Recess/Election'
+        WHEN quarter = 4 THEN 'Autumn Session'
+    END AS parliamentary_period,
+    CASE 
+        WHEN ABS(ballot_z_score) > 2 AND ABS(doc_z_score) > 2 AND ABS(attendance_z_score) > 2 
+            THEN 'BALLOT_DOCUMENT_ATTENDANCE_ANOMALY'
+        WHEN ABS(ballot_z_score) > 2 AND ABS(doc_z_score) > 2 
+            THEN 'BALLOT_DOCUMENT_ANOMALY'
+        WHEN ABS(ballot_z_score) > 2 AND ABS(attendance_z_score) > 2 
+            THEN 'BALLOT_ATTENDANCE_ANOMALY'
+        WHEN ABS(doc_z_score) > 2 AND ABS(attendance_z_score) > 2 
+            THEN 'DOCUMENT_ATTENDANCE_ANOMALY'
+        WHEN ABS(ballot_z_score) > 2 THEN 'BALLOT_ANOMALY'
+        WHEN ABS(doc_z_score) > 2 THEN 'DOCUMENT_ANOMALY'
+        WHEN ABS(attendance_z_score) > 2 THEN 'ATTENDANCE_ANOMALY'
+        ELSE 'NO_ANOMALY'
+    END AS anomaly_type,
+    CASE 
+        WHEN ballot_z_score > 2 OR doc_z_score > 2 OR attendance_z_score > 2 THEN 'UNUSUALLY_HIGH'
+        WHEN ballot_z_score < -2 OR doc_z_score < -2 OR attendance_z_score < -2 THEN 'UNUSUALLY_LOW'
+        ELSE 'WITHIN_NORMAL_RANGE'
+    END AS anomaly_direction,
+    GREATEST(ABS(ballot_z_score), ABS(doc_z_score), ABS(attendance_z_score)) AS max_z_score,
+    CASE 
+        WHEN GREATEST(ABS(ballot_z_score), ABS(doc_z_score), ABS(attendance_z_score)) > 3 THEN 'CRITICAL'
+        WHEN GREATEST(ABS(ballot_z_score), ABS(doc_z_score), ABS(attendance_z_score)) > 2 THEN 'HIGH'
+        WHEN GREATEST(ABS(ballot_z_score), ABS(doc_z_score), ABS(attendance_z_score)) > 1.5 THEN 'MODERATE'
+        ELSE 'LOW'
+    END AS anomaly_severity
+FROM view_riksdagen_seasonal_quarterly_activity
+WHERE activity_classification IN ('ANOMALY_DETECTED', 'ELEVATED_ACTIVITY', 'REDUCED_ACTIVITY')
+   OR ABS(ballot_z_score) > 1.5
+   OR ABS(doc_z_score) > 1.5
+   OR ABS(attendance_z_score) > 1.5
+ORDER BY max_z_score DESC, year DESC, quarter DESC
+            ]]>
+        </createView>
+        <rollback>
+            <dropView viewName="view_riksdagen_seasonal_anomaly_detection"/>
+        </rollback>
+    </changeSet>
+
+    <!-- Add view documentation -->
+    <changeSet id="1.55-document-seasonal-anomaly-detection-view" author="intelligence-operative" failOnError="true">
+        <comment>Add documentation for view_riksdagen_seasonal_anomaly_detection</comment>
+        <sql>
+            COMMENT ON VIEW view_riksdagen_seasonal_anomaly_detection IS 'Seasonal anomaly detection identifying quarters with activity >2 standard deviations from baseline. Classifies anomalies by type (ballot/document/attendance), direction (high/low), and severity (critical/high/moderate/low). Filters for significant activity deviations (|z-score| > 1.5) to focus on statistically significant deviations. Framework 3: Pattern Recognition - Anomaly detection. Framework 6: Decision Intelligence - Operational warnings. Data Source: view_riksdagen_seasonal_quarterly_activity. Use Case: Crisis detection, electoral behavior anomalies, operational intelligence.';
+        </sql>
+    </changeSet>
 
 </databaseChangeLog>

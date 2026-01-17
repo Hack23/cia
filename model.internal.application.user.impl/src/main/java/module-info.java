@@ -34,6 +34,7 @@ open module com.hack23.cia.model.internal.application.user.impl {
     exports com.hack23.cia.model.internal.application.data.party.impl;
     exports com.hack23.cia.model.internal.application.data.politician.impl;
     exports com.hack23.cia.model.internal.application.data.document.impl;
+    exports com.hack23.cia.model.internal.application.data.seasonal.impl;
     exports com.hack23.cia.model.internal.application.data.audit.impl;
 
     requires com.hack23.model.common.api;
