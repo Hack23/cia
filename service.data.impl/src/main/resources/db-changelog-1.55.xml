@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+<!-- 
+  Feature: Politician Career Trajectory Tracking Across Election Cycles
+  Author: Intelligence Operative
+  Date: 2026-01-17
+  Issue: Hack23/cia#8209
+  
+  Documentation References:
+  - Analysis Framework: DATA_ANALYSIS_INTOP_OSINT.md (Predictive Intelligence Framework 4)
+  - Schema Maintenance: service.data.impl/README-SCHEMA-MAINTENANCE.md
+  - View Catalog: DATABASE_VIEW_INTELLIGENCE_CATALOG.md
+  
+  Summary: Create 3 new views for politician career trajectory analysis:
+  1. view_riksdagen_politician_career_trajectory - Performance across election cycles
+  2. view_riksdagen_politician_role_evolution - Role progression and advancement
+  3. view_riksdagen_politician_longevity_analysis - Career duration and activity patterns
+  
+  These views enable:
+  - Career pattern detection (ascending/peak/declining/stable)
+  - Resignation risk prediction based on career trajectories
+  - Role progression analysis (backbencher → committee → minister)
+  - Career longevity forecasting
+  - Retention risk assessment for active politicians
+-->
+
+<!-- Career Trajectory View: Track performance across election cycles -->
+<changeSet author="intelligence-operative" id="career-trajectory-1.55-001" failOnError="true">
+    <comment>
+        Create view_riksdagen_politician_career_trajectory to track politician performance 
+        across election cycles (2002-2026). Provides attendance rates, win rates, leadership roles,
+        and documents authored per cycle. Classifies career stages (early/mid/late), 
+        performance trends (improving/declining/stable), and career patterns (peak/decline/rising star).
+        
+        Key Metrics:
+        - Election cycle performance (2002, 2006, 2010, 2014, 2018, 2022, 2026)
+        - Attendance rate per cycle
+        - Win rate per cycle
+        - Leadership roles per cycle
+        - Documents authored per cycle
+        - Performance vs career baseline
+        - Career stage classification
+        - Performance trend detection
+        - Career pattern identification (peak/decline/rising star/consistent)
+        
+        Intelligence Value: ⭐⭐⭐⭐⭐ VERY HIGH
+        Used for: Career trajectory forecasting, resignation risk prediction, talent retention analysis
+    </comment>
+    
+    <sqlFile path="view_riksdagen_politician_career_trajectory_v1.55.sql" 
+             relativeToChangelogFile="true"
+             splitStatements="false"
+             encoding="UTF-8"/>
+    
+    <rollback>
+        <sql>DROP VIEW IF EXISTS view_riksdagen_politician_career_trajectory CASCADE;</sql>
+    </rollback>
+</changeSet>
+
+<!-- Role Evolution View: Track role progression and career advancement -->
+<changeSet author="intelligence-operative" id="role-evolution-1.55-002" failOnError="true">
+    <comment>
+        Create view_riksdagen_politician_role_evolution to track politician career progression
+        through different positions. Classifies roles into tiers (minister/speaker/party leader/
+        committee chair/member/substitute), assigns role weights for progression analysis, 
+        and identifies career patterns (ascending/descending/lateral).
+        
+        Key Metrics:
+        - Role tier classification (minister/speaker/party leader/committee chair/member/substitute)
+        - Role weight (1000 for PM down to 50 for other roles)
+        - Role start and end dates
+        - Years in each role
+        - Role sequence number
+        - Peak role weight achieved
+        - Progression pattern (ascending/descending/lateral/career peak)
+        - Career level (top leadership/senior/mid-level/junior/entry)
+        - Advancement velocity (role weight increase per year)
+        
+        Intelligence Value: ⭐⭐⭐⭐⭐ VERY HIGH
+        Used for: Career advancement prediction, role transition forecasting, leadership pipeline analysis
+    </comment>
+    
+    <sqlFile path="view_riksdagen_politician_role_evolution_v1.55.sql" 
+             relativeToChangelogFile="true"
+             splitStatements="false"
+             encoding="UTF-8"/>
+    
+    <rollback>
+        <sql>DROP VIEW IF EXISTS view_riksdagen_politician_role_evolution CASCADE;</sql>
+    </rollback>
+</changeSet>
+
+<!-- Longevity Analysis View: Career duration and activity patterns -->
+<changeSet author="intelligence-operative" id="longevity-analysis-1.55-003" failOnError="true">
+    <comment>
+        Create view_riksdagen_politician_longevity_analysis to measure politician career
+        duration and engagement levels. Calculates total career years, election cycles active,
+        activity intensity (votes/assignments per year), and career continuity scores.
+        Classifies politicians by longevity, activity level, and identifies retention risks.
+        
+        Key Metrics:
+        - Career start and end dates
+        - Total career years and days
+        - Age at career start and end
+        - Election cycles active (2002-2026)
+        - Total votes cast and assignments held
+        - Average votes per year (activity intensity)
+        - Average assignments per year
+        - Career continuity score (% of possible cycles active)
+        - Longevity category (veteran/established/mid-career/junior/newcomer)
+        - Activity level (very active/active/moderate/low/minimal)
+        - Continuity pattern (continuous/mostly continuous/intermittent/sporadic)
+        - Career life stage (senior active/mature active/mid-career/early career/retired)
+        - Retention risk (high retirement/moderate attrition/early exit/engagement/low risk)
+        
+        Intelligence Value: ⭐⭐⭐⭐⭐ VERY HIGH
+        Used for: Career longevity forecasting, resignation risk prediction, retention risk assessment
+    </comment>
+    
+    <sqlFile path="view_riksdagen_politician_longevity_analysis_v1.55.sql" 
+             relativeToChangelogFile="true"
+             splitStatements="false"
+             encoding="UTF-8"/>
+    
+    <rollback>
+        <sql>DROP VIEW IF EXISTS view_riksdagen_politician_longevity_analysis CASCADE;</sql>
+    </rollback>
+</changeSet>
+
+</databaseChangeLog>
