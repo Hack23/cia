@@ -29,7 +29,7 @@
         - Filters out initial party assignments (where previous_party is NULL or '-')
         - Covers Swedish election cycles from 2002-2026
         
-        Intelligence Value: ⭐⭐⭐⭐⭐ VERY HIGH
+        Intelligence Value: VERY HIGH (5/5)
         - Tracks rare but significant political events
         - Enables party stability analysis  
         - Predicts future defection risk patterns
@@ -55,7 +55,7 @@ WITH party_assignments AS (
     FROM assignment_data a
     JOIN person_data p ON a.intressent_id = p.id
     WHERE a.status = 'Tjänstgörande riksdagsledamot' -- Active MP only
-      AND a.assignment_type = 'Uppdrag'
+      AND a.assignment_type = 'uppdrag'
       AND a.from_date >= '2002-01-01'
 ),
 party_changes AS (
@@ -125,10 +125,10 @@ ORDER BY transition_date DESC
         Key Metrics:
         - Pre/post transition attendance rates (6 months window)
         - Document production before/after transition (6 months window)
-        - Defection timing classification (PRE_ELECTION <12mo, MID_TERM >36mo, NORMAL 12-36mo)
+        - Defection timing classification (PRE_ELECTION &lt;12mo, MID_TERM &gt;36mo, NORMAL 12-36mo)
         - Attendance change delta
         
-        Intelligence Value: ⭐⭐⭐⭐⭐ VERY HIGH
+        Intelligence Value: VERY HIGH (5/5)
         - Identifies early warning signals of defection (declining participation)
         - Measures impact of transition on politician activity
         - Classifies defection strategic timing
@@ -147,13 +147,13 @@ WITH defector_performance AS (
         -- Performance before transition (6 months prior)
         ROUND(
             (AVG(CASE WHEN vd.vote_date BETWEEN pt.transition_date - INTERVAL '6 months' AND pt.transition_date
-                     THEN CASE WHEN vd.vote != 'Frånvarande' THEN 1 ELSE 0 END END) * 100)::NUMERIC,
+                     THEN CASE WHEN vd.vote != 'FRÅNVARANDE' THEN 1 ELSE 0 END END) * 100)::NUMERIC,
             2
         ) AS pre_transition_attendance,
         -- Performance after transition (6 months after)
         ROUND(
             (AVG(CASE WHEN vd.vote_date BETWEEN pt.transition_date AND pt.transition_date + INTERVAL '6 months'
-                     THEN CASE WHEN vd.vote != 'Frånvarande' THEN 1 ELSE 0 END END) * 100)::NUMERIC,
+                     THEN CASE WHEN vd.vote != 'FRÅNVARANDE' THEN 1 ELSE 0 END END) * 100)::NUMERIC,
             2
         ) AS post_transition_attendance,
         0 AS docs_before,  -- Placeholder - document tracking requires complex joins
