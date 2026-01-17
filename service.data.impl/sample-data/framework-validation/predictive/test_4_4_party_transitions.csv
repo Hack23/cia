@@ -1,0 +1,6 @@
+person_id,first_name,last_name,previous_party,new_party,transition_date,months_until_election,expected_detection,validation_label,notes
+0000000000,Test,Politician1,M,-,2012-01-15,31,NORMAL_DEFECTION,PASS,Defection from Moderaterna to independent (31 months until 2014-09-14 election)
+0000000001,Test,Politician2,SD,KD,2013-09-01,12,PRE_ELECTION_DEFECTION,PASS,Pre-election switch from Sweden Democrats to Christian Democrats (12 months until 2014-09-14)
+0000000002,Test,Politician3,S,V,2015-03-10,41,MID_TERM_DEFECTION,PASS,Mid-term switch from Social Democrats to Left Party (41 months until 2018-09-09)
+0000000003,Test,Politician4,C,MP,2016-11-20,21,NORMAL_DEFECTION,PASS,Center to Green Party mid-cycle (21 months until 2018-09-09)
+0000000004,Test,Politician5,L,-,2021-09-08,12,PRE_ELECTION_DEFECTION,PASS,Liberal to independent 12 months before 2022-09-11 election

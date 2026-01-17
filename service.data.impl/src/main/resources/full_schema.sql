@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict 021aIfGTUCMlfjdITbgXHUbVfdzSODdGU3FOsln5RWyccLtW887RwaoExaYP5bk
+\restrict Dj97hVaDv2ALaKGTPRdkVYSuec6jsRM4IXPhDerTo07anoeWqAbENwyiYJQ0tSS
 
 -- Dumped from database version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
@@ -9666,6 +9666,132 @@ CREATE VIEW public.view_riksdagen_party_coalation_against_annual_summary AS
 
 
 --
+-- Name: view_riksdagen_party_transition_history; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.view_riksdagen_party_transition_history AS
+ WITH party_assignments AS (
+         SELECT a.intressent_id AS person_id,
+            p.first_name,
+            p.last_name,
+            a.org_code AS party,
+            a.from_date,
+            a.to_date,
+            a.status,
+            lag(a.org_code) OVER (PARTITION BY a.intressent_id ORDER BY a.from_date) AS previous_party,
+            lead(a.org_code) OVER (PARTITION BY a.intressent_id ORDER BY a.from_date) AS next_party,
+            lag(a.to_date) OVER (PARTITION BY a.intressent_id ORDER BY a.from_date) AS previous_assignment_end
+           FROM (public.assignment_data a
+             JOIN public.person_data p ON (((a.intressent_id)::text = (p.id)::text)))
+          WHERE (((a.status)::text = 'Tjänstgörande riksdagsledamot'::text) AND ((a.assignment_type)::text = 'uppdrag'::text) AND (a.from_date >= '2002-01-01'::date))
+        ), party_changes AS (
+         SELECT party_assignments.person_id,
+            party_assignments.first_name,
+            party_assignments.last_name,
+            party_assignments.previous_party,
+            party_assignments.party AS new_party,
+            party_assignments.from_date AS transition_date,
+            party_assignments.status,
+            party_assignments.previous_assignment_end,
+                CASE
+                    WHEN ((party_assignments.previous_assignment_end IS NULL) OR ((party_assignments.from_date - party_assignments.previous_assignment_end) > 30)) THEN 'REJOINED_RIKSDAGEN'::text
+                    ELSE 'SWITCHED_WHILE_SERVING'::text
+                END AS transition_type
+           FROM party_assignments
+          WHERE ((party_assignments.previous_party IS NOT NULL) AND ((party_assignments.previous_party)::text <> (party_assignments.party)::text) AND ((party_assignments.previous_party)::text <> ALL ((ARRAY['-'::character varying, ''::character varying])::text[])))
+        ), election_proximity AS (
+         SELECT unnest(ARRAY['2002-09-15'::date, '2006-09-17'::date, '2010-09-19'::date, '2014-09-14'::date, '2018-09-09'::date, '2022-09-11'::date, '2026-09-13'::date]) AS election_date
+        )
+ SELECT person_id,
+    first_name,
+    last_name,
+    previous_party,
+    new_party,
+    transition_date,
+    transition_type,
+    EXTRACT(year FROM transition_date) AS transition_year,
+    ( SELECT min(ed.election_date) AS min
+           FROM election_proximity ed
+          WHERE (ed.election_date > pc.transition_date)) AS next_election,
+    (((EXTRACT(year FROM age((( SELECT min(ed.election_date) AS min
+           FROM election_proximity ed
+          WHERE (ed.election_date > pc.transition_date)))::timestamp with time zone, (transition_date)::timestamp with time zone)) * (12)::numeric) + EXTRACT(month FROM age((( SELECT min(ed.election_date) AS min
+           FROM election_proximity ed
+          WHERE (ed.election_date > pc.transition_date)))::timestamp with time zone, (transition_date)::timestamp with time zone))))::integer AS months_until_next_election,
+    ( SELECT max(ed.election_date) AS max
+           FROM election_proximity ed
+          WHERE (ed.election_date < pc.transition_date)) AS previous_election,
+    (((EXTRACT(year FROM age((transition_date)::timestamp with time zone, (( SELECT max(ed.election_date) AS max
+           FROM election_proximity ed
+          WHERE (ed.election_date < pc.transition_date)))::timestamp with time zone)) * (12)::numeric) + EXTRACT(month FROM age((transition_date)::timestamp with time zone, (( SELECT max(ed.election_date) AS max
+           FROM election_proximity ed
+          WHERE (ed.election_date < pc.transition_date)))::timestamp with time zone))))::integer AS months_since_last_election
+   FROM party_changes pc
+  ORDER BY transition_date DESC;
+
+
+--
+-- Name: view_riksdagen_party_defector_analysis; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.view_riksdagen_party_defector_analysis AS
+ WITH defector_performance AS (
+         SELECT pt.person_id,
+            pt.first_name,
+            pt.last_name,
+            pt.previous_party,
+            pt.new_party,
+            pt.transition_date,
+            pt.months_until_next_election,
+            round((avg(
+                CASE
+                    WHEN ((vd.vote_date >= (pt.transition_date - '6 mons'::interval)) AND (vd.vote_date <= pt.transition_date)) THEN
+                    CASE
+                        WHEN ((vd.vote)::text <> 'FRÅNVARANDE'::text) THEN 1
+                        ELSE 0
+                    END
+                    ELSE NULL::integer
+                END) * (100)::numeric), 2) AS pre_transition_attendance,
+            round((avg(
+                CASE
+                    WHEN ((vd.vote_date >= pt.transition_date) AND (vd.vote_date <= (pt.transition_date + '6 mons'::interval))) THEN
+                    CASE
+                        WHEN ((vd.vote)::text <> 'FRÅNVARANDE'::text) THEN 1
+                        ELSE 0
+                    END
+                    ELSE NULL::integer
+                END) * (100)::numeric), 2) AS post_transition_attendance,
+            0 AS docs_before,
+            0 AS docs_after
+           FROM (public.view_riksdagen_party_transition_history pt
+             LEFT JOIN public.vote_data vd ON (((pt.person_id)::text = (vd.embedded_id_intressent_id)::text)))
+          WHERE (pt.transition_type = 'SWITCHED_WHILE_SERVING'::text)
+          GROUP BY pt.person_id, pt.first_name, pt.last_name, pt.previous_party, pt.new_party, pt.transition_date, pt.months_until_next_election
+        )
+ SELECT person_id,
+    first_name,
+    last_name,
+    previous_party,
+    new_party,
+    transition_date,
+    months_until_next_election,
+    pre_transition_attendance,
+    post_transition_attendance,
+    round((post_transition_attendance - pre_transition_attendance), 2) AS attendance_change,
+    docs_before,
+    docs_after,
+        CASE
+            WHEN (months_until_next_election IS NULL) THEN 'UNKNOWN_TIMING'::text
+            WHEN (months_until_next_election <= 12) THEN 'PRE_ELECTION_DEFECTION'::text
+            WHEN (months_until_next_election >= 36) THEN 'MID_TERM_DEFECTION'::text
+            ELSE 'NORMAL_DEFECTION'::text
+        END AS defection_timing
+   FROM defector_performance
+  WHERE ((pre_transition_attendance IS NOT NULL) OR (post_transition_attendance IS NOT NULL))
+  ORDER BY transition_date DESC;
+
+
+--
 -- Name: view_riksdagen_party_document_daily_summary; Type: MATERIALIZED VIEW; Schema: public; Owner: -
 --
 
@@ -9872,6 +9998,70 @@ CREATE VIEW public.view_riksdagen_party_signatures_document_summary AS
   WHERE (NOT ((party_short_code)::text = ''::text))
   GROUP BY (upper((party_short_code)::text))
   ORDER BY (count(*));
+
+
+--
+-- Name: view_riksdagen_party_switcher_outcomes; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.view_riksdagen_party_switcher_outcomes AS
+ WITH switcher_subsequent_assignments AS (
+         SELECT pt.person_id,
+            pt.first_name AS pt_first_name,
+            pt.last_name AS pt_last_name,
+            pt.previous_party,
+            pt.new_party,
+            pt.transition_date,
+            pt.next_election,
+            pt.months_until_next_election,
+            a.from_date AS subsequent_from_date,
+            a.to_date AS subsequent_to_date,
+            a.status AS subsequent_status,
+            a.role_code AS subsequent_role,
+            a.assignment_type AS subsequent_assignment_type,
+                CASE
+                    WHEN (a.to_date IS NULL) THEN (CURRENT_DATE - a.from_date)
+                    ELSE (a.to_date - a.from_date)
+                END AS days_in_subsequent_role,
+                CASE
+                    WHEN ((pt.next_election IS NOT NULL) AND (a.from_date <= pt.next_election) AND ((a.to_date IS NULL) OR (a.to_date >= pt.next_election))) THEN true
+                    ELSE false
+                END AS served_in_next_election_cycle
+           FROM (public.view_riksdagen_party_transition_history pt
+             LEFT JOIN public.assignment_data a ON ((((pt.person_id)::text = (a.intressent_id)::text) AND (a.from_date >= pt.transition_date))))
+          WHERE (pt.transition_type = 'SWITCHED_WHILE_SERVING'::text)
+        )
+ SELECT ssa.person_id,
+    ssa.pt_first_name AS first_name,
+    ssa.pt_last_name AS last_name,
+    ssa.previous_party,
+    ssa.new_party,
+    ssa.transition_date,
+    ssa.next_election,
+    ssa.months_until_next_election,
+    count(DISTINCT ssa.subsequent_from_date) AS total_subsequent_assignments,
+    sum(ssa.days_in_subsequent_role) AS total_days_served_after_switch,
+    max(
+        CASE
+            WHEN ((ssa.subsequent_status)::text = 'Tjänstgörande riksdagsledamot'::text) THEN 1
+            ELSE 0
+        END) AS continued_as_active_mp,
+    max(
+        CASE
+            WHEN (ssa.served_in_next_election_cycle = true) THEN 1
+            ELSE 0
+        END) AS served_in_next_election,
+    max(
+        CASE
+            WHEN ((ssa.subsequent_role)::text = ANY ((ARRAY['Partiledare'::character varying, 'Gruppledare'::character varying, 'Partisekreterare'::character varying, 'Ordförande'::character varying, 'Vice ordförande'::character varying])::text[])) THEN 1
+            ELSE 0
+        END) AS attained_leadership_post_switch,
+    string_agg(DISTINCT (ssa.subsequent_role)::text, ', '::text) FILTER (WHERE (ssa.subsequent_role IS NOT NULL)) AS post_switch_roles,
+    max((p.status)::text) AS current_status
+   FROM (switcher_subsequent_assignments ssa
+     LEFT JOIN public.person_data p ON (((ssa.person_id)::text = (p.id)::text)))
+  GROUP BY ssa.person_id, ssa.pt_first_name, ssa.pt_last_name, ssa.previous_party, ssa.new_party, ssa.transition_date, ssa.next_election, ssa.months_until_next_election
+  ORDER BY ssa.transition_date DESC;
 
 
 --
@@ -10330,6 +10520,107 @@ CREATE VIEW public.view_riksdagen_politician_ballot_summary AS
 
 
 --
+-- Name: view_riksdagen_politician_career_trajectory; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.view_riksdagen_politician_career_trajectory AS
+ WITH career_cycles AS (
+         SELECT p.id AS person_id,
+            p.first_name,
+            p.last_name,
+            p.party,
+            (((2002)::numeric + ((4)::numeric * floor(((EXTRACT(year FROM vd.vote_date) - (2002)::numeric) / (4)::numeric)))))::integer AS election_year,
+            min(vd.vote_date) AS first_vote,
+            max(vd.vote_date) AS last_vote,
+            count(*) AS ballot_count,
+            round((avg(
+                CASE
+                    WHEN ((vd.vote)::text <> 'FRÅNVARANDE'::text) THEN 1
+                    ELSE 0
+                END) * (100)::numeric), 2) AS attendance_rate,
+            round((avg(
+                CASE
+                    WHEN ps.party_won THEN 1
+                    ELSE 0
+                END) * (100)::numeric), 2) AS win_rate,
+            count(DISTINCT ad.hjid) FILTER (WHERE ((ad.role_code)::text = ANY ((ARRAY['Ordförande'::character varying, 'Vice ordförande'::character varying, 'Talman'::character varying, 'Statsminister'::character varying, 'Vice statsminister'::character varying, 'Partiledare'::character varying, 'Gruppledare'::character varying])::text[]))) AS leadership_roles,
+            count(DISTINCT dpr.person_reference_id) AS documents_authored
+           FROM ((((public.person_data p
+             JOIN public.vote_data vd ON (((p.id)::text = (vd.embedded_id_intressent_id)::text)))
+             LEFT JOIN public.view_riksdagen_vote_data_ballot_party_summary ps ON ((((vd.embedded_id_ballot_id)::text = (ps.embedded_id_ballot_id)::text) AND ((vd.embedded_id_issue)::text = (ps.embedded_id_issue)::text) AND ((vd.embedded_id_concern)::text = (ps.embedded_id_concern)::text) AND ((vd.party)::text = (ps.embedded_id_party)::text))))
+             LEFT JOIN public.assignment_data ad ON (((p.id)::text = (ad.intressent_id)::text)))
+             LEFT JOIN public.document_person_reference_da_0 dpr ON (((dpr.person_reference_id)::text = (p.id)::text)))
+          WHERE (vd.vote_date IS NOT NULL)
+          GROUP BY p.id, p.first_name, p.last_name, p.party, ((((2002)::numeric + ((4)::numeric * floor(((EXTRACT(year FROM vd.vote_date) - (2002)::numeric) / (4)::numeric)))))::integer)
+        ), career_metrics AS (
+         SELECT career_cycles.person_id,
+            career_cycles.first_name,
+            career_cycles.last_name,
+            career_cycles.party,
+            career_cycles.election_year,
+            career_cycles.ballot_count,
+            career_cycles.attendance_rate,
+            career_cycles.win_rate,
+            career_cycles.leadership_roles,
+            career_cycles.documents_authored,
+            row_number() OVER (PARTITION BY career_cycles.person_id ORDER BY career_cycles.election_year) AS career_cycle_number,
+            count(*) OVER (PARTITION BY career_cycles.person_id) AS total_cycles,
+            min(career_cycles.election_year) OVER (PARTITION BY career_cycles.person_id) AS career_start_year,
+            max(career_cycles.election_year) OVER (PARTITION BY career_cycles.person_id) AS career_end_year,
+            avg(career_cycles.attendance_rate) OVER (PARTITION BY career_cycles.person_id) AS avg_career_attendance,
+            lag(career_cycles.attendance_rate) OVER (PARTITION BY career_cycles.person_id ORDER BY career_cycles.election_year) AS prev_attendance_rate
+           FROM career_cycles
+        )
+ SELECT person_id,
+    first_name,
+    last_name,
+    party,
+    election_year,
+    career_cycle_number,
+    total_cycles,
+    career_start_year,
+    career_end_year,
+    ballot_count,
+    attendance_rate,
+    win_rate,
+    leadership_roles,
+    documents_authored,
+    avg_career_attendance,
+    round((attendance_rate - avg_career_attendance), 2) AS performance_vs_baseline,
+        CASE
+            WHEN (career_cycle_number = 1) THEN 'EARLY_CAREER'::text
+            WHEN (((career_cycle_number)::double precision / (total_cycles)::double precision) < (0.5)::double precision) THEN 'MID_CAREER'::text
+            ELSE 'LATE_CAREER'::text
+        END AS career_stage,
+        CASE
+            WHEN (prev_attendance_rate IS NULL) THEN 'NEW_ENTRY'::text
+            WHEN (attendance_rate > (prev_attendance_rate + (5)::numeric)) THEN 'IMPROVING'::text
+            WHEN (attendance_rate < (prev_attendance_rate - (5)::numeric)) THEN 'DECLINING'::text
+            ELSE 'STABLE'::text
+        END AS performance_trend,
+        CASE
+            WHEN ((attendance_rate > (avg_career_attendance + (10)::numeric)) AND (((career_cycle_number)::double precision / (total_cycles)::double precision) > (0.6)::double precision)) THEN 'PEAK_PERFORMANCE'::text
+            WHEN ((attendance_rate < (avg_career_attendance - (10)::numeric)) AND (((career_cycle_number)::double precision / (total_cycles)::double precision) > (0.6)::double precision)) THEN 'LATE_CAREER_DECLINE'::text
+            WHEN ((attendance_rate > (avg_career_attendance + (5)::numeric)) AND (career_cycle_number <= 2)) THEN 'RISING_STAR'::text
+            WHEN ((attendance_rate < (70)::numeric) AND (career_cycle_number <= 2)) THEN 'STRUGGLING_NEWCOMER'::text
+            ELSE 'CONSISTENT'::text
+        END AS career_pattern
+   FROM career_metrics
+  ORDER BY person_id, election_year;
+
+
+--
+-- Name: VIEW view_riksdagen_politician_career_trajectory; Type: COMMENT; Schema: public; Owner: -
+--
+
+COMMENT ON VIEW public.view_riksdagen_politician_career_trajectory IS 'Career trajectory analysis tracking politician performance across election cycles (2002-2026).
+Provides metrics for attendance rates, win rates, leadership roles, and documents authored per cycle.
+Classifies career stages (early/mid/late), performance trends (improving/declining/stable), 
+and career patterns (peak/decline/rising star). Used for Predictive Intelligence Framework (Framework 4)
+to forecast career trajectories and resignation risks.';
+
+
+--
 -- Name: view_riksdagen_politician_decision_pattern; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -10695,6 +10986,299 @@ CREATE VIEW public.view_riksdagen_politician_experience_summary AS
         END) AS political_analysis_comment
    FROM political_analysis
   ORDER BY total_weighted_exp DESC;
+
+
+--
+-- Name: view_riksdagen_politician_longevity_analysis; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.view_riksdagen_politician_longevity_analysis AS
+ WITH career_timeline AS (
+         SELECT p.id AS person_id,
+            p.first_name,
+            p.last_name,
+            p.party,
+            p.status,
+            p.born_year,
+            LEAST(min(ad.from_date), min(vd.vote_date)) AS career_start_date,
+            GREATEST(max(COALESCE(ad.to_date, CURRENT_DATE)), max(vd.vote_date),
+                CASE
+                    WHEN ((p.status)::text ~~ '%Tjänstgörande%'::text) THEN CURRENT_DATE
+                    ELSE max(vd.vote_date)
+                END) AS career_end_date,
+            count(DISTINCT (((2002)::numeric + ((4)::numeric * floor(((EXTRACT(year FROM vd.vote_date) - (2002)::numeric) / (4)::numeric)))))::integer) AS election_cycles_active,
+            count(DISTINCT vd.embedded_id_ballot_id) AS total_votes_cast,
+            count(DISTINCT ad.hjid) AS total_assignments,
+            bool_or(((p.status)::text ~~ '%Tjänstgörande%'::text)) AS is_currently_active,
+            (EXTRACT(year FROM min(COALESCE(ad.from_date, vd.vote_date))))::integer AS first_activity_year,
+            (EXTRACT(year FROM max(COALESCE(ad.to_date, vd.vote_date, CURRENT_DATE))))::integer AS last_activity_year
+           FROM ((public.person_data p
+             LEFT JOIN public.assignment_data ad ON (((p.id)::text = (ad.intressent_id)::text)))
+             LEFT JOIN public.vote_data vd ON (((p.id)::text = (vd.embedded_id_intressent_id)::text)))
+          WHERE ((p.id IS NOT NULL) AND ((ad.from_date IS NOT NULL) OR (vd.vote_date IS NOT NULL)))
+          GROUP BY p.id, p.first_name, p.last_name, p.party, p.status, p.born_year
+        ), activity_patterns AS (
+         SELECT ct.person_id,
+            ct.first_name,
+            ct.last_name,
+            ct.party,
+            ct.status,
+            ct.born_year,
+            ct.career_start_date,
+            ct.career_end_date,
+            ct.election_cycles_active,
+            ct.total_votes_cast,
+            ct.total_assignments,
+            ct.is_currently_active,
+            ct.first_activity_year,
+            ct.last_activity_year,
+            (ct.career_end_date - ct.career_start_date) AS total_career_days,
+            round((((ct.career_end_date - ct.career_start_date))::numeric / 365.25), 1) AS total_career_years,
+                CASE
+                    WHEN (ct.born_year IS NOT NULL) THEN ((EXTRACT(year FROM ct.career_start_date))::integer - ct.born_year)
+                    ELSE NULL::integer
+                END AS age_at_career_start,
+                CASE
+                    WHEN (ct.born_year IS NOT NULL) THEN ((EXTRACT(year FROM ct.career_end_date))::integer - ct.born_year)
+                    ELSE NULL::integer
+                END AS age_at_career_end,
+            round(((ct.total_votes_cast)::numeric / NULLIF((((ct.career_end_date - ct.career_start_date))::numeric / 365.25), (0)::numeric)), 1) AS avg_votes_per_year,
+            round(((ct.total_assignments)::numeric / NULLIF((((ct.career_end_date - ct.career_start_date))::numeric / 365.25), (0)::numeric)), 2) AS avg_assignments_per_year,
+                CASE
+                    WHEN ((ct.first_activity_year IS NULL) OR (ct.last_activity_year IS NULL)) THEN NULL::numeric
+                    ELSE round((((ct.election_cycles_active)::numeric / (NULLIF(GREATEST((((ct.last_activity_year - ct.first_activity_year) / 4) + 1), 1), 0))::numeric) * (100)::numeric), 1)
+                END AS career_continuity_score
+           FROM career_timeline ct
+        )
+ SELECT person_id,
+    first_name,
+    last_name,
+    party,
+    status,
+    born_year,
+    career_start_date,
+    career_end_date,
+    first_activity_year,
+    last_activity_year,
+    total_career_days,
+    total_career_years,
+    age_at_career_start,
+    age_at_career_end,
+    election_cycles_active,
+    total_votes_cast,
+    total_assignments,
+    is_currently_active,
+    avg_votes_per_year,
+    avg_assignments_per_year,
+    career_continuity_score,
+        CASE
+            WHEN (total_career_years >= (20)::numeric) THEN 'VETERAN_20_PLUS'::text
+            WHEN (total_career_years >= (15)::numeric) THEN 'LONG_SERVICE_15_20'::text
+            WHEN (total_career_years >= (10)::numeric) THEN 'ESTABLISHED_10_15'::text
+            WHEN (total_career_years >= (5)::numeric) THEN 'MID_CAREER_5_10'::text
+            WHEN (total_career_years >= (2)::numeric) THEN 'JUNIOR_2_5'::text
+            ELSE 'NEWCOMER_UNDER_2'::text
+        END AS longevity_category,
+        CASE
+            WHEN (avg_votes_per_year >= (300)::numeric) THEN 'VERY_ACTIVE'::text
+            WHEN (avg_votes_per_year >= (200)::numeric) THEN 'ACTIVE'::text
+            WHEN (avg_votes_per_year >= (100)::numeric) THEN 'MODERATE'::text
+            WHEN (avg_votes_per_year >= (50)::numeric) THEN 'LOW_ACTIVITY'::text
+            ELSE 'MINIMAL'::text
+        END AS activity_level,
+        CASE
+            WHEN (career_continuity_score >= (90)::numeric) THEN 'CONTINUOUS'::text
+            WHEN (career_continuity_score >= (70)::numeric) THEN 'MOSTLY_CONTINUOUS'::text
+            WHEN (career_continuity_score >= (50)::numeric) THEN 'INTERMITTENT'::text
+            WHEN (career_continuity_score >= (30)::numeric) THEN 'SPORADIC'::text
+            ELSE 'IRREGULAR'::text
+        END AS continuity_pattern,
+        CASE
+            WHEN (age_at_career_end IS NULL) THEN 'UNKNOWN_AGE'::text
+            WHEN (is_currently_active AND (age_at_career_end >= 65)) THEN 'SENIOR_ACTIVE'::text
+            WHEN (is_currently_active AND (age_at_career_end >= 50)) THEN 'MATURE_ACTIVE'::text
+            WHEN (is_currently_active AND (age_at_career_end >= 35)) THEN 'MID_CAREER_ACTIVE'::text
+            WHEN is_currently_active THEN 'EARLY_CAREER_ACTIVE'::text
+            WHEN (age_at_career_end >= 65) THEN 'RETIRED_SENIOR'::text
+            WHEN (age_at_career_end >= 50) THEN 'RETIRED_MATURE'::text
+            ELSE 'EXITED_EARLY'::text
+        END AS career_life_stage,
+        CASE
+            WHEN is_currently_active THEN
+            CASE
+                WHEN ((total_career_years >= (15)::numeric) AND (age_at_career_end >= 60)) THEN 'HIGH_RETIREMENT_RISK'::text
+                WHEN ((total_career_years >= (10)::numeric) AND (avg_votes_per_year < (150)::numeric)) THEN 'MODERATE_ATTRITION_RISK'::text
+                WHEN ((total_career_years < (3)::numeric) AND (avg_votes_per_year < (200)::numeric)) THEN 'EARLY_EXIT_RISK'::text
+                WHEN (career_continuity_score < (60)::numeric) THEN 'ENGAGEMENT_RISK'::text
+                ELSE 'LOW_RISK'::text
+            END
+            ELSE 'NOT_ACTIVE'::text
+        END AS retention_risk
+   FROM activity_patterns
+  ORDER BY total_career_years DESC, person_id;
+
+
+--
+-- Name: VIEW view_riksdagen_politician_longevity_analysis; Type: COMMENT; Schema: public; Owner: -
+--
+
+COMMENT ON VIEW public.view_riksdagen_politician_longevity_analysis IS 'Career longevity and activity pattern analysis measuring politician career duration and engagement levels.
+Calculates total career years, election cycles active, activity intensity (votes/assignments per year),
+and career continuity scores. Classifies politicians by longevity (veteran/established/junior),
+activity level (very active/active/moderate/low), and identifies retention risks for active politicians.
+Used for Predictive Intelligence Framework (Framework 4) to forecast career longevity and resignation risks.';
+
+
+--
+-- Name: view_riksdagen_politician_role_evolution; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.view_riksdagen_politician_role_evolution AS
+ WITH role_assignments AS (
+         SELECT p.id AS person_id,
+            p.first_name,
+            p.last_name,
+            p.party,
+            ad.role_code,
+            COALESCE(ad.status, 'UNKNOWN'::character varying) AS status,
+            COALESCE(ad.assignment_type, 'UNKNOWN'::character varying) AS assignment_type,
+            COALESCE(ad.org_code, 'UNKNOWN'::character varying) AS org_code,
+            ad.from_date,
+            ad.to_date,
+                CASE
+                    WHEN (((ad.role_code)::text = ANY ((ARRAY['Statsminister'::character varying, 'Vice statsminister'::character varying])::text[])) OR ((ad.role_code)::text ~~ '%minister%'::text) OR ((ad.role_code)::text = 'Statsråd'::text)) THEN 'MINISTER'::text
+                    WHEN (((ad.role_code)::text = 'Talman'::text) OR ((ad.role_code)::text ~~ '%vice talman%'::text)) THEN 'SPEAKER'::text
+                    WHEN ((ad.role_code)::text = ANY ((ARRAY['Partiledare'::character varying, 'Gruppledare'::character varying, 'Partisekreterare'::character varying])::text[])) THEN 'PARTY_LEADER'::text
+                    WHEN ((ad.role_code)::text = 'Ordförande'::text) THEN 'COMMITTEE_CHAIR'::text
+                    WHEN ((ad.role_code)::text = 'Vice ordförande'::text) THEN 'COMMITTEE_VICE_CHAIR'::text
+                    WHEN (((ad.role_code)::text = 'Ledamot'::text) AND ((ad.org_code)::text ~~ 'K%'::text)) THEN 'COMMITTEE_MEMBER'::text
+                    WHEN ((ad.role_code)::text = 'Riksdagsledamot'::text) THEN 'MP'::text
+                    WHEN ((ad.role_code)::text = ANY ((ARRAY['Suppleant'::character varying, 'Ersättare'::character varying, 'Extra suppleant'::character varying])::text[])) THEN 'SUBSTITUTE'::text
+                    ELSE 'OTHER'::text
+                END AS role_tier,
+                CASE
+                    WHEN ((ad.role_code)::text = 'Statsminister'::text) THEN 1000
+                    WHEN ((ad.role_code)::text = ANY ((ARRAY['Vice statsminister'::character varying, 'Statsråd'::character varying])::text[])) THEN 900
+                    WHEN ((ad.role_code)::text ~~ '%minister%'::text) THEN 850
+                    WHEN ((ad.role_code)::text = 'Talman'::text) THEN 800
+                    WHEN ((ad.role_code)::text ~~ '%vice talman%'::text) THEN 750
+                    WHEN ((ad.role_code)::text = 'Partiledare'::text) THEN 700
+                    WHEN ((ad.role_code)::text = 'Gruppledare'::text) THEN 650
+                    WHEN ((ad.role_code)::text = 'Ordförande'::text) THEN 600
+                    WHEN ((ad.role_code)::text = 'Vice ordförande'::text) THEN 550
+                    WHEN ((ad.role_code)::text = 'Partisekreterare'::text) THEN 500
+                    WHEN ((ad.role_code)::text = 'Riksdagsledamot'::text) THEN 400
+                    WHEN ((ad.role_code)::text = 'Ledamot'::text) THEN 350
+                    WHEN ((ad.role_code)::text = ANY ((ARRAY['Suppleant'::character varying, 'Ersättare'::character varying])::text[])) THEN 100
+                    ELSE 50
+                END AS role_weight,
+                CASE
+                    WHEN (ad.to_date IS NULL) THEN (CURRENT_DATE - ad.from_date)
+                    ELSE (ad.to_date - ad.from_date)
+                END AS days_in_role
+           FROM (public.person_data p
+             JOIN public.assignment_data ad ON (((p.id)::text = (ad.intressent_id)::text)))
+          WHERE (ad.from_date IS NOT NULL)
+        ), role_summary AS (
+         SELECT role_assignments.person_id,
+            role_assignments.first_name,
+            role_assignments.last_name,
+            role_assignments.party,
+            role_assignments.role_code,
+            role_assignments.status,
+            role_assignments.assignment_type,
+            role_assignments.org_code,
+            role_assignments.role_tier,
+            role_assignments.role_weight,
+            min(role_assignments.from_date) AS role_start,
+            max(COALESCE(role_assignments.to_date, CURRENT_DATE)) AS role_end,
+            (EXTRACT(year FROM min(role_assignments.from_date)))::integer AS role_start_year,
+            (EXTRACT(year FROM max(COALESCE(role_assignments.to_date, CURRENT_DATE))))::integer AS role_end_year,
+            count(*) AS role_instances,
+            sum(role_assignments.days_in_role) AS total_days_in_role,
+            bool_or((role_assignments.to_date IS NULL)) AS is_current_role
+           FROM role_assignments
+          GROUP BY role_assignments.person_id, role_assignments.first_name, role_assignments.last_name, role_assignments.party, role_assignments.role_code, role_assignments.status, role_assignments.assignment_type, role_assignments.org_code, role_assignments.role_tier, role_assignments.role_weight
+        ), role_progression AS (
+         SELECT role_summary.person_id,
+            role_summary.first_name,
+            role_summary.last_name,
+            role_summary.party,
+            role_summary.role_code,
+            role_summary.status,
+            role_summary.assignment_type,
+            role_summary.org_code,
+            role_summary.role_tier,
+            role_summary.role_weight,
+            role_summary.role_start,
+            role_summary.role_end,
+            role_summary.role_start_year,
+            role_summary.role_end_year,
+            role_summary.role_instances,
+            role_summary.total_days_in_role,
+            role_summary.is_current_role,
+            row_number() OVER (PARTITION BY role_summary.person_id ORDER BY role_summary.role_start) AS role_sequence,
+            max(role_summary.role_weight) OVER (PARTITION BY role_summary.person_id) AS peak_role_weight,
+            min(role_summary.role_start_year) OVER (PARTITION BY role_summary.person_id) AS career_first_year,
+            max(role_summary.role_end_year) OVER (PARTITION BY role_summary.person_id) AS career_last_year,
+            lag(role_summary.role_weight) OVER (PARTITION BY role_summary.person_id ORDER BY role_summary.role_start) AS prev_role_weight,
+            lag(role_summary.role_start_year) OVER (PARTITION BY role_summary.person_id ORDER BY role_summary.role_start) AS prev_role_start_year,
+            lead(role_summary.role_weight) OVER (PARTITION BY role_summary.person_id ORDER BY role_summary.role_start) AS next_role_weight
+           FROM role_summary
+        )
+ SELECT person_id,
+    first_name,
+    last_name,
+    party,
+    role_code,
+    status,
+    assignment_type,
+    org_code,
+    role_tier,
+    role_weight,
+    role_start,
+    role_end,
+    role_start_year,
+    role_end_year,
+    role_instances,
+    total_days_in_role,
+    is_current_role,
+    role_sequence,
+    peak_role_weight,
+    career_first_year,
+    career_last_year,
+    ((role_end_year - role_start_year) + 1) AS years_in_role,
+        CASE
+            WHEN (role_weight = peak_role_weight) THEN 'PEAK_ROLE'::text
+            WHEN ((role_weight > COALESCE(prev_role_weight, 0)) AND (role_weight > COALESCE(next_role_weight, 0))) THEN 'CAREER_PEAK'::text
+            WHEN (role_weight > COALESCE(prev_role_weight, 0)) THEN 'ASCENDING'::text
+            WHEN (role_weight < COALESCE(prev_role_weight, role_weight)) THEN 'DESCENDING'::text
+            ELSE 'LATERAL'::text
+        END AS progression_pattern,
+        CASE
+            WHEN (role_weight >= 800) THEN 'TOP_LEADERSHIP'::text
+            WHEN (role_weight >= 600) THEN 'SENIOR_LEADERSHIP'::text
+            WHEN (role_weight >= 400) THEN 'MID_LEVEL'::text
+            WHEN (role_weight >= 200) THEN 'JUNIOR'::text
+            ELSE 'ENTRY_LEVEL'::text
+        END AS career_level,
+        CASE
+            WHEN ((prev_role_weight IS NOT NULL) AND (prev_role_start_year IS NOT NULL)) THEN round((((role_weight - prev_role_weight))::numeric / (NULLIF((role_start_year - prev_role_start_year), 0))::numeric), 2)
+            ELSE NULL::numeric
+        END AS advancement_velocity
+   FROM role_progression
+  ORDER BY person_id, role_start;
+
+
+--
+-- Name: VIEW view_riksdagen_politician_role_evolution; Type: COMMENT; Schema: public; Owner: -
+--
+
+COMMENT ON VIEW public.view_riksdagen_politician_role_evolution IS 'Role evolution analysis tracking politician career progression through different positions.
+Classifies roles into tiers (minister/speaker/party leader/committee chair/member/substitute),
+assigns role weights for progression analysis, and identifies career patterns (ascending/descending/lateral).
+Calculates advancement velocity and career levels. Used for Predictive Intelligence Framework (Framework 4)
+to understand career trajectories and predict future role transitions.';
 
 
 --
@@ -13507,13 +14091,13 @@ ALTER TABLE ONLY public.jv_snapshot
 -- PostgreSQL database dump complete
 --
 
-\unrestrict 021aIfGTUCMlfjdITbgXHUbVfdzSODdGU3FOsln5RWyccLtW887RwaoExaYP5bk
+\unrestrict Dj97hVaDv2ALaKGTPRdkVYSuec6jsRM4IXPhDerTo07anoeWqAbENwyiYJQ0tSS
 
 --
 -- PostgreSQL database dump
 --
 
-\restrict SusVnbXtvC2v9EyPDBSmwAeUQAef3GhRjQtAhPNswnmfJ9lmQ8MHyLI1W7AhVeM
+\restrict 00815OLWatzC6qO4eyCDnPYwLXzZba5xCohOP2UoKCfDsH3qdv5pC1KAROK1iQ4
 
 -- Dumped from database version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
@@ -14031,6 +14615,13 @@ fix-rebel-calculation-risk-score-evolution-1.50-001	intelligence-operative	db-ch
 1.55-document-q4-election-comparison-view	intelligence-operative	db-changelog-1.55.xml	2026-01-17 12:05:11.670233	495	EXECUTED	9:b497414f0b045cb3bb0ccb8e6961aed3	sql	Add documentation for view_riksdagen_q4_election_year_comparison	\N	5.0.1	\N	\N	8651509128
 1.55-create-seasonal-anomaly-detection-view	intelligence-operative	db-changelog-1.55.xml	2026-01-17 12:05:11.683012	496	EXECUTED	9:807748b3d9dfc5d73c61bb4ef057d8c8	createView viewName=view_riksdagen_seasonal_anomaly_detection	Create view_riksdagen_seasonal_anomaly_detection for identifying activity anomalies.\n            Flags quarters with activity significantly above or below baseline using z-score thresholds (moderate >1.5, high >2, critical >3 standard deviations) ...	\N	5.0.1	\N	\N	8651509128
 1.55-document-seasonal-anomaly-detection-view	intelligence-operative	db-changelog-1.55.xml	2026-01-17 12:05:11.687843	497	EXECUTED	9:25e86a40c1e43484634d4d66a3b5058f	sql	Add documentation for view_riksdagen_seasonal_anomaly_detection	\N	5.0.1	\N	\N	8651509128
+career-trajectory-1.56-001	intelligence-operative	db-changelog-1.56.xml	2026-01-17 18:43:00.791025	498	EXECUTED	9:bb6a81dcfbb98fab873de3bcafc0f378	sqlFile path=view_riksdagen_politician_career_trajectory_v1.56.sql	Create view_riksdagen_politician_career_trajectory to track politician performance \n        across election cycles (2002-2026). Provides attendance rates, win rates, leadership roles,\n        and documents authored per cycle. Classifies career sta...	\N	5.0.1	\N	\N	8675378241
+role-evolution-1.56-002	intelligence-operative	db-changelog-1.56.xml	2026-01-17 18:43:00.817799	499	EXECUTED	9:4d9b6569f4d7641f51c98e71f0466302	sqlFile path=view_riksdagen_politician_role_evolution_v1.56.sql	Create view_riksdagen_politician_role_evolution to track politician career progression\n        through different positions. Classifies roles into tiers (minister/speaker/party leader/\n        committee chair/member/substitute), assigns role weight...	\N	5.0.1	\N	\N	8675378241
+longevity-analysis-1.56-003	intelligence-operative	db-changelog-1.56.xml	2026-01-17 18:43:00.843157	500	EXECUTED	9:2cca784ebb22c73f83c9efe82fa05b0c	sqlFile path=view_riksdagen_politician_longevity_analysis_v1.56.sql	Create view_riksdagen_politician_longevity_analysis to measure politician career\n        duration and engagement levels. Calculates total career years, election cycles active,\n        activity intensity (votes/assignments per year), and career con...	\N	5.0.1	\N	\N	8675378241
+1.57-intro	intelligence-operative	db-changelog-1.57.xml	2026-01-17 18:43:00.848031	501	EXECUTED	9:700f30f068f52279dbeffe3e121e51f2	sql	v1.57 Historical Politician Party Transitions - Track MPs leaving their party while serving in Riksdagen	\N	5.0.1	\N	\N	8675378241
+create-party-transition-history-view-1.57-001	intelligence-operative	db-changelog-1.57.xml	2026-01-17 18:43:00.859762	502	EXECUTED	9:dc5cb39faeb206f3971c9bcb6f7650bd	createView viewName=view_riksdagen_party_transition_history	Create view_riksdagen_party_transition_history to track all party changes since 2002.\n        \n        Purpose: Identify politicians who switched parties while serving as active MPs \n        (status = 'Tjänstgörande riksdagsledamot'). This tracks ...	\N	5.0.1	\N	\N	8675378241
+create-party-defector-analysis-view-1.57-002	intelligence-operative	db-changelog-1.57.xml	2026-01-17 18:43:00.869186	503	EXECUTED	9:8352cbc3030dcb7716007e1b89d68db7	createView viewName=view_riksdagen_party_defector_analysis	Create view_riksdagen_party_defector_analysis to analyze defector characteristics.\n        \n        Purpose: Analyze behavioral patterns before/after party transitions - attendance, \n        document production, voting patterns. Classify defection...	\N	5.0.1	\N	\N	8675378241
+create-party-switcher-outcomes-view-1.57-003	intelligence-operative	db-changelog-1.57.xml	2026-01-17 18:43:00.879053	504	EXECUTED	9:6862c4e3283795138ffa775c0df28ee4	createView viewName=view_riksdagen_party_switcher_outcomes	Create view_riksdagen_party_switcher_outcomes to measure post-transition career success.\n        \n        Purpose: Track political career trajectory after party switch - did they continue \n        serving, get re-elected, attain leadership positio...	\N	5.0.1	\N	\N	8675378241
 \.
 
 
@@ -14047,5 +14638,5 @@ COPY public.databasechangeloglock (id, locked, lockgranted, lockedby) FROM stdin
 -- PostgreSQL database dump complete
 --
 
-\unrestrict SusVnbXtvC2v9EyPDBSmwAeUQAef3GhRjQtAhPNswnmfJ9lmQ8MHyLI1W7AhVeM
+\unrestrict 00815OLWatzC6qO4eyCDnPYwLXzZba5xCohOP2UoKCfDsH3qdv5pC1KAROK1iQ4
 

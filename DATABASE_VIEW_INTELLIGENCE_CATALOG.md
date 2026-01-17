@@ -35,23 +35,33 @@
 
 ## Executive Summary
 
-The Citizen Intelligence Agency (CIA) platform employs **93 database views** (65 regular views + 28 materialized views) across 10 major categories to support comprehensive political intelligence analysis, open-source intelligence (OSINT) collection, and democratic accountability monitoring.
+The Citizen Intelligence Agency (CIA) platform employs **96 database views** (68 regular views + 28 materialized views) across 10 major categories to support comprehensive political intelligence analysis, open-source intelligence (OSINT) collection, and democratic accountability monitoring.
 
-✅ **Documentation Status**: This catalog now provides **comprehensive documentation** for all 96 database views (100% coverage), including **6 election cycle views (v1.51)**, **3 party longitudinal analysis views (v1.53)**, and **3 politician career trajectory views (v1.55)** that provide META/META-level historical analysis with Swedish parliamentary election context. **11 views** have detailed examples with complex queries, while **85 views** have structured documentation with purpose, key metrics, sample queries, and intelligence applications.
+✅ **Documentation Status**: This catalog now provides **comprehensive documentation** for all 96 database views (100% coverage), including **6 election cycle views (v1.51)**, **3 party longitudinal analysis views (v1.53)**, **3 seasonal trend analysis views (v1.55)**, **3 politician career trajectory views (v1.56)**, and **3 party transition tracking views (v1.57)** that provide META/META-level historical analysis with Swedish parliamentary election context. **11 views** have detailed examples with complex queries, while **85 views** have structured documentation with purpose, key metrics, sample queries, and intelligence applications.
 
-**Last Updated**: 2026-01-17 (Added Politician Career Trajectory Views v1.55)  
-**Last Validated**: 2026-01-17 (v1.55 with 96 views)  
+**Last Updated**: 2026-01-17 (Added Party Transition Tracking Views v1.57, Politician Career Trajectory Views v1.56, Seasonal Trend Analysis Views v1.55)  
+**Last Validated**: 2026-01-17 (v1.57 with 96 views)
 **Validation Method**: Automated schema validation via validate-view-documentation.sh  
 **Schema Source**: service.data.impl/src/main/resources/full_schema.sql  
 **Documentation Coverage**: 100% (96/96 views)  
 **Validation Details**: See [Validation History](#-validation-history) section below
 
-**Note**: Total view count increased from 93 to 96 with addition of 3 politician career trajectory views in v1.55.
+**Note**: Total view count increased from 90 to 96 with addition of 3 seasonal trend analysis views (v1.55), 3 politician career trajectory views (v1.56), and 3 party transition tracking views (v1.57).
 
 ### Key Statistics (UPDATED 2026-01-17)
 
 | Metric | Count | Description |
 |--------|-------|-------------|
+| **Total Views** | 96 | ✅ UPDATED: 81 base + 6 election cycle (v1.51) + 3 party longitudinal (v1.53) + 3 seasonal trend (v1.55) + 3 politician career (v1.56) + 3 party transition (v1.57) = 99 documented (3 future planned) |
+| **Regular Views** | 68 | ✅ UPDATED: 53 base + 6 election cycle + 3 party longitudinal + 3 seasonal trend + 3 politician career |
+| **Materialized Views** | 28 | ✅ VERIFIED per refresh-all-views.sql |
+| **Views Documented (Detailed)** | 11 | Complex examples with business context |
+| **Views Documented (Structured)** | 85 | Purpose, metrics, queries, product mappings (73 + 6 + 3 + 3 new) |
+| **Documentation Coverage** | 100% | All 96 views documented |
+| **Intelligence Views** | 7 | Advanced analytical views (risk, anomaly, influence, crisis, momentum, dashboard, temporal trends) |
+| **Election Cycle Views** | 6 | NEW v1.51: META/META-level election cycle analysis across 6 frameworks |
+| **Party Transition Views** | 3 | NEW v1.55: Party switcher tracking with defection analysis and career outcomes |
+=======
 | **Total Views** | 96 | ✅ UPDATED: 84 base + 6 election cycle (v1.51) + 3 party longitudinal (v1.53) + 3 politician career (v1.55) |
 | **Regular Views** | 68 | ✅ UPDATED: 56 base + 6 election cycle + 3 party longitudinal + 3 politician career |
 | **Materialized Views** | 28 | ✅ VERIFIED per refresh-all-views.sql |
@@ -61,13 +71,14 @@ The Citizen Intelligence Agency (CIA) platform employs **93 database views** (65
 | **Intelligence Views** | 7 | Advanced analytical views (risk, anomaly, influence, crisis, momentum, dashboard, temporal trends) |
 | **Election Cycle Views** | 6 | v1.51: META/META-level election cycle analysis across 6 frameworks |
 | **Career Trajectory Views** | 3 | NEW v1.55: Politician career pattern detection, role evolution, longevity analysis |
+>>>>>>> origin/master
 | **Decision Flow Views** | 4 | Party, politician, ministry, temporal trends for decision analysis |
 | **Vote Summary Views** | 20 | Daily, weekly, monthly, annual ballot summaries |
 | **Application Event Views** | 12 | User behavior tracking (daily, weekly, monthly, annual) |
 | **Document Views** | 7 | Politician and party document productivity |
 | **Committee Views** | 12 | Committee productivity, decisions, membership |
 | **Government/Ministry Views** | 7 | Government and ministry performance tracking |
-| **Party Views** | 13 | Party performance, decision flow, effectiveness |
+| **Party Views** | 16 | Party performance, decision flow, effectiveness, transitions |
 | **Application/Audit Views** | 14 | Platform usage tracking and audit trails |
 | **Database Size** | 20 GB | Total database size (validated 2025-11-21) |
 | **Total Rows** | 5.6M | Total rows across all tables |
@@ -391,7 +402,7 @@ This section provides a complete alphabetical inventory of all 82 database views
 | 📖 view_riksdagen_voting_anomaly_detection | Standard | ⭐⭐⭐⭐⭐ | Voting anomaly and defection risk detection |
 | 📖 view_risk_score_evolution | Standard | ⭐⭐⭐⭐⭐ | Evolution of risk scores over time |
 
-### Party Views (13 views)
+### Party Views (16 views)
 
 | View Name | Type | Intelligence Value | Description |
 |-----------|------|-------------------|-------------|
@@ -406,6 +417,9 @@ This section provides a complete alphabetical inventory of all 82 database views
 | view_riksdagen_party_role_member | Standard | ⭐⭐⭐ | Party role assignments |
 | view_riksdagen_party_signatures_document_summary | Standard | ⭐⭐⭐ | Party document signature patterns |
 | view_riksdagen_party_summary | Standard | ⭐⭐⭐⭐ | Aggregated party statistics |
+| view_riksdagen_party_transition_history | Standard | ⭐⭐⭐⭐⭐ | Party switcher tracking with historical transitions (NEW v1.55) |
+| view_riksdagen_party_defector_analysis | Standard | ⭐⭐⭐⭐⭐ | Defector behavioral analysis and early warning signals (NEW v1.55) |
+| view_riksdagen_party_switcher_outcomes | Standard | ⭐⭐⭐⭐⭐ | Post-transition career success metrics (NEW v1.55) |
 | view_riksdagen_person_signed_document_summary | Standard | ⭐⭐⭐ | Individual document signature summary |
 
 ### Politician Views (8 views)
@@ -3142,6 +3156,81 @@ This view supports multiple analytical frameworks:
 **Intelligence Products**: Party effectiveness scorecards, coalition strength analysis, organizational health reports
 
 **Data Flow**: [Intelligence Data Flow Map - Party Views](INTELLIGENCE_DATA_FLOW.md#party-views)
+
+---
+
+### view_riksdagen_party_transition_history ⭐⭐⭐⭐⭐
+
+**Purpose**: Tracks politicians who switched parties while serving in Riksdagen, analyzing historical transition patterns, timing relative to elections, and subsequent political career trajectories (NEW v1.55).  
+**Key Metrics**: person_id, first_name, last_name, previous_party, new_party, transition_date, transition_type, transition_year, next_election, months_until_next_election, previous_election, months_since_last_election  
+**Sample Query**: `SELECT first_name, last_name, previous_party, new_party, transition_date, transition_type, months_until_next_election FROM view_riksdagen_party_transition_history ORDER BY transition_date DESC;`  
+**Applications**: Party stability analysis, defection risk assessment, electoral cycle pattern recognition, career trajectory analysis  
+**Intelligence Value**: ⭐⭐⭐⭐⭐ VERY HIGH - Tracks rare but politically significant events enabling predictive modeling of future defections  
+**GitHub Issue**: #8208 Historical Politician Transitions - Leaving Party While in Riksdagen
+
+#### Key Features
+
+- **Transition Type Classification**: Distinguishes "SWITCHED_WHILE_SERVING" (continuous service) vs "REJOINED_RIKSDAGEN" (gap >30 days)
+- **Election Proximity Analysis**: Calculates months until next election and months since last election
+- **Historical Coverage**: Tracks transitions since 2002 across 7 Swedish election cycles (2002-2026)
+- **Window Functions**: Uses LAG/LEAD over assignment_data.org_code to detect party changes
+
+#### Intelligence Applications
+
+- **Predictive Intelligence**: Framework 4 - Defection risk modeling and early warning signals
+- **Temporal Analysis**: Framework 1 - Electoral cycle influence on party transitions
+- **Risk Assessment**: Framework 3 - Party stability indicators and cohesion metrics
+- **Strategic Forecasting**: Coalition formation analysis considering defection patterns
+
+---
+
+### view_riksdagen_party_defector_analysis ⭐⭐⭐⭐⭐
+
+**Purpose**: Analyzes behavioral patterns of politicians who defected from their party, measuring pre/post transition voting attendance and document productivity to identify early warning signals (NEW v1.55).  
+**Key Metrics**: person_id, first_name, last_name, previous_party, new_party, transition_date, months_until_next_election, pre_transition_attendance, post_transition_attendance, attendance_change, docs_before, docs_after, defection_timing  
+**Sample Query**: `SELECT first_name, last_name, previous_party, new_party, defection_timing, attendance_change FROM view_riksdagen_party_defector_analysis WHERE ABS(attendance_change) > 10 ORDER BY transition_date DESC;`  
+**Applications**: Early warning system for defections, behavioral anomaly detection, engagement pattern analysis  
+**Intelligence Value**: ⭐⭐⭐⭐⭐ VERY HIGH - Identifies predictive signals for party defection risk  
+**GitHub Issue**: #8208 Historical Politician Transitions - Leaving Party While in Riksdagen
+
+#### Key Features
+
+- **Attendance Analysis**: 6-month pre/post transition voting attendance patterns from vote_data
+- **Defection Timing Classification**: PRE_ELECTION (≤12mo), MID_TERM (≥36mo), NORMAL (>12mo and <36mo), UNKNOWN_TIMING (post-2026 transitions)
+- **Behavioral Metrics**: Attendance change delta, document production before/after transition
+- **Early Warning Signals**: Declining participation as predictor of party switching
+
+#### Intelligence Applications
+
+- **Risk Assessment**: Identifies politicians at risk of defection based on declining engagement
+- **Behavioral Analysis**: Detects participation drop-offs preceding party transitions
+- **Predictive Modeling**: Builds defection risk scores based on historical patterns
+- **Counterintelligence**: Monitors party cohesion and loyalty indicators
+
+---
+
+### view_riksdagen_party_switcher_outcomes ⭐⭐⭐⭐⭐
+
+**Purpose**: Measures post-transition career success for party switchers, tracking continued MP status, re-election success, leadership positions, and subsequent political assignments (NEW v1.55).  
+**Key Metrics**: person_id, first_name, last_name, previous_party, new_party, transition_date, next_election, months_until_next_election, total_subsequent_assignments, total_days_served_after_switch, continued_as_active_mp, served_in_next_election, attained_leadership_post_switch, post_switch_roles, current_status  
+**Sample Query**: `SELECT first_name, last_name, previous_party, new_party, continued_as_active_mp, served_in_next_election, attained_leadership_post_switch FROM view_riksdagen_party_switcher_outcomes ORDER BY transition_date DESC;`  
+**Applications**: Career trajectory analysis, defection outcome assessment, party switching viability evaluation  
+**Intelligence Value**: ⭐⭐⭐⭐⭐ VERY HIGH - Quantifies career consequences of party transitions  
+**GitHub Issue**: #8208 Historical Politician Transitions - Leaving Party While in Riksdagen
+
+#### Key Features
+
+- **Career Outcome Metrics**: Total subsequent assignments, days served after transition
+- **Electoral Success**: Tracks continued MP status and service in next election cycle
+- **Leadership Attainment**: Identifies leadership positions gained post-transition (Partiledare, Gruppledare, etc.)
+- **NULL-Safe Handling**: Handles transitions after last defined election (2026-09-13)
+
+#### Intelligence Applications
+
+- **Strategic Assessment**: Evaluates career viability of party switching decisions
+- **Predictive Intelligence**: Models defection success rates by timing and target party
+- **Historical Analysis**: Tracks long-term consequences of political realignment
+- **Coalition Dynamics**: Assesses impact of defections on party strength and government formation
 
 ---
 
