@@ -35,29 +35,65 @@
 
 ## Executive Summary
 
-The Citizen Intelligence Agency (CIA) platform employs **93 database views** (65 regular views + 28 materialized views) across 10 major categories to support comprehensive political intelligence analysis, open-source intelligence (OSINT) collection, and democratic accountability monitoring.
+The Citizen Intelligence Agency (CIA) platform employs **90 database views** (62 regular views + 28 materialized views) across 10 major categories to support comprehensive political intelligence analysis, open-source intelligence (OSINT) collection, and democratic accountability monitoring.
 
-✅ **Documentation Status**: This catalog now provides **comprehensive documentation** for all 93 database views (100% coverage), including **6 election cycle views (v1.51)** and **3 party longitudinal analysis views (v1.53)** that provide META/META-level historical analysis with Swedish parliamentary election context. **11 views** have detailed examples with complex queries, while **82 views** have structured documentation with purpose, key metrics, sample queries, and intelligence applications.
+✅ **Documentation Status**: This catalog now provides **comprehensive documentation** for all 90 database views (100% coverage), including **6 election cycle views (v1.51)** and **3 seasonal analysis views (v1.54)** that provide Q4 pre-election analysis with seasonal anomaly detection. **11 views** have detailed examples with complex queries, while **79 views** have structured documentation with purpose, key metrics, sample queries, and intelligence applications.
 
-**Last Updated**: 2026-01-16 (Added Party Longitudinal Analysis Views v1.53)  
-**Last Validated**: 2026-01-16 (v1.53 with 93 views)  
+**Last Updated**: 2026-01-17 (Added Seasonal Analysis Views v1.54, removed 6 deprecated views)  
+**Last Validated**: 2026-01-17 (v1.54 with 90 views)  
 **Validation Method**: Automated schema validation via validate-view-documentation.sh  
 **Schema Source**: service.data.impl/src/main/resources/full_schema.sql  
-**Documentation Coverage**: 100% (93/93 views)  
+**Documentation Coverage**: 100% (90/90 views)  
 **Validation Details**: See [Validation History](#-validation-history) section below
 
-**Note**: Total view count increased from 90 to 93 with addition of 3 party longitudinal analysis views in v1.53.
+**Note**: Total view count decreased from 93 to 90 with removal of 6 deprecated views and addition of 3 seasonal analysis views in v1.54.
 
-### Key Statistics (UPDATED 2026-01-16)
+### Key Statistics (UPDATED 2026-01-17)
 
 | Metric | Count | Description |
-|--------|-------|-------------|
-| **Total Views** | 93 | ✅ UPDATED: 84 base + 6 election cycle (v1.51) + 3 party longitudinal (v1.53) |
-| **Regular Views** | 65 | ✅ UPDATED: 56 base + 6 election cycle + 3 party longitudinal |
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|
+| **Total Views** | 90 | ✅ UPDATED: 84 base + 6 election cycle (v1.51) + 3 seasonal (v1.54) - 3 deprecated |
+| **Regular Views** | 62 | ✅ UPDATED: 56 base + 6 election cycle + 3 seasonal - 3 deprecated |
 | **Materialized Views** | 28 | ✅ VERIFIED per refresh-all-views.sql |
 | **Views Documented (Detailed)** | 11 | Complex examples with business context |
-| **Views Documented (Structured)** | 82 | Purpose, metrics, queries, product mappings (73 + 6 + 3 new) |
-| **Documentation Coverage** | 100% | All 93 views documented |
+| **Views Documented (Structured)** | 79 | Purpose, metrics, queries, product mappings (70 + 6 + 3 new) |
+| **Documentation Coverage** | 100% | All 90 views documented |
 | **Intelligence Views** | 7 | Advanced analytical views (risk, anomaly, influence, crisis, momentum, dashboard, temporal trends) |
 | **Election Cycle Views** | 6 | NEW v1.51: META/META-level election cycle analysis across 6 frameworks |
 | **Decision Flow Views** | 4 | Party, politician, ministry, temporal trends for decision analysis |
@@ -95,7 +131,43 @@ Views are classified by intelligence value for analytical operations:
 ### Related Documentation
 
 | Document | Link | Description |
-|----------|------|-------------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|
 | **Business Product Document** | [BUSINESS_PRODUCT_DOCUMENT.md](BUSINESS_PRODUCT_DOCUMENT.md) | Commercial product strategy and market analysis |
 | **JSON Export Specifications** | [json-export-specs/](json-export-specs/) | API schemas and data format specifications |
 | **Intelligence Data Flow Map** | [INTELLIGENCE_DATA_FLOW.md](INTELLIGENCE_DATA_FLOW.md) | Central cross-reference hub showing data pipeline |
@@ -186,7 +258,79 @@ To validate documentation coverage manually:
 ### Historical Validations
 
 | Date | Coverage | Total Views | Missing | Status | Key Changes |
-|------|----------|-------------|---------|--------|-------------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|
 | 2025-11-20 | 10.98% | 82 | 73 | ⚠️ Initial | Identified major documentation gap |
 | 2025-11-21 | 100% | 82 | 0 | ✅ Complete | Added all 73 missing views |
 | 2025-11-25 | 100% | 84 | 0 | ✅ Current | Corrected count, validated integrity |
@@ -204,7 +348,43 @@ The documentation achieved 100% coverage through systematic validation and remed
 Based on schema-health-check.sql (last run: 2025-11-25):
 
 | Metric | Score | Status | Notes |
-|--------|-------|--------|-------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|
 | **Overall Health** | 82/100 | ✅ Good | Above 80/100 threshold |
 | **Schema Integrity** | 90/100 | ✅ Excellent | All views valid |
 | **Data Quality** | 80/100 | ✅ Good | Meets standards |
@@ -225,7 +405,43 @@ Based on schema-health-check.sql (last run: 2025-11-25):
 <div class="quick-reference">
 
 | I Want To... | Navigate To |
-|--------------|-------------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|
 | **See which views support temporal analysis** | [Temporal Analysis Views](INTELLIGENCE_DATA_FLOW.md#temporal-analysis-framework) |
 | **See which views support comparative analysis** | [Comparative Analysis Views](INTELLIGENCE_DATA_FLOW.md#comparative-analysis-framework) |
 | **See which views support pattern recognition** | [Pattern Recognition Views](INTELLIGENCE_DATA_FLOW.md#pattern-recognition-framework) |
@@ -280,7 +496,70 @@ graph TB
 ### Views by Category
 
 | Category | Count | Primary Purpose | Intelligence Value |
-|----------|-------|----------------|-------------------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|
 | **Politician Views** | 15+ | Individual performance, experience, behavior | ⭐⭐⭐⭐⭐ VERY HIGH |
 | **Party Views** | 13+ | Organizational effectiveness, coalition analysis | ⭐⭐⭐⭐⭐ VERY HIGH |
 | **Committee Views** | 10+ | Legislative body productivity, decision tracking | ⭐⭐⭐⭐ HIGH |
@@ -293,7 +572,79 @@ graph TB
 ### View Evolution Timeline
 
 | Version | Date | Key Views Introduced | Intelligence Impact |
-|---------|------|---------------------|-------------------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|
 | **v1.0-v1.1** | 2014-11 | Base politician, party, committee views | Foundation |
 | **v1.2-v1.3** | 2015 | Vote summary views (daily/weekly/monthly/annual) | Temporal analysis enabled |
 | **v1.23-v1.24** | 2023 | Party coalition views, document summaries | Coalition analysis |
@@ -306,7 +657,7 @@ graph TB
 
 ## Complete View Inventory
 
-This section provides a complete alphabetical inventory of all 82 database views with brief descriptions. All views are now documented in this catalog with structured information including purpose, key metrics, sample queries, and intelligence applications.
+This section provides a complete alphabetical inventory of all 90 database views with brief descriptions. All views are now documented in this catalog with structured information including purpose, key metrics, sample queries, and intelligence applications.
 
 **Legend:**
 - 📖 = Detailed documentation (comprehensive examples, performance characteristics)
@@ -320,7 +671,70 @@ This section provides a complete alphabetical inventory of all 82 database views
 ### Application & Audit Views (14 views)
 
 | View Name | Type | Intelligence Value | Description |
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
 |-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|
 | view_application_action_event_page_annual_summary | Standard | ⭐⭐ | Annual summary of user interactions by page |
 | view_application_action_event_page_daily_summary | Standard | ⭐⭐ | Daily summary of user interactions by page |
 | view_application_action_event_page_element_annual_summary | Standard | ⭐⭐ | Annual summary of UI element interactions |
@@ -339,7 +753,70 @@ This section provides a complete alphabetical inventory of all 82 database views
 ### Committee Views (12 views)
 
 | View Name | Type | Intelligence Value | Description |
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
 |-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|
 | view_committee_productivity | Standard | ⭐⭐⭐⭐ | Committee productivity metrics and efficiency indicators |
 | view_committee_productivity_matrix | Standard | ⭐⭐⭐⭐ | Matrix comparison of committee productivity |
 | view_riksdagen_committee | Standard | ⭐⭐⭐⭐ | Committee structure, membership, and activity metrics |
@@ -353,7 +830,10 @@ This section provides a complete alphabetical inventory of all 82 database views
 | view_riksdagen_committee_role_member | Standard | ⭐⭐⭐ | Committee role assignments and members |
 | view_riksdagen_committee_roles | Standard | ⭐⭐⭐ | Committee role definitions and structure |
 
-### Document Views (7 views)
+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|### Document Views (6 views)
 
 | View Name | Type | Intelligence Value | Description |
 |-----------|------|-------------------|-------------|
@@ -361,14 +841,136 @@ This section provides a complete alphabetical inventory of all 82 database views
 | view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
 | view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
 | view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
-| view_riksdagen_party_document_summary | Standard | ⭐⭐⭐⭐ | Aggregated party document statistics |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
 | view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
 | view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |
 
 ### Government/Ministry Views (8 views)
 
 | View Name | Type | Intelligence Value | Description |
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
 |-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|
 | view_ministry_effectiveness_trends | Standard | ⭐⭐⭐⭐⭐ | Ministry performance trends over time |
 | view_ministry_productivity_matrix | Standard | ⭐⭐⭐⭐⭐ | Comparative ministry productivity analysis |
 | view_ministry_risk_evolution | Standard | ⭐⭐⭐⭐⭐ | Evolution of ministry risk indicators |
@@ -381,19 +983,144 @@ This section provides a complete alphabetical inventory of all 82 database views
 ### Intelligence & Risk Views (6 views)
 
 | View Name | Type | Intelligence Value | Description |
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
 |-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|
 | 📖 view_party_effectiveness_trends | Standard | ⭐⭐⭐⭐⭐ | Party effectiveness metrics over time |
 | 📖 view_politician_behavioral_trends | Standard | ⭐⭐⭐⭐⭐ | Politician behavioral pattern analysis |
 | view_politician_risk_summary | Standard | ⭐⭐⭐⭐⭐ | Aggregated politician risk indicators |
 | view_riksdagen_crisis_resilience_indicators | Standard | ⭐⭐⭐⭐⭐ | Crisis period performance and resilience metrics |
-| view_riksdagen_intelligence_dashboard | Standard | ⭐⭐⭐⭐⭐ | Unified intelligence dashboard with key metrics |
 | 📖 view_riksdagen_voting_anomaly_detection | Standard | ⭐⭐⭐⭐⭐ | Voting anomaly and defection risk detection |
 | 📖 view_risk_score_evolution | Standard | ⭐⭐⭐⭐⭐ | Evolution of risk scores over time |
 
-### Party Views (13 views)
+### Party Views (10 views)
+
+| View Name | Type | Intelligence Value | Description |
+|### Document Views (6 views)
 
 | View Name | Type | Intelligence Value | Description |
 |-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|
 | 📖 view_riksdagen_coalition_alignment_matrix | Standard | ⭐⭐⭐⭐⭐ | Party coalition alignment and probability matrix |
 | 📖 view_riksdagen_party | Standard | ⭐⭐⭐⭐⭐ | Core party information and metrics |
 | view_party_performance_metrics | Standard | ⭐⭐⭐⭐⭐ | Comprehensive party performance indicators |
@@ -404,13 +1131,75 @@ This section provides a complete alphabetical inventory of all 82 database views
 | view_riksdagen_party_momentum_analysis | Standard | ⭐⭐⭐⭐⭐ | Party momentum and trend analysis |
 | view_riksdagen_party_role_member | Standard | ⭐⭐⭐ | Party role assignments |
 | view_riksdagen_party_signatures_document_summary | Standard | ⭐⭐⭐ | Party document signature patterns |
-| view_riksdagen_party_summary | Standard | ⭐⭐⭐⭐ | Aggregated party statistics |
 | view_riksdagen_person_signed_document_summary | Standard | ⭐⭐⭐ | Individual document signature summary |
 
 ### Politician Views (8 views)
 
 | View Name | Type | Intelligence Value | Description |
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
 |-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|
 | 📖 view_riksdagen_politician | Standard | ⭐⭐⭐⭐⭐ | Core politician information and demographics |
 | 📖 view_riksdagen_politician_document | 🔄 Materialized | ⭐⭐⭐⭐⭐ | Politician document authorship and productivity |
 | 📖 view_riksdagen_politician_experience_summary | Standard | ⭐⭐⭐⭐⭐ | Politician experience scoring and classification |
@@ -423,7 +1212,70 @@ This section provides a complete alphabetical inventory of all 82 database views
 **Ballot Summary Views (5 views)**
 
 | View Name | Type | Intelligence Value | Description |
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
 |-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|
 | view_riksdagen_vote_data_ballot_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Overall ballot outcome summary |
 | view_riksdagen_vote_data_ballot_summary_annual | 🔄 Materialized | ⭐⭐⭐⭐ | Annual ballot summary aggregation |
 | view_riksdagen_vote_data_ballot_summary_daily | 🔄 Materialized | ⭐⭐⭐⭐ | Daily ballot summary aggregation |
@@ -433,7 +1285,70 @@ This section provides a complete alphabetical inventory of all 82 database views
 **Party Voting Views (5 views)**
 
 | View Name | Type | Intelligence Value | Description |
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
 |-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|
 | view_riksdagen_vote_data_ballot_party_summary | 🔄 Materialized | ⭐⭐⭐⭐⭐ | Party-level voting summary |
 | view_riksdagen_vote_data_ballot_party_summary_annual | 🔄 Materialized | ⭐⭐⭐⭐⭐ | Annual party voting patterns |
 | view_riksdagen_vote_data_ballot_party_summary_daily | 🔄 Materialized | ⭐⭐⭐⭐⭐ | Daily party voting patterns |
@@ -443,7 +1358,70 @@ This section provides a complete alphabetical inventory of all 82 database views
 **Politician Voting Views (5 views)**
 
 | View Name | Type | Intelligence Value | Description |
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
 |-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|
 | view_riksdagen_vote_data_ballot_politician_summary | 🔄 Materialized | ⭐⭐⭐⭐⭐ | Individual politician voting summary |
 | view_riksdagen_vote_data_ballot_politician_summary_annual | 🔄 Materialized | ⭐⭐⭐⭐⭐ | Annual politician voting patterns |
 | 📖 view_riksdagen_vote_data_ballot_politician_summary_daily | 🔄 Materialized | ⭐⭐⭐⭐⭐ | Daily politician voting patterns |
@@ -453,25 +1431,222 @@ This section provides a complete alphabetical inventory of all 82 database views
 **Other Voting & Proposal Views (5 views)**
 
 | View Name | Type | Intelligence Value | Description |
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
 |-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|
 | view_riksdagen_member_proposals | Standard | ⭐⭐⭐ | Parliamentary member legislative proposals |
 | view_riksdagen_voting_anomaly_detection | Standard | ⭐⭐⭐⭐⭐ | Anomalous voting behavior detection |
 
 ### WorldBank Data (1 view)
 
 | View Name | Type | Intelligence Value | Description |
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
 |-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|
 | view_worldbank_indicator_data_country_summary | 🔄 Materialized | ⭐⭐⭐ | Economic indicators for country analysis |
 
-**Total Views:** 82  
+### Seasonal Analysis Views (3 views - NEW v1.54)
+
+| View Name | Type | Intelligence Value | Description |
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|
+| view_riksdagen_seasonal_quarterly_activity | Standard | ⭐⭐⭐⭐⭐ | Seasonal quarterly activity aggregation with election year comparison |
+| view_riksdagen_q4_election_year_comparison | Standard | ⭐⭐⭐⭐⭐ | Q4 activity comparison between election years vs non-election years |
+| view_riksdagen_seasonal_anomaly_detection | Standard | ⭐⭐⭐⭐⭐ | Seasonal anomaly detection with multi-metric classification |
+
+**Total Views:** 90  
 **Detailed Documentation (📖):** 9  
-**Structured Documentation (📝):** 73  
+**Structured Documentation (📝):** 81  
 **Documentation Coverage:** 100%  
 **Materialized Views:** 28  
 **Views by Intelligence Value:**
-- ⭐⭐⭐⭐⭐ VERY HIGH: 30 views
+- ⭐⭐⭐⭐⭐ VERY HIGH: 33 views
 - ⭐⭐⭐⭐ HIGH: 26 views
-- ⭐⭐⭐ MEDIUM: 12 views
+- ⭐⭐⭐ MEDIUM: 17 views
 - ⭐⭐ LOW: 14 views
 
 ---
@@ -522,7 +1697,52 @@ Central politician profile view aggregating basic biographical data, current par
 #### Key Columns
 
 | Column | Type | Description | Example |
-|--------|------|-------------|---------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---|
 | `person_id` | VARCHAR(255) | Unique politician identifier (Riksdagen ID) | '0532213467925' |
 | `first_name` | VARCHAR(255) | Politician first name | 'Anna' |
 | `last_name` | VARCHAR(255) | Politician last name | 'Andersson' |
@@ -559,7 +1779,97 @@ ORDER BY member_count DESC;
 **Output:**
 ```
  party | member_count | women_count | men_count | avg_age | avg_days_experience
--------+--------------+-------------+-----------+---------+--------------------
+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-----+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--
  SD    |           73 |          20 |        53 |    48.2 |              1825
  S     |           70 |          35 |        35 |    52.1 |              2347
  M     |           68 |          29 |        39 |    49.8 |              2103
@@ -658,7 +1968,79 @@ From [RISK_RULES_INTOP_OSINT.md](RISK_RULES_INTOP_OSINT.md):
 This view supports multiple analytical frameworks from [DATA_ANALYSIS_INTOP_OSINT.md](DATA_ANALYSIS_INTOP_OSINT.md):
 
 | Analysis Framework | Use Case | Example Application | Link |
-|--------------------|----------|-------------------|------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||
 | **Temporal Analysis** | Track career duration and entry cohorts | Monitor politician career trajectories over time | [Framework Docs](DATA_ANALYSIS_INTOP_OSINT.md#1-temporal-analysis-framework) |
 | **Comparative Analysis** | Party composition and experience levels | Compare experience distribution across parties | [Framework Docs](DATA_ANALYSIS_INTOP_OSINT.md#2-comparative-analysis-framework) |
 | **Pattern Recognition** | Demographic clustering analysis | Identify patterns in gender, age, regional representation | [Framework Docs](DATA_ANALYSIS_INTOP_OSINT.md#3-pattern-recognition-framework) |
@@ -707,7 +2089,52 @@ Sophisticated experience scoring system that calculates weighted experience base
 #### Key Columns
 
 | Column | Type | Description | Example |
-|--------|------|-------------|---------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---|
 | `person_id` | VARCHAR(255) | Unique politician identifier | '0532213467925' |
 | `first_name` | VARCHAR(255) | Politician first name | 'Anna' |
 | `last_name` | VARCHAR(255) | Politician last name | 'Andersson' |
@@ -730,7 +2157,61 @@ Sophisticated experience scoring system that calculates weighted experience base
 Experience is weighted by assignment importance:
 
 | Assignment Type | Weight Multiplier | Rationale |
-|----------------|------------------|-----------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-----|
 | **Ministerial** | 2.0x | Government executive responsibility |
 | **Committee Chair** | 1.5x | Leadership and organizational authority |
 | **Committee Member** | 1.2x | Specialized legislative work |
@@ -747,7 +2228,43 @@ total_weighted_exp = (ministerial_days × 2.0) +
 #### Experience Level Classification
 
 | Level | Criteria | Description |
-|-------|----------|-------------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|
 | **NOVICE** | < 365 days | First year, learning parliamentary procedures |
 | **DEVELOPING** | 365-1095 days (1-3 years) | Building expertise, establishing networks |
 | **EXPERIENCED** | 1095-2190 days (3-6 years) | Established politician, strong influence |
@@ -910,7 +2427,52 @@ Tracks individual politician behavioral metrics (absence, effectiveness, rebelli
 #### Key Columns
 
 | Column | Type | Description | Example |
-|--------|------|-------------|---------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---|
 | `person_id` | VARCHAR(255) | Unique politician identifier | 'Q123456' |
 | `first_name` | VARCHAR(255) | Politician first name | 'Anna' |
 | `last_name` | VARCHAR(255) | Politician last name | 'Andersson' |
@@ -1130,7 +2692,52 @@ Tracks all documents (motions, interpellations, written questions, proposals) au
 #### Key Columns
 
 | Column | Type | Description | Example |
-|--------|------|-------------|---------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---|
 | `person_id` | VARCHAR(255) | Politician identifier | '0532213467925' |
 | `first_name` | VARCHAR(255) | Politician first name | 'Anna' |
 | `last_name` | VARCHAR(255) | Politician last name | 'Andersson' |
@@ -1147,7 +2754,61 @@ Tracks all documents (motions, interpellations, written questions, proposals) au
 #### Document Types
 
 | Type | Swedish Term | Description | Frequency |
-|------|-------------|-------------|-----------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-----|
 | **Motion** | Motion | Legislative proposal by MP | Common |
 | **Interpellation** | Interpellation | Question to minister requiring debate | Moderate |
 | **Written Question** | Skriftlig fråga | Written question to minister | Common |
@@ -1428,7 +3089,52 @@ Tracks individual politician decision patterns from DOCUMENT_PROPOSAL_DATA, enab
 #### Key Columns
 
 | Column | Type | Description | Example |
-|--------|------|-------------|---------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---|
 | `person_id` | VARCHAR(255) | Unique politician identifier | '0532213467925' |
 | `first_name` | VARCHAR(255) | Politician first name | 'Anna' |
 | `last_name` | VARCHAR(255) | Politician last name | 'Andersson' |
@@ -1629,7 +3335,79 @@ From [RISK_RULES_INTOP_OSINT.md](RISK_RULES_INTOP_OSINT.md):
 This view supports multiple analytical frameworks from [DATA_ANALYSIS_INTOP_OSINT.md](DATA_ANALYSIS_INTOP_OSINT.md):
 
 | Analysis Framework | Use Case | Example Application | Link |
-|--------------------|----------|-------------------|------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||
 | **Temporal Analysis** | Track decision effectiveness over time | Monitor politician approval rate trends monthly | [Framework Docs](DATA_ANALYSIS_INTOP_OSINT.md#1-temporal-analysis-framework) |
 | **Comparative Analysis** | Politician vs. party/committee benchmarks | Compare individual approval rates to committee averages | [Framework Docs](DATA_ANALYSIS_INTOP_OSINT.md#2-comparative-analysis-framework) |
 | **Pattern Recognition** | Committee specialization clustering | Identify specialists vs. generalists | [Framework Docs](DATA_ANALYSIS_INTOP_OSINT.md#3-pattern-recognition-framework) |
@@ -1737,53 +3515,6 @@ LIMIT 30;
 
 ## Intelligence & Risk Views (Additional Documentation)
 
-### view_riksdagen_intelligence_dashboard ⭐⭐⭐⭐⭐
-
-**Category:** Intelligence Dashboard (v1.30)  
-**Type:** Standard View  
-**Intelligence Value:** CRITICAL - Unified Intelligence Summary  
-
-#### Purpose
-
-Unified intelligence dashboard aggregating key metrics from all intelligence views: party momentum, coalition probabilities, defection risks, power brokers, crisis resilience. Provides executive-level political intelligence snapshot.
-
-#### Key Metrics
-
-- **Party Dynamics**: Parties gaining/losing momentum, volatile parties
-- **Coalition Landscape**: High-probability coalitions, cross-bloc alliances
-- **Political Stability**: High defection risks, low discipline count
-- **Power Structure**: Power brokers, highly connected politicians
-- **Crisis Preparedness**: Crisis-ready vs. low-resilience politicians
-- **Stability Assessment**: Overall political environment classification
-- **Coalition Assessment**: Coalition landscape evaluation
-
-#### Sample Query: Complete Dashboard
-
-```sql
-SELECT *
-FROM view_riksdagen_intelligence_dashboard;
-```
-
-**Output Example**:
-```
-parties_gaining_momentum: 2
-parties_losing_momentum: 1
-high_defection_risks: 3
-power_brokers: 15
-stability_assessment: 'STABLE_POLITICAL_ENVIRONMENT'
-coalition_assessment: 'STABLE_COALITION_PATTERNS'
-intelligence_report_timestamp: '2025-11-21 14:30:15'
-```
-
-#### Intelligence Applications
-
-- Executive briefings and situation reports
-- Real-time political stability monitoring
-- Coalition formation forecasting
-- Strategic intelligence assessments
-
----
-
 ### view_riksdagen_crisis_resilience_indicators ⭐⭐⭐⭐⭐
 
 **Category:** Intelligence Views (v1.30)  
@@ -1879,7 +3610,70 @@ The Decision Flow Views (introduced in v1.35) provide comprehensive analysis of 
 ### View Inventory
 
 | View Name | Type | Intelligence Value | Description |
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
 |-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|
 | view_riksdagen_party_decision_flow | Standard | ⭐⭐⭐⭐⭐ | Party-level decision approval rates and patterns |
 | view_riksdagen_politician_decision_pattern | Standard | ⭐⭐⭐⭐⭐ | Individual politician proposal success tracking |
 | view_ministry_decision_impact | Standard | ⭐⭐⭐⭐⭐ | Ministry legislative effectiveness analysis |
@@ -1909,7 +3703,61 @@ Tracks party-level proposal decision patterns from DOCUMENT_PROPOSAL_DATA, aggre
 #### Schema
 
 | Column Name | Type | Description | Example |
-|-------------|------|-------------|---------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---|
 | `party` | VARCHAR(50) | Political party code | 'S' (Social Democrats) |
 | `committee` | VARCHAR(255) | Committee handling decisions | 'UU' (Foreign Affairs) |
 | `decision_month` | DATE | Month of aggregation (first day) | '2024-10-01' |
@@ -1978,7 +3826,61 @@ Tracks individual politician decision patterns from DOCUMENT_PROPOSAL_DATA, enab
 #### Schema
 
 | Column Name | Type | Description | Example |
-|-------------|------|-------------|---------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---|
 | `person_id` | VARCHAR(255) | Unique politician identifier | '0279865129018' |
 | `first_name` | VARCHAR(255) | Politician first name | 'Magdalena' |
 | `last_name` | VARCHAR(255) | Politician last name | 'Andersson' |
@@ -2058,7 +3960,61 @@ Evaluates ministry-level legislative performance by tracking government proposal
 #### Schema
 
 | Column Name | Type | Description | Example |
-|-------------|------|-------------|---------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---|
 | `ministry_code` | VARCHAR(10) | Ministry abbreviation | 'FI' (Finance) |
 | `ministry_name` | VARCHAR(255) | Full ministry name | 'Finance Ministry' |
 | `decision_year` | INTEGER | Year of decision | 2024 |
@@ -2138,7 +4094,61 @@ Provides time-series analysis of legislative decision patterns with moving avera
 #### Schema
 
 | Column Name | Type | Description | Example |
-|-------------|------|-------------|---------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---|
 | `decision_day` | DATE | Date of decisions | '2024-10-15' |
 | `daily_decisions` | BIGINT | Total decisions on date | 127 |
 | `moving_avg_7d` | NUMERIC | 7-day moving average | 98.43 |
@@ -2669,15 +4679,6 @@ Together, these views provide comprehensive government performance intelligence 
 
 ---
 
-### view_riksdagen_party_document_summary ⭐⭐⭐⭐
-
-**Purpose**: Lifetime party document productivity with type breakdowns (motions, interpellations, proposals).  
-**Key Metrics**: party, total_documents, party_motions, interpellations, propositions, docs_per_year  
-**Sample Query**: `SELECT party, total_documents, docs_per_year FROM view_riksdagen_party_document_summary ORDER BY docs_per_year DESC;`  
-**Applications**: Career productivity assessment, legislative style classification
-
----
-
 ### view_riksdagen_party_member ⭐⭐⭐⭐
 
 **Purpose**: Current party membership roster with member details and assignment status.  
@@ -2714,19 +4715,57 @@ Together, these views provide comprehensive government performance intelligence 
 
 ---
 
-### view_riksdagen_party_summary ⭐⭐⭐⭐
-
-**Purpose**: Aggregated party statistics (voting, documents, members) for quick reference.  
-**Key Metrics**: party, total_members, total_documents, avg_win_rate, avg_absence_rate  
-**Sample Query**: `SELECT * FROM view_riksdagen_party_summary ORDER BY total_members DESC;`  
-**Applications**: Quick reference, party comparison, dashboard display
-
 #### Intelligence Applications
 
 This view supports multiple analytical frameworks:
 
 | Analysis Framework | Use Case | Link |
-|--------------------|----------|------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||
 | **Comparative Analysis** | Inter-party benchmarking and effectiveness comparison | [Framework Docs](DATA_ANALYSIS_INTOP_OSINT.md#2-comparative-analysis-framework) |
 | **Temporal Analysis** | Track party performance changes over time | [Framework Docs](DATA_ANALYSIS_INTOP_OSINT.md#1-temporal-analysis-framework) |
 | **Network Analysis** | Map party relationship and coalition structures | [Framework Docs](DATA_ANALYSIS_INTOP_OSINT.md#5-network-analysis-framework) |
@@ -2833,7 +4872,88 @@ LIMIT 30;
 These views are **CRITICAL** for the CIA platform's intelligence capabilities:
 
 | Analysis Framework | Use Case | Supported Granularities | Link |
-|--------------------|----------|------------------------|------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||
 | **Temporal Analysis** | Track voting behavior changes over time | Daily, Weekly, Monthly, Annual | [Framework Docs](DATA_ANALYSIS_INTOP_OSINT.md#1-temporal-analysis-framework) |
 | **Comparative Analysis** | Benchmark politicians against peers | Annual, Monthly | [Framework Docs](DATA_ANALYSIS_INTOP_OSINT.md#2-comparative-analysis-framework) |
 | **Pattern Recognition** | Detect behavioral anomalies and clusters | All granularities | [Framework Docs](DATA_ANALYSIS_INTOP_OSINT.md#3-pattern-recognition-framework) |
@@ -3191,7 +5311,52 @@ Central party profile view aggregating party identification, current member coun
 #### Key Columns
 
 | Column | Type | Description | Example |
-|--------|------|-------------|---------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---|
 | `party` | VARCHAR(50) | Party short code (primary key) | 'S', 'M', 'SD', 'C', 'V', 'KD', 'L', 'MP' |
 | `party_name` | VARCHAR(255) | Full party name | 'Socialdemokraterna' |
 | `party_english_name` | VARCHAR(255) | English translation | 'Social Democrats' |
@@ -3204,7 +5369,88 @@ Central party profile view aggregating party identification, current member coun
 #### Swedish Political Parties
 
 | Code | Party Name (Swedish) | English Name | Bloc | Historical Seats |
-|------|---------------------|--------------|------|-----------------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-----|
 | **S** | Socialdemokraterna | Social Democrats | LEFT | 70-110 |
 | **M** | Moderaterna | Moderate Party | RIGHT | 68-107 |
 | **SD** | Sverigedemokraterna | Sweden Democrats | RIGHT* | 62-73 |
@@ -3250,7 +5496,106 @@ ORDER BY member_count DESC;
 **Output:**
 ```
  party | party_name             | member_count | bloc    | seat_percentage | category
--------+------------------------+--------------+---------+----------------+---------
+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |----+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---
  SD    | Sverigedemokraterna    |           73 |  RIGHT  |         20.92   | MAJOR
  S     | Socialdemokraterna     |           70 |  LEFT   |         20.06   | MAJOR
  M     | Moderaterna            |           68 |  RIGHT  |         19.48   | MAJOR
@@ -3383,7 +5728,52 @@ Comprehensive party-level performance tracking with monthly time-series analysis
 #### Key Columns
 
 | Column | Type | Description | Example |
-|--------|------|-------------|---------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---|
 | `party` | VARCHAR(50) | Party code | 'S' |
 | `year_month` | DATE | Month of analysis | '2024-10-01' |
 | `active_members` | INTEGER | Members active in voting | 68 |
@@ -3575,7 +5965,52 @@ Party-pair voting alignment matrix tracking 2-year rolling window of shared voti
 #### Key Columns
 
 | Column | Type | Description | Example |
-|--------|------|-------------|---------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---|
 | `party_1` | VARCHAR(50) | First party | 'M' |
 | `party_2` | VARCHAR(50) | Second party | 'KD' |
 | `alignment_rate` | NUMERIC(5,2) | Percentage voting together | 89.50 |
@@ -3589,7 +6024,61 @@ Party-pair voting alignment matrix tracking 2-year rolling window of shared voti
 #### Coalition Likelihood Classifications
 
 | Classification | Alignment Rate | Description |
-|---------------|----------------|-------------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|
 | **VERY_HIGH** | ≥ 80% | Strong natural partners, consistent alignment |
 | **HIGH** | ≥ 65% | Viable coalition, good compatibility |
 | **MEDIUM** | ≥ 50% | Possible with negotiations, some differences |
@@ -3624,7 +6113,106 @@ ORDER BY alignment_rate DESC;
 **Output:**
 ```
  party_1 | party_2 | alignment | shared_votes | coalition_likelihood | bloc_relationship
----------+---------+-----------+--------------+---------------------+-------------------
+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-----+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-
  M       | KD      |     89.50 |         1247 | VERY_HIGH           | RIGHT_BLOC_INTERNAL
  S       | V       |     87.20 |         1198 | VERY_HIGH           | LEFT_BLOC_INTERNAL
  KD      | L       |     82.30 |         1156 | VERY_HIGH           | RIGHT_BLOC_INTERNAL
@@ -3771,7 +6359,52 @@ Aggregates proposal decision data by party, enabling analysis of party-level leg
 #### Key Columns
 
 | Column | Type | Description | Example |
-|--------|------|-------------|---------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---|
 | `party` | VARCHAR(255) | Party short code | 'S', 'M', 'SD' |
 | `committee` | VARCHAR(255) | Committee processing proposal | 'Finansutskottet' |
 | `decision_type` | VARCHAR(255) | Type of decision | 'Utlåtande', 'Betänkande' |
@@ -3794,7 +6427,61 @@ Aggregates proposal decision data by party, enabling analysis of party-level leg
 The view recognizes Swedish parliamentary decision terminology:
 
 | Swedish Term | English | Aggregation Column |
-|-------------|---------|-------------------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|
 | **Bifall** / Bifalla / Godkänt | Approval/Accepted | `approved_proposals` |
 | **Avslag** / Avslå | Rejection/Denied | `rejected_proposals` |
 | **Återförvisning** / Återförvisa | Referral back to committee | `referred_back_proposals` |
@@ -3822,7 +6509,70 @@ ORDER BY overall_approval_rate DESC;
 **Output:**
 ```
  party | total | approved | rejected | overall_approval_rate
--------+-------+----------+----------+---------------------
+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |----+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |----+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---
  S     |   234 |      178 |       42 |               76.07
  M     |   198 |      145 |       38 |               73.23
  SD    |   156 |      102 |       45 |               65.38
@@ -4002,7 +6752,61 @@ From [RISK_RULES_INTOP_OSINT.md](RISK_RULES_INTOP_OSINT.md):
 From [DATA_ANALYSIS_INTOP_OSINT.md](DATA_ANALYSIS_INTOP_OSINT.md):
 
 | Framework | Application | Example Analysis |
-|-----------|-------------|------------------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||
 | **Temporal Analysis** | Track party effectiveness trends over time | Monthly approval rate trajectories |
 | **Comparative Analysis** | Party-to-party effectiveness comparison | Government vs opposition success rates |
 | **Pattern Recognition** | Identify committee specializations | Which parties succeed in which committees |
@@ -4076,7 +6880,52 @@ Tracks comprehensive party performance metrics across all Swedish election cycle
 #### Key Columns (73 total)
 
 | Column | Type | Description | Example |
-|--------|------|-------------|---------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---|
 | `party` | VARCHAR | Party code (composite key) | 'S', 'M', 'SD' |
 | `election_cycle_id` | VARCHAR | Election cycle identifier (composite key) | '2022-2025' |
 | `semester` | VARCHAR | Parliamentary semester (composite key) | 'autumn', 'spring' |
@@ -4109,7 +6958,52 @@ Tracks comprehensive party performance metrics across all Swedish election cycle
 #### Swedish Election Cycles
 
 | Cycle | Years | Elections | Major Events |
-|-------|-------|-----------|--------------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|
 | 2002-2005 | 4 years | 2002 Election | SAP government, Euro referendum 2003 |
 | 2006-2009 | 4 years | 2006 Election | Alliance government (M-C-FP-KD) |
 | 2010-2013 | 4 years | 2010 Election | Alliance reelected, SD enters parliament |
@@ -4201,7 +7095,52 @@ Analyzes coalition behavior and alliance patterns across election cycles, tracki
 #### Key Columns (46 total)
 
 | Column | Type | Description | Example |
-|--------|------|-------------|---------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---|
 | `party` | VARCHAR | First party code (composite key) | 'S' |
 | `coalition_partner` | VARCHAR | Second party code (composite key) | 'V' |
 | `election_cycle_id` | VARCHAR | Election cycle (composite key) | '2022-2025' |
@@ -4316,7 +7255,52 @@ Tracks electoral performance indicators and parliamentary representation trends 
 #### Key Columns (58 total)
 
 | Column | Type | Description | Example |
-|--------|------|-------------|---------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---|
 | `party` | VARCHAR | Party code (composite key) | 'S' |
 | `election_cycle_id` | VARCHAR | Election cycle (composite key) | '2022-2025' |
 | `semester` | VARCHAR | Parliamentary semester (composite key) | 'spring' |
@@ -4354,7 +7338,70 @@ Tracks electoral performance indicators and parliamentary representation trends 
 **Historical Seat Distributions:**
 
 | Party | 2002 | 2006 | 2010 | 2014 | 2018 | 2022 |
-|-------|------|------|------|------|------|------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||
 | **S** | 144 | 130 | 112 | 113 | 100 | 107 |
 | **M** | 55 | 97 | 107 | 84 | 70 | 68 |
 | **SD** | - | - | 20 | 49 | 62 | 73 |
@@ -4500,7 +7547,79 @@ graph TB
 All vote summary views are **materialized** for performance optimization:
 
 | View Category | Granularity | Materialized | Refresh | Use Case |
-|--------------|-------------|--------------|---------|----------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |----|
 | **Ballot Summaries** | Daily/Weekly/Monthly/Annual | ✓ | Daily 02:00 | Overall chamber statistics |
 | **Party Summaries** | Daily/Weekly/Monthly/Annual | ✓ | Daily 02:00 | Party performance tracking |
 | **Politician Summaries** | Daily/Weekly/Monthly/Annual | ✓ | Daily 02:00 | Individual MP monitoring |
@@ -4508,7 +7627,52 @@ All vote summary views are **materialized** for performance optimization:
 ### Common Metrics Across All Vote Views
 
 | Metric | Description | Calculation |
-|--------|-------------|-------------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|
 | `ballot_count` | Number of votes | COUNT(DISTINCT ballot_id) |
 | `yes_votes` | Total "Ja" votes | SUM(CASE vote = 'Ja') |
 | `no_votes` | Total "Nej" votes | SUM(CASE vote = 'Nej') |
@@ -4531,7 +7695,52 @@ Daily aggregation of individual politician voting behavior, tracking presence, e
 #### Key Columns
 
 | Column | Type | Description | Example |
-|--------|------|-------------|---------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---|
 | `vote_date` | DATE | Voting date | '2024-10-15' |
 | `intressent_id` | VARCHAR(255) | Politician ID | '0532213467925' |
 | `first_name` | VARCHAR(255) | Politician first name | 'Anna' |
@@ -4723,7 +7932,88 @@ Election Cycle Views (v1.51) provide META/META-level historical analysis of Swed
 All 6 analytical frameworks are explicitly covered with corresponding views:
 
 | Framework | View | Supporting Views | Risk Rules | Operational |
-|-----------|------|------------------|------------|-------------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|
 | **Temporal Analysis** | view_election_cycle_temporal_trends | 35 views | 20+ rules | 100% |
 | **Comparative Analysis** | view_election_cycle_comparative_analysis | 26 views | 15+ rules | 100% |
 | **Pattern Recognition** | view_election_cycle_anomaly_pattern | 23 views | 12/13 rules | 95% |
@@ -4734,7 +8024,70 @@ All 6 analytical frameworks are explicitly covered with corresponding views:
 ### View Inventory
 
 | View Name | Framework | Intelligence Value | Description |
-|-----------|-----------|-------------------|-------------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|
 | view_election_cycle_temporal_trends | Temporal Analysis | ⭐⭐⭐⭐⭐ | Attendance, ballots, violations by cycle/semester |
 | view_election_cycle_comparative_analysis | Comparative Analysis | ⭐⭐⭐⭐⭐ | Party-level metrics comparison by cycle/semester |
 | view_election_cycle_anomaly_pattern | Pattern Recognition | ⭐⭐⭐⭐⭐ | Risk escalations and behavioral anomalies by cycle |
@@ -4758,7 +8111,52 @@ Aggregates longitudinal trends for attendance, bill proposals, voting activity, 
 #### Key Columns
 
 | Column | Type | Description | Example |
-|--------|------|-------------|---------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---|
 | `election_cycle_id` | TEXT | Election cycle identifier | '2018-2022', '2022-2026' |
 | `cycle_year` | INTEGER | Year within 4-year cycle (1-4) | 3 |
 | `calendar_year` | INTEGER | Actual calendar year | 2024 |
@@ -4831,7 +8229,43 @@ Party-level comparative analysis across election cycles with semester granularit
 #### Key Columns
 
 | Column | Type | Description |
-|--------|------|-------------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|
 | `election_cycle_id` | TEXT | Election cycle identifier |
 | `cycle_year` | INTEGER | Year within cycle (1-4) |
 | `semester` | TEXT | Semester (autumn/spring) |
@@ -4859,7 +8293,43 @@ High-level anomaly and pattern detection for each semester and election cycle, i
 #### Key Columns
 
 | Column | Type | Description |
-|--------|------|-------------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|
 | `anomaly_type` | TEXT | Classification of detected anomaly |
 | `politician_count_with_risk` | BIGINT | Politicians with elevated risk |
 | `avg_risk_score` | NUMERIC(5,2) | Average risk score |
@@ -4884,7 +8354,43 @@ Forecasts, risk spikes, and predictive intelligence signals by election cycle an
 #### Key Columns
 
 | Column | Type | Description |
-|--------|------|-------------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|
 | `risk_forecast_category` | TEXT | Predicted risk level |
 | `politicians_at_risk` | BIGINT | Count with escalating risk |
 | `avg_risk_score_change` | NUMERIC(5,2) | Average risk delta |
@@ -4909,7 +8415,43 @@ Coalition structure and network trend mapping per election cycle and semester.
 #### Key Columns
 
 | Column | Type | Description |
-|--------|------|-------------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|
 | `party_a` | TEXT | First party in pair |
 | `party_b` | TEXT | Second party in pair |
 | `alignment_score` | NUMERIC(5,2) | Voting alignment percentage |
@@ -4932,7 +8474,43 @@ Policy success, coalition stability, and legislative outcome analysis by electio
 #### Key Columns
 
 | Column | Type | Description |
-|--------|------|-------------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|
 | `party` | TEXT | Political party |
 | `total_proposals` | BIGINT | Total proposals submitted |
 | `approved_proposals` | BIGINT | Successfully approved proposals |
@@ -4957,7 +8535,34 @@ Intelligence views (v1.29-v1.30) represent advanced analytical capabilities comb
 ### View Categories
 
 | View Type | Examples | Purpose |
-|-----------|----------|---------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---|
 | **Behavioral Trends** | politician_behavioral_trends, party_effectiveness_trends | Time-series performance tracking |
 | **Risk Assessment** | risk_score_evolution, politician_risk_summary | Automated risk scoring |
 | **Coalition Analysis** | coalition_alignment_matrix | Government formation forecasting |
@@ -4982,7 +8587,52 @@ Unified intelligence dashboard providing real-time aggregated metrics across all
 #### Key Columns
 
 | Column | Type | Description | Example |
-|--------|------|-------------|---------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---|
 | `parties_gaining_momentum` | BIGINT | Count of parties with positive/strong positive momentum | 3 |
 | `parties_losing_momentum` | BIGINT | Count of parties with negative/strong negative momentum | 2 |
 | `volatile_parties` | BIGINT | Count of parties with volatile/highly volatile stability | 1 |
@@ -5130,7 +8780,52 @@ Sophisticated crisis resilience analysis comparing politician performance during
 #### Key Columns
 
 | Column | Type | Description | Example |
-|--------|------|-------------|---------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---|
 | `person_id` | VARCHAR(255) | Politician identifier | '0532213467925' |
 | `first_name` | VARCHAR(255) | Politician first name | 'Anna' |
 | `last_name` | VARCHAR(255) | Politician last name | 'Andersson' |
@@ -5185,7 +8880,61 @@ resilience_score = 100 - (
 **Resilience Classification Thresholds:**
 
 | Score Range | Classification | Description |
-|-------------|----------------|-------------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|
 | **90-100** | HIGHLY_RESILIENT | Excellent crisis performance |
 | **75-89** | RESILIENT | Good crisis performance |
 | **60-74** | MODERATE_RESILIENCE | Adequate crisis performance |
@@ -5310,7 +9059,52 @@ Temporal risk score tracking combining rule violations, behavioral trends, and p
 #### Key Columns
 
 | Column | Type | Description | Example |
-|--------|------|-------------|---------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---|
 | `person_id` | VARCHAR(255) | Politician identifier | '0532213467925' |
 | `first_name` | VARCHAR(255) | Politician first name | 'Anna' |
 | `last_name` | VARCHAR(255) | Politician last name | 'Andersson' |
@@ -5333,7 +9127,70 @@ Temporal risk score tracking combining rule violations, behavioral trends, and p
 **Total Risk Score** = Sum of risk category points:
 
 | Risk Category | Max Points | Calculation Basis |
-|--------------|------------|-------------------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|
 | **Absence Risk** | 0-100 | Absence rate × multiplier + trend weighting |
 | **Effectiveness Risk** | 0-100 | (100 - win_rate) × multiplier + trend weighting |
 | **Discipline Risk** | 0-100 | Rebel rate × multiplier + party impact factor |
@@ -5342,7 +9199,52 @@ Temporal risk score tracking combining rule violations, behavioral trends, and p
 **Risk Severity Thresholds:**
 
 | Severity | Score Range | Description |
-|----------|-------------|-------------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|
 | **MINOR** | 10-49 | Early warning, monitor |
 | **MAJOR** | 50-99 | Significant concern, investigate |
 | **CRITICAL** | 100+ | Severe risk, immediate attention |
@@ -5522,7 +9424,52 @@ Temporal trends view for decision flow analysis from DOCUMENT_PROPOSAL_DATA, ena
 #### Key Columns
 
 | Column | Type | Description | Example |
-|--------|------|-------------|---------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---|
 | `decision_day` | DATE | Date of decision(s) | '2024-11-15' |
 | `daily_decisions` | BIGINT | Total decisions on this day | 42 |
 | `daily_approval_rate` | NUMERIC(5,2) | Percentage of approved decisions (bifall) | 67.50 |
@@ -5577,7 +9524,178 @@ ORDER BY avg_daily_decisions DESC;
 
 ```
 parliamentary_period      | days_with_decisions | avg_daily_decisions | avg_approval_rate | min_daily_decisions | max_daily_decisions
---------------------------+---------------------+---------------------+-------------------+---------------------+--------------------
+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--
 Autumn Session           |                 245 |               42.15 |             68.30 |                  15 |                 87
 Late Spring Session      |                 198 |               38.72 |             67.80 |                  12 |                 78
 Spring Session           |                 156 |               35.45 |             66.50 |                   8 |                 72
@@ -5615,7 +9733,133 @@ LIMIT 20;
 
 ```
 decision_day | daily_decisions | ma_7day_decisions | ma_30day_decisions | trend_signal | ma_divergence
--------------+-----------------+-------------------+--------------------+--------------+--------------
+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-----+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--
 2024-11-15   |              42 |             38.71 |              41.15 | Downtrend ⬇  |         -2.44
 2024-11-14   |              45 |             39.86 |              41.22 | Downtrend ⬇  |         -1.36
 2024-11-13   |              48 |             40.29 |              40.95 | Downtrend ⬇  |         -0.66
@@ -5664,7 +9908,151 @@ LIMIT 15;
 
 ```
 decision_day | daily_decisions | parliamentary_period | mean_decisions | stddev_decisions | z_score | anomaly_status
--------------+-----------------+----------------------+----------------+------------------+---------+------------------
+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-----+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |----+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |----+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |
 2024-10-22   |              87 |    Autumn Session    |          39.45 |            15.23 |    3.12 | EXTREME ANOMALY 🔴
 2024-09-15   |              78 |    Autumn Session    |          39.45 |            15.23 |    2.53 | EXTREME ANOMALY 🔴
 2024-11-03   |              72 |    Autumn Session    |          39.45 |            15.23 |    2.14 | ANOMALY 🟡
@@ -5706,7 +10094,160 @@ LIMIT 20;
 
 ```
 decision_day | current_year | prior_year | decision_change | pct_change | parliamentary_period | yoy_trend
--------------+--------------+------------+-----------------+------------+----------------------+-------------------------
+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-----+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |----+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-
 2024-11-15   |           42 |         45 |              -3 |      -6.67 | Autumn Session       | Stable ➡
 2024-11-14   |           45 |         38 |               7 |      18.42 | Autumn Session       | Moderate Increase ⬆
 2024-11-13   |           48 |         52 |              -4 |      -7.69 | Autumn Session       | Stable ➡
@@ -5745,7 +10286,115 @@ FROM recent_trend rt;
 
 ```
 forecast_date | expected_decisions | lower_bound | upper_bound | activity_expectation
---------------+--------------------+-------------+-------------+----------------------
+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |----
 2024-11-16    |              41.15 |       26.92 |       55.38 | Weekend (Low Activity)
 2024-11-17    |              41.15 |       26.92 |       55.38 | Weekend (Low Activity)
 2024-11-18    |              41.15 |       26.92 |       55.38 | Weekday (Normal Activity)
@@ -5781,7 +10430,205 @@ ORDER BY total_decisions DESC;
 
 ```
 parliamentary_period    | total_days | avg_decisions_per_day | avg_approval_rate | smoothed_approval_rate | total_decisions | total_approved | total_rejected
-------------------------+------------+-----------------------+-------------------+------------------------+-----------------+----------------+---------------
+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-----+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-----+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |----+### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---
 Autumn Session         |        245 |                 42.15 |             68.30 |                  68.50 |           10327 |           7053 |           2845
 Late Spring Session    |        198 |                 38.72 |             67.80 |                  68.10 |            7667 |           5198 |           2134
 Spring Session         |        156 |                 35.45 |             66.50 |                  67.20 |            5530 |           3677 |           1623
@@ -6578,7 +11425,43 @@ graph TB
 ### View Dependency Levels
 
 | Level | Views | Description |
-|-------|-------|-------------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|
 | **Level 0** | Source Tables | Raw data (person_data, vote_data, document_data, etc.) |
 | **Level 1** | Base Views | Direct table aggregations (politician, party, committee) |
 | **Level 2** | Vote Summaries | Daily/weekly/monthly/annual aggregations (materialized) |
@@ -6636,7 +11519,52 @@ WHERE ballot_count >= 10  -- At least 10 ballots for statistical validity
 **Key Indexes:**
 
 | View Category | Indexed Columns | Use Case |
-|--------------|----------------|----------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |----|
 | **Vote Summaries** | `vote_date`, `person_id`, `party` | Temporal + entity filtering |
 | **Behavioral Trends** | `year_month`, `person_id`, `party` | Time-series queries |
 | **Document Views** | `made_public_date`, `person_id`, `org_code` | Productivity tracking |
@@ -6664,7 +11592,61 @@ WHERE EXTRACT(YEAR FROM year_month) = 2024  -- No index
 **Available Materialized Views (v1.25+):**
 
 | View | Refresh Schedule | Performance Gain |
-|------|-----------------|------------------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||
 | `view_riksdagen_vote_data_ballot_summary_daily` | Daily 02:00 UTC | 50-200x |
 | `view_riksdagen_vote_data_ballot_party_summary_daily` | Daily 02:00 UTC | 30-100x |
 | `view_riksdagen_vote_data_ballot_politician_summary_daily` | Daily 02:00 UTC | 100-500x |
@@ -6729,7 +11711,70 @@ LIMIT 20;
 ### Index Usage Reference
 
 | Index Name | Columns | Views Optimized | Performance Gain |
-|-----------|---------|----------------|------------------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||
 | `idx_vote_summary_daily_date_person` | `vote_date DESC, intressent_id` | Politician behavioral trends, daily summaries | 10-100x |
 | `idx_vote_summary_daily_party_date` | `party, vote_date DESC` | Party effectiveness trends | 20-80x |
 | `idx_rule_violation_date_resource` | `detected_date DESC, reference_id` | Risk score evolution | 5-50x |
@@ -6742,7 +11787,79 @@ LIMIT 20;
 ### Query Performance Benchmarks
 
 | Query Pattern | Typical Response Time | Optimization Notes |
-|--------------|---------------------|-------------------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|
 | **Single politician lookup** | <10ms | Indexed on person_id |
 | **Party comparison (8 parties)** | 50-100ms | Use current month only |
 | **12-month trend analysis** | 100-200ms | Filter by date range |
@@ -6818,7 +11935,70 @@ LIMIT 100;
 Views supporting specific risk rules from [RISK_RULES_INTOP_OSINT.md](RISK_RULES_INTOP_OSINT.md):
 
 | Risk Rule | Rule ID | Supported By Views | Metrics Used |
-|-----------|---------|-------------------|--------------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|
 | **PoliticianLazy** | P-01 | `view_politician_behavioral_trends` | `avg_absence_rate`, `attendance_status` |
 | **PoliticianIneffectiveVoting** | P-02 | `view_politician_behavioral_trends` | `avg_win_rate`, `effectiveness_status` |
 | **PoliticianHighRebelRate** | P-03 | `view_politician_behavioral_trends` | `avg_rebel_rate`, `discipline_status` |
@@ -6835,7 +12015,61 @@ Views supporting specific risk rules from [RISK_RULES_INTOP_OSINT.md](RISK_RULES
 Views implementing frameworks from [DATA_ANALYSIS_INTOP_OSINT.md](DATA_ANALYSIS_INTOP_OSINT.md):
 
 | Framework | Description | Implementing Views |
-|-----------|-------------|-------------------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|
 | **Temporal Analysis** | Time-series tracking, trends | `view_politician_behavioral_trends`, `view_party_effectiveness_trends`, all vote summaries |
 | **Comparative Analysis** | Entity comparison, benchmarking | `view_riksdagen_politician`, `view_riksdagen_party`, all summary views |
 | **Pattern Recognition** | Behavioral classification, clustering | `view_politician_behavioral_trends`, `view_risk_score_evolution` |
@@ -6848,7 +12082,52 @@ Views implementing frameworks from [DATA_ANALYSIS_INTOP_OSINT.md](DATA_ANALYSIS_
 Views supporting features from [BUSINESS_PRODUCT_DOCUMENT.md](BUSINESS_PRODUCT_DOCUMENT.md):
 
 | Product Line | Feature | Supporting Views |
-|-------------|---------|-----------------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-----|
 | **Product Line 1: Core Intelligence** | Politician Dashboard | `view_riksdagen_politician`, `view_politician_behavioral_trends`, `view_riksdagen_politician_experience_summary` |
 | **Product Line 1: Core Intelligence** | Party Dashboard | `view_riksdagen_party`, `view_party_effectiveness_trends` |
 | **Product Line 2: Advanced Analytics** | Performance Trends | All behavioral trend views, vote summary views |
@@ -6879,7 +12158,61 @@ Views supporting features from [BUSINESS_PRODUCT_DOCUMENT.md](BUSINESS_PRODUCT_D
 ### Appendix B: Swedish Political Terms Glossary
 
 | Swedish Term | English Translation | Context |
-|-------------|-------------------|---------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---|
 | **Riksdagen** | The Swedish Parliament | Legislative body, 349 seats |
 | **Interpellation** | Interpellation | Question to minister requiring debate |
 | **Motion** | Motion | Legislative proposal by MP |
@@ -6913,7 +12246,106 @@ This appendix maps database views to business product features per [BUSINESS_PRO
 **Target Segments:** Political Consulting (€15M TAM), Media & Journalism (€8M TAM), Academic Research (€5M TAM)
 
 | View | Product Feature | JSON Schema | API Endpoint | Market Segment | Revenue Tier |
-|------|----------------|-------------|--------------|----------------|--------------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|
 | `view_riksdagen_politician` | Politician Profiles | [politician-schema.md](json-export-specs/schemas/politician-schema.md) | `GET /api/v1/politicians` | All segments | Pro €99/mo |
 | `view_riksdagen_politician_summary` | Politician Scorecards | [politician-schema.md#intelligence](json-export-specs/schemas/politician-schema.md) | `GET /api/v1/politicians/{id}` | Political Consulting | Enterprise €330/mo |
 | `view_riksdagen_party` | Party Performance Data | [party-schema.md](json-export-specs/schemas/party-schema.md) | `GET /api/v1/parties` | Media & Journalism | Pro €99/mo |
@@ -6933,7 +12365,97 @@ This appendix maps database views to business product features per [BUSINESS_PRO
 **Target Segments:** Corporate Government Affairs (€12M TAM), NGOs & Advocacy, Political Parties
 
 | View | Dashboard Component | Data Schema | Market Segment | Pricing Tier |
-|------|-------------------|-------------|----------------|--------------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|
 | `view_riksdagen_politician_ranking` | Political Scorecards | [politician-schema.md#intelligence](json-export-specs/schemas/politician-schema.md#intelligence-section) | Corporate Affairs | Professional €6K/mo |
 | `view_riksdagen_coalition_alignment_matrix` | Coalition Stability Monitor | [party-schema.md#coalition](json-export-specs/schemas/party-schema.md) | Political Parties | Enterprise €15K/mo |
 | `view_party_effectiveness_trends` | Party Performance Dashboard | [party-schema.md#intelligence](json-export-specs/schemas/party-schema.md#intelligence-section) | NGOs & Advocacy | Professional €6K/mo |
@@ -6952,7 +12474,115 @@ This appendix maps database views to business product features per [BUSINESS_PRO
 **Target Segments:** Political Consulting, Corporate Affairs, Media & Journalism
 
 | View | Risk Intelligence Product | Intelligence Value | Market Segment | Premium Tier |
-|------|--------------------------|-------------------|----------------|--------------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|
 | `view_rule_violation` | Risk Assessment Feed | ⭐⭐⭐⭐⭐ | Political Consulting | €5,900/mo |
 | `view_politician_risk_summary` | Politician Risk Profiles | ⭐⭐⭐⭐⭐ | Corporate Affairs | €5,900/mo |
 | `view_riksdagen_voting_anomaly_detection` | Voting Anomaly Alerts | ⭐⭐⭐⭐⭐ | Political Parties | €5,900/mo |
@@ -6970,7 +12600,88 @@ This appendix maps database views to business product features per [BUSINESS_PRO
 **Target Segments:** All segments, customizable templates
 
 | View | Report Template | Output Format | Market Segment | Feature Tier |
-|------|----------------|---------------|----------------|--------------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|
 | `view_riksdagen_politician_experience_summary` | Experience Analysis Report | PDF, Excel | Academic Research | Starter €2K/mo |
 | `view_riksdagen_party_ballot_support_annual_summary` | Coalition Analysis Report | PDF, PPT | Political Consulting | Professional €6K/mo |
 | `view_committee_productivity_matrix` | Committee Performance Report | Excel, PDF | NGOs & Advocacy | Professional €6K/mo |
@@ -6983,7 +12694,115 @@ This appendix maps database views to business product features per [BUSINESS_PRO
 #### Cross-Product Feature Matrix
 
 | Feature Category | Views Used (Count) | Product Lines | Annual Revenue | Customer Segments |
-|-----------------|-------------------|---------------|----------------|-------------------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|
 | **Politician Intelligence** | 8 core views | 1, 2, 3, 4 | €1.2M | All segments |
 | **Party & Coalition Analysis** | 6 core views | 1, 2, 3, 4 | €800K | Political focus |
 | **Risk Assessment** | 5 specialized views | 2, 3 | €1.8M | Consulting, Corporate |
@@ -7012,7 +12831,97 @@ All views are exported via JSON API with standardized schemas. See complete spec
 ### Appendix D: Party Code Reference
 
 | Code | Full Name (Swedish) | English Name | Ideology | Historic Seats Range |
-|------|---------------------|--------------|----------|---------------------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---|
 | **S** | Socialdemokraterna | Social Democrats | Social democracy | 70-130 |
 | **M** | Moderaterna | Moderate Party | Liberal conservatism | 60-110 |
 | **SD** | Sverigedemokraterna | Sweden Democrats | National conservatism | 20-80 |
@@ -7025,7 +12934,43 @@ All views are exported via JSON API with standardized schemas. See complete spec
 ### Appendix E: Database Maintenance Schedule
 
 | Task | Frequency | Time (UTC) | Purpose |
-|------|-----------|-----------|---------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---|
 | **Materialized View Refresh** | Daily | 02:00 | Update vote/document aggregations |
 | **Index Maintenance** | Weekly | Sunday 03:00 | REINDEX for performance |
 | **Statistics Update** | Daily | 02:30 | Update query planner statistics (ANALYZE) |
@@ -7091,7 +13036,43 @@ All views are exported via JSON API with standardized schemas. See complete spec
 **Change Log:**
 
 | Version | Date | Changes | Author |
-|---------|------|---------|--------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics ||### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |---|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|
 | 1.0 | 2025-11-17 | Initial comprehensive catalog creation | Intelligence Operative |
 | 1.1 | 2025-11-20 | **Validation & Corrections** - Validated against full_schema.sql; Added Complete View Inventory section listing all 82 views; Updated Executive Summary with accurate statistics (9 detailed, 73 basic coverage); Added validation metadata; Identified 73 undocumented views requiring detailed documentation | Intelligence Operative |
 | 2.0 | 2025-11-21 | **Complete Documentation Achievement** - Added comprehensive structured documentation for all 73 remaining views; Documented all politician views (ballot summary, influence metrics, risk summary, document summaries); Documented all intelligence views (dashboard, crisis resilience, voting anomaly detection); Completed ministry/government views (effectiveness trends, productivity matrix, risk evolution, government structure); Documented all party views (performance metrics, momentum analysis, document summaries, coalition patterns); Completed vote data views (20 ballot/party/politician summaries at daily/weekly/monthly/annual granularities); Documented all committee views (productivity, decisions, roles, membership); Completed document views and application/audit views; Added WorldBank data view documentation; **Achievement: 100% documentation coverage (85/85 views documented; later corrected to 84 in v2.1 after schema reverification)** | Intelligence Operative (Copilot Agent) |
@@ -7261,7 +13242,52 @@ All views documented in this catalog have corresponding sample data files for te
 Sample CSV files are located in: [`service.data.impl/sample-data/`](service.data.impl/sample-data/)
 
 | File Pattern | Count | Description |
-|--------------|-------|-------------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-|
 | `view_*_sample.csv` | 83 | View sample data - 83 of 84 documented views (1 view removed from schema) |
 | `table_*_sample.csv` | 54 | Table sample data |
 | `distribution_*.csv` | 43 | Statistical distributions |
@@ -7289,7 +13315,34 @@ When working with sample data, be aware of these Swedish language values:
 Some documented views do not have sample CSV files:
 
 | View Name | Reason | Status |
-|-----------|--------|--------|
+|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |-----|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|### Document Views (6 views)
+
+| View Name | Type | Intelligence Value | Description |
+|-----------|------|-------------------|-------------|
+| view_document_data_committee_report_url | Standard | ⭐⭐⭐ | URLs for committee reports and documents |
+| view_riksdagen_document_type_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by type |
+| view_riksdagen_org_document_daily_summary | 🔄 Materialized | ⭐⭐⭐ | Daily summary of documents by organization |
+| view_riksdagen_party_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily party document productivity |
+| view_riksdagen_politician_document_daily_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Daily politician document productivity |
+| view_riksdagen_politician_document_summary | 🔄 Materialized | ⭐⭐⭐⭐ | Aggregated politician document statistics |--|
 | `view_riksdagen_coalition_alignment_matrix` | Empty or very large - no rows returned | Schema exists, no sample CSV |
 | `view_riksdagen_voting_anomaly_detection` | Empty due to status value mismatch | Schema exists, no sample CSV |
 | `view_riksdagen_intelligence_dashboard` | Consolidated into other views | Removed from schema, no sample CSV |
