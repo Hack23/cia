@@ -59,4 +59,5 @@
   <include file="db-changelog-1.52.xml" />
   <include file="db-changelog-1.53.xml" />
   <include file="db-changelog-1.54.xml" />
+  <include file="db-changelog-1.55.xml" />
 </databaseChangeLog>

@@ -1,0 +1,6 @@
+person_id,first_name,last_name,previous_party,new_party,transition_date,months_until_election,expected_detection,validation_label,notes
+0000000000,Test,Politician1,M,-,2014-01-15,20,MID_TERM_DEFECTION,PASS,Mid-term defection from Moderaterna to independent
+0000000001,Test,Politician2,SD,KD,2021-06-01,15,PRE_ELECTION_DEFECTION,PASS,Pre-election switch from Sweden Democrats to Christian Democrats
+0000000002,Test,Politician3,S,V,2015-03-10,30,NORMAL_DEFECTION,PASS,Normal timing switch from Social Democrats to Left Party
+0000000003,Test,Politician4,C,MP,2010-11-20,22,NORMAL_DEFECTION,PASS,Center to Green Party mid-cycle
+0000000004,Test,Politician5,L,-,2019-01-08,9,PRE_ELECTION_DEFECTION,PASS,Liberal to independent 9 months before election
