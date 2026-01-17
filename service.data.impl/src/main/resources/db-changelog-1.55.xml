@@ -263,8 +263,8 @@ SELECT
         ELSE 'NO_ANOMALY'
     END AS anomaly_type,
     CASE 
-        WHEN ballot_z_score > 2 OR doc_z_score > 2 THEN 'UNUSUALLY_HIGH'
-        WHEN ballot_z_score < -2 OR doc_z_score < -2 THEN 'UNUSUALLY_LOW'
+        WHEN ballot_z_score > 2 OR doc_z_score > 2 OR attendance_z_score > 2 THEN 'UNUSUALLY_HIGH'
+        WHEN ballot_z_score < -2 OR doc_z_score < -2 OR attendance_z_score < -2 THEN 'UNUSUALLY_LOW'
         ELSE 'WITHIN_NORMAL_RANGE'
     END AS anomaly_direction,
     GREATEST(ABS(ballot_z_score), ABS(doc_z_score), ABS(attendance_z_score)) AS max_z_score,

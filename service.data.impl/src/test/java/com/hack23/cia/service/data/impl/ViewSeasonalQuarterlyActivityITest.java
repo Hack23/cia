@@ -18,7 +18,6 @@
  */
 package com.hack23.cia.service.data.impl;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.EntityManager;

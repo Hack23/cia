@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict WLmMr8hUKftkZsCobip5uaegEkPzecqfBTkfd19MlOQwyBPDN81Rh1yLdKOb40k
+\restrict 021aIfGTUCMlfjdITbgXHUbVfdzSODdGU3FOsln5RWyccLtW887RwaoExaYP5bk
 
 -- Dumped from database version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
@@ -10902,8 +10902,8 @@ CREATE VIEW public.view_riksdagen_seasonal_anomaly_detection AS
             ELSE 'NO_ANOMALY'::text
         END AS anomaly_type,
         CASE
-            WHEN ((ballot_z_score > (2)::numeric) OR (doc_z_score > (2)::numeric)) THEN 'UNUSUALLY_HIGH'::text
-            WHEN ((ballot_z_score < ('-2'::integer)::numeric) OR (doc_z_score < ('-2'::integer)::numeric)) THEN 'UNUSUALLY_LOW'::text
+            WHEN ((ballot_z_score > (2)::numeric) OR (doc_z_score > (2)::numeric) OR (attendance_z_score > (2)::numeric)) THEN 'UNUSUALLY_HIGH'::text
+            WHEN ((ballot_z_score < ('-2'::integer)::numeric) OR (doc_z_score < ('-2'::integer)::numeric) OR (attendance_z_score < ('-2'::integer)::numeric)) THEN 'UNUSUALLY_LOW'::text
             ELSE 'WITHIN_NORMAL_RANGE'::text
         END AS anomaly_direction,
     GREATEST(abs(ballot_z_score), abs(doc_z_score), abs(attendance_z_score)) AS max_z_score,
@@ -13507,13 +13507,13 @@ ALTER TABLE ONLY public.jv_snapshot
 -- PostgreSQL database dump complete
 --
 
-\unrestrict WLmMr8hUKftkZsCobip5uaegEkPzecqfBTkfd19MlOQwyBPDN81Rh1yLdKOb40k
+\unrestrict 021aIfGTUCMlfjdITbgXHUbVfdzSODdGU3FOsln5RWyccLtW887RwaoExaYP5bk
 
 --
 -- PostgreSQL database dump
 --
 
-\restrict Lm46hQXleewrray3VoF2qfWRIOh2IrX7zwh7RA8WvD9OBn6dEj7ajKVlS3t5Bqa
+\restrict SusVnbXtvC2v9EyPDBSmwAeUQAef3GhRjQtAhPNswnmfJ9lmQ8MHyLI1W7AhVeM
 
 -- Dumped from database version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
@@ -14024,13 +14024,13 @@ fix-rebel-calculation-risk-score-evolution-1.50-001	intelligence-operative	db-ch
 1.54-add-government-body-indexes	intelligence-operative-analytics	db-changelog-1.54.xml	2026-01-16 15:32:26.196206	489	EXECUTED	9:d4611e87e7ecd3c83c57c45009042471	createIndex (x4)	Add indexes for query performance	\N	5.0.1	\N	\N	\N
 1.54-add-government-body-comments	intelligence-operative-analytics	db-changelog-1.54.xml	2026-01-16 15:32:26.196206	490	EXECUTED	9:72d9e688519a72ac461c65c1842e91b9	sql	Add table comments	\N	5.0.1	\N	\N	\N
 1.54-create-government-body-data-table	intelligence-operative-analytics	db-changelog-1.54.xml	2026-01-16 15:32:26.196206	488	EXECUTED	9:ececfb8343eaa00195e944896c729962	createTable tableName=government_body_data	Create government_body_data table	\N	5.0.1	\N	\N	\N
-1.55-intro	intelligence-operative	db-changelog-1.55.xml	2026-01-17 11:03:33.570504	491	EXECUTED	9:ae819f4af55b6727e7d064337c41a277	sql	v1.55 Seasonal Trend Analysis - Q4 Pre-Election Activity Patterns	\N	5.0.1	\N	\N	8647810740
-1.55-create-seasonal-quarterly-activity-view	intelligence-operative	db-changelog-1.55.xml	2026-01-17 11:03:33.615718	492	EXECUTED	9:54fb979a48e340a89206c252a0b5277d	createView viewName=view_riksdagen_seasonal_quarterly_activity	Create view_riksdagen_seasonal_quarterly_activity for quarterly pattern analysis.\n            Aggregates Q1-Q4 activity patterns across 24 years (2002-2026) for election cycle analysis.\n            Includes baseline calculation for non-election ye...	\N	5.0.1	\N	\N	8647810740
-1.55-document-seasonal-quarterly-activity-view	intelligence-operative	db-changelog-1.55.xml	2026-01-17 11:03:33.622227	493	EXECUTED	9:33b75f2117ac0ec9c516453e836bebb2	sql	Add documentation for view_riksdagen_seasonal_quarterly_activity	\N	5.0.1	\N	\N	8647810740
-1.55-create-q4-election-comparison-view	intelligence-operative	db-changelog-1.55.xml	2026-01-17 11:03:33.631908	494	EXECUTED	9:4411891d81db15a98164476b5c168c61	createView viewName=view_riksdagen_q4_election_year_comparison	Create view_riksdagen_q4_election_year_comparison for Q4 pre-election activity analysis.\n            Compares Q4 activity in election years vs non-election years to detect pre-election surge patterns.\n            Supports predictive modeling of fu...	\N	5.0.1	\N	\N	8647810740
-1.55-document-q4-election-comparison-view	intelligence-operative	db-changelog-1.55.xml	2026-01-17 11:03:33.637397	495	EXECUTED	9:b497414f0b045cb3bb0ccb8e6961aed3	sql	Add documentation for view_riksdagen_q4_election_year_comparison	\N	5.0.1	\N	\N	8647810740
-1.55-create-seasonal-anomaly-detection-view	intelligence-operative	db-changelog-1.55.xml	2026-01-17 11:03:33.648668	496	EXECUTED	9:e8f7bf791af076334deafdd4c662d621	createView viewName=view_riksdagen_seasonal_anomaly_detection	Create view_riksdagen_seasonal_anomaly_detection for identifying activity anomalies.\n            Flags quarters with activity significantly above or below baseline using z-score thresholds (moderate >1.5, high >2, critical >3 standard deviations) ...	\N	5.0.1	\N	\N	8647810740
-1.55-document-seasonal-anomaly-detection-view	intelligence-operative	db-changelog-1.55.xml	2026-01-17 11:03:33.655071	497	EXECUTED	9:25e86a40c1e43484634d4d66a3b5058f	sql	Add documentation for view_riksdagen_seasonal_anomaly_detection	\N	5.0.1	\N	\N	8647810740
+1.55-intro	intelligence-operative	db-changelog-1.55.xml	2026-01-17 12:05:11.611367	491	EXECUTED	9:ae819f4af55b6727e7d064337c41a277	sql	v1.55 Seasonal Trend Analysis - Q4 Pre-Election Activity Patterns	\N	5.0.1	\N	\N	8651509128
+1.55-create-seasonal-quarterly-activity-view	intelligence-operative	db-changelog-1.55.xml	2026-01-17 12:05:11.648514	492	EXECUTED	9:54fb979a48e340a89206c252a0b5277d	createView viewName=view_riksdagen_seasonal_quarterly_activity	Create view_riksdagen_seasonal_quarterly_activity for quarterly pattern analysis.\n            Aggregates Q1-Q4 activity patterns across 24 years (2002-2026) for election cycle analysis.\n            Includes baseline calculation for non-election ye...	\N	5.0.1	\N	\N	8651509128
+1.55-document-seasonal-quarterly-activity-view	intelligence-operative	db-changelog-1.55.xml	2026-01-17 12:05:11.655416	493	EXECUTED	9:33b75f2117ac0ec9c516453e836bebb2	sql	Add documentation for view_riksdagen_seasonal_quarterly_activity	\N	5.0.1	\N	\N	8651509128
+1.55-create-q4-election-comparison-view	intelligence-operative	db-changelog-1.55.xml	2026-01-17 12:05:11.666323	494	EXECUTED	9:4411891d81db15a98164476b5c168c61	createView viewName=view_riksdagen_q4_election_year_comparison	Create view_riksdagen_q4_election_year_comparison for Q4 pre-election activity analysis.\n            Compares Q4 activity in election years vs non-election years to detect pre-election surge patterns.\n            Supports predictive modeling of fu...	\N	5.0.1	\N	\N	8651509128
+1.55-document-q4-election-comparison-view	intelligence-operative	db-changelog-1.55.xml	2026-01-17 12:05:11.670233	495	EXECUTED	9:b497414f0b045cb3bb0ccb8e6961aed3	sql	Add documentation for view_riksdagen_q4_election_year_comparison	\N	5.0.1	\N	\N	8651509128
+1.55-create-seasonal-anomaly-detection-view	intelligence-operative	db-changelog-1.55.xml	2026-01-17 12:05:11.683012	496	EXECUTED	9:807748b3d9dfc5d73c61bb4ef057d8c8	createView viewName=view_riksdagen_seasonal_anomaly_detection	Create view_riksdagen_seasonal_anomaly_detection for identifying activity anomalies.\n            Flags quarters with activity significantly above or below baseline using z-score thresholds (moderate >1.5, high >2, critical >3 standard deviations) ...	\N	5.0.1	\N	\N	8651509128
+1.55-document-seasonal-anomaly-detection-view	intelligence-operative	db-changelog-1.55.xml	2026-01-17 12:05:11.687843	497	EXECUTED	9:25e86a40c1e43484634d4d66a3b5058f	sql	Add documentation for view_riksdagen_seasonal_anomaly_detection	\N	5.0.1	\N	\N	8651509128
 \.
 
 
@@ -14047,5 +14047,5 @@ COPY public.databasechangeloglock (id, locked, lockgranted, lockedby) FROM stdin
 -- PostgreSQL database dump complete
 --
 
-\unrestrict Lm46hQXleewrray3VoF2qfWRIOh2IrX7zwh7RA8WvD9OBn6dEj7ajKVlS3t5Bqa
+\unrestrict SusVnbXtvC2v9EyPDBSmwAeUQAef3GhRjQtAhPNswnmfJ9lmQ8MHyLI1W7AhVeM
 
