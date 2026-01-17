@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict x4IIWWfntIU68j890nwqzR1fd4vBx7nFqzWVqllZuGvUjPtOghrLqn3tTXImSKo
+\restrict mgYBidPpYlZDxPMystGDlVcTMhqFXNPzWPIxiQPnfUNpzYfBpjT3xzRjnkCmz4Q
 
 -- Dumped from database version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
@@ -9666,6 +9666,131 @@ CREATE VIEW public.view_riksdagen_party_coalation_against_annual_summary AS
 
 
 --
+-- Name: view_riksdagen_party_transition_history; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.view_riksdagen_party_transition_history AS
+ WITH party_assignments AS (
+         SELECT a.intressent_id AS person_id,
+            p.first_name,
+            p.last_name,
+            a.org_code AS party,
+            a.from_date,
+            a.to_date,
+            a.status,
+            lag(a.org_code) OVER (PARTITION BY a.intressent_id ORDER BY a.from_date) AS previous_party,
+            lead(a.org_code) OVER (PARTITION BY a.intressent_id ORDER BY a.from_date) AS next_party,
+            lag(a.to_date) OVER (PARTITION BY a.intressent_id ORDER BY a.from_date) AS previous_assignment_end
+           FROM (public.assignment_data a
+             JOIN public.person_data p ON (((a.intressent_id)::text = (p.id)::text)))
+          WHERE (((a.status)::text = 'Tjänstgörande riksdagsledamot'::text) AND ((a.assignment_type)::text = 'uppdrag'::text) AND (a.from_date >= '2002-01-01'::date))
+        ), party_changes AS (
+         SELECT party_assignments.person_id,
+            party_assignments.first_name,
+            party_assignments.last_name,
+            party_assignments.previous_party,
+            party_assignments.party AS new_party,
+            party_assignments.from_date AS transition_date,
+            party_assignments.status,
+            party_assignments.previous_assignment_end,
+                CASE
+                    WHEN ((party_assignments.previous_assignment_end IS NULL) OR ((party_assignments.from_date - party_assignments.previous_assignment_end) > 30)) THEN 'REJOINED_RIKSDAGEN'::text
+                    ELSE 'SWITCHED_WHILE_SERVING'::text
+                END AS transition_type
+           FROM party_assignments
+          WHERE ((party_assignments.previous_party IS NOT NULL) AND ((party_assignments.previous_party)::text <> (party_assignments.party)::text) AND ((party_assignments.previous_party)::text <> ALL ((ARRAY['-'::character varying, ''::character varying])::text[])))
+        ), election_proximity AS (
+         SELECT unnest(ARRAY['2002-09-15'::date, '2006-09-17'::date, '2010-09-19'::date, '2014-09-14'::date, '2018-09-09'::date, '2022-09-11'::date, '2026-09-13'::date]) AS election_date
+        )
+ SELECT person_id,
+    first_name,
+    last_name,
+    previous_party,
+    new_party,
+    transition_date,
+    transition_type,
+    EXTRACT(year FROM transition_date) AS transition_year,
+    ( SELECT min(ed.election_date) AS min
+           FROM election_proximity ed
+          WHERE (ed.election_date > pc.transition_date)) AS next_election,
+    (((EXTRACT(year FROM age((( SELECT min(ed.election_date) AS min
+           FROM election_proximity ed
+          WHERE (ed.election_date > pc.transition_date)))::timestamp with time zone, (transition_date)::timestamp with time zone)) * (12)::numeric) + EXTRACT(month FROM age((( SELECT min(ed.election_date) AS min
+           FROM election_proximity ed
+          WHERE (ed.election_date > pc.transition_date)))::timestamp with time zone, (transition_date)::timestamp with time zone))))::integer AS months_until_next_election,
+    ( SELECT max(ed.election_date) AS max
+           FROM election_proximity ed
+          WHERE (ed.election_date < pc.transition_date)) AS previous_election,
+    (((EXTRACT(year FROM age((transition_date)::timestamp with time zone, (( SELECT max(ed.election_date) AS max
+           FROM election_proximity ed
+          WHERE (ed.election_date < pc.transition_date)))::timestamp with time zone)) * (12)::numeric) + EXTRACT(month FROM age((transition_date)::timestamp with time zone, (( SELECT max(ed.election_date) AS max
+           FROM election_proximity ed
+          WHERE (ed.election_date < pc.transition_date)))::timestamp with time zone))))::integer AS months_since_last_election
+   FROM party_changes pc
+  ORDER BY transition_date DESC;
+
+
+--
+-- Name: view_riksdagen_party_defector_analysis; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.view_riksdagen_party_defector_analysis AS
+ WITH defector_performance AS (
+         SELECT pt.person_id,
+            pt.first_name,
+            pt.last_name,
+            pt.previous_party,
+            pt.new_party,
+            pt.transition_date,
+            pt.months_until_next_election,
+            round((avg(
+                CASE
+                    WHEN ((vd.vote_date >= (pt.transition_date - '6 mons'::interval)) AND (vd.vote_date <= pt.transition_date)) THEN
+                    CASE
+                        WHEN ((vd.vote)::text <> 'FRÅNVARANDE'::text) THEN 1
+                        ELSE 0
+                    END
+                    ELSE NULL::integer
+                END) * (100)::numeric), 2) AS pre_transition_attendance,
+            round((avg(
+                CASE
+                    WHEN ((vd.vote_date >= pt.transition_date) AND (vd.vote_date <= (pt.transition_date + '6 mons'::interval))) THEN
+                    CASE
+                        WHEN ((vd.vote)::text <> 'FRÅNVARANDE'::text) THEN 1
+                        ELSE 0
+                    END
+                    ELSE NULL::integer
+                END) * (100)::numeric), 2) AS post_transition_attendance,
+            0 AS docs_before,
+            0 AS docs_after
+           FROM (public.view_riksdagen_party_transition_history pt
+             LEFT JOIN public.vote_data vd ON (((pt.person_id)::text = (vd.embedded_id_intressent_id)::text)))
+          WHERE (pt.transition_type = 'SWITCHED_WHILE_SERVING'::text)
+          GROUP BY pt.person_id, pt.first_name, pt.last_name, pt.previous_party, pt.new_party, pt.transition_date, pt.months_until_next_election
+        )
+ SELECT person_id,
+    first_name,
+    last_name,
+    previous_party,
+    new_party,
+    transition_date,
+    months_until_next_election,
+    pre_transition_attendance,
+    post_transition_attendance,
+    round((post_transition_attendance - pre_transition_attendance), 2) AS attendance_change,
+    docs_before,
+    docs_after,
+        CASE
+            WHEN (months_until_next_election < 12) THEN 'PRE_ELECTION_DEFECTION'::text
+            WHEN (months_until_next_election > 36) THEN 'MID_TERM_DEFECTION'::text
+            ELSE 'NORMAL_DEFECTION'::text
+        END AS defection_timing
+   FROM defector_performance
+  WHERE ((pre_transition_attendance IS NOT NULL) OR (post_transition_attendance IS NOT NULL))
+  ORDER BY transition_date DESC;
+
+
+--
 -- Name: view_riksdagen_party_document_daily_summary; Type: MATERIALIZED VIEW; Schema: public; Owner: -
 --
 
@@ -9872,6 +9997,70 @@ CREATE VIEW public.view_riksdagen_party_signatures_document_summary AS
   WHERE (NOT ((party_short_code)::text = ''::text))
   GROUP BY (upper((party_short_code)::text))
   ORDER BY (count(*));
+
+
+--
+-- Name: view_riksdagen_party_switcher_outcomes; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.view_riksdagen_party_switcher_outcomes AS
+ WITH switcher_subsequent_assignments AS (
+         SELECT pt.person_id,
+            pt.first_name AS pt_first_name,
+            pt.last_name AS pt_last_name,
+            pt.previous_party,
+            pt.new_party,
+            pt.transition_date,
+            pt.next_election,
+            pt.months_until_next_election,
+            a.from_date AS subsequent_from_date,
+            a.to_date AS subsequent_to_date,
+            a.status AS subsequent_status,
+            a.role_code AS subsequent_role,
+            a.assignment_type AS subsequent_assignment_type,
+                CASE
+                    WHEN (a.to_date IS NULL) THEN (CURRENT_DATE - a.from_date)
+                    ELSE (a.to_date - a.from_date)
+                END AS days_in_subsequent_role,
+                CASE
+                    WHEN ((pt.next_election IS NOT NULL) AND (a.from_date <= pt.next_election) AND ((a.to_date IS NULL) OR (a.to_date >= pt.next_election))) THEN true
+                    ELSE false
+                END AS served_in_next_election_cycle
+           FROM (public.view_riksdagen_party_transition_history pt
+             LEFT JOIN public.assignment_data a ON ((((pt.person_id)::text = (a.intressent_id)::text) AND (a.from_date >= pt.transition_date))))
+          WHERE (pt.transition_type = 'SWITCHED_WHILE_SERVING'::text)
+        )
+ SELECT ssa.person_id,
+    ssa.pt_first_name AS first_name,
+    ssa.pt_last_name AS last_name,
+    ssa.previous_party,
+    ssa.new_party,
+    ssa.transition_date,
+    ssa.next_election,
+    ssa.months_until_next_election,
+    count(DISTINCT ssa.subsequent_from_date) AS total_subsequent_assignments,
+    sum(ssa.days_in_subsequent_role) AS total_days_served_after_switch,
+    max(
+        CASE
+            WHEN ((ssa.subsequent_status)::text = 'Tjänstgörande riksdagsledamot'::text) THEN 1
+            ELSE 0
+        END) AS continued_as_active_mp,
+    max(
+        CASE
+            WHEN (ssa.served_in_next_election_cycle = true) THEN 1
+            ELSE 0
+        END) AS served_in_next_election,
+    max(
+        CASE
+            WHEN ((ssa.subsequent_role)::text = ANY ((ARRAY['Partiledare'::character varying, 'Gruppledare'::character varying, 'Partisekreterare'::character varying, 'Ordförande'::character varying, 'Vice ordförande'::character varying])::text[])) THEN 1
+            ELSE 0
+        END) AS attained_leadership_post_switch,
+    string_agg(DISTINCT (ssa.subsequent_role)::text, ', '::text) FILTER (WHERE (ssa.subsequent_role IS NOT NULL)) AS post_switch_roles,
+    max((p.status)::text) AS current_status
+   FROM (switcher_subsequent_assignments ssa
+     LEFT JOIN public.person_data p ON (((ssa.person_id)::text = (p.id)::text)))
+  GROUP BY ssa.person_id, ssa.pt_first_name, ssa.pt_last_name, ssa.previous_party, ssa.new_party, ssa.transition_date, ssa.next_election, ssa.months_until_next_election
+  ORDER BY ssa.transition_date DESC;
 
 
 --
@@ -13279,13 +13468,13 @@ ALTER TABLE ONLY public.jv_snapshot
 -- PostgreSQL database dump complete
 --
 
-\unrestrict x4IIWWfntIU68j890nwqzR1fd4vBx7nFqzWVqllZuGvUjPtOghrLqn3tTXImSKo
+\unrestrict mgYBidPpYlZDxPMystGDlVcTMhqFXNPzWPIxiQPnfUNpzYfBpjT3xzRjnkCmz4Q
 
 --
 -- PostgreSQL database dump
 --
 
-\restrict fMFbsS8tibgHKP9Ar3l2SddbPceBQMXUqLJviFUS7Rifw95QeRnFYO6nurZsRj7
+\restrict MBy7aTNTvz0lv9KvBEwCye5DN6Ub6jBfrwZcMMucQzZp4xBlgioTFUSqxaiVIqS
 
 -- Dumped from database version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
@@ -13796,6 +13985,10 @@ fix-rebel-calculation-risk-score-evolution-1.50-001	intelligence-operative	db-ch
 1.54-add-government-body-indexes	intelligence-operative-analytics	db-changelog-1.54.xml	2026-01-16 15:32:26.196206	489	EXECUTED	9:d4611e87e7ecd3c83c57c45009042471	createIndex (x4)	Add indexes for query performance	\N	5.0.1	\N	\N	\N
 1.54-add-government-body-comments	intelligence-operative-analytics	db-changelog-1.54.xml	2026-01-16 15:32:26.196206	490	EXECUTED	9:72d9e688519a72ac461c65c1842e91b9	sql	Add table comments	\N	5.0.1	\N	\N	\N
 1.54-create-government-body-data-table	intelligence-operative-analytics	db-changelog-1.54.xml	2026-01-16 15:32:26.196206	488	EXECUTED	9:ececfb8343eaa00195e944896c729962	createTable tableName=government_body_data	Create government_body_data table	\N	5.0.1	\N	\N	\N
+1.55-intro	intelligence-operative	db-changelog-1.55.xml	2026-01-17 14:12:37.137752	491	EXECUTED	9:ae819f4af55b6727e7d064337c41a277	sql	v1.55 Historical Politician Party Transitions - Track MPs leaving their party while serving in Riksdagen	\N	5.0.1	\N	\N	8659154656
+create-party-transition-history-view-1.55-001	intelligence-operative	db-changelog-1.55.xml	2026-01-17 14:12:37.170871	492	EXECUTED	9:dc5cb39faeb206f3971c9bcb6f7650bd	createView viewName=view_riksdagen_party_transition_history	Create view_riksdagen_party_transition_history to track all party changes since 2002.\n        \n        Purpose: Identify politicians who switched parties while serving as active MPs \n        (status = 'Tjänstgörande riksdagsledamot'). This tracks ...	\N	5.0.1	\N	\N	8659154656
+create-party-defector-analysis-view-1.55-002	intelligence-operative	db-changelog-1.55.xml	2026-01-17 14:12:37.1817	493	EXECUTED	9:5dda9ecc6988c8995a0767a4069f8ceb	createView viewName=view_riksdagen_party_defector_analysis	Create view_riksdagen_party_defector_analysis to analyze defector characteristics.\n        \n        Purpose: Analyze behavioral patterns before/after party transitions - attendance, \n        document production, voting patterns. Classify defection...	\N	5.0.1	\N	\N	8659154656
+create-party-switcher-outcomes-view-1.55-003	intelligence-operative	db-changelog-1.55.xml	2026-01-17 14:12:37.193101	494	EXECUTED	9:6862c4e3283795138ffa775c0df28ee4	createView viewName=view_riksdagen_party_switcher_outcomes	Create view_riksdagen_party_switcher_outcomes to measure post-transition career success.\n        \n        Purpose: Track political career trajectory after party switch - did they continue \n        serving, get re-elected, attain leadership positio...	\N	5.0.1	\N	\N	8659154656
 \.
 
 
@@ -13812,5 +14005,5 @@ COPY public.databasechangeloglock (id, locked, lockgranted, lockedby) FROM stdin
 -- PostgreSQL database dump complete
 --
 
-\unrestrict fMFbsS8tibgHKP9Ar3l2SddbPceBQMXUqLJviFUS7Rifw95QeRnFYO6nurZsRj7
+\unrestrict MBy7aTNTvz0lv9KvBEwCye5DN6Ub6jBfrwZcMMucQzZp4xBlgioTFUSqxaiVIqS
 
