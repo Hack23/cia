@@ -234,7 +234,9 @@ WITH switcher_subsequent_assignments AS (
         END AS days_in_subsequent_role,
         -- Check if this assignment overlaps next election cycle
         CASE 
-            WHEN a.from_date <= pt.next_election AND (a.to_date IS NULL OR a.to_date >= pt.next_election)
+            WHEN pt.next_election IS NOT NULL
+                 AND a.from_date <= pt.next_election
+                 AND (a.to_date IS NULL OR a.to_date >= pt.next_election)
             THEN true
             ELSE false
         END AS served_in_next_election_cycle
