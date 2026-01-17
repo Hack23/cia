@@ -20,19 +20,23 @@
         </comment>
         <createView viewName="view_riksdagen_seasonal_quarterly_activity" replaceIfExists="true">
             <![CDATA[
-WITH ballot_quarterly_activity AS (
+WITH election_years AS (
+    SELECT UNNEST(ARRAY[2002, 2006, 2010, 2014, 2018, 2022, 2026])::INT AS election_year
+),
+ballot_quarterly_activity AS (
     SELECT 
         EXTRACT(YEAR FROM vote_date) AS year,
         EXTRACT(QUARTER FROM vote_date) AS quarter,
         CASE 
-            WHEN EXTRACT(YEAR FROM vote_date) IN (2002, 2006, 2010, 2014, 2018, 2022, 2026) 
-            THEN true 
+            WHEN ey.election_year IS NOT NULL THEN true 
             ELSE false 
         END AS is_election_year,
         COUNT(DISTINCT embedded_id_ballot_id) AS total_ballots,
         COUNT(DISTINCT embedded_id_intressent_id) AS active_politicians,
         AVG(CASE WHEN vote != 'Frånvarande' THEN 1 ELSE 0 END) * 100 AS attendance_rate
     FROM vote_data
+    LEFT JOIN election_years ey 
+        ON ey.election_year = EXTRACT(YEAR FROM vote_date)
     WHERE vote_date IS NOT NULL
     GROUP BY year, quarter, is_election_year
 ),
@@ -101,7 +105,7 @@ SELECT
     END AS attendance_z_score,
     CASE 
         -- First check: Extreme deviations (>2 or <-2 std dev) in either direction = ANOMALY
-        WHEN ABS((qa.total_ballots - bc.q_baseline_ballots) / NULLIF(bc.q_stddev_ballots, 0)) > 2 
+        WHEN ABS(COALESCE((qa.total_ballots - bc.q_baseline_ballots) / NULLIF(bc.q_stddev_ballots, 0), 0)) > 2 
         THEN 'ANOMALY_DETECTED'
         -- Second check: Moderate high deviation (>1 std dev) = ELEVATED  
         WHEN qa.total_ballots > bc.q_baseline_ballots + bc.q_stddev_ballots 
@@ -209,7 +213,7 @@ ORDER BY year DESC
     <changeSet id="1.55-create-seasonal-anomaly-detection-view" author="intelligence-operative" failOnError="true">
         <comment>
             Create view_riksdagen_seasonal_anomaly_detection for identifying activity anomalies.
-            Flags quarters with activity >2 standard deviations from baseline for further investigation.
+            Flags quarters with activity significantly above or below baseline using z-score thresholds (moderate >1.5, high >2, critical >3 standard deviations) for further investigation.
             Supports operational intelligence and crisis detection workflows.
         </comment>
         <createView viewName="view_riksdagen_seasonal_anomaly_detection" replaceIfExists="true">
@@ -245,6 +249,14 @@ SELECT
         WHEN quarter = 4 THEN 'Autumn Session'
     END AS parliamentary_period,
     CASE 
+        WHEN ABS(ballot_z_score) > 2 AND ABS(doc_z_score) > 2 AND ABS(attendance_z_score) > 2 
+            THEN 'BALLOT_DOCUMENT_ATTENDANCE_ANOMALY'
+        WHEN ABS(ballot_z_score) > 2 AND ABS(doc_z_score) > 2 
+            THEN 'BALLOT_DOCUMENT_ANOMALY'
+        WHEN ABS(ballot_z_score) > 2 AND ABS(attendance_z_score) > 2 
+            THEN 'BALLOT_ATTENDANCE_ANOMALY'
+        WHEN ABS(doc_z_score) > 2 AND ABS(attendance_z_score) > 2 
+            THEN 'DOCUMENT_ATTENDANCE_ANOMALY'
         WHEN ABS(ballot_z_score) > 2 THEN 'BALLOT_ANOMALY'
         WHEN ABS(doc_z_score) > 2 THEN 'DOCUMENT_ANOMALY'
         WHEN ABS(attendance_z_score) > 2 THEN 'ATTENDANCE_ANOMALY'
@@ -263,7 +275,7 @@ SELECT
         ELSE 'LOW'
     END AS anomaly_severity
 FROM view_riksdagen_seasonal_quarterly_activity
-WHERE activity_classification IN ('ANOMALY_DETECTED', 'ELEVATED_ACTIVITY')
+WHERE activity_classification IN ('ANOMALY_DETECTED', 'ELEVATED_ACTIVITY', 'REDUCED_ACTIVITY')
    OR ABS(ballot_z_score) > 1.5
    OR ABS(doc_z_score) > 1.5
    OR ABS(attendance_z_score) > 1.5
@@ -279,7 +291,7 @@ ORDER BY max_z_score DESC, year DESC, quarter DESC
     <changeSet id="1.55-document-seasonal-anomaly-detection-view" author="intelligence-operative" failOnError="true">
         <comment>Add documentation for view_riksdagen_seasonal_anomaly_detection</comment>
         <sql>
-            COMMENT ON VIEW view_riksdagen_seasonal_anomaly_detection IS 'Seasonal anomaly detection identifying quarters with activity >2 standard deviations from baseline. Classifies anomalies by type (ballot/document/attendance), direction (high/low), and severity (critical/high/moderate/low). Filters for elevated activity (z-score > 1.5) to focus on statistically significant deviations. Framework 3: Pattern Recognition - Anomaly detection. Framework 6: Decision Intelligence - Operational warnings. Data Source: view_riksdagen_seasonal_quarterly_activity. Use Case: Crisis detection, electoral behavior anomalies, operational intelligence.';
+            COMMENT ON VIEW view_riksdagen_seasonal_anomaly_detection IS 'Seasonal anomaly detection identifying quarters with activity >2 standard deviations from baseline. Classifies anomalies by type (ballot/document/attendance), direction (high/low), and severity (critical/high/moderate/low). Filters for significant activity deviations (|z-score| > 1.5) to focus on statistically significant deviations. Framework 3: Pattern Recognition - Anomaly detection. Framework 6: Decision Intelligence - Operational warnings. Data Source: view_riksdagen_seasonal_quarterly_activity. Use Case: Crisis detection, electoral behavior anomalies, operational intelligence.';
         </sql>
     </changeSet>
 

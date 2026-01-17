@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict g9UkwAGQbdVaSS6l8IjXeKBO5UI9y97sTmGqFC4Rxte8xWdmJK9y4CIBkJbZ58R
+\restrict WLmMr8hUKftkZsCobip5uaegEkPzecqfBTkfd19MlOQwyBPDN81Rh1yLdKOb40k
 
 -- Dumped from database version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
@@ -10702,11 +10702,13 @@ CREATE VIEW public.view_riksdagen_politician_experience_summary AS
 --
 
 CREATE VIEW public.view_riksdagen_seasonal_quarterly_activity AS
- WITH ballot_quarterly_activity AS (
+ WITH election_years AS (
+         SELECT unnest(ARRAY[2002, 2006, 2010, 2014, 2018, 2022, 2026]) AS election_year
+        ), ballot_quarterly_activity AS (
          SELECT EXTRACT(year FROM vote_data.vote_date) AS year,
             EXTRACT(quarter FROM vote_data.vote_date) AS quarter,
                 CASE
-                    WHEN (EXTRACT(year FROM vote_data.vote_date) = ANY (ARRAY[(2002)::numeric, (2006)::numeric, (2010)::numeric, (2014)::numeric, (2018)::numeric, (2022)::numeric, (2026)::numeric])) THEN true
+                    WHEN (ey.election_year IS NOT NULL) THEN true
                     ELSE false
                 END AS is_election_year,
             count(DISTINCT vote_data.embedded_id_ballot_id) AS total_ballots,
@@ -10716,11 +10718,12 @@ CREATE VIEW public.view_riksdagen_seasonal_quarterly_activity AS
                     WHEN ((vote_data.vote)::text <> 'Frånvarande'::text) THEN 1
                     ELSE 0
                 END) * (100)::numeric) AS attendance_rate
-           FROM public.vote_data
+           FROM (public.vote_data
+             LEFT JOIN election_years ey ON (((ey.election_year)::numeric = EXTRACT(year FROM vote_data.vote_date))))
           WHERE (vote_data.vote_date IS NOT NULL)
           GROUP BY (EXTRACT(year FROM vote_data.vote_date)), (EXTRACT(quarter FROM vote_data.vote_date)),
                 CASE
-                    WHEN (EXTRACT(year FROM vote_data.vote_date) = ANY (ARRAY[(2002)::numeric, (2006)::numeric, (2010)::numeric, (2014)::numeric, (2018)::numeric, (2022)::numeric, (2026)::numeric])) THEN true
+                    WHEN (ey.election_year IS NOT NULL) THEN true
                     ELSE false
                 END
         ), document_quarterly_activity AS (
@@ -10777,7 +10780,7 @@ CREATE VIEW public.view_riksdagen_seasonal_quarterly_activity AS
             ELSE (0)::numeric
         END AS attendance_z_score,
         CASE
-            WHEN (abs((((qa.total_ballots)::numeric - bc.q_baseline_ballots) / NULLIF(bc.q_stddev_ballots, (0)::numeric))) > (2)::numeric) THEN 'ANOMALY_DETECTED'::text
+            WHEN (abs(COALESCE((((qa.total_ballots)::numeric - bc.q_baseline_ballots) / NULLIF(bc.q_stddev_ballots, (0)::numeric)), (0)::numeric)) > (2)::numeric) THEN 'ANOMALY_DETECTED'::text
             WHEN ((qa.total_ballots)::numeric > (bc.q_baseline_ballots + bc.q_stddev_ballots)) THEN 'ELEVATED_ACTIVITY'::text
             WHEN ((qa.total_ballots)::numeric < (bc.q_baseline_ballots - bc.q_stddev_ballots)) THEN 'REDUCED_ACTIVITY'::text
             ELSE 'NORMAL_ACTIVITY'::text
@@ -10889,6 +10892,10 @@ CREATE VIEW public.view_riksdagen_seasonal_anomaly_detection AS
             ELSE NULL::text
         END AS parliamentary_period,
         CASE
+            WHEN ((abs(ballot_z_score) > (2)::numeric) AND (abs(doc_z_score) > (2)::numeric) AND (abs(attendance_z_score) > (2)::numeric)) THEN 'BALLOT_DOCUMENT_ATTENDANCE_ANOMALY'::text
+            WHEN ((abs(ballot_z_score) > (2)::numeric) AND (abs(doc_z_score) > (2)::numeric)) THEN 'BALLOT_DOCUMENT_ANOMALY'::text
+            WHEN ((abs(ballot_z_score) > (2)::numeric) AND (abs(attendance_z_score) > (2)::numeric)) THEN 'BALLOT_ATTENDANCE_ANOMALY'::text
+            WHEN ((abs(doc_z_score) > (2)::numeric) AND (abs(attendance_z_score) > (2)::numeric)) THEN 'DOCUMENT_ATTENDANCE_ANOMALY'::text
             WHEN (abs(ballot_z_score) > (2)::numeric) THEN 'BALLOT_ANOMALY'::text
             WHEN (abs(doc_z_score) > (2)::numeric) THEN 'DOCUMENT_ANOMALY'::text
             WHEN (abs(attendance_z_score) > (2)::numeric) THEN 'ATTENDANCE_ANOMALY'::text
@@ -10907,7 +10914,7 @@ CREATE VIEW public.view_riksdagen_seasonal_anomaly_detection AS
             ELSE 'LOW'::text
         END AS anomaly_severity
    FROM public.view_riksdagen_seasonal_quarterly_activity
-  WHERE ((activity_classification = ANY (ARRAY['ANOMALY_DETECTED'::text, 'ELEVATED_ACTIVITY'::text])) OR (abs(ballot_z_score) > 1.5) OR (abs(doc_z_score) > 1.5) OR (abs(attendance_z_score) > 1.5))
+  WHERE ((activity_classification = ANY (ARRAY['ANOMALY_DETECTED'::text, 'ELEVATED_ACTIVITY'::text, 'REDUCED_ACTIVITY'::text])) OR (abs(ballot_z_score) > 1.5) OR (abs(doc_z_score) > 1.5) OR (abs(attendance_z_score) > 1.5))
   ORDER BY GREATEST(abs(ballot_z_score), abs(doc_z_score), abs(attendance_z_score)) DESC, year DESC, quarter DESC;
 
 
@@ -10915,7 +10922,7 @@ CREATE VIEW public.view_riksdagen_seasonal_anomaly_detection AS
 -- Name: VIEW view_riksdagen_seasonal_anomaly_detection; Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON VIEW public.view_riksdagen_seasonal_anomaly_detection IS 'Seasonal anomaly detection identifying quarters with activity >2 standard deviations from baseline. Classifies anomalies by type (ballot/document/attendance), direction (high/low), and severity (critical/high/moderate/low). Filters for elevated activity (z-score > 1.5) to focus on statistically significant deviations. Framework 3: Pattern Recognition - Anomaly detection. Framework 6: Decision Intelligence - Operational warnings. Data Source: view_riksdagen_seasonal_quarterly_activity. Use Case: Crisis detection, electoral behavior anomalies, operational intelligence.';
+COMMENT ON VIEW public.view_riksdagen_seasonal_anomaly_detection IS 'Seasonal anomaly detection identifying quarters with activity >2 standard deviations from baseline. Classifies anomalies by type (ballot/document/attendance), direction (high/low), and severity (critical/high/moderate/low). Filters for significant activity deviations (|z-score| > 1.5) to focus on statistically significant deviations. Framework 3: Pattern Recognition - Anomaly detection. Framework 6: Decision Intelligence - Operational warnings. Data Source: view_riksdagen_seasonal_quarterly_activity. Use Case: Crisis detection, electoral behavior anomalies, operational intelligence.';
 
 
 --
@@ -13500,13 +13507,13 @@ ALTER TABLE ONLY public.jv_snapshot
 -- PostgreSQL database dump complete
 --
 
-\unrestrict g9UkwAGQbdVaSS6l8IjXeKBO5UI9y97sTmGqFC4Rxte8xWdmJK9y4CIBkJbZ58R
+\unrestrict WLmMr8hUKftkZsCobip5uaegEkPzecqfBTkfd19MlOQwyBPDN81Rh1yLdKOb40k
 
 --
 -- PostgreSQL database dump
 --
 
-\restrict nFHSBO8nf524Q8ulCr0MbTehDYEflSHhCUS6bVORx9PbthqoPoP3cnLt0lq50XZ
+\restrict Lm46hQXleewrray3VoF2qfWRIOh2IrX7zwh7RA8WvD9OBn6dEj7ajKVlS3t5Bqa
 
 -- Dumped from database version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
@@ -14017,13 +14024,13 @@ fix-rebel-calculation-risk-score-evolution-1.50-001	intelligence-operative	db-ch
 1.54-add-government-body-indexes	intelligence-operative-analytics	db-changelog-1.54.xml	2026-01-16 15:32:26.196206	489	EXECUTED	9:d4611e87e7ecd3c83c57c45009042471	createIndex (x4)	Add indexes for query performance	\N	5.0.1	\N	\N	\N
 1.54-add-government-body-comments	intelligence-operative-analytics	db-changelog-1.54.xml	2026-01-16 15:32:26.196206	490	EXECUTED	9:72d9e688519a72ac461c65c1842e91b9	sql	Add table comments	\N	5.0.1	\N	\N	\N
 1.54-create-government-body-data-table	intelligence-operative-analytics	db-changelog-1.54.xml	2026-01-16 15:32:26.196206	488	EXECUTED	9:ececfb8343eaa00195e944896c729962	createTable tableName=government_body_data	Create government_body_data table	\N	5.0.1	\N	\N	\N
-1.55-intro	intelligence-operative	db-changelog-1.55.xml	2026-01-17 03:03:19.857925	491	EXECUTED	9:ae819f4af55b6727e7d064337c41a277	sql	v1.55 Seasonal Trend Analysis - Q4 Pre-Election Activity Patterns	\N	5.0.1	\N	\N	8618997367
-1.55-create-seasonal-quarterly-activity-view	intelligence-operative	db-changelog-1.55.xml	2026-01-17 03:03:19.897977	492	EXECUTED	9:7cadb3cf0d7b4c913b3652be9b11b591	createView viewName=view_riksdagen_seasonal_quarterly_activity	Create view_riksdagen_seasonal_quarterly_activity for quarterly pattern analysis.\n            Aggregates Q1-Q4 activity patterns across 24 years (2002-2026) for election cycle analysis.\n            Includes baseline calculation for non-election ye...	\N	5.0.1	\N	\N	8618997367
-1.55-document-seasonal-quarterly-activity-view	intelligence-operative	db-changelog-1.55.xml	2026-01-17 03:03:19.903618	493	EXECUTED	9:33b75f2117ac0ec9c516453e836bebb2	sql	Add documentation for view_riksdagen_seasonal_quarterly_activity	\N	5.0.1	\N	\N	8618997367
-1.55-create-q4-election-comparison-view	intelligence-operative	db-changelog-1.55.xml	2026-01-17 03:03:19.912497	494	EXECUTED	9:d7db98651af260b5201e2946ef9e5f6b	createView viewName=view_riksdagen_q4_election_year_comparison	Create view_riksdagen_q4_election_year_comparison for Q4 pre-election activity analysis.\n            Compares Q4 activity in election years vs non-election years to detect pre-election surge patterns.\n            Supports predictive modeling of fu...	\N	5.0.1	\N	\N	8618997367
-1.55-document-q4-election-comparison-view	intelligence-operative	db-changelog-1.55.xml	2026-01-17 03:03:19.917092	495	EXECUTED	9:b497414f0b045cb3bb0ccb8e6961aed3	sql	Add documentation for view_riksdagen_q4_election_year_comparison	\N	5.0.1	\N	\N	8618997367
-1.55-create-seasonal-anomaly-detection-view	intelligence-operative	db-changelog-1.55.xml	2026-01-17 03:03:19.92608	496	EXECUTED	9:69851ca46d84ac54e40aaf061fffdade	createView viewName=view_riksdagen_seasonal_anomaly_detection	Create view_riksdagen_seasonal_anomaly_detection for identifying activity anomalies.\n            Flags quarters with activity >2 standard deviations from baseline for further investigation.\n            Supports operational intelligence and crisis ...	\N	5.0.1	\N	\N	8618997367
-1.55-document-seasonal-anomaly-detection-view	intelligence-operative	db-changelog-1.55.xml	2026-01-17 03:03:19.931566	497	EXECUTED	9:c1119e1a6667312f4124d2bbc7fb22d9	sql	Add documentation for view_riksdagen_seasonal_anomaly_detection	\N	5.0.1	\N	\N	8618997367
+1.55-intro	intelligence-operative	db-changelog-1.55.xml	2026-01-17 11:03:33.570504	491	EXECUTED	9:ae819f4af55b6727e7d064337c41a277	sql	v1.55 Seasonal Trend Analysis - Q4 Pre-Election Activity Patterns	\N	5.0.1	\N	\N	8647810740
+1.55-create-seasonal-quarterly-activity-view	intelligence-operative	db-changelog-1.55.xml	2026-01-17 11:03:33.615718	492	EXECUTED	9:54fb979a48e340a89206c252a0b5277d	createView viewName=view_riksdagen_seasonal_quarterly_activity	Create view_riksdagen_seasonal_quarterly_activity for quarterly pattern analysis.\n            Aggregates Q1-Q4 activity patterns across 24 years (2002-2026) for election cycle analysis.\n            Includes baseline calculation for non-election ye...	\N	5.0.1	\N	\N	8647810740
+1.55-document-seasonal-quarterly-activity-view	intelligence-operative	db-changelog-1.55.xml	2026-01-17 11:03:33.622227	493	EXECUTED	9:33b75f2117ac0ec9c516453e836bebb2	sql	Add documentation for view_riksdagen_seasonal_quarterly_activity	\N	5.0.1	\N	\N	8647810740
+1.55-create-q4-election-comparison-view	intelligence-operative	db-changelog-1.55.xml	2026-01-17 11:03:33.631908	494	EXECUTED	9:4411891d81db15a98164476b5c168c61	createView viewName=view_riksdagen_q4_election_year_comparison	Create view_riksdagen_q4_election_year_comparison for Q4 pre-election activity analysis.\n            Compares Q4 activity in election years vs non-election years to detect pre-election surge patterns.\n            Supports predictive modeling of fu...	\N	5.0.1	\N	\N	8647810740
+1.55-document-q4-election-comparison-view	intelligence-operative	db-changelog-1.55.xml	2026-01-17 11:03:33.637397	495	EXECUTED	9:b497414f0b045cb3bb0ccb8e6961aed3	sql	Add documentation for view_riksdagen_q4_election_year_comparison	\N	5.0.1	\N	\N	8647810740
+1.55-create-seasonal-anomaly-detection-view	intelligence-operative	db-changelog-1.55.xml	2026-01-17 11:03:33.648668	496	EXECUTED	9:e8f7bf791af076334deafdd4c662d621	createView viewName=view_riksdagen_seasonal_anomaly_detection	Create view_riksdagen_seasonal_anomaly_detection for identifying activity anomalies.\n            Flags quarters with activity significantly above or below baseline using z-score thresholds (moderate >1.5, high >2, critical >3 standard deviations) ...	\N	5.0.1	\N	\N	8647810740
+1.55-document-seasonal-anomaly-detection-view	intelligence-operative	db-changelog-1.55.xml	2026-01-17 11:03:33.655071	497	EXECUTED	9:25e86a40c1e43484634d4d66a3b5058f	sql	Add documentation for view_riksdagen_seasonal_anomaly_detection	\N	5.0.1	\N	\N	8647810740
 \.
 
 
@@ -14040,5 +14047,5 @@ COPY public.databasechangeloglock (id, locked, lockgranted, lockedby) FROM stdin
 -- PostgreSQL database dump complete
 --
 
-\unrestrict nFHSBO8nf524Q8ulCr0MbTehDYEflSHhCUS6bVORx9PbthqoPoP3cnLt0lq50XZ
+\unrestrict Lm46hQXleewrray3VoF2qfWRIOh2IrX7zwh7RA8WvD9OBn6dEj7ajKVlS3t5Bqa
 
