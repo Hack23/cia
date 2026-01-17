@@ -8,9 +8,9 @@ WITH role_assignments AS (
         p.last_name,
         p.party,
         ad.role_code,
-        ad.status,
-        ad.assignment_type,
-        ad.org_code,
+        COALESCE(ad.status, 'UNKNOWN') AS status,
+        COALESCE(ad.assignment_type, 'UNKNOWN') AS assignment_type,
+        COALESCE(ad.org_code, 'UNKNOWN') AS org_code,
         ad.from_date,
         ad.to_date,
         -- Classify role tier based on role_code

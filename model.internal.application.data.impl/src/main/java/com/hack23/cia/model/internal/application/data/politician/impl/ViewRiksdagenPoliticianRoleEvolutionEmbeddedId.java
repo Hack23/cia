@@ -47,23 +47,23 @@ public class ViewRiksdagenPoliticianRoleEvolutionEmbeddedId implements Serializa
 	private String roleCode;
 
 	/** The status. */
-	@Column(name = "status")
+	@Column(name = "status", nullable = false)
 	private String status;
 
 	/** The assignment type. */
-	@Column(name = "assignment_type")
+	@Column(name = "assignment_type", nullable = false)
 	private String assignmentType;
 
 	/** The org code. */
-	@Column(name = "org_code")
+	@Column(name = "org_code", nullable = false)
 	private String orgCode;
 
 	/** The role tier. */
-	@Column(name = "role_tier")
+	@Column(name = "role_tier", nullable = false)
 	private String roleTier;
 
 	/** The role weight. */
-	@Column(name = "role_weight")
+	@Column(name = "role_weight", nullable = false)
 	private Integer roleWeight;
 
 	/**
