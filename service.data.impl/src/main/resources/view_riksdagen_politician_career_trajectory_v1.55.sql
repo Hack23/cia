@@ -32,26 +32,17 @@ WITH career_cycles AS (
             WHERE ad.role_code IN ('Ordförande', 'Vice ordförande', 'Talman', 
                                    'Statsminister', 'Vice statsminister', 'Partiledare', 'Gruppledare')
         ) AS leadership_roles,
-        -- Count documents authored during this election cycle
-        COUNT(DISTINCT dd.id) FILTER (
-            WHERE dd.made_public_date BETWEEN 
-                DATE_TRUNC('year', MIN(vd.vote_date))::date AND 
-                DATE_TRUNC('year', MAX(vd.vote_date))::date + INTERVAL '4 years'
-        ) AS documents_authored
+        -- Count documents where politician is referenced (approximate metric)
+        COUNT(DISTINCT dpr.person_reference_id) AS documents_authored
     FROM person_data p
     JOIN vote_data vd ON p.id = vd.embedded_id_intressent_id
     LEFT JOIN view_riksdagen_vote_data_ballot_party_summary ps 
         ON vd.embedded_id_ballot_id = ps.embedded_id_ballot_id 
-        AND vd.party = ps.party
+        AND vd.party = ps.embedded_id_party
     LEFT JOIN assignment_data ad 
         ON p.id = ad.intressent_id
-        AND ad.from_date <= MAX(vd.vote_date)
-        AND (ad.to_date IS NULL OR ad.to_date >= MIN(vd.vote_date))
-    LEFT JOIN document_data dd 
-        ON dd.org = p.party
-        AND dd.made_public_date BETWEEN 
-            DATE_TRUNC('year', MIN(vd.vote_date))::date AND 
-            DATE_TRUNC('year', MAX(vd.vote_date))::date + INTERVAL '4 years'
+    LEFT JOIN document_person_reference_da_0 dpr 
+        ON dpr.person_reference_id = p.id
     WHERE vd.vote_date IS NOT NULL
     GROUP BY p.id, p.first_name, p.last_name, p.party, election_year
 ),
