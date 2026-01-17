@@ -35,31 +35,32 @@
 
 ## Executive Summary
 
-The Citizen Intelligence Agency (CIA) platform employs **93 database views** (65 regular views + 28 materialized views) across 10 major categories to support comprehensive political intelligence analysis, open-source intelligence (OSINT) collection, and democratic accountability monitoring.
+The Citizen Intelligence Agency (CIA) platform employs **96 database views** (68 regular views + 28 materialized views) across 10 major categories to support comprehensive political intelligence analysis, open-source intelligence (OSINT) collection, and democratic accountability monitoring.
 
-✅ **Documentation Status**: This catalog now provides **comprehensive documentation** for all 93 database views (100% coverage), including **6 election cycle views (v1.51)** and **3 party longitudinal analysis views (v1.53)** that provide META/META-level historical analysis with Swedish parliamentary election context. **11 views** have detailed examples with complex queries, while **82 views** have structured documentation with purpose, key metrics, sample queries, and intelligence applications.
+✅ **Documentation Status**: This catalog now provides **comprehensive documentation** for all 96 database views (100% coverage), including **6 election cycle views (v1.51)**, **3 party longitudinal analysis views (v1.53)**, and **3 politician career trajectory views (v1.55)** that provide META/META-level historical analysis with Swedish parliamentary election context. **11 views** have detailed examples with complex queries, while **85 views** have structured documentation with purpose, key metrics, sample queries, and intelligence applications.
 
-**Last Updated**: 2026-01-16 (Added Party Longitudinal Analysis Views v1.53)  
-**Last Validated**: 2026-01-16 (v1.53 with 93 views)  
+**Last Updated**: 2026-01-17 (Added Politician Career Trajectory Views v1.55)  
+**Last Validated**: 2026-01-17 (v1.55 with 96 views)  
 **Validation Method**: Automated schema validation via validate-view-documentation.sh  
 **Schema Source**: service.data.impl/src/main/resources/full_schema.sql  
-**Documentation Coverage**: 100% (93/93 views)  
+**Documentation Coverage**: 100% (96/96 views)  
 **Validation Details**: See [Validation History](#-validation-history) section below
 
-**Note**: Total view count increased from 90 to 93 with addition of 3 party longitudinal analysis views in v1.53.
+**Note**: Total view count increased from 93 to 96 with addition of 3 politician career trajectory views in v1.55.
 
-### Key Statistics (UPDATED 2026-01-16)
+### Key Statistics (UPDATED 2026-01-17)
 
 | Metric | Count | Description |
 |--------|-------|-------------|
-| **Total Views** | 93 | ✅ UPDATED: 84 base + 6 election cycle (v1.51) + 3 party longitudinal (v1.53) |
-| **Regular Views** | 65 | ✅ UPDATED: 56 base + 6 election cycle + 3 party longitudinal |
+| **Total Views** | 96 | ✅ UPDATED: 84 base + 6 election cycle (v1.51) + 3 party longitudinal (v1.53) + 3 politician career (v1.55) |
+| **Regular Views** | 68 | ✅ UPDATED: 56 base + 6 election cycle + 3 party longitudinal + 3 politician career |
 | **Materialized Views** | 28 | ✅ VERIFIED per refresh-all-views.sql |
 | **Views Documented (Detailed)** | 11 | Complex examples with business context |
-| **Views Documented (Structured)** | 82 | Purpose, metrics, queries, product mappings (73 + 6 + 3 new) |
-| **Documentation Coverage** | 100% | All 93 views documented |
+| **Views Documented (Structured)** | 85 | Purpose, metrics, queries, product mappings (76 + 6 + 3 + 3 new) |
+| **Documentation Coverage** | 100% | All 96 views documented |
 | **Intelligence Views** | 7 | Advanced analytical views (risk, anomaly, influence, crisis, momentum, dashboard, temporal trends) |
-| **Election Cycle Views** | 6 | NEW v1.51: META/META-level election cycle analysis across 6 frameworks |
+| **Election Cycle Views** | 6 | v1.51: META/META-level election cycle analysis across 6 frameworks |
+| **Career Trajectory Views** | 3 | NEW v1.55: Politician career pattern detection, role evolution, longevity analysis |
 | **Decision Flow Views** | 4 | Party, politician, ministry, temporal trends for decision analysis |
 | **Vote Summary Views** | 20 | Daily, weekly, monthly, annual ballot summaries |
 | **Application Event Views** | 12 | User behavior tracking (daily, weekly, monthly, annual) |
@@ -2626,6 +2627,411 @@ This view complements the existing ministry effectiveness views by adding decisi
 - **view_ministry_decision_impact**: Adds proposal success/failure outcomes ← **NEW**
 
 Together, these views provide comprehensive government performance intelligence spanning productivity, risk, and legislative effectiveness.
+
+---
+
+### view_riksdagen_politician_career_trajectory ⭐⭐⭐⭐⭐
+
+**Category:** Politician Intelligence Views (v1.55)  
+**Type:** Standard View  
+**Intelligence Value:** VERY HIGH - Career Pattern Detection & Predictive Analytics  
+**Changelog:** v1.55 Career Trajectory Tracking
+
+#### Purpose
+
+Tracks individual politician performance evolution across election cycles (2002-2026+), enabling career pattern detection, performance trend analysis, and resignation risk prediction. Provides META/META-level historical analysis with election cycle context for comprehensive career trajectory understanding.
+
+#### Key Columns
+
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `person_id` | VARCHAR(255) | Unique politician identifier | '0532213467925' |
+| `first_name` | VARCHAR(255) | Politician first name | 'Anna' |
+| `last_name` | VARCHAR(255) | Politician last name | 'Kinberg Batra' |
+| `party` | VARCHAR(50) | Current party affiliation | 'M' |
+| `election_year` | INTEGER | Election cycle year (2002-2026) | 2018 |
+| `career_cycle_number` | INTEGER | Sequential cycle in career | 3 |
+| `total_cycles` | BIGINT | Total election cycles active | 5 |
+| `career_start_year` | INTEGER | First election cycle | 2006 |
+| `career_end_year` | INTEGER | Latest election cycle | 2022 |
+| `ballot_count` | BIGINT | Votes cast in this cycle | 847 |
+| `attendance_rate` | NUMERIC | Attendance % (vs absences) | 94.3 |
+| `win_rate` | NUMERIC | Win % on party alignment votes | 87.2 |
+| `leadership_roles` | BIGINT | Leadership positions held | 3 |
+| `documents_authored` | BIGINT | Documents authored | 42 |
+| `avg_career_attendance` | NUMERIC | Career average attendance | 91.5 |
+| `performance_vs_baseline` | NUMERIC | Current vs career average | +2.8 |
+| `career_stage` | VARCHAR(50) | 'EARLY_CAREER', 'MID_CAREER', 'LATE_CAREER' | 'MID_CAREER' |
+| `performance_trend` | VARCHAR(50) | 'IMPROVING', 'DECLINING', 'STABLE', 'NEW_ENTRY' | 'IMPROVING' |
+| `career_pattern` | VARCHAR(50) | Overall pattern classification | 'RISING_STAR' |
+
+#### Career Pattern Classification
+
+| Pattern | Criteria | Intelligence Value |
+|---------|----------|-------------------|
+| **PEAK_PERFORMANCE** | High attendance (>90%), stable trend, mid-late career | Retention target, mentorship candidate |
+| **RISING_STAR** | Improving trend, early-mid career, above baseline | Promotion candidate, future leader |
+| **LATE_CAREER_DECLINE** | Declining trend, late career, below baseline | Retirement risk, succession planning |
+| **STRUGGLING_NEWCOMER** | Low attendance (<70%), new entry, first cycle | Support needed, attrition risk |
+| **CONSISTENT** | Stable trend, near baseline, multiple cycles | Reliable performer, backbone |
+
+#### Sample Queries
+
+**1. Identify Rising Stars (Early Career High Performers)**
+
+```sql
+SELECT 
+    first_name,
+    last_name,
+    party,
+    career_stage,
+    performance_trend,
+    career_pattern,
+    attendance_rate,
+    performance_vs_baseline
+FROM view_riksdagen_politician_career_trajectory
+WHERE career_pattern = 'RISING_STAR'
+    AND election_year = 2022
+ORDER BY performance_vs_baseline DESC
+LIMIT 20;
+```
+
+**2. Track Individual Career Evolution**
+
+```sql
+SELECT 
+    election_year,
+    career_cycle_number,
+    attendance_rate,
+    win_rate,
+    leadership_roles,
+    performance_trend,
+    career_pattern
+FROM view_riksdagen_politician_career_trajectory
+WHERE person_id = '0532213467925'
+ORDER BY election_year;
+```
+
+**3. Retirement Risk Analysis (Late Career Decline)**
+
+```sql
+SELECT 
+    first_name,
+    last_name,
+    party,
+    career_start_year,
+    total_cycles,
+    attendance_rate,
+    performance_vs_baseline,
+    career_pattern
+FROM view_riksdagen_politician_career_trajectory
+WHERE career_pattern = 'LATE_CAREER_DECLINE'
+    AND election_year = 2022
+    AND total_cycles >= 4
+ORDER BY attendance_rate ASC;
+```
+
+#### Intelligence Applications
+
+- **Predictive Intelligence (Framework 4)**: Resignation risk prediction based on declining trends
+- **Talent Management**: Identify rising stars and succession planning candidates
+- **Performance Analysis**: Compare early career vs late career effectiveness
+- **Party Strategy**: Assess member retention risks and renewal needs
+- **Coalition Analysis**: Track influential politician trajectory changes
+
+#### Integration Points
+
+- Feeds into **Predictive Intelligence Framework** (Framework 4) for career forecasting
+- Complements **view_riksdagen_politician_longevity_analysis** for retention risk assessment
+- Links to **view_riksdagen_politician_role_evolution** for career progression patterns
+- Used by **view_politician_risk_summary** for comprehensive risk scoring
+
+---
+
+### view_riksdagen_politician_role_evolution ⭐⭐⭐⭐⭐
+
+**Category:** Politician Intelligence Views (v1.55)  
+**Type:** Standard View  
+**Intelligence Value:** VERY HIGH - Career Progression & Advancement Tracking  
+**Changelog:** v1.55 Role Evolution Tracking
+
+#### Purpose
+
+Tracks politician role progression through the political hierarchy, measuring advancement velocity between consecutive roles, and identifying career peaks and progression patterns (backbencher → committee → chair → minister). Critical for understanding power structure evolution and identifying fast-track careers.
+
+#### Key Columns
+
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `person_id` | VARCHAR(255) | Unique politician identifier | '0532213467925' |
+| `first_name` | VARCHAR(255) | Politician first name | 'Ebba' |
+| `last_name` | VARCHAR(255) | Politician last name | 'Busch' |
+| `party` | VARCHAR(50) | Party affiliation | 'KD' |
+| `role_code` | VARCHAR(255) | Role identifier | 'Partiledare' |
+| `role_tier` | VARCHAR(50) | Role classification | 'PARTY_LEADER' |
+| `role_weight` | INTEGER | Role importance score (50-1000) | 900 |
+| `role_start` | DATE | Role start date | 2015-04-25 |
+| `role_end` | DATE | Role end date | 2022-09-19 |
+| `role_start_year` | INTEGER | Start year | 2015 |
+| `role_end_year` | INTEGER | End year | 2022 |
+| `role_instances` | BIGINT | Times held this role | 1 |
+| `total_days_in_role` | INTEGER | Total days in role | 2704 |
+| `years_in_role` | INTEGER | Total years | 7 |
+| `is_current_role` | BOOLEAN | Currently active | FALSE |
+| `role_sequence` | BIGINT | Role order in career | 3 |
+| `peak_role_weight` | INTEGER | Highest role achieved | 900 |
+| `career_first_year` | INTEGER | Career start | 2002 |
+| `career_last_year` | INTEGER | Career end/current | 2022 |
+| `progression_pattern` | VARCHAR(50) | Career trajectory | 'CAREER_PEAK' |
+| `career_level` | VARCHAR(50) | Overall achievement level | 'TOP_LEADERSHIP' |
+| `advancement_velocity` | NUMERIC | Role weight increase per year | 42.50 |
+
+#### Role Tier Hierarchy & Weights
+
+| Tier | Weight | Roles | Example |
+|------|--------|-------|---------|
+| **MINISTER** | 1000 | Government ministers, Prime Minister | 'Statsminister', 'Finansminister' |
+| **SPEAKER** | 800 | Parliament Speaker, Vice Speakers | 'Talman', 'Förste vice talman' |
+| **PARTY_LEADER** | 900 | Party leaders | 'Partiledare' |
+| **COMMITTEE_CHAIR** | 600 | Committee chairs | 'Ordförande' |
+| **COMMITTEE_VICE_CHAIR** | 500 | Committee vice chairs | 'Vice ordförande' |
+| **COMMITTEE_MEMBER** | 400 | Committee members | 'Ledamot' |
+| **MP** | 300 | Parliament members | 'Riksdagsledamot' |
+| **SUBSTITUTE** | 100 | Substitute members | 'Suppleant' |
+
+#### Progression Patterns
+
+| Pattern | Description | Career Implication |
+|---------|-------------|-------------------|
+| **ASCENDING** | Steady upward progression | Successful career, increasing responsibility |
+| **CAREER_PEAK** | Reached peak role weight | At highest achievement level |
+| **DESCENDING** | Moving to lower tier roles | Career wind-down or party loss |
+| **LATERAL** | Same tier, different roles | Specialization, no advancement |
+| **PEAK_ROLE** | Highest weighted role achieved | Career pinnacle identified |
+
+#### Sample Queries
+
+**1. Fast-Track Careers (High Advancement Velocity)**
+
+```sql
+SELECT 
+    first_name,
+    last_name,
+    party,
+    role_tier,
+    advancement_velocity,
+    career_first_year,
+    peak_role_weight,
+    progression_pattern
+FROM view_riksdagen_politician_role_evolution
+WHERE advancement_velocity > 50
+    AND career_level IN ('TOP_LEADERSHIP', 'SENIOR_LEADERSHIP')
+ORDER BY advancement_velocity DESC
+LIMIT 20;
+```
+
+**2. Role Progression Timeline**
+
+```sql
+SELECT 
+    role_start_year,
+    role_tier,
+    role_code,
+    role_weight,
+    years_in_role,
+    progression_pattern
+FROM view_riksdagen_politician_role_evolution
+WHERE person_id = '0532213467925'
+ORDER BY role_start_year;
+```
+
+**3. Career Peak Analysis by Party**
+
+```sql
+SELECT 
+    party,
+    COUNT(*) FILTER (WHERE career_level = 'TOP_LEADERSHIP') AS top_leaders,
+    COUNT(*) FILTER (WHERE career_level = 'SENIOR_LEADERSHIP') AS senior_leaders,
+    AVG(peak_role_weight) AS avg_peak_weight,
+    AVG(advancement_velocity) AS avg_velocity
+FROM view_riksdagen_politician_role_evolution
+WHERE progression_pattern != 'LATERAL'
+GROUP BY party
+ORDER BY avg_peak_weight DESC;
+```
+
+#### Intelligence Applications
+
+- **Succession Planning**: Identify politicians approaching career peaks
+- **Talent Pipeline**: Track advancement velocity for fast-trackers
+- **Power Structure Mapping**: Visualize role transitions and hierarchy
+- **Career Forecasting**: Predict next role based on progression patterns
+- **Comparative Analysis**: Benchmark advancement speeds across parties
+
+#### Integration Points
+
+- Links to **view_riksdagen_politician_career_trajectory** for performance correlation
+- Feeds **Predictive Intelligence Framework** for promotion probability scoring
+- Complements **view_riksdagen_politician_experience_summary** for role weighting
+- Used in **Network Analysis** for power structure visualization
+
+---
+
+### view_riksdagen_politician_longevity_analysis ⭐⭐⭐⭐⭐
+
+**Category:** Politician Intelligence Views (v1.55)  
+**Type:** Standard View  
+**Intelligence Value:** VERY HIGH - Retention Risk & Career Duration Analytics  
+**Changelog:** v1.55 Longevity Analysis
+
+#### Purpose
+
+Comprehensive career longevity and activity pattern analysis measuring politician career duration, engagement levels, and identifying retention risks for active politicians. Provides dynamic continuity scores that work across any evaluation date using career span calculations.
+
+#### Key Columns
+
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `person_id` | VARCHAR(255) | Unique politician identifier | '0532213467925' |
+| `first_name` | VARCHAR(255) | Politician first name | 'Margot' |
+| `last_name` | VARCHAR(255) | Politician last name | 'Wallström' |
+| `party` | VARCHAR(50) | Party affiliation | 'S' |
+| `status` | VARCHAR(50) | Current status | 'active', 'retired' |
+| `born_year` | INTEGER | Birth year | 1953 |
+| `career_start_date` | DATE | First activity date | 1988-10-03 |
+| `career_end_date` | DATE | Last activity date | 2022-09-15 |
+| `first_activity_year` | INTEGER | First election cycle | 1988 |
+| `last_activity_year` | INTEGER | Last election cycle | 2022 |
+| `total_career_days` | INTEGER | Total career days | 12396 |
+| `total_career_years` | NUMERIC | Total years active | 33.95 |
+| `age_at_career_start` | INTEGER | Age when started | 35 |
+| `age_at_career_end` | INTEGER | Current age or age at exit | 69 |
+| `election_cycles_active` | BIGINT | Number of cycles participated | 8 |
+| `total_votes_cast` | BIGINT | Lifetime votes cast | 6842 |
+| `total_assignments` | BIGINT | Total assignments held | 18 |
+| `is_currently_active` | BOOLEAN | Currently serving | TRUE |
+| `avg_votes_per_year` | NUMERIC | Voting activity rate | 201.5 |
+| `avg_assignments_per_year` | NUMERIC | Assignment turnover | 0.53 |
+| `career_continuity_score` | NUMERIC | % of possible cycles active | 88.9 |
+| `longevity_category` | VARCHAR(50) | Duration classification | 'VETERAN_20_PLUS' |
+| `activity_level` | VARCHAR(50) | Engagement classification | 'VERY_ACTIVE' |
+| `continuity_pattern` | VARCHAR(50) | Career consistency | 'CONTINUOUS' |
+| `career_life_stage` | VARCHAR(50) | Age-based classification | 'SENIOR_ACTIVE' |
+| `retention_risk` | VARCHAR(50) | Risk assessment for active | 'HIGH_RETIREMENT_RISK' |
+
+#### Longevity Categories
+
+| Category | Criteria | Typical Profile |
+|----------|----------|----------------|
+| **VETERAN_20_PLUS** | 20+ years | Elder statesmen, institutional memory |
+| **LONG_SERVICE_15_20** | 15-20 years | Senior experienced politicians |
+| **ESTABLISHED_10_15** | 10-15 years | Established, experienced members |
+| **MID_CAREER_5_10** | 5-10 years | Mid-career, proven track record |
+| **JUNIOR_2_5** | 2-5 years | Junior members, building experience |
+| **NEWCOMER_UNDER_2** | <2 years | New entrants, learning phase |
+
+#### Activity Levels
+
+| Level | Votes/Year | Description |
+|-------|------------|-------------|
+| **VERY_ACTIVE** | 300+ | Highly engaged, consistent participation |
+| **ACTIVE** | 200-299 | Regular participation, good attendance |
+| **MODERATE** | 100-199 | Moderate engagement, average attendance |
+| **LOW_ACTIVITY** | 50-99 | Below average participation |
+| **MINIMAL** | <50 | Very low engagement, risk indicator |
+
+#### Retention Risk Assessment
+
+| Risk Level | Criteria | Action Required |
+|------------|----------|-----------------|
+| **HIGH_RETIREMENT_RISK** | 15+ years, age 60+, veteran | Succession planning critical |
+| **MODERATE_ATTRITION_RISK** | 10+ years, <150 votes/year | Engagement support needed |
+| **EARLY_EXIT_RISK** | <3 years, <200 votes/year | Onboarding and support |
+| **ENGAGEMENT_RISK** | Continuity <60%, any duration | Re-engagement strategies |
+| **LOW_RISK** | Active, high engagement, stable | Retention secure |
+
+#### Sample Queries
+
+**1. High Retirement Risk (Succession Planning)**
+
+```sql
+SELECT 
+    first_name,
+    last_name,
+    party,
+    total_career_years,
+    age_at_career_end,
+    longevity_category,
+    retention_risk,
+    avg_votes_per_year
+FROM view_riksdagen_politician_longevity_analysis
+WHERE retention_risk = 'HIGH_RETIREMENT_RISK'
+    AND is_currently_active = TRUE
+ORDER BY total_career_years DESC;
+```
+
+**2. Early Exit Risk Analysis**
+
+```sql
+SELECT 
+    first_name,
+    last_name,
+    party,
+    total_career_years,
+    avg_votes_per_year,
+    activity_level,
+    retention_risk
+FROM view_riksdagen_politician_longevity_analysis
+WHERE retention_risk = 'EARLY_EXIT_RISK'
+    AND is_currently_active = TRUE
+ORDER BY avg_votes_per_year ASC;
+```
+
+**3. Party Retention Health by Longevity**
+
+```sql
+SELECT 
+    party,
+    COUNT(*) FILTER (WHERE longevity_category IN ('VETERAN_20_PLUS', 'LONG_SERVICE_15_20')) AS veterans,
+    COUNT(*) FILTER (WHERE longevity_category = 'NEWCOMER_UNDER_2') AS newcomers,
+    COUNT(*) FILTER (WHERE retention_risk IN ('HIGH_RETIREMENT_RISK', 'MODERATE_ATTRITION_RISK')) AS at_risk,
+    ROUND(AVG(total_career_years), 1) AS avg_tenure,
+    ROUND(AVG(career_continuity_score), 1) AS avg_continuity
+FROM view_riksdagen_politician_longevity_analysis
+WHERE is_currently_active = TRUE
+GROUP BY party
+ORDER BY avg_tenure DESC;
+```
+
+**4. Career Continuity Patterns**
+
+```sql
+SELECT 
+    continuity_pattern,
+    COUNT(*) AS count,
+    ROUND(AVG(election_cycles_active), 1) AS avg_cycles,
+    ROUND(AVG(career_continuity_score), 1) AS avg_score,
+    ROUND(AVG(total_career_years), 1) AS avg_years
+FROM view_riksdagen_politician_longevity_analysis
+WHERE total_career_years > 0
+GROUP BY continuity_pattern
+ORDER BY avg_score DESC;
+```
+
+#### Intelligence Applications
+
+- **Succession Planning**: Identify high retirement risk politicians requiring replacement
+- **Talent Retention**: Monitor engagement levels and intervene for at-risk members
+- **Party Strategy**: Assess veteran vs newcomer balance for renewal planning
+- **Predictive Analytics**: Forecast attrition rates and career duration probabilities
+- **Comparative Analysis**: Benchmark longevity and continuity across parties
+
+#### Integration Points
+
+- Feeds **Predictive Intelligence Framework** (Framework 4) for resignation forecasting
+- Links to **view_riksdagen_politician_career_trajectory** for performance correlation
+- Complements **view_riksdagen_politician_role_evolution** for career pattern analysis
+- Used in **view_politician_risk_summary** for comprehensive retention risk scoring
 
 ---
 
