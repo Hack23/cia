@@ -22,18 +22,18 @@
             <![CDATA[
 WITH ballot_quarterly_activity AS (
     SELECT 
-        EXTRACT(YEAR FROM ballot_date) AS year,
-        EXTRACT(QUARTER FROM ballot_date) AS quarter,
+        EXTRACT(YEAR FROM vote_date) AS year,
+        EXTRACT(QUARTER FROM vote_date) AS quarter,
         CASE 
-            WHEN EXTRACT(YEAR FROM ballot_date) IN (2002, 2006, 2010, 2014, 2018, 2022, 2026) 
+            WHEN EXTRACT(YEAR FROM vote_date) IN (2002, 2006, 2010, 2014, 2018, 2022, 2026) 
             THEN true 
             ELSE false 
         END AS is_election_year,
-        COUNT(DISTINCT ballot_id) AS total_ballots,
-        COUNT(DISTINCT person_id) AS active_politicians,
+        COUNT(DISTINCT embedded_id_ballot_id) AS total_ballots,
+        COUNT(DISTINCT embedded_id_intressent_id) AS active_politicians,
         AVG(CASE WHEN vote != 'Frånvarande' THEN 1 ELSE 0 END) * 100 AS attendance_rate
     FROM vote_data
-    WHERE ballot_date IS NOT NULL
+    WHERE vote_date IS NOT NULL
     GROUP BY year, quarter, is_election_year
 ),
 document_quarterly_activity AS (
