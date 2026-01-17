@@ -100,10 +100,13 @@ SELECT
         ELSE 0 
     END AS attendance_z_score,
     CASE 
+        -- First check: Extreme deviations (>2 or <-2 std dev) in either direction = ANOMALY
         WHEN ABS((qa.total_ballots - bc.q_baseline_ballots) / NULLIF(bc.q_stddev_ballots, 0)) > 2 
         THEN 'ANOMALY_DETECTED'
+        -- Second check: Moderate high deviation (>1 std dev) = ELEVATED  
         WHEN qa.total_ballots > bc.q_baseline_ballots + bc.q_stddev_ballots 
         THEN 'ELEVATED_ACTIVITY'
+        -- Third check: Moderate low deviation (<-1 std dev) = REDUCED
         WHEN qa.total_ballots < bc.q_baseline_ballots - bc.q_stddev_ballots 
         THEN 'REDUCED_ACTIVITY'
         ELSE 'NORMAL_ACTIVITY'
@@ -170,6 +173,7 @@ SELECT
         ELSE 0
     END AS doc_percent_change,
     CASE 
+        -- Pre-election surge: >150% of baseline (significant increase)
         WHEN sqa.is_election_year AND sqa.total_ballots > 1.5 * qb.baseline_ballots 
         THEN 'PRE_ELECTION_SURGE'
         WHEN sqa.is_election_year AND sqa.total_ballots > qb.baseline_ballots + qb.stddev_ballots
