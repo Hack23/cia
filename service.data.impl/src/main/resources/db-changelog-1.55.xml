@@ -85,15 +85,21 @@ SELECT
     pc.transition_date, pc.transition_type,
     EXTRACT(YEAR FROM pc.transition_date) AS transition_year,
     (SELECT MIN(ed.election_date) FROM election_proximity ed WHERE ed.election_date > pc.transition_date) AS next_election,
-    EXTRACT(MONTH FROM AGE(
+    (EXTRACT(YEAR FROM AGE(
         (SELECT MIN(ed.election_date) FROM election_proximity ed WHERE ed.election_date > pc.transition_date),
         pc.transition_date
-    ))::INTEGER AS months_until_next_election,
+    )) * 12 + EXTRACT(MONTH FROM AGE(
+        (SELECT MIN(ed.election_date) FROM election_proximity ed WHERE ed.election_date > pc.transition_date),
+        pc.transition_date
+    )))::INTEGER AS months_until_next_election,
     (SELECT MAX(ed.election_date) FROM election_proximity ed WHERE ed.election_date < pc.transition_date) AS previous_election,
-    EXTRACT(MONTH FROM AGE(
+    (EXTRACT(YEAR FROM AGE(
         pc.transition_date,
         (SELECT MAX(ed.election_date) FROM election_proximity ed WHERE ed.election_date < pc.transition_date)
-    ))::INTEGER AS months_since_last_election
+    )) * 12 + EXTRACT(MONTH FROM AGE(
+        pc.transition_date,
+        (SELECT MAX(ed.election_date) FROM election_proximity ed WHERE ed.election_date < pc.transition_date)
+    )))::INTEGER AS months_since_last_election
 FROM party_changes pc
 ORDER BY transition_date DESC
         ]]>
