@@ -104,6 +104,8 @@ SELECT
         THEN 'ANOMALY_DETECTED'
         WHEN qa.total_ballots > bc.q_baseline_ballots + bc.q_stddev_ballots 
         THEN 'ELEVATED_ACTIVITY'
+        WHEN qa.total_ballots < bc.q_baseline_ballots - bc.q_stddev_ballots 
+        THEN 'REDUCED_ACTIVITY'
         ELSE 'NORMAL_ACTIVITY'
     END AS activity_classification
 FROM quarterly_activity qa
@@ -158,13 +160,13 @@ SELECT
     sqa.documents_produced - qb.baseline_docs AS doc_deviation_from_baseline,
     sqa.attendance_rate - qb.baseline_attendance AS attendance_deviation_from_baseline,
     CASE 
-        WHEN sqa.total_ballots > 0 THEN 
-            ((sqa.total_ballots - qb.baseline_ballots) / NULLIF(qb.baseline_ballots, 0)) * 100
+        WHEN qb.baseline_ballots > 0 THEN 
+            ((sqa.total_ballots - qb.baseline_ballots) / qb.baseline_ballots) * 100
         ELSE 0
     END AS ballot_percent_change,
     CASE 
-        WHEN sqa.documents_produced > 0 THEN 
-            ((sqa.documents_produced - qb.baseline_docs) / NULLIF(qb.baseline_docs, 0)) * 100
+        WHEN qb.baseline_docs > 0 THEN 
+            ((sqa.documents_produced - qb.baseline_docs) / qb.baseline_docs) * 100
         ELSE 0
     END AS doc_percent_change,
     CASE 

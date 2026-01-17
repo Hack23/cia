@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict x4IIWWfntIU68j890nwqzR1fd4vBx7nFqzWVqllZuGvUjPtOghrLqn3tTXImSKo
+\restrict g9UkwAGQbdVaSS6l8IjXeKBO5UI9y97sTmGqFC4Rxte8xWdmJK9y4CIBkJbZ58R
 
 -- Dumped from database version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
@@ -10698,6 +10698,227 @@ CREATE VIEW public.view_riksdagen_politician_experience_summary AS
 
 
 --
+-- Name: view_riksdagen_seasonal_quarterly_activity; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.view_riksdagen_seasonal_quarterly_activity AS
+ WITH ballot_quarterly_activity AS (
+         SELECT EXTRACT(year FROM vote_data.vote_date) AS year,
+            EXTRACT(quarter FROM vote_data.vote_date) AS quarter,
+                CASE
+                    WHEN (EXTRACT(year FROM vote_data.vote_date) = ANY (ARRAY[(2002)::numeric, (2006)::numeric, (2010)::numeric, (2014)::numeric, (2018)::numeric, (2022)::numeric, (2026)::numeric])) THEN true
+                    ELSE false
+                END AS is_election_year,
+            count(DISTINCT vote_data.embedded_id_ballot_id) AS total_ballots,
+            count(DISTINCT vote_data.embedded_id_intressent_id) AS active_politicians,
+            (avg(
+                CASE
+                    WHEN ((vote_data.vote)::text <> 'Frånvarande'::text) THEN 1
+                    ELSE 0
+                END) * (100)::numeric) AS attendance_rate
+           FROM public.vote_data
+          WHERE (vote_data.vote_date IS NOT NULL)
+          GROUP BY (EXTRACT(year FROM vote_data.vote_date)), (EXTRACT(quarter FROM vote_data.vote_date)),
+                CASE
+                    WHEN (EXTRACT(year FROM vote_data.vote_date) = ANY (ARRAY[(2002)::numeric, (2006)::numeric, (2010)::numeric, (2014)::numeric, (2018)::numeric, (2022)::numeric, (2026)::numeric])) THEN true
+                    ELSE false
+                END
+        ), document_quarterly_activity AS (
+         SELECT EXTRACT(year FROM document_data.made_public_date) AS year,
+            EXTRACT(quarter FROM document_data.made_public_date) AS quarter,
+            count(DISTINCT document_data.id) AS documents_produced
+           FROM public.document_data
+          WHERE (document_data.made_public_date IS NOT NULL)
+          GROUP BY (EXTRACT(year FROM document_data.made_public_date)), (EXTRACT(quarter FROM document_data.made_public_date))
+        ), quarterly_activity AS (
+         SELECT bqa.year,
+            bqa.quarter,
+            bqa.is_election_year,
+            COALESCE(bqa.total_ballots, (0)::bigint) AS total_ballots,
+            COALESCE(bqa.active_politicians, (0)::bigint) AS active_politicians,
+            COALESCE(bqa.attendance_rate, (0)::numeric) AS attendance_rate,
+            COALESCE(dqa.documents_produced, (0)::bigint) AS documents_produced
+           FROM (ballot_quarterly_activity bqa
+             LEFT JOIN document_quarterly_activity dqa ON (((bqa.year = dqa.year) AND (bqa.quarter = dqa.quarter))))
+        ), baseline_calculation AS (
+         SELECT quarterly_activity.quarter,
+            avg(quarterly_activity.total_ballots) FILTER (WHERE (NOT quarterly_activity.is_election_year)) AS q_baseline_ballots,
+            stddev(quarterly_activity.total_ballots) FILTER (WHERE (NOT quarterly_activity.is_election_year)) AS q_stddev_ballots,
+            avg(quarterly_activity.documents_produced) FILTER (WHERE (NOT quarterly_activity.is_election_year)) AS q_baseline_docs,
+            stddev(quarterly_activity.documents_produced) FILTER (WHERE (NOT quarterly_activity.is_election_year)) AS q_stddev_docs,
+            avg(quarterly_activity.attendance_rate) FILTER (WHERE (NOT quarterly_activity.is_election_year)) AS q_baseline_attendance,
+            stddev(quarterly_activity.attendance_rate) FILTER (WHERE (NOT quarterly_activity.is_election_year)) AS q_stddev_attendance
+           FROM quarterly_activity
+          GROUP BY quarterly_activity.quarter
+        )
+ SELECT qa.year,
+    qa.quarter,
+    qa.is_election_year,
+    qa.total_ballots,
+    qa.active_politicians,
+    qa.attendance_rate,
+    qa.documents_produced,
+    bc.q_baseline_ballots,
+    bc.q_stddev_ballots,
+        CASE
+            WHEN (bc.q_stddev_ballots > (0)::numeric) THEN (((qa.total_ballots)::numeric - bc.q_baseline_ballots) / bc.q_stddev_ballots)
+            ELSE (0)::numeric
+        END AS ballot_z_score,
+    bc.q_baseline_docs,
+    bc.q_stddev_docs,
+        CASE
+            WHEN (bc.q_stddev_docs > (0)::numeric) THEN (((qa.documents_produced)::numeric - bc.q_baseline_docs) / bc.q_stddev_docs)
+            ELSE (0)::numeric
+        END AS doc_z_score,
+    bc.q_baseline_attendance,
+    bc.q_stddev_attendance,
+        CASE
+            WHEN (bc.q_stddev_attendance > (0)::numeric) THEN ((qa.attendance_rate - bc.q_baseline_attendance) / bc.q_stddev_attendance)
+            ELSE (0)::numeric
+        END AS attendance_z_score,
+        CASE
+            WHEN (abs((((qa.total_ballots)::numeric - bc.q_baseline_ballots) / NULLIF(bc.q_stddev_ballots, (0)::numeric))) > (2)::numeric) THEN 'ANOMALY_DETECTED'::text
+            WHEN ((qa.total_ballots)::numeric > (bc.q_baseline_ballots + bc.q_stddev_ballots)) THEN 'ELEVATED_ACTIVITY'::text
+            WHEN ((qa.total_ballots)::numeric < (bc.q_baseline_ballots - bc.q_stddev_ballots)) THEN 'REDUCED_ACTIVITY'::text
+            ELSE 'NORMAL_ACTIVITY'::text
+        END AS activity_classification
+   FROM (quarterly_activity qa
+     JOIN baseline_calculation bc ON ((qa.quarter = bc.quarter)))
+  ORDER BY qa.year, qa.quarter;
+
+
+--
+-- Name: VIEW view_riksdagen_seasonal_quarterly_activity; Type: COMMENT; Schema: public; Owner: -
+--
+
+COMMENT ON VIEW public.view_riksdagen_seasonal_quarterly_activity IS 'Seasonal quarterly activity aggregation (2002-2026) with election year comparison. Calculates baselines from non-election years and z-score anomaly detection. Framework 3: Pattern Recognition - Seasonal clustering. Data Sources: vote_data, document_data. Election years: 2002, 2006, 2010, 2014, 2018, 2022, 2026. Target Accuracy: 87% for seasonal pattern detection.';
+
+
+--
+-- Name: view_riksdagen_q4_election_year_comparison; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.view_riksdagen_q4_election_year_comparison AS
+ WITH q4_baseline AS (
+         SELECT avg(view_riksdagen_seasonal_quarterly_activity.total_ballots) FILTER (WHERE (NOT view_riksdagen_seasonal_quarterly_activity.is_election_year)) AS baseline_ballots,
+            avg(view_riksdagen_seasonal_quarterly_activity.documents_produced) FILTER (WHERE (NOT view_riksdagen_seasonal_quarterly_activity.is_election_year)) AS baseline_docs,
+            avg(view_riksdagen_seasonal_quarterly_activity.attendance_rate) FILTER (WHERE (NOT view_riksdagen_seasonal_quarterly_activity.is_election_year)) AS baseline_attendance,
+            stddev(view_riksdagen_seasonal_quarterly_activity.total_ballots) FILTER (WHERE (NOT view_riksdagen_seasonal_quarterly_activity.is_election_year)) AS stddev_ballots,
+            stddev(view_riksdagen_seasonal_quarterly_activity.documents_produced) FILTER (WHERE (NOT view_riksdagen_seasonal_quarterly_activity.is_election_year)) AS stddev_docs,
+            stddev(view_riksdagen_seasonal_quarterly_activity.attendance_rate) FILTER (WHERE (NOT view_riksdagen_seasonal_quarterly_activity.is_election_year)) AS stddev_attendance
+           FROM public.view_riksdagen_seasonal_quarterly_activity
+          WHERE (view_riksdagen_seasonal_quarterly_activity.quarter = (4)::numeric)
+        )
+ SELECT sqa.year,
+    sqa.is_election_year,
+    sqa.total_ballots,
+    sqa.active_politicians,
+    sqa.attendance_rate,
+    sqa.documents_produced,
+    qb.baseline_ballots,
+    qb.baseline_docs,
+    qb.baseline_attendance,
+    ((sqa.total_ballots)::numeric - qb.baseline_ballots) AS ballot_deviation_from_baseline,
+    ((sqa.documents_produced)::numeric - qb.baseline_docs) AS doc_deviation_from_baseline,
+    (sqa.attendance_rate - qb.baseline_attendance) AS attendance_deviation_from_baseline,
+        CASE
+            WHEN (qb.baseline_ballots > (0)::numeric) THEN ((((sqa.total_ballots)::numeric - qb.baseline_ballots) / qb.baseline_ballots) * (100)::numeric)
+            ELSE (0)::numeric
+        END AS ballot_percent_change,
+        CASE
+            WHEN (qb.baseline_docs > (0)::numeric) THEN ((((sqa.documents_produced)::numeric - qb.baseline_docs) / qb.baseline_docs) * (100)::numeric)
+            ELSE (0)::numeric
+        END AS doc_percent_change,
+        CASE
+            WHEN (sqa.is_election_year AND ((sqa.total_ballots)::numeric > (1.5 * qb.baseline_ballots))) THEN 'PRE_ELECTION_SURGE'::text
+            WHEN (sqa.is_election_year AND ((sqa.total_ballots)::numeric > (qb.baseline_ballots + qb.stddev_ballots))) THEN 'ELEVATED_ELECTION_ACTIVITY'::text
+            WHEN sqa.is_election_year THEN 'NORMAL_ELECTION_Q4'::text
+            ELSE 'NORMAL_Q4'::text
+        END AS q4_pattern,
+    sqa.ballot_z_score,
+    sqa.doc_z_score,
+    sqa.attendance_z_score,
+    sqa.activity_classification
+   FROM (public.view_riksdagen_seasonal_quarterly_activity sqa
+     CROSS JOIN q4_baseline qb)
+  WHERE (sqa.quarter = (4)::numeric)
+  ORDER BY sqa.year DESC;
+
+
+--
+-- Name: VIEW view_riksdagen_q4_election_year_comparison; Type: COMMENT; Schema: public; Owner: -
+--
+
+COMMENT ON VIEW public.view_riksdagen_q4_election_year_comparison IS 'Q4 (October-December) activity comparison: election years vs non-election years. Detects pre-election surge patterns (>150% baseline) and elevated activity (>1 stddev). Enables prediction of electoral behavior based on Q4 activity patterns. Framework 3: Pattern Recognition + Framework 4: Predictive Intelligence. Data Source: view_riksdagen_seasonal_quarterly_activity. Use Case: Query Q4 2021 (election year) vs Q4 2020 (non-election year) activity';
+
+
+--
+-- Name: view_riksdagen_seasonal_anomaly_detection; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.view_riksdagen_seasonal_anomaly_detection AS
+ SELECT year,
+    quarter,
+    is_election_year,
+    total_ballots,
+    active_politicians,
+    attendance_rate,
+    documents_produced,
+    q_baseline_ballots,
+    q_stddev_ballots,
+    ballot_z_score,
+    q_baseline_docs,
+    q_stddev_docs,
+    doc_z_score,
+    q_baseline_attendance,
+    q_stddev_attendance,
+    attendance_z_score,
+    activity_classification,
+        CASE
+            WHEN (quarter = (1)::numeric) THEN 'Q1_JAN_MAR'::text
+            WHEN (quarter = (2)::numeric) THEN 'Q2_APR_JUN'::text
+            WHEN (quarter = (3)::numeric) THEN 'Q3_JUL_SEP'::text
+            WHEN (quarter = (4)::numeric) THEN 'Q4_OCT_DEC'::text
+            ELSE NULL::text
+        END AS quarter_label,
+        CASE
+            WHEN (quarter = (1)::numeric) THEN 'Winter Session'::text
+            WHEN (quarter = (2)::numeric) THEN 'Spring Session'::text
+            WHEN (quarter = (3)::numeric) THEN 'Summer Recess/Election'::text
+            WHEN (quarter = (4)::numeric) THEN 'Autumn Session'::text
+            ELSE NULL::text
+        END AS parliamentary_period,
+        CASE
+            WHEN (abs(ballot_z_score) > (2)::numeric) THEN 'BALLOT_ANOMALY'::text
+            WHEN (abs(doc_z_score) > (2)::numeric) THEN 'DOCUMENT_ANOMALY'::text
+            WHEN (abs(attendance_z_score) > (2)::numeric) THEN 'ATTENDANCE_ANOMALY'::text
+            ELSE 'NO_ANOMALY'::text
+        END AS anomaly_type,
+        CASE
+            WHEN ((ballot_z_score > (2)::numeric) OR (doc_z_score > (2)::numeric)) THEN 'UNUSUALLY_HIGH'::text
+            WHEN ((ballot_z_score < ('-2'::integer)::numeric) OR (doc_z_score < ('-2'::integer)::numeric)) THEN 'UNUSUALLY_LOW'::text
+            ELSE 'WITHIN_NORMAL_RANGE'::text
+        END AS anomaly_direction,
+    GREATEST(abs(ballot_z_score), abs(doc_z_score), abs(attendance_z_score)) AS max_z_score,
+        CASE
+            WHEN (GREATEST(abs(ballot_z_score), abs(doc_z_score), abs(attendance_z_score)) > (3)::numeric) THEN 'CRITICAL'::text
+            WHEN (GREATEST(abs(ballot_z_score), abs(doc_z_score), abs(attendance_z_score)) > (2)::numeric) THEN 'HIGH'::text
+            WHEN (GREATEST(abs(ballot_z_score), abs(doc_z_score), abs(attendance_z_score)) > 1.5) THEN 'MODERATE'::text
+            ELSE 'LOW'::text
+        END AS anomaly_severity
+   FROM public.view_riksdagen_seasonal_quarterly_activity
+  WHERE ((activity_classification = ANY (ARRAY['ANOMALY_DETECTED'::text, 'ELEVATED_ACTIVITY'::text])) OR (abs(ballot_z_score) > 1.5) OR (abs(doc_z_score) > 1.5) OR (abs(attendance_z_score) > 1.5))
+  ORDER BY GREATEST(abs(ballot_z_score), abs(doc_z_score), abs(attendance_z_score)) DESC, year DESC, quarter DESC;
+
+
+--
+-- Name: VIEW view_riksdagen_seasonal_anomaly_detection; Type: COMMENT; Schema: public; Owner: -
+--
+
+COMMENT ON VIEW public.view_riksdagen_seasonal_anomaly_detection IS 'Seasonal anomaly detection identifying quarters with activity >2 standard deviations from baseline. Classifies anomalies by type (ballot/document/attendance), direction (high/low), and severity (critical/high/moderate/low). Filters for elevated activity (z-score > 1.5) to focus on statistically significant deviations. Framework 3: Pattern Recognition - Anomaly detection. Framework 6: Decision Intelligence - Operational warnings. Data Source: view_riksdagen_seasonal_quarterly_activity. Use Case: Crisis detection, electoral behavior anomalies, operational intelligence.';
+
+
+--
 -- Name: view_riksdagen_vote_data_ballot_party_summary_daily; Type: MATERIALIZED VIEW; Schema: public; Owner: -
 --
 
@@ -13279,13 +13500,13 @@ ALTER TABLE ONLY public.jv_snapshot
 -- PostgreSQL database dump complete
 --
 
-\unrestrict x4IIWWfntIU68j890nwqzR1fd4vBx7nFqzWVqllZuGvUjPtOghrLqn3tTXImSKo
+\unrestrict g9UkwAGQbdVaSS6l8IjXeKBO5UI9y97sTmGqFC4Rxte8xWdmJK9y4CIBkJbZ58R
 
 --
 -- PostgreSQL database dump
 --
 
-\restrict fMFbsS8tibgHKP9Ar3l2SddbPceBQMXUqLJviFUS7Rifw95QeRnFYO6nurZsRj7
+\restrict nFHSBO8nf524Q8ulCr0MbTehDYEflSHhCUS6bVORx9PbthqoPoP3cnLt0lq50XZ
 
 -- Dumped from database version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
@@ -13796,6 +14017,13 @@ fix-rebel-calculation-risk-score-evolution-1.50-001	intelligence-operative	db-ch
 1.54-add-government-body-indexes	intelligence-operative-analytics	db-changelog-1.54.xml	2026-01-16 15:32:26.196206	489	EXECUTED	9:d4611e87e7ecd3c83c57c45009042471	createIndex (x4)	Add indexes for query performance	\N	5.0.1	\N	\N	\N
 1.54-add-government-body-comments	intelligence-operative-analytics	db-changelog-1.54.xml	2026-01-16 15:32:26.196206	490	EXECUTED	9:72d9e688519a72ac461c65c1842e91b9	sql	Add table comments	\N	5.0.1	\N	\N	\N
 1.54-create-government-body-data-table	intelligence-operative-analytics	db-changelog-1.54.xml	2026-01-16 15:32:26.196206	488	EXECUTED	9:ececfb8343eaa00195e944896c729962	createTable tableName=government_body_data	Create government_body_data table	\N	5.0.1	\N	\N	\N
+1.55-intro	intelligence-operative	db-changelog-1.55.xml	2026-01-17 03:03:19.857925	491	EXECUTED	9:ae819f4af55b6727e7d064337c41a277	sql	v1.55 Seasonal Trend Analysis - Q4 Pre-Election Activity Patterns	\N	5.0.1	\N	\N	8618997367
+1.55-create-seasonal-quarterly-activity-view	intelligence-operative	db-changelog-1.55.xml	2026-01-17 03:03:19.897977	492	EXECUTED	9:7cadb3cf0d7b4c913b3652be9b11b591	createView viewName=view_riksdagen_seasonal_quarterly_activity	Create view_riksdagen_seasonal_quarterly_activity for quarterly pattern analysis.\n            Aggregates Q1-Q4 activity patterns across 24 years (2002-2026) for election cycle analysis.\n            Includes baseline calculation for non-election ye...	\N	5.0.1	\N	\N	8618997367
+1.55-document-seasonal-quarterly-activity-view	intelligence-operative	db-changelog-1.55.xml	2026-01-17 03:03:19.903618	493	EXECUTED	9:33b75f2117ac0ec9c516453e836bebb2	sql	Add documentation for view_riksdagen_seasonal_quarterly_activity	\N	5.0.1	\N	\N	8618997367
+1.55-create-q4-election-comparison-view	intelligence-operative	db-changelog-1.55.xml	2026-01-17 03:03:19.912497	494	EXECUTED	9:d7db98651af260b5201e2946ef9e5f6b	createView viewName=view_riksdagen_q4_election_year_comparison	Create view_riksdagen_q4_election_year_comparison for Q4 pre-election activity analysis.\n            Compares Q4 activity in election years vs non-election years to detect pre-election surge patterns.\n            Supports predictive modeling of fu...	\N	5.0.1	\N	\N	8618997367
+1.55-document-q4-election-comparison-view	intelligence-operative	db-changelog-1.55.xml	2026-01-17 03:03:19.917092	495	EXECUTED	9:b497414f0b045cb3bb0ccb8e6961aed3	sql	Add documentation for view_riksdagen_q4_election_year_comparison	\N	5.0.1	\N	\N	8618997367
+1.55-create-seasonal-anomaly-detection-view	intelligence-operative	db-changelog-1.55.xml	2026-01-17 03:03:19.92608	496	EXECUTED	9:69851ca46d84ac54e40aaf061fffdade	createView viewName=view_riksdagen_seasonal_anomaly_detection	Create view_riksdagen_seasonal_anomaly_detection for identifying activity anomalies.\n            Flags quarters with activity >2 standard deviations from baseline for further investigation.\n            Supports operational intelligence and crisis ...	\N	5.0.1	\N	\N	8618997367
+1.55-document-seasonal-anomaly-detection-view	intelligence-operative	db-changelog-1.55.xml	2026-01-17 03:03:19.931566	497	EXECUTED	9:c1119e1a6667312f4124d2bbc7fb22d9	sql	Add documentation for view_riksdagen_seasonal_anomaly_detection	\N	5.0.1	\N	\N	8618997367
 \.
 
 
@@ -13812,5 +14040,5 @@ COPY public.databasechangeloglock (id, locked, lockgranted, lockedby) FROM stdin
 -- PostgreSQL database dump complete
 --
 
-\unrestrict fMFbsS8tibgHKP9Ar3l2SddbPceBQMXUqLJviFUS7Rifw95QeRnFYO6nurZsRj7
+\unrestrict nFHSBO8nf524Q8ulCr0MbTehDYEflSHhCUS6bVORx9PbthqoPoP3cnLt0lq50XZ
 
