@@ -158,6 +158,13 @@
 		<!-- V2.0 Missing OSINT Framework Views - Phase 1 CRITICAL -->
 		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewPoliticianRiskSummary</class>
 
+		<!-- V1.55 Politician Career Trajectory Tracking Views -->
+		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianCareerTrajectory</class>
+		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianCareerTrajectoryEmbeddedId</class>
+		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianRoleEvolution</class>
+		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianRoleEvolutionEmbeddedId</class>
+		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianLongevityAnalysis</class>
+
 		<class>com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPoliticianDocument</class>
 		<class>com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenDocumentTypeDailySummary</class>
 		<class>com.hack23.cia.model.internal.application.data.document.impl.ViewRiksdagenPartyDocumentDailySummary</class>
