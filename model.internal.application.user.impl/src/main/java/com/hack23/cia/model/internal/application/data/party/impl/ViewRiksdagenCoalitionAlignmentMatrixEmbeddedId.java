@@ -19,6 +19,7 @@
 package com.hack23.cia.model.internal.application.data.party.impl;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
