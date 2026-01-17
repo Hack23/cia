@@ -94,6 +94,7 @@ role_progression AS (
         MIN(role_start_year) OVER (PARTITION BY person_id) AS career_first_year,
         MAX(role_end_year) OVER (PARTITION BY person_id) AS career_last_year,
         LAG(role_weight) OVER (PARTITION BY person_id ORDER BY role_start) AS prev_role_weight,
+        LAG(role_start_year) OVER (PARTITION BY person_id ORDER BY role_start) AS prev_role_start_year,
         LEAD(role_weight) OVER (PARTITION BY person_id ORDER BY role_start) AS next_role_weight
     FROM role_summary
 )
@@ -137,11 +138,11 @@ SELECT
         WHEN role_weight >= 200 THEN 'JUNIOR'
         ELSE 'ENTRY_LEVEL'
     END AS career_level,
-    -- Calculate advancement velocity (role weight increase per year)
+    -- Calculate advancement velocity (role weight increase per year between consecutive roles)
     CASE 
-        WHEN prev_role_weight IS NOT NULL AND role_start_year > career_first_year 
+        WHEN prev_role_weight IS NOT NULL AND prev_role_start_year IS NOT NULL
         THEN ROUND((role_weight - prev_role_weight)::NUMERIC / 
-                   NULLIF(role_start_year - career_first_year, 0), 2)
+                   NULLIF(role_start_year - prev_role_start_year, 0), 2)
         ELSE NULL
     END AS advancement_velocity
 FROM role_progression

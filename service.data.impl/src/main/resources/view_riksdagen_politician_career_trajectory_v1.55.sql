@@ -7,15 +7,8 @@ WITH career_cycles AS (
         p.first_name,
         p.last_name,
         p.party,
-        CASE 
-            WHEN EXTRACT(YEAR FROM vd.vote_date) BETWEEN 2002 AND 2005 THEN 2002
-            WHEN EXTRACT(YEAR FROM vd.vote_date) BETWEEN 2006 AND 2009 THEN 2006
-            WHEN EXTRACT(YEAR FROM vd.vote_date) BETWEEN 2010 AND 2013 THEN 2010
-            WHEN EXTRACT(YEAR FROM vd.vote_date) BETWEEN 2014 AND 2017 THEN 2014
-            WHEN EXTRACT(YEAR FROM vd.vote_date) BETWEEN 2018 AND 2021 THEN 2018
-            WHEN EXTRACT(YEAR FROM vd.vote_date) BETWEEN 2022 AND 2025 THEN 2022
-            ELSE 2026
-        END AS election_year,
+        -- Calculate election year dynamically: rounds down to nearest election year (2002, 2006, 2010, etc.)
+        (2002 + 4 * FLOOR((EXTRACT(YEAR FROM vd.vote_date) - 2002) / 4))::int AS election_year,
         MIN(vd.vote_date) AS first_vote,
         MAX(vd.vote_date) AS last_vote,
         COUNT(*) AS ballot_count,
@@ -36,10 +29,12 @@ WITH career_cycles AS (
         COUNT(DISTINCT dpr.person_reference_id) AS documents_authored
     FROM person_data p
     JOIN vote_data vd ON p.id = vd.embedded_id_intressent_id
-    -- Note: Party summary join is simplified for performance - uses ballot_id and party as proxy for win rate
-    -- Full composite key match (ballot_id, issue, concern, party) not needed for aggregated metrics
+    -- Join against party summary view using full composite key for accurate win rate calculation
+    -- Composite key: (ballot_id, issue, concern, party)
     LEFT JOIN view_riksdagen_vote_data_ballot_party_summary ps 
         ON vd.embedded_id_ballot_id = ps.embedded_id_ballot_id 
+        AND vd.embedded_id_issue = ps.embedded_id_issue
+        AND vd.embedded_id_concern = ps.embedded_id_concern
         AND vd.party = ps.embedded_id_party
     LEFT JOIN assignment_data ad 
         ON p.id = ad.intressent_id

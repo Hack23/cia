@@ -22,15 +22,8 @@ WITH career_timeline AS (
             CASE WHEN p.status LIKE '%Tjänstgörande%' THEN CURRENT_DATE ELSE MAX(vd.vote_date) END
         ) AS career_end_date,
         -- Count distinct election cycles participated in
-        COUNT(DISTINCT CASE 
-            WHEN EXTRACT(YEAR FROM vd.vote_date) BETWEEN 2002 AND 2005 THEN 2002
-            WHEN EXTRACT(YEAR FROM vd.vote_date) BETWEEN 2006 AND 2009 THEN 2006
-            WHEN EXTRACT(YEAR FROM vd.vote_date) BETWEEN 2010 AND 2013 THEN 2010
-            WHEN EXTRACT(YEAR FROM vd.vote_date) BETWEEN 2014 AND 2017 THEN 2014
-            WHEN EXTRACT(YEAR FROM vd.vote_date) BETWEEN 2018 AND 2021 THEN 2018
-            WHEN EXTRACT(YEAR FROM vd.vote_date) BETWEEN 2022 AND 2025 THEN 2022
-            ELSE 2026
-        END) AS election_cycles_active,
+        -- Election year formula: rounds down to nearest election year (2002, 2006, 2010, etc.)
+        COUNT(DISTINCT (2002 + 4 * FLOOR((EXTRACT(YEAR FROM vd.vote_date) - 2002) / 4))::int) AS election_cycles_active,
         -- Total votes cast
         COUNT(DISTINCT vd.embedded_id_ballot_id) AS total_votes_cast,
         -- Total assignments held
@@ -74,20 +67,19 @@ activity_patterns AS (
               NULLIF((career_end_date - career_start_date) / 365.25, 0), 2) 
             AS avg_assignments_per_year,
         -- Continuity score: ratio of cycles active to total possible cycles
+        -- Dynamically calculated based on career span from first to last activity year
         CASE 
-            WHEN first_activity_year <= 2002 THEN 
-                ROUND(election_cycles_active::NUMERIC / 7.0 * 100, 1)
-            WHEN first_activity_year <= 2006 THEN 
-                ROUND(election_cycles_active::NUMERIC / 6.0 * 100, 1)
-            WHEN first_activity_year <= 2010 THEN 
-                ROUND(election_cycles_active::NUMERIC / 5.0 * 100, 1)
-            WHEN first_activity_year <= 2014 THEN 
-                ROUND(election_cycles_active::NUMERIC / 4.0 * 100, 1)
-            WHEN first_activity_year <= 2018 THEN 
-                ROUND(election_cycles_active::NUMERIC / 3.0 * 100, 1)
-            WHEN first_activity_year <= 2022 THEN 
-                ROUND(election_cycles_active::NUMERIC / 2.0 * 100, 1)
-            ELSE 100.0
+            WHEN first_activity_year IS NULL OR last_activity_year IS NULL THEN 
+                NULL
+            ELSE 
+                ROUND(
+                    election_cycles_active::NUMERIC 
+                    / NULLIF(
+                        GREATEST(((last_activity_year - first_activity_year) / 4) + 1, 1),
+                        0
+                    ) * 100,
+                    1
+                )
         END AS career_continuity_score
     FROM career_timeline ct
 )
