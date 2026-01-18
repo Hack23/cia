@@ -88,6 +88,11 @@
         - Builds on view_riksdagen_politician_role_evolution (existing role classification and weights from v1.56)
         - Leverages existing role_tier and role_weight logic (no duplication of role classification)
         - Uses pre-aggregated role summaries for better performance
+        - PREDICTIVE INTELLIGENCE: Integrates advanced analytical views (META/META-level)
+          * view_politician_behavioral_trends (voting patterns, behavioral assessment)
+          * view_politician_risk_summary (risk scores, violation tracking, anomaly detection)
+          * view_riksdagen_politician_influence_metrics (network centrality, influence classification)
+        - Follows pattern from v1.51/v1.52 and election proximity analysis (#8236)
         
         KEY ENHANCEMENTS OVER v1.56:
         - 10-level granular classification derived from existing role_weight ranges
@@ -98,8 +103,12 @@
         - Time-in-level analysis for career pacing assessment
         - Peak sustainability metrics (how long at highest level)
         - Cross-level transition matrices for progression analysis
+        - PREDICTIVE INTELLIGENCE: Behavioral trends, risk assessment, network influence
+        - COMPOSITE SCORING: Predictive success score combining career + risk + behavior + influence
+        - LEADERSHIP POTENTIAL: Succession planning score based on trajectory + influence + risk
+        - COMPREHENSIVE RISK: Multi-dimensional risk combining career decline + violations + behavior
         
-        COMPREHENSIVE KPIs (40+ metrics):
+        COMPREHENSIVE KPIs (60+ metrics with predictive intelligence):
         1. Career Level Classification: 10 hierarchical levels (from existing role_weight)
         2. Career Scores: Non-linear scoring to prevent accumulation
         3. Progression Metrics: advancement velocity, promotion count, demotion count
@@ -110,8 +119,13 @@
         8. Comparative Metrics: RANK, PERCENT_RANK, NTILE by career score
         9. Trend Detection: LAG/LEAD for progression direction
         10. Volatility Metrics: STDDEV_POP for career stability
+        11. Behavioral Intelligence: win rates, rebel rates, absence rates, behavioral assessment
+        12. Risk Intelligence: risk levels, violation counts, anomaly detection, trend risk
+        13. Network Influence: centrality scores, broker scores, strong connections
+        14. Predictive Scores: success prediction, leadership potential, comprehensive risk
+        15. Retention Risk: high retention risk flag combining multiple factors
         
-        Intelligence Value: ⭐⭐⭐⭐⭐ VERY HIGH
+        Intelligence Value: ⭐⭐⭐⭐⭐ VERY HIGH (ENHANCED WITH PREDICTIVE INTELLIGENCE)
         Used for: Leadership succession planning, talent retention, career forecasting,
         party leader transitions, speaker succession, resignation risk
     </comment>
@@ -383,105 +397,239 @@ career_scoring AS (
         NTILE(10) OVER (ORDER BY cpa.peak_career_score DESC) AS career_decile
         
     FROM career_progression_analysis cpa
+),
+-- PREDICTIVE INTELLIGENCE: Integrate advanced analytical views (META/META-level)
+-- Following pattern from v1.51/v1.52 and election proximity analysis (#8236)
+predictive_intelligence AS (
+    SELECT 
+        cs.*,
+        
+        -- Behavioral Intelligence (from view_politician_behavioral_trends)
+        pbt.avg_win_rate AS behavioral_win_rate,
+        pbt.avg_rebel_rate AS behavioral_rebel_rate,
+        pbt.avg_absence_rate AS behavioral_absence_rate,
+        pbt.behavioral_assessment,
+        pbt.attendance_status,
+        pbt.effectiveness_status,
+        pbt.discipline_status,
+        
+        -- Risk Intelligence (from view_politician_risk_summary)
+        prs.risk_level,
+        prs.total_risk_score,
+        prs.trend_risk_score,
+        prs.anomaly_detected,
+        prs.total_violations,
+        prs.absenteeism_violations,
+        prs.effectiveness_violations,
+        prs.discipline_violations,
+        
+        -- Network Influence Intelligence (from view_riksdagen_politician_influence_metrics)
+        pim.influence_classification,
+        pim.centrality_score,
+        pim.broker_score,
+        pim.strong_connections,
+        pim.cross_party_connections,
+        
+        -- Composite Predictive Score (weighted combination)
+        -- Career trajectory (40%) + Risk assessment (30%) + Behavioral patterns (20%) + Network influence (10%)
+        ROUND((
+            (cs.career_health_score * 0.40) +  -- Career health: 40%
+            ((100 - COALESCE(prs.total_risk_score, 50)) * 0.30) +  -- Inverse risk: 30% (lower risk = higher score)
+            (COALESCE(pbt.avg_win_rate, 50) * 0.20) +  -- Behavioral effectiveness: 20%
+            (CASE 
+                WHEN pim.influence_classification = 'HIGHLY_INFLUENTIAL' THEN 10.0
+                WHEN pim.influence_classification = 'INFLUENTIAL' THEN 7.5
+                WHEN pim.influence_classification = 'MODERATELY_INFLUENTIAL' THEN 5.0
+                ELSE 2.5
+            END)  -- Network influence: 10%
+        )::NUMERIC, 1) AS predictive_success_score,
+        
+        -- Comprehensive Risk Assessment (career + behavioral + violations)
+        CASE 
+            WHEN cs.downward_spiral_flag AND COALESCE(prs.total_violations, 0) >= 3 THEN 'CRITICAL_RISK'
+            WHEN cs.exit_risk_score >= 60 OR prs.risk_level = 'HIGH' THEN 'HIGH_RISK'
+            WHEN cs.exit_risk_score >= 40 OR prs.risk_level = 'MEDIUM' THEN 'MEDIUM_RISK'
+            WHEN cs.career_pattern = 'STAGNANT' AND COALESCE(prs.total_violations, 0) >= 1 THEN 'MEDIUM_RISK'
+            ELSE 'LOW_RISK'
+        END AS comprehensive_risk_level,
+        
+        -- Leadership Potential Score (for succession planning)
+        CASE 
+            WHEN cs.career_level >= 8 THEN 100  -- Already at top (PM, Ministers, Speaker)
+            WHEN cs.career_pattern = 'FAST_TRACK' AND cs.career_level >= 6 
+                 AND pim.influence_classification IN ('HIGHLY_INFLUENTIAL', 'INFLUENTIAL')
+                 AND COALESCE(prs.risk_level, 'LOW') = 'LOW' 
+                 THEN 90
+            WHEN cs.career_pattern IN ('RISING_STAR', 'STEADY_PROGRESS') 
+                 AND cs.career_level >= 5
+                 AND COALESCE(pbt.behavioral_assessment, 'ADEQUATE') IN ('EXEMPLARY', 'ABOVE_AVERAGE')
+                 THEN 75
+            WHEN cs.career_level >= 4 
+                 AND cs.promotions_count > cs.demotions_count
+                 AND COALESCE(prs.risk_level, 'LOW') IN ('LOW', 'MEDIUM')
+                 THEN 60
+            WHEN cs.career_level >= 3 THEN 40
+            ELSE 20
+        END AS leadership_potential_score,
+        
+        -- Retention Risk Flag (combining multiple risk factors)
+        CASE 
+            WHEN cs.downward_spiral_flag 
+                 AND COALESCE(prs.anomaly_detected, FALSE) 
+                 AND COALESCE(pbt.attendance_status, 'ADEQUATE') = 'POOR' 
+                 THEN TRUE
+            WHEN cs.exit_risk_score >= 75 
+                 AND COALESCE(prs.total_violations, 0) >= 2 
+                 THEN TRUE
+            WHEN cs.career_pattern = 'DECLINING' 
+                 AND COALESCE(pbt.effectiveness_status, 'ADEQUATE') = 'POOR'
+                 THEN TRUE
+            ELSE FALSE
+        END AS high_retention_risk_flag
+        
+    FROM career_scoring cs
+    LEFT JOIN view_politician_behavioral_trends pbt 
+        ON cs.person_id = pbt.person_id 
+        AND pbt.period_start = (
+            SELECT MAX(period_start) 
+            FROM view_politician_behavioral_trends 
+            WHERE person_id = cs.person_id
+        )
+    LEFT JOIN view_politician_risk_summary prs 
+        ON cs.person_id = prs.person_id
+    LEFT JOIN view_riksdagen_politician_influence_metrics pim 
+        ON cs.person_id = pim.person_id
 )
 SELECT 
-    cs.person_id,
-    cs.first_name,
-    cs.last_name,
-    cs.party,
-    cs.role_code,
-    cs.status,
-    cs.assignment_type,
-    cs.org_code,
-    cs.from_date,
-    cs.to_date,
-    cs.is_current_role,
+    pi.person_id,
+    pi.first_name,
+    pi.last_name,
+    pi.party,
+    pi.role_code,
+    pi.status,
+    pi.assignment_type,
+    pi.org_code,
+    pi.from_date,
+    pi.to_date,
+    pi.is_current_role,
     
     -- 10-Level Career Classification
-    cs.career_level,
-    cs.career_level_name,
-    cs.career_score,
+    pi.career_level,
+    pi.career_level_name,
+    pi.career_score,
     
     -- Career Timeline
-    cs.career_step,
-    cs.total_career_steps,
-    cs.career_start_date,
-    cs.career_end_date,
-    cs.career_start_year,
-    cs.career_end_year,
-    cs.career_span_years,
+    pi.career_step,
+    pi.total_career_steps,
+    pi.career_start_date,
+    pi.career_end_date,
+    pi.career_start_year,
+    pi.career_end_year,
+    pi.career_span_years,
     
     -- Role Duration
-    cs.years_in_role,
-    cs.years_since_prev_role,
-    cs.total_years_at_level,
+    pi.years_in_role,
+    pi.years_since_prev_role,
+    pi.total_years_at_level,
     
     -- Peak Analysis
-    cs.peak_career_level,
-    cs.peak_career_score,
-    cs.is_peak_role,
-    cs.years_at_peak,
+    pi.peak_career_level,
+    pi.peak_career_score,
+    pi.is_peak_role,
+    pi.years_at_peak,
     
     -- Progression Metrics
-    cs.prev_career_level,
-    cs.next_career_level,
-    cs.progression_direction,
-    cs.level_change,
-    cs.score_change,
-    cs.advancement_velocity,
-    cs.promotions_count,
-    cs.demotions_count,
+    pi.prev_career_level,
+    pi.next_career_level,
+    pi.progression_direction,
+    pi.level_change,
+    pi.score_change,
+    pi.advancement_velocity,
+    pi.promotions_count,
+    pi.demotions_count,
     
     -- Career Performance
-    cs.avg_career_score,
-    cs.career_score_volatility,
-    cs.avg_years_per_promotion,
+    pi.avg_career_score,
+    pi.career_score_volatility,
+    pi.avg_years_per_promotion,
     
     -- Career Pattern Classification
-    cs.career_pattern,
-    cs.downward_spiral_flag,
-    cs.exit_risk_score,
+    pi.career_pattern,
+    pi.downward_spiral_flag,
+    pi.exit_risk_score,
     
     -- Comparative Rankings
-    cs.overall_career_rank,
-    cs.career_percentile,
-    cs.career_decile,
+    pi.overall_career_rank,
+    pi.career_percentile,
+    pi.career_decile,
+    
+    -- Behavioral Intelligence
+    pi.behavioral_win_rate,
+    pi.behavioral_rebel_rate,
+    pi.behavioral_absence_rate,
+    pi.behavioral_assessment,
+    pi.attendance_status,
+    pi.effectiveness_status,
+    pi.discipline_status,
+    
+    -- Risk Intelligence
+    pi.risk_level,
+    pi.total_risk_score,
+    pi.trend_risk_score,
+    pi.anomaly_detected,
+    pi.total_violations,
+    pi.absenteeism_violations,
+    pi.effectiveness_violations,
+    pi.discipline_violations,
+    
+    -- Network Influence Intelligence
+    pi.influence_classification,
+    pi.centrality_score,
+    pi.broker_score,
+    pi.strong_connections,
+    pi.cross_party_connections,
+    
+    -- Predictive Scores
+    pi.predictive_success_score,
+    pi.comprehensive_risk_level,
+    pi.leadership_potential_score,
+    pi.high_retention_risk_flag,
     
     -- Career Stage Classification
     CASE 
-        WHEN cs.career_span_years <= 3 THEN 'EARLY_CAREER'
-        WHEN cs.career_span_years <= 8 THEN 'MID_CAREER'
-        WHEN cs.career_span_years <= 15 THEN 'SENIOR_CAREER'
+        WHEN pi.career_span_years <= 3 THEN 'EARLY_CAREER'
+        WHEN pi.career_span_years <= 8 THEN 'MID_CAREER'
+        WHEN pi.career_span_years <= 15 THEN 'SENIOR_CAREER'
         ELSE 'VETERAN_CAREER'
     END AS career_stage,
     
     -- Career Health Indicator (composite score)
     ROUND((
-        (cs.career_score::NUMERIC / 1000.0 * 40) +  -- Current level weight: 40%
-        (CASE WHEN cs.is_peak_role THEN 20.0 ELSE 0.0 END) +  -- Peak status: 20%
-        ((cs.promotions_count - cs.demotions_count)::NUMERIC * 5) +  -- Net progression: up to 20%
-        (CASE WHEN cs.progression_direction = 'PROMOTION' THEN 10.0 
-              WHEN cs.progression_direction = 'LATERAL' THEN 5.0 
+        (pi.career_score::NUMERIC / 1000.0 * 40) +  -- Current level weight: 40%
+        (CASE WHEN pi.is_peak_role THEN 20.0 ELSE 0.0 END) +  -- Peak status: 20%
+        ((pi.promotions_count - pi.demotions_count)::NUMERIC * 5) +  -- Net progression: up to 20%
+        (CASE WHEN pi.progression_direction = 'PROMOTION' THEN 10.0 
+              WHEN pi.progression_direction = 'LATERAL' THEN 5.0 
               ELSE 0.0 END) +  -- Recent direction: 10%
-        (CASE WHEN cs.downward_spiral_flag THEN -20.0 ELSE 10.0 END)  -- Stability: 10%
+        (CASE WHEN pi.downward_spiral_flag THEN -20.0 ELSE 10.0 END)  -- Stability: 10%
     )::NUMERIC, 1) AS career_health_score,
     
     -- Typical Career Path Flag
     CASE 
-        WHEN cs.career_pattern IN ('FAST_TRACK', 'RISING_STAR', 'STEADY_PROGRESS', 'PEAK_PERFORMER') 
+        WHEN pi.career_pattern IN ('FAST_TRACK', 'RISING_STAR', 'STEADY_PROGRESS', 'PEAK_PERFORMER') 
         THEN TRUE
         ELSE FALSE
     END AS is_typical_career_path,
     
     -- Atypical Career Flag (downward spirals, stagnation)
     CASE 
-        WHEN cs.career_pattern IN ('DECLINING', 'DOWNWARD_SPIRAL', 'STAGNANT') 
+        WHEN pi.career_pattern IN ('DECLINING', 'DOWNWARD_SPIRAL', 'STAGNANT') 
         THEN TRUE
         ELSE FALSE
     END AS is_atypical_career_path
 
-FROM career_scoring cs
-ORDER BY cs.person_id, cs.from_date;
+FROM predictive_intelligence pi
+ORDER BY pi.person_id, pi.from_date;
         ]]>
     </createView>
     
