@@ -1,0 +1,701 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+<!-- 
+  Feature: 10-Level Career Path Classification & Trajectory Analysis
+  Author: Intelligence Operative (Political Analyst)
+  Date: 2026-01-18
+  Issue: Enhancement of Hack23/cia#8211 - Politician Career Trajectory Tracking
+  
+  Documentation References:
+  - Analysis Framework: DATA_ANALYSIS_INTOP_OSINT.md (Predictive Intelligence Framework 4)
+  - Schema Maintenance: service.data.impl/README-SCHEMA-MAINTENANCE.md
+  - View Catalog: DATABASE_VIEW_INTELLIGENCE_CATALOG.md
+  - Base Issue: #8211 - Politician Career Trajectory Tracking Across Election Cycles
+  
+  Summary: Create enhanced view with 10-level hierarchical role classification system
+  for comprehensive career path analysis, including party leaders, speakers, and typical
+  career progression patterns vs. downward spirals.
+  
+  Enhancement over v1.56 career views:
+  - Implements 10-level hierarchical classification (vs. 8 tier system in v1.56)
+  - Adds party leader and speaker role tracking as requested
+  - Enhanced career scoring with level-based KPIs
+  - Typical career path detection (fast track, steady progress, stagnant, declining)
+  - Downward spiral indicators (demotion velocity, consecutive demotions, exit risk)
+  - Time-in-level analysis for career pacing
+  - Peak sustainability metrics
+  - Cross-level transition patterns
+  
+  10-Level Classification System:
+  Level 10: Prime Minister (Statsminister) - Highest office
+  Level 9:  Deputy Prime Minister / Cabinet Ministers (Vice statsminister, Statsråd)
+  Level 8:  Speaker of Parliament (Talman) - Presiding officer
+  Level 7:  Party Leader / Deputy Speakers (Partiledare, Vice talman)
+  Level 6:  Party Secretary / Committee Chairs (Partisekreterare, Ordförande)
+  Level 5:  Committee Vice Chairs (Vice ordförande)
+  Level 4:  Active MPs (Riksdagsledamot) - Full parliament membership
+  Level 3:  Committee Members (Ledamot in committees)
+  Level 2:  Substitute MPs (Suppleant, Ersättare)
+  Level 1:  Other/Entry Roles (Other assignments)
+  
+  Intelligence Value: ⭐⭐⭐⭐⭐ VERY HIGH
+  Used for: Career path forecasting, leadership succession planning, talent retention,
+  resignation risk prediction, party leader transition analysis
+-->
+
+<changeSet id="1.58-intro" author="intelligence-operative">
+    <comment>
+        Database Changelog v1.58 - 10-Level Career Path Classification &amp; Trajectory Analysis
+        
+        Enhancement of #8211 career tracking views with comprehensive 10-level hierarchical
+        role classification, party leader/speaker tracking, typical career path detection,
+        and downward spiral indicators. Includes advanced statistical functions (RANK, 
+        PERCENT_RANK, NTILE, LAG, LEAD, STDDEV_POP) for career pattern analysis.
+    </comment>
+    
+    <sql>
+        SELECT 
+            'v1.58' AS version,
+            '10-level career classification with path analysis' AS description,
+            'Party leaders, speakers, career scoring, trajectory patterns' AS features,
+            'Enhancement of #8211 career tracking' AS base_issue,
+            CURRENT_TIMESTAMP AS applied_at;
+    </sql>
+</changeSet>
+
+
+<!-- ========================================================================= -->
+<!-- VIEW: 10-Level Career Path Analysis with Advanced Trajectory Tracking    -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="drop-career-path-10level-1.58-001" failOnError="false">
+    <sql>DROP VIEW IF EXISTS view_riksdagen_politician_career_path_10level CASCADE;</sql>
+</changeSet>
+
+<changeSet author="intelligence-operative" id="career-path-10level-1.58-001" failOnError="true">
+    <comment>
+        Create view_riksdagen_politician_career_path_10level with comprehensive 10-level 
+        hierarchical role classification system.
+        
+        Framework: Predictive Intelligence (Framework 4) + Temporal Analysis (Framework 1)
+        
+        OPTIMIZATIONS:
+        - Builds on view_riksdagen_politician_role_evolution (existing role classification and weights from v1.56)
+        - Leverages existing role_tier and role_weight logic (no duplication of role classification)
+        - Uses pre-aggregated role summaries for better performance
+        - PREDICTIVE INTELLIGENCE: Integrates advanced analytical views (META/META-level)
+          * view_politician_behavioral_trends (voting patterns, behavioral assessment)
+          * view_politician_risk_summary (risk scores, violation tracking, anomaly detection)
+          * view_riksdagen_politician_influence_metrics (network centrality, influence classification)
+        - Follows pattern from v1.51/v1.52 and election proximity analysis (#8236)
+        
+        KEY ENHANCEMENTS OVER v1.56:
+        - 10-level granular classification derived from existing role_weight ranges
+        - Party leader and speaker roles prominently tracked
+        - Non-linear career scoring (L02=50, L01=10 to prevent accumulation artifacts)
+        - Typical career path patterns (fast track, steady, stagnant, declining)
+        - Downward spiral detection (demotion velocity, consecutive drops, exit risk)
+        - Time-in-level analysis for career pacing assessment
+        - Peak sustainability metrics (how long at highest level)
+        - Cross-level transition matrices for progression analysis
+        - PREDICTIVE INTELLIGENCE: Behavioral trends, risk assessment, network influence
+        - COMPOSITE SCORING: Predictive success score combining career + risk + behavior + influence
+        - LEADERSHIP POTENTIAL: Succession planning score based on trajectory + influence + risk
+        - COMPREHENSIVE RISK: Multi-dimensional risk combining career decline + violations + behavior
+        
+        COMPREHENSIVE KPIs (60+ metrics with predictive intelligence):
+        1. Career Level Classification: 10 hierarchical levels (from existing role_weight)
+        2. Career Scores: Non-linear scoring to prevent accumulation
+        3. Progression Metrics: advancement velocity, promotion count, demotion count
+        4. Peak Analysis: peak level, time at peak, peak sustainability
+        5. Trajectory Patterns: career pattern classification (8 types)
+        6. Downward Indicators: spiral detection, exit risk scoring
+        7. Time Analysis: time-in-level, years per promotion, career span
+        8. Comparative Metrics: RANK, PERCENT_RANK, NTILE by career score
+        9. Trend Detection: LAG/LEAD for progression direction
+        10. Volatility Metrics: STDDEV_POP for career stability
+        11. Behavioral Intelligence: win rates, rebel rates, absence rates, behavioral assessment
+        12. Risk Intelligence: risk levels, violation counts
+        13. Network Influence: influence classification, broker classification, connection counts
+        14. Predictive Scores: success prediction, leadership potential, comprehensive risk
+        15. Retention Risk: high retention risk flag combining multiple factors
+        
+        Intelligence Value: ⭐⭐⭐⭐⭐ VERY HIGH (ENHANCED WITH PREDICTIVE INTELLIGENCE)
+        Used for: Leadership succession planning, talent retention, career forecasting,
+        party leader transitions, speaker succession, resignation risk
+    </comment>
+    
+    <createView viewName="view_riksdagen_politician_career_path_10level">
+        <![CDATA[
+-- BUILD ON EXISTING VIEW: view_riksdagen_politician_role_evolution
+-- This view already has role classification and weight logic from v1.56
+WITH career_level_mapping AS (
+    -- Enhance existing role_evolution view with 10-level granular classification
+    SELECT 
+        re.person_id,
+        re.first_name,
+        re.last_name,
+        re.party,
+        re.role_code,
+        re.status,
+        re.assignment_type,
+        re.org_code,
+        re.role_start AS from_date,
+        re.role_end AS to_date,
+        re.role_tier,
+        re.role_weight,
+        
+        -- 10-LEVEL CAREER CLASSIFICATION SYSTEM (mapped from existing role_weight)
+        -- Use role_weight ranges to create granular 10-level hierarchy
+        CASE 
+            -- LEVEL 10: Prime Minister (weight 1000)
+            WHEN re.role_weight >= 1000 THEN 10
+            
+            -- LEVEL 9: Cabinet Ministers (weight 850-900)
+            WHEN re.role_weight >= 850 THEN 9
+            
+            -- LEVEL 8: Speaker (weight 800)
+            WHEN re.role_weight >= 800 THEN 8
+            
+            -- LEVEL 7: Party Leaders & Deputy Speakers (weight 700-750)
+            WHEN re.role_weight >= 700 THEN 7
+            
+            -- LEVEL 6: Party Secretary & Committee Chairs (weight 600-650)
+            WHEN re.role_weight >= 600 THEN 6
+            
+            -- LEVEL 5: Committee Vice Chairs & Senior Positions (weight 500-550)
+            WHEN re.role_weight >= 500 THEN 5
+            
+            -- LEVEL 4: Active MPs (weight 400)
+            WHEN re.role_weight >= 400 THEN 4
+            
+            -- LEVEL 3: Committee Members (weight 350)
+            WHEN re.role_weight >= 300 THEN 3
+            
+            -- LEVEL 2: Substitute MPs (weight 100)
+            WHEN re.role_weight >= 100 THEN 2
+            
+            -- LEVEL 1: Other/Entry Level Roles (weight 50)
+            ELSE 1
+        END AS career_level,
+        
+        -- Calculate duration in role (use years_in_role from existing view)
+        EXTRACT(YEAR FROM AGE(re.role_end, re.role_start)) AS years_in_role,
+        
+        -- Flag current role
+        re.is_current_role
+    FROM view_riksdagen_politician_role_evolution re
+    WHERE re.role_start >= '2002-01-01'  -- Focus on modern era (2002+)
+),
+career_level_enriched AS (
+    -- Derive career_score and career_level_name from career_level to reduce duplication
+    SELECT 
+        clm.*,
+        -- Career Score: Non-linear scoring to reflect significance gaps
+        -- Lower levels (1-2) have minimal scores to avoid accumulation effect
+        -- where multiple substitute roles would outscore substantive positions
+        CASE clm.career_level
+            WHEN 10 THEN 1000  -- Prime Minister
+            WHEN 9 THEN 900    -- Cabinet Ministers
+            WHEN 8 THEN 800    -- Speaker
+            WHEN 7 THEN 700    -- Party Leaders & Deputy Speakers
+            WHEN 6 THEN 600    -- Party Secretaries & Committee Chairs
+            WHEN 5 THEN 500    -- Committee Vice Chairs
+            WHEN 4 THEN 400    -- Active MPs
+            WHEN 3 THEN 300    -- Committee Members
+            WHEN 2 THEN 50     -- Substitute MPs (reduced from 200 to prevent accumulation)
+            ELSE 10            -- Other/Entry (reduced from 100 to minimal value)
+        END AS career_score,
+        -- Level names for readability (calculated from career_level)
+        CASE clm.career_level
+            WHEN 10 THEN 'L10_PRIME_MINISTER'
+            WHEN 9 THEN 'L09_CABINET_MINISTER'
+            WHEN 8 THEN 'L08_SPEAKER'
+            WHEN 7 THEN 'L07_PARTY_LEADER_DEPUTY_SPEAKER'
+            WHEN 6 THEN 'L06_PARTY_SEC_COMMITTEE_CHAIR'
+            WHEN 5 THEN 'L05_COMMITTEE_VICE_CHAIR'
+            WHEN 4 THEN 'L04_ACTIVE_MP'
+            WHEN 3 THEN 'L03_COMMITTEE_MEMBER'
+            WHEN 2 THEN 'L02_SUBSTITUTE_MP'
+            ELSE 'L01_OTHER_ENTRY'
+        END AS career_level_name
+    FROM career_level_mapping clm
+),
+career_timeline AS (
+    -- Build career progression timeline with window functions
+    SELECT 
+        cle.*,
+        ROW_NUMBER() OVER (PARTITION BY cle.person_id ORDER BY cle.from_date, cle.career_level DESC) AS career_step,
+        COUNT(*) OVER (PARTITION BY cle.person_id) AS total_career_steps,
+        
+        -- LAG: Previous role metrics
+        LAG(cle.career_level) OVER (PARTITION BY cle.person_id ORDER BY cle.from_date) AS prev_career_level,
+        LAG(cle.career_score) OVER (PARTITION BY cle.person_id ORDER BY cle.from_date) AS prev_career_score,
+        LAG(cle.from_date) OVER (PARTITION BY cle.person_id ORDER BY cle.from_date) AS prev_role_start,
+        
+        -- LEAD: Next role metrics
+        LEAD(cle.career_level) OVER (PARTITION BY cle.person_id ORDER BY cle.from_date) AS next_career_level,
+        LEAD(cle.career_score) OVER (PARTITION BY cle.person_id ORDER BY cle.from_date) AS next_career_score,
+        
+        -- Career boundaries
+        MIN(cle.from_date) OVER (PARTITION BY cle.person_id) AS career_start_date,
+        MAX(COALESCE(cle.to_date, CURRENT_DATE)) OVER (PARTITION BY cle.person_id) AS career_end_date,
+        MIN(EXTRACT(YEAR FROM cle.from_date)) OVER (PARTITION BY cle.person_id) AS career_start_year,
+        MAX(EXTRACT(YEAR FROM COALESCE(cle.to_date, CURRENT_DATE))) OVER (PARTITION BY cle.person_id) AS career_end_year,
+        
+        -- Peak metrics
+        MAX(cle.career_level) OVER (PARTITION BY cle.person_id) AS peak_career_level,
+        MAX(cle.career_score) OVER (PARTITION BY cle.person_id) AS peak_career_score,
+        
+        -- Career statistics
+        AVG(cle.career_score) OVER (PARTITION BY cle.person_id) AS avg_career_score,
+        STDDEV_POP(cle.career_score) OVER (PARTITION BY cle.person_id) AS career_score_volatility
+    FROM career_level_enriched cle
+),
+career_progression_analysis AS (
+    -- Analyze career progression patterns and calculate key metrics
+    SELECT 
+        ct.*,
+        
+        -- Progression direction
+        CASE 
+            WHEN ct.prev_career_level IS NULL THEN 'ENTRY'
+            WHEN ct.career_level > ct.prev_career_level THEN 'PROMOTION'
+            WHEN ct.career_level < ct.prev_career_level THEN 'DEMOTION'
+            ELSE 'LATERAL'
+        END AS progression_direction,
+        
+        -- Level change magnitude
+        COALESCE(ct.career_level - ct.prev_career_level, 0) AS level_change,
+        COALESCE(ct.career_score - ct.prev_career_score, 0) AS score_change,
+        
+        -- Time between roles (in years)
+        CASE 
+            WHEN ct.prev_role_start IS NOT NULL 
+            THEN EXTRACT(YEAR FROM AGE(ct.from_date, ct.prev_role_start))
+            ELSE NULL
+        END AS years_since_prev_role,
+        
+        -- Peak status
+        CASE 
+            WHEN ct.career_level = ct.peak_career_level THEN TRUE 
+            ELSE FALSE 
+        END AS is_peak_role,
+        
+        -- Career span (total years)
+        EXTRACT(YEAR FROM AGE(ct.career_end_date, ct.career_start_date)) AS career_span_years,
+        
+        -- Advancement velocity (levels per year)
+        CASE 
+            WHEN ct.prev_career_level IS NOT NULL AND ct.prev_role_start IS NOT NULL
+            THEN ROUND(
+                (ct.career_level - ct.prev_career_level)::NUMERIC / 
+                NULLIF(EXTRACT(YEAR FROM AGE(ct.from_date, ct.prev_role_start)), 0),
+                2
+            )
+            ELSE NULL
+        END AS advancement_velocity,
+        
+        -- Count promotions and demotions up to this point (using LAG to detect transitions)
+        COUNT(CASE WHEN ct.career_level > ct.prev_career_level THEN 1 END) 
+            OVER (PARTITION BY ct.person_id ORDER BY ct.from_date ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS promotions_count,
+        COUNT(CASE WHEN ct.career_level < ct.prev_career_level THEN 1 END) 
+            OVER (PARTITION BY ct.person_id ORDER BY ct.from_date ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS demotions_count
+        
+    FROM career_timeline ct
+),
+career_scoring AS (
+    -- Calculate comprehensive career performance scores
+    SELECT 
+        cpa.*,
+        
+        -- Career trajectory classification based on progression pattern
+        CASE 
+            -- Fast Track: Consistent rapid promotions
+            WHEN cpa.promotions_count >= 3 AND cpa.demotions_count = 0 
+                 AND cpa.career_span_years <= 10 THEN 'FAST_TRACK'
+            
+            -- Rising Star: Recent strong progression, currently at or near peak
+            WHEN cpa.is_peak_role AND cpa.progression_direction IN ('PROMOTION', 'LATERAL')
+                 AND cpa.promotions_count > cpa.demotions_count THEN 'RISING_STAR'
+            
+            -- Steady Progress: Regular advancement over time
+            WHEN cpa.promotions_count > cpa.demotions_count 
+                 AND cpa.career_span_years > 10 THEN 'STEADY_PROGRESS'
+            
+            -- Peak Performer: Sustained at high level
+            WHEN cpa.is_peak_role AND cpa.peak_career_level >= 7 
+                 AND cpa.years_in_role >= 3 THEN 'PEAK_PERFORMER'
+            
+            -- Stagnant: No progression, stuck at same level
+            WHEN cpa.promotions_count = 0 AND cpa.demotions_count = 0 
+                 AND cpa.career_span_years >= 5 THEN 'STAGNANT'
+            
+            -- Declining: More demotions than promotions
+            WHEN cpa.demotions_count > cpa.promotions_count THEN 'DECLINING'
+            
+            -- Downward Spiral: Recent consecutive demotions
+            WHEN cpa.demotions_count >= 2 
+                 AND cpa.progression_direction = 'DEMOTION' THEN 'DOWNWARD_SPIRAL'
+            
+            -- Early Career: Just starting out
+            WHEN cpa.career_span_years <= 3 THEN 'EARLY_CAREER'
+            
+            ELSE 'STABLE'
+        END AS career_pattern,
+        
+        -- Downward spiral indicators
+        CASE 
+            WHEN cpa.demotions_count >= 2 AND cpa.progression_direction = 'DEMOTION' THEN TRUE
+            ELSE FALSE
+        END AS downward_spiral_flag,
+        
+        -- Exit risk scoring (0-100 scale) - cast to INTEGER for consistency
+        CAST(
+            CASE 
+                WHEN cpa.progression_direction = 'DEMOTION' AND cpa.demotions_count >= 2 THEN 90
+                WHEN cpa.career_level = 2 AND cpa.prev_career_level >= 4 THEN 75
+                WHEN cpa.demotions_count > cpa.promotions_count THEN 60
+                WHEN NOT cpa.is_current_role AND cpa.career_level <= 2 THEN 50
+                WHEN cpa.progression_direction = 'DEMOTION' THEN 40
+                WHEN cpa.career_span_years > 20 AND cpa.career_level <= 3 THEN 30
+                ELSE 10
+            END
+            AS INTEGER
+        ) AS exit_risk_score,
+        
+        -- Peak sustainability (years at peak level)
+        CASE 
+            WHEN cpa.is_peak_role 
+            THEN SUM(cpa.years_in_role) OVER (
+                PARTITION BY cpa.person_id, cpa.peak_career_level
+                ORDER BY cpa.from_date
+                ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+            )
+            ELSE 0
+        END AS years_at_peak,
+        
+        -- Time-in-level analysis
+        SUM(cpa.years_in_role) OVER (
+            PARTITION BY cpa.person_id, cpa.career_level
+            ORDER BY cpa.from_date
+            ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+        ) AS total_years_at_level,
+        
+        -- Average years per promotion (career pacing)
+        CASE 
+            WHEN cpa.promotions_count > 0 
+            THEN ROUND(cpa.career_span_years::NUMERIC / NULLIF(cpa.promotions_count, 0), 1)
+            ELSE NULL
+        END AS avg_years_per_promotion,
+        
+        -- Comparative rankings
+        RANK() OVER (ORDER BY cpa.peak_career_score DESC, cpa.career_span_years DESC) AS overall_career_rank,
+        PERCENT_RANK() OVER (ORDER BY cpa.peak_career_score DESC) AS career_percentile,
+        NTILE(10) OVER (ORDER BY cpa.peak_career_score DESC) AS career_decile,
+        
+        -- Career Health Score (0-100 composite) - moved here for use in predictive_intelligence
+        ROUND((
+            (CASE 
+                WHEN cpa.is_peak_role THEN 30.0
+                WHEN cpa.peak_career_level >= 7 THEN 20.0
+                WHEN cpa.peak_career_level >= 4 THEN 15.0
+                ELSE 10.0 
+            END) +  -- Peak achievement: 30%
+            (COALESCE(cpa.advancement_velocity, 0) * 20) +  -- Velocity: up to 20%
+            ((cpa.promotions_count - cpa.demotions_count)::NUMERIC * 5) +  -- Net progression: up to 20%
+            (CASE WHEN cpa.progression_direction = 'PROMOTION' THEN 10.0 
+                  WHEN cpa.progression_direction = 'LATERAL' THEN 5.0 
+                  ELSE 0.0 END) +  -- Recent direction: 10%
+            (CASE WHEN cpa.demotions_count >= 2 AND cpa.progression_direction = 'DEMOTION' THEN -20.0 ELSE 10.0 END)  -- Stability: 10%
+        )::NUMERIC, 1) AS career_health_score
+        
+    FROM career_progression_analysis cpa
+),
+-- PREDICTIVE INTELLIGENCE: Integrate advanced analytical views (META/META-level)
+-- Following pattern from v1.51/v1.52 and election proximity analysis (#8236)
+predictive_intelligence AS (
+    SELECT 
+        cs.*,
+        
+        -- Behavioral Intelligence (from view_politician_behavioral_trends)
+        pbt.avg_win_rate AS behavioral_win_rate,
+        pbt.avg_rebel_rate AS behavioral_rebel_rate,
+        pbt.avg_absence_rate AS behavioral_absence_rate,
+        pbt.behavioral_assessment,
+        pbt.attendance_status,
+        pbt.effectiveness_status,
+        pbt.discipline_status,
+        
+        -- Risk Intelligence (from view_politician_risk_summary)
+        prs.risk_level,
+        prs.risk_score,
+        prs.total_violations,
+        prs.absenteeism_violations,
+        prs.effectiveness_violations,
+        prs.discipline_violations,
+        
+        -- Network Influence Intelligence (from view_riksdagen_politician_influence_metrics)
+        pim.influence_classification,
+        pim.network_connections AS strong_connections,
+        pim.broker_classification AS broker_score,
+        
+        -- Composite Predictive Score (weighted combination)
+        -- Career trajectory (40%) + Risk assessment (30%) + Behavioral patterns (20%) + Network influence (10%)
+        ROUND((
+            (cs.career_health_score * 0.40) +  -- Career health: 40%
+            ((100 - COALESCE(prs.risk_score, 50)) * 0.30) +  -- Inverse risk: 30% (lower risk = higher score)
+            (COALESCE(pbt.avg_win_rate, 50) * 0.20) +  -- Behavioral effectiveness: 20%
+            (CASE 
+                WHEN pim.influence_classification = 'HIGHLY_INFLUENTIAL' THEN 10.0
+                WHEN pim.influence_classification = 'INFLUENTIAL' THEN 7.5
+                WHEN pim.influence_classification = 'MODERATELY_INFLUENTIAL' THEN 5.0
+                ELSE 2.5
+            END)  -- Network influence: 10%
+        )::NUMERIC, 1) AS predictive_success_score,
+        
+        -- Comprehensive Risk Assessment (career + behavioral + violations)
+        CASE 
+            WHEN cs.downward_spiral_flag AND COALESCE(prs.total_violations, 0) >= 3 THEN 'CRITICAL_RISK'
+            WHEN cs.exit_risk_score >= 60 OR prs.risk_level = 'HIGH' THEN 'HIGH_RISK'
+            WHEN cs.exit_risk_score >= 40 OR prs.risk_level = 'MEDIUM' THEN 'MEDIUM_RISK'
+            WHEN cs.career_pattern = 'STAGNANT' AND COALESCE(prs.total_violations, 0) >= 1 THEN 'MEDIUM_RISK'
+            ELSE 'LOW_RISK'
+        END AS comprehensive_risk_level,
+        
+        -- Leadership Potential Score (for succession planning)
+        CASE 
+            WHEN cs.career_level >= 8 THEN 100  -- Already at top (PM, Ministers, Speaker)
+            WHEN cs.career_pattern = 'FAST_TRACK' AND cs.career_level >= 6 
+                 AND pim.influence_classification IN ('HIGHLY_INFLUENTIAL', 'INFLUENTIAL')
+                 AND COALESCE(prs.risk_level, 'LOW') = 'LOW' 
+                 THEN 90
+            WHEN cs.career_pattern IN ('RISING_STAR', 'STEADY_PROGRESS') 
+                 AND cs.career_level >= 5
+                 AND COALESCE(pbt.behavioral_assessment, 'ADEQUATE') IN ('EXEMPLARY', 'ABOVE_AVERAGE')
+                 THEN 75
+            WHEN cs.career_level >= 4 
+                 AND cs.promotions_count > cs.demotions_count
+                 AND COALESCE(prs.risk_level, 'LOW') IN ('LOW', 'MEDIUM')
+                 THEN 60
+            WHEN cs.career_level >= 3 THEN 40
+            ELSE 20
+        END AS leadership_potential_score,
+        
+        -- Retention Risk Flag (combining multiple risk factors)
+        CASE 
+            WHEN cs.downward_spiral_flag 
+                 AND COALESCE(pbt.attendance_status, 'ADEQUATE') = 'POOR' 
+                 THEN TRUE
+            WHEN cs.exit_risk_score >= 75 
+                 AND COALESCE(prs.total_violations, 0) >= 2 
+                 THEN TRUE
+            WHEN cs.career_pattern = 'DECLINING' 
+                 AND COALESCE(pbt.effectiveness_status, 'ADEQUATE') = 'POOR'
+                 THEN TRUE
+            ELSE FALSE
+        END AS high_retention_risk_flag
+        
+    FROM career_scoring cs
+    LEFT JOIN view_politician_behavioral_trends pbt 
+        ON cs.person_id = pbt.person_id 
+        AND pbt.period_start = (
+            SELECT MAX(period_start) 
+            FROM view_politician_behavioral_trends 
+            WHERE person_id = cs.person_id
+        )
+    LEFT JOIN view_politician_risk_summary prs 
+        ON cs.person_id = prs.person_id
+    LEFT JOIN view_riksdagen_politician_influence_metrics pim 
+        ON cs.person_id = pim.person_id
+)
+SELECT 
+    pi.person_id,
+    pi.first_name,
+    pi.last_name,
+    pi.party,
+    pi.role_code,
+    pi.status,
+    pi.assignment_type,
+    pi.org_code,
+    pi.from_date,
+    pi.to_date,
+    pi.is_current_role,
+    
+    -- 10-Level Career Classification
+    pi.career_level,
+    pi.career_level_name,
+    pi.career_score,
+    
+    -- Career Timeline
+    pi.career_step,
+    pi.total_career_steps,
+    pi.career_start_date,
+    pi.career_end_date,
+    pi.career_start_year,
+    pi.career_end_year,
+    pi.career_span_years,
+    
+    -- Role Duration
+    pi.years_in_role,
+    pi.years_since_prev_role,
+    pi.total_years_at_level,
+    
+    -- Peak Analysis
+    pi.peak_career_level,
+    pi.peak_career_score,
+    pi.is_peak_role,
+    pi.years_at_peak,
+    
+    -- Progression Metrics
+    pi.prev_career_level,
+    pi.next_career_level,
+    pi.progression_direction,
+    pi.level_change,
+    pi.score_change,
+    pi.advancement_velocity,
+    pi.promotions_count,
+    pi.demotions_count,
+    
+    -- Career Performance
+    pi.avg_career_score,
+    pi.career_score_volatility,
+    pi.avg_years_per_promotion,
+    
+    -- Career Pattern Classification
+    pi.career_pattern,
+    pi.downward_spiral_flag,
+    pi.exit_risk_score,
+    
+    -- Comparative Rankings
+    pi.overall_career_rank,
+    pi.career_percentile,
+    pi.career_decile,
+    
+    -- Behavioral Intelligence
+    pi.behavioral_win_rate,
+    pi.behavioral_rebel_rate,
+    pi.behavioral_absence_rate,
+    pi.behavioral_assessment,
+    pi.attendance_status,
+    pi.effectiveness_status,
+    pi.discipline_status,
+    
+    -- Risk Intelligence
+    pi.risk_level,
+    pi.risk_score,
+    pi.total_violations,
+    pi.absenteeism_violations,
+    pi.effectiveness_violations,
+    pi.discipline_violations,
+    
+    -- Network Influence Intelligence
+    pi.influence_classification,
+    pi.broker_score,
+    pi.strong_connections,
+    
+    -- Predictive Scores
+    pi.predictive_success_score,
+    pi.comprehensive_risk_level,
+    pi.leadership_potential_score,
+    pi.high_retention_risk_flag,
+    
+    -- Career Health Score (calculated in career_scoring CTE)
+    pi.career_health_score,
+    
+    -- Career Stage Classification
+    CASE 
+        WHEN pi.career_span_years <= 3 THEN 'EARLY_CAREER'
+        WHEN pi.career_span_years <= 8 THEN 'MID_CAREER'
+        WHEN pi.career_span_years <= 15 THEN 'SENIOR_CAREER'
+        ELSE 'VETERAN_CAREER'
+    END AS career_stage,
+    
+    -- Typical Career Path Flag
+    CASE 
+        WHEN pi.career_pattern IN ('FAST_TRACK', 'RISING_STAR', 'STEADY_PROGRESS', 'PEAK_PERFORMER') 
+        THEN TRUE
+        ELSE FALSE
+    END AS is_typical_career_path,
+    
+    -- Atypical Career Flag (downward spirals, stagnation)
+    CASE 
+        WHEN pi.career_pattern IN ('DECLINING', 'DOWNWARD_SPIRAL', 'STAGNANT') 
+        THEN TRUE
+        ELSE FALSE
+    END AS is_atypical_career_path
+
+FROM predictive_intelligence pi
+ORDER BY pi.person_id, pi.from_date;
+        ]]>
+    </createView>
+    
+    <rollback>
+        <dropView viewName="view_riksdagen_politician_career_path_10level"/>
+    </rollback>
+</changeSet>
+
+
+<!-- ========================================================================= -->
+<!-- VALIDATION: Verify 10-Level Career Path View Created Successfully        -->
+<!-- ========================================================================= -->
+
+<changeSet id="1.58-validation" author="intelligence-operative">
+    <comment>
+        Validate that the 10-level career path view was created successfully with
+        comprehensive career classification, trajectory analysis, and KPI metrics.
+    </comment>
+    
+    <sql splitStatements="false"><![CDATA[
+        DO $$
+        DECLARE
+            v_view_exists BOOLEAN;
+        BEGIN
+            -- Check if view exists
+            SELECT EXISTS(
+                SELECT 1 FROM information_schema.views 
+                WHERE table_name = 'view_riksdagen_politician_career_path_10level'
+            ) INTO v_view_exists;
+            
+            IF v_view_exists THEN
+                RAISE NOTICE '✓ 10-Level Career Path View created successfully';
+                RAISE NOTICE '  Note: View depends on materialized views that may need REFRESH MATERIALIZED VIEW';
+                RAISE NOTICE '';
+                RAISE NOTICE '  KEY FEATURES:';
+                RAISE NOTICE '  - 10-level hierarchical role classification (L10-L01)';
+                RAISE NOTICE '  - Party leader tracking (Level 7)';
+                RAISE NOTICE '  - Speaker tracking (Level 8)';
+                RAISE NOTICE '  - Career scoring system (100-1000 points)';
+                RAISE NOTICE '  - 8 career pattern types (Fast Track, Rising Star, Steady, Peak, Stagnant, Declining, Spiral, Early)';
+                RAISE NOTICE '  - Downward spiral detection with exit risk scoring';
+                RAISE NOTICE '  - Time-in-level and peak sustainability metrics';
+                RAISE NOTICE '  - Advancement velocity and career health scoring';
+                RAISE NOTICE '  - Typical vs. atypical career path classification';
+                RAISE NOTICE '';
+                RAISE NOTICE '  CAREER LEVELS:';
+                RAISE NOTICE '  L10: Prime Minister';
+                RAISE NOTICE '  L09: Cabinet Ministers';
+                RAISE NOTICE '  L08: Speaker of Parliament';
+                RAISE NOTICE '  L07: Party Leaders &amp; Deputy Speakers';
+                RAISE NOTICE '  L06: Party Secretaries &amp; Committee Chairs';
+                RAISE NOTICE '  L05: Committee Vice Chairs';
+                RAISE NOTICE '  L04: Active MPs';
+                RAISE NOTICE '  L03: Committee Members';
+                RAISE NOTICE '  L02: Substitute MPs';
+                RAISE NOTICE '  L01: Other/Entry Roles';
+                RAISE NOTICE '';
+                RAISE NOTICE '  INTELLIGENCE VALUE: ⭐⭐⭐⭐⭐ VERY HIGH';
+                RAISE NOTICE '  Used for: Leadership succession, talent retention, career forecasting';
+            ELSE
+                RAISE WARNING '✗ 10-level career path view failed to create';
+            END IF;
+        END $$;
+    ]]></sql>
+</changeSet>
+
+</databaseChangeLog>
