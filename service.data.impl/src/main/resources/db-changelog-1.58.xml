@@ -120,8 +120,8 @@
         9. Trend Detection: LAG/LEAD for progression direction
         10. Volatility Metrics: STDDEV_POP for career stability
         11. Behavioral Intelligence: win rates, rebel rates, absence rates, behavioral assessment
-        12. Risk Intelligence: risk levels, violation counts, anomaly detection, trend risk
-        13. Network Influence: centrality scores, broker scores, strong connections
+        12. Risk Intelligence: risk levels, violation counts
+        13. Network Influence: influence classification, broker classification, connection counts
         14. Predictive Scores: success prediction, leadership potential, comprehensive risk
         15. Retention Risk: high retention risk flag combining multiple factors
         
@@ -356,15 +356,18 @@ career_scoring AS (
         END AS downward_spiral_flag,
         
         -- Exit risk scoring (0-100 scale) - cast to INTEGER for consistency
-        CASE 
-            WHEN cpa.progression_direction = 'DEMOTION' AND cpa.demotions_count >= 2 THEN 90
-            WHEN cpa.career_level = 2 AND cpa.prev_career_level >= 4 THEN 75
-            WHEN cpa.demotions_count > cpa.promotions_count THEN 60
-            WHEN NOT cpa.is_current_role AND cpa.career_level <= 2 THEN 50
-            WHEN cpa.progression_direction = 'DEMOTION' THEN 40
-            WHEN cpa.career_span_years > 20 AND cpa.career_level <= 3 THEN 30
-            ELSE 10
-        END AS exit_risk_score,
+        CAST(
+            CASE 
+                WHEN cpa.progression_direction = 'DEMOTION' AND cpa.demotions_count >= 2 THEN 90
+                WHEN cpa.career_level = 2 AND cpa.prev_career_level >= 4 THEN 75
+                WHEN cpa.demotions_count > cpa.promotions_count THEN 60
+                WHEN NOT cpa.is_current_role AND cpa.career_level <= 2 THEN 50
+                WHEN cpa.progression_direction = 'DEMOTION' THEN 40
+                WHEN cpa.career_span_years > 20 AND cpa.career_level <= 3 THEN 30
+                ELSE 10
+            END
+            AS INTEGER
+        ) AS exit_risk_score,
         
         -- Peak sustainability (years at peak level)
         CASE 

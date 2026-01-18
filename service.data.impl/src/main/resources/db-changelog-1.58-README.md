@@ -60,10 +60,10 @@ Following the META/META-level architecture pattern from v1.51/v1.52 and election
    - Violation counts by category (absenteeism, effectiveness, discipline)
    - Anomaly detection and trend risk scoring
 
-3. **`view_riksdagen_politician_influence_metrics`** - Network influence and centrality
-   - Influence classification (HIGHLY_INFLUENTIAL, INFLUENTIAL, MODERATELY_INFLUENTIAL, LOW_INFLUENCE)
-   - Centrality and broker scores
-   - Strong connections and cross-party network metrics
+3. **`view_riksdagen_politician_influence_metrics`** - Network influence and broker roles
+   - Influence classification (HIGHLY_INFLUENTIAL, INFLUENTIAL, MODERATELY_INFLUENTIAL, LIMITED_INFLUENCE, MINIMAL_INFLUENCE)
+   - Broker classification score (broker_classification as broker_score)
+   - Strong connections (network_connections as strong_connections)
 
 ### Predictive Scores (New in v1.58)
 
