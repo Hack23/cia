@@ -14,7 +14,7 @@
 <!-- VIEW 1: view_riksdagen_election_proximity_trends                         -->
 <!-- ========================================================================= -->
 
-<changeSet author="intelligence-operative" id="create-election-proximity-trends-view-1.58-001" failOnError="true">
+<changeSet author="intelligence-operative" id="create-election-proximity-trends-view-1.58-001" failOnError="true" runOnChange="true">
     <comment>
         Create view_riksdagen_election_proximity_trends to track politician activity 
         by months until election, with Q4 pre-election focus.
@@ -358,7 +358,7 @@ ORDER BY ca.election_date DESC, ca.months_until_election, ca.person_id, ca.activ
 <!-- VIEW 2: view_riksdagen_pre_election_quarterly_activity                   -->
 <!-- ========================================================================= -->
 
-<changeSet author="intelligence-operative" id="create-pre-election-quarterly-activity-view-1.58-002" failOnError="true">
+<changeSet author="intelligence-operative" id="create-pre-election-quarterly-activity-view-1.58-002" failOnError="true" runOnChange="true">
     <comment>
         Create view_riksdagen_pre_election_quarterly_activity to aggregate Q4 activity 
         vs baseline across all politicians.
@@ -618,7 +618,7 @@ ORDER BY qa.year DESC
 <!-- VIEW 3: view_riksdagen_seasonal_activity_patterns                        -->
 <!-- ========================================================================= -->
 
-<changeSet author="intelligence-operative" id="create-seasonal-activity-patterns-view-1.58-003" failOnError="true">
+<changeSet author="intelligence-operative" id="create-seasonal-activity-patterns-view-1.58-003" failOnError="true" runOnChange="true">
     <comment>
         Create view_riksdagen_seasonal_activity_patterns to identify Q1-Q4 behavior 
         shifts across election cycles.
