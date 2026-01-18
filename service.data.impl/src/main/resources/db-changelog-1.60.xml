@@ -130,6 +130,7 @@ SELECT
     -- Document baselines and ratios
     ROUND(eb.election_median_docs::NUMERIC, 2) AS election_median_docs,
     ROUND(eb.election_avg_docs::NUMERIC, 2) AS election_avg_docs,
+    ROUND(eb.election_stddev_docs::NUMERIC, 2) AS election_stddev_docs,
     ROUND(eb.midterm_avg_docs::NUMERIC, 2) AS midterm_avg_docs,
     ROUND(am.documents_produced::NUMERIC / NULLIF(eb.midterm_avg_docs, 0), 2) AS doc_ratio_vs_midterm,
     ROUND(am.documents_produced::NUMERIC / NULLIF(eb.election_avg_docs, 0), 2) AS doc_ratio_vs_election_avg,
@@ -137,6 +138,7 @@ SELECT
     -- Motion baselines and ratios
     ROUND(eb.election_median_motions::NUMERIC, 2) AS election_median_motions,
     ROUND(eb.election_avg_motions::NUMERIC, 2) AS election_avg_motions,
+    ROUND(eb.election_stddev_motions::NUMERIC, 2) AS election_stddev_motions,
     ROUND(eb.midterm_avg_motions::NUMERIC, 2) AS midterm_avg_motions,
     ROUND(am.motions_filed::NUMERIC / NULLIF(eb.midterm_avg_motions, 0), 2) AS motion_ratio_vs_midterm,
     
