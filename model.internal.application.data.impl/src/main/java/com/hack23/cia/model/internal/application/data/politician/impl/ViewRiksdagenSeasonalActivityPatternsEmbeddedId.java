@@ -91,12 +91,25 @@ public class ViewRiksdagenSeasonalActivityPatternsEmbeddedId implements Serializ
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj);
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null || getClass() != obj.getClass()) {
+			return false;
+		}
+		final ViewRiksdagenSeasonalActivityPatternsEmbeddedId other = (ViewRiksdagenSeasonalActivityPatternsEmbeddedId) obj;
+		return new EqualsBuilder()
+				.append(year, other.year)
+				.append(quarter, other.quarter)
+				.isEquals();
 	}
 
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return new HashCodeBuilder(17, 37)
+				.append(year)
+				.append(quarter)
+				.toHashCode();
 	}
 
 	@Override

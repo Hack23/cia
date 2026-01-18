@@ -45,6 +45,9 @@
         - Deviation analysis (ballot_count - baseline)
         - Activity classification (>1.5x baseline = ELEVATED)
         - Quarterly aggregation with election proximity
+        - CROSS JOIN with election_dates creates multiple records per politician/quarter 
+          when activity spans multiple election cycles (within 48 months)
+        - This enables analysis of same activity period relative to different elections
         
         Intelligence Value: VERY HIGH (5/5)
         - Detects pre-election activity surges across multiple dimensions
@@ -320,12 +323,13 @@ SELECT
         ELSE 'NORMAL_ACTIVITY'
     END AS activity_classification,
     -- Composite activity score (weighted: 30% voting, 25% documents, 25% decisions, 20% assignments)
-    ROUND((
+    -- Returns NULL when all baselines are zero, indicating insufficient data for comparison
+    COALESCE(ROUND((
         (ca.ballot_count::NUMERIC / NULLIF(AVG(ca.ballot_count) OVER (PARTITION BY ca.person_id), 0) * 0.30) +
         (ca.document_count::NUMERIC / NULLIF(AVG(ca.document_count) OVER (PARTITION BY ca.person_id), 0) * 0.25) +
         (ca.decision_count::NUMERIC / NULLIF(AVG(ca.decision_count) OVER (PARTITION BY ca.person_id), 0) * 0.25) +
         (ca.new_assignment_count::NUMERIC / NULLIF(AVG(ca.new_assignment_count) OVER (PARTITION BY ca.person_id), 0) * 0.20)
-    ), 2) AS composite_activity_score,
+    ), 2), 0.0) AS composite_activity_score,
     CASE
         WHEN ca.months_until_election <= 6 THEN 'ELECTION_IMMINENT'
         WHEN ca.months_until_election <= 12 THEN 'PRE_ELECTION_YEAR'
@@ -465,7 +469,9 @@ q4_party_effectiveness AS (
       AND EXTRACT(YEAR FROM pet.period_start) >= 2002
     GROUP BY EXTRACT(YEAR FROM pet.period_start)
 ),
--- Committee productivity metrics (NEW - snapshot per year)
+-- Committee productivity metrics (NEW - system-wide aggregate snapshot)
+-- NOTE: These metrics are system-wide averages (period '2002-2026') that will be 
+-- replicated for each year via CROSS JOIN to provide institutional context for Q4 activity
 committee_productivity_metrics AS (
     SELECT 
         '2002-2026' AS period,

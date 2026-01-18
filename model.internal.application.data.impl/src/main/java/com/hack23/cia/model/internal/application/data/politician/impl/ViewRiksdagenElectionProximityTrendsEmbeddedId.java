@@ -52,7 +52,7 @@ public class ViewRiksdagenElectionProximityTrendsEmbeddedId implements Serializa
 
 	/** The activity quarter. */
 	@Column(name = "activity_quarter", nullable = false)
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date activityQuarter;
 
 	/**
@@ -86,7 +86,7 @@ public class ViewRiksdagenElectionProximityTrendsEmbeddedId implements Serializa
 	 * @return the election date
 	 */
 	public Date getElectionDate() {
-		return electionDate;
+		return electionDate == null ? null : new Date(electionDate.getTime());
 	}
 
 	/**
@@ -104,7 +104,7 @@ public class ViewRiksdagenElectionProximityTrendsEmbeddedId implements Serializa
 	 * @return the activity quarter
 	 */
 	public Date getActivityQuarter() {
-		return activityQuarter;
+		return activityQuarter == null ? null : new Date(activityQuarter.getTime());
 	}
 
 	/**
@@ -118,12 +118,27 @@ public class ViewRiksdagenElectionProximityTrendsEmbeddedId implements Serializa
 
 	@Override
 	public boolean equals(final Object obj) {
-		return EqualsBuilder.reflectionEquals(this, obj);
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null || getClass() != obj.getClass()) {
+			return false;
+		}
+		final ViewRiksdagenElectionProximityTrendsEmbeddedId other = (ViewRiksdagenElectionProximityTrendsEmbeddedId) obj;
+		return new EqualsBuilder()
+				.append(personId, other.personId)
+				.append(electionDate, other.electionDate)
+				.append(activityQuarter, other.activityQuarter)
+				.isEquals();
 	}
 
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return new HashCodeBuilder(17, 37)
+				.append(personId)
+				.append(electionDate)
+				.append(activityQuarter)
+				.toHashCode();
 	}
 
 	@Override
