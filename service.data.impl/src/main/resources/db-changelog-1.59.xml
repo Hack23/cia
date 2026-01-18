@@ -167,11 +167,10 @@ politician_risk_metrics AS (
 politician_influence_metrics AS (
     SELECT DISTINCT ON (pim.person_id)
         pim.person_id,
-        pim.influence_score,
+        pim.network_connections,
         pim.influence_classification,
-        pim.centrality_score,
-        pim.broker_score,
-        pim.broker_classification
+        pim.broker_classification,
+        pim.influence_assessment
     FROM view_riksdagen_politician_influence_metrics pim
 ),
 combined_activity AS (
@@ -220,11 +219,10 @@ combined_activity AS (
         prisk.trend_risk_score,
         prisk.anomaly_risk_score,
         -- Influence metrics (snapshot)
-        pinf.influence_score,
+        pinf.network_connections,
         pinf.influence_classification,
-        pinf.centrality_score,
-        pinf.broker_score,
-        pinf.broker_classification
+        pinf.broker_classification,
+        pinf.influence_assessment
     FROM politician_behavioral_metrics pbm
     LEFT JOIN politician_document_metrics pdm 
         ON pbm.person_id = pdm.person_id 
@@ -288,11 +286,10 @@ SELECT
     ca.trend_risk_score,
     ca.anomaly_risk_score,
     -- Influence metrics
-    ca.influence_score,
+    ca.network_connections,
     ca.influence_classification,
-    ca.centrality_score,
-    ca.broker_score,
     ca.broker_classification,
+    ca.influence_assessment,
     -- Baseline calculations for multiple dimensions
     ROUND(AVG(ca.ballot_count) OVER (PARTITION BY ca.person_id), 2) AS avg_ballot_count_baseline,
     ROUND(AVG(ca.document_count) OVER (PARTITION BY ca.person_id), 2) AS avg_document_count_baseline,
