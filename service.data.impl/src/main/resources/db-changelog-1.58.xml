@@ -165,44 +165,6 @@ WITH career_level_mapping AS (
             ELSE 1
         END AS career_level,
         
-        -- Career Score (Level × 100 for granular scoring)
-        CASE 
-            WHEN ad.role_code = 'Statsminister' THEN 1000
-            WHEN ad.role_code IN ('Vice statsminister', 'Statsråd') OR 
-                 ad.role_code LIKE '%minister%' THEN 900
-            WHEN ad.role_code = 'Talman' THEN 800
-            WHEN ad.role_code IN ('Partiledare', 'Tillförordnad partiledare') OR 
-                 ad.role_code LIKE '%vice talman%' THEN 700
-            WHEN ad.role_code IN ('Partisekreterare', 'Tillförordnad partisekreterare', 
-                                   'Ordförande') THEN 600
-            WHEN ad.role_code = 'Vice ordförande' THEN 500
-            WHEN ad.role_code = 'Riksdagsledamot' OR 
-                 (ad.role_code = 'Ledamot' AND ad.org_code NOT LIKE 'K%') THEN 400
-            WHEN ad.role_code = 'Ledamot' AND ad.org_code LIKE 'K%' THEN 300
-            WHEN ad.role_code IN ('Suppleant', 'Ersättare', 'Extra suppleant', 
-                                   'Personlig suppleant') THEN 200
-            ELSE 100
-        END AS career_score,
-        
-        -- Level names for readability
-        CASE 
-            WHEN ad.role_code = 'Statsminister' THEN 'L10_PRIME_MINISTER'
-            WHEN ad.role_code IN ('Vice statsminister', 'Statsråd') OR 
-                 ad.role_code LIKE '%minister%' THEN 'L09_CABINET_MINISTER'
-            WHEN ad.role_code = 'Talman' THEN 'L08_SPEAKER'
-            WHEN ad.role_code IN ('Partiledare', 'Tillförordnad partiledare') OR 
-                 ad.role_code LIKE '%vice talman%' THEN 'L07_PARTY_LEADER_DEPUTY_SPEAKER'
-            WHEN ad.role_code IN ('Partisekreterare', 'Tillförordnad partisekreterare', 
-                                   'Ordförande') THEN 'L06_PARTY_SEC_COMMITTEE_CHAIR'
-            WHEN ad.role_code = 'Vice ordförande' THEN 'L05_COMMITTEE_VICE_CHAIR'
-            WHEN ad.role_code = 'Riksdagsledamot' OR 
-                 (ad.role_code = 'Ledamot' AND ad.org_code NOT LIKE 'K%') THEN 'L04_ACTIVE_MP'
-            WHEN ad.role_code = 'Ledamot' AND ad.org_code LIKE 'K%' THEN 'L03_COMMITTEE_MEMBER'
-            WHEN ad.role_code IN ('Suppleant', 'Ersättare', 'Extra suppleant', 
-                                   'Personlig suppleant') THEN 'L02_SUBSTITUTE_MP'
-            ELSE 'L01_OTHER_ENTRY'
-        END AS career_level_name,
-        
         -- Calculate duration in role
         CASE 
             WHEN ad.to_date IS NULL THEN EXTRACT(YEAR FROM AGE(CURRENT_DATE, ad.from_date))
@@ -216,36 +178,57 @@ WITH career_level_mapping AS (
     WHERE ad.from_date IS NOT NULL
       AND ad.from_date >= '2002-01-01'  -- Focus on modern era (2002+)
 ),
+career_level_enriched AS (
+    -- Derive career_score and career_level_name from career_level to reduce duplication
+    SELECT 
+        clm.*,
+        -- Career Score: Level × 100 for granular scoring
+        clm.career_level * 100 AS career_score,
+        -- Level names for readability (calculated from career_level)
+        CASE clm.career_level
+            WHEN 10 THEN 'L10_PRIME_MINISTER'
+            WHEN 9 THEN 'L09_CABINET_MINISTER'
+            WHEN 8 THEN 'L08_SPEAKER'
+            WHEN 7 THEN 'L07_PARTY_LEADER_DEPUTY_SPEAKER'
+            WHEN 6 THEN 'L06_PARTY_SEC_COMMITTEE_CHAIR'
+            WHEN 5 THEN 'L05_COMMITTEE_VICE_CHAIR'
+            WHEN 4 THEN 'L04_ACTIVE_MP'
+            WHEN 3 THEN 'L03_COMMITTEE_MEMBER'
+            WHEN 2 THEN 'L02_SUBSTITUTE_MP'
+            ELSE 'L01_OTHER_ENTRY'
+        END AS career_level_name
+    FROM career_level_mapping clm
+),
 career_timeline AS (
     -- Build career progression timeline with window functions
     SELECT 
-        clm.*,
-        ROW_NUMBER() OVER (PARTITION BY clm.person_id ORDER BY clm.from_date, clm.career_level DESC) AS career_step,
-        COUNT(*) OVER (PARTITION BY clm.person_id) AS total_career_steps,
+        cle.*,
+        ROW_NUMBER() OVER (PARTITION BY cle.person_id ORDER BY cle.from_date, cle.career_level DESC) AS career_step,
+        COUNT(*) OVER (PARTITION BY cle.person_id) AS total_career_steps,
         
         -- LAG: Previous role metrics
-        LAG(clm.career_level) OVER (PARTITION BY clm.person_id ORDER BY clm.from_date) AS prev_career_level,
-        LAG(clm.career_score) OVER (PARTITION BY clm.person_id ORDER BY clm.from_date) AS prev_career_score,
-        LAG(clm.from_date) OVER (PARTITION BY clm.person_id ORDER BY clm.from_date) AS prev_role_start,
+        LAG(cle.career_level) OVER (PARTITION BY cle.person_id ORDER BY cle.from_date) AS prev_career_level,
+        LAG(cle.career_score) OVER (PARTITION BY cle.person_id ORDER BY cle.from_date) AS prev_career_score,
+        LAG(cle.from_date) OVER (PARTITION BY cle.person_id ORDER BY cle.from_date) AS prev_role_start,
         
         -- LEAD: Next role metrics
-        LEAD(clm.career_level) OVER (PARTITION BY clm.person_id ORDER BY clm.from_date) AS next_career_level,
-        LEAD(clm.career_score) OVER (PARTITION BY clm.person_id ORDER BY clm.from_date) AS next_career_score,
+        LEAD(cle.career_level) OVER (PARTITION BY cle.person_id ORDER BY cle.from_date) AS next_career_level,
+        LEAD(cle.career_score) OVER (PARTITION BY cle.person_id ORDER BY cle.from_date) AS next_career_score,
         
         -- Career boundaries
-        MIN(clm.from_date) OVER (PARTITION BY clm.person_id) AS career_start_date,
-        MAX(COALESCE(clm.to_date, CURRENT_DATE)) OVER (PARTITION BY clm.person_id) AS career_end_date,
-        MIN(EXTRACT(YEAR FROM clm.from_date)) OVER (PARTITION BY clm.person_id) AS career_start_year,
-        MAX(EXTRACT(YEAR FROM COALESCE(clm.to_date, CURRENT_DATE))) OVER (PARTITION BY clm.person_id) AS career_end_year,
+        MIN(cle.from_date) OVER (PARTITION BY cle.person_id) AS career_start_date,
+        MAX(COALESCE(cle.to_date, CURRENT_DATE)) OVER (PARTITION BY cle.person_id) AS career_end_date,
+        MIN(EXTRACT(YEAR FROM cle.from_date)) OVER (PARTITION BY cle.person_id) AS career_start_year,
+        MAX(EXTRACT(YEAR FROM COALESCE(cle.to_date, CURRENT_DATE))) OVER (PARTITION BY cle.person_id) AS career_end_year,
         
         -- Peak metrics
-        MAX(clm.career_level) OVER (PARTITION BY clm.person_id) AS peak_career_level,
-        MAX(clm.career_score) OVER (PARTITION BY clm.person_id) AS peak_career_score,
+        MAX(cle.career_level) OVER (PARTITION BY cle.person_id) AS peak_career_level,
+        MAX(cle.career_score) OVER (PARTITION BY cle.person_id) AS peak_career_score,
         
         -- Career statistics
-        AVG(clm.career_score) OVER (PARTITION BY clm.person_id) AS avg_career_score,
-        STDDEV_POP(clm.career_score) OVER (PARTITION BY clm.person_id) AS career_score_volatility
-    FROM career_level_mapping clm
+        AVG(cle.career_score) OVER (PARTITION BY cle.person_id) AS avg_career_score,
+        STDDEV_POP(cle.career_score) OVER (PARTITION BY cle.person_id) AS career_score_volatility
+    FROM career_level_enriched cle
 ),
 career_progression_analysis AS (
     -- Analyze career progression patterns and calculate key metrics
