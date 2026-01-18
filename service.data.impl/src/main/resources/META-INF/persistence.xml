@@ -266,6 +266,13 @@
 		<class>com.hack23.cia.model.internal.application.data.audit.impl.ViewAuditDataSummary</class>
 		<class>com.hack23.cia.model.internal.application.data.audit.impl.ViewAuditAuthorSummary</class>
 
+		<!-- V1.58 Election Proximity Trend Analysis Views -->
+		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenElectionProximityTrends</class>
+		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenElectionProximityTrendsEmbeddedId</class>
+		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPreElectionQuarterlyActivity</class>
+		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenSeasonalActivityPatterns</class>
+		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenSeasonalActivityPatternsEmbeddedId</class>
+
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 
 
