@@ -415,26 +415,24 @@ predictive_intelligence AS (
         
         -- Risk Intelligence (from view_politician_risk_summary)
         prs.risk_level,
-        prs.total_risk_score,
-        prs.trend_risk_score,
-        prs.anomaly_detected,
+        prs.risk_score,
         prs.total_violations,
         prs.absenteeism_violations,
         prs.effectiveness_violations,
         prs.discipline_violations,
         
         -- Network Influence Intelligence (from view_riksdagen_politician_influence_metrics)
-        pim.influence_classification,
-        pim.centrality_score,
-        pim.broker_score,
-        pim.strong_connections,
-        pim.cross_party_connections,
+        pim.connectivity_level AS influence_classification,
+        pim.normalized_centrality AS centrality_score,
+        pim.broker_classification AS broker_score,
+        pim.network_connections AS strong_connections,
+        pim.cross_party_bridges AS cross_party_connections,
         
         -- Composite Predictive Score (weighted combination)
         -- Career trajectory (40%) + Risk assessment (30%) + Behavioral patterns (20%) + Network influence (10%)
         ROUND((
             (cs.career_health_score * 0.40) +  -- Career health: 40%
-            ((100 - COALESCE(prs.total_risk_score, 50)) * 0.30) +  -- Inverse risk: 30% (lower risk = higher score)
+            ((100 - COALESCE(prs.risk_score, 50)) * 0.30) +  -- Inverse risk: 30% (lower risk = higher score)
             (COALESCE(pbt.avg_win_rate, 50) * 0.20) +  -- Behavioral effectiveness: 20%
             (CASE 
                 WHEN pim.influence_classification = 'HIGHLY_INFLUENTIAL' THEN 10.0
@@ -457,7 +455,7 @@ predictive_intelligence AS (
         CASE 
             WHEN cs.career_level >= 8 THEN 100  -- Already at top (PM, Ministers, Speaker)
             WHEN cs.career_pattern = 'FAST_TRACK' AND cs.career_level >= 6 
-                 AND pim.influence_classification IN ('HIGHLY_INFLUENTIAL', 'INFLUENTIAL')
+                 AND pim.connectivity_level IN ('HIGHLY_CONNECTED', 'WELL_CONNECTED')
                  AND COALESCE(prs.risk_level, 'LOW') = 'LOW' 
                  THEN 90
             WHEN cs.career_pattern IN ('RISING_STAR', 'STEADY_PROGRESS') 
@@ -475,7 +473,6 @@ predictive_intelligence AS (
         -- Retention Risk Flag (combining multiple risk factors)
         CASE 
             WHEN cs.downward_spiral_flag 
-                 AND COALESCE(prs.anomaly_detected, FALSE) 
                  AND COALESCE(pbt.attendance_status, 'ADEQUATE') = 'POOR' 
                  THEN TRUE
             WHEN cs.exit_risk_score >= 75 
@@ -574,9 +571,7 @@ SELECT
     
     -- Risk Intelligence
     pi.risk_level,
-    pi.total_risk_score,
-    pi.trend_risk_score,
-    pi.anomaly_detected,
+    pi.risk_score,
     pi.total_violations,
     pi.absenteeism_violations,
     pi.effectiveness_violations,

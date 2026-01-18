@@ -210,14 +210,8 @@ public class ViewRiksdagenPoliticianCareerPath10Level implements Serializable {
 	@Column(name = "risk_level")
 	private String riskLevel;
 
-	@Column(name = "total_risk_score")
-	private BigDecimal totalRiskScore;
-
-	@Column(name = "trend_risk_score")
-	private BigDecimal trendRiskScore;
-
-	@Column(name = "anomaly_detected")
-	private Boolean anomalyDetected;
+	@Column(name = "risk_score")
+	private BigDecimal riskScore;
 
 	@Column(name = "total_violations")
 	private Long totalViolations;
@@ -1201,57 +1195,21 @@ public class ViewRiksdagenPoliticianCareerPath10Level implements Serializable {
 	}
 
 	/**
-	 * Gets the total risk score.
+	 * Gets the risk score.
 	 *
-	 * @return the total risk score
+	 * @return the risk score
 	 */
-	public BigDecimal getTotalRiskScore() {
-		return totalRiskScore;
+	public BigDecimal getRiskScore() {
+		return riskScore;
 	}
 
 	/**
-	 * Sets the total risk score.
+	 * Sets the risk score.
 	 *
-	 * @param totalRiskScore the new total risk score
+	 * @param riskScore the new risk score
 	 */
-	public void setTotalRiskScore(final BigDecimal totalRiskScore) {
-		this.totalRiskScore = totalRiskScore;
-	}
-
-	/**
-	 * Gets the trend risk score.
-	 *
-	 * @return the trend risk score
-	 */
-	public BigDecimal getTrendRiskScore() {
-		return trendRiskScore;
-	}
-
-	/**
-	 * Sets the trend risk score.
-	 *
-	 * @param trendRiskScore the new trend risk score
-	 */
-	public void setTrendRiskScore(final BigDecimal trendRiskScore) {
-		this.trendRiskScore = trendRiskScore;
-	}
-
-	/**
-	 * Gets the anomaly detected.
-	 *
-	 * @return the anomaly detected
-	 */
-	public Boolean getAnomalyDetected() {
-		return anomalyDetected;
-	}
-
-	/**
-	 * Sets the anomaly detected.
-	 *
-	 * @param anomalyDetected the new anomaly detected
-	 */
-	public void setAnomalyDetected(final Boolean anomalyDetected) {
-		this.anomalyDetected = anomalyDetected;
+	public void setRiskScore(final BigDecimal riskScore) {
+		this.riskScore = riskScore;
 	}
 
 	/**
