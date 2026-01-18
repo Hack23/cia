@@ -115,45 +115,45 @@ SELECT
     am.proposals_filed,
     
     -- Election year baselines
-    ROUND(eb.election_median_ballots, 2) AS election_median_ballots,
-    ROUND(eb.election_avg_ballots, 2) AS election_avg_ballots,
-    ROUND(eb.election_stddev_ballots, 2) AS election_stddev_ballots,
+    ROUND(eb.election_median_ballots::NUMERIC, 2) AS election_median_ballots,
+    ROUND(eb.election_avg_ballots::NUMERIC, 2) AS election_avg_ballots,
+    ROUND(eb.election_stddev_ballots::NUMERIC, 2) AS election_stddev_ballots,
     
     -- Midterm baselines
-    ROUND(eb.midterm_avg_ballots, 2) AS midterm_avg_ballots,
-    ROUND(eb.midterm_stddev_ballots, 2) AS midterm_stddev_ballots,
+    ROUND(eb.midterm_avg_ballots::NUMERIC, 2) AS midterm_avg_ballots,
+    ROUND(eb.midterm_stddev_ballots::NUMERIC, 2) AS midterm_stddev_ballots,
     
     -- Activity ratios vs baselines
     ROUND(am.total_ballots::NUMERIC / NULLIF(eb.midterm_avg_ballots, 0), 2) AS ballot_ratio_vs_midterm,
     ROUND(am.total_ballots::NUMERIC / NULLIF(eb.election_avg_ballots, 0), 2) AS ballot_ratio_vs_election_avg,
     
     -- Document baselines and ratios
-    ROUND(eb.election_median_docs, 2) AS election_median_docs,
-    ROUND(eb.election_avg_docs, 2) AS election_avg_docs,
-    ROUND(eb.midterm_avg_docs, 2) AS midterm_avg_docs,
+    ROUND(eb.election_median_docs::NUMERIC, 2) AS election_median_docs,
+    ROUND(eb.election_avg_docs::NUMERIC, 2) AS election_avg_docs,
+    ROUND(eb.midterm_avg_docs::NUMERIC, 2) AS midterm_avg_docs,
     ROUND(am.documents_produced::NUMERIC / NULLIF(eb.midterm_avg_docs, 0), 2) AS doc_ratio_vs_midterm,
     ROUND(am.documents_produced::NUMERIC / NULLIF(eb.election_avg_docs, 0), 2) AS doc_ratio_vs_election_avg,
     
     -- Motion baselines and ratios
-    ROUND(eb.election_median_motions, 2) AS election_median_motions,
-    ROUND(eb.election_avg_motions, 2) AS election_avg_motions,
-    ROUND(eb.midterm_avg_motions, 2) AS midterm_avg_motions,
+    ROUND(eb.election_median_motions::NUMERIC, 2) AS election_median_motions,
+    ROUND(eb.election_avg_motions::NUMERIC, 2) AS election_avg_motions,
+    ROUND(eb.midterm_avg_motions::NUMERIC, 2) AS midterm_avg_motions,
     ROUND(am.motions_filed::NUMERIC / NULLIF(eb.midterm_avg_motions, 0), 2) AS motion_ratio_vs_midterm,
     
     -- Attendance baselines
-    ROUND(eb.election_avg_attendance, 2) AS election_avg_attendance,
-    ROUND(eb.midterm_avg_attendance, 2) AS midterm_avg_attendance,
+    ROUND(eb.election_avg_attendance::NUMERIC, 2) AS election_avg_attendance,
+    ROUND(eb.midterm_avg_attendance::NUMERIC, 2) AS midterm_avg_attendance,
     
     -- Z-scores for statistical anomaly detection
     CASE 
         WHEN eb.election_stddev_ballots > 0 AND am.is_election_year
-        THEN ROUND((am.total_ballots - eb.election_avg_ballots) / eb.election_stddev_ballots, 2)
+        THEN ROUND(((am.total_ballots - eb.election_avg_ballots) / eb.election_stddev_ballots)::NUMERIC, 2)
         ELSE 0
     END AS ballot_z_score_vs_election_avg,
     
     CASE 
         WHEN eb.election_stddev_docs > 0 AND am.is_election_year
-        THEN ROUND((am.documents_produced - eb.election_avg_docs) / eb.election_stddev_docs, 2)
+        THEN ROUND(((am.documents_produced - eb.election_avg_docs) / eb.election_stddev_docs)::NUMERIC, 2)
         ELSE 0
     END AS doc_z_score_vs_election_avg,
     
@@ -250,20 +250,20 @@ ORDER BY am.year
         <![CDATA[
 SELECT 
     'ELECTION_YEARS' AS period_type,
-    ROUND(AVG(total_ballots), 2) AS avg_ballots,
-    ROUND(AVG(documents_produced), 2) AS avg_documents,
-    ROUND(AVG(motions_filed), 2) AS avg_motions,
-    ROUND(AVG(proposals_filed), 2) AS avg_proposals,
-    ROUND(AVG(attendance_rate), 2) AS avg_attendance,
-    ROUND(AVG(active_politicians), 2) AS avg_active_politicians,
+    ROUND(AVG(total_ballots)::NUMERIC, 2) AS avg_ballots,
+    ROUND(AVG(documents_produced)::NUMERIC, 2) AS avg_documents,
+    ROUND(AVG(motions_filed)::NUMERIC, 2) AS avg_motions,
+    ROUND(AVG(proposals_filed)::NUMERIC, 2) AS avg_proposals,
+    ROUND(AVG(attendance_rate)::NUMERIC, 2) AS avg_attendance,
+    ROUND(AVG(active_politicians)::NUMERIC, 2) AS avg_active_politicians,
     COUNT(*) AS year_count,
     ARRAY_AGG(year ORDER BY year) AS years,
-    ROUND(MIN(total_ballots), 2) AS min_ballots,
-    ROUND(MAX(total_ballots), 2) AS max_ballots,
-    ROUND(STDDEV(total_ballots), 2) AS stddev_ballots,
-    ROUND(MIN(documents_produced), 2) AS min_documents,
-    ROUND(MAX(documents_produced), 2) AS max_documents,
-    ROUND(STDDEV(documents_produced), 2) AS stddev_documents
+    ROUND(MIN(total_ballots)::NUMERIC, 2) AS min_ballots,
+    ROUND(MAX(total_ballots)::NUMERIC, 2) AS max_ballots,
+    ROUND(STDDEV(total_ballots)::NUMERIC, 2) AS stddev_ballots,
+    ROUND(MIN(documents_produced)::NUMERIC, 2) AS min_documents,
+    ROUND(MAX(documents_produced)::NUMERIC, 2) AS max_documents,
+    ROUND(STDDEV(documents_produced)::NUMERIC, 2) AS stddev_documents
 FROM view_riksdagen_election_year_behavioral_patterns
 WHERE is_election_year = true
 
@@ -271,20 +271,20 @@ UNION ALL
 
 SELECT 
     'MIDTERM_YEARS' AS period_type,
-    ROUND(AVG(total_ballots), 2) AS avg_ballots,
-    ROUND(AVG(documents_produced), 2) AS avg_documents,
-    ROUND(AVG(motions_filed), 2) AS avg_motions,
-    ROUND(AVG(proposals_filed), 2) AS avg_proposals,
-    ROUND(AVG(attendance_rate), 2) AS avg_attendance,
-    ROUND(AVG(active_politicians), 2) AS avg_active_politicians,
+    ROUND(AVG(total_ballots)::NUMERIC, 2) AS avg_ballots,
+    ROUND(AVG(documents_produced)::NUMERIC, 2) AS avg_documents,
+    ROUND(AVG(motions_filed)::NUMERIC, 2) AS avg_motions,
+    ROUND(AVG(proposals_filed)::NUMERIC, 2) AS avg_proposals,
+    ROUND(AVG(attendance_rate)::NUMERIC, 2) AS avg_attendance,
+    ROUND(AVG(active_politicians)::NUMERIC, 2) AS avg_active_politicians,
     COUNT(*) AS year_count,
     ARRAY_AGG(year ORDER BY year) AS years,
-    ROUND(MIN(total_ballots), 2) AS min_ballots,
-    ROUND(MAX(total_ballots), 2) AS max_ballots,
-    ROUND(STDDEV(total_ballots), 2) AS stddev_ballots,
-    ROUND(MIN(documents_produced), 2) AS min_documents,
-    ROUND(MAX(documents_produced), 2) AS max_documents,
-    ROUND(STDDEV(documents_produced), 2) AS stddev_documents
+    ROUND(MIN(total_ballots)::NUMERIC, 2) AS min_ballots,
+    ROUND(MAX(total_ballots)::NUMERIC, 2) AS max_ballots,
+    ROUND(STDDEV(total_ballots)::NUMERIC, 2) AS stddev_ballots,
+    ROUND(MIN(documents_produced)::NUMERIC, 2) AS min_documents,
+    ROUND(MAX(documents_produced)::NUMERIC, 2) AS max_documents,
+    ROUND(STDDEV(documents_produced)::NUMERIC, 2) AS stddev_documents
 FROM view_riksdagen_election_year_behavioral_patterns
 WHERE is_election_year = false
 
@@ -292,18 +292,18 @@ UNION ALL
 
 SELECT 
     'COMPARISON_RATIO' AS period_type,
-    ROUND(AVG(total_ballots) FILTER (WHERE is_election_year) / 
-          NULLIF(AVG(total_ballots) FILTER (WHERE NOT is_election_year), 0), 2) AS avg_ballots,
-    ROUND(AVG(documents_produced) FILTER (WHERE is_election_year) / 
-          NULLIF(AVG(documents_produced) FILTER (WHERE NOT is_election_year), 0), 2) AS avg_documents,
-    ROUND(AVG(motions_filed) FILTER (WHERE is_election_year) / 
-          NULLIF(AVG(motions_filed) FILTER (WHERE NOT is_election_year), 0), 2) AS avg_motions,
-    ROUND(AVG(proposals_filed) FILTER (WHERE is_election_year) / 
-          NULLIF(AVG(proposals_filed) FILTER (WHERE NOT is_election_year), 0), 2) AS avg_proposals,
-    ROUND(AVG(attendance_rate) FILTER (WHERE is_election_year) / 
-          NULLIF(AVG(attendance_rate) FILTER (WHERE NOT is_election_year), 0), 2) AS avg_attendance,
-    ROUND(AVG(active_politicians) FILTER (WHERE is_election_year) / 
-          NULLIF(AVG(active_politicians) FILTER (WHERE NOT is_election_year), 0), 2) AS avg_active_politicians,
+    ROUND((AVG(total_ballots) FILTER (WHERE is_election_year) / 
+          NULLIF(AVG(total_ballots) FILTER (WHERE NOT is_election_year), 0))::NUMERIC, 2) AS avg_ballots,
+    ROUND((AVG(documents_produced) FILTER (WHERE is_election_year) / 
+          NULLIF(AVG(documents_produced) FILTER (WHERE NOT is_election_year), 0))::NUMERIC, 2) AS avg_documents,
+    ROUND((AVG(motions_filed) FILTER (WHERE is_election_year) / 
+          NULLIF(AVG(motions_filed) FILTER (WHERE NOT is_election_year), 0))::NUMERIC, 2) AS avg_motions,
+    ROUND((AVG(proposals_filed) FILTER (WHERE is_election_year) / 
+          NULLIF(AVG(proposals_filed) FILTER (WHERE NOT is_election_year), 0))::NUMERIC, 2) AS avg_proposals,
+    ROUND((AVG(attendance_rate) FILTER (WHERE is_election_year) / 
+          NULLIF(AVG(attendance_rate) FILTER (WHERE NOT is_election_year), 0))::NUMERIC, 2) AS avg_attendance,
+    ROUND((AVG(active_politicians) FILTER (WHERE is_election_year) / 
+          NULLIF(AVG(active_politicians) FILTER (WHERE NOT is_election_year), 0))::NUMERIC, 2) AS avg_active_politicians,
     NULL AS year_count,
     NULL AS years,
     NULL AS min_ballots,
@@ -392,7 +392,7 @@ anomaly_detection AS (
         -- Calculate motion z-score
         CASE 
             WHEN eyd.election_stddev_motions > 0 
-            THEN ROUND((eyd.motions_filed - eyd.election_avg_motions) / eyd.election_stddev_motions, 2)
+            THEN ROUND(((eyd.motions_filed - eyd.election_avg_motions) / eyd.election_stddev_motions)::NUMERIC, 2)
             ELSE 0
         END AS motion_z_score,
         -- Identify which dimensions have anomalies
@@ -400,7 +400,7 @@ anomaly_detection AS (
         ABS(eyd.doc_z_score_vs_election_avg) > 1.5 AS has_doc_anomaly,
         ABS(CASE 
             WHEN eyd.election_stddev_motions > 0 
-            THEN (eyd.motions_filed - eyd.election_avg_motions) / eyd.election_stddev_motions
+            THEN ((eyd.motions_filed - eyd.election_avg_motions) / eyd.election_stddev_motions)
             ELSE 0
         END) > 1.5 AS has_motion_anomaly
     FROM election_year_data eyd
@@ -478,7 +478,7 @@ SELECT
     -- Maximum absolute z-score across all dimensions
     ROUND(GREATEST(ABS(ad.ballot_z_score_vs_election_avg), 
                    ABS(ad.doc_z_score_vs_election_avg), 
-                   ABS(ad.motion_z_score)), 2) AS max_z_score,
+                   ABS(ad.motion_z_score))::NUMERIC, 2) AS max_z_score,
     
     -- Directional indicator
     CASE 
