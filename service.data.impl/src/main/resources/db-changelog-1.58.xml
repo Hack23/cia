@@ -593,10 +593,8 @@ SELECT
     
     -- Network Influence Intelligence
     pi.influence_classification,
-    pi.centrality_score,
     pi.broker_score,
     pi.strong_connections,
-    pi.cross_party_connections,
     
     -- Predictive Scores
     pi.predictive_success_score,

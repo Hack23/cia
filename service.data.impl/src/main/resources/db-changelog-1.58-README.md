@@ -447,8 +447,6 @@ SELECT
     career_level_name,
     influence_classification,
     COUNT(DISTINCT person_id) as total_politicians,
-    ROUND(AVG(centrality_score), 2) as avg_centrality,
-    ROUND(AVG(broker_score), 2) as avg_broker_score,
     ROUND(AVG(strong_connections), 1) as avg_connections,
     ROUND(AVG(predictive_success_score), 1) as avg_success_score
 FROM view_riksdagen_politician_career_path_10level
