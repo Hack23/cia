@@ -394,7 +394,6 @@ ORDER BY ca.election_date DESC, ca.months_until_election, ca.person_id, ca.activ
         
         GitHub Issue: Hack23/cia#8208 Election Proximity Trend Analysis - Quarterly Q4 Pre-Election Focus
     </comment>
-    </comment>
     
     <createView viewName="view_riksdagen_pre_election_quarterly_activity">
         <![CDATA[
