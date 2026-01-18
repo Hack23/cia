@@ -291,15 +291,13 @@ career_progression_analysis AS (
             ELSE NULL
         END AS advancement_velocity,
         
-        -- Count promotions and demotions up to this point
-        COUNT(CASE WHEN ct2.career_level > ct2.prev_career_level THEN 1 END) 
+        -- Count promotions and demotions up to this point (using LAG to detect transitions)
+        COUNT(CASE WHEN ct.career_level > ct.prev_career_level THEN 1 END) 
             OVER (PARTITION BY ct.person_id ORDER BY ct.from_date ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS promotions_count,
-        COUNT(CASE WHEN ct2.career_level < ct2.prev_career_level THEN 1 END) 
+        COUNT(CASE WHEN ct.career_level < ct.prev_career_level THEN 1 END) 
             OVER (PARTITION BY ct.person_id ORDER BY ct.from_date ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS demotions_count
         
     FROM career_timeline ct
-    LEFT JOIN career_timeline ct2 ON ct.person_id = ct2.person_id 
-        AND ct2.from_date <= ct.from_date
 ),
 career_scoring AS (
     -- Calculate comprehensive career performance scores
