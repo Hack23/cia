@@ -95,7 +95,7 @@ public class ViewRiksdagenElectionProximityTrendsEmbeddedId implements Serializa
 	 * @param electionDate the new election date
 	 */
 	public void setElectionDate(final Date electionDate) {
-		this.electionDate = electionDate;
+		this.electionDate = electionDate == null ? null : new Date(electionDate.getTime());
 	}
 
 	/**
@@ -113,7 +113,7 @@ public class ViewRiksdagenElectionProximityTrendsEmbeddedId implements Serializa
 	 * @param activityQuarter the new activity quarter
 	 */
 	public void setActivityQuarter(final Date activityQuarter) {
-		this.activityQuarter = activityQuarter;
+		this.activityQuarter = activityQuarter == null ? null : new Date(activityQuarter.getTime());
 	}
 
 	@Override
