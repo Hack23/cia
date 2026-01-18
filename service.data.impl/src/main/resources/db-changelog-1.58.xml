@@ -182,8 +182,21 @@ career_level_enriched AS (
     -- Derive career_score and career_level_name from career_level to reduce duplication
     SELECT 
         clm.*,
-        -- Career Score: Level × 100 for granular scoring
-        clm.career_level * 100 AS career_score,
+        -- Career Score: Non-linear scoring to reflect significance gaps
+        -- Lower levels (1-2) have minimal scores to avoid accumulation effect
+        -- where multiple substitute roles would outscore substantive positions
+        CASE clm.career_level
+            WHEN 10 THEN 1000  -- Prime Minister
+            WHEN 9 THEN 900    -- Cabinet Ministers
+            WHEN 8 THEN 800    -- Speaker
+            WHEN 7 THEN 700    -- Party Leaders & Deputy Speakers
+            WHEN 6 THEN 600    -- Party Secretaries & Committee Chairs
+            WHEN 5 THEN 500    -- Committee Vice Chairs
+            WHEN 4 THEN 400    -- Active MPs
+            WHEN 3 THEN 300    -- Committee Members
+            WHEN 2 THEN 50     -- Substitute MPs (reduced from 200 to prevent accumulation)
+            ELSE 10            -- Other/Entry (reduced from 100 to minimal value)
+        END AS career_score,
         -- Level names for readability (calculated from career_level)
         CASE clm.career_level
             WHEN 10 THEN 'L10_PRIME_MINISTER'

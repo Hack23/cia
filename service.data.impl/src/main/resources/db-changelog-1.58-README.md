@@ -22,8 +22,10 @@ A comprehensive view that analyzes politician career trajectories using a 10-lev
 | L05 | Committee Vice Chairs | Vice ordförande | 500 |
 | L04 | Active MPs | Riksdagsledamot | 400 |
 | L03 | Committee Members | Ledamot (in committees) | 300 |
-| L02 | Substitute MPs | Suppleant, Ersättare | 200 |
-| L01 | Other/Entry Roles | Other assignments | 100 |
+| L02 | Substitute MPs | Suppleant, Ersättare | 50 |
+| L01 | Other/Entry Roles | Other assignments | 10 |
+
+**Note on Scoring**: The scoring system uses non-linear weights for lower levels (L01-L02) to prevent accumulation effects. Multiple substitute roles (L02 at 50 points each) will not artificially inflate career scores above substantive positions. For example, 6 substitute roles (300 total) remain lower than 1 active MP role (400 points), accurately reflecting career significance.
 
 ## Key Features
 
