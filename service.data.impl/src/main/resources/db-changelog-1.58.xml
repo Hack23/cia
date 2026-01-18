@@ -655,7 +655,6 @@ ORDER BY pi.person_id, pi.from_date;
         DO $$
         DECLARE
             v_view_exists BOOLEAN;
-            v_row_count INTEGER;
         BEGIN
             -- Check if view exists
             SELECT EXISTS(
@@ -664,12 +663,8 @@ ORDER BY pi.person_id, pi.from_date;
             ) INTO v_view_exists;
             
             IF v_view_exists THEN
-                -- Count rows in view
-                EXECUTE 'SELECT COUNT(*) FROM view_riksdagen_politician_career_path_10level'
-                INTO v_row_count;
-                
                 RAISE NOTICE '✓ 10-Level Career Path View created successfully';
-                RAISE NOTICE '  Total career records: %', v_row_count;
+                RAISE NOTICE '  Note: View depends on materialized views that may need REFRESH MATERIALIZED VIEW';
                 RAISE NOTICE '';
                 RAISE NOTICE '  KEY FEATURES:';
                 RAISE NOTICE '  - 10-level hierarchical role classification (L10-L01)';
