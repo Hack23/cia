@@ -122,7 +122,7 @@ politician_document_metrics AS (
 politician_role_metrics AS (
     SELECT 
         pre.person_id,
-        DATE_TRUNC('quarter', pre.role_start_date) AS activity_quarter,
+        DATE_TRUNC('quarter', pre.role_start) AS activity_quarter,
         ed.election_date,
         COUNT(DISTINCT pre.role_tier) AS new_assignment_count,
         MAX(pre.role_weight) AS peak_role_weight_quarter,
@@ -132,9 +132,9 @@ politician_role_metrics AS (
                             THEN pre.role_tier END) AS committee_assignment_count
     FROM view_riksdagen_politician_role_evolution pre
     CROSS JOIN election_dates ed
-    WHERE pre.role_start_date < ed.election_date
-      AND AGE(ed.election_date, pre.role_start_date) < INTERVAL '48 months'
-    GROUP BY pre.person_id, DATE_TRUNC('quarter', pre.role_start_date), ed.election_date
+    WHERE pre.role_start < ed.election_date
+      AND AGE(ed.election_date, pre.role_start) < INTERVAL '48 months'
+    GROUP BY pre.person_id, DATE_TRUNC('quarter', pre.role_start), ed.election_date
 ),
 -- Decision-making patterns from view_riksdagen_politician_decision_pattern
 politician_decision_metrics AS (
@@ -440,17 +440,17 @@ q4_document_activity AS (
 -- Q4 role activity from existing view_riksdagen_politician_role_evolution
 q4_role_activity AS (
     SELECT 
-        EXTRACT(YEAR FROM pre.role_start_date)::INTEGER AS year,
+        EXTRACT(YEAR FROM pre.role_start)::INTEGER AS year,
         COUNT(DISTINCT pre.person_id) AS total_new_assignments,
         COUNT(DISTINCT CASE WHEN pre.role_tier IN ('minister', 'speaker', 'party_leader') 
                             THEN pre.person_id END) AS politicians_with_new_roles,
         COUNT(DISTINCT CASE WHEN pre.role_tier = 'minister' 
                             THEN pre.person_id END) AS leadership_appointments
     FROM view_riksdagen_politician_role_evolution pre
-    WHERE EXTRACT(QUARTER FROM pre.role_start_date) = 4
-      AND pre.role_start_date IS NOT NULL
-      AND EXTRACT(YEAR FROM pre.role_start_date) >= 2002
-    GROUP BY EXTRACT(YEAR FROM pre.role_start_date)
+    WHERE EXTRACT(QUARTER FROM pre.role_start) = 4
+      AND pre.role_start IS NOT NULL
+      AND EXTRACT(YEAR FROM pre.role_start) >= 2002
+    GROUP BY EXTRACT(YEAR FROM pre.role_start)
 ),
 -- Q4 party effectiveness from view_party_effectiveness_trends (NEW)
 q4_party_effectiveness AS (
