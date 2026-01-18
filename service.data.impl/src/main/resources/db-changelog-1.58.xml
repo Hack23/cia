@@ -778,33 +778,6 @@ SELECT
 FROM seasonal_with_trends swt
 ORDER BY swt.year DESC, swt.quarter
         ]]>
-        THEN 'Q4_ELEVATED_ACTIVITY'
-        WHEN qws.quarter = 3 AND qws.total_ballots < qws.year_avg_ballots - qws.year_stddev_ballots
-        THEN 'Q3_SUMMER_LULL'
-        WHEN qws.quarterly_z_score > 1.5
-        THEN 'UNUSUALLY_HIGH_ACTIVITY'
-        WHEN qws.quarterly_z_score < -1.5
-        THEN 'UNUSUALLY_LOW_ACTIVITY'
-        ELSE 'NORMAL_SEASONAL_PATTERN'
-    END AS seasonal_pattern_classification,
-    CASE 
-        WHEN qws.activity_quartile = 1 THEN 'BOTTOM_25_PCT'
-        WHEN qws.activity_quartile = 2 THEN 'LOWER_MIDDLE_25_PCT'
-        WHEN qws.activity_quartile = 3 THEN 'UPPER_MIDDLE_25_PCT'
-        WHEN qws.activity_quartile = 4 THEN 'TOP_25_PCT'
-    END AS activity_tier,
-    CASE 
-        WHEN qws.prev_quarter_ballots IS NULL THEN 'BASELINE'
-        WHEN qws.total_ballots > qws.prev_quarter_ballots * 1.2 THEN 'STRONG_INCREASE'
-        WHEN qws.total_ballots > qws.prev_quarter_ballots * 1.05 THEN 'MODERATE_INCREASE'
-        WHEN qws.total_ballots < qws.prev_quarter_ballots * 0.8 THEN 'STRONG_DECREASE'
-        WHEN qws.total_ballots < qws.prev_quarter_ballots * 0.95 THEN 'MODERATE_DECREASE'
-        ELSE 'STABLE'
-    END AS quarter_over_quarter_trend,
-    RANK() OVER (PARTITION BY qws.quarter, qws.is_election_year ORDER BY qws.total_ballots DESC) AS rank_within_quarter_type
-FROM quarterly_with_stats qws
-ORDER BY qws.year DESC, qws.quarter
-        ]]>
     </createView>
     
     <rollback>
