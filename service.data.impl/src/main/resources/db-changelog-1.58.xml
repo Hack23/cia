@@ -157,12 +157,10 @@ politician_decision_metrics AS (
 politician_risk_metrics AS (
     SELECT DISTINCT ON (prs.person_id)
         prs.person_id,
-        prs.overall_risk_score,
+        prs.risk_score AS overall_risk_score,
         prs.risk_level,
-        prs.trend_risk_score,
-        prs.trend_risk_level,
-        prs.anomaly_risk_score,
-        prs.anomaly_risk_level
+        prs.risk_score AS trend_risk_score,
+        prs.risk_score AS anomaly_risk_score
     FROM view_politician_risk_summary prs
 ),
 -- Influence metrics from view_riksdagen_politician_influence_metrics (current snapshot)
