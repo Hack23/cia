@@ -355,15 +355,15 @@ career_scoring AS (
             ELSE FALSE
         END AS downward_spiral_flag,
         
-        -- Exit risk scoring (0-100 scale)
+        -- Exit risk scoring (0-100 scale) - cast to INTEGER for consistency
         CASE 
-            WHEN cpa.progression_direction = 'DEMOTION' AND cpa.demotions_count >= 2 THEN 90.0
-            WHEN cpa.career_level = 2 AND cpa.prev_career_level >= 4 THEN 75.0
-            WHEN cpa.demotions_count > cpa.promotions_count THEN 60.0
-            WHEN NOT cpa.is_current_role AND cpa.career_level <= 2 THEN 50.0
-            WHEN cpa.progression_direction = 'DEMOTION' THEN 40.0
-            WHEN cpa.career_span_years > 20 AND cpa.career_level <= 3 THEN 30.0
-            ELSE 10.0
+            WHEN cpa.progression_direction = 'DEMOTION' AND cpa.demotions_count >= 2 THEN 90
+            WHEN cpa.career_level = 2 AND cpa.prev_career_level >= 4 THEN 75
+            WHEN cpa.demotions_count > cpa.promotions_count THEN 60
+            WHEN NOT cpa.is_current_role AND cpa.career_level <= 2 THEN 50
+            WHEN cpa.progression_direction = 'DEMOTION' THEN 40
+            WHEN cpa.career_span_years > 20 AND cpa.career_level <= 3 THEN 30
+            ELSE 10
         END AS exit_risk_score,
         
         -- Peak sustainability (years at peak level)
@@ -394,7 +394,23 @@ career_scoring AS (
         -- Comparative rankings
         RANK() OVER (ORDER BY cpa.peak_career_score DESC, cpa.career_span_years DESC) AS overall_career_rank,
         PERCENT_RANK() OVER (ORDER BY cpa.peak_career_score DESC) AS career_percentile,
-        NTILE(10) OVER (ORDER BY cpa.peak_career_score DESC) AS career_decile
+        NTILE(10) OVER (ORDER BY cpa.peak_career_score DESC) AS career_decile,
+        
+        -- Career Health Score (0-100 composite) - moved here for use in predictive_intelligence
+        ROUND((
+            (CASE 
+                WHEN cpa.is_peak_role THEN 30.0
+                WHEN cpa.peak_career_level >= 7 THEN 20.0
+                WHEN cpa.peak_career_level >= 4 THEN 15.0
+                ELSE 10.0 
+            END) +  -- Peak achievement: 30%
+            (COALESCE(cpa.advancement_velocity, 0) * 20) +  -- Velocity: up to 20%
+            ((cpa.promotions_count - cpa.demotions_count)::NUMERIC * 5) +  -- Net progression: up to 20%
+            (CASE WHEN cpa.progression_direction = 'PROMOTION' THEN 10.0 
+                  WHEN cpa.progression_direction = 'LATERAL' THEN 5.0 
+                  ELSE 0.0 END) +  -- Recent direction: 10%
+            (CASE WHEN cpa.demotions_count >= 2 AND cpa.progression_direction = 'DEMOTION' THEN -20.0 ELSE 10.0 END)  -- Stability: 10%
+        )::NUMERIC, 1) AS career_health_score
         
     FROM career_progression_analysis cpa
 ),
@@ -435,9 +451,9 @@ predictive_intelligence AS (
             ((100 - COALESCE(prs.risk_score, 50)) * 0.30) +  -- Inverse risk: 30% (lower risk = higher score)
             (COALESCE(pbt.avg_win_rate, 50) * 0.20) +  -- Behavioral effectiveness: 20%
             (CASE 
-                WHEN pim.influence_classification = 'HIGHLY_INFLUENTIAL' THEN 10.0
-                WHEN pim.influence_classification = 'INFLUENTIAL' THEN 7.5
-                WHEN pim.influence_classification = 'MODERATELY_INFLUENTIAL' THEN 5.0
+                WHEN pim.connectivity_level = 'HIGHLY_INFLUENTIAL' THEN 10.0
+                WHEN pim.connectivity_level = 'INFLUENTIAL' THEN 7.5
+                WHEN pim.connectivity_level = 'MODERATELY_INFLUENTIAL' THEN 5.0
                 ELSE 2.5
             END)  -- Network influence: 10%
         )::NUMERIC, 1) AS predictive_success_score,
@@ -590,6 +606,9 @@ SELECT
     pi.leadership_potential_score,
     pi.high_retention_risk_flag,
     
+    -- Career Health Score (calculated in career_scoring CTE)
+    pi.career_health_score,
+    
     -- Career Stage Classification
     CASE 
         WHEN pi.career_span_years <= 3 THEN 'EARLY_CAREER'
@@ -597,17 +616,6 @@ SELECT
         WHEN pi.career_span_years <= 15 THEN 'SENIOR_CAREER'
         ELSE 'VETERAN_CAREER'
     END AS career_stage,
-    
-    -- Career Health Indicator (composite score)
-    ROUND((
-        (pi.career_score::NUMERIC / 1000.0 * 40) +  -- Current level weight: 40%
-        (CASE WHEN pi.is_peak_role THEN 20.0 ELSE 0.0 END) +  -- Peak status: 20%
-        ((pi.promotions_count - pi.demotions_count)::NUMERIC * 5) +  -- Net progression: up to 20%
-        (CASE WHEN pi.progression_direction = 'PROMOTION' THEN 10.0 
-              WHEN pi.progression_direction = 'LATERAL' THEN 5.0 
-              ELSE 0.0 END) +  -- Recent direction: 10%
-        (CASE WHEN pi.downward_spiral_flag THEN -20.0 ELSE 10.0 END)  -- Stability: 10%
-    )::NUMERIC, 1) AS career_health_score,
     
     -- Typical Career Path Flag
     CASE 

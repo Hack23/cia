@@ -429,8 +429,7 @@ SELECT
     total_violations,
     behavioral_absence_rate,
     attendance_status,
-    effectiveness_status,
-    anomaly_detected
+    effectiveness_status
 FROM view_riksdagen_politician_career_path_10level
 WHERE is_current_role = TRUE
   AND (high_retention_risk_flag = TRUE 
