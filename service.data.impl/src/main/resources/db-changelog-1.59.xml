@@ -122,7 +122,7 @@ politician_document_metrics AS (
 politician_role_metrics AS (
     SELECT 
         pre.person_id,
-        DATE_TRUNC('quarter', pre.role_start_date) AS activity_quarter,
+        DATE_TRUNC('quarter', pre.role_start) AS activity_quarter,
         ed.election_date,
         COUNT(DISTINCT pre.role_tier) AS new_assignment_count,
         MAX(pre.role_weight) AS peak_role_weight_quarter,
@@ -132,9 +132,9 @@ politician_role_metrics AS (
                             THEN pre.role_tier END) AS committee_assignment_count
     FROM view_riksdagen_politician_role_evolution pre
     CROSS JOIN election_dates ed
-    WHERE pre.role_start_date < ed.election_date
-      AND AGE(ed.election_date, pre.role_start_date) < INTERVAL '48 months'
-    GROUP BY pre.person_id, DATE_TRUNC('quarter', pre.role_start_date), ed.election_date
+    WHERE pre.role_start < ed.election_date
+      AND AGE(ed.election_date, pre.role_start) < INTERVAL '48 months'
+    GROUP BY pre.person_id, DATE_TRUNC('quarter', pre.role_start), ed.election_date
 ),
 -- Decision-making patterns from view_riksdagen_politician_decision_pattern
 politician_decision_metrics AS (
@@ -167,11 +167,10 @@ politician_risk_metrics AS (
 politician_influence_metrics AS (
     SELECT DISTINCT ON (pim.person_id)
         pim.person_id,
-        pim.influence_score,
+        pim.network_connections,
         pim.influence_classification,
-        pim.centrality_score,
-        pim.broker_score,
-        pim.broker_classification
+        pim.broker_classification,
+        pim.influence_assessment
     FROM view_riksdagen_politician_influence_metrics pim
 ),
 combined_activity AS (
@@ -220,11 +219,10 @@ combined_activity AS (
         prisk.trend_risk_score,
         prisk.anomaly_risk_score,
         -- Influence metrics (snapshot)
-        pinf.influence_score,
+        pinf.network_connections,
         pinf.influence_classification,
-        pinf.centrality_score,
-        pinf.broker_score,
-        pinf.broker_classification
+        pinf.broker_classification,
+        pinf.influence_assessment
     FROM politician_behavioral_metrics pbm
     LEFT JOIN politician_document_metrics pdm 
         ON pbm.person_id = pdm.person_id 
@@ -288,11 +286,10 @@ SELECT
     ca.trend_risk_score,
     ca.anomaly_risk_score,
     -- Influence metrics
-    ca.influence_score,
+    ca.network_connections,
     ca.influence_classification,
-    ca.centrality_score,
-    ca.broker_score,
     ca.broker_classification,
+    ca.influence_assessment,
     -- Baseline calculations for multiple dimensions
     ROUND(AVG(ca.ballot_count) OVER (PARTITION BY ca.person_id), 2) AS avg_ballot_count_baseline,
     ROUND(AVG(ca.document_count) OVER (PARTITION BY ca.person_id), 2) AS avg_document_count_baseline,
@@ -440,17 +437,17 @@ q4_document_activity AS (
 -- Q4 role activity from existing view_riksdagen_politician_role_evolution
 q4_role_activity AS (
     SELECT 
-        EXTRACT(YEAR FROM pre.role_start_date)::INTEGER AS year,
+        EXTRACT(YEAR FROM pre.role_start)::INTEGER AS year,
         COUNT(DISTINCT pre.person_id) AS total_new_assignments,
         COUNT(DISTINCT CASE WHEN pre.role_tier IN ('minister', 'speaker', 'party_leader') 
                             THEN pre.person_id END) AS politicians_with_new_roles,
         COUNT(DISTINCT CASE WHEN pre.role_tier = 'minister' 
                             THEN pre.person_id END) AS leadership_appointments
     FROM view_riksdagen_politician_role_evolution pre
-    WHERE EXTRACT(QUARTER FROM pre.role_start_date) = 4
-      AND pre.role_start_date IS NOT NULL
-      AND EXTRACT(YEAR FROM pre.role_start_date) >= 2002
-    GROUP BY EXTRACT(YEAR FROM pre.role_start_date)
+    WHERE EXTRACT(QUARTER FROM pre.role_start) = 4
+      AND pre.role_start IS NOT NULL
+      AND EXTRACT(YEAR FROM pre.role_start) >= 2002
+    GROUP BY EXTRACT(YEAR FROM pre.role_start)
 ),
 -- Q4 party effectiveness from view_party_effectiveness_trends (NEW)
 q4_party_effectiveness AS (
