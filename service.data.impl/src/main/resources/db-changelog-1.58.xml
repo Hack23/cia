@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+<changeSet id="1.58-intro" author="intelligence-operative">
+    <comment>v1.58 Election Proximity Trend Analysis - Quarterly Q4 Pre-Election Focus</comment>
+    <sql>SELECT 'v1.58' AS version, CURRENT_TIMESTAMP AS applied_at;</sql>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- VIEW 1: view_riksdagen_election_proximity_trends                         -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="create-election-proximity-trends-view-1.58-001" failOnError="true">
+    <comment>
+        Create view_riksdagen_election_proximity_trends to track politician activity 
+        by months until election, with Q4 pre-election focus.
+        
+        Purpose: Analyze behavioral changes in the 12 months before Swedish elections 
+        (typically September). Track Q4 (October-December) activity patterns when 
+        politicians are 9-15 months from election day.
+        
+        Key Features:
+        - Tracks activity by months_until_election dimension (0-48 months)
+        - Q4 pre-election flag (9-15 months before election, Q4 period)
+        - Activity classification (ELEVATED_ACTIVITY vs NORMAL_ACTIVITY)
+        - Uses ballot_count and attendance as primary metrics
+        - Compares against politician's baseline activity
+        - Covers Swedish election cycles 2002-2026
+        
+        Advanced Statistics:
+        - AVG window function for baseline calculation
+        - Deviation analysis (ballot_count - baseline)
+        - Activity classification (>1.5x baseline = ELEVATED)
+        - Quarterly aggregation with election proximity
+        
+        Intelligence Value: VERY HIGH (5/5)
+        - Detects pre-election activity surges
+        - Identifies behavioral shifts before campaigns
+        - Enables prediction of election-driven behavior
+        - Supports electoral strategy analysis
+        
+        GitHub Issue: Hack23/cia#8208 Election Proximity Trend Analysis - Quarterly Q4 Pre-Election Focus
+    </comment>
+    
+    <createView viewName="view_riksdagen_election_proximity_trends">
+        <![CDATA[
+WITH election_dates AS (
+    SELECT UNNEST(ARRAY['2002-09-15', '2006-09-17', '2010-09-19', 
+                        '2014-09-14', '2018-09-09', '2022-09-11', '2026-09-13']::DATE[]) AS election_date
+),
+politician_activity AS (
+    SELECT 
+        vd.embedded_id_intressent_id AS person_id,
+        p.first_name,
+        p.last_name,
+        p.party,
+        DATE_TRUNC('quarter', vd.vote_date) AS activity_quarter,
+        EXTRACT(QUARTER FROM vd.vote_date) AS quarter_number,
+        ed.election_date,
+        EXTRACT(YEAR FROM AGE(ed.election_date, vd.vote_date))::INTEGER * 12 + 
+        EXTRACT(MONTH FROM AGE(ed.election_date, vd.vote_date))::INTEGER AS months_until_election,
+        COUNT(DISTINCT vd.embedded_id_ballot_id) AS ballot_count,
+        SUM(CASE WHEN vd.vote != 'Frånvarande' THEN 1 ELSE 0 END) AS attendance_count,
+        CASE 
+            WHEN EXTRACT(QUARTER FROM vd.vote_date) = 4 
+                 AND (EXTRACT(YEAR FROM AGE(ed.election_date, vd.vote_date))::INTEGER * 12 + 
+                      EXTRACT(MONTH FROM AGE(ed.election_date, vd.vote_date))::INTEGER) BETWEEN 9 AND 15
+            THEN true 
+            ELSE false 
+        END AS is_pre_election_q4
+    FROM vote_data vd
+    JOIN person_data p ON vd.embedded_id_intressent_id = p.id
+    CROSS JOIN election_dates ed
+    WHERE vd.vote_date < ed.election_date
+      AND AGE(ed.election_date, vd.vote_date) < INTERVAL '48 months'
+      AND vd.vote_date IS NOT NULL
+    GROUP BY vd.embedded_id_intressent_id, p.first_name, p.last_name, p.party,
+             DATE_TRUNC('quarter', vd.vote_date), EXTRACT(QUARTER FROM vd.vote_date),
+             ed.election_date, vd.vote_date
+)
+SELECT 
+    pa.person_id, 
+    pa.first_name, 
+    pa.last_name, 
+    pa.party,
+    pa.election_date, 
+    pa.activity_quarter,
+    pa.quarter_number,
+    pa.months_until_election, 
+    pa.is_pre_election_q4, 
+    pa.ballot_count, 
+    pa.attendance_count,
+    ROUND(pa.attendance_count::NUMERIC / NULLIF(pa.ballot_count, 0) * 100, 2) AS attendance_rate,
+    ROUND(AVG(pa.ballot_count) OVER (PARTITION BY pa.person_id), 2) AS avg_ballot_count_baseline,
+    ROUND(pa.ballot_count - AVG(pa.ballot_count) OVER (PARTITION BY pa.person_id), 2) AS ballot_count_deviation,
+    ROUND((pa.ballot_count::NUMERIC / NULLIF(AVG(pa.ballot_count) OVER (PARTITION BY pa.person_id), 0)), 2) AS activity_ratio,
+    CASE 
+        WHEN pa.ballot_count > 1.5 * AVG(pa.ballot_count) OVER (PARTITION BY pa.person_id) 
+        THEN 'ELEVATED_ACTIVITY'
+        WHEN pa.ballot_count < 0.7 * AVG(pa.ballot_count) OVER (PARTITION BY pa.person_id)
+        THEN 'REDUCED_ACTIVITY'
+        ELSE 'NORMAL_ACTIVITY'
+    END AS activity_classification,
+    CASE
+        WHEN pa.months_until_election <= 6 THEN 'ELECTION_IMMINENT'
+        WHEN pa.months_until_election <= 12 THEN 'PRE_ELECTION_YEAR'
+        WHEN pa.months_until_election <= 24 THEN 'MID_CYCLE'
+        ELSE 'EARLY_CYCLE'
+    END AS election_phase,
+    RANK() OVER (PARTITION BY pa.election_date, pa.activity_quarter ORDER BY pa.ballot_count DESC) AS rank_by_activity_quarter
+FROM politician_activity pa
+WHERE pa.ballot_count > 0
+ORDER BY pa.election_date DESC, pa.months_until_election, pa.person_id, pa.activity_quarter
+        ]]>
+    </createView>
+    
+    <rollback>
+        DROP VIEW IF EXISTS view_riksdagen_election_proximity_trends CASCADE;
+    </rollback>
+</changeSet>
+
+<!-- Add view documentation -->
+<changeSet id="1.58-document-election-proximity-trends-view" author="intelligence-operative" failOnError="true">
+    <comment>Add documentation for view_riksdagen_election_proximity_trends</comment>
+    <sql>
+        COMMENT ON VIEW view_riksdagen_election_proximity_trends IS 'Election proximity trend analysis tracking politician activity by months until election (0-48 months). Features: Q4 pre-election flag (9-15 months before election), activity classification (>1.5x baseline = ELEVATED), baseline comparison, quarterly aggregation. Data Source: vote_data, person_data. Election cycles: 2002, 2006, 2010, 2014, 2018, 2022, 2026. Framework 1: Temporal Analysis. Use Case: Detect pre-election behavioral surges, predict election-driven activity changes.';
+    </sql>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- VIEW 2: view_riksdagen_pre_election_quarterly_activity                   -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="create-pre-election-quarterly-activity-view-1.58-002" failOnError="true">
+    <comment>
+        Create view_riksdagen_pre_election_quarterly_activity to aggregate Q4 activity 
+        vs baseline across all politicians.
+        
+        Purpose: Aggregate-level view showing Q4 activity patterns in pre-election periods 
+        compared to baseline (non-election years). Builds on existing 
+        view_riksdagen_seasonal_quarterly_activity from v1.55.
+        
+        Key Features:
+        - Aggregates politician activity in Q4 pre-election quarters
+        - Compares election year Q4 vs non-election year Q4
+        - Detects statistical anomalies (>1.5x baseline)
+        - Total ballots, average attendance, active politician count
+        - Year-over-year comparisons
+        
+        Advanced Statistics:
+        - LAG window function for year-over-year comparison
+        - Aggregate functions (COUNT DISTINCT, AVG, SUM)
+        - Baseline calculation from non-election years
+        - Statistical deviation analysis
+        
+        Intelligence Value: VERY HIGH (5/5)
+        - System-wide pre-election activity detection
+        - Validates individual politician patterns
+        - Cross-election cycle comparisons
+        - Early warning for unusual activity patterns
+        
+        GitHub Issue: Hack23/cia#8208 Election Proximity Trend Analysis - Quarterly Q4 Pre-Election Focus
+    </comment>
+    
+    <createView viewName="view_riksdagen_pre_election_quarterly_activity">
+        <![CDATA[
+WITH election_years AS (
+    SELECT UNNEST(ARRAY[2002, 2006, 2010, 2014, 2018, 2022, 2026])::INT AS election_year
+),
+q4_activity AS (
+    SELECT 
+        EXTRACT(YEAR FROM vd.vote_date)::INTEGER AS year,
+        CASE 
+            WHEN ey.election_year IS NOT NULL THEN true 
+            ELSE false 
+        END AS is_election_year,
+        COUNT(DISTINCT vd.embedded_id_ballot_id) AS total_ballots,
+        COUNT(DISTINCT vd.embedded_id_intressent_id) AS active_politicians,
+        ROUND(AVG(CASE WHEN vd.vote != 'Frånvarande' THEN 1 ELSE 0 END) * 100, 2) AS avg_attendance_rate,
+        SUM(CASE WHEN vd.vote != 'Frånvarande' THEN 1 ELSE 0 END) AS total_attendance,
+        COUNT(*) AS total_votes
+    FROM vote_data vd
+    LEFT JOIN election_years ey 
+        ON ey.election_year = EXTRACT(YEAR FROM vd.vote_date)
+    WHERE EXTRACT(QUARTER FROM vd.vote_date) = 4
+      AND vd.vote_date IS NOT NULL
+      AND EXTRACT(YEAR FROM vd.vote_date) >= 2002
+    GROUP BY EXTRACT(YEAR FROM vd.vote_date), is_election_year
+),
+q4_baseline AS (
+    SELECT 
+        AVG(total_ballots) FILTER (WHERE NOT is_election_year) AS baseline_ballots,
+        STDDEV(total_ballots) FILTER (WHERE NOT is_election_year) AS stddev_ballots,
+        AVG(avg_attendance_rate) FILTER (WHERE NOT is_election_year) AS baseline_attendance,
+        STDDEV(avg_attendance_rate) FILTER (WHERE NOT is_election_year) AS stddev_attendance
+    FROM q4_activity
+)
+SELECT 
+    qa.year,
+    qa.is_election_year,
+    qa.total_ballots,
+    qa.active_politicians,
+    qa.avg_attendance_rate,
+    qa.total_attendance,
+    qa.total_votes,
+    qb.baseline_ballots,
+    qb.stddev_ballots,
+    qa.total_ballots - qb.baseline_ballots AS ballot_deviation_from_baseline,
+    CASE 
+        WHEN qb.baseline_ballots > 0 THEN 
+            ROUND(((qa.total_ballots - qb.baseline_ballots) / qb.baseline_ballots) * 100, 2)
+        ELSE 0
+    END AS ballot_percent_change_from_baseline,
+    qb.baseline_attendance,
+    qb.stddev_attendance,
+    qa.avg_attendance_rate - qb.baseline_attendance AS attendance_deviation_from_baseline,
+    CASE 
+        WHEN qb.stddev_ballots > 0 
+        THEN ROUND((qa.total_ballots - qb.baseline_ballots) / qb.stddev_ballots, 2)
+        ELSE 0 
+    END AS ballot_z_score,
+    CASE 
+        WHEN qa.is_election_year AND qa.total_ballots > 1.5 * qb.baseline_ballots 
+        THEN 'PRE_ELECTION_SURGE'
+        WHEN qa.is_election_year AND qa.total_ballots > qb.baseline_ballots + qb.stddev_ballots
+        THEN 'ELEVATED_ELECTION_ACTIVITY'
+        WHEN qa.total_ballots > qb.baseline_ballots + qb.stddev_ballots
+        THEN 'ELEVATED_ACTIVITY'
+        WHEN qa.total_ballots < qb.baseline_ballots - qb.stddev_ballots
+        THEN 'REDUCED_ACTIVITY'
+        ELSE 'NORMAL_ACTIVITY'
+    END AS q4_activity_classification,
+    LAG(qa.total_ballots) OVER (ORDER BY qa.year) AS prev_year_ballots,
+    CASE 
+        WHEN LAG(qa.total_ballots) OVER (ORDER BY qa.year) IS NOT NULL AND 
+             LAG(qa.total_ballots) OVER (ORDER BY qa.year) > 0
+        THEN ROUND(((qa.total_ballots - LAG(qa.total_ballots) OVER (ORDER BY qa.year))::NUMERIC / 
+                     LAG(qa.total_ballots) OVER (ORDER BY qa.year)) * 100, 2)
+        ELSE NULL
+    END AS yoy_ballot_change_pct,
+    RANK() OVER (ORDER BY qa.total_ballots DESC) AS rank_by_q4_activity
+FROM q4_activity qa
+CROSS JOIN q4_baseline qb
+ORDER BY qa.year DESC
+        ]]>
+    </createView>
+    
+    <rollback>
+        DROP VIEW IF EXISTS view_riksdagen_pre_election_quarterly_activity CASCADE;
+    </rollback>
+</changeSet>
+
+<!-- Add view documentation -->
+<changeSet id="1.58-document-pre-election-quarterly-activity-view" author="intelligence-operative" failOnError="true">
+    <comment>Add documentation for view_riksdagen_pre_election_quarterly_activity</comment>
+    <sql>
+        COMMENT ON VIEW view_riksdagen_pre_election_quarterly_activity IS 'Q4 (October-December) aggregate activity analysis comparing election years vs non-election years. Detects pre-election surge patterns (>1.5x baseline) and elevated activity (>1 stddev). Features: year-over-year comparison, z-score calculation, activity classification. Builds on view_riksdagen_seasonal_quarterly_activity (v1.55). Data Source: vote_data. Election years: 2002, 2006, 2010, 2014, 2018, 2022, 2026. Framework 1: Temporal Analysis + Framework 3: Pattern Recognition. Use Case: System-wide pre-election activity detection, cross-election cycle comparison.';
+    </sql>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- VIEW 3: view_riksdagen_seasonal_activity_patterns                        -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="create-seasonal-activity-patterns-view-1.58-003" failOnError="true">
+    <comment>
+        Create view_riksdagen_seasonal_activity_patterns to identify Q1-Q4 behavior 
+        shifts across election cycles.
+        
+        Purpose: Comprehensive seasonal pattern analysis identifying behavioral shifts 
+        across Q1-Q4 for all election cycles (2002-2026). Integrates with Pattern 
+        Recognition Framework (Framework 3) for seasonal clustering.
+        
+        Key Features:
+        - Q1-Q4 activity aggregation by election cycle
+        - Election year vs non-election year comparison
+        - Seasonal pattern identification (Q4 surge, summer lull, etc.)
+        - Multi-year trend detection
+        - Statistical clustering by activity pattern
+        
+        Advanced Statistics:
+        - NTILE for quartile-based clustering
+        - LAG/LEAD for trend detection across quarters
+        - STDDEV_POP for volatility measurement
+        - Seasonal deviation from annual baseline
+        
+        Intelligence Value: VERY HIGH (5/5)
+        - Seasonal behavior clustering
+        - Electoral cycle pattern recognition
+        - Predictive modeling input
+        - Long-term trend analysis (24 years)
+        
+        GitHub Issue: Hack23/cia#8208 Election Proximity Trend Analysis - Quarterly Q4 Pre-Election Focus
+    </comment>
+    
+    <createView viewName="view_riksdagen_seasonal_activity_patterns">
+        <![CDATA[
+WITH election_years AS (
+    SELECT UNNEST(ARRAY[2002, 2006, 2010, 2014, 2018, 2022, 2026])::INT AS election_year
+),
+quarterly_patterns AS (
+    SELECT 
+        EXTRACT(YEAR FROM vd.vote_date)::INTEGER AS year,
+        EXTRACT(QUARTER FROM vd.vote_date)::INTEGER AS quarter,
+        CASE 
+            WHEN ey.election_year IS NOT NULL THEN true 
+            ELSE false 
+        END AS is_election_year,
+        CASE 
+            WHEN EXTRACT(YEAR FROM vd.vote_date) BETWEEN 2002 AND 2005 THEN '2002-2006'
+            WHEN EXTRACT(YEAR FROM vd.vote_date) BETWEEN 2006 AND 2009 THEN '2006-2010'
+            WHEN EXTRACT(YEAR FROM vd.vote_date) BETWEEN 2010 AND 2013 THEN '2010-2014'
+            WHEN EXTRACT(YEAR FROM vd.vote_date) BETWEEN 2014 AND 2017 THEN '2014-2018'
+            WHEN EXTRACT(YEAR FROM vd.vote_date) BETWEEN 2018 AND 2021 THEN '2018-2022'
+            WHEN EXTRACT(YEAR FROM vd.vote_date) BETWEEN 2022 AND 2025 THEN '2022-2026'
+            WHEN EXTRACT(YEAR FROM vd.vote_date) >= 2026 THEN '2026-2030'
+        END AS election_cycle,
+        COUNT(DISTINCT vd.embedded_id_ballot_id) AS total_ballots,
+        COUNT(DISTINCT vd.embedded_id_intressent_id) AS active_politicians,
+        ROUND(AVG(CASE WHEN vd.vote != 'Frånvarande' THEN 1 ELSE 0 END) * 100, 2) AS avg_attendance_rate,
+        COUNT(*) AS total_votes
+    FROM vote_data vd
+    LEFT JOIN election_years ey 
+        ON ey.election_year = EXTRACT(YEAR FROM vd.vote_date)
+    WHERE vd.vote_date IS NOT NULL
+      AND EXTRACT(YEAR FROM vd.vote_date) >= 2002
+    GROUP BY EXTRACT(YEAR FROM vd.vote_date), EXTRACT(QUARTER FROM vd.vote_date), 
+             is_election_year, election_cycle
+),
+annual_baseline AS (
+    SELECT 
+        year,
+        AVG(total_ballots) AS year_avg_ballots,
+        STDDEV(total_ballots) AS year_stddev_ballots,
+        AVG(avg_attendance_rate) AS year_avg_attendance
+    FROM quarterly_patterns
+    GROUP BY year
+),
+quarterly_with_stats AS (
+    SELECT 
+        qp.*,
+        ab.year_avg_ballots,
+        ab.year_stddev_ballots,
+        ab.year_avg_attendance,
+        qp.total_ballots - ab.year_avg_ballots AS quarterly_deviation_from_year,
+        CASE 
+            WHEN ab.year_stddev_ballots > 0 
+            THEN ROUND((qp.total_ballots - ab.year_avg_ballots) / ab.year_stddev_ballots, 2)
+            ELSE 0 
+        END AS quarterly_z_score,
+        LAG(qp.total_ballots) OVER (PARTITION BY qp.year ORDER BY qp.quarter) AS prev_quarter_ballots,
+        LEAD(qp.total_ballots) OVER (PARTITION BY qp.year ORDER BY qp.quarter) AS next_quarter_ballots,
+        LAG(qp.avg_attendance_rate) OVER (PARTITION BY qp.year ORDER BY qp.quarter) AS prev_quarter_attendance,
+        AVG(qp.total_ballots) OVER (PARTITION BY qp.quarter) AS cross_year_quarter_avg,
+        STDDEV_POP(qp.total_ballots) OVER (PARTITION BY qp.quarter) AS cross_year_quarter_stddev,
+        NTILE(4) OVER (PARTITION BY qp.election_cycle ORDER BY qp.total_ballots) AS activity_quartile
+    FROM quarterly_patterns qp
+    JOIN annual_baseline ab ON qp.year = ab.year
+)
+SELECT 
+    qws.*,
+    CASE 
+        WHEN qws.quarter = 1 THEN 'Q1_WINTER'
+        WHEN qws.quarter = 2 THEN 'Q2_SPRING'
+        WHEN qws.quarter = 3 THEN 'Q3_SUMMER'
+        WHEN qws.quarter = 4 THEN 'Q4_AUTUMN'
+    END AS quarter_label,
+    CASE 
+        WHEN qws.quarter = 1 THEN 'Winter Session (Jan-Mar)'
+        WHEN qws.quarter = 2 THEN 'Spring Session (Apr-Jun)'
+        WHEN qws.quarter = 3 THEN 'Summer Recess/Election (Jul-Sep)'
+        WHEN qws.quarter = 4 THEN 'Autumn Session (Oct-Dec)'
+    END AS parliamentary_period,
+    CASE 
+        WHEN qws.prev_quarter_ballots IS NOT NULL AND qws.prev_quarter_ballots > 0
+        THEN ROUND(((qws.total_ballots - qws.prev_quarter_ballots)::NUMERIC / qws.prev_quarter_ballots) * 100, 2)
+        ELSE NULL
+    END AS qoq_change_pct,
+    qws.total_ballots - qws.cross_year_quarter_avg AS deviation_from_typical_quarter,
+    CASE 
+        WHEN qws.cross_year_quarter_stddev > 0 
+        THEN ROUND((qws.total_ballots - qws.cross_year_quarter_avg) / qws.cross_year_quarter_stddev, 2)
+        ELSE 0 
+    END AS cross_year_z_score,
+    CASE 
+        WHEN qws.quarter = 4 AND qws.is_election_year AND qws.total_ballots > 1.5 * qws.year_avg_ballots
+        THEN 'Q4_PRE_ELECTION_SURGE'
+        WHEN qws.quarter = 3 AND qws.is_election_year
+        THEN 'Q3_ELECTION_QUARTER'
+        WHEN qws.quarter = 4 AND qws.total_ballots > qws.year_avg_ballots + qws.year_stddev_ballots
+        THEN 'Q4_ELEVATED_ACTIVITY'
+        WHEN qws.quarter = 3 AND qws.total_ballots < qws.year_avg_ballots - qws.year_stddev_ballots
+        THEN 'Q3_SUMMER_LULL'
+        WHEN qws.quarterly_z_score > 1.5
+        THEN 'UNUSUALLY_HIGH_ACTIVITY'
+        WHEN qws.quarterly_z_score < -1.5
+        THEN 'UNUSUALLY_LOW_ACTIVITY'
+        ELSE 'NORMAL_SEASONAL_PATTERN'
+    END AS seasonal_pattern_classification,
+    CASE 
+        WHEN qws.activity_quartile = 1 THEN 'BOTTOM_25_PCT'
+        WHEN qws.activity_quartile = 2 THEN 'LOWER_MIDDLE_25_PCT'
+        WHEN qws.activity_quartile = 3 THEN 'UPPER_MIDDLE_25_PCT'
+        WHEN qws.activity_quartile = 4 THEN 'TOP_25_PCT'
+    END AS activity_tier,
+    CASE 
+        WHEN qws.prev_quarter_ballots IS NULL THEN 'BASELINE'
+        WHEN qws.total_ballots > qws.prev_quarter_ballots * 1.2 THEN 'STRONG_INCREASE'
+        WHEN qws.total_ballots > qws.prev_quarter_ballots * 1.05 THEN 'MODERATE_INCREASE'
+        WHEN qws.total_ballots < qws.prev_quarter_ballots * 0.8 THEN 'STRONG_DECREASE'
+        WHEN qws.total_ballots < qws.prev_quarter_ballots * 0.95 THEN 'MODERATE_DECREASE'
+        ELSE 'STABLE'
+    END AS quarter_over_quarter_trend,
+    RANK() OVER (PARTITION BY qws.quarter, qws.is_election_year ORDER BY qws.total_ballots DESC) AS rank_within_quarter_type
+FROM quarterly_with_stats qws
+ORDER BY qws.year DESC, qws.quarter
+        ]]>
+    </createView>
+    
+    <rollback>
+        DROP VIEW IF EXISTS view_riksdagen_seasonal_activity_patterns CASCADE;
+    </rollback>
+</changeSet>
+
+<!-- Add view documentation -->
+<changeSet id="1.58-document-seasonal-activity-patterns-view" author="intelligence-operative" failOnError="true">
+    <comment>Add documentation for view_riksdagen_seasonal_activity_patterns</comment>
+    <sql>
+        COMMENT ON VIEW view_riksdagen_seasonal_activity_patterns IS 'Comprehensive Q1-Q4 seasonal pattern analysis across election cycles (2002-2026). Features: quarterly behavioral shifts, election year vs non-election comparison, pattern classification (Q4 surge, Q3 lull, etc.), cross-year z-scores, NTILE clustering. Advanced stats: LAG/LEAD for QoQ trends, STDDEV_POP for volatility, deviation from annual/cross-year baselines. Data Source: vote_data. Election cycles: 7 cycles (2002-2026). Framework 3: Pattern Recognition - Seasonal clustering. Framework 4: Predictive Intelligence. Use Case: Long-term trend analysis, seasonal behavior clustering, electoral cycle predictions.';
+    </sql>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- VALIDATION: Verify Election Proximity Views Created Successfully         -->
+<!-- ========================================================================= -->
+
+<changeSet id="1.58-validation" author="intelligence-operative">
+    <comment>
+        Validate that all 3 election proximity views were created successfully
+        with comprehensive temporal analysis and seasonal pattern detection.
+    </comment>
+    
+    <sql splitStatements="false"><![CDATA[
+        DO $$
+        DECLARE
+            v_proximity_exists BOOLEAN;
+            v_quarterly_exists BOOLEAN;
+            v_seasonal_exists BOOLEAN;
+        BEGIN
+            SELECT EXISTS(
+                SELECT 1 FROM information_schema.views 
+                WHERE table_name = 'view_riksdagen_election_proximity_trends'
+            ) INTO v_proximity_exists;
+            
+            SELECT EXISTS(
+                SELECT 1 FROM information_schema.views 
+                WHERE table_name = 'view_riksdagen_pre_election_quarterly_activity'
+            ) INTO v_quarterly_exists;
+            
+            SELECT EXISTS(
+                SELECT 1 FROM information_schema.views 
+                WHERE table_name = 'view_riksdagen_seasonal_activity_patterns'
+            ) INTO v_seasonal_exists;
+            
+            IF v_proximity_exists AND v_quarterly_exists AND v_seasonal_exists THEN
+                RAISE NOTICE '✓ All 3 election proximity views created successfully';
+                RAISE NOTICE '  FEATURES IMPLEMENTED:';
+                RAISE NOTICE '  - Election proximity tracking: months_until_election dimension (0-48 months)';
+                RAISE NOTICE '  - Q4 pre-election focus: 9-15 months before election detection';
+                RAISE NOTICE '  - Activity classification: ELEVATED (>1.5x baseline), NORMAL, REDUCED (<0.7x)';
+                RAISE NOTICE '  - Seasonal patterns: Q1-Q4 behavior shifts across election cycles';
+                RAISE NOTICE '  - Statistical analysis: z-scores, quartiles, year-over-year comparisons';
+                RAISE NOTICE '  - Advanced window functions: RANK, LAG, LEAD, NTILE, STDDEV_POP, AVG';
+                RAISE NOTICE '  Coverage: 2002-2026 (7 election cycles, quarterly granularity)';
+                RAISE NOTICE '  Framework Integration: Temporal Analysis (1) + Pattern Recognition (3)';
+            ELSE
+                RAISE WARNING 'Some election proximity views failed to create';
+                IF NOT v_proximity_exists THEN
+                    RAISE WARNING '  - view_riksdagen_election_proximity_trends missing';
+                END IF;
+                IF NOT v_quarterly_exists THEN
+                    RAISE WARNING '  - view_riksdagen_pre_election_quarterly_activity missing';
+                END IF;
+                IF NOT v_seasonal_exists THEN
+                    RAISE WARNING '  - view_riksdagen_seasonal_activity_patterns missing';
+                END IF;
+            END IF;
+        END $$;
+    ]]></sql>
+</changeSet>
+
+</databaseChangeLog>
