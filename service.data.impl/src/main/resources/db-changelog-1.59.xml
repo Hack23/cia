@@ -5,16 +5,16 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
 
-<changeSet id="1.58-intro" author="intelligence-operative">
-    <comment>v1.58 Election Proximity Trend Analysis - Quarterly Q4 Pre-Election Focus</comment>
-    <sql>SELECT 'v1.58' AS version, CURRENT_TIMESTAMP AS applied_at;</sql>
+<changeSet id="1.59-intro" author="intelligence-operative">
+    <comment>v1.59 Election Proximity Trend Analysis - Quarterly Q4 Pre-Election Focus</comment>
+    <sql>SELECT 'v1.59' AS version, CURRENT_TIMESTAMP AS applied_at;</sql>
 </changeSet>
 
 <!-- ========================================================================= -->
 <!-- VIEW 1: view_riksdagen_election_proximity_trends                         -->
 <!-- ========================================================================= -->
 
-<changeSet author="intelligence-operative" id="create-election-proximity-trends-view-1.58-001" failOnError="true" runOnChange="true">
+<changeSet author="intelligence-operative" id="create-election-proximity-trends-view-1.59-001" failOnError="true" runOnChange="true">
     <comment>
         Create view_riksdagen_election_proximity_trends to track politician activity 
         by months until election, with Q4 pre-election focus.
@@ -347,7 +347,7 @@ ORDER BY ca.election_date DESC, ca.months_until_election, ca.person_id, ca.activ
 </changeSet>
 
 <!-- Add view documentation -->
-<changeSet id="1.58-document-election-proximity-trends-view" author="intelligence-operative" failOnError="true">
+<changeSet id="1.59-document-election-proximity-trends-view" author="intelligence-operative" failOnError="true">
     <comment>Add documentation for view_riksdagen_election_proximity_trends</comment>
     <sql>
         COMMENT ON VIEW view_riksdagen_election_proximity_trends IS 'Comprehensive multi-dimensional election proximity trend analysis tracking politician activity by months until election (0-48 months). Features: Q4 pre-election flag (9-15 months before election), activity classification across voting, documents, decisions, and roles (>1.5x baseline = ELEVATED), risk and influence metrics, baseline comparison, quarterly aggregation, composite activity score. Data Sources (META/META level): view_politician_behavioral_trends (behavioral assessment), view_riksdagen_politician_document (documents), view_riksdagen_politician_role_evolution (roles), view_riksdagen_politician_decision_pattern (decisions), view_politician_risk_summary (risk), view_riksdagen_politician_influence_metrics (influence/network). Election cycles: 2002, 2006, 2010, 2014, 2018, 2022, 2026. Framework 1: Temporal Analysis. Use Case: Comprehensive pre-election behavioral surge detection across all dimensions, predict election-driven behavior changes, track role ambitions, assess risk evolution.';
@@ -358,7 +358,7 @@ ORDER BY ca.election_date DESC, ca.months_until_election, ca.person_id, ca.activ
 <!-- VIEW 2: view_riksdagen_pre_election_quarterly_activity                   -->
 <!-- ========================================================================= -->
 
-<changeSet author="intelligence-operative" id="create-pre-election-quarterly-activity-view-1.58-002" failOnError="true" runOnChange="true">
+<changeSet author="intelligence-operative" id="create-pre-election-quarterly-activity-view-1.59-002" failOnError="true" runOnChange="true">
     <comment>
         Create view_riksdagen_pre_election_quarterly_activity to aggregate Q4 activity 
         vs baseline across all politicians.
@@ -607,7 +607,7 @@ ORDER BY qa.year DESC
 </changeSet>
 
 <!-- Add view documentation -->
-<changeSet id="1.58-document-pre-election-quarterly-activity-view" author="intelligence-operative" failOnError="true">
+<changeSet id="1.59-document-pre-election-quarterly-activity-view" author="intelligence-operative" failOnError="true">
     <comment>Add documentation for view_riksdagen_pre_election_quarterly_activity</comment>
     <sql>
         COMMENT ON VIEW view_riksdagen_pre_election_quarterly_activity IS 'Enhanced multi-dimensional Q4 (October-December) aggregate activity analysis comparing election years vs non-election years. Detects pre-election surge patterns (>1.5x baseline) across voting, documents, assignments, and party effectiveness. Features: year-over-year comparison, z-score calculation for multiple dimensions, party-level context, committee productivity metrics, activity classification. Data Sources (META/META level): view_politician_behavioral_trends (voting), view_riksdagen_politician_document (documents), view_riksdagen_politician_role_evolution (roles), view_party_effectiveness_trends (party performance), view_committee_productivity (committee metrics). Election years: 2002, 2006, 2010, 2014, 2018, 2022, 2026. Framework 1: Temporal Analysis + Framework 3: Pattern Recognition. Use Case: Comprehensive system-wide pre-election activity detection across all behavioral dimensions with party and committee context, cross-election cycle comparison.';
@@ -618,7 +618,7 @@ ORDER BY qa.year DESC
 <!-- VIEW 3: view_riksdagen_seasonal_activity_patterns                        -->
 <!-- ========================================================================= -->
 
-<changeSet author="intelligence-operative" id="create-seasonal-activity-patterns-view-1.58-003" failOnError="true" runOnChange="true">
+<changeSet author="intelligence-operative" id="create-seasonal-activity-patterns-view-1.59-003" failOnError="true" runOnChange="true">
     <comment>
         Create view_riksdagen_seasonal_activity_patterns to identify Q1-Q4 behavior 
         shifts across election cycles.
@@ -790,7 +790,7 @@ ORDER BY swt.year DESC, swt.quarter
 </changeSet>
 
 <!-- Add view documentation -->
-<changeSet id="1.58-document-seasonal-activity-patterns-view" author="intelligence-operative" failOnError="true">
+<changeSet id="1.59-document-seasonal-activity-patterns-view" author="intelligence-operative" failOnError="true">
     <comment>Add documentation for view_riksdagen_seasonal_activity_patterns</comment>
     <sql>
         COMMENT ON VIEW view_riksdagen_seasonal_activity_patterns IS 'Enhanced comprehensive Q1-Q4 seasonal pattern analysis across election cycles (2002-2026). Built on view_riksdagen_seasonal_quarterly_activity foundation with extended temporal trends and election context. Features: quarterly behavioral shifts, election year vs non-election comparison, enhanced pattern classification (Q4 surge, Q3 lull, election quarter patterns), cross-year z-scores, NTILE clustering, QoQ trends. Advanced stats: LAG/LEAD for temporal trends, pre-computed z-scores from base view, deviation analysis from quarterly baselines. Data Source (META/META level): view_riksdagen_seasonal_quarterly_activity (foundation with z-scores and baselines). Election cycles: 7 cycles (2002-2026). Framework 3: Pattern Recognition - Seasonal clustering. Framework 4: Predictive Intelligence. Use Case: Long-term trend analysis, seasonal behavior clustering, electoral cycle predictions with leveraged pre-computed analytics.';
@@ -801,7 +801,7 @@ ORDER BY swt.year DESC, swt.quarter
 <!-- VALIDATION: Verify Election Proximity Views Created Successfully         -->
 <!-- ========================================================================= -->
 
-<changeSet id="1.58-validation" author="intelligence-operative">
+<changeSet id="1.59-validation" author="intelligence-operative">
     <comment>
         Validate that all 3 election proximity views were created successfully
         with comprehensive temporal analysis and seasonal pattern detection.
