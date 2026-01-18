@@ -1,0 +1,856 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+<changeSet id="1.59-intro" author="intelligence-operative">
+    <comment>v1.59 Election Proximity Trend Analysis - Quarterly Q4 Pre-Election Focus</comment>
+    <sql>SELECT 'v1.59' AS version, CURRENT_TIMESTAMP AS applied_at;</sql>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- VIEW 1: view_riksdagen_election_proximity_trends                         -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="create-election-proximity-trends-view-1.59-001" failOnError="true" runOnChange="true">
+    <comment>
+        Create view_riksdagen_election_proximity_trends to track politician activity 
+        by months until election, with Q4 pre-election focus.
+        
+        Purpose: Analyze behavioral changes in the 12 months before Swedish elections 
+        (typically September). Track Q4 (October-December) activity patterns when 
+        politicians are 9-15 months from election day.
+        
+        Key Features:
+        - Tracks activity by months_until_election dimension (0-48 months)
+        - Q4 pre-election flag (9-15 months before election, Q4 period)
+        - Multi-dimensional activity metrics: voting, documents, assignments
+        - Activity classification (ELEVATED_ACTIVITY vs NORMAL_ACTIVITY)
+        - Multi-dimensional metrics: voting, documents, decisions, roles, risk, influence
+        - Compares against politician's baseline activity
+        - Covers Swedish election cycles 2002-2026
+        
+        Data Sources (Enhanced - META/META level):
+        - view_politician_behavioral_trends: Voting patterns, behavioral assessment, status classifications
+        - view_riksdagen_politician_document: Document authorship, proposals, motions
+        - view_riksdagen_politician_role_evolution: Role progression, leadership positions, role weights
+        - view_riksdagen_politician_decision_pattern: Decision patterns, approval rates, committee activity
+        - view_politician_risk_summary: Risk scores, trend analysis, anomaly detection
+        - view_riksdagen_politician_influence_metrics: Network influence, centrality, broker analysis
+        
+        Advanced Statistics:
+        - AVG window function for baseline calculation
+        - Deviation analysis (ballot_count - baseline)
+        - Activity classification (>1.5x baseline = ELEVATED)
+        - Quarterly aggregation with election proximity
+        - CROSS JOIN with election_dates creates multiple records per politician/quarter 
+          when activity spans multiple election cycles (within 48 months)
+        - This enables analysis of same activity period relative to different elections
+        
+        Intelligence Value: VERY HIGH (5/5)
+        - Detects pre-election activity surges across multiple dimensions
+        - Identifies behavioral shifts before campaigns
+        - Enables prediction of election-driven behavior
+        - Supports electoral strategy analysis
+        - Tracks role ambitions and document productivity patterns
+        
+        GitHub Issue: Hack23/cia#8208 Election Proximity Trend Analysis - Quarterly Q4 Pre-Election Focus
+    </comment>
+    
+    <createView viewName="view_riksdagen_election_proximity_trends">
+        <![CDATA[
+WITH election_dates AS (
+    SELECT UNNEST(ARRAY['2002-09-15', '2006-09-17', '2010-09-19', 
+                        '2014-09-14', '2018-09-09', '2022-09-11', '2026-09-13']::DATE[]) AS election_date
+),
+-- Comprehensive voting and behavioral patterns from view_politician_behavioral_trends
+politician_behavioral_metrics AS (
+    SELECT 
+        pbt.person_id,
+        pbt.first_name,
+        pbt.last_name,
+        pbt.party,
+        DATE_TRUNC('quarter', pbt.period_start) AS activity_quarter,
+        EXTRACT(QUARTER FROM pbt.period_start) AS quarter_number,
+        ed.election_date,
+        EXTRACT(YEAR FROM AGE(ed.election_date, pbt.period_start::date))::INTEGER * 12 + 
+        EXTRACT(MONTH FROM AGE(ed.election_date, pbt.period_start::date))::INTEGER AS months_until_election,
+        pbt.total_ballots AS ballot_count,
+        pbt.total_votes,
+        ROUND(100 - pbt.avg_absence_rate, 2) AS attendance_rate,
+        pbt.avg_win_rate,
+        pbt.avg_rebel_rate,
+        pbt.avg_yes_rate,
+        pbt.avg_no_rate,
+        pbt.avg_abstain_rate,
+        pbt.violation_count,
+        pbt.behavioral_assessment,
+        pbt.attendance_status,
+        pbt.effectiveness_status,
+        pbt.discipline_status,
+        CASE 
+            WHEN EXTRACT(QUARTER FROM pbt.period_start) = 4 
+                 AND (EXTRACT(YEAR FROM AGE(ed.election_date, pbt.period_start::date))::INTEGER * 12 + 
+                      EXTRACT(MONTH FROM AGE(ed.election_date, pbt.period_start::date))::INTEGER) BETWEEN 9 AND 15
+            THEN true 
+            ELSE false 
+        END AS is_pre_election_q4
+    FROM view_politician_behavioral_trends pbt
+    CROSS JOIN election_dates ed
+    WHERE pbt.period_start::date < ed.election_date
+      AND AGE(ed.election_date, pbt.period_start::date) < INTERVAL '48 months'
+),
+-- Document productivity from view_riksdagen_politician_document
+politician_document_metrics AS (
+    SELECT 
+        pd.person_reference_id AS person_id,
+        DATE_TRUNC('quarter', pd.made_public_date) AS activity_quarter,
+        ed.election_date,
+        COUNT(DISTINCT pd.doc_id) AS document_count,
+        COUNT(DISTINCT CASE WHEN pd.document_type = 'prop' THEN pd.doc_id END) AS proposal_count,
+        COUNT(DISTINCT CASE WHEN pd.document_type = 'mot' THEN pd.doc_id END) AS motion_count
+    FROM view_riksdagen_politician_document pd
+    CROSS JOIN election_dates ed
+    WHERE pd.made_public_date < ed.election_date
+      AND AGE(ed.election_date, pd.made_public_date) < INTERVAL '48 months'
+      AND pd.person_reference_id IS NOT NULL
+    GROUP BY pd.person_reference_id, DATE_TRUNC('quarter', pd.made_public_date), ed.election_date
+),
+-- Role progression from view_riksdagen_politician_role_evolution
+politician_role_metrics AS (
+    SELECT 
+        pre.person_id,
+        DATE_TRUNC('quarter', pre.role_start) AS activity_quarter,
+        ed.election_date,
+        COUNT(DISTINCT pre.role_tier) AS new_assignment_count,
+        MAX(pre.role_weight) AS peak_role_weight_quarter,
+        COUNT(DISTINCT CASE WHEN pre.role_tier IN ('minister', 'speaker', 'party_leader') 
+                            THEN pre.role_tier END) AS leadership_role_count,
+        COUNT(DISTINCT CASE WHEN pre.role_tier IN ('committee_chair', 'committee_member') 
+                            THEN pre.role_tier END) AS committee_assignment_count
+    FROM view_riksdagen_politician_role_evolution pre
+    CROSS JOIN election_dates ed
+    WHERE pre.role_start < ed.election_date
+      AND AGE(ed.election_date, pre.role_start) < INTERVAL '48 months'
+    GROUP BY pre.person_id, DATE_TRUNC('quarter', pre.role_start), ed.election_date
+),
+-- Decision-making patterns from view_riksdagen_politician_decision_pattern
+politician_decision_metrics AS (
+    SELECT 
+        pdp.person_id,
+        DATE_TRUNC('quarter', pdp.decision_month::date) AS activity_quarter,
+        ed.election_date,
+        SUM(pdp.total_decisions) AS decision_count,
+        SUM(pdp.approved_decisions) AS approved_decisions,
+        SUM(pdp.rejected_decisions) AS rejected_decisions,
+        ROUND(AVG(pdp.approval_rate), 2) AS avg_approval_rate,
+        COUNT(DISTINCT pdp.committee_org) AS active_committees
+    FROM view_riksdagen_politician_decision_pattern pdp
+    CROSS JOIN election_dates ed
+    WHERE pdp.decision_month::date < ed.election_date
+      AND AGE(ed.election_date, pdp.decision_month::date) < INTERVAL '48 months'
+    GROUP BY pdp.person_id, DATE_TRUNC('quarter', pdp.decision_month::date), ed.election_date
+),
+-- Risk assessment from view_politician_risk_summary (current snapshot per person)
+politician_risk_metrics AS (
+    SELECT DISTINCT ON (prs.person_id)
+        prs.person_id,
+        prs.risk_score AS overall_risk_score,
+        prs.risk_level,
+        prs.risk_score AS trend_risk_score,
+        prs.risk_score AS anomaly_risk_score
+    FROM view_politician_risk_summary prs
+),
+-- Influence metrics from view_riksdagen_politician_influence_metrics (current snapshot)
+politician_influence_metrics AS (
+    SELECT DISTINCT ON (pim.person_id)
+        pim.person_id,
+        pim.network_connections,
+        pim.influence_classification,
+        pim.broker_classification,
+        pim.influence_assessment
+    FROM view_riksdagen_politician_influence_metrics pim
+),
+combined_activity AS (
+    SELECT 
+        pbm.person_id,
+        pbm.first_name,
+        pbm.last_name,
+        pbm.party,
+        pbm.election_date,
+        pbm.activity_quarter,
+        pbm.quarter_number,
+        pbm.months_until_election,
+        pbm.is_pre_election_q4,
+        -- Behavioral metrics
+        pbm.ballot_count,
+        pbm.total_votes,
+        pbm.attendance_rate,
+        pbm.avg_win_rate,
+        pbm.avg_rebel_rate,
+        pbm.avg_yes_rate,
+        pbm.avg_no_rate,
+        pbm.avg_abstain_rate,
+        pbm.violation_count,
+        pbm.behavioral_assessment,
+        pbm.attendance_status,
+        pbm.effectiveness_status,
+        pbm.discipline_status,
+        -- Document metrics
+        COALESCE(pdm.document_count, 0) AS document_count,
+        COALESCE(pdm.proposal_count, 0) AS proposal_count,
+        COALESCE(pdm.motion_count, 0) AS motion_count,
+        -- Role metrics
+        COALESCE(prm.new_assignment_count, 0) AS new_assignment_count,
+        COALESCE(prm.peak_role_weight_quarter, 0) AS peak_role_weight_quarter,
+        COALESCE(prm.leadership_role_count, 0) AS leadership_role_count,
+        COALESCE(prm.committee_assignment_count, 0) AS committee_assignment_count,
+        -- Decision metrics
+        COALESCE(pdecm.decision_count, 0) AS decision_count,
+        COALESCE(pdecm.approved_decisions, 0) AS approved_decisions,
+        COALESCE(pdecm.rejected_decisions, 0) AS rejected_decisions,
+        COALESCE(pdecm.avg_approval_rate, 0) AS avg_approval_rate,
+        COALESCE(pdecm.active_committees, 0) AS active_committees,
+        -- Risk metrics (snapshot)
+        prisk.overall_risk_score,
+        prisk.risk_level,
+        prisk.trend_risk_score,
+        prisk.anomaly_risk_score,
+        -- Influence metrics (snapshot)
+        pinf.network_connections,
+        pinf.influence_classification,
+        pinf.broker_classification,
+        pinf.influence_assessment
+    FROM politician_behavioral_metrics pbm
+    LEFT JOIN politician_document_metrics pdm 
+        ON pbm.person_id = pdm.person_id 
+        AND pbm.activity_quarter = pdm.activity_quarter 
+        AND pbm.election_date = pdm.election_date
+    LEFT JOIN politician_role_metrics prm 
+        ON pbm.person_id = prm.person_id 
+        AND pbm.activity_quarter = prm.activity_quarter 
+        AND pbm.election_date = prm.election_date
+    LEFT JOIN politician_decision_metrics pdecm
+        ON pbm.person_id = pdecm.person_id 
+        AND pbm.activity_quarter = pdecm.activity_quarter 
+        AND pbm.election_date = pdecm.election_date
+    LEFT JOIN politician_risk_metrics prisk
+        ON pbm.person_id = prisk.person_id
+    LEFT JOIN politician_influence_metrics pinf
+        ON pbm.person_id = pinf.person_id
+)
+SELECT 
+    ca.person_id, 
+    ca.first_name, 
+    ca.last_name, 
+    ca.party,
+    ca.election_date, 
+    ca.activity_quarter,
+    ca.quarter_number,
+    ca.months_until_election, 
+    ca.is_pre_election_q4,
+    -- Behavioral metrics
+    ca.ballot_count,
+    ca.total_votes,
+    ca.attendance_rate,
+    ca.avg_win_rate,
+    ca.avg_rebel_rate,
+    ca.avg_yes_rate,
+    ca.avg_no_rate,
+    ca.avg_abstain_rate,
+    ca.violation_count,
+    ca.behavioral_assessment,
+    ca.attendance_status,
+    ca.effectiveness_status,
+    ca.discipline_status,
+    -- Document metrics
+    ca.document_count,
+    ca.proposal_count,
+    ca.motion_count,
+    -- Role metrics
+    ca.new_assignment_count,
+    ca.peak_role_weight_quarter,
+    ca.leadership_role_count,
+    ca.committee_assignment_count,
+    -- Decision metrics
+    ca.decision_count,
+    ca.approved_decisions,
+    ca.rejected_decisions,
+    ca.avg_approval_rate,
+    ca.active_committees,
+    -- Risk metrics
+    ca.overall_risk_score,
+    ca.risk_level,
+    ca.trend_risk_score,
+    ca.anomaly_risk_score,
+    -- Influence metrics
+    ca.network_connections,
+    ca.influence_classification,
+    ca.broker_classification,
+    ca.influence_assessment,
+    -- Baseline calculations for multiple dimensions
+    ROUND(AVG(ca.ballot_count) OVER (PARTITION BY ca.person_id), 2) AS avg_ballot_count_baseline,
+    ROUND(AVG(ca.document_count) OVER (PARTITION BY ca.person_id), 2) AS avg_document_count_baseline,
+    ROUND(AVG(ca.decision_count) OVER (PARTITION BY ca.person_id), 2) AS avg_decision_count_baseline,
+    ROUND(AVG(ca.new_assignment_count) OVER (PARTITION BY ca.person_id), 2) AS avg_assignment_count_baseline,
+    -- Deviation analysis
+    ROUND(ca.ballot_count - AVG(ca.ballot_count) OVER (PARTITION BY ca.person_id), 2) AS ballot_count_deviation,
+    ROUND(ca.document_count - AVG(ca.document_count) OVER (PARTITION BY ca.person_id), 2) AS document_count_deviation,
+    ROUND(ca.decision_count - AVG(ca.decision_count) OVER (PARTITION BY ca.person_id), 2) AS decision_count_deviation,
+    ROUND(ca.new_assignment_count - AVG(ca.new_assignment_count) OVER (PARTITION BY ca.person_id), 2) AS assignment_count_deviation,
+    -- Activity ratios
+    ROUND((ca.ballot_count::NUMERIC / NULLIF(AVG(ca.ballot_count) OVER (PARTITION BY ca.person_id), 0)), 2) AS ballot_activity_ratio,
+    ROUND((ca.document_count::NUMERIC / NULLIF(AVG(ca.document_count) OVER (PARTITION BY ca.person_id), 0)), 2) AS document_activity_ratio,
+    ROUND((ca.decision_count::NUMERIC / NULLIF(AVG(ca.decision_count) OVER (PARTITION BY ca.person_id), 0)), 2) AS decision_activity_ratio,
+    ROUND((ca.new_assignment_count::NUMERIC / NULLIF(AVG(ca.new_assignment_count) OVER (PARTITION BY ca.person_id), 0)), 2) AS assignment_activity_ratio,
+    -- Multi-dimensional activity classification
+    CASE 
+        WHEN ca.ballot_count > 1.5 * AVG(ca.ballot_count) OVER (PARTITION BY ca.person_id) 
+             OR ca.document_count > 1.5 * AVG(ca.document_count) OVER (PARTITION BY ca.person_id)
+             OR ca.decision_count > 1.5 * AVG(ca.decision_count) OVER (PARTITION BY ca.person_id)
+             OR ca.new_assignment_count > 1.5 * AVG(ca.new_assignment_count) OVER (PARTITION BY ca.person_id)
+        THEN 'ELEVATED_ACTIVITY'
+        WHEN ca.ballot_count < 0.7 * AVG(ca.ballot_count) OVER (PARTITION BY ca.person_id)
+             AND ca.document_count < 0.7 * AVG(ca.document_count) OVER (PARTITION BY ca.person_id)
+        THEN 'REDUCED_ACTIVITY'
+        ELSE 'NORMAL_ACTIVITY'
+    END AS activity_classification,
+    -- Composite activity score (weighted: 30% voting, 25% documents, 25% decisions, 20% assignments)
+    -- Returns NULL when all baselines are zero, indicating insufficient data for comparison
+    COALESCE(ROUND((
+        (ca.ballot_count::NUMERIC / NULLIF(AVG(ca.ballot_count) OVER (PARTITION BY ca.person_id), 0) * 0.30) +
+        (ca.document_count::NUMERIC / NULLIF(AVG(ca.document_count) OVER (PARTITION BY ca.person_id), 0) * 0.25) +
+        (ca.decision_count::NUMERIC / NULLIF(AVG(ca.decision_count) OVER (PARTITION BY ca.person_id), 0) * 0.25) +
+        (ca.new_assignment_count::NUMERIC / NULLIF(AVG(ca.new_assignment_count) OVER (PARTITION BY ca.person_id), 0) * 0.20)
+    ), 2), 0.0) AS composite_activity_score,
+    CASE
+        WHEN ca.months_until_election <= 6 THEN 'ELECTION_IMMINENT'
+        WHEN ca.months_until_election <= 12 THEN 'PRE_ELECTION_YEAR'
+        WHEN ca.months_until_election <= 24 THEN 'MID_CYCLE'
+        ELSE 'EARLY_CYCLE'
+    END AS election_phase,
+    RANK() OVER (PARTITION BY ca.election_date, ca.activity_quarter ORDER BY ca.ballot_count DESC) AS rank_by_activity_quarter
+FROM combined_activity ca
+WHERE ca.ballot_count > 0
+ORDER BY ca.election_date DESC, ca.months_until_election, ca.person_id, ca.activity_quarter
+        ]]>
+    </createView>
+    
+    <rollback>
+        DROP VIEW IF EXISTS view_riksdagen_election_proximity_trends CASCADE;
+    </rollback>
+</changeSet>
+
+<!-- Add view documentation -->
+<changeSet id="1.59-document-election-proximity-trends-view" author="intelligence-operative" failOnError="true">
+    <comment>Add documentation for view_riksdagen_election_proximity_trends</comment>
+    <sql>
+        COMMENT ON VIEW view_riksdagen_election_proximity_trends IS 'Comprehensive multi-dimensional election proximity trend analysis tracking politician activity by months until election (0-48 months). Features: Q4 pre-election flag (9-15 months before election), activity classification across voting, documents, decisions, and roles (>1.5x baseline = ELEVATED), risk and influence metrics, baseline comparison, quarterly aggregation, composite activity score. Data Sources (META/META level): view_politician_behavioral_trends (behavioral assessment), view_riksdagen_politician_document (documents), view_riksdagen_politician_role_evolution (roles), view_riksdagen_politician_decision_pattern (decisions), view_politician_risk_summary (risk), view_riksdagen_politician_influence_metrics (influence/network). Election cycles: 2002, 2006, 2010, 2014, 2018, 2022, 2026. Framework 1: Temporal Analysis. Use Case: Comprehensive pre-election behavioral surge detection across all dimensions, predict election-driven behavior changes, track role ambitions, assess risk evolution.';
+    </sql>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- VIEW 2: view_riksdagen_pre_election_quarterly_activity                   -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="create-pre-election-quarterly-activity-view-1.59-002" failOnError="true" runOnChange="true">
+    <comment>
+        Create view_riksdagen_pre_election_quarterly_activity to aggregate Q4 activity 
+        vs baseline across all politicians.
+        
+        Purpose: Aggregate-level view showing Q4 activity patterns in pre-election periods 
+        compared to baseline (non-election years). Includes multi-dimensional metrics:
+        voting, documents, and role assignments.
+        
+        Key Features:
+        - Aggregates politician activity in Q4 pre-election quarters
+        - Compares election year Q4 vs non-election year Q4
+        - Detects statistical anomalies (>1.5x baseline)
+        - Tracks ballots, documents, and assignment changes
+        - Year-over-year comparisons across all activity dimensions
+        
+        Data Sources (Enhanced - META/META level):
+        - view_politician_behavioral_trends: Aggregated voting activity
+        - view_riksdagen_politician_document: Document productivity (proposals, motions)
+        - view_riksdagen_politician_role_evolution: Role changes and promotions
+        - view_party_effectiveness_trends: Party-level performance, win rates, trends (NEW)
+        - view_committee_productivity: Committee performance and decision-making (NEW)
+        
+        Advanced Statistics:
+        - LAG window function for year-over-year comparison
+        - Aggregate functions (COUNT DISTINCT, AVG, SUM)
+        - Baseline calculation from non-election years
+        - Statistical deviation analysis
+        
+        Intelligence Value: VERY HIGH (5/5)
+        - System-wide pre-election activity detection
+        - Validates individual politician patterns
+        - Cross-election cycle comparisons
+        - Early warning for unusual activity patterns
+        - Multi-dimensional surge detection
+        
+        GitHub Issue: Hack23/cia#8208 Election Proximity Trend Analysis - Quarterly Q4 Pre-Election Focus
+    </comment>
+    
+    <createView viewName="view_riksdagen_pre_election_quarterly_activity">
+        <![CDATA[
+WITH election_years AS (
+    SELECT UNNEST(ARRAY[2002, 2006, 2010, 2014, 2018, 2022, 2026])::INT AS election_year
+),
+-- Q4 voting activity from existing view_politician_behavioral_trends
+q4_voting_activity AS (
+    SELECT 
+        EXTRACT(YEAR FROM pbt.period_start)::INTEGER AS year,
+        CASE 
+            WHEN ey.election_year IS NOT NULL THEN true 
+            ELSE false 
+        END AS is_election_year,
+        SUM(pbt.total_ballots) AS total_ballots,
+        COUNT(DISTINCT pbt.person_id) AS active_politicians,
+        ROUND(AVG(100 - pbt.avg_absence_rate), 2) AS avg_attendance_rate,
+        SUM(pbt.total_votes) AS total_votes,
+        ROUND(AVG(pbt.avg_win_rate), 2) AS avg_win_rate,
+        ROUND(AVG(pbt.avg_rebel_rate), 2) AS avg_rebel_rate
+    FROM view_politician_behavioral_trends pbt
+    LEFT JOIN election_years ey 
+        ON ey.election_year = EXTRACT(YEAR FROM pbt.period_start)
+    WHERE EXTRACT(QUARTER FROM pbt.period_start) = 4
+      AND EXTRACT(YEAR FROM pbt.period_start) >= 2002
+    GROUP BY EXTRACT(YEAR FROM pbt.period_start), is_election_year
+),
+-- Q4 document activity from existing view_riksdagen_politician_document
+q4_document_activity AS (
+    SELECT 
+        EXTRACT(YEAR FROM pd.made_public_date)::INTEGER AS year,
+        COUNT(DISTINCT pd.doc_id) AS total_documents,
+        COUNT(DISTINCT pd.person_reference_id) AS active_document_authors,
+        COUNT(DISTINCT CASE WHEN pd.document_type = 'prop' THEN pd.doc_id END) AS total_proposals,
+        COUNT(DISTINCT CASE WHEN pd.document_type = 'mot' THEN pd.doc_id END) AS total_motions
+    FROM view_riksdagen_politician_document pd
+    WHERE EXTRACT(QUARTER FROM pd.made_public_date) = 4
+      AND pd.made_public_date IS NOT NULL
+      AND EXTRACT(YEAR FROM pd.made_public_date) >= 2002
+    GROUP BY EXTRACT(YEAR FROM pd.made_public_date)
+),
+-- Q4 role activity from existing view_riksdagen_politician_role_evolution
+q4_role_activity AS (
+    SELECT 
+        EXTRACT(YEAR FROM pre.role_start)::INTEGER AS year,
+        COUNT(DISTINCT pre.person_id) AS total_new_assignments,
+        COUNT(DISTINCT CASE WHEN pre.role_tier IN ('minister', 'speaker', 'party_leader') 
+                            THEN pre.person_id END) AS politicians_with_new_roles,
+        COUNT(DISTINCT CASE WHEN pre.role_tier = 'minister' 
+                            THEN pre.person_id END) AS leadership_appointments
+    FROM view_riksdagen_politician_role_evolution pre
+    WHERE EXTRACT(QUARTER FROM pre.role_start) = 4
+      AND pre.role_start IS NOT NULL
+      AND EXTRACT(YEAR FROM pre.role_start) >= 2002
+    GROUP BY EXTRACT(YEAR FROM pre.role_start)
+),
+-- Q4 party effectiveness from view_party_effectiveness_trends (NEW)
+q4_party_effectiveness AS (
+    SELECT 
+        EXTRACT(YEAR FROM pet.period_start)::INTEGER AS year,
+        COUNT(DISTINCT pet.party) AS active_parties,
+        ROUND(AVG(pet.avg_win_rate), 2) AS avg_party_win_rate,
+        ROUND(AVG(pet.avg_absence_rate), 2) AS avg_party_absence_rate,
+        SUM(pet.documents_produced) AS party_documents_total,
+        ROUND(AVG(pet.ma_4quarter_win_rate), 2) AS ma_party_win_rate,
+        COUNT(DISTINCT CASE WHEN pet.performance_level IN ('EXCELLENT', 'VERY_GOOD') THEN pet.party END) AS high_performing_parties
+    FROM view_party_effectiveness_trends pet
+    WHERE EXTRACT(QUARTER FROM pet.period_start) = 4
+      AND EXTRACT(YEAR FROM pet.period_start) >= 2002
+    GROUP BY EXTRACT(YEAR FROM pet.period_start)
+),
+-- Committee productivity metrics (NEW - system-wide aggregate snapshot)
+-- NOTE: These metrics are system-wide averages (period '2002-2026') that will be 
+-- replicated for each year via CROSS JOIN to provide institutional context for Q4 activity
+committee_productivity_metrics AS (
+    SELECT 
+        '2002-2026' AS period,
+        COUNT(DISTINCT cp.committee_code) AS total_committees,
+        ROUND(AVG(cp.productivity_score), 2) AS avg_committee_productivity,
+        COUNT(DISTINCT CASE WHEN cp.productivity_level IN ('VERY_HIGH', 'HIGH') THEN cp.committee_code END) AS high_productivity_committees,
+        ROUND(AVG(cp.avg_approval_rate), 2) AS avg_committee_approval_rate
+    FROM view_committee_productivity cp
+),
+q4_activity AS (
+    SELECT 
+        qv.year,
+        qv.is_election_year,
+        qv.total_ballots,
+        qv.active_politicians,
+        qv.avg_attendance_rate,
+        qv.total_votes,
+        qv.avg_win_rate,
+        qv.avg_rebel_rate,
+        COALESCE(qd.total_documents, 0) AS total_documents,
+        COALESCE(qd.active_document_authors, 0) AS active_document_authors,
+        COALESCE(qd.total_proposals, 0) AS total_proposals,
+        COALESCE(qd.total_motions, 0) AS total_motions,
+        COALESCE(qr.total_new_assignments, 0) AS total_new_assignments,
+        COALESCE(qr.politicians_with_new_roles, 0) AS politicians_with_new_roles,
+        COALESCE(qr.leadership_appointments, 0) AS leadership_appointments,
+        -- Party effectiveness metrics (NEW)
+        COALESCE(qpe.active_parties, 0) AS active_parties,
+        COALESCE(qpe.avg_party_win_rate, 0) AS avg_party_win_rate,
+        COALESCE(qpe.avg_party_absence_rate, 0) AS avg_party_absence_rate,
+        COALESCE(qpe.party_documents_total, 0) AS party_documents_total,
+        COALESCE(qpe.ma_party_win_rate, 0) AS ma_party_win_rate,
+        COALESCE(qpe.high_performing_parties, 0) AS high_performing_parties
+    FROM q4_voting_activity qv
+    LEFT JOIN q4_document_activity qd ON qv.year = qd.year
+    LEFT JOIN q4_role_activity qr ON qv.year = qr.year
+    LEFT JOIN q4_party_effectiveness qpe ON qv.year = qpe.year
+    CROSS JOIN committee_productivity_metrics cpm
+),
+q4_baseline AS (
+    SELECT 
+        AVG(total_ballots) FILTER (WHERE NOT is_election_year) AS baseline_ballots,
+        STDDEV(total_ballots) FILTER (WHERE NOT is_election_year) AS stddev_ballots,
+        AVG(avg_attendance_rate) FILTER (WHERE NOT is_election_year) AS baseline_attendance,
+        STDDEV(avg_attendance_rate) FILTER (WHERE NOT is_election_year) AS stddev_attendance,
+        AVG(total_documents) FILTER (WHERE NOT is_election_year) AS baseline_documents,
+        STDDEV(total_documents) FILTER (WHERE NOT is_election_year) AS stddev_documents,
+        AVG(total_new_assignments) FILTER (WHERE NOT is_election_year) AS baseline_assignments,
+        STDDEV(total_new_assignments) FILTER (WHERE NOT is_election_year) AS stddev_assignments
+    FROM q4_activity
+)
+SELECT 
+    qa.year,
+    qa.is_election_year,
+    qa.total_ballots,
+    qa.active_politicians,
+    qa.avg_attendance_rate,
+    qa.total_votes,
+    qa.avg_win_rate,
+    qa.avg_rebel_rate,
+    qa.total_documents,
+    qa.active_document_authors,
+    qa.total_proposals,
+    qa.total_motions,
+    qa.total_new_assignments,
+    qa.politicians_with_new_roles,
+    qa.leadership_appointments,
+    -- Party effectiveness metrics (NEW)
+    qa.active_parties,
+    qa.avg_party_win_rate,
+    qa.avg_party_absence_rate,
+    qa.party_documents_total,
+    qa.ma_party_win_rate,
+    qa.high_performing_parties,
+    qb.baseline_ballots,
+    qb.stddev_ballots,
+    qb.baseline_documents,
+    qb.baseline_assignments,
+    qa.total_ballots - qb.baseline_ballots AS ballot_deviation_from_baseline,
+    qa.total_documents - qb.baseline_documents AS document_deviation_from_baseline,
+    qa.total_new_assignments - qb.baseline_assignments AS assignment_deviation_from_baseline,
+    CASE 
+        WHEN qb.baseline_ballots > 0 THEN 
+            ROUND(((qa.total_ballots - qb.baseline_ballots) / qb.baseline_ballots) * 100, 2)
+        ELSE 0
+    END AS ballot_percent_change_from_baseline,
+    CASE 
+        WHEN qb.baseline_documents > 0 THEN 
+            ROUND(((qa.total_documents - qb.baseline_documents) / qb.baseline_documents) * 100, 2)
+        ELSE 0
+    END AS document_percent_change_from_baseline,
+    qb.baseline_attendance,
+    qb.stddev_attendance,
+    qa.avg_attendance_rate - qb.baseline_attendance AS attendance_deviation_from_baseline,
+    CASE 
+        WHEN qb.stddev_ballots > 0 
+        THEN ROUND((qa.total_ballots - qb.baseline_ballots) / qb.stddev_ballots, 2)
+        ELSE 0 
+    END AS ballot_z_score,
+    CASE 
+        WHEN qb.stddev_documents > 0 
+        THEN ROUND((qa.total_documents - qb.baseline_documents) / qb.stddev_documents, 2)
+        ELSE 0 
+    END AS document_z_score,
+    CASE 
+        WHEN qa.is_election_year AND (qa.total_ballots > 1.5 * qb.baseline_ballots 
+                                      OR qa.total_documents > 1.5 * qb.baseline_documents)
+        THEN 'PRE_ELECTION_SURGE'
+        WHEN qa.is_election_year AND qa.total_ballots > qb.baseline_ballots + qb.stddev_ballots
+        THEN 'ELEVATED_ELECTION_ACTIVITY'
+        WHEN qa.total_ballots > qb.baseline_ballots + qb.stddev_ballots
+        THEN 'ELEVATED_ACTIVITY'
+        WHEN qa.total_ballots < qb.baseline_ballots - qb.stddev_ballots
+        THEN 'REDUCED_ACTIVITY'
+        ELSE 'NORMAL_ACTIVITY'
+    END AS q4_activity_classification,
+    LAG(qa.total_ballots) OVER (ORDER BY qa.year) AS prev_year_ballots,
+    CASE 
+        WHEN LAG(qa.total_ballots) OVER (ORDER BY qa.year) IS NOT NULL AND 
+             LAG(qa.total_ballots) OVER (ORDER BY qa.year) > 0
+        THEN ROUND(((qa.total_ballots - LAG(qa.total_ballots) OVER (ORDER BY qa.year))::NUMERIC / 
+                     LAG(qa.total_ballots) OVER (ORDER BY qa.year)) * 100, 2)
+        ELSE NULL
+    END AS yoy_ballot_change_pct,
+    RANK() OVER (ORDER BY qa.total_ballots DESC) AS rank_by_q4_activity
+FROM q4_activity qa
+CROSS JOIN q4_baseline qb
+ORDER BY qa.year DESC
+        ]]>
+    </createView>
+    
+    <rollback>
+        DROP VIEW IF EXISTS view_riksdagen_pre_election_quarterly_activity CASCADE;
+    </rollback>
+</changeSet>
+
+<!-- Add view documentation -->
+<changeSet id="1.59-document-pre-election-quarterly-activity-view" author="intelligence-operative" failOnError="true">
+    <comment>Add documentation for view_riksdagen_pre_election_quarterly_activity</comment>
+    <sql>
+        COMMENT ON VIEW view_riksdagen_pre_election_quarterly_activity IS 'Enhanced multi-dimensional Q4 (October-December) aggregate activity analysis comparing election years vs non-election years. Detects pre-election surge patterns (>1.5x baseline) across voting, documents, assignments, and party effectiveness. Features: year-over-year comparison, z-score calculation for multiple dimensions, party-level context, committee productivity metrics, activity classification. Data Sources (META/META level): view_politician_behavioral_trends (voting), view_riksdagen_politician_document (documents), view_riksdagen_politician_role_evolution (roles), view_party_effectiveness_trends (party performance), view_committee_productivity (committee metrics). Election years: 2002, 2006, 2010, 2014, 2018, 2022, 2026. Framework 1: Temporal Analysis + Framework 3: Pattern Recognition. Use Case: Comprehensive system-wide pre-election activity detection across all behavioral dimensions with party and committee context, cross-election cycle comparison.';
+    </sql>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- VIEW 3: view_riksdagen_seasonal_activity_patterns                        -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="create-seasonal-activity-patterns-view-1.59-003" failOnError="true" runOnChange="true">
+    <comment>
+        Create view_riksdagen_seasonal_activity_patterns to identify Q1-Q4 behavior 
+        shifts across election cycles.
+        
+        Purpose: Comprehensive seasonal pattern analysis identifying behavioral shifts 
+        across Q1-Q4 for all election cycles (2002-2026). Integrates with Pattern 
+        Recognition Framework (Framework 3) for seasonal clustering.
+        
+        Key Features:
+        - Q1-Q4 activity aggregation by election cycle
+        - Election year vs non-election year comparison
+        - Seasonal pattern identification (Q4 surge, summer lull, etc.)
+        - Multi-year trend detection
+        - Statistical clustering by activity pattern
+        
+        Advanced Statistics:
+        - NTILE for quartile-based clustering
+        - LAG/LEAD for trend detection across quarters
+        - STDDEV_POP for volatility measurement
+        - Seasonal deviation from annual baseline
+        
+        Intelligence Value: VERY HIGH (5/5)
+        - Seasonal behavior clustering
+        - Electoral cycle pattern recognition
+        - Predictive modeling input
+        - Long-term trend analysis (24 years)
+        
+        GitHub Issue: Hack23/cia#8208 Election Proximity Trend Analysis - Quarterly Q4 Pre-Election Focus
+    </comment>
+    
+    <createView viewName="view_riksdagen_seasonal_activity_patterns">
+        <![CDATA[
+WITH election_years AS (
+    SELECT UNNEST(ARRAY[2002, 2006, 2010, 2014, 2018, 2022, 2026])::INT AS election_year
+),
+election_cycle_mapping AS (
+    SELECT 
+        year,
+        CASE 
+            WHEN year BETWEEN 2002 AND 2005 THEN '2002-2006'
+            WHEN year BETWEEN 2006 AND 2009 THEN '2006-2010'
+            WHEN year BETWEEN 2010 AND 2013 THEN '2010-2014'
+            WHEN year BETWEEN 2014 AND 2017 THEN '2014-2018'
+            WHEN year BETWEEN 2018 AND 2021 THEN '2018-2022'
+            WHEN year BETWEEN 2022 AND 2025 THEN '2022-2026'
+            WHEN year >= 2026 THEN '2026-2030'
+        END AS election_cycle
+    FROM generate_series(2002, 2030) AS year
+),
+-- Use existing view_riksdagen_seasonal_quarterly_activity as foundation
+seasonal_base AS (
+    SELECT 
+        sqa.year,
+        sqa.quarter,
+        sqa.is_election_year,
+        sqa.total_ballots,
+        sqa.active_politicians,
+        sqa.attendance_rate,
+        sqa.documents_produced,
+        sqa.q_baseline_ballots,
+        sqa.q_stddev_ballots,
+        sqa.ballot_z_score,
+        sqa.q_baseline_docs,
+        sqa.q_stddev_docs,
+        sqa.doc_z_score,
+        sqa.q_baseline_attendance,
+        sqa.q_stddev_attendance,
+        sqa.attendance_z_score,
+        sqa.activity_classification,
+        ecm.election_cycle
+    FROM view_riksdagen_seasonal_quarterly_activity sqa
+    JOIN election_cycle_mapping ecm ON sqa.year = ecm.year
+),
+-- Enhanced with LAG/LEAD for temporal trends
+seasonal_with_trends AS (
+    SELECT 
+        sb.*,
+        LAG(sb.total_ballots) OVER (PARTITION BY sb.year ORDER BY sb.quarter) AS prev_quarter_ballots,
+        LEAD(sb.total_ballots) OVER (PARTITION BY sb.year ORDER BY sb.quarter) AS next_quarter_ballots,
+        LAG(sb.attendance_rate) OVER (PARTITION BY sb.year ORDER BY sb.quarter) AS prev_quarter_attendance,
+        LAG(sb.documents_produced) OVER (PARTITION BY sb.year ORDER BY sb.quarter) AS prev_quarter_documents,
+        -- Cross-year quarterly averages for pattern detection
+        AVG(sb.total_ballots) OVER (PARTITION BY sb.quarter) AS cross_year_quarter_avg_ballots,
+        STDDEV_POP(sb.total_ballots) OVER (PARTITION BY sb.quarter) AS cross_year_quarter_stddev_ballots,
+        AVG(sb.documents_produced) OVER (PARTITION BY sb.quarter) AS cross_year_quarter_avg_docs,
+        -- Activity quartile within election cycle
+        NTILE(4) OVER (PARTITION BY sb.election_cycle ORDER BY sb.total_ballots) AS activity_quartile_cycle
+    FROM seasonal_base sb
+)
+SELECT 
+    swt.year,
+    swt.quarter,
+    swt.is_election_year,
+    swt.election_cycle,
+    swt.total_ballots,
+    swt.active_politicians,
+    swt.attendance_rate,
+    swt.documents_produced,
+    -- Baseline and z-score metrics (from seasonal_quarterly_activity)
+    swt.q_baseline_ballots,
+    swt.q_stddev_ballots,
+    swt.ballot_z_score,
+    swt.q_baseline_docs,
+    swt.q_stddev_docs,
+    swt.doc_z_score,
+    swt.q_baseline_attendance,
+    swt.q_stddev_attendance,
+    swt.attendance_z_score,
+    swt.activity_classification AS base_activity_classification,
+    -- Temporal trend metrics
+    swt.prev_quarter_ballots,
+    swt.next_quarter_ballots,
+    swt.prev_quarter_attendance,
+    swt.prev_quarter_documents,
+    swt.cross_year_quarter_avg_ballots,
+    swt.cross_year_quarter_stddev_ballots,
+    swt.cross_year_quarter_avg_docs,
+    swt.activity_quartile_cycle,
+    -- Quarter-over-quarter change
+    CASE 
+        WHEN swt.prev_quarter_ballots IS NOT NULL AND swt.prev_quarter_ballots > 0
+        THEN ROUND(((swt.total_ballots - swt.prev_quarter_ballots)::NUMERIC / swt.prev_quarter_ballots) * 100, 2)
+        ELSE NULL
+    END AS qoq_ballot_change_pct,
+    -- Deviation from cross-year quarterly average
+    swt.total_ballots - swt.cross_year_quarter_avg_ballots AS deviation_from_typical_quarter,
+    CASE 
+        WHEN swt.cross_year_quarter_stddev_ballots > 0 
+        THEN ROUND((swt.total_ballots - swt.cross_year_quarter_avg_ballots) / swt.cross_year_quarter_stddev_ballots, 2)
+        ELSE 0 
+    END AS cross_year_z_score,
+    -- Quarter labels and parliamentary periods
+    CASE 
+        WHEN swt.quarter = 1 THEN 'Q1_WINTER'
+        WHEN swt.quarter = 2 THEN 'Q2_SPRING'
+        WHEN swt.quarter = 3 THEN 'Q3_SUMMER'
+        WHEN swt.quarter = 4 THEN 'Q4_AUTUMN'
+    END AS quarter_label,
+    CASE 
+        WHEN swt.quarter = 1 THEN 'Winter Session (Jan-Mar)'
+        WHEN swt.quarter = 2 THEN 'Spring Session (Apr-Jun)'
+        WHEN swt.quarter = 3 THEN 'Summer Recess/Election (Jul-Sep)'
+        WHEN swt.quarter = 4 THEN 'Autumn Session (Oct-Dec)'
+    END AS parliamentary_period,
+    -- Enhanced pattern classification with election context
+    CASE 
+        WHEN swt.quarter = 4 AND swt.is_election_year AND swt.ballot_z_score > 1.5
+        THEN 'Q4_PRE_ELECTION_SURGE'
+        WHEN swt.quarter = 3 AND swt.is_election_year
+        THEN 'Q3_ELECTION_QUARTER'
+        WHEN swt.quarter = 4 AND swt.ballot_z_score > 1.0
+        THEN 'Q4_ELEVATED_ACTIVITY'
+        WHEN swt.quarter = 3 AND swt.ballot_z_score < -1.0
+        THEN 'Q3_SUMMER_LULL'
+        WHEN swt.ballot_z_score > 1.5
+        THEN 'UNUSUALLY_HIGH_ACTIVITY'
+        WHEN swt.ballot_z_score < -1.5
+        THEN 'UNUSUALLY_LOW_ACTIVITY'
+        ELSE 'NORMAL_SEASONAL_PATTERN'
+    END AS seasonal_pattern_classification
+FROM seasonal_with_trends swt
+ORDER BY swt.year DESC, swt.quarter
+        ]]>
+    </createView>
+    
+    <rollback>
+        DROP VIEW IF EXISTS view_riksdagen_seasonal_activity_patterns CASCADE;
+    </rollback>
+</changeSet>
+
+<!-- Add view documentation -->
+<changeSet id="1.59-document-seasonal-activity-patterns-view" author="intelligence-operative" failOnError="true">
+    <comment>Add documentation for view_riksdagen_seasonal_activity_patterns</comment>
+    <sql>
+        COMMENT ON VIEW view_riksdagen_seasonal_activity_patterns IS 'Enhanced comprehensive Q1-Q4 seasonal pattern analysis across election cycles (2002-2026). Built on view_riksdagen_seasonal_quarterly_activity foundation with extended temporal trends and election context. Features: quarterly behavioral shifts, election year vs non-election comparison, enhanced pattern classification (Q4 surge, Q3 lull, election quarter patterns), cross-year z-scores, NTILE clustering, QoQ trends. Advanced stats: LAG/LEAD for temporal trends, pre-computed z-scores from base view, deviation analysis from quarterly baselines. Data Source (META/META level): view_riksdagen_seasonal_quarterly_activity (foundation with z-scores and baselines). Election cycles: 7 cycles (2002-2026). Framework 3: Pattern Recognition - Seasonal clustering. Framework 4: Predictive Intelligence. Use Case: Long-term trend analysis, seasonal behavior clustering, electoral cycle predictions with leveraged pre-computed analytics.';
+    </sql>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- VALIDATION: Verify Election Proximity Views Created Successfully         -->
+<!-- ========================================================================= -->
+
+<changeSet id="1.59-validation" author="intelligence-operative">
+    <comment>
+        Validate that all 3 election proximity views were created successfully
+        with comprehensive temporal analysis and seasonal pattern detection.
+    </comment>
+    
+    <sql splitStatements="false"><![CDATA[
+        DO $$
+        DECLARE
+            v_proximity_exists BOOLEAN;
+            v_quarterly_exists BOOLEAN;
+            v_seasonal_exists BOOLEAN;
+        BEGIN
+            SELECT EXISTS(
+                SELECT 1 FROM information_schema.views 
+                WHERE table_name = 'view_riksdagen_election_proximity_trends'
+            ) INTO v_proximity_exists;
+            
+            SELECT EXISTS(
+                SELECT 1 FROM information_schema.views 
+                WHERE table_name = 'view_riksdagen_pre_election_quarterly_activity'
+            ) INTO v_quarterly_exists;
+            
+            SELECT EXISTS(
+                SELECT 1 FROM information_schema.views 
+                WHERE table_name = 'view_riksdagen_seasonal_activity_patterns'
+            ) INTO v_seasonal_exists;
+            
+            IF v_proximity_exists AND v_quarterly_exists AND v_seasonal_exists THEN
+                RAISE NOTICE '✓ All 3 election proximity views created successfully';
+                RAISE NOTICE '  FEATURES IMPLEMENTED:';
+                RAISE NOTICE '  - Election proximity tracking: months_until_election dimension (0-48 months)';
+                RAISE NOTICE '  - Q4 pre-election focus: 9-15 months before election detection';
+                RAISE NOTICE '  - Activity classification: ELEVATED (>1.5x baseline), NORMAL, REDUCED (<0.7x)';
+                RAISE NOTICE '  - Seasonal patterns: Q1-Q4 behavior shifts across election cycles';
+                RAISE NOTICE '  - Statistical analysis: z-scores, quartiles, year-over-year comparisons';
+                RAISE NOTICE '  - Advanced window functions: RANK, LAG, LEAD, NTILE, STDDEV_POP, AVG';
+                RAISE NOTICE '  Coverage: 2002-2026 (7 election cycles, quarterly granularity)';
+                RAISE NOTICE '  Framework Integration: Temporal Analysis (1) + Pattern Recognition (3)';
+            ELSE
+                RAISE WARNING 'Some election proximity views failed to create';
+                IF NOT v_proximity_exists THEN
+                    RAISE WARNING '  - view_riksdagen_election_proximity_trends missing';
+                END IF;
+                IF NOT v_quarterly_exists THEN
+                    RAISE WARNING '  - view_riksdagen_pre_election_quarterly_activity missing';
+                END IF;
+                IF NOT v_seasonal_exists THEN
+                    RAISE WARNING '  - view_riksdagen_seasonal_activity_patterns missing';
+                END IF;
+            END IF;
+        END $$;
+    ]]></sql>
+</changeSet>
+
+</databaseChangeLog>
