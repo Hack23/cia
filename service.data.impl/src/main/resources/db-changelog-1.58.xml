@@ -84,10 +84,15 @@
         
         Framework: Predictive Intelligence (Framework 4) + Temporal Analysis (Framework 1)
         
+        OPTIMIZATIONS:
+        - Builds on view_riksdagen_politician_role_evolution (existing role classification and weights from v1.56)
+        - Leverages existing role_tier and role_weight logic (no duplication of role classification)
+        - Uses pre-aggregated role summaries for better performance
+        
         KEY ENHANCEMENTS OVER v1.56:
-        - 10-level granular classification (vs. 8 tier system)
+        - 10-level granular classification derived from existing role_weight ranges
         - Party leader and speaker roles prominently tracked
-        - Career level scoring (1000-100 in 100-point increments)
+        - Non-linear career scoring (L02=50, L01=10 to prevent accumulation artifacts)
         - Typical career path patterns (fast track, steady, stagnant, declining)
         - Downward spiral detection (demotion velocity, consecutive drops, exit risk)
         - Time-in-level analysis for career pacing assessment
@@ -95,8 +100,8 @@
         - Cross-level transition matrices for progression analysis
         
         COMPREHENSIVE KPIs (40+ metrics):
-        1. Career Level Classification: 10 hierarchical levels
-        2. Career Scores: Numeric scoring 100-1000
+        1. Career Level Classification: 10 hierarchical levels (from existing role_weight)
+        2. Career Scores: Non-linear scoring to prevent accumulation
         3. Progression Metrics: advancement velocity, promotion count, demotion count
         4. Peak Analysis: peak level, time at peak, peak sustainability
         5. Trajectory Patterns: career pattern classification (8 types)
@@ -113,70 +118,65 @@
     
     <createView viewName="view_riksdagen_politician_career_path_10level">
         <![CDATA[
+-- BUILD ON EXISTING VIEW: view_riksdagen_politician_role_evolution
+-- This view already has role classification and weight logic from v1.56
 WITH career_level_mapping AS (
-    -- Define 10-level hierarchical career classification
+    -- Enhance existing role_evolution view with 10-level granular classification
     SELECT 
-        p.id AS person_id,
-        p.first_name,
-        p.last_name,
-        p.party,
-        ad.role_code,
-        COALESCE(ad.status, 'UNKNOWN') AS status,
-        COALESCE(ad.assignment_type, 'UNKNOWN') AS assignment_type,
-        COALESCE(ad.org_code, 'UNKNOWN') AS org_code,
-        ad.from_date,
-        ad.to_date,
+        re.person_id,
+        re.first_name,
+        re.last_name,
+        re.party,
+        re.role_code,
+        re.status,
+        re.assignment_type,
+        re.org_code,
+        re.role_start AS from_date,
+        re.role_end AS to_date,
+        re.role_tier,
+        re.role_weight,
         
-        -- 10-LEVEL CAREER CLASSIFICATION SYSTEM
+        -- 10-LEVEL CAREER CLASSIFICATION SYSTEM (mapped from existing role_weight)
+        -- Use role_weight ranges to create granular 10-level hierarchy
         CASE 
-            -- LEVEL 10: Prime Minister (Highest Office)
-            WHEN ad.role_code = 'Statsminister' THEN 10
+            -- LEVEL 10: Prime Minister (weight 1000)
+            WHEN re.role_weight >= 1000 THEN 10
             
-            -- LEVEL 9: Deputy Prime Minister & Cabinet Ministers
-            WHEN ad.role_code IN ('Vice statsminister', 'Statsråd') OR
-                 ad.role_code LIKE '%minister%' THEN 9
+            -- LEVEL 9: Cabinet Ministers (weight 850-900)
+            WHEN re.role_weight >= 850 THEN 9
             
-            -- LEVEL 8: Speaker of Parliament (Presiding Officer)
-            WHEN ad.role_code = 'Talman' THEN 8
+            -- LEVEL 8: Speaker (weight 800)
+            WHEN re.role_weight >= 800 THEN 8
             
-            -- LEVEL 7: Party Leaders & Deputy Speakers
-            WHEN ad.role_code IN ('Partiledare', 'Tillförordnad partiledare') OR
-                 ad.role_code LIKE '%vice talman%' THEN 7
+            -- LEVEL 7: Party Leaders & Deputy Speakers (weight 700-750)
+            WHEN re.role_weight >= 700 THEN 7
             
-            -- LEVEL 6: Party Secretary & Committee Chairs
-            WHEN ad.role_code IN ('Partisekreterare', 'Tillförordnad partisekreterare', 
-                                   'Ordförande') THEN 6
+            -- LEVEL 6: Party Secretary & Committee Chairs (weight 600-650)
+            WHEN re.role_weight >= 600 THEN 6
             
-            -- LEVEL 5: Committee Vice Chairs
-            WHEN ad.role_code = 'Vice ordförande' THEN 5
+            -- LEVEL 5: Committee Vice Chairs & Senior Positions (weight 500-550)
+            WHEN re.role_weight >= 500 THEN 5
             
-            -- LEVEL 4: Active MPs (Full Parliament Membership)
-            WHEN ad.role_code = 'Riksdagsledamot' OR
-                 (ad.role_code = 'Ledamot' AND ad.org_code NOT LIKE 'K%') THEN 4
+            -- LEVEL 4: Active MPs (weight 400)
+            WHEN re.role_weight >= 400 THEN 4
             
-            -- LEVEL 3: Committee Members
-            WHEN ad.role_code = 'Ledamot' AND ad.org_code LIKE 'K%' THEN 3
+            -- LEVEL 3: Committee Members (weight 350)
+            WHEN re.role_weight >= 300 THEN 3
             
-            -- LEVEL 2: Substitute MPs
-            WHEN ad.role_code IN ('Suppleant', 'Ersättare', 'Extra suppleant', 
-                                   'Personlig suppleant') THEN 2
+            -- LEVEL 2: Substitute MPs (weight 100)
+            WHEN re.role_weight >= 100 THEN 2
             
-            -- LEVEL 1: Other/Entry Level Roles
+            -- LEVEL 1: Other/Entry Level Roles (weight 50)
             ELSE 1
         END AS career_level,
         
-        -- Calculate duration in role
-        CASE 
-            WHEN ad.to_date IS NULL THEN EXTRACT(YEAR FROM AGE(CURRENT_DATE, ad.from_date))
-            ELSE EXTRACT(YEAR FROM AGE(ad.to_date, ad.from_date))
-        END AS years_in_role,
+        -- Calculate duration in role (use years_in_role from existing view)
+        EXTRACT(YEAR FROM AGE(re.role_end, re.role_start)) AS years_in_role,
         
         -- Flag current role
-        CASE WHEN ad.to_date IS NULL THEN TRUE ELSE FALSE END AS is_current_role
-    FROM person_data p
-    JOIN assignment_data ad ON p.id = ad.intressent_id
-    WHERE ad.from_date IS NOT NULL
-      AND ad.from_date >= '2002-01-01'  -- Focus on modern era (2002+)
+        re.is_current_role
+    FROM view_riksdagen_politician_role_evolution re
+    WHERE re.role_start >= '2002-01-01'  -- Focus on modern era (2002+)
 ),
 career_level_enriched AS (
     -- Derive career_score and career_level_name from career_level to reduce duplication

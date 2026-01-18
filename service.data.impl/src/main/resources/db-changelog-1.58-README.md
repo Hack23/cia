@@ -2,13 +2,30 @@
 
 ## Overview
 
-Changelog v1.58 introduces a comprehensive 10-level hierarchical role classification system for tracking politician career paths in the Swedish Riksdag. This enhancement builds upon issue #8211 (Politician Career Trajectory Tracking) to provide deep insights into career progression, typical paths, and downward spirals.
+Changelog v1.58 introduces a comprehensive 10-level hierarchical role classification system for tracking politician career paths in the Swedish Riksdag. This enhancement builds upon issue #8211 (Politician Career Trajectory Tracking) and existing view infrastructure to provide deep insights into career progression, typical paths, and downward spirals.
+
+## Architecture
+
+### Building on Existing Views
+
+This changelog follows the pattern established in v1.53 (party longitudinal analysis) by **building on existing views** rather than querying base tables directly:
+
+- **Primary Source**: `view_riksdagen_politician_role_evolution` (from v1.56)
+  - Already contains role classification logic (role_tier)
+  - Already has role_weight scoring (1000 for PM down to 50 for other)
+  - Pre-aggregated role summaries for performance
+  
+- **Benefits**:
+  - No duplication of role classification logic
+  - Better query performance (uses pre-aggregated data)
+  - Leverages existing, validated role categorization
+  - Consistent with project architecture patterns (see db-changelog-1.53.xml)
 
 ## Created Views
 
 ### `view_riksdagen_politician_career_path_10level`
 
-A comprehensive view that analyzes politician career trajectories using a 10-level hierarchical classification system with advanced statistical functions and 40+ KPI metrics.
+A comprehensive view that analyzes politician career trajectories using a 10-level hierarchical classification system (derived from existing role_weight ranges) with advanced statistical functions and 40+ KPI metrics.
 
 ## 10-Level Career Classification System
 
