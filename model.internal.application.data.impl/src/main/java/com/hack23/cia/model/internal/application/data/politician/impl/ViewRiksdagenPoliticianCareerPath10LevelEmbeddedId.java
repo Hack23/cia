@@ -20,12 +20,16 @@ package com.hack23.cia.model.internal.application.data.politician.impl;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  * The Class ViewRiksdagenPoliticianCareerPath10LevelEmbeddedId.
@@ -108,26 +112,17 @@ public class ViewRiksdagenPoliticianCareerPath10LevelEmbeddedId implements Seria
 	}
 
 	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		ViewRiksdagenPoliticianCareerPath10LevelEmbeddedId that = (ViewRiksdagenPoliticianCareerPath10LevelEmbeddedId) o;
-		return Objects.equals(personId, that.personId) &&
-				Objects.equals(fromDate, that.fromDate) &&
-				Objects.equals(roleCode, that.roleCode);
+	public boolean equals(Object obj) {
+		return EqualsBuilder.reflectionEquals(this, obj);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(personId, fromDate, roleCode);
+		return HashCodeBuilder.reflectionHashCode(this);
 	}
 
 	@Override
 	public String toString() {
-		return "ViewRiksdagenPoliticianCareerPath10LevelEmbeddedId{" +
-				"personId='" + personId + '\'' +
-				", fromDate=" + fromDate +
-				", roleCode='" + roleCode + '\'' +
-				'}';
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 }

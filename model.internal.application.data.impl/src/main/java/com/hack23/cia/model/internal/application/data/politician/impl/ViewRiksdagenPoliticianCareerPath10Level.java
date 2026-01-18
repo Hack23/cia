@@ -229,17 +229,11 @@ public class ViewRiksdagenPoliticianCareerPath10Level implements Serializable {
 	@Column(name = "influence_classification")
 	private String influenceClassification;
 
-	@Column(name = "centrality_score")
-	private BigDecimal centralityScore;
-
 	@Column(name = "broker_score")
-	private BigDecimal brokerScore;
+	private String brokerScore;
 
 	@Column(name = "strong_connections")
 	private Integer strongConnections;
-
-	@Column(name = "cross_party_connections")
-	private Integer crossPartyConnections;
 
 	// Predictive Scores
 	@Column(name = "predictive_success_score")
@@ -1303,29 +1297,11 @@ public class ViewRiksdagenPoliticianCareerPath10Level implements Serializable {
 	}
 
 	/**
-	 * Gets the centrality score.
-	 *
-	 * @return the centrality score
-	 */
-	public BigDecimal getCentralityScore() {
-		return centralityScore;
-	}
-
-	/**
-	 * Sets the centrality score.
-	 *
-	 * @param centralityScore the new centrality score
-	 */
-	public void setCentralityScore(final BigDecimal centralityScore) {
-		this.centralityScore = centralityScore;
-	}
-
-	/**
 	 * Gets the broker score.
 	 *
 	 * @return the broker score
 	 */
-	public BigDecimal getBrokerScore() {
+	public String getBrokerScore() {
 		return brokerScore;
 	}
 
@@ -1334,7 +1310,7 @@ public class ViewRiksdagenPoliticianCareerPath10Level implements Serializable {
 	 *
 	 * @param brokerScore the new broker score
 	 */
-	public void setBrokerScore(final BigDecimal brokerScore) {
+	public void setBrokerScore(final String brokerScore) {
 		this.brokerScore = brokerScore;
 	}
 
@@ -1354,24 +1330,6 @@ public class ViewRiksdagenPoliticianCareerPath10Level implements Serializable {
 	 */
 	public void setStrongConnections(final Integer strongConnections) {
 		this.strongConnections = strongConnections;
-	}
-
-	/**
-	 * Gets the cross party connections.
-	 *
-	 * @return the cross party connections
-	 */
-	public Integer getCrossPartyConnections() {
-		return crossPartyConnections;
-	}
-
-	/**
-	 * Sets the cross party connections.
-	 *
-	 * @param crossPartyConnections the new cross party connections
-	 */
-	public void setCrossPartyConnections(final Integer crossPartyConnections) {
-		this.crossPartyConnections = crossPartyConnections;
 	}
 
 	/**

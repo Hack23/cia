@@ -438,11 +438,9 @@ predictive_intelligence AS (
         prs.discipline_violations,
         
         -- Network Influence Intelligence (from view_riksdagen_politician_influence_metrics)
-        pim.connectivity_level AS influence_classification,
-        pim.normalized_centrality AS centrality_score,
-        pim.broker_classification AS broker_score,
+        pim.influence_classification,
         pim.network_connections AS strong_connections,
-        pim.cross_party_bridges AS cross_party_connections,
+        pim.broker_classification AS broker_score,
         
         -- Composite Predictive Score (weighted combination)
         -- Career trajectory (40%) + Risk assessment (30%) + Behavioral patterns (20%) + Network influence (10%)
@@ -451,9 +449,9 @@ predictive_intelligence AS (
             ((100 - COALESCE(prs.risk_score, 50)) * 0.30) +  -- Inverse risk: 30% (lower risk = higher score)
             (COALESCE(pbt.avg_win_rate, 50) * 0.20) +  -- Behavioral effectiveness: 20%
             (CASE 
-                WHEN pim.connectivity_level = 'HIGHLY_INFLUENTIAL' THEN 10.0
-                WHEN pim.connectivity_level = 'INFLUENTIAL' THEN 7.5
-                WHEN pim.connectivity_level = 'MODERATELY_INFLUENTIAL' THEN 5.0
+                WHEN pim.influence_classification = 'HIGHLY_INFLUENTIAL' THEN 10.0
+                WHEN pim.influence_classification = 'INFLUENTIAL' THEN 7.5
+                WHEN pim.influence_classification = 'MODERATELY_INFLUENTIAL' THEN 5.0
                 ELSE 2.5
             END)  -- Network influence: 10%
         )::NUMERIC, 1) AS predictive_success_score,
@@ -471,7 +469,7 @@ predictive_intelligence AS (
         CASE 
             WHEN cs.career_level >= 8 THEN 100  -- Already at top (PM, Ministers, Speaker)
             WHEN cs.career_pattern = 'FAST_TRACK' AND cs.career_level >= 6 
-                 AND pim.connectivity_level IN ('HIGHLY_CONNECTED', 'WELL_CONNECTED')
+                 AND pim.influence_classification IN ('HIGHLY_INFLUENTIAL', 'INFLUENTIAL')
                  AND COALESCE(prs.risk_level, 'LOW') = 'LOW' 
                  THEN 90
             WHEN cs.career_pattern IN ('RISING_STAR', 'STEADY_PROGRESS') 
