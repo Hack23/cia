@@ -28,14 +28,17 @@
         - Q4 pre-election flag (9-15 months before election, Q4 period)
         - Multi-dimensional activity metrics: voting, documents, assignments
         - Activity classification (ELEVATED_ACTIVITY vs NORMAL_ACTIVITY)
-        - Uses ballot_count, attendance, document_count, and role changes as metrics
+        - Multi-dimensional metrics: voting, documents, decisions, roles, risk, influence
         - Compares against politician's baseline activity
         - Covers Swedish election cycles 2002-2026
         
-        Data Sources (Enhanced):
-        - vote_data: Ballot participation and attendance
-        - assignment_data: Role changes, promotions, committee appointments
-        - document_data: Document authorship, proposals, motions
+        Data Sources (Enhanced - META/META level):
+        - view_politician_behavioral_trends: Voting patterns, behavioral assessment, status classifications
+        - view_riksdagen_politician_document: Document authorship, proposals, motions
+        - view_riksdagen_politician_role_evolution: Role progression, leadership positions, role weights
+        - view_riksdagen_politician_decision_pattern: Decision patterns, approval rates, committee activity
+        - view_politician_risk_summary: Risk scores, trend analysis, anomaly detection
+        - view_riksdagen_politician_influence_metrics: Network influence, centrality, broker analysis
         
         Advanced Statistics:
         - AVG window function for baseline calculation
@@ -59,8 +62,8 @@ WITH election_dates AS (
     SELECT UNNEST(ARRAY['2002-09-15', '2006-09-17', '2010-09-19', 
                         '2014-09-14', '2018-09-09', '2022-09-11', '2026-09-13']::DATE[]) AS election_date
 ),
--- Voting activity from existing view_politician_behavioral_trends
-politician_voting_activity AS (
+-- Comprehensive voting and behavioral patterns from view_politician_behavioral_trends
+politician_behavioral_metrics AS (
     SELECT 
         pbt.person_id,
         pbt.first_name,
@@ -72,10 +75,18 @@ politician_voting_activity AS (
         EXTRACT(YEAR FROM AGE(ed.election_date, pbt.period_start::date))::INTEGER * 12 + 
         EXTRACT(MONTH FROM AGE(ed.election_date, pbt.period_start::date))::INTEGER AS months_until_election,
         pbt.total_ballots AS ballot_count,
-        pbt.total_votes - (pbt.total_ballots * pbt.avg_absence_rate / 100) AS attendance_count,
+        pbt.total_votes,
         ROUND(100 - pbt.avg_absence_rate, 2) AS attendance_rate,
         pbt.avg_win_rate,
         pbt.avg_rebel_rate,
+        pbt.avg_yes_rate,
+        pbt.avg_no_rate,
+        pbt.avg_abstain_rate,
+        pbt.violation_count,
+        pbt.behavioral_assessment,
+        pbt.attendance_status,
+        pbt.effectiveness_status,
+        pbt.discipline_status,
         CASE 
             WHEN EXTRACT(QUARTER FROM pbt.period_start) = 4 
                  AND (EXTRACT(YEAR FROM AGE(ed.election_date, pbt.period_start::date))::INTEGER * 12 + 
@@ -88,8 +99,8 @@ politician_voting_activity AS (
     WHERE pbt.period_start::date < ed.election_date
       AND AGE(ed.election_date, pbt.period_start::date) < INTERVAL '48 months'
 ),
--- Document activity from existing view_riksdagen_politician_document
-politician_document_activity AS (
+-- Document productivity from view_riksdagen_politician_document
+politician_document_metrics AS (
     SELECT 
         pd.person_reference_id AS person_id,
         DATE_TRUNC('quarter', pd.made_public_date) AS activity_quarter,
@@ -104,13 +115,14 @@ politician_document_activity AS (
       AND pd.person_reference_id IS NOT NULL
     GROUP BY pd.person_reference_id, DATE_TRUNC('quarter', pd.made_public_date), ed.election_date
 ),
--- Role evolution from existing view_riksdagen_politician_role_evolution
-politician_role_activity AS (
+-- Role progression from view_riksdagen_politician_role_evolution
+politician_role_metrics AS (
     SELECT 
         pre.person_id,
         DATE_TRUNC('quarter', pre.role_start_date) AS activity_quarter,
         ed.election_date,
         COUNT(DISTINCT pre.role_tier) AS new_assignment_count,
+        MAX(pre.role_weight) AS peak_role_weight_quarter,
         COUNT(DISTINCT CASE WHEN pre.role_tier IN ('minister', 'speaker', 'party_leader') 
                             THEN pre.role_tier END) AS leadership_role_count,
         COUNT(DISTINCT CASE WHEN pre.role_tier IN ('committee_chair', 'committee_member') 
@@ -121,37 +133,114 @@ politician_role_activity AS (
       AND AGE(ed.election_date, pre.role_start_date) < INTERVAL '48 months'
     GROUP BY pre.person_id, DATE_TRUNC('quarter', pre.role_start_date), ed.election_date
 ),
+-- Decision-making patterns from view_riksdagen_politician_decision_pattern
+politician_decision_metrics AS (
+    SELECT 
+        pdp.person_id,
+        DATE_TRUNC('quarter', pdp.decision_month::date) AS activity_quarter,
+        ed.election_date,
+        SUM(pdp.total_decisions) AS decision_count,
+        SUM(pdp.approved_decisions) AS approved_decisions,
+        SUM(pdp.rejected_decisions) AS rejected_decisions,
+        ROUND(AVG(pdp.approval_rate), 2) AS avg_approval_rate,
+        COUNT(DISTINCT pdp.committee_org) AS active_committees
+    FROM view_riksdagen_politician_decision_pattern pdp
+    CROSS JOIN election_dates ed
+    WHERE pdp.decision_month::date < ed.election_date
+      AND AGE(ed.election_date, pdp.decision_month::date) < INTERVAL '48 months'
+    GROUP BY pdp.person_id, DATE_TRUNC('quarter', pdp.decision_month::date), ed.election_date
+),
+-- Risk assessment from view_politician_risk_summary (current snapshot per person)
+politician_risk_metrics AS (
+    SELECT DISTINCT ON (prs.person_id)
+        prs.person_id,
+        prs.overall_risk_score,
+        prs.risk_level,
+        prs.trend_risk_score,
+        prs.trend_risk_level,
+        prs.anomaly_risk_score,
+        prs.anomaly_risk_level
+    FROM view_politician_risk_summary prs
+),
+-- Influence metrics from view_riksdagen_politician_influence_metrics (current snapshot)
+politician_influence_metrics AS (
+    SELECT DISTINCT ON (pim.person_id)
+        pim.person_id,
+        pim.influence_score,
+        pim.influence_classification,
+        pim.centrality_score,
+        pim.broker_score,
+        pim.broker_classification
+    FROM view_riksdagen_politician_influence_metrics pim
+),
 combined_activity AS (
     SELECT 
-        pva.person_id,
-        pva.first_name,
-        pva.last_name,
-        pva.party,
-        pva.election_date,
-        pva.activity_quarter,
-        pva.quarter_number,
-        pva.months_until_election,
-        pva.is_pre_election_q4,
-        pva.ballot_count,
-        pva.attendance_count,
-        pva.attendance_rate,
-        pva.avg_win_rate,
-        pva.avg_rebel_rate,
-        COALESCE(pda.document_count, 0) AS document_count,
-        COALESCE(pda.proposal_count, 0) AS proposal_count,
-        COALESCE(pda.motion_count, 0) AS motion_count,
-        COALESCE(pra.new_assignment_count, 0) AS new_assignment_count,
-        COALESCE(pra.leadership_role_count, 0) AS leadership_role_count,
-        COALESCE(pra.committee_assignment_count, 0) AS committee_assignment_count
-    FROM politician_voting_activity pva
-    LEFT JOIN politician_document_activity pda 
-        ON pva.person_id = pda.person_id 
-        AND pva.activity_quarter = pda.activity_quarter 
-        AND pva.election_date = pda.election_date
-    LEFT JOIN politician_role_activity pra 
-        ON pva.person_id = pra.person_id 
-        AND pva.activity_quarter = pra.activity_quarter 
-        AND pva.election_date = pra.election_date
+        pbm.person_id,
+        pbm.first_name,
+        pbm.last_name,
+        pbm.party,
+        pbm.election_date,
+        pbm.activity_quarter,
+        pbm.quarter_number,
+        pbm.months_until_election,
+        pbm.is_pre_election_q4,
+        -- Behavioral metrics
+        pbm.ballot_count,
+        pbm.total_votes,
+        pbm.attendance_rate,
+        pbm.avg_win_rate,
+        pbm.avg_rebel_rate,
+        pbm.avg_yes_rate,
+        pbm.avg_no_rate,
+        pbm.avg_abstain_rate,
+        pbm.violation_count,
+        pbm.behavioral_assessment,
+        pbm.attendance_status,
+        pbm.effectiveness_status,
+        pbm.discipline_status,
+        -- Document metrics
+        COALESCE(pdm.document_count, 0) AS document_count,
+        COALESCE(pdm.proposal_count, 0) AS proposal_count,
+        COALESCE(pdm.motion_count, 0) AS motion_count,
+        -- Role metrics
+        COALESCE(prm.new_assignment_count, 0) AS new_assignment_count,
+        COALESCE(prm.peak_role_weight_quarter, 0) AS peak_role_weight_quarter,
+        COALESCE(prm.leadership_role_count, 0) AS leadership_role_count,
+        COALESCE(prm.committee_assignment_count, 0) AS committee_assignment_count,
+        -- Decision metrics
+        COALESCE(pdecm.decision_count, 0) AS decision_count,
+        COALESCE(pdecm.approved_decisions, 0) AS approved_decisions,
+        COALESCE(pdecm.rejected_decisions, 0) AS rejected_decisions,
+        COALESCE(pdecm.avg_approval_rate, 0) AS avg_approval_rate,
+        COALESCE(pdecm.active_committees, 0) AS active_committees,
+        -- Risk metrics (snapshot)
+        prisk.overall_risk_score,
+        prisk.risk_level,
+        prisk.trend_risk_score,
+        prisk.anomaly_risk_score,
+        -- Influence metrics (snapshot)
+        pinf.influence_score,
+        pinf.influence_classification,
+        pinf.centrality_score,
+        pinf.broker_score,
+        pinf.broker_classification
+    FROM politician_behavioral_metrics pbm
+    LEFT JOIN politician_document_metrics pdm 
+        ON pbm.person_id = pdm.person_id 
+        AND pbm.activity_quarter = pdm.activity_quarter 
+        AND pbm.election_date = pdm.election_date
+    LEFT JOIN politician_role_metrics prm 
+        ON pbm.person_id = prm.person_id 
+        AND pbm.activity_quarter = prm.activity_quarter 
+        AND pbm.election_date = prm.election_date
+    LEFT JOIN politician_decision_metrics pdecm
+        ON pbm.person_id = pdecm.person_id 
+        AND pbm.activity_quarter = pdecm.activity_quarter 
+        AND pbm.election_date = pdecm.election_date
+    LEFT JOIN politician_risk_metrics prisk
+        ON pbm.person_id = prisk.person_id
+    LEFT JOIN politician_influence_metrics pinf
+        ON pbm.person_id = pinf.person_id
 )
 SELECT 
     ca.person_id, 
@@ -162,34 +251,67 @@ SELECT
     ca.activity_quarter,
     ca.quarter_number,
     ca.months_until_election, 
-    ca.is_pre_election_q4, 
-    ca.ballot_count, 
-    ca.attendance_count,
+    ca.is_pre_election_q4,
+    -- Behavioral metrics
+    ca.ballot_count,
+    ca.total_votes,
     ca.attendance_rate,
     ca.avg_win_rate,
     ca.avg_rebel_rate,
+    ca.avg_yes_rate,
+    ca.avg_no_rate,
+    ca.avg_abstain_rate,
+    ca.violation_count,
+    ca.behavioral_assessment,
+    ca.attendance_status,
+    ca.effectiveness_status,
+    ca.discipline_status,
+    -- Document metrics
     ca.document_count,
     ca.proposal_count,
     ca.motion_count,
+    -- Role metrics
     ca.new_assignment_count,
+    ca.peak_role_weight_quarter,
     ca.leadership_role_count,
     ca.committee_assignment_count,
+    -- Decision metrics
+    ca.decision_count,
+    ca.approved_decisions,
+    ca.rejected_decisions,
+    ca.avg_approval_rate,
+    ca.active_committees,
+    -- Risk metrics
+    ca.overall_risk_score,
+    ca.risk_level,
+    ca.trend_risk_score,
+    ca.anomaly_risk_score,
+    -- Influence metrics
+    ca.influence_score,
+    ca.influence_classification,
+    ca.centrality_score,
+    ca.broker_score,
+    ca.broker_classification,
     -- Baseline calculations for multiple dimensions
     ROUND(AVG(ca.ballot_count) OVER (PARTITION BY ca.person_id), 2) AS avg_ballot_count_baseline,
     ROUND(AVG(ca.document_count) OVER (PARTITION BY ca.person_id), 2) AS avg_document_count_baseline,
+    ROUND(AVG(ca.decision_count) OVER (PARTITION BY ca.person_id), 2) AS avg_decision_count_baseline,
     ROUND(AVG(ca.new_assignment_count) OVER (PARTITION BY ca.person_id), 2) AS avg_assignment_count_baseline,
     -- Deviation analysis
     ROUND(ca.ballot_count - AVG(ca.ballot_count) OVER (PARTITION BY ca.person_id), 2) AS ballot_count_deviation,
     ROUND(ca.document_count - AVG(ca.document_count) OVER (PARTITION BY ca.person_id), 2) AS document_count_deviation,
+    ROUND(ca.decision_count - AVG(ca.decision_count) OVER (PARTITION BY ca.person_id), 2) AS decision_count_deviation,
     ROUND(ca.new_assignment_count - AVG(ca.new_assignment_count) OVER (PARTITION BY ca.person_id), 2) AS assignment_count_deviation,
     -- Activity ratios
     ROUND((ca.ballot_count::NUMERIC / NULLIF(AVG(ca.ballot_count) OVER (PARTITION BY ca.person_id), 0)), 2) AS ballot_activity_ratio,
     ROUND((ca.document_count::NUMERIC / NULLIF(AVG(ca.document_count) OVER (PARTITION BY ca.person_id), 0)), 2) AS document_activity_ratio,
+    ROUND((ca.decision_count::NUMERIC / NULLIF(AVG(ca.decision_count) OVER (PARTITION BY ca.person_id), 0)), 2) AS decision_activity_ratio,
     ROUND((ca.new_assignment_count::NUMERIC / NULLIF(AVG(ca.new_assignment_count) OVER (PARTITION BY ca.person_id), 0)), 2) AS assignment_activity_ratio,
     -- Multi-dimensional activity classification
     CASE 
         WHEN ca.ballot_count > 1.5 * AVG(ca.ballot_count) OVER (PARTITION BY ca.person_id) 
              OR ca.document_count > 1.5 * AVG(ca.document_count) OVER (PARTITION BY ca.person_id)
+             OR ca.decision_count > 1.5 * AVG(ca.decision_count) OVER (PARTITION BY ca.person_id)
              OR ca.new_assignment_count > 1.5 * AVG(ca.new_assignment_count) OVER (PARTITION BY ca.person_id)
         THEN 'ELEVATED_ACTIVITY'
         WHEN ca.ballot_count < 0.7 * AVG(ca.ballot_count) OVER (PARTITION BY ca.person_id)
@@ -197,11 +319,12 @@ SELECT
         THEN 'REDUCED_ACTIVITY'
         ELSE 'NORMAL_ACTIVITY'
     END AS activity_classification,
-    -- Composite activity score (weighted average of all dimensions)
+    -- Composite activity score (weighted: 30% voting, 25% documents, 25% decisions, 20% assignments)
     ROUND((
-        (ca.ballot_count::NUMERIC / NULLIF(AVG(ca.ballot_count) OVER (PARTITION BY ca.person_id), 0) * 0.4) +
-        (ca.document_count::NUMERIC / NULLIF(AVG(ca.document_count) OVER (PARTITION BY ca.person_id), 0) * 0.3) +
-        (ca.new_assignment_count::NUMERIC / NULLIF(AVG(ca.new_assignment_count) OVER (PARTITION BY ca.person_id), 0) * 0.3)
+        (ca.ballot_count::NUMERIC / NULLIF(AVG(ca.ballot_count) OVER (PARTITION BY ca.person_id), 0) * 0.30) +
+        (ca.document_count::NUMERIC / NULLIF(AVG(ca.document_count) OVER (PARTITION BY ca.person_id), 0) * 0.25) +
+        (ca.decision_count::NUMERIC / NULLIF(AVG(ca.decision_count) OVER (PARTITION BY ca.person_id), 0) * 0.25) +
+        (ca.new_assignment_count::NUMERIC / NULLIF(AVG(ca.new_assignment_count) OVER (PARTITION BY ca.person_id), 0) * 0.20)
     ), 2) AS composite_activity_score,
     CASE
         WHEN ca.months_until_election <= 6 THEN 'ELECTION_IMMINENT'
@@ -225,7 +348,7 @@ ORDER BY ca.election_date DESC, ca.months_until_election, ca.person_id, ca.activ
 <changeSet id="1.58-document-election-proximity-trends-view" author="intelligence-operative" failOnError="true">
     <comment>Add documentation for view_riksdagen_election_proximity_trends</comment>
     <sql>
-        COMMENT ON VIEW view_riksdagen_election_proximity_trends IS 'Multi-dimensional election proximity trend analysis tracking politician activity by months until election (0-48 months). Features: Q4 pre-election flag (9-15 months before election), activity classification across voting, documents, and assignments (>1.5x baseline = ELEVATED), baseline comparison, quarterly aggregation, composite activity score. Data Sources: view_politician_behavioral_trends (voting), view_riksdagen_politician_document (documents), view_riksdagen_politician_role_evolution (roles). Election cycles: 2002, 2006, 2010, 2014, 2018, 2022, 2026. Framework 1: Temporal Analysis. Use Case: Detect pre-election behavioral surges across multiple activity dimensions, predict election-driven behavior changes, track role ambitions.';
+        COMMENT ON VIEW view_riksdagen_election_proximity_trends IS 'Comprehensive multi-dimensional election proximity trend analysis tracking politician activity by months until election (0-48 months). Features: Q4 pre-election flag (9-15 months before election), activity classification across voting, documents, decisions, and roles (>1.5x baseline = ELEVATED), risk and influence metrics, baseline comparison, quarterly aggregation, composite activity score. Data Sources (META/META level): view_politician_behavioral_trends (behavioral assessment), view_riksdagen_politician_document (documents), view_riksdagen_politician_role_evolution (roles), view_riksdagen_politician_decision_pattern (decisions), view_politician_risk_summary (risk), view_riksdagen_politician_influence_metrics (influence/network). Election cycles: 2002, 2006, 2010, 2014, 2018, 2022, 2026. Framework 1: Temporal Analysis. Use Case: Comprehensive pre-election behavioral surge detection across all dimensions, predict election-driven behavior changes, track role ambitions, assess risk evolution.';
     </sql>
 </changeSet>
 
