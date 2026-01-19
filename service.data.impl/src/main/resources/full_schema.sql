@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict Dj97hVaDv2ALaKGTPRdkVYSuec6jsRM4IXPhDerTo07anoeWqAbENwyiYJQ0tSS
+\restrict YP6NuFYA25BLM67NeACskUsrEW5jYgBfa1tqOPipkzCxzpTvWXgCWjJjroyXtND
 
 -- Dumped from database version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
@@ -9195,6 +9195,783 @@ CREATE MATERIALIZED VIEW public.view_riksdagen_document_type_daily_summary AS
 
 
 --
+-- Name: view_riksdagen_politician_decision_pattern; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.view_riksdagen_politician_decision_pattern AS
+ SELECT pd.id AS person_id,
+    pd.first_name,
+    pd.last_name,
+    dpr.party_short_code AS party,
+    dpd.committee,
+    dd.org AS committee_org,
+    date_trunc('month'::text, (dd.made_public_date)::timestamp with time zone) AS decision_month,
+    EXTRACT(year FROM dd.made_public_date) AS decision_year,
+    EXTRACT(month FROM dd.made_public_date) AS decision_month_num,
+    count(*) AS total_decisions,
+    count(*) FILTER (WHERE ((upper((dpd.chamber)::text) ~~ '%BIFALL%'::text) OR (upper((dpd.chamber)::text) ~~ '%GODKÄNT%'::text) OR (upper((dpd.chamber)::text) ~~ '%BIFALLA%'::text))) AS approved_decisions,
+    count(*) FILTER (WHERE ((upper((dpd.chamber)::text) ~~ '%AVSLAG%'::text) OR (upper((dpd.chamber)::text) ~~ '%AVSLÅ%'::text))) AS rejected_decisions,
+    count(*) FILTER (WHERE ((upper((dpd.chamber)::text) ~~ '%ÅTERFÖRVISNING%'::text) OR (upper((dpd.chamber)::text) ~~ '%ÅTERFÖRVISA%'::text))) AS referred_back_decisions,
+    count(*) FILTER (WHERE ((upper((dpd.chamber)::text) !~~ '%BIFALL%'::text) AND (upper((dpd.chamber)::text) !~~ '%AVSLAG%'::text) AND (upper((dpd.chamber)::text) !~~ '%GODKÄNT%'::text) AND (upper((dpd.chamber)::text) !~~ '%BIFALLA%'::text) AND (upper((dpd.chamber)::text) !~~ '%AVSLÅ%'::text) AND (upper((dpd.chamber)::text) !~~ '%ÅTERFÖRVISNING%'::text) AND (upper((dpd.chamber)::text) !~~ '%ÅTERFÖRVISA%'::text))) AS other_decisions,
+    round(((100.0 * (count(*) FILTER (WHERE ((upper((dpd.chamber)::text) ~~ '%BIFALL%'::text) OR (upper((dpd.chamber)::text) ~~ '%GODKÄNT%'::text) OR (upper((dpd.chamber)::text) ~~ '%BIFALLA%'::text))))::numeric) / (NULLIF(count(*), 0))::numeric), 2) AS approval_rate,
+    round(((100.0 * (count(*) FILTER (WHERE ((upper((dpd.chamber)::text) ~~ '%AVSLAG%'::text) OR (upper((dpd.chamber)::text) ~~ '%AVSLÅ%'::text))))::numeric) / (NULLIF(count(*), 0))::numeric), 2) AS rejection_rate,
+    min(dd.made_public_date) AS earliest_decision_date,
+    max(dd.made_public_date) AS latest_decision_date
+   FROM ((((((public.document_proposal_data dpd
+     JOIN public.document_proposal_container dpc ON ((dpc.proposal_document_proposal_c_0 = dpd.hjid)))
+     JOIN public.document_status_container dsc ON ((dsc.document_proposal_document_s_0 = dpc.hjid)))
+     JOIN public.document_data dd ON (((dd.id)::text = (dsc.document_document_status_con_0)::text)))
+     JOIN public.document_person_reference_co_0 dprc ON ((dprc.hjid = dsc.document_person_reference_co_1)))
+     JOIN public.document_person_reference_da_0 dpr ON ((dpr.document_person_reference_li_1 = dprc.hjid)))
+     JOIN public.person_data pd ON (((pd.id)::text = (dpr.person_reference_id)::text)))
+  WHERE ((dpd.chamber IS NOT NULL) AND (dpd.committee IS NOT NULL) AND (dd.made_public_date IS NOT NULL) AND (pd.id IS NOT NULL) AND (length((dpd.chamber)::text) >= 6) AND (length((dpd.chamber)::text) <= 29))
+  GROUP BY pd.id, pd.first_name, pd.last_name, dpr.party_short_code, dpd.committee, dd.org, (date_trunc('month'::text, (dd.made_public_date)::timestamp with time zone)), (EXTRACT(year FROM dd.made_public_date)), (EXTRACT(month FROM dd.made_public_date))
+ HAVING (count(*) > 0)
+  ORDER BY (EXTRACT(year FROM dd.made_public_date)) DESC, (EXTRACT(month FROM dd.made_public_date)) DESC, pd.last_name, pd.first_name, dpd.committee;
+
+
+--
+-- Name: view_riksdagen_politician_role_evolution; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.view_riksdagen_politician_role_evolution AS
+ WITH role_assignments AS (
+         SELECT p.id AS person_id,
+            p.first_name,
+            p.last_name,
+            p.party,
+            ad.role_code,
+            COALESCE(ad.status, 'UNKNOWN'::character varying) AS status,
+            COALESCE(ad.assignment_type, 'UNKNOWN'::character varying) AS assignment_type,
+            COALESCE(ad.org_code, 'UNKNOWN'::character varying) AS org_code,
+            ad.from_date,
+            ad.to_date,
+                CASE
+                    WHEN (((ad.role_code)::text = ANY (ARRAY[('Statsminister'::character varying)::text, ('Vice statsminister'::character varying)::text])) OR ((ad.role_code)::text ~~ '%minister%'::text) OR ((ad.role_code)::text = 'Statsråd'::text)) THEN 'MINISTER'::text
+                    WHEN (((ad.role_code)::text = 'Talman'::text) OR ((ad.role_code)::text ~~ '%vice talman%'::text)) THEN 'SPEAKER'::text
+                    WHEN ((ad.role_code)::text = ANY (ARRAY[('Partiledare'::character varying)::text, ('Gruppledare'::character varying)::text, ('Partisekreterare'::character varying)::text])) THEN 'PARTY_LEADER'::text
+                    WHEN ((ad.role_code)::text = 'Ordförande'::text) THEN 'COMMITTEE_CHAIR'::text
+                    WHEN ((ad.role_code)::text = 'Vice ordförande'::text) THEN 'COMMITTEE_VICE_CHAIR'::text
+                    WHEN (((ad.role_code)::text = 'Ledamot'::text) AND ((ad.org_code)::text ~~ 'K%'::text)) THEN 'COMMITTEE_MEMBER'::text
+                    WHEN ((ad.role_code)::text = 'Riksdagsledamot'::text) THEN 'MP'::text
+                    WHEN ((ad.role_code)::text = ANY (ARRAY[('Suppleant'::character varying)::text, ('Ersättare'::character varying)::text, ('Extra suppleant'::character varying)::text])) THEN 'SUBSTITUTE'::text
+                    ELSE 'OTHER'::text
+                END AS role_tier,
+                CASE
+                    WHEN ((ad.role_code)::text = 'Statsminister'::text) THEN 1000
+                    WHEN ((ad.role_code)::text = ANY (ARRAY[('Vice statsminister'::character varying)::text, ('Statsråd'::character varying)::text])) THEN 900
+                    WHEN ((ad.role_code)::text ~~ '%minister%'::text) THEN 850
+                    WHEN ((ad.role_code)::text = 'Talman'::text) THEN 800
+                    WHEN ((ad.role_code)::text ~~ '%vice talman%'::text) THEN 750
+                    WHEN ((ad.role_code)::text = 'Partiledare'::text) THEN 700
+                    WHEN ((ad.role_code)::text = 'Gruppledare'::text) THEN 650
+                    WHEN ((ad.role_code)::text = 'Ordförande'::text) THEN 600
+                    WHEN ((ad.role_code)::text = 'Vice ordförande'::text) THEN 550
+                    WHEN ((ad.role_code)::text = 'Partisekreterare'::text) THEN 500
+                    WHEN ((ad.role_code)::text = 'Riksdagsledamot'::text) THEN 400
+                    WHEN ((ad.role_code)::text = 'Ledamot'::text) THEN 350
+                    WHEN ((ad.role_code)::text = ANY (ARRAY[('Suppleant'::character varying)::text, ('Ersättare'::character varying)::text])) THEN 100
+                    ELSE 50
+                END AS role_weight,
+                CASE
+                    WHEN (ad.to_date IS NULL) THEN (CURRENT_DATE - ad.from_date)
+                    ELSE (ad.to_date - ad.from_date)
+                END AS days_in_role
+           FROM (public.person_data p
+             JOIN public.assignment_data ad ON (((p.id)::text = (ad.intressent_id)::text)))
+          WHERE (ad.from_date IS NOT NULL)
+        ), role_summary AS (
+         SELECT role_assignments.person_id,
+            role_assignments.first_name,
+            role_assignments.last_name,
+            role_assignments.party,
+            role_assignments.role_code,
+            role_assignments.status,
+            role_assignments.assignment_type,
+            role_assignments.org_code,
+            role_assignments.role_tier,
+            role_assignments.role_weight,
+            min(role_assignments.from_date) AS role_start,
+            max(COALESCE(role_assignments.to_date, CURRENT_DATE)) AS role_end,
+            (EXTRACT(year FROM min(role_assignments.from_date)))::integer AS role_start_year,
+            (EXTRACT(year FROM max(COALESCE(role_assignments.to_date, CURRENT_DATE))))::integer AS role_end_year,
+            count(*) AS role_instances,
+            sum(role_assignments.days_in_role) AS total_days_in_role,
+            bool_or((role_assignments.to_date IS NULL)) AS is_current_role
+           FROM role_assignments
+          GROUP BY role_assignments.person_id, role_assignments.first_name, role_assignments.last_name, role_assignments.party, role_assignments.role_code, role_assignments.status, role_assignments.assignment_type, role_assignments.org_code, role_assignments.role_tier, role_assignments.role_weight
+        ), role_progression AS (
+         SELECT role_summary.person_id,
+            role_summary.first_name,
+            role_summary.last_name,
+            role_summary.party,
+            role_summary.role_code,
+            role_summary.status,
+            role_summary.assignment_type,
+            role_summary.org_code,
+            role_summary.role_tier,
+            role_summary.role_weight,
+            role_summary.role_start,
+            role_summary.role_end,
+            role_summary.role_start_year,
+            role_summary.role_end_year,
+            role_summary.role_instances,
+            role_summary.total_days_in_role,
+            role_summary.is_current_role,
+            row_number() OVER (PARTITION BY role_summary.person_id ORDER BY role_summary.role_start) AS role_sequence,
+            max(role_summary.role_weight) OVER (PARTITION BY role_summary.person_id) AS peak_role_weight,
+            min(role_summary.role_start_year) OVER (PARTITION BY role_summary.person_id) AS career_first_year,
+            max(role_summary.role_end_year) OVER (PARTITION BY role_summary.person_id) AS career_last_year,
+            lag(role_summary.role_weight) OVER (PARTITION BY role_summary.person_id ORDER BY role_summary.role_start) AS prev_role_weight,
+            lag(role_summary.role_start_year) OVER (PARTITION BY role_summary.person_id ORDER BY role_summary.role_start) AS prev_role_start_year,
+            lead(role_summary.role_weight) OVER (PARTITION BY role_summary.person_id ORDER BY role_summary.role_start) AS next_role_weight
+           FROM role_summary
+        )
+ SELECT person_id,
+    first_name,
+    last_name,
+    party,
+    role_code,
+    status,
+    assignment_type,
+    org_code,
+    role_tier,
+    role_weight,
+    role_start,
+    role_end,
+    role_start_year,
+    role_end_year,
+    role_instances,
+    total_days_in_role,
+    is_current_role,
+    role_sequence,
+    peak_role_weight,
+    career_first_year,
+    career_last_year,
+    ((role_end_year - role_start_year) + 1) AS years_in_role,
+        CASE
+            WHEN (role_weight = peak_role_weight) THEN 'PEAK_ROLE'::text
+            WHEN ((role_weight > COALESCE(prev_role_weight, 0)) AND (role_weight > COALESCE(next_role_weight, 0))) THEN 'CAREER_PEAK'::text
+            WHEN (role_weight > COALESCE(prev_role_weight, 0)) THEN 'ASCENDING'::text
+            WHEN (role_weight < COALESCE(prev_role_weight, role_weight)) THEN 'DESCENDING'::text
+            ELSE 'LATERAL'::text
+        END AS progression_pattern,
+        CASE
+            WHEN (role_weight >= 800) THEN 'TOP_LEADERSHIP'::text
+            WHEN (role_weight >= 600) THEN 'SENIOR_LEADERSHIP'::text
+            WHEN (role_weight >= 400) THEN 'MID_LEVEL'::text
+            WHEN (role_weight >= 200) THEN 'JUNIOR'::text
+            ELSE 'ENTRY_LEVEL'::text
+        END AS career_level,
+        CASE
+            WHEN ((prev_role_weight IS NOT NULL) AND (prev_role_start_year IS NOT NULL)) THEN round((((role_weight - prev_role_weight))::numeric / (NULLIF((role_start_year - prev_role_start_year), 0))::numeric), 2)
+            ELSE NULL::numeric
+        END AS advancement_velocity
+   FROM role_progression
+  ORDER BY person_id, role_start;
+
+
+--
+-- Name: VIEW view_riksdagen_politician_role_evolution; Type: COMMENT; Schema: public; Owner: -
+--
+
+COMMENT ON VIEW public.view_riksdagen_politician_role_evolution IS 'Role evolution analysis tracking politician career progression through different positions.
+Classifies roles into tiers (minister/speaker/party leader/committee chair/member/substitute),
+assigns role weights for progression analysis, and identifies career patterns (ascending/descending/lateral).
+Calculates advancement velocity and career levels. Used for Predictive Intelligence Framework (Framework 4)
+to understand career trajectories and predict future role transitions.';
+
+
+--
+-- Name: view_riksdagen_election_proximity_trends; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.view_riksdagen_election_proximity_trends AS
+ WITH election_dates AS (
+         SELECT unnest(ARRAY['2002-09-15'::date, '2006-09-17'::date, '2010-09-19'::date, '2014-09-14'::date, '2018-09-09'::date, '2022-09-11'::date, '2026-09-13'::date]) AS election_date
+        ), politician_behavioral_metrics AS (
+         SELECT pbt.person_id,
+            pbt.first_name,
+            pbt.last_name,
+            pbt.party,
+            date_trunc('quarter'::text, pbt.period_start) AS activity_quarter,
+            EXTRACT(quarter FROM pbt.period_start) AS quarter_number,
+            ed.election_date,
+            (((EXTRACT(year FROM age((ed.election_date)::timestamp with time zone, ((pbt.period_start)::date)::timestamp with time zone)))::integer * 12) + (EXTRACT(month FROM age((ed.election_date)::timestamp with time zone, ((pbt.period_start)::date)::timestamp with time zone)))::integer) AS months_until_election,
+            pbt.total_ballots AS ballot_count,
+            pbt.total_votes,
+            round(((100)::numeric - pbt.avg_absence_rate), 2) AS attendance_rate,
+            pbt.avg_win_rate,
+            pbt.avg_rebel_rate,
+            pbt.avg_yes_rate,
+            pbt.avg_no_rate,
+            pbt.avg_abstain_rate,
+            pbt.violation_count,
+            pbt.behavioral_assessment,
+            pbt.attendance_status,
+            pbt.effectiveness_status,
+            pbt.discipline_status,
+                CASE
+                    WHEN ((EXTRACT(quarter FROM pbt.period_start) = (4)::numeric) AND (((((EXTRACT(year FROM age((ed.election_date)::timestamp with time zone, ((pbt.period_start)::date)::timestamp with time zone)))::integer * 12) + (EXTRACT(month FROM age((ed.election_date)::timestamp with time zone, ((pbt.period_start)::date)::timestamp with time zone)))::integer) >= 9) AND ((((EXTRACT(year FROM age((ed.election_date)::timestamp with time zone, ((pbt.period_start)::date)::timestamp with time zone)))::integer * 12) + (EXTRACT(month FROM age((ed.election_date)::timestamp with time zone, ((pbt.period_start)::date)::timestamp with time zone)))::integer) <= 15))) THEN true
+                    ELSE false
+                END AS is_pre_election_q4
+           FROM (public.view_politician_behavioral_trends pbt
+             CROSS JOIN election_dates ed)
+          WHERE (((pbt.period_start)::date < ed.election_date) AND (age((ed.election_date)::timestamp with time zone, ((pbt.period_start)::date)::timestamp with time zone) < '4 years'::interval))
+        ), politician_document_metrics AS (
+         SELECT pd.person_reference_id AS person_id,
+            date_trunc('quarter'::text, (pd.made_public_date)::timestamp with time zone) AS activity_quarter,
+            ed.election_date,
+            count(DISTINCT pd.doc_id) AS document_count,
+            count(DISTINCT
+                CASE
+                    WHEN ((pd.document_type)::text = 'prop'::text) THEN pd.doc_id
+                    ELSE NULL::character varying
+                END) AS proposal_count,
+            count(DISTINCT
+                CASE
+                    WHEN ((pd.document_type)::text = 'mot'::text) THEN pd.doc_id
+                    ELSE NULL::character varying
+                END) AS motion_count
+           FROM (public.view_riksdagen_politician_document pd
+             CROSS JOIN election_dates ed)
+          WHERE ((pd.made_public_date < ed.election_date) AND (age((ed.election_date)::timestamp with time zone, (pd.made_public_date)::timestamp with time zone) < '4 years'::interval) AND (pd.person_reference_id IS NOT NULL))
+          GROUP BY pd.person_reference_id, (date_trunc('quarter'::text, (pd.made_public_date)::timestamp with time zone)), ed.election_date
+        ), politician_role_metrics AS (
+         SELECT pre.person_id,
+            date_trunc('quarter'::text, (pre.role_start)::timestamp with time zone) AS activity_quarter,
+            ed.election_date,
+            count(DISTINCT pre.role_tier) AS new_assignment_count,
+            max(pre.role_weight) AS peak_role_weight_quarter,
+            count(DISTINCT
+                CASE
+                    WHEN (pre.role_tier = ANY (ARRAY['minister'::text, 'speaker'::text, 'party_leader'::text])) THEN pre.role_tier
+                    ELSE NULL::text
+                END) AS leadership_role_count,
+            count(DISTINCT
+                CASE
+                    WHEN (pre.role_tier = ANY (ARRAY['committee_chair'::text, 'committee_member'::text])) THEN pre.role_tier
+                    ELSE NULL::text
+                END) AS committee_assignment_count
+           FROM (public.view_riksdagen_politician_role_evolution pre
+             CROSS JOIN election_dates ed)
+          WHERE ((pre.role_start < ed.election_date) AND (age((ed.election_date)::timestamp with time zone, (pre.role_start)::timestamp with time zone) < '4 years'::interval))
+          GROUP BY pre.person_id, (date_trunc('quarter'::text, (pre.role_start)::timestamp with time zone)), ed.election_date
+        ), politician_decision_metrics AS (
+         SELECT pdp.person_id,
+            date_trunc('quarter'::text, ((pdp.decision_month)::date)::timestamp with time zone) AS activity_quarter,
+            ed.election_date,
+            sum(pdp.total_decisions) AS decision_count,
+            sum(pdp.approved_decisions) AS approved_decisions,
+            sum(pdp.rejected_decisions) AS rejected_decisions,
+            round(avg(pdp.approval_rate), 2) AS avg_approval_rate,
+            count(DISTINCT pdp.committee_org) AS active_committees
+           FROM (public.view_riksdagen_politician_decision_pattern pdp
+             CROSS JOIN election_dates ed)
+          WHERE (((pdp.decision_month)::date < ed.election_date) AND (age((ed.election_date)::timestamp with time zone, ((pdp.decision_month)::date)::timestamp with time zone) < '4 years'::interval))
+          GROUP BY pdp.person_id, (date_trunc('quarter'::text, ((pdp.decision_month)::date)::timestamp with time zone)), ed.election_date
+        ), politician_risk_metrics AS (
+         SELECT DISTINCT ON (prs.person_id) prs.person_id,
+            prs.risk_score AS overall_risk_score,
+            prs.risk_level,
+            prs.risk_score AS trend_risk_score,
+            prs.risk_score AS anomaly_risk_score
+           FROM public.view_politician_risk_summary prs
+        ), politician_influence_metrics AS (
+         SELECT DISTINCT ON (pim.person_id) pim.person_id,
+            pim.network_connections,
+            pim.influence_classification,
+            pim.broker_classification,
+            pim.influence_assessment
+           FROM public.view_riksdagen_politician_influence_metrics pim
+        ), combined_activity AS (
+         SELECT pbm.person_id,
+            pbm.first_name,
+            pbm.last_name,
+            pbm.party,
+            pbm.election_date,
+            pbm.activity_quarter,
+            pbm.quarter_number,
+            pbm.months_until_election,
+            pbm.is_pre_election_q4,
+            pbm.ballot_count,
+            pbm.total_votes,
+            pbm.attendance_rate,
+            pbm.avg_win_rate,
+            pbm.avg_rebel_rate,
+            pbm.avg_yes_rate,
+            pbm.avg_no_rate,
+            pbm.avg_abstain_rate,
+            pbm.violation_count,
+            pbm.behavioral_assessment,
+            pbm.attendance_status,
+            pbm.effectiveness_status,
+            pbm.discipline_status,
+            COALESCE(pdm.document_count, (0)::bigint) AS document_count,
+            COALESCE(pdm.proposal_count, (0)::bigint) AS proposal_count,
+            COALESCE(pdm.motion_count, (0)::bigint) AS motion_count,
+            COALESCE(prm.new_assignment_count, (0)::bigint) AS new_assignment_count,
+            COALESCE(prm.peak_role_weight_quarter, 0) AS peak_role_weight_quarter,
+            COALESCE(prm.leadership_role_count, (0)::bigint) AS leadership_role_count,
+            COALESCE(prm.committee_assignment_count, (0)::bigint) AS committee_assignment_count,
+            COALESCE(pdecm.decision_count, (0)::numeric) AS decision_count,
+            COALESCE(pdecm.approved_decisions, (0)::numeric) AS approved_decisions,
+            COALESCE(pdecm.rejected_decisions, (0)::numeric) AS rejected_decisions,
+            COALESCE(pdecm.avg_approval_rate, (0)::numeric) AS avg_approval_rate,
+            COALESCE(pdecm.active_committees, (0)::bigint) AS active_committees,
+            prisk.overall_risk_score,
+            prisk.risk_level,
+            prisk.trend_risk_score,
+            prisk.anomaly_risk_score,
+            pinf.network_connections,
+            pinf.influence_classification,
+            pinf.broker_classification,
+            pinf.influence_assessment
+           FROM (((((politician_behavioral_metrics pbm
+             LEFT JOIN politician_document_metrics pdm ON ((((pbm.person_id)::text = (pdm.person_id)::text) AND (pbm.activity_quarter = pdm.activity_quarter) AND (pbm.election_date = pdm.election_date))))
+             LEFT JOIN politician_role_metrics prm ON ((((pbm.person_id)::text = (prm.person_id)::text) AND (pbm.activity_quarter = prm.activity_quarter) AND (pbm.election_date = prm.election_date))))
+             LEFT JOIN politician_decision_metrics pdecm ON ((((pbm.person_id)::text = (pdecm.person_id)::text) AND (pbm.activity_quarter = pdecm.activity_quarter) AND (pbm.election_date = pdecm.election_date))))
+             LEFT JOIN politician_risk_metrics prisk ON (((pbm.person_id)::text = (prisk.person_id)::text)))
+             LEFT JOIN politician_influence_metrics pinf ON (((pbm.person_id)::text = (pinf.person_id)::text)))
+        )
+ SELECT person_id,
+    first_name,
+    last_name,
+    party,
+    election_date,
+    activity_quarter,
+    quarter_number,
+    months_until_election,
+    is_pre_election_q4,
+    ballot_count,
+    total_votes,
+    attendance_rate,
+    avg_win_rate,
+    avg_rebel_rate,
+    avg_yes_rate,
+    avg_no_rate,
+    avg_abstain_rate,
+    violation_count,
+    behavioral_assessment,
+    attendance_status,
+    effectiveness_status,
+    discipline_status,
+    document_count,
+    proposal_count,
+    motion_count,
+    new_assignment_count,
+    peak_role_weight_quarter,
+    leadership_role_count,
+    committee_assignment_count,
+    decision_count,
+    approved_decisions,
+    rejected_decisions,
+    avg_approval_rate,
+    active_committees,
+    overall_risk_score,
+    risk_level,
+    trend_risk_score,
+    anomaly_risk_score,
+    network_connections,
+    influence_classification,
+    broker_classification,
+    influence_assessment,
+    round(avg(ballot_count) OVER (PARTITION BY person_id), 2) AS avg_ballot_count_baseline,
+    round(avg(document_count) OVER (PARTITION BY person_id), 2) AS avg_document_count_baseline,
+    round(avg(decision_count) OVER (PARTITION BY person_id), 2) AS avg_decision_count_baseline,
+    round(avg(new_assignment_count) OVER (PARTITION BY person_id), 2) AS avg_assignment_count_baseline,
+    round((ballot_count - avg(ballot_count) OVER (PARTITION BY person_id)), 2) AS ballot_count_deviation,
+    round(((document_count)::numeric - avg(document_count) OVER (PARTITION BY person_id)), 2) AS document_count_deviation,
+    round((decision_count - avg(decision_count) OVER (PARTITION BY person_id)), 2) AS decision_count_deviation,
+    round(((new_assignment_count)::numeric - avg(new_assignment_count) OVER (PARTITION BY person_id)), 2) AS assignment_count_deviation,
+    round((ballot_count / NULLIF(avg(ballot_count) OVER (PARTITION BY person_id), (0)::numeric)), 2) AS ballot_activity_ratio,
+    round(((document_count)::numeric / NULLIF(avg(document_count) OVER (PARTITION BY person_id), (0)::numeric)), 2) AS document_activity_ratio,
+    round((decision_count / NULLIF(avg(decision_count) OVER (PARTITION BY person_id), (0)::numeric)), 2) AS decision_activity_ratio,
+    round(((new_assignment_count)::numeric / NULLIF(avg(new_assignment_count) OVER (PARTITION BY person_id), (0)::numeric)), 2) AS assignment_activity_ratio,
+        CASE
+            WHEN ((ballot_count > (1.5 * avg(ballot_count) OVER (PARTITION BY person_id))) OR ((document_count)::numeric > (1.5 * avg(document_count) OVER (PARTITION BY person_id))) OR (decision_count > (1.5 * avg(decision_count) OVER (PARTITION BY person_id))) OR ((new_assignment_count)::numeric > (1.5 * avg(new_assignment_count) OVER (PARTITION BY person_id)))) THEN 'ELEVATED_ACTIVITY'::text
+            WHEN ((ballot_count < (0.7 * avg(ballot_count) OVER (PARTITION BY person_id))) AND ((document_count)::numeric < (0.7 * avg(document_count) OVER (PARTITION BY person_id)))) THEN 'REDUCED_ACTIVITY'::text
+            ELSE 'NORMAL_ACTIVITY'::text
+        END AS activity_classification,
+    COALESCE(round((((((ballot_count / NULLIF(avg(ballot_count) OVER (PARTITION BY person_id), (0)::numeric)) * 0.30) + (((document_count)::numeric / NULLIF(avg(document_count) OVER (PARTITION BY person_id), (0)::numeric)) * 0.25)) + ((decision_count / NULLIF(avg(decision_count) OVER (PARTITION BY person_id), (0)::numeric)) * 0.25)) + (((new_assignment_count)::numeric / NULLIF(avg(new_assignment_count) OVER (PARTITION BY person_id), (0)::numeric)) * 0.20)), 2), 0.0) AS composite_activity_score,
+        CASE
+            WHEN (months_until_election <= 6) THEN 'ELECTION_IMMINENT'::text
+            WHEN (months_until_election <= 12) THEN 'PRE_ELECTION_YEAR'::text
+            WHEN (months_until_election <= 24) THEN 'MID_CYCLE'::text
+            ELSE 'EARLY_CYCLE'::text
+        END AS election_phase,
+    rank() OVER (PARTITION BY election_date, activity_quarter ORDER BY ballot_count DESC) AS rank_by_activity_quarter
+   FROM combined_activity ca
+  WHERE (ballot_count > (0)::numeric)
+  ORDER BY election_date DESC, months_until_election, person_id, activity_quarter;
+
+
+--
+-- Name: VIEW view_riksdagen_election_proximity_trends; Type: COMMENT; Schema: public; Owner: -
+--
+
+COMMENT ON VIEW public.view_riksdagen_election_proximity_trends IS 'Comprehensive multi-dimensional election proximity trend analysis tracking politician activity by months until election (0-48 months). Features: Q4 pre-election flag (9-15 months before election), activity classification across voting, documents, decisions, and roles (>1.5x baseline = ELEVATED), risk and influence metrics, baseline comparison, quarterly aggregation, composite activity score. Data Sources (META/META level): view_politician_behavioral_trends (behavioral assessment), view_riksdagen_politician_document (documents), view_riksdagen_politician_role_evolution (roles), view_riksdagen_politician_decision_pattern (decisions), view_politician_risk_summary (risk), view_riksdagen_politician_influence_metrics (influence/network). Election cycles: 2002, 2006, 2010, 2014, 2018, 2022, 2026. Framework 1: Temporal Analysis. Use Case: Comprehensive pre-election behavioral surge detection across all dimensions, predict election-driven behavior changes, track role ambitions, assess risk evolution.';
+
+
+--
+-- Name: view_riksdagen_election_year_behavioral_patterns; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.view_riksdagen_election_year_behavioral_patterns AS
+ WITH election_years AS (
+         SELECT unnest(ARRAY[2002, 2006, 2010, 2014, 2018, 2022, 2026]) AS election_year
+        ), annual_metrics AS (
+         SELECT (EXTRACT(year FROM vd.vote_date))::integer AS year,
+                CASE
+                    WHEN (ey.election_year IS NOT NULL) THEN true
+                    ELSE false
+                END AS is_election_year,
+            count(DISTINCT vd.embedded_id_ballot_id) AS total_ballots,
+            count(DISTINCT vd.embedded_id_intressent_id) AS active_politicians,
+            round((avg(
+                CASE
+                    WHEN ((vd.vote)::text <> 'Frånvarande'::text) THEN 1
+                    ELSE 0
+                END) * (100)::numeric), 2) AS attendance_rate,
+            round((avg(
+                CASE
+                    WHEN ((vd.vote)::text = 'Ja'::text) THEN 1
+                    ELSE 0
+                END) * (100)::numeric), 2) AS avg_yes_rate,
+            round((avg(
+                CASE
+                    WHEN ((vd.vote)::text = 'Nej'::text) THEN 1
+                    ELSE 0
+                END) * (100)::numeric), 2) AS avg_no_rate,
+            round((avg(
+                CASE
+                    WHEN ((vd.vote)::text = 'Avstår'::text) THEN 1
+                    ELSE 0
+                END) * (100)::numeric), 2) AS avg_abstain_rate,
+            count(DISTINCT dd.id) AS documents_produced,
+            count(DISTINCT
+                CASE
+                    WHEN ((dd.document_type)::text = 'mot'::text) THEN dd.id
+                    ELSE NULL::character varying
+                END) AS motions_filed,
+            count(DISTINCT
+                CASE
+                    WHEN ((dd.document_type)::text = 'prop'::text) THEN dd.id
+                    ELSE NULL::character varying
+                END) AS proposals_filed
+           FROM ((public.vote_data vd
+             LEFT JOIN election_years ey ON (((ey.election_year)::numeric = EXTRACT(year FROM vd.vote_date))))
+             LEFT JOIN public.document_data dd ON ((EXTRACT(year FROM dd.made_public_date) = EXTRACT(year FROM vd.vote_date))))
+          WHERE ((vd.vote_date IS NOT NULL) AND ((EXTRACT(year FROM vd.vote_date) >= (2002)::numeric) AND (EXTRACT(year FROM vd.vote_date) <= (2026)::numeric)))
+          GROUP BY ((EXTRACT(year FROM vd.vote_date))::integer),
+                CASE
+                    WHEN (ey.election_year IS NOT NULL) THEN true
+                    ELSE false
+                END
+        ), election_baseline AS (
+         SELECT percentile_cont((0.5)::double precision) WITHIN GROUP (ORDER BY ((annual_metrics.total_ballots)::double precision)) FILTER (WHERE annual_metrics.is_election_year) AS election_median_ballots,
+            avg(annual_metrics.total_ballots) FILTER (WHERE annual_metrics.is_election_year) AS election_avg_ballots,
+            stddev(annual_metrics.total_ballots) FILTER (WHERE annual_metrics.is_election_year) AS election_stddev_ballots,
+            avg(annual_metrics.total_ballots) FILTER (WHERE (NOT annual_metrics.is_election_year)) AS midterm_avg_ballots,
+            stddev(annual_metrics.total_ballots) FILTER (WHERE (NOT annual_metrics.is_election_year)) AS midterm_stddev_ballots,
+            percentile_cont((0.5)::double precision) WITHIN GROUP (ORDER BY ((annual_metrics.documents_produced)::double precision)) FILTER (WHERE annual_metrics.is_election_year) AS election_median_docs,
+            avg(annual_metrics.documents_produced) FILTER (WHERE annual_metrics.is_election_year) AS election_avg_docs,
+            stddev(annual_metrics.documents_produced) FILTER (WHERE annual_metrics.is_election_year) AS election_stddev_docs,
+            avg(annual_metrics.documents_produced) FILTER (WHERE (NOT annual_metrics.is_election_year)) AS midterm_avg_docs,
+            percentile_cont((0.5)::double precision) WITHIN GROUP (ORDER BY ((annual_metrics.motions_filed)::double precision)) FILTER (WHERE annual_metrics.is_election_year) AS election_median_motions,
+            avg(annual_metrics.motions_filed) FILTER (WHERE annual_metrics.is_election_year) AS election_avg_motions,
+            stddev(annual_metrics.motions_filed) FILTER (WHERE annual_metrics.is_election_year) AS election_stddev_motions,
+            avg(annual_metrics.motions_filed) FILTER (WHERE (NOT annual_metrics.is_election_year)) AS midterm_avg_motions,
+            avg(annual_metrics.attendance_rate) FILTER (WHERE annual_metrics.is_election_year) AS election_avg_attendance,
+            stddev(annual_metrics.attendance_rate) FILTER (WHERE annual_metrics.is_election_year) AS election_stddev_attendance,
+            avg(annual_metrics.attendance_rate) FILTER (WHERE (NOT annual_metrics.is_election_year)) AS midterm_avg_attendance
+           FROM annual_metrics
+        )
+ SELECT am.year,
+    am.is_election_year,
+    am.total_ballots,
+    am.active_politicians,
+    am.attendance_rate,
+    am.avg_yes_rate,
+    am.avg_no_rate,
+    am.avg_abstain_rate,
+    am.documents_produced,
+    am.motions_filed,
+    am.proposals_filed,
+    round((eb.election_median_ballots)::numeric, 2) AS election_median_ballots,
+    round(eb.election_avg_ballots, 2) AS election_avg_ballots,
+    round(eb.election_stddev_ballots, 2) AS election_stddev_ballots,
+    round(eb.midterm_avg_ballots, 2) AS midterm_avg_ballots,
+    round(eb.midterm_stddev_ballots, 2) AS midterm_stddev_ballots,
+    round(((am.total_ballots)::numeric / NULLIF(eb.midterm_avg_ballots, (0)::numeric)), 2) AS ballot_ratio_vs_midterm,
+    round(((am.total_ballots)::numeric / NULLIF(eb.election_avg_ballots, (0)::numeric)), 2) AS ballot_ratio_vs_election_avg,
+    round((eb.election_median_docs)::numeric, 2) AS election_median_docs,
+    round(eb.election_avg_docs, 2) AS election_avg_docs,
+    round(eb.election_stddev_docs, 2) AS election_stddev_docs,
+    round(eb.midterm_avg_docs, 2) AS midterm_avg_docs,
+    round(((am.documents_produced)::numeric / NULLIF(eb.midterm_avg_docs, (0)::numeric)), 2) AS doc_ratio_vs_midterm,
+    round(((am.documents_produced)::numeric / NULLIF(eb.election_avg_docs, (0)::numeric)), 2) AS doc_ratio_vs_election_avg,
+    round((eb.election_median_motions)::numeric, 2) AS election_median_motions,
+    round(eb.election_avg_motions, 2) AS election_avg_motions,
+    round(eb.election_stddev_motions, 2) AS election_stddev_motions,
+    round(eb.midterm_avg_motions, 2) AS midterm_avg_motions,
+    round(((am.motions_filed)::numeric / NULLIF(eb.midterm_avg_motions, (0)::numeric)), 2) AS motion_ratio_vs_midterm,
+    round(eb.election_avg_attendance, 2) AS election_avg_attendance,
+    round(eb.midterm_avg_attendance, 2) AS midterm_avg_attendance,
+        CASE
+            WHEN ((eb.election_stddev_ballots > (0)::numeric) AND am.is_election_year) THEN round((((am.total_ballots)::numeric - eb.election_avg_ballots) / eb.election_stddev_ballots), 2)
+            ELSE (0)::numeric
+        END AS ballot_z_score_vs_election_avg,
+        CASE
+            WHEN ((eb.election_stddev_docs > (0)::numeric) AND am.is_election_year) THEN round((((am.documents_produced)::numeric - eb.election_avg_docs) / eb.election_stddev_docs), 2)
+            ELSE (0)::numeric
+        END AS doc_z_score_vs_election_avg,
+        CASE
+            WHEN (am.is_election_year AND ((am.total_ballots)::numeric > (eb.election_avg_ballots + eb.election_stddev_ballots))) THEN 'HIGH_ELECTION_ACTIVITY'::text
+            WHEN (am.is_election_year AND ((am.total_ballots)::numeric < (eb.election_avg_ballots - eb.election_stddev_ballots))) THEN 'LOW_ELECTION_ACTIVITY'::text
+            WHEN am.is_election_year THEN 'NORMAL_ELECTION_ACTIVITY'::text
+            ELSE 'MIDTERM_YEAR'::text
+        END AS year_classification,
+        CASE
+            WHEN am.is_election_year THEN
+            CASE
+                WHEN (((am.total_ballots)::numeric > (eb.election_avg_ballots + eb.election_stddev_ballots)) OR ((am.documents_produced)::numeric > (eb.election_avg_docs + eb.election_stddev_docs)) OR ((am.motions_filed)::numeric > (eb.election_avg_motions + eb.election_stddev_motions))) THEN 'HIGH_ACTIVITY_ELECTION'::text
+                WHEN (((am.total_ballots)::numeric < (eb.election_avg_ballots - eb.election_stddev_ballots)) AND ((am.documents_produced)::numeric < (eb.election_avg_docs - eb.election_stddev_docs))) THEN 'LOW_ACTIVITY_ELECTION'::text
+                ELSE 'TYPICAL_ELECTION'::text
+            END
+            ELSE
+            CASE
+                WHEN ((am.total_ballots)::numeric > (eb.midterm_avg_ballots + COALESCE(eb.midterm_stddev_ballots, (0)::numeric))) THEN 'HIGH_ACTIVITY_MIDTERM'::text
+                WHEN ((am.total_ballots)::numeric < (eb.midterm_avg_ballots - COALESCE(eb.midterm_stddev_ballots, (0)::numeric))) THEN 'LOW_ACTIVITY_MIDTERM'::text
+                ELSE 'TYPICAL_MIDTERM'::text
+            END
+        END AS composite_classification,
+    lag(am.total_ballots) OVER (ORDER BY am.year) AS prev_year_ballots,
+        CASE
+            WHEN ((lag(am.total_ballots) OVER (ORDER BY am.year) IS NOT NULL) AND (lag(am.total_ballots) OVER (ORDER BY am.year) > 0)) THEN round(((((am.total_ballots - lag(am.total_ballots) OVER (ORDER BY am.year)))::numeric / (lag(am.total_ballots) OVER (ORDER BY am.year))::numeric) * (100)::numeric), 2)
+            ELSE NULL::numeric
+        END AS yoy_ballot_change_pct
+   FROM (annual_metrics am
+     CROSS JOIN election_baseline eb)
+  ORDER BY am.year;
+
+
+--
+-- Name: VIEW view_riksdagen_election_year_behavioral_patterns; Type: COMMENT; Schema: public; Owner: -
+--
+
+COMMENT ON VIEW public.view_riksdagen_election_year_behavioral_patterns IS 'Annual behavioral pattern comparison across all election years (2002, 2006, 2010, 2014, 2018, 2022, 2026) vs midterm years. Features: multi-dimensional metrics (voting, documents, motions, attendance), election year baseline calculation using median and average, activity ratios vs both election and midterm baselines, z-score anomaly detection, year classification (HIGH/NORMAL/LOW election activity), composite classification considering multiple dimensions. Data Sources: vote_data (voting patterns), document_data (productivity). Election cycles: 7 election years, 17 midterm years (2002-2026). Framework 1: Temporal Analysis - Annual comparison. Use Case: Identify systematic election year behavioral shifts, detect unusual election patterns, predict future election behavior based on historical patterns.';
+
+
+--
+-- Name: view_riksdagen_election_year_anomalies; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.view_riksdagen_election_year_anomalies AS
+ WITH election_year_data AS (
+         SELECT view_riksdagen_election_year_behavioral_patterns.year,
+            view_riksdagen_election_year_behavioral_patterns.total_ballots,
+            view_riksdagen_election_year_behavioral_patterns.documents_produced,
+            view_riksdagen_election_year_behavioral_patterns.motions_filed,
+            view_riksdagen_election_year_behavioral_patterns.proposals_filed,
+            view_riksdagen_election_year_behavioral_patterns.attendance_rate,
+            view_riksdagen_election_year_behavioral_patterns.ballot_z_score_vs_election_avg,
+            view_riksdagen_election_year_behavioral_patterns.doc_z_score_vs_election_avg,
+            view_riksdagen_election_year_behavioral_patterns.year_classification,
+            view_riksdagen_election_year_behavioral_patterns.composite_classification,
+            view_riksdagen_election_year_behavioral_patterns.election_avg_ballots,
+            view_riksdagen_election_year_behavioral_patterns.election_stddev_ballots,
+            view_riksdagen_election_year_behavioral_patterns.election_avg_docs,
+            view_riksdagen_election_year_behavioral_patterns.election_stddev_docs,
+            view_riksdagen_election_year_behavioral_patterns.election_avg_motions,
+            view_riksdagen_election_year_behavioral_patterns.election_stddev_motions,
+            view_riksdagen_election_year_behavioral_patterns.yoy_ballot_change_pct
+           FROM public.view_riksdagen_election_year_behavioral_patterns
+          WHERE (view_riksdagen_election_year_behavioral_patterns.is_election_year = true)
+        ), anomaly_detection AS (
+         SELECT eyd.year,
+            eyd.total_ballots,
+            eyd.documents_produced,
+            eyd.motions_filed,
+            eyd.proposals_filed,
+            eyd.attendance_rate,
+            eyd.ballot_z_score_vs_election_avg,
+            eyd.doc_z_score_vs_election_avg,
+            eyd.year_classification,
+            eyd.composite_classification,
+            eyd.election_avg_ballots,
+            eyd.election_stddev_ballots,
+            eyd.election_avg_docs,
+            eyd.election_stddev_docs,
+            eyd.election_avg_motions,
+            eyd.election_stddev_motions,
+            eyd.yoy_ballot_change_pct,
+                CASE
+                    WHEN (eyd.election_stddev_motions > (0)::numeric) THEN round((((eyd.motions_filed)::numeric - eyd.election_avg_motions) / eyd.election_stddev_motions), 2)
+                    ELSE (0)::numeric
+                END AS motion_z_score,
+            (abs(eyd.ballot_z_score_vs_election_avg) > 1.5) AS has_ballot_anomaly,
+            (abs(eyd.doc_z_score_vs_election_avg) > 1.5) AS has_doc_anomaly,
+            (abs(
+                CASE
+                    WHEN (eyd.election_stddev_motions > (0)::numeric) THEN (((eyd.motions_filed)::numeric - eyd.election_avg_motions) / eyd.election_stddev_motions)
+                    ELSE (0)::numeric
+                END) > 1.5) AS has_motion_anomaly
+           FROM election_year_data eyd
+        )
+ SELECT year,
+    total_ballots,
+    documents_produced,
+    motions_filed,
+    proposals_filed,
+    attendance_rate,
+    ballot_z_score_vs_election_avg,
+    doc_z_score_vs_election_avg,
+    motion_z_score,
+    year_classification,
+    composite_classification,
+    yoy_ballot_change_pct,
+    has_ballot_anomaly,
+    has_doc_anomaly,
+    has_motion_anomaly,
+    ((
+        CASE
+            WHEN has_ballot_anomaly THEN 1
+            ELSE 0
+        END +
+        CASE
+            WHEN has_doc_anomaly THEN 1
+            ELSE 0
+        END) +
+        CASE
+            WHEN has_motion_anomaly THEN 1
+            ELSE 0
+        END) AS anomaly_count,
+        CASE
+            WHEN (has_ballot_anomaly OR has_doc_anomaly OR has_motion_anomaly) THEN array_to_string(array_remove(ARRAY[
+            CASE
+                WHEN has_ballot_anomaly THEN
+                CASE
+                    WHEN (ballot_z_score_vs_election_avg > (0)::numeric) THEN 'HIGH_BALLOT_ACTIVITY'::text
+                    ELSE 'LOW_BALLOT_ACTIVITY'::text
+                END
+                ELSE NULL::text
+            END,
+            CASE
+                WHEN has_doc_anomaly THEN
+                CASE
+                    WHEN (doc_z_score_vs_election_avg > (0)::numeric) THEN 'HIGH_DOCUMENT_ACTIVITY'::text
+                    ELSE 'LOW_DOCUMENT_ACTIVITY'::text
+                END
+                ELSE NULL::text
+            END,
+            CASE
+                WHEN has_motion_anomaly THEN
+                CASE
+                    WHEN (motion_z_score > (0)::numeric) THEN 'HIGH_MOTION_ACTIVITY'::text
+                    ELSE 'LOW_MOTION_ACTIVITY'::text
+                END
+                ELSE NULL::text
+            END], NULL::text), ', '::text)
+            ELSE 'NO_ANOMALY'::text
+        END AS anomaly_types,
+        CASE
+            WHEN (GREATEST(abs(ballot_z_score_vs_election_avg), abs(doc_z_score_vs_election_avg), abs(motion_z_score)) > 2.5) THEN 'CRITICAL'::text
+            WHEN (GREATEST(abs(ballot_z_score_vs_election_avg), abs(doc_z_score_vs_election_avg), abs(motion_z_score)) > 2.0) THEN 'HIGH'::text
+            WHEN (GREATEST(abs(ballot_z_score_vs_election_avg), abs(doc_z_score_vs_election_avg), abs(motion_z_score)) > 1.5) THEN 'MODERATE'::text
+            ELSE 'NORMAL'::text
+        END AS anomaly_severity,
+    round(GREATEST(abs(ballot_z_score_vs_election_avg), abs(doc_z_score_vs_election_avg), abs(motion_z_score)), 2) AS max_z_score,
+        CASE
+            WHEN (((ballot_z_score_vs_election_avg + doc_z_score_vs_election_avg) + motion_z_score) > (0)::numeric) THEN 'ELEVATED_ACTIVITY'::text
+            WHEN (((ballot_z_score_vs_election_avg + doc_z_score_vs_election_avg) + motion_z_score) < (0)::numeric) THEN 'REDUCED_ACTIVITY'::text
+            ELSE 'MIXED_PATTERN'::text
+        END AS anomaly_direction,
+    election_avg_ballots,
+    election_stddev_ballots,
+    election_avg_docs,
+    election_stddev_docs,
+    election_avg_motions,
+    election_stddev_motions
+   FROM anomaly_detection ad
+  WHERE (has_ballot_anomaly OR has_doc_anomaly OR has_motion_anomaly)
+  ORDER BY year DESC;
+
+
+--
+-- Name: VIEW view_riksdagen_election_year_anomalies; Type: COMMENT; Schema: public; Owner: -
+--
+
+COMMENT ON VIEW public.view_riksdagen_election_year_anomalies IS 'Statistical anomaly detection for election years only, identifying unusual behavioral patterns. Features: multi-dimensional anomaly detection (ballots, documents, motions), z-score threshold |z| > 1.5, anomaly classification by dimension and direction, severity levels (CRITICAL |z|>2.5, HIGH |z|>2.0, MODERATE |z|>1.5), anomaly count across dimensions, directional indicators (ELEVATED/REDUCED/MIXED). Data Source (META level): view_riksdagen_election_year_behavioral_patterns (election years only). Election years analyzed: 7 years (2002, 2006, 2010, 2014, 2018, 2022, 2026). Framework 3: Pattern Recognition - Anomaly detection. Framework 6: Decision Intelligence. Use Case: Identify outlier elections, detect unusual election dynamics, investigate atypical election year patterns, early warning for electoral anomalies.';
+
+
+--
+-- Name: view_riksdagen_election_year_vs_midterm; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.view_riksdagen_election_year_vs_midterm AS
+ SELECT 'ELECTION_YEARS'::text AS period_type,
+    round(avg(view_riksdagen_election_year_behavioral_patterns.total_ballots), 2) AS avg_ballots,
+    round(avg(view_riksdagen_election_year_behavioral_patterns.documents_produced), 2) AS avg_documents,
+    round(avg(view_riksdagen_election_year_behavioral_patterns.motions_filed), 2) AS avg_motions,
+    round(avg(view_riksdagen_election_year_behavioral_patterns.proposals_filed), 2) AS avg_proposals,
+    round(avg(view_riksdagen_election_year_behavioral_patterns.attendance_rate), 2) AS avg_attendance,
+    round(avg(view_riksdagen_election_year_behavioral_patterns.active_politicians), 2) AS avg_active_politicians,
+    count(*) AS year_count,
+    array_agg(view_riksdagen_election_year_behavioral_patterns.year ORDER BY view_riksdagen_election_year_behavioral_patterns.year) AS years,
+    round((min(view_riksdagen_election_year_behavioral_patterns.total_ballots))::numeric, 2) AS min_ballots,
+    round((max(view_riksdagen_election_year_behavioral_patterns.total_ballots))::numeric, 2) AS max_ballots,
+    round(stddev(view_riksdagen_election_year_behavioral_patterns.total_ballots), 2) AS stddev_ballots,
+    round((min(view_riksdagen_election_year_behavioral_patterns.documents_produced))::numeric, 2) AS min_documents,
+    round((max(view_riksdagen_election_year_behavioral_patterns.documents_produced))::numeric, 2) AS max_documents,
+    round(stddev(view_riksdagen_election_year_behavioral_patterns.documents_produced), 2) AS stddev_documents
+   FROM public.view_riksdagen_election_year_behavioral_patterns
+  WHERE (view_riksdagen_election_year_behavioral_patterns.is_election_year = true)
+UNION ALL
+ SELECT 'MIDTERM_YEARS'::text AS period_type,
+    round(avg(view_riksdagen_election_year_behavioral_patterns.total_ballots), 2) AS avg_ballots,
+    round(avg(view_riksdagen_election_year_behavioral_patterns.documents_produced), 2) AS avg_documents,
+    round(avg(view_riksdagen_election_year_behavioral_patterns.motions_filed), 2) AS avg_motions,
+    round(avg(view_riksdagen_election_year_behavioral_patterns.proposals_filed), 2) AS avg_proposals,
+    round(avg(view_riksdagen_election_year_behavioral_patterns.attendance_rate), 2) AS avg_attendance,
+    round(avg(view_riksdagen_election_year_behavioral_patterns.active_politicians), 2) AS avg_active_politicians,
+    count(*) AS year_count,
+    array_agg(view_riksdagen_election_year_behavioral_patterns.year ORDER BY view_riksdagen_election_year_behavioral_patterns.year) AS years,
+    round((min(view_riksdagen_election_year_behavioral_patterns.total_ballots))::numeric, 2) AS min_ballots,
+    round((max(view_riksdagen_election_year_behavioral_patterns.total_ballots))::numeric, 2) AS max_ballots,
+    round(stddev(view_riksdagen_election_year_behavioral_patterns.total_ballots), 2) AS stddev_ballots,
+    round((min(view_riksdagen_election_year_behavioral_patterns.documents_produced))::numeric, 2) AS min_documents,
+    round((max(view_riksdagen_election_year_behavioral_patterns.documents_produced))::numeric, 2) AS max_documents,
+    round(stddev(view_riksdagen_election_year_behavioral_patterns.documents_produced), 2) AS stddev_documents
+   FROM public.view_riksdagen_election_year_behavioral_patterns
+  WHERE (view_riksdagen_election_year_behavioral_patterns.is_election_year = false)
+UNION ALL
+ SELECT 'COMPARISON_RATIO'::text AS period_type,
+    round((avg(view_riksdagen_election_year_behavioral_patterns.total_ballots) FILTER (WHERE view_riksdagen_election_year_behavioral_patterns.is_election_year) / NULLIF(avg(view_riksdagen_election_year_behavioral_patterns.total_ballots) FILTER (WHERE (NOT view_riksdagen_election_year_behavioral_patterns.is_election_year)), (0)::numeric)), 2) AS avg_ballots,
+    round((avg(view_riksdagen_election_year_behavioral_patterns.documents_produced) FILTER (WHERE view_riksdagen_election_year_behavioral_patterns.is_election_year) / NULLIF(avg(view_riksdagen_election_year_behavioral_patterns.documents_produced) FILTER (WHERE (NOT view_riksdagen_election_year_behavioral_patterns.is_election_year)), (0)::numeric)), 2) AS avg_documents,
+    round((avg(view_riksdagen_election_year_behavioral_patterns.motions_filed) FILTER (WHERE view_riksdagen_election_year_behavioral_patterns.is_election_year) / NULLIF(avg(view_riksdagen_election_year_behavioral_patterns.motions_filed) FILTER (WHERE (NOT view_riksdagen_election_year_behavioral_patterns.is_election_year)), (0)::numeric)), 2) AS avg_motions,
+    round((avg(view_riksdagen_election_year_behavioral_patterns.proposals_filed) FILTER (WHERE view_riksdagen_election_year_behavioral_patterns.is_election_year) / NULLIF(avg(view_riksdagen_election_year_behavioral_patterns.proposals_filed) FILTER (WHERE (NOT view_riksdagen_election_year_behavioral_patterns.is_election_year)), (0)::numeric)), 2) AS avg_proposals,
+    round((avg(view_riksdagen_election_year_behavioral_patterns.attendance_rate) FILTER (WHERE view_riksdagen_election_year_behavioral_patterns.is_election_year) / NULLIF(avg(view_riksdagen_election_year_behavioral_patterns.attendance_rate) FILTER (WHERE (NOT view_riksdagen_election_year_behavioral_patterns.is_election_year)), (0)::numeric)), 2) AS avg_attendance,
+    round((avg(view_riksdagen_election_year_behavioral_patterns.active_politicians) FILTER (WHERE view_riksdagen_election_year_behavioral_patterns.is_election_year) / NULLIF(avg(view_riksdagen_election_year_behavioral_patterns.active_politicians) FILTER (WHERE (NOT view_riksdagen_election_year_behavioral_patterns.is_election_year)), (0)::numeric)), 2) AS avg_active_politicians,
+    NULL::bigint AS year_count,
+    NULL::integer[] AS years,
+    NULL::numeric AS min_ballots,
+    NULL::numeric AS max_ballots,
+    NULL::numeric AS stddev_ballots,
+    NULL::numeric AS min_documents,
+    NULL::numeric AS max_documents,
+    NULL::numeric AS stddev_documents
+   FROM public.view_riksdagen_election_year_behavioral_patterns;
+
+
+--
+-- Name: VIEW view_riksdagen_election_year_vs_midterm; Type: COMMENT; Schema: public; Owner: -
+--
+
+COMMENT ON VIEW public.view_riksdagen_election_year_vs_midterm IS 'Aggregate comparison of election years vs midterm years showing behavioral differences. Three-row summary: ELECTION_YEARS (7 years), MIDTERM_YEARS (17 years), COMPARISON_RATIO (election/midterm ratios). Features: aggregate metrics (avg ballots, documents, motions, proposals, attendance), statistical measures (min, max, stddev), year arrays for reference. Data Source (META level): view_riksdagen_election_year_behavioral_patterns. Period: 2002-2026 (24 years total). Framework 1: Temporal Analysis - Comparative. Use Case: Quick assessment of election year effects, hypothesis testing, executive reporting on election vs non-election behavioral patterns.';
+
+
+--
 -- Name: view_riksdagen_goverment; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -9698,7 +10475,7 @@ CREATE VIEW public.view_riksdagen_party_transition_history AS
                     ELSE 'SWITCHED_WHILE_SERVING'::text
                 END AS transition_type
            FROM party_assignments
-          WHERE ((party_assignments.previous_party IS NOT NULL) AND ((party_assignments.previous_party)::text <> (party_assignments.party)::text) AND ((party_assignments.previous_party)::text <> ALL ((ARRAY['-'::character varying, ''::character varying])::text[])))
+          WHERE ((party_assignments.previous_party IS NOT NULL) AND ((party_assignments.previous_party)::text <> (party_assignments.party)::text) AND ((party_assignments.previous_party)::text <> ALL (ARRAY[('-'::character varying)::text, (''::character varying)::text])))
         ), election_proximity AS (
          SELECT unnest(ARRAY['2002-09-15'::date, '2006-09-17'::date, '2010-09-19'::date, '2014-09-14'::date, '2018-09-09'::date, '2022-09-11'::date, '2026-09-13'::date]) AS election_date
         )
@@ -10053,7 +10830,7 @@ CREATE VIEW public.view_riksdagen_party_switcher_outcomes AS
         END) AS served_in_next_election,
     max(
         CASE
-            WHEN ((ssa.subsequent_role)::text = ANY ((ARRAY['Partiledare'::character varying, 'Gruppledare'::character varying, 'Partisekreterare'::character varying, 'Ordförande'::character varying, 'Vice ordförande'::character varying])::text[])) THEN 1
+            WHEN ((ssa.subsequent_role)::text = ANY (ARRAY[('Partiledare'::character varying)::text, ('Gruppledare'::character varying)::text, ('Partisekreterare'::character varying)::text, ('Ordförande'::character varying)::text, ('Vice ordförande'::character varying)::text])) THEN 1
             ELSE 0
         END) AS attained_leadership_post_switch,
     string_agg(DISTINCT (ssa.subsequent_role)::text, ', '::text) FILTER (WHERE (ssa.subsequent_role IS NOT NULL)) AS post_switch_roles,
@@ -10520,6 +11297,462 @@ CREATE VIEW public.view_riksdagen_politician_ballot_summary AS
 
 
 --
+-- Name: view_riksdagen_politician_career_path_10level; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.view_riksdagen_politician_career_path_10level AS
+ WITH career_level_mapping AS (
+         SELECT re.person_id,
+            re.first_name,
+            re.last_name,
+            re.party,
+            re.role_code,
+            re.status,
+            re.assignment_type,
+            re.org_code,
+            re.role_start AS from_date,
+            re.role_end AS to_date,
+            re.role_tier,
+            re.role_weight,
+                CASE
+                    WHEN (re.role_weight >= 1000) THEN 10
+                    WHEN (re.role_weight >= 850) THEN 9
+                    WHEN (re.role_weight >= 800) THEN 8
+                    WHEN (re.role_weight >= 700) THEN 7
+                    WHEN (re.role_weight >= 600) THEN 6
+                    WHEN (re.role_weight >= 500) THEN 5
+                    WHEN (re.role_weight >= 400) THEN 4
+                    WHEN (re.role_weight >= 300) THEN 3
+                    WHEN (re.role_weight >= 100) THEN 2
+                    ELSE 1
+                END AS career_level,
+            EXTRACT(year FROM age((re.role_end)::timestamp with time zone, (re.role_start)::timestamp with time zone)) AS years_in_role,
+            re.is_current_role
+           FROM public.view_riksdagen_politician_role_evolution re
+          WHERE (re.role_start >= '2002-01-01'::date)
+        ), career_level_enriched AS (
+         SELECT clm.person_id,
+            clm.first_name,
+            clm.last_name,
+            clm.party,
+            clm.role_code,
+            clm.status,
+            clm.assignment_type,
+            clm.org_code,
+            clm.from_date,
+            clm.to_date,
+            clm.role_tier,
+            clm.role_weight,
+            clm.career_level,
+            clm.years_in_role,
+            clm.is_current_role,
+                CASE clm.career_level
+                    WHEN 10 THEN 1000
+                    WHEN 9 THEN 900
+                    WHEN 8 THEN 800
+                    WHEN 7 THEN 700
+                    WHEN 6 THEN 600
+                    WHEN 5 THEN 500
+                    WHEN 4 THEN 400
+                    WHEN 3 THEN 300
+                    WHEN 2 THEN 50
+                    ELSE 10
+                END AS career_score,
+                CASE clm.career_level
+                    WHEN 10 THEN 'L10_PRIME_MINISTER'::text
+                    WHEN 9 THEN 'L09_CABINET_MINISTER'::text
+                    WHEN 8 THEN 'L08_SPEAKER'::text
+                    WHEN 7 THEN 'L07_PARTY_LEADER_DEPUTY_SPEAKER'::text
+                    WHEN 6 THEN 'L06_PARTY_SEC_COMMITTEE_CHAIR'::text
+                    WHEN 5 THEN 'L05_COMMITTEE_VICE_CHAIR'::text
+                    WHEN 4 THEN 'L04_ACTIVE_MP'::text
+                    WHEN 3 THEN 'L03_COMMITTEE_MEMBER'::text
+                    WHEN 2 THEN 'L02_SUBSTITUTE_MP'::text
+                    ELSE 'L01_OTHER_ENTRY'::text
+                END AS career_level_name
+           FROM career_level_mapping clm
+        ), career_timeline AS (
+         SELECT cle.person_id,
+            cle.first_name,
+            cle.last_name,
+            cle.party,
+            cle.role_code,
+            cle.status,
+            cle.assignment_type,
+            cle.org_code,
+            cle.from_date,
+            cle.to_date,
+            cle.role_tier,
+            cle.role_weight,
+            cle.career_level,
+            cle.years_in_role,
+            cle.is_current_role,
+            cle.career_score,
+            cle.career_level_name,
+            row_number() OVER (PARTITION BY cle.person_id ORDER BY cle.from_date, cle.career_level DESC) AS career_step,
+            count(*) OVER (PARTITION BY cle.person_id) AS total_career_steps,
+            lag(cle.career_level) OVER (PARTITION BY cle.person_id ORDER BY cle.from_date) AS prev_career_level,
+            lag(cle.career_score) OVER (PARTITION BY cle.person_id ORDER BY cle.from_date) AS prev_career_score,
+            lag(cle.from_date) OVER (PARTITION BY cle.person_id ORDER BY cle.from_date) AS prev_role_start,
+            lead(cle.career_level) OVER (PARTITION BY cle.person_id ORDER BY cle.from_date) AS next_career_level,
+            lead(cle.career_score) OVER (PARTITION BY cle.person_id ORDER BY cle.from_date) AS next_career_score,
+            min(cle.from_date) OVER (PARTITION BY cle.person_id) AS career_start_date,
+            max(COALESCE(cle.to_date, CURRENT_DATE)) OVER (PARTITION BY cle.person_id) AS career_end_date,
+            min(EXTRACT(year FROM cle.from_date)) OVER (PARTITION BY cle.person_id) AS career_start_year,
+            max(EXTRACT(year FROM COALESCE(cle.to_date, CURRENT_DATE))) OVER (PARTITION BY cle.person_id) AS career_end_year,
+            max(cle.career_level) OVER (PARTITION BY cle.person_id) AS peak_career_level,
+            max(cle.career_score) OVER (PARTITION BY cle.person_id) AS peak_career_score,
+            avg(cle.career_score) OVER (PARTITION BY cle.person_id) AS avg_career_score,
+            stddev_pop(cle.career_score) OVER (PARTITION BY cle.person_id) AS career_score_volatility
+           FROM career_level_enriched cle
+        ), career_progression_analysis AS (
+         SELECT ct.person_id,
+            ct.first_name,
+            ct.last_name,
+            ct.party,
+            ct.role_code,
+            ct.status,
+            ct.assignment_type,
+            ct.org_code,
+            ct.from_date,
+            ct.to_date,
+            ct.role_tier,
+            ct.role_weight,
+            ct.career_level,
+            ct.years_in_role,
+            ct.is_current_role,
+            ct.career_score,
+            ct.career_level_name,
+            ct.career_step,
+            ct.total_career_steps,
+            ct.prev_career_level,
+            ct.prev_career_score,
+            ct.prev_role_start,
+            ct.next_career_level,
+            ct.next_career_score,
+            ct.career_start_date,
+            ct.career_end_date,
+            ct.career_start_year,
+            ct.career_end_year,
+            ct.peak_career_level,
+            ct.peak_career_score,
+            ct.avg_career_score,
+            ct.career_score_volatility,
+                CASE
+                    WHEN (ct.prev_career_level IS NULL) THEN 'ENTRY'::text
+                    WHEN (ct.career_level > ct.prev_career_level) THEN 'PROMOTION'::text
+                    WHEN (ct.career_level < ct.prev_career_level) THEN 'DEMOTION'::text
+                    ELSE 'LATERAL'::text
+                END AS progression_direction,
+            COALESCE((ct.career_level - ct.prev_career_level), 0) AS level_change,
+            COALESCE((ct.career_score - ct.prev_career_score), 0) AS score_change,
+                CASE
+                    WHEN (ct.prev_role_start IS NOT NULL) THEN EXTRACT(year FROM age((ct.from_date)::timestamp with time zone, (ct.prev_role_start)::timestamp with time zone))
+                    ELSE NULL::numeric
+                END AS years_since_prev_role,
+                CASE
+                    WHEN (ct.career_level = ct.peak_career_level) THEN true
+                    ELSE false
+                END AS is_peak_role,
+            EXTRACT(year FROM age((ct.career_end_date)::timestamp with time zone, (ct.career_start_date)::timestamp with time zone)) AS career_span_years,
+                CASE
+                    WHEN ((ct.prev_career_level IS NOT NULL) AND (ct.prev_role_start IS NOT NULL)) THEN round((((ct.career_level - ct.prev_career_level))::numeric / NULLIF(EXTRACT(year FROM age((ct.from_date)::timestamp with time zone, (ct.prev_role_start)::timestamp with time zone)), (0)::numeric)), 2)
+                    ELSE NULL::numeric
+                END AS advancement_velocity,
+            count(
+                CASE
+                    WHEN (ct.career_level > ct.prev_career_level) THEN 1
+                    ELSE NULL::integer
+                END) OVER (PARTITION BY ct.person_id ORDER BY ct.from_date ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS promotions_count,
+            count(
+                CASE
+                    WHEN (ct.career_level < ct.prev_career_level) THEN 1
+                    ELSE NULL::integer
+                END) OVER (PARTITION BY ct.person_id ORDER BY ct.from_date ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS demotions_count
+           FROM career_timeline ct
+        ), career_scoring AS (
+         SELECT cpa.person_id,
+            cpa.first_name,
+            cpa.last_name,
+            cpa.party,
+            cpa.role_code,
+            cpa.status,
+            cpa.assignment_type,
+            cpa.org_code,
+            cpa.from_date,
+            cpa.to_date,
+            cpa.role_tier,
+            cpa.role_weight,
+            cpa.career_level,
+            cpa.years_in_role,
+            cpa.is_current_role,
+            cpa.career_score,
+            cpa.career_level_name,
+            cpa.career_step,
+            cpa.total_career_steps,
+            cpa.prev_career_level,
+            cpa.prev_career_score,
+            cpa.prev_role_start,
+            cpa.next_career_level,
+            cpa.next_career_score,
+            cpa.career_start_date,
+            cpa.career_end_date,
+            cpa.career_start_year,
+            cpa.career_end_year,
+            cpa.peak_career_level,
+            cpa.peak_career_score,
+            cpa.avg_career_score,
+            cpa.career_score_volatility,
+            cpa.progression_direction,
+            cpa.level_change,
+            cpa.score_change,
+            cpa.years_since_prev_role,
+            cpa.is_peak_role,
+            cpa.career_span_years,
+            cpa.advancement_velocity,
+            cpa.promotions_count,
+            cpa.demotions_count,
+                CASE
+                    WHEN ((cpa.promotions_count >= 3) AND (cpa.demotions_count = 0) AND (cpa.career_span_years <= (10)::numeric)) THEN 'FAST_TRACK'::text
+                    WHEN (cpa.is_peak_role AND (cpa.progression_direction = ANY (ARRAY['PROMOTION'::text, 'LATERAL'::text])) AND (cpa.promotions_count > cpa.demotions_count)) THEN 'RISING_STAR'::text
+                    WHEN ((cpa.promotions_count > cpa.demotions_count) AND (cpa.career_span_years > (10)::numeric)) THEN 'STEADY_PROGRESS'::text
+                    WHEN (cpa.is_peak_role AND (cpa.peak_career_level >= 7) AND (cpa.years_in_role >= (3)::numeric)) THEN 'PEAK_PERFORMER'::text
+                    WHEN ((cpa.promotions_count = 0) AND (cpa.demotions_count = 0) AND (cpa.career_span_years >= (5)::numeric)) THEN 'STAGNANT'::text
+                    WHEN (cpa.demotions_count > cpa.promotions_count) THEN 'DECLINING'::text
+                    WHEN ((cpa.demotions_count >= 2) AND (cpa.progression_direction = 'DEMOTION'::text)) THEN 'DOWNWARD_SPIRAL'::text
+                    WHEN (cpa.career_span_years <= (3)::numeric) THEN 'EARLY_CAREER'::text
+                    ELSE 'STABLE'::text
+                END AS career_pattern,
+                CASE
+                    WHEN ((cpa.demotions_count >= 2) AND (cpa.progression_direction = 'DEMOTION'::text)) THEN true
+                    ELSE false
+                END AS downward_spiral_flag,
+                CASE
+                    WHEN ((cpa.progression_direction = 'DEMOTION'::text) AND (cpa.demotions_count >= 2)) THEN 90
+                    WHEN ((cpa.career_level = 2) AND (cpa.prev_career_level >= 4)) THEN 75
+                    WHEN (cpa.demotions_count > cpa.promotions_count) THEN 60
+                    WHEN ((NOT cpa.is_current_role) AND (cpa.career_level <= 2)) THEN 50
+                    WHEN (cpa.progression_direction = 'DEMOTION'::text) THEN 40
+                    WHEN ((cpa.career_span_years > (20)::numeric) AND (cpa.career_level <= 3)) THEN 30
+                    ELSE 10
+                END AS exit_risk_score,
+                CASE
+                    WHEN cpa.is_peak_role THEN sum(cpa.years_in_role) OVER (PARTITION BY cpa.person_id, cpa.peak_career_level ORDER BY cpa.from_date ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)
+                    ELSE (0)::numeric
+                END AS years_at_peak,
+            sum(cpa.years_in_role) OVER (PARTITION BY cpa.person_id, cpa.career_level ORDER BY cpa.from_date ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS total_years_at_level,
+                CASE
+                    WHEN (cpa.promotions_count > 0) THEN round((cpa.career_span_years / (NULLIF(cpa.promotions_count, 0))::numeric), 1)
+                    ELSE NULL::numeric
+                END AS avg_years_per_promotion,
+            rank() OVER (ORDER BY cpa.peak_career_score DESC, cpa.career_span_years DESC) AS overall_career_rank,
+            percent_rank() OVER (ORDER BY cpa.peak_career_score DESC) AS career_percentile,
+            ntile(10) OVER (ORDER BY cpa.peak_career_score DESC) AS career_decile,
+            round(((((
+                CASE
+                    WHEN cpa.is_peak_role THEN 30.0
+                    WHEN (cpa.peak_career_level >= 7) THEN 20.0
+                    WHEN (cpa.peak_career_level >= 4) THEN 15.0
+                    ELSE 10.0
+                END + (COALESCE(cpa.advancement_velocity, (0)::numeric) * (20)::numeric)) + (((cpa.promotions_count - cpa.demotions_count))::numeric * (5)::numeric)) +
+                CASE
+                    WHEN (cpa.progression_direction = 'PROMOTION'::text) THEN 10.0
+                    WHEN (cpa.progression_direction = 'LATERAL'::text) THEN 5.0
+                    ELSE 0.0
+                END) +
+                CASE
+                    WHEN ((cpa.demotions_count >= 2) AND (cpa.progression_direction = 'DEMOTION'::text)) THEN '-20.0'::numeric
+                    ELSE 10.0
+                END), 1) AS career_health_score
+           FROM career_progression_analysis cpa
+        ), predictive_intelligence AS (
+         SELECT cs.person_id,
+            cs.first_name,
+            cs.last_name,
+            cs.party,
+            cs.role_code,
+            cs.status,
+            cs.assignment_type,
+            cs.org_code,
+            cs.from_date,
+            cs.to_date,
+            cs.role_tier,
+            cs.role_weight,
+            cs.career_level,
+            cs.years_in_role,
+            cs.is_current_role,
+            cs.career_score,
+            cs.career_level_name,
+            cs.career_step,
+            cs.total_career_steps,
+            cs.prev_career_level,
+            cs.prev_career_score,
+            cs.prev_role_start,
+            cs.next_career_level,
+            cs.next_career_score,
+            cs.career_start_date,
+            cs.career_end_date,
+            cs.career_start_year,
+            cs.career_end_year,
+            cs.peak_career_level,
+            cs.peak_career_score,
+            cs.avg_career_score,
+            cs.career_score_volatility,
+            cs.progression_direction,
+            cs.level_change,
+            cs.score_change,
+            cs.years_since_prev_role,
+            cs.is_peak_role,
+            cs.career_span_years,
+            cs.advancement_velocity,
+            cs.promotions_count,
+            cs.demotions_count,
+            cs.career_pattern,
+            cs.downward_spiral_flag,
+            cs.exit_risk_score,
+            cs.years_at_peak,
+            cs.total_years_at_level,
+            cs.avg_years_per_promotion,
+            cs.overall_career_rank,
+            cs.career_percentile,
+            cs.career_decile,
+            cs.career_health_score,
+            pbt.avg_win_rate AS behavioral_win_rate,
+            pbt.avg_rebel_rate AS behavioral_rebel_rate,
+            pbt.avg_absence_rate AS behavioral_absence_rate,
+            pbt.behavioral_assessment,
+            pbt.attendance_status,
+            pbt.effectiveness_status,
+            pbt.discipline_status,
+            prs.risk_level,
+            prs.risk_score,
+            prs.total_violations,
+            prs.absenteeism_violations,
+            prs.effectiveness_violations,
+            prs.discipline_violations,
+            pim.influence_classification,
+            pim.network_connections AS strong_connections,
+            pim.broker_classification AS broker_score,
+            round(((((cs.career_health_score * 0.40) + (((100)::numeric - COALESCE(prs.risk_score, (50)::numeric)) * 0.30)) + (COALESCE(pbt.avg_win_rate, (50)::numeric) * 0.20)) +
+                CASE
+                    WHEN (pim.influence_classification = 'HIGHLY_INFLUENTIAL'::text) THEN 10.0
+                    WHEN (pim.influence_classification = 'INFLUENTIAL'::text) THEN 7.5
+                    WHEN (pim.influence_classification = 'MODERATELY_INFLUENTIAL'::text) THEN 5.0
+                    ELSE 2.5
+                END), 1) AS predictive_success_score,
+                CASE
+                    WHEN (cs.downward_spiral_flag AND (COALESCE(prs.total_violations, (0)::bigint) >= 3)) THEN 'CRITICAL_RISK'::text
+                    WHEN ((cs.exit_risk_score >= 60) OR (prs.risk_level = 'HIGH'::text)) THEN 'HIGH_RISK'::text
+                    WHEN ((cs.exit_risk_score >= 40) OR (prs.risk_level = 'MEDIUM'::text)) THEN 'MEDIUM_RISK'::text
+                    WHEN ((cs.career_pattern = 'STAGNANT'::text) AND (COALESCE(prs.total_violations, (0)::bigint) >= 1)) THEN 'MEDIUM_RISK'::text
+                    ELSE 'LOW_RISK'::text
+                END AS comprehensive_risk_level,
+                CASE
+                    WHEN (cs.career_level >= 8) THEN 100
+                    WHEN ((cs.career_pattern = 'FAST_TRACK'::text) AND (cs.career_level >= 6) AND (pim.influence_classification = ANY (ARRAY['HIGHLY_INFLUENTIAL'::text, 'INFLUENTIAL'::text])) AND (COALESCE(prs.risk_level, 'LOW'::text) = 'LOW'::text)) THEN 90
+                    WHEN ((cs.career_pattern = ANY (ARRAY['RISING_STAR'::text, 'STEADY_PROGRESS'::text])) AND (cs.career_level >= 5) AND (COALESCE(pbt.behavioral_assessment, 'ADEQUATE'::text) = ANY (ARRAY['EXEMPLARY'::text, 'ABOVE_AVERAGE'::text]))) THEN 75
+                    WHEN ((cs.career_level >= 4) AND (cs.promotions_count > cs.demotions_count) AND (COALESCE(prs.risk_level, 'LOW'::text) = ANY (ARRAY['LOW'::text, 'MEDIUM'::text]))) THEN 60
+                    WHEN (cs.career_level >= 3) THEN 40
+                    ELSE 20
+                END AS leadership_potential_score,
+                CASE
+                    WHEN (cs.downward_spiral_flag AND (COALESCE(pbt.attendance_status, 'ADEQUATE'::text) = 'POOR'::text)) THEN true
+                    WHEN ((cs.exit_risk_score >= 75) AND (COALESCE(prs.total_violations, (0)::bigint) >= 2)) THEN true
+                    WHEN ((cs.career_pattern = 'DECLINING'::text) AND (COALESCE(pbt.effectiveness_status, 'ADEQUATE'::text) = 'POOR'::text)) THEN true
+                    ELSE false
+                END AS high_retention_risk_flag
+           FROM (((career_scoring cs
+             LEFT JOIN public.view_politician_behavioral_trends pbt ON ((((cs.person_id)::text = (pbt.person_id)::text) AND (pbt.period_start = ( SELECT max(view_politician_behavioral_trends.period_start) AS max
+                   FROM public.view_politician_behavioral_trends
+                  WHERE ((view_politician_behavioral_trends.person_id)::text = (cs.person_id)::text))))))
+             LEFT JOIN public.view_politician_risk_summary prs ON (((cs.person_id)::text = (prs.person_id)::text)))
+             LEFT JOIN public.view_riksdagen_politician_influence_metrics pim ON (((cs.person_id)::text = (pim.person_id)::text)))
+        )
+ SELECT person_id,
+    first_name,
+    last_name,
+    party,
+    role_code,
+    status,
+    assignment_type,
+    org_code,
+    from_date,
+    to_date,
+    is_current_role,
+    career_level,
+    career_level_name,
+    career_score,
+    career_step,
+    total_career_steps,
+    career_start_date,
+    career_end_date,
+    career_start_year,
+    career_end_year,
+    career_span_years,
+    years_in_role,
+    years_since_prev_role,
+    total_years_at_level,
+    peak_career_level,
+    peak_career_score,
+    is_peak_role,
+    years_at_peak,
+    prev_career_level,
+    next_career_level,
+    progression_direction,
+    level_change,
+    score_change,
+    advancement_velocity,
+    promotions_count,
+    demotions_count,
+    avg_career_score,
+    career_score_volatility,
+    avg_years_per_promotion,
+    career_pattern,
+    downward_spiral_flag,
+    exit_risk_score,
+    overall_career_rank,
+    career_percentile,
+    career_decile,
+    behavioral_win_rate,
+    behavioral_rebel_rate,
+    behavioral_absence_rate,
+    behavioral_assessment,
+    attendance_status,
+    effectiveness_status,
+    discipline_status,
+    risk_level,
+    risk_score,
+    total_violations,
+    absenteeism_violations,
+    effectiveness_violations,
+    discipline_violations,
+    influence_classification,
+    broker_score,
+    strong_connections,
+    predictive_success_score,
+    comprehensive_risk_level,
+    leadership_potential_score,
+    high_retention_risk_flag,
+    career_health_score,
+        CASE
+            WHEN (career_span_years <= (3)::numeric) THEN 'EARLY_CAREER'::text
+            WHEN (career_span_years <= (8)::numeric) THEN 'MID_CAREER'::text
+            WHEN (career_span_years <= (15)::numeric) THEN 'SENIOR_CAREER'::text
+            ELSE 'VETERAN_CAREER'::text
+        END AS career_stage,
+        CASE
+            WHEN (career_pattern = ANY (ARRAY['FAST_TRACK'::text, 'RISING_STAR'::text, 'STEADY_PROGRESS'::text, 'PEAK_PERFORMER'::text])) THEN true
+            ELSE false
+        END AS is_typical_career_path,
+        CASE
+            WHEN (career_pattern = ANY (ARRAY['DECLINING'::text, 'DOWNWARD_SPIRAL'::text, 'STAGNANT'::text])) THEN true
+            ELSE false
+        END AS is_atypical_career_path
+   FROM predictive_intelligence pi
+  ORDER BY person_id, from_date;
+
+
+--
 -- Name: view_riksdagen_politician_career_trajectory; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -10543,7 +11776,7 @@ CREATE VIEW public.view_riksdagen_politician_career_trajectory AS
                     WHEN ps.party_won THEN 1
                     ELSE 0
                 END) * (100)::numeric), 2) AS win_rate,
-            count(DISTINCT ad.hjid) FILTER (WHERE ((ad.role_code)::text = ANY ((ARRAY['Ordförande'::character varying, 'Vice ordförande'::character varying, 'Talman'::character varying, 'Statsminister'::character varying, 'Vice statsminister'::character varying, 'Partiledare'::character varying, 'Gruppledare'::character varying])::text[]))) AS leadership_roles,
+            count(DISTINCT ad.hjid) FILTER (WHERE ((ad.role_code)::text = ANY (ARRAY[('Ordförande'::character varying)::text, ('Vice ordförande'::character varying)::text, ('Talman'::character varying)::text, ('Statsminister'::character varying)::text, ('Vice statsminister'::character varying)::text, ('Partiledare'::character varying)::text, ('Gruppledare'::character varying)::text]))) AS leadership_roles,
             count(DISTINCT dpr.person_reference_id) AS documents_authored
            FROM ((((public.person_data p
              JOIN public.vote_data vd ON (((p.id)::text = (vd.embedded_id_intressent_id)::text)))
@@ -10618,42 +11851,6 @@ Provides metrics for attendance rates, win rates, leadership roles, and document
 Classifies career stages (early/mid/late), performance trends (improving/declining/stable), 
 and career patterns (peak/decline/rising star). Used for Predictive Intelligence Framework (Framework 4)
 to forecast career trajectories and resignation risks.';
-
-
---
--- Name: view_riksdagen_politician_decision_pattern; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.view_riksdagen_politician_decision_pattern AS
- SELECT pd.id AS person_id,
-    pd.first_name,
-    pd.last_name,
-    dpr.party_short_code AS party,
-    dpd.committee,
-    dd.org AS committee_org,
-    date_trunc('month'::text, (dd.made_public_date)::timestamp with time zone) AS decision_month,
-    EXTRACT(year FROM dd.made_public_date) AS decision_year,
-    EXTRACT(month FROM dd.made_public_date) AS decision_month_num,
-    count(*) AS total_decisions,
-    count(*) FILTER (WHERE ((upper((dpd.chamber)::text) ~~ '%BIFALL%'::text) OR (upper((dpd.chamber)::text) ~~ '%GODKÄNT%'::text) OR (upper((dpd.chamber)::text) ~~ '%BIFALLA%'::text))) AS approved_decisions,
-    count(*) FILTER (WHERE ((upper((dpd.chamber)::text) ~~ '%AVSLAG%'::text) OR (upper((dpd.chamber)::text) ~~ '%AVSLÅ%'::text))) AS rejected_decisions,
-    count(*) FILTER (WHERE ((upper((dpd.chamber)::text) ~~ '%ÅTERFÖRVISNING%'::text) OR (upper((dpd.chamber)::text) ~~ '%ÅTERFÖRVISA%'::text))) AS referred_back_decisions,
-    count(*) FILTER (WHERE ((upper((dpd.chamber)::text) !~~ '%BIFALL%'::text) AND (upper((dpd.chamber)::text) !~~ '%AVSLAG%'::text) AND (upper((dpd.chamber)::text) !~~ '%GODKÄNT%'::text) AND (upper((dpd.chamber)::text) !~~ '%BIFALLA%'::text) AND (upper((dpd.chamber)::text) !~~ '%AVSLÅ%'::text) AND (upper((dpd.chamber)::text) !~~ '%ÅTERFÖRVISNING%'::text) AND (upper((dpd.chamber)::text) !~~ '%ÅTERFÖRVISA%'::text))) AS other_decisions,
-    round(((100.0 * (count(*) FILTER (WHERE ((upper((dpd.chamber)::text) ~~ '%BIFALL%'::text) OR (upper((dpd.chamber)::text) ~~ '%GODKÄNT%'::text) OR (upper((dpd.chamber)::text) ~~ '%BIFALLA%'::text))))::numeric) / (NULLIF(count(*), 0))::numeric), 2) AS approval_rate,
-    round(((100.0 * (count(*) FILTER (WHERE ((upper((dpd.chamber)::text) ~~ '%AVSLAG%'::text) OR (upper((dpd.chamber)::text) ~~ '%AVSLÅ%'::text))))::numeric) / (NULLIF(count(*), 0))::numeric), 2) AS rejection_rate,
-    min(dd.made_public_date) AS earliest_decision_date,
-    max(dd.made_public_date) AS latest_decision_date
-   FROM ((((((public.document_proposal_data dpd
-     JOIN public.document_proposal_container dpc ON ((dpc.proposal_document_proposal_c_0 = dpd.hjid)))
-     JOIN public.document_status_container dsc ON ((dsc.document_proposal_document_s_0 = dpc.hjid)))
-     JOIN public.document_data dd ON (((dd.id)::text = (dsc.document_document_status_con_0)::text)))
-     JOIN public.document_person_reference_co_0 dprc ON ((dprc.hjid = dsc.document_person_reference_co_1)))
-     JOIN public.document_person_reference_da_0 dpr ON ((dpr.document_person_reference_li_1 = dprc.hjid)))
-     JOIN public.person_data pd ON (((pd.id)::text = (dpr.person_reference_id)::text)))
-  WHERE ((dpd.chamber IS NOT NULL) AND (dpd.committee IS NOT NULL) AND (dd.made_public_date IS NOT NULL) AND (pd.id IS NOT NULL) AND (length((dpd.chamber)::text) >= 6) AND (length((dpd.chamber)::text) <= 29))
-  GROUP BY pd.id, pd.first_name, pd.last_name, dpr.party_short_code, dpd.committee, dd.org, (date_trunc('month'::text, (dd.made_public_date)::timestamp with time zone)), (EXTRACT(year FROM dd.made_public_date)), (EXTRACT(month FROM dd.made_public_date))
- HAVING (count(*) > 0)
-  ORDER BY (EXTRACT(year FROM dd.made_public_date)) DESC, (EXTRACT(month FROM dd.made_public_date)) DESC, pd.last_name, pd.first_name, dpd.committee;
 
 
 --
@@ -11130,155 +12327,199 @@ Used for Predictive Intelligence Framework (Framework 4) to forecast career long
 
 
 --
--- Name: view_riksdagen_politician_role_evolution; Type: VIEW; Schema: public; Owner: -
+-- Name: view_riksdagen_pre_election_quarterly_activity; Type: VIEW; Schema: public; Owner: -
 --
 
-CREATE VIEW public.view_riksdagen_politician_role_evolution AS
- WITH role_assignments AS (
-         SELECT p.id AS person_id,
-            p.first_name,
-            p.last_name,
-            p.party,
-            ad.role_code,
-            COALESCE(ad.status, 'UNKNOWN'::character varying) AS status,
-            COALESCE(ad.assignment_type, 'UNKNOWN'::character varying) AS assignment_type,
-            COALESCE(ad.org_code, 'UNKNOWN'::character varying) AS org_code,
-            ad.from_date,
-            ad.to_date,
+CREATE VIEW public.view_riksdagen_pre_election_quarterly_activity AS
+ WITH election_years AS (
+         SELECT unnest(ARRAY[2002, 2006, 2010, 2014, 2018, 2022, 2026]) AS election_year
+        ), q4_voting_activity AS (
+         SELECT (EXTRACT(year FROM pbt.period_start))::integer AS year,
                 CASE
-                    WHEN (((ad.role_code)::text = ANY ((ARRAY['Statsminister'::character varying, 'Vice statsminister'::character varying])::text[])) OR ((ad.role_code)::text ~~ '%minister%'::text) OR ((ad.role_code)::text = 'Statsråd'::text)) THEN 'MINISTER'::text
-                    WHEN (((ad.role_code)::text = 'Talman'::text) OR ((ad.role_code)::text ~~ '%vice talman%'::text)) THEN 'SPEAKER'::text
-                    WHEN ((ad.role_code)::text = ANY ((ARRAY['Partiledare'::character varying, 'Gruppledare'::character varying, 'Partisekreterare'::character varying])::text[])) THEN 'PARTY_LEADER'::text
-                    WHEN ((ad.role_code)::text = 'Ordförande'::text) THEN 'COMMITTEE_CHAIR'::text
-                    WHEN ((ad.role_code)::text = 'Vice ordförande'::text) THEN 'COMMITTEE_VICE_CHAIR'::text
-                    WHEN (((ad.role_code)::text = 'Ledamot'::text) AND ((ad.org_code)::text ~~ 'K%'::text)) THEN 'COMMITTEE_MEMBER'::text
-                    WHEN ((ad.role_code)::text = 'Riksdagsledamot'::text) THEN 'MP'::text
-                    WHEN ((ad.role_code)::text = ANY ((ARRAY['Suppleant'::character varying, 'Ersättare'::character varying, 'Extra suppleant'::character varying])::text[])) THEN 'SUBSTITUTE'::text
-                    ELSE 'OTHER'::text
-                END AS role_tier,
+                    WHEN (ey.election_year IS NOT NULL) THEN true
+                    ELSE false
+                END AS is_election_year,
+            sum(pbt.total_ballots) AS total_ballots,
+            count(DISTINCT pbt.person_id) AS active_politicians,
+            round(avg(((100)::numeric - pbt.avg_absence_rate)), 2) AS avg_attendance_rate,
+            sum(pbt.total_votes) AS total_votes,
+            round(avg(pbt.avg_win_rate), 2) AS avg_win_rate,
+            round(avg(pbt.avg_rebel_rate), 2) AS avg_rebel_rate
+           FROM (public.view_politician_behavioral_trends pbt
+             LEFT JOIN election_years ey ON (((ey.election_year)::numeric = EXTRACT(year FROM pbt.period_start))))
+          WHERE ((EXTRACT(quarter FROM pbt.period_start) = (4)::numeric) AND (EXTRACT(year FROM pbt.period_start) >= (2002)::numeric))
+          GROUP BY (EXTRACT(year FROM pbt.period_start)),
                 CASE
-                    WHEN ((ad.role_code)::text = 'Statsminister'::text) THEN 1000
-                    WHEN ((ad.role_code)::text = ANY ((ARRAY['Vice statsminister'::character varying, 'Statsråd'::character varying])::text[])) THEN 900
-                    WHEN ((ad.role_code)::text ~~ '%minister%'::text) THEN 850
-                    WHEN ((ad.role_code)::text = 'Talman'::text) THEN 800
-                    WHEN ((ad.role_code)::text ~~ '%vice talman%'::text) THEN 750
-                    WHEN ((ad.role_code)::text = 'Partiledare'::text) THEN 700
-                    WHEN ((ad.role_code)::text = 'Gruppledare'::text) THEN 650
-                    WHEN ((ad.role_code)::text = 'Ordförande'::text) THEN 600
-                    WHEN ((ad.role_code)::text = 'Vice ordförande'::text) THEN 550
-                    WHEN ((ad.role_code)::text = 'Partisekreterare'::text) THEN 500
-                    WHEN ((ad.role_code)::text = 'Riksdagsledamot'::text) THEN 400
-                    WHEN ((ad.role_code)::text = 'Ledamot'::text) THEN 350
-                    WHEN ((ad.role_code)::text = ANY ((ARRAY['Suppleant'::character varying, 'Ersättare'::character varying])::text[])) THEN 100
-                    ELSE 50
-                END AS role_weight,
+                    WHEN (ey.election_year IS NOT NULL) THEN true
+                    ELSE false
+                END
+        ), q4_document_activity AS (
+         SELECT (EXTRACT(year FROM pd.made_public_date))::integer AS year,
+            count(DISTINCT pd.doc_id) AS total_documents,
+            count(DISTINCT pd.person_reference_id) AS active_document_authors,
+            count(DISTINCT
                 CASE
-                    WHEN (ad.to_date IS NULL) THEN (CURRENT_DATE - ad.from_date)
-                    ELSE (ad.to_date - ad.from_date)
-                END AS days_in_role
-           FROM (public.person_data p
-             JOIN public.assignment_data ad ON (((p.id)::text = (ad.intressent_id)::text)))
-          WHERE (ad.from_date IS NOT NULL)
-        ), role_summary AS (
-         SELECT role_assignments.person_id,
-            role_assignments.first_name,
-            role_assignments.last_name,
-            role_assignments.party,
-            role_assignments.role_code,
-            role_assignments.status,
-            role_assignments.assignment_type,
-            role_assignments.org_code,
-            role_assignments.role_tier,
-            role_assignments.role_weight,
-            min(role_assignments.from_date) AS role_start,
-            max(COALESCE(role_assignments.to_date, CURRENT_DATE)) AS role_end,
-            (EXTRACT(year FROM min(role_assignments.from_date)))::integer AS role_start_year,
-            (EXTRACT(year FROM max(COALESCE(role_assignments.to_date, CURRENT_DATE))))::integer AS role_end_year,
-            count(*) AS role_instances,
-            sum(role_assignments.days_in_role) AS total_days_in_role,
-            bool_or((role_assignments.to_date IS NULL)) AS is_current_role
-           FROM role_assignments
-          GROUP BY role_assignments.person_id, role_assignments.first_name, role_assignments.last_name, role_assignments.party, role_assignments.role_code, role_assignments.status, role_assignments.assignment_type, role_assignments.org_code, role_assignments.role_tier, role_assignments.role_weight
-        ), role_progression AS (
-         SELECT role_summary.person_id,
-            role_summary.first_name,
-            role_summary.last_name,
-            role_summary.party,
-            role_summary.role_code,
-            role_summary.status,
-            role_summary.assignment_type,
-            role_summary.org_code,
-            role_summary.role_tier,
-            role_summary.role_weight,
-            role_summary.role_start,
-            role_summary.role_end,
-            role_summary.role_start_year,
-            role_summary.role_end_year,
-            role_summary.role_instances,
-            role_summary.total_days_in_role,
-            role_summary.is_current_role,
-            row_number() OVER (PARTITION BY role_summary.person_id ORDER BY role_summary.role_start) AS role_sequence,
-            max(role_summary.role_weight) OVER (PARTITION BY role_summary.person_id) AS peak_role_weight,
-            min(role_summary.role_start_year) OVER (PARTITION BY role_summary.person_id) AS career_first_year,
-            max(role_summary.role_end_year) OVER (PARTITION BY role_summary.person_id) AS career_last_year,
-            lag(role_summary.role_weight) OVER (PARTITION BY role_summary.person_id ORDER BY role_summary.role_start) AS prev_role_weight,
-            lag(role_summary.role_start_year) OVER (PARTITION BY role_summary.person_id ORDER BY role_summary.role_start) AS prev_role_start_year,
-            lead(role_summary.role_weight) OVER (PARTITION BY role_summary.person_id ORDER BY role_summary.role_start) AS next_role_weight
-           FROM role_summary
+                    WHEN ((pd.document_type)::text = 'prop'::text) THEN pd.doc_id
+                    ELSE NULL::character varying
+                END) AS total_proposals,
+            count(DISTINCT
+                CASE
+                    WHEN ((pd.document_type)::text = 'mot'::text) THEN pd.doc_id
+                    ELSE NULL::character varying
+                END) AS total_motions
+           FROM public.view_riksdagen_politician_document pd
+          WHERE ((EXTRACT(quarter FROM pd.made_public_date) = (4)::numeric) AND (pd.made_public_date IS NOT NULL) AND (EXTRACT(year FROM pd.made_public_date) >= (2002)::numeric))
+          GROUP BY (EXTRACT(year FROM pd.made_public_date))
+        ), q4_role_activity AS (
+         SELECT (EXTRACT(year FROM pre.role_start))::integer AS year,
+            count(DISTINCT pre.person_id) AS total_new_assignments,
+            count(DISTINCT
+                CASE
+                    WHEN (pre.role_tier = ANY (ARRAY['minister'::text, 'speaker'::text, 'party_leader'::text])) THEN pre.person_id
+                    ELSE NULL::character varying
+                END) AS politicians_with_new_roles,
+            count(DISTINCT
+                CASE
+                    WHEN (pre.role_tier = 'minister'::text) THEN pre.person_id
+                    ELSE NULL::character varying
+                END) AS leadership_appointments
+           FROM public.view_riksdagen_politician_role_evolution pre
+          WHERE ((EXTRACT(quarter FROM pre.role_start) = (4)::numeric) AND (pre.role_start IS NOT NULL) AND (EXTRACT(year FROM pre.role_start) >= (2002)::numeric))
+          GROUP BY (EXTRACT(year FROM pre.role_start))
+        ), q4_party_effectiveness AS (
+         SELECT (EXTRACT(year FROM pet.period_start))::integer AS year,
+            count(DISTINCT pet.party) AS active_parties,
+            round(avg(pet.avg_win_rate), 2) AS avg_party_win_rate,
+            round(avg(pet.avg_absence_rate), 2) AS avg_party_absence_rate,
+            sum(pet.documents_produced) AS party_documents_total,
+            round(avg(pet.ma_4quarter_win_rate), 2) AS ma_party_win_rate,
+            count(DISTINCT
+                CASE
+                    WHEN (pet.performance_level = ANY (ARRAY['EXCELLENT'::text, 'VERY_GOOD'::text])) THEN pet.party
+                    ELSE NULL::text
+                END) AS high_performing_parties
+           FROM public.view_party_effectiveness_trends pet
+          WHERE ((EXTRACT(quarter FROM pet.period_start) = (4)::numeric) AND (EXTRACT(year FROM pet.period_start) >= (2002)::numeric))
+          GROUP BY (EXTRACT(year FROM pet.period_start))
+        ), committee_productivity_metrics AS (
+         SELECT '2002-2026'::text AS period,
+            count(DISTINCT cp.committee_code) AS total_committees,
+            round(avg(cp.productivity_score), 2) AS avg_committee_productivity,
+            count(DISTINCT
+                CASE
+                    WHEN (cp.productivity_level = ANY (ARRAY['VERY_HIGH'::text, 'HIGH'::text])) THEN cp.committee_code
+                    ELSE NULL::character varying
+                END) AS high_productivity_committees,
+            round(avg(cp.avg_approval_rate), 2) AS avg_committee_approval_rate
+           FROM public.view_committee_productivity cp
+        ), q4_activity AS (
+         SELECT qv.year,
+            qv.is_election_year,
+            qv.total_ballots,
+            qv.active_politicians,
+            qv.avg_attendance_rate,
+            qv.total_votes,
+            qv.avg_win_rate,
+            qv.avg_rebel_rate,
+            COALESCE(qd.total_documents, (0)::bigint) AS total_documents,
+            COALESCE(qd.active_document_authors, (0)::bigint) AS active_document_authors,
+            COALESCE(qd.total_proposals, (0)::bigint) AS total_proposals,
+            COALESCE(qd.total_motions, (0)::bigint) AS total_motions,
+            COALESCE(qr.total_new_assignments, (0)::bigint) AS total_new_assignments,
+            COALESCE(qr.politicians_with_new_roles, (0)::bigint) AS politicians_with_new_roles,
+            COALESCE(qr.leadership_appointments, (0)::bigint) AS leadership_appointments,
+            COALESCE(qpe.active_parties, (0)::bigint) AS active_parties,
+            COALESCE(qpe.avg_party_win_rate, (0)::numeric) AS avg_party_win_rate,
+            COALESCE(qpe.avg_party_absence_rate, (0)::numeric) AS avg_party_absence_rate,
+            COALESCE(qpe.party_documents_total, (0)::numeric) AS party_documents_total,
+            COALESCE(qpe.ma_party_win_rate, (0)::numeric) AS ma_party_win_rate,
+            COALESCE(qpe.high_performing_parties, (0)::bigint) AS high_performing_parties
+           FROM ((((q4_voting_activity qv
+             LEFT JOIN q4_document_activity qd ON ((qv.year = qd.year)))
+             LEFT JOIN q4_role_activity qr ON ((qv.year = qr.year)))
+             LEFT JOIN q4_party_effectiveness qpe ON ((qv.year = qpe.year)))
+             CROSS JOIN committee_productivity_metrics cpm)
+        ), q4_baseline AS (
+         SELECT avg(q4_activity.total_ballots) FILTER (WHERE (NOT q4_activity.is_election_year)) AS baseline_ballots,
+            stddev(q4_activity.total_ballots) FILTER (WHERE (NOT q4_activity.is_election_year)) AS stddev_ballots,
+            avg(q4_activity.avg_attendance_rate) FILTER (WHERE (NOT q4_activity.is_election_year)) AS baseline_attendance,
+            stddev(q4_activity.avg_attendance_rate) FILTER (WHERE (NOT q4_activity.is_election_year)) AS stddev_attendance,
+            avg(q4_activity.total_documents) FILTER (WHERE (NOT q4_activity.is_election_year)) AS baseline_documents,
+            stddev(q4_activity.total_documents) FILTER (WHERE (NOT q4_activity.is_election_year)) AS stddev_documents,
+            avg(q4_activity.total_new_assignments) FILTER (WHERE (NOT q4_activity.is_election_year)) AS baseline_assignments,
+            stddev(q4_activity.total_new_assignments) FILTER (WHERE (NOT q4_activity.is_election_year)) AS stddev_assignments
+           FROM q4_activity
         )
- SELECT person_id,
-    first_name,
-    last_name,
-    party,
-    role_code,
-    status,
-    assignment_type,
-    org_code,
-    role_tier,
-    role_weight,
-    role_start,
-    role_end,
-    role_start_year,
-    role_end_year,
-    role_instances,
-    total_days_in_role,
-    is_current_role,
-    role_sequence,
-    peak_role_weight,
-    career_first_year,
-    career_last_year,
-    ((role_end_year - role_start_year) + 1) AS years_in_role,
+ SELECT qa.year,
+    qa.is_election_year,
+    qa.total_ballots,
+    qa.active_politicians,
+    qa.avg_attendance_rate,
+    qa.total_votes,
+    qa.avg_win_rate,
+    qa.avg_rebel_rate,
+    qa.total_documents,
+    qa.active_document_authors,
+    qa.total_proposals,
+    qa.total_motions,
+    qa.total_new_assignments,
+    qa.politicians_with_new_roles,
+    qa.leadership_appointments,
+    qa.active_parties,
+    qa.avg_party_win_rate,
+    qa.avg_party_absence_rate,
+    qa.party_documents_total,
+    qa.ma_party_win_rate,
+    qa.high_performing_parties,
+    qb.baseline_ballots,
+    qb.stddev_ballots,
+    qb.baseline_documents,
+    qb.baseline_assignments,
+    (qa.total_ballots - qb.baseline_ballots) AS ballot_deviation_from_baseline,
+    ((qa.total_documents)::numeric - qb.baseline_documents) AS document_deviation_from_baseline,
+    ((qa.total_new_assignments)::numeric - qb.baseline_assignments) AS assignment_deviation_from_baseline,
         CASE
-            WHEN (role_weight = peak_role_weight) THEN 'PEAK_ROLE'::text
-            WHEN ((role_weight > COALESCE(prev_role_weight, 0)) AND (role_weight > COALESCE(next_role_weight, 0))) THEN 'CAREER_PEAK'::text
-            WHEN (role_weight > COALESCE(prev_role_weight, 0)) THEN 'ASCENDING'::text
-            WHEN (role_weight < COALESCE(prev_role_weight, role_weight)) THEN 'DESCENDING'::text
-            ELSE 'LATERAL'::text
-        END AS progression_pattern,
+            WHEN (qb.baseline_ballots > (0)::numeric) THEN round((((qa.total_ballots - qb.baseline_ballots) / qb.baseline_ballots) * (100)::numeric), 2)
+            ELSE (0)::numeric
+        END AS ballot_percent_change_from_baseline,
         CASE
-            WHEN (role_weight >= 800) THEN 'TOP_LEADERSHIP'::text
-            WHEN (role_weight >= 600) THEN 'SENIOR_LEADERSHIP'::text
-            WHEN (role_weight >= 400) THEN 'MID_LEVEL'::text
-            WHEN (role_weight >= 200) THEN 'JUNIOR'::text
-            ELSE 'ENTRY_LEVEL'::text
-        END AS career_level,
+            WHEN (qb.baseline_documents > (0)::numeric) THEN round(((((qa.total_documents)::numeric - qb.baseline_documents) / qb.baseline_documents) * (100)::numeric), 2)
+            ELSE (0)::numeric
+        END AS document_percent_change_from_baseline,
+    qb.baseline_attendance,
+    qb.stddev_attendance,
+    (qa.avg_attendance_rate - qb.baseline_attendance) AS attendance_deviation_from_baseline,
         CASE
-            WHEN ((prev_role_weight IS NOT NULL) AND (prev_role_start_year IS NOT NULL)) THEN round((((role_weight - prev_role_weight))::numeric / (NULLIF((role_start_year - prev_role_start_year), 0))::numeric), 2)
+            WHEN (qb.stddev_ballots > (0)::numeric) THEN round(((qa.total_ballots - qb.baseline_ballots) / qb.stddev_ballots), 2)
+            ELSE (0)::numeric
+        END AS ballot_z_score,
+        CASE
+            WHEN (qb.stddev_documents > (0)::numeric) THEN round((((qa.total_documents)::numeric - qb.baseline_documents) / qb.stddev_documents), 2)
+            ELSE (0)::numeric
+        END AS document_z_score,
+        CASE
+            WHEN (qa.is_election_year AND ((qa.total_ballots > (1.5 * qb.baseline_ballots)) OR ((qa.total_documents)::numeric > (1.5 * qb.baseline_documents)))) THEN 'PRE_ELECTION_SURGE'::text
+            WHEN (qa.is_election_year AND (qa.total_ballots > (qb.baseline_ballots + qb.stddev_ballots))) THEN 'ELEVATED_ELECTION_ACTIVITY'::text
+            WHEN (qa.total_ballots > (qb.baseline_ballots + qb.stddev_ballots)) THEN 'ELEVATED_ACTIVITY'::text
+            WHEN (qa.total_ballots < (qb.baseline_ballots - qb.stddev_ballots)) THEN 'REDUCED_ACTIVITY'::text
+            ELSE 'NORMAL_ACTIVITY'::text
+        END AS q4_activity_classification,
+    lag(qa.total_ballots) OVER (ORDER BY qa.year) AS prev_year_ballots,
+        CASE
+            WHEN ((lag(qa.total_ballots) OVER (ORDER BY qa.year) IS NOT NULL) AND (lag(qa.total_ballots) OVER (ORDER BY qa.year) > (0)::numeric)) THEN round((((qa.total_ballots - lag(qa.total_ballots) OVER (ORDER BY qa.year)) / lag(qa.total_ballots) OVER (ORDER BY qa.year)) * (100)::numeric), 2)
             ELSE NULL::numeric
-        END AS advancement_velocity
-   FROM role_progression
-  ORDER BY person_id, role_start;
+        END AS yoy_ballot_change_pct,
+    rank() OVER (ORDER BY qa.total_ballots DESC) AS rank_by_q4_activity
+   FROM (q4_activity qa
+     CROSS JOIN q4_baseline qb)
+  ORDER BY qa.year DESC;
 
 
 --
--- Name: VIEW view_riksdagen_politician_role_evolution; Type: COMMENT; Schema: public; Owner: -
+-- Name: VIEW view_riksdagen_pre_election_quarterly_activity; Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON VIEW public.view_riksdagen_politician_role_evolution IS 'Role evolution analysis tracking politician career progression through different positions.
-Classifies roles into tiers (minister/speaker/party leader/committee chair/member/substitute),
-assigns role weights for progression analysis, and identifies career patterns (ascending/descending/lateral).
-Calculates advancement velocity and career levels. Used for Predictive Intelligence Framework (Framework 4)
-to understand career trajectories and predict future role transitions.';
+COMMENT ON VIEW public.view_riksdagen_pre_election_quarterly_activity IS 'Enhanced multi-dimensional Q4 (October-December) aggregate activity analysis comparing election years vs non-election years. Detects pre-election surge patterns (>1.5x baseline) across voting, documents, assignments, and party effectiveness. Features: year-over-year comparison, z-score calculation for multiple dimensions, party-level context, committee productivity metrics, activity classification. Data Sources (META/META level): view_politician_behavioral_trends (voting), view_riksdagen_politician_document (documents), view_riksdagen_politician_role_evolution (roles), view_party_effectiveness_trends (party performance), view_committee_productivity (committee metrics). Election years: 2002, 2006, 2010, 2014, 2018, 2022, 2026. Framework 1: Temporal Analysis + Framework 3: Pattern Recognition. Use Case: Comprehensive system-wide pre-election activity detection across all behavioral dimensions with party and committee context, cross-election cycle comparison.';
 
 
 --
@@ -11437,6 +12678,145 @@ CREATE VIEW public.view_riksdagen_q4_election_year_comparison AS
 --
 
 COMMENT ON VIEW public.view_riksdagen_q4_election_year_comparison IS 'Q4 (October-December) activity comparison: election years vs non-election years. Detects pre-election surge patterns (>150% baseline) and elevated activity (>1 stddev). Enables prediction of electoral behavior based on Q4 activity patterns. Framework 3: Pattern Recognition + Framework 4: Predictive Intelligence. Data Source: view_riksdagen_seasonal_quarterly_activity. Use Case: Query Q4 2021 (election year) vs Q4 2020 (non-election year) activity';
+
+
+--
+-- Name: view_riksdagen_seasonal_activity_patterns; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.view_riksdagen_seasonal_activity_patterns AS
+ WITH election_years AS (
+         SELECT unnest(ARRAY[2002, 2006, 2010, 2014, 2018, 2022, 2026]) AS election_year
+        ), election_cycle_mapping AS (
+         SELECT year.year,
+                CASE
+                    WHEN ((year.year >= 2002) AND (year.year <= 2005)) THEN '2002-2006'::text
+                    WHEN ((year.year >= 2006) AND (year.year <= 2009)) THEN '2006-2010'::text
+                    WHEN ((year.year >= 2010) AND (year.year <= 2013)) THEN '2010-2014'::text
+                    WHEN ((year.year >= 2014) AND (year.year <= 2017)) THEN '2014-2018'::text
+                    WHEN ((year.year >= 2018) AND (year.year <= 2021)) THEN '2018-2022'::text
+                    WHEN ((year.year >= 2022) AND (year.year <= 2025)) THEN '2022-2026'::text
+                    WHEN (year.year >= 2026) THEN '2026-2030'::text
+                    ELSE NULL::text
+                END AS election_cycle
+           FROM generate_series(2002, 2030) year(year)
+        ), seasonal_base AS (
+         SELECT sqa.year,
+            sqa.quarter,
+            sqa.is_election_year,
+            sqa.total_ballots,
+            sqa.active_politicians,
+            sqa.attendance_rate,
+            sqa.documents_produced,
+            sqa.q_baseline_ballots,
+            sqa.q_stddev_ballots,
+            sqa.ballot_z_score,
+            sqa.q_baseline_docs,
+            sqa.q_stddev_docs,
+            sqa.doc_z_score,
+            sqa.q_baseline_attendance,
+            sqa.q_stddev_attendance,
+            sqa.attendance_z_score,
+            sqa.activity_classification,
+            ecm.election_cycle
+           FROM (public.view_riksdagen_seasonal_quarterly_activity sqa
+             JOIN election_cycle_mapping ecm ON ((sqa.year = (ecm.year)::numeric)))
+        ), seasonal_with_trends AS (
+         SELECT sb.year,
+            sb.quarter,
+            sb.is_election_year,
+            sb.total_ballots,
+            sb.active_politicians,
+            sb.attendance_rate,
+            sb.documents_produced,
+            sb.q_baseline_ballots,
+            sb.q_stddev_ballots,
+            sb.ballot_z_score,
+            sb.q_baseline_docs,
+            sb.q_stddev_docs,
+            sb.doc_z_score,
+            sb.q_baseline_attendance,
+            sb.q_stddev_attendance,
+            sb.attendance_z_score,
+            sb.activity_classification,
+            sb.election_cycle,
+            lag(sb.total_ballots) OVER (PARTITION BY sb.year ORDER BY sb.quarter) AS prev_quarter_ballots,
+            lead(sb.total_ballots) OVER (PARTITION BY sb.year ORDER BY sb.quarter) AS next_quarter_ballots,
+            lag(sb.attendance_rate) OVER (PARTITION BY sb.year ORDER BY sb.quarter) AS prev_quarter_attendance,
+            lag(sb.documents_produced) OVER (PARTITION BY sb.year ORDER BY sb.quarter) AS prev_quarter_documents,
+            avg(sb.total_ballots) OVER (PARTITION BY sb.quarter) AS cross_year_quarter_avg_ballots,
+            stddev_pop(sb.total_ballots) OVER (PARTITION BY sb.quarter) AS cross_year_quarter_stddev_ballots,
+            avg(sb.documents_produced) OVER (PARTITION BY sb.quarter) AS cross_year_quarter_avg_docs,
+            ntile(4) OVER (PARTITION BY sb.election_cycle ORDER BY sb.total_ballots) AS activity_quartile_cycle
+           FROM seasonal_base sb
+        )
+ SELECT year,
+    quarter,
+    is_election_year,
+    election_cycle,
+    total_ballots,
+    active_politicians,
+    attendance_rate,
+    documents_produced,
+    q_baseline_ballots,
+    q_stddev_ballots,
+    ballot_z_score,
+    q_baseline_docs,
+    q_stddev_docs,
+    doc_z_score,
+    q_baseline_attendance,
+    q_stddev_attendance,
+    attendance_z_score,
+    activity_classification AS base_activity_classification,
+    prev_quarter_ballots,
+    next_quarter_ballots,
+    prev_quarter_attendance,
+    prev_quarter_documents,
+    cross_year_quarter_avg_ballots,
+    cross_year_quarter_stddev_ballots,
+    cross_year_quarter_avg_docs,
+    activity_quartile_cycle,
+        CASE
+            WHEN ((prev_quarter_ballots IS NOT NULL) AND (prev_quarter_ballots > 0)) THEN round(((((total_ballots - prev_quarter_ballots))::numeric / (prev_quarter_ballots)::numeric) * (100)::numeric), 2)
+            ELSE NULL::numeric
+        END AS qoq_ballot_change_pct,
+    ((total_ballots)::numeric - cross_year_quarter_avg_ballots) AS deviation_from_typical_quarter,
+        CASE
+            WHEN (cross_year_quarter_stddev_ballots > (0)::numeric) THEN round((((total_ballots)::numeric - cross_year_quarter_avg_ballots) / cross_year_quarter_stddev_ballots), 2)
+            ELSE (0)::numeric
+        END AS cross_year_z_score,
+        CASE
+            WHEN (quarter = (1)::numeric) THEN 'Q1_WINTER'::text
+            WHEN (quarter = (2)::numeric) THEN 'Q2_SPRING'::text
+            WHEN (quarter = (3)::numeric) THEN 'Q3_SUMMER'::text
+            WHEN (quarter = (4)::numeric) THEN 'Q4_AUTUMN'::text
+            ELSE NULL::text
+        END AS quarter_label,
+        CASE
+            WHEN (quarter = (1)::numeric) THEN 'Winter Session (Jan-Mar)'::text
+            WHEN (quarter = (2)::numeric) THEN 'Spring Session (Apr-Jun)'::text
+            WHEN (quarter = (3)::numeric) THEN 'Summer Recess/Election (Jul-Sep)'::text
+            WHEN (quarter = (4)::numeric) THEN 'Autumn Session (Oct-Dec)'::text
+            ELSE NULL::text
+        END AS parliamentary_period,
+        CASE
+            WHEN ((quarter = (4)::numeric) AND is_election_year AND (ballot_z_score > 1.5)) THEN 'Q4_PRE_ELECTION_SURGE'::text
+            WHEN ((quarter = (3)::numeric) AND is_election_year) THEN 'Q3_ELECTION_QUARTER'::text
+            WHEN ((quarter = (4)::numeric) AND (ballot_z_score > 1.0)) THEN 'Q4_ELEVATED_ACTIVITY'::text
+            WHEN ((quarter = (3)::numeric) AND (ballot_z_score < '-1.0'::numeric)) THEN 'Q3_SUMMER_LULL'::text
+            WHEN (ballot_z_score > 1.5) THEN 'UNUSUALLY_HIGH_ACTIVITY'::text
+            WHEN (ballot_z_score < '-1.5'::numeric) THEN 'UNUSUALLY_LOW_ACTIVITY'::text
+            ELSE 'NORMAL_SEASONAL_PATTERN'::text
+        END AS seasonal_pattern_classification
+   FROM seasonal_with_trends swt
+  ORDER BY year DESC, quarter;
+
+
+--
+-- Name: VIEW view_riksdagen_seasonal_activity_patterns; Type: COMMENT; Schema: public; Owner: -
+--
+
+COMMENT ON VIEW public.view_riksdagen_seasonal_activity_patterns IS 'Enhanced comprehensive Q1-Q4 seasonal pattern analysis across election cycles (2002-2026). Built on view_riksdagen_seasonal_quarterly_activity foundation with extended temporal trends and election context. Features: quarterly behavioral shifts, election year vs non-election comparison, enhanced pattern classification (Q4 surge, Q3 lull, election quarter patterns), cross-year z-scores, NTILE clustering, QoQ trends. Advanced stats: LAG/LEAD for temporal trends, pre-computed z-scores from base view, deviation analysis from quarterly baselines. Data Source (META/META level): view_riksdagen_seasonal_quarterly_activity (foundation with z-scores and baselines). Election cycles: 7 cycles (2002-2026). Framework 3: Pattern Recognition - Seasonal clustering. Framework 4: Predictive Intelligence. Use Case: Long-term trend analysis, seasonal behavior clustering, electoral cycle predictions with leveraged pre-computed analytics.';
 
 
 --
@@ -14091,13 +15471,13 @@ ALTER TABLE ONLY public.jv_snapshot
 -- PostgreSQL database dump complete
 --
 
-\unrestrict Dj97hVaDv2ALaKGTPRdkVYSuec6jsRM4IXPhDerTo07anoeWqAbENwyiYJQ0tSS
+\unrestrict YP6NuFYA25BLM67NeACskUsrEW5jYgBfa1tqOPipkzCxzpTvWXgCWjJjroyXtND
 
 --
 -- PostgreSQL database dump
 --
 
-\restrict 00815OLWatzC6qO4eyCDnPYwLXzZba5xCohOP2UoKCfDsH3qdv5pC1KAROK1iQ4
+\restrict 79SC0lszc4ExENRKDFBcmbfAPgysFa3gAgk5hs9cysV3FlAyng7JsbLMo66tlLH
 
 -- Dumped from database version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
@@ -14622,6 +16002,26 @@ longevity-analysis-1.56-003	intelligence-operative	db-changelog-1.56.xml	2026-01
 create-party-transition-history-view-1.57-001	intelligence-operative	db-changelog-1.57.xml	2026-01-17 18:43:00.859762	502	EXECUTED	9:dc5cb39faeb206f3971c9bcb6f7650bd	createView viewName=view_riksdagen_party_transition_history	Create view_riksdagen_party_transition_history to track all party changes since 2002.\n        \n        Purpose: Identify politicians who switched parties while serving as active MPs \n        (status = 'Tjänstgörande riksdagsledamot'). This tracks ...	\N	5.0.1	\N	\N	8675378241
 create-party-defector-analysis-view-1.57-002	intelligence-operative	db-changelog-1.57.xml	2026-01-17 18:43:00.869186	503	EXECUTED	9:8352cbc3030dcb7716007e1b89d68db7	createView viewName=view_riksdagen_party_defector_analysis	Create view_riksdagen_party_defector_analysis to analyze defector characteristics.\n        \n        Purpose: Analyze behavioral patterns before/after party transitions - attendance, \n        document production, voting patterns. Classify defection...	\N	5.0.1	\N	\N	8675378241
 create-party-switcher-outcomes-view-1.57-003	intelligence-operative	db-changelog-1.57.xml	2026-01-17 18:43:00.879053	504	EXECUTED	9:6862c4e3283795138ffa775c0df28ee4	createView viewName=view_riksdagen_party_switcher_outcomes	Create view_riksdagen_party_switcher_outcomes to measure post-transition career success.\n        \n        Purpose: Track political career trajectory after party switch - did they continue \n        serving, get re-elected, attain leadership positio...	\N	5.0.1	\N	\N	8675378241
+1.58-intro	intelligence-operative	db-changelog-1.58.xml	2026-01-19 00:43:48.447441	505	EXECUTED	9:482916d6fabfef0c90cdd90dab8f32fb	sql	Database Changelog v1.58 - 10-Level Career Path Classification & Trajectory Analysis\n        \n        Enhancement of #8211 career tracking views with comprehensive 10-level hierarchical\n        role classification, party leader/speaker tracking, t...	\N	5.0.1	\N	\N	8783425707
+drop-career-path-10level-1.58-001	intelligence-operative	db-changelog-1.58.xml	2026-01-19 00:43:48.456926	506	EXECUTED	9:6fcf5b8336443661dba4d47d733e5f9c	sql		\N	5.0.1	\N	\N	8783425707
+career-path-10level-1.58-001	intelligence-operative	db-changelog-1.58.xml	2026-01-19 00:43:48.527616	507	EXECUTED	9:f877b25c7cfedc83354e30be65bffb9d	createView viewName=view_riksdagen_politician_career_path_10level	Create view_riksdagen_politician_career_path_10level with comprehensive 10-level \n        hierarchical role classification system.\n        \n        Framework: Predictive Intelligence (Framework 4) + Temporal Analysis (Framework 1)\n        \n       ...	\N	5.0.1	\N	\N	8783425707
+1.58-validation	intelligence-operative	db-changelog-1.58.xml	2026-01-19 00:43:48.638211	508	EXECUTED	9:16d181fc6d8375fda140c490bd306de4	sql	Validate that the 10-level career path view was created successfully with\n        comprehensive career classification, trajectory analysis, and KPI metrics.	\N	5.0.1	\N	\N	8783425707
+1.59-intro	intelligence-operative	db-changelog-1.59.xml	2026-01-19 00:43:48.642969	509	EXECUTED	9:44d236d76025bc9ab297858107d170df	sql	v1.59 Election Proximity Trend Analysis - Quarterly Q4 Pre-Election Focus	\N	5.0.1	\N	\N	8783425707
+create-election-proximity-trends-view-1.59-001	intelligence-operative	db-changelog-1.59.xml	2026-01-19 00:43:48.692815	510	EXECUTED	9:1d89eb720b7c0272ace71368c3344031	createView viewName=view_riksdagen_election_proximity_trends	Create view_riksdagen_election_proximity_trends to track politician activity \n        by months until election, with Q4 pre-election focus.\n        \n        Purpose: Analyze behavioral changes in the 12 months before Swedish elections \n        (ty...	\N	5.0.1	\N	\N	8783425707
+1.59-document-election-proximity-trends-view	intelligence-operative	db-changelog-1.59.xml	2026-01-19 00:43:48.700178	511	EXECUTED	9:cce77ebd4dd48c385219c3cd9a3baf7e	sql	Add documentation for view_riksdagen_election_proximity_trends	\N	5.0.1	\N	\N	8783425707
+create-pre-election-quarterly-activity-view-1.59-002	intelligence-operative	db-changelog-1.59.xml	2026-01-19 00:43:48.736922	512	EXECUTED	9:e6e770e87bd4189dd4c61160c67042dc	createView viewName=view_riksdagen_pre_election_quarterly_activity	Create view_riksdagen_pre_election_quarterly_activity to aggregate Q4 activity \n        vs baseline across all politicians.\n        \n        Purpose: Aggregate-level view showing Q4 activity patterns in pre-election periods \n        compared to ba...	\N	5.0.1	\N	\N	8783425707
+1.59-document-pre-election-quarterly-activity-view	intelligence-operative	db-changelog-1.59.xml	2026-01-19 00:43:48.743781	513	EXECUTED	9:506b35ff5f379430a321421b17714969	sql	Add documentation for view_riksdagen_pre_election_quarterly_activity	\N	5.0.1	\N	\N	8783425707
+create-seasonal-activity-patterns-view-1.59-003	intelligence-operative	db-changelog-1.59.xml	2026-01-19 00:43:48.764778	514	EXECUTED	9:4849ba7c458720937bb7887e27cb70d5	createView viewName=view_riksdagen_seasonal_activity_patterns	Create view_riksdagen_seasonal_activity_patterns to identify Q1-Q4 behavior \n        shifts across election cycles.\n        \n        Purpose: Comprehensive seasonal pattern analysis identifying behavioral shifts \n        across Q1-Q4 for all elect...	\N	5.0.1	\N	\N	8783425707
+1.59-document-seasonal-activity-patterns-view	intelligence-operative	db-changelog-1.59.xml	2026-01-19 00:43:48.770163	515	EXECUTED	9:da72424adcb1598d06e94c7ad780e140	sql	Add documentation for view_riksdagen_seasonal_activity_patterns	\N	5.0.1	\N	\N	8783425707
+1.59-validation	intelligence-operative	db-changelog-1.59.xml	2026-01-19 00:43:48.780416	516	EXECUTED	9:1f152f338cd1176b82be6617ff7c31a1	sql	Validate that all 3 election proximity views were created successfully\n        with comprehensive temporal analysis and seasonal pattern detection.	\N	5.0.1	\N	\N	8783425707
+1.60-intro	intelligence-operative	db-changelog-1.60.xml	2026-01-19 00:43:48.784185	517	EXECUTED	9:31cffed9c4c5843f2649b76414dd3d61	sql	v1.60 Election Year Behavioral Pattern Analysis - Annual Comparison Across 7 Election Cycles	\N	5.0.1	\N	\N	8783425707
+create-election-year-behavioral-patterns-view-1.60-001	intelligence-operative	db-changelog-1.60.xml	2026-01-19 00:43:48.807073	518	EXECUTED	9:685db28ff8044fb7380539706bd9f7d9	createView viewName=view_riksdagen_election_year_behavioral_patterns	Create view_riksdagen_election_year_behavioral_patterns for comparing \n        behavioral metrics across all 7 election years (2002-2026) vs midterm years.\n        \n        Purpose: Systematic comparison of election year behavioral patterns vs \n  ...	\N	5.0.1	\N	\N	8783425707
+1.60-document-election-year-behavioral-patterns-view	intelligence-operative	db-changelog-1.60.xml	2026-01-19 00:43:48.813133	519	EXECUTED	9:103fefb7a2d9d4ce2293f95c2df0b993	sql	Add documentation for view_riksdagen_election_year_behavioral_patterns	\N	5.0.1	\N	\N	8783425707
+create-election-year-vs-midterm-view-1.60-002	intelligence-operative	db-changelog-1.60.xml	2026-01-19 00:43:48.828547	520	EXECUTED	9:5d870fadc3c6d12033a166ff6c215dc8	createView viewName=view_riksdagen_election_year_vs_midterm	Create view_riksdagen_election_year_vs_midterm for aggregate comparison \n        of election years vs midterm years.\n        \n        Purpose: Provide high-level comparison showing aggregate behavioral \n        differences between election years a...	\N	5.0.1	\N	\N	8783425707
+1.60-document-election-year-vs-midterm-view	intelligence-operative	db-changelog-1.60.xml	2026-01-19 00:43:48.835173	521	EXECUTED	9:13b795f8584e48425531e9fa4abe0007	sql	Add documentation for view_riksdagen_election_year_vs_midterm	\N	5.0.1	\N	\N	8783425707
+create-election-year-anomalies-view-1.60-003	intelligence-operative	db-changelog-1.60.xml	2026-01-19 00:43:48.850324	522	EXECUTED	9:688d553035c20f1c20070cf95848756e	createView viewName=view_riksdagen_election_year_anomalies	Create view_riksdagen_election_year_anomalies to identify statistically \n        unusual patterns in election years.\n        \n        Purpose: Identify election years with statistically unusual behavioral \n        patterns compared to typical elec...	\N	5.0.1	\N	\N	8783425707
+1.60-document-election-year-anomalies-view	intelligence-operative	db-changelog-1.60.xml	2026-01-19 00:43:48.856422	523	EXECUTED	9:645f4b378ccc02510962eb2749be432c	sql	Add documentation for view_riksdagen_election_year_anomalies	\N	5.0.1	\N	\N	8783425707
+1.60-validation	intelligence-operative	db-changelog-1.60.xml	2026-01-19 00:43:48.86746	524	EXECUTED	9:2bf4ec20cf9e261ff6ea0984d62ed157	sql	Validate that all 3 election year analysis views were created successfully\n        with comprehensive annual comparison and anomaly detection capabilities.	\N	5.0.1	\N	\N	8783425707
 \.
 
 
@@ -14638,5 +16038,5 @@ COPY public.databasechangeloglock (id, locked, lockgranted, lockedby) FROM stdin
 -- PostgreSQL database dump complete
 --
 
-\unrestrict 00815OLWatzC6qO4eyCDnPYwLXzZba5xCohOP2UoKCfDsH3qdv5pC1KAROK1iQ4
+\unrestrict 79SC0lszc4ExENRKDFBcmbfAPgysFa3gAgk5hs9cysV3FlAyng7JsbLMo66tlLH
 
