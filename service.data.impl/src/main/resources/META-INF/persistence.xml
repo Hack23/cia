@@ -273,6 +273,11 @@
 		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenSeasonalActivityPatterns</class>
 		<class>com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenSeasonalActivityPatternsEmbeddedId</class>
 
+		<!-- V1.60 Election Year Behavioral Pattern Analysis Views -->
+		<class>com.hack23.cia.model.internal.application.data.seasonal.impl.ViewRiksdagenElectionYearBehavioralPatterns</class>
+		<class>com.hack23.cia.model.internal.application.data.seasonal.impl.ViewRiksdagenElectionYearVsMidterm</class>
+		<class>com.hack23.cia.model.internal.application.data.seasonal.impl.ViewRiksdagenElectionYearAnomalies</class>
+
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 
 

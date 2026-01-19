@@ -1,0 +1,581 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+<changeSet id="1.60-intro" author="intelligence-operative">
+    <comment>v1.60 Election Year Behavioral Pattern Analysis - Annual Comparison Across 7 Election Cycles</comment>
+    <sql>SELECT 'v1.60' AS version, CURRENT_TIMESTAMP AS applied_at;</sql>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- VIEW 1: view_riksdagen_election_year_behavioral_patterns                 -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="create-election-year-behavioral-patterns-view-1.60-001" failOnError="true" runOnChange="true">
+    <comment>
+        Create view_riksdagen_election_year_behavioral_patterns for comparing 
+        behavioral metrics across all 7 election years (2002-2026) vs midterm years.
+        
+        Purpose: Systematic comparison of election year behavioral patterns vs 
+        non-election years to identify election-specific trends and anomalies.
+        
+        Key Features:
+        - Annual aggregation for all years 2002-2026
+        - Election year classification (2002, 2006, 2010, 2014, 2018, 2022, 2026)
+        - Multi-dimensional metrics: voting, documents, attendance, party discipline
+        - Election year baseline calculation (median across 7 election years)
+        - Activity ratios comparing each year to baselines
+        - Year classification based on statistical deviation
+        
+        Data Sources:
+        - vote_data: Voting records, attendance, party discipline
+        - document_data: Document production (proposals, motions)
+        
+        Advanced Statistics:
+        - Median baseline calculation for election years
+        - Standard deviation for anomaly detection
+        - Activity ratios (year value / baseline)
+        - Year classification (HIGH/NORMAL/LOW election activity, MIDTERM)
+        
+        Intelligence Value: VERY HIGH (5/5)
+        - Identifies systematic election year behavioral shifts
+        - Enables cross-election cycle comparison
+        - Detects unusual election year patterns
+        - Supports predictive modeling for future elections
+        
+        GitHub Issue: Hack23/cia#8209 Election Year Behavioral Pattern Analysis
+    </comment>
+    
+    <createView viewName="view_riksdagen_election_year_behavioral_patterns">
+        <![CDATA[
+WITH election_years AS (
+    SELECT UNNEST(ARRAY[2002, 2006, 2010, 2014, 2018, 2022, 2026])::INT AS election_year
+),
+annual_metrics AS (
+    SELECT 
+        EXTRACT(YEAR FROM vd.vote_date)::INT AS year,
+        CASE 
+            WHEN ey.election_year IS NOT NULL THEN true 
+            ELSE false 
+        END AS is_election_year,
+        COUNT(DISTINCT vd.embedded_id_ballot_id) AS total_ballots,
+        COUNT(DISTINCT vd.embedded_id_intressent_id) AS active_politicians,
+        ROUND(AVG(CASE WHEN vd.vote != 'Frånvarande' THEN 1 ELSE 0 END) * 100, 2) AS attendance_rate,
+        ROUND(AVG(CASE WHEN vd.vote = 'Ja' THEN 1 ELSE 0 END) * 100, 2) AS avg_yes_rate,
+        ROUND(AVG(CASE WHEN vd.vote = 'Nej' THEN 1 ELSE 0 END) * 100, 2) AS avg_no_rate,
+        ROUND(AVG(CASE WHEN vd.vote = 'Avstår' THEN 1 ELSE 0 END) * 100, 2) AS avg_abstain_rate,
+        COUNT(DISTINCT dd.id) AS documents_produced,
+        COUNT(DISTINCT CASE WHEN dd.document_type = 'mot' THEN dd.id END) AS motions_filed,
+        COUNT(DISTINCT CASE WHEN dd.document_type = 'prop' THEN dd.id END) AS proposals_filed
+    FROM vote_data vd
+    LEFT JOIN election_years ey ON ey.election_year = EXTRACT(YEAR FROM vd.vote_date)
+    LEFT JOIN document_data dd ON EXTRACT(YEAR FROM dd.made_public_date) = EXTRACT(YEAR FROM vd.vote_date)
+    WHERE vd.vote_date IS NOT NULL
+      AND EXTRACT(YEAR FROM vd.vote_date) BETWEEN 2002 AND 2026
+    GROUP BY year, is_election_year
+),
+election_baseline AS (
+    SELECT 
+        -- Use percentile_cont for median calculation (more robust than average)
+        PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY total_ballots) FILTER (WHERE is_election_year) AS election_median_ballots,
+        AVG(total_ballots) FILTER (WHERE is_election_year) AS election_avg_ballots,
+        STDDEV(total_ballots) FILTER (WHERE is_election_year) AS election_stddev_ballots,
+        AVG(total_ballots) FILTER (WHERE NOT is_election_year) AS midterm_avg_ballots,
+        STDDEV(total_ballots) FILTER (WHERE NOT is_election_year) AS midterm_stddev_ballots,
+        
+        PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY documents_produced) FILTER (WHERE is_election_year) AS election_median_docs,
+        AVG(documents_produced) FILTER (WHERE is_election_year) AS election_avg_docs,
+        STDDEV(documents_produced) FILTER (WHERE is_election_year) AS election_stddev_docs,
+        AVG(documents_produced) FILTER (WHERE NOT is_election_year) AS midterm_avg_docs,
+        
+        PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY motions_filed) FILTER (WHERE is_election_year) AS election_median_motions,
+        AVG(motions_filed) FILTER (WHERE is_election_year) AS election_avg_motions,
+        STDDEV(motions_filed) FILTER (WHERE is_election_year) AS election_stddev_motions,
+        AVG(motions_filed) FILTER (WHERE NOT is_election_year) AS midterm_avg_motions,
+        
+        AVG(attendance_rate) FILTER (WHERE is_election_year) AS election_avg_attendance,
+        STDDEV(attendance_rate) FILTER (WHERE is_election_year) AS election_stddev_attendance,
+        AVG(attendance_rate) FILTER (WHERE NOT is_election_year) AS midterm_avg_attendance
+    FROM annual_metrics
+)
+SELECT 
+    am.year, 
+    am.is_election_year,
+    am.total_ballots, 
+    am.active_politicians, 
+    am.attendance_rate,
+    am.avg_yes_rate,
+    am.avg_no_rate,
+    am.avg_abstain_rate,
+    am.documents_produced, 
+    am.motions_filed,
+    am.proposals_filed,
+    
+    -- Election year baselines
+    ROUND(eb.election_median_ballots::NUMERIC, 2) AS election_median_ballots,
+    ROUND(eb.election_avg_ballots::NUMERIC, 2) AS election_avg_ballots,
+    ROUND(eb.election_stddev_ballots::NUMERIC, 2) AS election_stddev_ballots,
+    
+    -- Midterm baselines
+    ROUND(eb.midterm_avg_ballots::NUMERIC, 2) AS midterm_avg_ballots,
+    ROUND(eb.midterm_stddev_ballots::NUMERIC, 2) AS midterm_stddev_ballots,
+    
+    -- Activity ratios vs baselines
+    ROUND(am.total_ballots::NUMERIC / NULLIF(eb.midterm_avg_ballots, 0), 2) AS ballot_ratio_vs_midterm,
+    ROUND(am.total_ballots::NUMERIC / NULLIF(eb.election_avg_ballots, 0), 2) AS ballot_ratio_vs_election_avg,
+    
+    -- Document baselines and ratios
+    ROUND(eb.election_median_docs::NUMERIC, 2) AS election_median_docs,
+    ROUND(eb.election_avg_docs::NUMERIC, 2) AS election_avg_docs,
+    ROUND(eb.election_stddev_docs::NUMERIC, 2) AS election_stddev_docs,
+    ROUND(eb.midterm_avg_docs::NUMERIC, 2) AS midterm_avg_docs,
+    ROUND(am.documents_produced::NUMERIC / NULLIF(eb.midterm_avg_docs, 0), 2) AS doc_ratio_vs_midterm,
+    ROUND(am.documents_produced::NUMERIC / NULLIF(eb.election_avg_docs, 0), 2) AS doc_ratio_vs_election_avg,
+    
+    -- Motion baselines and ratios
+    ROUND(eb.election_median_motions::NUMERIC, 2) AS election_median_motions,
+    ROUND(eb.election_avg_motions::NUMERIC, 2) AS election_avg_motions,
+    ROUND(eb.election_stddev_motions::NUMERIC, 2) AS election_stddev_motions,
+    ROUND(eb.midterm_avg_motions::NUMERIC, 2) AS midterm_avg_motions,
+    ROUND(am.motions_filed::NUMERIC / NULLIF(eb.midterm_avg_motions, 0), 2) AS motion_ratio_vs_midterm,
+    
+    -- Attendance baselines
+    ROUND(eb.election_avg_attendance::NUMERIC, 2) AS election_avg_attendance,
+    ROUND(eb.midterm_avg_attendance::NUMERIC, 2) AS midterm_avg_attendance,
+    
+    -- Z-scores for statistical anomaly detection
+    CASE 
+        WHEN eb.election_stddev_ballots > 0 AND am.is_election_year
+        THEN ROUND(((am.total_ballots - eb.election_avg_ballots) / eb.election_stddev_ballots)::NUMERIC, 2)
+        ELSE 0
+    END AS ballot_z_score_vs_election_avg,
+    
+    CASE 
+        WHEN eb.election_stddev_docs > 0 AND am.is_election_year
+        THEN ROUND(((am.documents_produced - eb.election_avg_docs) / eb.election_stddev_docs)::NUMERIC, 2)
+        ELSE 0
+    END AS doc_z_score_vs_election_avg,
+    
+    -- Year classification based on election year patterns
+    CASE 
+        WHEN am.is_election_year AND am.total_ballots > eb.election_avg_ballots + eb.election_stddev_ballots 
+        THEN 'HIGH_ELECTION_ACTIVITY'
+        WHEN am.is_election_year AND am.total_ballots < eb.election_avg_ballots - eb.election_stddev_ballots 
+        THEN 'LOW_ELECTION_ACTIVITY'
+        WHEN am.is_election_year 
+        THEN 'NORMAL_ELECTION_ACTIVITY'
+        ELSE 'MIDTERM_YEAR'
+    END AS year_classification,
+    
+    -- Composite activity classification considering multiple dimensions
+    CASE 
+        WHEN am.is_election_year THEN
+            CASE 
+                WHEN (am.total_ballots > eb.election_avg_ballots + eb.election_stddev_ballots)
+                     OR (am.documents_produced > eb.election_avg_docs + eb.election_stddev_docs)
+                     OR (am.motions_filed > eb.election_avg_motions + eb.election_stddev_motions)
+                THEN 'HIGH_ACTIVITY_ELECTION'
+                WHEN (am.total_ballots < eb.election_avg_ballots - eb.election_stddev_ballots)
+                     AND (am.documents_produced < eb.election_avg_docs - eb.election_stddev_docs)
+                THEN 'LOW_ACTIVITY_ELECTION'
+                ELSE 'TYPICAL_ELECTION'
+            END
+        ELSE 
+            CASE 
+                WHEN am.total_ballots > eb.midterm_avg_ballots + COALESCE(eb.midterm_stddev_ballots, 0)
+                THEN 'HIGH_ACTIVITY_MIDTERM'
+                WHEN am.total_ballots < eb.midterm_avg_ballots - COALESCE(eb.midterm_stddev_ballots, 0)
+                THEN 'LOW_ACTIVITY_MIDTERM'
+                ELSE 'TYPICAL_MIDTERM'
+            END
+    END AS composite_classification,
+    
+    -- Year-over-year change
+    LAG(am.total_ballots) OVER (ORDER BY am.year) AS prev_year_ballots,
+    CASE 
+        WHEN LAG(am.total_ballots) OVER (ORDER BY am.year) IS NOT NULL 
+             AND LAG(am.total_ballots) OVER (ORDER BY am.year) > 0
+        THEN ROUND(((am.total_ballots - LAG(am.total_ballots) OVER (ORDER BY am.year))::NUMERIC / 
+                     LAG(am.total_ballots) OVER (ORDER BY am.year)) * 100, 2)
+        ELSE NULL
+    END AS yoy_ballot_change_pct
+    
+FROM annual_metrics am
+CROSS JOIN election_baseline eb
+ORDER BY am.year
+        ]]>
+    </createView>
+    
+    <rollback>
+        DROP VIEW IF EXISTS view_riksdagen_election_year_behavioral_patterns CASCADE;
+    </rollback>
+</changeSet>
+
+<!-- Add view documentation -->
+<changeSet id="1.60-document-election-year-behavioral-patterns-view" author="intelligence-operative" failOnError="true">
+    <comment>Add documentation for view_riksdagen_election_year_behavioral_patterns</comment>
+    <sql>
+        COMMENT ON VIEW view_riksdagen_election_year_behavioral_patterns IS 'Annual behavioral pattern comparison across all election years (2002, 2006, 2010, 2014, 2018, 2022, 2026) vs midterm years. Features: multi-dimensional metrics (voting, documents, motions, attendance), election year baseline calculation using median and average, activity ratios vs both election and midterm baselines, z-score anomaly detection, year classification (HIGH/NORMAL/LOW election activity), composite classification considering multiple dimensions. Data Sources: vote_data (voting patterns), document_data (productivity). Election cycles: 7 election years, 17 midterm years (2002-2026). Framework 1: Temporal Analysis - Annual comparison. Use Case: Identify systematic election year behavioral shifts, detect unusual election patterns, predict future election behavior based on historical patterns.';
+    </sql>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- VIEW 2: view_riksdagen_election_year_vs_midterm                          -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="create-election-year-vs-midterm-view-1.60-002" failOnError="true" runOnChange="true">
+    <comment>
+        Create view_riksdagen_election_year_vs_midterm for aggregate comparison 
+        of election years vs midterm years.
+        
+        Purpose: Provide high-level comparison showing aggregate behavioral 
+        differences between election years and non-election years.
+        
+        Key Features:
+        - Two-row summary: ELECTION_YEARS vs MIDTERM_YEARS
+        - Aggregate metrics: ballots, documents, motions, attendance
+        - Year count for each period type
+        - Direct comparison enabling ratio calculations
+        
+        Intelligence Value: HIGH (4/5)
+        - Simple, clear comparison for reporting
+        - Enables quick assessment of election year effects
+        - Supports hypothesis testing about election year behavior
+        
+        GitHub Issue: Hack23/cia#8209 Election Year Behavioral Pattern Analysis
+    </comment>
+    
+    <createView viewName="view_riksdagen_election_year_vs_midterm">
+        <![CDATA[
+SELECT 
+    'ELECTION_YEARS' AS period_type,
+    ROUND(AVG(total_ballots)::NUMERIC, 2) AS avg_ballots,
+    ROUND(AVG(documents_produced)::NUMERIC, 2) AS avg_documents,
+    ROUND(AVG(motions_filed)::NUMERIC, 2) AS avg_motions,
+    ROUND(AVG(proposals_filed)::NUMERIC, 2) AS avg_proposals,
+    ROUND(AVG(attendance_rate)::NUMERIC, 2) AS avg_attendance,
+    ROUND(AVG(active_politicians)::NUMERIC, 2) AS avg_active_politicians,
+    COUNT(*) AS year_count,
+    ARRAY_AGG(year ORDER BY year) AS years,
+    ROUND(MIN(total_ballots)::NUMERIC, 2) AS min_ballots,
+    ROUND(MAX(total_ballots)::NUMERIC, 2) AS max_ballots,
+    ROUND(STDDEV(total_ballots)::NUMERIC, 2) AS stddev_ballots,
+    ROUND(MIN(documents_produced)::NUMERIC, 2) AS min_documents,
+    ROUND(MAX(documents_produced)::NUMERIC, 2) AS max_documents,
+    ROUND(STDDEV(documents_produced)::NUMERIC, 2) AS stddev_documents
+FROM view_riksdagen_election_year_behavioral_patterns
+WHERE is_election_year = true
+
+UNION ALL
+
+SELECT 
+    'MIDTERM_YEARS' AS period_type,
+    ROUND(AVG(total_ballots)::NUMERIC, 2) AS avg_ballots,
+    ROUND(AVG(documents_produced)::NUMERIC, 2) AS avg_documents,
+    ROUND(AVG(motions_filed)::NUMERIC, 2) AS avg_motions,
+    ROUND(AVG(proposals_filed)::NUMERIC, 2) AS avg_proposals,
+    ROUND(AVG(attendance_rate)::NUMERIC, 2) AS avg_attendance,
+    ROUND(AVG(active_politicians)::NUMERIC, 2) AS avg_active_politicians,
+    COUNT(*) AS year_count,
+    ARRAY_AGG(year ORDER BY year) AS years,
+    ROUND(MIN(total_ballots)::NUMERIC, 2) AS min_ballots,
+    ROUND(MAX(total_ballots)::NUMERIC, 2) AS max_ballots,
+    ROUND(STDDEV(total_ballots)::NUMERIC, 2) AS stddev_ballots,
+    ROUND(MIN(documents_produced)::NUMERIC, 2) AS min_documents,
+    ROUND(MAX(documents_produced)::NUMERIC, 2) AS max_documents,
+    ROUND(STDDEV(documents_produced)::NUMERIC, 2) AS stddev_documents
+FROM view_riksdagen_election_year_behavioral_patterns
+WHERE is_election_year = false
+
+UNION ALL
+
+SELECT 
+    'COMPARISON_RATIO' AS period_type,
+    ROUND((AVG(total_ballots) FILTER (WHERE is_election_year) / 
+          NULLIF(AVG(total_ballots) FILTER (WHERE NOT is_election_year), 0))::NUMERIC, 2) AS avg_ballots,
+    ROUND((AVG(documents_produced) FILTER (WHERE is_election_year) / 
+          NULLIF(AVG(documents_produced) FILTER (WHERE NOT is_election_year), 0))::NUMERIC, 2) AS avg_documents,
+    ROUND((AVG(motions_filed) FILTER (WHERE is_election_year) / 
+          NULLIF(AVG(motions_filed) FILTER (WHERE NOT is_election_year), 0))::NUMERIC, 2) AS avg_motions,
+    ROUND((AVG(proposals_filed) FILTER (WHERE is_election_year) / 
+          NULLIF(AVG(proposals_filed) FILTER (WHERE NOT is_election_year), 0))::NUMERIC, 2) AS avg_proposals,
+    ROUND((AVG(attendance_rate) FILTER (WHERE is_election_year) / 
+          NULLIF(AVG(attendance_rate) FILTER (WHERE NOT is_election_year), 0))::NUMERIC, 2) AS avg_attendance,
+    ROUND((AVG(active_politicians) FILTER (WHERE is_election_year) / 
+          NULLIF(AVG(active_politicians) FILTER (WHERE NOT is_election_year), 0))::NUMERIC, 2) AS avg_active_politicians,
+    NULL AS year_count,
+    NULL AS years,
+    NULL AS min_ballots,
+    NULL AS max_ballots,
+    NULL AS stddev_ballots,
+    NULL AS min_documents,
+    NULL AS max_documents,
+    NULL AS stddev_documents
+FROM view_riksdagen_election_year_behavioral_patterns
+        ]]>
+    </createView>
+    
+    <rollback>
+        DROP VIEW IF EXISTS view_riksdagen_election_year_vs_midterm CASCADE;
+    </rollback>
+</changeSet>
+
+<!-- Add view documentation -->
+<changeSet id="1.60-document-election-year-vs-midterm-view" author="intelligence-operative" failOnError="true">
+    <comment>Add documentation for view_riksdagen_election_year_vs_midterm</comment>
+    <sql>
+        COMMENT ON VIEW view_riksdagen_election_year_vs_midterm IS 'Aggregate comparison of election years vs midterm years showing behavioral differences. Three-row summary: ELECTION_YEARS (7 years), MIDTERM_YEARS (17 years), COMPARISON_RATIO (election/midterm ratios). Features: aggregate metrics (avg ballots, documents, motions, proposals, attendance), statistical measures (min, max, stddev), year arrays for reference. Data Source (META level): view_riksdagen_election_year_behavioral_patterns. Period: 2002-2026 (24 years total). Framework 1: Temporal Analysis - Comparative. Use Case: Quick assessment of election year effects, hypothesis testing, executive reporting on election vs non-election behavioral patterns.';
+    </sql>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- VIEW 3: view_riksdagen_election_year_anomalies                           -->
+<!-- ========================================================================= -->
+
+<changeSet author="intelligence-operative" id="create-election-year-anomalies-view-1.60-003" failOnError="true" runOnChange="true">
+    <comment>
+        Create view_riksdagen_election_year_anomalies to identify statistically 
+        unusual patterns in election years.
+        
+        Purpose: Identify election years with statistically unusual behavioral 
+        patterns compared to typical election year baselines.
+        
+        Key Features:
+        - Focus on election years only (filters out midterm years)
+        - Multi-dimensional anomaly detection (ballots, documents, motions)
+        - Z-score threshold |z| > 1.5 for significance
+        - Anomaly classification by dimension and direction
+        - Severity levels based on z-score magnitude
+        
+        Advanced Statistics:
+        - Z-score calculation vs election year baseline
+        - Multiple dimension analysis
+        - Severity classification: CRITICAL (|z| > 2.5), HIGH (|z| > 2.0), MODERATE (|z| > 1.5)
+        
+        Intelligence Value: VERY HIGH (5/5)
+        - Identifies unusual election year patterns
+        - Detects outlier elections requiring investigation
+        - Supports comparative electoral analysis
+        - Early warning for unusual election dynamics
+        
+        GitHub Issue: Hack23/cia#8209 Election Year Behavioral Pattern Analysis
+    </comment>
+    
+    <createView viewName="view_riksdagen_election_year_anomalies">
+        <![CDATA[
+WITH election_year_data AS (
+    SELECT 
+        year,
+        total_ballots,
+        documents_produced,
+        motions_filed,
+        proposals_filed,
+        attendance_rate,
+        ballot_z_score_vs_election_avg,
+        doc_z_score_vs_election_avg,
+        year_classification,
+        composite_classification,
+        election_avg_ballots,
+        election_stddev_ballots,
+        election_avg_docs,
+        election_stddev_docs,
+        election_avg_motions,
+        election_stddev_motions,
+        yoy_ballot_change_pct
+    FROM view_riksdagen_election_year_behavioral_patterns
+    WHERE is_election_year = true
+),
+anomaly_detection AS (
+    SELECT 
+        eyd.*,
+        -- Calculate motion z-score
+        CASE 
+            WHEN eyd.election_stddev_motions > 0 
+            THEN ROUND(((eyd.motions_filed - eyd.election_avg_motions) / eyd.election_stddev_motions)::NUMERIC, 2)
+            ELSE 0
+        END AS motion_z_score,
+        -- Identify which dimensions have anomalies
+        ABS(eyd.ballot_z_score_vs_election_avg) > 1.5 AS has_ballot_anomaly,
+        ABS(eyd.doc_z_score_vs_election_avg) > 1.5 AS has_doc_anomaly,
+        ABS(CASE 
+            WHEN eyd.election_stddev_motions > 0 
+            THEN ((eyd.motions_filed - eyd.election_avg_motions) / eyd.election_stddev_motions)
+            ELSE 0
+        END) > 1.5 AS has_motion_anomaly
+    FROM election_year_data eyd
+)
+SELECT 
+    ad.year,
+    ad.total_ballots,
+    ad.documents_produced,
+    ad.motions_filed,
+    ad.proposals_filed,
+    ad.attendance_rate,
+    ad.ballot_z_score_vs_election_avg,
+    ad.doc_z_score_vs_election_avg,
+    ad.motion_z_score,
+    ad.year_classification,
+    ad.composite_classification,
+    ad.yoy_ballot_change_pct,
+    
+    -- Anomaly flags
+    ad.has_ballot_anomaly,
+    ad.has_doc_anomaly,
+    ad.has_motion_anomaly,
+    
+    -- Count of anomalous dimensions
+    (CASE WHEN ad.has_ballot_anomaly THEN 1 ELSE 0 END +
+     CASE WHEN ad.has_doc_anomaly THEN 1 ELSE 0 END +
+     CASE WHEN ad.has_motion_anomaly THEN 1 ELSE 0 END) AS anomaly_count,
+    
+    -- Anomaly type classification
+    CASE 
+        WHEN (ad.has_ballot_anomaly OR ad.has_doc_anomaly OR ad.has_motion_anomaly) THEN
+            ARRAY_TO_STRING(
+                ARRAY_REMOVE(ARRAY[
+                    CASE WHEN ad.has_ballot_anomaly THEN 
+                        CASE 
+                            WHEN ad.ballot_z_score_vs_election_avg > 0 THEN 'HIGH_BALLOT_ACTIVITY'
+                            ELSE 'LOW_BALLOT_ACTIVITY'
+                        END
+                    END,
+                    CASE WHEN ad.has_doc_anomaly THEN 
+                        CASE 
+                            WHEN ad.doc_z_score_vs_election_avg > 0 THEN 'HIGH_DOCUMENT_ACTIVITY'
+                            ELSE 'LOW_DOCUMENT_ACTIVITY'
+                        END
+                    END,
+                    CASE WHEN ad.has_motion_anomaly THEN 
+                        CASE 
+                            WHEN ad.motion_z_score > 0 THEN 'HIGH_MOTION_ACTIVITY'
+                            ELSE 'LOW_MOTION_ACTIVITY'
+                        END
+                    END
+                ], NULL),
+                ', '
+            )
+        ELSE 'NO_ANOMALY'
+    END AS anomaly_types,
+    
+    -- Severity classification based on maximum z-score
+    CASE 
+        WHEN GREATEST(ABS(ad.ballot_z_score_vs_election_avg), 
+                      ABS(ad.doc_z_score_vs_election_avg), 
+                      ABS(ad.motion_z_score)) > 2.5
+        THEN 'CRITICAL'
+        WHEN GREATEST(ABS(ad.ballot_z_score_vs_election_avg), 
+                      ABS(ad.doc_z_score_vs_election_avg), 
+                      ABS(ad.motion_z_score)) > 2.0
+        THEN 'HIGH'
+        WHEN GREATEST(ABS(ad.ballot_z_score_vs_election_avg), 
+                      ABS(ad.doc_z_score_vs_election_avg), 
+                      ABS(ad.motion_z_score)) > 1.5
+        THEN 'MODERATE'
+        ELSE 'NORMAL'
+    END AS anomaly_severity,
+    
+    -- Maximum absolute z-score across all dimensions
+    ROUND(GREATEST(ABS(ad.ballot_z_score_vs_election_avg), 
+                   ABS(ad.doc_z_score_vs_election_avg), 
+                   ABS(ad.motion_z_score))::NUMERIC, 2) AS max_z_score,
+    
+    -- Directional indicator
+    CASE 
+        WHEN (ad.ballot_z_score_vs_election_avg + ad.doc_z_score_vs_election_avg + ad.motion_z_score) > 0
+        THEN 'ELEVATED_ACTIVITY'
+        WHEN (ad.ballot_z_score_vs_election_avg + ad.doc_z_score_vs_election_avg + ad.motion_z_score) < 0
+        THEN 'REDUCED_ACTIVITY'
+        ELSE 'MIXED_PATTERN'
+    END AS anomaly_direction,
+    
+    -- Baseline comparisons for context
+    ad.election_avg_ballots,
+    ad.election_stddev_ballots,
+    ad.election_avg_docs,
+    ad.election_stddev_docs,
+    ad.election_avg_motions,
+    ad.election_stddev_motions
+    
+FROM anomaly_detection ad
+WHERE ad.has_ballot_anomaly OR ad.has_doc_anomaly OR ad.has_motion_anomaly
+ORDER BY ad.year DESC
+        ]]>
+    </createView>
+    
+    <rollback>
+        DROP VIEW IF EXISTS view_riksdagen_election_year_anomalies CASCADE;
+    </rollback>
+</changeSet>
+
+<!-- Add view documentation -->
+<changeSet id="1.60-document-election-year-anomalies-view" author="intelligence-operative" failOnError="true">
+    <comment>Add documentation for view_riksdagen_election_year_anomalies</comment>
+    <sql>
+        COMMENT ON VIEW view_riksdagen_election_year_anomalies IS 'Statistical anomaly detection for election years only, identifying unusual behavioral patterns. Features: multi-dimensional anomaly detection (ballots, documents, motions), z-score threshold |z| > 1.5, anomaly classification by dimension and direction, severity levels (CRITICAL |z|>2.5, HIGH |z|>2.0, MODERATE |z|>1.5), anomaly count across dimensions, directional indicators (ELEVATED/REDUCED/MIXED). Data Source (META level): view_riksdagen_election_year_behavioral_patterns (election years only). Election years analyzed: 7 years (2002, 2006, 2010, 2014, 2018, 2022, 2026). Framework 3: Pattern Recognition - Anomaly detection. Framework 6: Decision Intelligence. Use Case: Identify outlier elections, detect unusual election dynamics, investigate atypical election year patterns, early warning for electoral anomalies.';
+    </sql>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- VALIDATION: Verify Election Year Analysis Views Created Successfully     -->
+<!-- ========================================================================= -->
+
+<changeSet id="1.60-validation" author="intelligence-operative">
+    <comment>
+        Validate that all 3 election year analysis views were created successfully
+        with comprehensive annual comparison and anomaly detection capabilities.
+    </comment>
+    
+    <sql splitStatements="false"><![CDATA[
+        DO $$
+        DECLARE
+            v_patterns_exists BOOLEAN;
+            v_comparison_exists BOOLEAN;
+            v_anomalies_exists BOOLEAN;
+        BEGIN
+            SELECT EXISTS(
+                SELECT 1 FROM information_schema.views 
+                WHERE table_name = 'view_riksdagen_election_year_behavioral_patterns'
+            ) INTO v_patterns_exists;
+            
+            SELECT EXISTS(
+                SELECT 1 FROM information_schema.views 
+                WHERE table_name = 'view_riksdagen_election_year_vs_midterm'
+            ) INTO v_comparison_exists;
+            
+            SELECT EXISTS(
+                SELECT 1 FROM information_schema.views 
+                WHERE table_name = 'view_riksdagen_election_year_anomalies'
+            ) INTO v_anomalies_exists;
+            
+            IF v_patterns_exists AND v_comparison_exists AND v_anomalies_exists THEN
+                RAISE NOTICE '✓ All 3 election year analysis views created successfully';
+                RAISE NOTICE '  FEATURES IMPLEMENTED:';
+                RAISE NOTICE '  - Election year comparison: 7 election years vs 17 midterm years (2002-2026)';
+                RAISE NOTICE '  - Multi-dimensional metrics: voting, documents, motions, proposals, attendance';
+                RAISE NOTICE '  - Baseline calculations: median and average across election years';
+                RAISE NOTICE '  - Activity ratios: election vs midterm comparison';
+                RAISE NOTICE '  - Anomaly detection: z-score threshold |z| > 1.5';
+                RAISE NOTICE '  - Severity classification: CRITICAL, HIGH, MODERATE, NORMAL';
+                RAISE NOTICE '  - Year classification: HIGH/NORMAL/LOW election activity, MIDTERM';
+                RAISE NOTICE '  Coverage: 2002-2026 (24 years, annual granularity)';
+                RAISE NOTICE '  Framework Integration: Temporal Analysis (1) + Pattern Recognition (3) + Decision Intelligence (6)';
+            ELSE
+                RAISE WARNING 'Some election year analysis views failed to create';
+                IF NOT v_patterns_exists THEN
+                    RAISE WARNING '  - view_riksdagen_election_year_behavioral_patterns missing';
+                END IF;
+                IF NOT v_comparison_exists THEN
+                    RAISE WARNING '  - view_riksdagen_election_year_vs_midterm missing';
+                END IF;
+                IF NOT v_anomalies_exists THEN
+                    RAISE WARNING '  - view_riksdagen_election_year_anomalies missing';
+                END IF;
+            END IF;
+        END $$;
+    ]]></sql>
+</changeSet>
+
+</databaseChangeLog>
