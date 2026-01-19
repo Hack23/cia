@@ -94,3 +94,18 @@ D05-TC003,D05,Decision,TRUE_POSITIVE,80,MAJOR,HIGH,78%,Severe misalignment (35%)
 D05-TC004,D05,Decision,TRUE_NEGATIVE,0,NONE,HIGH,100%,Strong coalition (85% alignment) should NOT trigger.,N/A
 D05-TC005,D05,Decision,FALSE_POSITIVE,0,NONE,MEDIUM,90%,55% alignment during budget negotiation may be temporary. Potential false positive requiring negotiation context.,False Positive Rate ≤10%
 D05-TC006,D05,Decision,FALSE_NEGATIVE,80,MAJOR,MEDIUM,85%,Declining from 75% to 62% over 6 months (slow deterioration) stays just above threshold. Potential false negative.,False Negative Rate ≤15%
+EDGE-TC001,P01,Politician,EDGE_CASE_P1,0,NONE,HIGH,100%,P1 percentile (0.5% absence) - Exceptional attendance should NOT trigger. Validates low-end extreme handling.,Percentile Coverage P1-P10
+EDGE-TC002,P01,Politician,EDGE_CASE_P99,200,CRITICAL,HIGH,100%,P99 percentile (85% absence) - Critical absence crisis should trigger maximum severity. Validates high-end extreme detection.,Percentile Coverage P90-P99
+EDGE-TC003,P01,Politician,HISTORICAL_EXTREME,200,CRITICAL,HIGH,95%,2014 government crisis (65% absence spike) - Historical extreme should trigger CRITICAL. Validates crisis pattern detection.,Historical Crisis Detection 2014
+EDGE-TC004,P01,Politician,ELECTION_CYCLE,0,NONE,HIGH,92%,2022 election cycle (3% absence) - Pre-election engagement should NOT trigger. Validates election cycle handling.,Election Cycle Variations
+EDGE-TC005,P02,Politician,EDGE_CASE_P1,0,NONE,HIGH,100%,P1 productivity (1 doc/year) - Critical low productivity should trigger. Validates bottom percentile detection.,Document Productivity P1
+EDGE-TC006,P02,Politician,EDGE_CASE_P99,0,NONE,HIGH,100%,P99 productivity (95 docs/year) - Exceptional productivity should NOT trigger violations. Validates high achiever handling.,Document Productivity P99
+EDGE-TC007,PRED-01,Predictive,HISTORICAL_EXTREME,100,CRITICAL,HIGH,87%,2018 election deadlock (15% coalition alignment) - Should trigger HIGH_COALITION_STRESS. Validates historical pattern.,2018 Deadlock Detection
+EDGE-TC008,PRED-02,Predictive,EDGE_CASE_P99,100,CRITICAL,HIGH,89%,P99 coalition stress (55-point alignment drop) - Should trigger HIGH_COALITION_STRESS. Validates extreme stress detection.,Coalition Stress P99
+EDGE-TC009,PRED-02,Predictive,EDGE_CASE_P1,0,NONE,HIGH,90%,P1 coalition stability (94% alignment) - Should indicate STABLE_COALITION. Validates exceptional stability.,Coalition Stability P1
+EDGE-TC010,PRED-03,Predictive,EDGE_CASE_P99,200,CRITICAL,HIGH,89%,P99 multi-dimensional risk (12 violations across 5 dimensions) - Should trigger EXTREME_MULTI_DIMENSION_RISK.,Multi-Dimensional Risk P99
+EDGE-TC011,PRED-03,Predictive,EDGE_CASE_P1,0,NONE,HIGH,95%,P1 perfect performance (0 violations 85 docs/year) - Should indicate EXEMPLARY_PERFORMANCE.,Perfect Performance P1
+EDGE-TC012,TEMP-01,Temporal,EDGE_CASE_MINISTRY_P99,200,CRITICAL,HIGH,85%,P99 ministry catastrophic decline (75%→25% approval) - Should trigger CATASTROPHIC_MINISTRY_DECLINE.,Ministry Decline P99
+EDGE-TC013,TEMP-01,Temporal,EDGE_CASE_MINISTRY_P1,0,NONE,HIGH,85%,P1 ministry recovery (40%→85% approval) - Should indicate EXCEPTIONAL_MINISTRY_RECOVERY.,Ministry Recovery P1
+EDGE-TC014,TEMP-02,Temporal,SEASONAL_Q4,0,NONE,HIGH,95%,Q4 pre-election surge (1.85x baseline) - Should be recognized as EXTREME_PRE_ELECTION_SURGE not anomaly.,Seasonal Variations Q4
+EDGE-TC015,TEMP-02,Temporal,SEASONAL_Q3,0,NONE,HIGH,95%,Q3 summer recess (0.12x baseline) - Should be recognized as TYPICAL_SUMMER_RECESS not crisis.,Seasonal Variations Q3
