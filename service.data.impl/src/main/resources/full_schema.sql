@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict YP6NuFYA25BLM67NeACskUsrEW5jYgBfa1tqOPipkzCxzpTvWXgCWjJjroyXtND
+\restrict vxtM44kzgXOvEW14y8xG9d3XKGBelD4ueiVeHGKmQHguAWkcnlbfFLvSYzR5Gb2
 
 -- Dumped from database version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
@@ -15471,13 +15471,13 @@ ALTER TABLE ONLY public.jv_snapshot
 -- PostgreSQL database dump complete
 --
 
-\unrestrict YP6NuFYA25BLM67NeACskUsrEW5jYgBfa1tqOPipkzCxzpTvWXgCWjJjroyXtND
+\unrestrict vxtM44kzgXOvEW14y8xG9d3XKGBelD4ueiVeHGKmQHguAWkcnlbfFLvSYzR5Gb2
 
 --
 -- PostgreSQL database dump
 --
 
-\restrict 79SC0lszc4ExENRKDFBcmbfAPgysFa3gAgk5hs9cysV3FlAyng7JsbLMo66tlLH
+\restrict nTv2Cl0UvJCkkfkBoabIr3qGm5VP9F3QuMwsanVoYQkZzff95MxKLq9dc4A1EiE
 
 -- Dumped from database version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
@@ -16022,6 +16022,8 @@ create-election-year-vs-midterm-view-1.60-002	intelligence-operative	db-changelo
 create-election-year-anomalies-view-1.60-003	intelligence-operative	db-changelog-1.60.xml	2026-01-19 00:43:48.850324	522	EXECUTED	9:688d553035c20f1c20070cf95848756e	createView viewName=view_riksdagen_election_year_anomalies	Create view_riksdagen_election_year_anomalies to identify statistically \n        unusual patterns in election years.\n        \n        Purpose: Identify election years with statistically unusual behavioral \n        patterns compared to typical elec...	\N	5.0.1	\N	\N	8783425707
 1.60-document-election-year-anomalies-view	intelligence-operative	db-changelog-1.60.xml	2026-01-19 00:43:48.856422	523	EXECUTED	9:645f4b378ccc02510962eb2749be432c	sql	Add documentation for view_riksdagen_election_year_anomalies	\N	5.0.1	\N	\N	8783425707
 1.60-validation	intelligence-operative	db-changelog-1.60.xml	2026-01-19 00:43:48.86746	524	EXECUTED	9:2bf4ec20cf9e261ff6ea0984d62ed157	sql	Validate that all 3 election year analysis views were created successfully\n        with comprehensive annual comparison and anomaly detection capabilities.	\N	5.0.1	\N	\N	8783425707
+1.61-intro	copilot	db-changelog-1.61.xml	2026-01-19 10:00:38.255902	525	EXECUTED	9:a17b84034c30ec69157f773a97d0fe8d	sql	Database Changelog v1.61 - Recreate Party Longitudinal Analysis Views\n        \n        CRITICAL FIX: Recreates 4 views that were dropped in v1.53/v1.6 but never recreated.\n        These views have JPA entities mapped in persistence.xml, causing ap...	\N	5.0.1	\N	\N	8816835522
+1.61-drop-party-summary	copilot	db-changelog-1.61.xml	2026-01-19 10:00:38.266964	526	EXECUTED	9:8b553bbf244cc44cf1bc5719856af1ce	sql	Drop view_riksdagen_party_summary if exists before recreation	\N	5.0.1	\N	\N	8816835522
 \.
 
 
@@ -16038,5 +16040,5 @@ COPY public.databasechangeloglock (id, locked, lockgranted, lockedby) FROM stdin
 -- PostgreSQL database dump complete
 --
 
-\unrestrict 79SC0lszc4ExENRKDFBcmbfAPgysFa3gAgk5hs9cysV3FlAyng7JsbLMo66tlLH
+\unrestrict nTv2Cl0UvJCkkfkBoabIr3qGm5VP9F3QuMwsanVoYQkZzff95MxKLq9dc4A1EiE
 
