@@ -44,3 +44,4 @@ json-export-specs/__pycache__/
 json-export-specs/FIELD_COMPLETENESS_REPORT.md
 *.bak
 create_view.sql
+__pycache__/
