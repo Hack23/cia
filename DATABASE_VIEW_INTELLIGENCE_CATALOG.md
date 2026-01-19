@@ -8584,6 +8584,345 @@ All example queries in this catalog have been verified against current sample da
 
 ---
 
+## V1.55 Seasonal Analysis Views
+
+### view_riksdagen_seasonal_quarterly_activity
+
+⭐⭐⭐⭐ **High Intelligence Value**
+
+📋 **Purpose**: Quarterly pattern analysis (Q1-Q4) across election cycles (2002-2026) with z-score anomaly detection and seasonal clustering.
+
+📊 **Key Columns**:
+
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `year` | integer | Calendar year | 2022 |
+| `quarter` | integer | Quarter (1-4) | 4 |
+| `is_election_year` | boolean | Election year flag | true |
+| `total_ballots` | bigint | Ballot count | 450 |
+| `total_documents` | bigint | Document count | 1200 |
+| `attendance_rate` | numeric | Average attendance % | 92.5 |
+| `ballot_z_score` | numeric | Z-score vs baseline | 1.8 |
+
+💡 **Example Queries**:
+
+```sql
+-- Q4 activity in election years
+SELECT year, quarter, total_ballots, ballot_z_score
+FROM view_riksdagen_seasonal_quarterly_activity
+WHERE quarter = 4 AND is_election_year = true
+ORDER BY year DESC;
+
+-- Anomalous quarters (|z| > 2)
+SELECT year, quarter, total_ballots, ballot_z_score
+FROM view_riksdagen_seasonal_quarterly_activity
+WHERE ABS(ballot_z_score) > 2.0
+ORDER BY ABS(ballot_z_score) DESC;
+```
+
+⚡ **Performance**: Aggregates quarterly, minimal overhead. Indexed on year/quarter.
+
+🔗 **Dependencies**: vote_data, document_data
+
+🎯 **Framework Integration**: Framework 3 (Pattern Recognition) - Seasonal clustering
+
+🎯 **Use Cases**: Seasonal trend analysis, Q4 pre-election surge detection, baseline establishment
+
+---
+
+### view_riksdagen_q4_election_year_comparison
+
+⭐⭐⭐⭐ **High Intelligence Value**
+
+📋 **Purpose**: Q4 (October-December) activity comparison between election years and non-election years to detect pre-election surge patterns.
+
+📊 **Key Columns**:
+
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `year` | integer | Calendar year | 2022 |
+| `is_election_year` | boolean | Election year flag | true |
+| `q4_ballots` | bigint | Q4 ballot count | 180 |
+| `q4_documents` | bigint | Q4 document count | 520 |
+| `baseline_ballots` | numeric | Non-election Q4 average | 120 |
+| `surge_ratio` | numeric | Activity ratio vs baseline | 1.50 |
+
+💡 **Example Queries**:
+
+```sql
+-- Detect Q4 pre-election surges (>150% baseline)
+SELECT year, q4_ballots, baseline_ballots, surge_ratio
+FROM view_riksdagen_q4_election_year_comparison
+WHERE is_election_year = true AND surge_ratio > 1.5
+ORDER BY surge_ratio DESC;
+
+-- Compare 2022 election Q4 vs non-election years
+SELECT year, is_election_year, q4_ballots, q4_documents
+FROM view_riksdagen_q4_election_year_comparison
+WHERE year BETWEEN 2020 AND 2022
+ORDER BY year;
+```
+
+⚡ **Performance**: Pre-aggregated from quarterly view, fast queries
+
+🔗 **Dependencies**: view_riksdagen_seasonal_quarterly_activity
+
+🎯 **Framework Integration**: Framework 3 (Pattern Recognition) + Framework 4 (Predictive Intelligence)
+
+🎯 **Use Cases**: Pre-election activity prediction, electoral behavior forecasting, Q4 surge detection
+
+---
+
+### view_riksdagen_seasonal_anomaly_detection
+
+⭐⭐⭐⭐⭐ **Critical Intelligence Value**
+
+📋 **Purpose**: Identifies quarterly activity anomalies >2 standard deviations from baseline with severity classification and anomaly type categorization.
+
+📊 **Key Columns**:
+
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `year` | integer | Calendar year | 2022 |
+| `quarter` | integer | Quarter (1-4) | 4 |
+| `anomaly_type` | text | Type of anomaly | BALLOT_SURGE |
+| `z_score` | numeric | Statistical deviation | 2.3 |
+| `severity` | text | Severity level | HIGH |
+| `direction` | text | Activity direction | ELEVATED |
+
+💡 **Example Queries**:
+
+```sql
+-- Critical anomalies (z-score > 2.5)
+SELECT year, quarter, anomaly_type, z_score, severity
+FROM view_riksdagen_seasonal_anomaly_detection
+WHERE severity = 'CRITICAL'
+ORDER BY ABS(z_score) DESC;
+
+-- Recent anomalies (last 5 years)
+SELECT year, quarter, anomaly_type, direction
+FROM view_riksdagen_seasonal_anomaly_detection
+WHERE year >= EXTRACT(YEAR FROM CURRENT_DATE) - 5
+ORDER BY year DESC, quarter DESC;
+```
+
+⚡ **Performance**: Filters for |z| > 1.5, indexes on year/quarter/severity
+
+🔗 **Dependencies**: view_riksdagen_seasonal_quarterly_activity
+
+🎯 **Framework Integration**: Framework 3 (Pattern Recognition) + Framework 6 (Decision Intelligence)
+
+🎯 **Use Cases**: Crisis detection, operational warnings, electoral behavior anomalies, statistical outlier identification
+
+---
+
+## V1.59 Election Proximity & Seasonal Analysis Views
+
+### view_riksdagen_election_proximity_trends
+
+⭐⭐⭐⭐ **High Intelligence Value**
+
+📋 **Purpose**: Tracks politician activity trends approaching election dates across multiple behavioral dimensions to detect election-driven behavioral shifts.
+
+📊 **Key Columns**:
+
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `person_id` | text | Politician identifier | p123456 |
+| `election_year` | integer | Upcoming election year | 2022 |
+| `months_to_election` | integer | Months until election | 6 |
+| `ballot_participation` | numeric | Voting participation rate | 95.2 |
+| `document_production` | bigint | Document count | 45 |
+| `activity_trend` | text | Trend classification | INCREASING |
+
+💡 **Example Queries**:
+
+```sql
+-- Politicians increasing activity 6 months before election
+SELECT person_id, ballot_participation, document_production
+FROM view_riksdagen_election_proximity_trends
+WHERE months_to_election = 6 
+  AND activity_trend = 'INCREASING'
+ORDER BY document_production DESC
+LIMIT 20;
+
+-- Pre-election behavioral patterns
+SELECT election_year, months_to_election, 
+       AVG(ballot_participation) as avg_participation
+FROM view_riksdagen_election_proximity_trends
+WHERE months_to_election BETWEEN 1 AND 12
+GROUP BY election_year, months_to_election
+ORDER BY election_year DESC, months_to_election;
+```
+
+⚡ **Performance**: Indexed on person_id, election_year, months_to_election
+
+🔗 **Dependencies**: vote_data, document_data, politician metadata
+
+🎯 **Framework Integration**: Framework 1 (Temporal Analysis) + Framework 4 (Predictive Intelligence)
+
+🎯 **Use Cases**: Pre-election behavior tracking, candidate visibility analysis, electoral strategy assessment
+
+---
+
+### view_riksdagen_pre_election_quarterly_activity
+
+⭐⭐⭐⭐⭐ **Critical Intelligence Value**
+
+📋 **Purpose**: Comprehensive Q4 (October-December) multi-dimensional activity analysis comparing election vs non-election years with z-score calculation and party-level context.
+
+📊 **Key Columns**:
+
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `year` | integer | Calendar year | 2022 |
+| `is_election_year` | boolean | Election year flag | true |
+| `q4_ballots` | bigint | Q4 ballot count | 180 |
+| `q4_documents` | bigint | Q4 document count | 520 |
+| `party_effectiveness` | numeric | Party performance score | 87.5 |
+| `committee_productivity` | numeric | Committee output metric | 92.0 |
+| `activity_z_score` | numeric | Multi-dimensional z-score | 1.9 |
+| `classification` | text | Activity classification | ELEVATED |
+
+💡 **Example Queries**:
+
+```sql
+-- High-activity pre-election Q4 periods
+SELECT year, q4_ballots, q4_documents, activity_z_score
+FROM view_riksdagen_pre_election_quarterly_activity
+WHERE is_election_year = true 
+  AND activity_z_score > 1.5
+ORDER BY activity_z_score DESC;
+
+-- Party-level Q4 election analysis
+SELECT year, party, q4_documents, party_effectiveness
+FROM view_riksdagen_pre_election_quarterly_activity
+WHERE is_election_year = true
+ORDER BY year DESC, party_effectiveness DESC;
+
+-- YoY Q4 comparison across election cycles
+SELECT year, is_election_year, q4_ballots, committee_productivity
+FROM view_riksdagen_pre_election_quarterly_activity
+WHERE year BETWEEN 2018 AND 2023
+ORDER BY year DESC;
+```
+
+⚡ **Performance**: META/META level view aggregating from multiple behavioral views, efficient for analytical queries
+
+🔗 **Dependencies**: view_politician_behavioral_trends, view_riksdagen_politician_document, view_riksdagen_politician_role_evolution, view_party_effectiveness_trends, view_committee_productivity
+
+🎯 **Framework Integration**: Framework 1 (Temporal Analysis) + Framework 3 (Pattern Recognition)
+
+🎯 **Use Cases**: Comprehensive system-wide pre-election activity detection, cross-election cycle comparison, party and committee context analysis
+
+---
+
+### view_riksdagen_seasonal_activity_patterns
+
+⭐⭐⭐⭐⭐ **Critical Intelligence Value**
+
+📋 **Purpose**: Enhanced comprehensive Q1-Q4 seasonal pattern analysis across all election cycles (2002-2026) with advanced temporal trends, QoQ analysis, and NTILE clustering.
+
+📊 **Key Columns**:
+
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `year` | integer | Calendar year | 2022 |
+| `quarter` | integer | Quarter (1-4) | 4 |
+| `is_election_year` | boolean | Election year flag | true |
+| `quarterly_ballots` | bigint | Quarter ballot count | 180 |
+| `qoq_ballot_change` | numeric | Quarter-over-quarter % change | 15.5 |
+| `pattern_type` | text | Seasonal pattern | Q4_SURGE |
+| `activity_cluster` | integer | NTILE cluster (1-4) | 4 |
+| `z_score` | numeric | Cross-year deviation | 1.8 |
+
+💡 **Example Queries**:
+
+```sql
+-- Q4 surge patterns in election years
+SELECT year, quarterly_ballots, qoq_ballot_change, pattern_type
+FROM view_riksdagen_seasonal_activity_patterns
+WHERE quarter = 4 
+  AND is_election_year = true
+  AND pattern_type = 'Q4_SURGE'
+ORDER BY year DESC;
+
+-- High-activity quarters (top cluster)
+SELECT year, quarter, quarterly_ballots, activity_cluster
+FROM view_riksdagen_seasonal_activity_patterns
+WHERE activity_cluster = 4
+ORDER BY year DESC, quarter;
+
+-- QoQ trends for last 3 years
+SELECT year, quarter, quarterly_ballots, qoq_ballot_change
+FROM view_riksdagen_seasonal_activity_patterns
+WHERE year >= EXTRACT(YEAR FROM CURRENT_DATE) - 3
+ORDER BY year DESC, quarter DESC;
+```
+
+⚡ **Performance**: META/META level with pre-computed z-scores from base view, LAG/LEAD for temporal trends, efficient NTILE clustering
+
+🔗 **Dependencies**: view_riksdagen_seasonal_quarterly_activity (foundation view with z-scores and baselines)
+
+🎯 **Framework Integration**: Framework 3 (Pattern Recognition) + Framework 4 (Predictive Intelligence)
+
+🎯 **Use Cases**: Long-term seasonal trend analysis, electoral cycle predictions, quarterly behavior clustering, pattern classification
+
+---
+
+## V1.58 Career Path Analysis Views
+
+### view_riksdagen_politician_career_path_10level
+
+⭐⭐⭐⭐ **High Intelligence Value**
+
+📋 **Purpose**: 10-level hierarchical career path progression tracking for politicians with role evolution, seniority analysis, and advancement patterns.
+
+📊 **Key Columns**:
+
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `person_id` | text | Politician identifier | p123456 |
+| `career_level` | integer | Career progression level (1-10) | 7 |
+| `current_role` | text | Current position | Committee Chair |
+| `years_in_parliament` | numeric | Total parliamentary years | 12.5 |
+| `role_transitions` | integer | Number of role changes | 5 |
+| `advancement_rate` | numeric | Career velocity metric | 0.56 |
+| `seniority_rank` | integer | Ranking within cohort | 15 |
+
+💡 **Example Queries**:
+
+```sql
+-- Senior politicians (level 8+)
+SELECT person_id, career_level, current_role, years_in_parliament
+FROM view_riksdagen_politician_career_path_10level
+WHERE career_level >= 8
+ORDER BY career_level DESC, years_in_parliament DESC;
+
+-- Fast-track careers (high advancement rate)
+SELECT person_id, years_in_parliament, role_transitions, advancement_rate
+FROM view_riksdagen_politician_career_path_10level
+WHERE years_in_parliament < 10 
+  AND advancement_rate > 0.5
+ORDER BY advancement_rate DESC;
+
+-- Career level distribution
+SELECT career_level, COUNT(*) as politician_count
+FROM view_riksdagen_politician_career_path_10level
+GROUP BY career_level
+ORDER BY career_level;
+```
+
+⚡ **Performance**: Indexed on person_id, career_level, seniority_rank for efficient queries
+
+🔗 **Dependencies**: politician role data, committee assignments, parliamentary records
+
+🎯 **Framework Integration**: Framework 1 (Temporal Analysis) - Career progression tracking
+
+🎯 **Use Cases**: Leadership pipeline analysis, career progression patterns, seniority tracking, promotion velocity assessment
+
+---
+
 ---
 
 **END OF DOCUMENT**
