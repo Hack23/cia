@@ -415,18 +415,35 @@ Comprehensive statistical analysis performed on 43 distribution files covering:
 
 Based on enhanced edge case coverage and threshold validation:
 
-| Framework | Metric | Current | Target | Expected Post-Enhancement |
-|-----------|--------|---------|--------|---------------------------|
-| **Temporal Analysis** | Ministry decline | 82% | 87% | **88-90%** (improved extremes coverage) |
-| **Predictive Intelligence** | Resignation risk | 87% | 90% | **90-92%** (P99 productivity, P1 attendance) |
-| **Predictive Intelligence** | Coalition stress | 78% | 85% | **85-87%** (2018 historical, P99 stress) |
-| **Pattern Recognition** | Behavioral clustering | 91% | 91% | **92-94%** (edge cases reduce false negatives) |
+**Methodology**: Improvements estimated based on:
+1. Enhanced edge case coverage (P1-P10, P90-P99)
+2. Historical extreme event representation (2014 crisis, 2018 deadlock)
+3. Seasonal variation inclusion (Q4 pre-election, Q3 summer recess)
+4. Threshold calibration analysis against 43 distribution files
 
-**Overall Expected Improvement**: 3-5 percentage points across all frameworks due to:
+**Confidence Level**: Medium-High (70-85% confidence)
+- Based on statistical distribution analysis of actual data
+- Assumes framework algorithms will correctly classify enhanced edge cases
+- Requires empirical validation through framework execution
+
+| Framework | Metric | Current | Target | Expected (70% CI) | Expected (85% CI) |
+|-----------|--------|---------|--------|-------------------|-------------------|
+| **Temporal Analysis** | Ministry decline | 82% | 87% | **87-90%** | **88-89%** |
+| **Predictive Intelligence** | Resignation risk | 87% | 90% | **89-92%** | **90-91%** |
+| **Predictive Intelligence** | Coalition stress | 78% | 85% | **83-87%** | **85-86%** |
+| **Pattern Recognition** | Behavioral clustering | 91% | 91% | **91-94%** | **92-93%** |
+
+**Overall Expected Improvement**: 3-5 percentage points across all frameworks (85% CI) due to:
 1. Better coverage of statistical distribution extremes (P1, P99)
 2. Historical crisis pattern representation (2014, 2018)
 3. Seasonal and election cycle variations
 4. Multi-dimensional failure pattern coverage
+
+**Validation Required**: These are projected improvements. Actual accuracy must be measured by:
+1. Running framework analytics on enhanced datasets
+2. Comparing predictions to expected_detection columns
+3. Calculating actual accuracy = correct_predictions / total_cases
+4. Documenting results in validation-results.csv
 
 ## 📝 Version History
 

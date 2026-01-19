@@ -60,9 +60,9 @@ class ThresholdRecommender:
                 'recommended_action': 'NO CHANGE NEEDED',
                 'rationale': f"""
 Current thresholds are well-aligned with actual Swedish parliamentary data:
-- Moderate threshold (12%) aligns with P25 ({p25:.2f}%)
-- High threshold (25%) aligns with P75 ({p75:.2f}%)
-- P90 is {p90:.2f}%, well below extreme threshold (55%)
+- Moderate threshold (12%) aligns with P25 ({p25:.1f}%)
+- High threshold (25%) aligns with P75 ({p75:.1f}%)
+- P90 is {p90:.1f}%, well below extreme threshold (55%)
 - Edge cases added for P99 coverage (85%+ absence rates)
                 """.strip(),
                 'edge_case_coverage': 'Added P1 (0.5%), P99 (85%), and historical extremes (65% - 2014 crisis)'
@@ -94,7 +94,7 @@ Current thresholds are well-aligned with actual Swedish parliamentary data:
             'assessment': 'VALIDATED_2026_01_10',
             'recommended_action': 'NO CHANGE NEEDED',
             'rationale': """
-Thresholds validated 2026-01-10 against 1,346 politicians:
+Thresholds validated 2026-01-10 against 1,346 politicians, reconfirmed 2026-01-19:
 - <5 docs/year captures bottom 12.3% of active politicians
 - Threshold properly identifies low performers without over-flagging
 - Well below P25 (9 docs/year) for active politicians

@@ -356,7 +356,7 @@ class EdgeCaseGenerator:
         
         if not file_path.exists():
             print(f"⚠️  File not found: {file_path}")
-            return
+            return 0  # Return 0 cases added when file doesn't exist
         
         # Read existing file to get columns
         existing_df = pd.read_csv(file_path)

@@ -247,9 +247,17 @@ class DistributionAnalyzer:
                             })
                         
                         # Check for distribution skew
+                        # Use robust skew detection that handles near-zero medians
+                        MEDIAN_THRESHOLD = 0.01  # Named constant for near-zero median detection
                         if stats['P10'] is not None and stats['P90'] is not None:
-                            p10_to_median_ratio = abs(stats['P10'] - stats['median']) / (stats['median'] + 0.001)
-                            p90_to_median_ratio = abs(stats['P90'] - stats['median']) / (stats['median'] + 0.001)
+                            if abs(stats['median']) < MEDIAN_THRESHOLD:
+                                # For near-zero medians, use absolute differences instead of ratios
+                                p10_to_median_ratio = abs(stats['P10'] - stats['median'])
+                                p90_to_median_ratio = abs(stats['P90'] - stats['median'])
+                            else:
+                                # Standard ratio calculation for non-zero medians
+                                p10_to_median_ratio = abs(stats['P10'] - stats['median']) / abs(stats['median'])
+                                p90_to_median_ratio = abs(stats['P90'] - stats['median']) / abs(stats['median'])
                             
                             if p10_to_median_ratio < 0.1 or p90_to_median_ratio < 0.1:
                                 gaps.append({
