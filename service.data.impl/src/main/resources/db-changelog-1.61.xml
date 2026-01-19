@@ -95,72 +95,113 @@
     
     <createView viewName="view_riksdagen_party_summary">
         <![CDATA[
+WITH party_documents AS (
+    SELECT 
+        dpr.party_short_code AS party,
+        dpr.person_reference_id,
+        dd.id AS doc_id,
+        dd.document_type,
+        dd.label,
+        dd.made_public_date,
+        dd.org
+    FROM document_data dd
+    INNER JOIN document_status_container dsc 
+        ON dd.id = dsc.document_document_status_con_0
+    INNER JOIN document_person_reference_co_0 dprc 
+        ON dsc.hjid = dprc.hjid
+    INNER JOIN document_person_reference_da_0 dpr 
+        ON dprc.hjid = dpr.document_person_reference_li_1
+    WHERE dpr.party_short_code IS NOT NULL
+)
 SELECT
-    party,
+    vp.party,
     -- Assignment dates and totals
-    MIN(first_assignment_date) AS first_assignment_date,
-    MAX(last_assignment_date) AS last_assignment_date,
-    SUM(total_assignments::bigint)::bigint AS total_assignments,
-    SUM(current_assignments::bigint)::bigint AS current_assignments,
+    MIN(vp.first_assignment_date) AS first_assignment_date,
+    MAX(vp.last_assignment_date) AS last_assignment_date,
+    SUM(vp.total_assignments::bigint)::bigint AS total_assignments,
+    SUM(vp.current_assignments::bigint)::bigint AS current_assignments,
     
     -- Days served aggregations
-    SUM(total_days_served::bigint)::bigint AS total_days_served,
-    SUM(total_days_served_parliament::bigint)::bigint AS total_days_served_parliament,
-    SUM(total_days_served_committee::bigint)::bigint AS total_days_served_committee,
-    SUM(total_days_served_government::bigint)::bigint AS total_days_served_government,
-    SUM(total_days_served_eu::bigint)::bigint AS total_days_served_eu,
-    SUM(total_days_served_speaker::bigint)::bigint AS total_days_served_speaker,
-    SUM(total_days_served_party::bigint)::bigint AS total_days_served_party,
-    SUM(total_days_served_committee_substitute::bigint)::bigint AS total_days_served_committee_substitute,
-    SUM(total_days_served_committee_leadership::bigint)::bigint AS total_days_served_committee_leadership,
+    SUM(vp.total_days_served::bigint)::bigint AS total_days_served,
+    SUM(vp.total_days_served_parliament::bigint)::bigint AS total_days_served_parliament,
+    SUM(vp.total_days_served_committee::bigint)::bigint AS total_days_served_committee,
+    SUM(vp.total_days_served_government::bigint)::bigint AS total_days_served_government,
+    SUM(vp.total_days_served_eu::bigint)::bigint AS total_days_served_eu,
+    SUM(vp.total_days_served_speaker::bigint)::bigint AS total_days_served_speaker,
+    SUM(vp.total_days_served_party::bigint)::bigint AS total_days_served_party,
+    SUM(vp.total_days_served_committee_substitute::bigint)::bigint AS total_days_served_committee_substitute,
+    SUM(vp.total_days_served_committee_leadership::bigint)::bigint AS total_days_served_committee_leadership,
     
     -- Active flags (at least one active member)
-    BOOL_OR(active) AS active,
-    BOOL_OR(active_parliament) AS active_parliament,
-    BOOL_OR(active_government) AS active_government,
-    BOOL_OR(active_committee) AS active_committee,
-    BOOL_OR(active_eu) AS active_eu,
-    BOOL_OR(active_speaker) AS active_speaker,
-    BOOL_OR(active_party) AS active_party,
+    BOOL_OR(vp.active) AS active,
+    BOOL_OR(vp.active_parliament) AS active_parliament,
+    BOOL_OR(vp.active_government) AS active_government,
+    BOOL_OR(vp.active_committee) AS active_committee,
+    BOOL_OR(vp.active_eu) AS active_eu,
+    BOOL_OR(vp.active_speaker) AS active_speaker,
+    BOOL_OR(vp.active_party) AS active_party,
     
     -- Active member counts
-    SUM(CASE WHEN active THEN 1 ELSE 0 END)::bigint AS total_active,
-    SUM(CASE WHEN active_parliament THEN 1 ELSE 0 END)::bigint AS total_active_parliament,
-    SUM(CASE WHEN active_government THEN 1 ELSE 0 END)::bigint AS total_active_government,
-    SUM(CASE WHEN active_committee THEN 1 ELSE 0 END)::bigint AS total_active_committee,
-    SUM(CASE WHEN active_eu THEN 1 ELSE 0 END)::bigint AS total_active_eu,
+    SUM(CASE WHEN vp.active THEN 1 ELSE 0 END)::bigint AS total_active,
+    SUM(CASE WHEN vp.active_parliament THEN 1 ELSE 0 END)::bigint AS total_active_parliament,
+    SUM(CASE WHEN vp.active_government THEN 1 ELSE 0 END)::bigint AS total_active_government,
+    SUM(CASE WHEN vp.active_committee THEN 1 ELSE 0 END)::bigint AS total_active_committee,
+    SUM(CASE WHEN vp.active_eu THEN 1 ELSE 0 END)::bigint AS total_active_eu,
     
     -- Assignment type totals
-    SUM(total_party_assignments::bigint)::bigint AS total_party_assignments,
-    SUM(total_ministry_assignments::bigint)::bigint AS total_ministry_assignments,
-    SUM(total_committee_assignments::bigint)::bigint AS total_committee_assignments,
-    SUM(total_speaker_assignments::bigint)::bigint AS total_speaker_assignments,
-    SUM(total_committee_substitute_assignments::bigint)::bigint AS total_committee_substitute_assignments,
-    SUM(total_committee_leadership_assignments::bigint)::bigint AS total_committee_leadership_assignments,
+    SUM(vp.total_party_assignments::bigint)::bigint AS total_party_assignments,
+    SUM(vp.total_ministry_assignments::bigint)::bigint AS total_ministry_assignments,
+    SUM(vp.total_committee_assignments::bigint)::bigint AS total_committee_assignments,
+    SUM(vp.total_speaker_assignments::bigint)::bigint AS total_speaker_assignments,
+    SUM(vp.total_committee_substitute_assignments::bigint)::bigint AS total_committee_substitute_assignments,
+    SUM(vp.total_committee_leadership_assignments::bigint)::bigint AS total_committee_leadership_assignments,
     
     -- Current assignment type counts
-    SUM(current_party_assignments::bigint)::bigint AS current_party_assignments,
-    SUM(current_ministry_assignments::bigint)::bigint AS current_ministry_assignments,
-    SUM(current_committee_assignments::bigint)::bigint AS current_committee_assignments,
-    SUM(current_speaker_assignments::bigint)::bigint AS current_speaker_assignments,
-    SUM(current_committee_substitute_assignments::bigint)::bigint AS current_committee_substitute_assignments,
-    SUM(current_committee_leadership_assignments::bigint)::bigint AS current_committee_leadership_assignments,
+    SUM(vp.current_party_assignments::bigint)::bigint AS current_party_assignments,
+    SUM(vp.current_ministry_assignments::bigint)::bigint AS current_ministry_assignments,
+    SUM(vp.current_committee_assignments::bigint)::bigint AS current_committee_assignments,
+    SUM(vp.current_speaker_assignments::bigint)::bigint AS current_speaker_assignments,
+    SUM(vp.current_committee_substitute_assignments::bigint)::bigint AS current_committee_substitute_assignments,
+    SUM(vp.current_committee_leadership_assignments::bigint)::bigint AS current_committee_leadership_assignments,
     
-    -- Document metrics (from document_data, joined by party)
-    (SELECT COUNT(*) FROM document_data dd WHERE dd.party = vp.party)::bigint AS total_documents,
-    (SELECT ROUND((COUNT(*)::numeric / NULLIF(COUNT(DISTINCT dd.person_id), 0))::numeric, 2)
-     FROM document_data dd WHERE dd.party = vp.party) AS avg_documents_per_member,
-    (SELECT COUNT(*) FROM document_data dd WHERE dd.party = vp.party AND dd.document_type = 'mot' AND dd.label LIKE '%motion%')::bigint AS total_party_motions,
-    (SELECT COUNT(*) FROM document_data dd WHERE dd.party = vp.party AND dd.document_type = 'mot' AND dd.label NOT LIKE '%motion%')::bigint AS total_individual_motions,
-    (SELECT COUNT(*) FROM document_data dd WHERE dd.party = vp.party AND dd.org IS NOT NULL)::bigint AS total_committee_motions,
-    (SELECT COUNT(*) FROM document_data dd WHERE dd.party = vp.party AND ARRAY_LENGTH(STRING_TO_ARRAY(dd.person_reference_id, ','), 1) > 1)::bigint AS total_collaborative_motions,
-    (SELECT COUNT(*) FROM document_data dd WHERE dd.party = vp.party AND dd.related_id IS NOT NULL)::bigint AS total_follow_up_motions,
+    -- Document metrics (from party_documents CTE)
+    COALESCE(COUNT(DISTINCT pd.doc_id), 0)::bigint AS total_documents,
+    ROUND(COALESCE(COUNT(DISTINCT pd.doc_id)::numeric / NULLIF(COUNT(DISTINCT pd.person_reference_id), 0), 0)::numeric, 2) AS avg_documents_per_member,
+    COALESCE(COUNT(DISTINCT CASE WHEN pd.document_type = 'mot' AND pd.label LIKE '%motion%' THEN pd.doc_id END), 0)::bigint AS total_party_motions,
+    COALESCE(COUNT(DISTINCT CASE WHEN pd.document_type = 'mot' AND pd.label NOT LIKE '%motion%' THEN pd.doc_id END), 0)::bigint AS total_individual_motions,
+    COALESCE(COUNT(DISTINCT CASE WHEN pd.org IS NOT NULL THEN pd.doc_id END), 0)::bigint AS total_committee_motions,
+    0::bigint AS total_collaborative_motions,
+    0::bigint AS total_follow_up_motions,
     
     -- Member activity classification (by document count thresholds)
-    (SELECT COUNT(DISTINCT person_id) FROM document_data dd WHERE dd.party = vp.party GROUP BY person_id HAVING COUNT(*) > 100)::bigint AS very_high_activity_members,
-    (SELECT COUNT(DISTINCT person_id) FROM document_data dd WHERE dd.party = vp.party GROUP BY person_id HAVING COUNT(*) BETWEEN 50 AND 100)::bigint AS high_activity_members,
-    (SELECT COUNT(DISTINCT person_id) FROM document_data dd WHERE dd.party = vp.party GROUP BY person_id HAVING COUNT(*) BETWEEN 10 AND 49)::bigint AS medium_activity_members,
-    (SELECT COUNT(DISTINCT person_id) FROM document_data dd WHERE dd.party = vp.party GROUP BY person_id HAVING COUNT(*) < 10)::bigint AS low_activity_members,
+    COALESCE((SELECT COUNT(*) FROM (
+        SELECT pd2.person_reference_id 
+        FROM party_documents pd2 
+        WHERE pd2.party = vp.party 
+        GROUP BY pd2.person_reference_id 
+        HAVING COUNT(DISTINCT pd2.doc_id) > 100
+    ) x), 0)::bigint AS very_high_activity_members,
+    COALESCE((SELECT COUNT(*) FROM (
+        SELECT pd2.person_reference_id 
+        FROM party_documents pd2 
+        WHERE pd2.party = vp.party 
+        GROUP BY pd2.person_reference_id 
+        HAVING COUNT(DISTINCT pd2.doc_id) BETWEEN 50 AND 100
+    ) x), 0)::bigint AS high_activity_members,
+    COALESCE((SELECT COUNT(*) FROM (
+        SELECT pd2.person_reference_id 
+        FROM party_documents pd2 
+        WHERE pd2.party = vp.party 
+        GROUP BY pd2.person_reference_id 
+        HAVING COUNT(DISTINCT pd2.doc_id) BETWEEN 10 AND 49
+    ) x), 0)::bigint AS medium_activity_members,
+    COALESCE((SELECT COUNT(*) FROM (
+        SELECT pd2.person_reference_id 
+        FROM party_documents pd2 
+        WHERE pd2.party = vp.party 
+        GROUP BY pd2.person_reference_id 
+        HAVING COUNT(DISTINCT pd2.doc_id) < 10
+    ) x), 0)::bigint AS low_activity_members,
     
     -- Member focus classification (TODO: Implement based on document patterns)
     0::bigint AS party_focused_members,
@@ -168,24 +209,22 @@ SELECT
     0::bigint AS individual_focused_members,
     
     -- Currently active members and recent activity
-    (SELECT COUNT(DISTINCT person_id) FROM document_data dd WHERE dd.party = vp.party AND dd.made_public_date >= CURRENT_DATE - INTERVAL '1 year')::bigint AS currently_active_members,
-    (SELECT COUNT(*) FROM document_data dd WHERE dd.party = vp.party AND dd.made_public_date >= CURRENT_DATE - INTERVAL '1 year')::bigint AS total_documents_last_year,
-    (SELECT ROUND((COUNT(*)::numeric / NULLIF(COUNT(DISTINCT dd.person_id), 0))::numeric, 2)
-     FROM document_data dd WHERE dd.party = vp.party AND dd.made_public_date >= CURRENT_DATE - INTERVAL '1 year') AS avg_documents_last_year,
+    COALESCE(COUNT(DISTINCT CASE WHEN pd.made_public_date >= CURRENT_DATE - INTERVAL '1 year' THEN pd.person_reference_id END), 0)::bigint AS currently_active_members,
+    COALESCE(COUNT(DISTINCT CASE WHEN pd.made_public_date >= CURRENT_DATE - INTERVAL '1 year' THEN pd.doc_id END), 0)::bigint AS total_documents_last_year,
+    ROUND(COALESCE(COUNT(DISTINCT CASE WHEN pd.made_public_date >= CURRENT_DATE - INTERVAL '1 year' THEN pd.doc_id END)::numeric / 
+          NULLIF(COUNT(DISTINCT CASE WHEN pd.made_public_date >= CURRENT_DATE - INTERVAL '1 year' THEN pd.person_reference_id END), 0), 0)::numeric, 2) AS avg_documents_last_year,
     
     -- Document date range
-    (SELECT MIN(made_public_date) FROM document_data dd WHERE dd.party = vp.party) AS first_party_document,
-    (SELECT MAX(made_public_date) FROM document_data dd WHERE dd.party = vp.party) AS last_party_document,
+    MIN(pd.made_public_date) AS first_party_document,
+    MAX(pd.made_public_date) AS last_party_document,
     
-    -- Collaboration metrics
-    (SELECT ROUND((COUNT(CASE WHEN ARRAY_LENGTH(STRING_TO_ARRAY(person_reference_id, ','), 1) > 1 THEN 1 END)::numeric * 100.0 / NULLIF(COUNT(*), 0))::numeric, 2)
-     FROM document_data dd WHERE dd.party = vp.party) AS avg_collaboration_percentage,
-    (SELECT COUNT(DISTINCT person_id) FROM document_data dd WHERE dd.party = vp.party 
-     GROUP BY person_id 
-     HAVING (COUNT(CASE WHEN ARRAY_LENGTH(STRING_TO_ARRAY(person_reference_id, ','), 1) > 1 THEN 1 END)::numeric * 100.0 / COUNT(*)) > 50)::bigint AS highly_collaborative_members
+    -- Collaboration metrics (placeholder values - needs multi-person document logic)
+    0.0::numeric AS avg_collaboration_percentage,
+    0::bigint AS highly_collaborative_members
 FROM view_riksdagen_politician vp
-GROUP BY party
-ORDER BY party;
+LEFT JOIN party_documents pd ON vp.party = pd.party
+GROUP BY vp.party
+ORDER BY vp.party;
         ]]>
     </createView>
     

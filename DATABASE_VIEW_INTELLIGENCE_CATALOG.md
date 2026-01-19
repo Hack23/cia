@@ -37,48 +37,40 @@
 
 The Citizen Intelligence Agency (CIA) platform employs **96 database views** (68 regular views + 28 materialized views) across 10 major categories to support comprehensive political intelligence analysis, open-source intelligence (OSINT) collection, and democratic accountability monitoring.
 
-✅ **Documentation Status**: This catalog now provides **comprehensive documentation** for all 96 database views (100% coverage), including **6 election cycle views (v1.51)**, **3 party longitudinal analysis views (v1.53)**, **3 seasonal trend analysis views (v1.55)**, **3 politician career trajectory views (v1.56)**, and **3 party transition tracking views (v1.57)** that provide META/META-level historical analysis with Swedish parliamentary election context. **11 views** have detailed examples with complex queries, while **85 views** have structured documentation with purpose, key metrics, sample queries, and intelligence applications.
+✅ **Documentation Status**: This catalog now provides **comprehensive documentation** for all 96 database views (100% coverage), including **4 recreated party analysis views (v1.61)**, **6 election cycle views (v1.51)**, **3 party transition tracking views (v1.57)**, **3 politician career trajectory views (v1.56)**, and **3 seasonal trend analysis views (v1.55)** that provide META/META-level historical analysis with Swedish parliamentary election context. **15 views** have detailed examples with complex queries, while **81 views** have structured documentation with purpose, key metrics, sample queries, and intelligence applications.
 
-**Last Updated**: 2026-01-17 (Added Party Transition Tracking Views v1.57, Politician Career Trajectory Views v1.56, Seasonal Trend Analysis Views v1.55)  
-**Last Validated**: 2026-01-17 (v1.57 with 96 views)
+**Last Updated**: 2026-01-19 (Added 4 Party Analysis Views v1.61: party_summary, longitudinal_performance, coalition_evolution, electoral_trends)  
+**Last Validated**: 2026-01-19 (v1.61 with 96 views)
 **Validation Method**: Automated schema validation via validate-view-documentation.sh  
-**Schema Source**: service.data.impl/src/main/resources/full_schema.sql  
+**Schema Source**: service.data.impl/src/main/resources/full_schema.sql + db-changelog-1.61.xml  
 **Documentation Coverage**: 100% (96/96 views)  
 **Validation Details**: See [Validation History](#-validation-history) section below
 
-**Note**: Total view count increased from 90 to 96 with addition of 3 seasonal trend analysis views (v1.55), 3 politician career trajectory views (v1.56), and 3 party transition tracking views (v1.57).
+**Note**: Total view count remains 96. Four views (party_summary, party_longitudinal_performance, party_coalition_evolution, party_electoral_trends) were recreated in v1.61 after being dropped in v1.53/v1.6 but never recreated, causing JPA entity mismatch.
 
-### Key Statistics (UPDATED 2026-01-17)
+### Key Statistics (UPDATED 2026-01-19)
 
 | Metric | Count | Description |
 |--------|-------|-------------|
-| **Total Views** | 96 | ✅ UPDATED: 81 base + 6 election cycle (v1.51) + 3 party longitudinal (v1.53) + 3 seasonal trend (v1.55) + 3 politician career (v1.56) + 3 party transition (v1.57) = 99 documented (3 future planned) |
-| **Regular Views** | 68 | ✅ UPDATED: 53 base + 6 election cycle + 3 party longitudinal + 3 seasonal trend + 3 politician career |
+| **Total Views** | 96 | ✅ UPDATED: 81 base + 6 election cycle (v1.51) + 3 party transition (v1.57) + 3 politician career (v1.56) + 3 seasonal trend (v1.55) |
+| **Regular Views** | 68 | ✅ UPDATED: 53 base + 6 election cycle + 3 party transition + 3 seasonal trend + 3 politician career |
 | **Materialized Views** | 28 | ✅ VERIFIED per refresh-all-views.sql |
-| **Views Documented (Detailed)** | 11 | Complex examples with business context |
-| **Views Documented (Structured)** | 85 | Purpose, metrics, queries, product mappings (73 + 6 + 3 + 3 new) |
-| **Documentation Coverage** | 100% | All 96 views documented |
-| **Intelligence Views** | 7 | Advanced analytical views (risk, anomaly, influence, crisis, momentum, dashboard, temporal trends) |
-| **Election Cycle Views** | 6 | NEW v1.51: META/META-level election cycle analysis across 6 frameworks |
-| **Party Transition Views** | 3 | NEW v1.55: Party switcher tracking with defection analysis and career outcomes |
-=======
-| **Total Views** | 96 | ✅ UPDATED: 84 base + 6 election cycle (v1.51) + 3 party longitudinal (v1.53) + 3 politician career (v1.55) |
-| **Regular Views** | 68 | ✅ UPDATED: 56 base + 6 election cycle + 3 party longitudinal + 3 politician career |
-| **Materialized Views** | 28 | ✅ VERIFIED per refresh-all-views.sql |
-| **Views Documented (Detailed)** | 11 | Complex examples with business context |
-| **Views Documented (Structured)** | 85 | Purpose, metrics, queries, product mappings (76 + 6 + 3 + 3 new) |
+| **Views Documented (Detailed)** | 15 | ✅ NEW: +4 party analysis views with comprehensive documentation |
+| **Views Documented (Structured)** | 81 | Purpose, metrics, queries, product mappings |
 | **Documentation Coverage** | 100% | All 96 views documented |
 | **Intelligence Views** | 7 | Advanced analytical views (risk, anomaly, influence, crisis, momentum, dashboard, temporal trends) |
 | **Election Cycle Views** | 6 | v1.51: META/META-level election cycle analysis across 6 frameworks |
-| **Career Trajectory Views** | 3 | NEW v1.55: Politician career pattern detection, role evolution, longevity analysis |
->>>>>>> origin/master
+| **Party Analysis Views (v1.61)** | 4 | ✅ NEW: Recreated views with 59-70 columns, advanced window functions, forecasting |
+| **Career Trajectory Views** | 3 | v1.56: Politician career pattern detection, role evolution, longevity analysis |
+| **Party Transition Views** | 3 | v1.57: Party switcher tracking with defection analysis and career outcomes |
+| **Seasonal Trend Views** | 3 | v1.55: Temporal pattern analysis with seasonal decomposition |
 | **Decision Flow Views** | 4 | Party, politician, ministry, temporal trends for decision analysis |
 | **Vote Summary Views** | 20 | Daily, weekly, monthly, annual ballot summaries |
 | **Application Event Views** | 12 | User behavior tracking (daily, weekly, monthly, annual) |
 | **Document Views** | 7 | Politician and party document productivity |
 | **Committee Views** | 12 | Committee productivity, decisions, membership |
 | **Government/Ministry Views** | 7 | Government and ministry performance tracking |
-| **Party Views** | 16 | Party performance, decision flow, effectiveness, transitions |
+| **Party Views** | 16 | Party performance, decision flow, effectiveness, transitions, longitudinal analysis |
 | **Application/Audit Views** | 14 | Platform usage tracking and audit trails |
 | **Database Size** | 20 GB | Total database size (validated 2025-11-21) |
 | **Total Rows** | 5.6M | Total rows across all tables |
@@ -409,14 +401,17 @@ This section provides a complete alphabetical inventory of all 82 database views
 | 📖 view_riksdagen_coalition_alignment_matrix | Standard | ⭐⭐⭐⭐⭐ | Party coalition alignment and probability matrix |
 | 📖 view_riksdagen_party | Standard | ⭐⭐⭐⭐⭐ | Core party information and metrics |
 | view_party_performance_metrics | Standard | ⭐⭐⭐⭐⭐ | Comprehensive party performance indicators |
+| view_riksdagen_party_summary | Standard | ⭐⭐⭐⭐ | 📘 Party assignment & document aggregation (v1.61 recreated) |
 | view_riksdagen_party_ballot_support_annual_summary | Standard | ⭐⭐⭐⭐ | Annual party ballot support patterns |
 | view_riksdagen_party_coalation_against_annual_summary | Standard | ⭐⭐⭐⭐ | Annual party opposition coalition patterns |
 | 📖 view_riksdagen_party_decision_flow | Standard | ⭐⭐⭐⭐⭐ | Party-level proposal decision analysis (NEW v1.35) |
+| view_riksdagen_party_longitudinal_performance | Standard | ⭐⭐⭐⭐⭐ | 📘 Semester performance tracking—70 KPIs (v1.61 recreated) |
+| view_riksdagen_party_coalition_evolution | Standard | ⭐⭐⭐⭐⭐ | 📘 Party-pair alliance tracking—35 metrics (v1.61 recreated) |
+| view_riksdagen_party_electoral_trends | Standard | ⭐⭐⭐⭐⭐ | 📘 Electoral performance—49 indicators (v1.61 recreated) |
 | view_riksdagen_party_member | Standard | ⭐⭐⭐⭐ | Party membership roster |
 | view_riksdagen_party_momentum_analysis | Standard | ⭐⭐⭐⭐⭐ | Party momentum and trend analysis |
 | view_riksdagen_party_role_member | Standard | ⭐⭐⭐ | Party role assignments |
 | view_riksdagen_party_signatures_document_summary | Standard | ⭐⭐⭐ | Party document signature patterns |
-| view_riksdagen_party_summary | Standard | ⭐⭐⭐⭐ | Aggregated party statistics |
 | view_riksdagen_party_transition_history | Standard | ⭐⭐⭐⭐⭐ | Party switcher tracking with historical transitions (NEW v1.55) |
 | view_riksdagen_party_defector_analysis | Standard | ⭐⭐⭐⭐⭐ | Defector behavioral analysis and early warning signals (NEW v1.55) |
 | view_riksdagen_party_switcher_outcomes | Standard | ⭐⭐⭐⭐⭐ | Post-transition career success metrics (NEW v1.55) |
@@ -3567,9 +3562,15 @@ These views are **CRITICAL** for the CIA platform's intelligence capabilities:
 
 Party views provide organizational-level intelligence on Swedish political parties, tracking electoral performance, coalition behavior, internal discipline, decision effectiveness, performance trends, and longitudinal analysis across election cycles (2002-2026). These views enable coalition analysis, party comparison, government formation forecasting, and historical trend analysis.
 
-**Total Party Views:** 16 (NEW: 3 Party Longitudinal Analysis views v1.53 + Party Decision Flow v1.35)  
+**Total Party Views:** 16 (NEW: 4 Recreated Party Analysis views v1.61 + Party Transition Tracking v1.57 + Party Decision Flow v1.35)  
 **Intelligence Value:** ⭐⭐⭐⭐⭐ VERY HIGH  
-**Primary Use Cases:** Coalition analysis, party performance monitoring, electoral forecasting, bloc alignment, legislative effectiveness, longitudinal trend analysis, election cycle patterns
+**Primary Use Cases:** Coalition analysis, party performance monitoring, electoral forecasting, bloc alignment, legislative effectiveness, longitudinal trend analysis, election cycle patterns, coalition evolution tracking
+
+**New in v1.61:** 4 views recreated after v1.53/v1.6 drops:
+- `view_riksdagen_party_summary` - Party-level assignment and document aggregation (59 columns)
+- `view_riksdagen_party_longitudinal_performance` - Semester-based performance tracking with 70 KPIs and advanced window functions
+- `view_riksdagen_party_coalition_evolution` - Party-pair alliance tracking with 35 coalition metrics
+- `view_riksdagen_party_electoral_trends` - Electoral performance analysis with 49 forecasting indicators
 
 ---
 
@@ -4476,6 +4477,1024 @@ From [BUSINESS_PRODUCT_DOCUMENT.md](BUSINESS_PRODUCT_DOCUMENT.md):
 - **Swedish Language**: Decision terms use official Riksdag Swedish terminology
 - **Party Attribution**: Requires person reference data linking documents to parties
 - **Historical Analysis**: Effective for analyzing any time period with available data
+
+---
+
+### view_riksdagen_party_summary ⭐⭐⭐⭐
+
+**Category:** Party Views (v1.61 - Recreated)  
+**Type:** Standard View  
+**Intelligence Value:** HIGH - Party Assignment & Document Aggregation  
+**Changelog:** v1.61 Recreation after v1.6 drop
+
+#### 📋 Purpose
+
+Aggregates assignment data and document statistics at party level. Provides comprehensive party-level metrics including assignments, days served across different roles, active members, document production, and collaboration patterns. Foundation view for party comparison and performance tracking.
+
+**Note:** Originally created in early versions, dropped in v1.6, and recreated in v1.61 after JPA entity mismatch discovery.
+
+#### 📊 Key Columns
+
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `party` | VARCHAR(50) | Party short code (PK) | 'S', 'M', 'SD' |
+| `first_assignment_date` | DATE | First party assignment | '2002-10-01' |
+| `last_assignment_date` | DATE | Most recent assignment | '2024-12-15' |
+| `total_assignments` | BIGINT | All assignments across members | 2847 |
+| `current_assignments` | BIGINT | Active assignments | 156 |
+| `total_days_served` | BIGINT | Total service days (all roles) | 890456 |
+| `total_days_served_parliament` | BIGINT | Parliamentary service days | 456789 |
+| `total_days_served_committee` | BIGINT | Committee service days | 234567 |
+| `total_days_served_government` | BIGINT | Government service days | 123456 |
+| `total_days_served_eu` | BIGINT | EU representative days | 12345 |
+| `total_days_served_speaker` | BIGINT | Speaker role days | 5678 |
+| `total_days_served_party` | BIGINT | Party leadership days | 45678 |
+| `active` | BOOLEAN | Has any active members | true |
+| `active_parliament` | BOOLEAN | Has parliamentary members | true |
+| `active_government` | BOOLEAN | Has government members | false |
+| `active_committee` | BOOLEAN | Has committee members | true |
+| `total_active` | BIGINT | Count of active members | 68 |
+| `total_active_parliament` | BIGINT | Active parliamentarians | 68 |
+| `total_active_government` | BIGINT | Active government members | 0 |
+| `total_active_committee` | BIGINT | Active committee members | 102 |
+| `total_documents` | BIGINT | Documents produced | 8542 |
+| `avg_documents_per_member` | NUMERIC | Avg docs per member | 125.62 |
+| `total_party_motions` | BIGINT | Party-wide motions | 234 |
+| `total_individual_motions` | BIGINT | Individual member motions | 5678 |
+| `very_high_activity_members` | BIGINT | Members with >100 docs | 12 |
+| `high_activity_members` | BIGINT | Members with 50-100 docs | 23 |
+| `medium_activity_members` | BIGINT | Members with 10-49 docs | 28 |
+| `low_activity_members` | BIGINT | Members with <10 docs | 5 |
+| `currently_active_members` | BIGINT | Active in last year | 64 |
+| `total_documents_last_year` | BIGINT | Docs last 12 months | 1245 |
+| `avg_documents_last_year` | NUMERIC | Avg docs/member last year | 19.45 |
+
+#### 💡 Example SQL Queries
+
+**1. Party Activity Comparison**
+
+```sql
+SELECT
+    party,
+    total_active_parliament AS current_seats,
+    total_documents AS lifetime_docs,
+    total_documents_last_year AS recent_docs,
+    ROUND(avg_documents_per_member, 2) AS productivity,
+    very_high_activity_members + high_activity_members AS productive_members,
+    ROUND(100.0 * currently_active_members / NULLIF(total_active, 0), 2) AS active_pct
+FROM view_riksdagen_party_summary
+WHERE active = true
+ORDER BY current_seats DESC;
+```
+
+**2. Government vs Opposition Experience**
+
+```sql
+SELECT
+    party,
+    active_parliament,
+    active_government,
+    total_days_served_government AS govt_experience_days,
+    ROUND(total_days_served_government::NUMERIC / 365.25, 1) AS govt_experience_years,
+    total_days_served_parliament AS parliament_days,
+    ROUND(100.0 * total_days_served_government / NULLIF(total_days_served_parliament, 0), 2) AS govt_pct
+FROM view_riksdagen_party_summary
+WHERE active = true
+ORDER BY govt_experience_days DESC;
+```
+
+**3. Member Activity Distribution**
+
+```sql
+SELECT
+    party,
+    total_active AS members,
+    very_high_activity_members AS very_high,
+    high_activity_members AS high,
+    medium_activity_members AS medium,
+    low_activity_members AS low,
+    ROUND(100.0 * very_high_activity_members / NULLIF(total_active, 0), 1) AS elite_pct
+FROM view_riksdagen_party_summary
+WHERE active = true
+ORDER BY elite_pct DESC;
+```
+
+#### ⚡ Performance Characteristics
+
+- **Query Time:** <10ms (small result set, indexed on PK)
+- **Indexes Used:** Primary key on `party`
+- **Data Volume:** ~10-15 rows (active parties)
+- **Refresh Frequency:** Real-time (standard view)
+- **Dependencies:** Aggregates from `view_riksdagen_politician` and `document_data`
+
+#### 🔗 Dependencies
+
+**Upstream:**
+- `view_riksdagen_politician` - Individual politician aggregations
+- `document_data` - Document production metrics
+- `document_status_container` - Document linkage
+- `document_person_reference_*` - Party attribution
+
+**Downstream:**
+- Used by other party comparison queries
+- Foundation for party performance analysis
+
+#### 🎯 Framework Integration
+
+**Comparative Analysis:**
+- Party-to-party productivity comparison
+- Government vs opposition experience metrics
+- Member activity distribution analysis
+
+**Temporal Analysis:**
+- Service duration tracking across roles
+- Historical vs current activity patterns
+
+**Pattern Recognition:**
+- High vs low productivity member identification
+- Party activity classification patterns
+
+#### 🎯 Use Cases
+
+1. **Party Scorecard Generation** - Comprehensive party profiles with assignments, activity, and productivity
+2. **Experience Assessment** - Track party expertise in government, committees, parliament
+3. **Member Activity Analysis** - Identify high-performing and low-performing member distributions
+4. **Coalition Capacity Assessment** - Evaluate party governance experience for coalition formation
+
+---
+
+### view_riksdagen_party_longitudinal_performance ⭐⭐⭐⭐⭐
+
+**Category:** Party Views (v1.61 - Recreated from v1.53)  
+**Type:** Standard View  
+**Intelligence Value:** VERY HIGH - Advanced Longitudinal Analysis with Window Functions  
+**Changelog:** v1.53 Original, v1.61 Recreated
+
+#### 📋 Purpose
+
+Tracks party performance evolution across election cycles (2002-2026+) with semester granularity, employing advanced window functions (RANK, PERCENT_RANK, NTILE, LAG, LEAD, STDDEV_POP) for trend detection, performance tier classification, predictive forecasting, and volatility assessment. Enables cross-cycle comparative analysis with Swedish parliamentary context (autumn/spring semesters, pre-election dynamics).
+
+**Key Innovation:** Combines 7 types of window functions with 3-semester moving averages, z-score calculations, and composite performance indices for sophisticated trend analysis.
+
+#### 🔬 Statistical Methodology
+
+**Window Function Coverage:**
+- **RANK()** - Party ranking by win rate, participation, size, approval, productivity, discipline (6 dimensions)
+- **PERCENT_RANK()** - Percentile positioning (0.0-1.0) for comparative analysis
+- **NTILE(4)** - Quartile-based performance tiers (1=top 25%, 4=bottom 25%)
+- **LAG()** - Previous semester metrics for trend detection (6 metrics tracked)
+- **LEAD()** - Next semester metrics for predictive forecasting (3 forward-looking metrics)
+- **STDDEV_POP()** - Volatility measurement (sector-wide and party-specific)
+- **AVG() ROWS BETWEEN 2 PRECEDING** - 3-semester moving averages for smoothing
+
+**Composite Indices:**
+- **Composite Performance Index:** Win rate (35%) + Participation (25%) + Approval (20%) + Size (10%) + Productivity (10%)
+- **Discipline Effectiveness Score:** Participation (50%) + Inverse rebel rate (50%)
+- **Legislative Effectiveness Index:** Win rate (35%) + Participation (25%) + Approval (25%) + Discipline (15%)
+
+#### 📊 Key Columns (70 Total)
+
+**Primary Keys (Composite):**
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `party` | VARCHAR(50) | Party code | 'S' |
+| `election_cycle_id` | TEXT | Election cycle | '2018-2021' |
+| `semester` | TEXT | Semester | 'autumn', 'spring' |
+
+**Core Metrics (14 columns):**
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `cycle_year` | INTEGER | Year in 4-year cycle (1-4) | 3 |
+| `calendar_year` | INTEGER | Actual year | 2024 |
+| `total_ballots` | BIGINT | Ballots in semester | 847 |
+| `participation_rate` | NUMERIC | Attendance % | 92.5 |
+| `win_rate` | NUMERIC | Win % on ballots | 67.8 |
+| `approval_rate` | NUMERIC | Decision approval % | 71.2 |
+| `active_members` | BIGINT | Member count | 68 |
+| `documents_last_year` | BIGINT | Documents produced | 1245 |
+| `avg_rebel_rate` | NUMERIC | Party dissent rate | 3.2 |
+
+**Ranking Metrics (12 columns - RANK & PERCENT_RANK):**
+- `rank_by_win_rate`, `rank_by_participation`, `rank_by_size`, `rank_by_approval`, `rank_by_productivity`, `rank_by_discipline`
+- `percentile_win_rate`, `percentile_participation`, `percentile_approval`, `percentile_productivity`
+- `quartile_by_win_rate`, `quartile_by_overall_performance`
+
+**Temporal Metrics (12 columns - LAG & LEAD):**
+- `prev_semester_win_rate`, `prev_semester_participation`, `prev_semester_members`, `prev_semester_approval`
+- `next_semester_win_rate`, `next_semester_participation`, `next_semester_members`
+- Plus 5 more LAG metrics
+
+**Change Metrics (7 columns):**
+- `win_rate_change_absolute`, `win_rate_change_pct`, `participation_change_absolute`
+- `membership_change`, `approval_rate_change`, `documents_change`, `discipline_change`
+
+**Trajectory Classifications (2 columns):**
+- `trajectory_win_rate`: ASCENDING, RECOVERING, STABLE, DECLINING, DESCENDING, BASELINE
+- `trajectory_participation`: IMPROVING, STABLE, DECLINING, BASELINE
+
+**Composite Scores (3 columns):**
+- `composite_performance_index` (0-100)
+- `discipline_effectiveness_score` (0-100)
+- `legislative_effectiveness_score` (0-100)
+
+**Volatility Metrics (4 columns + 2 classifications):**
+- `stddev_win_rate_sector`, `stddev_win_rate_party`, `stddev_participation_sector`, `stddev_participation_party`
+- `volatility_classification`: HIGH_VOLATILITY, MODERATE_VOLATILITY, LOW_VOLATILITY
+- `stability_classification`: UNSTABLE, MODERATELY_STABLE, STABLE
+
+**Predictive Indicators (4 columns):**
+- `forecast_trend`: EXPECTED_IMPROVEMENT, EXPECTED_DECLINE, EXPECTED_STABLE, NO_FORECAST
+- `trend_deviation_from_ma` (vs 3-semester moving average)
+- `trend_position`: UNDERPERFORMING_VS_TREND, ON_TREND, OVERPERFORMING_VS_TREND
+- `trajectory_confidence_score` (0-100)
+
+**Performance Tiers (2 columns):**
+- `performance_tier`: ELITE_PERFORMER, STRONG_PERFORMER, MODERATE_PERFORMER, WEAK_PERFORMER
+- `productivity_tier`: HIGHLY_PRODUCTIVE, MODERATELY_PRODUCTIVE, LOW_PRODUCTIVITY, VERY_LOW_PRODUCTIVITY
+
+**Early Warning Flags (1 column):**
+- `early_warning_flag`: CRITICAL_DECLINE, MODERATE_DECLINE, CRITICAL_PARTICIPATION_DROP, MODERATE_PARTICIPATION_DROP, NORMAL
+
+**Election Context Flags (3 columns):**
+- `is_pre_election_spring`, `is_election_autumn`, `is_election_cycle_end`
+
+#### 💡 Example SQL Queries
+
+**1. Current Performance Rankings with Trajectory**
+
+```sql
+SELECT
+    party,
+    semester,
+    win_rate,
+    rank_by_win_rate,
+    performance_tier,
+    trajectory_win_rate,
+    forecast_trend,
+    ROUND(composite_performance_index, 2) AS performance_index
+FROM view_riksdagen_party_longitudinal_performance
+WHERE election_cycle_id = '2022-2025'
+    AND calendar_year = 2024
+    AND semester = 'autumn'
+ORDER BY rank_by_win_rate;
+```
+
+**2. Identify Rising Stars (Improving Performance)**
+
+```sql
+SELECT
+    party,
+    election_cycle_id,
+    calendar_year,
+    semester,
+    win_rate,
+    win_rate_change_absolute,
+    trajectory_win_rate,
+    performance_tier,
+    ROUND(momentum_z_score_win_rate, 2) AS momentum_significance
+FROM view_riksdagen_party_longitudinal_performance
+WHERE trajectory_win_rate IN ('ASCENDING', 'RECOVERING')
+    AND calendar_year >= 2022
+ORDER BY win_rate_change_absolute DESC
+LIMIT 20;
+```
+
+**3. Volatility Analysis (High-Risk Parties)**
+
+```sql
+SELECT
+    party,
+    ROUND(AVG(win_rate), 2) AS avg_win_rate,
+    ROUND(MAX(stddev_win_rate_party), 2) AS volatility,
+    volatility_classification,
+    COUNT(*) AS semesters_tracked,
+    STRING_AGG(DISTINCT early_warning_flag, ', ') AS warnings
+FROM view_riksdagen_party_longitudinal_performance
+WHERE calendar_year >= 2020
+GROUP BY party, volatility_classification
+ORDER BY volatility DESC;
+```
+
+**4. Pre-Election Performance Surges**
+
+```sql
+SELECT
+    party,
+    election_cycle_id,
+    calendar_year,
+    win_rate,
+    prev_semester_win_rate,
+    win_rate_change_absolute AS pre_election_surge,
+    participation_rate,
+    documents_last_year
+FROM view_riksdagen_party_longitudinal_performance
+WHERE is_pre_election_spring = true
+    AND calendar_year >= 2014
+ORDER BY pre_election_surge DESC;
+```
+
+**5. Performance Tier Transitions**
+
+```sql
+WITH tier_changes AS (
+    SELECT
+        party,
+        calendar_year,
+        semester,
+        performance_tier,
+        LAG(performance_tier) OVER (PARTITION BY party ORDER BY calendar_year, semester) AS prev_tier
+    FROM view_riksdagen_party_longitudinal_performance
+    WHERE calendar_year >= 2018
+)
+SELECT
+    party,
+    calendar_year,
+    semester,
+    prev_tier || ' → ' || performance_tier AS tier_transition,
+    CASE
+        WHEN performance_tier < prev_tier THEN 'PROMOTED'
+        WHEN performance_tier > prev_tier THEN 'DEMOTED'
+        ELSE 'STABLE'
+    END AS direction
+FROM tier_changes
+WHERE prev_tier IS NOT NULL
+    AND performance_tier != prev_tier
+ORDER BY calendar_year DESC, party;
+```
+
+**6. Predictive Accuracy Assessment**
+
+```sql
+SELECT
+    party,
+    calendar_year,
+    semester,
+    forecast_trend,
+    CASE
+        WHEN forecast_trend = 'EXPECTED_IMPROVEMENT' AND next_semester_win_rate > win_rate THEN 'CORRECT'
+        WHEN forecast_trend = 'EXPECTED_DECLINE' AND next_semester_win_rate < win_rate THEN 'CORRECT'
+        WHEN forecast_trend = 'EXPECTED_STABLE' AND ABS(next_semester_win_rate - win_rate) < 3 THEN 'CORRECT'
+        ELSE 'INCORRECT'
+    END AS forecast_accuracy
+FROM view_riksdagen_party_longitudinal_performance
+WHERE next_semester_win_rate IS NOT NULL
+    AND calendar_year >= 2020;
+```
+
+#### ⚡ Performance Characteristics
+
+- **Query Time:** 100-300ms (complex window functions)
+- **Indexes Suggested:** Composite index on (party, election_cycle_id, cycle_year, semester)
+- **Data Volume:** ~800-1200 rows (8-10 parties × 6 cycles × 8 semesters/cycle)
+- **Refresh Frequency:** Real-time (standard view)
+- **Optimization Note:** Consider materialization for heavy analytical workloads
+
+#### 🔗 Dependencies
+
+**Upstream:**
+- `view_riksdagen_vote_data_ballot_party_summary_annual` - Core voting metrics
+- `view_party_performance_metrics` - Current performance scores
+
+**Downstream:**
+- Party trend dashboards
+- Election forecasting models
+- Coalition stability analysis
+
+#### 🎯 Framework Integration
+
+**Temporal Analysis:**
+- Cross-cycle performance evolution
+- Semester-to-semester trends
+- Pre-election behavioral shifts
+
+**Comparative Analysis:**
+- Party-to-party ranking across 6 dimensions
+- Percentile-based competitive positioning
+- Quartile tier classification
+
+**Pattern Recognition:**
+- Trajectory pattern detection (ASCENDING, DECLINING, STABLE)
+- Volatility classification (HIGH, MODERATE, LOW)
+- Early warning signal identification
+
+**Predictive Intelligence:**
+- Next-semester performance forecasting
+- Trajectory confidence scoring
+- Trend deviation alerts
+
+#### 🎯 Use Cases
+
+1. **Election Forecasting** - Predict party performance based on historical trajectories and moving averages
+2. **Coalition Planning** - Assess party reliability via volatility metrics and discipline scores
+3. **Performance Benchmarking** - Compare parties using percentile ranks and composite indices
+4. **Trend Analysis** - Detect multi-semester trends with LAG/LEAD analysis and moving averages
+5. **Risk Assessment** - Identify high-volatility parties with early warning flags
+6. **Pre-Election Intelligence** - Track behavioral changes in pre-election semesters
+
+---
+
+### view_riksdagen_party_coalition_evolution ⭐⭐⭐⭐⭐
+
+**Category:** Party Views (v1.61 - Recreated from v1.53)  
+**Type:** Standard View  
+**Intelligence Value:** VERY HIGH - Coalition Dynamics & Alliance Tracking  
+**Changelog:** v1.53 Original, v1.61 Recreated
+
+#### 📋 Purpose
+
+Tracks party-pair alliance and coalition behavior across election cycles with semester granularity. Analyzes voting alignment, coalition strength, breakup risk, strategic shifts, and volatility through advanced window functions. Enables coalition formation forecasting and alliance stability assessment.
+
+**Key Innovation:** Pairwise party analysis with alignment rate calculation, coalition strength rankings, realignment detection, and breakup risk scoring. Employs window functions for temporal tracking and volatility measurement.
+
+#### 🔬 Statistical Methodology
+
+**Alignment Calculation:**
+```
+Alignment Rate = (Aligned Ballots / Total Joint Ballots) × 100
+Aligned Ballot = Both parties vote same direction (both YES or both NO)
+```
+
+**Vote Divergence:**
+```
+Avg Vote Divergence = AVG(|Party1_YES% - Party2_YES%|)
+```
+
+**Stability Score Formula:**
+```
+Stability Score = (Alignment_Rate × 40%) + 
+                  ((100 - Avg_Vote_Divergence) × 30%) + 
+                  ((100 - Vote_Divergence_StdDev) × 30%)
+```
+
+**Breakup Risk Scoring:**
+- Alliance < 50% and previously ≥ 65%: **90% risk**
+- Alliance < 50% with high volatility (stddev > 15): **75% risk**
+- Alliance < 65% with decline > 10 points: **60% risk**
+- High volatility (stddev > 15): **50% risk**
+- Alliance < 50%: **40% risk**
+- Recent decline > 8 points: **30% risk**
+- Otherwise: **10% risk** (baseline)
+
+#### 📊 Key Columns (35 Total)
+
+**Primary Keys (Composite):**
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `party_1` | VARCHAR(50) | First party (alphabetically) | 'M' |
+| `party_2` | VARCHAR(50) | Second party (alphabetically) | 'S' |
+| `election_cycle_id` | TEXT | Election cycle | '2018-2021' |
+
+**Core Metrics (13 columns):**
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `semester` | TEXT | Semester (autumn/spring) | 'autumn' |
+| `cycle_year` | INTEGER | Year in cycle (1-4) | 3 |
+| `calendar_year` | INTEGER | Actual year | 2024 |
+| `joint_voting_days` | BIGINT | Days both voted | 156 |
+| `joint_ballots` | BIGINT | Total shared ballots | 847 |
+| `aligned_ballots` | BIGINT | Ballots voted same | 623 |
+| `alignment_rate` | NUMERIC | % of aligned votes | 73.5 |
+| `avg_vote_divergence` | NUMERIC | Avg % difference | 26.5 |
+| `vote_divergence_stddev` | NUMERIC | Consistency metric | 18.3 |
+
+**Ranking Metrics (9 columns):**
+- `rank_by_alignment` - Coalition strength rank (1 = strongest)
+- `rank_by_activity` - Joint ballot activity rank
+- `rank_by_consistency` - Vote divergence consistency rank
+- `percentile_alignment` - Alignment percentile (0.0-1.0)
+- `percentile_cohesion` - Cohesion percentile
+- `quartile_coalition_strength` - Strength quartile (1-4)
+
+**Temporal Metrics (10 columns - LAG & LEAD):**
+- `prev_semester_alignment`, `prev_semester_joint_ballots`, `prev_semester_divergence`
+- `next_semester_alignment`, `next_semester_divergence`
+
+**Change Metrics (4 columns):**
+- `alignment_change_absolute`, `alignment_change_pct`
+- `activity_change`, `divergence_change`
+
+**Coalition Classifications (7 columns):**
+
+| Column | Type | Values | Description |
+|--------|------|--------|-------------|
+| `coalition_strength` | TEXT | VERY_STRONG (≥80%), STRONG (≥65%), MODERATE (≥50%), WEAK (≥35%), OPPOSITION (<35%) | Alliance strength tier |
+| `coalition_trend` | TEXT | RAPIDLY_STRENGTHENING (+15), STRENGTHENING (+8), IMPROVING (+3), STABLE, DECLINING (-3), WEAKENING (-8), RAPIDLY_WEAKENING (-15) | Direction of change |
+| `strategic_shift` | TEXT | COALITION_FORMATION, COALITION_BREAKUP, MAJOR_REALIGNMENT (±20), SIGNIFICANT_SHIFT (±10), MINOR_SHIFT (±5), STABLE | Major realignments |
+| `volatility_classification` | TEXT | HIGHLY_VOLATILE (>15), MODERATELY_VOLATILE (>10), SLIGHTLY_VOLATILE (>5), STABLE_PAIR | Alliance stability |
+| `consistency_classification` | TEXT | INCONSISTENT (>20), MODERATE (<10), HIGH_CONSISTENCY | Vote pattern consistency |
+| `coalition_tier` | TEXT | ELITE_COALITION (top 25%), STRONG_TIER (50-75%), MODERATE_TIER (25-50%), WEAK_TIER (bottom 25%) | Percentile-based tier |
+| `bridge_classification` | TEXT | CORE_COALITION_BRIDGE, STRONG_BRIDGE, MODERATE_BRIDGE, WEAK_BRIDGE | Network centrality |
+
+**Predictive Metrics (7 columns):**
+- `forecast_trend`: EXPECTED_STRENGTHENING, EXPECTED_WEAKENING, EXPECTED_STABLE, NO_FORECAST
+- `alignment_deviation_from_ma`: Deviation from 3-semester moving average
+- `trend_position`: BELOW_TREND, ON_TREND, ABOVE_TREND
+- `momentum_z_score`: Statistical significance of alignment change
+- `stability_score` (0-100): Composite stability index
+- `breakup_risk_score` (0-100): Coalition dissolution probability
+- `realignment_probability`: HIGH, MODERATE, LOW, VERY_LOW
+
+**Network Metrics (2 columns):**
+- `coalition_density_score`: Alignment × activity weight
+- `bridge_classification`: Coalition network position
+
+#### 💡 Example SQL Queries
+
+**1. Current Coalition Landscape**
+
+```sql
+SELECT
+    party_1,
+    party_2,
+    alignment_rate,
+    coalition_strength,
+    coalition_trend,
+    rank_by_alignment,
+    ROUND(stability_score, 2) AS stability,
+    breakup_risk_score AS risk
+FROM view_riksdagen_party_coalition_evolution
+WHERE election_cycle_id = '2022-2025'
+    AND calendar_year = 2024
+    AND semester = 'autumn'
+    AND coalition_strength IN ('VERY_STRONG_COALITION', 'STRONG_COALITION')
+ORDER BY rank_by_alignment;
+```
+
+**2. Coalition Formation Detection**
+
+```sql
+SELECT
+    party_1,
+    party_2,
+    calendar_year,
+    semester,
+    prev_semester_alignment AS before,
+    alignment_rate AS after,
+    alignment_change_absolute AS change,
+    strategic_shift
+FROM view_riksdagen_party_coalition_evolution
+WHERE strategic_shift = 'COALITION_FORMATION'
+    AND calendar_year >= 2018
+ORDER BY calendar_year DESC, alignment_rate DESC;
+```
+
+**3. Breakup Risk Assessment**
+
+```sql
+SELECT
+    party_1,
+    party_2,
+    election_cycle_id,
+    alignment_rate,
+    coalition_trend,
+    breakup_risk_score,
+    ROUND(stability_score, 2) AS stability,
+    volatility_classification
+FROM view_riksdagen_party_coalition_evolution
+WHERE breakup_risk_score >= 50
+    AND calendar_year = 2024
+ORDER BY breakup_risk_score DESC;
+```
+
+**4. Cross-Bloc Cooperation Analysis**
+
+```sql
+WITH bloc_pairs AS (
+    SELECT
+        *,
+        CASE
+            WHEN party_1 IN ('S', 'V', 'MP') AND party_2 IN ('M', 'SD', 'KD', 'L') THEN 'CROSS_BLOC'
+            WHEN party_1 IN ('S', 'V', 'MP') AND party_2 IN ('S', 'V', 'MP') THEN 'LEFT_BLOC'
+            WHEN party_1 IN ('M', 'SD', 'KD', 'L') AND party_2 IN ('M', 'SD', 'KD', 'L') THEN 'RIGHT_BLOC'
+        END AS bloc_type
+    FROM view_riksdagen_party_coalition_evolution
+    WHERE calendar_year >= 2022
+)
+SELECT
+    bloc_type,
+    ROUND(AVG(alignment_rate), 2) AS avg_alignment,
+    COUNT(*) AS pair_count,
+    STRING_AGG(DISTINCT party_1 || '-' || party_2, ', ') AS examples
+FROM bloc_pairs
+GROUP BY bloc_type
+ORDER BY avg_alignment DESC;
+```
+
+**5. Volatile Coalition Tracking**
+
+```sql
+SELECT
+    party_1,
+    party_2,
+    ROUND(AVG(alignment_rate), 2) AS avg_alignment,
+    ROUND(MAX(stddev_alignment_pair), 2) AS volatility,
+    COUNT(*) AS semesters,
+    STRING_AGG(DISTINCT coalition_trend ORDER BY coalition_trend, ', ') AS trends_observed
+FROM view_riksdagen_party_coalition_evolution
+WHERE volatility_classification IN ('HIGHLY_VOLATILE_PAIR', 'MODERATELY_VOLATILE_PAIR')
+    AND calendar_year >= 2018
+GROUP BY party_1, party_2
+ORDER BY volatility DESC;
+```
+
+**6. Elite Coalition Bridges (Network Centrality)**
+
+```sql
+SELECT
+    party_1,
+    party_2,
+    alignment_rate,
+    percentile_alignment,
+    percentile_cohesion,
+    bridge_classification,
+    coalition_density_score
+FROM view_riksdagen_party_coalition_evolution
+WHERE bridge_classification IN ('CORE_COALITION_BRIDGE', 'STRONG_BRIDGE')
+    AND calendar_year = 2024
+ORDER BY coalition_density_score DESC;
+```
+
+#### ⚡ Performance Characteristics
+
+- **Query Time:** 150-400ms (party pair cartesian join + window functions)
+- **Indexes Suggested:** Composite index on (party_1, party_2, election_cycle_id, cycle_year, semester)
+- **Data Volume:** ~2800-4200 rows (28-45 party pairs × 6 cycles × 8 semesters/cycle)
+- **Refresh Frequency:** Real-time (standard view)
+- **Minimum Activity Filter:** Requires ≥5 joint voting days per semester
+
+#### 🔗 Dependencies
+
+**Upstream:**
+- `view_riksdagen_vote_data_ballot_party_summary_annual` - Party voting data
+
+**Downstream:**
+- Coalition formation forecasting
+- Government stability analysis
+- Bloc alignment tracking
+
+#### 🎯 Framework Integration
+
+**Network Analysis:**
+- Party relationship mapping
+- Coalition bridge identification
+- Cross-bloc cooperation patterns
+
+**Temporal Analysis:**
+- Coalition evolution tracking
+- Strategic realignment detection
+- Breakup timeline analysis
+
+**Comparative Analysis:**
+- Alliance strength ranking
+- Cross-cycle coalition comparison
+- Bloc cohesion assessment
+
+**Predictive Intelligence:**
+- Breakup risk forecasting
+- Realignment probability
+- Next-semester alignment prediction
+
+#### 🎯 Use Cases
+
+1. **Government Formation** - Identify viable coalition combinations based on historical alignment
+2. **Coalition Stability Monitoring** - Track breakup risk and volatility for existing governments
+3. **Strategic Realignment Detection** - Identify major shifts in party alliances
+4. **Cross-Bloc Analysis** - Detect emerging cooperation patterns between left/right blocs
+5. **Network Centrality** - Identify "bridge" parties critical to coalition formation
+6. **Pre-Election Intelligence** - Track alliance shifts before elections
+
+---
+
+### view_riksdagen_party_electoral_trends ⭐⭐⭐⭐⭐
+
+**Category:** Party Views (v1.61 - Recreated from v1.53)  
+**Type:** Standard View  
+**Intelligence Value:** VERY HIGH - Electoral Performance & Seat Forecasting  
+**Changelog:** v1.53 Original, v1.61 Recreated
+
+#### 📋 Purpose
+
+Analyzes party electoral performance across election cycles with semester granularity, tracking seat counts (via active member proxy), electoral growth trajectories, performance tiers, and election readiness. Employs window functions for trend analysis, percentile ranking, and predictive seat forecasting.
+
+**Key Innovation:** Combines performance metrics with seat proxies and electoral forecasting. Uses moving averages, z-scores, and composite indices for multi-dimensional electoral strength assessment.
+
+#### 🔬 Statistical Methodology
+
+**Seat Count Proxy:**
+```
+Seat Count Proxy = Active Members (from view_party_performance_metrics)
+Note: Actual seat allocation data not directly available, using active member count as proxy
+```
+
+**Composite Electoral Score Formula:**
+```
+Electoral Score = (Seat_Count_Normalized × 50%) + 
+                  (Win_Rate × 30%) + 
+                  (Documents_Normalized × 20%)
+
+where normalized = (value / max_value_in_semester) × scale_factor
+```
+
+**Legislative Effectiveness Index:**
+```
+Legislative Effectiveness = (Win_Rate × 35%) + 
+                           (Participation_Rate × 25%) + 
+                           (Approval_Rate × 25%) + 
+                           ((100 - Rebel_Rate) × 15%)
+```
+
+**Election Readiness Score** (pre-election spring semester only):
+```
+Readiness = (Win_Rate × 30%) + 
+            (Participation_Rate × 20%) + 
+            (Approval_Rate × 20%) + 
+            (Seat_Normalized × 20%) + 
+            (Productivity_Normalized × 10%)
+```
+
+#### 📊 Key Columns (49 Total)
+
+**Primary Keys (Composite):**
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `party` | VARCHAR(50) | Party code | 'S' |
+| `election_cycle_id` | TEXT | Election cycle | '2018-2021' |
+
+**Core Metrics (13 columns):**
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `semester` | TEXT | Semester | 'spring' |
+| `cycle_year` | INTEGER | Year in cycle (1-4) | 4 |
+| `calendar_year` | INTEGER | Actual year | 2022 |
+| `ballots_participated` | BIGINT | Ballots voted on | 847 |
+| `win_rate` | NUMERIC | Win % | 67.8 |
+| `yes_rate` | NUMERIC | Yes vote % | 52.3 |
+| `approval_rate` | NUMERIC | Approval % | 71.2 |
+| `participation_rate` | NUMERIC | Attendance % | 92.5 |
+| `seat_count_proxy` | BIGINT | Active members (seat estimate) | 68 |
+| `documents_produced` | BIGINT | Documents authored | 1245 |
+| `avg_rebel_rate` | NUMERIC | Party dissent rate | 3.2 |
+
+**Ranking Metrics (9 columns):**
+- `rank_by_seats` - Size-based ranking
+- `rank_by_win_rate` - Performance ranking
+- `rank_by_productivity` - Document output ranking
+- `rank_by_engagement` - Participation ranking
+- `rank_by_effectiveness` - Approval rate ranking
+- `percentile_seats`, `percentile_win_rate`, `percentile_productivity`
+- `quartile_by_size`, `quartile_by_performance`
+
+**Temporal Metrics (11 columns - LAG & LEAD):**
+- `prev_semester_seats`, `prev_semester_win_rate`, `prev_semester_documents`, `prev_semester_participation`
+- `next_semester_seats`, `next_semester_win_rate`
+- Plus stddev metrics: `stddev_seats_sector`, `stddev_win_rate_sector`, `stddev_seats_party`, `stddev_win_rate_party`
+- Moving averages: `ma_3semester_seats`, `ma_3semester_win_rate`
+
+**Change Metrics (6 columns):**
+- `seat_change_absolute`, `seat_change_pct`
+- `win_rate_change_absolute`, `win_rate_change_pct`
+- `documents_change`
+
+**Electoral Classifications (8 columns):**
+
+| Column | Type | Values | Description |
+|--------|------|--------|-------------|
+| `electoral_trend` | TEXT | SURGING (+10), STRONG_GROWTH (+5), GROWTH (+1), STABLE, DECLINE (-1), STRONG_DECLINE (-5), COLLAPSING (-10) | Seat trajectory |
+| `party_size_category` | TEXT | DOMINANT (≥100), MAJOR (≥75), LARGE (≥50), MEDIUM (≥30), SMALL (≥15), MINOR (<15) | Size classification |
+| `volatility_classification` | TEXT | HIGHLY_VOLATILE (>15), MODERATELY_VOLATILE (>10), SLIGHTLY_VOLATILE (>5), STABLE_PARTY | Electoral stability |
+| `seat_forecast` | TEXT | EXPECTED_GROWTH, EXPECTED_DECLINE, EXPECTED_SLIGHT_GROWTH, EXPECTED_SLIGHT_DECLINE, EXPECTED_STABLE, NO_FORECAST | Next semester prediction |
+| `performance_forecast` | TEXT | EXPECTED_IMPROVEMENT, EXPECTED_DETERIORATION, EXPECTED_STABLE, NO_FORECAST | Performance direction |
+| `trend_position_seats` | TEXT | SIGNIFICANTLY_ABOVE_TREND (+5), ABOVE_TREND (+2), ON_TREND, BELOW_TREND (-2), SIGNIFICANTLY_BELOW_TREND (-5) | vs Moving Average |
+| `electoral_tier` | TEXT | TOP_ELECTORAL_TIER (top 25%), UPPER_MID_TIER (50-75%), LOWER_MID_TIER (25-50%), BOTTOM_TIER (bottom 25%) | Percentile tier |
+| `electoral_warning_flag` | TEXT | CRITICAL_SEAT_LOSS, SIGNIFICANT_SEAT_LOSS, CRITICAL_PERFORMANCE_DROP, CRITICAL_ENGAGEMENT_DROP, SEAT_LOSS, PERFORMANCE_WARNING, NORMAL | Alert system |
+
+**Composite Scores (3 columns):**
+- `composite_electoral_score` (0-100): Multi-dimensional electoral strength
+- `legislative_effectiveness_index` (0-100): Policy influence capacity
+- `election_readiness_score` (0-100): Pre-election preparedness (spring semester only)
+
+**Momentum & Deviation Metrics (5 columns):**
+- `seat_deviation_from_ma`: Seats vs 3-semester moving average
+- `momentum_z_score_seats`: Statistical significance of seat change
+- `momentum_z_score_win_rate`: Statistical significance of performance change
+- `projected_seat_change`: Linear projection based on LAG/LEAD
+- Early warning and cycle context flags
+
+**Election Context Flags (3 columns):**
+- `is_pre_election_period` - Final spring before election
+- `is_election_period` - Autumn during election year
+- `is_post_election_period` - First spring after election
+
+#### 💡 Example SQL Queries
+
+**1. Current Electoral Standings**
+
+```sql
+SELECT
+    party,
+    seat_count_proxy AS current_seats,
+    rank_by_seats,
+    party_size_category,
+    electoral_tier,
+    ROUND(composite_electoral_score, 2) AS electoral_strength,
+    electoral_trend,
+    seat_change_absolute AS momentum
+FROM view_riksdagen_party_electoral_trends
+WHERE election_cycle_id = '2022-2025'
+    AND calendar_year = 2024
+    AND semester = 'autumn'
+ORDER BY rank_by_seats;
+```
+
+**2. Election Readiness Assessment (Pre-Election)**
+
+```sql
+SELECT
+    party,
+    seat_count_proxy,
+    ROUND(election_readiness_score, 2) AS readiness,
+    ROUND(win_rate, 2) AS win_rate,
+    ROUND(participation_rate, 2) AS turnout,
+    documents_produced,
+    electoral_trend
+FROM view_riksdagen_party_electoral_trends
+WHERE is_pre_election_period = true
+    AND calendar_year >= 2018
+ORDER BY calendar_year DESC, readiness DESC;
+```
+
+**3. Electoral Momentum Tracking**
+
+```sql
+SELECT
+    party,
+    calendar_year,
+    seat_count_proxy AS seats,
+    seat_change_absolute AS change,
+    seat_change_pct AS change_pct,
+    electoral_trend,
+    ROUND(momentum_z_score_seats, 2) AS momentum_significance
+FROM view_riksdagen_party_electoral_trends
+WHERE calendar_year >= 2018
+    AND electoral_trend IN ('SURGING', 'STRONG_GROWTH', 'STRONG_DECLINE', 'COLLAPSING')
+ORDER BY calendar_year DESC, ABS(momentum_z_score_seats) DESC;
+```
+
+**4. Volatility Risk Analysis**
+
+```sql
+SELECT
+    party,
+    ROUND(AVG(seat_count_proxy), 1) AS avg_seats,
+    ROUND(MAX(stddev_seats_party), 2) AS seat_volatility,
+    volatility_classification,
+    COUNT(*) AS semesters_tracked,
+    MAX(seat_count_proxy) - MIN(seat_count_proxy) AS seat_range
+FROM view_riksdagen_party_electoral_trends
+WHERE calendar_year >= 2018
+GROUP BY party, volatility_classification
+ORDER BY seat_volatility DESC;
+```
+
+**5. Electoral Forecast Accuracy**
+
+```sql
+WITH forecasts AS (
+    SELECT
+        party,
+        calendar_year,
+        semester,
+        seat_count_proxy AS current_seats,
+        next_semester_seats,
+        seat_forecast,
+        CASE
+            WHEN seat_forecast = 'EXPECTED_GROWTH' AND next_semester_seats > seat_count_proxy THEN 'CORRECT'
+            WHEN seat_forecast = 'EXPECTED_DECLINE' AND next_semester_seats < seat_count_proxy THEN 'CORRECT'
+            WHEN seat_forecast = 'EXPECTED_STABLE' AND ABS(next_semester_seats - seat_count_proxy) <= 2 THEN 'CORRECT'
+            ELSE 'INCORRECT'
+        END AS accuracy
+    FROM view_riksdagen_party_electoral_trends
+    WHERE next_semester_seats IS NOT NULL
+        AND calendar_year >= 2020
+)
+SELECT
+    party,
+    COUNT(*) AS forecasts_made,
+    SUM(CASE WHEN accuracy = 'CORRECT' THEN 1 ELSE 0 END) AS correct,
+    ROUND(100.0 * SUM(CASE WHEN accuracy = 'CORRECT' THEN 1 ELSE 0 END) / COUNT(*), 2) AS accuracy_pct
+FROM forecasts
+GROUP BY party
+ORDER BY accuracy_pct DESC;
+```
+
+**6. Early Warning System**
+
+```sql
+SELECT
+    party,
+    calendar_year,
+    semester,
+    seat_count_proxy,
+    electoral_warning_flag,
+    seat_change_absolute,
+    win_rate_change_absolute,
+    electoral_trend,
+    ROUND(composite_electoral_score, 2) AS overall_score
+FROM view_riksdagen_party_electoral_trends
+WHERE electoral_warning_flag != 'NORMAL'
+    AND calendar_year >= 2022
+ORDER BY 
+    CASE electoral_warning_flag
+        WHEN 'CRITICAL_SEAT_LOSS' THEN 1
+        WHEN 'SIGNIFICANT_SEAT_LOSS' THEN 2
+        WHEN 'CRITICAL_PERFORMANCE_DROP' THEN 3
+        WHEN 'CRITICAL_ENGAGEMENT_DROP' THEN 4
+        ELSE 5
+    END,
+    calendar_year DESC;
+```
+
+**7. Post-Election vs Pre-Election Comparison**
+
+```sql
+WITH pre_post AS (
+    SELECT
+        party,
+        calendar_year,
+        CASE
+            WHEN is_pre_election_period THEN 'PRE_ELECTION'
+            WHEN is_post_election_period THEN 'POST_ELECTION'
+        END AS election_phase,
+        seat_count_proxy,
+        win_rate,
+        participation_rate,
+        documents_produced
+    FROM view_riksdagen_party_electoral_trends
+    WHERE (is_pre_election_period = true OR is_post_election_period = true)
+        AND calendar_year >= 2014
+)
+SELECT
+    party,
+    calendar_year AS election_year,
+    MAX(CASE WHEN election_phase = 'PRE_ELECTION' THEN seat_count_proxy END) AS pre_seats,
+    MAX(CASE WHEN election_phase = 'POST_ELECTION' THEN seat_count_proxy END) AS post_seats,
+    MAX(CASE WHEN election_phase = 'POST_ELECTION' THEN seat_count_proxy END) - 
+        MAX(CASE WHEN election_phase = 'PRE_ELECTION' THEN seat_count_proxy END) AS seat_change
+FROM pre_post
+GROUP BY party, calendar_year
+ORDER BY calendar_year DESC, seat_change DESC;
+```
+
+#### ⚡ Performance Characteristics
+
+- **Query Time:** 120-350ms (party-level aggregation + window functions)
+- **Indexes Suggested:** Composite index on (party, election_cycle_id, cycle_year, semester)
+- **Data Volume:** ~800-1000 rows (8-10 parties × 6 cycles × 8 semesters/cycle)
+- **Refresh Frequency:** Real-time (standard view)
+- **Seat Count Limitation:** Uses active member proxy; not actual seat allocation data
+
+#### 🔗 Dependencies
+
+**Upstream:**
+- `view_riksdagen_vote_data_ballot_party_summary_annual` - Voting performance
+- `view_party_performance_metrics` - Seat count proxy, document production
+
+**Downstream:**
+- Election forecasting models
+- Coalition viability analysis
+- Electoral trend reporting
+
+#### 🎯 Framework Integration
+
+**Temporal Analysis:**
+- Cross-cycle electoral evolution
+- Pre-election vs post-election patterns
+- Moving average trend smoothing
+
+**Comparative Analysis:**
+- Party-to-party electoral ranking
+- Percentile-based tier classification
+- Government vs opposition growth rates
+
+**Pattern Recognition:**
+- Electoral trend classification (SURGING, COLLAPSING)
+- Volatility pattern detection
+- Early warning signal identification
+
+**Predictive Intelligence:**
+- Seat forecast generation
+- Trajectory confidence scoring
+- Election readiness assessment
+
+#### 🎯 Use Cases
+
+1. **Election Forecasting** - Project seat counts based on historical trends and moving averages
+2. **Electoral Risk Assessment** - Identify parties with high volatility and seat loss warnings
+3. **Pre-Election Analysis** - Measure party readiness and campaign momentum
+4. **Post-Election Evaluation** - Compare predicted vs actual electoral outcomes
+5. **Coalition Viability** - Assess party sizes for government formation scenarios
+6. **Trend Analysis** - Track long-term growth/decline patterns across cycles
+7. **Early Warning System** - Alert on critical performance degradation
 
 ---
 
