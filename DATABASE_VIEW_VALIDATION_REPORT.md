@@ -2,7 +2,7 @@
 
 ## Validation Metadata
 
-**Date:** 2026-01-17  
+**Date:** 2026-01-19  
 **Validator:** Automated Script (validate-view-documentation.sh)  
 **Source Schema:** service.data.impl/src/main/resources/full_schema.sql  
 **Documentation File:** DATABASE_VIEW_INTELLIGENCE_CATALOG.md  
@@ -19,36 +19,40 @@ This validation report confirms the current status of view documentation coverag
 
 | Metric | Value | Status |
 |--------|-------|--------|
-| **Total views in database** | 96 | ✓ Confirmed |
-| **Total views documented** | 99 | ✅ Excellent |
-| **Documentation coverage** | 103.12% | ⚠️ In Progress |
-| **Views missing from documentation** | 3 | ❌ Action Required |
+| **Total views in database** | 103 | ✓ Confirmed |
+| **Total views documented** | 102 | ✅ Excellent |
+| **Documentation coverage** | 99.03% | ⚠️ In Progress |
+| **Views missing from documentation** | 7 | ❌ Action Required |
 | **Views documented but not in DB** | 6 | ⚠️ Review Needed |
 
 ### Severity Assessment
 
-🟢 **GOOD**: Documentation provides **103.12% coverage** for 96 database views.
+🟢 **GOOD**: Documentation provides **99.03% coverage** for 103 database views.
 
 
-### Progress Since Previous Validation (2026-01-17)
+### Progress Since Previous Validation (2026-01-19)
 
-| Metric | Previous (2026-01-17) | Current (2026-01-17) | Improvement |
+| Metric | Previous (2026-01-19) | Current (2026-01-19) | Improvement |
 |--------|----------------------|---------------------|-------------|
-| **Total views in database** | 82 | 96 | +14 |
-| **Total views documented** | 9 | 99 | +90 views |
-| **Documentation coverage** | 10.98% | 103.12% | +92.14% |
-| **Views missing from documentation** | 73 | 3 | -70 views |
+| **Total views in database** | 82 | 103 | +21 |
+| **Total views documented** | 9 | 102 | +93 views |
+| **Documentation coverage** | 10.98% | 99.03% | +88.05% |
+| **Views missing from documentation** | 73 | 7 | -66 views |
 
 
 ---
 
 ## Missing Views
 
-The following 3 views are in the schema but missing from documentation:
+The following 7 views are in the schema but missing from documentation:
 
 ### Other Views
 
+- `view_riksdagen_election_proximity_trends`
+- `view_riksdagen_politician_career_path_10level`
+- `view_riksdagen_pre_election_quarterly_activity`
 - `view_riksdagen_q4_election_year_comparison`
+- `view_riksdagen_seasonal_activity_patterns`
 - `view_riksdagen_seasonal_anomaly_detection`
 - `view_riksdagen_seasonal_quarterly_activity`
 
@@ -75,7 +79,7 @@ The following 3 views are in the schema but missing from documentation:
 
 ### Immediate Actions
 
-1. **Document Missing Views**: Add documentation for 3 missing views
+1. **Document Missing Views**: Add documentation for 7 missing views
 2. **Prioritize High-Value Views**: Focus on vote data summary views (high intelligence value)
 3. **Complete Low-Priority Views**: Document application event tracking views
 4. **Re-run Validation**: Execute this script again to verify completion
@@ -133,7 +137,7 @@ comm -23 schema_views.txt documented_views.txt > missing_views.txt
 | Date | Coverage | Missing Views | Status |
 |------|----------|---------------|--------|
 | 2025-11-21 | 10.98% | 73 | Initial validation |
-| 2026-01-17 | 103.12% | 3 | ⚠️ In Progress |
+| 2026-01-19 | 99.03% | 7 | ⚠️ In Progress |
 
 ---
 

@@ -7747,6 +7747,368 @@ See [Validation History](#-validation-history) section for complete validation m
 
 ---
 
+## Election Year Behavioral Pattern Analysis Views (v1.60)
+
+### view_riksdagen_election_year_behavioral_patterns ⭐⭐⭐⭐
+
+**Category:** Temporal Pattern Analysis Views (v1.60)  
+**Type:** Complex Aggregation View  
+**Intelligence Value:** HIGH - Election Year Pattern Detection  
+**Changelog:** v1.60 Election Year Behavioral Pattern Analysis
+
+#### Purpose
+
+Systematic analysis of election year behavioral patterns across 7 Swedish election cycles (2002-2026) compared to midterm years. Enables detection of election-driven behavioral shifts through statistical baseline calculations and z-score analysis. Provides annual aggregation with 37 metrics including ballots, documents, motions, proposals, and attendance rates.
+
+#### Key Columns
+
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `year` | INTEGER | Calendar year | 2022 |
+| `is_election_year` | BOOLEAN | Election year flag | true |
+| `total_ballots` | BIGINT | Total ballots cast | 1,234 |
+| `active_politicians` | BIGINT | Active politicians | 349 |
+| `attendance_rate` | NUMERIC | Attendance percentage | 87.50 |
+| `documents_produced` | BIGINT | Total documents | 5,678 |
+| `motions_filed` | BIGINT | Motions filed | 2,345 |
+| `proposals_filed` | BIGINT | Proposals filed | 567 |
+| `election_median_ballots` | NUMERIC | Election year median | 1,200.00 |
+| `election_avg_ballots` | NUMERIC | Election year average | 1,250.00 |
+| `midterm_avg_ballots` | NUMERIC | Midterm year average | 1,100.00 |
+| `ballot_ratio_vs_midterm` | NUMERIC | Election/midterm ratio | 1.12 |
+| `ballot_z_score_vs_election_avg` | NUMERIC | Z-score vs election avg | 0.85 |
+| `year_classification` | TEXT | Activity classification | 'NORMAL_ELECTION_ACTIVITY' |
+
+#### Statistical Methodology
+
+**Baseline Calculations:**
+- Election year baseline: Median via PERCENTILE_CONT(0.5) across 7 election years
+- Midterm baseline: Average across 17 midterm years
+- Standard deviation: For z-score calculations
+
+**Z-Score Formula:**
+```
+z_score = (actual_value - election_avg) / election_stddev
+```
+
+**Year Classifications:**
+- `HIGH_ELECTION_ACTIVITY`: Documents > election_avg + 2×stddev
+- `NORMAL_ELECTION_ACTIVITY`: Within ±2 stddev of election_avg
+- `LOW_ELECTION_ACTIVITY`: Documents < election_avg - 2×stddev
+- `MIDTERM_YEAR`: Non-election year
+
+#### Example Queries
+
+**Query 1: Compare 2022 election year vs 2021 midterm year**
+```sql
+SELECT 
+    year, 
+    is_election_year,
+    total_ballots,
+    documents_produced,
+    ballot_ratio_vs_midterm,
+    year_classification
+FROM view_riksdagen_election_year_behavioral_patterns
+WHERE year IN (2021, 2022)
+ORDER BY year;
+```
+
+**Query 2: Identify high-activity election years**
+```sql
+SELECT 
+    year,
+    ballot_z_score_vs_election_avg,
+    doc_z_score_vs_election_avg,
+    year_classification,
+    yoy_ballot_change_pct
+FROM view_riksdagen_election_year_behavioral_patterns
+WHERE is_election_year = true
+  AND year_classification = 'HIGH_ELECTION_ACTIVITY'
+ORDER BY ballot_z_score_vs_election_avg DESC;
+```
+
+**Query 3: Track document productivity trends across election cycles**
+```sql
+SELECT 
+    year,
+    documents_produced,
+    election_avg_docs,
+    midterm_avg_docs,
+    doc_ratio_vs_midterm,
+    CASE 
+        WHEN is_election_year THEN 'Election Year'
+        ELSE 'Midterm Year'
+    END AS year_type
+FROM view_riksdagen_election_year_behavioral_patterns
+WHERE year BETWEEN 2014 AND 2022
+ORDER BY year;
+```
+
+#### Performance Characteristics
+
+- **Query Time**: < 500ms (empty database), < 2s (with full data)
+- **Index Usage**: idx_vote_data_date, idx_doc_data_made_public_date
+- **Data Volume**: 24 rows (one per year 2002-2026)
+- **Aggregation**: Annual metrics with statistical calculations
+- **Refresh**: Static view, updates with new data inserts
+
+#### Dependencies
+
+**Source Tables:**
+- `vote_data` - Voting records with ballot_date
+- `document_data` - Document records with made_public_date
+
+**Framework Integration:**
+- Framework 1 (Temporal Analysis): Year-over-year trends
+- Framework 3 (Pattern Recognition): Anomaly detection
+- Framework 6 (Decision Intelligence): Operational warnings
+
+#### Use Cases
+
+- **Election Forecasting**: Predict behavioral patterns based on historical election years
+- **Anomaly Detection**: Identify unusual activity levels in election years
+- **Comparative Analysis**: Contrast election year vs midterm year behavior
+- **Trend Analysis**: Track 24-year evolution of parliamentary activity
+- **Academic Research**: Analyze election-driven behavioral shifts
+
+---
+
+### view_riksdagen_election_year_vs_midterm ⭐⭐⭐⭐
+
+**Category:** Temporal Pattern Analysis Views (v1.60)  
+**Type:** Aggregate Summary View  
+**Intelligence Value:** HIGH - Election/Midterm Comparison  
+**Changelog:** v1.60 Election Year Behavioral Pattern Analysis
+
+#### Purpose
+
+Three-row aggregate summary comparing election years (7 years) vs midterm years (17 years) with comprehensive statistical measures. Provides direct comparison ratios, min/max values, standard deviations, and year arrays for reference. Enables quick assessment of election year vs midterm year differences.
+
+#### Key Columns
+
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `period_type` | TEXT | Period classification | 'ELECTION_YEARS' |
+| `avg_ballots` | NUMERIC | Average ballots | 1,250.50 |
+| `avg_documents` | NUMERIC | Average documents | 5,678.00 |
+| `avg_motions` | NUMERIC | Average motions | 2,345.00 |
+| `avg_proposals` | NUMERIC | Average proposals | 567.00 |
+| `avg_attendance` | NUMERIC | Average attendance rate | 87.50 |
+| `avg_active_politicians` | NUMERIC | Avg active politicians | 349.00 |
+| `year_count` | BIGINT | Number of years | 7 |
+| `years` | TEXT | Year array (as string) | '{2002,2006,2010,2014,2018,2022,2026}' |
+| `min_ballots` | NUMERIC | Minimum ballots | 1,100.00 |
+| `max_ballots` | NUMERIC | Maximum ballots | 1,400.00 |
+| `stddev_ballots` | NUMERIC | Standard deviation | 95.50 |
+
+#### Row Structure
+
+The view returns exactly 3 rows:
+
+1. **ELECTION_YEARS**: Aggregate statistics for 7 election years (2002, 2006, 2010, 2014, 2018, 2022, 2026)
+2. **MIDTERM_YEARS**: Aggregate statistics for 17 midterm years (all other years 2002-2026)
+3. **COMPARISON_RATIO**: Direct election/midterm ratios for all metrics
+
+#### Example Queries
+
+**Query 1: Compare election vs midterm baseline**
+```sql
+SELECT 
+    period_type,
+    ROUND(avg_ballots, 2) AS avg_ballots,
+    ROUND(avg_documents, 2) AS avg_documents,
+    ROUND(avg_motions, 2) AS avg_motions,
+    year_count
+FROM view_riksdagen_election_year_vs_midterm
+WHERE period_type IN ('ELECTION_YEARS', 'MIDTERM_YEARS')
+ORDER BY period_type;
+```
+
+**Query 2: Calculate election year activity boost**
+```sql
+SELECT 
+    avg_ballots AS election_vs_midterm_ballot_ratio,
+    avg_documents AS election_vs_midterm_doc_ratio,
+    avg_motions AS election_vs_midterm_motion_ratio,
+    CASE 
+        WHEN avg_ballots > 1.1 THEN 'Significant Increase (>10%)'
+        WHEN avg_ballots > 1.0 THEN 'Moderate Increase'
+        WHEN avg_ballots < 0.9 THEN 'Decrease'
+        ELSE 'Stable'
+    END AS activity_assessment
+FROM view_riksdagen_election_year_vs_midterm
+WHERE period_type = 'COMPARISON_RATIO';
+```
+
+**Query 3: Analyze election year variability**
+```sql
+SELECT 
+    period_type,
+    ROUND(stddev_ballots, 2) AS ballot_variability,
+    ROUND(stddev_documents, 2) AS document_variability,
+    ROUND((max_ballots - min_ballots), 2) AS ballot_range
+FROM view_riksdagen_election_year_vs_midterm
+WHERE period_type = 'ELECTION_YEARS';
+```
+
+#### Performance Characteristics
+
+- **Query Time**: < 100ms (empty database), < 500ms (with full data)
+- **Data Volume**: 3 rows (fixed)
+- **Aggregation**: Aggregate of view_riksdagen_election_year_behavioral_patterns
+- **Refresh**: Static view, updates with source view
+
+#### Dependencies
+
+**Source Views:**
+- `view_riksdagen_election_year_behavioral_patterns` - Annual behavioral patterns
+
+**Framework Integration:**
+- Framework 1 (Temporal Analysis): Period comparison
+- Framework 3 (Pattern Recognition): Baseline establishment
+
+#### Use Cases
+
+- **Quick Reference**: Single-query comparison of election vs midterm years
+- **Baseline Establishment**: Reference values for anomaly detection
+- **Reporting**: Executive summary statistics for presentations
+- **API Integration**: Simplified endpoint for dashboards
+
+---
+
+### view_riksdagen_election_year_anomalies ⭐⭐⭐⭐⭐
+
+**Category:** Temporal Pattern Analysis Views (v1.60)  
+**Type:** Anomaly Detection View  
+**Intelligence Value:** VERY HIGH - Election Year Anomaly Detection  
+**Changelog:** v1.60 Election Year Behavioral Pattern Analysis
+
+#### Purpose
+
+Identifies statistically unusual patterns in election years using z-score thresholds (|z| > 1.5). Multi-dimensional anomaly detection across ballots, documents, and motions with severity classification (CRITICAL, HIGH, MODERATE) and directional indicators (ELEVATED, REDUCED, MIXED). Provides early warning of abnormal election year behavior.
+
+#### Key Columns
+
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `year` | INTEGER | Election year | 2022 |
+| `total_ballots` | BIGINT | Total ballots cast | 1,400 |
+| `documents_produced` | BIGINT | Documents produced | 6,500 |
+| `motions_filed` | BIGINT | Motions filed | 2,800 |
+| `ballot_z_score_vs_election_avg` | NUMERIC | Ballot z-score | 2.35 |
+| `doc_z_score_vs_election_avg` | NUMERIC | Document z-score | 1.85 |
+| `motion_z_score` | NUMERIC | Motion z-score | 1.65 |
+| `has_ballot_anomaly` | BOOLEAN | Ballot anomaly flag | true |
+| `has_doc_anomaly` | BOOLEAN | Document anomaly flag | true |
+| `anomaly_count` | INTEGER | Total anomalies | 2 |
+| `anomaly_types` | TEXT | Anomaly dimensions | 'BALLOT,DOCUMENT' |
+| `anomaly_severity` | TEXT | Severity level | 'HIGH' |
+| `max_z_score` | NUMERIC | Maximum z-score | 2.35 |
+| `anomaly_direction` | TEXT | Activity direction | 'ELEVATED_ACTIVITY' |
+| `year_classification` | TEXT | Activity classification | 'HIGH_ELECTION_ACTIVITY' |
+
+#### Anomaly Detection Methodology
+
+**Z-Score Threshold:** |z| > 1.5 (1.5 standard deviations from election year mean)
+
+**Severity Classification:**
+- `CRITICAL`: max |z| > 2.5 (extreme outlier)
+- `HIGH`: max |z| > 2.0 (significant anomaly)
+- `MODERATE`: max |z| > 1.5 (notable deviation)
+- `NORMAL`: |z| ≤ 1.5 (within normal range)
+
+**Direction Classification:**
+- `ELEVATED_ACTIVITY`: Majority of z-scores > 1.5 (increased activity)
+- `REDUCED_ACTIVITY`: Majority of z-scores < -1.5 (decreased activity)
+- `MIXED_PATTERN`: Mix of positive and negative z-scores
+- `NORMAL`: No anomalies detected
+
+#### Example Queries
+
+**Query 1: Identify critical anomalies**
+```sql
+SELECT 
+    year,
+    anomaly_types,
+    anomaly_severity,
+    max_z_score,
+    anomaly_direction,
+    total_ballots,
+    documents_produced
+FROM view_riksdagen_election_year_anomalies
+WHERE anomaly_severity IN ('CRITICAL', 'HIGH')
+ORDER BY max_z_score DESC;
+```
+
+**Query 2: Track election year anomaly history**
+```sql
+SELECT 
+    year,
+    anomaly_count,
+    ballot_z_score_vs_election_avg,
+    doc_z_score_vs_election_avg,
+    motion_z_score,
+    anomaly_direction
+FROM view_riksdagen_election_year_anomalies
+WHERE anomaly_count > 0
+ORDER BY year;
+```
+
+**Query 3: Compare anomalous vs normal election years**
+```sql
+SELECT 
+    CASE 
+        WHEN anomaly_severity IN ('CRITICAL', 'HIGH') THEN 'Anomalous'
+        ELSE 'Normal'
+    END AS election_type,
+    COUNT(*) AS year_count,
+    ROUND(AVG(total_ballots), 2) AS avg_ballots,
+    ROUND(AVG(documents_produced), 2) AS avg_documents
+FROM view_riksdagen_election_year_anomalies
+GROUP BY election_type
+ORDER BY election_type;
+```
+
+#### Performance Characteristics
+
+- **Query Time**: < 200ms (empty database), < 1s (with full data)
+- **Data Volume**: 0-7 rows (election years with |z| > 1.5 only)
+- **Filtering**: Pre-filtered to election years with anomalies
+- **Index Usage**: Same as behavioral patterns view
+- **Refresh**: Static view, updates with source data
+
+#### Dependencies
+
+**Source Views:**
+- `view_riksdagen_election_year_behavioral_patterns` - Annual behavioral patterns
+
+**Framework Integration:**
+- Framework 3 (Pattern Recognition): Anomaly detection algorithms
+- Framework 6 (Decision Intelligence): Severity-based alerts
+
+#### Use Cases
+
+- **Early Warning System**: Detect unusual election year patterns
+- **Risk Assessment**: Identify elections requiring investigation
+- **Predictive Analytics**: Forecast potential anomalies based on z-score trends
+- **Quality Assurance**: Validate data quality in election years
+- **Academic Research**: Study factors driving election year anomalies
+
+#### Interpretation Guide
+
+**Z-Score Interpretation:**
+- `|z| < 1.0`: Within 1 standard deviation (68% of data)
+- `1.0 < |z| < 2.0`: Notable deviation (95% confidence)
+- `|z| > 2.0`: Significant outlier (99% confidence)
+- `|z| > 3.0`: Extreme outlier (99.7% confidence)
+
+**Example Anomaly Scenarios:**
+- **2022 HIGH BALLOT**: Z-score = 2.35 → 35% more ballots than typical election year
+- **2014 REDUCED DOCS**: Z-score = -1.85 → 15% fewer documents than typical election year
+- **2018 MIXED**: Z-score ballots +1.6, documents -1.7 → Contradictory patterns
+
+---
+
 ## 📁 Working with Sample Data
 
 All views documented in this catalog have corresponding sample data files for testing, development, and documentation validation. 
