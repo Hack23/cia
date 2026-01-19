@@ -16,15 +16,16 @@ Referenced Views:
 
 import psycopg2
 import sys
-from pathlib import Path
+import os
 
 class DatabaseViewValidator:
-    def __init__(self, dbname='cia_dev', user='eris', password='discord', host='localhost'):
+    def __init__(self, dbname=None, user=None, password=None, host=None):
         """Initialize database connection"""
-        self.dbname = dbname
-        self.user = user
-        self.password = password
-        self.host = host
+        # Resolve database configuration with environment variable fallbacks
+        self.dbname = dbname or os.environ.get("CIA_DB_NAME", "cia_dev")
+        self.user = user or os.environ.get("CIA_DB_USER", "eris")
+        self.password = password or os.environ.get("CIA_DB_PASSWORD", "discord")
+        self.host = host or os.environ.get("CIA_DB_HOST", "localhost")
         self.conn = None
         self.validation_results = []
         
@@ -265,10 +266,10 @@ class DatabaseViewValidator:
             return False
         
         # Validate key views
-        v1 = self.validate_ministry_risk_evolution()
-        v2 = self.validate_party_momentum_analysis()
-        v3 = self.validate_politician_risk_summary()
-        v4 = self.validate_additional_views()
+        self.validate_ministry_risk_evolution()
+        self.validate_party_momentum_analysis()
+        self.validate_politician_risk_summary()
+        self.validate_additional_views()
         
         # Summary
         print("\n" + "="*70)

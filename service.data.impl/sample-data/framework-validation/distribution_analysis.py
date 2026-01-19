@@ -16,7 +16,6 @@ Output: Statistical metrics (mean, median, std dev, P1, P10, P25, P75, P90, P99)
 """
 
 import pandas as pd
-import numpy as np
 from pathlib import Path
 import json
 

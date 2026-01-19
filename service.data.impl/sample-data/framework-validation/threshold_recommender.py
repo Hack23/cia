@@ -73,8 +73,6 @@ Current thresholds are well-aligned with actual Swedish parliamentary data:
         # Current Drools thresholds (from PoliticianLowDocumentActivity.drl):
         # Very low: <5 docs/year, No activity: 0 docs/year, Chronically low: <3 avg over 2+ years
         
-        productivity = self.analysis.get('document_productivity', {})
-        
         self.recommendations.append({
             'rule_file': 'PoliticianLowDocumentActivity.drl',
             'metric': 'documentsLastYear',
