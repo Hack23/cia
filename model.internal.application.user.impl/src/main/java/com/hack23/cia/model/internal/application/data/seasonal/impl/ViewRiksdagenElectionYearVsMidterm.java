@@ -31,7 +31,6 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.hibernate.annotations.Immutable;
-import org.hibernate.annotations.Type;
 
 /**
  * The Class ViewRiksdagenElectionYearVsMidterm.
@@ -70,9 +69,8 @@ public class ViewRiksdagenElectionYearVsMidterm implements Serializable {
 	@Column(name = "year_count")
 	private Long yearCount;
 
-	@Column(name = "years")
-	@Type(type = "com.hack23.cia.model.common.impl.PostgreSQLIntegerArrayType")
-	private Integer[] years;
+	@Column(name = "years", columnDefinition = "integer[]")
+	private String years;
 
 	@Column(name = "min_ballots")
 	private BigDecimal minBallots;
@@ -165,11 +163,11 @@ public class ViewRiksdagenElectionYearVsMidterm implements Serializable {
 		this.yearCount = yearCount;
 	}
 
-	public Integer[] getYears() {
+	public String getYears() {
 		return years;
 	}
 
-	public void setYears(final Integer[] years) {
+	public void setYears(final String years) {
 		this.years = years;
 	}
 
