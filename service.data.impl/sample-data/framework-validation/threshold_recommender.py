@@ -94,7 +94,7 @@ Current thresholds are well-aligned with actual Swedish parliamentary data:
             'assessment': 'VALIDATED_2026_01_10',
             'recommended_action': 'NO CHANGE NEEDED',
             'rationale': """
-Thresholds validated 2026-01-10 against 1,346 politicians, reconfirmed 2026-01-19:
+Thresholds validated on 2026-01-10 against 1,346 politicians, reconfirmed on 2026-01-19:
 - <5 docs/year captures bottom 12.3% of active politicians
 - Threshold properly identifies low performers without over-flagging
 - Well below P25 (9 docs/year) for active politicians
