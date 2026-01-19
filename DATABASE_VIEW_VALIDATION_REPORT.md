@@ -20,14 +20,14 @@ This validation report confirms the current status of view documentation coverag
 | Metric | Value | Status |
 |--------|-------|--------|
 | **Total views in database** | 103 | ✓ Confirmed |
-| **Total views documented** | 102 | ✅ Excellent |
-| **Documentation coverage** | 99.03% | ⚠️ In Progress |
+| **Total views documented** | 96 | ✅ Excellent |
+| **Documentation coverage** | 93.20% | ⚠️ In Progress |
 | **Views missing from documentation** | 7 | ❌ Action Required |
-| **Views documented but not in DB** | 6 | ⚠️ Review Needed |
+| **Views documented but not in DB** | 0 | ✅ None |
 
 ### Severity Assessment
 
-🟢 **GOOD**: Documentation provides **99.03% coverage** for 103 database views.
+🟢 **GOOD**: Documentation provides **93.20% coverage** for 103 database views.
 
 
 ### Progress Since Previous Validation (2026-01-19)
@@ -35,8 +35,8 @@ This validation report confirms the current status of view documentation coverag
 | Metric | Previous (2026-01-19) | Current (2026-01-19) | Improvement |
 |--------|----------------------|---------------------|-------------|
 | **Total views in database** | 82 | 103 | +21 |
-| **Total views documented** | 9 | 102 | +93 views |
-| **Documentation coverage** | 10.98% | 99.03% | +88.05% |
+| **Total views documented** | 9 | 96 | +87 views |
+| **Documentation coverage** | 10.98% | 93.20% | +82.22% |
 | **Views missing from documentation** | 73 | 7 | -66 views |
 
 
@@ -55,22 +55,6 @@ The following 7 views are in the schema but missing from documentation:
 - `view_riksdagen_seasonal_activity_patterns`
 - `view_riksdagen_seasonal_anomaly_detection`
 - `view_riksdagen_seasonal_quarterly_activity`
-
-
----
-
-## Views Documented But Not In Schema
-
-⚠️ The following 6 views are documented but do not exist in the current schema:
-
-- `view_riksdagen_intelligence_dashboard`
-- `view_riksdagen_party_coalition_evolution`
-- `view_riksdagen_party_document_summary`
-- `view_riksdagen_party_electoral_trends`
-- `view_riksdagen_party_longitudinal_performance`
-- `view_riksdagen_party_summary`
-
-**Action Required:** Review these views and remove from documentation if they have been deprecated.
 
 
 ---
@@ -137,7 +121,7 @@ comm -23 schema_views.txt documented_views.txt > missing_views.txt
 | Date | Coverage | Missing Views | Status |
 |------|----------|---------------|--------|
 | 2025-11-21 | 10.98% | 73 | Initial validation |
-| 2026-01-19 | 99.03% | 7 | ⚠️ In Progress |
+| 2026-01-19 | 93.20% | 7 | ⚠️ In Progress |
 
 ---
 
