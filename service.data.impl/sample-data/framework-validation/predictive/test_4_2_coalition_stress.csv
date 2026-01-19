@@ -35,3 +35,6 @@ KD,SD,82.01,389,Medium,N/A,NORMAL,Majority Vote Alignment,VALIDATED
 KD,L,99.77,431,High,N/A,NORMAL,Majority Vote Alignment,VALIDATED
 KD,M,99.77,431,High,N/A,NORMAL,Majority Vote Alignment,VALIDATED
 L,M,100.00,431,High,N/A,NORMAL,Majority Vote Alignment,VALIDATED
+S,M,,,,,DEADLOCK_PATTERN_2018,historical_2018_deadlock,PASS
+MP,C,,,,,HIGH_COALITION_STRESS,edge_case_p99_coalition_stress,PASS
+S,V,,,,,STABLE_COALITION,edge_case_p1_coalition_stable,BASELINE

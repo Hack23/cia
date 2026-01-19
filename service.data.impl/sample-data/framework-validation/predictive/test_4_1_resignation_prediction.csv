@@ -39,3 +39,5 @@ person_id,first_name,last_name,party,avg_absence_rate,absence_trend,effectivenes
 0947134226212,Markus,Kauppinen,S,19.84,10.44,0.0,31.67,8,MODERATE_RESIGNATION_RISK,predictive_resignation_risk,PASS
 0770363683317,Malin,Björk,C,19.83,35.59,0.0,44.23,8,MODERATE_RESIGNATION_RISK,predictive_resignation_risk,PASS
 0859909330720,Sanna,Backeskog,S,19.35,37.55,0.0,41.93,10,MODERATE_RESIGNATION_RISK,predictive_resignation_risk,PASS
+9999100099,Super,Productive,V,2.0,-1.5,5.0,1.8,12,EXCEPTIONAL_PRODUCTIVITY,edge_case_p99_productivity,BASELINE
+9999100001,Minimal,Output,C,18.0,2.0,-3.0,20.0,12,CRITICAL_LOW_PRODUCTIVITY,edge_case_p1_productivity,PASS

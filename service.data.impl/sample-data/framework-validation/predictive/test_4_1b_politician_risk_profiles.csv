@@ -44,3 +44,5 @@ person_id,first_name,last_name,party,total_violations,violation_dimension_count,
 0418929039326,Patrik,Lundqvist,S,9,0,0,0,0,0.00,100.00,844,0,48.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
 0111479807829,Anna,Wallentheim,S,9,0,0,0,0,0.00,100.00,844,0,48.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
 0246927519019,Karin,Rågsjö,V,8,0,0,0,0,0.00,100.00,844,0,46.00,HIGH,EXTREME_VIOLATION_RISK,predictive_risk_profile,PASS
+9999300099,Critical,MultiRisk,L,12,5,3,2,3,75.0,2.5,50,0,95,CRITICAL,EXTREME_MULTI_DIMENSION_RISK,edge_case_p99_multi_risk,PASS
+9999300001,Exemplary,Performance,S,0,0,0,0,0,1.5,0.0,485,85,5,LOW,EXEMPLARY_PERFORMANCE,edge_case_p1_perfect,BASELINE
