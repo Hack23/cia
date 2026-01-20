@@ -537,7 +537,10 @@ ORDER BY ws.party, ws.election_cycle_id, ws.cycle_year, ws.semester;
 <!-- 2. PARTY COALITION EVOLUTION (OPTIMIZED WITH COMPREHENSIVE KPIs)         -->
 <!-- ========================================================================= -->
 
-
+<changeSet author="copilot" id="1.61-drop-coalition-evolution" failOnError="false">
+    <comment>Drop view_riksdagen_party_coalition_evolution if exists before recreation</comment>
+    <sql>DROP VIEW IF EXISTS view_riksdagen_party_coalition_evolution CASCADE;</sql>
+</changeSet>
 
 <changeSet author="copilot" id="1.61-create-coalition-evolution" failOnError="true">
     <comment>
@@ -818,7 +821,10 @@ ORDER BY ws.party_1, ws.party_2, ws.election_cycle_id, ws.cycle_year, ws.semeste
 <!-- 3. PARTY ELECTORAL TRENDS (OPTIMIZED WITH COMPREHENSIVE KPIs)            -->
 <!-- ========================================================================= -->
 
-
+<changeSet author="copilot" id="1.61-drop-electoral-trends" failOnError="false">
+    <comment>Drop view_riksdagen_party_electoral_trends if exists before recreation</comment>
+    <sql>DROP VIEW IF EXISTS view_riksdagen_party_electoral_trends CASCADE;</sql>
+</changeSet>
 
 <changeSet author="copilot" id="1.61-create-electoral-trends" failOnError="true">
     <comment>
