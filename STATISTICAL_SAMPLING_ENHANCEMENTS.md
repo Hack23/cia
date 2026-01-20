@@ -52,7 +52,7 @@ RETURNS TABLE (
 - Extracts representative rows at target percentiles (0.01, 0.10, 0.25, 0.50, 0.75, 0.90, 0.99)
 - Returns row data as JSONB for flexible analysis
 - Handles NULL values gracefully
-- ~7x more efficient than NTILE(100) approach
+- Design note: PERCENT_RANK() was chosen over NTILE(100) to avoid creating 100 buckets when only 7 percentiles are needed
 
 **Usage Example**:
 ```sql

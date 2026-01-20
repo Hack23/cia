@@ -219,8 +219,9 @@ BEGIN
     -- Default to column name if no order_by specified
     v_order_by := COALESCE(p_order_by, p_column_name);
     
-    -- Build dynamic SQL to extract percentile samples using PERCENT_RANK() for efficiency
-    -- PERCENT_RANK() is more efficient than NTILE(100) as it directly calculates percentile position
+    -- Build dynamic SQL to extract percentile samples using PERCENT_RANK()
+    -- Design decision: PERCENT_RANK() directly calculates percentile position,
+    -- avoiding the overhead of creating 100 buckets as NTILE(100) would require
     v_sql := format('
         WITH ranked_data AS (
             SELECT 
