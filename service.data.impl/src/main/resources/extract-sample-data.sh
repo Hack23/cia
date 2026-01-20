@@ -176,6 +176,129 @@ echo "=================================================="
 echo ""
 
 echo "=================================================="
+echo "=== ADVANCED VALIDATION (Coverage Metrics)    ==="
+echo "=================================================="
+echo ""
+
+# Temporal Coverage Validation
+echo "📅 Temporal Coverage Validation:"
+echo "   Checking for data from years 2002-2026..."
+
+# Check if extraction_statistics.csv exists and has temporal data
+if [ -f "extraction_statistics.csv" ]; then
+    # Extract years from temporal stratification results
+    EARLIEST_YEAR=$(grep -o "[0-9]\{4\}" extraction_statistics.csv 2>/dev/null | sort -n | head -1)
+    LATEST_YEAR=$(grep -o "[0-9]\{4\}" extraction_statistics.csv 2>/dev/null | sort -n | tail -1)
+    
+    if [ -n "$EARLIEST_YEAR" ] && [ -n "$LATEST_YEAR" ]; then
+        YEAR_RANGE=$((LATEST_YEAR - EARLIEST_YEAR))
+        echo "   ✓ Data range: $EARLIEST_YEAR - $LATEST_YEAR ($YEAR_RANGE years)"
+        
+        if [ "$YEAR_RANGE" -lt 10 ]; then
+            echo "   ⚠️  WARNING: Temporal coverage < 10 years (found $YEAR_RANGE years)"
+            echo "      Expected: At least 10 years for meaningful trend analysis"
+            VALIDATION_FAILED=1
+        else
+            echo "   ✓ Temporal coverage adequate (>= 10 years)"
+        fi
+    else
+        echo "   ℹ️  INFO: Could not extract year range from extraction_statistics.csv"
+    fi
+else
+    echo "   ⚠️  WARNING: extraction_statistics.csv not found, cannot validate temporal coverage"
+    VALIDATION_FAILED=1
+fi
+
+echo ""
+
+# Categorical Coverage Validation (Swedish Political Parties)
+echo "🏛️  Categorical Coverage Validation (Political Parties):"
+echo "   Checking for all 8 major Swedish parties: S, M, SD, C, V, KD, L, MP..."
+
+# Expected parties
+EXPECTED_PARTIES="S M SD C V KD L MP"
+MISSING_PARTIES=""
+
+for party in $EXPECTED_PARTIES; do
+    # Check if party appears in any distribution file
+    if grep -q "^$party," distribution_party_*.csv 2>/dev/null || \
+       grep -q ",$party," distribution_*_by_party.csv 2>/dev/null || \
+       grep -q "\"$party\"" distribution_*.csv 2>/dev/null; then
+        echo "   ✓ Found party: $party"
+    else
+        echo "   ⚠️  Missing party: $party"
+        MISSING_PARTIES="$MISSING_PARTIES $party"
+        VALIDATION_FAILED=1
+    fi
+done
+
+if [ -z "$MISSING_PARTIES" ]; then
+    echo "   ✓ All 8 major parties present in sample data"
+else
+    echo "   ⚠️  WARNING: Missing parties:$MISSING_PARTIES"
+    echo "      This may indicate incomplete political representation in sample"
+fi
+
+echo ""
+
+# Percentile Coverage Validation
+echo "📊 Percentile Coverage Validation:"
+echo "   Checking for percentile distribution summaries (P1, P10, P25, P50, P75, P90, P99)..."
+
+PERCENTILE_FILES=$(ls -1 percentile_*.csv 2>/dev/null | wc -l)
+
+if [ "$PERCENTILE_FILES" -gt 0 ]; then
+    echo "   ✓ Found $PERCENTILE_FILES percentile distribution summary files"
+    
+    # Validate percentile columns in first file
+    SAMPLE_FILE=$(ls -1 percentile_*.csv 2>/dev/null | head -1)
+    if [ -f "$SAMPLE_FILE" ]; then
+        HEADER=$(head -1 "$SAMPLE_FILE")
+        
+        # Check for required percentile columns
+        REQUIRED_COLS="p1 p10 p25 median p75 p90 p99"
+        MISSING_COLS=""
+        
+        for col in $REQUIRED_COLS; do
+            if echo "$HEADER" | grep -q "$col"; then
+                : # Column found, do nothing
+            else
+                MISSING_COLS="$MISSING_COLS $col"
+            fi
+        done
+        
+        if [ -z "$MISSING_COLS" ]; then
+            echo "   ✓ Percentile files contain all required columns (P1-P99)"
+        else
+            echo "   ⚠️  WARNING: Missing percentile columns:$MISSING_COLS"
+            echo "      File: $SAMPLE_FILE"
+            VALIDATION_FAILED=1
+        fi
+    fi
+else
+    echo "   ⚠️  WARNING: No percentile distribution files found"
+    echo "      Expected: percentile_*.csv files with P1, P10, P25, P50, P75, P90, P99"
+    VALIDATION_FAILED=1
+fi
+
+echo ""
+
+# Generate Coverage Report
+echo "📋 Generating validation coverage report..."
+
+COVERAGE_REPORT="validation_coverage_report.csv"
+
+cat > "$COVERAGE_REPORT" << EOF
+validation_type,status,details
+temporal_coverage,$( [ -n "$EARLIEST_YEAR" ] && [ -n "$LATEST_YEAR" ] && echo "PASS: $EARLIEST_YEAR-$LATEST_YEAR ($YEAR_RANGE years)" || echo "FAIL: Unable to determine" )
+party_coverage,$( [ -z "$MISSING_PARTIES" ] && echo "PASS: All 8 parties present" || echo "WARNING: Missing parties:$MISSING_PARTIES" )
+percentile_coverage,$( [ "$PERCENTILE_FILES" -gt 0 ] && echo "PASS: $PERCENTILE_FILES files generated" || echo "FAIL: No percentile files" )
+EOF
+
+echo "   ✓ Generated: $COVERAGE_REPORT"
+echo ""
+
+echo "=================================================="
 echo "=== FILE LISTING                               ==="
 echo "=================================================="
 echo ""
@@ -201,7 +324,20 @@ echo "Total CSV files: $TOTAL_CSV"
 echo "  - Table samples: $ACTUAL_TABLES"
 echo "  - View samples: $ACTUAL_VIEWS"
 echo "  - Distinct value sets: $ACTUAL_DISTINCT"
+echo "  - Percentile distributions: $PERCENTILE_FILES"
 echo "  - Metadata files: $ACTUAL_METADATA"
+echo ""
+echo "Coverage Validation:"
+if [ -f "$COVERAGE_REPORT" ]; then
+    echo "  - Validation report: $COVERAGE_REPORT"
+    if [ "$VALIDATION_FAILED" -eq 0 ]; then
+        echo "  - Status: ✅ All validation checks passed"
+    else
+        echo "  - Status: ⚠️  Validation completed with warnings"
+    fi
+else
+    echo "  - Validation report: Not generated"
+fi
 echo ""
 echo "Full extraction log: extract-sample-data.log"
 echo ""
