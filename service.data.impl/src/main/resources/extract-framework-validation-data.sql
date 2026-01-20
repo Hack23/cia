@@ -48,22 +48,29 @@
 -- STEP 2: Execute Framework Validation Tests
 -- ============================================================================
 
--- Framework 1: Temporal Analysis (5 test cases: 255 validation cases)
+-- Framework 1: Temporal Analysis (7 test cases: updated with election views)
+--   Tests 1.1-1.4: Original trend/pattern/anomaly detection
+--   Test 1.5: NEW - Election proximity behavioral trends (v1.58)
+--   Test 1.6: NEW - Election year vs midterm patterns (v1.59)
 \i service.data.impl/src/main/resources/extract-framework-validation/temporal.sql
 
--- Framework 2: Comparative Analysis (3 test cases: 138 validation cases)
+-- Framework 2: Comparative Analysis (4 test cases: added longitudinal view)
+--   Tests 2.1-2.3: Original party/peer/momentum analysis
+--   Test 2.4: NEW - Party longitudinal performance (v1.60)
 \i service.data.impl/src/main/resources/extract-framework-validation/comparative.sql
 
--- Framework 3: Pattern Recognition (2 test cases: 180 validation cases)
+-- Framework 3: Pattern Recognition (2 test cases: behavioral clustering)
 \i service.data.impl/src/main/resources/extract-framework-validation/pattern.sql
 
--- Framework 4: Predictive Intelligence (3 test cases: 135 validation cases)
+-- Framework 4: Predictive Intelligence (4 test cases: added pre-election)
+--   Tests 4.1-4.2: Original resignation/coalition stress prediction
+--   Test 4.3: NEW - Pre-election activity spike detection (v1.61)
 \i service.data.impl/src/main/resources/extract-framework-validation/predictive.sql
 
--- Framework 5: Network Analysis (2 test cases: 110 validation cases)
+-- Framework 5: Network Analysis (2 test cases: influence mapping)
 \i service.data.impl/src/main/resources/extract-framework-validation/network.sql
 
--- Framework 6: Decision Intelligence (2 test cases: 140 validation cases)
+-- Framework 6: Decision Intelligence (2 test cases: effectiveness patterns)
 \i service.data.impl/src/main/resources/extract-framework-validation/decision.sql
 
 -- ============================================================================
@@ -123,6 +130,24 @@ COPY (
         'temporal/test_1_4_anomaly_detection.csv' AS data_file
     UNION ALL
     SELECT 
+        'Temporal Analysis' AS framework,
+        'Test 1.5' AS test_id,
+        'Election Proximity Trends' AS test_name,
+        'Behavioral changes near election dates (v1.58 view)' AS test_description,
+        '90% confidence' AS expected_accuracy,
+        50 AS sample_size,
+        'temporal/test_1_5_election_proximity.csv' AS data_file
+    UNION ALL
+    SELECT 
+        'Temporal Analysis' AS framework,
+        'Test 1.6' AS test_id,
+        'Election Year Patterns' AS test_name,
+        'Election year vs midterm behavioral differences (v1.59 view)' AS test_description,
+        '85% confidence' AS expected_accuracy,
+        60 AS sample_size,
+        'temporal/test_1_6_election_year_patterns.csv' AS data_file
+    UNION ALL
+    SELECT 
         'Comparative Analysis' AS framework,
         'Test 2.1' AS test_id,
         'Party Performance Rankings' AS test_name,
@@ -148,6 +173,15 @@ COPY (
         '88% accuracy' AS expected_accuracy,
         70 AS sample_size,
         'comparative/test_2_3_party_momentum.csv' AS data_file
+    UNION ALL
+    SELECT 
+        'Comparative Analysis' AS framework,
+        'Test 2.4' AS test_id,
+        'Party Longitudinal Performance' AS test_name,
+        'Long-term party performance trends analysis (v1.60 view)' AS test_description,
+        '85% confidence' AS expected_accuracy,
+        12 AS sample_size,
+        'comparative/test_2_4_party_longitudinal.csv' AS data_file
     UNION ALL
     SELECT 
         'Pattern Recognition' AS framework,
@@ -193,6 +227,15 @@ COPY (
         '78% accuracy' AS expected_accuracy,
         50 AS sample_size,
         'predictive/test_4_2_coalition_stress.csv' AS data_file
+    UNION ALL
+    SELECT 
+        'Predictive Intelligence' AS framework,
+        'Test 4.3' AS test_id,
+        'Pre-Election Activity Spike Detection' AS test_name,
+        'Detect unusual activity increases before elections (v1.61 view)' AS test_description,
+        '85% confidence' AS expected_accuracy,
+        50 AS sample_size,
+        'predictive/test_4_3_pre_election_activity.csv' AS data_file
     UNION ALL
     SELECT 
         'Network Analysis' AS framework,

@@ -348,3 +348,91 @@ COPY (
 
 \echo '>>> Exported cases with expected anomaly detection (z-score >1.5)'
 \echo ''
+
+-- ============================================================================
+-- TEST 1.5: Election Proximity Trends (Advanced View v1.58)
+-- Expected Outcome: Detect behavioral changes near election dates
+-- Sample Size: 50 cases
+-- ============================================================================
+\echo '>>> Test Case 1.5: Election Proximity - Behavioral Changes Near Elections'
+\echo '>>> Expected Outcome: Identify trends in attendance/discipline near elections'
+
+COPY (
+    SELECT 
+        person_id,
+        first_name,
+        last_name,
+        party,
+        election_year,
+        days_to_election,
+        proximity_bucket,
+        ROUND(avg_absence_rate::numeric, 2) AS avg_absence_rate,
+        ROUND(avg_discipline_rate::numeric, 2) AS avg_discipline_rate,
+        ROUND(avg_rebellion_rate::numeric, 2) AS avg_rebellion_rate,
+        ROUND(baseline_absence::numeric, 2) AS baseline_absence,
+        ROUND(baseline_discipline::numeric, 2) AS baseline_discipline,
+        ROUND(absence_trend::numeric, 2) AS absence_trend,
+        ROUND(discipline_trend::numeric, 2) AS discipline_trend,
+        cia_calculate_temporal_trend(
+            baseline_absence, 
+            avg_absence_rate, 
+            cia_get_config_value('trend_significant_threshold')::NUMERIC
+        ) AS expected_trend,
+        'election_proximity_analysis' AS test_case,
+        CASE 
+            WHEN ABS(absence_trend) >= cia_get_config_value('trend_significant_threshold')::NUMERIC THEN 'PASS'
+            ELSE 'BASELINE'
+        END AS validation_label
+    FROM view_riksdagen_election_proximity_trends
+    WHERE election_year >= 2014  -- Focus on recent elections
+      AND proximity_bucket IN ('0-30_days', '31-90_days', '91-180_days')
+      AND ABS(absence_trend) > 0
+    ORDER BY ABS(absence_trend) DESC
+    LIMIT cia_get_config_value('sample_size_default')::INTEGER
+) TO '/workspaces/cia/service.data.impl/sample-data/framework-validation/temporal/test_1_5_election_proximity.csv' WITH CSV HEADER;
+
+\echo '>>> Exported election proximity behavioral trends'
+\echo ''
+
+-- ============================================================================
+-- TEST 1.6: Election Year vs Midterm Patterns (Advanced View v1.59)
+-- Expected Outcome: Compare election year vs midterm behavior
+-- Sample Size: 60 cases
+-- ============================================================================
+\echo '>>> Test Case 1.6: Election Year Patterns - Year Type Behavioral Differences'
+\echo '>>> Expected Outcome: Detect significant differences between election/midterm years'
+
+COPY (
+    SELECT 
+        person_id,
+        first_name,
+        last_name,
+        party,
+        year,
+        year_type,
+        ROUND(avg_absence_rate::numeric, 2) AS avg_absence_rate,
+        ROUND(avg_win_rate::numeric, 2) AS avg_win_rate,
+        ROUND(avg_rebel_rate::numeric, 2) AS avg_rebel_rate,
+        ROUND(election_year_absence::numeric, 2) AS election_year_absence,
+        ROUND(midterm_absence::numeric, 2) AS midterm_absence,
+        ROUND(absence_differential::numeric, 2) AS absence_differential,
+        ROUND(win_differential::numeric, 2) AS win_differential,
+        CASE 
+            WHEN absence_differential < -cia_get_config_value('trend_significant_threshold')::NUMERIC THEN 'ELECTION_IMPROVEMENT'
+            WHEN absence_differential > cia_get_config_value('trend_significant_threshold')::NUMERIC THEN 'MIDTERM_IMPROVEMENT'
+            ELSE 'NO_SIGNIFICANT_DIFF'
+        END AS expected_pattern,
+        'election_year_comparison' AS test_case,
+        CASE 
+            WHEN ABS(absence_differential) >= cia_get_config_value('trend_moderate_threshold')::NUMERIC THEN 'PASS'
+            ELSE 'BASELINE'
+        END AS validation_label
+    FROM view_riksdagen_election_year_behavioral_patterns
+    WHERE year >= 2010  -- Focus on recent decade
+      AND ABS(absence_differential) > 0
+    ORDER BY ABS(absence_differential) DESC
+    LIMIT cia_get_config_value('sample_size_medium')::INTEGER
+) TO '/workspaces/cia/service.data.impl/sample-data/framework-validation/temporal/test_1_6_election_year_patterns.csv' WITH CSV HEADER;
+
+\echo '>>> Exported election year vs midterm behavioral patterns'
+\echo ''

@@ -238,3 +238,48 @@ COPY (
 
 \echo '>>> Exported cases with expected coalition stress prediction'
 \echo ''
+
+-- ============================================================================
+-- TEST 4.3: Pre-Election Activity Spike Detection (Advanced View v1.61)
+-- Expected Outcome: Identify unusual activity spikes before elections
+-- Sample Size: 50 cases
+-- ============================================================================
+\echo '>>> Test Case 4.3: Pre-Election Activity - Quarterly Activity Pattern Analysis'
+\echo '>>> Expected Outcome: Detect significant activity increases before elections'
+
+COPY (
+    SELECT 
+        person_id,
+        first_name,
+        last_name,
+        party,
+        election_year,
+        quarter,
+        quarters_to_election,
+        ROUND(quarterly_decisions::numeric, 2) AS quarterly_decisions,
+        ROUND(quarterly_absence_rate::numeric, 2) AS quarterly_absence_rate,
+        ROUND(baseline_decisions::numeric, 2) AS baseline_decisions,
+        ROUND(baseline_absence::numeric, 2) AS baseline_absence,
+        ROUND(decision_change_pct::numeric, 2) AS decision_change_pct,
+        ROUND(absence_change_pct::numeric, 2) AS absence_change_pct,
+        CASE 
+            WHEN decision_change_pct > 20 AND quarters_to_election <= 2 THEN 'PRE_ELECTION_SPIKE'
+            WHEN absence_change_pct < -10 AND quarters_to_election <= 2 THEN 'ATTENDANCE_BOOST'
+            WHEN decision_change_pct < -20 AND quarters_to_election <= 2 THEN 'PRE_ELECTION_DECLINE'
+            ELSE 'NORMAL_PATTERN'
+        END AS expected_pattern,
+        'pre_election_activity_analysis' AS test_case,
+        CASE 
+            WHEN ABS(decision_change_pct) >= 15 OR ABS(absence_change_pct) >= 10 THEN 'PASS'
+            ELSE 'BASELINE'
+        END AS validation_label
+    FROM view_riksdagen_pre_election_quarterly_activity
+    WHERE election_year >= 2010  -- Focus on recent elections
+      AND quarters_to_election <= 4  -- Last year before election
+      AND (ABS(decision_change_pct) > 0 OR ABS(absence_change_pct) > 0)
+    ORDER BY ABS(decision_change_pct) DESC
+    LIMIT cia_get_config_value('sample_size_default')::INTEGER
+) TO '/workspaces/cia/service.data.impl/sample-data/framework-validation/predictive/test_4_3_pre_election_activity.csv' WITH CSV HEADER;
+
+\echo '>>> Exported pre-election activity patterns'
+\echo ''

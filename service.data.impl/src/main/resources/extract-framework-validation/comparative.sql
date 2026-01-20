@@ -262,3 +262,49 @@ COPY (
 
 \echo '>>> Exported 70 cases with party momentum classification'
 \echo ''
+
+-- ============================================================================
+-- TEST 2.4: Party Longitudinal Performance (Advanced View v1.60)
+-- Expected Outcome: Analyze long-term party performance trends
+-- Sample Size: All parties with comprehensive metrics
+-- ============================================================================
+\echo '>>> Test Case 2.4: Party Longitudinal Performance - Multi-Year Trend Analysis'
+\echo '>>> Expected Outcome: Identify parties with significant long-term performance changes'
+
+COPY (
+    SELECT 
+        party,
+        start_year,
+        end_year,
+        total_years,
+        ROUND(avg_absence_rate::numeric, 2) AS avg_absence_rate,
+        ROUND(avg_discipline_rate::numeric, 2) AS avg_discipline_rate,
+        ROUND(avg_win_rate::numeric, 2) AS avg_win_rate,
+        ROUND(first_year_absence::numeric, 2) AS first_year_absence,
+        ROUND(last_year_absence::numeric, 2) AS last_year_absence,
+        ROUND(absence_trend::numeric, 2) AS absence_trend,
+        ROUND(discipline_trend::numeric, 2) AS discipline_trend,
+        total_decisions,
+        cia_calculate_temporal_trend(
+            first_year_absence, 
+            last_year_absence, 
+            cia_get_config_value('trend_significant_threshold')::NUMERIC
+        ) AS expected_trend,
+        cia_classify_performance(
+            avg_discipline_rate, 
+            cia_get_config_value('discipline_high_threshold')::NUMERIC, 
+            cia_get_config_value('discipline_moderate_threshold')::NUMERIC
+        ) AS performance_tier,
+        'party_longitudinal_analysis' AS test_case,
+        CASE 
+            WHEN ABS(absence_trend) >= cia_get_config_value('trend_moderate_threshold')::NUMERIC THEN 'PASS'
+            ELSE 'BASELINE'
+        END AS validation_label
+    FROM view_riksdagen_party_longitudinal_performance
+    WHERE total_years >= 4  -- Focus on parties with substantial history
+      AND total_decisions >= 100
+    ORDER BY ABS(absence_trend) DESC
+) TO '/workspaces/cia/service.data.impl/sample-data/framework-validation/comparative/test_2_4_party_longitudinal.csv' WITH CSV HEADER;
+
+\echo '>>> Exported party longitudinal performance trends'
+\echo ''
