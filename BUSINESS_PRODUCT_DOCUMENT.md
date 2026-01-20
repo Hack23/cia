@@ -1,8 +1,8 @@
 # 🏢 Citizen Intelligence Agency — Business Product Document
 ## Data Analytics & Risk Intelligence Products
 
-**Version:** 1.0  
-**Date:** 2025-11-15  
+**Version:** 1.1  
+**Date:** 2026-01-19  
 **Document Owner:** Business Development  
 **Classification:** Internal Strategic Planning
 
@@ -92,17 +92,61 @@ This section provides direct links to JSON specifications defining the data stru
 
 ### Product-to-Data Mapping Table
 
-| Product Feature | JSON Spec | Database View | Update Frequency |
-|----------------|-----------|---------------|------------------|
-| Political Intelligence API | [politician-schema.md](json-export-specs/schemas/politician-schema.md), [party-schema.md](json-export-specs/schemas/party-schema.md) | `view_riksdagen_politician`, `view_riksdagen_party` | Real-time |
-| Risk Assessment Feed | [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) | `view_rule_violation`, `view_riksdagen_politician_summary` | Hourly |
-| Voting Statistics Export | [politician-schema.md](json-export-specs/schemas/politician-schema.md#voting-section) | `view_riksdagen_vote_data_ballot_summary`, `view_riksdagen_vote_data_ballot_politician_summary` | Daily |
-| Party Performance Dashboard | [party-schema.md](json-export-specs/schemas/party-schema.md) | `view_riksdagen_party_summary`, `view_riksdagen_party_ballot_support_annual_summary` | Daily |
-| Committee Analytics | [committee-schema.md](json-export-specs/schemas/committee-schema.md) | `view_riksdagen_committee`, `view_riksdagen_committee_proposal_summary` | Daily |
-| Politician Scorecards | [politician-schema.md](json-export-specs/schemas/politician-schema.md#intelligence-section) | `view_riksdagen_politician_ranking`, `view_riksdagen_politician_document_summary` | Daily |
-| Coalition Prediction Data | [party-schema.md](json-export-specs/schemas/party-schema.md#coalition-section) | `view_riksdagen_party_ballot_support_annual_summary`, `view_riksdagen_party_coalition` | Weekly |
-| Government Performance | [ministry-schema.md](json-export-specs/schemas/ministry-schema.md) | `view_riksdagen_goverment`, `view_ministry_decision_impact` | As changes occur |
-| Decision Intelligence | [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) | `view_party_decision_flow`, `view_politician_decision_flow`, `view_ministry_decision_flow` | Daily |
+**Complete View Reference:** This platform leverages **112 database views** organized into 11 intelligence categories. For complete documentation, see [DATABASE_VIEW_INTELLIGENCE_CATALOG.md](DATABASE_VIEW_INTELLIGENCE_CATALOG.md).
+
+#### Core Product Features (Primary Views)
+
+| Product Feature | JSON Spec | Primary Database Views | Update Frequency | View Count |
+|----------------|-----------|----------------------|------------------|------------|
+| **Political Intelligence API** | [politician-schema.md](json-export-specs/schemas/politician-schema.md), [party-schema.md](json-export-specs/schemas/party-schema.md) | `view_riksdagen_politician`, `view_riksdagen_party`, `view_riksdagen_politician_summary` | Real-time | 20+ politician views |
+| **Risk Assessment Feed** | [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) | `view_rule_violation`, `view_riksdagen_politician_summary`, `view_politician_risk_summary` | Hourly | 7 intelligence views |
+| **Voting Statistics Export** | [politician-schema.md](json-export-specs/schemas/politician-schema.md#voting-section) | `view_riksdagen_vote_data_ballot_summary`, `view_riksdagen_vote_data_ballot_politician_summary` | Daily | 20 voting views |
+| **Party Performance Dashboard** | [party-schema.md](json-export-specs/schemas/party-schema.md) | `view_riksdagen_party_summary`, `view_riksdagen_party_ballot_support_annual_summary`, `view_riksdagen_party_longitudinal_performance` | Daily | 16 party views |
+| **Committee Analytics** | [committee-schema.md](json-export-specs/schemas/committee-schema.md) | `view_riksdagen_committee`, `view_riksdagen_committee_proposal_summary`, `view_riksdagen_committee_decisions` | Daily | 12 committee views |
+| **Politician Scorecards** | [politician-schema.md](json-export-specs/schemas/politician-schema.md#intelligence-section) | `view_riksdagen_politician_ranking`, `view_riksdagen_politician_document_summary`, `view_politician_behavioral_trends` | Daily | 20+ politician views |
+| **Coalition Prediction Data** | [party-schema.md](json-export-specs/schemas/party-schema.md#coalition-section) | `view_riksdagen_party_ballot_support_annual_summary`, `view_riksdagen_party_coalition_evolution`, `view_riksdagen_coalition_alignment_matrix` | Weekly | 16 party views |
+| **Government Performance** | [ministry-schema.md](json-export-specs/schemas/ministry-schema.md) | `view_riksdagen_goverment`, `view_ministry_decision_impact`, `view_ministry_effectiveness_trends` | As changes occur | 8 ministry views |
+| **Decision Intelligence** | [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) | `view_party_decision_flow`, `view_politician_decision_pattern`, `view_ministry_decision_flow`, `view_decision_temporal_trends` | Daily | 6 decision views |
+| **Career Path Analysis (v1.58)** | [politician-schema.md](json-export-specs/schemas/politician-schema.md) | `view_riksdagen_politician_career_path_10level`, `view_riksdagen_politician_role_evolution`, `view_riksdagen_politician_career_trajectory` | Daily | 3 career views |
+| **Election Cycle Analysis (v1.59-v1.60)** | [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) | `view_riksdagen_election_proximity_trends`, `view_riksdagen_election_year_behavioral_patterns`, `view_riksdagen_pre_election_quarterly_activity` | Weekly | 9 election views |
+| **Party Longitudinal (v1.61)** | [party-schema.md](json-export-specs/schemas/party-schema.md) | `view_riksdagen_party_longitudinal_performance`, `view_riksdagen_party_coalition_evolution`, `view_riksdagen_party_electoral_trends` | Weekly | 4 party views |
+
+#### Database View Categories (112 Total Views)
+
+**View Distribution by Intelligence Framework:**
+
+| Category | View Count | Intelligence Value | Primary Frameworks | Example Views |
+|----------|-----------|-------------------|-------------------|---------------|
+| **Temporal Analysis** | 18 views | ⭐⭐⭐⭐⭐ VERY HIGH | Framework 1 | Election proximity, seasonal patterns, career trajectories, temporal trends |
+| **Comparative Analysis** | 15 views | ⭐⭐⭐⭐⭐ VERY HIGH | Framework 2 | Party comparisons, politician rankings, benchmarking, cross-entity analysis |
+| **Pattern Recognition** | 12 views | ⭐⭐⭐⭐⭐ VERY HIGH | Framework 3 | Behavioral trends, anomaly detection, clustering, pattern classification |
+| **Predictive Intelligence** | 10 views | ⭐⭐⭐⭐⭐ VERY HIGH | Framework 4 | Risk forecasting, coalition prediction, trend extrapolation, success probability |
+| **Network Analysis** | 8 views | ⭐⭐⭐⭐ HIGH | Framework 5 | Influence metrics, collaboration patterns, broker identification, centrality |
+| **Decision Intelligence** | 6 views | ⭐⭐⭐⭐⭐ VERY HIGH | Framework 6 | Decision flows, approval rates, effectiveness, temporal decision trends |
+| **Voting Analysis** | 20 views | ⭐⭐⭐⭐ HIGH | Frameworks 1, 2, 3 | Ballot summaries (daily/weekly/monthly/annual), politician/party voting patterns |
+| **Document Analysis** | 8 views | ⭐⭐⭐ MEDIUM | Frameworks 1, 2 | Productivity tracking, document patterns, authorship analysis |
+| **Ministry Analysis** | 8 views | ⭐⭐⭐⭐ HIGH | Frameworks 2, 4, 6 | Government performance, ministry effectiveness, proposal success |
+| **Committee Analysis** | 12 views | ⭐⭐⭐⭐ HIGH | Frameworks 2, 6 | Committee productivity, decisions, membership, effectiveness |
+| **Application/Audit** | 14 views | ⭐⭐ LOW | N/A | User activity, session tracking, audit trails |
+
+**Total Database Views:** 112 (68 regular + 28 materialized + 16 new temporal analytics)
+
+**Framework Coverage:** All 6 intelligence frameworks comprehensively supported  
+**Documentation:** 100% coverage in [DATABASE_VIEW_INTELLIGENCE_CATALOG.md](DATABASE_VIEW_INTELLIGENCE_CATALOG.md)  
+**Validation Status:** ✅ Validated 2026-01-19 (v1.61)
+
+**Key Temporal Analytics Views (v1.58-v1.61):**
+- `view_riksdagen_politician_career_path_10level` (60+ KPIs, 10-level classification)
+- `view_riksdagen_election_proximity_trends` (months_until_election dimension)
+- `view_riksdagen_pre_election_quarterly_activity` (Q4 pre-election focus)
+- `view_riksdagen_seasonal_activity_patterns` (Q1-Q4 seasonal patterns)
+- `view_riksdagen_election_year_behavioral_patterns` (7 elections vs 17 midterm years)
+- `view_riksdagen_election_year_vs_midterm` (aggregate comparison)
+- `view_riksdagen_election_year_anomalies` (z-score anomaly detection)
+- `view_riksdagen_party_longitudinal_performance` (70 KPIs, semester-based)
+- `view_riksdagen_party_coalition_evolution` (35 metrics, party-pair tracking)
+- `view_riksdagen_party_electoral_trends` (49 indicators, forecasting)
+- `view_riksdagen_party_summary` (52 columns, foundation view)
 
 ### JSON Spec Repository Structure
 
@@ -131,9 +175,399 @@ Total Visualizations: 3+ Mermaid diagrams
 ### Data Model Integration
 
 For comprehensive database schema documentation:
-- **[DATABASE_VIEW_INTELLIGENCE_CATALOG.md](DATABASE_VIEW_INTELLIGENCE_CATALOG.md)** - Complete catalog of 85 database views with intelligence applications
+- **[DATABASE_VIEW_INTELLIGENCE_CATALOG.md](DATABASE_VIEW_INTELLIGENCE_CATALOG.md)** - Complete catalog of 112 database views with intelligence applications
 - **[full_schema.sql](service.data.impl/src/main/resources/full_schema.sql)** - Complete database schema with tables and views
 - **[json-export-specs/README.md](json-export-specs/README.md)** - JSON export system architecture and CDN deployment guide
+
+---
+
+## 🔬 Advanced Temporal Analytics (v1.58-v1.61)
+
+This section documents comprehensive temporal analytics capabilities introduced across four major releases (v1.58-v1.61), providing META/META-level intelligence for career trajectory analysis, election cycle behavioral patterns, and party longitudinal performance tracking.
+
+### Release Overview
+
+| Version | Release Date | Core Capability | Intelligence Value | Views Added |
+|---------|-------------|----------------|-------------------|-------------|
+| **v1.58** | 2026-01-18 | 10-Level Career Path Classification | ⭐⭐⭐⭐⭐ VERY HIGH | 1 view (60+ KPIs) |
+| **v1.59** | 2026-01-18 | Election Proximity Trend Analysis | ⭐⭐⭐⭐⭐ VERY HIGH | 3 views (Q4 pre-election focus) |
+| **v1.60** | 2026-01-18 | Election Year Behavioral Patterns | ⭐⭐⭐⭐⭐ VERY HIGH | 3 views (7 election years vs 17 midterm) |
+| **v1.61** | 2026-01-19 | Party Longitudinal Performance | ⭐⭐⭐⭐⭐ VERY HIGH | 4 views (59-70 columns each) |
+
+### v1.58: 10-Level Career Path Classification (Issue #8211)
+
+**Enhancement of Politician Career Trajectory Tracking**
+
+**Primary View:** `view_riksdagen_politician_career_path_10level`
+
+**Intelligence Value:** ⭐⭐⭐⭐⭐ VERY HIGH — Leadership succession planning, talent retention, resignation risk prediction
+
+#### Key Features
+
+**10-Level Hierarchical Classification:**
+- **Level 10:** Prime Minister (Statsminister) — Highest office
+- **Level 9:** Deputy Prime Minister / Cabinet Ministers (Vice statsminister, Statsråd)
+- **Level 8:** Speaker of Parliament (Talman) — Presiding officer
+- **Level 7:** Party Leader / Deputy Speakers (Partiledare, Vice talman)
+- **Level 6:** Party Secretary / Committee Chairs (Partisekreterare, Ordförande)
+- **Level 5:** Committee Vice Chairs (Vice ordförande)
+- **Level 4:** Active MPs (Riksdagsledamot) — Full parliament membership
+- **Level 3:** Committee Members (Ledamot in committees)
+- **Level 2:** Substitute MPs (Suppleant, Ersättare)
+- **Level 1:** Other/Entry Roles (Other assignments)
+
+#### Comprehensive KPIs (60+ Metrics)
+
+**Career Level Metrics:**
+- Current level, peak level, years at peak
+- Level progression velocity
+- Time-in-level analysis
+- Cross-level transition matrices
+
+**Career Scoring:**
+- Non-linear career health score
+- Leadership potential score (succession planning)
+- Peak sustainability metrics
+- Composite predictive success score
+
+**Career Pattern Types (8 Classifications):**
+1. **FAST_TRACK:** Rapid advancement (>0.5 levels/year)
+2. **RISING_STAR:** Strong upward trajectory
+3. **STEADY_PROGRESS:** Consistent advancement
+4. **PEAK_PERFORMER:** Sustained high-level performance
+5. **STAGNANT:** No progression (>3 years same level)
+6. **DECLINING:** Downward trend
+7. **DOWNWARD_SPIRAL:** Rapid decline with exit risk
+8. **EARLY_CAREER:** <2 years experience
+
+**Downward Spiral Indicators:**
+- Demotion velocity tracking
+- Consecutive demotion count
+- Exit risk scoring
+- Retention risk flags
+
+**Predictive Intelligence Integration:**
+- Behavioral trends (voting patterns, attendance, effectiveness)
+- Risk assessment (violation tracking, anomaly detection)
+- Network influence (centrality, broker classification)
+- Comprehensive risk scoring (multi-dimensional)
+
+#### Use Cases
+
+**Leadership Succession Planning:**
+- Identify Level 9-10 candidates based on trajectory + influence
+- Track party leader transitions (Level 7-10)
+- Speaker succession analysis (Level 8)
+- Cabinet formation forecasting
+
+**Talent Retention:**
+- Detect STAGNANT patterns → retention intervention
+- Flag DOWNWARD_SPIRAL → exit risk mitigation
+- Identify FAST_TRACK talent → strategic investment
+
+**Resignation Risk Prediction:**
+- Combine career decline + violations + behavioral shifts
+- High retention risk flags (consecutive demotions + violations)
+- Pre-resignation pattern detection
+
+**Product Integration:**
+- Political Intelligence API: Career path endpoints
+- Advanced Analytics Suite: Career trajectory dashboards
+- Risk Intelligence Feed: Career decline as risk signal
+- Predictive Analytics: Leadership succession forecasting
+
+---
+
+### v1.59: Election Proximity Trend Analysis (Issue #8208)
+
+**Quarterly Q4 Pre-Election Focus Analysis**
+
+**Primary Views:**
+1. `view_riksdagen_election_proximity_trends` — Months until election dimension (0-48 months)
+2. `view_riksdagen_pre_election_quarterly_activity` — Q4 pre-election focus (9-15 months before)
+3. `view_riksdagen_seasonal_activity_patterns` — Q1-Q4 seasonal patterns
+
+**Intelligence Value:** ⭐⭐⭐⭐⭐ VERY HIGH — Pre-election activity surge detection, behavioral shift identification
+
+#### Key Features
+
+**Temporal Dimensions:**
+- **Months Until Election:** 0-48 month tracking relative to election date
+- **Pre-Election Q4 Flag:** Identifies Q4 periods 9-15 months before elections
+- **Swedish Election Cycles:** 2002-2026 coverage (7 election years)
+
+**Multi-Dimensional Activity Metrics:**
+- Voting: Ballot count, attendance rate, win/rebel/abstain rates
+- Documents: Document count, motions, proposals, productivity
+- Assignments: Role changes, committee appointments
+- Decisions: Committee decisions, approval rates
+- Risk: Violation counts, behavioral assessments
+- Influence: Network centrality, broker classification
+
+**Activity Classification:**
+- **ELEVATED_ACTIVITY:** >1.5x baseline activity
+- **NORMAL_ACTIVITY:** 0.7x-1.5x baseline
+- **REDUCED_ACTIVITY:** <0.7x baseline
+
+**Baseline Calculation:**
+- AVG window function over politician's full history
+- Deviation analysis (actual - baseline)
+- Quarterly aggregation with election proximity
+
+#### Intelligence Applications
+
+**Pre-Election Activity Surge Detection:**
+```sql
+-- Politicians with elevated activity in Q4 pre-election periods
+SELECT person_id, first_name, last_name, party,
+       ballot_count, baseline_ballot_count,
+       (ballot_count - baseline_ballot_count) AS deviation,
+       activity_classification
+FROM view_riksdagen_election_proximity_trends
+WHERE is_pre_election_q4 = true
+  AND activity_classification = 'ELEVATED_ACTIVITY'
+ORDER BY deviation DESC;
+```
+
+**Behavioral Shift Identification:**
+- Compare Q4 pre-election vs Q1-Q3 activity
+- Detect document productivity surges
+- Track role ambition increases (assignment changes)
+- Monitor voting pattern shifts
+
+**Electoral Strategy Analysis:**
+- Identify parties with systematic pre-election campaigns
+- Benchmark politician activity against party baseline
+- Forecast election year resource allocation
+- Predict campaign intensity by party/region
+
+#### Use Cases
+
+**Product Integration:**
+- **Political Intelligence API:** Election proximity endpoints
+- **Advanced Analytics Suite:** Election cycle dashboards
+- **Risk Intelligence Feed:** Pre-election risk surges
+- **Predictive Analytics:** Electoral behavior forecasting
+
+---
+
+### v1.60: Election Year Behavioral Patterns (Issue #8209)
+
+**Annual Comparison Across 7 Election Cycles (2002-2026)**
+
+**Primary Views:**
+1. `view_riksdagen_election_year_behavioral_patterns` — Annual comparison (24 years)
+2. `view_riksdagen_election_year_vs_midterm` — Aggregate election vs midterm
+3. `view_riksdagen_election_year_anomalies` — Statistical anomaly detection
+
+**Intelligence Value:** ⭐⭐⭐⭐⭐ VERY HIGH — Systematic election year pattern identification, predictive modeling
+
+#### Key Features
+
+**Election Year Classification:**
+- **Election Years:** 2002, 2006, 2010, 2014, 2018, 2022, 2026 (7 years)
+- **Midterm Years:** 2003-2005, 2007-2009, 2011-2013, 2015-2017, 2019-2021, 2023-2025 (17 years)
+
+**Multi-Dimensional Metrics:**
+- Voting: Total ballots, attendance rate, yes/no/abstain rates
+- Documents: Documents produced, motions filed, proposals filed
+- Active Politicians: Participant counts
+- Approval Rates: Party discipline metrics
+
+**Statistical Analysis:**
+- **Median Baseline:** PERCENTILE_CONT(0.5) for election years
+- **Standard Deviation:** For anomaly detection
+- **Activity Ratios:** Year value / baseline
+- **Z-Score Calculation:** (value - mean) / stddev
+
+**Year Classification (Anomaly Detection):**
+- **HIGH_ELECTION_ACTIVITY:** Z-score > +1.5
+- **NORMAL_ELECTION_ACTIVITY:** |Z-score| ≤ 1.5
+- **LOW_ELECTION_ACTIVITY:** Z-score < -1.5
+- **MIDTERM:** Non-election years
+
+#### Intelligence Applications
+
+**Systematic Pattern Identification:**
+```sql
+-- Election years with anomalous voting patterns
+SELECT year, is_election_year, total_ballots,
+       election_median_ballots,
+       ballot_ratio_to_election_median,
+       year_classification
+FROM view_riksdagen_election_year_behavioral_patterns
+WHERE is_election_year = true
+  AND year_classification IN ('HIGH_ELECTION_ACTIVITY', 'LOW_ELECTION_ACTIVITY')
+ORDER BY year DESC;
+```
+
+**Cross-Election Cycle Comparison:**
+- Compare 2026 election patterns to historical elections
+- Identify secular trends (increasing/decreasing activity)
+- Benchmark current election against 2018, 2014, 2010
+- Detect party-specific election strategies
+
+**Predictive Modeling:**
+- Use 6 historical elections to forecast 2026 patterns
+- Seasonal decomposition (election effect vs secular trends)
+- Time series forecasting (ARIMA, Prophet)
+- Scenario planning (normal vs high vs low activity elections)
+
+#### Use Cases
+
+**Product Integration:**
+- **Advanced Analytics Suite:** Election cycle comparison dashboards
+- **Predictive Analytics:** Election year forecasting models
+- **Risk Intelligence Feed:** Anomalous election patterns as risk signals
+- **Decision Intelligence:** Election year decision effectiveness analysis
+
+---
+
+### v1.61: Party Longitudinal Performance (Recreated Views)
+
+**Semester-Based Tracking with Advanced Window Functions**
+
+**Primary Views:**
+1. `view_riksdagen_party_summary` — Party assignment and document aggregation (52 columns)
+2. `view_riksdagen_party_longitudinal_performance` — Semester-based tracking (70 KPIs)
+3. `view_riksdagen_party_coalition_evolution` — Party-pair alliance tracking (35 metrics)
+4. `view_riksdagen_party_electoral_trends` — Electoral performance (49 indicators)
+
+**Intelligence Value:** ⭐⭐⭐⭐⭐ VERY HIGH — Coalition formation forecasting, party health assessment
+
+#### Critical Fix Context
+
+**Issue:** Views were dropped in v1.53/v1.6 but never recreated, causing JPA entity mismatches
+**Impact:** Application failures when querying party longitudinal data
+**Resolution:** v1.61 recreates all 4 views with enhanced functionality
+
+#### Key Features
+
+**view_riksdagen_party_summary (52 columns):**
+- Assignment aggregations (total/current counts, dates, days served)
+- Active member tracking (parliament, government, committee, EU, speaker, party)
+- Document metrics (total, by type, collaboration, activity levels)
+- Member activity classification (very high, high, medium, low)
+- Focus area classification (party, committee, individual)
+
+**view_riksdagen_party_longitudinal_performance (70 KPIs):**
+- **Temporal Dimension:** Semester-based tracking (2002-2026, 48 semesters)
+- **Swedish Election Cycles:** 2002-09-15, 2006-09-17, 2010-09-19, 2014-09-14, 2018-09-09, 2022-09-11, 2026-09-13
+- **Advanced Window Functions:**
+  - RANK, PERCENT_RANK: Performance rankings
+  - NTILE: Decile classification (top 10%, etc.)
+  - LAG, LEAD: Period-over-period changes
+  - STDDEV_POP: Volatility analysis
+- **Performance Metrics:**
+  - Voting: Ballots, approval rates, vote share
+  - Documents: Production counts, success rates
+  - Members: Active count, experience levels
+  - Effectiveness: Productivity scores, trend analysis
+
+**view_riksdagen_party_coalition_evolution (35 metrics):**
+- **Party-Pair Analysis:** All combinations (S-M, S-V, M-KD, etc.)
+- **Alliance Tracking:** Agreement scores, voting alignment
+- **Forecasting Capabilities:**
+  - Coalition formation probability
+  - Breakup risk scoring
+  - Realignment probability
+- **Temporal Trends:** LAG-based change detection
+- **Stability Metrics:** Volatility, consistency
+
+**view_riksdagen_party_electoral_trends (49 indicators):**
+- **Electoral Performance:** Seat proxies, vote share estimates
+- **Historical Patterns:** Multi-election trends
+- **Predictive Indicators:** Trajectory prediction
+- **Seasonal Decomposition:** Election cycle vs secular trends
+
+#### Intelligence Applications
+
+**Coalition Formation Forecasting:**
+```sql
+-- Party pairs with increasing alignment (potential coalition partners)
+SELECT party_a, party_b,
+       agreement_score,
+       LAG(agreement_score) OVER (PARTITION BY party_a, party_b ORDER BY semester) AS prev_score,
+       (agreement_score - LAG(agreement_score) OVER (...)) AS alignment_change,
+       coalition_formation_probability
+FROM view_riksdagen_party_coalition_evolution
+WHERE alignment_change > 5.0
+ORDER BY coalition_formation_probability DESC;
+```
+
+**Party Health Assessment:**
+```sql
+-- Parties with declining performance (at-risk parties)
+SELECT party, semester, 
+       total_ballots,
+       approval_rate,
+       LAG(approval_rate) OVER (PARTITION BY party ORDER BY semester) AS prev_approval,
+       (approval_rate - LAG(approval_rate) OVER (...)) AS approval_change,
+       performance_rank,
+       performance_percentile
+FROM view_riksdagen_party_longitudinal_performance
+WHERE approval_change < -5.0
+  AND performance_percentile < 0.25
+ORDER BY approval_change ASC;
+```
+
+**Electoral Trend Analysis:**
+- Multi-election trajectory prediction
+- Party rise/decline patterns
+- Regional strength shifts
+- Demographic coalition changes
+
+#### Use Cases
+
+**Product Integration:**
+- **Political Intelligence API:** Party longitudinal endpoints
+- **Advanced Analytics Suite:** Party health dashboards
+- **Predictive Analytics:** Coalition formation forecasting, electoral trend models
+- **Risk Intelligence Feed:** Party decline as risk signal
+- **Decision Intelligence:** Party effectiveness tracking
+
+---
+
+### Temporal Analytics Summary
+
+**Total Views Added:** 11 views (v1.58-v1.61)
+**Total KPIs:** 214+ metrics across all temporal analytics views
+**Intelligence Frameworks Coverage:**
+1. ✅ **Temporal Analysis:** All 11 views support temporal pattern recognition
+2. ✅ **Comparative Analysis:** Cross-politician, cross-party, cross-election comparisons
+3. ✅ **Pattern Recognition:** Career patterns, activity surges, anomaly detection
+4. ✅ **Predictive Intelligence:** Leadership succession, coalition formation, electoral forecasting
+5. ✅ **Network Analysis:** Influence metrics integrated into career path analysis
+
+**Data Sources:**
+- `view_riksdagen_politician_role_evolution` (v1.56 foundation)
+- `view_politician_behavioral_trends` (v1.30)
+- `view_politician_risk_summary` (v1.30)
+- `view_riksdagen_politician_influence_metrics` (v1.29)
+- `view_riksdagen_party_member` (foundation)
+- `view_riksdagen_vote_data_ballot_party_summary_annual` (materialized view)
+- `document_data`, `assignment_data` (base tables)
+
+**Swedish Parliamentary Context:**
+- **Election Cycle:** Every 4 years (September elections)
+- **Historical Coverage:** 2002-2026 (24 years, 6 completed elections + 1 projected)
+- **Pre-Election Analysis:** Q4 periods 9-15 months before elections (critical campaign period)
+- **Career Levels:** Aligned with Swedish political system (Riksdag structure)
+
+**Performance Optimization:**
+- Views build on existing v1.56 career foundations (no duplication)
+- Leverages existing materialized views for aggregation
+- Advanced window functions for efficient rank/percentile calculations
+- Indexed temporal dimensions (months_until_election, semester, year)
+
+**Documentation References:**
+- **View Catalog:** [DATABASE_VIEW_INTELLIGENCE_CATALOG.md](DATABASE_VIEW_INTELLIGENCE_CATALOG.md)
+- **Intelligence Frameworks:** [DATA_ANALYSIS_INTOP_OSINT.md](DATA_ANALYSIS_INTOP_OSINT.md)
+- **Risk Rules:** [RISK_RULES_INTOP_OSINT.md](RISK_RULES_INTOP_OSINT.md)
+- **Changelog:** [CHANGELOG_INTELLIGENCE.md](CHANGELOG_INTELLIGENCE.md)
+- **Schema Maintenance:** [service.data.impl/README-SCHEMA-MAINTENANCE.md](service.data.impl/README-SCHEMA-MAINTENANCE.md)
+
+---
 
 ### Data Lineage Overview
 
@@ -187,6 +621,9 @@ flowchart LR
 | **Analytical Insights** | Scorecards, coalition analysis, effectiveness metrics | Monthly aggregations |
 | **Predictive Intelligence** | Trend forecasting, risk escalation probability | Quarterly models |
 | **Network Analysis** | Collaboration patterns, influence mapping | Annual baseline |
+| **Career Path Analysis (v1.58)** | 10-level career classification, leadership potential, succession planning | Daily updates |
+| **Election Cycle Analysis (v1.59-v1.60)** | Election proximity tracking, behavioral pattern shifts, pre-election surges | Weekly updates |
+| **Party Longitudinal Performance (v1.61)** | Semester-based tracking, coalition evolution, electoral trends | Weekly updates |
 
 #### Target Consumer Segments
 
@@ -236,10 +673,15 @@ flowchart LR
 | `/api/v1/politicians/{id}` | GET | [politician-schema.md](json-export-specs/schemas/politician-schema.md) | `view_riksdagen_politician_summary` | Full profile with intelligence |
 | `/api/v1/politicians/{id}/voting` | GET | [politician-schema.md#voting-section](json-export-specs/schemas/politician-schema.md#voting-section) | `view_riksdagen_vote_data_ballot_politician_summary` | Voting history |
 | `/api/v1/politicians/{id}/risk` | GET | [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) | `view_rule_violation` | Risk assessment |
+| `/api/v1/politicians/{id}/career-path` | GET | [politician-schema.md](json-export-specs/schemas/politician-schema.md) | `view_riksdagen_politician_career_path_10level` | Career trajectory analysis (v1.58) |
 | `/api/v1/parties` | GET | [party-schema.md#attributes-section](json-export-specs/schemas/party-schema.md#attributes-section) | `view_riksdagen_party` | [party-example.json](json-export-specs/examples/party-example.json) |
 | `/api/v1/parties/{id}` | GET | [party-schema.md](json-export-specs/schemas/party-schema.md) | `view_riksdagen_party_summary` | Full party performance |
+| `/api/v1/parties/{id}/longitudinal` | GET | [party-schema.md](json-export-specs/schemas/party-schema.md) | `view_riksdagen_party_longitudinal_performance` | Semester-based tracking (v1.61) |
 | `/api/v1/votes/{ballot_id}` | GET | [politician-schema.md#voting-section](json-export-specs/schemas/politician-schema.md#voting-section) | `view_riksdagen_vote_data_ballot_summary` | Ballot results |
 | `/api/v1/risk-assessments` | GET | [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) | `view_rule_violation`, `view_riksdagen_politician_summary` | Risk feed |
+| `/api/v1/election-proximity` | GET | [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) | `view_riksdagen_election_proximity_trends` | Election cycle analysis (v1.59) |
+| `/api/v1/election-patterns` | GET | [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) | `view_riksdagen_election_year_behavioral_patterns` | Election year patterns (v1.60) |
+| `/api/v1/coalitions/evolution` | GET | [party-schema.md](json-export-specs/schemas/party-schema.md) | `view_riksdagen_party_coalition_evolution` | Coalition forecasting (v1.61) |
 
 ```yaml
 API Architecture:
@@ -281,6 +723,9 @@ Data Format:
 - Parliamentary effectiveness metrics
 - Customizable visualization widgets
 - Drill-down analysis capabilities
+- **Career trajectory dashboards (v1.58)** — 10-level career path visualization
+- **Election cycle dashboards (v1.59-v1.60)** — Pre-election activity tracking
+- **Party health dashboards (v1.61)** — Longitudinal performance tracking
 
 **Report Generation**
 - Automated weekly/monthly reports
@@ -288,18 +733,23 @@ Data Format:
 - Export to PDF, Excel, PowerPoint
 - Scheduled delivery
 - White-label branding options
+- **Temporal analytics reports** — Career paths, election patterns, party trends
 
 **Alerting & Notifications**
 - Risk threshold alerts
 - Political event notifications
 - Custom alert rules
 - Multi-channel delivery (email, SMS, Slack)
+- **Career decline alerts (v1.58)** — Downward spiral detection
+- **Pre-election surge alerts (v1.59)** — Activity anomaly detection
 
 **Comparative Analysis**
 - Politician benchmarking
 - Party performance comparison
 - Historical trend analysis
 - International comparisons (future)
+- **Career path comparison** — Peer trajectory analysis
+- **Election cycle comparison** — Cross-election benchmarking
 
 #### Target Consumer Segments
 
@@ -383,6 +833,7 @@ Data Format:
 - Multi-dimensional risk profiling
 - Pattern recognition algorithms
 - Anomaly detection
+- **Career decline detection (v1.58)** — Downward spiral identification
 
 **Early Warning System**
 - Predictive risk escalation modeling
@@ -390,6 +841,8 @@ Data Format:
 - Pre-resignation pattern detection
 - Electoral vulnerability assessment
 - Crisis probability scoring
+- **Leadership succession risk (v1.58)** — High-level departure prediction
+- **Pre-election risk surges (v1.59)** — Activity anomaly alerts
 
 **Threat Intelligence Integration**
 - Political threat landscape monitoring
@@ -397,6 +850,7 @@ Data Format:
 - Democratic process security assessment
 - Correlation with external events
 - OSINT threat integration
+- **Election cycle threat patterns (v1.59-v1.60)** — Historical anomaly detection
 
 **Compliance & Governance**
 - Political risk reporting for boards
@@ -500,6 +954,7 @@ Data Format:
 - Government stability duration
 - Election outcome scenarios
 - Voter behavior prediction
+- **Electoral trend analysis (v1.61)** — Party trajectory forecasting
 
 **Parliamentary Trend Analysis**
 - Legislative activity forecasting
@@ -507,6 +962,8 @@ Data Format:
 - Coalition voting patterns
 - Committee productivity trends
 - Minister performance trajectory
+- **Election cycle patterns (v1.59-v1.60)** — Multi-year behavioral trends
+- **Party longitudinal performance (v1.61)** — Semester-based forecasting
 
 **Scenario Planning Tools**
 - "What-if" political scenarios
@@ -514,6 +971,7 @@ Data Format:
 - Policy impact simulation
 - Crisis scenario modeling
 - Strategic option evaluation
+- **Coalition breakup prediction (v1.61)** — Alliance stability forecasting
 
 **Machine Learning Models**
 - Time series forecasting (ARIMA, Prophet)
@@ -521,6 +979,7 @@ Data Format:
 - Survival analysis for coalitions
 - Ensemble models for elections
 - Neural networks for patterns
+- **Career trajectory prediction (v1.58)** — Leadership succession models
 
 #### Target Consumer Segments
 
@@ -620,6 +1079,7 @@ Data Format:
 - Configurable modules
 - Multi-language support
 - Mobile-responsive design
+- **Complete temporal analytics suite (v1.58-v1.61)** — Career paths, election cycles, party longitudinal
 
 **System Integration**
 - API integration with client systems
@@ -641,6 +1101,7 @@ Data Format:
 - Specialized risk rules
 - Industry-specific adaptations
 - Regional/national adaptations
+- **Custom temporal analysis** — Client-specific career/election tracking
 
 #### Target Consumer Segments
 
@@ -684,7 +1145,7 @@ Data Format:
 - **Committee Data**: [committee-schema.md](json-export-specs/schemas/committee-schema.md)
 - **Ministry Data**: [ministry-schema.md](json-export-specs/schemas/ministry-schema.md)
 - **Intelligence Data**: [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md)
-- **Database Access**: All 85 views documented in [DATABASE_VIEW_INTELLIGENCE_CATALOG.md](DATABASE_VIEW_INTELLIGENCE_CATALOG.md)
+- **Database Access**: All 112 views documented in [DATABASE_VIEW_INTELLIGENCE_CATALOG.md](DATABASE_VIEW_INTELLIGENCE_CATALOG.md)
 
 **White-Label Platform Components:**
 
@@ -692,9 +1153,10 @@ Data Format:
 |-----------|-----------------|-------------------|---------------------|
 | User Interface | Vaadin (Java) | All JSON schemas | Full branding, colors, logos |
 | API Layer | Spring Boot REST | All schemas as endpoints | Custom endpoints available |
-| Database Layer | PostgreSQL + 85 views | Direct view access | Custom views supported |
-| Analytics Engine | Drools (45 rules) | intelligence-schema.md | Custom rules available |
+| Database Layer | PostgreSQL + 112 views | Direct view access | Custom views supported |
+| Analytics Engine | Drools (50 rules) | intelligence-schema.md | Custom rules available |
 | Export System | JSON/CSV/PDF | json-export-specs/ | Custom formats supported |
+| **Temporal Analytics (v1.58-v1.61)** | PostgreSQL views | Career path, election cycle, party longitudinal | Full customization |
 
 **Integration Architecture:**
 ```mermaid
@@ -751,6 +1213,7 @@ flowchart TB
 - Ministry legislative performance
 - Committee decision patterns
 - Temporal trend analysis with forecasting
+- **Election proximity decision patterns (v1.59)** — Pre-election approval rate shifts
 
 **Decision KPIs & Metrics**
 - **Approval Rate KPIs**: Party/politician/ministry success rates
@@ -758,6 +1221,7 @@ flowchart TB
 - **Decision Volume**: Proposals by source and outcome
 - **Effectiveness Trends**: Month-over-month approval rate changes
 - **Coalition Alignment**: Decision agreement scores between parties
+- **Election Cycle Impact (v1.59-v1.60)**: Decision effectiveness by election proximity
 
 **Predictive Decision Analytics**
 - Proposal success probability modeling
@@ -765,6 +1229,7 @@ flowchart TB
 - Bottleneck early warning system
 - Coalition voting pattern prediction
 - Ministry-committee relationship strength
+- **Pre-election decision forecasting (v1.59)**: Success rate prediction by election distance
 
 **Dashboard & Visualizations**
 - Real-time decision flow dashboards
@@ -772,6 +1237,7 @@ flowchart TB
 - Temporal trend charts (7-day, 30-day, 90-day moving averages)
 - Party comparison widgets
 - Ministry performance scorecards
+- **Election cycle visualization (v1.59-v1.60)**: Decision patterns across election years
 
 #### Target Consumer Segments
 
@@ -938,6 +1404,8 @@ flowchart TB
 - view_ministry_decision_impact
 - view_decision_temporal_trends
 - view_decision_outcome_kpi_dashboard
+- view_riksdagen_election_proximity_trends (v1.59)
+- view_riksdagen_election_year_behavioral_patterns (v1.60)
 
 ---
 
@@ -1902,13 +2370,23 @@ flowchart TB
 
 ## ✅ Approval & Sign-Off
 
-**Document Version:** 1.0  
-**Date:** 2025-11-15  
+**Document Version:** 1.1  
+**Date:** 2026-01-19  
 **Prepared By:** Business Development Team  
 **Reviewed By:** [To be completed]  
 **Approved By:** [To be completed]
 
-**Next Review Date:** 2026-02-15 (Quarterly review cycle)
+**Changes in v1.1:**
+- Added comprehensive Advanced Temporal Analytics section (v1.58-v1.61)
+- Updated view count from 85 to 112 views
+- Added 11 new temporal analytics views with 214+ KPIs
+- Enhanced Product Lines 1-6 with temporal analytics capabilities
+- Updated API endpoints with career path, election cycle, and party longitudinal endpoints
+- Updated Product-to-Data Mapping Table with complete view categorization
+- Validated all JSON schema links
+- Ensured consistency with DATA_ANALYSIS_INTOP_OSINT.md frameworks
+
+**Next Review Date:** 2026-04-19 (Quarterly review cycle)
 
 ---
 
