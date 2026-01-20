@@ -209,7 +209,7 @@ This section documents advanced intelligence capabilities introduced across mult
 **Intelligence Value:** ⭐⭐⭐⭐⭐ VERY HIGH
 
 **Context:**  
-v1.40-v1.43 introduce foundational crisis resilience and risk intelligence capabilities to assess politician performance during high-stakes periods, track temporal risk evolution, and benchmark ministry productivity. These views provide META/META-level intelligence for government crisis team selection, predictive risk modeling, and executive performance assessment.
+v1.40-v1.43 introduce foundational crisis resilience and risk intelligence capabilities to assess politician performance during high-stakes periods, track temporal risk evolution, and benchmark ministry productivity. These views provide meta-level intelligence for government crisis team selection, predictive risk modeling, and executive performance assessment.
 
 **Key Views Added:**
 

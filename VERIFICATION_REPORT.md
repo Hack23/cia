@@ -83,12 +83,41 @@ grep -E "112 database views|112 views" BUSINESS_PRODUCT_DOCUMENT.md | wc -l
 **Status:** COMPLETE — 100% Accuracy  
 **Method:** Cross-referenced with DATABASE_VIEW_INTELLIGENCE_CATALOG.md
 
-**11 New Views Verified:**
+**22 Advanced Intelligence Views Verified:**
 ```bash
+# v1.40-v1.43 Crisis & Risk Intelligence Views
+grep -E "(view_riksdagen_crisis_resilience_indicators|view_riksdagen_intelligence_dashboard|view_risk_score_evolution|view_ministry_productivity_matrix|view_ministry_effectiveness_trends)" DATABASE_VIEW_INTELLIGENCE_CATALOG.md
+
+# v1.55 Seasonal Pattern Detection Views  
+grep -E "(view_riksdagen_seasonal_quarterly_activity|view_riksdagen_q4_election_year_comparison|view_riksdagen_seasonal_anomaly_detection)" DATABASE_VIEW_INTELLIGENCE_CATALOG.md
+
+# v1.57 Party Transition Tracking Views
+grep -E "(view_riksdagen_party_transition_history|view_riksdagen_party_defector_analysis|view_riksdagen_party_switcher_outcomes)" DATABASE_VIEW_INTELLIGENCE_CATALOG.md
+
+# v1.58-v1.61 Temporal Analytics Views
 grep -E "(view_riksdagen_politician_career_path_10level|view_riksdagen_election_proximity_trends|view_riksdagen_pre_election_quarterly_activity|view_riksdagen_seasonal_activity_patterns|view_riksdagen_election_year_behavioral_patterns|view_riksdagen_election_year_vs_midterm|view_riksdagen_election_year_anomalies|view_riksdagen_party_summary|view_riksdagen_party_longitudinal_performance|view_riksdagen_party_coalition_evolution|view_riksdagen_party_electoral_trends)" DATABASE_VIEW_INTELLIGENCE_CATALOG.md
 ```
 
 **Verification Results:**
+
+**v1.40-v1.43 Crisis & Risk Intelligence (5 views):**
+- ✅ `view_riksdagen_crisis_resilience_indicators` — Found in catalog
+- ✅ `view_riksdagen_intelligence_dashboard` — Found in catalog
+- ✅ `view_risk_score_evolution` — Found in catalog
+- ✅ `view_ministry_productivity_matrix` — Found in catalog
+- ✅ `view_ministry_effectiveness_trends` — Found in catalog
+
+**v1.55 Seasonal Pattern Detection (3 views):**
+- ✅ `view_riksdagen_seasonal_quarterly_activity` — Found in catalog
+- ✅ `view_riksdagen_q4_election_year_comparison` — Found in catalog
+- ✅ `view_riksdagen_seasonal_anomaly_detection` — Found in catalog
+
+**v1.57 Party Transition Tracking (3 views):**
+- ✅ `view_riksdagen_party_transition_history` — Found in catalog
+- ✅ `view_riksdagen_party_defector_analysis` — Found in catalog
+- ✅ `view_riksdagen_party_switcher_outcomes` — Found in catalog
+
+**v1.58-v1.61 Temporal Analytics (11 views):**
 - ✅ `view_riksdagen_politician_career_path_10level` — Found in catalog
 - ✅ `view_riksdagen_election_proximity_trends` — Found in catalog
 - ✅ `view_riksdagen_pre_election_quarterly_activity` — Found in catalog
@@ -101,7 +130,7 @@ grep -E "(view_riksdagen_politician_career_path_10level|view_riksdagen_election_
 - ✅ `view_riksdagen_party_coalition_evolution` — Found in catalog
 - ✅ `view_riksdagen_party_electoral_trends` — Found in catalog
 
-**Accuracy:** 11/11 = 100% ✅
+**Accuracy:** 22/22 = 100% ✅
 
 ### ✅ 4. JSON Schema Links Validated
 **Status:** COMPLETE — 100% Validation  
@@ -206,7 +235,7 @@ Date: 2025-11-15 → 2026-01-19
 - ✅ No incorrect view names (100% validation)
 - ✅ Consistent formatting (Markdown standards)
 - ✅ Complete cross-references
-- ✅ Comprehensive examples (4 SQL examples)
+- ✅ Comprehensive examples (7 SQL code blocks with multiple examples)
 - ✅ Clear use cases for all features
 
 ### Technical Accuracy
@@ -217,7 +246,7 @@ Date: 2025-11-15 → 2026-01-19
 - ✅ All SQL examples syntactically correct
 
 ### Completeness
-- ✅ All 11 temporal analytics views documented
+- ✅ All 22 advanced intelligence views documented (including 11 temporal analytics views from v1.58-v1.61)
 - ✅ All 6 product lines updated
 - ✅ All 6 intelligence frameworks covered
 - ✅ All success criteria met
@@ -235,7 +264,7 @@ Date: 2025-11-15 → 2026-01-19
 ### Modified Files
 1. `/home/runner/work/cia/cia/BUSINESS_PRODUCT_DOCUMENT.md`
    - Version: 1.0 → 1.1
-   - Size: 1,930 lines → 2,902 lines (+972 lines, +50.4%)
+   - Size: 1,930 lines → 2,875 lines (+945 lines, +49.0%)
    - Changes: 10 sections updated, 1 new comprehensive section added (Advanced Intelligence Views)
 
 ### Created Files
