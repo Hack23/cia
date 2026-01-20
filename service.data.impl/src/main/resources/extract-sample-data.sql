@@ -219,37 +219,39 @@ BEGIN
     -- Default to column name if no order_by specified
     v_order_by := COALESCE(p_order_by, p_column_name);
     
-    -- Build dynamic SQL to extract percentile samples
+    -- Build dynamic SQL to extract percentile samples using PERCENT_RANK() for efficiency
+    -- PERCENT_RANK() is more efficient than NTILE(100) as it directly calculates percentile position
     v_sql := format('
-        WITH percentiles AS (
+        WITH ranked_data AS (
             SELECT 
                 %I AS column_value,
                 row_to_json(%I.*)::jsonb AS row_data,
-                NTILE(100) OVER (ORDER BY %I) AS percentile_bucket
+                PERCENT_RANK() OVER (ORDER BY %I) AS pct_rank
             FROM %I
             WHERE %I IS NOT NULL
         ),
         target_percentiles AS (
-            SELECT unnest(ARRAY[1, 10, 25, 50, 75, 90, 99]) AS target_pct
+            SELECT unnest(ARRAY[0.01, 0.10, 0.25, 0.50, 0.75, 0.90, 0.99]) AS target_pct,
+                   unnest(ARRAY[''P1'', ''P10'', ''P25'', ''P50'', ''P75'', ''P90'', ''P99'']) AS percentile_label
         ),
         closest_rows AS (
-            SELECT DISTINCT ON (tp.target_pct)
-                ''P'' || tp.target_pct AS percentile_label,
-                p.column_value AS percentile_value,
-                p.row_data
+            SELECT DISTINCT ON (tp.percentile_label)
+                tp.percentile_label,
+                rd.column_value AS percentile_value,
+                rd.row_data
             FROM target_percentiles tp
             CROSS JOIN LATERAL (
-                SELECT column_value, row_data, percentile_bucket
-                FROM percentiles
-                WHERE percentile_bucket >= tp.target_pct
-                ORDER BY percentile_bucket
+                SELECT column_value, row_data, pct_rank
+                FROM ranked_data
+                WHERE pct_rank >= tp.target_pct
+                ORDER BY pct_rank, %I
                 LIMIT 1
-            ) p
+            ) rd
         )
         SELECT percentile_label, percentile_value, row_data
         FROM closest_rows
         ORDER BY percentile_value
-    ', p_column_name, p_table_name, p_column_name, p_table_name, p_column_name);
+    ', p_column_name, p_table_name, p_column_name, p_table_name, p_column_name, v_order_by);
     
     RETURN QUERY EXECUTE v_sql;
 EXCEPTION WHEN OTHERS THEN

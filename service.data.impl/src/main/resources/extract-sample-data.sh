@@ -288,11 +288,16 @@ echo "📋 Generating validation coverage report..."
 
 COVERAGE_REPORT="validation_coverage_report.csv"
 
+# Prepare properly escaped details for CSV
+TEMPORAL_DETAILS=$( [ -n "$EARLIEST_YEAR" ] && [ -n "$LATEST_YEAR" ] && echo "PASS: $EARLIEST_YEAR-$LATEST_YEAR ($YEAR_RANGE years)" || echo "FAIL: Unable to determine" )
+PARTY_DETAILS=$( [ -z "$MISSING_PARTIES" ] && echo "PASS: All 8 parties present" || echo "WARNING: Missing parties -$MISSING_PARTIES" )  # Use dash instead of comma separator
+PERCENTILE_DETAILS=$( [ "$PERCENTILE_FILES" -gt 0 ] && echo "PASS: $PERCENTILE_FILES files generated" || echo "FAIL: No percentile files" )
+
 cat > "$COVERAGE_REPORT" << EOF
 validation_type,status,details
-temporal_coverage,$( [ -n "$EARLIEST_YEAR" ] && [ -n "$LATEST_YEAR" ] && echo "PASS: $EARLIEST_YEAR-$LATEST_YEAR ($YEAR_RANGE years)" || echo "FAIL: Unable to determine" )
-party_coverage,$( [ -z "$MISSING_PARTIES" ] && echo "PASS: All 8 parties present" || echo "WARNING: Missing parties:$MISSING_PARTIES" )
-percentile_coverage,$( [ "$PERCENTILE_FILES" -gt 0 ] && echo "PASS: $PERCENTILE_FILES files generated" || echo "FAIL: No percentile files" )
+temporal_coverage,"$TEMPORAL_DETAILS"
+party_coverage,"$PARTY_DETAILS"
+percentile_coverage,"$PERCENTILE_DETAILS"
 EOF
 
 echo "   ✓ Generated: $COVERAGE_REPORT"
