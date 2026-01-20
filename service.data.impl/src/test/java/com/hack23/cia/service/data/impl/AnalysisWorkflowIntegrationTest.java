@@ -86,17 +86,17 @@ public class AnalysisWorkflowIntegrationTest {
 		private Integer riskAssessments;
 		private List<Map<String, Object>> finalReport;
 		
-		public void setPersonCount(Integer count) { this.personCount = count; }
-		public Integer getPersonCount() { return this.personCount; }
+		public synchronized void setPersonCount(Integer count) { this.personCount = count; }
+		public synchronized Integer getPersonCount() { return this.personCount; }
 		
-		public void setVotingSummary(Map<String, Integer> summary) { this.votingSummary = summary; }
-		public Map<String, Integer> getVotingSummary() { return this.votingSummary; }
+		public synchronized void setVotingSummary(Map<String, Integer> summary) { this.votingSummary = summary; }
+		public synchronized Map<String, Integer> getVotingSummary() { return this.votingSummary; }
 		
-		public void setRiskAssessments(Integer assessments) { this.riskAssessments = assessments; }
-		public Integer getRiskAssessments() { return this.riskAssessments; }
+		public synchronized void setRiskAssessments(Integer assessments) { this.riskAssessments = assessments; }
+		public synchronized Integer getRiskAssessments() { return this.riskAssessments; }
 		
-		public void setFinalReport(List<Map<String, Object>> report) { this.finalReport = report; }
-		public List<Map<String, Object>> getFinalReport() { return this.finalReport; }
+		public synchronized void setFinalReport(List<Map<String, Object>> report) { this.finalReport = report; }
+		public synchronized List<Map<String, Object>> getFinalReport() { return this.finalReport; }
 	}
 	
 	private WorkflowState workflowState = new WorkflowState();
@@ -367,25 +367,28 @@ public class AnalysisWorkflowIntegrationTest {
 	public void testEndToEndWorkflow() {
 		LOGGER.info("Test 5: Testing end-to-end workflow");
 		
-		// Verify all workflow stages completed
-		assertNotNull(workflowState.getPersonCount());
-		assertNotNull(workflowState.getVotingSummary());
-		assertNotNull(workflowState.getRiskAssessments());
-		assertNotNull(workflowState.getFinalReport());
+		// Retrieve workflow state once and verify all workflow stages completed
+		final Integer personCount = workflowState.getPersonCount();
+		final Map<String, Integer> votingSummary = workflowState.getVotingSummary();
+		final Integer riskAssessments = workflowState.getRiskAssessments();
+		final List<Map<String, Object>> report = workflowState.getFinalReport();
 		
-		int personCount = workflowState.getPersonCount();
-		Map<String, Integer> votingSummary = workflowState.getVotingSummary();
-		int riskAssessments = workflowState.getRiskAssessments();
-		List<Map<String, Object>> report = workflowState.getFinalReport();
+		assertNotNull(personCount, "Person count must not be null");
+		assertNotNull(votingSummary, "Voting summary must not be null");
+		assertNotNull(riskAssessments, "Risk assessments count must not be null");
+		assertNotNull(report, "Final report must not be null");
+		
+		final int personCountValue = personCount;
+		final int riskAssessmentsValue = riskAssessments;
 		
 		// Validate data consistency across workflow
-		assertThat(personCount).isEqualTo(3);
-		assertThat(riskAssessments).isEqualTo(personCount);
-		assertThat(report).hasSize(personCount);
+		assertThat(personCountValue).isEqualTo(3);
+		assertThat(riskAssessmentsValue).isEqualTo(personCountValue);
+		assertThat(report).hasSize(personCountValue);
 		
 		LOGGER.info("End-to-end workflow validated successfully");
 		LOGGER.info("Workflow summary: {} persons -> {} risk assessments -> {} report entries",
-			personCount, riskAssessments, report.size());
+			personCountValue, riskAssessmentsValue, report.size());
 	}
 
 	/**

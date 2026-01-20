@@ -9,7 +9,6 @@ on:
   pull_request:
     branches:
       - master
-      - main
     paths:
       - 'service.data.impl/**'
       - 'service.impl/**'
@@ -170,9 +169,49 @@ jobs:
           if [ -f service.data.impl/target/site/jacoco/jacoco.xml ]; then
             echo "✅ JaCoCo XML report found"
             
-            # Extract coverage percentages from XML (simplified check)
-            LINE_COVERAGE=$(grep -oP 'type="LINE".*?counter="COVEREDRATIO".*?value="\K[0-9.]+' service.data.impl/target/site/jacoco/jacoco.xml | head -1 || echo "0")
-            BRANCH_COVERAGE=$(grep -oP 'type="BRANCH".*?counter="COVEREDRATIO".*?value="\K[0-9.]+' service.data.impl/target/site/jacoco/jacoco.xml | head -1 || echo "0")
+            # Extract coverage percentages from XML using Python for reliable parsing
+            LINE_COVERAGE=$(python3 - << 'PY'
+import xml.etree.ElementTree as ET
+import sys
+
+try:
+    tree = ET.parse('service.data.impl/target/site/jacoco/jacoco.xml')
+    root = tree.getroot()
+    
+    for counter in root.iter('counter'):
+        if counter.get('type') == 'LINE':
+            missed = int(counter.get('missed', '0'))
+            covered = int(counter.get('covered', '0'))
+            total = missed + covered
+            if total > 0:
+                print(f"{(covered / total) * 100:.2f}")
+                sys.exit(0)
+    print("0")
+except Exception as e:
+    print("0")
+PY
+)
+            BRANCH_COVERAGE=$(python3 - << 'PY'
+import xml.etree.ElementTree as ET
+import sys
+
+try:
+    tree = ET.parse('service.data.impl/target/site/jacoco/jacoco.xml')
+    root = tree.getroot()
+    
+    for counter in root.iter('counter'):
+        if counter.get('type') == 'BRANCH':
+            missed = int(counter.get('missed', '0'))
+            covered = int(counter.get('covered', '0'))
+            total = missed + covered
+            if total > 0:
+                print(f"{(covered / total) * 100:.2f}")
+                sys.exit(0)
+    print("0")
+except Exception as e:
+    print("0")
+PY
+)
             
             echo "📊 Line Coverage: ${LINE_COVERAGE}%"
             echo "📊 Branch Coverage: ${BRANCH_COVERAGE}%"

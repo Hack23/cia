@@ -79,7 +79,6 @@ All integration tests use Testcontainers to provide isolated PostgreSQL database
 - Testcontainers 1.20.4
 - AssertJ 3.27.3
 - OpenCSV 5.10
-- PostgreSQL JDBC Driver 42.7.9
 
 ## Running Tests
 

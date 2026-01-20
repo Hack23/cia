@@ -21,6 +21,7 @@ package com.hack23.cia.service.data.impl;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -98,10 +99,7 @@ public class DroolsRiskRuleIntegrationTest {
 		
 		// Load resignation prediction test data
 		Path testDataPath = Paths.get(PREDICTIVE_DIR + "test_4_1_resignation_prediction.csv");
-		if (!Files.exists(testDataPath)) {
-			LOGGER.warn("Test data file not found: {}", testDataPath);
-			return;
-		}
+		assumeTrue(Files.exists(testDataPath), "Test data file not found: " + testDataPath);
 		
 		List<ResignationTestCase> testCases = loadResignationTestCases(testDataPath);
 		assertThat(testCases).isNotEmpty();
@@ -181,10 +179,7 @@ public class DroolsRiskRuleIntegrationTest {
 		LOGGER.info("Test 3: Testing multi-dimensional risk profile");
 		
 		Path testDataPath = Paths.get(PREDICTIVE_DIR + "test_4_1b_politician_risk_profiles.csv");
-		if (!Files.exists(testDataPath)) {
-			LOGGER.warn("Test data file not found: {}", testDataPath);
-			return;
-		}
+		assumeTrue(Files.exists(testDataPath), "Test data file not found: " + testDataPath);
 		
 		List<MultiDimensionalRiskProfile> profiles = loadMultiDimensionalProfiles(testDataPath);
 		assertThat(profiles).isNotEmpty();
@@ -361,11 +356,15 @@ public class DroolsRiskRuleIntegrationTest {
 			List<String[]> allLines = reader.readAll();
 			
 			for (String[] line : allLines) {
-				ResignationTestCase testCase = new ResignationTestCase();
-				testCase.personId = line[0];
-				testCase.riskScore = Double.parseDouble(line[1]);
-				testCase.actualResigned = "TRUE".equalsIgnoreCase(line[2]);
-				cases.add(testCase);
+				try {
+					ResignationTestCase testCase = new ResignationTestCase();
+					testCase.personId = line[0];
+					testCase.riskScore = Double.parseDouble(line[1]);
+					testCase.actualResigned = "TRUE".equalsIgnoreCase(line[2]);
+					cases.add(testCase);
+				} catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+					LOGGER.warn("Skipping invalid line in resignation test data: {}", String.join(",", line));
+				}
 			}
 		}
 		
@@ -381,12 +380,16 @@ public class DroolsRiskRuleIntegrationTest {
 			List<String[]> allLines = reader.readAll();
 			
 			for (String[] line : allLines) {
-				MultiDimensionalRiskProfile profile = new MultiDimensionalRiskProfile();
-				profile.personId = line[0];
-				profile.productivityScore = Double.parseDouble(line[1]);
-				profile.participationScore = Double.parseDouble(line[2]);
-				profile.expectedRiskClass = line[3];
-				profiles.add(profile);
+				try {
+					MultiDimensionalRiskProfile profile = new MultiDimensionalRiskProfile();
+					profile.personId = line[0];
+					profile.productivityScore = Double.parseDouble(line[1]);
+					profile.participationScore = Double.parseDouble(line[2]);
+					profile.expectedRiskClass = line[3];
+					profiles.add(profile);
+				} catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+					LOGGER.warn("Skipping invalid line in risk profile data: {}", String.join(",", line));
+				}
 			}
 		}
 		

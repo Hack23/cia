@@ -21,6 +21,7 @@ package com.hack23.cia.service.data.impl;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.io.File;
 import java.io.IOException;
@@ -358,10 +359,7 @@ public class DataExtractionIntegrationTest {
 	 * @throws IOException if file cannot be read
 	 */
 	private void validateCsvFile(Path csvPath, List<String> requiredColumns) throws IOException {
-		if (!Files.exists(csvPath)) {
-			LOGGER.warn("CSV file does not exist: {}", csvPath);
-			return;
-		}
+		assumeTrue(Files.exists(csvPath), "CSV file does not exist: " + csvPath);
 		
 		try (CSVReader reader = new CSVReader(Files.newBufferedReader(csvPath))) {
 			String[] headers = reader.readNext();

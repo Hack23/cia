@@ -355,24 +355,26 @@ public class TemporalViewChainIntegrationTest {
 				);
 				
 				// Query chain: base -> view1 -> aggregation
-				ResultSet rs1 = stmt.executeQuery(
-					"SELECT SUM(vote_count) as total FROM view_vote_daily_summary"
-				);
-				rs1.next();
-				int totalFromView = rs1.getInt("total");
-				
-				// Query chain: base -> view2
-				ResultSet rs2 = stmt.executeQuery(
-					"SELECT SUM(total_votes) as total FROM view_person_vote_summary"
-				);
-				rs2.next();
-				int totalFromPersonView = rs2.getInt("total");
-				
-				// Both should match
-				assertThat(totalFromView).isEqualTo(totalFromPersonView);
-				assertThat(totalFromView).isEqualTo(4);
-				
-				LOGGER.info("View dependency chain validated successfully");
+				try (ResultSet rs1 = stmt.executeQuery(
+						"SELECT SUM(vote_count) as total FROM view_vote_daily_summary"
+						)) {
+					rs1.next();
+					int totalFromView = rs1.getInt("total");
+
+					// Query chain: base -> view2
+					try (ResultSet rs2 = stmt.executeQuery(
+							"SELECT SUM(total_votes) as total FROM view_person_vote_summary"
+							)) {
+						rs2.next();
+						int totalFromPersonView = rs2.getInt("total");
+
+						// Both should match
+						assertThat(totalFromView).isEqualTo(totalFromPersonView);
+						assertThat(totalFromView).isEqualTo(4);
+
+						LOGGER.info("View dependency chain validated successfully");
+					}
+				}
 			}
 		});
 	}
