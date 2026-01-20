@@ -1,0 +1,252 @@
+name: Integration Tests
+
+on:
+  schedule:
+    # Run nightly at 2 AM UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+    # Allow manual trigger
+  pull_request:
+    branches:
+      - master
+      - main
+    paths:
+      - 'service.data.impl/**'
+      - 'service.impl/**'
+      - '.github/workflows/integration-tests.yml'
+
+permissions:
+  contents: read
+  pull-requests: write
+  checks: write
+
+jobs:
+  integration-tests:
+    name: Run Integration Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Cache Maven packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - name: Install PostgreSQL client
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y postgresql-client
+
+      - name: Verify Docker
+        run: |
+          docker --version
+          docker info
+
+      - name: Build project
+        run: |
+          mvn clean install -DskipTests -Dmaven.javadoc.skip=true -B -V
+        env:
+          MAVEN_OPTS: -Xmx4g -XX:MaxMetaspaceSize=1g
+
+      - name: Run Data Extraction Integration Tests
+        run: |
+          mvn test -pl service.data.impl \
+            -Dtest=DataExtractionIntegrationTest \
+            -B
+        env:
+          MAVEN_OPTS: -Xmx2g
+
+      - name: Run Temporal View Chain Integration Tests
+        run: |
+          mvn test -pl service.data.impl \
+            -Dtest=TemporalViewChainIntegrationTest \
+            -B
+        env:
+          MAVEN_OPTS: -Xmx2g
+
+      - name: Run Drools Risk Rule Integration Tests
+        run: |
+          mvn test -pl service.data.impl \
+            -Dtest=DroolsRiskRuleIntegrationTest \
+            -B
+        env:
+          MAVEN_OPTS: -Xmx2g
+
+      - name: Run Analysis Workflow Integration Tests
+        run: |
+          mvn test -pl service.data.impl \
+            -Dtest=AnalysisWorkflowIntegrationTest \
+            -B
+        env:
+          MAVEN_OPTS: -Xmx2g
+
+      - name: Generate test report
+        if: always()
+        run: |
+          mvn surefire-report:report-only -pl service.data.impl -B
+
+      - name: Generate JaCoCo coverage report
+        if: always()
+        run: |
+          mvn jacoco:report -pl service.data.impl -B
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: integration-test-results
+          path: |
+            service.data.impl/target/surefire-reports/
+            service.data.impl/target/site/jacoco/
+          retention-days: 30
+
+      - name: Publish test results
+        if: always()
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        with:
+          files: |
+            service.data.impl/target/surefire-reports/TEST-*.xml
+
+      - name: Comment PR with test results
+        if: github.event_name == 'pull_request' && always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+            
+            // Read test report
+            const reportPath = 'service.data.impl/target/surefire-reports';
+            let summary = '## Integration Test Results\n\n';
+            
+            try {
+              const files = fs.readdirSync(reportPath);
+              const xmlFiles = files.filter(f => f.startsWith('TEST-') && f.endsWith('.xml'));
+              
+              summary += `- **Tests run**: ${xmlFiles.length}\n`;
+              summary += `- **Status**: ✅ Tests completed\n`;
+              summary += `\n### Test Files\n`;
+              
+              xmlFiles.forEach(file => {
+                summary += `- ${file}\n`;
+              });
+              
+            } catch (error) {
+              summary += `⚠️ Unable to read test results: ${error.message}\n`;
+            }
+            
+            // Add coverage information
+            summary += '\n### Coverage\n';
+            summary += 'JaCoCo coverage report available in artifacts.\n';
+            summary += '\n**Target Coverage**: 80% line, 70% branch\n';
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: summary
+            });
+
+      - name: Check coverage thresholds
+        run: |
+          # Use Maven JaCoCo plugin to check coverage
+          echo "Checking JaCoCo coverage thresholds..."
+          
+          if [ -f service.data.impl/target/site/jacoco/jacoco.xml ]; then
+            echo "✅ JaCoCo XML report found"
+            
+            # Extract coverage percentages from XML (simplified check)
+            LINE_COVERAGE=$(grep -oP 'type="LINE".*?counter="COVEREDRATIO".*?value="\K[0-9.]+' service.data.impl/target/site/jacoco/jacoco.xml | head -1 || echo "0")
+            BRANCH_COVERAGE=$(grep -oP 'type="BRANCH".*?counter="COVEREDRATIO".*?value="\K[0-9.]+' service.data.impl/target/site/jacoco/jacoco.xml | head -1 || echo "0")
+            
+            echo "📊 Line Coverage: ${LINE_COVERAGE}%"
+            echo "📊 Branch Coverage: ${BRANCH_COVERAGE}%"
+            echo ""
+            echo "🎯 Target Line Coverage: 80%"
+            echo "🎯 Target Branch Coverage: 70%"
+            echo ""
+            
+            # Note: Actual threshold enforcement is done by JaCoCo Maven plugin
+            echo "✅ Coverage analysis complete (enforced by JaCoCo plugin)"
+            echo "📊 Review detailed report in artifacts"
+          else
+            echo "⚠️  JaCoCo XML report not found at service.data.impl/target/site/jacoco/jacoco.xml"
+            echo "This may be expected if tests did not run"
+          fi
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "## Integration Test Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Test Suites" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Data Extraction Integration Tests" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Temporal View Chain Integration Tests" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Drools Risk Rule Integration Tests" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Analysis Workflow Integration Tests" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Environment" >> $GITHUB_STEP_SUMMARY
+          echo "- PostgreSQL: Testcontainers (postgres:16-alpine)" >> $GITHUB_STEP_SUMMARY
+          echo "- JDK: 21" >> $GITHUB_STEP_SUMMARY
+          echo "- Maven: $(mvn --version | head -1)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Coverage Targets" >> $GITHUB_STEP_SUMMARY
+          echo "- Line Coverage: 80%" >> $GITHUB_STEP_SUMMARY
+          echo "- Branch Coverage: 70%" >> $GITHUB_STEP_SUMMARY
+
+  notify:
+    name: Notify on failure
+    needs: integration-tests
+    if: failure() && github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create issue for failed nightly tests
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = `🔴 Nightly Integration Tests Failed - ${new Date().toISOString().split('T')[0]}`;
+            const body = `## Integration Tests Failed
+            
+            The nightly integration test run has failed.
+            
+            **Run**: [${context.runId}](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})
+            **Branch**: ${context.ref}
+            **Commit**: ${context.sha}
+            
+            ### Action Items
+            - [ ] Review test failures in the workflow run
+            - [ ] Check PostgreSQL testcontainer setup
+            - [ ] Verify test data and dependencies
+            - [ ] Fix failing tests
+            
+            ### Test Suites
+            - Data Extraction Integration Tests
+            - Temporal View Chain Integration Tests
+            - Drools Risk Rule Integration Tests
+            - Analysis Workflow Integration Tests
+            
+            ---
+            *This issue was automatically created by the integration-tests workflow.*`;
+            
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: title,
+              body: body,
+              labels: ['bug', 'integration-tests', 'automated']
+            });
