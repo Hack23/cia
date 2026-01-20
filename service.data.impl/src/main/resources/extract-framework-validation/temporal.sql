@@ -436,3 +436,125 @@ COPY (
 
 \echo '>>> Exported election year vs midterm behavioral patterns'
 \echo ''
+
+-- ============================================================================
+-- TEST 1.7: Election Year Anomalies (Advanced View v1.59)
+-- Expected Outcome: Identify unusual statistical patterns in election years
+-- Sample Size: 50 cases
+-- ============================================================================
+\echo '>>> Test Case 1.7: Election Year Anomalies - Statistical Outlier Detection'
+\echo '>>> Expected Outcome: Detect statistically significant anomalies in election years'
+
+COPY (
+    SELECT 
+        person_id,
+        first_name,
+        last_name,
+        party,
+        election_year,
+        ROUND(avg_absence_rate::numeric, 2) AS avg_absence_rate,
+        ROUND(avg_win_rate::numeric, 2) AS avg_win_rate,
+        ROUND(avg_rebel_rate::numeric, 2) AS avg_rebel_rate,
+        ROUND(z_score_absence::numeric, 2) AS z_score_absence,
+        ROUND(z_score_win::numeric, 2) AS z_score_win,
+        ROUND(z_score_rebel::numeric, 2) AS z_score_rebel,
+        ROUND(composite_anomaly_score::numeric, 2) AS composite_anomaly_score,
+        cia_classify_anomaly(composite_anomaly_score) AS expected_anomaly_level,
+        anomaly_dimensions,
+        'election_year_anomaly_detection' AS test_case,
+        CASE 
+            WHEN composite_anomaly_score >= 2.0 THEN 'PASS'
+            ELSE 'BASELINE'
+        END AS validation_label
+    FROM view_riksdagen_election_year_anomalies
+    WHERE election_year >= 2010  -- Focus on recent elections
+      AND composite_anomaly_score > 0
+    ORDER BY composite_anomaly_score DESC
+    LIMIT cia_get_config_value('sample_size_default')::INTEGER
+) TO '/workspaces/cia/service.data.impl/sample-data/framework-validation/temporal/test_1_7_election_year_anomalies.csv' WITH CSV HEADER;
+
+\echo '>>> Exported election year anomaly detections'
+\echo ''
+
+-- ============================================================================
+-- TEST 1.8: Election Year vs Midterm Direct Comparison (Advanced View v1.59)
+-- Expected Outcome: Direct statistical comparison between election/midterm years
+-- Sample Size: 60 cases
+-- ============================================================================
+\echo '>>> Test Case 1.8: Election Year vs Midterm - Direct Statistical Comparison'
+\echo '>>> Expected Outcome: Quantify behavioral differences with statistical significance'
+
+COPY (
+    SELECT 
+        party,
+        year_pair,
+        election_year,
+        midterm_year,
+        ROUND(election_avg_absence::numeric, 2) AS election_avg_absence,
+        ROUND(midterm_avg_absence::numeric, 2) AS midterm_avg_absence,
+        ROUND(absence_difference::numeric, 2) AS absence_difference,
+        ROUND(absence_pct_change::numeric, 2) AS absence_pct_change,
+        ROUND(election_avg_discipline::numeric, 2) AS election_avg_discipline,
+        ROUND(midterm_avg_discipline::numeric, 2) AS midterm_avg_discipline,
+        ROUND(discipline_difference::numeric, 2) AS discipline_difference,
+        ROUND(statistical_significance::numeric, 4) AS statistical_significance,
+        CASE 
+            WHEN statistical_significance < 0.05 AND ABS(absence_difference) > 5 THEN 'SIGNIFICANT_DIFF'
+            WHEN statistical_significance < 0.10 AND ABS(absence_difference) > 3 THEN 'MODERATE_DIFF'
+            ELSE 'NO_SIGNIFICANT_DIFF'
+        END AS expected_significance,
+        'election_midterm_comparison' AS test_case,
+        CASE 
+            WHEN statistical_significance < 0.10 THEN 'PASS'
+            ELSE 'BASELINE'
+        END AS validation_label
+    FROM view_riksdagen_election_year_vs_midterm
+    WHERE year_pair >= '2010-2011'  -- Focus on recent decade
+      AND ABS(absence_difference) > 0
+    ORDER BY statistical_significance ASC, ABS(absence_difference) DESC
+    LIMIT cia_get_config_value('sample_size_medium')::INTEGER
+) TO '/workspaces/cia/service.data.impl/sample-data/framework-validation/temporal/test_1_8_election_vs_midterm.csv' WITH CSV HEADER;
+
+\echo '>>> Exported election vs midterm statistical comparisons'
+\echo ''
+
+-- ============================================================================
+-- TEST 1.9: Seasonal Activity Patterns (Advanced View v1.61)
+-- Expected Outcome: Identify recurring seasonal parliamentary activity patterns
+-- Sample Size: 100 cases
+-- ============================================================================
+\echo '>>> Test Case 1.9: Seasonal Activity Patterns - Parliamentary Session Cycles'
+\echo '>>> Expected Outcome: Detect autumn peaks and summer lulls in parliamentary activity'
+
+COPY (
+    SELECT 
+        year,
+        quarter,
+        month,
+        season,
+        ROUND(avg_daily_decisions::numeric, 2) AS avg_daily_decisions,
+        ROUND(avg_absence_rate::numeric, 2) AS avg_absence_rate,
+        ROUND(total_decisions::numeric, 0) AS total_decisions,
+        ROUND(seasonal_baseline::numeric, 2) AS seasonal_baseline,
+        ROUND(deviation_from_baseline::numeric, 2) AS deviation_from_baseline,
+        ROUND(seasonal_index::numeric, 2) AS seasonal_index,
+        CASE 
+            WHEN season = 'AUTUMN' AND seasonal_index > 1.2 THEN 'HIGH_ACTIVITY_AUTUMN'
+            WHEN season = 'SPRING' AND seasonal_index > 1.0 THEN 'MODERATE_ACTIVITY_SPRING'
+            WHEN season = 'SUMMER' AND seasonal_index < 0.5 THEN 'LOW_ACTIVITY_SUMMER'
+            WHEN season = 'WINTER' AND seasonal_index BETWEEN 0.8 AND 1.2 THEN 'NORMAL_ACTIVITY_WINTER'
+            ELSE 'ATYPICAL_PATTERN'
+        END AS expected_seasonal_pattern,
+        'seasonal_activity_analysis' AS test_case,
+        CASE 
+            WHEN ABS(deviation_from_baseline) >= 10 THEN 'PASS'
+            ELSE 'BASELINE'
+        END AS validation_label
+    FROM view_riksdagen_seasonal_activity_patterns
+    WHERE year >= 2010  -- Focus on recent decade
+    ORDER BY year DESC, quarter DESC
+    LIMIT cia_get_config_value('sample_size_large')::INTEGER
+) TO '/workspaces/cia/service.data.impl/sample-data/framework-validation/temporal/test_1_9_seasonal_patterns.csv' WITH CSV HEADER;
+
+\echo '>>> Exported seasonal parliamentary activity patterns'
+\echo ''

@@ -48,18 +48,26 @@
 -- STEP 2: Execute Framework Validation Tests
 -- ============================================================================
 
--- Framework 1: Temporal Analysis (7 test cases: updated with election views)
+-- Framework 1: Temporal Analysis (10 test cases: complete v1.58-v1.61 coverage)
 --   Tests 1.1-1.4: Original trend/pattern/anomaly detection
 --   Test 1.5: NEW - Election proximity behavioral trends (v1.58)
 --   Test 1.6: NEW - Election year vs midterm patterns (v1.59)
+--   Test 1.7: PHASE2 - Election year anomalies (v1.59)
+--   Test 1.8: PHASE2 - Election vs midterm direct comparison (v1.59)
+--   Test 1.9: PHASE2 - Seasonal activity patterns (v1.61)
 \i service.data.impl/src/main/resources/extract-framework-validation/temporal.sql
 
--- Framework 2: Comparative Analysis (4 test cases: added longitudinal view)
+-- Framework 2: Comparative Analysis (7 test cases: complete party analysis)
 --   Tests 2.1-2.3: Original party/peer/momentum analysis
 --   Test 2.4: NEW - Party longitudinal performance (v1.60)
+--   Test 2.5: PHASE2 - Party coalition evolution (v1.59)
+--   Test 2.6: PHASE2 - Party electoral trends (v1.60)
+--   Test 2.7: PHASE2 - Party summary metrics (v1.60)
 \i service.data.impl/src/main/resources/extract-framework-validation/comparative.sql
 
--- Framework 3: Pattern Recognition (2 test cases: behavioral clustering)
+-- Framework 3: Pattern Recognition (3 test cases: behavioral & career patterns)
+--   Tests 3.1-3.2: Original behavioral clustering & rebellion
+--   Test 3.3: PHASE2 - Career path 10-level classification (v1.58)
 \i service.data.impl/src/main/resources/extract-framework-validation/pattern.sql
 
 -- Framework 4: Predictive Intelligence (4 test cases: added pre-election)
@@ -148,6 +156,33 @@ COPY (
         'temporal/test_1_6_election_year_patterns.csv' AS data_file
     UNION ALL
     SELECT 
+        'Temporal Analysis' AS framework,
+        'Test 1.7' AS test_id,
+        'Election Year Anomalies' AS test_name,
+        'Statistical outlier detection in election years (v1.59 view)' AS test_description,
+        '90% confidence' AS expected_accuracy,
+        50 AS sample_size,
+        'temporal/test_1_7_election_year_anomalies.csv' AS data_file
+    UNION ALL
+    SELECT 
+        'Temporal Analysis' AS framework,
+        'Test 1.8' AS test_id,
+        'Election vs Midterm Direct Comparison' AS test_name,
+        'Statistical significance testing between election/midterm years (v1.59 view)' AS test_description,
+        '85% confidence' AS expected_accuracy,
+        60 AS sample_size,
+        'temporal/test_1_8_election_vs_midterm.csv' AS data_file
+    UNION ALL
+    SELECT 
+        'Temporal Analysis' AS framework,
+        'Test 1.9' AS test_id,
+        'Seasonal Activity Patterns' AS test_name,
+        'Parliamentary session cycles and seasonal trends (v1.61 view)' AS test_description,
+        '95% confidence' AS expected_accuracy,
+        100 AS sample_size,
+        'temporal/test_1_9_seasonal_patterns.csv' AS data_file
+    UNION ALL
+    SELECT 
         'Comparative Analysis' AS framework,
         'Test 2.1' AS test_id,
         'Party Performance Rankings' AS test_name,
@@ -184,6 +219,33 @@ COPY (
         'comparative/test_2_4_party_longitudinal.csv' AS data_file
     UNION ALL
     SELECT 
+        'Comparative Analysis' AS framework,
+        'Test 2.5' AS test_id,
+        'Party Coalition Evolution' AS test_name,
+        'Coalition membership changes and stability (v1.59 view)' AS test_description,
+        '85% confidence' AS expected_accuracy,
+        50 AS sample_size,
+        'comparative/test_2_5_coalition_evolution.csv' AS data_file
+    UNION ALL
+    SELECT 
+        'Comparative Analysis' AS framework,
+        'Test 2.6' AS test_id,
+        'Party Electoral Trends' AS test_name,
+        'Multi-election performance analysis (v1.60 view)' AS test_description,
+        '90% accuracy' AS expected_accuracy,
+        12 AS sample_size,
+        'comparative/test_2_6_electoral_trends.csv' AS data_file
+    UNION ALL
+    SELECT 
+        'Comparative Analysis' AS framework,
+        'Test 2.7' AS test_id,
+        'Party Summary Metrics' AS test_name,
+        'Comprehensive multi-dimensional party performance (v1.60 view)' AS test_description,
+        '95% accuracy' AS expected_accuracy,
+        12 AS sample_size,
+        'comparative/test_2_7_party_summary.csv' AS data_file
+    UNION ALL
+    SELECT 
         'Pattern Recognition' AS framework,
         'Test 3.1' AS test_id,
         'Behavioral Clustering' AS test_name,
@@ -200,6 +262,15 @@ COPY (
         '85% accuracy' AS expected_accuracy,
         80 AS sample_size,
         'pattern/test_3_2_rebellion_patterns.csv' AS data_file
+    UNION ALL
+    SELECT 
+        'Pattern Recognition' AS framework,
+        'Test 3.3' AS test_id,
+        'Career Path Classification' AS test_name,
+        '10-level hierarchical career trajectory analysis (v1.58 view)' AS test_description,
+        '90% accuracy' AS expected_accuracy,
+        80 AS sample_size,
+        'pattern/test_3_3_career_path.csv' AS data_file
     UNION ALL
     SELECT 
         'Predictive Intelligence' AS framework,

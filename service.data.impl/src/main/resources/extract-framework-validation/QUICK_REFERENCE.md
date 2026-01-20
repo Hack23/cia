@@ -15,12 +15,14 @@ psql -U postgres -d cia_dev \
 
 | Framework | Tests | Output Files | Primary Views |
 |-----------|-------|--------------|---------------|
-| **1. Temporal** | 7 | `temporal/test_1_*.csv` | election_proximity, behavioral_patterns |
-| **2. Comparative** | 4 | `comparative/test_2_*.csv` | party_longitudinal, party_momentum |
-| **3. Pattern** | 2 | `pattern/test_3_*.csv` | behavioral_trends |
+| **1. Temporal** | 10 | `temporal/test_1_*.csv` | election_proximity, election_anomalies, seasonal_patterns |
+| **2. Comparative** | 7 | `comparative/test_2_*.csv` | party_longitudinal, coalition_evolution, electoral_trends |
+| **3. Pattern** | 3 | `pattern/test_3_*.csv` | behavioral_trends, career_path |
 | **4. Predictive** | 4 | `predictive/test_4_*.csv` | pre_election_activity, risk_summary |
 | **5. Network** | 2 | `network/test_5_*.csv` | influence_metrics, coalition_alignment |
 | **6. Decision** | 2 | `decision/test_6_*.csv` | decision_temporal, decision_impact |
+
+**Total: 28 test cases** (increased from 18, +56%)
 
 ## 🔧 Configuration Quick Reference
 
@@ -68,7 +70,7 @@ extract-framework-validation/
 
 ## 🎯 Test Cases (21 Total)
 
-### Temporal Analysis (7 tests)
+### Temporal Analysis (10 tests)
 1. **1.1** - Upward Trend: Attendance improvement (50 cases)
 2. **1.2** - Downward Trend: Ministry effectiveness decline (30 cases)
 3. **1.2b** - Ministry Risk Evolution: Multi-quarter deterioration (35 cases)
@@ -76,16 +78,23 @@ extract-framework-validation/
 5. **1.4** - Anomalies: Sudden decision spikes (40 cases)
 6. **1.5** - 🆕 Election Proximity: Behavioral changes near elections (50 cases)
 7. **1.6** - 🆕 Election Year Patterns: Year type differences (60 cases)
+8. **1.7** - 🎯 Election Year Anomalies: Statistical outliers (50 cases) **PHASE2**
+9. **1.8** - 🎯 Election vs Midterm: Direct statistical comparison (60 cases) **PHASE2**
+10. **1.9** - 🎯 Seasonal Patterns: Parliamentary session cycles (100 cases) **PHASE2**
 
-### Comparative Analysis (4 tests)
+### Comparative Analysis (7 tests)
 1. **2.1** - Party Rankings: Win rate & discipline (all parties)
 2. **2.2** - Peer Comparison: Individual vs party average (60 cases)
 3. **2.3** - Party Momentum: 6-month vs 12-month trends (70 cases)
 4. **2.4** - 🆕 Party Longitudinal: Multi-year performance (all parties)
+5. **2.5** - 🎯 Coalition Evolution: Coalition stability analysis (50 cases) **PHASE2**
+6. **2.6** - 🎯 Electoral Trends: Multi-election performance (12 cases) **PHASE2**
+7. **2.7** - 🎯 Party Summary: Comprehensive metrics (12 cases) **PHASE2**
 
-### Pattern Recognition (2 tests)
+### Pattern Recognition (3 tests)
 1. **3.1** - Behavioral Clustering: Normal/anomalous/concerning (100 cases)
 2. **3.2** - Rebellion Patterns: Party defection rates (80 cases)
+3. **3.3** - 🎯 Career Path: 10-level classification (80 cases) **PHASE2**
 
 ### Predictive Intelligence (4 tests)
 1. **4.1** - Resignation Risk: Declining engagement (40 cases)
@@ -101,23 +110,23 @@ extract-framework-validation/
 1. **6.1** - Effectiveness Patterns: Decision quality trends (40 cases)
 2. **6.2** - Coalition Misalignment: Cross-bloc disagreements (40 cases)
 
-## 🆕 New Advanced Views Coverage (v1.58-v1.61)
+## 🆕 Advanced Views Coverage (v1.58-v1.61) - **100% COMPLETE**
 
 | View | Framework | Test | Status |
 |------|-----------|------|--------|
 | `view_riksdagen_election_proximity_trends` | Temporal | 1.5 | ✅ Covered |
 | `view_riksdagen_election_year_behavioral_patterns` | Temporal | 1.6 | ✅ Covered |
+| `view_riksdagen_election_year_anomalies` | Temporal | 1.7 | ✅ **PHASE2** |
+| `view_riksdagen_election_year_vs_midterm` | Temporal | 1.8 | ✅ **PHASE2** |
+| `view_riksdagen_seasonal_activity_patterns` | Temporal | 1.9 | ✅ **PHASE2** |
 | `view_riksdagen_party_longitudinal_performance` | Comparative | 2.4 | ✅ Covered |
+| `view_riksdagen_party_coalition_evolution` | Comparative | 2.5 | ✅ **PHASE2** |
+| `view_riksdagen_party_electoral_trends` | Comparative | 2.6 | ✅ **PHASE2** |
+| `view_riksdagen_party_summary` | Comparative | 2.7 | ✅ **PHASE2** |
+| `view_riksdagen_politician_career_path_10level` | Pattern | 3.3 | ✅ **PHASE2** |
 | `view_riksdagen_pre_election_quarterly_activity` | Predictive | 4.3 | ✅ Covered |
-| `view_riksdagen_election_year_anomalies` | - | - | ⚠️ Not covered |
-| `view_riksdagen_election_year_vs_midterm` | - | - | ⚠️ Not covered |
-| `view_riksdagen_party_coalition_evolution` | - | - | ⚠️ Not covered |
-| `view_riksdagen_party_electoral_trends` | - | - | ⚠️ Not covered |
-| `view_riksdagen_party_summary` | - | - | ⚠️ Not covered |
-| `view_riksdagen_politician_career_path_10level` | - | - | ⚠️ Not covered |
-| `view_riksdagen_seasonal_activity_patterns` | - | - | ⚠️ Not covered |
 
-**Coverage**: 4 of 11 views (36%)
+**Coverage**: 11 of 11 views (100%) ✅
 
 ## 📝 Updating Configuration
 

@@ -308,3 +308,135 @@ COPY (
 
 \echo '>>> Exported party longitudinal performance trends'
 \echo ''
+
+-- ============================================================================
+-- TEST 2.5: Party Coalition Evolution (Advanced View v1.59)
+-- Expected Outcome: Track coalition membership changes over time
+-- Sample Size: All coalition transitions
+-- ============================================================================
+\echo '>>> Test Case 2.5: Party Coalition Evolution - Coalition Stability Analysis'
+\echo '>>> Expected Outcome: Identify coalition changes and stability patterns'
+
+COPY (
+    SELECT 
+        party,
+        year,
+        coalition_status,
+        coalition_bloc,
+        coalition_start_year,
+        coalition_duration_years,
+        coalition_change_year,
+        previous_coalition,
+        current_coalition,
+        ROUND(avg_coalition_alignment::numeric, 2) AS avg_coalition_alignment,
+        ROUND(cross_bloc_voting_rate::numeric, 2) AS cross_bloc_voting_rate,
+        CASE 
+            WHEN coalition_change_year = year THEN 'COALITION_TRANSITION'
+            WHEN coalition_duration_years >= 8 THEN 'STABLE_COALITION'
+            WHEN coalition_duration_years <= 2 THEN 'VOLATILE_COALITION'
+            ELSE 'NORMAL_COALITION'
+        END AS expected_coalition_pattern,
+        total_decisions,
+        'coalition_evolution_analysis' AS test_case,
+        CASE 
+            WHEN coalition_change_year IS NOT NULL THEN 'PASS'
+            ELSE 'BASELINE'
+        END AS validation_label
+    FROM view_riksdagen_party_coalition_evolution
+    WHERE year >= 2002  -- Full analysis period
+    ORDER BY year DESC, party
+) TO '/workspaces/cia/service.data.impl/sample-data/framework-validation/comparative/test_2_5_coalition_evolution.csv' WITH CSV HEADER;
+
+\echo '>>> Exported party coalition evolution patterns'
+\echo ''
+
+-- ============================================================================
+-- TEST 2.6: Party Electoral Trends (Advanced View v1.60)
+-- Expected Outcome: Analyze electoral performance trends over multiple elections
+-- Sample Size: All parties with electoral history
+-- ============================================================================
+\echo '>>> Test Case 2.6: Party Electoral Trends - Multi-Election Performance'
+\echo '>>> Expected Outcome: Identify electoral growth, decline, or stability'
+
+COPY (
+    SELECT 
+        party,
+        election_count,
+        first_election_year,
+        last_election_year,
+        ROUND(avg_vote_share::numeric, 2) AS avg_vote_share,
+        ROUND(first_election_vote_share::numeric, 2) AS first_election_vote_share,
+        ROUND(last_election_vote_share::numeric, 2) AS last_election_vote_share,
+        ROUND(vote_share_change::numeric, 2) AS vote_share_change,
+        ROUND(vote_share_change_pct::numeric, 2) AS vote_share_change_pct,
+        ROUND(peak_vote_share::numeric, 2) AS peak_vote_share,
+        peak_election_year,
+        ROUND(trough_vote_share::numeric, 2) AS trough_vote_share,
+        trough_election_year,
+        CASE 
+            WHEN vote_share_change_pct > 50 THEN 'STRONG_GROWTH'
+            WHEN vote_share_change_pct > 20 THEN 'MODERATE_GROWTH'
+            WHEN vote_share_change_pct < -50 THEN 'STRONG_DECLINE'
+            WHEN vote_share_change_pct < -20 THEN 'MODERATE_DECLINE'
+            ELSE 'STABLE_SUPPORT'
+        END AS expected_electoral_trend,
+        'electoral_trend_analysis' AS test_case,
+        CASE 
+            WHEN ABS(vote_share_change_pct) >= 20 THEN 'PASS'
+            ELSE 'BASELINE'
+        END AS validation_label
+    FROM view_riksdagen_party_electoral_trends
+    WHERE election_count >= 3  -- Parties with substantive electoral history
+    ORDER BY ABS(vote_share_change_pct) DESC
+) TO '/workspaces/cia/service.data.impl/sample-data/framework-validation/comparative/test_2_6_electoral_trends.csv' WITH CSV HEADER;
+
+\echo '>>> Exported party electoral performance trends'
+\echo ''
+
+-- ============================================================================
+-- TEST 2.7: Party Summary Metrics (Advanced View v1.60)
+-- Expected Outcome: Comprehensive party performance snapshot
+-- Sample Size: All active parties
+-- ============================================================================
+\echo '>>> Test Case 2.7: Party Summary - Comprehensive Performance Metrics'
+\echo '>>> Expected Outcome: Multi-dimensional party performance classification'
+
+COPY (
+    SELECT 
+        party,
+        total_members,
+        active_members,
+        ROUND(avg_absence_rate::numeric, 2) AS avg_absence_rate,
+        ROUND(avg_discipline_rate::numeric, 2) AS avg_discipline_rate,
+        ROUND(avg_win_rate::numeric, 2) AS avg_win_rate,
+        ROUND(avg_rebel_rate::numeric, 2) AS avg_rebel_rate,
+        total_decisions,
+        total_documents,
+        ROUND(decisions_per_member::numeric, 2) AS decisions_per_member,
+        years_active,
+        cia_classify_performance(
+            avg_discipline_rate, 
+            cia_get_config_value('discipline_high_threshold')::NUMERIC, 
+            cia_get_config_value('discipline_moderate_threshold')::NUMERIC
+        ) AS discipline_tier,
+        CASE 
+            WHEN avg_absence_rate < 5 THEN 'EXCELLENT_ATTENDANCE'
+            WHEN avg_absence_rate < 10 THEN 'GOOD_ATTENDANCE'
+            WHEN avg_absence_rate < 15 THEN 'AVERAGE_ATTENDANCE'
+            ELSE 'POOR_ATTENDANCE'
+        END AS attendance_tier,
+        CASE 
+            WHEN avg_discipline_rate >= 95 AND avg_absence_rate < 10 THEN 'TOP_TIER_PARTY'
+            WHEN avg_discipline_rate >= 85 AND avg_absence_rate < 15 THEN 'HIGH_PERFORMING_PARTY'
+            WHEN avg_discipline_rate >= 75 THEN 'AVERAGE_PARTY'
+            ELSE 'BELOW_AVERAGE_PARTY'
+        END AS expected_overall_classification,
+        'party_summary_analysis' AS test_case,
+        'VALIDATED' AS validation_label
+    FROM view_riksdagen_party_summary
+    WHERE total_decisions >= 100  -- Active parties with substantive data
+    ORDER BY avg_discipline_rate DESC, avg_absence_rate ASC
+) TO '/workspaces/cia/service.data.impl/sample-data/framework-validation/comparative/test_2_7_party_summary.csv' WITH CSV HEADER;
+
+\echo '>>> Exported comprehensive party summary metrics'
+\echo ''

@@ -140,3 +140,58 @@ COPY (
 
 \echo '>>> Exported cases with expected rebellion pattern classification'
 \echo ''
+
+-- ============================================================================
+-- TEST 3.3: Career Path Classification (Advanced View v1.58)
+-- Expected Outcome: 10-level career trajectory classification
+-- Sample Size: 80 cases
+-- ============================================================================
+\echo '>>> Test Case 3.3: Career Path - 10-Level Hierarchical Classification'
+\echo '>>> Expected Outcome: Identify career progression patterns (L01-L10)'
+
+COPY (
+    SELECT 
+        person_id,
+        first_name,
+        last_name,
+        party,
+        total_roles,
+        years_active,
+        ROUND(career_score::numeric, 2) AS career_score,
+        peak_career_level,
+        current_career_level,
+        career_trajectory,
+        peak_role,
+        current_role,
+        ROUND(roles_l10_pm::numeric, 0) AS roles_l10_pm,
+        ROUND(roles_l09_ministers::numeric, 0) AS roles_l09_ministers,
+        ROUND(roles_l08_speaker::numeric, 0) AS roles_l08_speaker,
+        ROUND(roles_l07_party_leaders::numeric, 0) AS roles_l07_party_leaders,
+        ROUND(roles_l06_committee_chairs::numeric, 0) AS roles_l06_committee_chairs,
+        ROUND(roles_l04_active_mp::numeric, 0) AS roles_l04_active_mp,
+        CASE 
+            WHEN peak_career_level IN ('L10', 'L09', 'L08') THEN 'ELITE_CAREER'
+            WHEN peak_career_level IN ('L07', 'L06') THEN 'SENIOR_CAREER'
+            WHEN peak_career_level IN ('L05', 'L04') THEN 'STANDARD_CAREER'
+            ELSE 'ENTRY_LEVEL_CAREER'
+        END AS expected_career_tier,
+        CASE 
+            WHEN career_trajectory = 'UPWARD' AND peak_career_level >= 'L06' THEN 'SUCCESSFUL_PROGRESSION'
+            WHEN career_trajectory = 'DOWNWARD' AND current_career_level <= 'L03' THEN 'CAREER_DECLINE'
+            WHEN career_trajectory = 'STABLE' AND current_career_level >= 'L06' THEN 'ESTABLISHED_POSITION'
+            ELSE 'TYPICAL_PATTERN'
+        END AS expected_career_pattern,
+        'career_path_analysis' AS test_case,
+        CASE 
+            WHEN peak_career_level >= 'L06' OR career_score >= 600 THEN 'PASS'
+            ELSE 'BASELINE'
+        END AS validation_label
+    FROM view_riksdagen_politician_career_path_10level
+    WHERE years_active >= 4  -- Focus on politicians with substantive careers
+      AND total_roles >= 2
+    ORDER BY career_score DESC
+    LIMIT cia_get_config_value('sample_size_xlarge')::INTEGER
+) TO '/workspaces/cia/service.data.impl/sample-data/framework-validation/pattern/test_3_3_career_path.csv' WITH CSV HEADER;
+
+\echo '>>> Exported 10-level career path classifications'
+\echo ''
