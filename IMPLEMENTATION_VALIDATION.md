@@ -162,7 +162,7 @@ grep -c "6.5.[1-8]:" extract-sample-data.sql
 ### ✅ Percentile Sampling
 - [x] Function accepts table name and column name
 - [x] Returns P1, P10, P25, P50, P75, P90, P99
-- [x] Uses NTILE for accurate percentile calculation
+- [x] Uses PERCENT_RANK() for percentile calculation
 - [x] Returns row data as JSONB
 - [x] Handles NULL values gracefully
 

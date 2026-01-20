@@ -180,15 +180,18 @@ echo "=== ADVANCED VALIDATION (Coverage Metrics)    ==="
 echo "=================================================="
 echo ""
 
+# Initialize validation state
+VALIDATION_FAILED=0
+
 # Temporal Coverage Validation
 echo "📅 Temporal Coverage Validation:"
 echo "   Checking for data from years 2002-2026..."
 
 # Check if extraction_statistics.csv exists and has temporal data
 if [ -f "extraction_statistics.csv" ]; then
-    # Extract years from temporal stratification results
-    EARLIEST_YEAR=$(grep -o "[0-9]\{4\}" extraction_statistics.csv 2>/dev/null | sort -n | head -1)
-    LATEST_YEAR=$(grep -o "[0-9]\{4\}" extraction_statistics.csv 2>/dev/null | sort -n | tail -1)
+    # Extract plausible years (1900-2100) from temporal stratification results
+    EARLIEST_YEAR=$(grep -oE "19[0-9]{2}|20[0-9]{2}|2100" extraction_statistics.csv 2>/dev/null | sort -n | head -1)
+    LATEST_YEAR=$(grep -oE "19[0-9]{2}|20[0-9]{2}|2100" extraction_statistics.csv 2>/dev/null | sort -n | tail -1)
     
     if [ -n "$EARLIEST_YEAR" ] && [ -n "$LATEST_YEAR" ]; then
         YEAR_RANGE=$((LATEST_YEAR - EARLIEST_YEAR))
@@ -219,24 +222,40 @@ echo "   Checking for all 8 major Swedish parties: S, M, SD, C, V, KD, L, MP..."
 EXPECTED_PARTIES="S M SD C V KD L MP"
 MISSING_PARTIES=""
 
-for party in $EXPECTED_PARTIES; do
-    # Check if party appears in any distribution file
-    if grep -q "^$party," distribution_party_*.csv 2>/dev/null || \
-       grep -q ",$party," distribution_*_by_party.csv 2>/dev/null || \
-       grep -q "\"$party\"" distribution_*.csv 2>/dev/null; then
-        echo "   ✓ Found party: $party"
-    else
-        echo "   ⚠️  Missing party: $party"
-        MISSING_PARTIES="$MISSING_PARTIES $party"
-        VALIDATION_FAILED=1
+# Ensure that at least one expected distribution file exists before validating
+HAS_PARTY_DISTRIBUTION_FILES=0
+for pattern in "distribution_party_*.csv" "distribution_*_by_party.csv" "distribution_*.csv"; do
+    if compgen -G "$pattern" > /dev/null 2>&1; then
+        HAS_PARTY_DISTRIBUTION_FILES=1
+        break
     fi
 done
 
-if [ -z "$MISSING_PARTIES" ]; then
-    echo "   ✓ All 8 major parties present in sample data"
+if [ "$HAS_PARTY_DISTRIBUTION_FILES" -eq 0 ]; then
+    echo "   ⚠️  WARNING: No party distribution CSV files found."
+    echo "      Expected one or more of: distribution_party_*.csv, distribution_*_by_party.csv, distribution_*.csv"
+    echo "      Cannot validate categorical coverage for political parties."
+    VALIDATION_FAILED=1
 else
-    echo "   ⚠️  WARNING: Missing parties:$MISSING_PARTIES"
-    echo "      This may indicate incomplete political representation in sample"
+    for party in $EXPECTED_PARTIES; do
+        # Check if party appears in any distribution file
+        if grep -q "^$party," distribution_party_*.csv 2>/dev/null || \
+           grep -q ",$party," distribution_*_by_party.csv 2>/dev/null || \
+           grep -q "\"$party\"" distribution_*.csv 2>/dev/null; then
+            echo "   ✓ Found party: $party"
+        else
+            echo "   ⚠️  Missing party: $party"
+            MISSING_PARTIES="$MISSING_PARTIES $party"
+            VALIDATION_FAILED=1
+        fi
+    done
+
+    if [ -z "$MISSING_PARTIES" ]; then
+        echo "   ✓ All 8 major parties present in sample data"
+    else
+        echo "   ⚠️  WARNING: Missing parties:$MISSING_PARTIES"
+        echo "      This may indicate incomplete political representation in sample"
+    fi
 fi
 
 echo ""
@@ -260,9 +279,7 @@ if [ "$PERCENTILE_FILES" -gt 0 ]; then
         MISSING_COLS=""
         
         for col in $REQUIRED_COLS; do
-            if echo "$HEADER" | grep -q "$col"; then
-                : # Column found, do nothing
-            else
+            if ! echo "$HEADER" | grep -q "$col"; then
                 MISSING_COLS="$MISSING_COLS $col"
             fi
         done
@@ -313,11 +330,19 @@ else
     PERCENTILE_DETAILS="No percentile files found"
 fi
 
+# Escape double quotes in CSV values
+TEMPORAL_STATUS_ESCAPED=${TEMPORAL_STATUS//\"/\"\"}
+TEMPORAL_DETAILS_ESCAPED=${TEMPORAL_DETAILS//\"/\"\"}
+PARTY_STATUS_ESCAPED=${PARTY_STATUS//\"/\"\"}
+PARTY_DETAILS_ESCAPED=${PARTY_DETAILS//\"/\"\"}
+PERCENTILE_STATUS_ESCAPED=${PERCENTILE_STATUS//\"/\"\"}
+PERCENTILE_DETAILS_ESCAPED=${PERCENTILE_DETAILS//\"/\"\"}
+
 cat > "$COVERAGE_REPORT" << EOF
 validation_type,status,details
-temporal_coverage,"$TEMPORAL_STATUS","$TEMPORAL_DETAILS"
-party_coverage,"$PARTY_STATUS","$PARTY_DETAILS"
-percentile_coverage,"$PERCENTILE_STATUS","$PERCENTILE_DETAILS"
+temporal_coverage,"$TEMPORAL_STATUS_ESCAPED","$TEMPORAL_DETAILS_ESCAPED"
+party_coverage,"$PARTY_STATUS_ESCAPED","$PARTY_DETAILS_ESCAPED"
+percentile_coverage,"$PERCENTILE_STATUS_ESCAPED","$PERCENTILE_DETAILS_ESCAPED"
 EOF
 
 echo "   ✓ Generated: $COVERAGE_REPORT"

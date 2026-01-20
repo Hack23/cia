@@ -220,15 +220,16 @@ BEGIN
     v_order_by := COALESCE(p_order_by, p_column_name);
     
     -- Build dynamic SQL to extract percentile samples using PERCENT_RANK()
-    -- Design decision: PERCENT_RANK() directly calculates percentile position,
-    -- avoiding the overhead of creating 100 buckets as NTILE(100) would require
+    -- Design decision: PERCENT_RANK() directly calculates a continuous percentile
+    -- position for each row, allowing precise matching of specific percentiles
+    -- (P1, P10, P25, etc.) without relying on fixed NTILE(100) buckets
     v_sql := format('
         WITH ranked_data AS (
             SELECT 
                 %I AS column_value,
-                row_to_json(%I.*)::jsonb AS row_data,
+                row_to_json(t.*)::jsonb AS row_data,
                 PERCENT_RANK() OVER (ORDER BY %I) AS pct_rank
-            FROM %I
+            FROM %I AS t
             WHERE %I IS NOT NULL
         ),
         target_percentiles AS (
