@@ -253,7 +253,7 @@ BEGIN
         SELECT percentile_label, percentile_value, row_data
         FROM closest_rows
         ORDER BY percentile_value
-    ', p_column_name, p_table_name, p_column_name, p_table_name, p_column_name, v_order_by);
+    ', p_column_name, p_column_name, p_table_name, p_column_name, v_order_by);
     
     RETURN QUERY EXECUTE v_sql;
 EXCEPTION WHEN OTHERS THEN

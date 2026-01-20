@@ -180,9 +180,6 @@ echo "=== ADVANCED VALIDATION (Coverage Metrics)    ==="
 echo "=================================================="
 echo ""
 
-# Initialize validation state
-VALIDATION_FAILED=0
-
 # Temporal Coverage Validation
 echo "📅 Temporal Coverage Validation:"
 echo "   Checking for data from years 2002-2026..."
