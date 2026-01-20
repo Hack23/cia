@@ -119,14 +119,41 @@ public class TemporalViewChainIntegrationTest {
 					")"
 				);
 				
-				// Insert test data
-				stmt.execute(
-					"INSERT INTO test_ministry_risk_data VALUES " +
-					"('Ministry A', '2024-Q1', 'LOW', 25.0, 0.0), " +
-					"('Ministry A', '2024-Q2', 'MEDIUM', 45.0, 20.0), " +
-					"('Ministry A', '2024-Q3', 'HIGH', 75.0, 30.0), " +
-					"('Ministry B', '2024-Q1', 'MEDIUM', 50.0, 0.0)"
-				);
+				// Insert test data using PreparedStatement
+				try (PreparedStatement ps = conn.prepareStatement(
+						"INSERT INTO test_ministry_risk_data " +
+						"(ministry_name, risk_quarter, risk_level, risk_score, quarter_change) " +
+						"VALUES (?, ?, ?, ?, ?)")) {
+					ps.setString(1, "Ministry A");
+					ps.setString(2, "2024-Q1");
+					ps.setString(3, "LOW");
+					ps.setDouble(4, 25.0);
+					ps.setDouble(5, 0.0);
+					ps.addBatch();
+
+					ps.setString(1, "Ministry A");
+					ps.setString(2, "2024-Q2");
+					ps.setString(3, "MEDIUM");
+					ps.setDouble(4, 45.0);
+					ps.setDouble(5, 20.0);
+					ps.addBatch();
+
+					ps.setString(1, "Ministry A");
+					ps.setString(2, "2024-Q3");
+					ps.setString(3, "HIGH");
+					ps.setDouble(4, 75.0);
+					ps.setDouble(5, 30.0);
+					ps.addBatch();
+
+					ps.setString(1, "Ministry B");
+					ps.setString(2, "2024-Q1");
+					ps.setString(3, "MEDIUM");
+					ps.setDouble(4, 50.0);
+					ps.setDouble(5, 0.0);
+					ps.addBatch();
+					
+					ps.executeBatch();
+				}
 				
 				// Query test data
 				ResultSet rs = stmt.executeQuery(
@@ -170,14 +197,41 @@ public class TemporalViewChainIntegrationTest {
 					")"
 				);
 				
-				// Insert test data
-				stmt.execute(
-					"INSERT INTO test_party_effectiveness_data VALUES " +
-					"('Party A', 2023, 75.5, 'UPWARD', 150), " +
-					"('Party A', 2024, 82.3, 'UPWARD', 175), " +
-					"('Party B', 2023, 60.0, 'STABLE', 100), " +
-					"('Party B', 2024, 58.5, 'DOWNWARD', 95)"
-				);
+				// Insert test data using PreparedStatement
+				try (PreparedStatement ps = conn.prepareStatement(
+						"INSERT INTO test_party_effectiveness_data " +
+						"(party, year, effectiveness_score, trend, documents_count) " +
+						"VALUES (?, ?, ?, ?, ?)")) {
+					ps.setString(1, "Party A");
+					ps.setInt(2, 2023);
+					ps.setDouble(3, 75.5);
+					ps.setString(4, "UPWARD");
+					ps.setInt(5, 150);
+					ps.addBatch();
+
+					ps.setString(1, "Party A");
+					ps.setInt(2, 2024);
+					ps.setDouble(3, 82.3);
+					ps.setString(4, "UPWARD");
+					ps.setInt(5, 175);
+					ps.addBatch();
+
+					ps.setString(1, "Party B");
+					ps.setInt(2, 2023);
+					ps.setDouble(3, 60.0);
+					ps.setString(4, "STABLE");
+					ps.setInt(5, 100);
+					ps.addBatch();
+
+					ps.setString(1, "Party B");
+					ps.setInt(2, 2024);
+					ps.setDouble(3, 58.5);
+					ps.setString(4, "DOWNWARD");
+					ps.setInt(5, 95);
+					ps.addBatch();
+					
+					ps.executeBatch();
+				}
 				
 				// Query upward trends
 				ResultSet rs = stmt.executeQuery(
@@ -222,14 +276,41 @@ public class TemporalViewChainIntegrationTest {
 					")"
 				);
 				
-				// Insert test data
-				stmt.execute(
-					"INSERT INTO test_decision_trends_data VALUES " +
-					"('Committee Decision', '2024-01', 150, 15.5, 'INCREASING'), " +
-					"('Committee Decision', '2024-02', 175, 14.2, 'INCREASING'), " +
-					"('Ministry Decision', '2024-01', 80, 25.0, 'STABLE'), " +
-					"('Ministry Decision', '2024-02', 78, 26.5, 'STABLE')"
-				);
+				// Insert test data using PreparedStatement
+				try (PreparedStatement ps = conn.prepareStatement(
+						"INSERT INTO test_decision_trends_data " +
+						"(decision_type, period, decision_count, avg_time_days, trend) " +
+						"VALUES (?, ?, ?, ?, ?)")) {
+					ps.setString(1, "Committee Decision");
+					ps.setString(2, "2024-01");
+					ps.setInt(3, 150);
+					ps.setDouble(4, 15.5);
+					ps.setString(5, "INCREASING");
+					ps.addBatch();
+
+					ps.setString(1, "Committee Decision");
+					ps.setString(2, "2024-02");
+					ps.setInt(3, 175);
+					ps.setDouble(4, 14.2);
+					ps.setString(5, "INCREASING");
+					ps.addBatch();
+
+					ps.setString(1, "Ministry Decision");
+					ps.setString(2, "2024-01");
+					ps.setInt(3, 80);
+					ps.setDouble(4, 25.0);
+					ps.setString(5, "STABLE");
+					ps.addBatch();
+
+					ps.setString(1, "Ministry Decision");
+					ps.setString(2, "2024-02");
+					ps.setInt(3, 78);
+					ps.setDouble(4, 26.5);
+					ps.setString(5, "STABLE");
+					ps.addBatch();
+					
+					ps.executeBatch();
+				}
 				
 				// Query decision trends
 				ResultSet rs = stmt.executeQuery(
@@ -279,14 +360,54 @@ public class TemporalViewChainIntegrationTest {
 					")"
 				);
 				
-				// Insert test data
-				stmt.execute(
-					"INSERT INTO test_politician_behavioral_data VALUES " +
-					"('P001', 'John', 'Doe', 'Party A', '2024-Q1', 95.0, 85.0, 'IMPROVING'), " +
-					"('P001', 'John', 'Doe', 'Party A', '2024-Q2', 97.0, 88.0, 'IMPROVING'), " +
-					"('P002', 'Jane', 'Smith', 'Party B', '2024-Q1', 75.0, 60.0, 'STABLE'), " +
-					"('P002', 'Jane', 'Smith', 'Party B', '2024-Q2', 70.0, 55.0, 'DECLINING')"
-				);
+				// Insert test data using PreparedStatement
+				try (PreparedStatement ps = conn.prepareStatement(
+						"INSERT INTO test_politician_behavioral_data " +
+						"(person_id, first_name, last_name, party, quarter, voting_participation_rate, " +
+						"document_contribution_rate, behavioral_trend) " +
+						"VALUES (?, ?, ?, ?, ?, ?, ?, ?)")) {
+					ps.setString(1, "P001");
+					ps.setString(2, "John");
+					ps.setString(3, "Doe");
+					ps.setString(4, "Party A");
+					ps.setString(5, "2024-Q1");
+					ps.setDouble(6, 95.0);
+					ps.setDouble(7, 85.0);
+					ps.setString(8, "IMPROVING");
+					ps.addBatch();
+
+					ps.setString(1, "P001");
+					ps.setString(2, "John");
+					ps.setString(3, "Doe");
+					ps.setString(4, "Party A");
+					ps.setString(5, "2024-Q2");
+					ps.setDouble(6, 97.0);
+					ps.setDouble(7, 88.0);
+					ps.setString(8, "IMPROVING");
+					ps.addBatch();
+
+					ps.setString(1, "P002");
+					ps.setString(2, "Jane");
+					ps.setString(3, "Smith");
+					ps.setString(4, "Party B");
+					ps.setString(5, "2024-Q1");
+					ps.setDouble(6, 75.0);
+					ps.setDouble(7, 60.0);
+					ps.setString(8, "STABLE");
+					ps.addBatch();
+
+					ps.setString(1, "P002");
+					ps.setString(2, "Jane");
+					ps.setString(3, "Smith");
+					ps.setString(4, "Party B");
+					ps.setString(5, "2024-Q2");
+					ps.setDouble(6, 70.0);
+					ps.setDouble(7, 55.0);
+					ps.setString(8, "DECLINING");
+					ps.addBatch();
+					
+					ps.executeBatch();
+				}
 				
 				// Query behavioral trends
 				ResultSet rs = stmt.executeQuery(
@@ -333,14 +454,36 @@ public class TemporalViewChainIntegrationTest {
 					")"
 				);
 				
-				// Insert base data
-				stmt.execute(
-					"INSERT INTO base_vote_data (person_id, ballot_id, vote, vote_date) VALUES " +
-					"('P001', 'B001', 'YES', '2024-01-15'), " +
-					"('P001', 'B002', 'YES', '2024-01-16'), " +
-					"('P002', 'B001', 'NO', '2024-01-15'), " +
-					"('P002', 'B002', 'ABSENT', '2024-01-16')"
-				);
+				// Insert base data using PreparedStatement
+				try (PreparedStatement ps = conn.prepareStatement(
+						"INSERT INTO base_vote_data (person_id, ballot_id, vote, vote_date) " +
+						"VALUES (?, ?, ?, ?)")) {
+					ps.setString(1, "P001");
+					ps.setString(2, "B001");
+					ps.setString(3, "YES");
+					ps.setDate(4, java.sql.Date.valueOf("2024-01-15"));
+					ps.addBatch();
+
+					ps.setString(1, "P001");
+					ps.setString(2, "B002");
+					ps.setString(3, "YES");
+					ps.setDate(4, java.sql.Date.valueOf("2024-01-16"));
+					ps.addBatch();
+
+					ps.setString(1, "P002");
+					ps.setString(2, "B001");
+					ps.setString(3, "NO");
+					ps.setDate(4, java.sql.Date.valueOf("2024-01-15"));
+					ps.addBatch();
+
+					ps.setString(1, "P002");
+					ps.setString(2, "B002");
+					ps.setString(3, "ABSENT");
+					ps.setDate(4, java.sql.Date.valueOf("2024-01-16"));
+					ps.addBatch();
+					
+					ps.executeBatch();
+				}
 				
 				// Create dependent view 1: Daily summary
 				stmt.execute(
@@ -465,15 +608,37 @@ public class TemporalViewChainIntegrationTest {
 					")"
 				);
 				
-				// Insert test data
-				stmt.execute(
-					"INSERT INTO temporal_aggregation_test VALUES " +
-					"('2024-01-01', 'Party A', 10), " +
-					"('2024-01-02', 'Party A', 15), " +
-					"('2024-01-03', 'Party A', 20), " +
-					"('2024-01-01', 'Party B', 12), " +
-					"('2024-01-02', 'Party B', 18)"
-				);
+				// Insert test data using PreparedStatement
+				try (PreparedStatement ps = conn.prepareStatement(
+						"INSERT INTO temporal_aggregation_test (test_date, party, value) " +
+						"VALUES (?, ?, ?)")) {
+					ps.setDate(1, java.sql.Date.valueOf("2024-01-01"));
+					ps.setString(2, "Party A");
+					ps.setInt(3, 10);
+					ps.addBatch();
+
+					ps.setDate(1, java.sql.Date.valueOf("2024-01-02"));
+					ps.setString(2, "Party A");
+					ps.setInt(3, 15);
+					ps.addBatch();
+
+					ps.setDate(1, java.sql.Date.valueOf("2024-01-03"));
+					ps.setString(2, "Party A");
+					ps.setInt(3, 20);
+					ps.addBatch();
+
+					ps.setDate(1, java.sql.Date.valueOf("2024-01-01"));
+					ps.setString(2, "Party B");
+					ps.setInt(3, 12);
+					ps.addBatch();
+
+					ps.setDate(1, java.sql.Date.valueOf("2024-01-02"));
+					ps.setString(2, "Party B");
+					ps.setInt(3, 18);
+					ps.addBatch();
+					
+					ps.executeBatch();
+				}
 				
 				// Test monthly aggregation
 				ResultSet rs = stmt.executeQuery(

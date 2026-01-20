@@ -163,21 +163,67 @@ public class AnalysisWorkflowIntegrationTest {
 					")"
 				);
 				
-				// Insert sample data
-				stmt.execute(
-					"INSERT INTO person_data VALUES " +
-					"('P001', 'John', 'Doe', 'Party A', 'ACTIVE'), " +
-					"('P002', 'Jane', 'Smith', 'Party B', 'ACTIVE'), " +
-					"('P003', 'Bob', 'Johnson', 'Party C', 'INACTIVE')"
-				);
+				// Insert sample data using PreparedStatement
+				try (PreparedStatement psPerson = conn.prepareStatement(
+						"INSERT INTO person_data (person_id, first_name, last_name, party, status) " +
+						"VALUES (?, ?, ?, ?, ?)")) {
+					psPerson.setString(1, "P001");
+					psPerson.setString(2, "John");
+					psPerson.setString(3, "Doe");
+					psPerson.setString(4, "Party A");
+					psPerson.setString(5, "ACTIVE");
+					psPerson.addBatch();
+					
+					psPerson.setString(1, "P002");
+					psPerson.setString(2, "Jane");
+					psPerson.setString(3, "Smith");
+					psPerson.setString(4, "Party B");
+					psPerson.setString(5, "ACTIVE");
+					psPerson.addBatch();
+					
+					psPerson.setString(1, "P003");
+					psPerson.setString(2, "Bob");
+					psPerson.setString(3, "Johnson");
+					psPerson.setString(4, "Party C");
+					psPerson.setString(5, "INACTIVE");
+					psPerson.addBatch();
+					
+					psPerson.executeBatch();
+				}
 				
-				stmt.execute(
-					"INSERT INTO vote_data (person_id, ballot_id, vote, vote_date, party) VALUES " +
-					"('P001', 'B001', 'YES', '2024-01-15', 'Party A'), " +
-					"('P001', 'B002', 'YES', '2024-01-16', 'Party A'), " +
-					"('P002', 'B001', 'NO', '2024-01-15', 'Party B'), " +
-					"('P002', 'B002', 'ABSENT', '2024-01-16', 'Party B')"
-				);
+				try (PreparedStatement psVote = conn.prepareStatement(
+						"INSERT INTO vote_data (person_id, ballot_id, vote, vote_date, party) " +
+						"VALUES (?, ?, ?, ?, ?)")) {
+					psVote.setString(1, "P001");
+					psVote.setString(2, "B001");
+					psVote.setString(3, "YES");
+					psVote.setDate(4, java.sql.Date.valueOf("2024-01-15"));
+					psVote.setString(5, "Party A");
+					psVote.addBatch();
+					
+					psVote.setString(1, "P001");
+					psVote.setString(2, "B002");
+					psVote.setString(3, "YES");
+					psVote.setDate(4, java.sql.Date.valueOf("2024-01-16"));
+					psVote.setString(5, "Party A");
+					psVote.addBatch();
+					
+					psVote.setString(1, "P002");
+					psVote.setString(2, "B001");
+					psVote.setString(3, "NO");
+					psVote.setDate(4, java.sql.Date.valueOf("2024-01-15"));
+					psVote.setString(5, "Party B");
+					psVote.addBatch();
+					
+					psVote.setString(1, "P002");
+					psVote.setString(2, "B002");
+					psVote.setString(3, "ABSENT");
+					psVote.setDate(4, java.sql.Date.valueOf("2024-01-16"));
+					psVote.setString(5, "Party B");
+					psVote.addBatch();
+					
+					psVote.executeBatch();
+				}
 				
 				// Verify extraction
 				ResultSet rs = stmt.executeQuery("SELECT COUNT(*) FROM person_data");
