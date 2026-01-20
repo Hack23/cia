@@ -24,6 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.time.Duration;
@@ -69,6 +70,9 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 public class AnalysisWorkflowIntegrationTest {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(AnalysisWorkflowIntegrationTest.class);
+	
+	/** Maximum workflow execution time in seconds */
+	private static final long MAX_WORKFLOW_TIME_SECONDS = 30;
 	
 	@Container
 	private static final PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:16-alpine")
@@ -417,8 +421,14 @@ public class AnalysisWorkflowIntegrationTest {
 					")"
 				);
 				
-				for (int i = 0; i < 100; i++) {
-					stmt.execute("INSERT INTO perf_test_data (value) VALUES (" + i + ")");
+				// Insert test data using batch prepared statement
+				try (PreparedStatement pstmt = conn.prepareStatement(
+						"INSERT INTO perf_test_data (value) VALUES (?)")) {
+					for (int i = 0; i < 100; i++) {
+						pstmt.setInt(1, i);
+						pstmt.addBatch();
+					}
+					pstmt.executeBatch();
 				}
 				
 				// Stage 2: Analyze
@@ -441,7 +451,8 @@ public class AnalysisWorkflowIntegrationTest {
 		LOGGER.info("Workflow completed in {} ms", elapsed.toMillis());
 		
 		// Workflow should complete in reasonable time
-		assertTrue(elapsed.toSeconds() < 30, "Workflow should complete in under 30 seconds");
+		assertTrue(elapsed.toSeconds() < MAX_WORKFLOW_TIME_SECONDS, 
+			"Workflow should complete in under " + MAX_WORKFLOW_TIME_SECONDS + " seconds");
 	}
 
 	/**
@@ -551,14 +562,17 @@ public class AnalysisWorkflowIntegrationTest {
 					")"
 				);
 				
-				// Simulate concurrent inserts
-				for (int thread = 1; thread <= 3; thread++) {
-					for (int i = 0; i < 10; i++) {
-						stmt.execute(
-							"INSERT INTO concurrent_test (thread_id, value) VALUES " +
-							"(" + thread + ", " + i + ")"
-						);
+				// Simulate concurrent inserts using batch prepared statement
+				try (PreparedStatement pstmt = conn.prepareStatement(
+						"INSERT INTO concurrent_test (thread_id, value) VALUES (?, ?)")) {
+					for (int thread = 1; thread <= 3; thread++) {
+						for (int i = 0; i < 10; i++) {
+							pstmt.setInt(1, thread);
+							pstmt.setInt(2, i);
+							pstmt.addBatch();
+						}
 					}
+					pstmt.executeBatch();
 				}
 				
 				// Verify all inserts completed
@@ -612,15 +626,17 @@ public class AnalysisWorkflowIntegrationTest {
 				conn.rollback();
 				
 				// Verify data was rolled back
+				// Note: In PostgreSQL, table creation in a transaction will be rolled back,
+				// so attempting to query it should fail with "relation does not exist"
 				try {
 					ResultSet rs = stmt.executeQuery("SELECT COUNT(*) FROM rollback_test");
-					// Table should not exist after rollback
 					rs.next();
 					int count = rs.getInt(1);
+					// If we reach here, rollback didn't work as expected for table creation
 					assertThat(count).isEqualTo(0);
 				} catch (Exception e) {
-					// Expected: table doesn't exist after rollback
-					LOGGER.info("Rollback successful: table removed as expected");
+					// Expected: table doesn't exist after rollback (transaction was rolled back successfully)
+					LOGGER.info("Rollback successful: table removed as expected - {}", e.getMessage());
 				}
 				
 				conn.setAutoCommit(true);

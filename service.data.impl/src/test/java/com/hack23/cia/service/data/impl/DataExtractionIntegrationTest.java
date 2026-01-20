@@ -29,6 +29,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.time.Duration;
@@ -281,11 +282,14 @@ public class DataExtractionIntegrationTest {
 					")"
 				);
 				
-				// Insert sample data
-				for (int i = 0; i < 1000; i++) {
-					stmt.execute(
-						"INSERT INTO benchmark_test (data) VALUES ('Sample data " + i + "')"
-					);
+				// Insert sample data using batch prepared statement for better performance and security
+				try (PreparedStatement pstmt = conn.prepareStatement(
+						"INSERT INTO benchmark_test (data) VALUES (?)")) {
+					for (int i = 0; i < 1000; i++) {
+						pstmt.setString(1, "Sample data " + i);
+						pstmt.addBatch();
+					}
+					pstmt.executeBatch();
 				}
 				
 				// Query data (simulating extraction)

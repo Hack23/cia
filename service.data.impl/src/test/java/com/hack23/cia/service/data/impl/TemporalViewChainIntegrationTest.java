@@ -23,6 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -59,6 +60,9 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 public class TemporalViewChainIntegrationTest {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(TemporalViewChainIntegrationTest.class);
+	
+	/** Maximum query execution time in milliseconds */
+	private static final long MAX_QUERY_TIME_MS = 1000;
 	
 	@Container
 	private static final PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:16-alpine")
@@ -354,27 +358,28 @@ public class TemporalViewChainIntegrationTest {
 					"GROUP BY person_id"
 				);
 				
-				// Query chain: base -> view1 -> aggregation
+				int totalFromView;
 				try (ResultSet rs1 = stmt.executeQuery(
 						"SELECT SUM(vote_count) as total FROM view_vote_daily_summary"
 						)) {
 					rs1.next();
-					int totalFromView = rs1.getInt("total");
-
-					// Query chain: base -> view2
-					try (ResultSet rs2 = stmt.executeQuery(
-							"SELECT SUM(total_votes) as total FROM view_person_vote_summary"
-							)) {
-						rs2.next();
-						int totalFromPersonView = rs2.getInt("total");
-
-						// Both should match
-						assertThat(totalFromView).isEqualTo(totalFromPersonView);
-						assertThat(totalFromView).isEqualTo(4);
-
-						LOGGER.info("View dependency chain validated successfully");
-					}
+					totalFromView = rs1.getInt("total");
 				}
+
+				// Query chain: base -> view2
+				int totalFromPersonView;
+				try (ResultSet rs2 = stmt.executeQuery(
+						"SELECT SUM(total_votes) as total FROM view_person_vote_summary"
+						)) {
+					rs2.next();
+					totalFromPersonView = rs2.getInt("total");
+				}
+
+				// Both should match
+				assertThat(totalFromView).isEqualTo(totalFromPersonView);
+				assertThat(totalFromView).isEqualTo(4);
+
+				LOGGER.info("View dependency chain validated successfully");
 			}
 		});
 	}
@@ -406,12 +411,16 @@ public class TemporalViewChainIntegrationTest {
 					"CREATE INDEX IF NOT EXISTS idx_period_date ON performance_test_view(period_date)"
 				);
 				
-				// Insert test data
-				for (int i = 0; i < 100; i++) {
-					stmt.execute(
-						"INSERT INTO performance_test_view (period_date, metric_value) " +
-						"VALUES ('2024-01-01'::DATE + " + i + ", " + (50.0 + i) + ")"
-					);
+				// Insert test data using batch prepared statement
+				try (PreparedStatement pstmt = conn.prepareStatement(
+						"INSERT INTO performance_test_view (period_date, metric_value) VALUES (?::DATE + ?::INTEGER, ?)")) {
+					for (int i = 0; i < 100; i++) {
+						pstmt.setString(1, "2024-01-01");
+						pstmt.setInt(2, i);
+						pstmt.setDouble(3, 50.0 + i);
+						pstmt.addBatch();
+					}
+					pstmt.executeBatch();
 				}
 				
 				// Query with date range (should use index)
@@ -427,7 +436,7 @@ public class TemporalViewChainIntegrationTest {
 				long queryTime = endTime - startTime;
 				
 				assertThat(count).isGreaterThan(0);
-				assertTrue(queryTime < 1000, "Query should complete in under 1 second");
+				assertTrue(queryTime < MAX_QUERY_TIME_MS, "Query should complete in under " + MAX_QUERY_TIME_MS + " ms");
 				
 				LOGGER.info("Query performance validated: {} ms", queryTime);
 			}

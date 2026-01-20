@@ -248,8 +248,8 @@ public class MyIntegrationTest {
 
 ## Related Documentation
 
-- [DROOLS_RISK_RULES.md](../../DROOLS_RISK_RULES.md) - Risk rule specifications
-- [DATABASE_VIEW_INTELLIGENCE_CATALOG.md](../../DATABASE_VIEW_INTELLIGENCE_CATALOG.md) - View documentation
+- [DROOLS_RISK_RULES.md](/DROOLS_RISK_RULES.md) - Risk rule specifications
+- [DATABASE_VIEW_INTELLIGENCE_CATALOG.md](/DATABASE_VIEW_INTELLIGENCE_CATALOG.md) - View documentation
 - [sample-data/framework-validation/README.md](../../sample-data/framework-validation/README.md) - Test data documentation
 
 ## Contributing

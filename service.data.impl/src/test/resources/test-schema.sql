@@ -79,7 +79,7 @@ SELECT
 FROM (SELECT NULL::VARCHAR as ministry_name, NULL::VARCHAR as risk_quarter, 
       NULL::VARCHAR as risk_level, NULL::DECIMAL as risk_score, 
       NULL::DECIMAL as quarter_change) t
-WHERE 1=0; -- Empty reference view
+WHERE 1=0; -- Placeholder view returning no rows for schema compatibility in tests
 
 CREATE OR REPLACE VIEW view_party_effectiveness_trends AS
 SELECT 

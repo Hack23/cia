@@ -79,6 +79,9 @@ public class DroolsRiskRuleIntegrationTest {
 	// Expected accuracy targets
 	private static final double RESIGNATION_PREDICTION_ACCURACY_TARGET = 0.78; // 78%
 	private static final double RISK_CLASSIFICATION_ACCURACY_TARGET = 0.85; // 85%
+	
+	/** Minimum profiles per second performance threshold */
+	private static final double MIN_PROFILES_PER_SECOND = 100.0;
 
 	/**
 	 * Setup test environment.
@@ -227,7 +230,7 @@ public class DroolsRiskRuleIntegrationTest {
 			
 			// Should process at least 100 profiles per second
 			double profilesPerSecond = (profiles.size() * 1000.0) / executionTime;
-			assertThat(profilesPerSecond).isGreaterThan(100.0);
+			assertThat(profilesPerSecond).isGreaterThan(MIN_PROFILES_PER_SECOND);
 		});
 	}
 
@@ -350,6 +353,7 @@ public class DroolsRiskRuleIntegrationTest {
 
 	private List<ResignationTestCase> loadResignationTestCases(Path csvPath) throws IOException, CsvException {
 		List<ResignationTestCase> cases = new ArrayList<>();
+		int skippedLines = 0;
 		
 		try (CSVReader reader = new CSVReader(Files.newBufferedReader(csvPath))) {
 			String[] headers = reader.readNext();
@@ -363,9 +367,14 @@ public class DroolsRiskRuleIntegrationTest {
 					testCase.actualResigned = "TRUE".equalsIgnoreCase(line[2]);
 					cases.add(testCase);
 				} catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+					skippedLines++;
 					LOGGER.warn("Skipping invalid line in resignation test data: {}", String.join(",", line));
 				}
 			}
+		}
+		
+		if (skippedLines > 0) {
+			LOGGER.warn("Skipped {} invalid lines in resignation test data", skippedLines);
 		}
 		
 		return cases;
@@ -374,6 +383,7 @@ public class DroolsRiskRuleIntegrationTest {
 	private List<MultiDimensionalRiskProfile> loadMultiDimensionalProfiles(Path csvPath) 
 			throws IOException, CsvException {
 		List<MultiDimensionalRiskProfile> profiles = new ArrayList<>();
+		int skippedLines = 0;
 		
 		try (CSVReader reader = new CSVReader(Files.newBufferedReader(csvPath))) {
 			String[] headers = reader.readNext();
@@ -388,9 +398,14 @@ public class DroolsRiskRuleIntegrationTest {
 					profile.expectedRiskClass = line[3];
 					profiles.add(profile);
 				} catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+					skippedLines++;
 					LOGGER.warn("Skipping invalid line in risk profile data: {}", String.join(",", line));
 				}
 			}
+		}
+		
+		if (skippedLines > 0) {
+			LOGGER.warn("Skipped {} invalid lines in risk profile data", skippedLines);
 		}
 		
 		return profiles;

@@ -187,8 +187,15 @@ try:
                 print(f"{(covered / total) * 100:.2f}")
                 sys.exit(0)
     print("0")
+except FileNotFoundError:
+    print("0", file=sys.stderr)
+    print("Error: JaCoCo XML file not found", file=sys.stderr)
+except ET.ParseError as e:
+    print("0", file=sys.stderr)
+    print(f"Error: Failed to parse JaCoCo XML - {e}", file=sys.stderr)
 except Exception as e:
-    print("0")
+    print("0", file=sys.stderr)
+    print(f"Error: Unexpected error parsing coverage - {e}", file=sys.stderr)
 PY
 )
             BRANCH_COVERAGE=$(python3 - << 'PY'
@@ -208,8 +215,15 @@ try:
                 print(f"{(covered / total) * 100:.2f}")
                 sys.exit(0)
     print("0")
+except FileNotFoundError:
+    print("0", file=sys.stderr)
+    print("Error: JaCoCo XML file not found", file=sys.stderr)
+except ET.ParseError as e:
+    print("0", file=sys.stderr)
+    print(f"Error: Failed to parse JaCoCo XML - {e}", file=sys.stderr)
 except Exception as e:
-    print("0")
+    print("0", file=sys.stderr)
+    print(f"Error: Unexpected error parsing coverage - {e}", file=sys.stderr)
 PY
 )
             
