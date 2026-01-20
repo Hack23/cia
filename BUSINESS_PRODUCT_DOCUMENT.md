@@ -1043,7 +1043,7 @@ flowchart TB
 }%%
 flowchart LR
     A[Riksdagen API<br/>Valmyndigheten<br/>World Bank<br/>ESV] --> B[Database Tables<br/>person_data<br/>assignment_data<br/>vote_data<br/>document_data]
-    B --> C[Database Views<br/>112 views<br/>84 regular + 28 materialized]
+    B --> C[Database Views<br/>112 views<br/>68 regular + 28 materialized + 16 temporal analytics]
     C --> D[JSON Specs<br/>5 schemas<br/>Markdown format]
     D --> E[API Endpoints<br/>REST API<br/>CDN Static Files]
     E --> F[Product Features<br/>6 Product Lines<br/>20+ Features]

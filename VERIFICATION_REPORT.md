@@ -11,8 +11,8 @@
 The BUSINESS_PRODUCT_DOCUMENT.md has been successfully updated from version 1.0 to 1.1 with comprehensive advanced intelligence views covering crisis & risk intelligence (v1.40-v1.43), seasonal pattern detection (v1.55), party transition tracking (v1.57), and temporal analytics capabilities (v1.58-v1.61). All success criteria have been met with 100% validation coverage.
 
 **Key Metrics:**
-- Document Size: 2,902 lines (increased from ~1,930 lines; +972 lines)
-- New Section: Advanced Intelligence Views (line 184, ~972 lines covering v1.40-v1.43, v1.55, v1.57-v1.61)
+- Document Size: 2,875 lines (increased from ~1,930 lines; +945 lines)
+- New Section: Advanced Intelligence Views (line 184, ~945 lines covering v1.40-v1.43, v1.55, v1.57-v1.61)
 - Views Updated: 85 → 112 views (+27 views)
 - New KPIs: 300+ advanced intelligence and temporal analytics KPIs
 - API Endpoints Added: 5 new endpoints
@@ -42,7 +42,7 @@ grep -n "Advanced Intelligence Views" BUSINESS_PRODUCT_DOCUMENT.md
 - ✅ v1.60: Election Year Behavioral Patterns (3 views)
 - ✅ v1.61: Party Longitudinal Performance (4 views)
 - ✅ Advanced intelligence summary (300+ KPIs, 22 advanced intelligence views total across v1.40-v1.43, v1.57, v1.58-v1.61)
-- ✅ Intelligence applications with SQL examples (8 examples)
+- ✅ Intelligence applications with SQL examples (7 examples)
 - ✅ Use cases for all product lines
 - ✅ Swedish parliamentary context
 - ✅ Documentation references
@@ -310,7 +310,7 @@ Date: 2025-11-15 → 2026-01-19
 **Status:** ✅ **COMPLETE — READY FOR REVIEW**
 
 All success criteria have been met with 100% validation coverage:
-- ✅ Comprehensive advanced intelligence sections added (v1.40–v1.43, v1.55, v1.57–v1.61; ~972 lines, including advanced temporal analytics)
+- ✅ Comprehensive advanced intelligence sections added (v1.40–v1.43, v1.55, v1.57–v1.61; ~945 lines, including advanced temporal analytics)
 - ✅ View reference table updated (85 → 112 views)
 - ✅ All view names validated (100% accuracy)
 - ✅ All JSON schema links validated (100%)
