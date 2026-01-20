@@ -12,11 +12,38 @@
 
 set -e
 
+# ===========================================================================
+# MODULAR ARCHITECTURE INTEGRATION (Optional)
+# ===========================================================================
+# This script can optionally source modular configuration and validation files.
+# If these files don't exist, the script will use built-in defaults.
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Source configuration file if available (provides DEFAULT_SAMPLE_SIZE, etc.)
+if [ -f "$SCRIPT_DIR/sample-data-config.sh" ]; then
+    source "$SCRIPT_DIR/sample-data-config.sh"
+    echo "✓ Loaded modular configuration from sample-data-config.sh"
+else
+    echo "ℹ Using built-in configuration (sample-data-config.sh not found)"
+fi
+
+# Source validation functions if available
+if [ -f "$SCRIPT_DIR/validation-functions.sh" ]; then
+    source "$SCRIPT_DIR/validation-functions.sh"
+    echo "✓ Loaded validation functions from validation-functions.sh"
+else
+    echo "ℹ Validation functions not loaded (validation-functions.sh not found)"
+fi
+
+# ===========================================================================
+# CONFIGURATION
+# ===========================================================================
+
 # Configuration
 OUTPUT_DIR="${1:-.}"
 DATABASE="${2:-cia_dev}"
 PSQL_USER="${PSQL_USER:-postgres}"
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SQL_SCRIPT="$SCRIPT_DIR/extract-sample-data.sql"
 
 echo "=================================================="

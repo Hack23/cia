@@ -20,6 +20,32 @@
 --   - Creates distinct value files: distinct_<table>_<column>_values.csv
 --
 -- ===========================================================================
+-- MODULAR ARCHITECTURE INTEGRATION (Optional)
+-- ===========================================================================
+--
+-- This script can optionally leverage modular components for better code
+-- organization and reusability. The modular files are 100% optional - this
+-- script will work with or without them.
+--
+-- MODULAR FILES AVAILABLE:
+--
+-- 1. extract-sample-data-functions.sql (260 lines)
+--    - cia_tmp_rowcount(schema, table): Get row counts
+--    - cia_classify_temporal_view(view_name): Classify temporal granularity
+--    - cia_percentile_sample(table, column, order_by): Sample at P1-P99
+--    - cia_generate_distribution_summary(view_name): Generate distribution stats
+--    Usage: \i extract-sample-data-functions.sql
+--
+-- 2. extract-percentile-summaries.sql (180 lines)
+--    - Optional Phase 6.5 module
+--    - Generates 24 percentile distribution CSVs
+--    - Can be run standalone: psql -f extract-percentile-summaries.sql
+--
+-- TO USE MODULAR FUNCTIONS:
+--   Uncomment the line below to load helper functions from external file:
+--   -- \i extract-sample-data-functions.sql
+--
+-- ===========================================================================
 -- STATISTICAL SAMPLING METHODOLOGY
 -- ===========================================================================
 --
