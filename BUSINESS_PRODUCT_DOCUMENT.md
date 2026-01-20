@@ -131,6 +131,8 @@ This section provides direct links to JSON specifications defining the data stru
 
 **Total Database Views:** 112 (68 regular + 28 materialized + 16 new temporal analytics)
 
+_Note: Category view counts above are not mutually exclusive; a single database view may support multiple intelligence frameworks and can therefore appear in more than one category. The total of 112 refers to distinct database views._
+
 **Framework Coverage:** All 6 intelligence frameworks comprehensively supported  
 **Documentation:** 100% coverage in [DATABASE_VIEW_INTELLIGENCE_CATALOG.md](DATABASE_VIEW_INTELLIGENCE_CATALOG.md)  
 **Validation Status:** ✅ Validated 2026-01-19 (v1.61)
