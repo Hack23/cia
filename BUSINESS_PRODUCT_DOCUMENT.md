@@ -183,7 +183,7 @@ For comprehensive database schema documentation:
 
 ---
 
-## 🔬 Advanced Intelligence Views (v1.40-v1.43, v1.57, v1.55-v1.61)
+## 🔬 Advanced Intelligence Views (v1.40-v1.43, v1.55, v1.57-v1.61)
 
 This section documents advanced intelligence capabilities introduced across multiple releases, including crisis resilience indicators, risk evolution tracking, party transition analysis, and comprehensive temporal analytics.
 
