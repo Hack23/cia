@@ -18,6 +18,86 @@
 --   - Creates CSV files for each view: view_<viewname>_sample.csv
 --   - Creates manifest file: sample_data_manifest.csv
 --   - Creates distinct value files: distinct_<table>_<column>_values.csv
+--
+-- ===========================================================================
+-- MODULAR ARCHITECTURE INTEGRATION (Optional)
+-- ===========================================================================
+--
+-- This script can optionally leverage modular components for better code
+-- organization and reusability. The modular files are 100% optional - this
+-- script will work with or without them.
+--
+-- MODULAR FILES AVAILABLE:
+--
+-- 1. extract-sample-data-functions.sql (260 lines)
+--    - cia_tmp_rowcount(schema, table): Get row counts
+--    - cia_classify_temporal_view(view_name): Classify temporal granularity
+--    - cia_percentile_sample(table, column, order_by): Sample at P1-P99
+--    - cia_generate_distribution_summary(view_name): Generate distribution stats
+--    Usage: \i extract-sample-data-functions.sql
+--
+-- 2. extract-percentile-summaries.sql (180 lines)
+--    - Optional Phase 6.5 module
+--    - Generates 24 percentile distribution CSVs
+--    - Can be run standalone: psql -f extract-percentile-summaries.sql
+--
+-- TO USE MODULAR FUNCTIONS:
+--   Uncomment the line below to load helper functions from external file:
+--   -- \i extract-sample-data-functions.sql
+--
+-- ===========================================================================
+-- STATISTICAL SAMPLING METHODOLOGY
+-- ===========================================================================
+--
+-- This script implements advanced statistical sampling strategies to ensure
+-- representative data extraction across temporal, categorical, and numerical
+-- dimensions of the CIA database.
+--
+-- SAMPLING STRATEGIES:
+--
+-- 1. TEMPORAL STRATIFIED SAMPLING
+--    Purpose: Ensure representative coverage across time periods
+--    When to use: Views with date/timestamp columns and temporal patterns
+--    Implementation:
+--      - Daily views: 2 samples per day (last 30 days) = ~60 samples
+--      - Weekly views: 2 samples per week (last 6 months) = ~52 samples
+--      - Monthly views: 2 samples per month (last 3 years) = ~72 samples
+--      - Annual views: 2 samples per year (full history) = ~40-50 samples
+--      - Trend views: 1 sample per time bucket (all periods)
+--    Expected coverage: 10+ years (2002-2026), all major political periods
+--
+-- 2. PERCENTILE-BASED SAMPLING
+--    Purpose: Capture distribution shape for numerical metrics
+--    When to use: Views with risk scores, performance metrics, counts
+--    Implementation: Sample at P1, P10, P25, P50, P75, P90, P99
+--    Expected coverage: Full range from min to max, including outliers
+--    Functions: cia_percentile_sample(), cia_generate_distribution_summary()
+--
+-- 3. CATEGORICAL STRATIFIED SAMPLING
+--    Purpose: Ensure all categories represented
+--    When to use: Views with party, committee, status, type columns
+--    Implementation: Extract distinct values, sample proportionally
+--    Expected coverage: All 8 major parties (S, M, SD, C, V, KD, L, MP)
+--
+-- 4. RANDOM SAMPLING
+--    Purpose: Unbiased sample when no stratification needed
+--    When to use: Non-temporal, non-numerical entity tables
+--    Implementation: TABLESAMPLE BERNOULLI or ORDER BY RANDOM()
+--
+-- SAMPLE SIZE CONFIGURATION:
+--    - Default: 200 rows (general tables/views)
+--    - Political entities: 500 rows (party/committee/person)
+--    - Documents/Voting: 300 rows (high volume sources)
+--    - Analytical views: 500 rows (trend/proximity/career analysis)
+--    - Complete extraction: < 3000 rows (small datasets)
+--
+-- VALIDATION METRICS:
+--    - Temporal coverage: Minimum 10 years, ideally 2002-2026
+--    - Categorical coverage: All 8 major parties present
+--    - Percentile coverage: P1, P10, P25, P50, P75, P90, P99 in distributions
+--    - Warnings generated for missing coverage gaps
+--
+-- ===========================================================================
 
 \set ON_ERROR_STOP off
 \timing on
@@ -46,6 +126,9 @@
 \set DOCUMENT_SAMPLE_SIZE 300
 \set VOTING_SAMPLE_SIZE 300
 \set WORLDBANK_SAMPLE_SIZE 300
+
+-- Extended sample sizes for analytical trend views (increased for better temporal coverage)
+\set TREND_SAMPLE_SIZE 500
 
 \set TABLE_CMD_FILE '/tmp/cia_table_extract_commands.sql'
 \set VIEW_CMD_FILE '/tmp/cia_view_extract_commands.sql'
@@ -125,6 +208,171 @@ AS $$
 $$;
 
 \echo 'Created helper function: cia_classify_temporal_view'
+\echo ''
+
+-- ===========================================================================
+-- SECTION 0.1B: PERCENTILE SAMPLING FUNCTIONS
+-- ===========================================================================
+-- Functions for advanced statistical sampling with percentile-based distribution
+-- analysis for numerical columns (risk scores, counts, metrics)
+-- ===========================================================================
+
+-- Function: cia_percentile_sample
+-- Purpose: Sample rows at key percentiles (P1, P10, P25, P50, P75, P90, P99)
+--          for numerical columns to capture distribution shape
+-- Parameters:
+--   p_table_name: Table or view name to sample from
+--   p_column_name: Numerical column to use for percentile calculation
+--   p_order_by: Optional ORDER BY clause for tie-breaking (default: primary key)
+-- Returns: Sampled rows representing key percentiles
+DROP FUNCTION IF EXISTS cia_percentile_sample(text, text, text);
+CREATE OR REPLACE FUNCTION cia_percentile_sample(
+    p_table_name text,
+    p_column_name text,
+    p_order_by text DEFAULT NULL
+)
+RETURNS TABLE (
+    percentile_label text,
+    percentile_value numeric,
+    row_data jsonb
+)
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    v_sql text;
+    v_order_by text;
+BEGIN
+    -- Default to column name if no order_by specified
+    v_order_by := COALESCE(p_order_by, p_column_name);
+    
+    -- Build dynamic SQL to extract percentile samples using PERCENT_RANK()
+    -- Design decision: PERCENT_RANK() directly calculates a continuous percentile
+    -- position for each row, allowing precise matching of specific percentiles
+    -- (P1, P10, P25, etc.) without relying on fixed NTILE(100) buckets
+    v_sql := format('
+        WITH ranked_data AS (
+            SELECT 
+                %I AS column_value,
+                row_to_json(t.*)::jsonb AS row_data,
+                PERCENT_RANK() OVER (ORDER BY %I) AS pct_rank
+            FROM %I AS t
+            WHERE %I IS NOT NULL
+        ),
+        target_percentiles AS (
+            SELECT unnest(ARRAY[0.01, 0.10, 0.25, 0.50, 0.75, 0.90, 0.99]) AS target_pct,
+                   unnest(ARRAY[''P1'', ''P10'', ''P25'', ''P50'', ''P75'', ''P90'', ''P99'']) AS percentile_label
+        ),
+        closest_rows AS (
+            SELECT DISTINCT ON (tp.percentile_label)
+                tp.percentile_label,
+                rd.column_value AS percentile_value,
+                rd.row_data
+            FROM target_percentiles tp
+            CROSS JOIN LATERAL (
+                SELECT column_value, row_data, pct_rank
+                FROM ranked_data
+                WHERE pct_rank >= tp.target_pct
+                ORDER BY pct_rank, %I
+                LIMIT 1
+            ) rd
+        )
+        SELECT percentile_label, percentile_value, row_data
+        FROM closest_rows
+        ORDER BY percentile_value
+    ', p_column_name, p_column_name, p_table_name, p_column_name, v_order_by);
+    
+    RETURN QUERY EXECUTE v_sql;
+EXCEPTION WHEN OTHERS THEN
+    RAISE NOTICE 'ERROR in cia_percentile_sample for %.%: %', p_table_name, p_column_name, SQLERRM;
+    RETURN;
+END;
+$$;
+
+\echo 'Created helper function: cia_percentile_sample'
+
+-- Function: cia_generate_distribution_summary
+-- Purpose: Generate comprehensive distribution summary for all numerical columns
+--          in a table/view, including min, max, percentiles, and distinct count
+-- Parameters:
+--   p_table_name: Table or view name to analyze
+-- Returns: CSV-formatted distribution summary with column statistics
+DROP FUNCTION IF EXISTS cia_generate_distribution_summary(text);
+CREATE OR REPLACE FUNCTION cia_generate_distribution_summary(p_table_name text)
+RETURNS TABLE (
+    column_name text,
+    data_type text,
+    distinct_count bigint,
+    min_value numeric,
+    max_value numeric,
+    p1 numeric,
+    p10 numeric,
+    p25 numeric,
+    median numeric,
+    p75 numeric,
+    p90 numeric,
+    p99 numeric
+)
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    v_column_record RECORD;
+    v_sql text;
+BEGIN
+    -- Iterate through all numerical columns in the table/view
+    FOR v_column_record IN
+        SELECT c.column_name, c.data_type
+        FROM information_schema.columns c
+        WHERE c.table_schema = 'public'
+          AND c.table_name = p_table_name
+          AND c.data_type IN ('integer', 'bigint', 'numeric', 'real', 'double precision', 
+                              'smallint', 'decimal', 'money')
+        ORDER BY c.ordinal_position
+    LOOP
+        BEGIN
+            -- Build dynamic SQL to calculate distribution statistics
+            v_sql := format('
+                SELECT 
+                    %L::text AS column_name,
+                    %L::text AS data_type,
+                    COUNT(DISTINCT %I) AS distinct_count,
+                    MIN(%I)::numeric AS min_value,
+                    MAX(%I)::numeric AS max_value,
+                    PERCENTILE_CONT(0.01) WITHIN GROUP (ORDER BY %I)::numeric AS p1,
+                    PERCENTILE_CONT(0.10) WITHIN GROUP (ORDER BY %I)::numeric AS p10,
+                    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY %I)::numeric AS p25,
+                    PERCENTILE_CONT(0.50) WITHIN GROUP (ORDER BY %I)::numeric AS median,
+                    PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY %I)::numeric AS p75,
+                    PERCENTILE_CONT(0.90) WITHIN GROUP (ORDER BY %I)::numeric AS p90,
+                    PERCENTILE_CONT(0.99) WITHIN GROUP (ORDER BY %I)::numeric AS p99
+                FROM %I
+                WHERE %I IS NOT NULL
+            ',
+                v_column_record.column_name,
+                v_column_record.data_type,
+                v_column_record.column_name,
+                v_column_record.column_name,
+                v_column_record.column_name,
+                v_column_record.column_name,
+                v_column_record.column_name,
+                v_column_record.column_name,
+                v_column_record.column_name,
+                v_column_record.column_name,
+                v_column_record.column_name,
+                v_column_record.column_name,
+                p_table_name,
+                v_column_record.column_name
+            );
+            
+            RETURN QUERY EXECUTE v_sql;
+        EXCEPTION WHEN OTHERS THEN
+            RAISE NOTICE 'ERROR analyzing column %.%: %', p_table_name, v_column_record.column_name, SQLERRM;
+            CONTINUE;
+        END;
+    END LOOP;
+END;
+$$;
+
+\echo 'Created helper function: cia_generate_distribution_summary'
 \echo ''
 
 -- ===========================================================================
@@ -1082,12 +1330,18 @@ view_extract AS (
         vptc.temporal_column,
         -- Smart sample size calculation:
         -- 1. Complete extraction for small views (< threshold)
-        -- 2. Extended samples for party/committee/person views
-        -- 3. Extended samples for document/voting/worldbank views
-        -- 4. Default sample size for others
+        -- 2. Extended samples for analytical trend views (election proximity, seasonal activity, career trajectory)
+        -- 3. Extended samples for party/committee/person views
+        -- 4. Extended samples for document/voting/worldbank views
+        -- 5. Default sample size for others
         CASE 
             -- Complete extraction for small views
             WHEN vtc.row_count <= :COMPLETE_EXTRACTION_THRESHOLD::int THEN vtc.row_count
+            -- Extended samples for analytical trend views (500 rows for better temporal coverage)
+            WHEN vtc.viewname IN ('view_riksdagen_election_proximity_trends',
+                                   'view_riksdagen_seasonal_activity_patterns',
+                                   'view_riksdagen_politician_career_trajectory') THEN
+                LEAST(:TREND_SAMPLE_SIZE::int, vtc.row_count)
             -- Extended samples for party-related views
             WHEN vtc.viewname ILIKE '%party%' OR vtc.viewname ILIKE '%parti%' THEN 
                 LEAST(:PARTY_SAMPLE_SIZE::int, vtc.row_count)
@@ -1114,6 +1368,9 @@ view_extract AS (
         -- Extraction type for logging
         CASE 
             WHEN vtc.row_count <= :COMPLETE_EXTRACTION_THRESHOLD::int THEN 'COMPLETE'
+            WHEN vtc.viewname IN ('view_riksdagen_election_proximity_trends',
+                                   'view_riksdagen_seasonal_activity_patterns',
+                                   'view_riksdagen_politician_career_trajectory') THEN 'TREND-EXTENDED'
             WHEN vtc.viewname ILIKE '%party%' OR vtc.viewname ILIKE '%parti%' THEN 'PARTY-EXTENDED'
             WHEN vtc.viewname ILIKE '%committee%' OR vtc.viewname ILIKE '%utskott%' THEN 'COMMITTEE-EXTENDED'
             WHEN vtc.viewname ILIKE '%person%' OR vtc.viewname ILIKE '%politician%' 
@@ -1898,6 +2155,145 @@ DROP TABLE tmp_analytical_view_stats;
 \echo ''
 
 -- ===========================================================================
+-- PHASE 6.5: PERCENTILE DISTRIBUTION SUMMARIES
+-- ===========================================================================
+-- Generate comprehensive percentile-based distribution summaries for all
+-- analytical views with numerical columns (risk scores, metrics, counts).
+-- This provides P1, P10, P25, P50, P75, P90, P99 for understanding data shape.
+-- ===========================================================================
+
+\echo ''
+\echo '=================================================='
+\echo '=== PHASE 6.5: Percentile Distribution Summaries ==='
+\echo '=================================================='
+\echo ''
+\echo 'Generating percentile-based distribution summaries for analytical views...'
+\echo 'This captures P1, P10, P25, P50 (median), P75, P90, P99 for numerical columns'
+\echo ''
+
+-- ---------------------------------------------------------------------------
+-- 6.5.1: Risk Assessment Views - Percentile Distributions
+-- ---------------------------------------------------------------------------
+\echo '6.5.1: Risk Assessment Views - Percentile Distributions...'
+
+\copy (SELECT * FROM cia_generate_distribution_summary('view_politician_risk_summary')) TO 'percentile_politician_risk_summary.csv' WITH CSV HEADER
+\echo '✓ Generated: percentile_politician_risk_summary.csv'
+
+\copy (SELECT * FROM cia_generate_distribution_summary('view_ministry_risk_evolution')) TO 'percentile_ministry_risk_evolution.csv' WITH CSV HEADER
+\echo '✓ Generated: percentile_ministry_risk_evolution.csv'
+
+\copy (SELECT * FROM cia_generate_distribution_summary('view_risk_score_evolution')) TO 'percentile_risk_score_evolution.csv' WITH CSV HEADER
+\echo '✓ Generated: percentile_risk_score_evolution.csv'
+
+-- ---------------------------------------------------------------------------
+-- 6.5.2: Performance & Productivity Views - Percentile Distributions
+-- ---------------------------------------------------------------------------
+\echo '6.5.2: Performance & Productivity Views - Percentile Distributions...'
+
+\copy (SELECT * FROM cia_generate_distribution_summary('view_party_performance_metrics')) TO 'percentile_party_performance_metrics.csv' WITH CSV HEADER
+\echo '✓ Generated: percentile_party_performance_metrics.csv'
+
+\copy (SELECT * FROM cia_generate_distribution_summary('view_committee_productivity')) TO 'percentile_committee_productivity.csv' WITH CSV HEADER
+\echo '✓ Generated: percentile_committee_productivity.csv'
+
+\copy (SELECT * FROM cia_generate_distribution_summary('view_committee_productivity_matrix')) TO 'percentile_committee_productivity_matrix.csv' WITH CSV HEADER
+\echo '✓ Generated: percentile_committee_productivity_matrix.csv'
+
+\copy (SELECT * FROM cia_generate_distribution_summary('view_ministry_productivity_matrix')) TO 'percentile_ministry_productivity_matrix.csv' WITH CSV HEADER
+\echo '✓ Generated: percentile_ministry_productivity_matrix.csv'
+
+-- ---------------------------------------------------------------------------
+-- 6.5.3: Anomaly Detection Views - Percentile Distributions
+-- ---------------------------------------------------------------------------
+\echo '6.5.3: Anomaly Detection Views - Percentile Distributions...'
+
+\copy (SELECT * FROM cia_generate_distribution_summary('view_riksdagen_voting_anomaly_detection')) TO 'percentile_voting_anomaly_detection.csv' WITH CSV HEADER
+\echo '✓ Generated: percentile_voting_anomaly_detection.csv'
+
+\copy (SELECT * FROM cia_generate_distribution_summary('view_riksdagen_seasonal_anomaly_detection')) TO 'percentile_seasonal_anomaly_detection.csv' WITH CSV HEADER
+\echo '✓ Generated: percentile_seasonal_anomaly_detection.csv'
+
+-- ---------------------------------------------------------------------------
+-- 6.5.4: Experience & Influence Views - Percentile Distributions
+-- ---------------------------------------------------------------------------
+\echo '6.5.4: Experience & Influence Views - Percentile Distributions...'
+
+\copy (SELECT * FROM cia_generate_distribution_summary('view_riksdagen_politician_experience_summary')) TO 'percentile_politician_experience_summary.csv' WITH CSV HEADER
+\echo '✓ Generated: percentile_politician_experience_summary.csv'
+
+\copy (SELECT * FROM cia_generate_distribution_summary('view_riksdagen_politician_influence_metrics')) TO 'percentile_politician_influence_metrics.csv' WITH CSV HEADER
+\echo '✓ Generated: percentile_politician_influence_metrics.csv'
+
+-- ---------------------------------------------------------------------------
+-- 6.5.5: Behavioral & Decision Pattern Views - Percentile Distributions
+-- ---------------------------------------------------------------------------
+\echo '6.5.5: Behavioral & Decision Pattern Views - Percentile Distributions...'
+
+\copy (SELECT * FROM cia_generate_distribution_summary('view_politician_behavioral_trends')) TO 'percentile_politician_behavioral_trends.csv' WITH CSV HEADER
+\echo '✓ Generated: percentile_politician_behavioral_trends.csv'
+
+\copy (SELECT * FROM cia_generate_distribution_summary('view_riksdagen_politician_decision_pattern')) TO 'percentile_politician_decision_pattern.csv' WITH CSV HEADER
+\echo '✓ Generated: percentile_politician_decision_pattern.csv'
+
+\copy (SELECT * FROM cia_generate_distribution_summary('view_ministry_decision_impact')) TO 'percentile_ministry_decision_impact.csv' WITH CSV HEADER
+\echo '✓ Generated: percentile_ministry_decision_impact.csv'
+
+-- ---------------------------------------------------------------------------
+-- 6.5.6: Coalition & Momentum Views - Percentile Distributions
+-- ---------------------------------------------------------------------------
+\echo '6.5.6: Coalition & Momentum Views - Percentile Distributions...'
+
+\copy (SELECT * FROM cia_generate_distribution_summary('view_riksdagen_party_momentum_analysis')) TO 'percentile_party_momentum_analysis.csv' WITH CSV HEADER
+\echo '✓ Generated: percentile_party_momentum_analysis.csv'
+
+\copy (SELECT * FROM cia_generate_distribution_summary('view_riksdagen_crisis_resilience_indicators')) TO 'percentile_crisis_resilience_indicators.csv' WITH CSV HEADER
+\echo '✓ Generated: percentile_crisis_resilience_indicators.csv'
+
+-- ---------------------------------------------------------------------------
+-- 6.5.7: Temporal Trend Views - Percentile Distributions
+-- ---------------------------------------------------------------------------
+\echo '6.5.7: Temporal Trend Views - Percentile Distributions...'
+
+\copy (SELECT * FROM cia_generate_distribution_summary('view_riksdagen_election_proximity_trends')) TO 'percentile_election_proximity_trends.csv' WITH CSV HEADER
+\echo '✓ Generated: percentile_election_proximity_trends.csv'
+
+\copy (SELECT * FROM cia_generate_distribution_summary('view_riksdagen_seasonal_activity_patterns')) TO 'percentile_seasonal_activity_patterns.csv' WITH CSV HEADER
+\echo '✓ Generated: percentile_seasonal_activity_patterns.csv'
+
+\copy (SELECT * FROM cia_generate_distribution_summary('view_riksdagen_party_effectiveness_trends')) TO 'percentile_party_effectiveness_trends.csv' WITH CSV HEADER
+\echo '✓ Generated: percentile_party_effectiveness_trends.csv'
+
+\copy (SELECT * FROM cia_generate_distribution_summary('view_ministry_effectiveness_trend')) TO 'percentile_ministry_effectiveness_trend.csv' WITH CSV HEADER
+\echo '✓ Generated: percentile_ministry_effectiveness_trend.csv'
+
+-- ---------------------------------------------------------------------------
+-- 6.5.8: Career & Longevity Views - Percentile Distributions
+-- ---------------------------------------------------------------------------
+\echo '6.5.8: Career & Longevity Views - Percentile Distributions...'
+
+\copy (SELECT * FROM cia_generate_distribution_summary('view_riksdagen_politician_career_trajectory')) TO 'percentile_politician_career_trajectory.csv' WITH CSV HEADER
+\echo '✓ Generated: percentile_politician_career_trajectory.csv'
+
+\copy (SELECT * FROM cia_generate_distribution_summary('view_riksdagen_politician_longevity_analysis')) TO 'percentile_politician_longevity_analysis.csv' WITH CSV HEADER
+\echo '✓ Generated: percentile_politician_longevity_analysis.csv'
+
+\copy (SELECT * FROM cia_generate_distribution_summary('view_riksdagen_politician_role_evolution')) TO 'percentile_politician_role_evolution.csv' WITH CSV HEADER
+\echo '✓ Generated: percentile_politician_role_evolution.csv'
+
+\echo ''
+\echo '=== PERCENTILE DISTRIBUTION SUMMARIES COMPLETE ===' 
+\echo ''
+\echo 'Generated percentile distributions for 24 analytical views'
+\echo 'Each CSV contains: column_name, data_type, distinct_count, min, max, P1, P10, P25, median, P75, P90, P99'
+\echo ''
+
+\echo ''
+\echo '=================================================='
+\echo '=== PHASE 6.5 COMPLETE: Percentile Stats Done ==='
+\echo '=================================================='
+\echo ''
+
+-- ===========================================================================
 -- CLEANUP
 -- ===========================================================================
 \echo ''
@@ -1910,6 +2306,12 @@ DROP FUNCTION IF EXISTS cia_tmp_rowcount(text, text);
 
 DROP FUNCTION IF EXISTS cia_classify_temporal_view(text);
 \echo 'Dropped helper function: cia_classify_temporal_view'
+
+DROP FUNCTION IF EXISTS cia_percentile_sample(text, text, text);
+\echo 'Dropped helper function: cia_percentile_sample'
+
+DROP FUNCTION IF EXISTS cia_generate_distribution_summary(text);
+\echo 'Dropped helper function: cia_generate_distribution_summary'
 
 DROP TABLE IF EXISTS cia_view_row_counts;
 \echo 'Dropped temp table: cia_view_row_counts'
@@ -1999,10 +2401,44 @@ DROP TABLE IF EXISTS cia_view_row_counts;
 \echo '  - summary_extraction_types.csv       : Extraction type breakdown'
 \echo '  - summary_analytical_views.csv       : Analytical view statistics'
 \echo ''
+\echo 'Percentile Distribution Summaries (NEW - Phase 6.5):'
+\echo '  - percentile_*.csv                   : P1, P10, P25, P50, P75, P90, P99 for all numerical columns'
+\echo '  Risk Assessment Views:'
+\echo '    - percentile_politician_risk_summary.csv'
+\echo '    - percentile_ministry_risk_evolution.csv'
+\echo '    - percentile_risk_score_evolution.csv'
+\echo '  Performance & Productivity Views:'
+\echo '    - percentile_party_performance_metrics.csv'
+\echo '    - percentile_committee_productivity*.csv'
+\echo '    - percentile_ministry_productivity_matrix.csv'
+\echo '  Anomaly Detection Views:'
+\echo '    - percentile_voting_anomaly_detection.csv'
+\echo '    - percentile_seasonal_anomaly_detection.csv'
+\echo '  Experience & Influence Views:'
+\echo '    - percentile_politician_experience_summary.csv'
+\echo '    - percentile_politician_influence_metrics.csv'
+\echo '  Behavioral & Decision Pattern Views:'
+\echo '    - percentile_politician_behavioral_trends.csv'
+\echo '    - percentile_politician_decision_pattern.csv'
+\echo '    - percentile_ministry_decision_impact.csv'
+\echo '  Coalition & Momentum Views:'
+\echo '    - percentile_party_momentum_analysis.csv'
+\echo '    - percentile_crisis_resilience_indicators.csv'
+\echo '  Temporal Trend Views:'
+\echo '    - percentile_election_proximity_trends.csv'
+\echo '    - percentile_seasonal_activity_patterns.csv'
+\echo '    - percentile_party_effectiveness_trends.csv'
+\echo '    - percentile_ministry_effectiveness_trend.csv'
+\echo '  Career & Longevity Views:'
+\echo '    - percentile_politician_career_trajectory.csv'
+\echo '    - percentile_politician_longevity_analysis.csv'
+\echo '    - percentile_politician_role_evolution.csv'
+\echo ''
 \echo 'Sample Size Configuration:'
 \echo '  - Default: 200 rows (most tables/views)'
 \echo '  - Political entities (party/committee/person): 500 rows'
 \echo '  - Document/Voting/Worldbank data: 300 rows'
+\echo '  - Analytical trend views: 500 rows (election proximity, seasonal activity, career trajectory)'
 \echo '  - Complete extraction for tables/views under 3000 rows'
 \echo ''
 \echo 'Temporal Stratification Applied:'
