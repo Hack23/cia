@@ -10,11 +10,11 @@
 
 -- ============================================================================
 -- TEST 1.1: Upward Trend Detection (Politician Attendance Improvement)
--- Expected Outcome: Detect attendance rate improvement (lower absence) 
+-- Expected Outcome: Detect attendance trend classifications (improvement, decline, stable)
 -- Sample Size: 50 cases
 -- ============================================================================
 \echo '>>> Test Case 1.1: Upward Trend - Politician Attendance Improvement'
-\echo '>>> Expected Outcome: Detect attendance rate improvement using raw vote_data'
+\echo '>>> Expected Outcome: Detect attendance trend classifications using raw vote_data'
 
 COPY (
     WITH monthly_votes AS (

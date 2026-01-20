@@ -397,19 +397,21 @@ graph TD
 - **Helper Functions**: 11
 - **Config Parameters**: 45+
 - **Advanced Views Covered**: 13 (9 original + 4 new)
-- **Views from v1.58-v1.61**: 4 of 11 covered (36%)
+- **Views from v1.58-v1.61**: 11 of 11 covered (100%) ✅
 
-### New Test Cases (v1.58-v1.61 Coverage)
+### New Test Cases (v1.58-v1.61 Coverage - 100% Complete)
+
+**Phase 1 Tests:**
 1. **Test 1.5**: Election Proximity Trends - `view_riksdagen_election_proximity_trends`
 2. **Test 1.6**: Election Year Patterns - `view_riksdagen_election_year_behavioral_patterns`
 3. **Test 2.4**: Party Longitudinal Performance - `view_riksdagen_party_longitudinal_performance`
 4. **Test 4.3**: Pre-Election Activity - `view_riksdagen_pre_election_quarterly_activity`
 
-### Remaining Views to Cover
-- `view_riksdagen_election_year_anomalies`
-- `view_riksdagen_election_year_vs_midterm`
-- `view_riksdagen_party_coalition_evolution`
-- `view_riksdagen_party_electoral_trends`
-- `view_riksdagen_party_summary`
-- `view_riksdagen_politician_career_path_10level`
-- `view_riksdagen_seasonal_activity_patterns`
+**Phase 2 Tests:**
+5. **Test 1.7**: Election Year Anomalies - `view_riksdagen_election_year_anomalies`
+6. **Test 1.8**: Election vs Midterm Comparison - `view_riksdagen_election_year_vs_midterm`
+7. **Test 1.9**: Seasonal Activity Patterns - `view_riksdagen_seasonal_activity_patterns`
+8. **Test 2.5**: Party Coalition Evolution - `view_riksdagen_party_coalition_evolution`
+9. **Test 2.6**: Party Electoral Trends - `view_riksdagen_party_electoral_trends`
+10. **Test 2.7**: Party Summary - `view_riksdagen_party_summary`
+11. **Test 3.3**: Career Path Classification - `view_riksdagen_politician_career_path_10level`
