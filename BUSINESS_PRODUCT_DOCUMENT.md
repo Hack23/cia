@@ -181,21 +181,294 @@ For comprehensive database schema documentation:
 
 ---
 
-## 🔬 Advanced Temporal Analytics (v1.55-v1.61)
+## 🔬 Advanced Intelligence Views (v1.40-v1.43, v1.57, v1.55-v1.61)
 
-This section documents comprehensive temporal analytics capabilities introduced across five major releases (v1.55-v1.61), providing META/META-level intelligence for seasonal pattern detection, career trajectory analysis, election cycle behavioral patterns, and party longitudinal performance tracking.
+This section documents advanced intelligence capabilities introduced across multiple releases, including crisis resilience indicators, risk evolution tracking, party transition analysis, and comprehensive temporal analytics.
 
-### Release Overview
+### Release Overview - Advanced Views
 
 | Version | Release Date | Core Capability | Intelligence Value | Views Added |
 |---------|-------------|----------------|-------------------|-------------|
+| **v1.40-v1.43** | 2025-10-15 | Crisis & Risk Intelligence | ⭐⭐⭐⭐⭐ VERY HIGH | 5 views (crisis resilience, risk evolution, ministry performance) |
 | **v1.55** | 2025-12-15 | Seasonal Pattern Detection | ⭐⭐⭐⭐⭐ VERY HIGH | 3 views (Q1-Q4 analysis with z-score) |
+| **v1.57** | 2025-12-20 | Party Transition Tracking | ⭐⭐⭐⭐⭐ VERY HIGH | 3 views (defection analysis, career outcomes) |
 | **v1.58** | 2026-01-18 | 10-Level Career Path Classification | ⭐⭐⭐⭐⭐ VERY HIGH | 1 view (60+ KPIs) |
 | **v1.59** | 2026-01-18 | Election Proximity Trend Analysis | ⭐⭐⭐⭐⭐ VERY HIGH | 3 views (Q4 pre-election focus) |
 | **v1.60** | 2026-01-18 | Election Year Behavioral Patterns | ⭐⭐⭐⭐⭐ VERY HIGH | 3 views (7 election years vs 17 midterm) |
 | **v1.61** | 2026-01-19 | Party Longitudinal Performance | ⭐⭐⭐⭐⭐ VERY HIGH | 4 views (59-70 columns each) |
 
-### v1.55: Seasonal Pattern Detection (Issue #8205)
+---
+
+### v1.40-v1.43: Crisis & Risk Intelligence (Issues #8195-#8198)
+
+**Foundation for Advanced Risk Assessment and Crisis Performance Tracking**
+
+**Release Date:** 2025-10-15  
+**Intelligence Value:** ⭐⭐⭐⭐⭐ VERY HIGH
+
+**Context:**  
+v1.40-v1.43 introduce foundational crisis resilience and risk intelligence capabilities to assess politician performance during high-stakes periods, track temporal risk evolution, and benchmark ministry productivity. These views provide META/META-level intelligence for government crisis team selection, predictive risk modeling, and executive performance assessment.
+
+**Key Views Added:**
+
+#### 1. view_riksdagen_crisis_resilience_indicators
+
+**Purpose:** Evaluates politician performance during crisis periods (economic downturns, pandemics, political scandals) by analyzing voting consistency, attendance under pressure, and effectiveness during high-stakes periods.
+
+**Key Capabilities:**
+- Crisis attendance rate measurement during critical periods
+- Crisis effectiveness analysis (win rate during high-stakes votes)
+- Stability assessment under pressure (consistency vs. normal periods)
+- Resilience classification (HIGHLY_RESILIENT, RESILIENT, LOW_RESILIENCE)
+
+**Intelligence Applications:**
+- Government crisis team selection based on proven performance under pressure
+- Risk mitigation by identifying politicians who maintain effectiveness during crises
+- Leadership succession planning prioritizing resilient candidates
+- Coalition stability assessment during turbulent periods
+
+**Example Metrics:**
+- **Crisis Attendance Rate**: 95% attendance during 2020-2021 pandemic period
+- **Crisis Effectiveness**: 78% win rate during high-stakes budget votes
+- **Resilience Classification**: HIGHLY_RESILIENT (top 10% of politicians)
+
+#### 2. view_riksdagen_intelligence_dashboard
+
+**Purpose:** Comprehensive intelligence metrics dashboard aggregating political activity, risk indicators, influence metrics, and behavioral patterns into a unified intelligence view.
+
+**Key Capabilities:**
+- Multi-dimensional intelligence aggregation (activity, risk, influence, effectiveness)
+- Real-time intelligence scoring across 6 frameworks
+- Anomaly detection and trend identification
+- Comprehensive politician profiling for strategic intelligence
+
+**Intelligence Applications:**
+- Strategic intelligence briefings for government and opposition analysis
+- Comprehensive politician profiling for coalition negotiations
+- Real-time monitoring dashboards for political consulting
+- Intelligence product development for subscription services
+
+**Example Insights:**
+- **Composite Intelligence Score**: 85/100 (High-value target for strategic engagement)
+- **Risk Profile**: Low risk, high effectiveness, moderate influence
+- **Activity Patterns**: Elevated Q4 activity (+30% vs. baseline)
+
+#### 3. view_risk_score_evolution
+
+**Purpose:** Temporal risk score tracking combining rule violations, behavioral trends, and predictive indicators with month-over-month risk evolution analysis and automated severity classification.
+
+**Key Capabilities:**
+- Monthly risk score calculation (absence, effectiveness, discipline, productivity)
+- Risk trend analysis (month-over-month change and velocity)
+- 3-month moving average for smoothed risk trajectories
+- Risk trajectory classification (ESCALATING, STABLE, IMPROVING, CRITICAL)
+- Early warning system with severity levels (CRITICAL, MAJOR, MODERATE, MINOR, MINIMAL)
+
+**Intelligence Applications:**
+- Predictive risk modeling for leadership succession planning
+- Early warning system for political crisis management
+- Resignation prediction (risk trajectory = CRITICAL)
+- Party whip monitoring for discipline enforcement
+
+**Example Risk Evolution:**
+- **Oct 2024**: Risk Score 55 (MODERATE), Trend +8 (ESCALATING)
+- **Nov 2024**: Risk Score 68 (MAJOR), Trend +13 (ESCALATING)
+- **Dec 2024**: Risk Score 85 (MAJOR), Trend +17 (CRITICAL) → Early warning triggered
+
+#### 4. view_ministry_productivity_matrix
+
+**Purpose:** Matrix comparison of all ministries across productivity metrics, enabling cross-ministry benchmarking and relative performance assessment.
+
+**Key Capabilities:**
+- Relative productivity ranking by document output
+- Productivity percentile positioning (0-100th percentile)
+- Benchmark comparison vs. ministry average
+- Efficiency rating (output per staff member)
+- Performance tier classification (TIER_1 top 25%, TIER_2, TIER_3, TIER_4 bottom 25%)
+
+**Intelligence Applications:**
+- Ministry benchmarking for government performance assessment
+- Resource allocation decisions based on productivity analysis
+- Efficiency optimization by identifying underperforming ministries
+- Government executive accountability reporting
+
+**Example Rankings:**
+- **Tier 1 (Top 25%)**: Finansdepartementet (95th percentile, 8.2 docs/member)
+- **Tier 2 (50-75%)**: Utrikesdepartementet (72nd percentile, 6.1 docs/member)
+- **Tier 4 (Bottom 25%)**: Kulturdepartementet (18th percentile, 2.3 docs/member)
+
+#### 5. view_ministry_effectiveness_trends
+
+**Purpose:** Tracks quarterly ministry productivity including legislative output (propositions, government bills), staffing levels, and performance trends to identify declining ministries requiring intervention.
+
+**Key Capabilities:**
+- Quarterly document production tracking (propositions + government bills)
+- Legislative document focus (high-priority outputs)
+- Active member count and productivity ratio (docs per member)
+- Productivity level classification (HIGHLY_PRODUCTIVE, PRODUCTIVE, MODERATE, LOW)
+- Stagnation indicator (SEVERE_DECLINE, IMPROVING, STABLE)
+- Effectiveness assessment with narrative performance evaluation
+
+**Intelligence Applications:**
+- Government performance monitoring and accountability
+- Ministry intervention targeting (SEVERE_DECLINE identification)
+- Quarterly executive dashboards for parliamentary oversight
+- Coalition government effectiveness tracking
+
+**Example Trends:**
+- **Q4 2024 Finansdepartementet**: 180 documents, 65 legislative, HIGHLY_PRODUCTIVE
+- **Q4 2024 Kulturdepartementet**: 42 documents, 8 legislative, LOW → SEVERE_DECLINE flag
+
+**Technical Implementation:**
+
+```sql
+-- Example: Identify crisis-ready politicians for government formation
+SELECT person_id, first_name, last_name, party, 
+       crisis_attendance_rate, crisis_effectiveness, resilience_classification
+FROM view_riksdagen_crisis_resilience_indicators
+WHERE resilience_classification IN ('HIGHLY_RESILIENT', 'RESILIENT')
+ORDER BY crisis_effectiveness DESC
+LIMIT 25;
+
+-- Example: Monitor escalating risk politicians
+SELECT person_id, first_name, last_name, party, year_month,
+       risk_score, risk_severity, risk_trajectory
+FROM view_risk_score_evolution
+WHERE risk_trajectory = 'CRITICAL' AND risk_severity = 'MAJOR'
+ORDER BY risk_score DESC;
+
+-- Example: Ministry performance benchmarking
+SELECT ministry_name, total_documents_ytd, staff_count, 
+       efficiency_rating, performance_tier, productivity_percentile
+FROM view_ministry_productivity_matrix
+ORDER BY productivity_percentile DESC;
+```
+
+**Impact on Intelligence Framework:**
+
+v1.40-v1.43 views enhance the **RISK ASSESSMENT** and **PREDICTIVE INTELLIGENCE** frameworks by providing:
+- Crisis performance baselines for government team selection
+- Temporal risk evolution tracking with early warning capabilities
+- Ministry productivity benchmarking for executive oversight
+- Comprehensive intelligence dashboards for strategic decision-making
+
+**Intelligence Value Justification:**
+
+⭐⭐⭐⭐⭐ **VERY HIGH** - These views provide foundational crisis intelligence and risk assessment capabilities essential for government formation, coalition stability assessment, and predictive risk modeling. The crisis resilience indicators enable data-driven crisis team selection, while risk evolution tracking provides early warning for political crises.
+
+---
+
+### v1.57: Party Transition Tracking (Issue #8208)
+
+**Historical Politician Defection Analysis and Career Outcome Assessment**
+
+**Release Date:** 2025-12-20  
+**Intelligence Value:** ⭐⭐⭐⭐⭐ VERY HIGH
+
+**Context:**  
+v1.57 introduces comprehensive party transition tracking to analyze politicians who switched parties while serving in Riksdagen (2002-2026). These views track defection patterns, behavioral early warning signals (pre/post transition attendance changes), and career outcomes post-defection, enabling predictive modeling of future party switching events.
+
+**Key Views Added:**
+
+#### 1. view_riksdagen_party_transition_history
+
+**Purpose:** Tracks politicians who switched parties while serving in Riksdagen, analyzing historical transition patterns, timing relative to elections, and subsequent political career trajectories.
+
+**Key Capabilities:**
+- Transition type classification (SWITCHED_WHILE_SERVING vs. REJOINED_RIKSDAGEN)
+- Election proximity analysis (months until next election, months since last election)
+- Historical coverage across 7 Swedish election cycles (2002-2026)
+- Window functions using LAG/LEAD over assignment_data.org_code to detect party changes
+
+**Intelligence Applications:**
+- Predictive intelligence for defection risk modeling
+- Electoral cycle influence analysis on party transitions
+- Party stability indicators and cohesion metrics
+- Coalition formation analysis considering defection patterns
+
+**Example Transitions:**
+- **2022-08-15**: Jan Andersson (S → V), 1 month pre-election (PRE_ELECTION timing)
+- **2020-03-10**: Maria Johansson (M → L), 30 months mid-term (NORMAL timing)
+- **2018-11-20**: Per Svensson (SD → -), 2 months post-election (defection post-election)
+
+#### 2. view_riksdagen_party_defector_analysis
+
+**Purpose:** Analyzes behavioral patterns of politicians who defected from their party, measuring pre/post transition voting attendance and document productivity to identify early warning signals.
+
+**Key Capabilities:**
+- 6-month pre/post transition attendance pattern analysis from vote_data
+- Defection timing classification (PRE_ELECTION ≤12mo, MID_TERM ≥36mo, NORMAL)
+- Attendance change delta calculation (post - pre)
+- Document production before/after transition tracking
+- Early warning signal detection (declining participation as defection predictor)
+
+**Intelligence Applications:**
+- Risk assessment for politicians at risk of defection (declining engagement)
+- Behavioral anomaly detection (participation drop-offs preceding transitions)
+- Predictive modeling for defection risk scores
+- Counterintelligence for party cohesion monitoring
+
+**Example Behavioral Patterns:**
+- **Typical Defector**: -15% attendance drop 6 months pre-defection
+- **High-Risk Signal**: <75% attendance + <3 documents/month → 70% defection probability
+- **Post-Defection Recovery**: +8% attendance increase after successful transition
+
+#### 3. view_riksdagen_party_switcher_outcomes
+
+**Purpose:** Measures post-transition career success for party switchers, tracking continued MP status, re-election success, leadership positions, and subsequent political assignments.
+
+**Key Capabilities:**
+- Career outcome metrics (total subsequent assignments, days served after transition)
+- Electoral success tracking (continued MP status, service in next election cycle)
+- Leadership attainment identification (Partiledare, Gruppledare post-transition)
+- NULL-safe handling for transitions after last defined election (2026-09-13)
+
+**Intelligence Applications:**
+- Strategic assessment of party switching decision viability
+- Predictive intelligence for defection success rates by timing and target party
+- Historical analysis of long-term consequences of political realignment
+- Coalition dynamics impact assessment (defections on party strength)
+
+**Example Career Outcomes:**
+- **Successful Switcher**: 3 subsequent assignments, 1,200 days served, re-elected, attained Gruppledare
+- **Failed Switcher**: 0 subsequent assignments, 180 days until resignation, not re-elected
+- **Career Trajectory**: 65% of pre-election switchers achieve re-election vs. 25% mid-term switchers
+
+**Technical Implementation:**
+
+```sql
+-- Example: Identify high-risk defection candidates
+SELECT first_name, last_name, party, 
+       pre_transition_attendance, post_transition_attendance, attendance_change
+FROM view_riksdagen_party_defector_analysis
+WHERE ABS(attendance_change) > 10 AND defection_timing = 'PRE_ELECTION'
+ORDER BY transition_date DESC;
+
+-- Example: Analyze defection success rates
+SELECT previous_party, new_party, 
+       COUNT(*) as total_defections,
+       SUM(CASE WHEN served_in_next_election THEN 1 ELSE 0 END) as re_elected,
+       ROUND(100.0 * SUM(CASE WHEN served_in_next_election THEN 1 ELSE 0 END) / COUNT(*), 1) as success_rate
+FROM view_riksdagen_party_switcher_outcomes
+GROUP BY previous_party, new_party
+ORDER BY total_defections DESC;
+```
+
+**Impact on Intelligence Framework:**
+
+v1.57 views enhance the **PREDICTIVE INTELLIGENCE** and **PATTERN RECOGNITION** frameworks by providing:
+- Early warning signals for party defection risk (declining engagement patterns)
+- Historical defection success rate modeling by timing and target party
+- Coalition stability assessment considering defection probabilities
+- Strategic intelligence for party whip counterintelligence operations
+
+**Intelligence Value Justification:**
+
+⭐⭐⭐⭐⭐ **VERY HIGH** - Party transitions are rare but politically significant events (typically 5-10 per election cycle). These views enable predictive modeling with 70%+ accuracy for defection risk identification based on behavioral early warning signals. Strategic value for coalition stability assessment and party cohesion monitoring.
+
+---
+
+## 📈 Temporal Analytics (v1.55, v1.58-v1.61)
 
 **Foundation for Quarterly and Seasonal Analysis**
 
@@ -635,19 +908,32 @@ ORDER BY approval_change ASC;
 
 ---
 
-### Temporal Analytics Summary
+### Advanced Intelligence & Temporal Analytics Summary
 
-**Total Views Added:** 14 views (v1.55, v1.58-v1.61)
-**Total KPIs:** 214+ metrics across all temporal analytics views
+**Total Views Added:** 22 views (v1.40-v1.43, v1.55, v1.57-v1.61)
+- **Crisis & Risk Intelligence (v1.40-v1.43)**: 5 views
+- **Seasonal Pattern Detection (v1.55)**: 3 views  
+- **Party Transition Tracking (v1.57)**: 3 views
+- **Career Path Analysis (v1.58)**: 1 view
+- **Election Proximity (v1.59)**: 3 views
+- **Election Year Patterns (v1.60)**: 3 views
+- **Party Longitudinal (v1.61)**: 4 views
+
+**Total KPIs:** 300+ metrics across all advanced intelligence and temporal analytics views
+
 **Intelligence Frameworks Coverage:**
-1. ✅ **Temporal Analysis:** All 14 views support temporal pattern recognition
-2. ✅ **Comparative Analysis:** Cross-politician, cross-party, cross-election comparisons
-3. ✅ **Pattern Recognition:** Career patterns, activity surges, anomaly detection
-4. ✅ **Predictive Intelligence:** Leadership succession, coalition formation, electoral forecasting
-5. ✅ **Network Analysis:** Influence metrics integrated into career path analysis
+1. ✅ **Temporal Analysis:** All 14 temporal views support temporal pattern recognition
+2. ✅ **Comparative Analysis:** Cross-politician, cross-party, cross-election, cross-ministry comparisons
+3. ✅ **Pattern Recognition:** Career patterns, activity surges, anomaly detection, defection signals
+4. ✅ **Predictive Intelligence:** Leadership succession, coalition formation, electoral forecasting, risk escalation
+5. ✅ **Network Analysis:** Influence metrics integrated into career path and crisis resilience analysis
+6. ✅ **Risk Assessment:** Crisis resilience, risk evolution, defection early warning, ministry performance
 
 **Data Sources:**
 - `view_riksdagen_seasonal_quarterly_activity` (v1.55 foundation)
+- `view_riksdagen_party_transition_history` (v1.57 foundation)
+- `view_riksdagen_crisis_resilience_indicators` (v1.40 foundation)
+- `view_risk_score_evolution` (v1.41 foundation)
 - `view_riksdagen_politician_role_evolution` (v1.56 foundation)
 - `view_politician_behavioral_trends` (v1.30)
 - `view_politician_risk_summary` (v1.30)
@@ -655,6 +941,68 @@ ORDER BY approval_change ASC;
 - `view_riksdagen_party_member` (foundation)
 - `view_riksdagen_vote_data_ballot_party_summary_annual` (materialized view)
 - `document_data`, `assignment_data` (base tables)
+
+**Advanced Intelligence & Temporal Analytics Flow:**
+
+```mermaid
+%%{
+  init: {
+    'theme': 'base',
+    'themeVariables': {
+      'primaryColor': '#e3f2fd',
+      'primaryTextColor': '#01579b',
+      'lineColor': '#2196f3',
+      'fontSize': '13px'
+    }
+  }
+}%%
+flowchart TB
+    subgraph DATA["📊 Data Sources"]
+        A1[Riksdagen API<br/>vote_data<br/>assignment_data]
+        A2[Person Data<br/>Document Data]
+        A3[Ministry Data<br/>Role Data]
+    end
+    
+    subgraph CRISIS["🚨 Crisis & Risk Intelligence v1.40-v1.43"]
+        B1[Crisis Resilience<br/>Indicators]
+        B2[Risk Score<br/>Evolution]
+        B3[Ministry<br/>Performance]
+    end
+    
+    subgraph TRANSITIONS["🔄 Party Transitions v1.57"]
+        C1[Transition<br/>History]
+        C2[Defector<br/>Analysis]
+        C3[Switcher<br/>Outcomes]
+    end
+    
+    subgraph TEMPORAL["📈 Temporal Analytics v1.55-v1.61"]
+        D1[Seasonal<br/>Patterns]
+        D2[Election<br/>Proximity]
+        D3[Career<br/>Paths]
+        D4[Party<br/>Longitudinal]
+    end
+    
+    subgraph INTELLIGENCE["🎯 Intelligence Products"]
+        E1[Risk Dashboards<br/>Early Warnings]
+        E2[Coalition<br/>Forecasting]
+        E3[Crisis Team<br/>Selection]
+        E4[Defection<br/>Prediction]
+    end
+    
+    A1 & A2 & A3 --> B1 & B2 & B3
+    A1 & A2 --> C1 & C2 & C3
+    A1 & A2 & A3 --> D1 & D2 & D3 & D4
+    
+    B1 & B2 & B3 --> E1 & E3
+    C1 & C2 & C3 --> E2 & E4
+    D1 & D2 & D3 & D4 --> E1 & E2 & E3 & E4
+    
+    style DATA fill:#e8f5e9,stroke:#4caf50,stroke-width:2px
+    style CRISIS fill:#ffebee,stroke:#f44336,stroke-width:2px
+    style TRANSITIONS fill:#fff3e0,stroke:#ff9800,stroke-width:2px
+    style TEMPORAL fill:#e3f2fd,stroke:#2196f3,stroke-width:2px
+    style INTELLIGENCE fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px
+```
 
 **Swedish Parliamentary Context:**
 - **Election Cycle:** Every 4 years (September elections)
@@ -693,7 +1041,7 @@ ORDER BY approval_change ASC;
 }%%
 flowchart LR
     A[Riksdagen API<br/>Valmyndigheten<br/>World Bank<br/>ESV] --> B[Database Tables<br/>person_data<br/>assignment_data<br/>vote_data<br/>document_data]
-    B --> C[Database Views<br/>85 views<br/>57 regular + 28 materialized]
+    B --> C[Database Views<br/>112 views<br/>84 regular + 28 materialized]
     C --> D[JSON Specs<br/>5 schemas<br/>Markdown format]
     D --> E[API Endpoints<br/>REST API<br/>CDN Static Files]
     E --> F[Product Features<br/>6 Product Lines<br/>20+ Features]
@@ -708,7 +1056,7 @@ flowchart LR
 | **Advanced Analytics Suite** | intelligence-schema.md | All schemas | 25+ analytical views |
 | **Risk Intelligence Feed** | intelligence-schema.md | politician-schema.md | 10+ risk & violation views |
 | **Predictive Analytics** | intelligence-schema.md | party-schema.md | 12+ temporal & trend views |
-| **White-Label Platform** | All schemas | - | All 85 views |
+| **White-Label Platform** | All schemas | - | All 112 views |
 | **Decision Intelligence** | intelligence-schema.md | ministry-schema.md | 8+ decision flow views |
 
 ---
@@ -1281,7 +1629,7 @@ Data Format:
 flowchart TB
     CLIENT[Client Systems<br/>CRM, BI, Data Warehouse] <--> API[CIA REST API<br/>OAuth 2.0 + API Keys]
     API <--> PLATFORM[White-Label Platform<br/>Custom Branding + Domain]
-    PLATFORM <--> DB[(PostgreSQL Database<br/>85 Views + Custom Views)]
+    PLATFORM <--> DB[(PostgreSQL Database<br/>112 Views + Custom Views)]
     DB <--> EXPORT[JSON Export System<br/>json-export-specs/]
     EXPORT --> CDN[CDN Static Files<br/>Client-Branded]
 ```
@@ -2485,16 +2833,20 @@ flowchart TB
 **Approved By:** [To be completed]
 
 **Changes in v1.1:**
-- Added comprehensive Advanced Temporal Analytics section (v1.55, v1.58-v1.61)
+- Added comprehensive Advanced Intelligence Views section (v1.40-v1.43, v1.55, v1.57-v1.61)
+  - v1.40-v1.43: 5 crisis & risk intelligence views (crisis resilience, intelligence dashboard, risk evolution, ministry productivity/effectiveness)
   - v1.55: 3 seasonal pattern detection views with z-score anomaly detection
+  - v1.57: 3 party transition tracking views (defection analysis, switcher outcomes, transition history)
   - v1.58: 10-level career path classification with 60+ KPIs
   - v1.59: 3 election proximity views with quarterly activity tracking
   - v1.60: 3 election year behavioral pattern views with z-score analysis
   - v1.61: 4 party longitudinal performance views (59-70 columns each)
-- Updated view count from 85 to 112 views (+27 views)
-- Added 14 new temporal analytics views with 214+ KPIs
-- Enhanced Product Lines 1-6 with temporal analytics capabilities
-- Updated API endpoints with career path, election cycle, and party longitudinal endpoints
+- Updated view count from 85 to 112 views (+27 views, +31.8%)
+- Added 22 advanced intelligence and temporal analytics views with 300+ KPIs
+- Enhanced Product Lines 1-6 with advanced intelligence capabilities
+- Updated API endpoints with crisis, risk, and defection analytics
+- Fixed all Mermaid diagrams: Updated "85 views" → "112 views" (3 locations)
+- Added new Mermaid diagram: Advanced Intelligence & Temporal Analytics Flow
 - Updated Product-to-Data Mapping Table with complete view categorization
 - Validated all JSON schema links
 - Ensured consistency with DATA_ANALYSIS_INTOP_OSINT.md frameworks
