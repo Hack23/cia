@@ -47,11 +47,11 @@ This document provides comprehensive documentation of data analysis methodologie
 - Trend reports (74-87% forecasting accuracy)
 - Decision effectiveness tracking (100% operational post-fix)
 
-**Database Views**: 107 views ✅ UPDATED (v1.55-v1.61 enhancements)
-- **Regular Views**: 79 views (100% documented)
+**Database Views**: 82 views ✅ VERIFIED (see DATABASE_VIEW_INTELLIGENCE_CATALOG.md for authoritative totals)
+- **Regular Views**: 54 views (100% documented)
 - **Materialized Views**: 28 views (100% documented)
 - **View Health**: 91/100 (excellent - improved from 55/100 after 2025-11-28 fixes)
-- **New Views (v1.55-v1.61)**: 23 views added (seasonal trends, election proximity, career paths, party longitudinal)
+- **New Views (v1.55-v1.61)**: 20 views added (seasonal trends, election proximity, career paths, party longitudinal, career trajectory)
 
 **Temporal Granularity**: Multi-scale analysis ✅ VERIFIED
 - **Daily**: 13 views (real-time monitoring, 200-250ms queries)
@@ -1543,7 +1543,7 @@ SD    | 2022-2026| 2024-AUTUMN| 2024-09-01 | 16,923 |    78.5  |    8.3  |   945
 - **Election Proximity Tracking**: Calculates months until next election and months since last election for defection timing analysis
 - **Behavioral Early Warning**: 6-month pre/post transition attendance and productivity patterns
 - **Career Outcome Analysis**: Tracks continued MP status, re-election success, and leadership positions post-transition
-- **Defection Timing**: Classifies transitions as PRE_ELECTION (≤12mo), MID_TERM (≥36mo), or NORMAL timing
+- **Defection Timing**: Classifies transitions as `PRE_ELECTION_DEFECTION` (≤12mo), `MID_TERM_DEFECTION` (≥36mo), `NORMAL_DEFECTION`, or `UNKNOWN_TIMING`
 
 ##### SQL Example: Party Defection Risk Analysis with Behavioral Signals
 
@@ -8329,7 +8329,7 @@ This section summarizes the comprehensive database schema enhancements from vers
 ### Enhancement Overview
 
 **Period**: 2026-01-15 to 2026-01-19  
-**Total New Views**: 17 views across 6 database changelog versions (v1.55, v1.57, v1.58, v1.59, v1.60, v1.61)  
+**Total New Views**: 20 views across 7 database changelog versions (v1.55, v1.56, v1.57, v1.58, v1.59, v1.60, v1.61)  
 **Frameworks Enhanced**: All 6 frameworks (Temporal, Comparative, Pattern Recognition, Predictive, Network, Decision)  
 **Intelligence Value**: ⭐⭐⭐⭐⭐ VERY HIGH across all enhancements
 
@@ -8349,6 +8349,22 @@ This section summarizes the comprehensive database schema enhancements from vers
 - Q4 pre-election surge detection with >50% ballot increase validation
 - Multi-dimensional anomaly detection (CRITICAL |z|>3, HIGH |z|>2, MODERATE |z|>1.5)
 
+#### v1.56 - Career Trajectory Analysis
+
+**Views Added**: 3 views  
+**Framework**: Comparative Analysis (Framework 2) + Predictive Intelligence (Framework 4)
+
+- `view_riksdagen_politician_career_trajectory` - Performance tracking across election cycles (2002-2026) with career stage classification
+- `view_riksdagen_politician_role_evolution` - Role progression analysis with tier classification (minister/speaker/party leader/committee chair)
+- `view_riksdagen_politician_longevity_analysis` - Career duration and engagement intensity metrics with retention risk assessment
+
+**Key Capabilities**:
+- Career trajectory forecasting across 7 election cycles (2002-2026)
+- Role progression analysis with weighted advancement velocity (1000 for PM down to 50 for other roles)
+- Career longevity classification (veteran/established/mid-career/junior/newcomer)
+- Career pattern detection (ascending/peak/declining/stable/rising star)
+- Retention risk assessment (high retirement/moderate attrition/early exit/engagement/low risk)
+
 #### v1.57 - Party Defection and Transition Analysis
 
 **Views Added**: 3 views  
@@ -8361,7 +8377,7 @@ This section summarizes the comprehensive database schema enhancements from vers
 **Key Capabilities**:
 - 73% accuracy for identifying politicians at risk 6-12 months before transition
 - 68% of defectors show ≥10% attendance decline in 6 months before transition
-- 42% of transitions occur within 12 months of election (PRE_ELECTION timing)
+- 42% of transitions occur within 12 months of election (PRE_ELECTION_DEFECTION timing)
 - Career outcome tracking: 64% continue as active MPs, 38% serve in next election
 - Transition type classification (SWITCHED_WHILE_SERVING vs. REJOINED_RIKSDAGEN)
 
