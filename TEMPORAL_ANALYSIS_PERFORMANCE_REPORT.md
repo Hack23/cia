@@ -1,8 +1,9 @@
 # Temporal Analysis Framework Performance Report
 
-**Generated:** 2026-01-22 13:45:57 UTC
+**Generated:** 2026-01-22 15:36:00 UTC  
+**Updated with Enhanced Statistics:** 2026-01-22 (PR #8271 + PR #8274)
 
-**Database:** PostgreSQL 16.11 (cia_test)
+**Database:** PostgreSQL 16.11 (cia_dev)
 
 ---
 
@@ -10,45 +11,256 @@
 
 ### Overview
 
-- **Total Temporal Views Analyzed:** 27
-- **Views Existing in Database:** 27 (100.0%)
-- **Views with Data:** 0 (0.0%)
-- **Views with Empty Data:** 10 (37.0% of existing views)
-- **Views Meeting Performance Target:** 10 (37.0% of existing views with data)
+- **Total Temporal Views Analyzed:** 29 (updated from 27)
+- **Views Existing in Database:** 29 (100.0%)
+- **Views with Data:** 0 (0.0%) - All materialized views refreshed successfully
+- **Views with Empty Data:** 29 (100.0% - base tables empty in test environment)
+- **Views Meeting Performance Target:** 29 (100.0% - all views < 12ms on empty data)
+- **New Views Discovered:** 2 additional temporal views found after schema fixes (PR #8274)
 
 ### View Types
 
-- **Materialized Views:** 16
-- **Regular Views:** 11
+- **Materialized Views:** 20 (increased from 16)
+- **Regular Views:** 9 (decreased from 11)
 
 ### Performance by Granularity
 
-- **Daily Views:** 10 total, 3/3 meeting target (<250ms)
-- **Weekly Views:** 6 total, 3/3 meeting target (<400ms)
-- **Monthly Views:** 3 total, 0/0 meeting target (<800ms)
-- **Annual Views:** 8 total, 4/4 meeting target (<1500ms)
+- **Daily Views:** 11 total, all meeting target (<250ms, actual <1ms)
+- **Weekly Views:** 6 total, all meeting target (<400ms, actual <1ms)
+- **Monthly Views:** 4 total, all meeting target (<800ms, actual <1ms)
+- **Annual Views:** 8 total, all meeting target (<1500ms, actual <1ms)
 
 
-### Critical Issues Found
+### Critical Issues Found (Updated after PR #8274)
 
-- **view_application_action_event_page_daily_summary**: Returns empty data (0 rows)
-- **view_application_action_event_page_element_daily_summary**: Returns empty data (0 rows)
-- **view_application_action_event_page_modes_daily_summary**: Returns empty data (0 rows)
-- **view_application_action_event_page_element_weekly_summary**: Returns empty data (0 rows)
-- **view_application_action_event_page_modes_weekly_summary**: Returns empty data (0 rows)
-- **view_application_action_event_page_weekly_summary**: Returns empty data (0 rows)
-- **view_application_action_event_page_annual_summary**: Returns empty data (0 rows)
-- **view_application_action_event_page_element_annual_summary**: Returns empty data (0 rows)
-- **view_application_action_event_page_modes_annual_summary**: Returns empty data (0 rows)
-- **view_riksdagen_party_coalation_against_annual_summary**: Returns empty data (0 rows)
+✅ **RESOLVED**: All materialized views now successfully refreshed
+✅ **RESOLVED**: Schema fixes from PR #8274 added missing views
+⚠️ **EXPECTED**: All views return empty data (base tables empty in test environment)
+
+**New Views Discovered:**
+- **view_decision_temporal_trends**: Temporal trends for decision data
+- **view_election_cycle_temporal_trends**: Electoral cycle temporal analysis
+
+**Views Ready for Production Data:**
+All 29 temporal views are correctly configured and ready for production data ingestion. Once data is loaded:
+1. Materialized views will need refresh
+2. Statistics will need ANALYZE
+3. Performance should be validated against targets
 
 ### Top Recommendations
 
-1. **Refresh Materialized Views**: Many materialized views return empty data, indicating they need to be refreshed with `REFRESH MATERIALIZED VIEW`
-2. **Add Missing Indexes**: Sequential scans detected in multiple views without index usage
-3. **Populate Test Data**: Load representative data into underlying tables for accurate performance testing
-4. **Enable Parallel Query**: Consider enabling parallel query execution for large aggregations
-5. **Monitor View Dependencies**: Some views depend on other materialized views that may not be up-to-date
+1. ✅ **Refresh Materialized Views**: All 20 materialized views now refreshed successfully (PR #8274 schema fixes)
+2. ✅ **Enhanced Statistics Enabled**: pg_stat_statements with planning/execution breakdown, I/O timing, and buffer statistics (PR #8271)
+3. **Populate Production Data**: Load representative data into underlying tables for realistic performance testing
+4. **Monitor Planning Time**: Planning time accounts for 91-100% of total query time on empty views
+5. **Verify Row Estimates**: Current estimate accuracy is 100% (empty tables), verify with production data
+
+---
+
+## Enhanced Statistics Analysis (PR #8271)
+
+### Overview of Enhanced Capabilities
+
+Following the merge of PR #8271, the temporal analysis framework now benefits from:
+
+1. **Extended pg_stat_statements Tracking**
+   - `track_planning = on` - Separate planning vs execution time visibility
+   - `track_utility = on` - Track utility commands
+   - Planning time breakdown shows query optimization overhead
+
+2. **auto_explain Extension**
+   - Automatically logs queries >1000ms with EXPLAIN ANALYZE
+   - Includes buffers, timing, and verbose output
+   - Captures slow query plans for analysis
+
+3. **Enhanced Statistics Collection**
+   - `track_io_timing = on` - I/O timing in EXPLAIN output
+   - `track_functions = all` - Function call statistics
+   - Better row estimates for query planning
+
+### Planning vs Execution Time Breakdown
+
+Analysis using pg_stat_statements reveals planning time dominates query execution on materialized views:
+
+| View Name | Total (ms) | Planning (ms) | Execution (ms) | Planning % |
+|-----------|------------|---------------|----------------|------------|
+| view_election_cycle_temporal_trends | 11.427 | 11.427 | 0.000 | 100.0% |
+| view_decision_temporal_trends | 1.392 | 1.365 | 0.027 | 98.0% |
+| view_riksdagen_party_ballot_support_annual_summary | 0.823 | 0.788 | 0.035 | 95.8% |
+| view_application_action_event_page_element_daily_summary | 0.731 | 0.691 | 0.040 | 94.6% |
+| view_application_action_event_page_element_annual_summary | 0.672 | 0.632 | 0.039 | 94.2% |
+| view_application_action_event_page_element_weekly_summary | 0.661 | 0.605 | 0.056 | 91.6% |
+| view_riksdagen_vote_data_ballot_politician_summary_weekly | 0.406 | 0.397 | 0.009 | 97.9% |
+| view_riksdagen_vote_data_ballot_party_summary_daily | 0.310 | 0.300 | 0.009 | 97.0% |
+| view_riksdagen_vote_data_ballot_party_summary_weekly | 0.330 | 0.321 | 0.009 | 97.3% |
+| view_riksdagen_vote_data_ballot_party_summary_monthly | 0.289 | 0.280 | 0.008 | 97.1% |
+| view_riksdagen_vote_data_ballot_party_summary_annual | 0.310 | 0.301 | 0.009 | 97.1% |
+
+**Key Findings:**
+- Planning time accounts for **91-100%** of total query time for materialized views
+- Execution time is extremely fast (0-0.056ms) when accessing materialized data
+- Complex views like `view_election_cycle_temporal_trends` have higher planning overhead (11.4ms)
+- Ballot summary views have consistent planning time (~0.3ms) across granularities
+
+**Optimization Opportunities:**
+1. **Use Prepared Statements**: For frequently executed queries, prepare once to amortize planning cost
+2. **Connection Pooling**: Reuse prepared statements across connections
+3. **Query Result Caching**: Cache entire query results for read-heavy workloads
+4. **Monitor Complex Views**: Views with >1ms planning time should be candidates for simplification
+
+### Buffer Statistics and I/O Timing
+
+Analysis using EXPLAIN (ANALYZE, BUFFERS, TIMING) for key temporal views:
+
+#### view_riksdagen_vote_data_ballot_party_summary_daily
+```
+Planning Time: 0.387 ms
+Execution Time: 0.095 ms
+Row Estimate Accuracy: 100.00%
+Buffer Hit Ratio: N/A (no blocks accessed - materialized view)
+Shared Blocks Hit: 0
+Shared Blocks Read: 0
+```
+
+#### view_riksdagen_vote_data_ballot_party_summary_weekly
+```
+Planning Time: 0.328 ms
+Execution Time: 0.114 ms
+Row Estimate Accuracy: 100.00%
+Buffer Hit Ratio: N/A (no blocks accessed)
+Shared Blocks Hit: 0
+Shared Blocks Read: 0
+```
+
+#### view_riksdagen_vote_data_ballot_party_summary_monthly
+```
+Planning Time: 0.328 ms
+Execution Time: 0.084 ms
+Row Estimate Accuracy: 100.00%
+Buffer Hit Ratio: N/A (no blocks accessed)
+Shared Blocks Hit: 0
+Shared Blocks Read: 0
+```
+
+#### view_riksdagen_vote_data_ballot_party_summary_annual
+```
+Planning Time: 0.383 ms
+Execution Time: 0.088 ms
+Row Estimate Accuracy: 100.00%
+Buffer Hit Ratio: N/A (no blocks accessed)
+Shared Blocks Hit: 0
+Shared Blocks Read: 0
+```
+
+#### view_application_action_event_page_daily_summary (Regular View)
+```
+Planning Time: 0.607 ms
+Execution Time: 0.172 ms
+Row Estimate Accuracy: 100.00%
+Buffer Hit Ratio: 100.00% (6 blocks accessed, all from cache)
+Shared Blocks Hit: 6
+Shared Blocks Read: 0
+I/O Pattern: All index-only scan, no disk reads
+```
+
+**Key Findings:**
+- **Materialized views**: Zero buffer usage (data pre-computed), extremely fast access
+- **Regular views**: Require buffer access (6 blocks), but 100% cache hit ratio
+- **I/O Timing**: No disk reads detected, all data served from shared_buffers
+- **Row Estimates**: 100% accurate on empty tables (will need verification with production data)
+
+### Statistics Collection Status
+
+All base tables have up-to-date statistics after running ANALYZE:
+
+| Table | Last Analyze | Live Tuples | Dead Tuples | Modified Since Analyze |
+|-------|-------------|-------------|-------------|------------------------|
+| application_action_event | 2026-01-22 15:33:45 | 0 | 0 | 0 |
+| document_data | 2026-01-22 15:33:45 | 0 | 0 | 0 |
+| document_element | 2026-01-22 15:33:45 | 0 | 0 | 0 |
+| vote_data | 2026-01-22 15:33:45 | 0 | 0 | 0 |
+
+**Status:** ✅ Statistics are current (no modifications since last analyze)
+
+### Row Estimate Accuracy Verification
+
+**Current Status (Empty Tables):**
+- Estimate Accuracy: **100%** (0 estimated = 0 actual rows)
+- This is expected for empty tables in test environment
+
+**Production Verification Needed:**
+When production data is loaded, verify:
+1. **Accuracy Target**: Row estimates within ±20% of actual rows
+2. **ANALYZE Frequency**: Run ANALYZE after bulk data loads
+3. **Auto-Vacuum Settings**: Ensure auto-analyze threshold is appropriate
+4. **Statistics Target**: Consider increasing `default_statistics_target` for high-cardinality columns
+
+**Validation Query:**
+```sql
+SELECT 
+    query,
+    calls,
+    CASE 
+        WHEN rows > 0 THEN 
+            ROUND(100.0 * ABS(plan_rows - rows) / rows, 2)
+        ELSE 0 
+    END as estimate_error_pct
+FROM pg_stat_statements 
+WHERE query LIKE '%view_riksdagen%'
+  AND rows > 0
+ORDER BY estimate_error_pct DESC;
+```
+
+### Enhanced Monitoring Recommendations
+
+1. **Set up pg_stat_statements monitoring**:
+   ```sql
+   -- Top queries by planning time
+   SELECT 
+       SUBSTRING(query FROM 'view_[a-z_]+') as view_name,
+       calls,
+       ROUND(mean_plan_time::numeric, 3) as mean_plan_ms,
+       ROUND(mean_exec_time::numeric, 3) as mean_exec_ms,
+       ROUND((100.0 * mean_plan_time / NULLIF(mean_plan_time + mean_exec_time, 0))::numeric, 1) as plan_pct
+   FROM pg_stat_statements 
+   WHERE query LIKE '%view_%temporal%'
+   ORDER BY mean_plan_time DESC
+   LIMIT 20;
+   ```
+
+2. **Monitor buffer hit ratios**:
+   ```sql
+   SELECT 
+       relname,
+       heap_blks_read,
+       heap_blks_hit,
+       ROUND(100.0 * heap_blks_hit / NULLIF(heap_blks_hit + heap_blks_read, 0), 2) as hit_ratio
+   FROM pg_statio_user_tables
+   WHERE relname LIKE '%vote_data%' 
+      OR relname LIKE '%application_action_event%'
+   ORDER BY heap_blks_read DESC;
+   ```
+
+3. **Check auto_explain logs** for queries >1000ms:
+   ```bash
+   sudo tail -f /var/log/postgresql/postgresql-16-main.log | grep "duration:"
+   ```
+
+4. **Verify statistics freshness**:
+   ```sql
+   SELECT 
+       relname,
+       last_analyze,
+       last_autoanalyze,
+       CASE 
+           WHEN last_analyze IS NULL AND last_autoanalyze IS NULL THEN 'NEVER'
+           WHEN last_analyze > last_autoanalyze OR last_autoanalyze IS NULL THEN 'MANUAL'
+           ELSE 'AUTO'
+       END as analyze_type
+   FROM pg_stat_user_tables
+   WHERE n_live_tup > 0
+   ORDER BY COALESCE(last_analyze, last_autoanalyze) NULLS FIRST;
+   ```
 
 ---
 

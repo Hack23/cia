@@ -141,4 +141,66 @@ WHERE schemaname = 'public'
 EOF
 
 echo ""
+echo "Enhanced Statistics (PR #8271):"
+echo "------------------------------------------------------------------------"
+
+# Check pg_stat_statements data
+echo "Top views by total time (planning + execution):"
+sudo -u $DB_USER psql -d $DB_NAME << EOF
+-- Use specific naming patterns for temporal views per documentation
+SELECT 
+    LEFT(query, 60) as view_query,
+    calls,
+    ROUND(mean_plan_time::numeric, 2) as plan_ms,
+    ROUND(mean_exec_time::numeric, 2) as exec_ms,
+    ROUND((mean_plan_time + mean_exec_time)::numeric, 2) as total_ms,
+    ROUND((100.0 * mean_plan_time / NULLIF(mean_plan_time + mean_exec_time, 0))::numeric, 1) as plan_pct
+FROM pg_stat_statements 
+WHERE (query LIKE '%_summary_%' 
+    OR query LIKE '%_temporal_%'
+    OR query LIKE '%_daily%'
+    OR query LIKE '%_weekly%'
+    OR query LIKE '%_monthly%'
+    OR query LIKE '%_annual%')
+  AND query LIKE '%COUNT%'
+  AND query NOT LIKE '%pg_stat_statements%'
+ORDER BY total_ms DESC
+LIMIT 10;
+EOF
+
+echo ""
+echo "Buffer hit ratios:"
+sudo -u $DB_USER psql -d $DB_NAME << EOF
+SELECT 
+    relname,
+    heap_blks_hit,
+    heap_blks_read,
+    CASE 
+        WHEN (heap_blks_hit + heap_blks_read) > 0 THEN
+            ROUND(100.0 * heap_blks_hit / (heap_blks_hit + heap_blks_read), 2)
+        ELSE 0 
+    END as hit_ratio_pct
+FROM pg_statio_user_tables
+WHERE (relname LIKE '%vote_data%' 
+   OR relname LIKE '%application_action_event%')
+  AND (heap_blks_hit + heap_blks_read) > 0
+ORDER BY (heap_blks_hit + heap_blks_read) DESC
+LIMIT 5;
+EOF
+
+echo ""
+echo "Statistics collection status:"
+sudo -u $DB_USER psql -d $DB_NAME << EOF
+SELECT 
+    relname,
+    last_analyze,
+    n_live_tup,
+    n_dead_tup,
+    n_mod_since_analyze
+FROM pg_stat_user_tables 
+WHERE relname IN ('vote_data', 'application_action_event', 'document_data')
+ORDER BY relname;
+EOF
+
+echo ""
 echo "Completed: $(date)"

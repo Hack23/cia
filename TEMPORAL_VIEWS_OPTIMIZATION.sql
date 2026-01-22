@@ -128,26 +128,144 @@ ORDER BY matviewname;
 \echo 'New Indexes Created:'
 SELECT 
     schemaname,
-    tablename,
-    indexname,
+    relname as tablename,
+    indexrelname as indexname,
     pg_size_pretty(pg_relation_size(indexrelid)) AS index_size
 FROM pg_stat_user_indexes
 WHERE schemaname = 'public'
-    AND indexname LIKE 'idx_vote_data_%'
-    AND indexname IN (
+    AND indexrelname LIKE 'idx_vote_data_%'
+    AND indexrelname IN (
         'idx_vote_data_ballot_date',
         'idx_vote_data_party_date',
         'idx_vote_data_politician_date',
         'idx_vote_data_aggregation_cover'
     )
-ORDER BY indexname;
+ORDER BY indexrelname;
+
+-- ============================================================================
+-- SECTION 5: ENHANCED STATISTICS VALIDATION (PR #8271)
+-- ============================================================================
+
+\echo ''
+\echo '============================================================================'
+\echo 'ENHANCED STATISTICS VALIDATION'
+\echo '============================================================================'
+
+-- Verify pg_stat_statements extension and configuration
+\echo ''
+\echo 'pg_stat_statements Configuration:'
+SELECT 
+    name,
+    setting,
+    unit
+FROM pg_settings 
+WHERE name IN (
+    'pg_stat_statements.track',
+    'pg_stat_statements.track_planning',
+    'pg_stat_statements.track_utility',
+    'track_io_timing',
+    'track_functions'
+)
+ORDER BY name;
+
+-- Check statistics collection status
+\echo ''
+\echo 'Statistics Collection Status:'
+SELECT 
+    schemaname,
+    relname,
+    last_analyze,
+    last_autoanalyze,
+    n_live_tup,
+    n_dead_tup,
+    n_mod_since_analyze
+FROM pg_stat_user_tables 
+WHERE relname IN ('vote_data', 'application_action_event', 'document_data', 'document_element')
+ORDER BY relname;
+
+-- Verify statistics freshness (should be within 20% of actual data changes)
+\echo ''
+\echo 'Statistics Freshness Check:'
+SELECT 
+    relname,
+    n_live_tup,
+    n_mod_since_analyze,
+    CASE 
+        WHEN n_live_tup > 0 THEN 
+            ROUND(100.0 * n_mod_since_analyze / n_live_tup, 2)
+        ELSE 0 
+    END as staleness_pct,
+    CASE 
+        WHEN n_live_tup = 0 THEN 'OK (empty)'
+        WHEN n_mod_since_analyze::float / NULLIF(n_live_tup, 0) < 0.20 THEN 'OK'
+        ELSE 'NEEDS ANALYZE'
+    END as status
+FROM pg_stat_user_tables
+WHERE relname IN ('vote_data', 'application_action_event', 'document_data', 'document_element')
+ORDER BY staleness_pct DESC;
+
+-- Sample pg_stat_statements data (will be empty until queries are run)
+\echo ''
+\echo 'pg_stat_statements Sample (Top 10 temporal views by total time):'
+-- Use specific naming patterns for temporal views per documentation
+SELECT 
+    LEFT(query, 60) as view_query,
+    calls,
+    ROUND(mean_plan_time::numeric, 3) as mean_plan_ms,
+    ROUND(mean_exec_time::numeric, 3) as mean_exec_ms,
+    ROUND((mean_plan_time + mean_exec_time)::numeric, 3) as total_ms,
+    ROUND((100.0 * mean_plan_time / NULLIF(mean_plan_time + mean_exec_time, 0))::numeric, 1) as plan_pct
+FROM pg_stat_statements 
+WHERE (query LIKE '%_summary_%' 
+    OR query LIKE '%_temporal_%'
+    OR query LIKE '%_daily%'
+    OR query LIKE '%_weekly%'
+    OR query LIKE '%_monthly%'
+    OR query LIKE '%_annual%')
+  AND query LIKE '%COUNT%'
+  AND query NOT LIKE '%pg_stat_statements%'
+ORDER BY total_ms DESC
+LIMIT 10;
+
+-- Buffer hit ratio check
+\echo ''
+\echo 'Buffer Hit Ratios (should be >95% in production):'
+SELECT 
+    relname,
+    heap_blks_read,
+    heap_blks_hit,
+    CASE 
+        WHEN (heap_blks_hit + heap_blks_read) > 0 THEN
+            ROUND(100.0 * heap_blks_hit / (heap_blks_hit + heap_blks_read), 2)
+        ELSE 0 
+    END as buffer_hit_ratio,
+    CASE 
+        WHEN (heap_blks_hit + heap_blks_read) = 0 THEN 'N/A (no access)'
+        WHEN heap_blks_hit::float / NULLIF(heap_blks_hit + heap_blks_read, 0) > 0.95 THEN 'GOOD'
+        WHEN heap_blks_hit::float / NULLIF(heap_blks_hit + heap_blks_read, 0) > 0.80 THEN 'OK'
+        ELSE 'POOR (increase shared_buffers)'
+    END as status
+FROM pg_statio_user_tables
+WHERE relname LIKE '%vote_data%' 
+   OR relname LIKE '%application_action_event%'
+   OR relname LIKE '%document_%'
+ORDER BY (heap_blks_hit + heap_blks_read) DESC
+LIMIT 10;
 
 \echo ''
 \echo '============================================================================'
 \echo 'NEXT STEPS:'
-\echo '1. Run performance benchmarks: see TEMPORAL_ANALYSIS_PERFORMANCE_REPORT.md'
-\echo '2. Set up automated refresh: see pg_cron configuration in report'
-\echo '3. Monitor query performance: use pg_stat_statements'
+\echo '1. Run queries on temporal views to populate pg_stat_statements'
+\echo '2. Run performance benchmarks: see TEMPORAL_ANALYSIS_PERFORMANCE_REPORT.md'
+\echo '3. Set up automated refresh: see pg_cron configuration in report'
+\echo '4. Monitor query performance with enhanced statistics'
+\echo '============================================================================'
+\echo ''
+\echo 'Enhanced Statistics Queries:'
+\echo '  - Planning vs Execution: see pg_stat_statements output above'
+\echo '  - Buffer Statistics: see buffer hit ratios above'
+\echo '  - I/O Timing: use EXPLAIN (ANALYZE, BUFFERS, TIMING) on individual views'
+\echo '  - Row Estimate Accuracy: compare plan_rows vs actual_rows in EXPLAIN output'
 \echo '============================================================================'
 
 \timing off
