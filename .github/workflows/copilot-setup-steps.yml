@@ -75,7 +75,7 @@ jobs:
         run: |
           # Enable prepared transactions and required extensions
           sudo sed -i "s/#max_prepared_transactions = 0/max_prepared_transactions = 100/" /etc/postgresql/16/main/postgresql.conf
-          sudo sed -i "s/#shared_preload_libraries = ''/shared_preload_libraries = 'pg_stat_statements, pgaudit, pgcrypto'/" /etc/postgresql/16/main/postgresql.conf
+          sudo sed -i "s/#shared_preload_libraries = ''/shared_preload_libraries = 'pg_stat_statements, pgaudit, pgcrypto, auto_explain'/" /etc/postgresql/16/main/postgresql.conf
           echo "pgaudit.log = ddl" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
           echo "pg_stat_statements.track = all" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
           echo "pg_stat_statements.max = 10000" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
@@ -99,6 +99,38 @@ jobs:
 
           # Connection settings (reduced for CI environment)
           echo "max_connections = 100" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+
+          # Extended Statistics for Better Query Planning
+          echo "default_statistics_target = 100" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+          echo "constraint_exclusion = partition" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+
+          # Auto-Explain Extension for Automatic Query Plan Logging
+          echo "auto_explain.log_min_duration = 1000" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+          echo "auto_explain.log_analyze = true" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+          echo "auto_explain.log_buffers = true" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+          echo "auto_explain.log_timing = true" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+          echo "auto_explain.log_verbose = true" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+
+          # Enhanced pg_stat_statements Configuration
+          echo "pg_stat_statements.track_planning = on" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+          echo "pg_stat_statements.track_utility = on" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+
+          # Query Planner Settings for View Analysis
+          echo "enable_partitionwise_join = on" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+          echo "enable_partitionwise_aggregate = on" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+          echo "jit = on" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+          echo "jit_above_cost = 100000" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+
+          # Statistics Collection Enhancement
+          echo "track_activities = on" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+          echo "track_counts = on" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+          echo "track_io_timing = on" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+          echo "track_functions = all" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+
+          # Logging for Query Analysis
+          echo "log_min_duration_statement = 1000" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+          echo "log_line_prefix = '%t [%p]: [%l-1] user=%u,db=%d,app=%a,client=%h '" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+          echo "log_statement = 'ddl'" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
 
           # Add IPv6 loopback access
           echo "host all all ::1/128 md5" | sudo tee -a /etc/postgresql/16/main/pg_hba.conf
@@ -202,6 +234,20 @@ jobs:
           # Verify schema loaded successfully by checking for key tables
           echo "Verifying schema loaded..."
           sudo -u postgres psql -d cia_dev -c "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = 'public';" || echo "Schema verification completed"
+
+      - name: Generate statistics for view analysis
+        run: |
+          # Run ANALYZE on all tables to generate statistics
+          echo "Generating table statistics for accurate EXPLAIN analysis..."
+          sudo -u postgres psql -d cia_dev -c "ANALYZE;"
+          
+          # Verify statistics were generated
+          echo "Verifying statistics collection..."
+          sudo -u postgres psql -d cia_dev -c "SELECT schemaname, tablename, last_analyze, last_autoanalyze FROM pg_stat_user_tables ORDER BY tablename LIMIT 20;"
+          
+          # Show current statistics targets
+          echo "Sample statistics for verification..."
+          sudo -u postgres psql -d cia_dev -c "SELECT tablename, attname, n_distinct, correlation FROM pg_stats WHERE schemaname = 'public' ORDER BY tablename LIMIT 20;"
 
       - name: Verify PostgreSQL SSL configuration
         run: |
