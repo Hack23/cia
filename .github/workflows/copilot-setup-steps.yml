@@ -244,7 +244,7 @@ jobs:
           
           # Verify statistics were generated
           echo "Verifying statistics collection..."
-          sudo -u postgres psql -d cia_dev -c "SELECT schemaname, tablename, last_analyze, last_autoanalyze FROM pg_stat_user_tables ORDER BY tablename LIMIT 20;"
+          sudo -u postgres psql -d cia_dev -c "SELECT schemaname, relname, last_analyze, last_autoanalyze FROM pg_stat_user_tables ORDER BY relname LIMIT 20;"
           
           # Show current statistics targets
           echo "Sample statistics for verification..."

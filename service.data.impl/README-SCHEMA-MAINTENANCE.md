@@ -332,9 +332,9 @@ sudo -u postgres psql -d cia_dev -c "ANALYZE;"
 **Verification Commands**:
 ```sql
 -- Check when tables were last analyzed
-SELECT schemaname, tablename, last_analyze, last_autoanalyze 
+SELECT schemaname, relname, last_analyze, last_autoanalyze 
 FROM pg_stat_user_tables 
-ORDER BY tablename;
+ORDER BY relname;
 
 -- View sample statistics
 SELECT tablename, attname, n_distinct, correlation 
