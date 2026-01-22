@@ -101,6 +101,7 @@ jobs:
           echo "max_connections = 100" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
 
           # Extended Statistics for Better Query Planning
+          # Note: default_statistics_target = 100 is PostgreSQL's default, but explicitly set for documentation clarity
           echo "default_statistics_target = 100" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
           echo "constraint_exclusion = partition" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
 
