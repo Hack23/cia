@@ -250,7 +250,7 @@ The CIA platform leverages 77 database views for political intelligence analysis
 
 Enhanced statistics collection provides better query planning accuracy, especially for complex view queries:
 
-- **default_statistics_target = 100**: Increased from default 100 to collect more detailed statistics for better row estimation
+- **default_statistics_target = 100**: Maintains PostgreSQL default of 100 for detailed statistics collection (provides better row estimation than lower values)
 - **track_io_timing = on**: Enables I/O timing statistics for performance analysis
 - **track_functions = all**: Tracks execution statistics for all functions (PL/pgSQL, SQL, internal)
 - **track_activities = on**: Monitors currently executing queries
@@ -273,7 +273,7 @@ auto_explain.log_verbose = true           -- Include detailed plan information
 
 **Usage**: Slow queries are automatically logged to PostgreSQL logs with full EXPLAIN ANALYZE output. No manual intervention required.
 
-**Performance Impact**: < 5% overhead for logged queries (only queries > 1000ms)
+**Performance Impact**: Minimal overhead (estimated <5%) for logged queries, as per PostgreSQL documentation on auto_explain extension. Only queries exceeding 1000ms threshold are analyzed.
 
 #### Enhanced pg_stat_statements Tracking
 
@@ -304,7 +304,7 @@ Optimized query planner settings for complex view analysis:
 - **jit_above_cost = 100000**: Apply JIT for queries with estimated cost > 100,000
 
 **Benefits**:
-- JIT compilation can provide 2-5x speedup for complex analytical queries
+- JIT compilation can provide significant speedup for complex analytical queries (performance varies by query complexity and hardware)
 - Partitionwise operations improve performance for large partitioned tables
 - Better optimization for multi-table view queries
 
@@ -356,8 +356,8 @@ Configuration targets for optimal view analysis:
 - **EXPLAIN Accuracy**: Row estimates within 20% of actual values
 - **Statistics Generation**: < 30 seconds for full database ANALYZE
 - **Configuration Reload**: < 5 seconds for PostgreSQL restart
-- **Auto-Explain Overhead**: < 5% performance impact on slow queries
-- **JIT Compilation**: 2-5x speedup for complex analytical queries (cost > 100,000)
+- **Auto-Explain Overhead**: Minimal performance impact on slow queries (>1000ms)
+- **JIT Compilation**: Significant speedup for complex analytical queries (cost > 100,000)
 
 #### Integration with Intelligence Operations
 
