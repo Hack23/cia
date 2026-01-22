@@ -1,0 +1,93 @@
+========================================
+VIEW: view_riksdagen_party
+CATEGORY: Party
+ANALYSIS DATE: Thu Jan 22 15:35:18 UTC 2026
+========================================
+
+--- VIEW EXISTENCE CHECK ---
+        status         
+-----------------------
+ EXISTS (regular view)
+(1 row)
+
+
+--- VIEW DEFINITION ---
+                                            definition                                             
+---------------------------------------------------------------------------------------------------
+  SELECT party_id AS party_number,                                                                +
+     party_name,                                                                                  +
+     short_code AS party_id,                                                                      +
+     website,                                                                                     +
+     registered_date,                                                                             +
+     count(DISTINCT id) AS head_count,                                                            +
+     sum(COALESCE(total_documents, 0::bigint)) AS total_documents,                                +
+     round(avg(COALESCE(total_documents, 0::bigint)), 1) AS avg_documents_per_member,             +
+     sum(COALESCE(documents_last_year, 0::bigint)) AS documents_last_year,                        +
+     count(                                                                                       +
+         CASE                                                                                     +
+             WHEN activity_level = 'Very High'::text THEN 1                                       +
+             ELSE NULL::integer                                                                   +
+         END) AS very_high_activity_members,                                                      +
+     count(                                                                                       +
+         CASE                                                                                     +
+             WHEN activity_level = 'High'::text THEN 1                                            +
+             ELSE NULL::integer                                                                   +
+         END) AS high_activity_members,                                                           +
+     count(                                                                                       +
+         CASE                                                                                     +
+             WHEN activity_level = 'Medium'::text THEN 1                                          +
+             ELSE NULL::integer                                                                   +
+         END) AS medium_activity_members,                                                         +
+     count(                                                                                       +
+         CASE                                                                                     +
+             WHEN activity_level = 'Low'::text THEN 1                                             +
+             ELSE NULL::integer                                                                   +
+         END) AS low_activity_members,                                                            +
+     count(                                                                                       +
+         CASE                                                                                     +
+             WHEN activity_profile = 'Party-focused'::text THEN 1                                 +
+             ELSE NULL::integer                                                                   +
+         END) AS party_focused_members,                                                           +
+     count(                                                                                       +
+         CASE                                                                                     +
+             WHEN activity_profile = 'Committee-focused'::text THEN 1                             +
+             ELSE NULL::integer                                                                   +
+         END) AS committee_focused_members,                                                       +
+     count(                                                                                       +
+         CASE                                                                                     +
+             WHEN activity_profile = 'Individual-focused'::text THEN 1                            +
+             ELSE NULL::integer                                                                   +
+         END) AS individual_focused_members,                                                      +
+     round(avg(COALESCE(collaboration_percentage, 0::numeric)), 1) AS avg_collaboration_percentage+
+    FROM view_riksdagen_party_member                                                              +
+   GROUP BY party_id, party_name, short_code, website, registered_date                            +
+   ORDER BY short_code;
+(1 row)
+
+
+--- COLUMN INFORMATION ---
+ ordinal_position |         column_name          |     data_type     | character_maximum_length 
+------------------+------------------------------+-------------------+--------------------------
+                1 | party_number                 | character varying |                      255
+                2 | party_name                   | character varying |                      255
+                3 | party_id                     | character varying |                      255
+                4 | website                      | character varying |                      255
+                5 | registered_date              | date              |                         
+                6 | head_count                   | bigint            |                         
+                7 | total_documents              | numeric           |                         
+                8 | avg_documents_per_member     | numeric           |                         
+                9 | documents_last_year          | numeric           |                         
+               10 | very_high_activity_members   | bigint            |                         
+               11 | high_activity_members        | bigint            |                         
+               12 | medium_activity_members      | bigint            |                         
+               13 | low_activity_members         | bigint            |                         
+               14 | party_focused_members        | bigint            |                         
+               15 | committee_focused_members    | bigint            |                         
+               16 | individual_focused_members   | bigint            |                         
+               17 | avg_collaboration_percentage | numeric           |                         
+(17 rows)
+
+
+--- ROW COUNT ---
+ERROR:  materialized view "view_riksdagen_politician_document_summary" has not been populated
+HINT:  Use the REFRESH MATERIALIZED VIEW command.
