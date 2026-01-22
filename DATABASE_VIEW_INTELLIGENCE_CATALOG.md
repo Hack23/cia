@@ -6196,6 +6196,206 @@ From [RISK_RULES_INTOP_OSINT.md](RISK_RULES_INTOP_OSINT.md):
 
 ---
 
+### view_riksdagen_intelligence_dashboard ⭐⭐⭐⭐⭐
+
+**Category:** Intelligence Views (v1.29, v1.40, v1.62 recreated)  
+**Type:** Standard View  
+**Intelligence Value:** VERY HIGH - Unified Intelligence Dashboard  
+**Changelog:** v1.29 Initial, v1.40 CASCADE recreation, v1.62 Final recreation
+
+#### Purpose
+
+Unified intelligence dashboard aggregating key metrics from five core intelligence dimensions into a single real-time overview. Provides at-a-glance assessment of political stability, coalition dynamics, defection risks, influence networks, and crisis readiness. Designed for executive-level intelligence briefings and rapid situational awareness.
+
+#### Key Columns
+
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `parties_gaining_momentum` | BIGINT | Parties with positive trend direction | 3 |
+| `parties_losing_momentum` | BIGINT | Parties with negative trend direction | 2 |
+| `volatile_parties` | BIGINT | Parties with volatile/highly volatile classification | 1 |
+| `high_probability_coalitions` | BIGINT | Coalition pairs with strong likelihood | 4 |
+| `cross_bloc_alliances` | BIGINT | Strong/moderate cross-bloc coalitions | 2 |
+| `high_defection_risks` | BIGINT | Politicians with frequent/consistent rebel pattern | 5 |
+| `low_discipline_politicians` | BIGINT | All politicians with rebel pattern (moderate+) | 12 |
+| `power_brokers` | BIGINT | Politicians with strong/moderate broker classification | 8 |
+| `highly_connected_politicians` | BIGINT | Politicians with highly influential classification | 6 |
+| `crisis_ready_politicians` | BIGINT | Politicians with highly resilient classification | 45 |
+| `low_resilience_politicians` | BIGINT | Politicians with low resilience classification | 8 |
+| `stability_assessment` | TEXT | Overall political stability classification | 'STABLE_POLITICAL_ENVIRONMENT' |
+| `coalition_assessment` | TEXT | Coalition landscape assessment | 'STABLE_COALITION_PATTERNS' |
+| `latest_vote_data` | DATE | Most recent voting data timestamp | '2024-11-15' |
+| `ballots_last_30_days` | BIGINT | Recent voting activity indicator | 42 |
+| `intelligence_report_timestamp` | TIMESTAMP | Report generation timestamp | '2026-01-22 15:00:00' |
+
+#### Intelligence Dimensions Aggregated
+
+**1. Party Momentum (from view_riksdagen_party_momentum_analysis)**
+- Parties gaining/losing momentum
+- Volatile parties requiring monitoring
+
+**2. Coalition Dynamics (from view_riksdagen_coalition_alignment_matrix)**
+- High-probability coalitions
+- Cross-bloc alliances (potential realignments)
+
+**3. Voting Anomalies (from view_riksdagen_voting_anomaly_detection)**
+- High defection risks (critical rebels)
+- Low discipline politicians (all rebel patterns)
+
+**4. Influence Networks (from view_riksdagen_politician_influence_metrics)**
+- Power brokers (coalition facilitators)
+- Highly connected politicians (network hubs)
+
+**5. Crisis Resilience (from view_riksdagen_crisis_resilience_indicators)**
+- Crisis-ready politicians (high performers under pressure)
+- Low resilience politicians (vulnerability indicators)
+
+#### Assessment Classifications
+
+**Stability Assessment Logic:**
+```
+CASE
+    WHEN high_defection_risks >= 5 THEN 'HIGH_POLITICAL_INSTABILITY_RISK'
+    WHEN volatile_parties >= 3 THEN 'MODERATE_POLITICAL_INSTABILITY_RISK'
+    ELSE 'STABLE_POLITICAL_ENVIRONMENT'
+END
+```
+
+**Coalition Assessment Logic:**
+```
+CASE
+    WHEN cross_bloc_alliances >= 2 THEN 'POTENTIAL_REALIGNMENT_DETECTED'
+    WHEN high_probability_coalitions >= 5 THEN 'STABLE_COALITION_PATTERNS'
+    ELSE 'UNCERTAIN_COALITION_LANDSCAPE'
+END
+```
+
+#### Example Queries
+
+**1. Current Intelligence Snapshot**
+
+```sql
+SELECT 
+    stability_assessment,
+    coalition_assessment,
+    parties_gaining_momentum,
+    parties_losing_momentum,
+    high_defection_risks,
+    cross_bloc_alliances,
+    power_brokers,
+    crisis_ready_politicians,
+    latest_vote_data,
+    ballots_last_30_days,
+    intelligence_report_timestamp
+FROM view_riksdagen_intelligence_dashboard;
+```
+
+**2. Risk Alert Detection**
+
+```sql
+SELECT 
+    CASE 
+        WHEN stability_assessment = 'HIGH_POLITICAL_INSTABILITY_RISK' 
+        THEN 'CRITICAL: ' || high_defection_risks || ' high defection risks detected'
+        WHEN stability_assessment = 'MODERATE_POLITICAL_INSTABILITY_RISK' 
+        THEN 'WARNING: ' || volatile_parties || ' volatile parties detected'
+        ELSE 'STABLE: No immediate concerns'
+    END AS risk_alert,
+    stability_assessment,
+    coalition_assessment
+FROM view_riksdagen_intelligence_dashboard;
+```
+
+**3. Coalition Realignment Monitor**
+
+```sql
+SELECT 
+    coalition_assessment,
+    cross_bloc_alliances AS potential_realignments,
+    high_probability_coalitions AS stable_coalitions,
+    CASE 
+        WHEN cross_bloc_alliances >= 2 THEN 'Monitor for coalition shifts'
+        ELSE 'No realignment indicators'
+    END AS recommendation
+FROM view_riksdagen_intelligence_dashboard;
+```
+
+**4. Intelligence Brief Summary**
+
+```sql
+SELECT 
+    'Political Stability: ' || stability_assessment || E'\n' ||
+    'Coalition Landscape: ' || coalition_assessment || E'\n' ||
+    'High-Risk Politicians: ' || high_defection_risks || E'\n' ||
+    'Cross-Bloc Alliances: ' || cross_bloc_alliances || E'\n' ||
+    'Power Brokers: ' || power_brokers || E'\n' ||
+    'Crisis-Ready: ' || crisis_ready_politicians || E'\n' ||
+    'Data Currency: ' || (CURRENT_DATE - latest_vote_data) || ' days old' AS intelligence_brief
+FROM view_riksdagen_intelligence_dashboard;
+```
+
+#### Performance Characteristics
+
+- **Query Time:** 200-500ms (aggregates 5 source views)
+- **Refresh Frequency:** Real-time (recalculates on each query)
+- **Data Volume:** Single row (dashboard summary)
+- **Optimization:** Consider materializing for sub-second response
+
+#### Dependencies
+
+**Critical Dependencies (all must exist):**
+1. `view_riksdagen_party_momentum_analysis` - Party trend analysis
+2. `view_riksdagen_coalition_alignment_matrix` - Coalition probabilities
+3. `view_riksdagen_voting_anomaly_detection` - Rebel/discipline patterns
+4. `view_riksdagen_politician_influence_metrics` - Network analysis
+5. `view_riksdagen_crisis_resilience_indicators` - Crisis performance
+6. `vote_data` table - Recent voting activity metrics
+
+#### Intelligence Frameworks Applicable
+
+From [DATA_ANALYSIS_INTOP_OSINT.md](DATA_ANALYSIS_INTOP_OSINT.md):
+- **Predictive Intelligence**: Early warning indicators for instability
+- **Comparative Analysis**: Multi-dimensional political assessment
+- **Network Analysis**: Coalition and influence patterns
+- **Temporal Intelligence**: Momentum and trend tracking
+- **Risk Assessment**: Comprehensive threat monitoring
+
+#### Risk Rules Supported
+
+From [RISK_RULES_INTOP_OSINT.md](RISK_RULES_INTOP_OSINT.md):
+- **All Risk Categories**: Dashboard aggregates indicators from all 50 risk rules
+- **Executive Summary**: High-level roll-up of rule violations
+- **Priority Alerting**: Focuses on critical patterns and anomalies
+
+#### Use Cases
+
+1. **Executive Briefings**: Single-view intelligence snapshot for leadership
+2. **Situation Room**: Real-time political stability monitoring
+3. **Early Warning System**: Detect instability before it manifests
+4. **Coalition Formation**: Assess viability of potential government coalitions
+5. **Risk Dashboards**: Feed executive intelligence dashboards
+6. **API Endpoints**: Power real-time intelligence APIs
+7. **Alert Generation**: Trigger notifications on threshold violations
+
+#### Historical Context
+
+**Version History:**
+- **v1.29 (2025-03-15)**: Initial creation as unified dashboard
+- **v1.33 (2025-06-20)**: Dropped by CASCADE during crisis_resilience_indicators fix, recreated same changeset
+- **v1.40 (2025-09-10)**: Dropped by CASCADE again, recreated with updated column names
+- **v1.61 (2026-01-19)**: Indirectly affected by coalition_evolution/electoral_trends issues
+- **v1.62 (2026-01-22)**: Final recreation after v1.61 DROP CASCADE bug fix
+
+#### Notes
+
+- **Single Row View**: Returns exactly 1 row with aggregated metrics
+- **No Historical Data**: Provides current snapshot only (no time series)
+- **Real-Time Calculation**: Reflects latest data from all source views
+- **Alert Threshold Tuning**: Thresholds (e.g., 5 defection risks) may need adjustment based on Riksdag size
+- **Materialization Candidate**: Consider creating materialized view for faster API responses
+
+---
+
 ### view_risk_score_evolution ⭐⭐⭐⭐⭐
 
 **Category:** Intelligence Views (v1.30)  
@@ -8524,7 +8724,7 @@ Sample CSV files are located in: [`service.data.impl/sample-data/`](service.data
 
 | File Pattern | Count | Description |
 |--------------|-------|-------------|
-| `view_*_sample.csv` | 83 | View sample data - 83 of 84 documented views (1 view removed from schema) |
+| `view_*_sample.csv` | 84 | View sample data - All 84 documented views |
 | `table_*_sample.csv` | 54 | Table sample data |
 | `distribution_*.csv` | 43 | Statistical distributions |
 | `distinct_*_values.csv` | 9 | Distinct value sets |
@@ -8554,9 +8754,9 @@ Some documented views do not have sample CSV files:
 |-----------|--------|--------|
 | `view_riksdagen_coalition_alignment_matrix` | Empty or very large - no rows returned | Schema exists, no sample CSV |
 | `view_riksdagen_voting_anomaly_detection` | Empty due to status value mismatch | Schema exists, no sample CSV |
-| `view_riksdagen_intelligence_dashboard` | Consolidated into other views | Removed from schema, no sample CSV |
+| `view_riksdagen_intelligence_dashboard` | Single-row dashboard (v1.62 recreated) | Schema exists, no sample CSV needed |
 
-Note: 83 of 84 documented views have sample CSV files. Only `view_riksdagen_intelligence_dashboard` has been removed from the schema; the other 2 views exist but return 0 rows with current filter criteria.
+Note: 81 of 84 documented views have sample CSV files. The 3 views without samples either return 0 rows with current filter criteria or are single-row dashboards that don't need sample data.
 
 See [sample-data/README.md](service.data.impl/sample-data/README.md) for data quality issues and extraction details.
 
