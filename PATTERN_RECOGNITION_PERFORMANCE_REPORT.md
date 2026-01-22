@@ -278,9 +278,9 @@ SELECT
     vad.total_rebellions,
     vad.anomaly_classification
 FROM v151_base
--- FIX: Replace ON (1 = 1) with proper join
+-- FIX: Replace ON (1 = 1) with proper join condition or CROSS JOIN if intentional
 LEFT JOIN view_riksdagen_voting_anomaly_detection vad 
-    ON vad.party = v151_base.dominant_party  -- Proper join condition
+    ON TRUE  -- CROSS JOIN semantics - verify if intentional or add specific join condition
 -- [remaining JOINs]
 ;
 ```
@@ -294,8 +294,8 @@ CREATE MATERIALIZED VIEW view_riksdagen_politiker_influence_metrics AS
   -- [existing definition]
 WITH DATA;
 
-CREATE INDEX idx_influence_person ON view_riksdagen_politiker_influence_metrics(person_id);
-CREATE INDEX idx_influence_score ON view_riksdagen_politiker_influence_metrics(influence_score DESC);
+CREATE INDEX idx_influence_person ON view_riksdagen_politician_influence_metrics(person_id);
+CREATE INDEX idx_influence_score ON view_riksdagen_politician_influence_metrics(influence_score DESC);
 
 -- View 2: Behavioral Trends
 DROP VIEW IF EXISTS view_politician_behavioral_trends CASCADE;
@@ -349,7 +349,7 @@ SELECT
     END AS status
 FROM pg_matviews
 WHERE schemaname = 'public'
-  AND matviewname LIKE '%pattern%' OR matviewname LIKE '%behavioral%' OR matviewname LIKE '%influence%'
+  AND (matviewname LIKE '%pattern%' OR matviewname LIKE '%behavioral%' OR matviewname LIKE '%influence%')
 ORDER BY last_refresh DESC NULLS LAST;
 ```
 
