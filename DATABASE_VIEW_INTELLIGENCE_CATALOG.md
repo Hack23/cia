@@ -2477,6 +2477,148 @@ Catalog of government roles, ministries, and position definitions. Reference dat
 
 ---
 
+### view_riksdagen_ministry ⭐⭐⭐⭐
+
+**Category:** Government Structure (v1.68)  
+**Type:** Standard View  
+**Intelligence Value:** HIGH - Ministry Aggregation Profile  
+
+#### Purpose
+
+Aggregates ministry/government department data from assignment_data, providing ministry-level statistics including total assignments, member counts, activity periods, and current operational status. Serves as the foundational reference for ministry-level comparative analysis and government structure tracking.
+
+#### Key Columns
+
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `ministry_id` | VARCHAR(50) | Ministry organization code | 'U', 'Ju', 'Fi', 'Fö' |
+| `ministry_name` | VARCHAR(255) | Official ministry department name | 'Utrikesdepartementet' |
+| `role_code` | VARCHAR(50) | Government role code filter | 'MINISTER', 'STATSSEKRETERARE' |
+| `total_assignments` | INTEGER | Total role assignments to ministry | 47 |
+| `total_members` | INTEGER | Unique individuals assigned (COUNT DISTINCT) | 23 |
+| `first_assignment_date` | DATE | Earliest assignment date | '1995-01-01' |
+| `last_assignment_date` | DATE | Most recent assignment date | '2024-12-31' |
+| `is_active` | BOOLEAN | Ministry currently operational (to_date >= CURRENT_DATE or NULL) | TRUE |
+
+#### Swedish Government Ministries
+
+| Code | Ministry Name (Swedish) | English Name | Typical Cabinet Size |
+|------|------------------------|--------------|---------------------|
+| **Ju** | Justitiedepartementet | Ministry of Justice | 1-2 ministers |
+| **U** | Utrikesdepartementet | Ministry of Foreign Affairs | 1-2 ministers |
+| **Fö** | Försvarsdepartementet | Ministry of Defence | 1 minister |
+| **Fi** | Finansdepartementet | Ministry of Finance | 1-2 ministers |
+| **U** | Utbildningsdepartementet | Ministry of Education | 1-2 ministers |
+| **S** | Socialdepartementet | Ministry of Health and Social Affairs | 1-3 ministers |
+
+**Note:** Statsrådsberedningen (Prime Minister's Office) is also tracked as a special ministry entity.
+
+#### Example Queries
+
+**1. Current Active Ministries**
+
+```sql
+SELECT
+    ministry_id,
+    ministry_name,
+    total_members,
+    total_assignments,
+    first_assignment_date,
+    last_assignment_date
+FROM view_riksdagen_ministry
+WHERE is_active = TRUE
+ORDER BY total_members DESC;
+```
+
+**Output:**
+```
+ ministry_id | ministry_name           | total_members | total_assignments | first_assignment_date | last_assignment_date
+-------------+-------------------------+---------------+-------------------+----------------------+---------------------
+ Fi          | Finansdepartementet     |            23 |                47 | 1995-01-01           | 2024-12-31
+ Ju          | Justitiedepartementet   |            19 |                38 | 1996-03-15           | 2024-11-30
+ U           | Utrikesdepartementet    |            18 |                35 | 1995-02-20           | 2024-10-15
+```
+
+**2. Ministry Longevity Analysis**
+
+```sql
+SELECT
+    ministry_id,
+    ministry_name,
+    EXTRACT(YEAR FROM AGE(last_assignment_date, first_assignment_date)) AS years_active,
+    total_members,
+    ROUND(total_assignments::NUMERIC / total_members, 2) AS avg_assignments_per_person
+FROM view_riksdagen_ministry
+WHERE is_active = TRUE
+ORDER BY years_active DESC;
+```
+
+**3. Ministry Activity Timeline**
+
+```sql
+SELECT
+    ministry_name,
+    first_assignment_date,
+    last_assignment_date,
+    is_active,
+    total_members,
+    CASE
+        WHEN is_active THEN 'Currently operational'
+        ELSE 'Historical ministry'
+    END AS status
+FROM view_riksdagen_ministry
+ORDER BY first_assignment_date;
+```
+
+#### Intelligence Applications
+
+**Government Restructuring Analysis:**
+- Track ministry formation and dissolution patterns
+- Identify organizational changes in government structure
+- Monitor ministry expansion/contraction over time
+
+**Cabinet Stability Assessment:**
+- Compare member turnover rates across ministries
+- Identify high-churn ministries (political instability indicator)
+- Track long-term vs. short-term ministerial appointments
+
+**Comparative Ministry Analysis:**
+- Compare ministry sizes across government periods
+- Analyze resource allocation patterns (member counts)
+- Identify dominant vs. peripheral ministries
+
+#### Dependencies
+
+**Source Data:**
+- `assignment_data` - Raw assignment records filtered for ministry roles
+
+**Related Views:**
+- `view_riksdagen_goverment_roles` - Individual role definitions
+- `view_riksdagen_goverment_role_member` - Person-to-ministry mappings
+- `view_ministry_decision_impact` - Ministry legislative effectiveness
+
+#### Performance Characteristics
+
+- **Query Complexity:** Medium (GROUP BY aggregation)
+- **Data Volume:** Low (< 100 rows - one per ministry/role combination)
+- **Refresh Frequency:** Static (updated when assignment_data changes)
+- **Index Recommendations:** None required (small result set)
+
+#### Usage Notes
+
+**Filter Criteria:**
+The view includes assignments where:
+- `role_code` contains 'MINISTER' (e.g., MINISTER, UTRIKESMINISTER)
+- `detail` contains 'departementet' (Swedish for "department")
+- `detail` equals 'Statsrådsberedningen' (Prime Minister's Office)
+
+**Active Status Logic:**
+Ministry considered active if:
+- `last_assignment_date >= CURRENT_DATE` (has recent assignments)
+- `last_assignment_date IS NULL` (ongoing assignments)
+
+---
+
 ### view_ministry_decision_impact ⭐⭐⭐⭐⭐
 
 **Category:** Ministry Decision Analysis (v1.35)  
