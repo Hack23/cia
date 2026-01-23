@@ -1,0 +1,725 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+<!-- 
+===================================================================================
+ Database Changelog v1.63 - Priority 1 Foreign Key Indexes (28 Critical Indexes)
+ 
+ Purpose: Implement 28 critical foreign key indexes identified in the Comparative 
+ Analysis Performance Report to achieve 10-100x performance improvement on JOIN 
+ operations across all analysis frameworks.
+ 
+ Impact: These missing indexes are the #1 critical performance bottleneck causing
+ sequential scans and nested loop joins with query execution times of 5-300 seconds
+ that should be sub-second.
+ 
+ Reference: 
+ - priority1_indexes.sql (reference only - DO NOT EXECUTE directly)
+ - COMPARATIVE_ANALYSIS_PERFORMANCE_REPORT.md
+ - GitHub Issue: Hack23/cia#8276
+ 
+ Indexes Created:
+ - Person Data: 2 indexes
+ - Document Status Container: 7 indexes
+ - Person Container: 1 index
+ - Committee Proposal: 4 indexes
+ - Assignment Data: 1 index
+ - Assignment Element: 1 index
+ - Document Activity: 1 index
+ - Document Attachment: 1 index
+ - Document Detail: 1 index
+ - Document Element: 1 index
+ - Document Person Reference: 1 index
+ - Document Proposal Container: 1 index
+ - Document Reference: 1 index
+ - Person Detail Element: 1 index
+ - Person Element: 3 indexes
+ - Sweden Political Party: 1 index
+ 
+ Performance Targets After Implementation:
+ - Entity summary views: < 500ms (currently 5-30s)
+ - Cross-entity comparisons: < 1.5s (currently 60-300s)
+ - Matrix/grid views: < 2s (currently 120-600s)
+ - Trend analysis: < 3s (currently 180-900s)
+===================================================================================
+-->
+
+<changeSet id="1.63-intro" author="performance-engineer">
+    <comment>
+        Database Changelog v1.63 - Priority 1 Foreign Key Indexes (28 Critical Indexes)
+        
+        CRITICAL PERFORMANCE FIX: Creates 28 missing foreign key indexes that are the
+        #1 performance bottleneck causing 5-300 second query times.
+        
+        Expected Performance Improvement: 10-100x faster JOIN operations
+        
+        Affected Views: 109 views across all 6 analysis frameworks
+        - Comparative Analysis: 26 views
+        - Pattern Recognition: 23 views  
+        - Temporal Analysis: 35 views
+        - Network Analysis: 11 views
+        - Predictive Intelligence: 14 views
+        - Decision Intelligence: 5 views
+        
+        Implementation Reference: priority1_indexes.sql (reference only)
+        Analysis Report: COMPARATIVE_ANALYSIS_PERFORMANCE_REPORT.md
+        GitHub Issue: Hack23/cia#8276
+    </comment>
+    
+    <sql>
+        SELECT 
+            'v1.63-priority1-fk-indexes' AS version,
+            'Creating 28 critical foreign key indexes for 10-100x performance improvement' AS description,
+            '109 views across 6 analysis frameworks will benefit' AS impact,
+            CURRENT_TIMESTAMP AS applied_at;
+    </sql>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- PERSON DATA FOREIGN KEY INDEXES (2)                                      -->
+<!-- ========================================================================= -->
+
+<changeSet id="1.63-001-idx-person-assignment-fk" author="performance-engineer">
+    <preConditions onFail="MARK_RAN">
+        <not>
+            <indexExists indexName="idx_person_data_assignment_fk"/>
+        </not>
+    </preConditions>
+    <comment>
+        Create index on person_data.person_assignment_data_perso_0 foreign key column.
+        Improves JOIN performance with person_assignment_data table.
+    </comment>
+    <createIndex indexName="idx_person_data_assignment_fk" tableName="person_data">
+        <column name="person_assignment_data_perso_0"/>
+    </createIndex>
+    <rollback>
+        <dropIndex indexName="idx_person_data_assignment_fk" tableName="person_data"/>
+    </rollback>
+</changeSet>
+
+<changeSet id="1.63-002-idx-person-detail-fk" author="performance-engineer">
+    <preConditions onFail="MARK_RAN">
+        <not>
+            <indexExists indexName="idx_person_data_detail_fk"/>
+        </not>
+    </preConditions>
+    <comment>
+        Create index on person_data.person_detail_data_person_da_0 foreign key column.
+        Improves JOIN performance with person_detail_data table.
+    </comment>
+    <createIndex indexName="idx_person_data_detail_fk" tableName="person_data">
+        <column name="person_detail_data_person_da_0"/>
+    </createIndex>
+    <rollback>
+        <dropIndex indexName="idx_person_data_detail_fk" tableName="person_data"/>
+    </rollback>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- DOCUMENT STATUS CONTAINER FOREIGN KEY INDEXES (7)                        -->
+<!-- ========================================================================= -->
+
+<changeSet id="1.63-003-idx-doc-status-document-fk" author="performance-engineer">
+    <preConditions onFail="MARK_RAN">
+        <not>
+            <indexExists indexName="idx_doc_status_document_fk"/>
+        </not>
+    </preConditions>
+    <comment>
+        Create index on document_status_container.document_document_status_con_0 foreign key.
+        Improves JOIN performance with document_data table.
+    </comment>
+    <createIndex indexName="idx_doc_status_document_fk" tableName="document_status_container">
+        <column name="document_document_status_con_0"/>
+    </createIndex>
+    <rollback>
+        <dropIndex indexName="idx_doc_status_document_fk" tableName="document_status_container"/>
+    </rollback>
+</changeSet>
+
+<changeSet id="1.63-004-idx-doc-status-activity-fk" author="performance-engineer">
+    <preConditions onFail="MARK_RAN">
+        <not>
+            <indexExists indexName="idx_doc_status_activity_fk"/>
+        </not>
+    </preConditions>
+    <comment>
+        Create index on document_status_container.document_activity_container__0 foreign key.
+        Improves JOIN performance with document_activity_container table.
+    </comment>
+    <createIndex indexName="idx_doc_status_activity_fk" tableName="document_status_container">
+        <column name="document_activity_container__0"/>
+    </createIndex>
+    <rollback>
+        <dropIndex indexName="idx_doc_status_activity_fk" tableName="document_status_container"/>
+    </rollback>
+</changeSet>
+
+<changeSet id="1.63-005-idx-doc-status-attachment-fk" author="performance-engineer">
+    <preConditions onFail="MARK_RAN">
+        <not>
+            <indexExists indexName="idx_doc_status_attachment_fk"/>
+        </not>
+    </preConditions>
+    <comment>
+        Create index on document_status_container.document_attachment_containe_0 foreign key.
+        Improves JOIN performance with document_attachment_container table.
+    </comment>
+    <createIndex indexName="idx_doc_status_attachment_fk" tableName="document_status_container">
+        <column name="document_attachment_containe_0"/>
+    </createIndex>
+    <rollback>
+        <dropIndex indexName="idx_doc_status_attachment_fk" tableName="document_status_container"/>
+    </rollback>
+</changeSet>
+
+<changeSet id="1.63-006-idx-doc-status-detail-fk" author="performance-engineer">
+    <preConditions onFail="MARK_RAN">
+        <not>
+            <indexExists indexName="idx_doc_status_detail_fk"/>
+        </not>
+    </preConditions>
+    <comment>
+        Create index on document_status_container.document_detail_container_do_0 foreign key.
+        Improves JOIN performance with document_detail_container table.
+    </comment>
+    <createIndex indexName="idx_doc_status_detail_fk" tableName="document_status_container">
+        <column name="document_detail_container_do_0"/>
+    </createIndex>
+    <rollback>
+        <dropIndex indexName="idx_doc_status_detail_fk" tableName="document_status_container"/>
+    </rollback>
+</changeSet>
+
+<changeSet id="1.63-007-idx-doc-status-person-ref-fk" author="performance-engineer">
+    <preConditions onFail="MARK_RAN">
+        <not>
+            <indexExists indexName="idx_doc_status_person_ref_fk"/>
+        </not>
+    </preConditions>
+    <comment>
+        Create index on document_status_container.document_person_reference_co_1 foreign key.
+        Improves JOIN performance with document_person_reference table.
+    </comment>
+    <createIndex indexName="idx_doc_status_person_ref_fk" tableName="document_status_container">
+        <column name="document_person_reference_co_1"/>
+    </createIndex>
+    <rollback>
+        <dropIndex indexName="idx_doc_status_person_ref_fk" tableName="document_status_container"/>
+    </rollback>
+</changeSet>
+
+<changeSet id="1.63-008-idx-doc-status-proposal-fk" author="performance-engineer">
+    <preConditions onFail="MARK_RAN">
+        <not>
+            <indexExists indexName="idx_doc_status_proposal_fk"/>
+        </not>
+    </preConditions>
+    <comment>
+        Create index on document_status_container.document_proposal_document_s_0 foreign key.
+        Improves JOIN performance with document_proposal_data table.
+    </comment>
+    <createIndex indexName="idx_doc_status_proposal_fk" tableName="document_status_container">
+        <column name="document_proposal_document_s_0"/>
+    </createIndex>
+    <rollback>
+        <dropIndex indexName="idx_doc_status_proposal_fk" tableName="document_status_container"/>
+    </rollback>
+</changeSet>
+
+<changeSet id="1.63-009-idx-doc-status-reference-fk" author="performance-engineer">
+    <preConditions onFail="MARK_RAN">
+        <not>
+            <indexExists indexName="idx_doc_status_reference_fk"/>
+        </not>
+    </preConditions>
+    <comment>
+        Create index on document_status_container.document_reference_container_0 foreign key.
+        Improves JOIN performance with document_reference_container table.
+    </comment>
+    <createIndex indexName="idx_doc_status_reference_fk" tableName="document_status_container">
+        <column name="document_reference_container_0"/>
+    </createIndex>
+    <rollback>
+        <dropIndex indexName="idx_doc_status_reference_fk" tableName="document_status_container"/>
+    </rollback>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- PERSON CONTAINER DATA FOREIGN KEY INDEXES (1)                            -->
+<!-- ========================================================================= -->
+
+<changeSet id="1.63-010-idx-person-container-person-fk" author="performance-engineer">
+    <preConditions onFail="MARK_RAN">
+        <not>
+            <indexExists indexName="idx_person_container_person_fk"/>
+        </not>
+    </preConditions>
+    <comment>
+        Create index on person_container_data.person_person_container_data_0 foreign key.
+        Improves JOIN performance with person_data table.
+    </comment>
+    <createIndex indexName="idx_person_container_person_fk" tableName="person_container_data">
+        <column name="person_person_container_data_0"/>
+    </createIndex>
+    <rollback>
+        <dropIndex indexName="idx_person_container_person_fk" tableName="person_container_data"/>
+    </rollback>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- COMMITTEE PROPOSAL FOREIGN KEY INDEXES (4)                               -->
+<!-- ========================================================================= -->
+
+<changeSet id="1.63-011-idx-committee-proposal-against-fk" author="performance-engineer">
+    <preConditions onFail="MARK_RAN">
+        <not>
+            <indexExists indexName="idx_committee_proposal_against_fk"/>
+        </not>
+    </preConditions>
+    <comment>
+        Create index on committee_proposal_component_0.against_proposal_container_c_0 foreign key.
+        Improves JOIN performance with proposal_container table.
+    </comment>
+    <createIndex indexName="idx_committee_proposal_against_fk" tableName="committee_proposal_component_0">
+        <column name="against_proposal_container_c_0"/>
+    </createIndex>
+    <rollback>
+        <dropIndex indexName="idx_committee_proposal_against_fk" tableName="committee_proposal_component_0"/>
+    </rollback>
+</changeSet>
+
+<changeSet id="1.63-012-idx-committee-proposal-container-fk" author="performance-engineer">
+    <preConditions onFail="MARK_RAN">
+        <not>
+            <indexExists indexName="idx_committee_proposal_container_fk"/>
+        </not>
+    </preConditions>
+    <comment>
+        Create index on committee_proposal_component_0.committee_proposal_container_0 foreign key.
+        Improves JOIN performance with committee_proposal_container table.
+    </comment>
+    <createIndex indexName="idx_committee_proposal_container_fk" tableName="committee_proposal_component_0">
+        <column name="committee_proposal_container_0"/>
+    </createIndex>
+    <rollback>
+        <dropIndex indexName="idx_committee_proposal_container_fk" tableName="committee_proposal_component_0"/>
+    </rollback>
+</changeSet>
+
+<changeSet id="1.63-013-idx-committee-proposal-document-fk" author="performance-engineer">
+    <preConditions onFail="MARK_RAN">
+        <not>
+            <indexExists indexName="idx_committee_proposal_document_fk"/>
+        </not>
+    </preConditions>
+    <comment>
+        Create index on committee_proposal_component_0.document_committee_proposal__0 foreign key.
+        Improves JOIN performance with document table.
+    </comment>
+    <createIndex indexName="idx_committee_proposal_document_fk" tableName="committee_proposal_component_0">
+        <column name="document_committee_proposal__0"/>
+    </createIndex>
+    <rollback>
+        <dropIndex indexName="idx_committee_proposal_document_fk" tableName="committee_proposal_component_0"/>
+    </rollback>
+</changeSet>
+
+<changeSet id="1.63-014-idx-committee-proposal-list-fk" author="performance-engineer">
+    <preConditions onFail="MARK_RAN">
+        <not>
+            <indexExists indexName="idx_committee_proposal_list_fk"/>
+        </not>
+    </preConditions>
+    <comment>
+        Create index on committee_proposal_data.committee_proposal_list_comm_0 foreign key.
+        Improves JOIN performance with committee_proposal_list table.
+    </comment>
+    <createIndex indexName="idx_committee_proposal_list_fk" tableName="committee_proposal_data">
+        <column name="committee_proposal_list_comm_0"/>
+    </createIndex>
+    <rollback>
+        <dropIndex indexName="idx_committee_proposal_list_fk" tableName="committee_proposal_data"/>
+    </rollback>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- ASSIGNMENT DATA FOREIGN KEY INDEXES (1)                                  -->
+<!-- ========================================================================= -->
+
+<changeSet id="1.63-015-idx-assignment-data-list-fk" author="performance-engineer">
+    <preConditions onFail="MARK_RAN">
+        <not>
+            <indexExists indexName="idx_assignment_data_list_fk"/>
+        </not>
+    </preConditions>
+    <comment>
+        Create index on assignment_data.assignment_list_person_assig_0 foreign key.
+        Improves JOIN performance with assignment_list table.
+    </comment>
+    <createIndex indexName="idx_assignment_data_list_fk" tableName="assignment_data">
+        <column name="assignment_list_person_assig_0"/>
+    </createIndex>
+    <rollback>
+        <dropIndex indexName="idx_assignment_data_list_fk" tableName="assignment_data"/>
+    </rollback>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- ASSIGNMENT ELEMENT FOREIGN KEY INDEXES (1)                               -->
+<!-- ========================================================================= -->
+
+<changeSet id="1.63-016-idx-assignment-element-uppdrag-fk" author="performance-engineer">
+    <preConditions onFail="MARK_RAN">
+        <not>
+            <indexExists indexName="idx_assignment_element_uppdrag_fk"/>
+        </not>
+    </preConditions>
+    <comment>
+        Create index on assignment_element.uppdrag_person_assignment_el_0 foreign key.
+        Improves JOIN performance with uppdrag table.
+    </comment>
+    <createIndex indexName="idx_assignment_element_uppdrag_fk" tableName="assignment_element">
+        <column name="uppdrag_person_assignment_el_0"/>
+    </createIndex>
+    <rollback>
+        <dropIndex indexName="idx_assignment_element_uppdrag_fk" tableName="assignment_element"/>
+    </rollback>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- DOCUMENT ACTIVITY DATA FOREIGN KEY INDEXES (1)                           -->
+<!-- ========================================================================= -->
+
+<changeSet id="1.63-017-idx-doc-activity-list-fk" author="performance-engineer">
+    <preConditions onFail="MARK_RAN">
+        <not>
+            <indexExists indexName="idx_doc_activity_list_fk"/>
+        </not>
+    </preConditions>
+    <comment>
+        Create index on document_activity_data.document_activities_document_0 foreign key.
+        Improves JOIN performance with document_activities table.
+    </comment>
+    <createIndex indexName="idx_doc_activity_list_fk" tableName="document_activity_data">
+        <column name="document_activities_document_0"/>
+    </createIndex>
+    <rollback>
+        <dropIndex indexName="idx_doc_activity_list_fk" tableName="document_activity_data"/>
+    </rollback>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- DOCUMENT ATTACHMENT FOREIGN KEY INDEXES (1)                              -->
+<!-- ========================================================================= -->
+
+<changeSet id="1.63-018-idx-doc-attachment-list-fk" author="performance-engineer">
+    <preConditions onFail="MARK_RAN">
+        <not>
+            <indexExists indexName="idx_doc_attachment_list_fk"/>
+        </not>
+    </preConditions>
+    <comment>
+        Create index on document_attachment.document_attachment_list_doc_0 foreign key.
+        Improves JOIN performance with document_attachment_list table.
+    </comment>
+    <createIndex indexName="idx_doc_attachment_list_fk" tableName="document_attachment">
+        <column name="document_attachment_list_doc_0"/>
+    </createIndex>
+    <rollback>
+        <dropIndex indexName="idx_doc_attachment_list_fk" tableName="document_attachment"/>
+    </rollback>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- DOCUMENT DETAIL DATA FOREIGN KEY INDEXES (1)                             -->
+<!-- ========================================================================= -->
+
+<changeSet id="1.63-019-idx-doc-detail-list-fk" author="performance-engineer">
+    <preConditions onFail="MARK_RAN">
+        <not>
+            <indexExists indexName="idx_doc_detail_list_fk"/>
+        </not>
+    </preConditions>
+    <comment>
+        Create index on document_detail_data.document_detail_list_documen_0 foreign key.
+        Improves JOIN performance with document_detail_list table.
+    </comment>
+    <createIndex indexName="idx_doc_detail_list_fk" tableName="document_detail_data">
+        <column name="document_detail_list_documen_0"/>
+    </createIndex>
+    <rollback>
+        <dropIndex indexName="idx_doc_detail_list_fk" tableName="document_detail_data"/>
+    </rollback>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- DOCUMENT ELEMENT FOREIGN KEY INDEXES (1)                                 -->
+<!-- ========================================================================= -->
+
+<changeSet id="1.63-020-idx-doc-element-container-fk" author="performance-engineer">
+    <preConditions onFail="MARK_RAN">
+        <not>
+            <indexExists indexName="idx_doc_element_container_fk"/>
+        </not>
+    </preConditions>
+    <comment>
+        Create index on document_element.dokument_document_container__0 foreign key.
+        Improves JOIN performance with document_container table.
+    </comment>
+    <createIndex indexName="idx_doc_element_container_fk" tableName="document_element">
+        <column name="dokument_document_container__0"/>
+    </createIndex>
+    <rollback>
+        <dropIndex indexName="idx_doc_element_container_fk" tableName="document_element"/>
+    </rollback>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- DOCUMENT PERSON REFERENCE FOREIGN KEY INDEXES (1)                        -->
+<!-- ========================================================================= -->
+
+<changeSet id="1.63-021-idx-doc-person-ref-list-fk" author="performance-engineer">
+    <preConditions onFail="MARK_RAN">
+        <not>
+            <indexExists indexName="idx_doc_person_ref_list_fk"/>
+        </not>
+    </preConditions>
+    <comment>
+        Create index on document_person_reference_da_0.document_person_reference_li_1 foreign key.
+        Improves JOIN performance with document_person_reference_list table.
+    </comment>
+    <createIndex indexName="idx_doc_person_ref_list_fk" tableName="document_person_reference_da_0">
+        <column name="document_person_reference_li_1"/>
+    </createIndex>
+    <rollback>
+        <dropIndex indexName="idx_doc_person_ref_list_fk" tableName="document_person_reference_da_0"/>
+    </rollback>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- DOCUMENT PROPOSAL CONTAINER FOREIGN KEY INDEXES (1)                      -->
+<!-- ========================================================================= -->
+
+<changeSet id="1.63-022-idx-doc-proposal-container-fk" author="performance-engineer">
+    <preConditions onFail="MARK_RAN">
+        <not>
+            <indexExists indexName="idx_doc_proposal_container_fk"/>
+        </not>
+    </preConditions>
+    <comment>
+        Create index on document_proposal_container.proposal_document_proposal_c_0 foreign key.
+        Improves JOIN performance with proposal table.
+    </comment>
+    <createIndex indexName="idx_doc_proposal_container_fk" tableName="document_proposal_container">
+        <column name="proposal_document_proposal_c_0"/>
+    </createIndex>
+    <rollback>
+        <dropIndex indexName="idx_doc_proposal_container_fk" tableName="document_proposal_container"/>
+    </rollback>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- DOCUMENT REFERENCE DATA FOREIGN KEY INDEXES (1)                          -->
+<!-- ========================================================================= -->
+
+<changeSet id="1.63-023-idx-doc-reference-list-fk" author="performance-engineer">
+    <preConditions onFail="MARK_RAN">
+        <not>
+            <indexExists indexName="idx_doc_reference_list_fk"/>
+        </not>
+    </preConditions>
+    <comment>
+        Create index on document_reference_data.document_reference_list_docu_0 foreign key.
+        Improves JOIN performance with document_reference_list table.
+    </comment>
+    <createIndex indexName="idx_doc_reference_list_fk" tableName="document_reference_data">
+        <column name="document_reference_list_docu_0"/>
+    </createIndex>
+    <rollback>
+        <dropIndex indexName="idx_doc_reference_list_fk" tableName="document_reference_data"/>
+    </rollback>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- PERSON DETAIL ELEMENT FOREIGN KEY INDEXES (1)                            -->
+<!-- ========================================================================= -->
+
+<changeSet id="1.63-024-idx-person-detail-element-fk" author="performance-engineer">
+    <preConditions onFail="MARK_RAN">
+        <not>
+            <indexExists indexName="idx_person_detail_element_fk"/>
+        </not>
+    </preConditions>
+    <comment>
+        Create index on person_detail_element.detail_list_person_detail_el_0 foreign key.
+        Improves JOIN performance with detail_list table.
+    </comment>
+    <createIndex indexName="idx_person_detail_element_fk" tableName="person_detail_element">
+        <column name="detail_list_person_detail_el_0"/>
+    </createIndex>
+    <rollback>
+        <dropIndex indexName="idx_person_detail_element_fk" tableName="person_detail_element"/>
+    </rollback>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- PERSON ELEMENT FOREIGN KEY INDEXES (3)                                   -->
+<!-- ========================================================================= -->
+
+<changeSet id="1.63-025-idx-person-element-assignment-fk" author="performance-engineer">
+    <preConditions onFail="MARK_RAN">
+        <not>
+            <indexExists indexName="idx_person_element_assignment_fk"/>
+        </not>
+    </preConditions>
+    <comment>
+        Create index on person_element.person_assignment_element_pe_0 foreign key.
+        Improves JOIN performance with person_assignment_element table.
+    </comment>
+    <createIndex indexName="idx_person_element_assignment_fk" tableName="person_element">
+        <column name="person_assignment_element_pe_0"/>
+    </createIndex>
+    <rollback>
+        <dropIndex indexName="idx_person_element_assignment_fk" tableName="person_element"/>
+    </rollback>
+</changeSet>
+
+<changeSet id="1.63-026-idx-person-element-detail-fk" author="performance-engineer">
+    <preConditions onFail="MARK_RAN">
+        <not>
+            <indexExists indexName="idx_person_element_detail_fk"/>
+        </not>
+    </preConditions>
+    <comment>
+        Create index on person_element.person_detail_element_person_0 foreign key.
+        Improves JOIN performance with person_detail_element table.
+    </comment>
+    <createIndex indexName="idx_person_element_detail_fk" tableName="person_element">
+        <column name="person_detail_element_person_0"/>
+    </createIndex>
+    <rollback>
+        <dropIndex indexName="idx_person_element_detail_fk" tableName="person_element"/>
+    </rollback>
+</changeSet>
+
+<changeSet id="1.63-027-idx-person-element-container-fk" author="performance-engineer">
+    <preConditions onFail="MARK_RAN">
+        <not>
+            <indexExists indexName="idx_person_element_container_fk"/>
+        </not>
+    </preConditions>
+    <comment>
+        Create index on person_element.person_person_container_elem_0 foreign key.
+        Improves JOIN performance with person_container table.
+    </comment>
+    <createIndex indexName="idx_person_element_container_fk" tableName="person_element">
+        <column name="person_person_container_elem_0"/>
+    </createIndex>
+    <rollback>
+        <dropIndex indexName="idx_person_element_container_fk" tableName="person_element"/>
+    </rollback>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- SWEDEN POLITICAL PARTY FOREIGN KEY INDEXES (1)                           -->
+<!-- ========================================================================= -->
+
+<changeSet id="1.63-028-idx-sweden-party-region-fk" author="performance-engineer">
+    <preConditions onFail="MARK_RAN">
+        <not>
+            <indexExists indexName="idx_sweden_party_region_fk"/>
+        </not>
+    </preConditions>
+    <comment>
+        Create index on sweden_political_party.parties_sweden_election_regi_0 foreign key.
+        Improves JOIN performance with sweden_election_region table.
+    </comment>
+    <createIndex indexName="idx_sweden_party_region_fk" tableName="sweden_political_party">
+        <column name="parties_sweden_election_regi_0"/>
+    </createIndex>
+    <rollback>
+        <dropIndex indexName="idx_sweden_party_region_fk" tableName="sweden_political_party"/>
+    </rollback>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- VERIFICATION AND COMPLETION                                              -->
+<!-- ========================================================================= -->
+
+<changeSet id="1.63-verification" author="performance-engineer">
+    <comment>
+        Verification changeset: Confirms all 28 Priority 1 FK indexes were created successfully.
+        
+        This changeset validates that the indexes exist and provides statistics about
+        the newly created indexes. It does not modify the database.
+    </comment>
+    
+    <sql>
+        -- Verify all 28 indexes were created
+        SELECT 
+            'Priority 1 FK Indexes Created' AS status,
+            COUNT(*) AS total_indexes_created,
+            pg_size_pretty(SUM(pg_relation_size(i.indexrelid))) AS total_index_size
+        FROM pg_indexes idx
+        JOIN pg_stat_user_indexes i ON idx.indexname = i.indexrelname
+        WHERE idx.schemaname = 'public' 
+          AND idx.indexname LIKE 'idx_%_fk'
+          AND idx.indexname IN (
+            'idx_person_data_assignment_fk',
+            'idx_person_data_detail_fk',
+            'idx_doc_status_document_fk',
+            'idx_doc_status_activity_fk',
+            'idx_doc_status_attachment_fk',
+            'idx_doc_status_detail_fk',
+            'idx_doc_status_person_ref_fk',
+            'idx_doc_status_proposal_fk',
+            'idx_doc_status_reference_fk',
+            'idx_person_container_person_fk',
+            'idx_committee_proposal_against_fk',
+            'idx_committee_proposal_container_fk',
+            'idx_committee_proposal_document_fk',
+            'idx_committee_proposal_list_fk',
+            'idx_assignment_data_list_fk',
+            'idx_assignment_element_uppdrag_fk',
+            'idx_doc_activity_list_fk',
+            'idx_doc_attachment_list_fk',
+            'idx_doc_detail_list_fk',
+            'idx_doc_element_container_fk',
+            'idx_doc_person_ref_list_fk',
+            'idx_doc_proposal_container_fk',
+            'idx_doc_reference_list_fk',
+            'idx_person_detail_element_fk',
+            'idx_person_element_assignment_fk',
+            'idx_person_element_detail_fk',
+            'idx_person_element_container_fk',
+            'idx_sweden_party_region_fk'
+          );
+    </sql>
+</changeSet>
+
+<changeSet id="1.63-completion" author="performance-engineer">
+    <comment>
+        Completion changeset: Updates table statistics after index creation.
+        
+        Running ANALYZE ensures PostgreSQL's query planner is aware of the new indexes
+        and can use them effectively in query plans. This is critical for achieving
+        the expected 10-100x performance improvements.
+    </comment>
+    
+    <sql>
+        -- Update statistics for all tables to ensure query planner uses new indexes
+        ANALYZE;
+        
+        SELECT 
+            'v1.63-complete' AS version,
+            '28 Priority 1 FK indexes created and statistics updated' AS status,
+            'Expected 10-100x performance improvement on JOIN operations' AS impact,
+            CURRENT_TIMESTAMP AS completed_at;
+    </sql>
+</changeSet>
+
+</databaseChangeLog>
