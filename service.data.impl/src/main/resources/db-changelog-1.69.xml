@@ -185,7 +185,7 @@
         END AS parliamentary_period,
     ((('Q'::text || (EXTRACT(quarter FROM decision_day))::text) || ' '::text) || (EXTRACT(year FROM decision_day))::text) AS decision_quarter
    FROM daily_decisions
-  ORDER BY decision_day DESC;;
+  ORDER BY decision_day DESC;
     </rollback>
 </changeSet>
 
@@ -407,7 +407,7 @@
    FROM (public.person_data p
      LEFT JOIN influence_metrics im ON (((im.person_id)::text = (p.id)::text)))
   WHERE ((p.status)::text = ANY (ARRAY[('Tjänstgörande riksdagsledamot'::character varying)::text, ('Tjänstgörande ersättare'::character varying)::text, ('Tillgänglig ersättare'::character varying)::text]))
-  ORDER BY COALESCE(im.strong_connections, (0)::bigint) DESC, p.last_name, p.first_name;;
+  ORDER BY COALESCE(im.strong_connections, (0)::bigint) DESC, p.last_name, p.first_name;
     </rollback>
 </changeSet>
 
@@ -448,7 +448,7 @@
  Issue: Multi-source aggregation (voting + documents + violations) with 5 windows
  Current Performance: 800ms-1.5s
  Target Performance: <800ms (50% improvement)
- Refresh Schedule: Quarterly on 1st at 04:00 UTC
+ Refresh Schedule: Quarterly on 1st at 05:00 UTC
 ===================================================================================
 -->
 
@@ -465,7 +465,7 @@
         Issue: Multi-source aggregation (voting + documents + violations) with 5 windows
         Current: 800ms-1.5s
         Target: &lt;800ms
-        Refresh: Quarterly on 1st at 04:00 UTC
+        Refresh: Quarterly on 1st at 05:00 UTC
     </comment>
     <sql splitStatements="false">
         DROP VIEW IF EXISTS view_party_effectiveness_trends CASCADE;
@@ -578,7 +578,7 @@
         WITH NO DATA;
         
         COMMENT ON MATERIALIZED VIEW view_party_effectiveness_trends IS 
-        'Multi-source aggregation (voting + documents + violations) with 5 windows. Refresh: Quarterly on 1st at 04:00 UTC. Performance: 50% faster (800ms-1.5s → &lt;800ms).';
+        'Multi-source aggregation (voting + documents + violations) with 5 windows. Refresh: Quarterly on 1st at 05:00 UTC. Performance: 50% faster (800ms-1.5s → &lt;800ms).';
     </sql>
     <rollback>
         DROP MATERIALIZED VIEW IF EXISTS view_party_effectiveness_trends CASCADE;
@@ -687,7 +687,7 @@
             ELSE 'Standard party operations'::text
         END AS effectiveness_assessment
    FROM trend_analysis
-  ORDER BY party, period_start DESC;;
+  ORDER BY party, period_start DESC;
     </rollback>
 </changeSet>
 
@@ -960,7 +960,7 @@
         END AS behavioral_assessment
    FROM trend_calculations
   WHERE (total_ballots &gt;= (5)::numeric)
-  ORDER BY person_id, period_start DESC;;
+  ORDER BY person_id, period_start DESC;
     </rollback>
 </changeSet>
 
@@ -1419,7 +1419,7 @@
             WHEN ((next_semester_attendance IS NOT NULL) AND (next_semester_attendance &lt; (avg_attendance_rate - (5)::numeric))) THEN 'expected_decline'::text
             ELSE 'stable_forecast'::text
         END AS forecast_trend
-   FROM windowed w;;
+   FROM windowed w;
     </rollback>
 </changeSet>
 

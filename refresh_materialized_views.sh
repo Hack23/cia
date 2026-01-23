@@ -3,7 +3,7 @@
 # Automated refresh script for 5 high-impact materialized views
 # Schedule via cron based on refresh frequency for each view
 
-set -e
+# Note: Do not use 'set -e' here; failures are handled explicitly per view.
 
 # Configuration
 DB_NAME="${DB_NAME:-cia_dev}"
@@ -22,7 +22,9 @@ refresh_view() {
     
     log_message "Refreshing $view_name ($description)..."
     
-    if psql -U "$DB_USER" -d "$DB_NAME" -c "REFRESH MATERIALIZED VIEW CONCURRENTLY $view_name;" 2>&1 | tee -a "$LOG_FILE"; then
+    # Note: CONCURRENTLY requires a unique index on the materialized view
+    # Since we only have regular B-tree indexes, we use regular refresh
+    if psql -U "$DB_USER" -d "$DB_NAME" -c "REFRESH MATERIALIZED VIEW $view_name;" 2>&1 | tee -a "$LOG_FILE"; then
         log_message "✓ Successfully refreshed $view_name"
         return 0
     else
@@ -65,11 +67,15 @@ case "$VIEW_NAME" in
     
     "all")
         # Refresh all views (useful for testing or manual full refresh)
+        # IMPORTANT: Order matters - view_election_cycle_temporal_trends depends on
+        # view_decision_temporal_trends and view_politician_behavioral_trends,
+        # so those must be refreshed first to avoid empty result sets
         log_message "Refreshing all 5 materialized views..."
         
         success_count=0
         fail_count=0
         
+        # Refresh base views first (no dependencies)
         if refresh_view "view_decision_temporal_trends" "Daily"; then
             ((success_count++))
         else
@@ -94,6 +100,7 @@ case "$VIEW_NAME" in
             ((fail_count++))
         fi
         
+        # Refresh dependent view last (depends on view_decision_temporal_trends and view_politician_behavioral_trends)
         if refresh_view "view_election_cycle_temporal_trends" "Post-election"; then
             ((success_count++))
         else

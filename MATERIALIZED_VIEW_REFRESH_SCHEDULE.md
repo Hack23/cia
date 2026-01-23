@@ -41,7 +41,21 @@ Converting these views to materialized views provides 60-80% performance improve
 - **Schedule**: Manual execution after election data is finalized
 - **Command**: `/path/to/refresh_materialized_views.sh election_cycle_temporal_trends`
 - **Performance**: 70% faster (5-10s → <3s)
+- **Dependencies**: ⚠️ **Depends on view_decision_temporal_trends and view_politician_behavioral_trends** - these must be refreshed first
 - **Rationale**: Election cycle data is static between elections
+
+## ⚠️ Important: Refresh Order for Dependencies
+
+The `view_election_cycle_temporal_trends` materialized view has dependencies on two other materialized views:
+- `view_decision_temporal_trends` (lines 1069, 1095 in db-changelog-1.69.xml)
+- `view_politician_behavioral_trends` (lines 1068, 1094 in db-changelog-1.69.xml)
+
+**Required refresh order when refreshing all views:**
+1. Refresh `view_decision_temporal_trends` first
+2. Refresh `view_politician_behavioral_trends` second
+3. Then refresh `view_election_cycle_temporal_trends`
+
+The `refresh_materialized_views.sh all` command already follows this order to ensure correct data population.
 
 ## Installation
 
