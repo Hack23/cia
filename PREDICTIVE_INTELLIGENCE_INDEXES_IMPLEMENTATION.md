@@ -201,6 +201,12 @@ public     | vote_data       | idx_vote_data_window_partition      | 8192 bytes
 **Index Size:** 8192 bytes each (1 page - ready for data)
 **Scans:** 0 (awaiting data population)
 
+**Note:** The vote_data table also has indexes from the previous v1.66 changelog (Network Analysis Framework):
+- `idx_vote_data_coalition` - Coalition matrix analysis (from v1.66)
+- `idx_vote_data_covoting` - Co-voting analysis (from v1.66)
+
+These v1.66 indexes complement the v1.67 predictive intelligence indexes. Together, they provide comprehensive optimization for both network analysis and predictive intelligence frameworks.
+
 ### Sample Performance Test
 
 **View:** view_riksdagen_politician_role_evolution
