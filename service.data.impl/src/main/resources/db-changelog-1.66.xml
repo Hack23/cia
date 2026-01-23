@@ -105,7 +105,7 @@
         Current Status: NOT NEEDED - query executes in 0.389ms
     </comment>
     <sql>
-        CREATE INDEX idx_vote_data_covoting 
+        CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_vote_data_covoting 
         ON vote_data (embedded_id_ballot_id, embedded_id_intressent_id, vote, vote_date)
         WHERE vote_date >= CURRENT_DATE - INTERVAL '3 years'
           AND vote IN ('Ja', 'Nej');
@@ -141,7 +141,7 @@
         Current Status: NOT NEEDED - query executes in 0.070ms
     </comment>
     <sql>
-        CREATE INDEX idx_vote_data_coalition
+        CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_vote_data_coalition
         ON vote_data (party, embedded_id_ballot_id, vote, vote_date)
         WHERE vote_date >= CURRENT_DATE - INTERVAL '5 years'
           AND party IS NOT NULL;
@@ -182,14 +182,12 @@
         
         Related: Issue #8282 (Materialized View Population)
     </comment>
-    <createIndex indexName="idx_politician_doc_summary_person_id" 
-                 tableName="view_riksdagen_politician_document_summary" 
-                 unique="false">
-        <column name="person_id"/>
-    </createIndex>
+    <sql>
+        CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_politician_doc_summary_person_id 
+        ON view_riksdagen_politician_document_summary(person_id);
+    </sql>
     <rollback>
-        <dropIndex indexName="idx_politician_doc_summary_person_id" 
-                   tableName="view_riksdagen_politician_document_summary"/>
+        DROP INDEX IF EXISTS idx_politician_doc_summary_person_id;
     </rollback>
 </changeSet>
 
@@ -224,14 +222,12 @@
         
         Related: Issue #8282 (Materialized View Population)
     </comment>
-    <createIndex indexName="idx_ballot_party_summary_party" 
-                 tableName="view_riksdagen_vote_data_ballot_party_summary" 
-                 unique="false">
-        <column name="party"/>
-    </createIndex>
+    <sql>
+        CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_ballot_party_summary_party 
+        ON view_riksdagen_vote_data_ballot_party_summary(party);
+    </sql>
     <rollback>
-        <dropIndex indexName="idx_ballot_party_summary_party" 
-                   tableName="view_riksdagen_vote_data_ballot_party_summary"/>
+        DROP INDEX IF EXISTS idx_ballot_party_summary_party;
     </rollback>
 </changeSet>
 
