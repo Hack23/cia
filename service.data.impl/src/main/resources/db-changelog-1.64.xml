@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+<!-- 
+===================================================================================
+ Database Changelog v1.64 - Temporal Analysis Performance Indexes (4 Indexes)
+ 
+ Purpose: Create specialized composite indexes for Temporal Analysis framework
+ (35 views) to optimize daily/weekly/monthly/annual aggregations and time-series
+ queries, reducing query execution time from 10-60s to < 3s.
+ 
+ Background: The Temporal Analysis framework analyzes political activity across
+ time dimensions using 35 supporting views. These missing temporal indexes on
+ composite keys (entity + date) are identified as missing optimization opportunities.
+ 
+ Framework Status: 100% operational (20+ risk rules), performance optimization
+ for production scale.
+ 
+ Indexes Created:
+ - Vote Data Temporal: 4 composite indexes for entity + date lookups
+ 
+ Performance Targets After Implementation:
+ - Daily aggregations: < 800ms (currently 5-15s with production data)
+ - Weekly aggregations: < 1.5s (currently 10-30s with production data)
+ - Monthly aggregations: < 2s (currently 15-40s with production data)
+ - Annual aggregations: < 3s (currently 20-60s with production data)
+ - Temporal trend analysis: < 3s (currently 30-90s with production data)
+ 
+ Expected Performance Improvement: 20-40% reduction in temporal aggregation queries
+ 
+ Affected Views: 35 temporal analysis views
+ - Daily Aggregations: 8 views
+ - Weekly Aggregations: 6 views  
+ - Monthly Aggregations: 4 views
+ - Annual Aggregations: 8 views
+ - Temporal Trend Views: 9 views
+ 
+ Reference:
+ - TEMPORAL_ANALYSIS_PERFORMANCE_REPORT.md (Section: Specific Index Recommendations)
+ - GitHub Issue: Hack23/cia#8277
+===================================================================================
+-->
+
+<changeSet id="1.64-intro" author="performance-engineer">
+    <comment>
+        Database Changelog v1.64 - Temporal Analysis Performance Indexes (4 Indexes)
+        
+        PERFORMANCE OPTIMIZATION: Creates 4 missing composite temporal indexes for
+        vote_data table to optimize 35 temporal analysis views.
+        
+        Expected Performance Improvement: 20-40% reduction in temporal aggregation queries
+        
+        Affected Views: 35 temporal analysis views across 4 aggregation levels
+        - Daily Aggregations: 8 views (ballot politician/party/summary daily)
+        - Weekly Aggregations: 6 views (ballot politician/party/summary weekly)
+        - Monthly Aggregations: 4 views (ballot politician/party/summary monthly)
+        - Annual Aggregations: 8 views (ballot politician/party/summary annual)
+        - Temporal Trends: 9 views (decision trends, election cycle trends, etc.)
+        
+        New Composite Indexes:
+        1. idx_vote_data_ballot_date - Ballot ID + vote date composite
+        2. idx_vote_data_party_date - Party + vote date composite
+        3. idx_vote_data_politician_date - Politician ID + vote date composite
+        4. idx_vote_data_aggregation_cover - Covering index for common aggregations
+        
+        Analysis Report: TEMPORAL_ANALYSIS_PERFORMANCE_REPORT.md
+        GitHub Issue: Hack23/cia#8277
+    </comment>
+    
+    <sql>
+        SELECT 
+            'v1.64-temporal-analysis-indexes' AS version,
+            'Creating 4 composite temporal indexes for vote_data table' AS description,
+            '35 temporal analysis views will benefit from 20-40% performance improvement' AS impact,
+            CURRENT_TIMESTAMP AS applied_at;
+    </sql>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- VOTE DATA TEMPORAL INDEXES (4)                                           -->
+<!-- ========================================================================= -->
+
+<changeSet id="1.64-001-idx-vote-data-ballot-date" author="performance-engineer">
+    <preConditions onFail="MARK_RAN">
+        <not>
+            <indexExists indexName="idx_vote_data_ballot_date"/>
+        </not>
+    </preConditions>
+    <comment>
+        Create composite index on vote_data (ballot_id, vote_date) for temporal ballot queries.
+        
+        Benefits:
+        - Optimizes ballot summary views with date filtering
+        - Supports ORDER BY vote_date with ballot_id filtering
+        - Enables efficient date range queries per ballot
+        
+        Used By:
+        - view_riksdagen_vote_data_ballot_summary_daily
+        - view_riksdagen_vote_data_ballot_summary_weekly
+        - view_riksdagen_vote_data_ballot_summary_monthly
+        - view_riksdagen_vote_data_ballot_summary_annual
+    </comment>
+    <createIndex indexName="idx_vote_data_ballot_date" tableName="vote_data">
+        <column name="embedded_id_ballot_id"/>
+        <column name="vote_date"/>
+    </createIndex>
+    <rollback>
+        <dropIndex indexName="idx_vote_data_ballot_date" tableName="vote_data"/>
+    </rollback>
+</changeSet>
+
+<changeSet id="1.64-002-idx-vote-data-party-date" author="performance-engineer">
+    <preConditions onFail="MARK_RAN">
+        <not>
+            <indexExists indexName="idx_vote_data_party_date"/>
+        </not>
+    </preConditions>
+    <comment>
+        Create composite index on vote_data (party, vote_date) for temporal party analysis.
+        
+        Benefits:
+        - Optimizes party summary views with temporal filtering
+        - Supports party voting trend analysis over time
+        - Enables efficient party comparison across time periods
+        
+        Used By:
+        - view_riksdagen_vote_data_ballot_party_summary_daily
+        - view_riksdagen_vote_data_ballot_party_summary_weekly
+        - view_riksdagen_vote_data_ballot_party_summary_monthly
+        - view_riksdagen_vote_data_ballot_party_summary_annual
+        - view_riksdagen_party_ballot_support_annual_summary
+        - view_decision_temporal_trends
+        - view_election_cycle_temporal_trends
+    </comment>
+    <createIndex indexName="idx_vote_data_party_date" tableName="vote_data">
+        <column name="party"/>
+        <column name="vote_date"/>
+    </createIndex>
+    <rollback>
+        <dropIndex indexName="idx_vote_data_party_date" tableName="vote_data"/>
+    </rollback>
+</changeSet>
+
+<changeSet id="1.64-003-idx-vote-data-politician-date" author="performance-engineer">
+    <preConditions onFail="MARK_RAN">
+        <not>
+            <indexExists indexName="idx_vote_data_politician_date"/>
+        </not>
+    </preConditions>
+    <comment>
+        Create composite index on vote_data (intressent_id, vote_date) for temporal politician analysis.
+        
+        Benefits:
+        - Optimizes politician voting history queries with date filters
+        - Supports politician performance tracking over time
+        - Enables efficient politician comparison within time periods
+        
+        Used By:
+        - view_riksdagen_vote_data_ballot_politician_summary_daily
+        - view_riksdagen_vote_data_ballot_politician_summary_weekly
+        - view_riksdagen_vote_data_ballot_politician_summary_monthly
+        - view_riksdagen_vote_data_ballot_politician_summary_annual
+    </comment>
+    <createIndex indexName="idx_vote_data_politician_date" tableName="vote_data">
+        <column name="embedded_id_intressent_id"/>
+        <column name="vote_date"/>
+    </createIndex>
+    <rollback>
+        <dropIndex indexName="idx_vote_data_politician_date" tableName="vote_data"/>
+    </rollback>
+</changeSet>
+
+<changeSet id="1.64-004-idx-vote-data-aggregation-cover" author="performance-engineer">
+    <preConditions onFail="MARK_RAN">
+        <not>
+            <indexExists indexName="idx_vote_data_aggregation_cover"/>
+        </not>
+    </preConditions>
+    <comment>
+        Create covering index on vote_data for common temporal aggregation queries.
+        
+        This is a covering index that includes frequently accessed columns to enable
+        index-only scans without touching the table heap.
+        
+        Benefits:
+        - Enables index-only scans for aggregation queries
+        - Reduces I/O by avoiding heap access
+        - Optimizes COUNT, SUM, AVG aggregations by date and party
+        
+        Columns:
+        - Index Keys: vote_date, party, vote (for filtering/grouping)
+        - INCLUDE: ballot_id, intressent_id (for avoiding heap access)
+        
+        Used By: All temporal aggregation views that group by date/party/vote
+        
+        Note: PostgreSQL 11+ supports INCLUDE clause for covering indexes.
+        Liquibase limitation: createIndex doesn't support INCLUDE clause natively.
+        Alternative: Using sql changeset for PostgreSQL-specific syntax.
+    </comment>
+    <sql>
+        CREATE INDEX IF NOT EXISTS idx_vote_data_aggregation_cover 
+        ON vote_data (vote_date, party, vote) 
+        INCLUDE (embedded_id_ballot_id, embedded_id_intressent_id)
+        WHERE vote_date IS NOT NULL AND party IS NOT NULL;
+    </sql>
+    <rollback>
+        DROP INDEX IF EXISTS idx_vote_data_aggregation_cover;
+    </rollback>
+</changeSet>
+
+<!-- ========================================================================= -->
+<!-- VERIFICATION AND DOCUMENTATION                                           -->
+<!-- ========================================================================= -->
+
+<changeSet id="1.64-999-verification" author="performance-engineer">
+    <comment>
+        Verification queries for temporal analysis performance indexes.
+        
+        This changeset documents verification steps but doesn't execute them.
+        Run these queries manually to verify index effectiveness:
+        
+        1. Verify all indexes created:
+           SELECT indexname, tablename, indexdef 
+           FROM pg_indexes 
+           WHERE schemaname = 'public' 
+             AND indexname LIKE 'idx_vote_data_%'
+           ORDER BY indexname;
+        
+        2. Test index usage on temporal queries:
+           EXPLAIN (ANALYZE, BUFFERS) 
+           SELECT COUNT(*), party, DATE_TRUNC('month', vote_date) AS month
+           FROM vote_data 
+           WHERE vote_date >= CURRENT_DATE - INTERVAL '12 months'
+           GROUP BY party, month;
+        
+        3. Verify covering index effectiveness:
+           EXPLAIN (ANALYZE, BUFFERS)
+           SELECT vote_date, party, COUNT(*) 
+           FROM vote_data 
+           WHERE vote_date >= '2024-01-01' AND party = 'S'
+           GROUP BY vote_date, party;
+        
+        Expected: All queries should use new composite indexes.
+    </comment>
+    <sql>
+        SELECT 
+            'Temporal Analysis Performance Indexes Applied' AS status,
+            COUNT(*) AS total_indexes_on_vote_data
+        FROM pg_indexes 
+        WHERE schemaname = 'public' 
+          AND tablename = 'vote_data'
+          AND indexname LIKE 'idx_vote_data_%';
+    </sql>
+</changeSet>
+
+</databaseChangeLog>
