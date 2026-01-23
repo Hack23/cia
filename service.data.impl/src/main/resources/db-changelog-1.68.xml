@@ -99,7 +99,7 @@
         - Ministry temporal analysis
     </comment>
     <createView viewName="view_riksdagen_ministry">
-        SELECT DISTINCT
+        SELECT
             org_code AS ministry_id,
             detail AS ministry_name,
             role_code,
