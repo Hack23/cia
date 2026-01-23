@@ -14,7 +14,7 @@
  Current Performance Status: ⚠️ NEEDS OPTIMIZATION
  - 14 predictive intelligence views for electoral forecasting and trend prediction
  - Current query times: 3-20s (significantly exceeds targets)
- - Target query times: < 3s for all views (70%+ improvement needed)
+ - Target query times: under 3s for all views (70%+ improvement needed)
  
  Index Strategy:
  These indexes optimize time-series forecasting queries, window function operations,
@@ -28,15 +28,15 @@
  - Influence Prediction (2 views): future influence metrics, leadership trajectory
  
  Performance Metrics (Current Status):
- - Electoral forecasting: 10-20s (target: < 3s) ❌ 70%+ improvement needed
- - Trend prediction: 5-12s (target: < 2s) ❌ 60%+ improvement needed
- - Scenario analysis: 8-15s (target: < 3s) ❌ 60%+ improvement needed
- - Influence prediction: 3-5s (target: < 2s) ❌ 40%+ improvement needed
+ - Electoral forecasting: 10-20s (target: under 3s) ❌ 70%+ improvement needed
+ - Trend prediction: 5-12s (target: under 2s) ❌ 60%+ improvement needed
+ - Scenario analysis: 8-15s (target: under 3s) ❌ 60%+ improvement needed
+ - Influence prediction: 3-5s (target: under 2s) ❌ 40%+ improvement needed
  
  Expected Impact (after index creation):
- - Electoral forecasting views: 70%+ improvement (10-20s → < 3s)
- - Trend prediction views: 60%+ improvement (5-12s → < 2s)
- - Scenario analysis views: 60%+ improvement (8-15s → < 3s)
+ - Electoral forecasting views: 70%+ improvement (10-20s  to  under 3s)
+ - Trend prediction views: 60%+ improvement (5-12s  to  under 2s)
+ - Scenario analysis views: 60%+ improvement (8-15s  to  under 3s)
  - Window function queries: 30-50% improvement with PARTITION BY indexes
  
  Related Issues:
@@ -96,7 +96,7 @@
         
         Supports: Electoral forecasting views (5 views), voting trend predictions
         Query Optimization: Time-series queries with date ranges and person filtering
-        Expected Impact: 70%+ improvement in electoral forecasting (10-20s → < 3s)
+        Expected Impact: 70%+ improvement in electoral forecasting (10-20s to under 3s)
         
         Used by views:
         - view_election_cycle_predictive_intelligence
@@ -127,7 +127,7 @@
         
         Supports: Trend prediction views (4 views), party coalition evolution
         Query Optimization: Party-level aggregations over time
-        Expected Impact: 60%+ improvement in trend prediction (5-12s → < 2s)
+        Expected Impact: 60%+ improvement in trend prediction (5-12s  to  under 2s)
         
         Used by views:
         - view_riksdagen_party_coalition_evolution
@@ -158,7 +158,7 @@
         
         Supports: Influence prediction views (2 views), role evolution analysis
         Query Optimization: Time-series role assignments and career progression
-        Expected Impact: 40%+ improvement in influence prediction (3-5s → < 2s)
+        Expected Impact: 40%+ improvement in influence prediction (3-5s  to  under 2s)
         
         Used by views:
         - view_riksdagen_politician_role_evolution
@@ -217,7 +217,7 @@
         
         Supports: Scenario analysis views (3 views), policy impact forecasting
         Query Optimization: Time-series document activity and policy trends
-        Expected Impact: 60%+ improvement in scenario analysis (8-15s → < 3s)
+        Expected Impact: 60%+ improvement in scenario analysis (8-15s  to  under 3s)
         
         Used by views:
         - view_decision_temporal_trends
@@ -390,10 +390,10 @@
         - person_data: 1 index (party membership)
         
         Performance Impact by Framework:
-        - Electoral Forecasting (5 views): 70%+ improvement (10-20s → < 3s)
-        - Trend Prediction (4 views): 60%+ improvement (5-12s → < 2s)
-        - Scenario Analysis (3 views): 60%+ improvement (8-15s → < 3s)
-        - Influence Prediction (2 views): 40%+ improvement (3-5s → < 2s)
+        - Electoral Forecasting (5 views): 70%+ improvement (10-20s  to  under 3s)
+        - Trend Prediction (4 views): 60%+ improvement (5-12s  to  under 2s)
+        - Scenario Analysis (3 views): 60%+ improvement (8-15s  to  under 3s)
+        - Influence Prediction (2 views): 40%+ improvement (3-5s  to  under 2s)
         - Window Function Queries: 30-50% improvement across all views
         
         Query Optimizations Enabled:
@@ -416,10 +416,10 @@
         5. view_riksdagen_politician_role_evolution (influence prediction)
         
         Expected Results After Index Creation:
-        - Electoral forecasting: < 3s (currently 10-20s)
-        - Trend prediction: < 2s (currently 5-12s)
-        - Scenario analysis: < 3s (currently 8-15s)
-        - Influence prediction: < 2s (currently 3-5s)
+        - Electoral forecasting: under 3s (currently 10-20s)
+        - Trend prediction: under 2s (currently 5-12s)
+        - Scenario analysis: under 3s (currently 8-15s)
+        - Influence prediction: under 2s (currently 3-5s)
         
         Next Steps:
         1. Apply indexes via: mvn liquibase:update -pl service.data.impl
