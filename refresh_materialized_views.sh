@@ -57,7 +57,7 @@ case "$VIEW_NAME" in
     
     "party_effectiveness_trends")
         # Quarterly refresh: Party effectiveness trends
-        refresh_view "view_party_effectiveness_trends" "Quarterly on 1st at 04:00 UTC"
+        refresh_view "view_party_effectiveness_trends" "Quarterly on 1st at 05:00 UTC"
         ;;
     
     "election_cycle_temporal_trends")
@@ -110,6 +110,11 @@ case "$VIEW_NAME" in
         log_message "=== Refresh Summary ==="
         log_message "Successful: $success_count"
         log_message "Failed: $fail_count"
+        
+        if [ "$fail_count" -gt 0 ]; then
+            log_message "One or more materialized views failed to refresh. Exiting with status 1."
+            exit 1
+        fi
         ;;
     
     *)

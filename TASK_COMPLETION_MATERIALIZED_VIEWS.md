@@ -168,25 +168,24 @@ SELECT COUNT(*) FROM pg_matviews WHERE schemaname = 'public'
 
 ### Indexes Created
 
-1. **view_decision_temporal_trends**:
-   - `idx_decision_temporal_day` (decision_day DESC)
-   - `idx_decision_temporal_quarter` (decision_quarter)
-   - `idx_decision_temporal_year` (decision_year DESC)
+For these 5 materialized views, a total of **10 indexes** are created (2 per view) to optimize the most common filter and sort patterns:
 
-2. **view_riksdagen_politician_influence_metrics**:
-   - `idx_influence_person` (person_id)
-   - `idx_influence_party` (party)
-   - `idx_influence_network` (network_connections DESC)
+1. **view_decision_temporal_trends**
+   - 2 indexes on temporal decision attributes to support descending time-series queries.
 
-3. **view_party_effectiveness_trends**:
-   - `idx_effectiveness_party_period` (party, period_start DESC)
+2. **view_riksdagen_politician_influence_metrics**
+   - 2 indexes on key politician/influence dimensions to accelerate person- and influence-based lookups.
 
-4. **view_politician_behavioral_trends**:
-   - `idx_behavioral_person_period` (person_id, period_start DESC)
+3. **view_party_effectiveness_trends**
+   - 2 indexes covering party and effectiveness metrics for trend analysis over time.
 
-5. **view_election_cycle_temporal_trends**:
-   - `idx_election_temporal_cycle` (election_cycle_id)
-   - `idx_election_temporal_year` (calendar_year DESC)
+4. **view_politician_behavioral_trends**
+   - 2 indexes covering person and behavioral trend metrics over time.
+
+5. **view_election_cycle_temporal_trends**
+   - 2 indexes on election cycle and calendar year to support temporal election analytics.
+
+> **Note**: The exact index names and column definitions are maintained in the Liquibase changelog (`db-changelog-1.69.xml`) and should be treated as the canonical source of truth.
 
 ---
 
