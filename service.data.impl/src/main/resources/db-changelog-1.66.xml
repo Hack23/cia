@@ -92,14 +92,14 @@
         
         Current Status: Excellent performance (0.389ms) maintained, index supports future scale
     </comment>
-    <sql>
-        CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_vote_data_covoting 
-        ON vote_data (embedded_id_ballot_id, embedded_id_intressent_id, vote, vote_date)
-        WHERE vote_date >= CURRENT_DATE - INTERVAL '3 years'
-          AND vote IN ('Ja', 'Nej');
-    </sql>
+    <createIndex indexName="idx_vote_data_covoting" tableName="vote_data">
+        <column name="embedded_id_ballot_id"/>
+        <column name="embedded_id_intressent_id"/>
+        <column name="vote"/>
+        <column name="vote_date"/>
+    </createIndex>
     <rollback>
-        DROP INDEX IF EXISTS idx_vote_data_covoting;
+        <dropIndex indexName="idx_vote_data_covoting" tableName="vote_data"/>
     </rollback>
 </changeSet>
 
@@ -119,14 +119,14 @@
         
         Current Status: Excellent performance (0.070ms) maintained, index supports future scale
     </comment>
-    <sql>
-        CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_vote_data_coalition
-        ON vote_data (party, embedded_id_ballot_id, vote, vote_date)
-        WHERE vote_date >= CURRENT_DATE - INTERVAL '5 years'
-          AND party IS NOT NULL;
-    </sql>
+    <createIndex indexName="idx_vote_data_coalition" tableName="vote_data">
+        <column name="party"/>
+        <column name="embedded_id_ballot_id"/>
+        <column name="vote"/>
+        <column name="vote_date"/>
+    </createIndex>
     <rollback>
-        DROP INDEX IF EXISTS idx_vote_data_coalition;
+        <dropIndex indexName="idx_vote_data_coalition" tableName="vote_data"/>
     </rollback>
 </changeSet>
 
@@ -158,12 +158,13 @@
         Prerequisite: Materialized view must be populated first (Issue #8282)
         Current Status: Awaiting materialized view population
     </comment>
-    <sql>
-        CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_politician_doc_summary_person_id 
-        ON view_riksdagen_politician_document_summary(person_id);
-    </sql>
+    <createIndex indexName="idx_politician_doc_summary_person_id" 
+                 tableName="view_riksdagen_politician_document_summary">
+        <column name="person_id"/>
+    </createIndex>
     <rollback>
-        DROP INDEX IF EXISTS idx_politician_doc_summary_person_id;
+        <dropIndex indexName="idx_politician_doc_summary_person_id" 
+                   tableName="view_riksdagen_politician_document_summary"/>
     </rollback>
 </changeSet>
 
@@ -195,12 +196,13 @@
         Prerequisite: Materialized view must be populated first (Issue #8282)
         Current Status: Awaiting materialized view population
     </comment>
-    <sql>
-        CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_ballot_party_summary_party 
-        ON view_riksdagen_vote_data_ballot_party_summary(party);
-    </sql>
+    <createIndex indexName="idx_ballot_party_summary_party" 
+                 tableName="view_riksdagen_vote_data_ballot_party_summary">
+        <column name="party"/>
+    </createIndex>
     <rollback>
-        DROP INDEX IF EXISTS idx_ballot_party_summary_party;
+        <dropIndex indexName="idx_ballot_party_summary_party" 
+                   tableName="view_riksdagen_vote_data_ballot_party_summary"/>
     </rollback>
 </changeSet>
 
