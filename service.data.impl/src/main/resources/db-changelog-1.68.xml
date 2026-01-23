@@ -167,16 +167,15 @@
            - Schedule: Daily at 02:30 UTC (after committee_decisions)
         
         Population Script (execute after Liquibase update):
-        sudo -u postgres psql -d cia_dev &lt;&lt; EOF
+        psql -d ${DATABASE_NAME} &lt;&lt; EOF
         REFRESH MATERIALIZED VIEW view_riksdagen_committee_decisions;
         REFRESH MATERIALIZED VIEW view_riksdagen_committee_ballot_decision_summary;
         EOF
         
-        Performance Indexes (for optimal query performance):
-        CREATE INDEX IF NOT EXISTS idx_committee_decisions_org_code 
-            ON view_riksdagen_committee_decisions(org);
-        CREATE INDEX IF NOT EXISTS idx_committee_ballot_summary_org_ballot 
-            ON view_riksdagen_committee_ballot_decision_summary(org, ballot_id);
+        Note: Performance indexes for materialized views should be created via
+        separate Liquibase changesets when needed for optimization. Consider adding
+        indexes on org columns if query performance analysis indicates they would
+        provide meaningful improvements (typically after population with real data).
     </comment>
     <sql>
         -- Documentation changeset - no schema changes
