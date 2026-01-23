@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+<!-- 
+===================================================================================
+ Database Changelog v1.67 - Predictive Intelligence Framework Performance Indexes
+ 
+ Purpose: Create performance indexes for Predictive Intelligence framework (14 views) 
+ based on PREDICTIVE_INTELLIGENCE_PERFORMANCE_REPORT.md optimization recommendations.
+ 
+ Current Performance Status: ⚠️ NEEDS OPTIMIZATION
+ - 14 predictive intelligence views for electoral forecasting and trend prediction
+ - Current query times: 3-20s (significantly exceeds targets)
+ - Target query times: under 3s for all views (70%+ improvement needed)
+ 
+ Index Strategy:
+ These indexes optimize time-series forecasting queries, window function operations,
+ and temporal aggregations used in electoral forecasting, trend prediction, scenario
+ analysis, and influence prediction views.
+ 
+ Framework Components:
+ - Electoral Forecasting (5 views): election predictions, voter trend analysis
+ - Trend Prediction (4 views): political momentum, party trajectory, voting patterns
+ - Scenario Analysis (3 views): coalition scenarios, policy impact analysis
+ - Influence Prediction (2 views): future influence metrics, leadership trajectory
+ 
+ Performance Metrics (Current Status):
+ - Electoral forecasting: 10-20s (target: under 3s) ❌ 70%+ improvement needed
+ - Trend prediction: 5-12s (target: under 2s) ❌ 60%+ improvement needed
+ - Scenario analysis: 8-15s (target: under 3s) ❌ 60%+ improvement needed
+ - Influence prediction: 3-5s (target: under 2s) ❌ 40%+ improvement needed
+ 
+ Expected Impact (after index creation):
+ - Electoral forecasting views: 70%+ improvement (10-20s  to  under 3s)
+ - Trend prediction views: 60%+ improvement (5-12s  to  under 2s)
+ - Scenario analysis views: 60%+ improvement (8-15s  to  under 3s)
+ - Window function queries: 30-50% improvement with PARTITION BY indexes
+ 
+ Related Issues:
+ - GitHub Issue: Hack23/cia#8281 (Predictive Intelligence Performance Optimization)
+ - PREDICTIVE_INTELLIGENCE_PERFORMANCE_REPORT.md (31 KB comprehensive analysis)
+ 
+ Risk Rules Status:
+ - 8/8 risk rules operational (100%) ✅
+ - Indexes maintain operational status while improving performance
+===================================================================================
+-->
+
+<changeSet id="1.67-intro" author="performance-engineer">
+    <comment>
+        Database Changelog v1.67 - Predictive Intelligence Framework Performance Indexes
+        
+        Creates 10 performance indexes for Predictive Intelligence framework to optimize
+        14 views supporting electoral forecasting and trend prediction.
+        
+        Current Performance: Poor (3-20s queries exceeding targets)
+        Expected Impact: 60-70% improvement across all predictive views
+        
+        Indexes Created:
+        1. idx_vote_data_temporal - Time-series voting analysis (electoral forecasting)
+        2. idx_vote_data_party_temporal - Party trend analysis (trend prediction)
+        3. idx_assignment_data_temporal - Role evolution tracking (influence prediction)
+        4. idx_assignment_data_person_roles - Career trajectory analysis (behavioral prediction)
+        5. idx_document_data_temporal - Document activity trends (scenario analysis)
+        6. idx_person_data_party - Party member queries (coalition analysis)
+        7. idx_vote_data_window_partition - Window function optimization (all frameworks)
+        8. idx_assignment_data_window_partition - Window function optimization (career analysis)
+        9. idx_document_data_org_temporal - Ministry effectiveness trends (temporal analysis)
+        10. idx_vote_data_ballot_temporal - Ballot-level forecasting (electoral analysis)
+    </comment>
+</changeSet>
+
+<!-- 
+===================================================================================
+ PREDICTIVE INTELLIGENCE PERFORMANCE INDEXES
+ 
+ The following indexes optimize predictive analytics queries including electoral
+ forecasting, trend prediction, scenario analysis, and influence prediction.
+ All indexes include temporal columns for time-series analysis.
+===================================================================================
+-->
+
+<!-- Index 1: Vote Data Temporal Index (Electoral Forecasting) -->
+<changeSet id="1.67-idx-vote-data-temporal" author="performance-engineer">
+    <preConditions onFail="MARK_RAN">
+        <tableExists tableName="vote_data"/>
+        <not>
+            <indexExists indexName="idx_vote_data_temporal"/>
+        </not>
+    </preConditions>
+    <comment>
+        Temporal composite index for electoral forecasting and voting trend analysis.
+        
+        Supports: Electoral forecasting views (5 views), voting trend predictions
+        Query Optimization: Time-series queries with date ranges and person filtering
+        Expected Impact: 70%+ improvement in electoral forecasting (10-20s to under 3s)
+        
+        Used by views:
+        - view_election_cycle_predictive_intelligence
+        - view_riksdagen_election_proximity_trends
+        - view_riksdagen_politician_career_trajectory
+        - view_riksdagen_politician_longevity_analysis
+    </comment>
+    <createIndex indexName="idx_vote_data_temporal" tableName="vote_data">
+        <column name="vote_date" descending="true"/>
+        <column name="embedded_id_intressent_id"/>
+        <column name="party"/>
+    </createIndex>
+    <rollback>
+        <dropIndex indexName="idx_vote_data_temporal" tableName="vote_data"/>
+    </rollback>
+</changeSet>
+
+<!-- Index 2: Vote Data Party Temporal Index (Trend Prediction) -->
+<changeSet id="1.67-idx-vote-data-party-temporal" author="performance-engineer">
+    <preConditions onFail="MARK_RAN">
+        <tableExists tableName="vote_data"/>
+        <not>
+            <indexExists indexName="idx_vote_data_party_temporal"/>
+        </not>
+    </preConditions>
+    <comment>
+        Party-centric temporal index for trend prediction and coalition evolution analysis.
+        
+        Supports: Trend prediction views (4 views), party coalition evolution
+        Query Optimization: Party-level aggregations over time
+        Expected Impact: 60%+ improvement in trend prediction (5-12s  to  under 2s)
+        
+        Used by views:
+        - view_riksdagen_party_coalition_evolution
+        - view_riksdagen_party_longitudinal_performance
+        - view_riksdagen_party_electoral_trends
+        - view_party_effectiveness_trends
+    </comment>
+    <createIndex indexName="idx_vote_data_party_temporal" tableName="vote_data">
+        <column name="party"/>
+        <column name="vote_date" descending="true"/>
+        <column name="embedded_id_ballot_id"/>
+    </createIndex>
+    <rollback>
+        <dropIndex indexName="idx_vote_data_party_temporal" tableName="vote_data"/>
+    </rollback>
+</changeSet>
+
+<!-- Index 3: Assignment Data Temporal Index (Influence Prediction) -->
+<changeSet id="1.67-idx-assignment-data-temporal" author="performance-engineer">
+    <preConditions onFail="MARK_RAN">
+        <tableExists tableName="assignment_data"/>
+        <not>
+            <indexExists indexName="idx_assignment_data_temporal"/>
+        </not>
+    </preConditions>
+    <comment>
+        Temporal index for role evolution tracking and influence prediction.
+        
+        Supports: Influence prediction views (2 views), role evolution analysis
+        Query Optimization: Time-series role assignments and career progression
+        Expected Impact: 40%+ improvement in influence prediction (3-5s  to  under 2s)
+        
+        Used by views:
+        - view_riksdagen_politician_role_evolution
+        - view_riksdagen_politician_career_trajectory
+    </comment>
+    <createIndex indexName="idx_assignment_data_temporal" tableName="assignment_data">
+        <column name="from_date" descending="true"/>
+        <column name="intressent_id"/>
+        <column name="role_code"/>
+        <column name="to_date" descending="true"/>
+    </createIndex>
+    <rollback>
+        <dropIndex indexName="idx_assignment_data_temporal" tableName="assignment_data"/>
+    </rollback>
+</changeSet>
+
+<!-- Index 4: Assignment Data Person Roles Index (Behavioral Prediction) -->
+<changeSet id="1.67-idx-assignment-data-person-roles" author="performance-engineer">
+    <preConditions onFail="MARK_RAN">
+        <tableExists tableName="assignment_data"/>
+        <not>
+            <indexExists indexName="idx_assignment_data_person_roles"/>
+        </not>
+    </preConditions>
+    <comment>
+        Person-centric role index for career trajectory and behavioral prediction.
+        
+        Supports: Behavioral prediction views, career analysis
+        Query Optimization: Per-person role filtering and aggregations
+        Expected Impact: 30%+ improvement in career trajectory queries
+        
+        Used by views:
+        - view_riksdagen_politician_career_trajectory
+        - view_riksdagen_politician_longevity_analysis
+    </comment>
+    <createIndex indexName="idx_assignment_data_person_roles" tableName="assignment_data">
+        <column name="intressent_id"/>
+        <column name="role_code"/>
+        <column name="from_date" descending="true"/>
+    </createIndex>
+    <rollback>
+        <dropIndex indexName="idx_assignment_data_person_roles" tableName="assignment_data"/>
+    </rollback>
+</changeSet>
+
+<!-- Index 5: Document Data Temporal Index (Scenario Analysis) -->
+<changeSet id="1.67-idx-document-data-temporal" author="performance-engineer">
+    <preConditions onFail="MARK_RAN">
+        <tableExists tableName="document_data"/>
+        <not>
+            <indexExists indexName="idx_document_data_temporal"/>
+        </not>
+    </preConditions>
+    <comment>
+        Temporal index for document activity trends and scenario analysis.
+        
+        Supports: Scenario analysis views (3 views), policy impact forecasting
+        Query Optimization: Time-series document activity and policy trends
+        Expected Impact: 60%+ improvement in scenario analysis (8-15s  to  under 3s)
+        
+        Used by views:
+        - view_decision_temporal_trends
+        - view_ministry_effectiveness_trends
+        - view_riksdagen_election_proximity_trends
+    </comment>
+    <createIndex indexName="idx_document_data_temporal" tableName="document_data">
+        <column name="made_public_date" descending="true"/>
+        <column name="document_type"/>
+    </createIndex>
+    <rollback>
+        <dropIndex indexName="idx_document_data_temporal" tableName="document_data"/>
+    </rollback>
+</changeSet>
+
+<!-- Index 6: Person Data Party Index (Coalition Analysis) -->
+<changeSet id="1.67-idx-person-data-party" author="performance-engineer">
+    <preConditions onFail="MARK_RAN">
+        <tableExists tableName="person_data"/>
+        <not>
+            <indexExists indexName="idx_person_data_party"/>
+        </not>
+    </preConditions>
+    <comment>
+        Party membership index for coalition scenario analysis.
+        
+        Supports: Coalition scenario analysis, party member queries
+        Query Optimization: Party-based filtering and member counts
+        Expected Impact: 20%+ improvement in coalition queries
+        
+        Used by views:
+        - view_riksdagen_party_coalition_evolution
+        - view_election_cycle_comparative_analysis
+    </comment>
+    <createIndex indexName="idx_person_data_party" tableName="person_data">
+        <column name="party"/>
+        <column name="id"/>
+    </createIndex>
+    <rollback>
+        <dropIndex indexName="idx_person_data_party" tableName="person_data"/>
+    </rollback>
+</changeSet>
+
+<!-- Index 7: Vote Data Window Partition Index (Window Function Optimization) -->
+<changeSet id="1.67-idx-vote-data-window-partition" author="performance-engineer">
+    <preConditions onFail="MARK_RAN">
+        <tableExists tableName="vote_data"/>
+        <not>
+            <indexExists indexName="idx_vote_data_window_partition"/>
+        </not>
+    </preConditions>
+    <comment>
+        Window function optimization index for PARTITION BY operations.
+        
+        Supports: All predictive views using window functions (14 views)
+        Query Optimization: RANK, LAG, LEAD, NTILE, moving averages
+        Expected Impact: 30-50% improvement in window function queries
+        
+        Window functions optimized:
+        - RANK/PERCENT_RANK/NTILE: 45+ instances across views
+        - LAG/LEAD: 38+ instances for trend analysis
+        - Moving averages: 7-day, 30-day, 90-day windows
+    </comment>
+    <createIndex indexName="idx_vote_data_window_partition" tableName="vote_data">
+        <column name="embedded_id_ballot_id"/>
+        <column name="party"/>
+        <column name="vote_date" descending="true"/>
+    </createIndex>
+    <rollback>
+        <dropIndex indexName="idx_vote_data_window_partition" tableName="vote_data"/>
+    </rollback>
+</changeSet>
+
+<!-- Index 8: Assignment Data Window Partition Index (Career Window Functions) -->
+<changeSet id="1.67-idx-assignment-window-partition" author="performance-engineer">
+    <preConditions onFail="MARK_RAN">
+        <tableExists tableName="assignment_data"/>
+        <not>
+            <indexExists indexName="idx_assignment_window_partition"/>
+        </not>
+    </preConditions>
+    <comment>
+        Window function optimization for career trajectory analysis.
+        
+        Supports: Career trajectory and role evolution views
+        Query Optimization: LAG/LEAD operations on role transitions
+        Expected Impact: 25%+ improvement in career analysis queries
+        
+        Used by views:
+        - view_riksdagen_politician_role_evolution (5 window functions)
+        - view_riksdagen_politician_career_trajectory (7 window functions)
+    </comment>
+    <createIndex indexName="idx_assignment_window_partition" tableName="assignment_data">
+        <column name="intressent_id"/>
+        <column name="from_date" descending="true"/>
+        <column name="role_code"/>
+    </createIndex>
+    <rollback>
+        <dropIndex indexName="idx_assignment_window_partition" tableName="assignment_data"/>
+    </rollback>
+</changeSet>
+
+<!-- Index 9: Document Data Organization Temporal Index (Ministry Trends) -->
+<changeSet id="1.67-idx-document-data-org-temporal" author="performance-engineer">
+    <preConditions onFail="MARK_RAN">
+        <tableExists tableName="document_data"/>
+        <not>
+            <indexExists indexName="idx_document_data_org_temporal_full"/>
+        </not>
+    </preConditions>
+    <comment>
+        Organization-temporal index for ministry effectiveness trend analysis.
+        
+        Supports: Ministry effectiveness views, organizational trend analysis
+        Query Optimization: Per-ministry temporal aggregations
+        Expected Impact: 40%+ improvement in ministry trend queries
+        
+        Used by views:
+        - view_ministry_effectiveness_trends
+        - view_riksdagen_election_proximity_trends
+    </comment>
+    <createIndex indexName="idx_document_data_org_temporal_full" tableName="document_data">
+        <column name="org"/>
+        <column name="made_public_date" descending="true"/>
+        <column name="document_type"/>
+    </createIndex>
+    <rollback>
+        <dropIndex indexName="idx_document_data_org_temporal_full" tableName="document_data"/>
+    </rollback>
+</changeSet>
+
+<!-- Index 10: Vote Data Ballot Temporal Index (Ballot-Level Forecasting) -->
+<changeSet id="1.67-idx-vote-data-ballot-temporal" author="performance-engineer">
+    <preConditions onFail="MARK_RAN">
+        <tableExists tableName="vote_data"/>
+        <not>
+            <indexExists indexName="idx_vote_data_ballot_temporal"/>
+        </not>
+    </preConditions>
+    <comment>
+        Ballot-centric temporal index for detailed electoral forecasting.
+        
+        Supports: Ballot-level analysis and detailed voting patterns
+        Query Optimization: Per-ballot temporal analysis
+        Expected Impact: 35%+ improvement in ballot-level queries
+        
+        Used by views:
+        - view_election_cycle_comparative_analysis
+        - view_riksdagen_pre_election_quarterly_activity
+    </comment>
+    <createIndex indexName="idx_vote_data_ballot_temporal" tableName="vote_data">
+        <column name="embedded_id_ballot_id"/>
+        <column name="vote_date" descending="true"/>
+        <column name="vote"/>
+    </createIndex>
+    <rollback>
+        <dropIndex indexName="idx_vote_data_ballot_temporal" tableName="vote_data"/>
+    </rollback>
+</changeSet>
+
+<!-- Changelog Summary -->
+<changeSet id="1.67-summary" author="performance-engineer">
+    <comment>
+        Database Changelog v1.67 - Predictive Intelligence Performance Summary
+        
+        Indexes Created: 10 indexes across 4 core tables
+        - vote_data: 5 indexes (temporal, party, window, ballot analysis)
+        - assignment_data: 3 indexes (temporal, roles, window functions)
+        - document_data: 2 indexes (temporal, organization-temporal)
+        - person_data: 1 index (party membership)
+        
+        Performance Impact by Framework:
+        - Electoral Forecasting (5 views): 70%+ improvement (10-20s  to  under 3s)
+        - Trend Prediction (4 views): 60%+ improvement (5-12s  to  under 2s)
+        - Scenario Analysis (3 views): 60%+ improvement (8-15s  to  under 3s)
+        - Influence Prediction (2 views): 40%+ improvement (3-5s  to  under 2s)
+        - Window Function Queries: 30-50% improvement across all views
+        
+        Query Optimizations Enabled:
+        1. Time-series queries with date ranges (all 14 views)
+        2. Window functions (RANK, LAG, LEAD, NTILE) - 83 instances
+        3. Party-level aggregations (coalition and trend views)
+        4. Person-level career analysis (behavioral prediction views)
+        5. Ballot-level electoral forecasting (electoral views)
+        
+        Risk Rules Status:
+        - 8/8 risk rules maintained at 100% operational ✅
+        - Indexes optimize performance without impacting functionality
+        
+        Testing Validation:
+        Execute EXPLAIN ANALYZE on these critical views:
+        1. view_election_cycle_predictive_intelligence (electoral forecasting)
+        2. view_riksdagen_election_proximity_trends (most complex view)
+        3. view_riksdagen_party_coalition_evolution (coalition analysis)
+        4. view_party_effectiveness_trends (trend prediction)
+        5. view_riksdagen_politician_role_evolution (influence prediction)
+        
+        Expected Results After Index Creation:
+        - Electoral forecasting: under 3s (currently 10-20s)
+        - Trend prediction: under 2s (currently 5-12s)
+        - Scenario analysis: under 3s (currently 8-15s)
+        - Influence prediction: under 2s (currently 3-5s)
+        
+        Next Steps:
+        1. Apply indexes via: mvn liquibase:update -pl service.data.impl
+        2. Run EXPLAIN ANALYZE on 14 predictive intelligence views
+        3. Measure before/after performance (target: 60-70% improvement)
+        4. Update full_schema.sql from clean database
+        5. Document results in PREDICTIVE_INTELLIGENCE_PERFORMANCE_REPORT.md
+        
+        Related Issues:
+        - #8281: Predictive Intelligence Performance Optimization
+        - PREDICTIVE_INTELLIGENCE_PERFORMANCE_REPORT.md: Comprehensive analysis
+    </comment>
+</changeSet>
+
+</databaseChangeLog>
