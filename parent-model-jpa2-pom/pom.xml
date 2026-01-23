@@ -4,7 +4,7 @@
   <parent>
     <groupId>com.hack23.cia</groupId>
     <artifactId>parent-model-pom</artifactId>
-    <version>2025-SNAPSHOT</version>
+    <version>2026.1.23</version>
     <relativePath>../parent-model-pom/pom.xml</relativePath>
   </parent>
   <artifactId>parent-model-jpa2-pom</artifactId>
