@@ -97,7 +97,7 @@
         Benefits:
         - Optimizes self-join on ballot_id and intressent_id
         - Includes vote column for filtering (JA/NEJ votes only)
-        - Filters to recent year to reduce index size
+        - Filters to votes since 2020 to reduce index size
         - Expected: Reduce query time from 5-15s to 1-3s (80% improvement)
         
         Used By:
@@ -106,11 +106,11 @@
         Note: Uses CONCURRENTLY for zero-downtime index creation in production.
         Partial index with WHERE clause reduces index size by 66%.
     </comment>
-    <sql>
+    <sql><![CDATA[
         CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_vote_network_ballot_person 
         ON vote_data(embedded_id_ballot_id, embedded_id_intressent_id, vote)
         WHERE vote_date >= '2020-01-01';
-    </sql>
+    ]]></sql>
     <rollback>
         DROP INDEX IF EXISTS idx_vote_network_ballot_person;
     </rollback>
@@ -178,11 +178,11 @@
         Note: Partial index filters to last 3 years to reduce index size.
         Column order: person → party → date optimizes common query patterns.
     </comment>
-    <sql>
+    <sql><![CDATA[
         CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_vote_person_party_date 
         ON vote_data(embedded_id_intressent_id, party, vote_date DESC)
         WHERE vote_date >= '2020-01-01';
-    </sql>
+    ]]></sql>
     <rollback>
         DROP INDEX IF EXISTS idx_vote_person_party_date;
     </rollback>
@@ -276,7 +276,7 @@
         - LEFT JOIN view_riksdagen_voting_anomaly_detection vad ON (1 = 1)
         - LEFT JOIN view_politician_risk_summary prs ON (1 = 1)
         
-        Impact: With 1,000 rows in vad and 350 rows in prs, generates 350M rows!
+        Impact: With 1,000 rows in vad and 350 rows in prs across 37 election_cycle_periods, generates ~12.95M rows (37 × 1,000 × 350)!
         Current query time: 8 seconds, Target: 0.8 seconds (90% improvement)
         
         Fix: Remove ON (1 = 1) joins entirely since these views don't have proper
@@ -288,7 +288,7 @@
         
         Reference: PATTERN_RECOGNITION_PERFORMANCE_REPORT.md Section 5 (Top 5 Concerns)
     </comment>
-    <sql>
+    <sql><![CDATA[
         DROP VIEW IF EXISTS view_election_cycle_anomaly_pattern CASCADE;
         
         CREATE VIEW view_election_cycle_anomaly_pattern AS
@@ -339,8 +339,6 @@
             FROM election_cycle_periods ecp
             LEFT JOIN view_risk_score_evolution rse 
                 ON EXTRACT(year FROM rse.assessment_period) = ecp.calendar_year
-            CROSS JOIN anomaly_stats  -- Single row, no Cartesian explosion
-            CROSS JOIN risk_stats     -- Single row, no Cartesian explosion
             GROUP BY 
                 ecp.election_cycle_id, 
                 ecp.cycle_year, 
@@ -349,12 +347,7 @@
                     WHEN EXTRACT(month FROM rse.assessment_period) >= 9 OR EXTRACT(month FROM rse.assessment_period) <= 1 
                     THEN 'autumn' 
                     ELSE 'spring' 
-                END,
-                anomaly_stats.high_anomaly_count,
-                anomaly_stats.avg_total_rebellions,
-                anomaly_stats.strong_consensus_rebels,
-                risk_stats.avg_risk_score_prs,
-                risk_stats.high_risk_politicians
+                END
             ORDER BY 
                 ecp.election_cycle_id, 
                 ecp.cycle_year,
@@ -425,15 +418,29 @@
                 ELSE 0 
             END AS anomaly_acceleration
         FROM windowed w;
-    </sql>
+    ]]></sql>
     <rollback>
-        -- Rollback would restore the original view with ON (1=1) joins
-        -- However, this is intentionally left empty as we don't want to
-        -- revert to the problematic Cartesian join version
-        <sql>
-            -- Original view with Cartesian join is intentionally not restored
-            -- See db-changelog-1.52.xml for original definition if needed
-        </sql>
+        <sql><![CDATA[
+            -- Automated rollback is intentionally not provided for this change set
+            -- because the original view definition used Cartesian joins (ON 1 = 1)
+            -- that caused severe performance and scalability problems.
+
+            -- Manual rollback procedure (only if absolutely required for correctness):
+            -- 1. Open service.data.impl/src/main/resources/db-changelog-1.52.xml
+            -- 2. Locate the changeSet that originally creates or replaces
+            --    view_election_cycle_anomaly_pattern
+            -- 3. Copy the full CREATE OR REPLACE VIEW view_election_cycle_anomaly_pattern
+            --    statement from that changeSet
+            -- 4. Execute that statement manually against the target database
+            --    (e.g., via psql or your preferred SQL client)
+
+            -- This keeps automated rollbacks from reintroducing the known-bad
+            -- Cartesian join plan, while still documenting how to restore the
+            -- original definition in a controlled, manual manner if needed.
+            
+            -- NO-OP rollback by design. See the rollback comment above and
+            -- db-changelog-1.52.xml for the original view definition.
+        ]]></sql>
     </rollback>
 </changeSet>
 

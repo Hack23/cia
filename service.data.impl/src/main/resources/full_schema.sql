@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict 6WJyfGwfnPBwtSD5HJ9TglFBSSvQYj1kdlQOzyhYjbftmZU6if9J4YCRCLvHQsQ
+\restrict 29NKNXSpEhfYTcAeLySY5A7A2cTvcXB7k4YwcnCJEh7bR0pz4wuWYoojODivH1C
 
 -- Dumped from database version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
@@ -6821,25 +6821,23 @@ CREATE VIEW public.view_election_cycle_anomaly_pattern AS
             count(DISTINCT rse.person_id) FILTER (WHERE (rse.risk_severity = ANY (ARRAY['HIGH'::text, 'CRITICAL'::text]))) AS politician_count_with_risk,
             round(avg(rse.risk_score), 2) AS avg_risk_score,
             count(*) FILTER (WHERE (rse.severity_transition ~~ 'ESCALATION%'::text)) AS risk_escalations,
-            ( SELECT anomaly_stats_1.high_anomaly_count
-                   FROM anomaly_stats anomaly_stats_1) AS high_anomaly_count,
-            ( SELECT anomaly_stats_1.avg_total_rebellions
-                   FROM anomaly_stats anomaly_stats_1) AS avg_total_rebellions,
-            ( SELECT anomaly_stats_1.strong_consensus_rebels
-                   FROM anomaly_stats anomaly_stats_1) AS strong_consensus_rebels,
-            ( SELECT risk_stats_1.avg_risk_score_prs
-                   FROM risk_stats risk_stats_1) AS avg_risk_score_prs,
-            ( SELECT risk_stats_1.high_risk_politicians
-                   FROM risk_stats risk_stats_1) AS high_risk_politicians
-           FROM (((election_cycle_periods ecp
+            ( SELECT anomaly_stats.high_anomaly_count
+                   FROM anomaly_stats) AS high_anomaly_count,
+            ( SELECT anomaly_stats.avg_total_rebellions
+                   FROM anomaly_stats) AS avg_total_rebellions,
+            ( SELECT anomaly_stats.strong_consensus_rebels
+                   FROM anomaly_stats) AS strong_consensus_rebels,
+            ( SELECT risk_stats.avg_risk_score_prs
+                   FROM risk_stats) AS avg_risk_score_prs,
+            ( SELECT risk_stats.high_risk_politicians
+                   FROM risk_stats) AS high_risk_politicians
+           FROM (election_cycle_periods ecp
              LEFT JOIN public.view_risk_score_evolution rse ON ((EXTRACT(year FROM rse.assessment_period) = (ecp.calendar_year)::numeric)))
-             CROSS JOIN anomaly_stats)
-             CROSS JOIN risk_stats)
           GROUP BY ecp.election_cycle_id, ecp.cycle_year, ecp.calendar_year,
                 CASE
                     WHEN ((EXTRACT(month FROM rse.assessment_period) >= (9)::numeric) OR (EXTRACT(month FROM rse.assessment_period) <= (1)::numeric)) THEN 'autumn'::text
                     ELSE 'spring'::text
-                END, anomaly_stats.high_anomaly_count, anomaly_stats.avg_total_rebellions, anomaly_stats.strong_consensus_rebels, risk_stats.avg_risk_score_prs, risk_stats.high_risk_politicians
+                END
           ORDER BY ecp.election_cycle_id, ecp.cycle_year,
                 CASE
                     WHEN ((EXTRACT(month FROM rse.assessment_period) >= (9)::numeric) OR (EXTRACT(month FROM rse.assessment_period) <= (1)::numeric)) THEN 'autumn'::text
@@ -16796,13 +16794,13 @@ ALTER TABLE ONLY public.jv_snapshot
 -- PostgreSQL database dump complete
 --
 
-\unrestrict 6WJyfGwfnPBwtSD5HJ9TglFBSSvQYj1kdlQOzyhYjbftmZU6if9J4YCRCLvHQsQ
+\unrestrict 29NKNXSpEhfYTcAeLySY5A7A2cTvcXB7k4YwcnCJEh7bR0pz4wuWYoojODivH1C
 
 --
 -- PostgreSQL database dump
 --
 
-\restrict Bj5j46UxEOWy4BypEzF4uWspo2DbxUaTGkF7Po6L5TrPCcIj31i8ep6shx9ojoM
+\restrict yZcNJ5ovtbxpv5uyG0s4ncqXc2flZbRgccVRBaToG1FJa5oz1KbUpqje7CxVHPD
 
 -- Dumped from database version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
@@ -17943,5 +17941,5 @@ COPY public.databasechangeloglock (id, locked, lockgranted, lockedby) FROM stdin
 -- PostgreSQL database dump complete
 --
 
-\unrestrict Bj5j46UxEOWy4BypEzF4uWspo2DbxUaTGkF7Po6L5TrPCcIj31i8ep6shx9ojoM
+\unrestrict yZcNJ5ovtbxpv5uyG0s4ncqXc2flZbRgccVRBaToG1FJa5oz1KbUpqje7CxVHPD
 
