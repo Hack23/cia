@@ -15,7 +15,7 @@ Successfully implemented 4 specialized composite indexes for the Temporal Analys
 - ✅ 4 new composite temporal indexes on vote_data table
 - ✅ Liquibase changelog v1.64 created and validated
 - ✅ Schema maintenance workflow followed (full_schema.sql updated)
-- ✅ Zero-downtime index creation (IF NOT EXISTS used)
+- ✅ Zero-downtime index creation using CREATE INDEX CONCURRENTLY
 - ✅ Rollback capability provided in Liquibase changesets
 
 **Expected Performance Impact:** 20-40% reduction in temporal aggregation query execution times once production data is loaded.
@@ -434,10 +434,12 @@ ANALYZE vote_data;
 **After Major Data Loads:**
 ```sql
 -- Refresh materialized views to benefit from new indexes
-REFRESH MATERIALIZED VIEW CONCURRENTLY view_riksdagen_vote_data_ballot_party_summary_daily;
-REFRESH MATERIALIZED VIEW CONCURRENTLY view_riksdagen_vote_data_ballot_party_summary_weekly;
-REFRESH MATERIALIZED VIEW CONCURRENTLY view_riksdagen_vote_data_ballot_party_summary_monthly;
-REFRESH MATERIALIZED VIEW CONCURRENTLY view_riksdagen_vote_data_ballot_party_summary_annual;
+-- Note: CONCURRENTLY requires a unique index on the materialized view
+-- If unique indexes don't exist, use non-concurrent refresh:
+REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_party_summary_daily;
+REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_party_summary_weekly;
+REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_party_summary_monthly;
+REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_party_summary_annual;
 
 -- Verify refresh completed
 SELECT 
@@ -537,7 +539,7 @@ sudo -u postgres bash -c "(pg_dump -U postgres -d cia_dev --schema-only --no-own
 
 **Rationale:**
 - ✅ Indexes are additive (no schema changes to tables)
-- ✅ Zero downtime (indexes created with IF NOT EXISTS)
+- ✅ Zero downtime (CREATE INDEX CONCURRENTLY with IF NOT EXISTS)
 - ✅ No data modification (read-only indexes)
 - ✅ Rollback capability via Liquibase
 - ✅ Preconditions prevent duplicate creation
@@ -546,10 +548,11 @@ sudo -u postgres bash -c "(pg_dump -U postgres -d cia_dev --schema-only --no-own
 **Potential Issues:**
 - Slight increase in INSERT/UPDATE/DELETE overhead (negligible for vote_data - rarely updated)
 - Storage overhead (4 new indexes × ~8KB empty, will grow with data)
-- Initial index build time (only on first application, already completed)
+- Initial index build time (CONCURRENTLY allows concurrent writes during build)
 
 **Mitigation:**
-- Indexes created CONCURRENTLY would normally be used but IF NOT EXISTS prevents issues
+- CREATE INDEX CONCURRENTLY prevents table locks during index creation
+- IF NOT EXISTS prevents errors on re-application
 - Covering index uses partial index (WHERE clause) to reduce storage
 - Regular REINDEX maintenance scheduled
 - Monitoring in place to detect any issues

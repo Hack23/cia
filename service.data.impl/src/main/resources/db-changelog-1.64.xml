@@ -83,7 +83,7 @@
 <!-- VOTE DATA TEMPORAL INDEXES (4)                                           -->
 <!-- ========================================================================= -->
 
-<changeSet id="1.64-001-idx-vote-data-ballot-date" author="performance-engineer">
+<changeSet id="1.64-001-idx-vote-data-ballot-date" author="performance-engineer" runInTransaction="false">
     <preConditions onFail="MARK_RAN">
         <not>
             <indexExists indexName="idx_vote_data_ballot_date"/>
@@ -102,17 +102,19 @@
         - view_riksdagen_vote_data_ballot_summary_weekly
         - view_riksdagen_vote_data_ballot_summary_monthly
         - view_riksdagen_vote_data_ballot_summary_annual
+        
+        Note: Uses CONCURRENTLY for zero-downtime index creation in production.
     </comment>
-    <createIndex indexName="idx_vote_data_ballot_date" tableName="vote_data">
-        <column name="embedded_id_ballot_id"/>
-        <column name="vote_date"/>
-    </createIndex>
+    <sql>
+        CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_vote_data_ballot_date 
+        ON vote_data (embedded_id_ballot_id, vote_date);
+    </sql>
     <rollback>
-        <dropIndex indexName="idx_vote_data_ballot_date" tableName="vote_data"/>
+        DROP INDEX IF EXISTS idx_vote_data_ballot_date;
     </rollback>
 </changeSet>
 
-<changeSet id="1.64-002-idx-vote-data-party-date" author="performance-engineer">
+<changeSet id="1.64-002-idx-vote-data-party-date" author="performance-engineer" runInTransaction="false">
     <preConditions onFail="MARK_RAN">
         <not>
             <indexExists indexName="idx_vote_data_party_date"/>
@@ -134,17 +136,19 @@
         - view_riksdagen_party_ballot_support_annual_summary
         - view_decision_temporal_trends
         - view_election_cycle_temporal_trends
+        
+        Note: Uses CONCURRENTLY for zero-downtime index creation in production.
     </comment>
-    <createIndex indexName="idx_vote_data_party_date" tableName="vote_data">
-        <column name="party"/>
-        <column name="vote_date"/>
-    </createIndex>
+    <sql>
+        CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_vote_data_party_date 
+        ON vote_data (party, vote_date);
+    </sql>
     <rollback>
-        <dropIndex indexName="idx_vote_data_party_date" tableName="vote_data"/>
+        DROP INDEX IF EXISTS idx_vote_data_party_date;
     </rollback>
 </changeSet>
 
-<changeSet id="1.64-003-idx-vote-data-politician-date" author="performance-engineer">
+<changeSet id="1.64-003-idx-vote-data-politician-date" author="performance-engineer" runInTransaction="false">
     <preConditions onFail="MARK_RAN">
         <not>
             <indexExists indexName="idx_vote_data_politician_date"/>
@@ -163,17 +167,19 @@
         - view_riksdagen_vote_data_ballot_politician_summary_weekly
         - view_riksdagen_vote_data_ballot_politician_summary_monthly
         - view_riksdagen_vote_data_ballot_politician_summary_annual
+        
+        Note: Uses CONCURRENTLY for zero-downtime index creation in production.
     </comment>
-    <createIndex indexName="idx_vote_data_politician_date" tableName="vote_data">
-        <column name="embedded_id_intressent_id"/>
-        <column name="vote_date"/>
-    </createIndex>
+    <sql>
+        CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_vote_data_politician_date 
+        ON vote_data (embedded_id_intressent_id, vote_date);
+    </sql>
     <rollback>
-        <dropIndex indexName="idx_vote_data_politician_date" tableName="vote_data"/>
+        DROP INDEX IF EXISTS idx_vote_data_politician_date;
     </rollback>
 </changeSet>
 
-<changeSet id="1.64-004-idx-vote-data-aggregation-cover" author="performance-engineer">
+<changeSet id="1.64-004-idx-vote-data-aggregation-cover" author="performance-engineer" runInTransaction="false">
     <preConditions onFail="MARK_RAN">
         <not>
             <indexExists indexName="idx_vote_data_aggregation_cover"/>
@@ -199,9 +205,10 @@
         Note: PostgreSQL 11+ supports INCLUDE clause for covering indexes.
         Liquibase limitation: createIndex doesn't support INCLUDE clause natively.
         Alternative: Using sql changeset for PostgreSQL-specific syntax.
+        Uses CONCURRENTLY for zero-downtime index creation in production.
     </comment>
     <sql>
-        CREATE INDEX IF NOT EXISTS idx_vote_data_aggregation_cover 
+        CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_vote_data_aggregation_cover 
         ON vote_data (vote_date, party, vote) 
         INCLUDE (embedded_id_ballot_id, embedded_id_intressent_id)
         WHERE vote_date IS NOT NULL AND party IS NOT NULL;
