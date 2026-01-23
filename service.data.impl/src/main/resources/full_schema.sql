@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict 29NKNXSpEhfYTcAeLySY5A7A2cTvcXB7k4YwcnCJEh7bR0pz4wuWYoojODivH1C
+\restrict nUiPhZRrgi0DvkIKou7RUer5wxPfd1jy1KmkXnj6WwLWy4uOMESxbNdUaIhU3xF
 
 -- Dumped from database version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
@@ -15464,6 +15464,20 @@ CREATE INDEX idx_assignment_data_org_code ON public.assignment_data USING btree 
 
 
 --
+-- Name: idx_assignment_data_person_roles; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_assignment_data_person_roles ON public.assignment_data USING btree (intressent_id, role_code, from_date DESC);
+
+
+--
+-- Name: idx_assignment_data_temporal; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_assignment_data_temporal ON public.assignment_data USING btree (from_date DESC, intressent_id, role_code, to_date DESC);
+
+
+--
 -- Name: idx_assignment_data_type_dates; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -15482,6 +15496,13 @@ CREATE INDEX idx_assignment_element_uppdrag_fk ON public.assignment_element USIN
 --
 
 CREATE INDEX idx_assignment_ministry_person_dates ON public.assignment_data USING btree (org_code, intressent_id, from_date, to_date) WHERE ((assignment_type)::text = 'Departement'::text);
+
+
+--
+-- Name: idx_assignment_window_partition; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_assignment_window_partition ON public.assignment_data USING btree (intressent_id, from_date DESC, role_code);
 
 
 --
@@ -15730,6 +15751,20 @@ CREATE INDEX idx_document_data_ministry_date ON public.document_data USING btree
 
 
 --
+-- Name: idx_document_data_org_temporal_full; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_document_data_org_temporal_full ON public.document_data USING btree (org, made_public_date DESC, document_type);
+
+
+--
+-- Name: idx_document_data_temporal; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_document_data_temporal ON public.document_data USING btree (made_public_date DESC, document_type);
+
+
+--
 -- Name: idx_document_made_public_date; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -15846,6 +15881,13 @@ CREATE INDEX idx_person_data_assignment_fk ON public.person_data USING btree (pe
 --
 
 CREATE INDEX idx_person_data_detail_fk ON public.person_data USING btree (person_detail_data_person_da_0);
+
+
+--
+-- Name: idx_person_data_party; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_person_data_party ON public.person_data USING btree (party, id);
 
 
 --
@@ -16192,6 +16234,27 @@ CREATE INDEX idx_vote_data_ballot_id ON public.vote_data USING btree (embedded_i
 
 
 --
+-- Name: idx_vote_data_ballot_temporal; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_vote_data_ballot_temporal ON public.vote_data USING btree (embedded_id_ballot_id, vote_date DESC, vote);
+
+
+--
+-- Name: idx_vote_data_coalition; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_vote_data_coalition ON public.vote_data USING btree (party, embedded_id_ballot_id, vote, vote_date);
+
+
+--
+-- Name: idx_vote_data_covoting; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_vote_data_covoting ON public.vote_data USING btree (embedded_id_ballot_id, embedded_id_intressent_id, vote, vote_date);
+
+
+--
 -- Name: idx_vote_data_date; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -16213,6 +16276,13 @@ CREATE INDEX idx_vote_data_party_date ON public.vote_data USING btree (party, vo
 
 
 --
+-- Name: idx_vote_data_party_temporal; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_vote_data_party_temporal ON public.vote_data USING btree (party, vote_date DESC, embedded_id_ballot_id);
+
+
+--
 -- Name: idx_vote_data_politician_date; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -16220,10 +16290,24 @@ CREATE INDEX idx_vote_data_politician_date ON public.vote_data USING btree (embe
 
 
 --
+-- Name: idx_vote_data_temporal; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_vote_data_temporal ON public.vote_data USING btree (vote_date DESC, embedded_id_intressent_id, party);
+
+
+--
 -- Name: idx_vote_data_votes; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX idx_vote_data_votes ON public.vote_data USING btree (vote);
+
+
+--
+-- Name: idx_vote_data_window_partition; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_vote_data_window_partition ON public.vote_data USING btree (embedded_id_ballot_id, party, vote_date DESC);
 
 
 --
@@ -16794,13 +16878,13 @@ ALTER TABLE ONLY public.jv_snapshot
 -- PostgreSQL database dump complete
 --
 
-\unrestrict 29NKNXSpEhfYTcAeLySY5A7A2cTvcXB7k4YwcnCJEh7bR0pz4wuWYoojODivH1C
+\unrestrict nUiPhZRrgi0DvkIKou7RUer5wxPfd1jy1KmkXnj6WwLWy4uOMESxbNdUaIhU3xF
 
 --
 -- PostgreSQL database dump
 --
 
-\restrict yZcNJ5ovtbxpv5uyG0s4ncqXc2flZbRgccVRBaToG1FJa5oz1KbUpqje7CxVHPD
+\restrict frkOfMvmtarlh8cvMEAorCM70ZUfzoZXxwekonp6tnx5mcx8NLYvzI8Zdr1xLNY
 
 -- Dumped from database version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
@@ -17925,6 +18009,32 @@ create-election-year-vs-midterm-view-1.60-002	intelligence-operative	db-changelo
 1.64-003-idx-vote-data-politician-date	performance-engineer	db-changelog-1.64.xml	2026-01-23 07:47:18.520542	573	EXECUTED	9:83ea74ca9d80863cc4b3ddbcfb1ed595	sql	Create composite index on vote_data (intressent_id, vote_date) for temporal politician analysis.\n        \n        Benefits:\n        - Optimizes politician voting history queries with date filters\n        - Supports politician performance tracking ...	\N	5.0.1	\N	\N	9154435391
 1.64-004-idx-vote-data-aggregation-cover	performance-engineer	db-changelog-1.64.xml	2026-01-23 07:47:18.566262	574	EXECUTED	9:2e91efbdf2fa156952513ba4d3c5e0e8	sql	Create covering index on vote_data for common temporal aggregation queries.\n        \n        This is a covering index that includes frequently accessed columns to enable\n        index-only scans without touching the table heap.\n        \n        Be...	\N	5.0.1	\N	\N	9154435391
 1.64-999-verification	performance-engineer	db-changelog-1.64.xml	2026-01-23 07:47:18.578037	575	EXECUTED	9:e25c3ff872703444d0ed2a6369db90e1	sql	Verification queries for temporal analysis performance indexes.\n        \n        This changeset documents verification steps but doesn't execute them.\n        Run these queries manually to verify index effectiveness:\n        \n        1. Verify all...	\N	5.0.1	\N	\N	9154435391
+1.65-intro	performance-engineer	db-changelog-1.65.xml	2026-01-23 13:19:04.459557	576	EXECUTED	9:6d532b767c92e9276bfaca26ea56eda7	sql	Database Changelog v1.65 - Pattern Recognition Performance Optimization\n        \n        PERFORMANCE OPTIMIZATION: Creates 5 missing critical indexes and resolves\n        5 high-impact performance bottlenecks in Pattern Recognition framework.\n    ...	\N	5.0.1	\N	\N	9174341824
+1.65-001-idx-vote-network-ballot-person	performance-engineer	db-changelog-1.65.xml	2026-01-23 13:19:04.555257	577	MARK_RAN	9:2ea801ef4ac636076adf3dfecf6f6e7d	sql	Create composite index for network analysis self-join optimization.\n        \n        Critical for view_riksdagen_politician_influence_metrics which performs\n        O(n²) self-join on vote_data table. With 3.5M votes and 350 politicians,\n        t...	\N	5.0.1	\N	\N	9174341824
+1.65-002-idx-document-made-public-date	performance-engineer	db-changelog-1.65.xml	2026-01-23 13:19:04.610954	578	MARK_RAN	9:1b8ebf1019e8234b54750764c7e0f627	sql	Create index on document_data.made_public_date for temporal trend queries.\n        \n        Critical for view_decision_temporal_trends which uses 8 window functions\n        with overlapping frames (7/30/90-day moving averages) over 5 years of data...	\N	5.0.1	\N	\N	9174341824
+1.65-003-idx-vote-person-party-date	performance-engineer	db-changelog-1.65.xml	2026-01-23 13:19:04.664968	579	MARK_RAN	9:a66cb44481293612de06993a468aac4f	sql	Create composite index for politician behavioral pattern analysis.\n        \n        Critical for view_politician_behavioral_trends which uses 7 window functions\n        with LAG and 3-month moving averages. Performs 90,000 window computations\n    ...	\N	5.0.1	\N	\N	9174341824
+1.65-004-idx-violation-party-date	performance-engineer	db-changelog-1.65.xml	2026-01-23 13:19:04.707012	580	MARK_RAN	9:6c6055c33e22154325cefa422ba3ac2f	sql	Create composite index for party effectiveness trend analysis.\n        \n        Critical for view_party_effectiveness_trends which performs multi-source\n        aggregation (voting + documents + violations) with complex JOINs.\n        Query time: ...	\N	5.0.1	\N	\N	9174341824
+1.65-005-idx-assignment-ministry-person-dates	performance-engineer	db-changelog-1.65.xml	2026-01-23 13:19:04.747238	581	MARK_RAN	9:3fe60c277812f1566b526c8fe2a71f23	sql	Create composite index for ministry assignment lookups.\n        \n        Optimizes queries that join assignment_data for ministry-related analysis.\n        Used in multiple pattern recognition views that track politician roles\n        and ministry...	\N	5.0.1	\N	\N	9174341824
+1.65-010-fix-election-cycle-cartesian-join	performance-engineer	db-changelog-1.65.xml	2026-01-23 13:19:04.788727	582	EXECUTED	9:583f964341e5f4eac044bbb6ef6b5ca3	sql	Fix CRITICAL Cartesian join in view_election_cycle_anomaly_pattern.\n        \n        Issue: Two LEFT JOINs use ON (1 = 1) causing Cartesian product explosion.\n        - LEFT JOIN view_riksdagen_voting_anomaly_detection vad ON (1 = 1)\n        - LEF...	\N	5.0.1	\N	\N	9174341824
+1.65-999-verification	performance-engineer	db-changelog-1.65.xml	2026-01-23 13:19:04.801289	583	EXECUTED	9:393b4f2ca2b02b96fa6e5b33050e477b	sql	Verification queries for pattern recognition performance optimization.\n        \n        This changeset documents verification steps but doesn't execute them.\n        Run these queries manually to verify optimization effectiveness:\n        \n       ...	\N	5.0.1	\N	\N	9174341824
+1.66-intro	performance-engineer	db-changelog-1.66.xml	2026-01-23 13:19:04.804234	584	EXECUTED	9:d41d8cd98f00b204e9800998ecf8427e	empty	Database Changelog v1.66 - Network Analysis Framework Performance Indexes\n        \n        Creates 4 performance indexes for Network Analysis framework to support\n        future data growth and enable testing with sample data.\n        \n        Cur...	\N	5.0.1	\N	\N	9174341824
+1.66-idx-vote-data-covoting	performance-engineer	db-changelog-1.66.xml	2026-01-23 13:19:04.856356	585	EXECUTED	9:3949f1f6078cc3a82fd22aec24be3064	createIndex indexName=idx_vote_data_covoting, tableName=vote_data	Composite index for co-voting analysis in view_riksdagen_politician_influence_metrics.\n        \n        Supports: Politician influence network analysis, co-voting pair detection\n        Expected Impact: 10-20% improvement with larger datasets\n    ...	\N	5.0.1	\N	\N	9174341824
+1.66-idx-vote-data-coalition	performance-engineer	db-changelog-1.66.xml	2026-01-23 13:19:04.898616	586	EXECUTED	9:4b90c22caa8a692d2593f86954d48000	createIndex indexName=idx_vote_data_coalition, tableName=vote_data	Composite index for coalition matrix in view_riksdagen_coalition_alignment_matrix.\n        \n        Supports: Party coalition alignment analysis, voting pattern heatmaps\n        Expected Impact: 5-10% improvement with larger datasets\n        \n    ...	\N	5.0.1	\N	\N	9174341824
+1.66-idx-politician-doc-summary	performance-engineer	db-changelog-1.66.xml	2026-01-23 13:19:04.901544	587	MARK_RAN	9:17e7b555073d436f63a535fa450c7d1c	createIndex indexName=idx_politician_doc_summary_person_id, tableName=view_riksdagen_politician_document_summary	Index on materialized view for party member queries (after population).\n        \n        Supports: view_riksdagen_party_member queries\n        Expected Impact: 50-80% improvement in party member queries\n        \n        Prerequisite: Materialized ...	\N	5.0.1	\N	\N	9174341824
+1.66-idx-ballot-party-summary	performance-engineer	db-changelog-1.66.xml	2026-01-23 13:19:04.904856	588	MARK_RAN	9:839f70ea04095387d3d05244a7ff5a8b	createIndex indexName=idx_ballot_party_summary_party, tableName=view_riksdagen_vote_data_ballot_party_summary	Index on materialized view for party support queries (after population).\n        \n        Supports: Coalition evolution analysis\n        Expected Impact: 50-80% improvement in party support queries\n        \n        Prerequisite: Materialized view ...	\N	5.0.1	\N	\N	9174341824
+1.66-summary	performance-engineer	db-changelog-1.66.xml	2026-01-23 13:19:04.909121	589	EXECUTED	9:d41d8cd98f00b204e9800998ecf8427e	empty	Database Changelog v1.66 - Network Analysis Performance Summary\n        \n        Indexes Created: 2 on vote_data table (available for testing)\n        Indexes Awaiting: 2 on materialized views (requires population via Issue #8282)\n        \n       ...	\N	5.0.1	\N	\N	9174341824
+1.67-intro	performance-engineer	db-changelog-1.67.xml	2026-01-23 13:29:43.135667	590	EXECUTED	9:d41d8cd98f00b204e9800998ecf8427e	empty	Database Changelog v1.67 - Predictive Intelligence Framework Performance Indexes\n        \n        Creates 10 performance indexes for Predictive Intelligence framework to optimize\n        14 views supporting electoral forecasting and trend predicti...	\N	5.0.1	\N	\N	9174979928
+1.67-idx-vote-data-temporal	performance-engineer	db-changelog-1.67.xml	2026-01-23 13:29:43.229588	591	EXECUTED	9:9504a89e620f692626f89385718e10b8	createIndex indexName=idx_vote_data_temporal, tableName=vote_data	Temporal composite index for electoral forecasting and voting trend analysis.\n        \n        Supports: Electoral forecasting views (5 views), voting trend predictions\n        Query Optimization: Time-series queries with date ranges and person fi...	\N	5.0.1	\N	\N	9174979928
+1.67-idx-vote-data-party-temporal	performance-engineer	db-changelog-1.67.xml	2026-01-23 13:29:43.284752	592	EXECUTED	9:82164cec6edea4f33ae949c2e102cdfc	createIndex indexName=idx_vote_data_party_temporal, tableName=vote_data	Party-centric temporal index for trend prediction and coalition evolution analysis.\n        \n        Supports: Trend prediction views (4 views), party coalition evolution\n        Query Optimization: Party-level aggregations over time\n        Expec...	\N	5.0.1	\N	\N	9174979928
+1.67-idx-assignment-data-temporal	performance-engineer	db-changelog-1.67.xml	2026-01-23 13:29:43.340659	593	EXECUTED	9:df7ce63ae391d22160ff19c8592b2210	createIndex indexName=idx_assignment_data_temporal, tableName=assignment_data	Temporal index for role evolution tracking and influence prediction.\n        \n        Supports: Influence prediction views (2 views), role evolution analysis\n        Query Optimization: Time-series role assignments and career progression\n        E...	\N	5.0.1	\N	\N	9174979928
+1.67-idx-assignment-data-person-roles	performance-engineer	db-changelog-1.67.xml	2026-01-23 13:29:43.395284	594	EXECUTED	9:06b0bd1bacd205b4960810a802a3061f	createIndex indexName=idx_assignment_data_person_roles, tableName=assignment_data	Person-centric role index for career trajectory and behavioral prediction.\n        \n        Supports: Behavioral prediction views, career analysis\n        Query Optimization: Per-person role filtering and aggregations\n        Expected Impact: 30%+...	\N	5.0.1	\N	\N	9174979928
+1.67-idx-document-data-temporal	performance-engineer	db-changelog-1.67.xml	2026-01-23 13:29:43.441632	595	EXECUTED	9:41f74267310fd96f2ba2683bbbbb79b4	createIndex indexName=idx_document_data_temporal, tableName=document_data	Temporal index for document activity trends and scenario analysis.\n        \n        Supports: Scenario analysis views (3 views), policy impact forecasting\n        Query Optimization: Time-series document activity and policy trends\n        Expected...	\N	5.0.1	\N	\N	9174979928
+1.67-idx-person-data-party	performance-engineer	db-changelog-1.67.xml	2026-01-23 13:29:43.484089	596	EXECUTED	9:18c403e28c18b8fbb8ca23331d9d452a	createIndex indexName=idx_person_data_party, tableName=person_data	Party membership index for coalition scenario analysis.\n        \n        Supports: Coalition scenario analysis, party member queries\n        Query Optimization: Party-based filtering and member counts\n        Expected Impact: 20%+ improvement in c...	\N	5.0.1	\N	\N	9174979928
+1.67-idx-vote-data-window-partition	performance-engineer	db-changelog-1.67.xml	2026-01-23 13:29:43.526931	597	EXECUTED	9:e654959908dcbc003777003d6bab9a75	createIndex indexName=idx_vote_data_window_partition, tableName=vote_data	Window function optimization index for PARTITION BY operations.\n        \n        Supports: All predictive views using window functions (14 views)\n        Query Optimization: RANK, LAG, LEAD, NTILE, moving averages\n        Expected Impact: 30-50% i...	\N	5.0.1	\N	\N	9174979928
+1.67-idx-assignment-window-partition	performance-engineer	db-changelog-1.67.xml	2026-01-23 13:29:43.571099	598	EXECUTED	9:5e0077040d30bb453f573569407a60d7	createIndex indexName=idx_assignment_window_partition, tableName=assignment_data	Window function optimization for career trajectory analysis.\n        \n        Supports: Career trajectory and role evolution views\n        Query Optimization: LAG/LEAD operations on role transitions\n        Expected Impact: 25%+ improvement in car...	\N	5.0.1	\N	\N	9174979928
+1.67-idx-document-data-org-temporal	performance-engineer	db-changelog-1.67.xml	2026-01-23 13:29:43.613629	599	EXECUTED	9:9fd1ea821376931b5f6869c3f0569561	createIndex indexName=idx_document_data_org_temporal_full, tableName=document_data	Organization-temporal index for ministry effectiveness trend analysis.\n        \n        Supports: Ministry effectiveness views, organizational trend analysis\n        Query Optimization: Per-ministry temporal aggregations\n        Expected Impact: 4...	\N	5.0.1	\N	\N	9174979928
+1.67-idx-vote-data-ballot-temporal	performance-engineer	db-changelog-1.67.xml	2026-01-23 13:29:43.658462	600	EXECUTED	9:500d24eaa3dcd86ce1ff79d9913d88f2	createIndex indexName=idx_vote_data_ballot_temporal, tableName=vote_data	Ballot-centric temporal index for detailed electoral forecasting.\n        \n        Supports: Ballot-level analysis and detailed voting patterns\n        Query Optimization: Per-ballot temporal analysis\n        Expected Impact: 35%+ improvement in b...	\N	5.0.1	\N	\N	9174979928
+1.67-summary	performance-engineer	db-changelog-1.67.xml	2026-01-23 13:29:43.661316	601	EXECUTED	9:d41d8cd98f00b204e9800998ecf8427e	empty	Database Changelog v1.67 - Predictive Intelligence Performance Summary\n        \n        Indexes Created: 10 indexes across 4 core tables\n        - vote_data: 5 indexes (temporal, party, window, ballot analysis)\n        - assignment_data: 3 indexes...	\N	5.0.1	\N	\N	9174979928
 \.
 
 
@@ -17941,5 +18051,5 @@ COPY public.databasechangeloglock (id, locked, lockgranted, lockedby) FROM stdin
 -- PostgreSQL database dump complete
 --
 
-\unrestrict yZcNJ5ovtbxpv5uyG0s4ncqXc2flZbRgccVRBaToG1FJa5oz1KbUpqje7CxVHPD
+\unrestrict frkOfMvmtarlh8cvMEAorCM70ZUfzoZXxwekonp6tnx5mcx8NLYvzI8Zdr1xLNY
 
