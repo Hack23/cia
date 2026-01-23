@@ -18,9 +18,9 @@
  Performance Impact (Projected with 3.5M votes):
  1. view_decision_temporal_trends: 3s → 1.8s (40% faster, daily refresh)
  2. view_riksdagen_politician_influence_metrics: 5-15s → 1-3s (80% faster, weekly refresh)
- 3. view_party_effectiveness_trends: 1.5s → <800ms (50% faster, quarterly refresh)
+ 3. view_party_effectiveness_trends: 1.5s → &lt;800ms (50% faster, quarterly refresh)
  4. view_politician_behavioral_trends: 4s → 2.6s (35% faster, monthly refresh)
- 5. view_election_cycle_temporal_trends: 5-10s → <3s (70% faster, post-election refresh)
+ 5. view_election_cycle_temporal_trends: 5-10s → &lt;3s (70% faster, post-election refresh)
  
  Implementation Strategy:
  - Convert regular views to MATERIALIZED VIEW via DROP VIEW + CREATE MATERIALIZED VIEW
@@ -101,7 +101,7 @@
              JOIN public.document_proposal_container dpc ON ((dpc.proposal_document_proposal_c_0 = dpd.hjid)))
              JOIN public.document_status_container dsc ON ((dsc.document_proposal_document_s_0 = dpc.hjid)))
              JOIN public.document_data dd ON (((dd.id)::text = (dsc.document_document_status_con_0)::text)))
-          WHERE ((dd.made_public_date IS NOT NULL) AND (dd.made_public_date >= (CURRENT_DATE - '5 years'::interval)) AND (dpd.chamber IS NOT NULL) AND (length((dpd.chamber)::text) >= 6) AND (length((dpd.chamber)::text) <= 29))
+          WHERE ((dd.made_public_date IS NOT NULL) AND (dd.made_public_date &gt;= (CURRENT_DATE - '5 years'::interval)) AND (dpd.chamber IS NOT NULL) AND (length((dpd.chamber)::text) &gt;= 6) AND (length((dpd.chamber)::text) &lt;= 29))
           GROUP BY dd.made_public_date
         )
  SELECT decision_day,
@@ -154,7 +154,7 @@
              JOIN public.document_proposal_container dpc ON ((dpc.proposal_document_proposal_c_0 = dpd.hjid)))
              JOIN public.document_status_container dsc ON ((dsc.document_proposal_document_s_0 = dpc.hjid)))
              JOIN public.document_data dd ON (((dd.id)::text = (dsc.document_document_status_con_0)::text)))
-          WHERE ((dd.made_public_date IS NOT NULL) AND (dd.made_public_date >= (CURRENT_DATE - '5 years'::interval)) AND (dpd.chamber IS NOT NULL) AND (length((dpd.chamber)::text) >= 6) AND (length((dpd.chamber)::text) <= 29))
+          WHERE ((dd.made_public_date IS NOT NULL) AND (dd.made_public_date &gt;= (CURRENT_DATE - '5 years'::interval)) AND (dpd.chamber IS NOT NULL) AND (length((dpd.chamber)::text) &gt;= 6) AND (length((dpd.chamber)::text) &lt;= 29))
           GROUP BY dd.made_public_date
         )
  SELECT decision_day,
@@ -264,18 +264,18 @@
                     ELSE 0
                 END))::double precision / (NULLIF(count(*), 0))::double precision) AS alignment_rate
            FROM (public.vote_data v1
-             JOIN public.vote_data v2 ON ((((v1.embedded_id_ballot_id)::text = (v2.embedded_id_ballot_id)::text) AND ((v1.embedded_id_intressent_id)::text < (v2.embedded_id_intressent_id)::text))))
-          WHERE ((v1.vote_date >= (CURRENT_DATE - '3 years'::interval)) AND (upper((v1.vote)::text) = ANY (ARRAY['JA'::text, 'NEJ'::text])) AND (upper((v2.vote)::text) = ANY (ARRAY['JA'::text, 'NEJ'::text])))
+             JOIN public.vote_data v2 ON ((((v1.embedded_id_ballot_id)::text = (v2.embedded_id_ballot_id)::text) AND ((v1.embedded_id_intressent_id)::text &lt; (v2.embedded_id_intressent_id)::text))))
+          WHERE ((v1.vote_date &gt;= (CURRENT_DATE - '3 years'::interval)) AND (upper((v1.vote)::text) = ANY (ARRAY['JA'::text, 'NEJ'::text])) AND (upper((v2.vote)::text) = ANY (ARRAY['JA'::text, 'NEJ'::text])))
           GROUP BY v1.embedded_id_intressent_id, v2.embedded_id_intressent_id
-         HAVING (count(*) >= 10)
+         HAVING (count(*) &gt;= 10)
         ), network_connections AS (
          SELECT co_voting_pairs.person_1 AS person_id
            FROM co_voting_pairs
-          WHERE (co_voting_pairs.alignment_rate >= (0.7)::double precision)
+          WHERE (co_voting_pairs.alignment_rate &gt;= (0.7)::double precision)
         UNION ALL
          SELECT co_voting_pairs.person_2 AS person_id
            FROM co_voting_pairs
-          WHERE (co_voting_pairs.alignment_rate >= (0.7)::double precision)
+          WHERE (co_voting_pairs.alignment_rate &gt;= (0.7)::double precision)
         ), influence_metrics AS (
          SELECT network_connections.person_id,
             count(*) AS strong_connections
@@ -295,27 +295,27 @@
     round((( SELECT network_percentiles.p50
            FROM network_percentiles))::numeric, 2) AS network_median,
         CASE
-            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision >= ( SELECT network_percentiles.p90
+            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision &gt;= ( SELECT network_percentiles.p90
                FROM network_percentiles)) THEN 'HIGHLY_INFLUENTIAL'::text
-            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision >= ( SELECT network_percentiles.p75
+            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision &gt;= ( SELECT network_percentiles.p75
                FROM network_percentiles)) THEN 'INFLUENTIAL'::text
-            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision >= ( SELECT network_percentiles.p50
+            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision &gt;= ( SELECT network_percentiles.p50
                FROM network_percentiles)) THEN 'MODERATELY_INFLUENTIAL'::text
             WHEN (COALESCE(im.strong_connections, (0)::bigint) > 0) THEN 'LIMITED_INFLUENCE'::text
             ELSE 'MINIMAL_INFLUENCE'::text
         END AS influence_classification,
         CASE
-            WHEN (COALESCE(im.strong_connections, (0)::bigint) >= 20) THEN 'STRONG_BROKER'::text
-            WHEN (COALESCE(im.strong_connections, (0)::bigint) >= 10) THEN 'MODERATE_BROKER'::text
-            WHEN (COALESCE(im.strong_connections, (0)::bigint) >= 5) THEN 'WEAK_BROKER'::text
+            WHEN (COALESCE(im.strong_connections, (0)::bigint) &gt;= 20) THEN 'STRONG_BROKER'::text
+            WHEN (COALESCE(im.strong_connections, (0)::bigint) &gt;= 10) THEN 'MODERATE_BROKER'::text
+            WHEN (COALESCE(im.strong_connections, (0)::bigint) &gt;= 5) THEN 'WEAK_BROKER'::text
             ELSE 'NON_BROKER'::text
         END AS broker_classification,
         CASE
-            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision >= ( SELECT network_percentiles.p90
+            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision &gt;= ( SELECT network_percentiles.p90
                FROM network_percentiles)) THEN 'High influence - top 10% network connections'::text
-            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision >= ( SELECT network_percentiles.p75
+            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision &gt;= ( SELECT network_percentiles.p75
                FROM network_percentiles)) THEN 'Notable influence - top 25% network centrality'::text
-            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision >= ( SELECT network_percentiles.p50
+            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision &gt;= ( SELECT network_percentiles.p50
                FROM network_percentiles)) THEN 'Standard influence - above median engagement'::text
             WHEN (COALESCE(im.strong_connections, (0)::bigint) > 0) THEN 'Limited influence - below median connections'::text
             ELSE 'Minimal network influence detected'::text
@@ -348,18 +348,18 @@
                     ELSE 0
                 END))::double precision / (NULLIF(count(*), 0))::double precision) AS alignment_rate
            FROM (public.vote_data v1
-             JOIN public.vote_data v2 ON ((((v1.embedded_id_ballot_id)::text = (v2.embedded_id_ballot_id)::text) AND ((v1.embedded_id_intressent_id)::text < (v2.embedded_id_intressent_id)::text))))
-          WHERE ((v1.vote_date >= (CURRENT_DATE - '3 years'::interval)) AND (upper((v1.vote)::text) = ANY (ARRAY['JA'::text, 'NEJ'::text])) AND (upper((v2.vote)::text) = ANY (ARRAY['JA'::text, 'NEJ'::text])))
+             JOIN public.vote_data v2 ON ((((v1.embedded_id_ballot_id)::text = (v2.embedded_id_ballot_id)::text) AND ((v1.embedded_id_intressent_id)::text &lt; (v2.embedded_id_intressent_id)::text))))
+          WHERE ((v1.vote_date &gt;= (CURRENT_DATE - '3 years'::interval)) AND (upper((v1.vote)::text) = ANY (ARRAY['JA'::text, 'NEJ'::text])) AND (upper((v2.vote)::text) = ANY (ARRAY['JA'::text, 'NEJ'::text])))
           GROUP BY v1.embedded_id_intressent_id, v2.embedded_id_intressent_id
-         HAVING (count(*) >= 10)
+         HAVING (count(*) &gt;= 10)
         ), network_connections AS (
          SELECT co_voting_pairs.person_1 AS person_id
            FROM co_voting_pairs
-          WHERE (co_voting_pairs.alignment_rate >= (0.7)::double precision)
+          WHERE (co_voting_pairs.alignment_rate &gt;= (0.7)::double precision)
         UNION ALL
          SELECT co_voting_pairs.person_2 AS person_id
            FROM co_voting_pairs
-          WHERE (co_voting_pairs.alignment_rate >= (0.7)::double precision)
+          WHERE (co_voting_pairs.alignment_rate &gt;= (0.7)::double precision)
         ), influence_metrics AS (
          SELECT network_connections.person_id,
             count(*) AS strong_connections
@@ -379,27 +379,27 @@
     round((( SELECT network_percentiles.p50
            FROM network_percentiles))::numeric, 2) AS network_median,
         CASE
-            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision >= ( SELECT network_percentiles.p90
+            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision &gt;= ( SELECT network_percentiles.p90
                FROM network_percentiles)) THEN 'HIGHLY_INFLUENTIAL'::text
-            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision >= ( SELECT network_percentiles.p75
+            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision &gt;= ( SELECT network_percentiles.p75
                FROM network_percentiles)) THEN 'INFLUENTIAL'::text
-            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision >= ( SELECT network_percentiles.p50
+            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision &gt;= ( SELECT network_percentiles.p50
                FROM network_percentiles)) THEN 'MODERATELY_INFLUENTIAL'::text
             WHEN (COALESCE(im.strong_connections, (0)::bigint) > 0) THEN 'LIMITED_INFLUENCE'::text
             ELSE 'MINIMAL_INFLUENCE'::text
         END AS influence_classification,
         CASE
-            WHEN (COALESCE(im.strong_connections, (0)::bigint) >= 20) THEN 'STRONG_BROKER'::text
-            WHEN (COALESCE(im.strong_connections, (0)::bigint) >= 10) THEN 'MODERATE_BROKER'::text
-            WHEN (COALESCE(im.strong_connections, (0)::bigint) >= 5) THEN 'WEAK_BROKER'::text
+            WHEN (COALESCE(im.strong_connections, (0)::bigint) &gt;= 20) THEN 'STRONG_BROKER'::text
+            WHEN (COALESCE(im.strong_connections, (0)::bigint) &gt;= 10) THEN 'MODERATE_BROKER'::text
+            WHEN (COALESCE(im.strong_connections, (0)::bigint) &gt;= 5) THEN 'WEAK_BROKER'::text
             ELSE 'NON_BROKER'::text
         END AS broker_classification,
         CASE
-            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision >= ( SELECT network_percentiles.p90
+            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision &gt;= ( SELECT network_percentiles.p90
                FROM network_percentiles)) THEN 'High influence - top 10% network connections'::text
-            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision >= ( SELECT network_percentiles.p75
+            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision &gt;= ( SELECT network_percentiles.p75
                FROM network_percentiles)) THEN 'Notable influence - top 25% network centrality'::text
-            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision >= ( SELECT network_percentiles.p50
+            WHEN ((COALESCE(im.strong_connections, (0)::bigint))::double precision &gt;= ( SELECT network_percentiles.p50
                FROM network_percentiles)) THEN 'Standard influence - above median engagement'::text
             WHEN (COALESCE(im.strong_connections, (0)::bigint) > 0) THEN 'Limited influence - below median connections'::text
             ELSE 'Minimal network influence detected'::text
@@ -434,7 +434,7 @@
     </preConditions>
     <comment>Create index idx_influence_score on view_riksdagen_politician_influence_metrics for query optimization</comment>
     <createIndex indexName="idx_influence_score" tableName="view_riksdagen_politician_influence_metrics">
-        <column name="influence_score" descending="true"/>
+        <column name="network_connections" descending="true"/>
     </createIndex>
     <rollback>
         <dropIndex indexName="idx_influence_score" tableName="view_riksdagen_politician_influence_metrics"/>
@@ -464,7 +464,7 @@
         
         Issue: Multi-source aggregation (voting + documents + violations) with 5 windows
         Current: 800ms-1.5s
-        Target: <800ms
+        Target: &lt;800ms
         Refresh: Quarterly on 1st at 04:00 UTC
     </comment>
     <sql splitStatements="false">
@@ -482,7 +482,7 @@
             round(avg(view_riksdagen_vote_data_ballot_politician_summary_daily.rebel_percentage), 2) AS avg_rebel_rate,
             round(avg(view_riksdagen_vote_data_ballot_politician_summary_daily.avg_percentage_yes), 2) AS avg_yes_rate
            FROM public.view_riksdagen_vote_data_ballot_politician_summary_daily
-          WHERE ((view_riksdagen_vote_data_ballot_politician_summary_daily.embedded_id_vote_date >= (CURRENT_DATE - '3 years'::interval)) AND (view_riksdagen_vote_data_ballot_politician_summary_daily.party IS NOT NULL))
+          WHERE ((view_riksdagen_vote_data_ballot_politician_summary_daily.embedded_id_vote_date &gt;= (CURRENT_DATE - '3 years'::interval)) AND (view_riksdagen_vote_data_ballot_politician_summary_daily.party IS NOT NULL))
           GROUP BY view_riksdagen_vote_data_ballot_politician_summary_daily.party, (date_trunc('quarter'::text, (view_riksdagen_vote_data_ballot_politician_summary_daily.embedded_id_vote_date)::timestamp with time zone))
         ), party_documents AS (
          SELECT view_riksdagen_politician_document.party_short_code AS party,
@@ -495,7 +495,7 @@
                 END) AS motions_count,
             count(DISTINCT view_riksdagen_politician_document.person_reference_id) AS active_document_authors
            FROM public.view_riksdagen_politician_document
-          WHERE ((view_riksdagen_politician_document.made_public_date >= (CURRENT_DATE - '3 years'::interval)) AND (view_riksdagen_politician_document.party_short_code IS NOT NULL))
+          WHERE ((view_riksdagen_politician_document.made_public_date &gt;= (CURRENT_DATE - '3 years'::interval)) AND (view_riksdagen_politician_document.party_short_code IS NOT NULL))
           GROUP BY view_riksdagen_politician_document.party_short_code, (date_trunc('quarter'::text, (view_riksdagen_politician_document.made_public_date)::timestamp with time zone))
         ), party_violations AS (
          SELECT pd.party,
@@ -504,7 +504,7 @@
             count(DISTINCT rv.reference_id) AS members_with_violations
            FROM (public.rule_violation rv
              JOIN public.person_data pd ON (((rv.reference_id)::text = (pd.id)::text)))
-          WHERE (((rv.resource_type)::text = 'POLITICIAN'::text) AND ((rv.status)::text = 'ACTIVE'::text) AND (rv.detected_date >= (CURRENT_DATE - '3 years'::interval)) AND (pd.party IS NOT NULL))
+          WHERE (((rv.resource_type)::text = 'POLITICIAN'::text) AND ((rv.status)::text = 'ACTIVE'::text) AND (rv.detected_date &gt;= (CURRENT_DATE - '3 years'::interval)) AND (pd.party IS NOT NULL))
           GROUP BY pd.party, (date_trunc('quarter'::text, rv.detected_date))
         ), trend_analysis AS (
          SELECT qpv.party,
@@ -556,21 +556,21 @@
     round((total_votes / (NULLIF(active_members, 0))::numeric), 2) AS votes_per_member,
     round(((violation_count)::numeric / (NULLIF(active_members, 0))::numeric), 2) AS violations_per_member,
         CASE
-            WHEN ((avg_win_rate >= (75)::numeric) AND (avg_absence_rate < (10)::numeric)) THEN 'HIGH_PERFORMANCE'::text
-            WHEN ((avg_win_rate >= (60)::numeric) AND (avg_absence_rate < (15)::numeric)) THEN 'GOOD_PERFORMANCE'::text
-            WHEN ((avg_win_rate >= (45)::numeric) OR (avg_absence_rate < (20)::numeric)) THEN 'MODERATE_PERFORMANCE'::text
+            WHEN ((avg_win_rate &gt;= (75)::numeric) AND (avg_absence_rate &lt; (10)::numeric)) THEN 'HIGH_PERFORMANCE'::text
+            WHEN ((avg_win_rate &gt;= (60)::numeric) AND (avg_absence_rate &lt; (15)::numeric)) THEN 'GOOD_PERFORMANCE'::text
+            WHEN ((avg_win_rate &gt;= (45)::numeric) OR (avg_absence_rate &lt; (20)::numeric)) THEN 'MODERATE_PERFORMANCE'::text
             ELSE 'LOW_PERFORMANCE'::text
         END AS performance_level,
         CASE
-            WHEN (documents_produced >= 50) THEN 'HIGHLY_PRODUCTIVE'::text
-            WHEN (documents_produced >= 20) THEN 'PRODUCTIVE'::text
-            WHEN (documents_produced >= 10) THEN 'MODERATELY_PRODUCTIVE'::text
+            WHEN (documents_produced &gt;= 50) THEN 'HIGHLY_PRODUCTIVE'::text
+            WHEN (documents_produced &gt;= 20) THEN 'PRODUCTIVE'::text
+            WHEN (documents_produced &gt;= 10) THEN 'MODERATELY_PRODUCTIVE'::text
             ELSE 'LOW_PRODUCTIVITY'::text
         END AS productivity_level,
         CASE
-            WHEN ((avg_win_rate >= (70)::numeric) AND (avg_absence_rate < (12)::numeric) AND (violation_count <= 2)) THEN 'Strong organizational effectiveness'::text
-            WHEN ((avg_win_rate >= (55)::numeric) AND (avg_absence_rate < (18)::numeric)) THEN 'Solid party performance'::text
-            WHEN ((avg_absence_rate >= (20)::numeric) OR (violation_count >= 5)) THEN 'Performance concerns detected'::text
+            WHEN ((avg_win_rate &gt;= (70)::numeric) AND (avg_absence_rate &lt; (12)::numeric) AND (violation_count &lt;= 2)) THEN 'Strong organizational effectiveness'::text
+            WHEN ((avg_win_rate &gt;= (55)::numeric) AND (avg_absence_rate &lt; (18)::numeric)) THEN 'Solid party performance'::text
+            WHEN ((avg_absence_rate &gt;= (20)::numeric) OR (violation_count &gt;= 5)) THEN 'Performance concerns detected'::text
             ELSE 'Standard party operations'::text
         END AS effectiveness_assessment
    FROM trend_analysis
@@ -578,7 +578,7 @@
         WITH NO DATA;
         
         COMMENT ON MATERIALIZED VIEW view_party_effectiveness_trends IS 
-        'Multi-source aggregation (voting + documents + violations) with 5 windows. Refresh: Quarterly on 1st at 04:00 UTC. Performance: 50% faster (800ms-1.5s → <800ms).';
+        'Multi-source aggregation (voting + documents + violations) with 5 windows. Refresh: Quarterly on 1st at 04:00 UTC. Performance: 50% faster (800ms-1.5s → &lt;800ms).';
     </sql>
     <rollback>
         DROP MATERIALIZED VIEW IF EXISTS view_party_effectiveness_trends CASCADE;
@@ -595,7 +595,7 @@
             round(avg(view_riksdagen_vote_data_ballot_politician_summary_daily.rebel_percentage), 2) AS avg_rebel_rate,
             round(avg(view_riksdagen_vote_data_ballot_politician_summary_daily.avg_percentage_yes), 2) AS avg_yes_rate
            FROM public.view_riksdagen_vote_data_ballot_politician_summary_daily
-          WHERE ((view_riksdagen_vote_data_ballot_politician_summary_daily.embedded_id_vote_date >= (CURRENT_DATE - '3 years'::interval)) AND (view_riksdagen_vote_data_ballot_politician_summary_daily.party IS NOT NULL))
+          WHERE ((view_riksdagen_vote_data_ballot_politician_summary_daily.embedded_id_vote_date &gt;= (CURRENT_DATE - '3 years'::interval)) AND (view_riksdagen_vote_data_ballot_politician_summary_daily.party IS NOT NULL))
           GROUP BY view_riksdagen_vote_data_ballot_politician_summary_daily.party, (date_trunc('quarter'::text, (view_riksdagen_vote_data_ballot_politician_summary_daily.embedded_id_vote_date)::timestamp with time zone))
         ), party_documents AS (
          SELECT view_riksdagen_politician_document.party_short_code AS party,
@@ -608,7 +608,7 @@
                 END) AS motions_count,
             count(DISTINCT view_riksdagen_politician_document.person_reference_id) AS active_document_authors
            FROM public.view_riksdagen_politician_document
-          WHERE ((view_riksdagen_politician_document.made_public_date >= (CURRENT_DATE - '3 years'::interval)) AND (view_riksdagen_politician_document.party_short_code IS NOT NULL))
+          WHERE ((view_riksdagen_politician_document.made_public_date &gt;= (CURRENT_DATE - '3 years'::interval)) AND (view_riksdagen_politician_document.party_short_code IS NOT NULL))
           GROUP BY view_riksdagen_politician_document.party_short_code, (date_trunc('quarter'::text, (view_riksdagen_politician_document.made_public_date)::timestamp with time zone))
         ), party_violations AS (
          SELECT pd.party,
@@ -617,7 +617,7 @@
             count(DISTINCT rv.reference_id) AS members_with_violations
            FROM (public.rule_violation rv
              JOIN public.person_data pd ON (((rv.reference_id)::text = (pd.id)::text)))
-          WHERE (((rv.resource_type)::text = 'POLITICIAN'::text) AND ((rv.status)::text = 'ACTIVE'::text) AND (rv.detected_date >= (CURRENT_DATE - '3 years'::interval)) AND (pd.party IS NOT NULL))
+          WHERE (((rv.resource_type)::text = 'POLITICIAN'::text) AND ((rv.status)::text = 'ACTIVE'::text) AND (rv.detected_date &gt;= (CURRENT_DATE - '3 years'::interval)) AND (pd.party IS NOT NULL))
           GROUP BY pd.party, (date_trunc('quarter'::text, rv.detected_date))
         ), trend_analysis AS (
          SELECT qpv.party,
@@ -669,21 +669,21 @@
     round((total_votes / (NULLIF(active_members, 0))::numeric), 2) AS votes_per_member,
     round(((violation_count)::numeric / (NULLIF(active_members, 0))::numeric), 2) AS violations_per_member,
         CASE
-            WHEN ((avg_win_rate >= (75)::numeric) AND (avg_absence_rate < (10)::numeric)) THEN 'HIGH_PERFORMANCE'::text
-            WHEN ((avg_win_rate >= (60)::numeric) AND (avg_absence_rate < (15)::numeric)) THEN 'GOOD_PERFORMANCE'::text
-            WHEN ((avg_win_rate >= (45)::numeric) OR (avg_absence_rate < (20)::numeric)) THEN 'MODERATE_PERFORMANCE'::text
+            WHEN ((avg_win_rate &gt;= (75)::numeric) AND (avg_absence_rate &lt; (10)::numeric)) THEN 'HIGH_PERFORMANCE'::text
+            WHEN ((avg_win_rate &gt;= (60)::numeric) AND (avg_absence_rate &lt; (15)::numeric)) THEN 'GOOD_PERFORMANCE'::text
+            WHEN ((avg_win_rate &gt;= (45)::numeric) OR (avg_absence_rate &lt; (20)::numeric)) THEN 'MODERATE_PERFORMANCE'::text
             ELSE 'LOW_PERFORMANCE'::text
         END AS performance_level,
         CASE
-            WHEN (documents_produced >= 50) THEN 'HIGHLY_PRODUCTIVE'::text
-            WHEN (documents_produced >= 20) THEN 'PRODUCTIVE'::text
-            WHEN (documents_produced >= 10) THEN 'MODERATELY_PRODUCTIVE'::text
+            WHEN (documents_produced &gt;= 50) THEN 'HIGHLY_PRODUCTIVE'::text
+            WHEN (documents_produced &gt;= 20) THEN 'PRODUCTIVE'::text
+            WHEN (documents_produced &gt;= 10) THEN 'MODERATELY_PRODUCTIVE'::text
             ELSE 'LOW_PRODUCTIVITY'::text
         END AS productivity_level,
         CASE
-            WHEN ((avg_win_rate >= (70)::numeric) AND (avg_absence_rate < (12)::numeric) AND (violation_count <= 2)) THEN 'Strong organizational effectiveness'::text
-            WHEN ((avg_win_rate >= (55)::numeric) AND (avg_absence_rate < (18)::numeric)) THEN 'Solid party performance'::text
-            WHEN ((avg_absence_rate >= (20)::numeric) OR (violation_count >= 5)) THEN 'Performance concerns detected'::text
+            WHEN ((avg_win_rate &gt;= (70)::numeric) AND (avg_absence_rate &lt; (12)::numeric) AND (violation_count &lt;= 2)) THEN 'Strong organizational effectiveness'::text
+            WHEN ((avg_win_rate &gt;= (55)::numeric) AND (avg_absence_rate &lt; (18)::numeric)) THEN 'Solid party performance'::text
+            WHEN ((avg_absence_rate &gt;= (20)::numeric) OR (violation_count &gt;= 5)) THEN 'Performance concerns detected'::text
             ELSE 'Standard party operations'::text
         END AS effectiveness_assessment
    FROM trend_analysis
@@ -715,7 +715,7 @@
     </preConditions>
     <comment>Create index idx_effectiveness_score on view_party_effectiveness_trends for query optimization</comment>
     <createIndex indexName="idx_effectiveness_score" tableName="view_party_effectiveness_trends">
-        <column name="overall_effectiveness" descending="true"/>
+        <column name="performance_level" descending="true"/>
     </createIndex>
     <rollback>
         <dropIndex indexName="idx_effectiveness_score" tableName="view_party_effectiveness_trends"/>
@@ -767,7 +767,7 @@
             round(avg(view_riksdagen_vote_data_ballot_politician_summary_daily.won_percentage), 2) AS avg_win_rate,
             round(avg(view_riksdagen_vote_data_ballot_politician_summary_daily.rebel_percentage), 2) AS avg_rebel_rate
            FROM public.view_riksdagen_vote_data_ballot_politician_summary_daily
-          WHERE (view_riksdagen_vote_data_ballot_politician_summary_daily.embedded_id_vote_date >= (CURRENT_DATE - '3 years'::interval))
+          WHERE (view_riksdagen_vote_data_ballot_politician_summary_daily.embedded_id_vote_date &gt;= (CURRENT_DATE - '3 years'::interval))
           GROUP BY view_riksdagen_vote_data_ballot_politician_summary_daily.embedded_id_intressent_id, (date_trunc('month'::text, (view_riksdagen_vote_data_ballot_politician_summary_daily.embedded_id_vote_date)::timestamp with time zone))
         ), violation_counts AS (
          SELECT rule_violation.reference_id AS person_id,
@@ -776,7 +776,7 @@
             count(DISTINCT rule_violation.rule_group) AS violation_types,
             max(rule_violation.detected_date) AS latest_violation_date
            FROM public.rule_violation
-          WHERE (((rule_violation.resource_type)::text = 'POLITICIAN'::text) AND ((rule_violation.status)::text = 'ACTIVE'::text) AND (rule_violation.detected_date >= (CURRENT_DATE - '3 years'::interval)))
+          WHERE (((rule_violation.resource_type)::text = 'POLITICIAN'::text) AND ((rule_violation.status)::text = 'ACTIVE'::text) AND (rule_violation.detected_date &gt;= (CURRENT_DATE - '3 years'::interval)))
           GROUP BY rule_violation.reference_id, (date_trunc('month'::text, rule_violation.detected_date))
         ), trend_calculations AS (
          SELECT mvd.person_id,
@@ -826,31 +826,31 @@
     ma_3month_win_rate,
     ma_3month_rebel_rate,
         CASE
-            WHEN (avg_absence_rate >= (30)::numeric) THEN 'HIGH_ABSENTEEISM'::text
-            WHEN (avg_absence_rate >= (15)::numeric) THEN 'MODERATE_ABSENTEEISM'::text
-            WHEN (avg_absence_rate >= (5)::numeric) THEN 'LOW_ABSENTEEISM'::text
+            WHEN (avg_absence_rate &gt;= (30)::numeric) THEN 'HIGH_ABSENTEEISM'::text
+            WHEN (avg_absence_rate &gt;= (15)::numeric) THEN 'MODERATE_ABSENTEEISM'::text
+            WHEN (avg_absence_rate &gt;= (5)::numeric) THEN 'LOW_ABSENTEEISM'::text
             ELSE 'EXCELLENT_ATTENDANCE'::text
         END AS attendance_status,
         CASE
-            WHEN (avg_win_rate >= (80)::numeric) THEN 'HIGHLY_EFFECTIVE'::text
-            WHEN (avg_win_rate >= (60)::numeric) THEN 'EFFECTIVE'::text
-            WHEN (avg_win_rate >= (40)::numeric) THEN 'MODERATELY_EFFECTIVE'::text
+            WHEN (avg_win_rate &gt;= (80)::numeric) THEN 'HIGHLY_EFFECTIVE'::text
+            WHEN (avg_win_rate &gt;= (60)::numeric) THEN 'EFFECTIVE'::text
+            WHEN (avg_win_rate &gt;= (40)::numeric) THEN 'MODERATELY_EFFECTIVE'::text
             ELSE 'LOW_EFFECTIVENESS'::text
         END AS effectiveness_status,
         CASE
-            WHEN (avg_rebel_rate >= (20)::numeric) THEN 'HIGH_INDEPENDENCE'::text
-            WHEN (avg_rebel_rate >= (10)::numeric) THEN 'MODERATE_INDEPENDENCE'::text
-            WHEN (avg_rebel_rate >= (5)::numeric) THEN 'LOW_INDEPENDENCE'::text
+            WHEN (avg_rebel_rate &gt;= (20)::numeric) THEN 'HIGH_INDEPENDENCE'::text
+            WHEN (avg_rebel_rate &gt;= (10)::numeric) THEN 'MODERATE_INDEPENDENCE'::text
+            WHEN (avg_rebel_rate &gt;= (5)::numeric) THEN 'LOW_INDEPENDENCE'::text
             ELSE 'PARTY_LOYAL'::text
         END AS discipline_status,
         CASE
-            WHEN ((avg_absence_rate >= (30)::numeric) OR (avg_rebel_rate >= (20)::numeric) OR (violation_count >= 3)) THEN 'ELEVATED_RISK'::text
-            WHEN ((avg_absence_rate >= (15)::numeric) OR (avg_rebel_rate >= (10)::numeric) OR (violation_count >= 1)) THEN 'MODERATE_RISK'::text
-            WHEN ((avg_win_rate >= (70)::numeric) AND (avg_absence_rate < (10)::numeric)) THEN 'HIGH_PERFORMER'::text
+            WHEN ((avg_absence_rate &gt;= (30)::numeric) OR (avg_rebel_rate &gt;= (20)::numeric) OR (violation_count &gt;= 3)) THEN 'ELEVATED_RISK'::text
+            WHEN ((avg_absence_rate &gt;= (15)::numeric) OR (avg_rebel_rate &gt;= (10)::numeric) OR (violation_count &gt;= 1)) THEN 'MODERATE_RISK'::text
+            WHEN ((avg_win_rate &gt;= (70)::numeric) AND (avg_absence_rate &lt; (10)::numeric)) THEN 'HIGH_PERFORMER'::text
             ELSE 'STANDARD_BEHAVIOR'::text
         END AS behavioral_assessment
    FROM trend_calculations
-  WHERE (total_ballots >= (5)::numeric)
+  WHERE (total_ballots &gt;= (5)::numeric)
   ORDER BY person_id, period_start DESC;
         WITH NO DATA;
         
@@ -876,7 +876,7 @@
             round(avg(view_riksdagen_vote_data_ballot_politician_summary_daily.won_percentage), 2) AS avg_win_rate,
             round(avg(view_riksdagen_vote_data_ballot_politician_summary_daily.rebel_percentage), 2) AS avg_rebel_rate
            FROM public.view_riksdagen_vote_data_ballot_politician_summary_daily
-          WHERE (view_riksdagen_vote_data_ballot_politician_summary_daily.embedded_id_vote_date >= (CURRENT_DATE - '3 years'::interval))
+          WHERE (view_riksdagen_vote_data_ballot_politician_summary_daily.embedded_id_vote_date &gt;= (CURRENT_DATE - '3 years'::interval))
           GROUP BY view_riksdagen_vote_data_ballot_politician_summary_daily.embedded_id_intressent_id, (date_trunc('month'::text, (view_riksdagen_vote_data_ballot_politician_summary_daily.embedded_id_vote_date)::timestamp with time zone))
         ), violation_counts AS (
          SELECT rule_violation.reference_id AS person_id,
@@ -885,7 +885,7 @@
             count(DISTINCT rule_violation.rule_group) AS violation_types,
             max(rule_violation.detected_date) AS latest_violation_date
            FROM public.rule_violation
-          WHERE (((rule_violation.resource_type)::text = 'POLITICIAN'::text) AND ((rule_violation.status)::text = 'ACTIVE'::text) AND (rule_violation.detected_date >= (CURRENT_DATE - '3 years'::interval)))
+          WHERE (((rule_violation.resource_type)::text = 'POLITICIAN'::text) AND ((rule_violation.status)::text = 'ACTIVE'::text) AND (rule_violation.detected_date &gt;= (CURRENT_DATE - '3 years'::interval)))
           GROUP BY rule_violation.reference_id, (date_trunc('month'::text, rule_violation.detected_date))
         ), trend_calculations AS (
          SELECT mvd.person_id,
@@ -935,31 +935,31 @@
     ma_3month_win_rate,
     ma_3month_rebel_rate,
         CASE
-            WHEN (avg_absence_rate >= (30)::numeric) THEN 'HIGH_ABSENTEEISM'::text
-            WHEN (avg_absence_rate >= (15)::numeric) THEN 'MODERATE_ABSENTEEISM'::text
-            WHEN (avg_absence_rate >= (5)::numeric) THEN 'LOW_ABSENTEEISM'::text
+            WHEN (avg_absence_rate &gt;= (30)::numeric) THEN 'HIGH_ABSENTEEISM'::text
+            WHEN (avg_absence_rate &gt;= (15)::numeric) THEN 'MODERATE_ABSENTEEISM'::text
+            WHEN (avg_absence_rate &gt;= (5)::numeric) THEN 'LOW_ABSENTEEISM'::text
             ELSE 'EXCELLENT_ATTENDANCE'::text
         END AS attendance_status,
         CASE
-            WHEN (avg_win_rate >= (80)::numeric) THEN 'HIGHLY_EFFECTIVE'::text
-            WHEN (avg_win_rate >= (60)::numeric) THEN 'EFFECTIVE'::text
-            WHEN (avg_win_rate >= (40)::numeric) THEN 'MODERATELY_EFFECTIVE'::text
+            WHEN (avg_win_rate &gt;= (80)::numeric) THEN 'HIGHLY_EFFECTIVE'::text
+            WHEN (avg_win_rate &gt;= (60)::numeric) THEN 'EFFECTIVE'::text
+            WHEN (avg_win_rate &gt;= (40)::numeric) THEN 'MODERATELY_EFFECTIVE'::text
             ELSE 'LOW_EFFECTIVENESS'::text
         END AS effectiveness_status,
         CASE
-            WHEN (avg_rebel_rate >= (20)::numeric) THEN 'HIGH_INDEPENDENCE'::text
-            WHEN (avg_rebel_rate >= (10)::numeric) THEN 'MODERATE_INDEPENDENCE'::text
-            WHEN (avg_rebel_rate >= (5)::numeric) THEN 'LOW_INDEPENDENCE'::text
+            WHEN (avg_rebel_rate &gt;= (20)::numeric) THEN 'HIGH_INDEPENDENCE'::text
+            WHEN (avg_rebel_rate &gt;= (10)::numeric) THEN 'MODERATE_INDEPENDENCE'::text
+            WHEN (avg_rebel_rate &gt;= (5)::numeric) THEN 'LOW_INDEPENDENCE'::text
             ELSE 'PARTY_LOYAL'::text
         END AS discipline_status,
         CASE
-            WHEN ((avg_absence_rate >= (30)::numeric) OR (avg_rebel_rate >= (20)::numeric) OR (violation_count >= 3)) THEN 'ELEVATED_RISK'::text
-            WHEN ((avg_absence_rate >= (15)::numeric) OR (avg_rebel_rate >= (10)::numeric) OR (violation_count >= 1)) THEN 'MODERATE_RISK'::text
-            WHEN ((avg_win_rate >= (70)::numeric) AND (avg_absence_rate < (10)::numeric)) THEN 'HIGH_PERFORMER'::text
+            WHEN ((avg_absence_rate &gt;= (30)::numeric) OR (avg_rebel_rate &gt;= (20)::numeric) OR (violation_count &gt;= 3)) THEN 'ELEVATED_RISK'::text
+            WHEN ((avg_absence_rate &gt;= (15)::numeric) OR (avg_rebel_rate &gt;= (10)::numeric) OR (violation_count &gt;= 1)) THEN 'MODERATE_RISK'::text
+            WHEN ((avg_win_rate &gt;= (70)::numeric) AND (avg_absence_rate &lt; (10)::numeric)) THEN 'HIGH_PERFORMER'::text
             ELSE 'STANDARD_BEHAVIOR'::text
         END AS behavioral_assessment
    FROM trend_calculations
-  WHERE (total_ballots >= (5)::numeric)
+  WHERE (total_ballots &gt;= (5)::numeric)
   ORDER BY person_id, period_start DESC;;
     </rollback>
 </changeSet>
@@ -988,7 +988,7 @@
     </preConditions>
     <comment>Create index idx_behavioral_trend_score on view_politician_behavioral_trends for query optimization</comment>
     <createIndex indexName="idx_behavioral_trend_score" tableName="view_politician_behavioral_trends">
-        <column name="trend_score" descending="true"/>
+        <column name="behavioral_assessment" descending="true"/>
     </createIndex>
     <rollback>
         <dropIndex indexName="idx_behavioral_trend_score" tableName="view_politician_behavioral_trends"/>
@@ -1018,7 +1018,7 @@
         
         Issue: 6 CTEs with 5 JOINs, complex temporal aggregation
         Current: 5-10 seconds
-        Target: <3 seconds
+        Target: &lt;3 seconds
         Refresh: Post-election (manual trigger)
     </comment>
     <sql splitStatements="false">
@@ -1065,8 +1065,8 @@
                     sum(dtt.daily_decisions) AS total_decisions,
                     round(avg(cp.productivity_score), 2) AS avg_committee_productivity
                    FROM (((election_cycle_periods ecp
-                     LEFT JOIN public.view_politician_behavioral_trends pbt ON (((pbt.period_start >= ecp.autumn_start) AND (pbt.period_start <= ecp.autumn_end))))
-                     LEFT JOIN public.view_decision_temporal_trends dtt ON (((dtt.decision_day >= ecp.autumn_start) AND (dtt.decision_day <= ecp.autumn_end))))
+                     LEFT JOIN public.view_politician_behavioral_trends pbt ON (((pbt.period_start &gt;= ecp.autumn_start) AND (pbt.period_start &lt;= ecp.autumn_end))))
+                     LEFT JOIN public.view_decision_temporal_trends dtt ON (((dtt.decision_day &gt;= ecp.autumn_start) AND (dtt.decision_day &lt;= ecp.autumn_end))))
                      LEFT JOIN public.view_committee_productivity cp ON ((1 = 1)))
                   GROUP BY ecp.election_cycle_id, ecp.cycle_year, ecp.calendar_year, ecp.autumn_start, ecp.cycle_end_year
                 ), temporal_data_spring AS (
@@ -1091,8 +1091,8 @@
                     sum(dtt.daily_decisions) AS total_decisions,
                     round(avg(cp.productivity_score), 2) AS avg_committee_productivity
                    FROM (((election_cycle_periods ecp
-                     LEFT JOIN public.view_politician_behavioral_trends pbt ON (((pbt.period_start >= ecp.spring_start) AND (pbt.period_start <= ecp.spring_end))))
-                     LEFT JOIN public.view_decision_temporal_trends dtt ON (((dtt.decision_day >= ecp.spring_start) AND (dtt.decision_day <= ecp.spring_end))))
+                     LEFT JOIN public.view_politician_behavioral_trends pbt ON (((pbt.period_start &gt;= ecp.spring_start) AND (pbt.period_start &lt;= ecp.spring_end))))
+                     LEFT JOIN public.view_decision_temporal_trends dtt ON (((dtt.decision_day &gt;= ecp.spring_start) AND (dtt.decision_day &lt;= ecp.spring_end))))
                      LEFT JOIN public.view_committee_productivity cp ON ((1 = 1)))
                   GROUP BY ecp.election_cycle_id, ecp.cycle_year, ecp.calendar_year, ecp.spring_start, ecp.cycle_end_year, ecp.is_election_year
                 )
@@ -1200,7 +1200,7 @@
         CASE
             WHEN (prev_semester_attendance IS NULL) THEN 'baseline'::text
             WHEN (avg_attendance_rate > (prev_semester_attendance + (5)::numeric)) THEN 'improving'::text
-            WHEN (avg_attendance_rate < (prev_semester_attendance - (5)::numeric)) THEN 'declining'::text
+            WHEN (avg_attendance_rate &lt; (prev_semester_attendance - (5)::numeric)) THEN 'declining'::text
             ELSE 'stable'::text
         END AS attendance_trend,
         CASE
@@ -1214,14 +1214,14 @@
         END AS volatility_assessment,
         CASE
             WHEN ((next_semester_attendance IS NOT NULL) AND (next_semester_attendance > (avg_attendance_rate + (5)::numeric))) THEN 'expected_improvement'::text
-            WHEN ((next_semester_attendance IS NOT NULL) AND (next_semester_attendance < (avg_attendance_rate - (5)::numeric))) THEN 'expected_decline'::text
+            WHEN ((next_semester_attendance IS NOT NULL) AND (next_semester_attendance &lt; (avg_attendance_rate - (5)::numeric))) THEN 'expected_decline'::text
             ELSE 'stable_forecast'::text
         END AS forecast_trend
    FROM windowed w;
         WITH NO DATA;
         
         COMMENT ON MATERIALIZED VIEW view_election_cycle_temporal_trends IS 
-        '6 CTEs with 5 JOINs, complex temporal aggregation. Refresh: Post-election (manual trigger). Performance: 70% faster (5-10 seconds → <3 seconds).';
+        '6 CTEs with 5 JOINs, complex temporal aggregation. Refresh: Post-election (manual trigger). Performance: 70% faster (5-10 seconds → &lt;3 seconds).';
     </sql>
     <rollback>
         DROP MATERIALIZED VIEW IF EXISTS view_election_cycle_temporal_trends CASCADE;
@@ -1267,8 +1267,8 @@
                     sum(dtt.daily_decisions) AS total_decisions,
                     round(avg(cp.productivity_score), 2) AS avg_committee_productivity
                    FROM (((election_cycle_periods ecp
-                     LEFT JOIN public.view_politician_behavioral_trends pbt ON (((pbt.period_start >= ecp.autumn_start) AND (pbt.period_start <= ecp.autumn_end))))
-                     LEFT JOIN public.view_decision_temporal_trends dtt ON (((dtt.decision_day >= ecp.autumn_start) AND (dtt.decision_day <= ecp.autumn_end))))
+                     LEFT JOIN public.view_politician_behavioral_trends pbt ON (((pbt.period_start &gt;= ecp.autumn_start) AND (pbt.period_start &lt;= ecp.autumn_end))))
+                     LEFT JOIN public.view_decision_temporal_trends dtt ON (((dtt.decision_day &gt;= ecp.autumn_start) AND (dtt.decision_day &lt;= ecp.autumn_end))))
                      LEFT JOIN public.view_committee_productivity cp ON ((1 = 1)))
                   GROUP BY ecp.election_cycle_id, ecp.cycle_year, ecp.calendar_year, ecp.autumn_start, ecp.cycle_end_year
                 ), temporal_data_spring AS (
@@ -1293,8 +1293,8 @@
                     sum(dtt.daily_decisions) AS total_decisions,
                     round(avg(cp.productivity_score), 2) AS avg_committee_productivity
                    FROM (((election_cycle_periods ecp
-                     LEFT JOIN public.view_politician_behavioral_trends pbt ON (((pbt.period_start >= ecp.spring_start) AND (pbt.period_start <= ecp.spring_end))))
-                     LEFT JOIN public.view_decision_temporal_trends dtt ON (((dtt.decision_day >= ecp.spring_start) AND (dtt.decision_day <= ecp.spring_end))))
+                     LEFT JOIN public.view_politician_behavioral_trends pbt ON (((pbt.period_start &gt;= ecp.spring_start) AND (pbt.period_start &lt;= ecp.spring_end))))
+                     LEFT JOIN public.view_decision_temporal_trends dtt ON (((dtt.decision_day &gt;= ecp.spring_start) AND (dtt.decision_day &lt;= ecp.spring_end))))
                      LEFT JOIN public.view_committee_productivity cp ON ((1 = 1)))
                   GROUP BY ecp.election_cycle_id, ecp.cycle_year, ecp.calendar_year, ecp.spring_start, ecp.cycle_end_year, ecp.is_election_year
                 )
@@ -1402,7 +1402,7 @@
         CASE
             WHEN (prev_semester_attendance IS NULL) THEN 'baseline'::text
             WHEN (avg_attendance_rate > (prev_semester_attendance + (5)::numeric)) THEN 'improving'::text
-            WHEN (avg_attendance_rate < (prev_semester_attendance - (5)::numeric)) THEN 'declining'::text
+            WHEN (avg_attendance_rate &lt; (prev_semester_attendance - (5)::numeric)) THEN 'declining'::text
             ELSE 'stable'::text
         END AS attendance_trend,
         CASE
@@ -1416,7 +1416,7 @@
         END AS volatility_assessment,
         CASE
             WHEN ((next_semester_attendance IS NOT NULL) AND (next_semester_attendance > (avg_attendance_rate + (5)::numeric))) THEN 'expected_improvement'::text
-            WHEN ((next_semester_attendance IS NOT NULL) AND (next_semester_attendance < (avg_attendance_rate - (5)::numeric))) THEN 'expected_decline'::text
+            WHEN ((next_semester_attendance IS NOT NULL) AND (next_semester_attendance &lt; (avg_attendance_rate - (5)::numeric))) THEN 'expected_decline'::text
             ELSE 'stable_forecast'::text
         END AS forecast_trend
    FROM windowed w;;
