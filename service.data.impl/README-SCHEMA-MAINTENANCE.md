@@ -115,10 +115,53 @@ grep "SUCCESS" validation_report.txt   # Should show 100% coverage
 
 ### Materialized View Refresh
 
+The CIA platform uses 28 materialized views organized in a 5-level dependency hierarchy. Views must be refreshed in dependency order to prevent errors.
+
+**Quick Command:**
 ```bash
-# Refresh all materialized views
+# Refresh all materialized views in correct dependency order
 psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/refresh-all-views.sql
 ```
+
+**Expected Performance:**
+- Total views: 28 materialized views
+- Dependency levels: 5 (Level 0 through Level 4)
+- Execution time: ~150-200ms (with empty/test data)
+- Production time: Expected 30-60 minutes (with full data)
+
+**Dependency Hierarchy:**
+```
+Level 0 (6 views):  No dependencies - base aggregations
+Level 1 (8 views):  Depend on Level 0 views
+Level 2 (6 views):  Depend on Level 1 views
+Level 3 (5 views):  Depend on Level 2 views
+Level 4 (3 views):  Depend on Level 3 views (deepest nesting)
+```
+
+**Analyze View Dependencies:**
+```bash
+# Generate detailed dependency report with refresh commands
+psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/analyze-view-dependencies.sql
+
+# Output includes:
+# - Basic dependency CSV
+# - Topologically sorted refresh order
+# - Ready-to-use REFRESH MATERIALIZED VIEW commands
+```
+
+**Java Integration:**
+The view refresh is integrated into the application's scheduled job system:
+- Class: `com.hack23.cia.service.data.impl.ViewDataManagerImpl`
+- Transaction timeout: 3600 seconds (60 minutes)
+- Job: `RefreshViewsJob` (Quartz scheduler)
+- Method: `refreshViews()` - executes all refreshes in correct dependency order
+
+**Critical Notes:**
+- ⚠️ Views MUST be refreshed in dependency order to prevent constraint violations
+- ⚠️ Transaction timeout set to 60 minutes to handle large datasets
+- ✅ Script includes error handling - continues on individual failures
+- ✅ Progress tracking with timing per level
+- ✅ Automatic discovery - no hardcoded view list
 
 ### Sample Data Extraction
 
@@ -1113,22 +1156,98 @@ tail -50 extract_sample_data.log
 
 ### Common Issue 4: Materialized View Refresh Fails
 
-**Symptoms**: `refresh-all-views.sql` reports errors
+**Symptoms**: `refresh-all-views.sql` reports errors or views refresh in wrong order
 
-**Diagnosis**:
+**Common Error Scenarios:**
+
+1. **Dependency Order Error**
+   ```
+   ERROR: materialized view "view_riksdagen_vote_data_ballot_party_summary" has not been populated
+   HINT: Use the REFRESH MATERIALIZED VIEW command.
+   ```
+   - **Cause**: View depends on another materialized view that hasn't been refreshed yet
+   - **Solution**: Use updated `refresh-all-views.sql` which refreshes in correct dependency order (Level 0→4)
+
+2. **Transaction Timeout**
+   ```
+   ERROR: canceling statement due to statement timeout
+   ```
+   - **Cause**: Refresh takes longer than configured timeout (was 30 minutes, now 60 minutes)
+   - **Solution**: Timeout increased to 3600 seconds in ViewDataManagerImpl and JobContextHolderImpl
+
+3. **Concurrent Refresh Conflict**
+   ```
+   ERROR: could not obtain lock on relation "view_name"
+   ```
+   - **Cause**: Another process is refreshing the same view
+   - **Solution**: Wait for other refresh to complete, or use `REFRESH MATERIALIZED VIEW CONCURRENTLY` (requires unique index)
+
+**Diagnosis Commands:**
 ```bash
-# Check which views failed
-grep "ERROR" refresh_log.txt
+# Check which views failed (with new enhanced script)
+psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/refresh-all-views.sql 2>&1 | grep -E "(ERROR|Failed|✗)"
 
-# Test individual view
+# Analyze view dependencies
+psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/analyze-view-dependencies.sql
+
+# Test individual view refresh
 psql -U postgres -d cia_dev -c "REFRESH MATERIALIZED VIEW view_name;"
+
+# Check current refresh progress (if running)
+SELECT pid, query_start, state, query 
+FROM pg_stat_activity 
+WHERE query LIKE '%REFRESH MATERIALIZED VIEW%';
 ```
 
-**Remediation**:
-1. Check view definition in `full_schema.sql`
-2. Verify source tables have data
-3. See [TROUBLESHOOTING_EMPTY_VIEWS.md](../../TROUBLESHOOTING_EMPTY_VIEWS.md)
-4. Recreate view if definition changed
+**Remediation Steps:**
+
+1. **Update to Latest Scripts** (if not already done):
+   ```bash
+   # Ensure you have the dependency-aware refresh script
+   git pull origin main
+   cd service.data.impl/src/main/resources/
+   ```
+
+2. **Verify Dependency Order**:
+   ```bash
+   # This will show correct refresh order
+   psql -U postgres -d cia_dev -f analyze-view-dependencies.sql | grep "dependency_level"
+   ```
+
+3. **Manual Refresh in Correct Order** (if automated script fails):
+   ```sql
+   -- Level 0: No dependencies
+   REFRESH MATERIALIZED VIEW view_riksdagen_committee_decisions;
+   REFRESH MATERIALIZED VIEW view_riksdagen_document_type_daily_summary;
+   REFRESH MATERIALIZED VIEW view_riksdagen_org_document_daily_summary;
+   REFRESH MATERIALIZED VIEW view_riksdagen_politician_document;
+   REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_summary;
+   REFRESH MATERIALIZED VIEW view_worldbank_indicator_data_country_summary;
+   
+   -- Level 1: Depend on Level 0 (continue through all levels)
+   -- See analyze-view-dependencies.sql output for complete order
+   ```
+
+4. **Check Transaction Configuration**:
+   ```java
+   // Verify timeout in ViewDataManagerImpl.java
+   @Transactional(timeout = 3600)  // Should be 3600 (60 min), not 1800 (30 min)
+   ```
+
+5. **Monitor Refresh Performance**:
+   ```sql
+   -- Check how long views typically take to refresh
+   SELECT schemaname, matviewname, last_refresh 
+   FROM pg_matviews 
+   WHERE schemaname = 'public'
+   ORDER BY last_refresh DESC NULLS LAST;
+   ```
+
+**Prevention:**
+- Always use `refresh-all-views.sql` which handles dependencies automatically
+- Schedule refreshes during low-traffic periods
+- Monitor view refresh duration and adjust timeouts if needed
+- Keep database statistics updated: `ANALYZE;`
 
 ---
 
