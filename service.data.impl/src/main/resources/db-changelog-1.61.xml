@@ -93,7 +93,7 @@
         - Focus area classification (party, committee, individual)
     </comment>
     
-    <createView viewName="view_riksdagen_party_summary">
+    <createView viewName="view_riksdagen_party_summary" replaceIfExists="true">
         <![CDATA[
 WITH party_documents AS (
     SELECT 
@@ -258,7 +258,7 @@ ORDER BY vp.party;
         Columns: 70 total (performance KPIs, trend indicators, predictions)
     </comment>
     
-    <createView viewName="view_riksdagen_party_longitudinal_performance">
+    <createView viewName="view_riksdagen_party_longitudinal_performance" replaceIfExists="true">
         <![CDATA[
 WITH election_cycle_calendar AS (
     -- Swedish election cycles with semester structure
@@ -546,7 +546,7 @@ ORDER BY ws.party, ws.election_cycle_id, ws.cycle_year, ws.semester;
         Columns: 35 total (alliance KPIs, strategic shift detection, stability forecasts)
     </comment>
     
-    <createView viewName="view_riksdagen_party_coalition_evolution">
+    <createView viewName="view_riksdagen_party_coalition_evolution" replaceIfExists="true">
         <![CDATA[
 WITH election_cycle_periods AS (
     SELECT 
@@ -825,7 +825,7 @@ ORDER BY ws.party_1, ws.party_2, ws.election_cycle_id, ws.cycle_year, ws.semeste
         Columns: 49 total (electoral KPIs, growth forecasts, seat projections)
     </comment>
     
-    <createView viewName="view_riksdagen_party_electoral_trends">
+    <createView viewName="view_riksdagen_party_electoral_trends" replaceIfExists="true">
         <![CDATA[
 WITH election_cycle_periods AS (
     SELECT 
