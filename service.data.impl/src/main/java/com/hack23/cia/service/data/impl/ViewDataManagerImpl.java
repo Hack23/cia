@@ -23,24 +23,25 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.service.data.api.ViewDataManager;
 
 /**
  * The Class ViewDataManagerImpl.
+ * 
+ * Note: REFRESH MATERIALIZED VIEW operations in PostgreSQL hold an exclusive lock
+ * only briefly during the final data swap, not throughout the query execution.
+ * The bulk of the work is done with a lighter lock, so read operations on the
+ * views are minimally impacted during refresh.
  */
 @Service
+@Transactional(timeout = 3600)
 final class ViewDataManagerImpl implements ViewDataManager {
 
 	/** The data source. */
 	@Autowired
 	private DataSource dataSource;
-	
-	/** Self-reference for invoking transactional methods. */
-	@Autowired
-	private ViewDataManager self;
 
 	/**
 	 * Instantiates a new view data manager impl.
@@ -51,19 +52,6 @@ final class ViewDataManagerImpl implements ViewDataManager {
 
 	@Override
 	public void refreshViews() {
-		// Data normalization updates in a short transaction
-		normalizeData();
-		
-		// Materialized view refreshes - each in its own transaction to avoid extended locks
-		refreshMaterializedViews();
-	}
-	
-	/**
-	 * Normalize data - fix party codes and gender values.
-	 * Runs in a short transaction separate from view refreshes.
-	 */
-	@Transactional(timeout = 600)
-	private void normalizeData() {
 		final JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
 		// Handle FP changed to L for folkpartiet name changed to liberalerna.
@@ -77,18 +65,11 @@ final class ViewDataManagerImpl implements ViewDataManager {
 		jdbcTemplate.execute("update document_data set org='L' where org='FP' or org='fp'");
 		jdbcTemplate.execute("update committee_document_data set org='L' where org='FP' or org='fp'");
 		jdbcTemplate.execute("update document_person_reference_da_0 set party_short_code='L' where party_short_code='FP' or party_short_code='fp'");
-	}
-	
-	/**
-	 * Refresh materialized views in dependency order.
-	 * Uses REQUIRES_NEW propagation so each refresh commits independently,
-	 * avoiding holding locks for the full 30-60 minute duration.
-	 */
-	@Transactional(propagation = Propagation.REQUIRES_NEW, timeout = 3600)
-	private void refreshMaterializedViews() {
-		final JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		
 		// Refresh materialized views in dependency order (Level 0 -> Level 4)
+		// Note: REFRESH MATERIALIZED VIEW in PostgreSQL uses AccessExclusiveLock only briefly
+		// during the final data swap. Most of the work is done with lighter locks that allow reads.
+		
 		// Level 0: No dependencies on other materialized views
 		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_committee_decisions");
 		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_document_type_daily_summary");
