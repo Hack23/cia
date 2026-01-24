@@ -37,7 +37,7 @@ import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
  * The Class RefreshDataViewsService.
  */
 @Service
-@Transactional(propagation = Propagation.REQUIRED,timeout=1200)
+@Transactional(propagation = Propagation.REQUIRED,timeout=3600)
 public final class RefreshDataViewsService extends
 		AbstractBusinessServiceImpl<RefreshDataViewsRequest, RefreshDataViewsResponse> {
 

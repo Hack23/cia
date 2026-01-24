@@ -30,13 +30,13 @@ import com.hack23.cia.service.data.api.ViewDataManager;
 /**
  * The Class ViewDataManagerImpl.
  * 
- * Note: REFRESH MATERIALIZED VIEW operations in PostgreSQL hold an exclusive lock
- * only briefly during the final data swap, not throughout the query execution.
- * The bulk of the work is done with a lighter lock, so read operations on the
- * views are minimally impacted during refresh.
+ * Note: REFRESH MATERIALIZED VIEW (without CONCURRENTLY) in PostgreSQL takes an
+ * ACCESS EXCLUSIVE lock on the materialized view for the entire duration of the
+ * refresh, blocking both reads and writes. If minimal read disruption is required,
+ * use REFRESH MATERIALIZED VIEW CONCURRENTLY (which requires a unique index on the
+ * materialized view). See PostgreSQL documentation for details on concurrent refresh.
  */
 @Service
-@Transactional(timeout = 3600)
 final class ViewDataManagerImpl implements ViewDataManager {
 
 	/** The data source. */
@@ -67,8 +67,6 @@ final class ViewDataManagerImpl implements ViewDataManager {
 		jdbcTemplate.execute("update document_person_reference_da_0 set party_short_code='L' where party_short_code='FP' or party_short_code='fp'");
 		
 		// Refresh materialized views in dependency order (Level 0 -> Level 4)
-		// Note: REFRESH MATERIALIZED VIEW in PostgreSQL uses AccessExclusiveLock only briefly
-		// during the final data swap. Most of the work is done with lighter locks that allow reads.
 		
 		// Level 0: No dependencies on other materialized views
 		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_committee_decisions");

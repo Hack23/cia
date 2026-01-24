@@ -1172,8 +1172,11 @@ tail -50 extract_sample_data.log
    ```
    ERROR: canceling statement due to statement timeout
    ```
-   - **Cause**: Refresh takes longer than configured timeout (was 30 minutes, now 60 minutes)
-   - **Solution**: Timeout increased to 3600 seconds in ViewDataManagerImpl and JobContextHolderImpl
+   - **Cause**: Refresh takes longer than the configured transaction timeout (increased from 30 minutes to 60 minutes / 3600 seconds)
+   - **Solution**: The effective timeout is configured at the outermost transaction boundary:
+     - `JobContextHolderImpl.refreshViews()`: 3600 seconds (for scheduled Quartz jobs)
+     - `RefreshDataViewsService`: 3600 seconds (for admin UI refresh action)
+   - **Note**: Outer `@Transactional` timeouts override inner ones, so the timeout must be set where the transaction begins
 
 3. **Concurrent Refresh Conflict**
    ```
