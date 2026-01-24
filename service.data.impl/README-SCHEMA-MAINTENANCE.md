@@ -1236,11 +1236,16 @@ WHERE query LIKE '%REFRESH MATERIALIZED VIEW%';
 
 5. **Monitor Refresh Performance**:
    ```sql
-   -- Check how long views typically take to refresh
-   SELECT schemaname, matviewname, last_refresh 
-   FROM pg_matviews 
-   WHERE schemaname = 'public'
-   ORDER BY last_refresh DESC NULLS LAST;
+   -- Monitor currently running materialized view refreshes and their durations
+   SELECT
+       pid,
+       now() - query_start AS running_for,
+       usename,
+       datname,
+       query
+   FROM pg_stat_activity
+   WHERE state = 'active'
+     AND query ILIKE 'REFRESH MATERIALIZED VIEW%';
    ```
 
 **Prevention:**
