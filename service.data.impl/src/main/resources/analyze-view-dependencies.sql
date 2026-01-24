@@ -11,7 +11,7 @@
 --     psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/analyze-view-dependencies.sql
 --
 --   Save Part 1 (basic dependencies) to CSV file only:
---     psql -U postgres -d cia_dev -t -A -F',' -c "COPY (SELECT dependent_ns.nspname AS dependent_schema, dependent_view.relname AS dependent_view, source_ns.nspname AS source_schema, source_table.relname AS source_object, CASE source_table.relkind WHEN 'r' THEN 'TABLE' WHEN 'v' THEN 'VIEW' WHEN 'm' THEN 'MATERIALIZED VIEW' ELSE source_table.relkind END AS source_type FROM pg_depend JOIN pg_rewrite ON pg_depend.objid = pg_rewrite.oid JOIN pg_class AS dependent_view ON pg_rewrite.ev_class = dependent_view.oid JOIN pg_class AS source_table ON pg_depend.refobjid = source_table.oid JOIN pg_namespace dependent_ns ON dependent_ns.oid = dependent_view.relnamespace JOIN pg_namespace source_ns ON source_ns.oid = source_table.relnamespace WHERE dependent_view.relkind IN ('v', 'm') AND source_table.relkind IN ('v', 'm', 'r') AND pg_depend.deptype = 'n' AND dependent_ns.nspname = 'public' ORDER BY dependent_schema, dependent_view, source_object) TO STDOUT WITH (FORMAT CSV, HEADER);" > view_dependencies.csv
+--     psql -U postgres -d cia_dev -c "COPY (SELECT dependent_ns.nspname AS dependent_schema, dependent_view.relname AS dependent_view, source_ns.nspname AS source_schema, source_table.relname AS source_object, CASE source_table.relkind WHEN 'r' THEN 'TABLE' WHEN 'v' THEN 'VIEW' WHEN 'm' THEN 'MATERIALIZED VIEW' ELSE source_table.relkind END AS source_type FROM pg_depend JOIN pg_rewrite ON pg_depend.objid = pg_rewrite.oid JOIN pg_class AS dependent_view ON pg_rewrite.ev_class = dependent_view.oid JOIN pg_class AS source_table ON pg_depend.refobjid = source_table.oid JOIN pg_namespace dependent_ns ON dependent_ns.oid = dependent_view.relnamespace JOIN pg_namespace source_ns ON source_ns.oid = source_table.relnamespace WHERE dependent_view.relkind IN ('v', 'm') AND source_table.relkind IN ('v', 'm', 'r') AND pg_depend.deptype = 'n' AND dependent_ns.nspname = 'public' ORDER BY dependent_schema, dependent_view, source_object) TO STDOUT WITH (FORMAT CSV, HEADER);" > view_dependencies.csv
 --
 -- Output:
 --   1. Basic dependency report (CSV format) - includes both regular and materialized views
@@ -135,7 +135,7 @@ SELECT
          WHERE md.view_name = md2.view_name),
         'None'
     ) AS depends_on_matviews,
-    'REFRESH MATERIALIZED VIEW ' || view_name || ';' AS refresh_command
+    format('REFRESH MATERIALIZED VIEW %I.%I;', 'public', view_name) AS refresh_command
 FROM max_depths md2
 ORDER BY max_depth, view_name;
 

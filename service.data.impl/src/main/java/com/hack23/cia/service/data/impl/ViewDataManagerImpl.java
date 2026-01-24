@@ -18,12 +18,13 @@
 */
 package com.hack23.cia.service.data.impl;
 
+import java.util.List;
+
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.hack23.cia.service.data.api.ViewDataManager;
 
@@ -66,45 +67,56 @@ final class ViewDataManagerImpl implements ViewDataManager {
 		jdbcTemplate.execute("update committee_document_data set org='L' where org='FP' or org='fp'");
 		jdbcTemplate.execute("update document_person_reference_da_0 set party_short_code='L' where party_short_code='FP' or party_short_code='fp'");
 		
-		// Refresh materialized views in dependency order (Level 0 -> Level 4)
+		// Dynamically refresh materialized views in dependency order
+		// Query uses same logic as refresh-all-views.sql to calculate dependency levels
+		final String dependencyOrderQuery = """
+			WITH RECURSIVE 
+			view_deps AS (
+			    SELECT DISTINCT
+			        dependent_view.relname AS view_name,
+			        source_table.relname AS depends_on,
+			        CASE WHEN source_table.relkind = 'm' THEN TRUE ELSE FALSE END AS depends_on_matview
+			    FROM pg_depend
+			    JOIN pg_rewrite ON pg_depend.objid = pg_rewrite.oid
+			    JOIN pg_class AS dependent_view ON pg_rewrite.ev_class = dependent_view.oid
+			    JOIN pg_class AS source_table ON pg_depend.refobjid = source_table.oid
+			    JOIN pg_namespace dependent_ns ON dependent_ns.oid = dependent_view.relnamespace
+			    JOIN pg_namespace source_ns ON source_ns.oid = source_table.relnamespace
+			    WHERE dependent_view.relkind = 'm'
+			      AND source_table.relkind IN ('v', 'm', 'r')
+			      AND pg_depend.deptype = 'n'
+			      AND dependent_ns.nspname = 'public'
+			      AND source_ns.nspname = 'public'
+			),
+			mv_dependencies AS (
+			    SELECT view_name, depends_on FROM view_deps WHERE depends_on_matview = TRUE
+			),
+			all_mvs AS (
+			    SELECT matviewname AS view_name FROM pg_matviews WHERE schemaname = 'public'
+			),
+			dependency_depth AS (
+			    SELECT am.view_name, 0 AS depth, ARRAY[am.view_name] AS path
+			    FROM all_mvs am
+			    WHERE NOT EXISTS (SELECT 1 FROM mv_dependencies md WHERE md.view_name = am.view_name)
+			    UNION ALL
+			    SELECT md.view_name, dd.depth + 1, dd.path || md.view_name
+			    FROM mv_dependencies md
+			    JOIN dependency_depth dd ON md.depends_on = dd.view_name
+			    WHERE NOT (md.view_name = ANY(dd.path))
+			),
+			max_depths AS (
+			    SELECT view_name, MAX(depth) as max_depth FROM dependency_depth GROUP BY view_name
+			)
+			SELECT view_name FROM max_depths ORDER BY max_depth, view_name
+			""";
 		
-		// Level 0: No dependencies on other materialized views
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_committee_decisions");
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_document_type_daily_summary");
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_org_document_daily_summary");
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_politician_document");
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_summary");
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_worldbank_indicator_data_country_summary");
+		// Get ordered list of views to refresh
+		final List<String> viewsToRefresh = jdbcTemplate.queryForList(dependencyOrderQuery, String.class);
 		
-		// Level 1: Depend on Level 0 views
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_committee_ballot_decision_summary");
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_committee_decision_type_org_summary");
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_committee_decision_type_summary");
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_party_document_daily_summary");
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_politician_document_daily_summary");
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_politician_document_summary");
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_party_summary");
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_summary_daily");
-		
-		// Level 2: Depend on Level 1 views
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_committee_ballot_decision_party_summary");
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_party_summary_daily");
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_politician_summary");
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_summary_annual");
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_summary_monthly");
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_summary_weekly");
-		
-		// Level 3: Depend on Level 2 views
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_committee_ballot_decision_politician_summary");
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_party_summary_annual");
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_party_summary_monthly");
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_party_summary_weekly");
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_politician_summary_daily");
-		
-		// Level 4: Depend on Level 3 views
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_politician_summary_annual");
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_politician_summary_monthly");
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_politician_summary_weekly");
+		// Refresh each view in dependency order
+		for (final String viewName : viewsToRefresh) {
+			jdbcTemplate.execute("REFRESH MATERIALIZED VIEW " + viewName);
+		}
 	}
 
 }

@@ -151,10 +151,11 @@ psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/analyze-view
 
 **Java Integration:**
 The view refresh is integrated into the application's scheduled job system:
-- Class: `com.hack23.cia.service.data.impl.ViewDataManagerImpl`
-- Transaction timeout: 3600 seconds (60 minutes)
+- Transaction boundaries: `com.hack23.cia.service.impl.task.JobContextHolderImpl.refreshViews()` and `com.hack23.cia.service.impl.action.admin.RefreshDataViewsService`
+- View executor: `com.hack23.cia.service.data.impl.ViewDataManagerImpl` (dynamically queries and refreshes views)
+- Transaction timeout: 3600 seconds (60 minutes), configured on the outer transaction boundaries (JobContextHolderImpl.refreshViews() and RefreshDataViewsService)
 - Job: `RefreshViewsJob` (Quartz scheduler)
-- Method: `refreshViews()` - executes all refreshes in correct dependency order
+- Method: `refreshViews()` - dynamically discovers dependency order and executes all refreshes
 
 **Critical Notes:**
 - ⚠️ Views MUST be refreshed in dependency order to prevent constraint violations
@@ -1233,8 +1234,12 @@ WHERE query LIKE '%REFRESH MATERIALIZED VIEW%';
 
 4. **Check Transaction Configuration**:
    ```java
-   // Verify timeout in ViewDataManagerImpl.java
-   @Transactional(timeout = 3600)  // Should be 3600 (60 min), not 1800 (30 min)
+   // Verify timeout configuration at outer transaction boundaries
+   // JobContextHolderImpl.refreshViews()
+   @Transactional(propagation = Propagation.REQUIRED, timeout = 3600)
+   
+   // RefreshDataViewsService
+   @Transactional(propagation = Propagation.REQUIRED, timeout = 3600)
    ```
 
 5. **Monitor Refresh Performance**:
