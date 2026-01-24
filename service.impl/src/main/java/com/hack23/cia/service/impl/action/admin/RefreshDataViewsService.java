@@ -35,9 +35,14 @@ import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
 
 /**
  * The Class RefreshDataViewsService.
+ * 
+ * Note: This service does not use @Transactional to avoid holding PostgreSQL
+ * ACCESS EXCLUSIVE locks for extended periods. The view refresh runs in autocommit
+ * mode (via JobContextHolderImpl.refreshViews() with NOT_SUPPORTED propagation),
+ * allowing each REFRESH MATERIALIZED VIEW to commit immediately and release locks.
+ * Event creation is handled separately in its own transaction.
  */
 @Service
-@Transactional(propagation = Propagation.REQUIRED,timeout=1200)
 public final class RefreshDataViewsService extends
 		AbstractBusinessServiceImpl<RefreshDataViewsRequest, RefreshDataViewsResponse> {
 
@@ -63,13 +68,28 @@ public final class RefreshDataViewsService extends
 		}
 
 		final RefreshDataViewsResponse response = new RefreshDataViewsResponse(ServiceResult.SUCCESS);
+		
+		// Refresh views (runs in autocommit mode to minimize lock duration)
 		viewDataManager.refreshViews();
+		
+		// Create application event in a separate transaction
+		createApplicationEvent(serviceRequest, response);
 
+		return response;
+	}
+	
+	/**
+	 * Create application event in a new transaction after refresh completes.
+	 * Separate transaction prevents event creation from being affected by any
+	 * issues in the refresh operation.
+	 */
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
+	private void createApplicationEvent(
+			final RefreshDataViewsRequest serviceRequest,
+			final RefreshDataViewsResponse response) {
 		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);
 		eventRequest.setApplicationMessage(response.getResult().toString());
 		createApplicationEventService.processService(eventRequest);
-
-		return response;
 	}
 
 

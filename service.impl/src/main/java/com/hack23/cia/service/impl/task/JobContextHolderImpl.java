@@ -31,7 +31,6 @@ import com.hack23.cia.service.impl.rules.RulesManager;
  * The Class JobContextHolder.
  */
 @Service("JobContextHolder")
-@Transactional(propagation = Propagation.REQUIRED,timeout=1200)
 public final class JobContextHolderImpl implements JobContextHolder {
 
 	/** The data agent api. */
@@ -75,6 +74,7 @@ public final class JobContextHolderImpl implements JobContextHolder {
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.NOT_SUPPORTED)
 	public void refreshViews() {
 		this.viewDataManager.refreshViews();
 	}
