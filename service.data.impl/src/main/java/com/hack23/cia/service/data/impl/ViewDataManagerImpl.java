@@ -54,6 +54,10 @@ final class ViewDataManagerImpl implements ViewDataManager {
 	@Override
 	public void refreshViews() {
 		final JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		
+		// Set statement timeout to 60 minutes (3600 seconds) for long-running refreshes
+		// This provides a safety limit when running outside a Spring transaction
+		jdbcTemplate.setQueryTimeout(3600);
 
 		// Handle FP changed to L for folkpartiet name changed to liberalerna.
 		jdbcTemplate.execute("update vote_data set gender='MAN' where gender='M'");

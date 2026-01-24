@@ -151,15 +151,16 @@ psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/analyze-view
 
 **Java Integration:**
 The view refresh is integrated into the application's scheduled job system:
-- Transaction boundaries: `com.hack23.cia.service.impl.task.JobContextHolderImpl.refreshViews()` and `com.hack23.cia.service.impl.action.admin.RefreshDataViewsService`
-- View executor: `com.hack23.cia.service.data.impl.ViewDataManagerImpl` (dynamically queries and refreshes views)
-- Transaction timeout: 3600 seconds (60 minutes), configured on the outer transaction boundaries (JobContextHolderImpl.refreshViews() and RefreshDataViewsService)
+- Transaction behavior: `com.hack23.cia.service.impl.task.JobContextHolderImpl.refreshViews()` runs with `PROPAGATION_NOT_SUPPORTED` (suspends any existing transaction); view refreshes execute in autocommit mode
+- View executor: `com.hack23.cia.service.data.impl.ViewDataManagerImpl` (dynamically queries dependencies and executes refreshes)
+- Statement timeout: 3600 seconds (60 minutes) enforced via JdbcTemplate.setQueryTimeout() in ViewDataManagerImpl
 - Job: `RefreshViewsJob` (Quartz scheduler)
 - Method: `refreshViews()` - dynamically discovers dependency order and executes all refreshes
 
 **Critical Notes:**
 - ⚠️ Views MUST be refreshed in dependency order to prevent dependency/refresh-order errors (e.g. dependent materialized views referencing not-yet-refreshed views)
-- ⚠️ Transaction timeout set to 60 minutes to handle large datasets
+- ⚠️ Refreshes run in autocommit mode (NOT_SUPPORTED propagation) to release locks immediately after each view completes
+- ⚠️ 60-minute statement timeout enforced via JDBC queryTimeout, not Spring @Transactional
 - ✅ Script includes error handling - continues on individual failures
 - ✅ Progress tracking with timing per level
 - ✅ Automatic discovery - no hardcoded view list
@@ -1173,11 +1174,14 @@ tail -50 extract_sample_data.log
    ```
    ERROR: canceling statement due to statement timeout
    ```
-   - **Cause**: Refresh takes longer than the configured transaction timeout (increased from 30 minutes to 60 minutes / 3600 seconds)
-   - **Solution**: The effective timeout is configured at the outermost transaction boundary:
-     - `JobContextHolderImpl.refreshViews()`: 3600 seconds (for scheduled Quartz jobs)
-     - `RefreshDataViewsService`: 3600 seconds (for admin UI refresh action)
-   - **Note**: Outer `@Transactional` timeouts override inner ones, so the timeout must be set where the transaction begins
+   - **Cause**: Refresh takes longer than the configured statement timeout (60 minutes / 3600 seconds)
+   - **Solution**: The statement timeout is configured via `JdbcTemplate.setQueryTimeout(3600)` in `ViewDataManagerImpl.refreshViews()`
+   - **Implementation details**:
+     - `JobContextHolderImpl.refreshViews()` uses `@Transactional(propagation = NOT_SUPPORTED)`, which suspends any existing Spring transaction
+     - View refreshes execute in autocommit mode, with each REFRESH MATERIALIZED VIEW committing immediately
+     - JDBC statement timeout (60 minutes) provides a safety limit for the entire refresh operation
+     - To increase timeout: modify the `setQueryTimeout()` value in ViewDataManagerImpl (value is in seconds)
+   - **Note**: Autocommit mode (NOT_SUPPORTED) allows each view refresh to commit and release locks immediately, dramatically reducing lock contention compared to a single long-running transaction
 
 3. **Concurrent Refresh Conflict**
    ```
@@ -1232,14 +1236,14 @@ WHERE query LIKE '%REFRESH MATERIALIZED VIEW%';
    -- See analyze-view-dependencies.sql output for complete order
    ```
 
-4. **Check Transaction Configuration**:
+4. **Check Statement Timeout Configuration**:
    ```java
-   // Verify timeout configuration at outer transaction boundaries
-   // JobContextHolderImpl.refreshViews()
-   @Transactional(propagation = Propagation.REQUIRED, timeout = 3600)
+   // Verify statement timeout in ViewDataManagerImpl.refreshViews()
+   jdbcTemplate.setQueryTimeout(3600);  // 3600 seconds = 60 minutes
    
-   // RefreshDataViewsService
-   @Transactional(propagation = Propagation.REQUIRED, timeout = 3600)
+   // Verify transaction propagation in JobContextHolderImpl.refreshViews()
+   @Transactional(propagation = Propagation.NOT_SUPPORTED)
+   // This suspends any existing transaction, allowing autocommit mode
    ```
 
 5. **Monitor Refresh Performance**:

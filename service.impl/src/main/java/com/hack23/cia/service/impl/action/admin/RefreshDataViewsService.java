@@ -35,6 +35,12 @@ import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
 
 /**
  * The Class RefreshDataViewsService.
+ * 
+ * Note: This service does not use @Transactional to avoid holding PostgreSQL
+ * ACCESS EXCLUSIVE locks for extended periods. The view refresh runs in autocommit
+ * mode (via JobContextHolderImpl.refreshViews() with NOT_SUPPORTED propagation),
+ * allowing each REFRESH MATERIALIZED VIEW to commit immediately and release locks.
+ * Event creation is handled separately in its own transaction.
  */
 @Service
 public final class RefreshDataViewsService extends
@@ -63,30 +69,22 @@ public final class RefreshDataViewsService extends
 
 		final RefreshDataViewsResponse response = new RefreshDataViewsResponse(ServiceResult.SUCCESS);
 		
-		// Refresh views in a separate transaction with appropriate timeout
-		refreshViewsInTransaction();
+		// Refresh views (runs in autocommit mode to minimize lock duration)
+		viewDataManager.refreshViews();
 		
-		// Create application event in a new transaction after refresh completes
-		createApplicationEventInNewTransaction(serviceRequest, response);
+		// Create application event in a separate transaction
+		createApplicationEvent(serviceRequest, response);
 
 		return response;
 	}
 	
 	/**
-	 * Refresh views in a transaction with 60-minute timeout.
-	 */
-	@Transactional(propagation = Propagation.REQUIRED, timeout = 3600)
-	private void refreshViewsInTransaction() {
-		viewDataManager.refreshViews();
-	}
-	
-	/**
 	 * Create application event in a new transaction after refresh completes.
-	 * This prevents extending lock retention by keeping the event creation
-	 * separate from the long-running view refresh transaction.
+	 * Separate transaction prevents event creation from being affected by any
+	 * issues in the refresh operation.
 	 */
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	private void createApplicationEventInNewTransaction(
+	private void createApplicationEvent(
 			final RefreshDataViewsRequest serviceRequest,
 			final RefreshDataViewsResponse response) {
 		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);
