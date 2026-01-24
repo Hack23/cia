@@ -78,6 +78,7 @@
         This view was created in v1.61 (2026-01-19) but dropped by misplaced DROP statement (2026-01-22).
     </comment>
     
+    <dropView viewName="view_riksdagen_party_coalition_evolution"/>
     <createView viewName="view_riksdagen_party_coalition_evolution">
         <![CDATA[
 WITH election_cycle_periods AS (
@@ -277,6 +278,7 @@ ORDER BY ws.party_1, ws.party_2, ws.election_cycle_id, ws.cycle_year, ws.semeste
         This view was created in v1.61 (2026-01-19) but dropped by misplaced DROP statement (2026-01-22).
     </comment>
     
+    <dropView viewName="view_riksdagen_party_electoral_trends"/>
     <createView viewName="view_riksdagen_party_electoral_trends">
         <![CDATA[
 WITH election_cycle_periods AS (
@@ -522,6 +524,7 @@ ORDER BY ws.party, ws.election_cycle_id, ws.cycle_year, ws.semester;
         Dependencies: All 5 core intelligence views must exist
     </comment>
     
+    <dropView viewName="view_riksdagen_intelligence_dashboard"/>
     <createView viewName="view_riksdagen_intelligence_dashboard">
         <![CDATA[
 WITH momentum_summary AS (
