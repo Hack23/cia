@@ -37,7 +37,6 @@ import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
  * The Class RefreshDataViewsService.
  */
 @Service
-@Transactional(propagation = Propagation.REQUIRED,timeout=3600)
 public final class RefreshDataViewsService extends
 		AbstractBusinessServiceImpl<RefreshDataViewsRequest, RefreshDataViewsResponse> {
 
@@ -63,13 +62,36 @@ public final class RefreshDataViewsService extends
 		}
 
 		final RefreshDataViewsResponse response = new RefreshDataViewsResponse(ServiceResult.SUCCESS);
-		viewDataManager.refreshViews();
+		
+		// Refresh views in a separate transaction with appropriate timeout
+		refreshViewsInTransaction();
+		
+		// Create application event in a new transaction after refresh completes
+		createApplicationEventInNewTransaction(serviceRequest, response);
 
+		return response;
+	}
+	
+	/**
+	 * Refresh views in a transaction with 60-minute timeout.
+	 */
+	@Transactional(propagation = Propagation.REQUIRED, timeout = 3600)
+	private void refreshViewsInTransaction() {
+		viewDataManager.refreshViews();
+	}
+	
+	/**
+	 * Create application event in a new transaction after refresh completes.
+	 * This prevents extending lock retention by keeping the event creation
+	 * separate from the long-running view refresh transaction.
+	 */
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
+	private void createApplicationEventInNewTransaction(
+			final RefreshDataViewsRequest serviceRequest,
+			final RefreshDataViewsResponse response) {
 		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);
 		eventRequest.setApplicationMessage(response.getResult().toString());
 		createApplicationEventService.processService(eventRequest);
-
-		return response;
 	}
 
 

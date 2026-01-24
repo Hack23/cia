@@ -158,7 +158,7 @@ The view refresh is integrated into the application's scheduled job system:
 - Method: `refreshViews()` - dynamically discovers dependency order and executes all refreshes
 
 **Critical Notes:**
-- ⚠️ Views MUST be refreshed in dependency order to prevent constraint violations
+- ⚠️ Views MUST be refreshed in dependency order to prevent dependency/refresh-order errors (e.g. dependent materialized views referencing not-yet-refreshed views)
 - ⚠️ Transaction timeout set to 60 minutes to handle large datasets
 - ✅ Script includes error handling - continues on individual failures
 - ✅ Progress tracking with timing per level

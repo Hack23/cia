@@ -74,7 +74,7 @@ public final class JobContextHolderImpl implements JobContextHolder {
 	}
 
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED, timeout = 3600)
+	@Transactional(propagation = Propagation.NOT_SUPPORTED)
 	public void refreshViews() {
 		this.viewDataManager.refreshViews();
 	}

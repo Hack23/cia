@@ -69,6 +69,7 @@ final class ViewDataManagerImpl implements ViewDataManager {
 		
 		// Dynamically refresh materialized views in dependency order
 		// Query uses same logic as refresh-all-views.sql to calculate dependency levels
+		// Returns schema-qualified, properly quoted refresh statements
 		final String dependencyOrderQuery = """
 			WITH RECURSIVE 
 			view_deps AS (
@@ -92,30 +93,35 @@ final class ViewDataManagerImpl implements ViewDataManager {
 			    SELECT view_name, depends_on FROM view_deps WHERE depends_on_matview = TRUE
 			),
 			all_mvs AS (
-			    SELECT matviewname AS view_name FROM pg_matviews WHERE schemaname = 'public'
+			    SELECT schemaname, matviewname FROM pg_matviews WHERE schemaname = 'public'
 			),
 			dependency_depth AS (
-			    SELECT am.view_name, 0 AS depth, ARRAY[am.view_name] AS path
+			    SELECT am.schemaname, am.matviewname AS view_name, 0 AS depth, ARRAY[am.matviewname] AS path
 			    FROM all_mvs am
-			    WHERE NOT EXISTS (SELECT 1 FROM mv_dependencies md WHERE md.view_name = am.view_name)
+			    WHERE NOT EXISTS (SELECT 1 FROM mv_dependencies md WHERE md.view_name = am.matviewname)
 			    UNION ALL
-			    SELECT md.view_name, dd.depth + 1, dd.path || md.view_name
+			    SELECT am.schemaname, md.view_name, dd.depth + 1, dd.path || md.view_name
 			    FROM mv_dependencies md
 			    JOIN dependency_depth dd ON md.depends_on = dd.view_name
+			    JOIN all_mvs am ON am.matviewname = md.view_name
 			    WHERE NOT (md.view_name = ANY(dd.path))
 			),
 			max_depths AS (
-			    SELECT view_name, MAX(depth) as max_depth FROM dependency_depth GROUP BY view_name
+			    SELECT schemaname, view_name, MAX(depth) as max_depth 
+			    FROM dependency_depth 
+			    GROUP BY schemaname, view_name
 			)
-			SELECT view_name FROM max_depths ORDER BY max_depth, view_name
+			SELECT format('REFRESH MATERIALIZED VIEW %I.%I', schemaname, view_name) AS refresh_stmt
+			FROM max_depths 
+			ORDER BY max_depth, schemaname, view_name
 			""";
 		
-		// Get ordered list of views to refresh
-		final List<String> viewsToRefresh = jdbcTemplate.queryForList(dependencyOrderQuery, String.class);
+		// Get ordered list of properly-quoted refresh statements
+		final List<String> refreshStatements = jdbcTemplate.queryForList(dependencyOrderQuery, String.class);
 		
 		// Refresh each view in dependency order
-		for (final String viewName : viewsToRefresh) {
-			jdbcTemplate.execute("REFRESH MATERIALIZED VIEW " + viewName);
+		for (final String refreshStatement : refreshStatements) {
+			jdbcTemplate.execute(refreshStatement);
 		}
 	}
 
