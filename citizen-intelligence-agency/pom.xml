@@ -28,7 +28,7 @@
     </site>
   </distributionManagement>
   <properties>
-    <cia.project.versions.selenium>4.39.0</cia.project.versions.selenium>
+    <cia.project.versions.selenium>4.40.0</cia.project.versions.selenium>
   </properties>
   <dependencyManagement>
     <dependencies>
