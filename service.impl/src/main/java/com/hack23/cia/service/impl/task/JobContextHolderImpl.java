@@ -31,7 +31,7 @@ import com.hack23.cia.service.impl.rules.RulesManager;
  * The Class JobContextHolder.
  */
 @Service("JobContextHolder")
-@Transactional(propagation = Propagation.REQUIRED,timeout=1200)
+@Transactional(propagation = Propagation.REQUIRED,timeout=3600)
 public final class JobContextHolderImpl implements JobContextHolder {
 
 	/** The data agent api. */

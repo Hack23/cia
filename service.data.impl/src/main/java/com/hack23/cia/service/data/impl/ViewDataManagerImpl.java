@@ -31,7 +31,7 @@ import com.hack23.cia.service.data.api.ViewDataManager;
  * The Class ViewDataManagerImpl.
  */
 @Service
-@Transactional(timeout = 1800)
+@Transactional(timeout = 3600)
 final class ViewDataManagerImpl implements ViewDataManager {
 
 	/** The data source. */
@@ -50,7 +50,6 @@ final class ViewDataManagerImpl implements ViewDataManager {
 		final JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
 		// Handle FP changed to L for folkpartiet name changed to liberalerna.
-
 		jdbcTemplate.execute("update vote_data set gender='MAN' where gender='M'");
 		jdbcTemplate.execute("update vote_data set gender='KVINNA' where gender='K'");
 		jdbcTemplate.execute("update vote_data set gender='MAN' where gender='man'");
@@ -61,35 +60,45 @@ final class ViewDataManagerImpl implements ViewDataManager {
 		jdbcTemplate.execute("update document_data set org='L' where org='FP' or org='fp'");
 		jdbcTemplate.execute("update committee_document_data set org='L' where org='FP' or org='fp'");
 		jdbcTemplate.execute("update document_person_reference_da_0 set party_short_code='L' where party_short_code='FP' or party_short_code='fp'");
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_worldbank_indicator_data_country_summary");
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_politician_document");
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_org_document_daily_summary");
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_document_type_daily_summary");
+		
+		// Refresh materialized views in dependency order (Level 0 -> Level 4)
+		// Level 0: No dependencies on other materialized views
 		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_committee_decisions");
+		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_document_type_daily_summary");
+		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_org_document_daily_summary");
+		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_politician_document");
 		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_summary");
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_summary_daily");
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_summary_weekly");
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_summary_annual;");
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_summary_monthly");
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_party_summary");
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_party_summary_daily");
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_party_summary_weekly");
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_party_summary_monthly");
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_party_summary_annual");
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_politician_summary");
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_politician_summary_daily");
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_politician_summary_annual");
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_politician_summary_monthly");
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_politician_summary_weekly");
+		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_worldbank_indicator_data_country_summary");
+		
+		// Level 1: Depend on Level 0 views
 		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_committee_ballot_decision_summary");
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_committee_ballot_decision_party_summary");
-		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_committee_ballot_decision_politician_summary");
 		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_committee_decision_type_org_summary");
 		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_committee_decision_type_summary");
 		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_party_document_daily_summary");
 		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_politician_document_daily_summary");
 		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_politician_document_summary");
+		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_party_summary");
+		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_summary_daily");
 		
+		// Level 2: Depend on Level 1 views
+		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_committee_ballot_decision_party_summary");
+		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_party_summary_daily");
+		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_politician_summary");
+		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_summary_annual");
+		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_summary_monthly");
+		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_summary_weekly");
+		
+		// Level 3: Depend on Level 2 views
+		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_committee_ballot_decision_politician_summary");
+		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_party_summary_annual");
+		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_party_summary_monthly");
+		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_party_summary_weekly");
+		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_politician_summary_daily");
+		
+		// Level 4: Depend on Level 3 views
+		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_politician_summary_annual");
+		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_politician_summary_monthly");
+		jdbcTemplate.execute("REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_politician_summary_weekly");
 	}
 
 }
