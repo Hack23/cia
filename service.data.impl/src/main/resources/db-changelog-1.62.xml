@@ -78,8 +78,7 @@
         This view was created in v1.61 (2026-01-19) but dropped by misplaced DROP statement (2026-01-22).
     </comment>
     
-    <dropView viewName="view_riksdagen_party_coalition_evolution"/>
-    <createView viewName="view_riksdagen_party_coalition_evolution">
+    <createView viewName="view_riksdagen_party_coalition_evolution" replaceIfExists="true">
         <![CDATA[
 WITH election_cycle_periods AS (
     SELECT 
@@ -278,8 +277,7 @@ ORDER BY ws.party_1, ws.party_2, ws.election_cycle_id, ws.cycle_year, ws.semeste
         This view was created in v1.61 (2026-01-19) but dropped by misplaced DROP statement (2026-01-22).
     </comment>
     
-    <dropView viewName="view_riksdagen_party_electoral_trends"/>
-    <createView viewName="view_riksdagen_party_electoral_trends">
+    <createView viewName="view_riksdagen_party_electoral_trends" replaceIfExists="true">
         <![CDATA[
 WITH election_cycle_periods AS (
     SELECT 
@@ -524,9 +522,8 @@ ORDER BY ws.party, ws.election_cycle_id, ws.cycle_year, ws.semester;
         Dependencies: All 5 core intelligence views must exist
     </comment>
     
-    <dropView viewName="view_riksdagen_intelligence_dashboard"/>
-    <createView viewName="view_riksdagen_intelligence_dashboard">
-        <![CDATA[
+    <sql><![CDATA[
+CREATE OR REPLACE VIEW view_riksdagen_intelligence_dashboard AS
 WITH momentum_summary AS (
     -- Aggregate momentum indicators independently
     SELECT
@@ -622,8 +619,7 @@ CROSS JOIN anomaly_summary ans
 CROSS JOIN influence_summary ins
 CROSS JOIN resilience_summary rs
 CROSS JOIN vote_stats vs;
-        ]]>
-    </createView>
+    ]]></sql>
     
     <rollback>
         <sql>DROP VIEW IF EXISTS view_riksdagen_intelligence_dashboard CASCADE;</sql>
