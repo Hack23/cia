@@ -133,10 +133,10 @@ psql -U postgres -d cia_dev -f ../src/main/resources/validate-views-with-timeout
 - Filters out PostgreSQL system views (pg_*)
 
 **Generated Reports:**
-- `validation_report.csv` - Full validation results for all CIA application views (excludes PostgreSQL system views like pg_stat_statements)
+- `validation_report.csv` - Full validation results for all CIA application views (excludes PostgreSQL system views like pg_stat_statements) - example output from test run, regenerate when executing in production
 - `validation_summary.csv` - Summary statistics by complexity category
 - `problematic_views.csv` - Views with timeouts or errors
-- `view_dependencies.csv` - Complete dependency graph
+- `view_dependencies.csv` - Dependency graph (views with dependencies only; views without dependencies are not included)
 - `empty_views.csv` - Views with no data
 
 **Expected Results:**

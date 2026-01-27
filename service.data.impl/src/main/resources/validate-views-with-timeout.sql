@@ -20,7 +20,11 @@
 --   - validation_report.csv: Full validation results
 --   - validation_summary.csv: Summary statistics
 --   - problematic_views.csv: Views that timed out or failed
---   - view_dependencies.csv: View dependency graph
+--   - view_dependencies.csv: Dependency graph (views with dependencies only)
+--   - empty_views.csv: Views with no data
+--
+-- Note: view_dependencies.csv only includes views that have dependencies.
+--       Views without dependencies are listed in validation_report.csv but not in view_dependencies.csv.
 
 \set ON_ERROR_STOP off
 \timing on
