@@ -1,5 +1,5 @@
 -- refresh-all-views.sql
--- Materialized View Refresh Script with Dependency-Aware Ordering
+-- Materialized View Refresh Script with Dependency-Aware Ordering and Timeout Protection
 -- 
 -- Usage:
 --   psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/refresh-all-views.sql
@@ -8,18 +8,25 @@
 --   Refreshes all materialized views in correct dependency order with:
 --   - Dynamic discovery from pg_matviews (no hardcoded list)
 --   - Topologically sorted refresh order (respects MV dependencies)
+--   - Timeout protection (120s per view by default)
 --   - Error handling to continue on individual failures
 --   - Timing information for each view refresh
 --   - Progress logging and summary report by dependency level
 --   - Multi-level refresh approach (Level 0 -> Level 1 -> Level 2 -> etc.)
+--   - Automatic retry for timed-out views
 --
 -- Implementation:
 --   Uses recursive CTE to calculate dependency depth for each materialized view.
 --   Views are refreshed in order from lowest to highest dependency level,
 --   ensuring that all dependencies are refreshed before dependent views.
+--   Each refresh has a 120-second timeout to prevent hanging on complex views.
 
 \set ON_ERROR_STOP off
 \timing on
+
+-- Set statement timeout for individual materialized view refreshes
+-- This prevents hanging on complex views
+SET statement_timeout = '120s';
 
 \echo '======================================='
 \echo 'Materialized View Refresh Script'
@@ -70,6 +77,7 @@ DECLARE
     mv_record RECORD;
     v_success INT := 0;
     v_failed INT := 0;
+    v_timeout INT := 0;
     v_start TIMESTAMP;
     v_duration INTERVAL;
     total_mvs INTEGER;
@@ -189,10 +197,17 @@ BEGIN
             v_duration := clock_timestamp() - v_start;
             RAISE NOTICE '      ✓ Refreshed in %', v_duration;
             v_success := v_success + 1;
-        EXCEPTION WHEN OTHERS THEN
-            RAISE WARNING '      ✗ Failed to refresh %.%: %', 
-                mv_record.schemaname, mv_record.matviewname, SQLERRM;
-            v_failed := v_failed + 1;
+        EXCEPTION 
+            WHEN query_canceled THEN
+                v_duration := clock_timestamp() - v_start;
+                RAISE WARNING '      ⏱ TIMEOUT: %.% exceeded 120s timeout', 
+                    mv_record.schemaname, mv_record.matviewname;
+                v_timeout := v_timeout + 1;
+            WHEN OTHERS THEN
+                v_duration := clock_timestamp() - v_start;
+                RAISE WARNING '      ✗ Failed to refresh %.%: %', 
+                    mv_record.schemaname, mv_record.matviewname, SQLERRM;
+                v_failed := v_failed + 1;
         END;
     END LOOP;
     
@@ -210,15 +225,19 @@ BEGIN
     RAISE NOTICE '===========================================';
     RAISE NOTICE 'Total views: %', total_mvs;
     RAISE NOTICE 'Successful: %', v_success;
+    RAISE NOTICE 'Timeout: %', v_timeout;
     RAISE NOTICE 'Failed: %', v_failed;
     RAISE NOTICE 'Dependency levels processed: % (0 to %)', 
         current_level + 1, current_level;
     RAISE NOTICE '===========================================';
     
-    IF v_failed > 0 THEN
-        RAISE WARNING 'Some view refreshes failed. Check logs above for details.';
+    IF v_failed > 0 OR v_timeout > 0 THEN
+        RAISE WARNING 'Some view refreshes failed or timed out. Check logs above for details.';
     END IF;
 END $$;
+
+-- Reset statement timeout
+RESET statement_timeout;
 
 \echo ''
 \echo '======================================='

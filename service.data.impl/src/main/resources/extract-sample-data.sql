@@ -103,6 +103,10 @@
 \timing on
 \set VERBOSITY verbose
 
+-- Set statement timeout for individual extraction queries
+-- This prevents hanging on complex views or large tables
+SET statement_timeout = '30s';
+
 \echo '=================================================='
 \echo 'CIA Sample Data Extraction'
 \echo 'Started:' `date`
@@ -2449,3 +2453,9 @@ DROP TABLE IF EXISTS cia_view_row_counts;
 \echo '  - Temporal trend views: 1 sample per time period'
 \echo '  - Non-temporal views: Random sampling (existing behavior)'
 \echo ''
+
+-- Reset statement timeout
+RESET statement_timeout;
+
+\echo ''
+\echo 'Sample data extraction complete with timeout protection (30s per query).'
