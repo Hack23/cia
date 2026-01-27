@@ -6,12 +6,12 @@
 --          complex views that take extreme time to execute
 --
 -- Usage:
---   psql -U eris -d cia_dev -f service.data.impl/src/main/resources/validate-views-with-timeout.sql
+--   psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/validate-views-with-timeout.sql
 --
 -- Features:
 --   - Automatic timeout protection (30s per view by default)
 --   - Dependency level calculation
---   - Performance metrics (EXPLAIN ANALYZE with timeout)
+--   - Performance metrics (execution time measurement with timeout)
 --   - Row count validation
 --   - Error handling and reporting
 --   - Categorization by complexity
