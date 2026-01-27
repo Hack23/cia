@@ -1,6 +1,7 @@
--- Enable detailed query analysis
+-- Enable detailed query analysis with timeout protection
 SET track_io_timing = ON;
 SET enable_timing = ON;
+SET statement_timeout = '60s';  -- 60-second timeout per query
 
 \echo '=========================================================================='
 \echo '=== Coalition Alignment Matrix - Detailed Subquery Analysis          ==='
@@ -8,6 +9,7 @@ SET enable_timing = ON;
 \echo ''
 \echo 'This analysis breaks down the coalition view into individual CTEs'
 \echo 'to identify performance bottlenecks and optimization opportunities.'
+\echo 'Each query has a 60-second timeout for safety.'
 \echo ''
 
 -- ===========================================================================
@@ -378,3 +380,11 @@ ORDER BY attname;
 \echo '=========================================================================='
 \echo '=== Analysis Complete                                                ==='
 \echo '=========================================================================='
+
+-- Reset settings
+RESET statement_timeout;
+RESET track_io_timing;
+RESET enable_timing;
+
+\echo ''
+\echo 'Analysis complete with timeout protection (60s per query).'

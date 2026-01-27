@@ -1,0 +1,5 @@
+complexity_category,total_views,success,empty,timeout,error,avg_time_ms,max_time_ms
+SIMPLE,50,4,46,0,0,1,4
+MODERATE,23,2,21,0,0,1,6
+COMPLEX,12,0,12,0,0,0,1
+VERY_COMPLEX,24,4,20,0,0,2,10

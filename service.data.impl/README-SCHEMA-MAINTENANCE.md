@@ -113,15 +113,54 @@ grep "HEALTH SCORE" health_report.txt  # Should be >80/100
 grep "SUCCESS" validation_report.txt   # Should show 100% coverage
 ```
 
+### View Validation with Timeout Protection
+
+The CIA platform provides comprehensive view validation with timeout protection to prevent hanging on complex views.
+
+**Quick Command:**
+```bash
+# Validate all 107 CIA application views (79 regular + 28 materialized) with timeout protection
+cd service.data.impl/sample-data
+psql -U postgres -d cia_dev -f ../src/main/resources/validate-views-with-timeout.sql
+```
+
+**Features:**
+- 30-second timeout per view to prevent hanging
+- Dependency depth analysis (0-6 levels)
+- Complexity categorization: SIMPLE (0-1), MODERATE (2), COMPLEX (3), VERY_COMPLEX (4+)
+- Separate tracking for success/timeout/error
+- Progress indicators (✓, ✗, ⏱)
+- Filters out PostgreSQL system views (pg_*)
+
+**Generated Reports:**
+- `validation_report.csv` - Full validation results for all CIA application views (excludes PostgreSQL system views like pg_stat_statements) - example output from test run, regenerate when executing in production
+- `validation_summary.csv` - Summary statistics by complexity category
+- `problematic_views.csv` - Views with timeouts or errors
+- `view_dependencies.csv` - Dependency graph (views with dependencies only; views without dependencies are not included)
+- `empty_views.csv` - Views with no data
+
+**Expected Results:**
+- Total views: 107 CIA application views (79 regular + 28 materialized)
+- Execution time: ~2-5 seconds with timeout protection
+- Success rate: 100% (after materialized views are refreshed)
+- PostgreSQL system views (pg_*) are automatically filtered out
+
 ### Materialized View Refresh
 
 The CIA platform uses 28 materialized views organized in a 5-level dependency hierarchy. Views must be refreshed in dependency order to prevent errors.
 
 **Quick Command:**
 ```bash
-# Refresh all materialized views in correct dependency order
+# Refresh all materialized views in correct dependency order with timeout protection
 psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/refresh-all-views.sql
 ```
+
+**Features:**
+- 120-second timeout per view to prevent hanging
+- Automatic dependency-aware ordering (Level 0 → Level 4)
+- Separate tracking for success/timeout/error
+- Progress indicators and level-by-level reporting
+- Continue-on-error behavior
 
 **Expected Performance:**
 - Total views: 28 materialized views
@@ -140,14 +179,54 @@ Level 4 (3 views):  Depend on Level 3 views (deepest nesting)
 
 **Analyze View Dependencies:**
 ```bash
-# Generate detailed dependency report with refresh commands
+# Generate detailed dependency report with refresh commands and statistics
 psql -U postgres -d cia_dev -f service.data.impl/src/main/resources/analyze-view-dependencies.sql
 
 # Output includes:
-# - Basic dependency CSV
-# - Topologically sorted refresh order
+# - Basic dependency CSV (all views)
+# - Topologically sorted refresh order (materialized views)
 # - Ready-to-use REFRESH MATERIALIZED VIEW commands
+# - Dependency statistics (complexity distribution)
 ```
+
+**Features:**
+- 60-second timeout for complex dependency analysis
+- Part 1: Basic dependency CSV for all views
+- Part 2: Materialized view refresh order
+- Part 3: Dependency statistics showing complexity distribution
+- Proper resource cleanup (RESET statement_timeout)
+
+### Sample Data Extraction
+
+The CIA platform provides comprehensive sample data extraction for debugging and testing views.
+
+**Quick Command:**
+```bash
+# Extract sample data from all tables and views with timeout protection
+cd service.data.impl/sample-data
+psql -U postgres -d cia_dev -f ../src/main/resources/extract-sample-data.sql
+```
+
+**Features:**
+- 30-second timeout per extraction query to prevent hanging
+- Complexity-aware sample sizes (200-500 rows depending on entity type)
+- Temporal stratified sampling for time-series data
+- Percentile-based sampling for numerical metrics
+- Categorical stratified sampling for party/committee data
+- Continue-on-error behavior
+
+**Sample Sizes:**
+- Default: 200 rows (general tables/views)
+- Political entities (party/committee/person): 500 rows
+- Documents/Voting: 300 rows
+- Analytical trend views: 500 rows
+- Complete extraction: < 3000 rows (small datasets)
+
+**Generated Artifacts:**
+- `table_<name>_sample.csv` - Sample data from each table
+- `view_<name>_sample.csv` - Sample data from each view
+- `sample_data_manifest.csv` - Complete manifest
+- `distinct_<table>_<column>_values.csv` - Distinct values for key columns
 
 **Java Integration:**
 The view refresh is integrated into the application's scheduled job system:
