@@ -21,9 +21,12 @@ The Citizen Intelligence Agency (CIA) is a volunteer-driven, open-source intelli
 ### Prerequisites
 - Java 25 JDK
 - Maven 3.9.9 or later
+- Ant (for application-specific tasks)
 - PostgreSQL (for full integration testing, review ../service.data.impl/README-SCHEMA-MAINTENANCE.md for task related to any database changes)
 
 ### Build Commands
+
+**Maven** (multi-module project):
 ```bash
 # Clean and install all modules
 mvn clean install
@@ -45,6 +48,24 @@ mvn dependency-check:check
 
 # Generate site documentation
 mvn site
+```
+
+**Ant** (application-specific tasks from citizen-intelligence-agency/build.xml):
+```bash
+# Clean install without tests (fast)
+ant clean-install-notest
+
+# Run unit tests
+ant unit-test
+
+# Start the application
+ant start
+
+# Check for dependency updates
+ant check-updates
+
+# Generate site documentation
+ant site-cia
 ```
 
 ### Project Structure

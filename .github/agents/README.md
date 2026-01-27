@@ -245,9 +245,22 @@ This workflow defines the complete development environment setup including:
 **Tools & Versions**:
 - Java 25 (Temurin distribution)
 - Maven 3.9.9
+- Ant (for application-specific build tasks)
 - PostgreSQL 16 with extensions (pg_stat_statements, pgaudit, pgcrypto)
 - Graphviz for documentation
 - Build tools (fakeroot, devscripts, debhelper)
+
+**Build Systems**:
+- **Maven**: Multi-module project build (parent-pom/pom.xml)
+  - `mvn clean install -Prelease-site,all-modules`
+  - `mvn clean test jacoco:report`
+  - `mvn dependency-check:check`
+- **Ant**: Application-specific tasks (citizen-intelligence-agency/build.xml)
+  - `ant clean-install-notest` - Fast build without tests
+  - `ant unit-test` - Run unit tests
+  - `ant start` - Start the application
+  - `ant check-updates` - Check dependency updates
+  - `ant site-cia` - Generate documentation
 
 **Database Configuration**:
 - SSL/TLS enabled with certificate-based encryption
@@ -255,11 +268,10 @@ This workflow defines the complete development environment setup including:
 - IPv6 loopback access configured
 - Required extensions loaded and verified
 
-**Build & Test Steps**:
-- Maven dependency caching
-- Build command: `mvn clean install -Prelease-site,all-modules`
-- Database schema loading and verification
-- Application startup validation on port 28443
+**Application Startup**:
+- Port: 28443 (HTTPS)
+- MAVEN_OPTS for startup: `-Xmx8192m` with Java module exports
+- Database schema loaded from service.data.impl/src/main/resources/full_schema.sql
 
 **Workflow Permissions** (Important for understanding access scope):
 ```yaml
@@ -278,43 +290,16 @@ permissions:
   statuses: read
 ```
 
-### 3. MCP Configuration
-**File**: [.github/copilot-mcp.json](../copilot-mcp.json)
-
-GitHub MCP server configuration providing:
-
-**GitHub MCP Server** (Canonical Configuration):
-```json
-{
-  "mcpServers": {
-    "github": {
-      "type": "local",
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-github"],
-      "env": {
-        "GITHUB_TOKEN": "${{ secrets.COPILOT_MCP_GITHUB_PERSONAL_ACCESS_TOKEN }}",
-        "GITHUB_PERSONAL_ACCESS_TOKEN": "${{ secrets.COPILOT_MCP_GITHUB_PERSONAL_ACCESS_TOKEN }}",
-        "GITHUB_OWNER": "Hack23"
-      },
-      "tools": ["*"]
-    }
-  }
-}
-```
-
-**Security Note**: All agents use secrets-based authentication via `COPILOT_MCP_GITHUB_PERSONAL_ACCESS_TOKEN` for secure GitHub access.
-
 ### Why These Files Matter
 
 Reading these files ensures agents:
 1. ✅ Understand the actual development environment and available tools
 2. ✅ Know which permissions are available for GitHub operations
-3. ✅ Can reference correct build commands and testing procedures
+3. ✅ Can reference correct build commands (Maven and Ant) and testing procedures
 4. ✅ Follow established coding standards and security practices
 5. ✅ Understand the project architecture and technology stack
 6. ✅ Are aware of database configuration and requirements
-7. ✅ Can properly coordinate with GitHub MCP server for repository operations
-8. ✅ Align with 2026 ISMS v3.2 compliance requirements (ISO 27001:2022, NIST CSF 2.0, CIS Controls v8.1)
+7. ✅ Align with 2026 ISMS v3.2 compliance requirements (ISO 27001:2022, NIST CSF 2.0, CIS Controls v8.1)
 
 **Each agent profile now includes a standardized section instructing them to read these files at the start of each task.** This ensures consistent awareness of project context across all specialized agents.
 
