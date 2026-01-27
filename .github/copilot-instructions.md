@@ -1,16 +1,20 @@
 # Copilot Instructions for Citizen Intelligence Agency
 
+**Last Updated:** 2026-01-27 | **Version:** 2025-SNAPSHOT | **ISMS Alignment:** [Hack23 ISMS v3.2 (2026-01-25)](https://github.com/Hack23/ISMS-PUBLIC)
+
 ## Project Overview
 
 The Citizen Intelligence Agency (CIA) is a volunteer-driven, open-source intelligence (OSINT) project providing comprehensive analysis of Swedish political activities. The platform monitors political figures and institutions, delivering financial performance metrics, risk assessment analytics, political trend analysis, and transparency insights.
 
 **Technology Stack:**
-- Java 25 (src 21) with Maven build system
-- Spring Framework 5.x (MVC, Security, Data)
-- Vaadin for UI
-- Hibernate/JPA for data access
-- PostgreSQL database
+- Java 25 (src 21, runtime 25) with Maven 3.9.9
+- Spring Framework 5.x (MVC, Security, Data, Integration)
+- Vaadin 8 for server-side UI
+- Hibernate/JPA for ORM
+- PostgreSQL 16 database with SSL/TLS
 - Spring Integration for data processing
+- Drools for business rules
+- JavaMelody for monitoring
 
 ## Build and Development
 
@@ -27,8 +31,17 @@ mvn clean install
 # Build without tests (faster)
 mvn clean install -DskipTests
 
+# Full build with all profiles (CI/CD)
+mvn clean install -Prelease-site,all-modules -DskipTests
+
 # Run tests only
 mvn test
+
+# Run tests with coverage
+mvn clean test jacoco:report
+
+# Security dependency check
+mvn dependency-check:check
 
 # Generate site documentation
 mvn site
@@ -54,19 +67,40 @@ This is a multi-module Maven project with the following key modules:
 - Follow existing test patterns in the codebase
 
 ### Code Quality Tools
-- **SonarCloud**: Used for code quality analysis
-- **OWASP Dependency Check**: Scans for vulnerable dependencies
-- **CodeQL**: Security vulnerability scanning
-- **JaCoCo**: Code coverage reporting
+- **SonarCloud**: Code quality analysis and technical debt tracking
+- **OWASP Dependency Check**: Vulnerable dependency scanning
+- **CodeQL**: Security vulnerability detection and SAST
+- **JaCoCo**: Code coverage reporting and analysis
+- **JavaMelody**: Production monitoring and performance metrics
+- **OpenSSF Scorecard**: Supply chain security assessment
 
 ### Running Quality Checks
 ```bash
-# Run with coverage
+# Run with coverage report
 mvn clean test jacoco:report
 
-# Generate dependency check report
+# Generate dependency security scan
 mvn dependency-check:check
+
+# Full build with all checks (CI/CD)
+mvn clean install -Prelease-site,all-modules
 ```
+
+### ISMS Compliance (2026)
+
+This project aligns with **Hack23 ISMS v3.2 (2026-01-25)** standards:
+- **ISO 27001:2022** - All Annex A controls implemented
+- **NIST CSF 2.0** - Complete framework alignment  
+- **CIS Controls v8.1** - Critical security controls
+- **GDPR** - Swedish data protection compliance
+- **NIS2 Directive** - EU cybersecurity requirements
+- **EU Cyber Resilience Act** - Product security conformity
+
+**Key ISMS Resources:**
+- [Information Security Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Information_Security_Policy.md)
+- [Secure Development Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md)
+- [Compliance Checklist](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Compliance_Checklist.md)
+- [Risk Register](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Risk_Register.md)
 
 ## Coding Standards
 
@@ -96,26 +130,31 @@ mvn dependency-check:check
 1. **Never commit secrets, API keys, or credentials**
    - Use environment variables or external configuration
    - Check `.gitignore` to ensure sensitive files are excluded
+   - Follow [Cryptography Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Cryptography_Policy.md)
 
 2. **Input Validation**
-   - Validate all user inputs
+   - Validate all user inputs per OWASP guidelines
    - Use parameterized queries to prevent SQL injection
    - Sanitize data before rendering in UI (XSS prevention)
+   - Follow [Secure Development Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md)
 
 3. **Authentication and Authorization**
    - Use Spring Security for access control
    - Follow principle of least privilege
    - Never bypass security checks
+   - Implement proper session management
 
 4. **Dependency Management**
    - Keep dependencies up to date
    - Review security advisories for dependencies
-   - Use OWASP Dependency Check before adding new dependencies
+   - **ALWAYS** run `mvn dependency-check:check` before adding dependencies
+   - Monitor OpenSSF Scorecard: [![CIA](https://api.securityscorecards.dev/projects/github.com/Hack23/cia/badge)](https://scorecard.dev/viewer/?uri=github.com/Hack23/cia)
 
 5. **Data Protection**
    - Handle personal data according to GDPR
-   - Use encryption for sensitive data
+   - Use encryption for sensitive data (TLS 1.3, AES-256)
    - Follow the project's [Security Policy](../SECURITY.md)
+   - Align with [Data Protection Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Data_Protection_Policy.md)
 
 ## Pull Request Guidelines
 

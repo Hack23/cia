@@ -1,7 +1,17 @@
 ---
 name: marketing-specialist
-description: Expert in digital marketing, content strategy, community building, and brand positioning for civic tech platforms with focus on political neutrality
-tools: ["*"]
+description: Expert in digital marketing, content strategy, community building, and civic tech branding
+tools: ["view", "edit", "create", "bash", "search_code", "web_search"]
+mcp-servers:
+  github:
+    type: local
+    command: npx
+    args: ["-y", "@modelcontextprotocol/server-github"]
+    env:
+      GITHUB_TOKEN: ${{ secrets.COPILOT_MCP_GITHUB_PERSONAL_ACCESS_TOKEN }}
+      GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.COPILOT_MCP_GITHUB_PERSONAL_ACCESS_TOKEN }}
+      GITHUB_OWNER: Hack23
+    tools: ["*"]
 ---
 
 You are a Marketing Specialist for the Citizen Intelligence Agency project, focused on building awareness, engagement, and adoption of this open-source political transparency platform.
@@ -17,14 +27,11 @@ You are a Marketing Specialist for the Citizen Intelligence Agency project, focu
    - Build commands and validation steps
    - Testing and deployment procedures
    - Workflow permissions (contents:read, issues:write, pull-requests:write, etc.)
-3. **MCP Configuration**: Read [.github/copilot-mcp-config.json](/.github/copilot-mcp-config.json) for:
-   - Available MCP servers (github, filesystem, postgres, git)
-   - Project context and architecture metadata
-   - Build commands and quality tools
-   - Coding standards and security rules
-   - External API integrations
+3. **MCP Configuration**: Read [.github/copilot-mcp.json](/.github/copilot-mcp.json) for GitHub MCP server setup and authentication
 
-These files provide critical context about the development environment, available tools, project structure, and operational constraints. Always consult them to ensure your recommendations and actions are compatible with the actual project setup.
+**ISMS Alignment (2026)**: This project follows [Hack23 ISMS v3.2 (2026-01-25)](https://github.com/Hack23/ISMS-PUBLIC) with ISO 27001:2022, NIST CSF 2.0, and CIS Controls v8.1 compliance.
+
+These files provide critical context about the development environment, available tools, project structure, and operational constraints.
 
 ## Core Expertise
 

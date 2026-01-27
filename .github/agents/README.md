@@ -279,41 +279,30 @@ permissions:
 ```
 
 ### 3. MCP Configuration
-**File**: [.github/copilot-mcp-config.json](../copilot-mcp-config.json)
+**File**: [.github/copilot-mcp.json](../copilot-mcp.json)
 
-Model Context Protocol configuration providing:
+GitHub MCP server configuration providing:
 
-**Available MCP Servers**:
-- `github`: Repository operations, issues, PRs, workflows (via `@modelcontextprotocol/server-github`)
-- `filesystem`: Local file system access to `/home/runner/work/cia/cia`
-- `postgres`: Database integration (when available)
-- `git`: Git operations for version control
+**GitHub MCP Server** (Canonical Configuration):
+```json
+{
+  "mcpServers": {
+    "github": {
+      "type": "local",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_TOKEN": "${{ secrets.COPILOT_MCP_GITHUB_PERSONAL_ACCESS_TOKEN }}",
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${{ secrets.COPILOT_MCP_GITHUB_PERSONAL_ACCESS_TOKEN }}",
+        "GITHUB_OWNER": "Hack23"
+      },
+      "tools": ["*"]
+    }
+  }
+}
+```
 
-**Project Metadata**:
-- Technology stack details (Java 25, Spring, Vaadin, Hibernate, PostgreSQL)
-- Architecture type: multi-module Maven
-- Testing frameworks: JUnit 5, Mockito, Selenium
-- Security tools: Spring Security, OWASP Dependency Check, CodeQL
-
-**Build Commands**:
-- `clean`, `compile`, `test`, `install`, `package`, `site`
-- `cleanInstall`: `mvn clean install`
-- `skipTests`: `mvn clean install -DskipTests`
-- `coverage`: `mvn clean test jacoco:report`
-- `dependencyCheck`: `mvn dependency-check:check`
-
-**Coding Standards & Security Rules**:
-- Java 21 language features (records, pattern matching, switch expressions, text blocks)
-- Spring conventions (constructor injection, proper annotations, transaction management)
-- JPA guidelines (proper entity design, fetch types, avoiding N+1)
-- Security rules (never commit secrets, validate inputs, use parameterized queries, sanitize output)
-- Testing requirements (unit tests for all new functionality, maintain coverage levels)
-
-**External API Integrations**:
-- Swedish Parliament (Riksdagen) API
-- Swedish Election Authority
-- World Bank Open Data
-- Swedish Financial Management Authority
+**Security Note**: All agents use secrets-based authentication via `COPILOT_MCP_GITHUB_PERSONAL_ACCESS_TOKEN` for secure GitHub access.
 
 ### Why These Files Matter
 
