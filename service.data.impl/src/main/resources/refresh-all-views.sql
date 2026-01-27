@@ -13,7 +13,6 @@
 --   - Timing information for each view refresh
 --   - Progress logging and summary report by dependency level
 --   - Multi-level refresh approach (Level 0 -> Level 1 -> Level 2 -> etc.)
---   - Automatic retry for timed-out views
 --
 -- Implementation:
 --   Uses recursive CTE to calculate dependency depth for each materialized view.

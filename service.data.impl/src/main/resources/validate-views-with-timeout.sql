@@ -120,10 +120,10 @@ SELECT
     view_type,
     MAX(depth) as dependency_level,
     CASE 
-        WHEN MAX(depth) = 0 THEN 'SIMPLE'
-        WHEN MAX(depth) = 1 THEN 'MODERATE'
-        WHEN MAX(depth) = 2 THEN 'COMPLEX'
-        WHEN MAX(depth) >= 3 THEN 'VERY_COMPLEX'
+        WHEN MAX(depth) BETWEEN 0 AND 1 THEN 'SIMPLE'
+        WHEN MAX(depth) = 2 THEN 'MODERATE'
+        WHEN MAX(depth) = 3 THEN 'COMPLEX'
+        WHEN MAX(depth) >= 4 THEN 'VERY_COMPLEX'
     END AS complexity_category
 FROM dependency_depth
 GROUP BY view_name, view_type;
@@ -279,7 +279,20 @@ END $$;
 
 -- Export summary by complexity
 \echo 'Generating validation_summary.csv...'
-\copy (SELECT complexity_category, COUNT(*) as total_views, COUNT(*) FILTER (WHERE validation_status = 'SUCCESS') as success, COUNT(*) FILTER (WHERE validation_status = 'EMPTY') as empty, COUNT(*) FILTER (WHERE validation_status = 'TIMEOUT') as timeout, COUNT(*) FILTER (WHERE validation_status = 'ERROR') as error, ROUND(AVG(execution_time_ms)) as avg_time_ms, MAX(execution_time_ms) as max_time_ms FROM tmp_validation_results GROUP BY complexity_category ORDER BY MIN(dependency_level)) TO 'validation_summary.csv' WITH CSV HEADER;
+\copy (
+    SELECT
+        complexity_category,
+        COUNT(*) AS total_views,
+        COUNT(*) FILTER (WHERE validation_status = 'SUCCESS') AS success,
+        COUNT(*) FILTER (WHERE validation_status = 'EMPTY') AS empty,
+        COUNT(*) FILTER (WHERE validation_status = 'TIMEOUT') AS timeout,
+        COUNT(*) FILTER (WHERE validation_status = 'ERROR') AS error,
+        ROUND(AVG(execution_time_ms)) AS avg_time_ms,
+        MAX(execution_time_ms) AS max_time_ms
+    FROM tmp_validation_results
+    GROUP BY complexity_category
+    ORDER BY MIN(dependency_level)
+) TO 'validation_summary.csv' WITH CSV HEADER;
 
 -- Export problematic views
 \echo 'Generating problematic_views.csv...'
