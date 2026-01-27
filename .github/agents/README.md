@@ -305,7 +305,7 @@ Reading these files ensures agents:
 
 ## 🔐 ISMS Compliance & Security (2026)
 
-All agents and development practices align with **[Hack23 ISMS v3.2 (2026-01-25)](https://github.com/Hack23/ISMS-PUBLIC)**:
+All agents and development practices align with **[Hack23 ISMS](https://github.com/Hack23/ISMS-PUBLIC)**:
 
 ### Compliance Frameworks
 - **ISO 27001:2022** - All Annex A controls implemented
@@ -324,8 +324,8 @@ All agents and development practices align with **[Hack23 ISMS v3.2 (2026-01-25)
 - ✅ **Encryption**: TLS 1.3, AES-256, proper key management
 
 ### Security Resources
-- [Secure Development Policy v2.1](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md) - Security-integrated SDLC, 80% line coverage, 70% branch coverage
-- [Information Security Policy v2.0](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Information_Security_Policy.md) - Overall security governance framework
+- [Secure Development Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md) - Security-integrated SDLC, 80% line coverage, 70% branch coverage
+- [Information Security Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Information_Security_Policy.md) - Overall security governance framework
 - [Cryptography Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Cryptography_Policy.md) - TLS 1.3, AES-256 encryption standards
 - [Access Control Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Access_Control_Policy.md) - Zero-trust identity and authorization
 - [Data Classification Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Data_Classification_Policy.md) - Information handling requirements

@@ -1,6 +1,6 @@
 # Copilot Instructions for Citizen Intelligence Agency
 
-**Last Updated:** 2026-01-27 | **Version:** 2025-SNAPSHOT | **ISMS Alignment:** [Hack23 ISMS v3.2 (2026-01-25)](https://github.com/Hack23/ISMS-PUBLIC)
+**Last Updated:** 2026-01-27 | **Version:** 2025-SNAPSHOT | **ISMS Alignment:** [Hack23 ISMS](https://github.com/Hack23/ISMS-PUBLIC)
 
 ## Project Overview
 
@@ -81,7 +81,7 @@ This is a multi-module Maven project with the following key modules:
 ## Code Quality and Testing
 
 ### Testing Requirements
-Per [Secure Development Policy v2.1](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md):
+Per [Secure Development Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md):
 - **Minimum 80% line coverage** across all modules
 - **Minimum 70% branch coverage** across all modules
 - Write unit tests for all new functionality
@@ -93,7 +93,7 @@ Per [Secure Development Policy v2.1](https://github.com/Hack23/ISMS-PUBLIC/blob/
 - **SonarCloud**: Code quality analysis and technical debt tracking
 - **OWASP Dependency Check**: Vulnerable dependency scanning
 - **CodeQL**: Security vulnerability detection and SAST
-- **JaCoCo**: Code coverage reporting and analysis (target: 80% line, 70% branch per [Secure Development Policy v2.1](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md))
+- **JaCoCo**: Code coverage reporting and analysis (target: 80% line, 70% branch per [Secure Development Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md))
 - **JavaMelody**: Production monitoring and performance metrics
 - **OpenSSF Scorecard**: Supply chain security assessment
 
@@ -111,7 +111,7 @@ mvn clean install -Prelease-site,all-modules
 
 ### ISMS Compliance (2026)
 
-This project aligns with **Hack23 ISMS v3.2 (2026-01-25)** standards:
+This project aligns with **[Hack23 ISMS](https://github.com/Hack23/ISMS-PUBLIC)** standards:
 - **ISO 27001:2022** - All Annex A controls implemented
 - **NIST CSF 2.0** - Complete framework alignment  
 - **CIS Controls v8.1** - Critical security controls
@@ -120,8 +120,8 @@ This project aligns with **Hack23 ISMS v3.2 (2026-01-25)** standards:
 - **EU Cyber Resilience Act** - Product security conformity
 
 **Key ISMS Resources:**
-- [Secure Development Policy v2.1](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md) - Security-integrated SDLC, 80% line coverage, 70% branch coverage requirements
-- [Information Security Policy v2.0](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Information_Security_Policy.md) - Overall security governance framework
+- [Secure Development Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md) - Security-integrated SDLC, 80% line coverage, 70% branch coverage requirements
+- [Information Security Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Information_Security_Policy.md) - Overall security governance framework
 - [Cryptography Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Cryptography_Policy.md) - TLS 1.3, AES-256 encryption standards
 - [Access Control Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Access_Control_Policy.md) - Zero-trust identity and authorization
 - [Data Classification Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Data_Classification_Policy.md) - Information handling requirements
@@ -269,7 +269,7 @@ When working with external data integrations:
 - **Scorecards**: Security posture assessment
 
 ### Build Requirements
-All PRs must meet [Secure Development Policy v2.1](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md) requirements:
+All PRs must meet [Secure Development Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md) requirements:
 - Pass all automated tests
 - Meet minimum 80% line coverage, 70% branch coverage
 - Pass CodeQL security scan
@@ -316,7 +316,7 @@ All PRs must meet [Secure Development Policy v2.1](https://github.com/Hack23/ISM
 4. Full build: `mvn clean install -Prelease-site,all-modules`
 5. Review SonarCloud results
 
-**Key Metrics to Maintain** (per [Secure Development Policy v2.1](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md)):
+**Key Metrics to Maintain** (per [Secure Development Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md)):
 - Test Coverage: Minimum 80% line coverage, 70% branch coverage
 - Security: Zero critical/high vulnerabilities
 - Code Quality: SonarCloud Quality Gate passing

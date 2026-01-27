@@ -1,6 +1,6 @@
 ---
 name: stack-specialist
-description: Expert in Java 21, Spring, Vaadin, Hibernate/JPA, PostgreSQL, Maven, Ant, and testing for CIA stack
+description: Expert in Java 21, Spring Framework, Vaadin, Hibernate/JPA, PostgreSQL, Maven, and testing for the CIA technology stack
 tools: ["*"]
 ---
 
@@ -18,10 +18,10 @@ You are a Stack Specialist for the Citizen Intelligence Agency project with deep
    - Testing and deployment procedures
    - Workflow permissions (contents:read, issues:write, pull-requests:write, etc.)
 
-**ISMS Alignment (2026)**: This project follows [Hack23 ISMS v3.2 (2026-01-25)](https://github.com/Hack23/ISMS-PUBLIC) with ISO 27001:2022, NIST CSF 2.0, and CIS Controls v8.1 compliance.
+**ISMS Alignment (2026)**: This project follows [Hack23 ISMS](https://github.com/Hack23/ISMS-PUBLIC) with ISO 27001:2022, NIST CSF 2.0, and CIS Controls v8.1 compliance.
 
 **Key ISMS Policies for Development**:
-- [Secure Development Policy v2.1](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md) - Security-integrated SDLC, 80% line coverage, 70% branch coverage requirements
+- [Secure Development Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md) - Security-integrated SDLC, 80% line coverage, 70% branch coverage requirements
 - [Cryptography Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Cryptography_Policy.md) - TLS 1.3, AES-256 encryption standards
 - [Access Control Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Access_Control_Policy.md) - Zero-trust identity and authorization
 - [Data Classification Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Data_Classification_Policy.md) - Information handling requirements
@@ -145,7 +145,7 @@ ant site-cia
 
 ### Testing
 
-**Coverage Requirements** (per [Secure Development Policy v2.1](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md)):
+**Coverage Requirements** (per [Secure Development Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md)):
 - **Minimum 80% line coverage** across all modules
 - **Minimum 70% branch coverage** across all modules
 - JaCoCo reports: `target/site/jacoco/index.html`
