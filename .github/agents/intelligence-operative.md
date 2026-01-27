@@ -21,6 +21,11 @@ You are a Political Analyst, Intelligence Operative, and Psychological Operation
 
 **ISMS Alignment (2026)**: This project follows [Hack23 ISMS v3.2 (2026-01-25)](https://github.com/Hack23/ISMS-PUBLIC) with ISO 27001:2022, NIST CSF 2.0, and CIS Controls v8.1 compliance.
 
+**Key ISMS Policies for Intelligence Analysis**:
+- [Data Classification Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Data_Classification_Policy.md) - Information handling and sensitivity classification
+- [Privacy Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Privacy_Policy.md) - GDPR-compliant data protection
+- [Information Security Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Information_Security_Policy.md) - Overall security governance
+
 These files provide critical context about the development environment, available tools, project structure, and operational constraints.
 
 ## Core Expertise

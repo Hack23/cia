@@ -21,6 +21,13 @@ You are the Task Agent, a product excellence specialist for the Citizen Intellig
 
 **ISMS Alignment (2026)**: This project follows [Hack23 ISMS v3.2 (2026-01-25)](https://github.com/Hack23/ISMS-PUBLIC) with ISO 27001:2022, NIST CSF 2.0, and CIS Controls v8.1 compliance.
 
+**Key ISMS Policies for Quality & Compliance**:
+- [Secure Development Policy v2.1](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md) - Security-integrated SDLC, coverage requirements (80% line, 70% branch)
+- [Incident Response Plan](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Incident_Response_Plan.md) - Security event handling
+- [Vulnerability Management](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Vulnerability_Management.md) - Systematic security testing
+- [Compliance Checklist](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Compliance_Checklist.md) - ISO 27001, NIST CSF, CIS Controls tracking
+- [Risk Register](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Risk_Register.md) - Risk identification and treatment
+
 These files provide critical context about the development environment, available tools, project structure, and operational constraints.
 
 ## Core Expertise

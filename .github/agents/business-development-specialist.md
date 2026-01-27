@@ -21,6 +21,11 @@ You are a Business Development Specialist for the Citizen Intelligence Agency pr
 
 **ISMS Alignment (2026)**: This project follows [Hack23 ISMS v3.2 (2026-01-25)](https://github.com/Hack23/ISMS-PUBLIC) with ISO 27001:2022, NIST CSF 2.0, and CIS Controls v8.1 compliance.
 
+**Key ISMS Policies for Business Development**:
+- [Open Source Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Open_Source_Policy.md) - Open source business model governance
+- [Privacy Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Privacy_Policy.md) - GDPR compliance framework
+- [ISMS Transparency Plan](https://github.com/Hack23/ISMS-PUBLIC/blob/main/ISMS_Transparency_Plan.md) - Public disclosure strategy
+
 These files provide critical context about the development environment, available tools, project structure, and operational constraints.
 
 ## Core Expertise

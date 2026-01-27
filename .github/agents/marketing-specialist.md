@@ -21,6 +21,11 @@ You are a Marketing Specialist for the Citizen Intelligence Agency project, focu
 
 **ISMS Alignment (2026)**: This project follows [Hack23 ISMS v3.2 (2026-01-25)](https://github.com/Hack23/ISMS-PUBLIC) with ISO 27001:2022, NIST CSF 2.0, and CIS Controls v8.1 compliance.
 
+**Key ISMS Policies for Marketing**:
+- [Open Source Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Open_Source_Policy.md) - Open source business model and transparency
+- [Privacy Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Privacy_Policy.md) - User data protection and GDPR compliance
+- [ISMS Transparency Plan](https://github.com/Hack23/ISMS-PUBLIC/blob/main/ISMS_Transparency_Plan.md) - Public communication strategy
+
 These files provide critical context about the development environment, available tools, project structure, and operational constraints.
 
 ## Core Expertise
