@@ -79,10 +79,12 @@ all_views AS (
     SELECT viewname AS view_name, 'view' AS view_type
     FROM pg_views 
     WHERE schemaname = 'public'
+      AND viewname NOT LIKE 'pg_%'
     UNION ALL
     SELECT matviewname AS view_name, 'materialized_view' AS view_type
     FROM pg_matviews 
     WHERE schemaname = 'public'
+      AND matviewname NOT LIKE 'pg_%'
 ),
 view_only_deps AS (
     SELECT vd.view_name, vd.depends_on
@@ -296,11 +298,29 @@ END $$;
 
 -- Export problematic views
 \echo 'Generating problematic_views.csv...'
-\copy (SELECT view_name, view_type, dependency_level, complexity_category, validation_status, error_message FROM tmp_validation_results WHERE validation_status IN ('TIMEOUT', 'ERROR') ORDER BY dependency_level DESC, view_name) TO 'problematic_views.csv' WITH CSV HEADER;
+\copy (
+    SELECT
+        view_name,
+        view_type,
+        dependency_level,
+        complexity_category,
+        validation_status,
+        error_message
+    FROM tmp_validation_results
+    WHERE validation_status IN ('TIMEOUT', 'ERROR')
+    ORDER BY dependency_level DESC, view_name
+) TO 'problematic_views.csv' WITH CSV HEADER;
 
 -- Export view dependencies
 \echo 'Generating view_dependencies.csv...'
-\copy (SELECT view_name, STRING_AGG(depends_on, ', ' ORDER BY depends_on) as dependencies FROM tmp_view_dependencies GROUP BY view_name ORDER BY view_name) TO 'view_dependencies.csv' WITH CSV HEADER;
+\copy (
+    SELECT
+        view_name,
+        STRING_AGG(depends_on, ', ' ORDER BY depends_on) AS dependencies
+    FROM tmp_view_dependencies
+    GROUP BY view_name
+    ORDER BY view_name
+) TO 'view_dependencies.csv' WITH CSV HEADER;
 
 -- Export empty views
 \echo 'Generating empty_views.csv...'

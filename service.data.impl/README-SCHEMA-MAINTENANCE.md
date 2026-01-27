@@ -126,22 +126,24 @@ psql -U postgres -d cia_dev -f ../src/main/resources/validate-views-with-timeout
 
 **Features:**
 - 30-second timeout per view to prevent hanging
-- Dependency depth analysis (0-4 levels)
+- Dependency depth analysis (0-6 levels)
 - Complexity categorization: SIMPLE (0-1), MODERATE (2), COMPLEX (3), VERY_COMPLEX (4+)
 - Separate tracking for success/timeout/error
 - Progress indicators (✓, ✗, ⏱)
+- Filters out PostgreSQL system views (pg_*)
 
 **Generated Reports:**
-- `validation_report.csv` - Full validation results for all 109 views
+- `validation_report.csv` - Full validation results for all CIA application views (excludes PostgreSQL system views like pg_stat_statements)
 - `validation_summary.csv` - Summary statistics by complexity category
 - `problematic_views.csv` - Views with timeouts or errors
 - `view_dependencies.csv` - Complete dependency graph
 - `empty_views.csv` - Views with no data
 
 **Expected Results:**
-- Total views: 109 (81 regular + 28 materialized)
+- Total views: 107 CIA application views (79 regular + 28 materialized)
 - Execution time: ~2-5 seconds with timeout protection
 - Success rate: 100% (after materialized views are refreshed)
+- PostgreSQL system views (pg_*) are automatically filtered out
 
 ### Materialized View Refresh
 
