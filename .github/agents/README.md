@@ -313,9 +313,37 @@ Reading these files ensures agents:
 4. ✅ Follow established coding standards and security practices
 5. ✅ Understand the project architecture and technology stack
 6. ✅ Are aware of database configuration and requirements
-7. ✅ Can properly coordinate with MCP servers and external APIs
+7. ✅ Can properly coordinate with GitHub MCP server for repository operations
+8. ✅ Align with 2026 ISMS v3.2 compliance requirements (ISO 27001:2022, NIST CSF 2.0, CIS Controls v8.1)
 
 **Each agent profile now includes a standardized section instructing them to read these files at the start of each task.** This ensures consistent awareness of project context across all specialized agents.
+
+## 🔐 ISMS Compliance & Security (2026)
+
+All agents and development practices align with **[Hack23 ISMS v3.2 (2026-01-25)](https://github.com/Hack23/ISMS-PUBLIC)**:
+
+### Compliance Frameworks
+- **ISO 27001:2022** - All Annex A controls implemented
+- **NIST CSF 2.0** - Complete framework alignment
+- **CIS Controls v8.1** - Critical security controls coverage
+- **GDPR** - Swedish data protection compliance
+- **NIS2 Directive** - EU cybersecurity requirements
+- **EU Cyber Resilience Act** - Product security conformity
+
+### Key Security Practices
+- ✅ **Secrets Management**: All credentials via environment variables or external config
+- ✅ **Dependency Security**: OWASP Dependency Check before adding dependencies
+- ✅ **Code Quality**: SonarCloud Quality Gate enforcement
+- ✅ **Security Scanning**: CodeQL, ZAP, and dependency checks in CI/CD
+- ✅ **Supply Chain Security**: OpenSSF Scorecard monitoring [![CIA](https://api.securityscorecards.dev/projects/github.com/Hack23/cia/badge)](https://scorecard.dev/viewer/?uri=github.com/Hack23/cia)
+- ✅ **Encryption**: TLS 1.3, AES-256, proper key management
+
+### Security Resources
+- [Information Security Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Information_Security_Policy.md)
+- [Secure Development Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md)
+- [Cryptography Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Cryptography_Policy.md)
+- [Compliance Checklist](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Compliance_Checklist.md)
+- [Risk Register](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Risk_Register.md)
 
 ## 📚 Using These Profiles
 

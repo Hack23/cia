@@ -264,7 +264,35 @@ All PRs must:
 
 ## Notes for AI Coding Assistants
 
-When making changes:
+### Quality Standards Summary
+
+**Before Starting Work**:
+1. Run `mvn clean install` to verify current build status
+2. Review existing test coverage: `mvn clean test jacoco:report`
+3. Check for security issues: `mvn dependency-check:check`
+4. Review SonarCloud dashboard for code quality metrics
+
+**During Development**:
+1. Write tests for all new functionality (JUnit 5)
+2. Maintain or improve code coverage (JaCoCo)
+3. Follow existing code patterns and Spring conventions
+4. Apply security best practices (input validation, parameterized queries)
+5. Document public APIs with JavaDoc
+
+**Before Submitting**:
+1. Run full test suite: `mvn clean test`
+2. Verify coverage: `mvn jacoco:report` (check `target/site/jacoco/`)
+3. Security scan: `mvn dependency-check:check`
+4. Full build: `mvn clean install -Prelease-site,all-modules`
+5. Review SonarCloud results
+
+**Key Metrics to Maintain**:
+- Test Coverage: Maintain existing levels
+- Security: Zero critical/high vulnerabilities
+- Code Quality: SonarCloud Quality Gate passing
+- Build: All CI/CD checks passing
+
+### When Making Changes:
 1. **Understand the context**: Review related code and architecture before making changes
 2. **Minimal changes**: Make the smallest change necessary to achieve the goal
 3. **Test thoroughly**: Always run tests and verify functionality

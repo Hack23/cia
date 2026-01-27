@@ -71,6 +71,41 @@ These files provide critical context about the development environment, availabl
 
 ## Best Practices
 
+### Maven Build & Quality Checks
+
+**Before Making Changes**:
+```bash
+# Verify current build status
+mvn clean install
+
+# Run all quality checks
+mvn clean test jacoco:report dependency-check:check
+```
+
+**After Making Changes**:
+```bash
+# Run tests with coverage
+mvn clean test jacoco:report
+
+# Check for security vulnerabilities
+mvn dependency-check:check
+
+# Full build with all profiles (CI/CD equivalent)
+mvn clean install -Prelease-site,all-modules
+```
+
+**Key Maven Plugins Configured**:
+- **JaCoCo** (0.8.14): Code coverage reporting
+- **OWASP Dependency Check**: Vulnerability scanning
+- **SonarCloud**: Code quality analysis (sonarcloud.io)
+- **Maven Surefire**: Test execution and reporting
+- **Maven Compiler**: Java 25 compilation (source: 21)
+
+**SonarCloud Integration**:
+- Organization: `hack23`
+- Coverage: JaCoCo XML reports
+- Security: Dependency-check reports integration
+
 ### Spring Development
 - Use constructor injection for required dependencies
 - Apply `@Transactional` at service layer, not DAO layer

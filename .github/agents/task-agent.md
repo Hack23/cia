@@ -50,10 +50,22 @@ These files provide critical context about the development environment, availabl
 
 **Quality Assessment**:
 - Monitor code quality metrics (SonarCloud, CodeQL)
-- Analyze test coverage and identify gaps
+- Analyze test coverage and identify gaps (target: maintain existing coverage)
 - Review build and CI/CD pipeline health
 - Detect performance bottlenecks and resource issues
 - Track technical debt and code smells
+
+**Required Quality Checks**:
+```bash
+# Run before creating quality issues
+mvn clean test jacoco:report              # Test coverage analysis
+mvn dependency-check:check                 # Security vulnerability scan
+mvn clean install -Prelease-site,all-modules  # Full CI/CD build
+```
+
+**Coverage Reports**: `target/site/jacoco/index.html`  
+**Dependency Check**: `target/dependency-check-report.html`  
+**SonarCloud**: https://sonarcloud.io/dashboard?id=Hack23_cia
 
 **UI/UX Evaluation**:
 - Audit accessibility compliance (WCAG 2.1 AA)
