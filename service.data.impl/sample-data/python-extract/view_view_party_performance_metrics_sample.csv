@@ -1,0 +1,11 @@
+party,party_name,registration_date,active_members,inactive_members,total_violations,members_with_violations,violation_rate_percentage,latest_member_violation,total_votes_last_year,avg_absence_rate,avg_win_rate,avg_rebel_rate,avg_participation_rate,documents_last_year,motions_last_year,propositions_last_year,docs_per_member,current_ministers,current_committee_chairs,performance_score,performance_level,strengths,weaknesses
+---,Mosebackedemokraterna,2010-01-22,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
+C,Centerpartiet,1995-05-18,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
+SD,Sverigedemokraterna,1991-02-08,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
+---,Sociala Partiet (SP),2009-02-11,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
+FI,Feministiskt initiativ,2006-03-07,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
+M,Moderaterna,2013-09-06,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
+NYD,NyDemokrati,1991-02-15,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
+-,Politiskt Vilde,1971-01-01,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
+---,Direktdemokraterna,2014-07-01,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
+L,Liberalerna,2015-11-30,0,0,0,0,0,,0,0.00,0.00,0.00,0.00,0,0,0,0,0,0,35.00,BELOW_AVERAGE,Strong discipline,Low effectiveness | Low productivity
