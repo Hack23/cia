@@ -163,10 +163,14 @@ ORDER BY max_depth, view_name;
 WITH RECURSIVE 
 all_views AS (
     SELECT viewname AS view_name, 'view' AS view_type
-    FROM pg_views WHERE schemaname = 'public'
+    FROM pg_views 
+    WHERE schemaname = 'public'
+      AND viewname NOT LIKE 'pg_%'
     UNION ALL
     SELECT matviewname AS view_name, 'materialized_view' AS view_type
-    FROM pg_matviews WHERE schemaname = 'public'
+    FROM pg_matviews 
+    WHERE schemaname = 'public'
+      AND matviewname NOT LIKE 'pg_%'
 ),
 view_deps AS (
     SELECT DISTINCT

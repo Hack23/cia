@@ -260,10 +260,10 @@ BEGIN
     RAISE NOTICE 'VALIDATION SUMMARY';
     RAISE NOTICE '===========================================';
     RAISE NOTICE 'Total views:     %', v_total;
-    RAISE NOTICE 'Success:         % (%.1f%%)', v_success, (v_success::FLOAT / v_total * 100);
-    RAISE NOTICE 'Empty:           % (%.1f%%)', v_empty, (v_empty::FLOAT / v_total * 100);
-    RAISE NOTICE 'Timeout:         % (%.1f%%)', v_timeout, (v_timeout::FLOAT / v_total * 100);
-    RAISE NOTICE 'Errors:          % (%.1f%%)', v_error_count, (v_error_count::FLOAT / v_total * 100);
+    RAISE NOTICE 'Success:         % (%.1f%%)', v_success, (v_success::FLOAT / NULLIF(v_total, 0) * 100);
+    RAISE NOTICE 'Empty:           % (%.1f%%)', v_empty, (v_empty::FLOAT / NULLIF(v_total, 0) * 100);
+    RAISE NOTICE 'Timeout:         % (%.1f%%)', v_timeout, (v_timeout::FLOAT / NULLIF(v_total, 0) * 100);
+    RAISE NOTICE 'Errors:          % (%.1f%%)', v_error_count, (v_error_count::FLOAT / NULLIF(v_total, 0) * 100);
     RAISE NOTICE '===========================================';
 END $$;
 
@@ -324,7 +324,16 @@ END $$;
 
 -- Export empty views
 \echo 'Generating empty_views.csv...'
-\copy (SELECT view_name, view_type, dependency_level, complexity_category FROM tmp_validation_results WHERE validation_status = 'EMPTY' ORDER BY view_name) TO 'empty_views.csv' WITH CSV HEADER;
+\copy (
+    SELECT
+        view_name,
+        view_type,
+        dependency_level,
+        complexity_category
+    FROM tmp_validation_results
+    WHERE validation_status = 'EMPTY'
+    ORDER BY view_name
+) TO 'empty_views.csv' WITH CSV HEADER;
 
 -- ===========================================================================
 -- PHASE 4: DISPLAY RESULTS

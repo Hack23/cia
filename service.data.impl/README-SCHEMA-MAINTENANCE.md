@@ -119,7 +119,7 @@ The CIA platform provides comprehensive view validation with timeout protection 
 
 **Quick Command:**
 ```bash
-# Validate all 109 views (81 regular + 28 materialized) with timeout protection
+# Validate all 107 CIA application views (79 regular + 28 materialized) with timeout protection
 cd service.data.impl/sample-data
 psql -U postgres -d cia_dev -f ../src/main/resources/validate-views-with-timeout.sql
 ```
