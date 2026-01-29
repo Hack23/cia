@@ -279,13 +279,32 @@ All schemas are documented in Markdown format with:
 
 The following example files demonstrate the complete JSON export format for each intelligence product:
 
+#### Core Entity Examples
+
 | Example File | Schema | Description | File Size | Update Frequency |
 |-------------|--------|-------------|-----------|------------------|
-| **[politician-example.json](examples/politician-example.json)** | politician-schema.md | Comprehensive politician profiles with voting, activity, and risk data | ~2.5 KB | Daily |
-| **[party-example.json](examples/party-example.json)** | party-schema.md | Party performance, coalition, and electoral analytics | ~3.5 KB | Daily |
-| **[risk-assessment-example.json](examples/risk-assessment-example.json)** | intelligence-schema.md | Risk assessment with 50 behavioral rules catalog | ~15 KB | Daily |
-| **[coalition-alignment-example.json](examples/coalition-alignment-example.json)** | intelligence-schema.md | Coalition alignment matrix and party voting patterns | ~10 KB | Daily |
-| **[temporal-trends-example.json](examples/temporal-trends-example.json)** | intelligence-schema.md | Temporal trend analysis (daily/weekly/monthly/annual) | ~13 KB | Daily |
+| **[politician-example.json](examples/politician-example.json)** | [politician-schema.md](schemas/politician-schema.md) | Comprehensive politician profiles with voting, activity, and risk data | ~9 KB | Daily |
+| **[party-example.json](examples/party-example.json)** | [party-schema.md](schemas/party-schema.md) | Party performance, coalition, and electoral analytics | ~7 KB | Daily |
+| **[committee-example.json](examples/committee-example.json)** | [committee-schema.md](schemas/committee-schema.md) | Committee composition, productivity, and decision patterns | ~17 KB | Daily |
+| **[ministry-example.json](examples/ministry-example.json)** | [ministry-schema.md](schemas/ministry-schema.md) | Ministry organization, budget, and performance metrics | ~19 KB | Daily |
+
+#### Intelligence Product Examples
+
+| Example File | Schema | Description | File Size | Update Frequency |
+|-------------|--------|-------------|-----------|------------------|
+| **[risk-assessment-example.json](examples/risk-assessment-example.json)** | [intelligence-schema.md](schemas/intelligence-schema.md) | Risk assessment with 50 behavioral rules catalog | ~14 KB | Daily |
+| **[coalition-alignment-example.json](examples/coalition-alignment-example.json)** | [intelligence-schema.md](schemas/intelligence-schema.md) | Coalition alignment matrix and party voting patterns | ~9 KB | Daily |
+| **[temporal-trends-example.json](examples/temporal-trends-example.json)** | [intelligence-schema.md](schemas/intelligence-schema.md) | Temporal trend analysis (daily/weekly/monthly/annual) | ~13 KB | Daily |
+
+#### Advanced Analysis Examples (v1.58-v1.61)
+
+| Example File | Schema | Description | File Size | Update Frequency |
+|-------------|--------|-------------|-----------|------------------|
+| **[politician-career-path-example.json](examples/politician-career-path-example.json)** | [politician-schema.md](schemas/politician-schema.md) | Career progression with 10-level hierarchy and risk assessment | ~5 KB | Daily |
+| **[election-proximity-trends-example.json](examples/election-proximity-trends-example.json)** | [intelligence-schema.md](schemas/intelligence-schema.md) | Quarterly activity tracking relative to election dates | ~11 KB | Daily |
+| **[party-longitudinal-performance-example.json](examples/party-longitudinal-performance-example.json)** | [party-schema.md](schemas/party-schema.md) | Multi-semester performance trends with forecasting | ~10 KB | Daily |
+
+**📋 Complete Documentation**: See [examples/EXAMPLES_README.md](examples/EXAMPLES_README.md) for comprehensive guide to all examples.
 
 **Intelligence Products Coverage**:
 - ✅ **Risk Assessments**: Complete 50-rule risk catalog with entity-level assessments
@@ -293,6 +312,11 @@ The following example files demonstrate the complete JSON export format for each
 - ✅ **Temporal Trends**: Multi-timeframe trend analysis for intelligence monitoring
 - ✅ **Politician Profiles**: Individual politician data with risk and performance scores
 - ✅ **Party Analytics**: Party-level performance and coalition stability metrics
+- ✅ **Committee Analysis**: Productivity, decision patterns, and influence metrics
+- ✅ **Ministry Performance**: Budget execution, policy effectiveness, and predictions
+- ✅ **Career Progression**: 10-level career path with behavioral and network metrics
+- ✅ **Election Cycle Analysis**: Pre-election activity surge detection and phase classification
+- ✅ **Longitudinal Trends**: Multi-semester performance tracking with forecasting indicators
 
 ---
 
