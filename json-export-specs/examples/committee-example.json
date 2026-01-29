@@ -1,0 +1,566 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "generated": "2026-01-29T02:40:00Z",
+    "source": "Citizen Intelligence Agency",
+    "schema": "committee-profile",
+    "recordCount": 2,
+    "dataDate": "2026-01-28",
+    "attribution": "Data derived from Riksdagen Open Data API",
+    "license": "Apache-2.0"
+  },
+  "data": [
+    {
+      "id": "FiU",
+      "labels": {
+        "category": "standing-committee",
+        "subcategories": [
+          "economic-policy",
+          "budget-oversight",
+          "financial-regulation",
+          "high-influence"
+        ],
+        "descriptions": {
+          "short": "Finance Committee - Budget and financial policy oversight",
+          "long": "The Finance Committee (Finansutskottet) is responsible for budget matters, taxation, financial markets, and economic policy. It is one of the most influential committees in the Riksdag, with oversight of the national budget process.",
+          "detailed": "The Finance Committee handles all matters related to the state budget, taxation, financial markets, insurance business, credit institutions, and monetary policy. The committee examines the government's budget proposition and makes recommendations to the Riksdag. It also reviews fiscal policy, government guarantees, and the activities of the Swedish National Debt Office. As one of the most powerful committees, it plays a central role in scrutinizing government economic policy and proposing amendments to financial legislation. The committee typically has 17 members representing all parliamentary parties proportionally."
+        },
+        "intelligenceTags": [
+          "budget-authority",
+          "high-workload",
+          "cross-party-cooperation",
+          "policy-expert-economics",
+          "government-scrutiny"
+        ]
+      },
+      "attributes": {
+        "code": "FiU",
+        "name": "Finansutskottet",
+        "nameEn": "Finance Committee",
+        "type": "standing",
+        "policyDomain": "economic-policy",
+        "established": "1867-01-01",
+        "parliamentarySession": "2022/23",
+        "status": "active"
+      },
+      "relationships": {
+        "relatedCommittees": [
+          {
+            "code": "SkU",
+            "name": "Skatteutskottet",
+            "relationship": "taxation-overlap",
+            "collaborationLevel": "high"
+          },
+          {
+            "code": "NU",
+            "name": "Näringsutskottet",
+            "relationship": "business-policy",
+            "collaborationLevel": "moderate"
+          }
+        ],
+        "governmentMinistries": [
+          {
+            "code": "FI",
+            "name": "Finansdepartementet",
+            "relationship": "primary-oversight"
+          }
+        ]
+      },
+      "membership": {
+        "totalMembers": 17,
+        "regularMembers": 17,
+        "deputyMembers": 17,
+        "leadership": {
+          "chair": {
+            "personId": "0123456789",
+            "name": "Anna Andersson",
+            "party": "S",
+            "since": "2022-10-14"
+          },
+          "viceChairs": [
+            {
+              "personId": "0234567890",
+              "name": "Erik Eriksson",
+              "party": "M",
+              "since": "2022-10-14"
+            }
+          ]
+        },
+        "partyDistribution": [
+          {
+            "party": "S",
+            "partyName": "Socialdemokraterna",
+            "regularMembers": 5,
+            "deputyMembers": 5,
+            "percentage": 29.4
+          },
+          {
+            "party": "M",
+            "partyName": "Moderaterna",
+            "regularMembers": 3,
+            "deputyMembers": 3,
+            "percentage": 17.6
+          },
+          {
+            "party": "SD",
+            "partyName": "Sverigedemokraterna",
+            "regularMembers": 3,
+            "deputyMembers": 3,
+            "percentage": 17.6
+          },
+          {
+            "party": "C",
+            "partyName": "Centerpartiet",
+            "regularMembers": 2,
+            "deputyMembers": 2,
+            "percentage": 11.8
+          },
+          {
+            "party": "V",
+            "partyName": "Vänsterpartiet",
+            "regularMembers": 1,
+            "deputyMembers": 1,
+            "percentage": 5.9
+          },
+          {
+            "party": "KD",
+            "partyName": "Kristdemokraterna",
+            "regularMembers": 1,
+            "deputyMembers": 1,
+            "percentage": 5.9
+          },
+          {
+            "party": "L",
+            "partyName": "Liberalerna",
+            "regularMembers": 1,
+            "deputyMembers": 1,
+            "percentage": 5.9
+          },
+          {
+            "party": "MP",
+            "partyName": "Miljöpartiet",
+            "regularMembers": 1,
+            "deputyMembers": 1,
+            "percentage": 5.9
+          }
+        ],
+        "averageTenure": 4.3,
+        "turnoverRate": 23.5
+      },
+      "productivity": {
+        "reports": {
+          "total": 47,
+          "adopted": 43,
+          "rejected": 2,
+          "pending": 2,
+          "successRate": 91.5
+        },
+        "hearings": {
+          "total": 28,
+          "expertWitnesses": 156,
+          "averageAttendees": 12.3
+        },
+        "meetings": {
+          "total": 89,
+          "plenary": 12,
+          "working": 77,
+          "attendanceRate": 94.7
+        },
+        "documents": {
+          "betankanden": 47,
+          "yttranden": 23,
+          "amendments": 234,
+          "totalProcessed": 1247
+        },
+        "workload": {
+          "proposalsReceived": 1247,
+          "proposalsProcessed": 1189,
+          "averageProcessingDays": 42.3,
+          "backlog": 58,
+          "workloadClassification": "very-high"
+        }
+      },
+      "decisions": {
+        "totalDecisions": 1189,
+        "decisionsApproved": 1087,
+        "decisionsRejected": 89,
+        "decisionsPending": 13,
+        "approvalRate": 91.4,
+        "consensusRate": 87.3,
+        "votingPatterns": {
+          "unanimous": 624,
+          "majorityWithReservations": 398,
+          "dividedOpinion": 167,
+          "partyLineVoting": 78.5
+        },
+        "decisionSpeed": {
+          "fast": 423,
+          "normal": 612,
+          "slow": 154,
+          "averageDays": 42.3
+        },
+        "policyImpact": {
+          "highImpact": 234,
+          "moderateImpact": 567,
+          "lowImpact": 388
+        }
+      },
+      "policy": {
+        "primaryFocus": [
+          "budget",
+          "taxation",
+          "financial-markets",
+          "monetary-policy"
+        ],
+        "keyPolicyAreas": {
+          "budget": {
+            "activity": 487,
+            "importance": "critical",
+            "expertise": "high"
+          },
+          "taxation": {
+            "activity": 312,
+            "importance": "high",
+            "expertise": "high"
+          },
+          "financialRegulation": {
+            "activity": 234,
+            "importance": "high",
+            "expertise": "high"
+          },
+          "debtManagement": {
+            "activity": 156,
+            "importance": "moderate",
+            "expertise": "high"
+          }
+        },
+        "legislativeInitiatives": {
+          "committeeMotions": 23,
+          "amendmentsProposed": 234,
+          "amendmentsAdopted": 187,
+          "successRate": 79.9
+        }
+      },
+      "intelligence": {
+        "influenceScore": 95.8,
+        "influenceRank": 1,
+        "influenceFactors": {
+          "budgetAuthority": 30,
+          "workload": 25,
+          "mediaVisibility": 20,
+          "politicalImportance": 20.8
+        },
+        "effectivenessScore": 88.7,
+        "effectivenessMetrics": {
+          "processingSpeed": 85.3,
+          "decisionQuality": 91.2,
+          "legislativeImpact": 89.5
+        },
+        "collaborationScore": 82.4,
+        "collaborationMetrics": {
+          "crossPartyCooperation": 87.3,
+          "expertEngagement": 89.5,
+          "ministryRelations": 78.9
+        },
+        "riskFactors": [
+          {
+            "factor": "high-workload",
+            "severity": 15,
+            "description": "Committee handles exceptionally high volume of proposals"
+          },
+          {
+            "factor": "technical-complexity",
+            "severity": 12,
+            "description": "Complex economic and financial matters require deep expertise"
+          }
+        ],
+        "strengths": [
+          "High expertise level in economic policy",
+          "Strong cross-party cooperation on technical matters",
+          "Efficient processing of budget propositions",
+          "High attendance and engagement rates"
+        ],
+        "trends": {
+          "workloadTrend": "increasing",
+          "effectivenessTrend": "stable",
+          "collaborationTrend": "improving"
+        }
+      }
+    },
+    {
+      "id": "UU",
+      "labels": {
+        "category": "standing-committee",
+        "subcategories": [
+          "foreign-policy",
+          "defense-policy",
+          "eu-affairs",
+          "high-profile"
+        ],
+        "descriptions": {
+          "short": "Foreign Affairs Committee - Foreign and security policy",
+          "long": "The Committee on Foreign Affairs (Utrikesutskottet) handles matters relating to foreign policy, defense policy, and EU affairs. It scrutinizes government foreign policy decisions and international agreements.",
+          "detailed": "The Committee on Foreign Affairs is responsible for examining matters related to Sweden's foreign and security policy, including relations with other countries and international organizations. The committee reviews defense policy, NATO membership, EU foreign policy coordination, development assistance, and international agreements. It plays a crucial role in parliamentary oversight of foreign policy and often holds closed hearings on sensitive security matters. The committee has become increasingly important following Sweden's NATO membership application and changing security environment in Europe."
+        },
+        "intelligenceTags": [
+          "security-focus",
+          "international-relations",
+          "high-media-attention",
+          "sensitive-matters",
+          "strategic-importance"
+        ]
+      },
+      "attributes": {
+        "code": "UU",
+        "name": "Utrikesutskottet",
+        "nameEn": "Committee on Foreign Affairs",
+        "type": "standing",
+        "policyDomain": "foreign-policy",
+        "established": "1867-01-01",
+        "parliamentarySession": "2022/23",
+        "status": "active"
+      },
+      "relationships": {
+        "relatedCommittees": [
+          {
+            "code": "FöU",
+            "name": "Försvarsutskottet",
+            "relationship": "defense-coordination",
+            "collaborationLevel": "very-high"
+          },
+          {
+            "code": "UbU",
+            "name": "Utbildningsutskottet",
+            "relationship": "international-cooperation",
+            "collaborationLevel": "low"
+          }
+        ],
+        "governmentMinistries": [
+          {
+            "code": "UD",
+            "name": "Utrikesdepartementet",
+            "relationship": "primary-oversight"
+          },
+          {
+            "code": "FÖ",
+            "name": "Försvarsdepartementet",
+            "relationship": "defense-coordination"
+          }
+        ]
+      },
+      "membership": {
+        "totalMembers": 17,
+        "regularMembers": 17,
+        "deputyMembers": 17,
+        "leadership": {
+          "chair": {
+            "personId": "0345678901",
+            "name": "Karin Karlsson",
+            "party": "M",
+            "since": "2022-10-14"
+          },
+          "viceChairs": [
+            {
+              "personId": "0456789012",
+              "name": "Lars Larsson",
+              "party": "S",
+              "since": "2022-10-14"
+            }
+          ]
+        },
+        "partyDistribution": [
+          {
+            "party": "S",
+            "partyName": "Socialdemokraterna",
+            "regularMembers": 5,
+            "deputyMembers": 5,
+            "percentage": 29.4
+          },
+          {
+            "party": "M",
+            "partyName": "Moderaterna",
+            "regularMembers": 4,
+            "deputyMembers": 4,
+            "percentage": 23.5
+          },
+          {
+            "party": "SD",
+            "partyName": "Sverigedemokraterna",
+            "regularMembers": 3,
+            "deputyMembers": 3,
+            "percentage": 17.6
+          },
+          {
+            "party": "C",
+            "partyName": "Centerpartiet",
+            "regularMembers": 2,
+            "deputyMembers": 2,
+            "percentage": 11.8
+          },
+          {
+            "party": "V",
+            "partyName": "Vänsterpartiet",
+            "regularMembers": 1,
+            "deputyMembers": 1,
+            "percentage": 5.9
+          },
+          {
+            "party": "KD",
+            "partyName": "Kristdemokraterna",
+            "regularMembers": 1,
+            "deputyMembers": 1,
+            "percentage": 5.9
+          },
+          {
+            "party": "L",
+            "partyName": "Liberalerna",
+            "regularMembers": 1,
+            "deputyMembers": 1,
+            "percentage": 5.9
+          }
+        ],
+        "averageTenure": 5.7,
+        "turnoverRate": 18.2
+      },
+      "productivity": {
+        "reports": {
+          "total": 34,
+          "adopted": 32,
+          "rejected": 1,
+          "pending": 1,
+          "successRate": 94.1
+        },
+        "hearings": {
+          "total": 42,
+          "expertWitnesses": 87,
+          "averageAttendees": 14.8
+        },
+        "meetings": {
+          "total": 67,
+          "plenary": 8,
+          "working": 59,
+          "attendanceRate": 96.2
+        },
+        "documents": {
+          "betankanden": 34,
+          "yttranden": 18,
+          "amendments": 89,
+          "totalProcessed": 423
+        },
+        "workload": {
+          "proposalsReceived": 423,
+          "proposalsProcessed": 412,
+          "averageProcessingDays": 38.7,
+          "backlog": 11,
+          "workloadClassification": "moderate"
+        }
+      },
+      "decisions": {
+        "totalDecisions": 412,
+        "decisionsApproved": 387,
+        "decisionsRejected": 21,
+        "decisionsPending": 4,
+        "approvalRate": 93.9,
+        "consensusRate": 91.2,
+        "votingPatterns": {
+          "unanimous": 298,
+          "majorityWithReservations": 89,
+          "dividedOpinion": 25,
+          "partyLineVoting": 67.8
+        },
+        "decisionSpeed": {
+          "fast": 187,
+          "normal": 189,
+          "slow": 36,
+          "averageDays": 38.7
+        },
+        "policyImpact": {
+          "highImpact": 145,
+          "moderateImpact": 198,
+          "lowImpact": 69
+        }
+      },
+      "policy": {
+        "primaryFocus": [
+          "foreign-policy",
+          "defense",
+          "eu-affairs",
+          "international-cooperation"
+        ],
+        "keyPolicyAreas": {
+          "foreignPolicy": {
+            "activity": 234,
+            "importance": "critical",
+            "expertise": "very-high"
+          },
+          "defense": {
+            "activity": 187,
+            "importance": "critical",
+            "expertise": "high"
+          },
+          "euAffairs": {
+            "activity": 156,
+            "importance": "high",
+            "expertise": "high"
+          },
+          "developmentAid": {
+            "activity": 89,
+            "importance": "moderate",
+            "expertise": "moderate"
+          }
+        },
+        "legislativeInitiatives": {
+          "committeeMotions": 12,
+          "amendmentsProposed": 89,
+          "amendmentsAdopted": 78,
+          "successRate": 87.6
+        }
+      },
+      "intelligence": {
+        "influenceScore": 89.3,
+        "influenceRank": 3,
+        "influenceFactors": {
+          "strategicImportance": 28,
+          "mediaVisibility": 24,
+          "securityMatters": 22,
+          "internationalRelations": 15.3
+        },
+        "effectivenessScore": 92.1,
+        "effectivenessMetrics": {
+          "processingSpeed": 91.3,
+          "decisionQuality": 94.5,
+          "legislativeImpact": 90.5
+        },
+        "collaborationScore": 88.9,
+        "collaborationMetrics": {
+          "crossPartyCooperation": 91.2,
+          "expertEngagement": 87.8,
+          "ministryRelations": 87.7
+        },
+        "riskFactors": [
+          {
+            "factor": "sensitive-information",
+            "severity": 18,
+            "description": "Handles classified security matters requiring discretion"
+          },
+          {
+            "factor": "geopolitical-volatility",
+            "severity": 15,
+            "description": "Rapid changes in international security environment"
+          }
+        ],
+        "strengths": [
+          "Very high cross-party consensus on security matters",
+          "Strong expertise in foreign policy and international relations",
+          "Excellent working relationship with Foreign Ministry",
+          "High attendance and commitment from members"
+        ],
+        "trends": {
+          "workloadTrend": "increasing",
+          "effectivenessTrend": "stable",
+          "collaborationTrend": "stable"
+        }
+      }
+    }
+  ]
+}

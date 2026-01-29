@@ -1,0 +1,597 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "generated": "2026-01-29T02:40:00Z",
+    "source": "Citizen Intelligence Agency",
+    "schema": "ministry-profile",
+    "recordCount": 2,
+    "dataDate": "2026-01-28",
+    "attribution": "Data derived from Swedish Government and Riksdagen Open Data",
+    "license": "Apache-2.0"
+  },
+  "data": [
+    {
+      "id": "FI",
+      "labels": {
+        "category": "cabinet-ministry",
+        "subcategories": [
+          "economic-policy",
+          "budget-coordination",
+          "financial-regulation",
+          "high-priority"
+        ],
+        "descriptions": {
+          "short": "Ministry of Finance - Economic policy and budget coordination",
+          "long": "The Ministry of Finance (Finansdepartementet) is responsible for the state budget, economic policy, taxation, financial markets, and public administration. It coordinates the government's economic policy and prepares the annual budget proposition.",
+          "detailed": "The Ministry of Finance is the central coordinating ministry for economic policy in Sweden. It is responsible for preparing the government's budget proposition, coordinating economic policy across all ministries, managing taxation policy, overseeing financial markets and institutions, and ensuring sound public finances. The ministry works closely with the Riksbank (central bank), the Swedish National Debt Office, and other financial authorities. It plays a crucial role in EU economic policy coordination and fiscal surveillance. The ministry is also responsible for public administration policy, procurement, and state-owned enterprises."
+        },
+        "intelligenceTags": [
+          "budget-authority",
+          "economic-coordination",
+          "high-influence",
+          "policy-maker",
+          "eu-coordination"
+        ]
+      },
+      "attributes": {
+        "code": "FI",
+        "name": "Finansdepartementet",
+        "nameEn": "Ministry of Finance",
+        "portfolio": "economic-policy-budget",
+        "established": "1840-01-01",
+        "headquarters": "Stockholm, Drottninggatan 21",
+        "website": "https://www.regeringen.se/regeringens-politik/finansdepartementet/",
+        "status": "active"
+      },
+      "relationships": {
+        "governmentRole": "coordinating-ministry",
+        "relatedMinistries": [
+          {
+            "code": "N",
+            "name": "Näringsdepartementet",
+            "relationship": "economic-policy",
+            "collaborationLevel": "high"
+          },
+          {
+            "code": "A",
+            "name": "Arbetsmarknadsdepartementet",
+            "relationship": "employment-policy",
+            "collaborationLevel": "high"
+          }
+        ],
+        "parlamentaryCommittees": [
+          {
+            "code": "FiU",
+            "name": "Finansutskottet",
+            "relationship": "primary-scrutiny"
+          },
+          {
+            "code": "SkU",
+            "name": "Skatteutskottet",
+            "relationship": "taxation-oversight"
+          }
+        ],
+        "agencies": [
+          {
+            "name": "Skatteverket",
+            "nameEn": "Swedish Tax Agency",
+            "relationship": "supervision"
+          },
+          {
+            "name": "Riksgäldskontoret",
+            "nameEn": "Swedish National Debt Office",
+            "relationship": "supervision"
+          },
+          {
+            "name": "Ekonomistyrningsverket",
+            "nameEn": "Swedish Agency for Public Management",
+            "relationship": "supervision"
+          }
+        ]
+      },
+      "personnel": {
+        "ministers": {
+          "financeMinister": {
+            "personId": "0567890123",
+            "name": "Maria Malmer Stenergard",
+            "party": "M",
+            "since": "2022-10-18",
+            "responsibilities": [
+              "budget-policy",
+              "economic-policy",
+              "taxation",
+              "financial-markets"
+            ]
+          },
+          "stateSecretaries": [
+            {
+              "name": "Johan Carlson",
+              "since": "2022-10-18",
+              "portfolio": "budget-coordination"
+            },
+            {
+              "name": "Anna Kinberg Batra",
+              "since": "2022-10-18",
+              "portfolio": "financial-markets"
+            }
+          ]
+        },
+        "civilServants": {
+          "total": 487,
+          "byCategory": {
+            "seniorManagement": 42,
+            "policyAdvisors": 156,
+            "analysts": 189,
+            "administrative": 100
+          }
+        },
+        "turnoverRate": 8.3,
+        "averageTenure": 6.7
+      },
+      "budget": {
+        "allocation": {
+          "total": 1234000000000,
+          "currency": "SEK",
+          "fiscalYear": "2026",
+          "totalAsPercent GDP": 48.5
+        },
+        "ministry Operations": {
+          "total": 487000000,
+          "personnel": 342000000,
+          "operations": 145000000
+        },
+        "coordinatedBudget": {
+          "totalGovernmentBudget": 1234000000000,
+          "discretionary": 734000000000,
+          "mandatory": 500000000000
+        },
+        "execution": {
+          "spentToDate": 856000000000,
+          "executionRate": 69.4,
+          "projectedOutturn": 1228000000000
+        },
+        "budgetHistory": [
+          {
+            "fiscalYear": "2025",
+            "total": 1198000000000,
+            "execution": 1192000000000,
+            "executionRate": 99.5
+          },
+          {
+            "fiscalYear": "2024",
+            "total": 1156000000000,
+            "execution": 1149000000000,
+            "executionRate": 99.4
+          }
+        ]
+      },
+      "performance": {
+        "effectivenessScore": 87.3,
+        "effectivenessMetrics": {
+          "budgetAccuracy": 94.5,
+          "policyImplementation": 86.7,
+          "timelyDelivery": 91.2,
+          "stakeholderSatisfaction": 76.8
+        },
+        "efficiency": {
+          "costEffectiveness": 88.9,
+          "processOptimization": 82.3,
+          "digitalTransformation": 91.7
+        },
+        "keyPerformanceIndicators": {
+          "budgetPropositionTimely": true,
+          "economicForecastAccuracy": 87.5,
+          "deficitControl": "within-target",
+          "debtToGDPRatio": 32.1
+        }
+      },
+      "decisions": {
+        "propositionsSubmitted": 47,
+        "propositionsAdopted": 43,
+        "propositionsRejected": 2,
+        "propositionsPending": 2,
+        "successRate": 91.5,
+        "decisionSpeed": {
+          "averageProcessingDays": 125.3,
+          "fastTrack": 8,
+          "normal": 32,
+          "delayed": 7
+        },
+        "policyAreas": {
+          "budget": {
+            "propositions": 12,
+            "adopted": 11,
+            "successRate": 91.7
+          },
+          "taxation": {
+            "propositions": 18,
+            "adopted": 17,
+            "successRate": 94.4
+          },
+          "financialRegulation": {
+            "propositions": 11,
+            "adopted": 10,
+            "successRate": 90.9
+          },
+          "publicAdministration": {
+            "propositions": 6,
+            "adopted": 5,
+            "successRate": 83.3
+          }
+        }
+      },
+      "policy": {
+        "currentPriorities": [
+          "fiscal-sustainability",
+          "economic-growth",
+          "tax-simplification",
+          "financial-stability",
+          "public-sector-efficiency"
+        ],
+        "policyInitiatives": {
+          "fiscalFramework": {
+            "status": "ongoing",
+            "importance": "critical",
+            "timeline": "2023-2027"
+          },
+          "taxReform": {
+            "status": "planning",
+            "importance": "high",
+            "timeline": "2026-2028"
+          },
+          "digitalGovernment": {
+            "status": "implementation",
+            "importance": "high",
+            "timeline": "2024-2027"
+          }
+        },
+        "euCoordination": {
+          "fiscalSurveillance": "active",
+          "economicPolicyCoordination": "active",
+          "euBudgetNegotiations": "active"
+        }
+      },
+      "intelligence": {
+        "performanceScore": 89.7,
+        "performanceRank": 1,
+        "performanceFactors": {
+          "budgetManagement": 28.5,
+          "policyEffectiveness": 24.3,
+          "stakeholderRelations": 20.2,
+          "efficiency": 16.7
+        },
+        "influenceScore": 96.3,
+        "influenceRank": 1,
+        "influenceFactors": {
+          "budgetAuthority": 32,
+          "economicCoordination": 28,
+          "policyScope": 22,
+          "politicalImportance": 14.3
+        },
+        "riskFactors": [
+          {
+            "factor": "economic-uncertainty",
+            "severity": 22,
+            "description": "Global economic volatility affects budget planning"
+          },
+          {
+            "factor": "political-pressure",
+            "severity": 15,
+            "description": "Coalition partners have different fiscal priorities"
+          }
+        ],
+        "strengths": [
+          "Strong analytical capacity and economic expertise",
+          "Effective coordination across government",
+          "High credibility with financial markets",
+          "Robust fiscal framework and budget process"
+        ],
+        "trends": {
+          "performanceTrend": "stable",
+          "workloadTrend": "increasing",
+          "efficiencyTrend": "improving",
+          "stakeholderSatisfactionTrend": "stable"
+        },
+        "predictions": {
+          "budgetDeficit2026": -0.8,
+          "debtRatio2027": 31.2,
+          "economicGrowth2026": 2.3,
+          "inflationRate2026": 2.1
+        }
+      }
+    },
+    {
+      "id": "UD",
+      "labels": {
+        "category": "cabinet-ministry",
+        "subcategories": [
+          "foreign-affairs",
+          "defense-policy",
+          "development-cooperation",
+          "high-profile"
+        ],
+        "descriptions": {
+          "short": "Ministry for Foreign Affairs - Foreign policy and diplomacy",
+          "long": "The Ministry for Foreign Affairs (Utrikesdepartementet) is responsible for Sweden's foreign policy, diplomatic relations, development cooperation, and international trade promotion. It manages Sweden's diplomatic missions worldwide.",
+          "detailed": "The Ministry for Foreign Affairs manages Sweden's relations with other countries and international organizations. It is responsible for foreign policy formulation, diplomatic representation through embassies and consulates, development cooperation and humanitarian assistance, export promotion, consular services, and coordination of EU foreign policy. The ministry has expanded its role following Sweden's NATO membership and increased focus on security policy. It manages one of Sweden's largest overseas networks with over 100 missions worldwide. The ministry also coordinates crisis management and evacuation operations for Swedish citizens abroad."
+        },
+        "intelligenceTags": [
+          "diplomatic-network",
+          "security-focus",
+          "global-presence",
+          "crisis-management",
+          "strategic-importance"
+        ]
+      },
+      "attributes": {
+        "code": "UD",
+        "name": "Utrikesdepartementet",
+        "nameEn": "Ministry for Foreign Affairs",
+        "portfolio": "foreign-affairs-defense",
+        "established": "1809-01-01",
+        "headquarters": "Stockholm, Gustav II Adolfs torg 1",
+        "website": "https://www.regeringen.se/regeringens-politik/utrikesdepartementet/",
+        "status": "active"
+      },
+      "relationships": {
+        "governmentRole": "executive-ministry",
+        "relatedMinistries": [
+          {
+            "code": "FÖ",
+            "name": "Försvarsdepartementet",
+            "relationship": "security-coordination",
+            "collaborationLevel": "very-high"
+          },
+          {
+            "code": "N",
+            "name": "Näringsdepartementet",
+            "relationship": "trade-promotion",
+            "collaborationLevel": "high"
+          }
+        ],
+        "parlamentaryCommittees": [
+          {
+            "code": "UU",
+            "name": "Utrikesutskottet",
+            "relationship": "primary-scrutiny"
+          },
+          {
+            "code": "FöU",
+            "name": "Försvarsutskottet",
+            "relationship": "defense-coordination"
+          }
+        ],
+        "agencies": [
+          {
+            "name": "Sida",
+            "nameEn": "Swedish International Development Cooperation Agency",
+            "relationship": "supervision"
+          },
+          {
+            "name": "Folke Bernadotteakademin",
+            "nameEn": "Folke Bernadotte Academy",
+            "relationship": "supervision"
+          }
+        ]
+      },
+      "personnel": {
+        "ministers": {
+          "foreignMinister": {
+            "personId": "0678901234",
+            "name": "Tobias Billström",
+            "party": "M",
+            "since": "2022-10-18",
+            "responsibilities": [
+              "foreign-policy",
+              "diplomatic-relations",
+              "eu-coordination",
+              "security-policy"
+            ]
+          },
+          "stateSecretaries": [
+            {
+              "name": "Robert Rydberg",
+              "since": "2022-10-18",
+              "portfolio": "political-coordination"
+            },
+            {
+              "name": "Håkan Jevrell",
+              "since": "2022-10-18",
+              "portfolio": "administrative-coordination"
+            }
+          ]
+        },
+        "civilServants": {
+          "total": 2847,
+          "byCategory": {
+            "diplomaticService": 1456,
+            "policyAdvisors": 567,
+            "consularServices": 512,
+            "administrative": 312
+          },
+          "overseasStaff": 1678
+        },
+        "diplomaticMissions": {
+          "embassies": 106,
+          "consulates": 32,
+          "permanentMissions": 8
+        },
+        "turnoverRate": 6.8,
+        "averageTenure": 8.9
+      },
+      "budget": {
+        "allocation": {
+          "total": 45678000000,
+          "currency": "SEK",
+          "fiscalYear": "2026"
+        },
+        "ministryOperations": {
+          "total": 8234000000,
+          "personnel": 4567000000,
+          "missions": 3123000000,
+          "operations": 544000000
+        },
+        "developmentCooperation": {
+          "total": 34567000000,
+          "bilateralAid": 18234000000,
+          "multilateralAid": 12345000000,
+          "humanitarian": 3988000000
+        },
+        "execution": {
+          "spentToDate": 31234000000,
+          "executionRate": 68.4,
+          "projectedOutturn": 45123000000
+        },
+        "budgetHistory": [
+          {
+            "fiscalYear": "2025",
+            "total": 43456000000,
+            "execution": 42987000000,
+            "executionRate": 98.9
+          },
+          {
+            "fiscalYear": "2024",
+            "total": 41234000000,
+            "execution": 40876000000,
+            "executionRate": 99.1
+          }
+        ]
+      },
+      "performance": {
+        "effectivenessScore": 84.7,
+        "effectivenessMetrics": {
+          "diplomaticOutcomes": 88.3,
+          "crisisResponse": 92.1,
+          "developmentImpact": 78.9,
+          "stakeholderSatisfaction": 82.3
+        },
+        "efficiency": {
+          "costEffectiveness": 81.2,
+          "missionOperations": 87.6,
+          "consularServices": 91.8
+        },
+        "keyPerformanceIndicators": {
+          "crisisResponseTime": "excellent",
+          "diplomaticPresence": "global",
+          "developmentEffectiveness": 78.9,
+          "consularSatisfaction": 89.5
+        }
+      },
+      "decisions": {
+        "propositionsSubmitted": 23,
+        "propositionsAdopted": 21,
+        "propositionsRejected": 1,
+        "propositionsPending": 1,
+        "successRate": 91.3,
+        "decisionSpeed": {
+          "averageProcessingDays": 98.7,
+          "fastTrack": 5,
+          "normal": 15,
+          "delayed": 3
+        },
+        "policyAreas": {
+          "foreignPolicy": {
+            "propositions": 12,
+            "adopted": 11,
+            "successRate": 91.7
+          },
+          "developmentCooperation": {
+            "propositions": 8,
+            "adopted": 7,
+            "successRate": 87.5
+          },
+          "securityPolicy": {
+            "propositions": 3,
+            "adopted": 3,
+            "successRate": 100.0
+          }
+        }
+      },
+      "policy": {
+        "currentPriorities": [
+          "nato-integration",
+          "ukraine-support",
+          "eu-foreign-policy",
+          "development-effectiveness",
+          "climate-diplomacy"
+        ],
+        "policyInitiatives": {
+          "natoMembership": {
+            "status": "implementation",
+            "importance": "critical",
+            "timeline": "2024-2026"
+          },
+          "developmentStrategy": {
+            "status": "ongoing",
+            "importance": "high",
+            "timeline": "2023-2027"
+          },
+          "arcticStrategy": {
+            "status": "planning",
+            "importance": "high",
+            "timeline": "2026-2030"
+          }
+        },
+        "internationalEngagement": {
+          "unSecurityCouncil": "active",
+          "euForeignPolicy": "active",
+          "nordicCooperation": "active",
+          "natoActivities": "integration-phase"
+        }
+      },
+      "intelligence": {
+        "performanceScore": 86.9,
+        "performanceRank": 3,
+        "performanceFactors": {
+          "diplomaticEffectiveness": 27.8,
+          "crisisManagement": 24.5,
+          "developmentImpact": 19.3,
+          "stakeholderRelations": 15.3
+        },
+        "influenceScore": 91.7,
+        "influenceRank": 2,
+        "influenceFactors": {
+          "globalPresence": 28.5,
+          "securityRole": 26.3,
+          "diplomaticNetwork": 22.1,
+          "policyScope": 14.8
+        },
+        "riskFactors": [
+          {
+            "factor": "geopolitical-volatility",
+            "severity": 25,
+            "description": "Rapid changes in international security environment"
+          },
+          {
+            "factor": "crisis-overload",
+            "severity": 18,
+            "description": "Multiple simultaneous crises strain resources"
+          },
+          {
+            "factor": "nato-integration-complexity",
+            "severity": 15,
+            "description": "Complex organizational and policy adjustments required"
+          }
+        ],
+        "strengths": [
+          "Strong global diplomatic network",
+          "High credibility in international forums",
+          "Effective crisis response capabilities",
+          "Well-regarded development cooperation program"
+        ],
+        "trends": {
+          "performanceTrend": "stable",
+          "workloadTrend": "significantly-increasing",
+          "efficiencyTrend": "stable",
+          "stakeholderSatisfactionTrend": "improving"
+        },
+        "predictions": {
+          "natoIntegrationProgress": 0.78,
+          "budgetIncreaseProbability": 0.85,
+          "missionExpansion": "likely",
+          "securityFocus": "increasing"
+        }
+      }
+    }
+  ]
+}
