@@ -1,0 +1,330 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "generated": "2026-01-29T02:40:00Z",
+    "source": "Citizen Intelligence Agency",
+    "schema": "election-proximity-trends",
+    "dataSource": "view_riksdagen_election_proximity_trends",
+    "recordCount": 1,
+    "dataDate": "2026-01-28",
+    "attribution": "Data derived from Riksdagen Open Data API with CIA behavioral analysis",
+    "license": "Apache-2.0",
+    "documentation": "See visualizations/election-cycle-analysis.md for implementation guide"
+  },
+  "data": [
+    {
+      "personId": "0123456789",
+      "firstName": "Anna",
+      "lastName": "Andersson",
+      "party": "S",
+      "electionDate": "2026-09-13",
+      "quarters": [
+        {
+          "activityQuarter": "2025-01-01T00:00:00Z",
+          "quarterNumber": 1,
+          "monthsUntilElection": 20,
+          "electionPhase": "MID_TERM",
+          "isPreElectionQ4": false,
+          "activity": {
+            "ballotCount": 74,
+            "totalVotes": 72,
+            "attendanceRate": 97.3,
+            "documentCount": 15,
+            "proposalCount": 5,
+            "motionCount": 8,
+            "decisionCount": 36,
+            "compositeActivityScore": 76.8,
+            "activityClassification": "NORMAL_ACTIVITY"
+          },
+          "behavior": {
+            "avgWinRate": 76.2,
+            "avgRebelRate": 2.5,
+            "avgYesRate": 66.8,
+            "avgNoRate": 30.7,
+            "avgAbstainRate": 2.5,
+            "behavioralAssessment": "STANDARD_BEHAVIOR",
+            "attendanceStatus": "EXCELLENT_ATTENDANCE",
+            "effectivenessStatus": "EFFECTIVE",
+            "disciplineStatus": "PARTY_LINE"
+          },
+          "risk": {
+            "overallRiskScore": 14.2,
+            "riskLevel": "LOW",
+            "trendRiskScore": 9.1,
+            "anomalyRiskScore": 5.1,
+            "violationCount": 0
+          },
+          "deviations": {
+            "ballotCountDeviation": -0.3,
+            "documentCountDeviation": 0.2,
+            "decisionCountDeviation": -1.5,
+            "ballotActivityRatio": 0.997,
+            "documentActivityRatio": 1.002,
+            "decisionActivityRatio": 0.985
+          },
+          "baseline": {
+            "avgBallotCountBaseline": 74.3,
+            "avgDocumentCountBaseline": 14.97,
+            "avgDecisionCountBaseline": 36.5
+          }
+        },
+        {
+          "activityQuarter": "2025-04-01T00:00:00Z",
+          "quarterNumber": 2,
+          "monthsUntilElection": 17,
+          "electionPhase": "MID_TERM",
+          "isPreElectionQ4": false,
+          "activity": {
+            "ballotCount": 78,
+            "totalVotes": 76,
+            "attendanceRate": 97.4,
+            "documentCount": 16,
+            "proposalCount": 6,
+            "motionCount": 9,
+            "decisionCount": 38,
+            "compositeActivityScore": 79.3,
+            "activityClassification": "MODERATELY_ACTIVE"
+          },
+          "behavior": {
+            "avgWinRate": 77.1,
+            "avgRebelRate": 2.3,
+            "avgYesRate": 67.5,
+            "avgNoRate": 30.2,
+            "avgAbstainRate": 2.3,
+            "behavioralAssessment": "STANDARD_BEHAVIOR",
+            "attendanceStatus": "EXCELLENT_ATTENDANCE",
+            "effectivenessStatus": "EFFECTIVE",
+            "disciplineStatus": "PARTY_LINE"
+          },
+          "risk": {
+            "overallRiskScore": 13.8,
+            "riskLevel": "LOW",
+            "trendRiskScore": 8.7,
+            "anomalyRiskScore": 5.1,
+            "violationCount": 0
+          },
+          "deviations": {
+            "ballotCountDeviation": 3.7,
+            "documentCountDeviation": 6.9,
+            "decisionCountDeviation": 4.1,
+            "ballotActivityRatio": 1.05,
+            "documentActivityRatio": 1.07,
+            "decisionActivityRatio": 1.04
+          },
+          "baseline": {
+            "avgBallotCountBaseline": 74.3,
+            "avgDocumentCountBaseline": 14.97,
+            "avgDecisionCountBaseline": 36.5
+          }
+        },
+        {
+          "activityQuarter": "2025-07-01T00:00:00Z",
+          "quarterNumber": 3,
+          "monthsUntilElection": 14,
+          "electionPhase": "MID_TERM",
+          "isPreElectionQ4": false,
+          "activity": {
+            "ballotCount": 81,
+            "totalVotes": 79,
+            "attendanceRate": 97.5,
+            "documentCount": 18,
+            "proposalCount": 7,
+            "motionCount": 10,
+            "decisionCount": 41,
+            "compositeActivityScore": 83.7,
+            "activityClassification": "MODERATELY_ACTIVE"
+          },
+          "behavior": {
+            "avgWinRate": 77.8,
+            "avgRebelRate": 2.1,
+            "avgYesRate": 68.2,
+            "avgNoRate": 29.7,
+            "avgAbstainRate": 2.1,
+            "behavioralAssessment": "EXCELLENT_BEHAVIOR",
+            "attendanceStatus": "EXCELLENT_ATTENDANCE",
+            "effectivenessStatus": "EFFECTIVE",
+            "disciplineStatus": "PARTY_LINE"
+          },
+          "risk": {
+            "overallRiskScore": 12.9,
+            "riskLevel": "LOW",
+            "trendRiskScore": 7.8,
+            "anomalyRiskScore": 5.1,
+            "violationCount": 0
+          },
+          "deviations": {
+            "ballotCountDeviation": 9.0,
+            "documentCountDeviation": 20.2,
+            "decisionCountDeviation": 12.3,
+            "ballotActivityRatio": 1.09,
+            "documentActivityRatio": 1.20,
+            "decisionActivityRatio": 1.12
+          },
+          "baseline": {
+            "avgBallotCountBaseline": 74.3,
+            "avgDocumentCountBaseline": 14.97,
+            "avgDecisionCountBaseline": 36.5
+          }
+        },
+        {
+          "activityQuarter": "2025-10-01T00:00:00Z",
+          "quarterNumber": 4,
+          "monthsUntilElection": 11,
+          "electionPhase": "PRE_CAMPAIGN",
+          "isPreElectionQ4": false,
+          "activity": {
+            "ballotCount": 87,
+            "totalVotes": 85,
+            "attendanceRate": 97.7,
+            "documentCount": 23,
+            "proposalCount": 8,
+            "motionCount": 12,
+            "decisionCount": 45,
+            "compositeActivityScore": 92.3,
+            "activityClassification": "HIGHLY_ACTIVE"
+          },
+          "behavior": {
+            "avgWinRate": 78.5,
+            "avgRebelRate": 2.1,
+            "avgYesRate": 68.3,
+            "avgNoRate": 29.6,
+            "avgAbstainRate": 2.1,
+            "behavioralAssessment": "EXCELLENT_BEHAVIOR",
+            "attendanceStatus": "EXCELLENT_ATTENDANCE",
+            "effectivenessStatus": "EFFECTIVE",
+            "disciplineStatus": "PARTY_LINE"
+          },
+          "risk": {
+            "overallRiskScore": 12.5,
+            "riskLevel": "LOW",
+            "trendRiskScore": 8.2,
+            "anomalyRiskScore": 4.3,
+            "violationCount": 0
+          },
+          "deviations": {
+            "ballotCountDeviation": 17.1,
+            "documentCountDeviation": 53.6,
+            "decisionCountDeviation": 23.3,
+            "ballotActivityRatio": 1.17,
+            "documentActivityRatio": 1.54,
+            "decisionActivityRatio": 1.23
+          },
+          "baseline": {
+            "avgBallotCountBaseline": 74.3,
+            "avgDocumentCountBaseline": 14.97,
+            "avgDecisionCountBaseline": 36.5
+          }
+        },
+        {
+          "activityQuarter": "2026-01-01T00:00:00Z",
+          "quarterNumber": 1,
+          "monthsUntilElection": 8,
+          "electionPhase": "PRE_CAMPAIGN",
+          "isPreElectionQ4": false,
+          "activity": {
+            "ballotCount": 92,
+            "totalVotes": 90,
+            "attendanceRate": 97.8,
+            "documentCount": 27,
+            "proposalCount": 10,
+            "motionCount": 14,
+            "decisionCount": 49,
+            "compositeActivityScore": 97.5,
+            "activityClassification": "HIGHLY_ACTIVE"
+          },
+          "behavior": {
+            "avgWinRate": 79.2,
+            "avgRebelRate": 1.9,
+            "avgYesRate": 69.1,
+            "avgNoRate": 28.9,
+            "avgAbstainRate": 2.0,
+            "behavioralAssessment": "EXCELLENT_BEHAVIOR",
+            "attendanceStatus": "EXCELLENT_ATTENDANCE",
+            "effectivenessStatus": "HIGHLY_EFFECTIVE",
+            "disciplineStatus": "PARTY_LINE"
+          },
+          "risk": {
+            "overallRiskScore": 11.3,
+            "riskLevel": "LOW",
+            "trendRiskScore": 7.1,
+            "anomalyRiskScore": 4.2,
+            "violationCount": 0
+          },
+          "deviations": {
+            "ballotCountDeviation": 23.8,
+            "documentCountDeviation": 80.4,
+            "decisionCountDeviation": 34.2,
+            "ballotActivityRatio": 1.24,
+            "documentActivityRatio": 1.80,
+            "decisionActivityRatio": 1.34
+          },
+          "baseline": {
+            "avgBallotCountBaseline": 74.3,
+            "avgDocumentCountBaseline": 14.97,
+            "avgDecisionCountBaseline": 36.5
+          }
+        },
+        {
+          "activityQuarter": "2026-04-01T00:00:00Z",
+          "quarterNumber": 2,
+          "monthsUntilElection": 5,
+          "electionPhase": "INTENSE_CAMPAIGN",
+          "isPreElectionQ4": false,
+          "activity": {
+            "ballotCount": 102,
+            "totalVotes": 99,
+            "attendanceRate": 97.1,
+            "documentCount": 31,
+            "proposalCount": 12,
+            "motionCount": 15,
+            "decisionCount": 52,
+            "compositeActivityScore": 102.8,
+            "activityClassification": "HIGHLY_ACTIVE"
+          },
+          "behavior": {
+            "avgWinRate": 81.2,
+            "avgRebelRate": 1.8,
+            "avgYesRate": 71.5,
+            "avgNoRate": 26.7,
+            "avgAbstainRate": 1.8,
+            "behavioralAssessment": "EXCELLENT_BEHAVIOR",
+            "attendanceStatus": "EXCELLENT_ATTENDANCE",
+            "effectivenessStatus": "HIGHLY_EFFECTIVE",
+            "disciplineStatus": "PARTY_LINE"
+          },
+          "risk": {
+            "overallRiskScore": 10.2,
+            "riskLevel": "LOW",
+            "trendRiskScore": 6.5,
+            "anomalyRiskScore": 3.7,
+            "violationCount": 0
+          },
+          "deviations": {
+            "ballotCountDeviation": 37.3,
+            "documentCountDeviation": 107.1,
+            "decisionCountDeviation": 42.5,
+            "ballotActivityRatio": 1.37,
+            "documentActivityRatio": 2.07,
+            "decisionActivityRatio": 1.42
+          },
+          "baseline": {
+            "avgBallotCountBaseline": 74.3,
+            "avgDocumentCountBaseline": 14.97,
+            "avgDecisionCountBaseline": 36.5
+          }
+        }
+      ],
+      "trends": {
+        "overallActivityTrend": "INCREASING",
+        "documentProductivityTrend": "SHARP_INCREASE",
+        "riskTrend": "DECREASING",
+        "preElectionBoost": 45.6,
+        "typicalPreElectionPattern": true
+      },
+      "comparativeRank": {
+        "rankByActivityQuarter": 23,
+        "activityPercentile": 93.4
+      }
+    }
+  ]
+}

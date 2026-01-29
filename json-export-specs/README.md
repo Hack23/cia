@@ -12,10 +12,16 @@
 
 [![Validate JSON Schemas](https://github.com/Hack23/cia/actions/workflows/validate-json-schemas.yml/badge.svg)](https://github.com/Hack23/cia/actions/workflows/validate-json-schemas.yml)
 
-The 5 JSON export schemas are continuously validated against 142 real CSV sample data files to ensure correctness. See [VALIDATION_README.md](VALIDATION_README.md) for details.
+The 5 JSON export schemas are continuously validated against 138 relevant CSV sample data files (filtered from 210+ total files) to ensure correctness. See [VALIDATION_README.md](VALIDATION_README.md) for details.
 
-**Latest Validation:** 5 schemas validated, 132 files analyzed ([View Report](schemas/SCHEMA_VALIDATION_REPORT.md))  
+**Latest Validation:** 5 schemas validated, 138 files analyzed ([View Report](schemas/SCHEMA_VALIDATION_REPORT.md))  
 **Test Coverage:** 18 unit tests covering field parsing, type inference, and validation logic ([Run Tests](VALIDATION_README.md#running-tests))
+
+**Validation Notes:**
+- **125 field mismatches** documented between original projected schemas and actual implemented data
+- Mismatches represent fields that were planned but not yet implemented in the database
+- **Data-validated schemas** (`*-schema-validated.md`) reflect actual current data structure ([Summary](schemas/VALIDATED_SCHEMAS_SUMMARY.md))
+- Intelligence schema passes with 0 mismatches ✅
 
 ---
 
@@ -257,6 +263,106 @@ Each JSON schema directly supports specific product features and customer use ca
 
 **See Complete Product Documentation**: [BUSINESS_PRODUCT_DOCUMENT.md](../BUSINESS_PRODUCT_DOCUMENT.md)
 
+### Data Model Overview
+
+```mermaid
+%%{
+  init: {
+    'theme': 'base',
+    'themeVariables': {
+      'primaryColor': '#e1f5ff',
+      'primaryTextColor': '#0277bd',
+      'lineColor': '#0288d1',
+      'secondaryColor': '#c8e6c9',
+      'tertiaryColor': '#fff9c4',
+      'primaryBorderColor': '#0277bd',
+      'fontSize': '14px'
+    }
+  }
+}%%
+graph LR
+    subgraph "Core Entities"
+        POL[Politician<br/>349 active<br/>~9KB each]
+        PARTY[Party<br/>8 parliamentary<br/>~7KB each]
+        COMM[Committee<br/>15 riksdag<br/>~17KB each]
+        MIN[Ministry<br/>12 government<br/>~19KB each]
+    end
+    
+    subgraph "Intelligence Products"
+        RISK[Risk Assessment<br/>50 behavioral rules<br/>~14KB]
+        COAL[Coalition Alignment<br/>Party alignment matrix<br/>~9KB]
+        TREND[Temporal Trends<br/>Multi-timeframe<br/>~13KB]
+    end
+    
+    subgraph "Advanced Analysis"
+        CAREER[Career Path<br/>10-level hierarchy<br/>~5KB]
+        ELECTION[Election Proximity<br/>5-phase tracking<br/>~11KB]
+        LONGIT[Longitudinal<br/>Multi-semester<br/>~10KB]
+    end
+    
+    subgraph "Relationships"
+        REL_POL_PARTY[Member of]
+        REL_POL_COMM[Serves on]
+        REL_POL_MIN[Minister in]
+        REL_PARTY_COAL[Aligns with]
+        REL_COMM_MIN[Oversees]
+    end
+    
+    POL -->|REL_POL_PARTY| PARTY
+    POL -->|REL_POL_COMM| COMM
+    POL -->|REL_POL_MIN| MIN
+    PARTY -->|REL_PARTY_COAL| PARTY
+    COMM -->|REL_COMM_MIN| MIN
+    
+    POL -.->|Generates| RISK
+    PARTY -.->|Generates| COAL
+    POL -.->|Generates| TREND
+    
+    POL -.->|Tracked by| CAREER
+    POL -.->|Analyzed by| ELECTION
+    PARTY -.->|Tracked by| LONGIT
+    
+    style POL fill:#bbdefb,stroke:#1976d2,stroke-width:2px
+    style PARTY fill:#c8e6c9,stroke:#388e3c,stroke-width:2px
+    style COMM fill:#ffccbc,stroke:#d84315,stroke-width:2px
+    style MIN fill:#fff9c4,stroke:#f57f17,stroke-width:2px
+    style RISK fill:#f8bbd0,stroke:#c2185b,stroke-width:2px
+    style CAREER fill:#e1bee7,stroke:#7b1fa2,stroke-width:2px
+```
+
+**Entity Relationships**:
+- Politicians are members of parties and serve on committees
+- Some politicians are ministers in government ministries
+- Committees oversee specific ministries
+- Parties form coalitions and align on voting
+- All entities generate intelligence products and analytics
+
+### Schema Versions and Field Validation
+
+The JSON export system maintains **two versions** of each schema to handle the difference between planned features and current implementation:
+
+#### Original Schemas (Projected Features)
+- **Files**: `*-schema.md` (e.g., `politician-schema.md`)
+- **Purpose**: Define the **complete vision** for JSON exports including future features
+- **Fields**: Include both implemented and planned analytical fields
+- **Usage**: Guide for API development and feature roadmap
+
+#### Data-Validated Schemas (Current Reality)
+- **Files**: `*-schema-validated.md` (e.g., `politician-schema-validated.md`)
+- **Purpose**: Reflect **actual available data** in current database
+- **Fields**: Only fields with data in sample CSV files (138 files analyzed)
+- **Usage**: Accurate representation of what can be exported today
+- **Summary**: [VALIDATED_SCHEMAS_SUMMARY.md](schemas/VALIDATED_SCHEMAS_SUMMARY.md)
+
+**Field Mismatch Summary** (Original vs. Validated):
+- **Politician**: 46 projected → 12 validated (74% not yet implemented)
+- **Party**: 43 projected → 3 validated (93% not yet implemented)
+- **Committee**: 26 projected → 2 validated (92% not yet implemented)
+- **Ministry**: 29 projected → 1 validated (97% not yet implemented)
+- **Intelligence**: Fully aligned ✅ (0 mismatches)
+
+**Why mismatches exist**: The original schemas were created as a forward-looking specification before all database views were populated with data. The validated schemas show what's currently available, while original schemas guide future implementation.
+
 ### Detailed Schema Documentation
 
 All schemas are documented in Markdown format with:
@@ -279,13 +385,32 @@ All schemas are documented in Markdown format with:
 
 The following example files demonstrate the complete JSON export format for each intelligence product:
 
+#### Core Entity Examples
+
 | Example File | Schema | Description | File Size | Update Frequency |
 |-------------|--------|-------------|-----------|------------------|
-| **[politician-example.json](examples/politician-example.json)** | politician-schema.md | Comprehensive politician profiles with voting, activity, and risk data | ~2.5 KB | Daily |
-| **[party-example.json](examples/party-example.json)** | party-schema.md | Party performance, coalition, and electoral analytics | ~3.5 KB | Daily |
-| **[risk-assessment-example.json](examples/risk-assessment-example.json)** | intelligence-schema.md | Risk assessment with 50 behavioral rules catalog | ~15 KB | Daily |
-| **[coalition-alignment-example.json](examples/coalition-alignment-example.json)** | intelligence-schema.md | Coalition alignment matrix and party voting patterns | ~10 KB | Daily |
-| **[temporal-trends-example.json](examples/temporal-trends-example.json)** | intelligence-schema.md | Temporal trend analysis (daily/weekly/monthly/annual) | ~13 KB | Daily |
+| **[politician-example.json](examples/politician-example.json)** | [politician-schema.md](schemas/politician-schema.md) | Comprehensive politician profiles with voting, activity, and risk data | ~9 KB | Daily |
+| **[party-example.json](examples/party-example.json)** | [party-schema.md](schemas/party-schema.md) | Party performance, coalition, and electoral analytics | ~7 KB | Daily |
+| **[committee-example.json](examples/committee-example.json)** | [committee-schema.md](schemas/committee-schema.md) | Committee composition, productivity, and decision patterns | ~17 KB | Daily |
+| **[ministry-example.json](examples/ministry-example.json)** | [ministry-schema.md](schemas/ministry-schema.md) | Ministry organization, budget, and performance metrics | ~19 KB | Daily |
+
+#### Intelligence Product Examples
+
+| Example File | Schema | Description | File Size | Update Frequency |
+|-------------|--------|-------------|-----------|------------------|
+| **[risk-assessment-example.json](examples/risk-assessment-example.json)** | [intelligence-schema.md](schemas/intelligence-schema.md) | Risk assessment with 50 behavioral rules catalog | ~14 KB | Daily |
+| **[coalition-alignment-example.json](examples/coalition-alignment-example.json)** | [intelligence-schema.md](schemas/intelligence-schema.md) | Coalition alignment matrix and party voting patterns | ~9 KB | Daily |
+| **[temporal-trends-example.json](examples/temporal-trends-example.json)** | [intelligence-schema.md](schemas/intelligence-schema.md) | Temporal trend analysis (daily/weekly/monthly/annual) | ~13 KB | Daily |
+
+#### Advanced Analysis Examples (v1.58-v1.61)
+
+| Example File | Schema | Description | File Size | Update Frequency |
+|-------------|--------|-------------|-----------|------------------|
+| **[politician-career-path-example.json](examples/politician-career-path-example.json)** | [politician-schema.md](schemas/politician-schema.md) | Career progression with 10-level hierarchy and risk assessment | ~5 KB | Daily |
+| **[election-proximity-trends-example.json](examples/election-proximity-trends-example.json)** | [intelligence-schema.md](schemas/intelligence-schema.md) | Quarterly activity tracking relative to election dates | ~11 KB | Daily |
+| **[party-longitudinal-performance-example.json](examples/party-longitudinal-performance-example.json)** | [party-schema.md](schemas/party-schema.md) | Multi-semester performance trends with forecasting | ~10 KB | Daily |
+
+**📋 Complete Documentation**: See [examples/EXAMPLES_README.md](examples/EXAMPLES_README.md) for comprehensive guide to all examples.
 
 **Intelligence Products Coverage**:
 - ✅ **Risk Assessments**: Complete 50-rule risk catalog with entity-level assessments
@@ -293,6 +418,11 @@ The following example files demonstrate the complete JSON export format for each
 - ✅ **Temporal Trends**: Multi-timeframe trend analysis for intelligence monitoring
 - ✅ **Politician Profiles**: Individual politician data with risk and performance scores
 - ✅ **Party Analytics**: Party-level performance and coalition stability metrics
+- ✅ **Committee Analysis**: Productivity, decision patterns, and influence metrics
+- ✅ **Ministry Performance**: Budget execution, policy effectiveness, and predictions
+- ✅ **Career Progression**: 10-level career path with behavioral and network metrics
+- ✅ **Election Cycle Analysis**: Pre-election activity surge detection and phase classification
+- ✅ **Longitudinal Trends**: Multi-semester performance tracking with forecasting indicators
 
 ---
 
