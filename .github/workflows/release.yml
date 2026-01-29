@@ -95,7 +95,7 @@ jobs:
         architecture: 'x64'  # Explicitly specify architecture
 
     - name: Cache Maven and Sonar artifacts
-      uses: actions/cache@8b402f58fbc84540c8b491a91e594a4576fec3d7 # v5.0.2
+      uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5.0.3
       with:
         path: |
           ~/.m2/repository
@@ -105,7 +105,7 @@ jobs:
           ${{ runner.os }}-maven-
 
     - name: Cache APT packages
-      uses: actions/cache@8b402f58fbc84540c8b491a91e594a4576fec3d7 # v5.0.2
+      uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5.0.3
       with:
         path: /var/cache/apt/archives
         key: ${{ runner.os }}-apt-${{ hashFiles('.github/workflows/release.yml') }}
