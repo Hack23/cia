@@ -57,6 +57,14 @@ Each visualization guide includes:
 | [Committee Network](./committee-network.md) | ✅ Complete | Parliamentary committees | Committee hierarchies, membership matrices, productivity charts, collaboration patterns |
 | [Intelligence Dashboard](./intelligence-dashboard.md) | ✅ Complete | Intelligence products | Risk heat maps, system health, KPI dashboard, data pipeline monitoring |
 
+### Advanced Analysis Visualizations (v1.58-v1.61) (3 guides)
+
+| Guide | Status | Description | Key Visualizations |
+|-------|--------|-------------|-------------------|
+| [Politician Career Analysis](./politician-career-analysis.md) | ✅ Complete | Career path progression & trajectory | Career path Sankey, trajectory timeline, performance metrics (68 columns) |
+| [Election Cycle Analysis](./election-cycle-analysis.md) | ✅ Complete | Election proximity trends | Activity heatmap, pre-election surge chart, phase classification (58 columns) |
+| [Party Longitudinal Analysis](./party-longitudinal-analysis.md) | ✅ Complete | Long-term party performance | Multi-line time series, coalition heatmap, forecasting charts (75 columns) |
+
 ### Top-10 Ranking Visualizations (10 guides)
 
 | Guide | Status | Description | Key Visualizations |
@@ -281,6 +289,9 @@ visualizations/
 ├── government-cabinet.md
 ├── committee-network.md
 ├── intelligence-dashboard.md
+├── politician-career-analysis.md      (v1.58 - NEW)
+├── election-cycle-analysis.md         (v1.59-v1.60 - NEW)
+├── party-longitudinal-analysis.md     (v1.61 - NEW)
 ├── top10-electoral-risk.md
 ├── top10-ethics-concerns.md
 ├── top10-most-influential.md

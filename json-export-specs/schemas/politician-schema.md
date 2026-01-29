@@ -49,6 +49,13 @@ This schema aggregates data from multiple database views:
 - `view_riksdagen_politician_vote_summary` - Voting patterns
 - `view_riksdagen_politician_ranking` - Comparative rankings
 
+**Career Analysis Views (v1.58)**:
+- `view_riksdagen_politician_career_path_10level` - 10-level career progression with comprehensive behavioral, risk, and network metrics (68 columns)
+- `view_riksdagen_politician_role_evolution` - Temporal progression of political roles and responsibilities (25 columns)
+- `view_riksdagen_politician_career_trajectory` - Election-cycle based performance trends and career stage analysis (19 columns)
+
+See [Politician Career Analysis Visualization](../visualizations/politician-career-analysis.md) for detailed implementation guide.
+
 ---
 
 ## 📊 Schema Diagram

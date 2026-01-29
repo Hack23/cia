@@ -53,6 +53,13 @@ This schema aggregates data from multiple database views:
 - `view_riksdagen_party_ballot_support_summary` - Electoral support
 - `view_riksdagen_party_decision_flow` - Decision-making effectiveness
 
+**Party Longitudinal Analysis Views (v1.61)**:
+- `view_riksdagen_party_longitudinal_performance` - Multi-semester performance trends with forecasting and early warning indicators (75 columns)
+- `view_riksdagen_party_coalition_evolution` - Pairwise voting alignment evolution with stability and risk metrics (46 columns)
+- `view_riksdagen_party_electoral_trends` - Electoral performance and seat projection trends (58 columns)
+
+See [Party Longitudinal Analysis Visualization](../visualizations/party-longitudinal-analysis.md) for detailed implementation guide.
+
 ---
 
 ## 📊 Schema Diagram

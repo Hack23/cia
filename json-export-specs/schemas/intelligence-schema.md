@@ -79,6 +79,14 @@ The Intelligence Products JSON schema provides structured formats for analytical
 6. **Network Analysis** - Influence mapping and power structure visualization
 7. **Performance Scorecards** - Comparative politician and party metrics
 
+**Election Cycle Analysis Views (v1.59-v1.60)**:
+- `view_riksdagen_election_proximity_trends` - Quarterly activity tracking relative to election dates with phase classification (58 columns)
+- `view_riksdagen_election_year_behavioral_patterns` - Election year specific behavioral patterns and anomalies
+- `view_riksdagen_pre_election_quarterly_activity` - Q4 pre-election activity surge analysis
+- Supporting views: `view_election_cycle_temporal_trends`, `view_riksdagen_election_year_anomalies`, `view_riksdagen_election_year_vs_midterm`, `view_riksdagen_q4_election_year_comparison`, `view_election_cycle_comparative_analysis`, `view_election_cycle_network_analysis`, `view_election_cycle_predictive_intelligence`
+
+See [Election Cycle Analysis Visualization](../visualizations/election-cycle-analysis.md) for detailed implementation guide.
+
 ---
 
 ## 📊 Schema Architecture
