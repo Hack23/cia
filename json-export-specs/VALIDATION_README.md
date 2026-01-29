@@ -2,7 +2,7 @@
 
 ## Overview
 
-This tool validates the 5 JSON export schemas against 142 real CSV sample data files to ensure correctness and identify mismatches between schema definitions and actual database structure.
+This tool validates the 5 JSON export schemas against 138 relevant CSV sample data files (filtered from 210+ total files, excluding statistics and distinct value tables) to ensure correctness and identify mismatches between schema definitions and actual database structure.
 
 ## Purpose
 
@@ -28,7 +28,7 @@ python3 validate_schemas.py
 
 The script will:
 1. Load all 5 JSON schema markdown files
-2. Analyze 142 CSV sample data files
+2. Analyze 138 relevant CSV sample data files (filtered from 210+ total)
 3. Compare schema field definitions with actual data columns
 4. Generate validation reports
 

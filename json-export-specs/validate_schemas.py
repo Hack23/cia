@@ -2,12 +2,13 @@
 """
 JSON Schema Validation Against Sample Data
 
-This script validates the 5 JSON export schemas against 142 real CSV sample data files
-to ensure correctness and identify mismatches between schema definitions and actual data.
+This script validates the 5 JSON export schemas against 138 relevant CSV sample data files
+(filtered from 210+ total files) to ensure correctness and identify mismatches between
+schema definitions and actual data.
 
 Author: Citizen Intelligence Agency Development Team
 License: Apache-2.0
-Version: 1.0.0
+Version: 1.0.1
 """
 
 import csv
@@ -377,7 +378,8 @@ class SchemaValidator:
             "",
             "## Executive Summary",
             "",
-            "This report validates the 5 JSON export schemas against 142 real CSV sample data files ",
+            "This report validates the 5 JSON export schemas against 138 relevant CSV sample data files ",
+            "(filtered from 210+ total files, excluding stats and distinct value tables) ",
             "from the CIA database to ensure schema correctness and identify gaps between ",
             "schema definitions and actual data structure.",
             "",
@@ -476,7 +478,7 @@ class SchemaValidator:
             "",
             "This validation compares:",
             "- Field definitions in JSON schema markdown files",
-            "- Column names and data types from 142 CSV sample files",
+            "- Column names and data types from 138 relevant CSV sample files",
             "- Database view references in schema documentation",
             "",
             "**Validation includes:**",

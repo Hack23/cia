@@ -12,10 +12,16 @@
 
 [![Validate JSON Schemas](https://github.com/Hack23/cia/actions/workflows/validate-json-schemas.yml/badge.svg)](https://github.com/Hack23/cia/actions/workflows/validate-json-schemas.yml)
 
-The 5 JSON export schemas are continuously validated against 142 real CSV sample data files to ensure correctness. See [VALIDATION_README.md](VALIDATION_README.md) for details.
+The 5 JSON export schemas are continuously validated against 138 relevant CSV sample data files (filtered from 210+ total files) to ensure correctness. See [VALIDATION_README.md](VALIDATION_README.md) for details.
 
-**Latest Validation:** 5 schemas validated, 132 files analyzed ([View Report](schemas/SCHEMA_VALIDATION_REPORT.md))  
+**Latest Validation:** 5 schemas validated, 138 files analyzed ([View Report](schemas/SCHEMA_VALIDATION_REPORT.md))  
 **Test Coverage:** 18 unit tests covering field parsing, type inference, and validation logic ([Run Tests](VALIDATION_README.md#running-tests))
+
+**Validation Notes:**
+- **125 field mismatches** documented between original projected schemas and actual implemented data
+- Mismatches represent fields that were planned but not yet implemented in the database
+- **Data-validated schemas** (`*-schema-validated.md`) reflect actual current data structure ([Summary](schemas/VALIDATED_SCHEMAS_SUMMARY.md))
+- Intelligence schema passes with 0 mismatches ✅
 
 ---
 
@@ -330,6 +336,32 @@ graph LR
 - Committees oversee specific ministries
 - Parties form coalitions and align on voting
 - All entities generate intelligence products and analytics
+
+### Schema Versions and Field Validation
+
+The JSON export system maintains **two versions** of each schema to handle the difference between planned features and current implementation:
+
+#### Original Schemas (Projected Features)
+- **Files**: `*-schema.md` (e.g., `politician-schema.md`)
+- **Purpose**: Define the **complete vision** for JSON exports including future features
+- **Fields**: Include both implemented and planned analytical fields
+- **Usage**: Guide for API development and feature roadmap
+
+#### Data-Validated Schemas (Current Reality)
+- **Files**: `*-schema-validated.md` (e.g., `politician-schema-validated.md`)
+- **Purpose**: Reflect **actual available data** in current database
+- **Fields**: Only fields with data in sample CSV files (138 files analyzed)
+- **Usage**: Accurate representation of what can be exported today
+- **Summary**: [VALIDATED_SCHEMAS_SUMMARY.md](schemas/VALIDATED_SCHEMAS_SUMMARY.md)
+
+**Field Mismatch Summary** (Original vs. Validated):
+- **Politician**: 46 projected → 12 validated (74% not yet implemented)
+- **Party**: 43 projected → 3 validated (93% not yet implemented)
+- **Committee**: 26 projected → 2 validated (92% not yet implemented)
+- **Ministry**: 29 projected → 1 validated (97% not yet implemented)
+- **Intelligence**: Fully aligned ✅ (0 mismatches)
+
+**Why mismatches exist**: The original schemas were created as a forward-looking specification before all database views were populated with data. The validated schemas show what's currently available, while original schemas guide future implementation.
 
 ### Detailed Schema Documentation
 
