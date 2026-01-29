@@ -257,6 +257,80 @@ Each JSON schema directly supports specific product features and customer use ca
 
 **See Complete Product Documentation**: [BUSINESS_PRODUCT_DOCUMENT.md](../BUSINESS_PRODUCT_DOCUMENT.md)
 
+### Data Model Overview
+
+```mermaid
+%%{
+  init: {
+    'theme': 'base',
+    'themeVariables': {
+      'primaryColor': '#e1f5ff',
+      'primaryTextColor': '#0277bd',
+      'lineColor': '#0288d1',
+      'secondaryColor': '#c8e6c9',
+      'tertiaryColor': '#fff9c4',
+      'primaryBorderColor': '#0277bd',
+      'fontSize': '14px'
+    }
+  }
+}%%
+graph LR
+    subgraph "Core Entities"
+        POL[Politician<br/>349 active<br/>~9KB each]
+        PARTY[Party<br/>8 parliamentary<br/>~7KB each]
+        COMM[Committee<br/>15 riksdag<br/>~17KB each]
+        MIN[Ministry<br/>12 government<br/>~19KB each]
+    end
+    
+    subgraph "Intelligence Products"
+        RISK[Risk Assessment<br/>50 behavioral rules<br/>~14KB]
+        COAL[Coalition Alignment<br/>Party alignment matrix<br/>~9KB]
+        TREND[Temporal Trends<br/>Multi-timeframe<br/>~13KB]
+    end
+    
+    subgraph "Advanced Analysis"
+        CAREER[Career Path<br/>10-level hierarchy<br/>~5KB]
+        ELECTION[Election Proximity<br/>5-phase tracking<br/>~11KB]
+        LONGIT[Longitudinal<br/>Multi-semester<br/>~10KB]
+    end
+    
+    subgraph "Relationships"
+        REL_POL_PARTY[Member of]
+        REL_POL_COMM[Serves on]
+        REL_POL_MIN[Minister in]
+        REL_PARTY_COAL[Aligns with]
+        REL_COMM_MIN[Oversees]
+    end
+    
+    POL -->|REL_POL_PARTY| PARTY
+    POL -->|REL_POL_COMM| COMM
+    POL -->|REL_POL_MIN| MIN
+    PARTY -->|REL_PARTY_COAL| PARTY
+    COMM -->|REL_COMM_MIN| MIN
+    
+    POL -.->|Generates| RISK
+    PARTY -.->|Generates| COAL
+    POL -.->|Generates| TREND
+    
+    POL -.->|Tracked by| CAREER
+    POL -.->|Analyzed by| ELECTION
+    PARTY -.->|Tracked by| LONGIT
+    
+    style POL fill:#bbdefb,stroke:#1976d2,stroke-width:2px
+    style PARTY fill:#c8e6c9,stroke:#388e3c,stroke-width:2px
+    style COMM fill:#ffccbc,stroke:#d84315,stroke-width:2px
+    style MIN fill:#fff9c4,stroke:#f57f17,stroke-width:2px
+    style RISK fill:#f8bbd0,stroke:#c2185b,stroke-width:2px
+    style CAREER fill:#e1bee7,stroke:#7b1fa2,stroke-width:2px
+```
+
+**Entity Relationships**:
+- Politicians are members of parties and serve on committees
+- Some politicians are ministers in government ministries
+- Committees oversee specific ministries
+- Parties form coalitions and align on voting
+- All entities generate intelligence products and analytics
+
 ### Detailed Schema Documentation
 
 All schemas are documented in Markdown format with:
