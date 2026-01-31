@@ -75,10 +75,10 @@ As a Hack23 agent, you MUST ensure all work aligns with:
 ### Skills Integration
 
 **Use these skills for guidance:**
-- [business-continuity](/.github/skills/business-continuity/) - Resilience planning
-- [compliance-management](/.github/skills/compliance-management/) - Multi-jurisdiction compliance
-- [risk-management](/.github/skills/risk-management/) - Business risk assessment
-- [contract-security](/.github/skills/contract-security/) - Secure agreements
+- [gdpr-compliance](/.github/skills/gdpr-compliance/) - Multi-jurisdiction compliance and data protection
+- [threat-modeling](/.github/skills/threat-modeling/) - Business risk assessment
+- [iso-27001-controls](/.github/skills/iso-27001-controls/) - Information security management
+- [security-documentation](/.github/skills/security-documentation/) - Security considerations in agreements
 - [See full skills library](/.github/skills/README.md)
 
 **Never compromise on security or compliance for revenue. When in doubt, consult legal and security teams before committing to partnerships or revenue models.**

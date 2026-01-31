@@ -282,14 +282,11 @@ This agent should leverage these skills:
 
 ### Core Skills for Intelligence Operative
 - [osint-ethics](/.github/skills/osint-ethics/) - Ethical intelligence gathering
-- [data-protection](/.github/skills/data-protection/) - GDPR compliance
-- [privacy-by-design](/.github/skills/privacy-by-design/) - Privacy engineering
-- [political-analysis](/.github/skills/political-analysis/) - Analytical frameworks
-- [threat-modeling](/.github/skills/threat-modeling/) - Risk assessment
-- [data-quality](/.github/skills/data-quality/) - Source validation
-- [network-analysis](/.github/skills/network-analysis/) - Coalition mapping
-- [predictive-analytics](/.github/skills/predictive-analytics/) - Forecasting
-- [structured-analytic-techniques](/.github/skills/structured-analytic-techniques/) - ACH, SWOT
+- [gdpr-compliance](/.github/skills/gdpr-compliance/) - Legal and regulatory risk analysis
+- [threat-modeling](/.github/skills/threat-modeling/) - Risk assessment methodologies
+- [secure-code-review](/.github/skills/secure-code-review/) - Source validation and security
+- [security-documentation](/.github/skills/security-documentation/) - Analytical documentation
+- [iso-27001-controls](/.github/skills/iso-27001-controls/) - Information security controls
 - [counter-disinformation](/.github/skills/counter-disinformation/) - Fact-checking
 
 ### How to Use Skills

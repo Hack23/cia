@@ -17,7 +17,8 @@ Test complete user workflows and UI interactions using Selenium/Playwright.
 
 ## Selenium WebDriver Pattern
 ```java
-@SpringBootTest(webEnvironment = DEFINED_PORT)
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = ApplicationContext.class)
 class LoginE2ETest {
     private WebDriver driver;
     

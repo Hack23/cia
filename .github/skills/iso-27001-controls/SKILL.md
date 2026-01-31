@@ -219,8 +219,8 @@ public class SecurityHeadersConfig {
     public SecurityFilterChain securityHeaders(HttpSecurity http) throws Exception {
         http.headers(headers -> headers
             .contentSecurityPolicy("default-src 'self'; " +
-                                 "script-src 'self' 'unsafe-inline'; " +
-                                 "style-src 'self' 'unsafe-inline'; " +
+                                 "script-src 'self'; " +
+                                 "style-src 'self'; " +
                                  "img-src 'self' data: https:; " +
                                  "font-src 'self'; " +
                                  "connect-src 'self'; " +

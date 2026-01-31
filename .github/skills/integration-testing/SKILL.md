@@ -1,6 +1,6 @@
 ---
 name: integration-testing
-description: Implement Spring Boot integration tests with TestContainers, @SpringBootTest, and database fixtures
+description: Implement Spring Framework integration tests with TestContainers, Spring Test, and database fixtures
 license: Apache-2.0
 ---
 
@@ -27,7 +27,7 @@ Test component interactions, database operations, and external API integrations 
 public class PoliticianIntegrationTest {
     
     @Autowired
-    private TestRestTemplate restTemplate;
+    private PoliticianRepository repository;
     
     @Autowired
     private PoliticianRepository repository;

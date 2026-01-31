@@ -231,7 +231,7 @@ void shouldHaveCorrectProperties() {
 <plugin>
     <groupId>org.jacoco</groupId>
     <artifactId>jacoco-maven-plugin</artifactId>
-    <version>0.8.11</version>
+    <version>${jacoco.version}</version>
     <executions>
         <execution>
             <goals>

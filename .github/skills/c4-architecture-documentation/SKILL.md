@@ -26,9 +26,9 @@ Document CIA platform architecture using C4 model for different abstraction leve
 
 ### Level 2: Container Diagram
 ```
-[Web Browser] --HTTPS--> [Spring Boot App] --JDBC--> [PostgreSQL]
-[Spring Boot App] --HTTPS--> [External APIs]
-[Spring Boot App] --uses--> [Redis Cache]
+[Web Browser] --HTTPS--> [Spring MVC App] --JDBC--> [PostgreSQL]
+[Spring MVC App] --HTTPS--> [External APIs]
+[Spring MVC App] --uses--> [Redis Cache]
 ```
 
 ### Level 3: Component Diagram

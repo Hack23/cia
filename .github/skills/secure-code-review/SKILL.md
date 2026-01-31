@@ -421,9 +421,9 @@ public ObjectMapper objectMapper() {
     // If polymorphism is required, use @JsonTypeInfo on specific DTOs
     // with a strict allowlist-based PolymorphicTypeValidator
     
-    // Disable dangerous features
+    // Adjust serialization behavior if needed
     mapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
-    mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+    // Keep FAIL_ON_UNKNOWN_PROPERTIES enabled by default to catch unexpected/malicious fields
     
     return mapper;
 }

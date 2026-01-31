@@ -192,7 +192,7 @@ Our skills library covers 6 major categories:
 
 #### 🧪 Testing & Quality (4 skills)
 - **unit-testing-patterns** - JUnit 5, Mockito, 80% coverage standard
-- **integration-testing** - Spring Boot Test, TestContainers, database testing
+- **integration-testing** - Spring Test, TestContainers, database testing
 - **e2e-testing** - Selenium WebDriver, Playwright patterns
 - **code-quality-checks** - SonarCloud, CodeQL, CheckStyle integration
 

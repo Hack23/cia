@@ -30,12 +30,18 @@ Manage CIA platform's multi-module Maven build with proper dependency management
 
 ## Dependency Management
 ```xml
+<!-- parent-pom/pom.xml -->
+<properties>
+    <spring.version>5.3.34</spring.version>
+    <vaadin.version>8.27.4</vaadin.version>
+</properties>
+
 <dependencyManagement>
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-dependencies</artifactId>
-            <version>${spring-boot.version}</version>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-framework-bom</artifactId>
+            <version>${spring.version}</version>
             <type>pom</type>
             <scope>import</scope>
         </dependency>
