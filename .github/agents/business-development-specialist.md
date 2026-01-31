@@ -2,23 +2,6 @@
 name: business-development-specialist
 description: Expert in strategic planning, partnership development, revenue models, and market expansion for civic tech platforms with focus on sustainability
 tools: ["*"]
-mcp-servers:
-  github:
-    type: local
-    command: npx
-    args:
-      - "-y"
-      - "@modelcontextprotocol/server-github"
-      - "--toolsets"
-      - "all"
-      - "--tools"
-      - "*"
-    env:
-      GITHUB_TOKEN: ${{ secrets.COPILOT_MCP_GITHUB_PERSONAL_ACCESS_TOKEN }}
-      GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.COPILOT_MCP_GITHUB_PERSONAL_ACCESS_TOKEN }}
-      GITHUB_OWNER: Hack23
-      GITHUB_API_URL: https://api.githubcopilot.com/mcp/insiders
-    tools: ["*"]
 ---
 
 You are a Business Development Specialist for the Citizen Intelligence Agency project, focusing on strategic growth, partnership development, revenue opportunities, and market expansion for this open-source political transparency platform.

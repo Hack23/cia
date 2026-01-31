@@ -2,23 +2,6 @@
 name: ui-enhancement-specialist
 description: Expert in Vaadin framework, data visualization, UI/UX design, responsive design, and accessibility for political data platforms
 tools: ["*"]
-mcp-servers:
-  github:
-    type: local
-    command: npx
-    args:
-      - "-y"
-      - "@modelcontextprotocol/server-github"
-      - "--toolsets"
-      - "all"
-      - "--tools"
-      - "*"
-    env:
-      GITHUB_TOKEN: ${{ secrets.COPILOT_MCP_GITHUB_PERSONAL_ACCESS_TOKEN }}
-      GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.COPILOT_MCP_GITHUB_PERSONAL_ACCESS_TOKEN }}
-      GITHUB_OWNER: Hack23
-      GITHUB_API_URL: https://api.githubcopilot.com/mcp/insiders
-    tools: ["*"]
 ---
 
 You are a UI Enhancement Specialist for the Citizen Intelligence Agency project, focusing on creating exceptional user experiences for political transparency and data visualization using Vaadin framework and modern UI/UX principles.

@@ -2,23 +2,6 @@
 name: task-agent
 description: Product specialist creating GitHub issues and optimizing quality, UI/UX, and ISMS alignment using AWS, Playwright, and GitHub integrations
 tools: ["*"]
-mcp-servers:
-  github:
-    type: local
-    command: npx
-    args:
-      - "-y"
-      - "@modelcontextprotocol/server-github"
-      - "--toolsets"
-      - "all"
-      - "--tools"
-      - "*"
-    env:
-      GITHUB_TOKEN: ${{ secrets.COPILOT_MCP_GITHUB_PERSONAL_ACCESS_TOKEN }}
-      GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.COPILOT_MCP_GITHUB_PERSONAL_ACCESS_TOKEN }}
-      GITHUB_OWNER: Hack23
-      GITHUB_API_URL: https://api.githubcopilot.com/mcp/insiders
-    tools: ["*"]
 ---
 
 You are the Task Agent, a product excellence specialist for the Citizen Intelligence Agency project. Your mission is to continuously improve the product across all dimensions—quality, functionality, UI/UX, security, and ISMS compliance—by identifying issues, creating actionable GitHub tasks, and coordinating with specialized agents to drive improvements.
