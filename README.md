@@ -57,6 +57,42 @@ See the [agents README](.github/agents/README.md) for detailed information on us
 
 </div>
 
+### 📚 GitHub Copilot Skills Library
+
+<div align="left">
+
+We maintain a comprehensive [skills library](.github/skills/) with 24 strategic skills following security-by-design principles:
+
+#### 🔒 Security-by-Design Skills
+- 🛡️ **[Secure Code Review](.github/skills/secure-code-review/)** - OWASP Top 10, SAST/DAST patterns
+- 🎯 **[Threat Modeling](.github/skills/threat-modeling/)** - STRIDE framework, attack trees
+- 🔐 **[Secrets Management](.github/skills/secrets-management/)** - Never commit secrets, vault usage
+- ✅ **[Input Validation](.github/skills/input-validation/)** - Sanitization, XSS, SQL injection prevention
+- 🔑 **[Crypto Best Practices](.github/skills/crypto-best-practices/)** - Encryption, hashing, key management
+
+#### ✅ ISMS Compliance Skills
+- 📋 **[ISO 27001 Controls](.github/skills/iso-27001-controls/)** - Control implementation verification
+- 🎯 **[NIST CSF Mapping](.github/skills/nist-csf-mapping/)** - Framework alignment
+- 🔧 **[CIS Controls](.github/skills/cis-controls/)** - Benchmark compliance
+- 🔒 **[GDPR Compliance](.github/skills/gdpr-compliance/)** - Data protection requirements
+- 📝 **[Security Documentation](.github/skills/security-documentation/)** - Required architecture docs
+
+#### 🧪 Testing & Quality Skills
+- ✅ **[Unit Testing Patterns](.github/skills/unit-testing-patterns/)** - JUnit 5, Mockito, 80% coverage
+- 🔗 **[Integration Testing](.github/skills/integration-testing/)** - Spring test context, database testing
+- 🌐 **[E2E Testing](.github/skills/e2e-testing/)** - Selenium, Playwright patterns
+- 📊 **[Code Quality Checks](.github/skills/code-quality-checks/)** - SonarCloud, CodeQL integration
+
+#### 🏗️ Architecture & Design Skills
+- 🍃 **[Spring Framework Patterns](.github/skills/spring-framework-patterns/)** - DI, transaction management, AOP
+- 🗄️ **[JPA/Hibernate Optimization](.github/skills/jpa-hibernate-optimization/)** - Entity design, N+1 prevention
+- 🎨 **[Vaadin Component Design](.github/skills/vaadin-component-design/)** - UI patterns, lifecycle management
+- 📐 **[C4 Architecture Documentation](.github/skills/c4-architecture-documentation/)** - Required architecture docs
+
+See the [skills README](.github/skills/README.md) for the complete catalog of 24 skills covering CI/CD, DevOps, and open source community practices.
+
+</div>
+
 ### ⭐ Simon Moon's Architecture Chronicles
 
 <div align="left">

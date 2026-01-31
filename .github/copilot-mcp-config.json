@@ -1,9 +1,9 @@
 {
   "mcpServers": {
-    "github":  {
+    "github": {
       "type": "local",
       "command": "npx",
-      "args":  [
+      "args": [
         "-y",
         "@modelcontextprotocol/server-github",
         "--toolsets",
@@ -13,36 +13,37 @@
       ],
       "env": {
         "GITHUB_TOKEN": "${{ secrets.COPILOT_MCP_GITHUB_PERSONAL_ACCESS_TOKEN }}",
-        "GITHUB_PERSONAL_ACCESS_TOKEN":  "${{ secrets. COPILOT_MCP_GITHUB_PERSONAL_ACCESS_TOKEN }}",
-        "GITHUB_OWNER": "Hack23"
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${{ secrets.COPILOT_MCP_GITHUB_PERSONAL_ACCESS_TOKEN }}",
+        "GITHUB_OWNER": "Hack23",
+        "GITHUB_API_URL": "https://api.githubcopilot.com/mcp/insiders"
       },
-      "tools":  ["*"]
+      "tools": ["*"]
     },
     "filesystem": {
       "type": "local",
-      "command":  "npx",
-      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/workspaces"],
-      "tools":  ["*"]
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/home/runner/work/cia/cia"],
+      "tools": ["*"]
     },
     "git": {
       "type": "local",
-      "command":  "npx",
-      "args": ["-y", "@modelcontextprotocol/server-git", "--repository", "/workspaces"],
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-git", "--repository", "/home/runner/work/cia/cia"],
       "tools": ["*"]
     },
     "memory": {
-      "type":  "local",
+      "type": "local",
       "command": "npx",
       "args": ["-y", "@modelcontextprotocol/server-memory"],
       "tools": ["*"]
     },
     "sequential-thinking": {
       "type": "local",
-      "command":  "npx",
+      "command": "npx",
       "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"],
       "tools": ["*"]
     },
-    "playwright":  {
+    "playwright": {
       "type": "local",
       "command": "npx",
       "args": ["-y", "@modelcontextprotocol/server-playwright"],
