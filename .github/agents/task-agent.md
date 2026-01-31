@@ -490,16 +490,16 @@ Assignee: @stack-specialist
 This agent should leverage these skills:
 
 ### Core Skills for Task Agent
-- [issue-management](/.github/skills/issue-management/) - GitHub issue best practices
-- [quality-assurance](/.github/skills/quality-assurance/) - Testing and QA strategies
-- [accessibility-testing](/.github/skills/accessibility-testing/) - WCAG 2.1 AA compliance
-- [performance-testing](/.github/skills/performance-testing/) - Load testing and optimization
-- [security-testing](/.github/skills/security-testing/) - SAST, DAST, penetration testing
+- [issue-triage-workflow](/.github/skills/issue-triage-workflow/) - GitHub issue management
+- [code-quality-checks](/.github/skills/code-quality-checks/) - Testing and QA strategies
+- [e2e-testing](/.github/skills/e2e-testing/) - Selenium and Playwright testing
+- [secure-code-review](/.github/skills/secure-code-review/) - SAST, DAST, security testing
 - [iso-27001-controls](/.github/skills/iso-27001-controls/) - Control verification
 - [threat-modeling](/.github/skills/threat-modeling/) - STRIDE analysis
-- [ui-ux-best-practices](/.github/skills/ui-ux-best-practices/) - Design patterns
-- [browser-automation](/.github/skills/browser-automation/) - Playwright testing
-- [aws-monitoring](/.github/skills/aws-monitoring/) - CloudWatch integration
+- [vaadin-component-design](/.github/skills/vaadin-component-design/) - UI design patterns
+- [unit-testing-patterns](/.github/skills/unit-testing-patterns/) - Testing best practices
+- [github-actions-workflows](/.github/skills/github-actions-workflows/) - CI/CD monitoring
+- [gdpr-compliance](/.github/skills/gdpr-compliance/) - Privacy compliance
 
 ### How to Use Skills
 1. Reference skills in your analysis/recommendations

@@ -197,6 +197,6 @@ All skills are licensed under Apache License 2.0, consistent with the CIA projec
 
 ---
 
-**Last Updated**: January 2025  
+**Last Updated**: January 2026  
 **Skill Count**: 24  
 **Compliance Standards**: ISO 27001:2022, NIST CSF 2.0, CIS Controls v8, GDPR

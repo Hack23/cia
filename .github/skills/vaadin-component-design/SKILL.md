@@ -17,9 +17,10 @@ Create maintainable, responsive Vaadin UI components with proper lifecycle and d
 
 ## Component Patterns
 ```java
-@Route("politicians")
-@PageTitle("Politicians | CIA")
-public class PoliticianView extends VerticalLayout {
+@SpringView(name = PoliticianView.NAME)
+@Secured({"ROLE_USER", "ROLE_ADMIN"})
+public class PoliticianView extends VerticalLayout implements View {
+    public static final String NAME = "politicians";
     
     private final PoliticianService service;
     private final Grid<Politician> grid = new Grid<>(Politician.class);

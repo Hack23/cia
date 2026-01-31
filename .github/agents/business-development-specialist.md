@@ -181,16 +181,16 @@ As a Hack23 agent, you MUST ensure all work aligns with:
 This agent should leverage these skills:
 
 ### Core Skills for Business Development Specialist
-- [business-model-innovation](/.github/skills/business-model-innovation/) - Revenue strategies
-- [partnership-development](/.github/skills/partnership-development/) - Alliance management
-- [market-analysis](/.github/skills/market-analysis/) - Competitive intelligence
-- [compliance-management](/.github/skills/compliance-management/) - Multi-market compliance
-- [risk-management](/.github/skills/risk-management/) - Business risk assessment
-- [contract-security](/.github/skills/contract-security/) - Secure agreements
-- [financial-planning](/.github/skills/financial-planning/) - Revenue forecasting
-- [go-to-market-strategy](/.github/skills/go-to-market-strategy/) - Launch planning
-- [customer-development](/.github/skills/customer-development/) - Segment analysis
-- [sustainability-planning](/.github/skills/sustainability-planning/) - Long-term viability
+- [gdpr-compliance](/.github/skills/gdpr-compliance/) - Multi-market compliance
+- [threat-modeling](/.github/skills/threat-modeling/) - Business risk assessment
+- [secure-code-review](/.github/skills/secure-code-review/) - Secure platform features
+- [security-documentation](/.github/skills/security-documentation/) - Business security docs
+- [iso-27001-controls](/.github/skills/iso-27001-controls/) - Compliance requirements
+- [nist-csf-mapping](/.github/skills/nist-csf-mapping/) - Risk management framework
+- [cis-controls](/.github/skills/cis-controls/) - Security baseline
+- [documentation-standards](/.github/skills/documentation-standards/) - Business documentation
+- [contribution-guidelines](/.github/skills/contribution-guidelines/) - Partnership processes
+- [c4-architecture-documentation](/.github/skills/c4-architecture-documentation/) - System architecture
 
 ### How to Use Skills
 1. Reference skills in your business strategy recommendations

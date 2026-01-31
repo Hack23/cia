@@ -412,17 +412,14 @@ public class SecurityConfig {
 
 **Secure Deserialization:**
 ```java
-// Use allowlist-based deserialization
+// Use safe deserialization with explicit type validation
 @Bean
 public ObjectMapper objectMapper() {
     ObjectMapper mapper = new ObjectMapper();
     
-    // Enable default typing only for specific base types
-    mapper.activateDefaultTyping(
-        mapper.getPolymorphicTypeValidator(),
-        ObjectMapper.DefaultTyping.NON_FINAL,
-        JsonTypeInfo.As.PROPERTY
-    );
+    // Do NOT use activateDefaultTyping for untrusted input
+    // If polymorphism is required, use @JsonTypeInfo on specific DTOs
+    // with a strict allowlist-based PolymorphicTypeValidator
     
     // Disable dangerous features
     mapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);

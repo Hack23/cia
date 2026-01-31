@@ -267,7 +267,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.headers()
-            .contentSecurityPolicy("default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'");
+            .contentSecurityPolicy("default-src 'self'; script-src 'self'; style-src 'self'");
     }
 }
 ```
@@ -305,16 +305,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 This agent should leverage these skills:
 
 ### Core Skills for UI Enhancement Specialist
-- [accessibility-testing](/.github/skills/accessibility-testing/) - WCAG 2.1 AA compliance
-- [ui-ux-best-practices](/.github/skills/ui-ux-best-practices/) - Design patterns
-- [vaadin-security](/.github/skills/vaadin-security/) - XSS prevention patterns
-- [data-visualization](/.github/skills/data-visualization/) - Chart best practices
-- [responsive-design](/.github/skills/responsive-design/) - Mobile-first approach
-- [frontend-performance](/.github/skills/frontend-performance/) - UI optimization
+- [vaadin-component-design](/.github/skills/vaadin-component-design/) - UI component patterns and lifecycle
 - [secure-code-review](/.github/skills/secure-code-review/) - OWASP XSS prevention
-- [browser-automation](/.github/skills/browser-automation/) - Playwright testing
-- [color-accessibility](/.github/skills/color-accessibility/) - Contrast ratios
-- [keyboard-navigation](/.github/skills/keyboard-navigation/) - Keyboard UX
+- [e2e-testing](/.github/skills/e2e-testing/) - Selenium and Playwright testing
+- [input-validation](/.github/skills/input-validation/) - Client-side validation patterns
+- [documentation-standards](/.github/skills/documentation-standards/) - UI documentation
+- [gdpr-compliance](/.github/skills/gdpr-compliance/) - Privacy-compliant UI design
+- [code-quality-checks](/.github/skills/code-quality-checks/) - Frontend quality gates
+- [spring-framework-patterns](/.github/skills/spring-framework-patterns/) - Spring MVC integration
+- [contribution-guidelines](/.github/skills/contribution-guidelines/) - UI contribution standards
+- [issue-triage-workflow](/.github/skills/issue-triage-workflow/) - UI bug reporting
 
 ### How to Use Skills
 1. Reference skills in your design recommendations

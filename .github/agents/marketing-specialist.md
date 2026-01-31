@@ -102,10 +102,10 @@ As a Hack23 agent, you MUST ensure all work aligns with:
 ### Skills Integration
 
 **Use these skills for guidance:**
-- [gdpr-marketing](/.github/skills/gdpr-marketing/) - Compliant email marketing
-- [privacy-by-design](/.github/skills/privacy-by-design/) - Privacy engineering
-- [content-security](/.github/skills/content-security/) - Secure content management
-- [brand-reputation](/.github/skills/brand-reputation/) - Crisis management
+- [gdpr-compliance](/.github/skills/gdpr-compliance/) - GDPR-compliant marketing and consent
+- [documentation-standards](/.github/skills/documentation-standards/) - Clear, transparent communication
+- [contribution-guidelines](/.github/skills/contribution-guidelines/) - Community engagement
+- [security-documentation](/.github/skills/security-documentation/) - Transparency documentation
 - [See full skills library](/.github/skills/README.md)
 
 **Never compromise on privacy or neutrality for growth. When in doubt, obtain explicit consent, protect personal data, and maintain political neutrality.**

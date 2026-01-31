@@ -321,16 +321,16 @@ public class PoliticianView extends VerticalLayout implements View {
 This agent should leverage these skills:
 
 ### Core Skills for Stack Specialist
-- [java-best-practices](/.github/skills/java-best-practices/) - Modern Java patterns
-- [spring-security-patterns](/.github/skills/spring-security-patterns/) - Spring Security configuration
-- [jpa-security](/.github/skills/jpa-security/) - Secure data access patterns
-- [postgresql-security](/.github/skills/postgresql-security/) - Database hardening
+- [spring-framework-patterns](/.github/skills/spring-framework-patterns/) - DI, transactions, AOP
+- [jpa-hibernate-optimization](/.github/skills/jpa-hibernate-optimization/) - Entity design, N+1 prevention
+- [postgresql-operations](/.github/skills/postgresql-operations/) - Database hardening and tuning
 - [secure-code-review](/.github/skills/secure-code-review/) - OWASP Top 10 prevention
-- [test-driven-development](/.github/skills/test-driven-development/) - TDD practices
-- [dependency-management](/.github/skills/dependency-management/) - Maven security
-- [code-quality-standards](/.github/skills/code-quality-standards/) - SonarCloud compliance
-- [architecture-patterns](/.github/skills/architecture-patterns/) - Design patterns
-- [performance-optimization](/.github/skills/performance-optimization/) - Backend tuning
+- [unit-testing-patterns](/.github/skills/unit-testing-patterns/) - JUnit 5, Mockito, TDD
+- [integration-testing](/.github/skills/integration-testing/) - Spring integration tests
+- [maven-build-management](/.github/skills/maven-build-management/) - Maven security and builds
+- [code-quality-checks](/.github/skills/code-quality-checks/) - SonarCloud compliance
+- [input-validation](/.github/skills/input-validation/) - Secure data access
+- [crypto-best-practices](/.github/skills/crypto-best-practices/) - Encryption patterns
 
 ### How to Use Skills
 1. Reference skills in your code reviews and recommendations

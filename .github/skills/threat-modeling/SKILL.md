@@ -387,7 +387,7 @@ public class SecurityHeadersConfig {
     @Bean
     public SecurityFilterChain securityHeaders(HttpSecurity http) throws Exception {
         http.headers(headers -> headers
-            .contentSecurityPolicy("default-src 'self'; script-src 'self' 'unsafe-inline'")
+            .contentSecurityPolicy("default-src 'self'; script-src 'self'; style-src 'self'")
             .xssProtection()
             .frameOptions().deny()
             .httpStrictTransportSecurity()

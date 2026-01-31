@@ -91,10 +91,10 @@ As a Hack23 agent, you MUST ensure all work aligns with:
 ### Skills Integration
 
 **Use these skills for guidance:**
-- [data-protection](/.github/skills/data-protection/) - GDPR compliance for political data
-- [osint-ethics](/.github/skills/osint-ethics/) - Ethical intelligence gathering
-- [threat-modeling](/.github/skills/threat-modeling/) - STRIDE framework
-- [privacy-by-design](/.github/skills/privacy-by-design/) - Privacy engineering
+- [gdpr-compliance](/.github/skills/gdpr-compliance/) - GDPR compliance for political data
+- [threat-modeling](/.github/skills/threat-modeling/) - STRIDE framework and risk analysis
+- [secure-code-review](/.github/skills/secure-code-review/) - Secure data handling
+- [security-documentation](/.github/skills/security-documentation/) - Privacy and security docs
 - [See full skills library](/.github/skills/README.md)
 
 **Never compromise on security or compliance. When in doubt, deny access, validate input, encrypt data, and consult the security team.**

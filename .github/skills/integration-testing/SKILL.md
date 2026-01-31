@@ -8,23 +8,23 @@ license: Apache-2.0
 
 ## Purpose
 
-Test component interactions, database operations, and external API integrations using Spring Boot testing framework.
+Test component interactions, database operations, and external API integrations using Spring testing framework with TestContainers.
 
 ## When to Use
 
 - ✅ Testing repository layer with real database
-- ✅ Testing REST API endpoints
+- ✅ Testing REST API endpoints (if applicable)
 - ✅ Testing Spring Security configuration
 - ✅ Testing external API integrations
 
-## Spring Boot Test Patterns
+## Spring Integration Test Patterns
 
 ```java
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@TestPropertySource(locations = "classpath:application-test.properties")
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = ApplicationContext.class)
 @Sql(scripts = "/test-data.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(scripts = "/cleanup.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-class PoliticianIntegrationTest {
+public class PoliticianIntegrationTest {
     
     @Autowired
     private TestRestTemplate restTemplate;
