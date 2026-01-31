@@ -1,0 +1,434 @@
+#!/bin/bash
+
+# Testing & Quality Skills
+mkdir -p unit-testing-patterns integration-testing e2e-testing code-quality-checks
+mkdir -p spring-framework-patterns jpa-hibernate-optimization vaadin-component-design c4-architecture-documentation
+mkdir -p github-actions-workflows maven-build-management postgresql-operations
+mkdir -p contribution-guidelines documentation-standards issue-triage-workflow
+
+# Create all remaining skills efficiently
+echo "Creating Testing & Quality skills..."
+
+# unit-testing-patterns
+cat > unit-testing-patterns/SKILL.md << 'EOF_UNIT'
+---
+name: unit-testing-patterns
+description: Implement JUnit 5, Mockito, and AssertJ patterns with 80%+ code coverage for CIA platform unit tests
+license: Apache-2.0
+---
+
+# Unit Testing Patterns Skill
+
+## Purpose
+
+Write effective, maintainable unit tests using JUnit 5, Mockito, and AssertJ that achieve 80%+ code coverage.
+
+## When to Use
+
+- ✅ Testing business logic in services
+- ✅ Testing data validation
+- ✅ Testing utility functions
+- ✅ Test-driven development (TDD)
+
+## JUnit 5 Patterns
+
+### Test Structure (AAA Pattern)
+
+```java
+@ExtendWith(MockitoExtension.class)
+class PoliticianServiceTest {
+    
+    @Mock
+    private PoliticianRepository repository;
+    
+    @Mock
+    private AuditLogger auditLogger;
+    
+    @InjectMocks
+    private PoliticianService service;
+    
+    @Test
+    @DisplayName("Should find politician by ID when exists")
+    void shouldFindPoliticianById() {
+        // Arrange
+        String politicianId = "196401011234";
+        Politician expected = new Politician(politicianId, "John", "Doe");
+        when(repository.findById(politicianId)).thenReturn(Optional.of(expected));
+        
+        // Act
+        Politician actual = service.findById(politicianId);
+        
+        // Assert
+        assertThat(actual).isNotNull();
+        assertThat(actual.getId()).isEqualTo(politicianId);
+        assertThat(actual.getFirstName()).isEqualTo("John");
+    }
+    
+    @Test
+    @DisplayName("Should throw exception when politician not found")
+    void shouldThrowExceptionWhenNotFound() {
+        // Arrange
+        String politicianId = "999999999999";
+        when(repository.findById(politicianId)).thenReturn(Optional.empty());
+        
+        // Act & Assert
+        assertThatThrownBy(() -> service.findById(politicianId))
+            .isInstanceOf(ResourceNotFoundException.class)
+            .hasMessageContaining("Politician not found");
+    }
+}
+```
+
+### Parameterized Tests
+
+```java
+@ParameterizedTest
+@CsvSource({
+    "196401011234, true",
+    "999999999999, true",
+    "12345, false",
+    "abcdefghijkl, false",
+    "'', false"
+})
+@DisplayName("Should validate Swedish personal ID format")
+void shouldValidatePersonalIdFormat(String personalId, boolean expected) {
+    assertThat(validator.isValidPersonalId(personalId)).isEqualTo(expected);
+}
+
+@ParameterizedTest
+@ValueSource(strings = {"password", "12345678", "qwerty", "admin"})
+@DisplayName("Should reject common passwords")
+void shouldRejectCommonPasswords(String password) {
+    assertThat(passwordValidator.isWeak(password)).isTrue();
+}
+```
+
+### Test Lifecycle
+
+```java
+class DatabaseTest {
+    
+    @BeforeAll
+    static void setupClass() {
+        // Run once before all tests
+        initializeTestDatabase();
+    }
+    
+    @BeforeEach
+    void setup() {
+        // Run before each test
+        clearDatabase();
+    }
+    
+    @AfterEach
+    void teardown() {
+        // Run after each test
+        rollbackTransaction();
+    }
+    
+    @AfterAll
+    static void teardownClass() {
+        // Run once after all tests
+        closeConnections();
+    }
+}
+```
+
+## Mockito Best Practices
+
+### Stubbing
+
+```java
+@Test
+void shouldReturnCachedData() {
+    // Stub method to return specific value
+    when(cache.get("key")).thenReturn("value");
+    
+    // Stub with argument matchers
+    when(repository.findByName(anyString())).thenReturn(new ArrayList<>());
+    
+    // Stub with custom answer
+    when(service.process(any())).thenAnswer(invocation -> {
+        String arg = invocation.getArgument(0);
+        return arg.toUpperCase();
+    });
+    
+    // Stub to throw exception
+    when(repository.findById("invalid"))
+        .thenThrow(new IllegalArgumentException("Invalid ID"));
+}
+```
+
+### Verification
+
+```java
+@Test
+void shouldLogAuditEvent() {
+    // Arrange
+    Politician politician = new Politician("123", "John", "Doe");
+    
+    // Act
+    service.create(politician);
+    
+    // Verify method was called once
+    verify(auditLogger).log(eq("CREATE_POLITICIAN"), any(Politician.class));
+    
+    // Verify exact number of calls
+    verify(repository, times(1)).save(politician);
+    
+    // Verify never called
+    verify(emailService, never()).sendNotification(any());
+    
+    // Verify no more interactions
+    verifyNoMoreInteractions(auditLogger);
+}
+```
+
+### Argument Captors
+
+```java
+@Test
+void shouldSaveWithCorrectTimestamp() {
+    ArgumentCaptor<Politician> captor = ArgumentCaptor.forClass(Politician.class);
+    
+    service.create(new Politician("123", "John", "Doe"));
+    
+    verify(repository).save(captor.capture());
+    
+    Politician saved = captor.getValue();
+    assertThat(saved.getCreatedAt()).isCloseTo(
+        LocalDateTime.now(),
+        within(1, ChronoUnit.SECONDS)
+    );
+}
+```
+
+## AssertJ Fluent Assertions
+
+```java
+@Test
+void shouldHaveCorrectProperties() {
+    Politician politician = service.findById("123");
+    
+    // Fluent assertions
+    assertThat(politician)
+        .isNotNull()
+        .hasFieldOrPropertyWithValue("firstName", "John")
+        .hasFieldOrProperty("lastName")
+        .extracting("party")
+        .isEqualTo("S");
+    
+    // Collection assertions
+    List<Politician> politicians = service.findAll();
+    assertThat(politicians)
+        .isNotEmpty()
+        .hasSize(5)
+        .extracting("firstName")
+        .contains("John", "Jane")
+        .doesNotContain("Invalid");
+    
+    // Exception assertions
+    assertThatThrownBy(() -> service.delete("invalid"))
+        .isInstanceOf(NotFoundException.class)
+        .hasMessage("Politician not found")
+        .hasNoCause();
+}
+```
+
+## Code Coverage
+
+### Target: 80% Line Coverage, 70% Branch Coverage
+
+```xml
+<!-- pom.xml -->
+<plugin>
+    <groupId>org.jacoco</groupId>
+    <artifactId>jacoco-maven-plugin</artifactId>
+    <version>0.8.11</version>
+    <executions>
+        <execution>
+            <goals>
+                <goal>prepare-agent</goal>
+            </goals>
+        </execution>
+        <execution>
+            <id>report</id>
+            <phase>test</phase>
+            <goals>
+                <goal>report</goal>
+            </goals>
+        </execution>
+        <execution>
+            <id>check</id>
+            <goals>
+                <goal>check</goal>
+            </goals>
+            <configuration>
+                <rules>
+                    <rule>
+                        <element>BUNDLE</element>
+                        <limits>
+                            <limit>
+                                <counter>LINE</counter>
+                                <value>COVEREDRATIO</value>
+                                <minimum>0.80</minimum>
+                            </limit>
+                            <limit>
+                                <counter>BRANCH</counter>
+                                <value>COVEREDRATIO</value>
+                                <minimum>0.70</minimum>
+                            </limit>
+                        </limits>
+                    </rule>
+                </rules>
+            </configuration>
+        </execution>
+    </executions>
+</plugin>
+```
+
+## Test Organization
+
+```
+src/test/java/
+└── com/hack23/cia/
+    ├── service/
+    │   ├── impl/
+    │   │   ├── PoliticianServiceTest.java
+    │   │   └── VotingAnalysisServiceTest.java
+    │   └── api/
+    │       └── PoliticianServiceIT.java (Integration tests)
+    ├── util/
+    │   ├── DateUtilsTest.java
+    │   └── ValidationUtilsTest.java
+    └── testfoundation/
+        ├── TestDataFactory.java
+        └── AbstractServiceTest.java
+```
+
+## References
+
+- JUnit 5: https://junit.org/junit5/
+- Mockito: https://site.mockito.org/
+- AssertJ: https://assertj.github.io/doc/
+- UnitTestPlan.md
+EOF_UNIT
+
+# integration-testing
+cat > integration-testing/SKILL.md << 'EOF_INTEG'
+---
+name: integration-testing
+description: Implement Spring Boot integration tests with TestContainers, @SpringBootTest, and database fixtures
+license: Apache-2.0
+---
+
+# Integration Testing Skill
+
+## Purpose
+
+Test component interactions, database operations, and external API integrations using Spring Boot testing framework.
+
+## When to Use
+
+- ✅ Testing repository layer with real database
+- ✅ Testing REST API endpoints
+- ✅ Testing Spring Security configuration
+- ✅ Testing external API integrations
+
+## Spring Boot Test Patterns
+
+```java
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@TestPropertySource(locations = "classpath:application-test.properties")
+@Sql(scripts = "/test-data.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+@Sql(scripts = "/cleanup.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+class PoliticianIntegrationTest {
+    
+    @Autowired
+    private TestRestTemplate restTemplate;
+    
+    @Autowired
+    private PoliticianRepository repository;
+    
+    @Test
+    void shouldCreatePoliticianViaApi() {
+        // Arrange
+        PoliticianRequest request = new PoliticianRequest("John", "Doe", "S");
+        
+        // Act
+        ResponseEntity<Politician> response = restTemplate.postForEntity(
+            "/api/politicians",
+            request,
+            Politician.class
+        );
+        
+        // Assert
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED);
+        assertThat(response.getBody()).isNotNull();
+        
+        // Verify in database
+        Politician saved = repository.findById(response.getBody().getId()).orElseThrow();
+        assertThat(saved.getFirstName()).isEqualTo("John");
+    }
+}
+```
+
+## TestContainers for PostgreSQL
+
+```java
+@Testcontainers
+@SpringBootTest
+class DatabaseIntegrationTest {
+    
+    @Container
+    static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:15")
+        .withDatabaseName("cia_test")
+        .withUsername("test")
+        .withPassword("test");
+    
+    @DynamicPropertySource
+    static void configureProperties(DynamicPropertyRegistry registry) {
+        registry.add("spring.datasource.url", postgres::getJdbcUrl);
+        registry.add("spring.datasource.username", postgres::getUsername);
+        registry.add("spring.datasource.password", postgres::getPassword);
+    }
+    
+    @Test
+    void shouldConnectToDatabase() {
+        assertThat(postgres.isRunning()).isTrue();
+    }
+}
+```
+
+## Security Integration Tests
+
+```java
+@SpringBootTest
+@AutoConfigureMockMvc
+class SecurityIntegrationTest {
+    
+    @Autowired
+    private MockMvc mockMvc;
+    
+    @Test
+    @WithMockUser(roles = "ADMIN")
+    void shouldAllowAdminAccess() throws Exception {
+        mockMvc.perform(get("/api/admin/users"))
+            .andExpect(status().isOk());
+    }
+    
+    @Test
+    void shouldDenyUnauthenticatedAccess() throws Exception {
+        mockMvc.perform(get("/api/admin/users"))
+            .andExpect(status().isUnauthorized());
+    }
+}
+```
+
+## References
+
+- Spring Boot Testing: https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.testing
+- TestContainers: https://www.testcontainers.org/
+EOF_INTEG
+
+echo "Created Testing & Quality skills (2/4)"
