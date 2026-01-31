@@ -325,9 +325,9 @@ mvn verify -Dowasp.failOnCVSS=7
 <dependencyManagement>
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-dependencies</artifactId>
-            <version>3.2.1</version> <!-- Keep updated -->
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-framework-bom</artifactId>
+            <version>5.3.34</version>
             <type>pom</type>
             <scope>import</scope>
         </dependency>

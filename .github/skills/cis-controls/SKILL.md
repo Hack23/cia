@@ -35,9 +35,9 @@ aws ec2 create-tags --resources i-1234567890abcdef0 --tags Key=Application,Value
 <!-- Track all dependencies in pom.xml -->
 <dependencies>
     <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-web</artifactId>
-        <version>3.2.1</version> <!-- Version pinning -->
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-webmvc</artifactId>
+        <version>${spring.version}</version> <!-- Version via parent property -->
     </dependency>
 </dependencies>
 ```

@@ -653,7 +653,7 @@ flowchart TD
     Tech -->|Testing/Quality| Stack
     Tech -->|Build/DevOps| Stack
     
-    UI --> UIDesc[Vaadin Framework<br/>Data Visualization<br/>Accessibility<br/>Responsive Design<br/><br/>📚 Skills:<br/>vaadin-component-design<br/>e2e-testing<br/>accessibility]
+    UI --> UIDesc[Vaadin Framework<br/>Data Visualization<br/>Responsive Design<br/>Component Lifecycle<br/><br/>📚 Skills:<br/>vaadin-component-design<br/>e2e-testing<br/>documentation-standards]
     Stack --> StackDesc[Java & Spring<br/>PostgreSQL & JPA<br/>Maven & Testing<br/>Backend Architecture<br/><br/>📚 Skills:<br/>spring-framework-patterns<br/>jpa-hibernate-optimization<br/>maven-build-management]
     Task --> TaskDesc[Product Quality<br/>GitHub Issues<br/>ISMS Compliance<br/>AWS Monitoring<br/><br/>📚 Skills:<br/>issue-triage-workflow<br/>iso-27001-controls<br/>secure-code-review]
     Biz --> BizDesc[Strategic Planning<br/>Partnerships<br/>Revenue Models<br/>Market Expansion<br/><br/>📚 Skills:<br/>gdpr-compliance<br/>contribution-guidelines]

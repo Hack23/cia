@@ -56,7 +56,7 @@ public class PoliticianService {
 
 Person(user, "Citizen", "Wants political transparency")
 System_Boundary(cia, "CIA Platform") {
-    Container(web, "Web Application", "Spring Boot, Vaadin", "Provides UI")
+    Container(web, "Web Application", "Spring MVC, Vaadin 8", "Provides UI")
     ContainerDb(db, "Database", "PostgreSQL", "Stores data")
 }
 System_Ext(riksdagen, "Riksdagen API", "Government data")

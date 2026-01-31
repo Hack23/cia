@@ -29,9 +29,6 @@ public class PoliticianIntegrationTest {
     @Autowired
     private PoliticianRepository repository;
     
-    @Autowired
-    private PoliticianRepository repository;
-    
     @Test
     void shouldCreatePoliticianViaApi() {
         // Arrange
@@ -59,24 +56,25 @@ public class PoliticianIntegrationTest {
 
 ```java
 @Testcontainers
-@SpringBootTest
-class DatabaseIntegrationTest {
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = ApplicationContext.class)
+public class DatabaseIntegrationTest {
     
-    @Container
-    static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:15")
+    @ClassRule
+    public static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:15")
         .withDatabaseName("cia_test")
         .withUsername("test")
         .withPassword("test");
     
-    @DynamicPropertySource
-    static void configureProperties(DynamicPropertyRegistry registry) {
-        registry.add("spring.datasource.url", postgres::getJdbcUrl);
-        registry.add("spring.datasource.username", postgres::getUsername);
-        registry.add("spring.datasource.password", postgres::getPassword);
+    @BeforeClass
+    public static void setupTestDatabase() {
+        System.setProperty("spring.datasource.url", postgres.getJdbcUrl());
+        System.setProperty("spring.datasource.username", postgres.getUsername());
+        System.setProperty("spring.datasource.password", postgres.getPassword());
     }
     
     @Test
-    void shouldConnectToDatabase() {
+    public void shouldConnectToDatabase() {
         assertThat(postgres.isRunning()).isTrue();
     }
 }
@@ -85,22 +83,33 @@ class DatabaseIntegrationTest {
 ## Security Integration Tests
 
 ```java
-@SpringBootTest
-@AutoConfigureMockMvc
-class SecurityIntegrationTest {
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = {ApplicationContext.class, SecurityConfig.class})
+@WebAppConfiguration
+public class SecurityIntegrationTest {
     
     @Autowired
+    private WebApplicationContext context;
+    
     private MockMvc mockMvc;
+    
+    @Before
+    public void setup() {
+        mockMvc = MockMvcBuilders
+            .webAppContextSetup(context)
+            .apply(springSecurity())
+            .build();
+    }
     
     @Test
     @WithMockUser(roles = "ADMIN")
-    void shouldAllowAdminAccess() throws Exception {
+    public void shouldAllowAdminAccess() throws Exception {
         mockMvc.perform(get("/api/admin/users"))
             .andExpect(status().isOk());
     }
     
     @Test
-    void shouldDenyUnauthenticatedAccess() throws Exception {
+    public void shouldDenyUnauthenticatedAccess() throws Exception {
         mockMvc.perform(get("/api/admin/users"))
             .andExpect(status().isUnauthorized());
     }
@@ -109,5 +118,5 @@ class SecurityIntegrationTest {
 
 ## References
 
-- Spring Boot Testing: https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.testing
+- Spring Framework Testing: https://docs.spring.io/spring-framework/reference/testing.html
 - TestContainers: https://www.testcontainers.org/

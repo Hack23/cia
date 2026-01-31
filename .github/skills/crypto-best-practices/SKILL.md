@@ -333,66 +333,67 @@ public class AesGcmEncryption {
 
 ## TLS/SSL Configuration
 
-### Spring Boot TLS Configuration
+### Container/Server TLS Configuration
 
-```yaml
-# application-production.yml
-server:
-  port: 8443
-  ssl:
-    enabled: true
-    key-store: ${SSL_KEYSTORE_PATH}
-    key-store-password: ${SSL_KEYSTORE_PASSWORD}
-    key-store-type: PKCS12
-    key-alias: cia-server
-    
-    # TLS 1.2 minimum, prefer TLS 1.3
-    protocol: TLS
-    enabled-protocols: TLSv1.3,TLSv1.2
-    
-    # Strong cipher suites only
-    ciphers:
-      - TLS_AES_256_GCM_SHA384
-      - TLS_AES_128_GCM_SHA256
-      - TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-      - TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-    
-    # Client authentication for admin endpoints
-    client-auth: want
-    trust-store: ${SSL_TRUSTSTORE_PATH}
-    trust-store-password: ${SSL_TRUSTSTORE_PASSWORD}
+For production deployments, configure TLS at the container or reverse proxy level:
+
+**Tomcat server.xml (if using embedded Tomcat):**
+```xml
+<Connector port="8443" protocol="org.apache.coyote.http11.Http11NioProtocol"
+           maxThreads="150" SSLEnabled="true" scheme="https" secure="true"
+           clientAuth="false" sslProtocol="TLS"
+           sslEnabledProtocols="TLSv1.3,TLSv1.2"
+           ciphers="TLS_AES_256_GCM_SHA384,TLS_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256"
+           keystoreFile="${SSL_KEYSTORE_PATH}"
+           keystorePass="${SSL_KEYSTORE_PASSWORD}"
+           keystoreType="PKCS12"
+           keyAlias="cia-server"/>
 ```
 
-### Programmatic TLS Configuration
+**Or use Spring Security for HTTPS redirect and headers:**
 
 ```java
 @Configuration
-public class TlsConfig {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
     
-    @Bean
-    public TomcatServletWebServerFactory servletContainer() {
-        TomcatServletWebServerFactory factory = new TomcatServletWebServerFactory();
-        
-        factory.addConnectorCustomizers(connector -> {
-            Http11NioProtocol protocol = (Http11NioProtocol) connector.getProtocolHandler();
-            
-            // Enable TLS 1.3 and 1.2 only
-            protocol.setSslEnabledProtocols("TLSv1.3,TLSv1.2");
-            
-            // Strong ciphers only
-            protocol.setCiphers(String.join(",",
-                "TLS_AES_256_GCM_SHA384",
-                "TLS_AES_128_GCM_SHA256",
-                "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384",
-                "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256"
-            ));
-            
-            // Enable HSTS
-            protocol.setScheme("https");
-            protocol.setSecure(true);
-        });
-        
-        return factory;
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+            .requiresChannel()
+                .anyRequest().requiresSecure()
+                .and()
+            .headers()
+                .httpStrictTransportSecurity()
+                    .includeSubDomains(true)
+                    .maxAgeInSeconds(31536000)
+                    .and()
+                .contentSecurityPolicy("default-src 'self'; script-src 'self'; style-src 'self'");
+    }
+}
+```
+
+### Nginx/Apache Reverse Proxy TLS
+
+For most production deployments, configure TLS at the reverse proxy:
+
+```nginx
+# nginx.conf
+server {
+    listen 443 ssl http2;
+    
+    ssl_certificate /path/to/cert.pem;
+    ssl_certificate_key /path/to/key.pem;
+    
+    ssl_protocols TLSv1.3 TLSv1.2;
+    ssl_ciphers 'TLS_AES_256_GCM_SHA384:TLS_AES_128_GCM_SHA256:TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384';
+    ssl_prefer_server_ciphers on;
+    
+    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+    
+    location / {
+        proxy_pass http://localhost:8080;
+        proxy_set_header X-Forwarded-Proto https;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     }
 }
 ```

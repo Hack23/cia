@@ -19,16 +19,16 @@ Test complete user workflows and UI interactions using Selenium/Playwright.
 ```java
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = ApplicationContext.class)
-class LoginE2ETest {
+public class LoginE2ETest {
     private WebDriver driver;
     
-    @BeforeEach
-    void setup() {
+    @Before
+    public void setup() {
         driver = new ChromeDriver();
     }
     
     @Test
-    void shouldLoginSuccessfully() {
+    public void shouldLoginSuccessfully() {
         driver.get("http://localhost:8080/login");
         driver.findElement(By.id("username")).sendKeys("testuser");
         driver.findElement(By.id("password")).sendKeys("password");

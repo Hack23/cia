@@ -281,13 +281,11 @@ As a Hack23 agent, you MUST ensure all work aligns with:
 This agent should leverage these skills:
 
 ### Core Skills for Intelligence Operative
-- [osint-ethics](/.github/skills/osint-ethics/) - Ethical intelligence gathering
 - [gdpr-compliance](/.github/skills/gdpr-compliance/) - Legal and regulatory risk analysis
 - [threat-modeling](/.github/skills/threat-modeling/) - Risk assessment methodologies
 - [secure-code-review](/.github/skills/secure-code-review/) - Source validation and security
 - [security-documentation](/.github/skills/security-documentation/) - Analytical documentation
 - [iso-27001-controls](/.github/skills/iso-27001-controls/) - Information security controls
-- [counter-disinformation](/.github/skills/counter-disinformation/) - Fact-checking
 
 ### How to Use Skills
 1. Reference skills in your intelligence assessments

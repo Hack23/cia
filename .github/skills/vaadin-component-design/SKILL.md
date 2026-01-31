@@ -37,8 +37,8 @@ public class PoliticianView extends VerticalLayout implements View {
         grid.setSizeFull();
         grid.setColumns("firstName", "lastName", "party", "district");
         grid.addColumn(p -> p.getVotingRecords().size())
-            .setHeader("Total Votes");
-        grid.getColumns().forEach(col -> col.setAutoWidth(true));
+            .setCaption("Total Votes");
+        grid.getColumns().forEach(col -> col.setExpandRatio(1));
     }
     
     private Component createToolbar() {

@@ -350,7 +350,7 @@ When faced with ambiguity, use this framework:
 
 ### Testing Decisions
 - **Unit Tests**: All service methods, use Mockito for dependencies
-- **Integration Tests**: Critical paths with @SpringBootTest
+- **Integration Tests**: Critical paths using Spring TestContext (@RunWith/@ContextConfiguration)
 - **Security Tests**: Test authentication, authorization, input validation
 - **Performance Tests**: Load test critical endpoints with JMeter
 - **Coverage**: Never merge with coverage regression
