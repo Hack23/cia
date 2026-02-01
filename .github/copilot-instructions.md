@@ -1,5 +1,17 @@
 # Copilot Instructions for Citizen Intelligence Agency
 
+## Required Context - Read First
+
+**ALWAYS read these files at the start of EVERY task:**
+
+1. **[README.md](../README.md)** - Project overview, features, and documentation links
+2. **[.github/workflows/copilot-setup-steps.yml](workflows/copilot-setup-steps.yml)** - Build environment, tools, and workflow permissions
+3. **[.github/copilot-mcp-config.json](copilot-mcp-config.json)** - MCP server configuration and available tools
+4. **[.github/skills/](skills/)** - 24 strategic skills for security, testing, and architecture
+5. **[.github/agents/](agents/)** - 6 specialized agents for different domains
+
+**Never skip reading these files. They contain critical context that prevents mistakes.**
+
 ## Project Overview
 
 The Citizen Intelligence Agency (CIA) is a volunteer-driven, open-source intelligence (OSINT) project providing comprehensive analysis of Swedish political activities. The platform monitors political figures and institutions, delivering financial performance metrics, risk assessment analytics, political trend analysis, and transparency insights.
@@ -11,6 +23,10 @@ The Citizen Intelligence Agency (CIA) is a volunteer-driven, open-source intelli
 - Hibernate/JPA for data access
 - PostgreSQL database
 - Spring Integration for data processing
+
+**Available Resources:**
+- **[6 Specialized Agents](agents/)** - Task management, stack expertise, UI/UX, intelligence, business, marketing
+- **[24 Skills Library](skills/)** - Security, ISMS compliance, testing, architecture, CI/CD, community
 
 ## Build and Development
 
@@ -223,15 +239,150 @@ All PRs must:
 - [SWOT Analysis](../SWOT.md) - Strategic assessment
 - [Threat Model](../THREAT_MODEL.md) - Security analysis
 
-## Notes for AI Coding Assistants
+## Mandatory Rules for All Work
 
-When making changes:
-1. **Understand the context**: Review related code and architecture before making changes
-2. **Minimal changes**: Make the smallest change necessary to achieve the goal
-3. **Test thoroughly**: Always run tests and verify functionality
-4. **Security first**: Consider security implications of all changes
-5. **Follow patterns**: Use existing code patterns and conventions in the project
-6. **Document when needed**: Update documentation for significant changes
-7. **Ask questions**: If requirements are unclear, ask for clarification rather than making assumptions
+### Rule 1: Always Read Context First
+**BEFORE starting any task, read:**
+- README.md - project overview
+- .github/workflows/copilot-setup-steps.yml - environment setup
+- .github/copilot-mcp-config.json - available tools
+- Relevant skills from .github/skills/ directory
+- Relevant agent from .github/agents/ directory
 
-This is a mature, security-conscious project with strong testing and quality standards. Prioritize code quality, security, and maintainability over rapid development.
+### Rule 2: Make Minimal, Surgical Changes
+- Change only what's necessary to fix the issue
+- Don't refactor unrelated code
+- Don't fix unrelated bugs or broken tests
+- Keep modifications focused and small
+- Review impact before committing
+
+### Rule 3: Never Create New Markdown Files Unless Explicitly Asked
+- **Do NOT create** planning documents, notes, tracking files, or summaries
+- **Do NOT create** new .md files in root or subdirectories without explicit request
+- Work in memory, not in new files
+- Only create .md files when user specifically asks for that exact file by name or path
+
+### Rule 4: Run Comprehensive Checks Before Committing
+**Before every commit, ALWAYS:**
+1. Validate syntax (JSON, XML, YAML, Java)
+2. Check for compilation errors: `mvn clean compile`
+3. Run relevant tests: `mvn test -Dtest=YourTest`
+4. Verify no security issues with changed files
+5. Check file permissions and paths
+6. Review git diff to ensure only intended changes
+7. Verify no secrets, credentials, or sensitive data
+
+### Rule 5: Ask Fewer Questions, Complete More Work
+**Act decisively using these frameworks:**
+
+**Security Decisions:**
+- Default: Deny access, require authentication
+- Validation: Whitelist approach, validate all inputs
+- Encryption: Always for sensitive data
+- Logging: Log security events, never sensitive data
+
+**Code Quality Decisions:**
+- Coverage: Minimum 80% line, 70% branch
+- Complexity: Cyclomatic complexity < 10
+- Duplication: < 3% code duplication
+- Dependencies: Latest stable, no critical CVEs
+
+**Architecture Decisions:**
+- Layering: Respect existing architecture
+- Patterns: Follow established project patterns
+- Dependencies: Minimize coupling, maximize cohesion
+- Performance: Measure before optimizing
+
+**Only escalate truly unique scenarios not covered by these frameworks.**
+
+### Rule 6: Use Skills and Agents
+**Before implementing, check relevant skills:**
+- [secure-code-review](skills/secure-code-review/) - OWASP Top 10, security patterns
+- [unit-testing-patterns](skills/unit-testing-patterns/) - JUnit 5, Mockito, 80% coverage
+- [spring-framework-patterns](skills/spring-framework-patterns/) - DI, transactions, AOP
+- [jpa-hibernate-optimization](skills/jpa-hibernate-optimization/) - Entity design, N+1 prevention
+- [input-validation](skills/input-validation/) - XSS, SQL injection prevention
+- See [full skills catalog](skills/README.md)
+
+**Delegate to specialized agents when appropriate:**
+- [task-agent](agents/task-agent.md) - GitHub issue management, ISMS compliance
+- [stack-specialist](agents/stack-specialist.md) - Java, Spring, PostgreSQL expertise
+- [ui-enhancement-specialist](agents/ui-enhancement-specialist.md) - Vaadin, accessibility
+- See [full agent catalog](agents/README.md)
+
+### Rule 7: Security is Non-Negotiable
+**Every change MUST:**
+- Pass OWASP Dependency Check (no critical/high vulnerabilities)
+- Pass CodeQL security scanning
+- Include input validation for all user inputs
+- Use parameterized queries (no SQL injection)
+- Encode output properly (no XSS vulnerabilities)
+- Never commit secrets, API keys, or credentials
+- Update security documentation if needed
+
+**Reference:** [Hack23 Secure Development Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md)
+
+### Rule 8: Follow ISMS Compliance Requirements
+**All changes MUST align with:**
+- **ISO 27001:2022** - Annex A controls
+- **NIST CSF 2.0** - Framework functions
+- **CIS Controls v8** - Implementation groups
+- **GDPR** - Data protection requirements
+
+**Required documentation updates:**
+- Update SECURITY_ARCHITECTURE.md if security changes
+- Update THREAT_MODEL.md if new threats identified
+- Update ARCHITECTURE.md if design changes
+- Maintain 80% line coverage, 70% branch coverage
+
+**See:** [iso-27001-controls skill](skills/iso-27001-controls/) for control verification
+
+### Rule 9: Test Everything
+**Testing is mandatory:**
+- Write unit tests for all new functionality
+- Maintain or improve test coverage
+- Run tests before committing: `mvn test`
+- Follow patterns in existing tests
+- Use JUnit 5, Mockito, appropriate test frameworks
+
+**Coverage Requirements:**
+- Minimum 80% line coverage
+- Minimum 70% branch coverage
+- No critical SonarCloud issues
+
+**Reference:** [unit-testing-patterns skill](skills/unit-testing-patterns/)
+
+### Rule 10: Commit Messages Must Be Clear
+**Format:** `<type>: <description>`
+
+**Types:**
+- `feat:` New feature
+- `fix:` Bug fix
+- `docs:` Documentation only
+- `style:` Formatting (no code change)
+- `refactor:` Code restructuring
+- `test:` Adding tests
+- `chore:` Build process, dependencies
+
+**Example:** `fix: correct SQL injection vulnerability in politician search`
+
+## Working with External APIs
+
+When integrating with external data sources:
+- Handle API errors gracefully with proper exception handling
+- Implement retry logic for transient failures (3 retries with exponential backoff)
+- Cache data appropriately to reduce API calls
+- Document any new data source integrations in README.md
+- Use circuit breaker pattern for unreliable services
+
+## Decision Framework Summary
+
+**When uncertain, use this hierarchy:**
+1. Check relevant skill in `.github/skills/` directory
+2. Review similar code patterns in the repository
+3. Consult project documentation (ARCHITECTURE.md, SECURITY_ARCHITECTURE.md)
+4. Apply security-by-design principles (deny by default, validate input, encrypt data)
+5. Follow ISMS requirements (ISO 27001, NIST CSF, CIS Controls)
+6. Only then ask for clarification if truly unique scenario
+
+**This is a mature, security-conscious project. Prioritize code quality, security, and maintainability. Act decisively within established frameworks. Complete work thoroughly before committing.**

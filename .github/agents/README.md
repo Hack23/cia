@@ -13,6 +13,7 @@ This diagram shows how the six specialized agents work together to support the C
 ```mermaid
 graph TB
     CIA[🔍 Citizen Intelligence Agency<br/>Political Transparency Platform]
+    Skills[📚 Skills Library<br/>24 Strategic Skills]
     
     CIA --> Task[📋 Task Agent<br/>Product Quality & ISMS]
     CIA --> Stack[🛠️ Stack Specialist<br/>Java & Backend]
@@ -20,6 +21,13 @@ graph TB
     CIA --> Biz[💰 Business Dev<br/>Strategy & Growth]
     CIA --> Intel[🔍 Intelligence Ops<br/>Political Analysis]
     CIA --> Market[📢 Marketing<br/>Brand & Community]
+    
+    Skills -.->|References| Task
+    Skills -.->|References| Stack
+    Skills -.->|References| UI
+    Skills -.->|References| Biz
+    Skills -.->|References| Intel
+    Skills -.->|References| Market
     
     Task --> PM[📊 Product Management<br/>Quality Assurance<br/>GitHub Issue Management<br/>ISMS Compliance<br/>AWS Monitoring<br/>Playwright Testing]
     Stack --> Tech[⚙️ Technical Architecture<br/>Java 25 & Spring<br/>Vaadin Framework<br/>PostgreSQL & JPA<br/>Maven & Testing<br/>Security Best Practices]
@@ -29,6 +37,7 @@ graph TB
     Market --> Brand[📣 Brand & Community<br/>Content Strategy<br/>Digital Marketing<br/>Public Relations<br/>SEO & Social Media<br/>Political Neutrality]
     
     classDef projectNode fill:#0D47A1,stroke:#0D47A1,stroke-width:4px,color:#fff,font-weight:bold
+    classDef skillsNode fill:#FF6F00,stroke:#FF6F00,stroke-width:4px,color:#fff,font-weight:bold
     classDef taskNode fill:#5D4037,stroke:#5D4037,stroke-width:3px,color:#fff,font-weight:bold
     classDef stackNode fill:#263238,stroke:#263238,stroke-width:3px,color:#fff,font-weight:bold
     classDef uiNode fill:#4A148C,stroke:#4A148C,stroke-width:3px,color:#fff,font-weight:bold
@@ -38,6 +47,7 @@ graph TB
     classDef detailNode fill:#ECEFF1,stroke:#546E7A,stroke-width:2px,color:#263238
     
     class CIA projectNode
+    class Skills skillsNode
     class Task taskNode
     class Stack stackNode
     class UI uiNode
@@ -49,12 +59,13 @@ graph TB
 
 ### Agent Color Coding
 - 🔵 **Blue** - Main Project
+- 🟠 **Orange** - Skills Library (referenced by all agents)
 - 🟤 **Brown** - Task Agent (Product & Quality)
 - ⚫ **Dark Gray** - Stack Specialist (Backend)
 - 🟣 **Purple** - UI Enhancement (Frontend)
 - 🟢 **Green** - Business Development (Strategy)
 - 🔴 **Red** - Intelligence Operative (Analysis)
-- 🟠 **Orange** - Marketing Specialist (Brand)
+- 🟧 **Dark Orange** - Marketing Specialist (Brand)
 
 ## 🤖 Available Agents
 
@@ -149,6 +160,116 @@ Expert in building awareness and engagement while maintaining political neutrali
 - 👥 Community building and engagement
 - 🎨 Brand development and positioning
 - 📊 Marketing analytics and optimization
+
+## 📚 Skills Library Integration
+
+### What Are Agent Skills?
+
+Agent Skills are modular, reusable knowledge modules that teach GitHub Copilot how to perform specialized tasks. Introduced in December 2025, skills provide strategic, rule-based guidance that agents can reference during task execution.
+
+**Location**: `.github/skills/` directory  
+**Count**: 24 comprehensive skills  
+**Total Content**: ~348KB of strategic guidance  
+**License**: Apache 2.0
+
+### Skills Categories
+
+Our skills library covers 6 major categories:
+
+#### 🔒 Security-by-Design (5 skills)
+- **secure-code-review** - OWASP Top 10, SAST/DAST patterns
+- **threat-modeling** - STRIDE framework, attack trees, security architecture
+- **secrets-management** - Never commit secrets, HashiCorp Vault usage
+- **input-validation** - Sanitization, XSS prevention, SQL injection prevention
+- **crypto-best-practices** - AES-256, bcrypt, Argon2, TLS 1.3
+
+#### ✅ ISMS Compliance (5 skills)
+- **iso-27001-controls** - Annex A control implementation verification
+- **nist-csf-mapping** - Cybersecurity Framework 2.0 alignment
+- **cis-controls** - CIS Controls v8 benchmark compliance
+- **gdpr-compliance** - Privacy by design, data subject rights
+- **security-documentation** - Required security architecture docs
+
+#### 🧪 Testing & Quality (4 skills)
+- **unit-testing-patterns** - JUnit 5, Mockito, 80% coverage standard
+- **integration-testing** - Spring Test, TestContainers, database testing
+- **e2e-testing** - Selenium WebDriver, Playwright patterns
+- **code-quality-checks** - SonarCloud, CodeQL, CheckStyle integration
+
+#### 🏗️ Architecture & Design (4 skills)
+- **spring-framework-patterns** - Dependency injection, transactions, AOP
+- **jpa-hibernate-optimization** - Entity design, N+1 prevention, caching
+- **vaadin-component-design** - UI components, data binding, lifecycle
+- **c4-architecture-documentation** - C4 model diagrams, documentation
+
+#### 🚀 CI/CD & DevOps (3 skills)
+- **github-actions-workflows** - CI/CD pipeline patterns
+- **maven-build-management** - Multi-module builds, dependency management
+- **postgresql-operations** - Schema migrations, performance tuning
+
+#### 🌐 Open Source & Community (3 skills)
+- **contribution-guidelines** - PR workflow, code review standards
+- **documentation-standards** - Markdown, Mermaid diagrams, clarity
+- **issue-triage-workflow** - Labeling, assignment, prioritization
+
+### Agent-Skills Matrix
+
+This table shows which skills are most relevant for each agent:
+
+| Skill | Task Agent | Stack Specialist | UI Enhancement | Intelligence | Business Dev | Marketing |
+|-------|:----------:|:----------------:|:--------------:|:------------:|:------------:|:---------:|
+| secure-code-review | ✅ | ✅ | ✅ | ⚪ | ⚪ | ⚪ |
+| threat-modeling | ✅ | ✅ | ✅ | ⚪ | ⚪ | ⚪ |
+| iso-27001-controls | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| unit-testing-patterns | ✅ | ✅ | ✅ | ⚪ | ⚪ | ⚪ |
+| spring-framework-patterns | ⚪ | ✅ | ⚪ | ⚪ | ⚪ | ⚪ |
+| vaadin-component-design | ⚪ | ✅ | ✅ | ⚪ | ⚪ | ⚪ |
+| gdpr-compliance | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| github-actions-workflows | ✅ | ✅ | ⚪ | ⚪ | ⚪ | ⚪ |
+| contribution-guidelines | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+
+**Legend**: ✅ Primary use | ⚪ Occasional use
+
+### How Agents Use Skills
+
+1. **Contextual Loading**: Copilot automatically loads relevant skills based on task
+2. **Reference in Guidance**: Agents reference skills in recommendations
+3. **Pattern Application**: Agents follow patterns and checklists from skills
+4. **User Education**: Agents teach users about applicable skills
+5. **Issue Documentation**: Skills are linked in GitHub issues
+
+### Using Skills Manually
+
+While agents automatically reference skills, developers can explicitly invoke them:
+
+```markdown
+@copilot Use the secure-code-review skill to analyze this authentication code
+```
+
+```markdown
+@copilot Apply the jpa-hibernate-optimization skill to review these queries
+```
+
+### Skills Benefits
+
+✅ **Reduced Ambiguity** - Prescriptive, rule-based guidance  
+✅ **Security First** - Defense-in-depth principles throughout  
+✅ **ISMS Aligned** - Full ISO 27001, NIST CSF, CIS Controls mapping  
+✅ **Composable** - Skills reference each other  
+✅ **Maintainable** - Clear structure, version controlled  
+✅ **Actionable** - Specific code examples and patterns  
+✅ **Consistent** - Same patterns across all agents
+
+### Skills Documentation
+
+**Full Documentation**: [.github/skills/README.md](../skills/README.md)
+
+Each skill includes:
+- Purpose and triggering scenarios
+- Actionable checklists (✅/❌ examples)
+- Code examples (good vs bad patterns)
+- ISMS compliance mappings
+- References to official documentation
 
 ## 🔧 Agent Profile Format
 
@@ -315,6 +436,13 @@ Model Context Protocol configuration providing:
 - World Bank Open Data
 - Swedish Financial Management Authority
 
+### 4. Skills Library
+**Directory**: [.github/skills/](../skills/)
+- 24 strategic skills for security, ISMS, testing, architecture
+- Referenced by all agents for consistent guidance
+- Security-by-design principles encoded
+- ISO 27001, NIST CSF, CIS Controls aligned
+
 ### Why These Files Matter
 
 Reading these files ensures agents:
@@ -327,6 +455,42 @@ Reading these files ensures agents:
 7. ✅ Can properly coordinate with MCP servers and external APIs
 
 **Each agent profile now includes a standardized section instructing them to read these files at the start of each task.** This ensures consistent awareness of project context across all specialized agents.
+
+## 🆕 Agent Enhancements (January 2026)
+
+All agents have been enhanced with:
+
+### GitHub MCP Insiders Configuration
+- Full Model Context Protocol setup
+- GitHub Insiders API access
+- Advanced toolsets (all tools, all features)
+- Cross-repository access via PAT
+
+### ISMS Compliance Integration
+- **ISO 27001:2022** - Annex A controls enforcement
+- **NIST CSF 2.0** - Framework function mapping
+- **CIS Controls v8** - Benchmark compliance
+- **GDPR** - Data protection requirements
+- **NIS2** - Critical infrastructure requirements
+
+### Decision Frameworks
+- Clear security decision criteria
+- Code quality thresholds
+- Architecture patterns enforcement
+- Performance optimization guidelines
+- **Result**: Less ambiguity, more decisive action
+
+### Skills Library Integration
+- Each agent references 10+ relevant skills
+- Automatic skill loading by Copilot
+- Consistent patterns across agents
+- Security-by-design in all guidance
+
+### Enhanced Documentation
+- Mandatory context file reading
+- Security-first approach emphasized
+- Compliance mapping in all guidance
+- Clear acceptance/rejection criteria
 
 ## 📚 Using These Profiles
 
@@ -489,12 +653,19 @@ flowchart TD
     Tech -->|Testing/Quality| Stack
     Tech -->|Build/DevOps| Stack
     
-    UI --> UIDesc[Vaadin Framework<br/>Data Visualization<br/>Accessibility<br/>Responsive Design]
-    Stack --> StackDesc[Java & Spring<br/>PostgreSQL & JPA<br/>Maven & Testing<br/>Backend Architecture]
-    Task --> TaskDesc[Product Quality<br/>GitHub Issues<br/>ISMS Compliance<br/>AWS Monitoring]
-    Biz --> BizDesc[Strategic Planning<br/>Partnerships<br/>Revenue Models<br/>Market Expansion]
-    Intel --> IntelDesc[Political Analysis<br/>OSINT Methods<br/>Risk Assessment<br/>Swedish Politics]
-    Market --> MarketDesc[Content Strategy<br/>Brand Building<br/>Community Growth<br/>Digital Marketing]
+    UI --> UIDesc[Vaadin Framework<br/>Data Visualization<br/>Responsive Design<br/>Component Lifecycle<br/><br/>📚 Skills:<br/>vaadin-component-design<br/>e2e-testing<br/>documentation-standards]
+    Stack --> StackDesc[Java & Spring<br/>PostgreSQL & JPA<br/>Maven & Testing<br/>Backend Architecture<br/><br/>📚 Skills:<br/>spring-framework-patterns<br/>jpa-hibernate-optimization<br/>maven-build-management]
+    Task --> TaskDesc[Product Quality<br/>GitHub Issues<br/>ISMS Compliance<br/>AWS Monitoring<br/><br/>📚 Skills:<br/>issue-triage-workflow<br/>iso-27001-controls<br/>secure-code-review]
+    Biz --> BizDesc[Strategic Planning<br/>Partnerships<br/>Revenue Models<br/>Market Expansion<br/><br/>📚 Skills:<br/>gdpr-compliance<br/>contribution-guidelines]
+    Intel --> IntelDesc[Political Analysis<br/>OSINT Methods<br/>Risk Assessment<br/>Swedish Politics<br/><br/>📚 Skills:<br/>threat-modeling<br/>secure-code-review]
+    Market --> MarketDesc[Content Strategy<br/>Brand Building<br/>Community Growth<br/>Digital Marketing<br/><br/>📚 Skills:<br/>documentation-standards<br/>contribution-guidelines]
+    
+    UIDesc --> Skills[📚 Browse Skills Library<br/>.github/skills/]
+    StackDesc --> Skills
+    TaskDesc --> Skills
+    BizDesc --> Skills
+    IntelDesc --> Skills
+    MarketDesc --> Skills
     
     classDef startNode fill:#0D47A1,stroke:#0D47A1,stroke-width:3px,color:#fff,font-weight:bold
     classDef decisionNode fill:#6A1B9A,stroke:#6A1B9A,stroke-width:3px,color:#fff,font-weight:bold
@@ -505,6 +676,7 @@ flowchart TD
     classDef intelNode fill:#B71C1C,stroke:#B71C1C,stroke-width:2px,color:#fff
     classDef marketNode fill:#E65100,stroke:#E65100,stroke-width:2px,color:#fff
     classDef descNode fill:#ECEFF1,stroke:#546E7A,stroke-width:1px,color:#263238
+    classDef skillsNode fill:#FF6F00,stroke:#FF6F00,stroke-width:2px,color:#fff,font-weight:bold
     
     class Start startNode
     class Type,Tech decisionNode
@@ -515,6 +687,7 @@ flowchart TD
     class Intel intelNode
     class Market marketNode
     class UIDesc,StackDesc,TaskDesc,BizDesc,IntelDesc,MarketDesc descNode
+    class Skills skillsNode
 ```
 
 ### How to Use This Guide
@@ -523,6 +696,32 @@ flowchart TD
 2. **Follow the arrows** based on your specific needs
 3. **Select the agent** that best matches your task domain
 4. **Reference the agent's profile** for detailed capabilities and best practices
+5. **Browse the Skills Library** to understand the patterns and guidelines available
+
+## 📊 Effectiveness Metrics
+
+Track agent and skills effectiveness:
+
+### Agent Metrics
+- **Issue Quality**: Clear, actionable, well-documented
+- **Response Time**: Agent time to first response
+- **Resolution Rate**: Issues closed successfully
+- **User Satisfaction**: NPS, feedback ratings
+
+### Skills Metrics
+- **Adoption Rate**: Skill references in PRs/reviews
+- **Security Impact**: Reduction in vulnerabilities
+- **Quality Impact**: SonarCloud/CodeQL score improvements
+- **Compliance**: Faster ISMS audit completions
+- **Productivity**: Reduced implementation time
+
+### Success Indicators
+✅ All agents reference skills in guidance  
+✅ Security vulnerabilities declining  
+✅ Test coverage improving  
+✅ ISMS audit findings reduced  
+✅ Faster feature implementation  
+✅ Higher code quality scores
 
 ---
 
