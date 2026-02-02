@@ -5,7 +5,7 @@
       "url": "https://api.githubcopilot.com/mcp/insiders",
       "headers": {
         "Authorization": "Bearer ${{ secrets.COPILOT_MCP_GITHUB_PERSONAL_ACCESS_TOKEN }}",
-        "X-MCP-Toolsets": "*"
+        "X-MCP-Toolsets": "all"
       },
       "tools": ["*"]
     },
