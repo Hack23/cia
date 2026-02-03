@@ -23,42 +23,43 @@ import java.util.List;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.hack23.cia.model.external.worldbank.data.impl.WorldBankData;
+import com.hack23.cia.model.external.worldbank.countries.impl.CountryElement;
 import com.hack23.cia.service.external.worldbank.api.DataFailureException;
-import com.hack23.cia.service.external.worldbank.api.WorldBankDataApi;
+import com.hack23.cia.service.external.worldbank.api.WorldBankCountryApi;
 
 /**
- * The Class WorldbankDataApiImplTest.
+ * The Class WorldbankCountryApiImplITest.
  */
-public final class WorldbankDataApiImplTest extends AbstractWorldbankFunctionalIntegrationTest {
+public final class WorldbankCountryApiImplITest extends AbstractWorldbankFunctionalIntegrationTest {
 
 	/** The worlbank api. */
 	@Autowired
-	private WorldBankDataApi worlbankApi;
+	private WorldBankCountryApi worlbankApi;
 
 	/**
-	 * Gets the data test.
+	 * Gets the countries test.
 	 *
-	 * @return the data test
+	 * @return the countries test
 	 * @throws Exception
 	 *             the exception
 	 */
 	@Test
-	public void getDataTest() throws Exception {
-		final List<WorldBankData> data = worlbankApi.getData("br", "SP.POP.TOTL");
-		assertNotNull("Expect this data to exist", data);
+	public void getCountriesTest() throws Exception {
+		final List<CountryElement> countries = worlbankApi.getCountries();
+		assertNotNull("Expect countries", countries);
+		assertTrue("Approx > 230 countries", countries.size() > 230);
 	}
 
 	/**
-	 * Gets the date failure test.
+	 * Gets the countries failure test.
 	 *
-	 * @return the date failure test
+	 * @return the countries failure test
 	 * @throws Exception
 	 *             the exception
 	 */
 	@Test(expected = DataFailureException.class)
-	public void getDateFailureTest() throws Exception {
-		new WorldbankDataApiImpl(createMockXmlAgentThrowsException()).getData("br", "SP.POP.TOTL");
+	public void getCountriesFailureTest() throws Exception {
+		new WorldbankCountryApiImpl(createMockXmlAgentThrowsException()).getCountries();
 	}
 
 }

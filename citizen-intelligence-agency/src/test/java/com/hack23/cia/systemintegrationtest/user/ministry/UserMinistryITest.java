@@ -10,10 +10,10 @@ import com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode.Mini
 import com.hack23.cia.web.impl.ui.application.views.user.goverment.pagemode.MinistryViewConstants;
 
 /**
- * The Class UserMinistryTest.
+ * The Class UserMinistryITest.
  */
 @Category(IntegrationTest.class)
-public final class UserMinistryTest extends AbstractUITest {
+public final class UserMinistryITest extends AbstractUITest {
 
     /** The Constant MINISTRY_ID. */
     private static final String MINISTRY_ID = "Finansdepartementet";

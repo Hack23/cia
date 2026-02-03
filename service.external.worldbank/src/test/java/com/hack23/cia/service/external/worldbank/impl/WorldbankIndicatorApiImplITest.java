@@ -28,9 +28,9 @@ import com.hack23.cia.service.external.worldbank.api.DataFailureException;
 import com.hack23.cia.service.external.worldbank.api.WorldBankIndicatorApi;
 
 /**
- * The Class WorldbankIndicatorApiImplTest.
+ * The Class WorldbankIndicatorApiImplITest.
  */
-public final class WorldbankIndicatorApiImplTest extends AbstractWorldbankFunctionalIntegrationTest {
+public final class WorldbankIndicatorApiImplITest extends AbstractWorldbankFunctionalIntegrationTest {
 
 	/** The worlbank api. */
 	@Autowired

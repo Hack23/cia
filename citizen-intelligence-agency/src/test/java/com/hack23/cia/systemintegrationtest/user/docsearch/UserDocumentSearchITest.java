@@ -9,10 +9,10 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagec
 import com.hack23.cia.web.impl.ui.application.views.user.document.pagemode.DocumentPageTitleConstants;
 
 /**
- * The Class UserDocumentSearchTest.
+ * The Class UserDocumentSearchITest.
  */
 @Category(IntegrationTest.class)
-public final class UserDocumentSearchTest extends AbstractUITest {
+public final class UserDocumentSearchITest extends AbstractUITest {
 
 	/**
 	 * Verify search document page.

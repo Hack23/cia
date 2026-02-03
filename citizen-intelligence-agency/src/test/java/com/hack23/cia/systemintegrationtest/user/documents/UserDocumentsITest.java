@@ -11,10 +11,10 @@ import com.hack23.cia.web.impl.ui.application.views.common.paging.PagingUtilImpl
 import com.hack23.cia.web.impl.ui.application.views.user.document.pagemode.DocumentPageTitleConstants;
 
 /**
- * The Class UserDocumentsTest.
+ * The Class UserDocumentsITest.
  */
 @Category(IntegrationTest.class)
-public final class UserDocumentsTest extends AbstractUITest {
+public final class UserDocumentsITest extends AbstractUITest {
 
 	/**
 	 * Verify documents page.

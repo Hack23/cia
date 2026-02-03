@@ -27,9 +27,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualOutcomeSummary;
 
 /**
- * The Class EsvGovernmentBodyOperationOutcomeReaderTest.
+ * The Class EsvGovernmentBodyOperationOutcomeReaderITest.
  */
-public final class EsvGovernmentBodyOperationOutcomeReaderTest extends AbstractEsvFunctionalIntegrationTest {
+public final class EsvGovernmentBodyOperationOutcomeReaderITest extends AbstractEsvFunctionalIntegrationTest {
 
 	@Autowired
 	private EsvGovernmentBodyOperationOutcomeReader esvGovernmentBodyOperationOutcomeReader;

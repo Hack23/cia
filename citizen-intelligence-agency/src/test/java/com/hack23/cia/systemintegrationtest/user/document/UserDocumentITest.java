@@ -9,10 +9,10 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagec
 import com.hack23.cia.web.impl.ui.application.views.user.document.pagemode.DocumentViewConstants;
 
 /**
- * The Class UserDocumentsTest.
+ * The Class UserDocumentsITest.
  */
 @Category(IntegrationTest.class)
-public final class UserDocumentTest extends AbstractUITest {
+public final class UserDocumentITest extends AbstractUITest {
 
 	/** The doc id. */
 	private static String DOC_ID = "hb022647";

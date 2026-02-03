@@ -23,43 +23,43 @@ import java.util.List;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.hack23.cia.model.external.worldbank.countries.impl.CountryElement;
+import com.hack23.cia.model.external.worldbank.topic.impl.TopicElement;
 import com.hack23.cia.service.external.worldbank.api.DataFailureException;
-import com.hack23.cia.service.external.worldbank.api.WorldBankCountryApi;
+import com.hack23.cia.service.external.worldbank.api.WorldBankTopicApi;
 
 /**
- * The Class WorldbankCountryApiImplTest.
+ * The Class WorldbankTopicApiImplITest.
  */
-public final class WorldbankCountryApiImplTest extends AbstractWorldbankFunctionalIntegrationTest {
+public final class WorldbankTopicApiImplITest extends AbstractWorldbankFunctionalIntegrationTest {
 
 	/** The worlbank api. */
 	@Autowired
-	private WorldBankCountryApi worlbankApi;
+	private WorldBankTopicApi worlbankApi;
 
 	/**
-	 * Gets the countries test.
+	 * Gets the topics test.
 	 *
-	 * @return the countries test
+	 * @return the topics test
 	 * @throws Exception
 	 *             the exception
 	 */
 	@Test
-	public void getCountriesTest() throws Exception {
-		final List<CountryElement> countries = worlbankApi.getCountries();
-		assertNotNull("Expect countries", countries);
-		assertTrue("Approx > 230 countries", countries.size() > 230);
+	public void getTopicsTest() throws Exception {
+		final List<TopicElement> topics = worlbankApi.getTopics();
+		assertNotNull("Expect topics", topics);
+		assertTrue("Expect above 10 topics", topics.size() > 10);
 	}
 
 	/**
-	 * Gets the countries failure test.
+	 * Gets the topics failure test.
 	 *
-	 * @return the countries failure test
+	 * @return the topics failure test
 	 * @throws Exception
 	 *             the exception
 	 */
 	@Test(expected = DataFailureException.class)
-	public void getCountriesFailureTest() throws Exception {
-		new WorldbankCountryApiImpl(createMockXmlAgentThrowsException()).getCountries();
+	public void getTopicsFailureTest() throws Exception {
+		new WorldbankTopicApiImpl(createMockXmlAgentThrowsException()).getTopics();
 	}
 
 }
