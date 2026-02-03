@@ -46,6 +46,39 @@ The Citizen Intelligence Agency maintains comprehensive unit testing to ensure:
 
 ## 🏗️ Testing Strategy
 
+### Test Naming Convention
+
+The project uses strict naming conventions to distinguish unit tests from integration tests:
+
+#### Unit Tests (`*Test.java`)
+- **Suffix**: `*Test.java`
+- **Characteristics**:
+  - Pure unit tests with mocked dependencies
+  - No database access or external API calls
+  - Fast execution (< 1 second per test)
+  - No Spring context or infrastructure required
+- **Examples**: `RiksdagenDateUtilTest`, `ApiDtoSanityTest`, `RemoveDataManagerTest`
+- **Maven execution**: Included in standard `mvn test` runs
+
+#### Integration Tests (`*ITest.java`)
+- **Suffix**: `*ITest.java`
+- **Characteristics**:
+  - Tests requiring database access
+  - Tests calling external APIs
+  - Tests using Spring application context
+  - Slower execution, require infrastructure
+- **Examples**: `WorldbankTopicApiImplITest`, `DataDAOITest`, `UserHomeITest`
+- **Maven execution**: Excluded from unit test runs using `-Dtest='!**ITest*,!**DocumentationTest*'`
+
+#### Build Integration
+
+The `citizen-intelligence-agency/build.xml` and workflows use this exclusion pattern:
+```bash
+mvn test -Dtest='!**ITest*,!**DocumentationTest*'
+```
+
+This ensures unit tests run quickly in CI/CD without external dependencies, while integration tests can be run separately when infrastructure is available.
+
 ### Test Pyramid Implementation
 
 Our testing strategy follows the industry-standard test pyramid approach:

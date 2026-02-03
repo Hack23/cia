@@ -32,6 +32,25 @@ Here are a few things you can do that will increase the likelihood of your pull 
 
 Work in Progress pull requests are also welcome to get feedback early on, or if there is something blocked you.
 
+### Test Naming Conventions
+
+This project follows strict test naming conventions to separate unit tests from integration tests:
+
+- **Unit Tests**: Use `*Test.java` suffix
+  - Pure unit tests with mocked dependencies
+  - No database access, no external API calls
+  - Fast execution (< 1 second per test)
+  - Example: `RiksdagenDateUtilTest`, `ApiDtoSanityTest`
+
+- **Integration Tests**: Use `*ITest.java` suffix  
+  - Tests that require database access
+  - Tests that call external APIs
+  - Tests that use Spring application context
+  - Slower execution, require infrastructure
+  - Example: `WorldbankTopicApiImplITest`, `DataDAOITest`
+
+**Why this matters**: The build system excludes `**ITest*` from unit test runs to keep CI fast and avoid external dependencies. Always use the correct suffix based on whether your test has external dependencies.
+
 ## 🔐 Security Guidelines
 
 Contributing to this project requires adherence to Hack23 AB's security standards and ISMS policies.
