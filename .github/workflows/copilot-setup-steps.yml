@@ -404,6 +404,10 @@ jobs:
       - name: Build with Maven
         run: mvn -B clean install --file pom.xml -Prelease-site,all-modules -DskipTests -DfailIfNoTests=false -Dsurefire.failIfNoSpecifiedTests=false -Dspdx.skip=true
 
+      - name: Run model tests
+        run: mvn -B clean test -f parent-model-pom/pom.xml -Dsurefire.failIfNoSpecifiedTests=false -Dtest='!**/XmlDateTypeAdapterTest,!**/XmlTimeTypeAdapterTest,!**/XmlDateTimeTypeAdapterTest'
+        continue-on-error: false
+
       - name: Validate app startup and database connection
         run: |
           cd citizen-intelligence-agency
