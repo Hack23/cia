@@ -9,10 +9,10 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagec
 import com.hack23.cia.web.impl.ui.application.views.user.party.pagemode.PartyViewConstants;
 
 /**
- * The Class UserPartyRankingTest.
+ * The Class UserPartyRankingITest.
  */
 @Category(IntegrationTest.class)
-public final class UserPartyTest extends AbstractUITest {
+public final class UserPartyITest extends AbstractUITest {
 
     /** The party id. */
     private static final String PARTY_ID = "M";

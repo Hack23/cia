@@ -9,10 +9,10 @@ import com.hack23.cia.web.impl.ui.application.views.admin.AdminViewConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandAdminConstants;
 
 /**
- * The Class AdminConfigurationTest.
+ * The Class AdminConfigurationITest.
  */
 @Category(IntegrationTest.class)
-public final class AdminConfigurationTest extends AbstractAdminTest {
+public final class AdminConfigurationITest extends AbstractAdminTest {
 
 
 	/**

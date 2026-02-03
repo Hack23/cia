@@ -10,10 +10,10 @@ import com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode.Pol
 import com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode.PoliticianPageTitleConstants;
 
 /**
- * The Class UserPoliticianTest.
+ * The Class UserPoliticianITest.
  */
 @Category(IntegrationTest.class)
-public final class UserPoliticianTest extends AbstractUITest {
+public final class UserPoliticianITest extends AbstractUITest {
 
     /** The pol id. */
     private static final String POL_ID = "0222691314314";

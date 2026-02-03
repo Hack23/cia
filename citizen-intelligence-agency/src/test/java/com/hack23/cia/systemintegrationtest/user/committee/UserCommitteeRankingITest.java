@@ -11,10 +11,10 @@ import com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode.Comm
 import com.hack23.cia.web.impl.ui.application.views.user.committeeranking.pagemode.CommitteeRankingConstants;
 
 /**
- * The Class UserCommitteeRankingTest.
+ * The Class UserCommitteeRankingITest.
  */
 @Category(IntegrationTest.class)
-public final class UserCommitteeRankingTest extends AbstractUITest implements PageCommandUserConstants {
+public final class UserCommitteeRankingITest extends AbstractUITest implements PageCommandUserConstants {
 
 	/**
 	 * Verify committee ranking overview page.

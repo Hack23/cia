@@ -23,43 +23,42 @@ import java.util.List;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.hack23.cia.model.external.worldbank.topic.impl.TopicElement;
+import com.hack23.cia.model.external.worldbank.data.impl.WorldBankData;
 import com.hack23.cia.service.external.worldbank.api.DataFailureException;
-import com.hack23.cia.service.external.worldbank.api.WorldBankTopicApi;
+import com.hack23.cia.service.external.worldbank.api.WorldBankDataApi;
 
 /**
- * The Class WorldbankTopicApiImplTest.
+ * The Class WorldbankDataApiImplITest.
  */
-public final class WorldbankTopicApiImplTest extends AbstractWorldbankFunctionalIntegrationTest {
+public final class WorldbankDataApiImplITest extends AbstractWorldbankFunctionalIntegrationTest {
 
 	/** The worlbank api. */
 	@Autowired
-	private WorldBankTopicApi worlbankApi;
+	private WorldBankDataApi worlbankApi;
 
 	/**
-	 * Gets the topics test.
+	 * Gets the data test.
 	 *
-	 * @return the topics test
+	 * @return the data test
 	 * @throws Exception
 	 *             the exception
 	 */
 	@Test
-	public void getTopicsTest() throws Exception {
-		final List<TopicElement> topics = worlbankApi.getTopics();
-		assertNotNull("Expect topics", topics);
-		assertTrue("Expect above 10 topics", topics.size() > 10);
+	public void getDataTest() throws Exception {
+		final List<WorldBankData> data = worlbankApi.getData("br", "SP.POP.TOTL");
+		assertNotNull("Expect this data to exist", data);
 	}
 
 	/**
-	 * Gets the topics failure test.
+	 * Gets the date failure test.
 	 *
-	 * @return the topics failure test
+	 * @return the date failure test
 	 * @throws Exception
 	 *             the exception
 	 */
 	@Test(expected = DataFailureException.class)
-	public void getTopicsFailureTest() throws Exception {
-		new WorldbankTopicApiImpl(createMockXmlAgentThrowsException()).getTopics();
+	public void getDateFailureTest() throws Exception {
+		new WorldbankDataApiImpl(createMockXmlAgentThrowsException()).getData("br", "SP.POP.TOTL");
 	}
 
 }

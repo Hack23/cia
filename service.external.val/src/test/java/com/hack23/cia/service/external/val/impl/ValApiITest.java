@@ -40,9 +40,9 @@ import com.hack23.cia.service.external.val.api.ValApi;
 import com.hack23.cia.service.external.val.api.ValApiException;
 
 /**
- * The Class ValApiTest.
+ * The Class ValApiITest.
  */
-public final class ValApiTest extends AbstractValFunctionalIntegrationTest {
+public final class ValApiITest extends AbstractValFunctionalIntegrationTest {
 
 	/** The Constant EXPECT_A_RESULT. */
 	private static final String EXPECT_A_RESULT = "Expect a result";

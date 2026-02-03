@@ -9,10 +9,10 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagec
 import com.hack23.cia.web.impl.ui.application.views.user.ballot.pagemode.BallotViewConstants;
 
 /**
- * The Class UserBallotTest.
+ * The Class UserBallotITest.
  */
 @Category(IntegrationTest.class)
-public final class UserBallotTest extends AbstractUITest {
+public final class UserBallotITest extends AbstractUITest {
 
 	/** The Constant BALLOT_ID_NO_DEC. */
 	private static final String BALLOT_ID_NO_DEC = "6459ABCF-ABDB-4511-87B8-C7CC09737090";

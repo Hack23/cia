@@ -9,10 +9,10 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagec
 import com.hack23.cia.web.impl.ui.application.views.user.govermentbody.pagemode.GovernmentBodyDescriptionConstants;
 
 /**
- * The Class UserGovernmentBodyTest.
+ * The Class UserGovernmentBodyITest.
  */
 @Category(IntegrationTest.class)
-public final class UserGovernmentBodyTest extends AbstractUITest {
+public final class UserGovernmentBodyITest extends AbstractUITest {
 
     /** The Constant GOV_BODY_ID. */
     private static final String GOV_BODY_ID = "202100-4979";

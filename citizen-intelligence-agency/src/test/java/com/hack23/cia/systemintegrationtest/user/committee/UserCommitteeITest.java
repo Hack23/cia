@@ -10,10 +10,10 @@ import com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode.Comm
 import com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode.CommitteeViewConstants;
 
 /**
- * The Class UserBallotTest.
+ * The Class UserBallotITest.
  */
 @Category(IntegrationTest.class)
-public final class UserCommitteeTest extends AbstractUITest {
+public final class UserCommitteeITest extends AbstractUITest {
 
 	/** The committee id. */
 	private static final String COMMITTEE_ID = "JuU";

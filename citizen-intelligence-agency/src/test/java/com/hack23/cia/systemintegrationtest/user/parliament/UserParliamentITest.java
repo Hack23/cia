@@ -10,10 +10,10 @@ import com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode.Par
 import com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode.ParliamentViewConstants;
 
 /**
- * The Class UserParliamentTest.
+ * The Class UserParliamentITest.
  */
 @Category(IntegrationTest.class)
-public final class UserParliamentTest extends AbstractUITest {
+public final class UserParliamentITest extends AbstractUITest {
 
     /**
      * Verify parliament page.
