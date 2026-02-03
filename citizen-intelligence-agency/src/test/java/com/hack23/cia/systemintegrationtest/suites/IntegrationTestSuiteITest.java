@@ -34,7 +34,7 @@ import com.hack23.cia.systemintegrationtest.user.politician.UserPoliticianRankin
 import com.hack23.cia.systemintegrationtest.user.politician.UserPoliticianITest;
 
 /**
- * The Class IntegrationTestSuite.
+ * The Class IntegrationTestSuiteITest.
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
@@ -61,7 +61,7 @@ import com.hack23.cia.systemintegrationtest.user.politician.UserPoliticianITest;
     AdminOperationsITest.class,
     AdminSecurityITest.class
 })
-public class IntegrationTestSuite {
+public class IntegrationTestSuiteITest {
 
 	/** The Constant BASE_URL. */
 	protected static final String BASE_URL = System.getProperty("system.test.target.url",
