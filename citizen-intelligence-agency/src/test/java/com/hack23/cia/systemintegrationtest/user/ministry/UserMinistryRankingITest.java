@@ -10,10 +10,10 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagec
 import com.hack23.cia.web.impl.ui.application.views.user.govermentranking.pagemode.MinistryRankingViewConstants;
 
 /**
- * The Class UserMinistryRankingTest.
+ * The Class UserMinistryRankingITest.
  */
 @Category(IntegrationTest.class)
-public final class UserMinistryRankingTest extends AbstractUITest implements PageCommandUserConstants {
+public final class UserMinistryRankingITest extends AbstractUITest implements PageCommandUserConstants {
 
     /**
      * Verify ministry ranking ministry by headcount page.

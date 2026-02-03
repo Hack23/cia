@@ -10,10 +10,10 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagec
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 
 /**
- * The Class UserHomeTest.
+ * The Class UserHomeITest.
  */
 @Category(IntegrationTest.class)
-public final class AdminSecurityTest extends AbstractAdminTest {
+public final class AdminSecurityITest extends AbstractAdminTest {
 
 	/**
 	 * Verify user account.

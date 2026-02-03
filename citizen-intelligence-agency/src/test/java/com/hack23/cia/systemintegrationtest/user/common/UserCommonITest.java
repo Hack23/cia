@@ -9,10 +9,10 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagec
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CommonViewConstants;
 
 /**
- * The Class UserCommonTest.
+ * The Class UserCommonITest.
  */
 @Category(IntegrationTest.class)
-public final class UserCommonTest extends AbstractUITest {
+public final class UserCommonITest extends AbstractUITest {
 
     /**
      * Verify main overview page.

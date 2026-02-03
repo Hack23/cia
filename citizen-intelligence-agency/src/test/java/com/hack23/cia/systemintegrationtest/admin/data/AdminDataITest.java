@@ -12,10 +12,10 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagec
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.RefreshDataViewsClickListener;
 
 /**
- * The Class AdminDataTest.
+ * The Class AdminDataITest.
  */
 @Category(IntegrationTest.class)
-public final class AdminDataTest extends AbstractAdminTest {
+public final class AdminDataITest extends AbstractAdminTest {
 
     /**
      * Verify data summary.

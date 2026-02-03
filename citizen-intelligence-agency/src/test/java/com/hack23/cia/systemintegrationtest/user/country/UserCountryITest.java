@@ -9,10 +9,10 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagec
 import com.hack23.cia.web.impl.ui.application.views.user.country.pagemode.CountryViewConstants;
 
 /**
- * The Class UserCommonTest.
+ * The Class UserCommonITest.
  */
 @Category(IntegrationTest.class)
-public final class UserCountryTest extends AbstractUITest {
+public final class UserCountryITest extends AbstractUITest {
 
     /** The Constant INDICATOR_ID. */
     private static final String INDICATOR_ID = "EG.ELC.HYRO.ZS";

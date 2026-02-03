@@ -27,9 +27,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.hack23.cia.service.external.esv.api.GovernmentOperationPeriodOutcome;
 
 /**
- * The Class EsvGovernmentOperationsExcelReaderTest.
+ * The Class EsvGovernmentOperationsExcelReaderITest.
  */
-public final class EsvGovernmentOperationsExcelReaderTest extends AbstractEsvFunctionalIntegrationTest {
+public final class EsvGovernmentOperationsExcelReaderITest extends AbstractEsvFunctionalIntegrationTest {
 
 	/** The esv government operations excel reader. */
 	@Autowired

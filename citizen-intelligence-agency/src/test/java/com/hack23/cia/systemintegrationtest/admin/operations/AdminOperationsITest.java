@@ -11,10 +11,10 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagec
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.SendEmailClickListener;
 
 /**
- * The Class AdminOperationsTest.
+ * The Class AdminOperationsITest.
  */
 @Category(IntegrationTest.class)
-public final class AdminOperationsTest extends AbstractAdminTest {
+public final class AdminOperationsITest extends AbstractAdminTest {
 
     /**
      * Verify agent operation.

@@ -10,10 +10,10 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagec
 import com.hack23.cia.web.impl.ui.application.views.user.politicianranking.pagemode.PoliticianRankingDescriptionConstants;
 
 /**
- * The Class UserPoliticianRankingTest.
+ * The Class UserPoliticianRankingITest.
  */
 @Category(IntegrationTest.class)
-public final class UserPoliticianRankingTest extends AbstractUITest implements PageCommandUserConstants {
+public final class UserPoliticianRankingITest extends AbstractUITest implements PageCommandUserConstants {
 
     /**
      * Verify politician ranking datagrid page.

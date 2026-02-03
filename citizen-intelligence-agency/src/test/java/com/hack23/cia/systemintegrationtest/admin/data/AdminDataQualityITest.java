@@ -10,12 +10,12 @@ import com.hack23.cia.web.impl.ui.application.views.admin.dataquality.pagemode.D
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandAdminConstants;
 
 /**
- * The Class AdminDataQualityTest.
+ * The Class AdminDataQualityITest.
  * 
  * Integration tests for the Data Quality Monitoring Dashboard.
  */
 @Category(IntegrationTest.class)
-public final class AdminDataQualityTest extends AbstractAdminTest {
+public final class AdminDataQualityITest extends AbstractAdminTest {
 
     /**
      * Verify data quality dashboard.

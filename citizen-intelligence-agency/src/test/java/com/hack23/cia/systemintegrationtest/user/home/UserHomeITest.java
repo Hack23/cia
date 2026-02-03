@@ -16,10 +16,10 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.Application
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.ChangePasswordClickListener;
 
 /**
- * The Class UserHomeTest.
+ * The Class UserHomeITest.
  */
 @Category(IntegrationTest.class)
-public final class UserHomeTest extends AbstractUITest {
+public final class UserHomeITest extends AbstractUITest {
 
 
 	/**

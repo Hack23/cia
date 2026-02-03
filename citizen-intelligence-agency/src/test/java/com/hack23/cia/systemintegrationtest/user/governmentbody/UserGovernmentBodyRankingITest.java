@@ -10,10 +10,10 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagec
 import com.hack23.cia.web.impl.ui.application.views.user.govermentbody.pagemode.GovernmentBodyDescriptionConstants;
 
 /**
- * The Class UserGovernmentBodyRankingTest.
+ * The Class UserGovernmentBodyRankingITest.
  */
 @Category(IntegrationTest.class)
-public final class UserGovernmentBodyRankingTest extends AbstractUITest implements PageCommandUserConstants {
+public final class UserGovernmentBodyRankingITest extends AbstractUITest implements PageCommandUserConstants {
 
 
 
