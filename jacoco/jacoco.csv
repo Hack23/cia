@@ -12,6 +12,7 @@ Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.do
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.gridfactory.impl,GridFactoryImpl,0,208,3,19,0,47,3,17,0,9
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.gridfactory.impl,GridFactoryImpl.BeanNestedPropertyValueProvider,21,11,0,0,3,4,0,2,0,2
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.politicianranking,PoliticianRankingView,0,7,0,0,0,2,0,1,0,1
+Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.admin.dataquality,AdminDataQualityView,0,7,0,0,0,2,0,1,0,1
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.admin.common,AbstractAdminView,0,5,0,0,0,2,0,1,0,1
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.govermentbodyranking,GovernmentBodyRankingView,0,7,0,0,0,2,0,1,0,1
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.paging,PagingUtilImpl,0,148,0,14,0,34,0,10,0,3
@@ -40,7 +41,7 @@ Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl,AbstractChartDataManagerImpl,0,20,0,0,0,7,0,5,0,5
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl,ViewRiksdagenVoteDataBallotPartySummaryChartDataManagerImpl,0,17,0,0,0,5,0,2,0,2
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl,CommitteeGhantChartManagerImpl.RoleMapping,0,8,0,0,0,1,0,1,0,1
-Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl,DocumentChartDataManagerImpl,7,156,4,14,2,29,4,12,0,7
+Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl,DocumentChartDataManagerImpl,7,156,3,15,2,29,3,13,0,7
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl,DecisionFlowChartManagerImpl,2,449,10,10,1,130,10,30,0,30
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl,MinistryGhantChartManagerImpl,0,20,0,0,0,5,0,5,0,5
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl,MinistryGhantChartManagerImpl.new AbstractGhantChartManagerImpl.StepMapping() {...},0,34,0,0,0,9,0,9,0,9
@@ -58,13 +59,13 @@ Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl,WorldIndicatorChartDataManagerImpl,0,104,3,9,0,17,3,5,0,2
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl,CommitteeGhantChartManagerImpl,0,15,0,0,0,5,0,4,0,4
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl,ChartDataManagerImpl,0,22,0,0,0,6,0,2,0,2
-Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl,PersonDocumentChartDataManagerImpl,4,147,2,6,1,30,2,9,0,7
+Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl,PersonDocumentChartDataManagerImpl,4,146,2,6,1,30,2,9,0,7
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl,PartyGhantChartManagerImpl.RoleMapping,0,3,0,0,0,1,0,1,0,1
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl,GovernmentOutcomeChartDataManagerImpl,0,90,0,2,0,19,0,4,0,3
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl,PartyGhantChartManagerImpl,0,20,0,0,0,5,0,5,0,5
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl,ChartOptionsImpl,0,490,0,0,0,73,0,22,0,22
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl,PoliticianGhantChartManagerImpl,0,20,0,0,0,5,0,5,0,5
-Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl,AdminChartDataManagerImpl,0,422,3,17,0,84,3,20,0,13
+Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl,AdminChartDataManagerImpl,1,421,4,16,0,84,4,19,0,13
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl,MinistryGhantChartManagerImpl.RoleMapping,0,8,0,0,0,1,0,1,0,1
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl,PartyDocumentChartDataManagerImpl,4,153,2,6,1,31,2,9,0,7
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl,OrgDocumentChartDataManagerImpl,7,208,5,11,2,44,5,13,0,10
@@ -92,7 +93,7 @@ Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.co
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.country.pagemode,WorldIndicatorsPageModContentFactoryImpl,0,168,5,7,0,40,5,6,0,5
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.country.pagemode,CountryRankingOverviewPageModContentFactoryImpl,0,37,0,0,0,10,0,3,0,3
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.pagelinks.impl,PageLinkFactoryImpl,0,402,0,0,0,82,0,17,0,17
-Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.pagelinks.impl,StreamSourceImplementation,0,31,0,0,0,8,0,3,0,3
+Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.pagelinks.impl,StreamSourceImplementation,6,25,0,0,1,7,0,3,0,3
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.pagelinks.impl,ExternalAttachmentDownloadLink,0,56,0,0,0,16,0,2,0,2
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.web.listener,HttpSessionDestroyedEventListener,0,51,0,0,0,14,0,3,0,3
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.web.listener,AuthorizationFailureEventListener,0,170,6,6,0,32,6,3,0,3
@@ -162,7 +163,7 @@ Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl,UserHomeMenuItemFactoryImpl,0,62,0,0,0,14,0,3,0,3
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl,PartyRankingMenuItemFactoryImpl,0,139,0,0,0,29,0,4,0,4
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl,DocumentMenuItemFactoryImpl,0,170,0,0,0,45,0,4,0,4
-Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl,ParliamentMenuItemFactoryImpl,0,166,0,0,0,37,0,4,0,4
+Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl,ParliamentMenuItemFactoryImpl,0,181,0,0,0,40,0,4,0,4
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl,CommitteeMenuItemFactoryImpl,0,211,0,0,0,53,0,3,0,3
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl,GovernmentBodyRankingMenuItemFactoryImpl,0,124,0,0,0,27,0,4,0,4
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl,MinistryRankingMenuItemFactoryImpl,0,181,0,0,0,36,0,4,0,4
@@ -173,7 +174,7 @@ Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.admin.datasummary,AdminDataSummaryView,0,7,0,0,0,2,0,1,0,1
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.goverment,MinistryView,0,7,0,0,0,2,0,1,0,1
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.viewnames,PartyPageMode,0,87,0,0,0,15,0,1,0,1
-Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.viewnames,ChartIndicators,0,207,0,0,0,35,0,1,0,1
+Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.viewnames,ChartIndicators,0,213,0,0,0,36,0,1,0,1
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.viewnames,UserHomePageMode,0,21,0,0,0,4,0,1,0,1
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.viewnames,RiskIndicators,0,15,0,0,0,3,0,1,0,1
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.viewnames,CommitteePageMode,0,51,0,0,0,9,0,1,0,1
@@ -220,15 +221,17 @@ Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.docsearch.pagemode,SearchDocumentPageModContentFactoryImpl,0,109,0,0,0,28,0,4,0,4
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode,ParliamentPageVisitHistoryPageModContentFactoryImpl,0,38,0,0,0,10,0,3,0,3
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode,ParliamentChartsPartyGenderPageModContentFactoryImpl,0,37,0,0,0,10,0,3,0,3
-Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode,AbstractParliamentPageModContentFactoryImpl,0,6,0,0,0,3,0,2,0,2
+Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode,AbstractParliamentPageModContentFactoryImpl,15,14,4,2,3,5,3,3,0,3
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode,ParliamentChartsDocumentActivityByTypePageModContentFactoryImpl,0,37,0,0,0,10,0,3,0,3
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode,ParliamentChartsDecisionActivityByTypePageModContentFactoryImpl,0,37,0,0,0,10,0,3,0,3
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode,ParliamentRiskPageModContentFactoryImpl,0,220,0,6,0,31,0,8,0,5
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode,ParliamentChartsPartyAgePageModContentFactoryImpl,0,37,0,0,0,10,0,3,0,3
-Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode,ParliamentDecisionFlowPageModContentFactoryImpl,15,193,4,2,3,49,3,13,0,13
+Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode,ParliamentDecisionFlowPageModContentFactoryImpl,0,186,0,0,0,47,0,12,0,12
+Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode,CoalitionPredictionPageModContentFactoryImpl,405,8,12,0,94,3,12,2,6,2
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode,ParliamentChartsPartyWinnerPageModContentFactoryImpl,0,37,0,0,0,10,0,3,0,3
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode,ParliamentRuleViolationsPageModContentFactoryImpl,0,196,0,4,0,27,0,7,0,5
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode,ParliamentOverviewPageModContentFactoryImpl,0,35,0,0,0,9,0,3,0,3
+Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.admin.dataquality.pagemode,DataQualityOverviewPageModContentFactoryImpl,408,9,0,0,114,4,4,3,4,3
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.partyranking.pagemode,PartyRankingCurrentPartiesChartsPageModContentFactoryImpl,0,54,0,0,0,15,0,3,0,3
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.partyranking.pagemode,AbstractPartyRankingPageModContentFactoryImpl,0,6,0,0,0,3,0,2,0,2
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.partyranking.pagemode,PartyRankingDataGridPageModContentFactoryImpl,0,268,0,0,0,15,0,4,0,4
@@ -252,10 +255,10 @@ Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands,PageCommandPartyConstants,0,111,0,0,0,16,0,1,0,1
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands,PageCommandMinistryConstants,0,76,0,0,0,11,0,1,0,1
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands,PageCommandCommitteeConstants,0,77,0,0,0,20,0,1,0,1
-Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands,PageCommandParliamentRankingConstants,0,85,0,0,0,20,0,1,0,1
+Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands,PageCommandParliamentRankingConstants,0,93,0,0,0,22,0,1,0,1
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands,PageCommandMinistryRankingConstants,0,101,0,0,0,24,0,1,0,1
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands,PageCommandPartyRankingConstants,0,59,0,0,0,13,0,1,0,1
-Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands,PageCommandAdminConstants,0,92,0,0,0,16,0,1,0,1
+Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands,PageCommandAdminConstants,0,98,0,0,0,17,0,1,0,1
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands,PageCommandBallotConstants,0,13,0,0,0,2,0,1,0,1
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands,PageCommandMainViewConstants,0,52,0,0,0,11,0,1,0,1
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands,PageCommandDocumentConstants,0,68,0,0,0,17,0,1,0,1
@@ -268,7 +271,7 @@ Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.po
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.politicianranking.pagemode,PoliticianRankingDataGridPageModContentFactoryImpl,0,70,0,0,0,13,0,4,0,4
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.politicianranking.pagemode,PoliticianRankingPageVisitHistoryPageModContentFactoryImpl,0,38,0,0,0,10,0,3,0,3
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.politicianranking.pagemode,PoliticianRankingChartsCurrentPartiesPageModContentFactoryImpl,0,41,0,0,0,11,0,3,0,3
-Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.politicianranking.pagemode,PoliticianRankingGridConstants,0,242,0,0,0,3,0,1,0,1
+Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.user.politicianranking.pagemode,PoliticianRankingGridConstants,0,290,0,0,0,3,0,1,0,1
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.admin.system,AdminLanguageView,0,7,0,0,0,2,0,1,0,1
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.admin.system,AdminMonitoringView,0,7,0,0,0,2,0,1,0,1
 Citizen Intelligence Agency,com.hack23.cia.web.impl.ui.application.views.admin.system,AdminUseraccountView,0,7,0,0,0,2,0,1,0,1

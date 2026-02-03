@@ -81,7 +81,7 @@ public final class DocumentChartDataManagerImpl extends AbstractChartDataManager
 <span class="fc" id="L81">		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;,Locale.ENGLISH);</span>
 
 <span class="fc bfc" id="L83" title="All 2 branches covered.">		for (final ViewRiksdagenDocumentTypeDailySummary item : entry.getValue()) {</span>
-<span class="pc bpc" id="L84" title="2 of 4 branches missed.">			if (item != null &amp;&amp; item.getEmbeddedId().getPublicDate().length() &gt; 0) {</span>
+<span class="pc bpc" id="L84" title="1 of 4 branches missed.">			if (item != null &amp;&amp; item.getEmbeddedId().getPublicDate().length() &gt; 0) {</span>
 				try {
 <span class="fc" id="L86">					dataSeries.add(DateUtils.formatDate(simpleDateFormat.parse(item.getEmbeddedId().getPublicDate())), item.getTotal());</span>
 <span class="nc" id="L87">				} catch (final Exception e) {</span>
@@ -132,4 +132,4 @@ public final class DocumentChartDataManagerImpl extends AbstractChartDataManager
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

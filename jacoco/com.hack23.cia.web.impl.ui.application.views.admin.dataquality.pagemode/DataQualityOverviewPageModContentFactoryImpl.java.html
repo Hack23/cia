@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DataQualityOverviewPageModContentFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Citizen Intelligence Agency</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.web.impl.ui.application.views.admin.dataquality.pagemode</a> &gt; <span class="el_source">DataQualityOverviewPageModContentFactoryImpl.java</span></div><h1>DataQualityOverviewPageModContentFactoryImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2025 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.web.impl.ui.application.views.admin.dataquality.pagemode;
+
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.stereotype.Component;
+
+import com.hack23.cia.web.impl.ui.application.views.admin.AdminViewConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractPageModContentFactoryImpl;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
+import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
+import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
+import com.jarektoro.responsivelayout.ResponsiveRow;
+import com.vaadin.icons.VaadinIcons;
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.Layout;
+import com.vaadin.ui.MenuBar;
+import com.vaadin.ui.Panel;
+import com.vaadin.ui.VerticalLayout;
+
+/**
+ * The Class DataQualityOverviewPageModContentFactoryImpl.
+ * 
+ * Displays the data quality monitoring dashboard for 4 OSINT data sources.
+ * 
+ * NOTE: Hardcoded data values are placeholders for Phase 1.
+ * Future phases will implement dynamic data retrieval from database/services.
+ */
+@Component
+public final class DataQualityOverviewPageModContentFactoryImpl extends AbstractPageModContentFactoryImpl {
+
+	/** The Constant NAME. */
+	public static final String NAME = AdminViews.ADMIN_DATA_QUALITY_VIEW_NAME;
+
+	/** The Constant DATA_QUALITY_MONITORING. */
+	private static final String DATA_QUALITY_MONITORING = &quot;Data Quality Monitoring&quot;;
+	
+	/** The Constant OVERVIEW_DESCRIPTION. */
+	private static final String OVERVIEW_DESCRIPTION = &quot;Monitor data quality metrics for 4 OSINT data sources: Riksdagen API, Election Authority, World Bank, and Financial Authority&quot;;
+
+	/** The Constant RIKSDAGEN_API. */
+	public static final String RIKSDAGEN_API = &quot;Riksdagen API&quot;;
+
+	/** The Constant ELECTION_AUTHORITY. */
+	public static final String ELECTION_AUTHORITY = &quot;Election Authority&quot;;
+
+	/** The Constant WORLD_BANK. */
+	public static final String WORLD_BANK = &quot;World Bank&quot;;
+
+	/** The Constant FINANCIAL_AUTHORITY. */
+	public static final String FINANCIAL_AUTHORITY = &quot;Financial Authority&quot;;
+
+	/** The Constant DATA_FRESHNESS. */
+	public static final String DATA_FRESHNESS = &quot;Data Freshness&quot;;
+
+	/** The Constant DATA_COMPLETENESS. */
+	public static final String DATA_COMPLETENESS = &quot;Data Completeness&quot;;
+
+	/** The Constant DATA_ACCURACY. */
+	public static final String DATA_ACCURACY = &quot;Data Accuracy&quot;;
+
+	/** The Constant ACTIVE_ALERTS. */
+	public static final String ACTIVE_ALERTS = &quot;Active Alerts&quot;;
+
+	/**
+	 * Instantiates a new data quality overview page mod content factory impl.
+	 */
+	public DataQualityOverviewPageModContentFactoryImpl() {
+<span class="fc" id="L87">		super();</span>
+<span class="fc" id="L88">	}</span>
+
+	@Secured({ &quot;ROLE_ADMIN&quot; })
+	@Override
+	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
+<span class="nc" id="L93">		final VerticalLayout content = createPanelContent();</span>
+
+<span class="nc" id="L95">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
+
+<span class="nc" id="L97">		CardInfoRowUtil.createPageHeader(panel, content, DATA_QUALITY_MONITORING, AdminViewConstants.ADMIN_DATA_QUALITY, OVERVIEW_DESCRIPTION);</span>
+
+<span class="nc" id="L99">		final HorizontalLayout horizontalLayout = new HorizontalLayout();</span>
+<span class="nc" id="L100">		horizontalLayout.setSizeFull();</span>
+<span class="nc" id="L101">		horizontalLayout.addStyleName(&quot;v-layout-content-overview-panel-level1&quot;);</span>
+
+<span class="nc" id="L103">		content.addComponent(horizontalLayout);</span>
+<span class="nc" id="L104">		content.setExpandRatio(horizontalLayout, ContentRatio.LARGE);</span>
+
+		// Create data source status section
+<span class="nc" id="L107">		createDataSourceStatusSection(horizontalLayout);</span>
+
+<span class="nc" id="L109">		final VerticalLayout metricsLayout = new VerticalLayout();</span>
+<span class="nc" id="L110">		metricsLayout.setSizeFull();</span>
+<span class="nc" id="L111">		metricsLayout.addStyleName(&quot;v-layout-content-overview-panel-level2&quot;);</span>
+
+<span class="nc" id="L113">		content.addComponent(metricsLayout);</span>
+<span class="nc" id="L114">		content.setExpandRatio(metricsLayout, ContentRatio.LARGE);</span>
+
+<span class="nc" id="L116">		final ResponsiveRow grid = RowUtil.createGridLayout(metricsLayout);</span>
+
+		// Create data quality metrics cards
+<span class="nc" id="L119">		createDataQualityMetricsCards(grid);</span>
+
+<span class="nc" id="L121">		return content;</span>
+	}
+
+	/**
+	 * Creates the data source status section.
+	 *
+	 * @param layout the layout
+	 */
+	private void createDataSourceStatusSection(final HorizontalLayout layout) {
+<span class="nc" id="L130">		final VerticalLayout statusLayout = new VerticalLayout();</span>
+<span class="nc" id="L131">		statusLayout.setSizeFull();</span>
+<span class="nc" id="L132">		statusLayout.setSpacing(true);</span>
+<span class="nc" id="L133">		statusLayout.setMargin(true);</span>
+
+<span class="nc" id="L135">		final Label titleLabel = new Label(&quot;Data Source Status&quot;);</span>
+<span class="nc" id="L136">		titleLabel.addStyleName(&quot;h2&quot;);</span>
+<span class="nc" id="L137">		statusLayout.addComponent(titleLabel);</span>
+
+		// Riksdagen API status
+<span class="nc" id="L140">		createDataSourceStatusCard(statusLayout, RIKSDAGEN_API, &quot;Swedish Parliament&quot;, VaadinIcons.INSTITUTION, &quot;✓ Active&quot;, &quot;Last update: 2 hours ago&quot;);</span>
+
+		// Election Authority status
+<span class="nc" id="L143">		createDataSourceStatusCard(statusLayout, ELECTION_AUTHORITY, &quot;Valmyndigheten&quot;, VaadinIcons.CHECK_SQUARE, &quot;✓ Active&quot;, &quot;Last update: 12 hours ago&quot;);</span>
+
+		// World Bank status
+<span class="nc" id="L146">		createDataSourceStatusCard(statusLayout, WORLD_BANK, &quot;Open Data&quot;, VaadinIcons.GLOBE, &quot;✓ Active&quot;, &quot;Last update: 24 hours ago&quot;);</span>
+
+		// Financial Authority status
+<span class="nc" id="L149">		createDataSourceStatusCard(statusLayout, FINANCIAL_AUTHORITY, &quot;ESV&quot;, VaadinIcons.MONEY, &quot;✓ Active&quot;, &quot;Last update: 6 hours ago&quot;);</span>
+
+<span class="nc" id="L151">		layout.addComponent(statusLayout);</span>
+<span class="nc" id="L152">	}</span>
+
+	/**
+	 * Creates a data source status card.
+	 *
+	 * @param layout the layout
+	 * @param name the name
+	 * @param description the description
+	 * @param icon the icon
+	 * @param status the status
+	 * @param lastUpdate the last update
+	 */
+	private void createDataSourceStatusCard(final VerticalLayout layout, final String name, 
+			final String description, final VaadinIcons icon, final String status, final String lastUpdate) {
+<span class="nc" id="L166">		final HorizontalLayout cardLayout = new HorizontalLayout();</span>
+<span class="nc" id="L167">		cardLayout.setWidth(&quot;100%&quot;);</span>
+<span class="nc" id="L168">		cardLayout.setSpacing(true);</span>
+<span class="nc" id="L169">		cardLayout.addStyleName(&quot;data-source-card&quot;);</span>
+
+		// Use icon directly without HTML rendering
+<span class="nc" id="L172">		final Label iconLabel = new Label(&quot;&quot;);</span>
+<span class="nc" id="L173">		iconLabel.addStyleName(&quot;data-source-icon&quot;);</span>
+<span class="nc" id="L174">		iconLabel.setIcon(icon);</span>
+<span class="nc" id="L175">		cardLayout.addComponent(iconLabel);</span>
+
+<span class="nc" id="L177">		final VerticalLayout infoLayout = new VerticalLayout();</span>
+<span class="nc" id="L178">		infoLayout.setSpacing(false);</span>
+<span class="nc" id="L179">		infoLayout.setMargin(false);</span>
+
+<span class="nc" id="L181">		final Label nameLabel = new Label(name);</span>
+<span class="nc" id="L182">		nameLabel.addStyleName(&quot;h3&quot;);</span>
+<span class="nc" id="L183">		infoLayout.addComponent(nameLabel);</span>
+
+<span class="nc" id="L185">		final Label descLabel = new Label(description);</span>
+<span class="nc" id="L186">		descLabel.addStyleName(&quot;data-source-description&quot;);</span>
+<span class="nc" id="L187">		infoLayout.addComponent(descLabel);</span>
+
+<span class="nc" id="L189">		final Label statusLabel = new Label(status);</span>
+<span class="nc" id="L190">		statusLabel.addStyleName(&quot;data-source-status-active&quot;);</span>
+<span class="nc" id="L191">		infoLayout.addComponent(statusLabel);</span>
+
+<span class="nc" id="L193">		final Label updateLabel = new Label(lastUpdate);</span>
+<span class="nc" id="L194">		updateLabel.addStyleName(&quot;data-source-last-update&quot;);</span>
+<span class="nc" id="L195">		infoLayout.addComponent(updateLabel);</span>
+
+<span class="nc" id="L197">		cardLayout.addComponent(infoLayout);</span>
+<span class="nc" id="L198">		cardLayout.setExpandRatio(infoLayout, 1.0f);</span>
+
+<span class="nc" id="L200">		layout.addComponent(cardLayout);</span>
+<span class="nc" id="L201">	}</span>
+
+	/**
+	 * Creates the data quality metrics cards.
+	 *
+	 * @param grid the grid
+	 */
+	private void createDataQualityMetricsCards(final ResponsiveRow grid) {
+		// Data Freshness Card
+<span class="nc" id="L210">		final VerticalLayout freshnessCard = new VerticalLayout();</span>
+<span class="nc" id="L211">		freshnessCard.setSpacing(true);</span>
+<span class="nc" id="L212">		freshnessCard.setMargin(true);</span>
+<span class="nc" id="L213">		freshnessCard.addStyleName(&quot;metric-card&quot;);</span>
+
+<span class="nc" id="L215">		final Label freshnessTitle = new Label(DATA_FRESHNESS);</span>
+<span class="nc" id="L216">		freshnessTitle.addStyleName(&quot;h3&quot;);</span>
+<span class="nc" id="L217">		freshnessCard.addComponent(freshnessTitle);</span>
+
+<span class="nc" id="L219">		final Label freshnessValue = new Label(&quot;98.5%&quot;);</span>
+<span class="nc" id="L220">		freshnessValue.addStyleName(&quot;metric-value&quot;);</span>
+<span class="nc" id="L221">		freshnessCard.addComponent(freshnessValue);</span>
+
+<span class="nc" id="L223">		final Label freshnessDesc = new Label(&quot;Data updated within 24 hours&quot;);</span>
+<span class="nc" id="L224">		freshnessDesc.addStyleName(&quot;metric-description&quot;);</span>
+<span class="nc" id="L225">		freshnessCard.addComponent(freshnessDesc);</span>
+
+<span class="nc" id="L227">		RowUtil.createRowComponent(grid, freshnessCard, &quot;Data Freshness Metric&quot;);</span>
+
+		// Completeness Card
+<span class="nc" id="L230">		final VerticalLayout completenessCard = new VerticalLayout();</span>
+<span class="nc" id="L231">		completenessCard.setSpacing(true);</span>
+<span class="nc" id="L232">		completenessCard.setMargin(true);</span>
+<span class="nc" id="L233">		completenessCard.addStyleName(&quot;metric-card&quot;);</span>
+
+<span class="nc" id="L235">		final Label completenessTitle = new Label(DATA_COMPLETENESS);</span>
+<span class="nc" id="L236">		completenessTitle.addStyleName(&quot;h3&quot;);</span>
+<span class="nc" id="L237">		completenessCard.addComponent(completenessTitle);</span>
+
+<span class="nc" id="L239">		final Label completenessValue = new Label(&quot;96.2%&quot;);</span>
+<span class="nc" id="L240">		completenessValue.addStyleName(&quot;metric-value&quot;);</span>
+<span class="nc" id="L241">		completenessCard.addComponent(completenessValue);</span>
+
+<span class="nc" id="L243">		final Label completenessDesc = new Label(&quot;Expected records present&quot;);</span>
+<span class="nc" id="L244">		completenessDesc.addStyleName(&quot;metric-description&quot;);</span>
+<span class="nc" id="L245">		completenessCard.addComponent(completenessDesc);</span>
+
+<span class="nc" id="L247">		RowUtil.createRowComponent(grid, completenessCard, &quot;Data Completeness Metric&quot;);</span>
+
+		// Accuracy Card
+<span class="nc" id="L250">		final VerticalLayout accuracyCard = new VerticalLayout();</span>
+<span class="nc" id="L251">		accuracyCard.setSpacing(true);</span>
+<span class="nc" id="L252">		accuracyCard.setMargin(true);</span>
+<span class="nc" id="L253">		accuracyCard.addStyleName(&quot;metric-card&quot;);</span>
+
+<span class="nc" id="L255">		final Label accuracyTitle = new Label(DATA_ACCURACY);</span>
+<span class="nc" id="L256">		accuracyTitle.addStyleName(&quot;h3&quot;);</span>
+<span class="nc" id="L257">		accuracyCard.addComponent(accuracyTitle);</span>
+
+<span class="nc" id="L259">		final Label accuracyValue = new Label(&quot;99.1%&quot;);</span>
+<span class="nc" id="L260">		accuracyValue.addStyleName(&quot;metric-value&quot;);</span>
+<span class="nc" id="L261">		accuracyCard.addComponent(accuracyValue);</span>
+
+<span class="nc" id="L263">		final Label accuracyDesc = new Label(&quot;Validation checks passed&quot;);</span>
+<span class="nc" id="L264">		accuracyDesc.addStyleName(&quot;metric-description&quot;);</span>
+<span class="nc" id="L265">		accuracyCard.addComponent(accuracyDesc);</span>
+
+<span class="nc" id="L267">		RowUtil.createRowComponent(grid, accuracyCard, &quot;Data Accuracy Metric&quot;);</span>
+
+		// Alerts Card
+<span class="nc" id="L270">		final VerticalLayout alertsCard = new VerticalLayout();</span>
+<span class="nc" id="L271">		alertsCard.setSpacing(true);</span>
+<span class="nc" id="L272">		alertsCard.setMargin(true);</span>
+<span class="nc" id="L273">		alertsCard.addStyleName(&quot;metric-card&quot;);</span>
+
+<span class="nc" id="L275">		final Label alertsTitle = new Label(ACTIVE_ALERTS);</span>
+<span class="nc" id="L276">		alertsTitle.addStyleName(&quot;h3&quot;);</span>
+<span class="nc" id="L277">		alertsCard.addComponent(alertsTitle);</span>
+
+<span class="nc" id="L279">		final Label alertsValue = new Label(&quot;2&quot;);</span>
+<span class="nc" id="L280">		alertsValue.addStyleName(&quot;metric-value&quot;);</span>
+<span class="nc" id="L281">		alertsCard.addComponent(alertsValue);</span>
+
+<span class="nc" id="L283">		final Label alertsDesc = new Label(&quot;Quality issues detected&quot;);</span>
+<span class="nc" id="L284">		alertsDesc.addStyleName(&quot;metric-description&quot;);</span>
+<span class="nc" id="L285">		alertsCard.addComponent(alertsDesc);</span>
+
+<span class="nc" id="L287">		RowUtil.createRowComponent(grid, alertsCard, &quot;Active Alerts Metric&quot;);</span>
+<span class="nc" id="L288">	}</span>
+
+	@Override
+	public boolean matches(final String page, final String parameters) {
+<span class="fc" id="L292">		return NAME.equals(page);</span>
+	}
+
+	@Override
+	public boolean validReference(final String parameters) {
+<span class="fc" id="L297">		return true;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

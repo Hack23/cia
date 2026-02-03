@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang="">
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>AdminDataQualityTest xref</title>
+<link type="text/css" rel="stylesheet" href="../../../../../../stylesheet.css" />
+</head>
+<body>
+<div id="overview"><a href="../../../../../../../testapidocs/com/hack23/cia/systemintegrationtest/admin/data/AdminDataQualityTest.html">View Javadoc</a></div><pre>
+<a class="jxr_linenumber" name="L1" href="#L1">1</a>   <strong class="jxr_keyword">package</strong> com.hack23.cia.systemintegrationtest.admin.data;
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <strong class="jxr_keyword">import</strong> org.junit.Test;
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> org.junit.experimental.categories.Category;
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <strong class="jxr_keyword">import</strong> com.hack23.cia.systemintegrationtest.admin.AbstractAdminTest;
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> com.hack23.cia.systemintegrationtest.categories.IntegrationTest;
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> com.hack23.cia.web.impl.ui.application.views.admin.AdminViewConstants;
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <strong class="jxr_keyword">import</strong> com.hack23.cia.web.impl.ui.application.views.admin.dataquality.pagemode.DataQualityOverviewPageModContentFactoryImpl;
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <strong class="jxr_keyword">import</strong> com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandAdminConstants;
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>  
+<a class="jxr_linenumber" name="L12" href="#L12">12</a>  <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>  <em class="jxr_javadoccomment"> * The Class AdminDataQualityTest.</em>
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>  <em class="jxr_javadoccomment"> * </em>
+<a class="jxr_linenumber" name="L15" href="#L15">15</a>  <em class="jxr_javadoccomment"> * Integration tests for the Data Quality Monitoring Dashboard.</em>
+<a class="jxr_linenumber" name="L16" href="#L16">16</a>  <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="L17" href="#L17">17</a>  @Category(IntegrationTest.<strong class="jxr_keyword">class</strong>)
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a name="AdminDataQualityTest" href="../../../../../../com/hack23/cia/systemintegrationtest/admin/data/AdminDataQualityTest.html#AdminDataQualityTest">AdminDataQualityTest</a> <strong class="jxr_keyword">extends</strong> <a name="AbstractAdminTest" href="../../../../../../com/hack23/cia/systemintegrationtest/admin/AbstractAdminTest.html#AbstractAdminTest">AbstractAdminTest</a> {
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>  
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>      <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <em class="jxr_javadoccomment">     * Verify data quality dashboard.</em>
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>  <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <em class="jxr_javadoccomment">     * @throws Exception the exception</em>
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>  <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>      @Test(timeout = DEFAULT_TIMEOUT)
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> verifyDataQualityDashboard() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>          pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_DATA_QUALITY);
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>          pageVisit.verifyViewContent(
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>              AdminViewConstants.ADMIN_DATA_QUALITY,
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>              AdminViewConstants.DATA_QUALITY_OVERVIEW
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>          );
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>          pageVisit.validatePage(PageCommandAdminConstants.COMMAND_DATA_QUALITY);
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>      }
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>  
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>      <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>  <em class="jxr_javadoccomment">     * Verify data source status cards are displayed.</em>
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>  <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>  <em class="jxr_javadoccomment">     * @throws Exception the exception</em>
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>  <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>      @Test(timeout = DEFAULT_TIMEOUT)
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> verifyDataSourceStatusCards() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>          pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_DATA_QUALITY);
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>          
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>          <em class="jxr_comment">// Verify data source names are present</em>
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>          pageVisit.verifyViewContent(DataQualityOverviewPageModContentFactoryImpl.RIKSDAGEN_API);
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>          pageVisit.verifyViewContent(DataQualityOverviewPageModContentFactoryImpl.ELECTION_AUTHORITY);
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>          pageVisit.verifyViewContent(DataQualityOverviewPageModContentFactoryImpl.WORLD_BANK);
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>          pageVisit.verifyViewContent(DataQualityOverviewPageModContentFactoryImpl.FINANCIAL_AUTHORITY);
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>      }
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>  
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>      <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>  <em class="jxr_javadoccomment">     * Verify quality metrics are displayed.</em>
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>  <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>  <em class="jxr_javadoccomment">     * @throws Exception the exception</em>
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>  <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>      @Test(timeout = DEFAULT_TIMEOUT)
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> verifyQualityMetrics() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>          pageVisit.visitDirectPage(PageCommandAdminConstants.COMMAND_DATA_QUALITY);
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>          
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>          <em class="jxr_comment">// Verify metric names are present</em>
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>          pageVisit.verifyViewContent(DataQualityOverviewPageModContentFactoryImpl.DATA_FRESHNESS);
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>          pageVisit.verifyViewContent(DataQualityOverviewPageModContentFactoryImpl.DATA_COMPLETENESS);
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>          pageVisit.verifyViewContent(DataQualityOverviewPageModContentFactoryImpl.DATA_ACCURACY);
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>          pageVisit.verifyViewContent(DataQualityOverviewPageModContentFactoryImpl.ACTIVE_ALERTS);
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>      }
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>  
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>  }
+</pre>
+<hr/>
+<div id="footer">© 2008–2026 <a href="http://www.hack23.com">www.hack23.com</a></div>
+</body>
+</html>

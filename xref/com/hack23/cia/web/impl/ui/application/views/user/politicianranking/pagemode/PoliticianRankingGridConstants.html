@@ -52,37 +52,45 @@
 <a class="jxr_linenumber" name="L44" href="#L44">44</a>          <em class="jxr_comment">// Document Breakdown</em>
 <a class="jxr_linenumber" name="L45" href="#L45">45</a>          <span class="jxr_string">"totalDocuments"</span>, <span class="jxr_string">"individualMotions"</span>, <span class="jxr_string">"partyMotions"</span>,
 <a class="jxr_linenumber" name="L46" href="#L46">46</a>          <span class="jxr_string">"committeeMotions"</span>, <span class="jxr_string">"multiPartyMotions"</span>,
-<a class="jxr_linenumber" name="L47" href="#L47">47</a>          <em class="jxr_comment">// Current Roles</em>
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>          <em class="jxr_comment">// Current Roles - Committee Leadership</em>
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>          <span class="jxr_string">"currentAssignments"</span>, <span class="jxr_string">"currentMinistryAssignments"</span>,
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>          <span class="jxr_string">"currentCommitteeAssignments"</span>, <span class="jxr_string">"currentCommitteeLeadershipAssignments"</span>,
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>          <em class="jxr_comment">// Historical Performance</em>
-<a class="jxr_linenumber" name="L51" href="#L51">51</a>          <span class="jxr_string">"documentYearsActive"</span>, <span class="jxr_string">"totalDaysServed"</span>, <span class="jxr_string">"totalCommitteeAssignments"</span>,
-<a class="jxr_linenumber" name="L52" href="#L52">52</a>          <span class="jxr_string">"totalMinistryAssignments"</span>,
-<a class="jxr_linenumber" name="L53" href="#L53">53</a>          <em class="jxr_comment">// Dates for Context</em>
-<a class="jxr_linenumber" name="L54" href="#L54">54</a>          <span class="jxr_string">"firstAssignmentDate"</span>, <span class="jxr_string">"lastAssignmentDate"</span>, <span class="jxr_string">"firstDocumentDate"</span>,
-<a class="jxr_linenumber" name="L55" href="#L55">55</a>          <span class="jxr_string">"lastDocumentDate"</span>
-<a class="jxr_linenumber" name="L56" href="#L56">56</a>      };
-<a class="jxr_linenumber" name="L57" href="#L57">57</a>  
-<a class="jxr_linenumber" name="L58" href="#L58">58</a>      <em class="jxr_javadoccomment">/** The hide columns. */</em>
-<a class="jxr_linenumber" name="L59" href="#L59">59</a>      String[] HIDE_COLUMNS = {
-<a class="jxr_linenumber" name="L60" href="#L60">60</a>          <em class="jxr_comment">// Hidden IDs and Boolean Flags</em>
-<a class="jxr_linenumber" name="L61" href="#L61">61</a>          <span class="jxr_string">"personId"</span>, <span class="jxr_string">"active"</span>, <span class="jxr_string">"activeEu"</span>, <span class="jxr_string">"activeGovernment"</span>, <span class="jxr_string">"activeCommittee"</span>,
-<a class="jxr_linenumber" name="L62" href="#L62">62</a>          <span class="jxr_string">"activeParliament"</span>, <span class="jxr_string">"activeParty"</span>, <span class="jxr_string">"activeSpeaker"</span>, <span class="jxr_string">"bornYear"</span>,
-<a class="jxr_linenumber" name="L63" href="#L63">63</a>          <em class="jxr_comment">// Hidden Detail Metrics</em>
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>          <span class="jxr_string">"followUpMotions"</span>, <span class="jxr_string">"totalDaysServedParliament"</span>, <span class="jxr_string">"totalDaysServedCommittee"</span>,
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>          <span class="jxr_string">"totalDaysServedGovernment"</span>, <span class="jxr_string">"totalDaysServedEu"</span>, <span class="jxr_string">"totalDaysServedSpeaker"</span>,
-<a class="jxr_linenumber" name="L66" href="#L66">66</a>          <span class="jxr_string">"totalDaysServedParty"</span>, <span class="jxr_string">"totalDaysServedCommitteeSubstitute"</span>,
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>          <span class="jxr_string">"totalDaysServedCommitteeLeadership"</span>,
-<a class="jxr_linenumber" name="L68" href="#L68">68</a>          <em class="jxr_comment">// Hidden Assignment Details</em>
-<a class="jxr_linenumber" name="L69" href="#L69">69</a>          <span class="jxr_string">"totalPartyAssignments"</span>, <span class="jxr_string">"totalSpeakerAssignments"</span>, <span class="jxr_string">"currentPartyAssignments"</span>,
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>          <span class="jxr_string">"currentSpeakerAssignments"</span>, <span class="jxr_string">"totalCommitteeSubstituteAssignments"</span>,
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>          <span class="jxr_string">"currentCommitteeSubstituteAssignments"</span>,
-<a class="jxr_linenumber" name="L72" href="#L72">72</a>          <em class="jxr_comment">// Hidden Technical Fields</em>
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>          <span class="jxr_string">"documentTypes"</span>, <span class="jxr_string">"documentTypesString"</span>
-<a class="jxr_linenumber" name="L74" href="#L74">74</a>      };
-<a class="jxr_linenumber" name="L75" href="#L75">75</a>  }
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>          <span class="jxr_string">"currentCommitteeChairAssignments"</span>, <span class="jxr_string">"currentCommitteeViceChairAllAssignments"</span>,
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>          <em class="jxr_comment">// Current Roles - Additional Leadership</em>
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>          <span class="jxr_string">"currentSuppleantAssignments"</span>, <span class="jxr_string">"currentStatsministerAssignments"</span>,
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>          <span class="jxr_string">"currentPartyLeaderAssignments"</span>, <span class="jxr_string">"currentPartySecretaryAssignments"</span>,
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>          <em class="jxr_comment">// Historical Performance</em>
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>          <span class="jxr_string">"documentYearsActive"</span>, <span class="jxr_string">"totalDaysServed"</span>, <span class="jxr_string">"totalCommitteeAssignments"</span>,
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>          <span class="jxr_string">"totalMinistryAssignments"</span>,
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>          <em class="jxr_comment">// Dates for Context</em>
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>          <span class="jxr_string">"firstAssignmentDate"</span>, <span class="jxr_string">"lastAssignmentDate"</span>, <span class="jxr_string">"firstDocumentDate"</span>,
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>          <span class="jxr_string">"lastDocumentDate"</span>
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>      };
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>  
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>      <em class="jxr_javadoccomment">/** The hide columns. */</em>
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>      String[] HIDE_COLUMNS = {
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>          <em class="jxr_comment">// Hidden IDs and Boolean Flags</em>
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>          <span class="jxr_string">"personId"</span>, <span class="jxr_string">"active"</span>, <span class="jxr_string">"activeEu"</span>, <span class="jxr_string">"activeGovernment"</span>, <span class="jxr_string">"activeCommittee"</span>,
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>          <span class="jxr_string">"activeParliament"</span>, <span class="jxr_string">"activeParty"</span>, <span class="jxr_string">"activeSpeaker"</span>, <span class="jxr_string">"bornYear"</span>,
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>          <em class="jxr_comment">// Hidden Detail Metrics</em>
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>          <span class="jxr_string">"followUpMotions"</span>, <span class="jxr_string">"totalDaysServedParliament"</span>, <span class="jxr_string">"totalDaysServedCommittee"</span>,
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>          <span class="jxr_string">"totalDaysServedGovernment"</span>, <span class="jxr_string">"totalDaysServedEu"</span>, <span class="jxr_string">"totalDaysServedSpeaker"</span>,
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>          <span class="jxr_string">"totalDaysServedParty"</span>, <span class="jxr_string">"totalDaysServedCommitteeSubstitute"</span>,
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>          <span class="jxr_string">"totalDaysServedCommitteeLeadership"</span>,
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>          <em class="jxr_comment">// Hidden Assignment Details</em>
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>          <span class="jxr_string">"totalPartyAssignments"</span>, <span class="jxr_string">"totalSpeakerAssignments"</span>, <span class="jxr_string">"currentPartyAssignments"</span>,
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>          <span class="jxr_string">"currentSpeakerAssignments"</span>, <span class="jxr_string">"totalCommitteeSubstituteAssignments"</span>,
+<a class="jxr_linenumber" name="L75" href="#L75">75</a>          <span class="jxr_string">"currentCommitteeSubstituteAssignments"</span>,
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>          <em class="jxr_comment">// Hidden Leadership Role Totals (show current only)</em>
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>          <span class="jxr_string">"totalCommitteeChairAssignments"</span>, <span class="jxr_string">"totalCommitteeViceChairAllAssignments"</span>,
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>          <span class="jxr_string">"totalSuppleantAssignments"</span>, <span class="jxr_string">"totalStatsministerAssignments"</span>,
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>          <span class="jxr_string">"totalPartyLeaderAssignments"</span>, <span class="jxr_string">"totalPartySecretaryAssignments"</span>,
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>          <em class="jxr_comment">// Hidden Technical Fields</em>
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>          <span class="jxr_string">"documentTypes"</span>, <span class="jxr_string">"documentTypesString"</span>
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>      };
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>  }
 </pre>
 <hr/>
-<div id="footer">© 2008–2025 <a href="http://www.hack23.com">www.hack23.com</a></div>
+<div id="footer">© 2008–2026 <a href="http://www.hack23.com">www.hack23.com</a></div>
 </body>
 </html>

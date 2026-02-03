@@ -44,9 +44,13 @@ public interface PoliticianRankingGridConstants {
         // Document Breakdown
         &quot;totalDocuments&quot;, &quot;individualMotions&quot;, &quot;partyMotions&quot;,
         &quot;committeeMotions&quot;, &quot;multiPartyMotions&quot;,
-        // Current Roles
+        // Current Roles - Committee Leadership
         &quot;currentAssignments&quot;, &quot;currentMinistryAssignments&quot;,
         &quot;currentCommitteeAssignments&quot;, &quot;currentCommitteeLeadershipAssignments&quot;,
+        &quot;currentCommitteeChairAssignments&quot;, &quot;currentCommitteeViceChairAllAssignments&quot;,
+        // Current Roles - Additional Leadership
+        &quot;currentSuppleantAssignments&quot;, &quot;currentStatsministerAssignments&quot;,
+        &quot;currentPartyLeaderAssignments&quot;, &quot;currentPartySecretaryAssignments&quot;,
         // Historical Performance
         &quot;documentYearsActive&quot;, &quot;totalDaysServed&quot;, &quot;totalCommitteeAssignments&quot;,
         &quot;totalMinistryAssignments&quot;,
@@ -56,7 +60,7 @@ public interface PoliticianRankingGridConstants {
     };
 
     /** The hide columns. */
-<span class="fc" id="L59">    String[] HIDE_COLUMNS = {</span>
+<span class="fc" id="L63">    String[] HIDE_COLUMNS = {</span>
         // Hidden IDs and Boolean Flags
         &quot;personId&quot;, &quot;active&quot;, &quot;activeEu&quot;, &quot;activeGovernment&quot;, &quot;activeCommittee&quot;,
         &quot;activeParliament&quot;, &quot;activeParty&quot;, &quot;activeSpeaker&quot;, &quot;bornYear&quot;,
@@ -69,8 +73,12 @@ public interface PoliticianRankingGridConstants {
         &quot;totalPartyAssignments&quot;, &quot;totalSpeakerAssignments&quot;, &quot;currentPartyAssignments&quot;,
         &quot;currentSpeakerAssignments&quot;, &quot;totalCommitteeSubstituteAssignments&quot;,
         &quot;currentCommitteeSubstituteAssignments&quot;,
+        // Hidden Leadership Role Totals (show current only)
+        &quot;totalCommitteeChairAssignments&quot;, &quot;totalCommitteeViceChairAllAssignments&quot;,
+        &quot;totalSuppleantAssignments&quot;, &quot;totalStatsministerAssignments&quot;,
+        &quot;totalPartyLeaderAssignments&quot;, &quot;totalPartySecretaryAssignments&quot;,
         // Hidden Technical Fields
         &quot;documentTypes&quot;, &quot;documentTypesString&quot;
     };
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

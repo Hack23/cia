@@ -52,5 +52,23 @@ abstract class AbstractParliamentPageModContentFactoryImpl extends AbstractBasic
 <span class="fc" id="L52">		return parliamentMenuItemFactory;</span>
 	}
 
+	/**
+	 * Extract selected year from parameters.
+	 * Common utility method for extracting year parameter from page navigation.
+	 *
+	 * @param parameters the parameters string containing year in brackets
+	 * @param defaultYear the default year to return if no year found in parameters
+	 * @return the extracted year string or default year
+	 */
+	protected final String extractSelectedYear(final String parameters, final String defaultYear) {
+<span class="pc bpc" id="L64" title="4 of 6 branches missed.">		if (parameters != null &amp;&amp; parameters.contains(&quot;[&quot;) &amp;&amp; parameters.contains(&quot;]&quot;)) {</span>
+<span class="nc" id="L65">			return parameters.substring(</span>
+<span class="nc" id="L66">				parameters.indexOf('[') + 1,</span>
+<span class="nc" id="L67">				parameters.lastIndexOf(']')</span>
+			);
+		}
+<span class="fc" id="L70">		return defaultYear;</span>
+	}
+
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

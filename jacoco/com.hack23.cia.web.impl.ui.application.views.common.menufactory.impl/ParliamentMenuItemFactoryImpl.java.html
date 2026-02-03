@@ -25,6 +25,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.Appli
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ParliamentMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandParliamentRankingConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
+import com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode.ParliamentPageTitleConstants;
 import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.MenuBar;
@@ -46,93 +47,101 @@ public final class ParliamentMenuItemFactoryImpl extends AbstractMenuItemFactory
 	 * Instantiates a new parliament menu item factory impl.
 	 */
 	public ParliamentMenuItemFactoryImpl() {
-<span class="fc" id="L49">		super();</span>
-<span class="fc" id="L50">	}</span>
+<span class="fc" id="L50">		super();</span>
+<span class="fc" id="L51">	}</span>
 
 	@Override
 	public void createOverviewPage(final VerticalLayout panelContent) {
-<span class="fc" id="L54">		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);</span>
+<span class="fc" id="L55">		final ResponsiveRow grid = RowUtil.createGridLayout(panelContent);</span>
 
-<span class="fc" id="L56">		createButtonLink(grid, PARTY_WINNER, VaadinIcons.INSTITUTION,</span>
+<span class="fc" id="L57">		createButtonLink(grid, PARTY_WINNER, VaadinIcons.INSTITUTION,</span>
 				PageCommandParliamentRankingConstants.COMMAND_CHARTS_PARTY_WINNER,
 			PARTY_WINNER_DESCRIPTION);
 
-<span class="fc" id="L60">		createButtonLink(grid, PARTY_GENDER, VaadinIcons.INSTITUTION,</span>
+<span class="fc" id="L61">		createButtonLink(grid, PARTY_GENDER, VaadinIcons.INSTITUTION,</span>
 				PageCommandParliamentRankingConstants.COMMAND_CHARTS_PARTY_GENDER,
 			PARTY_GENDER_DESCRIPTION);
 
-<span class="fc" id="L64">		createButtonLink(grid, PARTY_AGE, VaadinIcons.INSTITUTION, PageCommandParliamentRankingConstants.COMMAND_CHARTS_PARTY_AGE, PARTY_AGE_DESCRIPTION);</span>
+<span class="fc" id="L65">		createButtonLink(grid, PARTY_AGE, VaadinIcons.INSTITUTION, PageCommandParliamentRankingConstants.COMMAND_CHARTS_PARTY_AGE, PARTY_AGE_DESCRIPTION);</span>
 
-<span class="fc" id="L66">		createButtonLink(grid, RISK_SUMMARY, VaadinIcons.INSTITUTION,</span>
+<span class="fc" id="L67">		createButtonLink(grid, RISK_SUMMARY, VaadinIcons.INSTITUTION,</span>
 			PageCommandParliamentRankingConstants.COMMAND_RISK_SUMMARY, RISK_SUMMARY_DESCRIPTION);
 
-<span class="fc" id="L69">		createButtonLink(grid, RULE_VIOLATIONS, VaadinIcons.INSTITUTION, PageCommandParliamentRankingConstants.COMMAND_RULE_VIOLATION,</span>
+<span class="fc" id="L70">		createButtonLink(grid, RULE_VIOLATIONS, VaadinIcons.INSTITUTION, PageCommandParliamentRankingConstants.COMMAND_RULE_VIOLATION,</span>
 				RULE_VIOLATIONS_DESCRIPTION);
 
-<span class="fc" id="L72">		createButtonLink(grid, DOCUMENT_ACTIVITY_BY_TYPE, VaadinIcons.INSTITUTION,</span>
+<span class="fc" id="L73">		createButtonLink(grid, DOCUMENT_ACTIVITY_BY_TYPE, VaadinIcons.INSTITUTION,</span>
 				PageCommandParliamentRankingConstants.COMMAND_DOCUMENT_ACTIVITY, DOCUMENT_ACTIVITY_DESCRIPTION);
-<span class="fc" id="L74">		createButtonLink(grid, DECISION_ACTIVITY_BY_TYPE, VaadinIcons.INSTITUTION, PageCommandParliamentRankingConstants.COMMAND_DECISION_ACTIVITY,</span>
+<span class="fc" id="L75">		createButtonLink(grid, DECISION_ACTIVITY_BY_TYPE, VaadinIcons.INSTITUTION, PageCommandParliamentRankingConstants.COMMAND_DECISION_ACTIVITY,</span>
 				DECISION_ACTIVITY_DESCRIPTION);
 
-<span class="fc" id="L77">		createButtonLink(grid, DECISION_FLOW, VaadinIcons.INSTITUTION,</span>
+<span class="fc" id="L78">		createButtonLink(grid, DECISION_FLOW, VaadinIcons.INSTITUTION,</span>
 			PageCommandParliamentRankingConstants.COMMAND_CHARTS_DECISION_FLOW, DECISION_FLOW_DESCRIPTION);
 
-<span class="fc" id="L80">		createButtonLink(grid, RANKING_PAGE_VISIT_TEXT, VaadinIcons.INSTITUTION,</span>
+<span class="fc" id="L81">		createButtonLink(grid, ParliamentPageTitleConstants.COALITION_PREDICTION_TITLE, VaadinIcons.INSTITUTION,</span>
+			PageCommandParliamentRankingConstants.COMMAND_COALITION_PREDICTION,
+			ParliamentPageTitleConstants.COALITION_PREDICTION_DESC);
+
+<span class="fc" id="L85">		createButtonLink(grid, RANKING_PAGE_VISIT_TEXT, VaadinIcons.INSTITUTION,</span>
 				PageCommandParliamentRankingConstants.PARLIAMENT_RANKING_COMMAND_PAGEVISIT_HISTORY, RANKING_PAGE_VISIT_DESC);
 
-<span class="fc" id="L83">	}</span>
+<span class="fc" id="L88">	}</span>
 
 	@Override
 	public void createParliamentTopicMenu(final MenuBar menuBar) {
-<span class="fc" id="L87">		initApplicationMenuBar(menuBar);</span>
+<span class="fc" id="L92">		initApplicationMenuBar(menuBar);</span>
 
-<span class="fc" id="L89">		applicationMenuItemFactory.addRankingMenu(menuBar);</span>
+<span class="fc" id="L94">		applicationMenuItemFactory.addRankingMenu(menuBar);</span>
 
-<span class="fc" id="L91">		createParliamentTopicMenu(menuBar.addItem(PARLIAMENT_RANKING_TEXT, VaadinIcons.INSTITUTION, null));</span>
+<span class="fc" id="L96">		createParliamentTopicMenu(menuBar.addItem(PARLIAMENT_RANKING_TEXT, VaadinIcons.INSTITUTION, null));</span>
 
-<span class="fc" id="L93">	}</span>
+<span class="fc" id="L98">	}</span>
 
 	@Override
 	public void createParliamentTopicMenu(final MenuItem charts) {
-<span class="fc" id="L97">		charts.addItem(OVERVIEW_TEXT, VaadinIcons.INSTITUTION,</span>
+<span class="fc" id="L102">		charts.addItem(OVERVIEW_TEXT, VaadinIcons.INSTITUTION,</span>
 				 PageCommandParliamentRankingConstants.COMMAND_PARLIAMENT_RANKING_OVERVIEW);
 
-<span class="fc" id="L100">		final MenuItem chartIndicators = charts.addItem(SWEDISH_PARLIAMENT_INDICATORS, VaadinIcons.INSTITUTION, null);</span>
+<span class="fc" id="L105">		final MenuItem chartIndicators = charts.addItem(SWEDISH_PARLIAMENT_INDICATORS, VaadinIcons.INSTITUTION, null);</span>
 
-<span class="fc" id="L102">		final MenuItem addItem = chartIndicators.addItem(PARTY_WINNER, VaadinIcons.INSTITUTION,</span>
+<span class="fc" id="L107">		final MenuItem addItem = chartIndicators.addItem(PARTY_WINNER, VaadinIcons.INSTITUTION,</span>
 				PageCommandParliamentRankingConstants.COMMAND_CHARTS_PARTY_WINNER);
-<span class="fc" id="L104">		addItem.setDescription(PARTY_WINNER_DESCRIPTION);</span>
+<span class="fc" id="L109">		addItem.setDescription(PARTY_WINNER_DESCRIPTION);</span>
 
-<span class="fc" id="L106">		final MenuItem addItem2 = chartIndicators.addItem(PARTY_GENDER, VaadinIcons.INSTITUTION,</span>
+<span class="fc" id="L111">		final MenuItem addItem2 = chartIndicators.addItem(PARTY_GENDER, VaadinIcons.INSTITUTION,</span>
 				PageCommandParliamentRankingConstants.COMMAND_CHARTS_PARTY_GENDER);
-<span class="fc" id="L108">		addItem2.setDescription(PARTY_GENDER_DESCRIPTION);</span>
+<span class="fc" id="L113">		addItem2.setDescription(PARTY_GENDER_DESCRIPTION);</span>
 
-<span class="fc" id="L110">		final MenuItem addItem3 = chartIndicators.addItem(PARTY_AGE, VaadinIcons.INSTITUTION, PageCommandParliamentRankingConstants.COMMAND_CHARTS_PARTY_AGE);</span>
-<span class="fc" id="L111">		addItem3.setDescription(PARTY_AGE_DESCRIPTION);</span>
+<span class="fc" id="L115">		final MenuItem addItem3 = chartIndicators.addItem(PARTY_AGE, VaadinIcons.INSTITUTION, PageCommandParliamentRankingConstants.COMMAND_CHARTS_PARTY_AGE);</span>
+<span class="fc" id="L116">		addItem3.setDescription(PARTY_AGE_DESCRIPTION);</span>
 
-<span class="fc" id="L113">		final MenuItem addItem7 = chartIndicators.addItem(RISK_SUMMARY, VaadinIcons.INSTITUTION,</span>
+<span class="fc" id="L118">		final MenuItem addItem7 = chartIndicators.addItem(RISK_SUMMARY, VaadinIcons.INSTITUTION,</span>
 			PageCommandParliamentRankingConstants.COMMAND_RISK_SUMMARY);
-<span class="fc" id="L115">		addItem7.setDescription(RISK_SUMMARY_DESCRIPTION);</span>
+<span class="fc" id="L120">		addItem7.setDescription(RISK_SUMMARY_DESCRIPTION);</span>
 
-<span class="fc" id="L117">		final MenuItem addItem8 = chartIndicators.addItem(RULE_VIOLATIONS, VaadinIcons.INSTITUTION,</span>
+<span class="fc" id="L122">		final MenuItem addItem8 = chartIndicators.addItem(RULE_VIOLATIONS, VaadinIcons.INSTITUTION,</span>
 				PageCommandParliamentRankingConstants.COMMAND_RULE_VIOLATION);
-<span class="fc" id="L119">		addItem8.setDescription(RULE_VIOLATIONS_DESCRIPTION);</span>
+<span class="fc" id="L124">		addItem8.setDescription(RULE_VIOLATIONS_DESCRIPTION);</span>
 
-<span class="fc" id="L121">		final MenuItem addItem4 = chartIndicators.addItem(DOCUMENT_ACTIVITY_BY_TYPE, VaadinIcons.INSTITUTION,</span>
+<span class="fc" id="L126">		final MenuItem addItem4 = chartIndicators.addItem(DOCUMENT_ACTIVITY_BY_TYPE, VaadinIcons.INSTITUTION,</span>
 				PageCommandParliamentRankingConstants.COMMAND_DOCUMENT_ACTIVITY);
-<span class="fc" id="L123">		addItem4.setDescription(DOCUMENT_ACTIVITY_DESCRIPTION);</span>
+<span class="fc" id="L128">		addItem4.setDescription(DOCUMENT_ACTIVITY_DESCRIPTION);</span>
 
-<span class="fc" id="L125">		final MenuItem addItem5 = chartIndicators.addItem(DECISION_ACTIVITY_BY_TYPE, VaadinIcons.INSTITUTION,</span>
+<span class="fc" id="L130">		final MenuItem addItem5 = chartIndicators.addItem(DECISION_ACTIVITY_BY_TYPE, VaadinIcons.INSTITUTION,</span>
 				PageCommandParliamentRankingConstants.COMMAND_DECISION_ACTIVITY);
-<span class="fc" id="L127">		addItem5.setDescription(DECISION_ACTIVITY_DESCRIPTION);</span>
+<span class="fc" id="L132">		addItem5.setDescription(DECISION_ACTIVITY_DESCRIPTION);</span>
 
-<span class="fc" id="L129">		final MenuItem addItem6 = chartIndicators.addItem(DECISION_FLOW, VaadinIcons.INSTITUTION,</span>
+<span class="fc" id="L134">		final MenuItem addItem6 = chartIndicators.addItem(DECISION_FLOW, VaadinIcons.INSTITUTION,</span>
 			PageCommandParliamentRankingConstants.COMMAND_CHARTS_DECISION_FLOW);
-<span class="fc" id="L131">		addItem6.setDescription(DECISION_FLOW_DESCRIPTION);</span>
+<span class="fc" id="L136">		addItem6.setDescription(DECISION_FLOW_DESCRIPTION);</span>
 
-<span class="fc" id="L133">		charts.addItem(RANKING_PAGE_VISIT_TEXT, VaadinIcons.INSTITUTION,</span>
+<span class="fc" id="L138">		final MenuItem coalitionItem = chartIndicators.addItem(ParliamentPageTitleConstants.COALITION_PREDICTION_TITLE, VaadinIcons.INSTITUTION,</span>
+			PageCommandParliamentRankingConstants.COMMAND_COALITION_PREDICTION);
+<span class="fc" id="L140">		coalitionItem.setDescription(ParliamentPageTitleConstants.COALITION_PREDICTION_DESC);</span>
+
+<span class="fc" id="L142">		charts.addItem(RANKING_PAGE_VISIT_TEXT, VaadinIcons.INSTITUTION,</span>
 				PageCommandParliamentRankingConstants.PARLIAMENT_RANKING_COMMAND_PAGEVISIT_HISTORY);
-<span class="fc" id="L135">	}</span>
+<span class="fc" id="L144">	}</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

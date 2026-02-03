@@ -6,6 +6,8 @@ com.hack23.cia.web.impl.ui.application.views.admin
 com.hack23.cia.web.impl.ui.application.views.admin.agentoperations
 com.hack23.cia.web.impl.ui.application.views.admin.agentoperations.pagemode
 com.hack23.cia.web.impl.ui.application.views.admin.common
+com.hack23.cia.web.impl.ui.application.views.admin.dataquality
+com.hack23.cia.web.impl.ui.application.views.admin.dataquality.pagemode
 com.hack23.cia.web.impl.ui.application.views.admin.datasummary
 com.hack23.cia.web.impl.ui.application.views.admin.datasummary.pagemode
 com.hack23.cia.web.impl.ui.application.views.admin.system
