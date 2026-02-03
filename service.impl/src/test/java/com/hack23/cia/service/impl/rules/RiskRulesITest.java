@@ -35,7 +35,7 @@ import com.hack23.cia.service.data.api.RuleViolationDAO;
 import com.hack23.cia.service.impl.AbstractServiceFunctionalIntegrationTest;
 
 /**
- * The Class RiskRulesIntegrationTest.
+ * The Class RiskRulesITest.
  * 
  * Integration test suite validating end-to-end risk rule execution:
  * - Database view queries
@@ -46,7 +46,7 @@ import com.hack23.cia.service.impl.AbstractServiceFunctionalIntegrationTest;
  * 
  * Tests the complete OSINT intelligence analysis pipeline.
  */
-public final class RiskRulesIntegrationTest extends AbstractServiceFunctionalIntegrationTest {
+public final class RiskRulesITest extends AbstractServiceFunctionalIntegrationTest {
 
 	@Autowired
 	private RulesManager rulesManager;

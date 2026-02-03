@@ -50,7 +50,7 @@ import com.hack23.cia.model.internal.application.data.rules.impl.Status;
 import com.hack23.cia.service.impl.AbstractServiceFunctionalIntegrationTest;
 
 /**
- * The Class DroolsRulesValidationTest.
+ * The Class DroolsRulesValidationITest.
  * 
  * Validates all Drools risk rules for:
  * - Syntax correctness (compilation)
@@ -61,7 +61,7 @@ import com.hack23.cia.service.impl.AbstractServiceFunctionalIntegrationTest;
  * 
  * Note: Integration test requiring database and full Spring context.
  */
-public final class DroolsRulesValidationTest extends AbstractServiceFunctionalIntegrationTest {
+public final class DroolsRulesValidationITest extends AbstractServiceFunctionalIntegrationTest {
 
 	@Autowired
 	private KieContainer kieContainer;
