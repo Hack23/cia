@@ -1,4 +1,4 @@
-package com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode;
+package com.hack23.cia.web.impl.ui.application.views.common.constants;
 
 /**
  * The Interface ParliamentPageTitleConstants.
