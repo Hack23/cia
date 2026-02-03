@@ -1317,8 +1317,7 @@
           <jdkToolchain>
             <version>${jdk.target.version}</version>
           </jdkToolchain>
-          <source>${jdk.src.version}</source>
-          <target>${jdk.target.version}</target>
+          <release>${jdk.target.version}</release>
           <parameters>true</parameters>
           <debuglevel>lines,vars,source</debuglevel>
         </configuration>
@@ -1329,8 +1328,7 @@
               <jdkToolchain>
                 <version>${jdk.target.version}</version>
               </jdkToolchain>
-              <source>${jdk.src.version}</source>
-              <target>${jdk.target.version}</target>
+              <release>${jdk.target.version}</release>
             </configuration>
           </execution>
           <execution>
@@ -1339,8 +1337,7 @@
               <jdkToolchain>
                 <version>${jdk.target.version}</version>
               </jdkToolchain>
-              <source>${jdk.src.version}</source>
-              <target>${jdk.target.version}</target>
+              <release>${jdk.target.version}</release>
               <proc>none</proc>
             </configuration>
           </execution>
