@@ -26,7 +26,7 @@ import com.vaadin.ui.Notification;
 /**
  * The Class RemoveDataClickListener.
  *
- * @see RemoveDataClickEvent
+ * @see com.vaadin.ui.Button.ClickEvent
  */
 public class RemoveDataClickListener extends AbstractClickListener implements ClickListener {
 

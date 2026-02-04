@@ -22,6 +22,14 @@ import java.util.Locale;
 
 /**
  * The Class ProposalCommitteeeSummary.
+ * 
+ * @param org the organization identifier
+ * @param docType the document type
+ * @param decision the decision value
+ * @param hangarId the hangar identifier
+ * @param wording the primary wording text
+ * @param wording2 the secondary wording text
+ * @param decisionType the type of decision
  */
 public record ProposalCommitteeeSummary(
         String org,

@@ -31,7 +31,7 @@ import com.vaadin.ui.Notification;
 /**
  * The Class ManageUserAccountClickListener.
  *
- * @see ManageUserAccountClickEvent
+ * @see com.vaadin.ui.Button.ClickEvent
  */
 public class ManageUserAccountClickListener extends AbstractClickListener implements ClickListener {
 
