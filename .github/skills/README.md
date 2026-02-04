@@ -1,6 +1,6 @@
 # CIA GitHub Copilot Skills Library
 
-This directory contains 24 comprehensive agent skills for the Citizen Intelligence Agency platform, following GitHub Copilot's December 2025 Agent Skills feature best practices.
+This directory contains 34 comprehensive agent skills for the Citizen Intelligence Agency platform, following GitHub Copilot's December 2025 Agent Skills feature best practices.
 
 ## Skills Overview
 
@@ -57,6 +57,21 @@ This directory contains 24 comprehensive agent skills for the Citizen Intelligen
 | [contribution-guidelines](contribution-guidelines/) | PR process, code review | Contributing, reviewing PRs |
 | [documentation-standards](documentation-standards/) | Markdown, diagrams, clarity | Documentation writing, API docs |
 | [issue-triage-workflow](issue-triage-workflow/) | Labeling, assignment, prioritization | Issue management, bug tracking |
+
+### 🔍 Intelligence & OSINT (10 skills)
+
+| Skill | Description | Use Cases |
+|-------|-------------|-----------|
+| [political-science-analysis](political-science-analysis/) | Comparative politics, political behavior, public policy analysis | Democratic accountability, institutional performance, voting behavior |
+| [osint-methodologies](osint-methodologies/) | OSINT collection, source evaluation, data integration, verification | Political data gathering, source credibility assessment |
+| [intelligence-analysis-techniques](intelligence-analysis-techniques/) | ACH, SWOT, Devil's Advocacy, Red Team, structured analytics | Competing hypotheses, strategic assessment, bias mitigation |
+| [swedish-political-system](swedish-political-system/) | Riksdag structure, party system, electoral system, government formation | Swedish political context, coalition analysis, parliamentary procedures |
+| [data-science-for-intelligence](data-science-for-intelligence/) | Statistical analysis, ML, NLP, time series, network analysis | Political data analysis, forecasting, pattern recognition |
+| [electoral-analysis](electoral-analysis/) | Election forecasting, campaign analysis, coalition prediction | Electoral outcomes, voter behavior, seat projection |
+| [behavioral-analysis](behavioral-analysis/) | Political psychology, cognitive biases, leadership analysis | Voting psychology, group dynamics, decision-making patterns |
+| [strategic-communication-analysis](strategic-communication-analysis/) | Narrative analysis, media analysis, discourse analysis | Media bias detection, framing analysis, influence assessment |
+| [legislative-monitoring](legislative-monitoring/) | Voting pattern analysis, committee effectiveness, bill tracking | Parliamentary oversight, legislative productivity, cross-party collaboration |
+| [risk-assessment-frameworks](risk-assessment-frameworks/) | Political risk, institutional risk, corruption indicators, early warning | Democratic backsliding, corruption detection, coalition stability |
 
 ## Skill Structure
 
@@ -197,6 +212,6 @@ All skills are licensed under Apache License 2.0, consistent with the CIA projec
 
 ---
 
-**Last Updated**: January 2026  
-**Skill Count**: 24  
+**Last Updated**: February 2026  
+**Skill Count**: 34  
 **Compliance Standards**: ISO 27001:2022, NIST CSF 2.0, CIS Controls v8, GDPR
