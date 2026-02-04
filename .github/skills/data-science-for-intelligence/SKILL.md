@@ -113,17 +113,17 @@ class PoliticalTimeSeriesAnalyzer:
         """
         
         # Query: Historical election results
-        query = f"""
+        query = """
         SELECT 
             election_year,
             percentage as support_percentage
         FROM sweden_political_party
-        WHERE party_name = (SELECT party_name FROM sweden_political_party WHERE party_id = '{party_code}' LIMIT 1)
-            AND election_year >= {min(election_years)}
+        WHERE party_name = (SELECT party_name FROM sweden_political_party WHERE party_id = %s LIMIT 1)
+            AND election_year >= %s
         ORDER BY election_year
         """
         
-        df = pd.read_sql(query, self.db)
+        df = pd.read_sql(query, self.db, params=[party_code, min(election_years)])
         df['election_year'] = pd.to_datetime(df['election_year'], format='%Y')
         df.set_index('election_year', inplace=True)
         
@@ -150,16 +150,16 @@ class PoliticalTimeSeriesAnalyzer:
         from statsmodels.tsa.arima.model import ARIMA
         
         # Query: Historical support data
-        query = f"""
+        query = """
         SELECT 
             election_year,
             percentage
         FROM sweden_political_party
-        WHERE party_name = (SELECT party_name FROM sweden_political_party WHERE party_id = '{party_code}' LIMIT 1)
+        WHERE party_name = (SELECT party_name FROM sweden_political_party WHERE party_id = %s LIMIT 1)
         ORDER BY election_year
         """
         
-        df = pd.read_sql(query, self.db)
+        df = pd.read_sql(query, self.db, params=[party_code])
         
         # Fit ARIMA model (p=1, d=1, q=1 - tune based on ACF/PACF)
         model = ARIMA(df['percentage'], order=(1, 1, 1))
@@ -186,17 +186,17 @@ class PoliticalTimeSeriesAnalyzer:
         from ruptures import Pelt
         
         # Query: Daily voting participation rate
-        query = f"""
+        query = """
         SELECT 
             active_date,
             COALESCE(total_document_activity, 0) as activity_count
         FROM view_riksdagen_politician_document_daily_summary
-        WHERE person_id = '{person_id}'
+        WHERE person_id = %s
             AND active_date >= CURRENT_DATE - INTERVAL '2 years'
         ORDER BY active_date
         """
         
-        df = pd.read_sql(query, self.db)
+        df = pd.read_sql(query, self.db, params=[person_id])
         signal = df['activity_count'].values
         
         # Detect changepoints using PELT algorithm
