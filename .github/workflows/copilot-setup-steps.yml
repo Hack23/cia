@@ -42,14 +42,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
-      # Start Xvfb early for Playwright/Chrome
-      - name: Start Xvfb
-        run: |
-          echo "🖥️ Starting Xvfb virtual display..."
-          Xvfb :99 -screen 0 1920x1080x24 &
-          sleep 2
-          echo "DISPLAY=:99" >> $GITHUB_ENV
-          echo "✅ Xvfb started on display :99"
 
       # Cache APT packages for faster installs
       - name: Cache APT packages
@@ -99,6 +91,16 @@ jobs:
           XKB_DEFAULT_RULES: evdev
           XKB_DEFAULT_MODEL: pc105
           XKB_DEFAULT_LAYOUT: us
+
+      # Start Xvfb early for Playwright/Chrome
+      - name: Start Xvfb
+        run: |
+          echo "🖥️ Starting Xvfb virtual display..."
+          Xvfb :99 -screen 0 1920x1080x24 &
+          sleep 2
+          echo "DISPLAY=:99" >> $GITHUB_ENV
+          echo "✅ Xvfb started on display :99"
+
 
       # JavaScript/TypeScript setup
       - name: Setup Node.js
