@@ -70,6 +70,13 @@ public class DocumentContainerElement implements ModelObject {
 
     private static final long serialVersionUID = 1L;
 
+
+	/**
+	 * Instantiates a new documentcontainerelement.
+	 */
+	public DocumentContainerElement() {
+		super();
+	}
     @XmlElement(name = "dokument")
     private List<DocumentElement> dokument = new ArrayList<>();
 

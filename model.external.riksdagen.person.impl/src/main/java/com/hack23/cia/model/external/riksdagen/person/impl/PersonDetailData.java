@@ -72,6 +72,13 @@ public class PersonDetailData
 	 */
 	private static final long serialVersionUID = 1L;
 
+
+	/**
+	 * Instantiates a new persondetaildata.
+	 */
+	public PersonDetailData() {
+		super();
+	}
 	/** The detail list. */
     @XmlElement(name = "uppgift", required = true)
     protected List<DetailData> detailList = new ArrayList<>();
