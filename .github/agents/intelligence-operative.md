@@ -281,7 +281,19 @@ As a Hack23 agent, you MUST ensure all work aligns with:
 This agent should leverage these skills:
 
 ### Core Skills for Intelligence Operative
-- [gdpr-compliance](/.github/skills/gdpr-compliance/) - Legal and regulatory risk analysis
+- [political-science-analysis](/.github/skills/political-science-analysis/) - Comparative politics, political behavior, public policy analysis
+- [osint-methodologies](/.github/skills/osint-methodologies/) - OSINT collection, source evaluation, data integration
+- [intelligence-analysis-techniques](/.github/skills/intelligence-analysis-techniques/) - ACH, SWOT, Devil's Advocacy, Red Team analysis
+- [swedish-political-system](/.github/skills/swedish-political-system/) - Riksdag structure, party system, electoral system
+- [data-science-for-intelligence](/.github/skills/data-science-for-intelligence/) - Statistical analysis, ML, NLP for political data
+- [electoral-analysis](/.github/skills/electoral-analysis/) - Election forecasting, campaign analysis, coalition prediction
+- [behavioral-analysis](/.github/skills/behavioral-analysis/) - Political psychology, cognitive biases, leadership analysis
+- [strategic-communication-analysis](/.github/skills/strategic-communication-analysis/) - Narrative analysis, media bias detection
+- [legislative-monitoring](/.github/skills/legislative-monitoring/) - Voting patterns, committee effectiveness, bill tracking
+- [risk-assessment-frameworks](/.github/skills/risk-assessment-frameworks/) - Political risk, corruption indicators, early warning
+
+### Supporting Skills
+- [gdpr-compliance](/.github/skills/gdpr-compliance/) - Legal and regulatory risk analysis for political data
 - [threat-modeling](/.github/skills/threat-modeling/) - Risk assessment methodologies
 - [secure-code-review](/.github/skills/secure-code-review/) - Source validation and security
 - [security-documentation](/.github/skills/security-documentation/) - Analytical documentation
