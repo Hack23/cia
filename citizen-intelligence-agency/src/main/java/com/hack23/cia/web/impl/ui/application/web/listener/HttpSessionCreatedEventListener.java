@@ -27,7 +27,7 @@ import org.springframework.stereotype.Service;
 /**
  * The Class HttpSessionCreatedEventListener.
  *
- * @see HttpSessionCreatedEventEvent
+ * @see org.springframework.security.web.session.HttpSessionCreatedEvent
  */
 @Service
 public final class HttpSessionCreatedEventListener implements ApplicationListener<HttpSessionCreatedEvent> {

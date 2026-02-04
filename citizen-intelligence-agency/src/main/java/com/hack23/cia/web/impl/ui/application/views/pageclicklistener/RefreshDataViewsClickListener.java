@@ -26,7 +26,7 @@ import com.vaadin.ui.Notification;
 /**
  * The Class RefreshDataViewsClickListener.
  *
- * @see RefreshDataViewsClickEvent
+ * @see com.vaadin.ui.Button.ClickEvent
  */
 public final class RefreshDataViewsClickListener extends AbstractClickListener implements ClickListener {
 

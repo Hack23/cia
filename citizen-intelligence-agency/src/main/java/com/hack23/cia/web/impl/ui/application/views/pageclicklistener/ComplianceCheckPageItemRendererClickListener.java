@@ -30,7 +30,7 @@ import com.vaadin.ui.renderers.ClickableRenderer.RendererClickEvent;
 /**
  * The Class RuleViolationPageItemRendererClickListener.
  *
- * @see ComplianceCheckPageItemRendererClickEvent
+ * @see com.vaadin.ui.renderers.ClickableRenderer.RendererClickEvent
  */
 
 public final class ComplianceCheckPageItemRendererClickListener implements PageItemRendererClickListener<ComplianceCheck> {

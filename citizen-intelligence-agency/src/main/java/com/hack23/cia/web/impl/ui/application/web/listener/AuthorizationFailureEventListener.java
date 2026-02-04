@@ -43,7 +43,7 @@ import com.vaadin.ui.UI;
 /**
  * The Class AuthorizationFailureEventListener.
  *
- * @see AuthorizationFailureEventEvent
+ * @see org.springframework.security.access.event.AuthorizationFailureEvent
  */
 @Service
 public final class AuthorizationFailureEventListener implements ApplicationListener<AuthorizationFailureEvent> {
