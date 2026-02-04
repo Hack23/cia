@@ -70,6 +70,13 @@ public class CountriesElement implements ModelObject {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Instantiates a new countries element.
+	 */
+	public CountriesElement() {
+		super();
+	}
+
 	/** The country. */
 	@XmlElement(required = true)
 	protected List<CountryElement> country = new ArrayList<>();
