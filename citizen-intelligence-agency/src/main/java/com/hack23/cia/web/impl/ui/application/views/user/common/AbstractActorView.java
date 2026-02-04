@@ -17,6 +17,7 @@
  *  $HeadURL$
  */
 package com.hack23.cia.web.impl.ui.application.views.user.common;
+import com.hack23.cia.web.impl.ui.application.views.common.abstracts.AbstractUserView;
 
 import java.util.Map;
 

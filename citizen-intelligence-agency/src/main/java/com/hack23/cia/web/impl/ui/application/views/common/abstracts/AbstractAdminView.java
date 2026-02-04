@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.web.impl.ui.application.views.admin.common;
+package com.hack23.cia.web.impl.ui.application.views.common.abstracts;
 
 import java.util.Map;
 

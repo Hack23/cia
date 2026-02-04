@@ -89,7 +89,7 @@ open module com.hack23.cia.web {
 	exports com.hack23.cia.web.impl.ui.application.views.admin.datasummary;
 	exports com.hack23.cia.web.impl.ui.application.views.admin.agentoperations.pagemode;
 	exports com.hack23.cia.web.impl.ui.application.views.admin.agentoperations;
-	exports com.hack23.cia.web.impl.ui.application.views.admin.common;
+	exports com.hack23.cia.web.impl.ui.application.views.common.abstracts;
 	exports com.hack23.cia.web.impl.ui.application.views.pageclicklistener;
 	exports com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode;
 	exports com.hack23.cia.web.impl.ui.application.views.user.parliament;
@@ -109,7 +109,6 @@ open module com.hack23.cia.web {
 	exports com.hack23.cia.web.impl.ui.application.views.user.committee;
 	exports com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode;
 	exports com.hack23.cia.web.impl.ui.application.views.user.politician;
-	exports com.hack23.cia.web.impl.ui.application.views.user.common;
 	exports com.hack23.cia.web.impl.ui.application.views.user.govermentbody.pagemode;
 	exports com.hack23.cia.web.impl.ui.application.views.user.govermentbody;
 	exports com.hack23.cia.web.impl.ui.application.views.pageclicklisteners.handlers.impl;

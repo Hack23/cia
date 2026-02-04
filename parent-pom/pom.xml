@@ -1535,6 +1535,7 @@
               </dependencySourceIncludes>
               <dependencySourceExcludes>
                 <dependencySourceExclude>com.hack23.cia:testfoundation</dependencySourceExclude>
+                <dependencySourceExclude>com.hack23.cia:encrypt.properties</dependencySourceExclude>
               </dependencySourceExcludes>
               <doclet>nl.talsmasoftware.umldoclet.UMLDoclet</doclet>
               <docletArtifact>
