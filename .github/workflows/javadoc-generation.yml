@@ -116,12 +116,14 @@ jobs:
 
       - name: Build project (skip tests for faster javadoc generation)
         run: mvn -B clean install -DskipTests -Prelease-site,all-modules -DfailIfNoTests=false -Dspdx.skip=true
+        env:
+          MAVEN_OPTS: "-Xmx4g -Xms1g --enable-native-access=ALL-UNNAMED"
 
       - name: Generate Javadoc with UML diagrams
         run: |
           mvn -B javadoc:aggregate -Prelease-site -Dmaven.javadoc.failOnError=false
         env:
-          MAVEN_OPTS: "-Xmx4g -Xms1g"
+          MAVEN_OPTS: "-Xmx4g -Xms1g --enable-native-access=ALL-UNNAMED"
 
       - name: Verify Javadoc generation
         run: |

@@ -109,10 +109,10 @@ jobs:
       - name: Generate Complete Maven Site
         run: |
           cd citizen-intelligence-agency
-          export MAVEN_OPTS="-server -Xmx6048m -Xms6048m"
+          export MAVEN_OPTS="-server -Xmx6048m -Xms6048m --enable-native-access=ALL-UNNAMED"
           mvn -B clean install site -Prelease-site -Dmaven.test.failure.ignore=true -DforkMode=once -Dannotation.failOnError=false -Dspdx.skip=true
         env:
-          MAVEN_OPTS: "-server -Xmx6048m -Xms6048m"
+          MAVEN_OPTS: "-server -Xmx6048m -Xms6048m --enable-native-access=ALL-UNNAMED"
 
       - name: Collect site artifacts
         run: |

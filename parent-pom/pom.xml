@@ -1524,7 +1524,12 @@
               <linksource>false</linksource>
               <sourceFileExcludes>
                 <sourceFileExclude>**/target/metamodel/**/*.java</sourceFileExclude>
+                <sourceFileExclude>**/target/generated-sources/**/*.java</sourceFileExclude>
               </sourceFileExcludes>
+              <excludePackageNames>*.metamodel.*</excludePackageNames>
+              <additionalOptions>
+                <additionalOption>--enable-native-access=ALL-UNNAMED</additionalOption>
+              </additionalOptions>
               <additionalDependencies>
                 <additionalDependency>
                   <groupId>jakarta.xml.bind</groupId>
