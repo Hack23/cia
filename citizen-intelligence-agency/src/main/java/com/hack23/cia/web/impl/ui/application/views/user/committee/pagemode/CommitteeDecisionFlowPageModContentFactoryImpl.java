@@ -50,10 +50,18 @@ import com.vaadin.ui.TextArea;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * The Class ParliamentDecisionFlowPageModContentFactoryImpl.
+ * The Class CommitteeDecisionFlowPageModContentFactoryImpl.
+ * Factory for creating committee decision flow page content.
  */
 @Component
 public final class CommitteeDecisionFlowPageModContentFactoryImpl extends AbstractCommitteePageModContentFactoryImpl {
+
+	/**
+	 * Instantiates a new committee decision flow page mod content factory impl.
+	 */
+	public CommitteeDecisionFlowPageModContentFactoryImpl() {
+		super();
+	}
 
     /** The Constant DEFAULT_YEAR. */
     private static final String DEFAULT_YEAR = "2023/24";

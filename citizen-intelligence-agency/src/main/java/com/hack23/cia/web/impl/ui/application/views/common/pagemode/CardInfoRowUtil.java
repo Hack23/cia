@@ -13,8 +13,17 @@ import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class CardInfoRowUtil.
+ * Utility class for creating card information rows in the UI.
  */
 public class CardInfoRowUtil {
+
+	/**
+	 * Instantiates a new card info row util.
+	 * Private constructor to prevent instantiation.
+	 */
+	private CardInfoRowUtil() {
+		throw new UnsupportedOperationException("Utility class");
+	}
 
 	/** The Constant CARD_TENURE. */
 	public static final String CARD_TENURE = "card-tenure";

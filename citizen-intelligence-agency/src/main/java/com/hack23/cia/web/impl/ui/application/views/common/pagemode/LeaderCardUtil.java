@@ -34,9 +34,17 @@ import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class LeaderCardUtil.
+ * Utility class for creating leader card components.
  */
 @Component
 public class LeaderCardUtil {
+
+	/**
+	 * Instantiates a new leader card util.
+	 */
+	public LeaderCardUtil() {
+		super();
+	}
 
     /** The application manager. */
     @Autowired

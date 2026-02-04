@@ -32,9 +32,17 @@ import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class UserHomeMenuItemFactoryImpl.
+ * Factory for creating user home menu items.
  */
 @Service
 public final class UserHomeMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements UserHomeMenuItemFactory {
+
+	/**
+	 * Instantiates a new user home menu item factory impl.
+	 */
+	public UserHomeMenuItemFactoryImpl() {
+		super();
+	}
 
 	/** The application menu item factory. */
 	@Autowired

@@ -35,6 +35,7 @@ import com.vaadin.ui.Notification;
  */
 public class SendEmailClickListener extends AbstractClickListener implements ClickListener {
 
+	/** The Constant EMAIL_DESC. */
 	public static final String EMAIL_DESC = "email desc";
 
 	/** The Constant EMAIL_SENT. */

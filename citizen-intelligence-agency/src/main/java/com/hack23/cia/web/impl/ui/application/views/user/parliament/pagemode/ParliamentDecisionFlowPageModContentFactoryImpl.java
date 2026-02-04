@@ -54,9 +54,17 @@ import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class ParliamentDecisionFlowPageModContentFactoryImpl.
+ * Factory for creating parliament decision flow page content.
  */
 @Component
 public final class ParliamentDecisionFlowPageModContentFactoryImpl extends AbstractParliamentPageModContentFactoryImpl {
+
+	/**
+	 * Instantiates a new parliament decision flow page mod content factory impl.
+	 */
+	public ParliamentDecisionFlowPageModContentFactoryImpl() {
+		super();
+	}
 
     /** The Constant DEFAULT_YEAR. */
     private static final String DEFAULT_YEAR = "2023/24";
