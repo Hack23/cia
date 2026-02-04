@@ -1,4 +1,4 @@
-package com.hack23.cia.web.impl.ui.application.views.user.govermentbody.pagemode;
+package com.hack23.cia.web.impl.ui.application.views.common.constants;
 
 import com.vaadin.icons.VaadinIcons;
 

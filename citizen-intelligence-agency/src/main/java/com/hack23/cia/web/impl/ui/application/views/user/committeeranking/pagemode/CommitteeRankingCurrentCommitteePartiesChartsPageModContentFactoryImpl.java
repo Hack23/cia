@@ -31,7 +31,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowU
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CommonViewConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
-import com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode.CommitteeViewConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.constants.CommitteeViewConstants;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;

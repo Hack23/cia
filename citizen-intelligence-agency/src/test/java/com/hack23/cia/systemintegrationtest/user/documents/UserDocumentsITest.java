@@ -8,7 +8,7 @@ import com.hack23.cia.systemintegrationtest.AbstractUITest;
 import com.hack23.cia.systemintegrationtest.categories.IntegrationTest;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandDocumentConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.paging.PagingUtilImpl;
-import com.hack23.cia.web.impl.ui.application.views.user.document.pagemode.DocumentPageTitleConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.constants.DocumentPageTitleConstants;
 
 /**
  * The Class UserDocumentsITest.

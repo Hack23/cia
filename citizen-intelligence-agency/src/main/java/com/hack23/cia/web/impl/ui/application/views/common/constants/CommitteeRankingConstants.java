@@ -1,4 +1,4 @@
-package com.hack23.cia.web.impl.ui.application.views.user.committeeranking.pagemode;
+package com.hack23.cia.web.impl.ui.application.views.common.constants;
 
 /**
  * The Interface CommitteeRankingConstants.

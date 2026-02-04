@@ -17,6 +17,11 @@
  *  $HeadURL$
 */
 package com.hack23.cia.web.impl.ui.application.views.user.govermentbody.pagemode;
+import com.hack23.cia.web.impl.ui.application.views.common.constants.GovernmentBodyViewConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.constants.GovernmentBodyLayoutConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.constants.GovernmentBodyHeaderConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.constants.GovernmentBodyIconConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.constants.GovernmentBodyDescriptionConstants;
 
 import java.util.List;
 

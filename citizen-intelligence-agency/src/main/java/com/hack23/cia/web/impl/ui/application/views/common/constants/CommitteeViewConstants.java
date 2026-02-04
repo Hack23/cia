@@ -1,6 +1,6 @@
-package com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode;
+package com.hack23.cia.web.impl.ui.application.views.common.constants;
 
-import com.hack23.cia.web.impl.ui.application.views.user.committeeranking.pagemode.CommitteeRankingConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.constants.CommitteeRankingConstants;
 
 /**
  * Constants for the committee view pages.

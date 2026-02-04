@@ -1,4 +1,4 @@
-package com.hack23.cia.web.impl.ui.application.views.user.govermentbody.pagemode;
+package com.hack23.cia.web.impl.ui.application.views.common.constants;
 
 /**
  * Constants for the government body view pages.
