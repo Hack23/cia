@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.web.impl.ui.application.util;
+package com.hack23.cia.web.impl.ui.application.views.common.util;
 
 import java.util.Collection;
 

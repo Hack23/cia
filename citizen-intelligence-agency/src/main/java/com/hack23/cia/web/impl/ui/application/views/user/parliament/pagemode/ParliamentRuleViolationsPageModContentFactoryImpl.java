@@ -34,7 +34,7 @@ import com.hack23.cia.model.internal.application.data.rules.impl.RuleViolation;
 import com.hack23.cia.model.internal.application.data.rules.impl.Status;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandParliamentRankingConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.RuleViolationPageItemRendererClickListener;

@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.web.impl.ui.application.action;
+package com.hack23.cia.web.impl.ui.application.views.common.action;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.model.internal.application.system.impl.ApplicationOperationType;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
-import com.hack23.cia.web.impl.ui.application.util.UserContextUtil;
+import com.hack23.cia.web.impl.ui.application.views.common.util.UserContextUtil;
 
 /**
  * The Class PageActionEventHelperImpl.

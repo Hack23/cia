@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.web.impl.ui.application.action;
+package com.hack23.cia.web.impl.ui.application.views.common.action;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 

@@ -80,8 +80,8 @@
  */
 open module com.hack23.cia.web {
 	exports com.hack23.cia.web.impl.ui.application;
-	exports com.hack23.cia.web.impl.ui.application.action;
-	exports com.hack23.cia.web.impl.ui.application.util;
+	exports com.hack23.cia.web.impl.ui.application.views.common.action;
+	exports com.hack23.cia.web.impl.ui.application.views.common.util;
 	exports com.hack23.cia.web.impl.ui.application.web.listener;
 	exports com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode;
 	exports com.hack23.cia.web.impl.ui.application.views.admin.system;
