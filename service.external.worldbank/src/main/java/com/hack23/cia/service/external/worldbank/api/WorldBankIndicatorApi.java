@@ -41,8 +41,8 @@ public interface WorldBankIndicatorApi {
 	 * Gets the indicators with swedish data.
 	 *
 	 * @return the indicators with swedish data
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
+	 * @throws DataFailureException
+	 *             Signals that a data failure exception has occurred.
 	 */
 	List<String> getIndicatorsWithSwedishData() throws DataFailureException;
 

@@ -49,7 +49,6 @@
  * </ul>
  *
  * @see com.hack23.cia.service.external.common
- * @see com.hack23.cia.model.external.riksdagen
  */
 open module com.hack23.cia.service.external.riksdagen {
 	exports com.hack23.cia.service.external.riksdagen.api;

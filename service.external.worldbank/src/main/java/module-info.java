@@ -74,7 +74,6 @@
  * </p>
  *
  * @see com.hack23.cia.service.external.common
- * @see com.hack23.cia.model.external.worldbank
  */
 open module com.hack23.cia.service.external.worldbank {
 	exports com.hack23.cia.service.external.worldbank.api;
