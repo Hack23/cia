@@ -52,25 +52,33 @@ public final class ArchitectureRuleTest extends Assert {
 		jdepend.analyze();
 		
 		if (jdepend.containsCycles()) {
-			System.out.println("\n=== CIRCULAR DEPENDENCIES DETECTED ===\n");
+			System.out.println("\n=== HACK23 CIRCULAR DEPENDENCIES DETECTED ===\n");
 			
 			@SuppressWarnings("unchecked")
 			java.util.Collection<jdepend.framework.JavaPackage> packages = jdepend.getPackages();
 			
+			int hack23CycleCount = 0;
+			
 			for (jdepend.framework.JavaPackage pkg : packages) {
-				if (pkg.containsCycle()) {
+				// Only show hack23 packages
+				if (pkg.containsCycle() && pkg.getName().startsWith("com.hack23.cia")) {
+					hack23CycleCount++;
 					System.out.println("Package: " + pkg.getName());
 					System.out.println("  Depends on:");
 					
 					@SuppressWarnings("unchecked")
 					java.util.Collection<jdepend.framework.JavaPackage> efferents = pkg.getEfferents();
 					for (jdepend.framework.JavaPackage efferent : efferents) {
-						System.out.println("    - " + efferent.getName());
+						// Only show hack23 dependencies
+						if (efferent.getName().startsWith("com.hack23.cia")) {
+							System.out.println("    - " + efferent.getName());
+						}
 					}
 					System.out.println();
 				}
 			}
-			System.out.println("=== END CIRCULAR DEPENDENCIES ===\n");
+			System.out.println("Total hack23 packages with cycles: " + hack23CycleCount);
+			System.out.println("=== END HACK23 CIRCULAR DEPENDENCIES ===\n");
 		}
 		
 		Assert.assertFalse("Project contains cycles", jdepend.containsCycles()); //$NON-NLS-1$
