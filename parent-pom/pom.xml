@@ -1522,6 +1522,9 @@
               <detectJavaApiLink>false</detectJavaApiLink>
               <detectOfflineLinks>false</detectOfflineLinks>
               <linksource>false</linksource>
+              <sourceFileExcludes>
+                <sourceFileExclude>**/target/metamodel/**/*.java</sourceFileExclude>
+              </sourceFileExcludes>
               <additionalDependencies>
                 <additionalDependency>
                   <groupId>jakarta.xml.bind</groupId>
