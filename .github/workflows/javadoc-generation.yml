@@ -128,12 +128,15 @@ jobs:
       - name: Verify Javadoc generation
         run: |
           echo "Checking generated Javadoc..."
-          if [ -d "target/site/apidocs" ]; then
+          if [ -d "target/reports/apidocs" ]; then
             echo "✅ Javadoc generated successfully"
             echo "Files generated:"
-            find target/site/apidocs -name "*.html" | wc -l
+            find target/reports/apidocs -name "*.html" | wc -l
           else
             echo "⚠️ Javadoc directory not found"
+            echo "Expected location: target/reports/apidocs"
+            echo "Directory structure:"
+            ls -la target/ 2>/dev/null || echo "No target directory"
             exit 1
           fi
 
@@ -141,7 +144,7 @@ jobs:
         uses: actions/upload-artifact@6f51ac03b9356f520e9adb1b1b7802705f340c2b # v4.5.0
         with:
           name: javadoc
-          path: target/site/apidocs/
+          path: target/reports/apidocs/
           retention-days: 30
           if-no-files-found: error
 
@@ -149,7 +152,7 @@ jobs:
         run: |
           echo "## Javadoc Generation Complete ✅" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          HTML_COUNT=$(find target/site/apidocs -name "*.html" 2>/dev/null | wc -l)
+          HTML_COUNT=$(find target/reports/apidocs -name "*.html" 2>/dev/null | wc -l)
           echo "### Generated Documentation" >> $GITHUB_STEP_SUMMARY
           echo "- **HTML files**: $HTML_COUNT" >> $GITHUB_STEP_SUMMARY
           echo "- **UML diagrams**: Included (via UMLDoclet)" >> $GITHUB_STEP_SUMMARY
