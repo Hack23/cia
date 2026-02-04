@@ -76,6 +76,13 @@ public class SwedenElectionRegion
 	 */
 	private static final long serialVersionUID = 1L;
 
+
+	/**
+	 * Instantiates a new swedenelectionregion.
+	 */
+	public SwedenElectionRegion() {
+		super();
+	}
 	/** The county id. */
     @XmlElement(name = "lan_id", required = true)
     protected String countyId;

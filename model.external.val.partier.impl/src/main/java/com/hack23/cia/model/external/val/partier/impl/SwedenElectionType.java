@@ -72,6 +72,13 @@ public class SwedenElectionType
 	 */
 	private static final long serialVersionUID = 1L;
 
+
+	/**
+	 * Instantiates a new swedenelectiontype.
+	 */
+	public SwedenElectionType() {
+		super();
+	}
 	/** The election type. */
     @XmlElement(name = "valtyp", required = true)
     protected String electionType;

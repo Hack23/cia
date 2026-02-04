@@ -62,6 +62,13 @@ public class Indicator
 	 */
 	private static final long serialVersionUID = 1L;
 
+
+	/**
+	 * Instantiates a new indicator.
+	 */
+	public Indicator() {
+		super();
+	}
 	/** The value. */
     @XmlValue
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)

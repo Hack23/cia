@@ -73,6 +73,13 @@ public class WorldBankData
 	 */
 	private static final long serialVersionUID = 1L;
 
+
+	/**
+	 * Instantiates a new worldbankdata.
+	 */
+	public WorldBankData() {
+		super();
+	}
 	/** The indicator. */
     protected Indicator indicator;
 

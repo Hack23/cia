@@ -71,6 +71,13 @@ public class Topics
 	 */
 	private static final long serialVersionUID = 1L;
 
+
+	/**
+	 * Instantiates a new topics.
+	 */
+	public Topics() {
+		super();
+	}
 	/** The topic. */
     protected List<Topic> topic = new ArrayList<>();
 

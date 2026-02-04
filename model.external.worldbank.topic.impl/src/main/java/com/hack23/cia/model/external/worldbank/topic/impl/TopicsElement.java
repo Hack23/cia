@@ -76,6 +76,13 @@ public class TopicsElement
 	 */
 	private static final long serialVersionUID = 1L;
 
+
+	/**
+	 * Instantiates a new topicselement.
+	 */
+	public TopicsElement() {
+		super();
+	}
 	/** The topic. */
     @XmlElement(required = true)
     protected List<TopicElement> topic = new ArrayList<>();

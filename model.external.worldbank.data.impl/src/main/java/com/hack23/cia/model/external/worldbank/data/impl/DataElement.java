@@ -76,6 +76,13 @@ public class DataElement
 	 */
 	private static final long serialVersionUID = 1L;
 
+
+	/**
+	 * Instantiates a new dataelement.
+	 */
+	public DataElement() {
+		super();
+	}
 	/** The data. */
     @XmlElement(required = true)
     protected List<WorldBankData> data = new ArrayList<>();
