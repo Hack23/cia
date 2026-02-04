@@ -20,6 +20,7 @@ package com.hack23.cia.web.impl.ui.application.views.common.menufactory.impl;
 
 import com.hack23.cia.web.impl.ui.application.views.common.util.UserContextUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandUserConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.text.MenuItemConstants;
 import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.Resource;
@@ -42,7 +43,7 @@ import com.vaadin.ui.MenuBar.MenuItem;
  * application menus, creating admin menus, and generating button links with
  * descriptions.
  */
-public abstract class AbstractMenuItemFactoryImpl implements PageCommandUserConstants {
+public abstract class AbstractMenuItemFactoryImpl implements PageCommandUserConstants, MenuItemConstants {
 
 	/**
 	 * Instantiates a new abstract menu item factory impl.

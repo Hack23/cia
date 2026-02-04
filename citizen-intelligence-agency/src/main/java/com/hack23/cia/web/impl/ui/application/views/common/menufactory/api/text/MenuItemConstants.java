@@ -1,9 +1,10 @@
 package com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.text;
 
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandCountryRankingConstants;
-
 /**
  * The Interface MenuItemConstants.
+ * 
+ * Central interface for menu item text constants.
+ * Removed extends PageCommandCountryRankingConstants to break circular dependency.
  */
 public interface MenuItemConstants extends
     MenuItemLayoutConstants,
@@ -25,7 +26,6 @@ public interface MenuItemConstants extends
     MenuItemRiskConstants,
     MenuItemPageVisitConstants,
     MenuItemRankingPageVisitHistoryConstants,
-    PageCommandCountryRankingConstants,
     RankingNavigationConstants {
 
     /** The dashboard. */
