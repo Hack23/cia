@@ -50,6 +50,29 @@ public final class ArchitectureRuleTest extends Assert {
 	@Test(timeout = 2000)
 	public void testArchitectureNoCyclesAllowed() {
 		jdepend.analyze();
+		
+		if (jdepend.containsCycles()) {
+			System.out.println("\n=== CIRCULAR DEPENDENCIES DETECTED ===\n");
+			
+			@SuppressWarnings("unchecked")
+			java.util.Collection<jdepend.framework.JavaPackage> packages = jdepend.getPackages();
+			
+			for (jdepend.framework.JavaPackage pkg : packages) {
+				if (pkg.containsCycle()) {
+					System.out.println("Package: " + pkg.getName());
+					System.out.println("  Depends on:");
+					
+					@SuppressWarnings("unchecked")
+					java.util.Collection<jdepend.framework.JavaPackage> efferents = pkg.getEfferents();
+					for (jdepend.framework.JavaPackage efferent : efferents) {
+						System.out.println("    - " + efferent.getName());
+					}
+					System.out.println();
+				}
+			}
+			System.out.println("=== END CIRCULAR DEPENDENCIES ===\n");
+		}
+		
 		Assert.assertFalse("Project contains cycles", jdepend.containsCycles()); //$NON-NLS-1$
 	}
 }
