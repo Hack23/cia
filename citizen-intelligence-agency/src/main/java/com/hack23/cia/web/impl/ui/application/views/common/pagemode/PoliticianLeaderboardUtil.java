@@ -23,7 +23,7 @@ import com.vaadin.ui.VerticalLayout;
  * The Class PoliticianLeaderboardUtil.
  */
 @Service
-public class PoliticianLeaderboardUtil extends CardInfoRowUtil {
+public class PoliticianLeaderboardUtil {
 
 	/** The page link factory. */
 	@Autowired
@@ -33,6 +33,7 @@ public class PoliticianLeaderboardUtil extends CardInfoRowUtil {
 	 * Instantiates a new politician leaderboard util.
 	 */
 	public PoliticianLeaderboardUtil() {
+		super();
 	}
 
 	/**
@@ -54,7 +55,7 @@ public class PoliticianLeaderboardUtil extends CardInfoRowUtil {
 
 		// Political Analysis Comment
 		if (StringUtils.isNotBlank(experienceSummary.getPoliticalAnalysisComment())) {
-		    layout.addComponent(createInfoRow("Analysis:",
+		    layout.addComponent(CardInfoRowUtil.createInfoRow("Analysis:",
 		    		analys.toString(),
 		        VaadinIcons.COMMENT,
 		        "Political career analysis"));
@@ -75,7 +76,7 @@ public class PoliticianLeaderboardUtil extends CardInfoRowUtil {
 		        ka -> ka.getWeightedExp()
 		    );
 		    if (!topAreas.isEmpty()) {
-		        layout.addComponent(createInfoRow("Top Knowledge Areas:", topAreas, VaadinIcons.BOOK, "Key expertise"));
+		        layout.addComponent(CardInfoRowUtil.createInfoRow("Top Knowledge Areas:", topAreas, VaadinIcons.BOOK, "Key expertise"));
 		    }
 		}
 	}
@@ -94,7 +95,7 @@ public class PoliticianLeaderboardUtil extends CardInfoRowUtil {
 		        role -> role.getWeightedExp()
 		    );
 		    if (!topRoles.isEmpty()) {
-		        layout.addComponent(createInfoRow("Top Roles:", topRoles, VaadinIcons.STAR, "Most significant roles")); // Changed from CROWN to STAR
+		        layout.addComponent(CardInfoRowUtil.createInfoRow("Top Roles:", topRoles, VaadinIcons.STAR, "Most significant roles")); // Changed from CROWN to STAR
 		    }
 		}
 	}
@@ -108,25 +109,25 @@ public class PoliticianLeaderboardUtil extends CardInfoRowUtil {
 	public final void addExperienceMetrics(final VerticalLayout layout, final ViewRiksdagenPoliticianExperienceSummary experienceSummary) {
 	    if (experienceSummary != null) {
 	        // Career Overview
-	        layout.addComponent(createInfoRow("Career Phase:",
+	        layout.addComponent(CardInfoRowUtil.createInfoRow("Career Phase:",
 	            experienceSummary.getCareerPhase().toString().replace("_", " "),
 	            VaadinIcons.CALENDAR_CLOCK,
 	            "Current career stage"));
 
 	        // Experience Level
-	        layout.addComponent(createInfoRow("Experience Level:",
+	        layout.addComponent(CardInfoRowUtil.createInfoRow("Experience Level:",
 	            experienceSummary.getExperienceLevel().toString().replace("_", " "),
 	            VaadinIcons.CHART_TIMELINE,
 	            "Overall political experience classification"));
 
 	        // Leadership Profile
-	        layout.addComponent(createInfoRow("Leadership Role:",
+	        layout.addComponent(CardInfoRowUtil.createInfoRow("Leadership Role:",
 	            experienceSummary.getLeadershipProfile().toString().replace("_", " "),
 	            VaadinIcons.USER_STAR,
 	            "Leadership experience level"));
 
 	        // Specialization
-	        layout.addComponent(createInfoRow("Expertise:",
+	        layout.addComponent(CardInfoRowUtil.createInfoRow("Expertise:",
 	            experienceSummary.getSpecializationLevel().toString().replace("_", " "),
 	            VaadinIcons.SPECIALIST,
 	            "Area of specialization"));
@@ -143,15 +144,15 @@ public class PoliticianLeaderboardUtil extends CardInfoRowUtil {
 	 */
 	public final void addLegislativeMetrics(final VerticalLayout layout, final ViewRiksdagenPolitician politician) {
 
-		layout.addComponent(createInfoRow("Documents/Year:", String.format(Locale.ENGLISH,"%.1f", politician.getAverageDocsPerYear()),
+		layout.addComponent(CardInfoRowUtil.createInfoRow("Documents/Year:", String.format(Locale.ENGLISH,"%.1f", politician.getAverageDocsPerYear()),
 				VaadinIcons.FILE_TEXT, "Average documents per year"));
-		layout.addComponent(createInfoRow("Individual Motions:", String.valueOf(politician.getIndividualMotions()),
+		layout.addComponent(CardInfoRowUtil.createInfoRow("Individual Motions:", String.valueOf(politician.getIndividualMotions()),
 				VaadinIcons.USER, "Personal motions submitted"));
-		layout.addComponent(createInfoRow("Party Motions:", String.valueOf(politician.getPartyMotions()),
+		layout.addComponent(CardInfoRowUtil.createInfoRow("Party Motions:", String.valueOf(politician.getPartyMotions()),
 				VaadinIcons.GROUP, "Party-based motions"));
-		layout.addComponent(createInfoRow("Committee Motions:", String.valueOf(politician.getCommitteeMotions()),
+		layout.addComponent(CardInfoRowUtil.createInfoRow("Committee Motions:", String.valueOf(politician.getCommitteeMotions()),
 				VaadinIcons.GROUP, "Committee-based motions"));
-		layout.addComponent(createInfoRow("Document Impact:", politician.getDocActivityProfile(), VaadinIcons.CHART_3D,
+		layout.addComponent(CardInfoRowUtil.createInfoRow("Document Impact:", politician.getDocActivityProfile(), VaadinIcons.CHART_3D,
 				"Legislative influence assessment"));
 	}
 
@@ -165,14 +166,14 @@ public class PoliticianLeaderboardUtil extends CardInfoRowUtil {
 	public final void addPartyAlignmentMetrics(final VerticalLayout layout, final ViewRiksdagenPolitician politician,
 			final ViewRiksdagenPoliticianBallotSummary ballotSummary) {
 
-		layout.addComponent(createInfoRow("Party Loyalty:", String.format(Locale.ENGLISH,"%.1f%%", ballotSummary != null ? ballotSummary.getLoyaltyRate() : 0.0),
+		layout.addComponent(CardInfoRowUtil.createInfoRow("Party Loyalty:", String.format(Locale.ENGLISH,"%.1f%%", ballotSummary != null ? ballotSummary.getLoyaltyRate() : 0.0),
 				VaadinIcons.GROUP, "Party line adherence"));
-		layout.addComponent(createInfoRow("Independence Rate:", String.format(Locale.ENGLISH,"%.1f%%", ballotSummary != null ? ballotSummary.getRebelRate() : 0.0),
+		layout.addComponent(CardInfoRowUtil.createInfoRow("Independence Rate:", String.format(Locale.ENGLISH,"%.1f%%", ballotSummary != null ? ballotSummary.getRebelRate() : 0.0),
 				VaadinIcons.RANDOM, "Votes against party line"));
-		layout.addComponent(createInfoRow("Cross-Party Collaboration:",
+		layout.addComponent(CardInfoRowUtil.createInfoRow("Cross-Party Collaboration:",
 				String.format(Locale.ENGLISH,"%.1f%%", politician.getCollaborationPercentage()), VaadinIcons.CONNECT,
 				"Inter-party cooperation"));
-		layout.addComponent(createInfoRow("Multi-Party Motions:", String.valueOf(politician.getMultiPartyMotions()),
+		layout.addComponent(CardInfoRowUtil.createInfoRow("Multi-Party Motions:", String.valueOf(politician.getMultiPartyMotions()),
 				VaadinIcons.USERS, "Cross-party legislative initiatives"));
 	}
 
@@ -189,15 +190,15 @@ public class PoliticianLeaderboardUtil extends CardInfoRowUtil {
 			final ViewRiksdagenPoliticianBallotSummary ballotSummary) {
 
 		layout.addComponent(
-				createInfoRow("Attendance Rate:",
+				CardInfoRowUtil.createInfoRow("Attendance Rate:",
 						String.format(Locale.ENGLISH, "%.1f%%", 100 - (ballotSummary != null ? ballotSummary.getAbsenceRate() : 0.0)),
 						VaadinIcons.USER_CHECK, "Session attendance rate"));
-		layout.addComponent(createInfoRow("Voting Success:",
+		layout.addComponent(CardInfoRowUtil.createInfoRow("Voting Success:",
 				String.format(Locale.ENGLISH, "%.1f%%", ballotSummary != null ? ballotSummary.getSuccessRate() : 0.0),
 				VaadinIcons.TROPHY, "Votes on winning side"));
-		layout.addComponent(createInfoRow("Activity Level:", politician.getDocActivityLevel(), VaadinIcons.CHART_LINE,
+		layout.addComponent(CardInfoRowUtil.createInfoRow("Activity Level:", politician.getDocActivityLevel(), VaadinIcons.CHART_LINE,
 				"Overall engagement level"));
-		layout.addComponent(createInfoRow("Analysis Comment:",
+		layout.addComponent(CardInfoRowUtil.createInfoRow("Analysis Comment:",
 				String.valueOf(ballotSummary != null ? ballotSummary.getAnalysisComment() : 0), VaadinIcons.USER_CARD,
 				"Analysis Comment"));
 	}
@@ -226,11 +227,11 @@ public class PoliticianLeaderboardUtil extends CardInfoRowUtil {
 				.sum();
 		final int bodyCount = ministryBodies.size();
 
-		cardLayout.addComponent(createMetricRow(VaadinIcons.GROUP,
+		cardLayout.addComponent(CardInfoRowUtil.createMetricRow(VaadinIcons.GROUP,
 				pageLinkFactory.addMinistryGovermentBodiesPageLink(govMember.getDetail()),
 				"Number of government bodies", String.valueOf(bodyCount)));
 
-		cardLayout.addComponent(createMetricRow(VaadinIcons.USER,
+		cardLayout.addComponent(CardInfoRowUtil.createMetricRow(VaadinIcons.USER,
 				pageLinkFactory.addMinistryGovermentBodiesHeadcountPageLink(govMember.getDetail()),
 				"Total headcount of government bodies", String.valueOf(totalHeadCount)));
 
@@ -262,12 +263,12 @@ public class PoliticianLeaderboardUtil extends CardInfoRowUtil {
 		}
 
 		final String incomeStr = String.format(Locale.ENGLISH, "%.2f B SEK", currentYearIncome);
-		cardLayout.addComponent(createMetricRow(VaadinIcons.ARROW_UP,
+		cardLayout.addComponent(CardInfoRowUtil.createMetricRow(VaadinIcons.ARROW_UP,
 				pageLinkFactory.addMinistryGovermentBodiesIncomePageLink(govMember.getDetail()),
 				"Yearly Income (B SEK)", incomeStr));
 
 		final String spendingStr = String.format(Locale.ENGLISH, "%.2f B SEK", currentYearSpending);
-		cardLayout.addComponent(createMetricRow(VaadinIcons.ARROW_DOWN,
+		cardLayout.addComponent(CardInfoRowUtil.createMetricRow(VaadinIcons.ARROW_DOWN,
 				pageLinkFactory.addMinistrGovermentBodiesSpendingPageLink(govMember.getDetail()),
 				"Yearly Spending (B SEK)", spendingStr));
 	}
