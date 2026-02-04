@@ -20,7 +20,6 @@ package com.hack23.cia.web.impl.ui.application.views.common.abstracts;
 
 import java.util.Map;
 
-import com.hack23.cia.web.impl.ui.application.views.common.AbstractView;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeContentFactory;
 
 /**

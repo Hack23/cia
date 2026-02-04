@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.common;
 
+import com.hack23.cia.web.impl.ui.application.views.common.abstracts.AbstractView;
+
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
