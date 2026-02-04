@@ -16,7 +16,9 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.web.impl.ui.application.views.common;
+package com.hack23.cia.web.impl.ui.application.views.main;
+
+import com.hack23.cia.web.impl.ui.application.views.common.abstracts.AbstractView;
 
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.ApplicationContext;
@@ -30,13 +32,13 @@ import com.vaadin.spring.annotation.SpringView;
 /**
  * The Class MainView.
  */
-@Service("MainView")
+@Service("DashboardView")
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-@SpringView(name = MainView.NAME)
-public final class MainView extends AbstractView {
+@SpringView(name = DashboardView.NAME)
+public final class DashboardView extends AbstractView {
 
 	/** The Constant NAME. */
-	public static final String NAME = CommonsViews.MAIN_VIEW_NAME;
+	public static final String NAME = CommonsViews.DASHBOARD_VIEW_NAME;
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -47,7 +49,7 @@ public final class MainView extends AbstractView {
 	 * @param context
 	 *            the context
 	 */
-	public MainView(final ApplicationContext context) {
+	public DashboardView(final ApplicationContext context) {
 		super(context.getBeansOfType(PageModeContentFactory.class), NAME);
 	}
 

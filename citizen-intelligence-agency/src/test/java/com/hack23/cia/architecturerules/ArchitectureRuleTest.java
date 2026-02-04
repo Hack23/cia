@@ -48,7 +48,7 @@ public final class ArchitectureRuleTest extends Assert {
 	 * Test architecture no cycles allowed.
 	 * 
 	 * This test ensures there are no circular dependencies in the codebase.
-	 * Circular dependencies being systematically eliminated through refactoring.
+	 * Circular dependencies are being systematically eliminated through proper refactoring.
 	 */
 	@Test(timeout = 2000)
 	public void testArchitectureNoCyclesAllowed() {

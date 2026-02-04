@@ -1,6 +1,5 @@
 package com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands;
 
-import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.text.MenuItemConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageModeMenuCommand;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.DataSummaryPageMode;
@@ -8,9 +7,12 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 
 
 /**
- * The Interface MenuItemConstants.
+ * The Interface PageCommandAdminConstants.
+ * 
+ * Defines admin page command constants without extending MenuItemConstants
+ * to avoid circular dependencies between pagecommands and text packages.
  */
-public interface PageCommandAdminConstants extends MenuItemConstants {
+public interface PageCommandAdminConstants {
 
 
        /** The Constant COMMAND_AGENCY. */

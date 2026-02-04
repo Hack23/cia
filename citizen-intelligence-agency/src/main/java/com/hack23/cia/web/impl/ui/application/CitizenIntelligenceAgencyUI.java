@@ -30,7 +30,7 @@ import com.hack23.cia.service.api.UserConfiguration;
 import com.hack23.cia.service.api.action.application.CreateApplicationSessionRequest;
 import com.hack23.cia.service.api.action.common.ServiceResponse;
 import com.hack23.cia.web.impl.ui.application.util.WebBrowserUtil;
-import com.hack23.cia.web.impl.ui.application.views.common.MainView;
+import com.hack23.cia.web.impl.ui.application.views.main.MainView;
 import com.vaadin.annotations.Push;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Viewport;

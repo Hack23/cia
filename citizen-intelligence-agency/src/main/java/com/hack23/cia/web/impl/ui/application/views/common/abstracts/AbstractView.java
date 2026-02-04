@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.web.impl.ui.application.views.common;
+package com.hack23.cia.web.impl.ui.application.views.common.abstracts;
 
 import java.util.Map;
 
@@ -32,16 +32,16 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.context.request.RequestContextHolder;
 
 import com.hack23.cia.service.api.action.application.LogoutRequest;
-import com.hack23.cia.web.impl.ui.application.action.PageActionEventHelper;
-import com.hack23.cia.web.impl.ui.application.util.UserContextUtil;
+import com.hack23.cia.web.impl.ui.application.views.common.action.PageActionEventHelper;
+import com.hack23.cia.web.impl.ui.application.views.common.util.UserContextUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.labelfactory.LabelFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ApplicationMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageLinkFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeContentFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
+import com.hack23.cia.web.impl.ui.application.views.contracts.IView;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.LogoutClickListener;
 import com.vaadin.icons.VaadinIcons;
-import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.ExternalResource;
 import com.vaadin.server.ThemeResource;
@@ -58,7 +58,7 @@ import com.vaadin.ui.VerticalLayout;
 /**
  * The Class AbstractView.
  */
-public abstract class AbstractView extends Panel implements View {
+public abstract class AbstractView extends Panel implements IView {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(AbstractView.class);
@@ -359,6 +359,11 @@ public abstract class AbstractView extends Panel implements View {
 	public final void postConstruct() {
 		setSizeFull();
 		createBasicLayoutWithPanelAndFooter(pageName);
+	}
+
+	@Override
+	public String getViewName() {
+		return pageName;
 	}
 
 }

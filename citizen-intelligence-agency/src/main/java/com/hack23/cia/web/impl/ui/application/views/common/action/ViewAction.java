@@ -16,7 +16,7 @@
  *	$Id$
  *  $HeadURL$
 */
-package com.hack23.cia.web.impl.ui.application.action;
+package com.hack23.cia.web.impl.ui.application.views.common.action;
 
 /**
  * The Enum ViewAction.
