@@ -21,11 +21,12 @@ package com.hack23.cia.web.impl.ui.application.views.common.abstracts;
 import java.util.Map;
 
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeContentFactory;
+import com.hack23.cia.web.impl.ui.application.views.contracts.IAdminView;
 
 /**
  * The Class AbstractAdminView.
  */
-public abstract class AbstractAdminView extends AbstractView {
+public abstract class AbstractAdminView extends AbstractView implements IAdminView {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;

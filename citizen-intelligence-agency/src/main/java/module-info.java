@@ -90,6 +90,7 @@ open module com.hack23.cia.web {
 	exports com.hack23.cia.web.impl.ui.application.views.admin.agentoperations.pagemode;
 	exports com.hack23.cia.web.impl.ui.application.views.admin.agentoperations;
 	exports com.hack23.cia.web.impl.ui.application.views.common.abstracts;
+	exports com.hack23.cia.web.impl.ui.application.views.contracts;
 	exports com.hack23.cia.web.impl.ui.application.views.pageclicklistener;
 	exports com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode;
 	exports com.hack23.cia.web.impl.ui.application.views.user.parliament;

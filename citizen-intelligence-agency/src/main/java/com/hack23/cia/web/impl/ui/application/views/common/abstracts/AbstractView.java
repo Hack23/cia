@@ -39,9 +39,9 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.Appli
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageLinkFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeContentFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
+import com.hack23.cia.web.impl.ui.application.views.contracts.IView;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.LogoutClickListener;
 import com.vaadin.icons.VaadinIcons;
-import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.ExternalResource;
 import com.vaadin.server.ThemeResource;
@@ -58,7 +58,7 @@ import com.vaadin.ui.VerticalLayout;
 /**
  * The Class AbstractView.
  */
-public abstract class AbstractView extends Panel implements View {
+public abstract class AbstractView extends Panel implements IView {
 
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(AbstractView.class);
@@ -359,6 +359,11 @@ public abstract class AbstractView extends Panel implements View {
 	public final void postConstruct() {
 		setSizeFull();
 		createBasicLayoutWithPanelAndFooter(pageName);
+	}
+
+	@Override
+	public String getViewName() {
+		return pageName;
 	}
 
 }
