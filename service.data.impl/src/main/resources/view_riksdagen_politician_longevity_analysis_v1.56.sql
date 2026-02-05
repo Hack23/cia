@@ -1,17 +1,3 @@
--- view_riksdagen_politician_longevity_analysis_v1.56.sql
--- Politician Longevity Analysis View Definition
---
--- Purpose: Analyzes politician tenure, career length, and longevity patterns
--- Version: 1.56
--- Category: Analytical View - Longevity Analysis
---
--- Description:
---   Tracks career timelines, total active periods, and longevity metrics
---   for politicians across different roles and time periods.
---
--- Usage: View is created/updated during schema deployment
---   SELECT * FROM view_riksdagen_politician_longevity_analysis LIMIT 10;
-
 DROP VIEW IF EXISTS view_riksdagen_politician_longevity_analysis CASCADE;
 
 CREATE VIEW view_riksdagen_politician_longevity_analysis AS

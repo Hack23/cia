@@ -1,17 +1,3 @@
--- view_riksdagen_politician_experience_summary_v1.44.sql
--- Politician Experience Summary View Definition
---
--- Purpose: Summarizes politician experience levels, roles, and tenure
--- Version: 1.44
--- Category: Analytical View - Experience Analysis
---
--- Description:
---   Provides comprehensive summary of politician experience including
---   total days served, number of roles, and experience levels.
---
--- Usage: View is created/updated during schema deployment
---   SELECT * FROM view_riksdagen_politician_experience_summary LIMIT 10;
-
 DROP VIEW IF EXISTS view_riksdagen_politician_experience_summary CASCADE;
 CREATE VIEW view_riksdagen_politician_experience_summary AS
 

@@ -1,17 +1,3 @@
--- view_riksdagen_politician_career_trajectory_v1.56.sql
--- Politician Career Trajectory View Definition
---
--- Purpose: Analyzes politician career patterns, progression, and trajectories
--- Version: 1.56
--- Category: Analytical View - Career Analysis
---
--- Description:
---   Tracks politician career progression through different roles and positions
---   over time, identifying patterns in career advancement and role changes.
---
--- Usage: View is created/updated during schema deployment
---   SELECT * FROM view_riksdagen_politician_career_trajectory LIMIT 10;
-
 DROP VIEW IF EXISTS view_riksdagen_politician_career_trajectory CASCADE;
 
 CREATE VIEW view_riksdagen_politician_career_trajectory AS

@@ -1,17 +1,3 @@
--- view_riksdagen_politician_role_evolution_v1.56.sql
--- Politician Role Evolution View Definition
---
--- Purpose: Tracks how politician roles change and evolve over time
--- Version: 1.56
--- Category: Analytical View - Role Evolution
---
--- Description:
---   Analyzes role transitions, assignments, and evolution patterns
---   for politicians throughout their careers.
---
--- Usage: View is created/updated during schema deployment
---   SELECT * FROM view_riksdagen_politician_role_evolution LIMIT 10;
-
 DROP VIEW IF EXISTS view_riksdagen_politician_role_evolution CASCADE;
 
 CREATE VIEW view_riksdagen_politician_role_evolution AS
