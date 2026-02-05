@@ -120,7 +120,7 @@ jobs:
           find citizen-intelligence-agency/target/site -name "*.html" | head -20 || echo "No HTML files found yet"
 
       - name: Upload site artifact
-        uses: actions/upload-artifact@6f51ac03b9356f520e9adb1b1b7802705f340c2b # v4.5.0
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
         with:
           name: maven-site
           path: |
