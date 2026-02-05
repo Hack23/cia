@@ -238,43 +238,8 @@ jobs:
       with:
         maven-version: 3.9.9
 
-    # Configure Maven settings for better resilience with multiple mirrors
-    - name: Configure Maven for resilience
-      run: |
-        mkdir -p ~/.m2
-        cat > ~/.m2/settings.xml << 'EOF'
-        <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
-                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                  xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
-                  https://maven.apache.org/xsd/settings-1.0.0.xsd">
-          <mirrors>
-            <!-- Primary: Maven Central via HTTPS -->
-            <mirror>
-              <id>central-secure</id>
-              <url>https://repo1.maven.org/maven2</url>
-              <mirrorOf>central</mirrorOf>
-            </mirror>
-          </mirrors>
-          <profiles>
-            <profile>
-              <id>github-retry</id>
-              <properties>
-                <!-- Increase retry count and timeout for better resilience -->
-                <maven.wagon.http.retryHandler.count>3</maven.wagon.http.retryHandler.count>
-                <maven.wagon.httpconnectionManager.ttlSeconds>120</maven.wagon.httpconnectionManager.ttlSeconds>
-                <maven.wagon.http.pool>true</maven.wagon.http.pool>
-              </properties>
-            </profile>
-          </profiles>
-          <activeProfiles>
-            <activeProfile>github-retry</activeProfile>
-          </activeProfiles>
-        </settings>
-        EOF
-        echo "Maven settings configured for resilience"
-
     - name: Set Version for release
-      run: mvn -B --file parent-pom/pom.xml versions:set -DnewVersion="${{ github.event.inputs.release }}" -Pall-modules versions:commit
+      run: mvn -B --file parent-pom/pom.xml versions:set -DnewVersion="${{ github.event.inputs.release }}" -Pall-modules versions:commit -Dmaven.wagon.http.retryHandler.count=3 -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 -Dmaven.wagon.http.pool=true
 
     - uses: stefanzweifel/git-auto-commit-action@04702edda442b2e678b25b537cec683a1493fcb9 # v7.1.0
       with:
@@ -284,7 +249,7 @@ jobs:
         create_branch: true
 
     - name: Build with Maven
-      run: mvn -B --file pom.xml clean install -Prelease-site,all-modules -DforkMode=once '-Dtest=!**ITest*,!**DocumentationTest*' -Dmaven.test.skip=true -DfailIfNoTests=false
+      run: mvn -B --file pom.xml clean install -Prelease-site,all-modules -DforkMode=once '-Dtest=!**ITest*,!**DocumentationTest*' -Dmaven.test.skip=true -DfailIfNoTests=false -Dmaven.wagon.http.retryHandler.count=3 -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 -Dmaven.wagon.http.pool=true
 
     # Generate artifact attestation for DEB package
     - name: Generate artifact attestation for deb package

@@ -132,6 +132,46 @@ Each workflow configures Maven with optimized settings for resilience:
 
 ## Implementation Across Workflows
 
+## Maven Configuration Strategy
+
+### Command-Line Arguments Instead of settings.xml
+
+Maven configuration is now passed via command-line arguments instead of creating a settings.xml file. This approach:
+- **Keeps configuration visible** in workflow files
+- **Eliminates external file dependencies** 
+- **Simplifies troubleshooting** and maintenance
+- **Reduces workflow complexity**
+
+### Retry and Connection Pooling Configuration
+
+All Maven commands include these arguments for resilience:
+
+```bash
+-Dmaven.wagon.http.retryHandler.count=3 \
+-Dmaven.wagon.httpconnectionManager.ttlSeconds=120 \
+-Dmaven.wagon.http.pool=true
+```
+
+**Benefits:**
+- **3 automatic retries** on failed downloads
+- **120-second connection TTL** for connection reuse
+- **Connection pooling enabled** for efficiency
+
+### Maven Repository Configuration
+
+All Maven repositories are centralized in `parent-pom/pom.xml`:
+
+1. **vaadin.addons** - https://maven.vaadin.com/vaadin-addons/
+   - Vaadin add-on components
+   
+2. **mulesoft** - https://repository.mulesoft.org/nexus/content/repositories/public/
+   - MuleSoft artifacts (under review for removal)
+   
+3. **hack23.ciamodified** - https://raw.githubusercontent.com/Hack23/ciamavenrepo/main/
+   - Custom/modified CIA project artifacts
+
+**Note:** The redundant sonatype repository has been removed from citizen-intelligence-agency/pom.xml as it duplicates Maven Central functionality.
+
 ### Workflows with Maven Caching
 
 All workflows that use Maven have the optimized caching strategy:
