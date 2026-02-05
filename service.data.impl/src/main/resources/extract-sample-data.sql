@@ -104,12 +104,17 @@
 \set VERBOSITY verbose
 
 -- Set statement timeout for individual extraction queries
--- This prevents hanging on complex views or large tables
-SET statement_timeout = '30s';
+-- This prevents individual queries from hanging indefinitely
+-- The shell script provides overall timeout protection
+SET statement_timeout = '120s';  -- Increased from 30s to 120s for complex views
+SET lock_timeout = '30s';        -- Wait max 30s for locks
+SET idle_in_transaction_session_timeout = '180s';  -- Kill idle transactions after 3 minutes
 
 \echo '=================================================='
 \echo 'CIA Sample Data Extraction'
 \echo 'Started:' `date`
+\echo 'Statement timeout: 120s per query'
+\echo 'Lock timeout: 30s'
 \echo '=================================================='
 
 -- ============================================================================
