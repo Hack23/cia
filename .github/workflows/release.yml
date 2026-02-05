@@ -90,18 +90,24 @@ jobs:
         java-version: '25'
         java-package: 'jdk'  # Explicitly specify JDK package
         check-latest: true   # Always get latest patch version
-        cache: 'maven'
+        # Disable built-in cache - we use optimized manual caching below
+        cache: ''
         server-id: 'github' # Optional: For GitHub Packages authentication
         architecture: 'x64'  # Explicitly specify architecture
 
-    - name: Cache Maven and Sonar artifacts
+    # Optimized Maven caching with multiple fallback levels for better resilience
+    - name: Cache Maven dependencies
       uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5.0.3
       with:
         path: |
           ~/.m2/repository
+          ~/.m2/wrapper
           ~/.sonar/cache
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        # Include Maven version in key for isolation
+        key: ${{ runner.os }}-maven-3.9.9-${{ hashFiles('**/pom.xml', '.mvn/**') }}
         restore-keys: |
+          ${{ runner.os }}-maven-3.9.9-${{ hashFiles('**/pom.xml') }}
+          ${{ runner.os }}-maven-3.9.9-
           ${{ runner.os }}-maven-
 
     - name: Cache APT packages
@@ -231,6 +237,41 @@ jobs:
       uses: stCarolas/setup-maven@d6af6abeda15e98926a57b5aa970a96bb37f97d1 # v5
       with:
         maven-version: 3.9.9
+
+    # Configure Maven settings for better resilience with multiple mirrors
+    - name: Configure Maven for resilience
+      run: |
+        mkdir -p ~/.m2
+        cat > ~/.m2/settings.xml << 'EOF'
+        <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                  https://maven.apache.org/xsd/settings-1.0.0.xsd">
+          <mirrors>
+            <!-- Primary: Maven Central via HTTPS -->
+            <mirror>
+              <id>central-secure</id>
+              <url>https://repo1.maven.org/maven2</url>
+              <mirrorOf>central</mirrorOf>
+            </mirror>
+          </mirrors>
+          <profiles>
+            <profile>
+              <id>github-retry</id>
+              <properties>
+                <!-- Increase retry count and timeout for better resilience -->
+                <maven.wagon.http.retryHandler.count>3</maven.wagon.http.retryHandler.count>
+                <maven.wagon.httpconnectionManager.ttlSeconds>120</maven.wagon.httpconnectionManager.ttlSeconds>
+                <maven.wagon.http.pool>true</maven.wagon.http.pool>
+              </properties>
+            </profile>
+          </profiles>
+          <activeProfiles>
+            <activeProfile>github-retry</activeProfile>
+          </activeProfiles>
+        </settings>
+        EOF
+        echo "Maven settings configured for resilience"
 
     - name: Set Version for release
       run: mvn -B --file parent-pom/pom.xml versions:set -DnewVersion="${{ github.event.inputs.release }}" -Pall-modules versions:commit
