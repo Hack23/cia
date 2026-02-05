@@ -1128,12 +1128,16 @@ table_extract AS (
            END AS extraction_type,
            CASE WHEN tablename LIKE 'table_%' THEN tablename ELSE 'table_' || tablename END AS file_prefix
     FROM table_counts
-    WHERE row_count > 0
+    -- CHANGED: Include ALL tables, even empty ones (for header-only CSV files)
+    -- WHERE row_count > 0  -- REMOVED: No longer skip empty tables
 )
 SELECT format(
     '\echo ''[TABLE-%s] Extracting: %I.%I (%s rows of %s total)''' || E'\n' ||
     '\copy (SELECT * FROM %I.%I ORDER BY random() LIMIT %s) TO ''%s_sample.csv'' CSV HEADER' || E'\n' ||
-    '\echo ''  ✓ Completed: %s_sample.csv''' || E'\n',
+    CASE 
+        WHEN row_count = 0 THEN '\echo ''  ℹ️  Empty table - header-only CSV generated: %s_sample.csv''' || E'\n'
+        ELSE '\echo ''  ✓ Completed: %s_sample.csv''' || E'\n'
+    END,
     extraction_type,
     schemaname,
     tablename,
@@ -1142,6 +1146,7 @@ SELECT format(
     schemaname,
     tablename,
     sample_rows,
+    file_prefix,
     file_prefix,
     file_prefix
 )
@@ -1292,7 +1297,8 @@ view_temporal_classification AS (
         c.samples_per_bucket
     FROM view_counts vc
     CROSS JOIN LATERAL cia_classify_temporal_view(vc.viewname) AS c
-    WHERE vc.row_count > 0
+    -- CHANGED: Include ALL views, even empty ones (for header-only CSV files)
+    -- WHERE vc.row_count > 0  -- REMOVED: No longer skip empty views
 ),
 -- ============================================================================
 -- TEMPORAL COLUMN DETECTION
@@ -1416,12 +1422,15 @@ SELECT
                 ') ' ||
                 'SELECT * FROM temporal_strata WHERE rn <= %s LIMIT %s' ||
                 ') TO ''%s_sample.csv'' WITH CSV HEADER' || E'\n' ||
-                '\echo ''  ✓ Completed: %s_sample.csv (temporal stratification: daily)''' || E'\n',
+                CASE 
+                    WHEN row_count = 0 THEN '\echo ''  ℹ️  Empty view - header-only CSV generated: %s_sample.csv''' || E'\n'
+                    ELSE '\echo ''  ✓ Completed: %s_sample.csv (temporal stratification: daily)''' || E'\n'
+                END,
                 viewname,
                 samples_per_bucket,
                 temporal_column, schemaname, viewname, temporal_column,
                 samples_per_bucket, sample_rows,
-                file_prefix, file_prefix
+                file_prefix, file_prefix, file_prefix
             )
         
         -- =====================================================================
@@ -1439,12 +1448,15 @@ SELECT
                 ') ' ||
                 'SELECT * FROM temporal_strata WHERE rn <= %s LIMIT %s' ||
                 ') TO ''%s_sample.csv'' WITH CSV HEADER' || E'\n' ||
-                '\echo ''  ✓ Completed: %s_sample.csv (temporal stratification: weekly)''' || E'\n',
+                CASE 
+                    WHEN row_count = 0 THEN '\echo ''  ℹ️  Empty view - header-only CSV generated: %s_sample.csv''' || E'\n'
+                    ELSE '\echo ''  ✓ Completed: %s_sample.csv (temporal stratification: weekly)''' || E'\n'
+                END,
                 viewname,
                 samples_per_bucket,
                 temporal_column, schemaname, viewname, temporal_column,
                 samples_per_bucket, sample_rows,
-                file_prefix, file_prefix
+                file_prefix, file_prefix, file_prefix
             )
         
         -- =====================================================================
@@ -1462,12 +1474,15 @@ SELECT
                 ') ' ||
                 'SELECT * FROM temporal_strata WHERE rn <= %s LIMIT %s' ||
                 ') TO ''%s_sample.csv'' WITH CSV HEADER' || E'\n' ||
-                '\echo ''  ✓ Completed: %s_sample.csv (temporal stratification: monthly)''' || E'\n',
+                CASE 
+                    WHEN row_count = 0 THEN '\echo ''  ℹ️  Empty view - header-only CSV generated: %s_sample.csv''' || E'\n'
+                    ELSE '\echo ''  ✓ Completed: %s_sample.csv (temporal stratification: monthly)''' || E'\n'
+                END,
                 viewname,
                 samples_per_bucket,
                 temporal_column, schemaname, viewname, temporal_column,
                 samples_per_bucket, sample_rows,
-                file_prefix, file_prefix
+                file_prefix, file_prefix, file_prefix
             )
         
         -- =====================================================================
@@ -1484,12 +1499,15 @@ SELECT
                 ') ' ||
                 'SELECT * FROM temporal_strata WHERE rn <= %s LIMIT %s' ||
                 ') TO ''%s_sample.csv'' WITH CSV HEADER' || E'\n' ||
-                '\echo ''  ✓ Completed: %s_sample.csv (temporal stratification: annual)''' || E'\n',
+                CASE 
+                    WHEN row_count = 0 THEN '\echo ''  ℹ️  Empty view - header-only CSV generated: %s_sample.csv''' || E'\n'
+                    ELSE '\echo ''  ✓ Completed: %s_sample.csv (temporal stratification: annual)''' || E'\n'
+                END,
                 viewname,
                 samples_per_bucket,
                 temporal_column, schemaname, viewname,
                 samples_per_bucket, sample_rows,
-                file_prefix, file_prefix
+                file_prefix, file_prefix, file_prefix
             )
         
         -- =====================================================================
@@ -1507,11 +1525,14 @@ SELECT
                 ') ' ||
                 'SELECT * FROM temporal_buckets WHERE rn = 1 ORDER BY time_bucket DESC LIMIT %s' ||
                 ') TO ''%s_sample.csv'' WITH CSV HEADER' || E'\n' ||
-                '\echo ''  ✓ Completed: %s_sample.csv (temporal stratification: trend)''' || E'\n',
+                CASE 
+                    WHEN row_count = 0 THEN '\echo ''  ℹ️  Empty view - header-only CSV generated: %s_sample.csv''' || E'\n'
+                    ELSE '\echo ''  ✓ Completed: %s_sample.csv (temporal stratification: trend)''' || E'\n'
+                END,
                 viewname,
                 temporal_column, temporal_column, schemaname, viewname,
                 sample_rows,
-                file_prefix, file_prefix
+                file_prefix, file_prefix, file_prefix
             )
         
         -- =====================================================================
@@ -1521,7 +1542,10 @@ SELECT
             format(
                 '\echo ''[VIEW-%s] Extracting: %s (%s rows of %s total)''' || E'\n' ||
                 '\copy (SELECT * FROM %I.%I ORDER BY random() LIMIT %s) TO ''%s_sample.csv'' WITH CSV HEADER' || E'\n' ||
-                '\echo ''  ✓ Completed: %s_sample.csv''' || E'\n',
+                CASE 
+                    WHEN row_count = 0 THEN '\echo ''  ℹ️  Empty view - header-only CSV generated: %s_sample.csv''' || E'\n'
+                    ELSE '\echo ''  ✓ Completed: %s_sample.csv''' || E'\n'
+                END,
                 extraction_type,
                 viewname,
                 sample_rows,
@@ -1529,6 +1553,7 @@ SELECT
                 schemaname,
                 viewname,
                 sample_rows,
+                file_prefix,
                 file_prefix,
                 file_prefix
             )
@@ -2459,8 +2484,12 @@ DROP TABLE IF EXISTS cia_view_row_counts;
 \echo '  - Non-temporal views: Random sampling (existing behavior)'
 \echo ''
 
--- Reset statement timeout
+-- Reset timeouts to defaults
 RESET statement_timeout;
+RESET lock_timeout;
+RESET idle_in_transaction_session_timeout;
 
 \echo ''
-\echo 'Sample data extraction complete with timeout protection (30s per query).'
+\echo 'Sample data extraction complete.'
+\echo 'Timeout protection: 120s per query, 30s lock wait, 180s idle transaction'
+\echo 'Shell-level timeout (if configured): See EXTRACTION_TIMEOUT'
