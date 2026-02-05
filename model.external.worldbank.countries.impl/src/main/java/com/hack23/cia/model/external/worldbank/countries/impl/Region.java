@@ -64,6 +64,13 @@ public class Region
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Instantiates a new region.
+	 */
+	public Region() {
+		super();
+	}
+
 	/** The value. */
     @XmlValue
     protected RegionCategory value;

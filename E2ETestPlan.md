@@ -65,7 +65,7 @@ citizen-intelligence-agency/src/test/java/com/hack23/cia/systemintegrationtest/
     └── TestConstants.java      # Test configuration constants
 ```
 
-**Total Test Suite:** 22 test classes in IntegrationTestSuite (18 user + 4 admin) covering all critical user journeys
+**Total Test Suite:** 22 test classes in IntegrationTestSuiteITest (18 user + 4 admin) covering all critical user journeys
 
 ## 📋 Critical User Journeys
 
@@ -657,7 +657,7 @@ mvn test -Dtest=UserHomeTest
 | **Common Functionality** | 1 | 5+ scenarios | ✅ 100% |
 
 **Overall E2E Test Coverage**: 
-- **Total Test Classes in IntegrationTestSuite**: 22 (18 user + 4 admin)
+- **Total Test Classes in IntegrationTestSuiteITest**: 22 (18 user + 4 admin)
 - **Total Test Files in Repository**: 46 (includes unit tests across all modules)
 - **Total Test Scenarios**: 80+ individual test methods
 - **Critical Path Coverage**: 100% of identified user journeys

@@ -19,7 +19,7 @@ import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualOutcomeSummary;
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
-import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.api.PageLinkFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.vaadin.icons.VaadinIcons;
@@ -34,9 +34,17 @@ import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class LeaderCardUtil.
+ * Utility class for creating leader card components.
  */
 @Component
 public class LeaderCardUtil {
+
+	/**
+	 * Instantiates a new leader card util.
+	 */
+	public LeaderCardUtil() {
+		super();
+	}
 
     /** The application manager. */
     @Autowired

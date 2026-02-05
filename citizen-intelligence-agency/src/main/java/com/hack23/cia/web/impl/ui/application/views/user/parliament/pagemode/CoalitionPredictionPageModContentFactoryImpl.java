@@ -18,6 +18,10 @@
  */
 package com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode;
 
+import static com.hack23.cia.web.impl.ui.application.views.common.constants.ParliamentPageTitleConstants.*;
+
+import com.hack23.cia.web.impl.ui.application.views.common.constants.ParliamentPageTitleConstants;
+
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
@@ -31,7 +35,7 @@ import org.springframework.stereotype.Component;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.impl.CoalitionPredictionService;
 import com.hack23.cia.service.impl.CoalitionPredictionService.CoalitionScenario;
-import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandParliamentRankingConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;

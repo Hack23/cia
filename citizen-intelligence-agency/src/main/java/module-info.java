@@ -80,8 +80,8 @@
  */
 open module com.hack23.cia.web {
 	exports com.hack23.cia.web.impl.ui.application;
-	exports com.hack23.cia.web.impl.ui.application.action;
-	exports com.hack23.cia.web.impl.ui.application.util;
+	exports com.hack23.cia.web.impl.ui.application.views.common.action;
+	exports com.hack23.cia.web.impl.ui.application.views.common.util;
 	exports com.hack23.cia.web.impl.ui.application.web.listener;
 	exports com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode;
 	exports com.hack23.cia.web.impl.ui.application.views.admin.system;
@@ -89,7 +89,9 @@ open module com.hack23.cia.web {
 	exports com.hack23.cia.web.impl.ui.application.views.admin.datasummary;
 	exports com.hack23.cia.web.impl.ui.application.views.admin.agentoperations.pagemode;
 	exports com.hack23.cia.web.impl.ui.application.views.admin.agentoperations;
-	exports com.hack23.cia.web.impl.ui.application.views.admin.common;
+	exports com.hack23.cia.web.impl.ui.application.views.common.abstracts;
+	exports com.hack23.cia.web.impl.ui.application.views.contracts;
+	exports com.hack23.cia.web.impl.ui.application.views.main;
 	exports com.hack23.cia.web.impl.ui.application.views.pageclicklistener;
 	exports com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode;
 	exports com.hack23.cia.web.impl.ui.application.views.user.parliament;
@@ -109,7 +111,6 @@ open module com.hack23.cia.web {
 	exports com.hack23.cia.web.impl.ui.application.views.user.committee;
 	exports com.hack23.cia.web.impl.ui.application.views.user.politician.pagemode;
 	exports com.hack23.cia.web.impl.ui.application.views.user.politician;
-	exports com.hack23.cia.web.impl.ui.application.views.user.common;
 	exports com.hack23.cia.web.impl.ui.application.views.user.govermentbody.pagemode;
 	exports com.hack23.cia.web.impl.ui.application.views.user.govermentbody;
 	exports com.hack23.cia.web.impl.ui.application.views.pageclicklisteners.handlers.impl;
@@ -133,7 +134,6 @@ open module com.hack23.cia.web {
 	exports com.hack23.cia.web.impl.ui.application.views.common.menufactory.api;
 	exports com.hack23.cia.web.impl.ui.application.views.common.chartfactory.impl;
 	exports com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api;
-	exports com.hack23.cia.web.impl.ui.application.views.common;
 
 	// Non-modular dependencies (remove transitive)
 	requires transitive vaadin.compatibility.shared;

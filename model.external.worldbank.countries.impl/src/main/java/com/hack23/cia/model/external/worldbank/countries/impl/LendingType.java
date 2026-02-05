@@ -64,6 +64,13 @@ public class LendingType
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Instantiates a new lending type.
+	 */
+	public LendingType() {
+		super();
+	}
+
 	/** The value. */
     @XmlValue
     protected LendingTypeCategory value;

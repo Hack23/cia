@@ -10,14 +10,14 @@ import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElemen
 import com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement_;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandDocumentConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.paging.PagingUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.PageMode;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;
-import com.hack23.cia.web.impl.ui.application.views.user.document.pagemode.DocumentPageTitleConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.constants.DocumentPageTitleConstants;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Panel;

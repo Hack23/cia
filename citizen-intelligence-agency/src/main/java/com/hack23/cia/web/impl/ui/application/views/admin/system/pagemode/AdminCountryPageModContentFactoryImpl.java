@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode;
 
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractAdminSystemPageModContentFactoryImpl;
+
 import java.util.List;
 
 import org.springframework.security.access.annotation.Secured;
@@ -27,8 +29,8 @@ import com.hack23.cia.model.external.worldbank.countries.impl.CountryElement;
 import com.hack23.cia.model.external.worldbank.countries.impl.CountryElement_;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.admin.AdminViewConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViewConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.PageItemPropertyClickListener;

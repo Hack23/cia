@@ -70,6 +70,13 @@ public class SwedenElectionTypeContainerElement
 	 */
 	private static final long serialVersionUID = 1L;
 
+
+	/**
+	 * Instantiates a new swedenelectiontypecontainerelement.
+	 */
+	public SwedenElectionTypeContainerElement() {
+		super();
+	}
 	/** The election types. */
     @XmlElement(name = "valtyp", required = true)
     protected List<SwedenElectionType> electionTypes = new ArrayList<>();

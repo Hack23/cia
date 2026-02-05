@@ -72,6 +72,13 @@ public class PersonAssignmentData
 	 */
 	private static final long serialVersionUID = 1L;
 
+
+	/**
+	 * Instantiates a new personassignmentdata.
+	 */
+	public PersonAssignmentData() {
+		super();
+	}
 	/** The assignment list. */
     @XmlElement(name = "uppdrag", required = true)
     protected List<AssignmentData> assignmentList = new ArrayList<>();

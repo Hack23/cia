@@ -70,6 +70,13 @@ public class DetailData
 	 */
 	private static final long serialVersionUID = 1L;
 
+
+	/**
+	 * Instantiates a new detaildata.
+	 */
+	public DetailData() {
+		super();
+	}
 	/** The intressent id. */
     @XmlElement(name = "intressent_id", required = true)
     protected String intressentId;

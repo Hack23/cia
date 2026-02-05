@@ -69,6 +69,13 @@ public class PersonContainerData
 	 */
 	private static final long serialVersionUID = 1L;
 
+
+	/**
+	 * Instantiates a new personcontainerdata.
+	 */
+	public PersonContainerData() {
+		super();
+	}
 	/** The person. */
     @XmlElement(required = true)
     protected PersonData person;

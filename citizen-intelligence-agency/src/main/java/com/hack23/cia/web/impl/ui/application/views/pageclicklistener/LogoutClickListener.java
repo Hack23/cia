@@ -34,7 +34,7 @@ import com.vaadin.ui.UI;
 /**
  * The Class LogoutClickListener.
  *
- * @see LogoutClickEvent
+ * @see com.vaadin.ui.Button.ClickEvent
  */
 public class LogoutClickListener extends AbstractClickListener implements ClickListener {
 

@@ -70,6 +70,13 @@ public class Topic
 	 */
 	private static final long serialVersionUID = 1L;
 
+
+	/**
+	 * Instantiates a new topic.
+	 */
+	public Topic() {
+		super();
+	}
 	/** The value. */
     @XmlValue
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)

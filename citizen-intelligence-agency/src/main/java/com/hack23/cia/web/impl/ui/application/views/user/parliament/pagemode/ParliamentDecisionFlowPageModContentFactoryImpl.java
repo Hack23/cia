@@ -18,6 +18,10 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode;
 
+import static com.hack23.cia.web.impl.ui.application.views.common.constants.ParliamentPageTitleConstants.*;
+
+import com.hack23.cia.web.impl.ui.application.views.common.constants.ParliamentPageTitleConstants;
+
 import java.time.LocalDate;
 import java.time.ZoneOffset;
 import java.util.Collections;
@@ -34,7 +38,7 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
-import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.DecisionFlowChartManager;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandParliamentRankingConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
@@ -50,9 +54,17 @@ import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class ParliamentDecisionFlowPageModContentFactoryImpl.
+ * Factory for creating parliament decision flow page content.
  */
 @Component
 public final class ParliamentDecisionFlowPageModContentFactoryImpl extends AbstractParliamentPageModContentFactoryImpl {
+
+	/**
+	 * Instantiates a new parliament decision flow page mod content factory impl.
+	 */
+	public ParliamentDecisionFlowPageModContentFactoryImpl() {
+		super();
+	}
 
     /** The Constant DEFAULT_YEAR. */
     private static final String DEFAULT_YEAR = "2023/24";

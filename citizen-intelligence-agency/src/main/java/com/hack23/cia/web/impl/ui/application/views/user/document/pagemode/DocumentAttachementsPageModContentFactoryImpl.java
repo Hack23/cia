@@ -17,6 +17,7 @@
  *  $HeadURL$
 */
 package com.hack23.cia.web.impl.ui.application.views.user.document.pagemode;
+import com.hack23.cia.web.impl.ui.application.views.common.constants.DocumentViewConstants;
 
 import java.util.List;
 
@@ -30,7 +31,7 @@ import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatu
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer_;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandDocumentConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.impl.ExternalAttachmentDownloadLink;
 import com.hack23.cia.web.impl.ui.application.views.common.pagelinks.impl.StreamSourceImplementation;

@@ -29,6 +29,14 @@ import org.hibernate.search.mapper.pojo.bridge.runtime.IdentifierBridgeToDocumen
 public final class DefaultStringIdentifier implements IdentifierBridge<String> {
 
 	/**
+	 * Instantiates a new default string identifier.
+	 */
+	public DefaultStringIdentifier() {
+		super();
+	}
+
+
+	/**
 	 * From document identifier.
 	 *
 	 * @param arg0 the arg 0

@@ -32,7 +32,7 @@ import com.hack23.cia.service.api.action.user.ChangePasswordRequest;
 import com.hack23.cia.service.api.action.user.DeleteAccountRequest;
 import com.hack23.cia.service.api.action.user.DisableGoogleAuthenticatorCredentialRequest;
 import com.hack23.cia.service.api.action.user.SetGoogleAuthenticatorCredentialRequest;
-import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.UserHomeMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandUserHomeConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;

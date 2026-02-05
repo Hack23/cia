@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 
 import com.hack23.cia.systemintegrationtest.admin.AbstractAdminTest;
 import com.hack23.cia.systemintegrationtest.categories.IntegrationTest;
-import com.hack23.cia.web.impl.ui.application.views.admin.AdminViewConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViewConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandAdminConstants;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.SendEmailClickListener;
 

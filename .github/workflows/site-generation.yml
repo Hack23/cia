@@ -1,0 +1,143 @@
+name: Generate Maven Site
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Run weekly on Sunday at 2 AM UTC
+    - cron: '0 2 * * 0'
+
+permissions: read-all
+
+env:
+  javaVersion: java25
+
+jobs:
+  site-generation:
+    name: Generate Complete Maven Site
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    permissions:
+      contents: write     # Needed for checkout and potential site deployment
+      pages: write        # Needed for GitHub Pages deployment
+      id-token: write     # Required for attestation
+      actions: read       # Basic read access to actions
+
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@e3f713f2d8f53843e71c69a996d56f51aa9adfb9 # v2.14.1
+        with:
+          egress-policy: audit
+          allowed-endpoints: >
+            api.adoptopenjdk.net:443
+            api.adoptium.net:443
+            api.github.com:443
+            archive.apache.org:443
+            azure.archive.ubuntu.com:80
+            azure.archive.ubuntu.com:443
+            security.ubuntu.com:80
+            security.ubuntu.com:443
+            github.com:443
+            maven.java.net:443
+            maven.vaadin.com:443
+            objects.githubusercontent.com:443
+            oss.sonatype.org:443
+            raw.githubusercontent.com:443
+            repo.maven.apache.org:443
+            maven.mirrors.opennms.org:443
+            repo1.maven.org:443
+            repository.mulesoft.org:443
+            tools.google.com:80
+            tools.vaadin.com:443
+            uploads.github.com:443
+            spdx.org:443
+            sonarcloud.io:443
+            repository.jboss.org:443
+            repository.sonatype.org:443
+            files.pythonhosted.org:443
+            pypi.org:443
+            www.bridgecrew.cloud:443
+            docs.github.com:433
+            dlcdn.apache.org:443
+            gwtproject.org:443
+            java.sun.com:443
+            jetty.org:443
+
+      - name: Checkout repository
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          fetch-depth: 2
+
+      - name: Set up JDK 25
+        uses: actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654 # v5.2.0
+        with:
+          distribution: 'temurin'
+          java-version: '25'
+          java-package: 'jdk'
+          check-latest: true
+          cache: 'maven'
+          architecture: 'x64'
+
+      - name: Cache Maven and Sonar artifacts
+        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5.0.3
+        with:
+          path: |
+            ~/.m2/repository
+            ~/.sonar/cache
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - name: Cache APT packages
+        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5.0.3
+        with:
+          path: /var/cache/apt/archives
+          key: ${{ runner.os }}-apt-${{ hashFiles('.github/workflows/site-generation.yml') }}
+          restore-keys: |
+            ${{ runner.os }}-apt-
+
+      - name: APT update
+        run: sudo apt-get update
+
+      - name: Install build tools
+        run: sudo apt-get install -y graphviz build-essential
+
+      - name: Set up Maven
+        uses: stCarolas/setup-maven@d6af6abeda15e98926a57b5aa970a96bb37f97d1 # v5
+        with:
+          maven-version: 3.9.9
+
+      - name: Generate Complete Maven Site
+        run: |
+          cd citizen-intelligence-agency
+          export MAVEN_OPTS="-server -Xmx6048m -Xms6048m --enable-native-access=ALL-UNNAMED"
+          mvn -B clean install site -Prelease-site -Dmaven.test.failure.ignore=true -DforkMode=once -Dannotation.failOnError=false -Dspdx.skip=true
+        env:
+          MAVEN_OPTS: "-server -Xmx6048m -Xms6048m --enable-native-access=ALL-UNNAMED"
+
+      - name: Collect site artifacts
+        run: |
+          echo "Site generated successfully"
+          find citizen-intelligence-agency/target/site -name "*.html" | head -20 || echo "No HTML files found yet"
+
+      - name: Upload site artifact
+        uses: actions/upload-artifact@6f51ac03b9356f520e9adb1b1b7802705f340c2b # v4.5.0
+        with:
+          name: maven-site
+          path: |
+            citizen-intelligence-agency/target/site/
+            */target/site/
+          retention-days: 30
+          if-no-files-found: warn
+
+      - name: Generate site summary
+        run: |
+          echo "## Maven Site Generation Complete ✅" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Generated Artifacts" >> $GITHUB_STEP_SUMMARY
+          echo "- Full Maven site with reports" >> $GITHUB_STEP_SUMMARY
+          echo "- Javadoc documentation" >> $GITHUB_STEP_SUMMARY
+          echo "- Test reports" >> $GITHUB_STEP_SUMMARY
+          echo "- Coverage reports (JaCoCo)" >> $GITHUB_STEP_SUMMARY
+          echo "- Project information reports" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Download the artifacts to view the complete site." >> $GITHUB_STEP_SUMMARY

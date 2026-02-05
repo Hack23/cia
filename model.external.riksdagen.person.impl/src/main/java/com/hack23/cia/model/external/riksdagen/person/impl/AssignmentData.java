@@ -82,6 +82,13 @@ public class AssignmentData
 	 */
 	private static final long serialVersionUID = 1L;
 
+
+	/**
+	 * Instantiates a new assignmentdata.
+	 */
+	public AssignmentData() {
+		super();
+	}
 	/** The org code. */
     @XmlElement(name = "organ_kod", required = true)
     protected String orgCode;

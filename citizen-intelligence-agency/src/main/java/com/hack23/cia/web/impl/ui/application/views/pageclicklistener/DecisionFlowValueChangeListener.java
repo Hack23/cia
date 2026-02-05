@@ -27,7 +27,7 @@ import com.vaadin.ui.UI;
 /**
  * The Class DecisionFlowValueChangeListener.
  *
- * @see DecisionFlowValueChangeEvent
+ * @see com.vaadin.data.HasValue.ValueChangeEvent
  */
 public final class DecisionFlowValueChangeListener implements ValueChangeListener<String> {
 

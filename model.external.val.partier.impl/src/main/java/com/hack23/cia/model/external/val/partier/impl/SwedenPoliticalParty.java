@@ -85,6 +85,13 @@ public class SwedenPoliticalParty
 	 */
 	private static final long serialVersionUID = 1L;
 
+
+	/**
+	 * Instantiates a new swedenpoliticalparty.
+	 */
+	public SwedenPoliticalParty() {
+		super();
+	}
 	/** The party name. */
     @XmlElement(name = "partibeteckning", required = true)
     protected String partyName;

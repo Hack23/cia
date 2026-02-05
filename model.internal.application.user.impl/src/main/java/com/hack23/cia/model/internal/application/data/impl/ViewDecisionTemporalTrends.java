@@ -73,8 +73,8 @@ import com.hack23.cia.model.common.api.ModelObject;
  * @author intelligence-operative
  * @since v1.35 (Decision Intelligence)
  * @see <a href="https://github.com/Hack23/cia/issues/7921">Issue #7921</a>
- * @see ViewRiksdagenPartyDecisionFlow Party-level decision patterns
- * @see ViewRiksdagenPoliticianDecisionPattern Individual politician patterns
+ * @see com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyDecisionFlow
+ * @see com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianDecisionPattern
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ViewDecisionTemporalTrends", propOrder = {

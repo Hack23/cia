@@ -80,6 +80,13 @@ public class CountryElement
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Instantiates a new country element.
+	 */
+	public CountryElement() {
+		super();
+	}
+
 	/** The iso 2 code. */
     @XmlElement(required = true)
     protected String iso2Code;

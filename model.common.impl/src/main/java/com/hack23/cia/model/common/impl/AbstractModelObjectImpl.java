@@ -34,6 +34,13 @@ public abstract class AbstractModelObjectImpl implements ModelObject {
 
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Instantiates a new abstract model object impl.
+	 */
+	protected AbstractModelObjectImpl() {
+		super();
+	}
+
 	@Override
 	public final boolean equals(final Object obj) {
 		return EqualsBuilder.reflectionEquals(this, obj);
