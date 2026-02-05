@@ -300,15 +300,15 @@ ORDER BY indexname;
 \echo '--- Index Usage Statistics ---'
 SELECT
     schemaname,
-    tablename,
-    indexname,
+    relname AS tablename,
+    indexrelname AS indexname,
     idx_scan AS index_scans,
     idx_tup_read AS tuples_read,
     idx_tup_fetch AS tuples_fetched,
     pg_size_pretty(pg_relation_size(indexrelid)) AS index_size
 FROM pg_stat_user_indexes
 WHERE schemaname = 'public'
-AND tablename = 'vote_data'
+AND relname = 'vote_data'
 ORDER BY idx_scan DESC;
 
 \echo ''

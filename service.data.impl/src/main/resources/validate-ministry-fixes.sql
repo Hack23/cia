@@ -79,8 +79,10 @@ SELECT
     COUNT(DISTINCT org_code) AS unique_ministries,
     MIN(assessment_period) AS earliest_period,
     MAX(assessment_period) AS latest_period,
-    AVG(risk_score) AS avg_risk_score,
-    COUNT(*) FILTER (WHERE risk_severity IN ('HIGH', 'CRITICAL')) AS high_risk_count
+    -- Risk level distribution instead of risk_score
+    COUNT(*) FILTER (WHERE risk_level = 'HIGH') AS high_risk_count,
+    COUNT(*) FILTER (WHERE risk_level = 'MEDIUM') AS medium_risk_count,
+    COUNT(*) FILTER (WHERE risk_level = 'LOW') AS low_risk_count
 FROM view_ministry_risk_evolution;
 
 \echo ''

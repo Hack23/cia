@@ -46,7 +46,7 @@ echo "  User: $PSQL_USER"
 echo ""
 
 #
-# Test 1: Syntax Check
+# Test 1: Syntax Check (with actual execution in rolled-back transaction)
 #
 check_syntax() {
     local script="$1"
@@ -54,15 +54,24 @@ check_syntax() {
     
     echo -n "  📝 Syntax check... "
     
-    # Use PostgreSQL to check syntax without executing
+    # Execute script in a transaction that will be rolled back
+    # This checks both syntax and basic execution
+    local output_file="$TEST_OUTPUT/${script_name%.sql}_syntax.log"
     if psql -h "$PSQL_HOST" -p "$PSQL_PORT" -U "$PSQL_USER" -d "$DATABASE" \
         -v ON_ERROR_STOP=1 --single-transaction --set AUTOCOMMIT=off \
-        -f "$script" -o /dev/null 2>&1 | grep -q "ERROR"; then
-        echo -e "${RED}FAIL${NC}"
-        return 1
+        -f "$script" > "$output_file" 2>&1; then
+        # Check if there were any actual ERROR messages (not in RAISE WARNING/NOTICE)
+        if grep "^psql:.*ERROR:" "$output_file" | grep -v "RAISE WARNING\|RAISE NOTICE" | grep -q .; then
+            echo -e "${RED}FAIL${NC} (errors in output)"
+            return 1
+        else
+            echo -e "${GREEN}PASS${NC}"
+            return 0
+        fi
     else
-        echo -e "${GREEN}PASS${NC}"
-        return 0
+        # Command failed
+        echo -e "${RED}FAIL${NC} (execution failed)"
+        return 1
     fi
 }
 
