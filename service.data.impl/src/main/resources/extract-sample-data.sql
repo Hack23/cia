@@ -1153,7 +1153,7 @@ table_extract AS (
 SELECT format(
     '\echo ''[TABLE-%s] Extracting: %I.%I (%s rows of %s total)''' || E'\n' ||
     '\copy (SELECT * FROM %I.%I ORDER BY random() LIMIT %s) TO ''%s_sample.csv'' CSV HEADER' || E'\n' ||
-    'INSERT INTO cia_extraction_tracking (object_type, object_name, status, row_count) VALUES (''table'', ''%I'', CASE WHEN %s = 0 THEN ''empty'' ELSE ''success'' END, %s);' || E'\n' ||
+    'INSERT INTO cia_extraction_tracking (object_type, object_name, status, row_count) VALUES (''table'', ''' || '%s' || ''', CASE WHEN %s = 0 THEN ''empty'' ELSE ''success'' END, %s);' || E'\n' ||
     CASE 
         WHEN row_count = 0 THEN '\echo ''  ℹ️  Empty table - header-only CSV generated: %s_sample.csv''' || E'\n'
         ELSE '\echo ''  ✓ Completed: %s_sample.csv''' || E'\n'
@@ -1445,7 +1445,7 @@ SELECT
                 ') ' ||
                 'SELECT * FROM temporal_strata WHERE rn <= %s LIMIT %s' ||
                 ') TO ''%s_sample.csv'' WITH CSV HEADER' || E'\n' ||
-                'INSERT INTO cia_extraction_tracking (object_type, object_name, status, row_count) VALUES (''view'', ''%I'', CASE WHEN %s = 0 THEN ''empty'' ELSE ''success'' END, %s);' || E'\n' ||
+                'INSERT INTO cia_extraction_tracking (object_type, object_name, status, row_count) VALUES (''view'', ''' || '%s' || ''', CASE WHEN %s = 0 THEN ''empty'' ELSE ''success'' END, %s);' || E'\n' ||
                 CASE 
                     WHEN row_count = 0 THEN '\echo ''  ℹ️  Empty view - header-only CSV generated: %s_sample.csv''' || E'\n'
                     ELSE '\echo ''  ✓ Completed: %s_sample.csv (temporal stratification: daily)''' || E'\n'
@@ -1474,7 +1474,7 @@ SELECT
                 ') ' ||
                 'SELECT * FROM temporal_strata WHERE rn <= %s LIMIT %s' ||
                 ') TO ''%s_sample.csv'' WITH CSV HEADER' || E'\n' ||
-                'INSERT INTO cia_extraction_tracking (object_type, object_name, status, row_count) VALUES (''view''', ''%I''', CASE WHEN %s = 0 THEN ''empty'' ELSE ''success'' END, %s);' || E''
+                'INSERT INTO cia_extraction_tracking (object_type, object_name, status, row_count) VALUES (''view'', ''' || '%s' || ''', CASE WHEN %s = 0 THEN ''empty'' ELSE ''success'' END, %s);' || E''
  ||
                 CASE 
                     WHEN row_count = 0 THEN '\echo ''  ℹ️  Empty view - header-only CSV generated: %s_sample.csv''' || E'\n'
@@ -1504,7 +1504,7 @@ SELECT
                 ') ' ||
                 'SELECT * FROM temporal_strata WHERE rn <= %s LIMIT %s' ||
                 ') TO ''%s_sample.csv'' WITH CSV HEADER' || E'\n' ||
-                'INSERT INTO cia_extraction_tracking (object_type, object_name, status, row_count) VALUES (''view'', ''%I'', CASE WHEN %s = 0 THEN ''empty'' ELSE ''success'' END, %s);' || E'\n' ||
+                'INSERT INTO cia_extraction_tracking (object_type, object_name, status, row_count) VALUES (''view'', ''' || '%s' || ''', CASE WHEN %s = 0 THEN ''empty'' ELSE ''success'' END, %s);' || E'\n' ||
                 CASE 
                     WHEN row_count = 0 THEN '\echo ''  ℹ️  Empty view - header-only CSV generated: %s_sample.csv''' || E'\n'
                     ELSE '\echo ''  ✓ Completed: %s_sample.csv (temporal stratification: monthly)''' || E'\n'
@@ -1532,7 +1532,7 @@ SELECT
                 ') ' ||
                 'SELECT * FROM temporal_strata WHERE rn <= %s LIMIT %s' ||
                 ') TO ''%s_sample.csv'' WITH CSV HEADER' || E'\n' ||
-                'INSERT INTO cia_extraction_tracking (object_type, object_name, status, row_count) VALUES (''view'', ''%I'', CASE WHEN %s = 0 THEN ''empty'' ELSE ''success'' END, %s);' || E'\n' ||
+                'INSERT INTO cia_extraction_tracking (object_type, object_name, status, row_count) VALUES (''view'', ''' || '%s' || ''', CASE WHEN %s = 0 THEN ''empty'' ELSE ''success'' END, %s);' || E'\n' ||
                 CASE 
                     WHEN row_count = 0 THEN '\echo ''  ℹ️  Empty view - header-only CSV generated: %s_sample.csv''' || E'\n'
                     ELSE '\echo ''  ✓ Completed: %s_sample.csv (temporal stratification: annual)''' || E'\n'
@@ -1561,7 +1561,7 @@ SELECT
                 ') ' ||
                 'SELECT * FROM temporal_buckets WHERE rn = 1 ORDER BY time_bucket DESC LIMIT %s' ||
                 ') TO ''%s_sample.csv'' WITH CSV HEADER' || E'\n' ||
-                'INSERT INTO cia_extraction_tracking (object_type, object_name, status, row_count) VALUES (''view'', ''%I'', CASE WHEN %s = 0 THEN ''empty'' ELSE ''success'' END, %s);' || E'\n' ||
+                'INSERT INTO cia_extraction_tracking (object_type, object_name, status, row_count) VALUES (''view'', ''' || '%s' || ''', CASE WHEN %s = 0 THEN ''empty'' ELSE ''success'' END, %s);' || E'\n' ||
                 CASE 
                     WHEN row_count = 0 THEN '\echo ''  ℹ️  Empty view - header-only CSV generated: %s_sample.csv''' || E'\n'
                     ELSE '\echo ''  ✓ Completed: %s_sample.csv (temporal stratification: trend)''' || E'\n'
@@ -1581,7 +1581,7 @@ SELECT
             format(
                 '\echo ''[VIEW-%s] Extracting: %s (%s rows of %s total)''' || E'\n' ||
                 '\copy (SELECT * FROM %I.%I ORDER BY random() LIMIT %s) TO ''%s_sample.csv'' WITH CSV HEADER' || E'\n' ||
-                'INSERT INTO cia_extraction_tracking (object_type, object_name, status, row_count) VALUES (''view'', ''%I'', CASE WHEN %s = 0 THEN ''empty'' ELSE ''success'' END, %s);' || E'\n' ||
+                'INSERT INTO cia_extraction_tracking (object_type, object_name, status, row_count) VALUES (''view'', ''' || '%s' || ''', CASE WHEN %s = 0 THEN ''empty'' ELSE ''success'' END, %s);' || E'\n' ||
                 CASE 
                     WHEN row_count = 0 THEN '\echo ''  ℹ️  Empty view - header-only CSV generated: %s_sample.csv''' || E'\n'
                     ELSE '\echo ''  ✓ Completed: %s_sample.csv''' || E'\n'
