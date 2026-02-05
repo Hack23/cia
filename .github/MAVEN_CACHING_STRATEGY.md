@@ -339,6 +339,17 @@ Monitor these metrics to track caching effectiveness:
 
 ## Changelog
 
+### 2026-02-05 - Configuration Refactoring
+- Replaced settings.xml creation with Maven CLI arguments
+- Removed settings.xml step from all 5 workflows
+- Pass retry configuration as command-line arguments:
+  * `-Dmaven.wagon.http.retryHandler.count=3`
+  * `-Dmaven.wagon.httpconnectionManager.ttlSeconds=120`
+  * `-Dmaven.wagon.http.pool=true`
+- Consolidated Maven repositories in parent-pom/pom.xml
+- Removed redundant sonatype repository from citizen-intelligence-agency/pom.xml
+- Added TODO for mulesoft repository review
+
 ### 2026-02-05 - Initial Implementation
 - Implemented optimized Maven caching strategy
 - Added hierarchical restore keys for better cache hits
