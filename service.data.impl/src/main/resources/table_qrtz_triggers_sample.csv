@@ -1,1 +1,0 @@
-sched_name,trigger_name,trigger_group,job_name,job_group,description,next_fire_time,prev_fire_time,priority,trigger_state,trigger_type,start_time,end_time,calendar_name,misfire_instr,job_data

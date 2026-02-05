@@ -2,6 +2,21 @@
 
 Simple guide for extracting sample data from the CIA database with percentile-based sampling, automated validation, and robust timeout handling.
 
+## ⚠️ IMPORTANT: Do Not Commit Generated CSV Files
+
+**Generated CSV files from extract-sample-data.sql should NOT be committed to the repository.**
+
+- ❌ Do not commit: `service.data.impl/src/main/resources/*.csv`
+- ❌ Do not commit: `service.data.impl/src/main/resources/distinct_values/*.csv`
+- ✅ Keep: `service.data.impl/sample-data/**/*.csv` (real production samples)
+
+The extraction scripts generate CSV files for:
+- Testing SQL script execution
+- Validating schema changes
+- Debugging data extraction logic
+
+These are **temporary test artifacts** and should be removed after validation. Only the `sample-data/` directory contains curated sample data from a real production database for reference purposes.
+
 ## Quick Start
 
 ### Basic Usage
