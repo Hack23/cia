@@ -37,6 +37,15 @@ Essential commands for schema maintenance - copy and use immediately:
 
 ### Updating full_schema.sql
 
+⚠️ **CRITICAL: Never Manually Edit full_schema.sql** ⚠️
+
+The `full_schema.sql` file is a **generated artifact** created by `pg_dump`. It must NEVER be manually edited. Any manual changes will be lost when the file is regenerated.
+
+**If you find syntax errors or compatibility issues:**
+- ✅ Fix the source (Liquibase migrations, database objects)
+- ✅ Regenerate full_schema.sql using the command below
+- ❌ DO NOT manually edit full_schema.sql
+
 To update the `full_schema.sql` file with the latest schema and Liquibase changelog data, use the following command:
 
 ```bash
@@ -52,11 +61,18 @@ sudo -u postgres bash -c "(pg_dump -U postgres -d cia_dev --schema-only --no-own
 1. **First pg_dump**: Exports the complete database schema (tables, views, indexes, constraints) without owner or privilege information
 2. **Second pg_dump**: Exports only data from Liquibase tracking tables (`databasechangelog` and `databasechangeloglock`)
 
+**PostgreSQL Version Compatibility:**
+- ⚠️ The `pg_dump` command must be run against the **same PostgreSQL version** as the target deployment
+- Current CI/CD uses **PostgreSQL 16**
+- If pg_dump is run against PostgreSQL 17+, it may include settings not supported in earlier versions (e.g., `transaction_timeout`)
+- Always verify the PostgreSQL version before running pg_dump: `psql --version`
+
 **When to Update:**
 - After adding new Liquibase migrations (`db-changelog-*.xml` files)
 - After schema changes (table structures, views, indexes)
 - Before major releases
 - After database refactoring
+- When upgrading PostgreSQL version (regenerate from correct version)
 
 ### Liquibase Changelog Testing (Maven Commands)
 
