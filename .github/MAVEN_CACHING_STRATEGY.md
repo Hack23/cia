@@ -139,6 +139,8 @@ All workflows that use Maven have the optimized caching strategy:
 1. **copilot-setup-steps.yml** - Copilot agent environment setup
 2. **release.yml** - Release builds and artifact generation
 3. **codeql-analysis.yml** - Security scanning with CodeQL
+4. **javadoc-generation.yml** - Javadoc documentation generation
+5. **site-generation.yml** - Complete Maven site generation
 
 ### Key Implementation Details
 
@@ -303,7 +305,7 @@ Monitor these metrics to track caching effectiveness:
 - Configured Maven retry mechanism for resilience
 - Removed duplicate cache configurations
 - Added comprehensive documentation
-- Applied to copilot-setup-steps.yml, release.yml, codeql-analysis.yml
+- Applied to copilot-setup-steps.yml, release.yml, codeql-analysis.yml, javadoc-generation.yml, site-generation.yml
 
 ---
 
