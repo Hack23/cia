@@ -44,7 +44,10 @@ fi
 OUTPUT_DIR="${1:-.}"
 DATABASE="${2:-cia_dev}"
 PSQL_USER="${PSQL_USER:-postgres}"
+PSQL_HOST="${PSQL_HOST:-localhost}"
+PSQL_PORT="${PSQL_PORT:-5432}"
 SQL_SCRIPT="$SCRIPT_DIR/extract-sample-data.sql"
+EXTRACTION_TIMEOUT="${EXTRACTION_TIMEOUT:-1800}"  # 30 minutes default timeout
 
 echo "=================================================="
 echo "CIA Sample Data Extraction Wrapper"
@@ -52,10 +55,12 @@ echo "=================================================="
 echo ""
 echo "Configuration:"
 echo "  Database: $DATABASE"
+echo "  Host: $PSQL_HOST:$PSQL_PORT"
 echo "  Output directory: $OUTPUT_DIR"
 echo "  PostgreSQL user: $PSQL_USER"
 echo "  SQL script: $SQL_SCRIPT"
-echo "  Sample size: 50 rows per table/view"
+echo "  Extraction timeout: ${EXTRACTION_TIMEOUT}s"
+echo "  Sample size: 200 rows per table/view (default)"
 echo "  Verbosity: Enhanced debug logging"
 echo "  Exclusions: view_riksdagen_coalition_alignment_matrix (complex query)"
 echo "  Distinct values: Only columns used in view WHERE/JOIN/GROUP BY clauses"
@@ -73,10 +78,52 @@ echo "=================================================="
 echo ""
 echo "Note: Progress will be shown before each operation"
 echo "      Long-running operations will display timestamps"
+echo "      Maximum extraction time: ${EXTRACTION_TIMEOUT}s"
 echo ""
 
-# Run the SQL script with verbose output
-psql -U "$PSQL_USER" -d "$DATABASE" -f "$SQL_SCRIPT" 2>&1 | tee extract-sample-data.log
+# Setup trap for graceful shutdown on timeout or interruption
+cleanup() {
+    local exit_code=$?
+    echo ""
+    echo "⚠️  Extraction interrupted or timed out (exit code: $exit_code)"
+    echo "   Partial results may be available in current directory"
+    echo "   Check extract-sample-data.log for details"
+    return $exit_code
+}
+
+trap cleanup INT TERM
+
+# Run the SQL script with timeout protection
+# Use timeout command to enforce maximum execution time
+# This prevents the script from hanging indefinitely on slow queries
+echo "Starting extraction with ${EXTRACTION_TIMEOUT}s timeout..."
+if command -v timeout >/dev/null 2>&1; then
+    timeout --signal=TERM --kill-after=30 "$EXTRACTION_TIMEOUT" \
+        psql -h "$PSQL_HOST" -p "$PSQL_PORT" -U "$PSQL_USER" -d "$DATABASE" \
+        -f "$SQL_SCRIPT" 2>&1 | tee extract-sample-data.log
+    EXTRACTION_EXIT_CODE=$?
+    
+    if [ $EXTRACTION_EXIT_CODE -eq 124 ]; then
+        echo ""
+        echo "⚠️  WARNING: Extraction timed out after ${EXTRACTION_TIMEOUT}s"
+        echo "   This may indicate slow queries or database performance issues"
+        echo "   Partial results have been saved"
+        echo "   Consider:"
+        echo "   - Increasing timeout: EXTRACTION_TIMEOUT=3600 $0"
+        echo "   - Reviewing slow queries in extract-sample-data.log"
+        echo "   - Optimizing database performance"
+    elif [ $EXTRACTION_EXIT_CODE -eq 137 ]; then
+        echo ""
+        echo "⚠️  WARNING: Extraction was forcefully killed"
+        echo "   Process did not respond to TERM signal within 30s"
+    fi
+else
+    # Fallback without timeout command (not recommended)
+    echo "⚠️  WARNING: 'timeout' command not available, running without timeout protection"
+    psql -h "$PSQL_HOST" -p "$PSQL_PORT" -U "$PSQL_USER" -d "$DATABASE" \
+        -f "$SQL_SCRIPT" 2>&1 | tee extract-sample-data.log
+    EXTRACTION_EXIT_CODE=$?
+fi
 
 echo ""
 echo "=================================================="

@@ -1,6 +1,21 @@
 # Extract Sample Data Scripts
 
-Simple guide for extracting sample data from the CIA database with percentile-based sampling and automated validation.
+Simple guide for extracting sample data from the CIA database with percentile-based sampling, automated validation, and robust timeout handling.
+
+## ⚠️ IMPORTANT: Do Not Commit Generated CSV Files
+
+**Generated CSV files from extract-sample-data.sql should NOT be committed to the repository.**
+
+- ❌ Do not commit: `service.data.impl/src/main/resources/*.csv`
+- ❌ Do not commit: `service.data.impl/src/main/resources/distinct_values/*.csv`
+- ✅ Keep: `service.data.impl/sample-data/**/*.csv` (real production samples)
+
+The extraction scripts generate CSV files for:
+- Testing SQL script execution
+- Validating schema changes
+- Debugging data extraction logic
+
+These are **temporary test artifacts** and should be removed after validation. Only the `sample-data/` directory contains curated sample data from a real production database for reference purposes.
 
 ## Quick Start
 
@@ -13,21 +28,47 @@ cd service.data.impl/src/main/resources
 ```
 
 The script will:
-1. Connect to PostgreSQL database
-2. Extract sample data from all tables and views
+1. Connect to PostgreSQL database (localhost by default)
+2. Extract sample data from all tables and views (that contain data)
 3. Generate percentile distribution summaries (P1-P99)
 4. Validate coverage (temporal, categorical, percentile)
 5. Create CSV files with sample data
 
-### Database Setup
+### Configuration Options
 
-Configure database connection in `sample-data-config.sh` or set environment variables:
+Set environment variables to customize extraction:
 
 ```bash
-export DB_NAME="cia_dev"
-export DB_HOST="localhost"
-export DB_PORT="5432"
-export DB_USER="cia_user"
+# Database connection
+export PSQL_HOST="localhost"      # Database host (default: localhost)
+export PSQL_PORT="5432"           # Database port (default: 5432)
+export PSQL_USER="postgres"       # Database user (default: postgres)
+export PGPASSWORD="your_password" # Database password (required for non-local connections)
+
+# Timeout configuration
+export EXTRACTION_TIMEOUT="3600"  # Total extraction timeout in seconds (default: 1800 = 30 minutes)
+
+# Run extraction
+./extract-sample-data.sh /output/directory cia_dev
+```
+
+### Database Setup
+
+For standard local PostgreSQL:
+
+```bash
+# No configuration needed - defaults work
+./extract-sample-data.sh
+```
+
+For remote or custom PostgreSQL setup:
+
+```bash
+export PSQL_HOST="db.example.com"
+export PSQL_PORT="5432"
+export PSQL_USER="cia_user"
+export PGPASSWORD="your_secure_password"
+./extract-sample-data.sh /tmp/samples cia_prod
 ```
 
 ## Available Scripts
@@ -47,6 +88,18 @@ export DB_USER="cia_user"
 
 ## Configuration
 
+### Environment Variables
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `PSQL_HOST` | `localhost` | PostgreSQL server hostname or IP |
+| `PSQL_PORT` | `5432` | PostgreSQL server port |
+| `PSQL_USER` | `postgres` | PostgreSQL username |
+| `PGPASSWORD` | (none) | PostgreSQL password (required for authentication) |
+| `EXTRACTION_TIMEOUT` | `1800` | Maximum extraction time in seconds (30 minutes) |
+
+### Sample Sizes
+
 Edit `sample-data-config.sh` to customize:
 
 ```bash
@@ -65,6 +118,26 @@ EXPECTED_PARTIES="S M SD C V KD L MP"  # 8 Swedish parties
 # Percentile targets
 PERCENTILE_TARGETS="p1 p10 p25 p50 p75 p90 p99"
 ```
+
+### Timeout Behavior
+
+The script implements **two-level timeout protection**:
+
+1. **Shell-level timeout** (via `timeout` command): Total extraction time limit
+   - Default: 1800 seconds (30 minutes)
+   - Configurable: `EXTRACTION_TIMEOUT=3600 ./extract-sample-data.sh`
+   - Sends TERM signal, then KILL after 30s grace period
+   - Exit codes: 124 (timeout), 137 (killed)
+
+2. **SQL-level timeout** (via PostgreSQL settings): Per-query limits
+   - `statement_timeout`: 120s per query (prevents individual query hangs)
+   - `lock_timeout`: 30s wait for locks (prevents deadlocks)
+   - `idle_in_transaction_session_timeout`: 180s (kills idle transactions)
+
+**Graceful Interruption:**
+- Press Ctrl+C to stop extraction cleanly
+- Partial results are preserved
+- Check `extract-sample-data.log` for details
 
 ## SQL Functions
 
@@ -122,19 +195,76 @@ validate_percentile_coverage
 
 ## Troubleshooting
 
-**Database connection fails:**
-- Check PostgreSQL is running
-- Verify database credentials in config
-- Ensure database exists and schema is loaded
+### Database Connection Issues
 
-**Missing data in samples:**
+**Error: "connection to server on socket failed: FATAL: Peer authentication failed"**
+- **Cause**: PostgreSQL peer authentication requires matching OS user
+- **Solution 1**: Use TCP/IP connection with password
+  ```bash
+  export PSQL_HOST=localhost
+  export PGPASSWORD=your_password
+  ./extract-sample-data.sh
+  ```
+- **Solution 2**: Run as postgres user
+  ```bash
+  sudo -u postgres ./extract-sample-data.sh
+  ```
+
+**Error: "connection refused"**
+- **Cause**: PostgreSQL not running or wrong host/port
+- **Check**: `sudo systemctl status postgresql`
+- **Check**: `netstat -tlnp | grep 5432`
+- **Solution**: Start PostgreSQL or verify correct host/port
+
+### Timeout Issues
+
+**Extraction times out after 30 minutes**
+- **Cause**: Database has very large tables/views or slow queries
+- **Solution 1**: Increase timeout
+  ```bash
+  EXTRACTION_TIMEOUT=7200 ./extract-sample-data.sh  # 2 hours
+  ```
+- **Solution 2**: Optimize database
+  ```sql
+  VACUUM ANALYZE;  -- Update statistics
+  REINDEX DATABASE cia_dev;  -- Rebuild indexes
+  ```
+- **Solution 3**: Review slow queries in log
+  ```bash
+  grep "statement timeout" extract-sample-data.log
+  ```
+
+**Script hangs indefinitely (no timeout)**
+- **Cause**: `timeout` command not available on system
+- **Solution**: Install coreutils
+  ```bash
+  # Debian/Ubuntu
+  sudo apt-get install coreutils
+  
+  # macOS
+  brew install coreutils
+  ```
+
+### Data Issues
+
+**Missing data in samples**
 - Normal if database is empty (test environment)
 - Functions work correctly, will populate with real data
+- Script only extracts tables/views that contain data
+- Check extraction_statistics.csv for details:
+  - "Tables with data: 8" means only 8 tables have rows
+  - "Empty tables: 86" means 86 tables are empty (skipped)
 
-**Validation warnings:**
+**Validation warnings**
 - Expected with empty database
 - Warnings indicate what data is missing
 - Review `validation_coverage_report.csv` for details
+- Will disappear when database is populated
+
+**All tables/views showing as empty**
+- **Cause**: Wrong database selected
+- **Check**: `psql -h localhost -U eris -d cia_dev -c "SELECT COUNT(*) FROM pg_tables WHERE schemaname='public';"`
+- **Solution**: Verify database name and schema are loaded
 
 ## Architecture
 

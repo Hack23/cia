@@ -124,9 +124,9 @@ BEGIN
                           r.schemaname || '.' || r.tablename) INTO table_size;
             
             RAISE NOTICE 'Table: %.% | Rows: % | Columns: % | Size: %', 
-                         r.schemaname, r.tablename, row_count, col_count, table_size;
+                         r.schemaname, r.relname AS tablename, row_count, col_count, table_size;
         EXCEPTION WHEN OTHERS THEN
-            RAISE NOTICE 'Table: %.% | ERROR: %', r.schemaname, r.tablename, SQLERRM;
+            RAISE NOTICE 'Table: %.% | ERROR: %', r.schemaname, r.relname AS tablename, SQLERRM;
         END;
     END LOOP;
 END $$;
@@ -292,7 +292,7 @@ END $$;
 \echo '--- Top 20 Largest Tables by Row Count ---'
 SELECT 
     schemaname,
-    tablename,
+    relname AS tablename,
     n_live_tup AS row_count,
     pg_size_pretty(pg_total_relation_size(schemaname||'.'||tablename)) AS total_size,
     pg_size_pretty(pg_relation_size(schemaname||'.'||tablename)) AS table_size,
@@ -306,7 +306,7 @@ LIMIT 20;
 \echo '--- Top 20 Largest Tables by Total Size ---'
 SELECT 
     schemaname,
-    tablename,
+    relname AS tablename,
     n_live_tup AS row_count,
     pg_size_pretty(pg_total_relation_size(schemaname||'.'||tablename)) AS total_size
 FROM pg_stat_user_tables
@@ -317,7 +317,7 @@ LIMIT 20;
 \echo ''
 \echo '--- Tables with No Data ---'
 SELECT 
-    t.tablename,
+    t.relname AS tablename,
     COALESCE(s.n_live_tup, 0) AS row_count
 FROM pg_tables t
 LEFT JOIN pg_stat_user_tables s ON t.tablename = s.relname AND t.schemaname = s.schemaname
@@ -404,7 +404,7 @@ ORDER BY usage_count DESC;
 \echo '--- Index Usage Statistics (Top 20 by Size) ---'
 SELECT 
     schemaname,
-    tablename,
+    relname AS tablename,
     indexname,
     pg_size_pretty(pg_relation_size(indexrelid)) AS index_size,
     idx_scan AS number_of_scans,
@@ -419,7 +419,7 @@ LIMIT 20;
 \echo '--- Unused Indexes (No Scans) ---'
 SELECT 
     schemaname,
-    tablename,
+    relname AS tablename,
     indexname,
     pg_size_pretty(pg_relation_size(indexrelid)) AS index_size
 FROM pg_stat_user_indexes
@@ -458,7 +458,7 @@ COPY (
     ),
     'tables', (
       SELECT json_agg(json_build_object(
-        'name', tablename,
+        'name', relname AS tablename,
         'rows', n_live_tup,
         'size', pg_size_pretty(pg_total_relation_size(schemaname||'.'||tablename))
       ))

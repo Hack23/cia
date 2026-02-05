@@ -1,6 +1,6 @@
 -- Enable detailed query analysis with timeout protection
 SET track_io_timing = ON;
-SET enable_timing = ON;
+-- Note: timing is controlled within EXPLAIN command, not as a session parameter
 SET statement_timeout = '60s';  -- 60-second timeout per query
 
 \echo '=========================================================================='
@@ -300,15 +300,15 @@ ORDER BY indexname;
 \echo '--- Index Usage Statistics ---'
 SELECT
     schemaname,
-    tablename,
-    indexname,
+    relname AS tablename,
+    indexrelname AS indexname,
     idx_scan AS index_scans,
     idx_tup_read AS tuples_read,
     idx_tup_fetch AS tuples_fetched,
     pg_size_pretty(pg_relation_size(indexrelid)) AS index_size
 FROM pg_stat_user_indexes
 WHERE schemaname = 'public'
-AND tablename = 'vote_data'
+AND relname = 'vote_data'
 ORDER BY idx_scan DESC;
 
 \echo ''
@@ -384,7 +384,7 @@ ORDER BY attname;
 -- Reset settings
 RESET statement_timeout;
 RESET track_io_timing;
-RESET enable_timing;
+-- RESET enable_timing;  -- Not a valid PostgreSQL parameter
 
 \echo ''
 \echo 'Analysis complete with timeout protection (60s per query).'
