@@ -1,12 +1,15 @@
 package com.hack23.cia.systemintegrationtest.user.parliament;
 
+import static com.hack23.cia.web.impl.ui.application.views.common.constants.ParliamentPageTitleConstants.*;
+
+import com.hack23.cia.web.impl.ui.application.views.common.constants.ParliamentPageTitleConstants;
+
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 import com.hack23.cia.systemintegrationtest.AbstractUITest;
 import com.hack23.cia.systemintegrationtest.categories.IntegrationTest;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandParliamentRankingConstants;
-import com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode.ParliamentPageTitleConstants;
 import com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode.ParliamentViewConstants;
 
 /**

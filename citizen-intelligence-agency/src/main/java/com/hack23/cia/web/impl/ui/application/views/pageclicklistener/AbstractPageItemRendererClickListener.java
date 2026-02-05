@@ -29,7 +29,7 @@ import com.vaadin.ui.renderers.ClickableRenderer.RendererClickEvent;
  * The class AbstractPageItemRendererClickListener.
  *
  * @param <T>            the generic type
- * @see AbstractPageItemRendererClickEvent
+ * @see com.vaadin.ui.renderers.ClickableRenderer.RendererClickEvent
  */
 public abstract class AbstractPageItemRendererClickListener<T> implements PageItemRendererClickListener<T> {
 

@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode;
 
+import static com.hack23.cia.web.impl.ui.application.views.common.constants.ParliamentPageTitleConstants.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ParliamentMenuItemFactory;
@@ -27,7 +29,8 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 /**
  * The Class AbstractPoliticianPageModContentFactoryImpl.
  */
-abstract class AbstractParliamentPageModContentFactoryImpl extends AbstractBasicPageModContentFactoryImpl {
+abstract class AbstractParliamentPageModContentFactoryImpl extends AbstractBasicPageModContentFactoryImpl 
+		implements ParliamentViewConstants {
 
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.PARLIAMENT_RANKING_VIEW_NAME;

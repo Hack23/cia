@@ -29,7 +29,7 @@ import org.slf4j.LoggerFactory;
 /**
  * The Class PageItemPropertyClickListener.
  *
- * @see PageItemPropertyClickEvent
+ * @see com.vaadin.ui.renderers.ClickableRenderer.RendererClickEvent
  */
 public final class PageItemPropertyClickListener extends AbstractPageItemRendererClickListener<Serializable> {
 

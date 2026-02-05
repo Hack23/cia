@@ -1633,7 +1633,7 @@
         <configuration>
           <includes>
             <include>**/UnitTestSuite.java</include>
-            <include>**/IntegrationTestSuite.java</include>
+            <include>**/IntegrationTestSuiteITest.java</include>
           </includes>
           <excludes>
             <exclude>**/*$*</exclude>

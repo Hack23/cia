@@ -31,10 +31,11 @@ import com.vaadin.ui.Notification;
 /**
  * The Class ManageUserAccountClickListener.
  *
- * @see ManageUserAccountClickEvent
+ * @see com.vaadin.ui.Button.ClickEvent
  */
 public class ManageUserAccountClickListener extends AbstractClickListener implements ClickListener {
 
+	/** The Constant MANAGE_USER_ACCOUNT_DESC. */
 	public static final String MANAGE_USER_ACCOUNT_DESC = "manage user account desc";
 
 	/** The Constant LOG_MSG_SEND_EMAIL. */

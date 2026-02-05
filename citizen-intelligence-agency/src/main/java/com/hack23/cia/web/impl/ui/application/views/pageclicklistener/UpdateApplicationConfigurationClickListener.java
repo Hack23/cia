@@ -33,7 +33,7 @@ import com.vaadin.ui.UI;
 /**
  * The Class UpdateApplicationConfigurationClickListener.
  *
- * @see UpdateApplicationConfigurationClickEvent
+ * @see com.vaadin.ui.Button.ClickEvent
  */
 public class UpdateApplicationConfigurationClickListener extends AbstractClickListener implements ClickListener {
 

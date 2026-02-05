@@ -64,6 +64,13 @@ public class IncomeLevel
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Instantiates a new income level.
+	 */
+	public IncomeLevel() {
+		super();
+	}
+
 	/** The value. */
     @XmlValue
     protected IncomeLevelCategory value;

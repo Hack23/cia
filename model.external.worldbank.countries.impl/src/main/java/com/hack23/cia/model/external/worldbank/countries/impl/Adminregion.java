@@ -64,6 +64,13 @@ public class Adminregion
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Instantiates a new adminregion.
+	 */
+	public Adminregion() {
+		super();
+	}
+
 	/** The value. */
     @XmlValue
     protected AdminRegionCategory value;

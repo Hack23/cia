@@ -7,8 +7,8 @@ import com.hack23.cia.systemintegrationtest.AbstractUITest;
 import com.hack23.cia.systemintegrationtest.categories.IntegrationTest;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandCommitteeRankingConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandUserConstants;
-import com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode.CommitteeViewConstants;
-import com.hack23.cia.web.impl.ui.application.views.user.committeeranking.pagemode.CommitteeRankingConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.constants.CommitteeViewConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.constants.CommitteeRankingConstants;
 
 /**
  * The Class UserCommitteeRankingITest.

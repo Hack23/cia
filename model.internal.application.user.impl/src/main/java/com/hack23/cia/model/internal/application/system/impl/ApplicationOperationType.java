@@ -13,10 +13,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for ApplicationOperationType.
+ * <p>Java class for ApplicationOperationType.</p>
  *
- * <p>The following schema fragment specifies the expected content contained within this class.
- * <p>
+ * <p>The following schema fragment specifies the expected content contained within this class.</p>
  * <pre>
  * &lt;simpleType name="ApplicationOperationType"&gt;
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string"&gt;

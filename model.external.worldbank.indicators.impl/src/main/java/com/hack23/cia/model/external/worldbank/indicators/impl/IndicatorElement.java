@@ -76,6 +76,13 @@ public class IndicatorElement
 	 */
 	private static final long serialVersionUID = 1L;
 
+
+	/**
+	 * Instantiates a new indicatorelement.
+	 */
+	public IndicatorElement() {
+		super();
+	}
 	/** The indicator name. */
     @XmlElement(name = "name", required = true)
     protected String indicatorName;

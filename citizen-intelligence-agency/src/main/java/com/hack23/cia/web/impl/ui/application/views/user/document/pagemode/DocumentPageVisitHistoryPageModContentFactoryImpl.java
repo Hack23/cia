@@ -17,12 +17,13 @@
  *  $HeadURL$
 */
 package com.hack23.cia.web.impl.ui.application.views.user.document.pagemode;
+import com.hack23.cia.web.impl.ui.application.views.common.constants.DocumentViewConstants;
 
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
-import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandDocumentConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.vaadin.ui.Layout;

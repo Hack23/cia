@@ -62,6 +62,13 @@ public class Country
 	 */
 	private static final long serialVersionUID = 1L;
 
+
+	/**
+	 * Instantiates a new country.
+	 */
+	public Country() {
+		super();
+	}
 	/** The value. */
     @XmlValue
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)

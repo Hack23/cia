@@ -28,7 +28,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.action.user.SearchDocumentRequest;
-import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.DocumentMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandMainViewConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl;
@@ -37,7 +37,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.SearchDocumentClickListener;
 import com.hack23.cia.web.impl.ui.application.views.pageclicklisteners.handlers.impl.SearchDocumentResponseHandlerImpl;
-import com.hack23.cia.web.impl.ui.application.views.user.document.pagemode.DocumentPageTitleConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.constants.DocumentPageTitleConstants;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;

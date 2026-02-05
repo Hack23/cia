@@ -43,10 +43,18 @@ import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class GovernmentBodyChartDataManagerImpl.
+ * Manager for government body chart data operations.
  */
 @Service
 public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataManagerImpl
         implements GovernmentBodyChartDataManager {
+
+	/**
+	 * Instantiates a new government body chart data manager impl.
+	 */
+	public GovernmentBodyChartDataManagerImpl() {
+		super();
+	}
 
     /** The Constant ALL_GOVERNMENT_BODIES. */
     private static final String ALL_GOVERNMENT_BODIES = "All government bodies";

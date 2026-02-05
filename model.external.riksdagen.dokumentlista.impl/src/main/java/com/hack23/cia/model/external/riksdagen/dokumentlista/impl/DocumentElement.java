@@ -105,6 +105,13 @@ public class DocumentElement
 	 */
 	private static final long serialVersionUID = 1L;
 
+
+	/**
+	 * Instantiates a new documentelement.
+	 */
+	public DocumentElement() {
+		super();
+	}
 	/** The hit. */
     @XmlElement(name = "traff", required = true)
     protected BigInteger hit;

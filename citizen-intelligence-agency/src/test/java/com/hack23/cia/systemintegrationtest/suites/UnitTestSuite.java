@@ -24,7 +24,7 @@ import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.UpdateAppl
 import com.hack23.cia.web.impl.ui.application.views.pageclicklistener.UpdateSearchIndexClickListenerTest;
 
 /**
- * The Class IntegrationTestSuite.
+ * The Class UnitTestSuite.
  */
 @RunWith(Suite.class)
 @DisplayName("CIA Unit Tests")

@@ -36,14 +36,14 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.model.internal.application.system.impl.ApplicationOperationType;
 import com.hack23.cia.service.api.ApplicationManager;
 import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
-import com.hack23.cia.web.impl.ui.application.util.UserContextUtil;
+import com.hack23.cia.web.impl.ui.application.views.common.util.UserContextUtil;
 import com.vaadin.server.Page;
 import com.vaadin.ui.UI;
 
 /**
  * The Class AuthorizationFailureEventListener.
  *
- * @see AuthorizationFailureEventEvent
+ * @see org.springframework.security.access.event.AuthorizationFailureEvent
  */
 @Service
 public final class AuthorizationFailureEventListener implements ApplicationListener<AuthorizationFailureEvent> {

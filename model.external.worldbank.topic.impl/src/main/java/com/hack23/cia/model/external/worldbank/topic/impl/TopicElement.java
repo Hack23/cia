@@ -68,6 +68,13 @@ public class TopicElement
 	 */
 	private static final long serialVersionUID = 1L;
 
+
+	/**
+	 * Instantiates a new topicelement.
+	 */
+	public TopicElement() {
+		super();
+	}
 	/** The source note. */
     @XmlElement(required = true)
     protected String sourceNote;

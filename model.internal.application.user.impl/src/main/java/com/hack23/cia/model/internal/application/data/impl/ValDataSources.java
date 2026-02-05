@@ -14,10 +14,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for ValDataSources.
+ * <p>Java class for ValDataSources.</p>
  *
- * <p>The following schema fragment specifies the expected content contained within this class.
- * <p>
+ * <p>The following schema fragment specifies the expected content contained within this class.</p>
  * <pre>
  * &lt;simpleType name="ValDataSources"&gt;
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string"&gt;

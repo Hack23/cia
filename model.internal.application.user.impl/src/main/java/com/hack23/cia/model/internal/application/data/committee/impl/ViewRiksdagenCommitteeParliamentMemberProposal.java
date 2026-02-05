@@ -40,14 +40,13 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * <p><b>Intelligence Purpose:</b> Supporting data access for temporal analysis of committee
  * workload, member proposal activity, and legislative agenda patterns.</p>
  * 
- * <p><b>Use Cases:</b>
+ * <p><b>Use Cases:</b></p>
  * <ul>
  *   <li>Committee workload analysis (motion volume per committee)</li>
  *   <li>Member proposal productivity tracking</li>
  *   <li>Legislative agenda analysis</li>
  *   <li>Committee-member engagement metrics</li>
  * </ul>
- * </p>
  * 
  * <p>Database view: {@code view_riksdagen_committee_parliament_member_proposal}</p>
  * 

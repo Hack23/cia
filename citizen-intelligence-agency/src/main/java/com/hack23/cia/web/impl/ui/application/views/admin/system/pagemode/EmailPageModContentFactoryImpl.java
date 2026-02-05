@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode;
 
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractAdminSystemPageModContentFactoryImpl;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -27,8 +29,8 @@ import org.springframework.web.context.request.RequestContextHolder;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.action.admin.SendEmailRequest;
-import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.admin.AdminViewConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViewConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;

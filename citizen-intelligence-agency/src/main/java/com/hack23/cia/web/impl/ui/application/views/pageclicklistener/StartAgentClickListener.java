@@ -30,7 +30,7 @@ import com.vaadin.ui.Button.ClickListener;
 /**
  * The Class StartAgentClickListener.
  *
- * @see StartAgentClickEvent
+ * @see com.vaadin.ui.Button.ClickEvent
  */
 public final class StartAgentClickListener extends AbstractClickListener implements ClickListener {
 

@@ -44,6 +44,13 @@ import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api
 @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 public final class DecisionDataFactoryImpl implements DecisionDataFactory {
 
+	/**
+	 * Instantiates a new decision data factory impl.
+	 */
+	public DecisionDataFactoryImpl() {
+		super();
+	}
+
     /**  Document type constants. */
     private static final String PROPOSITION = "Proposition";
 

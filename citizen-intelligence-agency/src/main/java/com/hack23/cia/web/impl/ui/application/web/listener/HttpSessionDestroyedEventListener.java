@@ -39,7 +39,7 @@ import com.hack23.cia.service.api.action.application.DestroyApplicationSessionRe
 /**
  * The Class HttpSessionDestroyedEventListener.
  *
- * @see HttpSessionDestroyedEventEvent
+ * @see org.springframework.security.web.session.HttpSessionDestroyedEvent
  */
 @Service
 public final class HttpSessionDestroyedEventListener implements ApplicationListener<HttpSessionDestroyedEvent> {

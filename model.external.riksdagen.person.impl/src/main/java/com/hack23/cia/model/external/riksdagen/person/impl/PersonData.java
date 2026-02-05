@@ -85,6 +85,13 @@ public class PersonData
 	 */
 	private static final long serialVersionUID = 1L;
 
+
+	/**
+	 * Instantiates a new persondata.
+	 */
+	public PersonData() {
+		super();
+	}
 	/** The hangar guid. */
     @XmlElement(name = "hangar_guid", required = true)
     protected String hangarGuid;

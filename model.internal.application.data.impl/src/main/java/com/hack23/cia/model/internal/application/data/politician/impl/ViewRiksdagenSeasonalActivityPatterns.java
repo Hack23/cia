@@ -313,7 +313,7 @@ public class ViewRiksdagenSeasonalActivityPatterns implements Serializable {
 	 *
 	 * @return the q baseline ballots
 	 */
-	public BigDecimal getQBaselineBallots() {
+	public BigDecimal getqBaselineBallots() {
 		return qBaselineBallots;
 	}
 
@@ -322,7 +322,7 @@ public class ViewRiksdagenSeasonalActivityPatterns implements Serializable {
 	 *
 	 * @param qBaselineBallots the new q baseline ballots
 	 */
-	public void setQBaselineBallots(final BigDecimal qBaselineBallots) {
+	public void setqBaselineBallots(final BigDecimal qBaselineBallots) {
 		this.qBaselineBallots = qBaselineBallots;
 	}
 
@@ -331,7 +331,7 @@ public class ViewRiksdagenSeasonalActivityPatterns implements Serializable {
 	 *
 	 * @return the q stddev ballots
 	 */
-	public BigDecimal getQStddevBallots() {
+	public BigDecimal getqStddevBallots() {
 		return qStddevBallots;
 	}
 
@@ -340,7 +340,7 @@ public class ViewRiksdagenSeasonalActivityPatterns implements Serializable {
 	 *
 	 * @param qStddevBallots the new q stddev ballots
 	 */
-	public void setQStddevBallots(final BigDecimal qStddevBallots) {
+	public void setqStddevBallots(final BigDecimal qStddevBallots) {
 		this.qStddevBallots = qStddevBallots;
 	}
 
@@ -367,7 +367,7 @@ public class ViewRiksdagenSeasonalActivityPatterns implements Serializable {
 	 *
 	 * @return the q baseline docs
 	 */
-	public BigDecimal getQBaselineDocs() {
+	public BigDecimal getqBaselineDocs() {
 		return qBaselineDocs;
 	}
 
@@ -376,7 +376,7 @@ public class ViewRiksdagenSeasonalActivityPatterns implements Serializable {
 	 *
 	 * @param qBaselineDocs the new q baseline docs
 	 */
-	public void setQBaselineDocs(final BigDecimal qBaselineDocs) {
+	public void setqBaselineDocs(final BigDecimal qBaselineDocs) {
 		this.qBaselineDocs = qBaselineDocs;
 	}
 
@@ -385,7 +385,7 @@ public class ViewRiksdagenSeasonalActivityPatterns implements Serializable {
 	 *
 	 * @return the q stddev docs
 	 */
-	public BigDecimal getQStddevDocs() {
+	public BigDecimal getqStddevDocs() {
 		return qStddevDocs;
 	}
 
@@ -394,7 +394,7 @@ public class ViewRiksdagenSeasonalActivityPatterns implements Serializable {
 	 *
 	 * @param qStddevDocs the new q stddev docs
 	 */
-	public void setQStddevDocs(final BigDecimal qStddevDocs) {
+	public void setqStddevDocs(final BigDecimal qStddevDocs) {
 		this.qStddevDocs = qStddevDocs;
 	}
 
@@ -421,7 +421,7 @@ public class ViewRiksdagenSeasonalActivityPatterns implements Serializable {
 	 *
 	 * @return the q baseline attendance
 	 */
-	public BigDecimal getQBaselineAttendance() {
+	public BigDecimal getqBaselineAttendance() {
 		return qBaselineAttendance;
 	}
 
@@ -430,7 +430,7 @@ public class ViewRiksdagenSeasonalActivityPatterns implements Serializable {
 	 *
 	 * @param qBaselineAttendance the new q baseline attendance
 	 */
-	public void setQBaselineAttendance(final BigDecimal qBaselineAttendance) {
+	public void setqBaselineAttendance(final BigDecimal qBaselineAttendance) {
 		this.qBaselineAttendance = qBaselineAttendance;
 	}
 
@@ -439,7 +439,7 @@ public class ViewRiksdagenSeasonalActivityPatterns implements Serializable {
 	 *
 	 * @return the q stddev attendance
 	 */
-	public BigDecimal getQStddevAttendance() {
+	public BigDecimal getqStddevAttendance() {
 		return qStddevAttendance;
 	}
 
@@ -448,7 +448,7 @@ public class ViewRiksdagenSeasonalActivityPatterns implements Serializable {
 	 *
 	 * @param qStddevAttendance the new q stddev attendance
 	 */
-	public void setQStddevAttendance(final BigDecimal qStddevAttendance) {
+	public void setqStddevAttendance(final BigDecimal qStddevAttendance) {
 		this.qStddevAttendance = qStddevAttendance;
 	}
 

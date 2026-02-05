@@ -26,10 +26,11 @@ import com.vaadin.ui.Notification;
 /**
  * The Class RefreshDataViewsClickListener.
  *
- * @see RefreshDataViewsClickEvent
+ * @see com.vaadin.ui.Button.ClickEvent
  */
 public final class RefreshDataViewsClickListener extends AbstractClickListener implements ClickListener {
 
+	/** The Constant REFRESH_DESC. */
 	public static final String REFRESH_DESC = "refresh desc";
 
 	/** The Constant REFRESH_VIEWS_STARTED. */

@@ -59,6 +59,13 @@ public class Source
 	 */
 	private static final long serialVersionUID = 1L;
 
+
+	/**
+	 * Instantiates a new source.
+	 */
+	public Source() {
+		super();
+	}
 	/** The value. */
     @XmlValue
     protected String value;

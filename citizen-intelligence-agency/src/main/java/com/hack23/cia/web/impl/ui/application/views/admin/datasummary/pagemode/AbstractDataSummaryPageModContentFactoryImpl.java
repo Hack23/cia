@@ -18,7 +18,7 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.admin.datasummary.pagemode;
 
-import com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode.AbstractAdminSystemPageModContentFactoryImpl;
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractAdminSystemPageModContentFactoryImpl;
 
 /**
  * The Class AbstractDataSummaryPageModContentFactoryImpl.

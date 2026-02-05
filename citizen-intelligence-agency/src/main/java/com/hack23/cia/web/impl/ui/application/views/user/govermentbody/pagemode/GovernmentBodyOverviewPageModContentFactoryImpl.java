@@ -17,6 +17,11 @@
  *  $HeadURL$
 */
 package com.hack23.cia.web.impl.ui.application.views.user.govermentbody.pagemode;
+import com.hack23.cia.web.impl.ui.application.views.common.constants.GovernmentBodyViewConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.constants.GovernmentBodyLayoutConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.constants.GovernmentBodyHeaderConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.constants.GovernmentBodyIconConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.constants.GovernmentBodyDescriptionConstants;
 
 import java.util.List;
 
@@ -25,7 +30,7 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
-import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandGovernmentBodyConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;

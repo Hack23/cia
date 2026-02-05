@@ -172,19 +172,19 @@ public class ViewRiksdagenSeasonalAnomalyDetection implements Serializable {
 		this.documentsProduced = documentsProduced;
 	}
 
-	public BigDecimal getQBaselineBallots() {
+	public BigDecimal getqBaselineBallots() {
 		return qBaselineBallots;
 	}
 
-	public void setQBaselineBallots(final BigDecimal qBaselineBallots) {
+	public void setqBaselineBallots(final BigDecimal qBaselineBallots) {
 		this.qBaselineBallots = qBaselineBallots;
 	}
 
-	public BigDecimal getQStddevBallots() {
+	public BigDecimal getqStddevBallots() {
 		return qStddevBallots;
 	}
 
-	public void setQStddevBallots(final BigDecimal qStddevBallots) {
+	public void setqStddevBallots(final BigDecimal qStddevBallots) {
 		this.qStddevBallots = qStddevBallots;
 	}
 
@@ -196,19 +196,19 @@ public class ViewRiksdagenSeasonalAnomalyDetection implements Serializable {
 		this.ballotZScore = ballotZScore;
 	}
 
-	public BigDecimal getQBaselineDocs() {
+	public BigDecimal getqBaselineDocs() {
 		return qBaselineDocs;
 	}
 
-	public void setQBaselineDocs(final BigDecimal qBaselineDocs) {
+	public void setqBaselineDocs(final BigDecimal qBaselineDocs) {
 		this.qBaselineDocs = qBaselineDocs;
 	}
 
-	public BigDecimal getQStddevDocs() {
+	public BigDecimal getqStddevDocs() {
 		return qStddevDocs;
 	}
 
-	public void setQStddevDocs(final BigDecimal qStddevDocs) {
+	public void setqStddevDocs(final BigDecimal qStddevDocs) {
 		this.qStddevDocs = qStddevDocs;
 	}
 
@@ -220,19 +220,19 @@ public class ViewRiksdagenSeasonalAnomalyDetection implements Serializable {
 		this.docZScore = docZScore;
 	}
 
-	public BigDecimal getQBaselineAttendance() {
+	public BigDecimal getqBaselineAttendance() {
 		return qBaselineAttendance;
 	}
 
-	public void setQBaselineAttendance(final BigDecimal qBaselineAttendance) {
+	public void setqBaselineAttendance(final BigDecimal qBaselineAttendance) {
 		this.qBaselineAttendance = qBaselineAttendance;
 	}
 
-	public BigDecimal getQStddevAttendance() {
+	public BigDecimal getqStddevAttendance() {
 		return qStddevAttendance;
 	}
 
-	public void setQStddevAttendance(final BigDecimal qStddevAttendance) {
+	public void setqStddevAttendance(final BigDecimal qStddevAttendance) {
 		this.qStddevAttendance = qStddevAttendance;
 	}
 
