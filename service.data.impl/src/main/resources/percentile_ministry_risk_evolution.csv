@@ -1,0 +1,10 @@
+column_name,data_type,distinct_count,min_value,max_value,p1,p10,p25,median,p75,p90,p99
+year,numeric,0,,,,,,,,,
+quarter,numeric,0,,,,,,,,,
+documents_produced,bigint,0,,,,,,,,,
+legislative_count,bigint,0,,,,,,,,,
+active_members,bigint,0,,,,,,,,,
+document_trend,bigint,0,,,,,,,,,
+legislative_trend,bigint,0,,,,,,,,,
+staffing_trend,bigint,0,,,,,,,,,
+rolling_avg_documents,numeric,0,,,,,,,,,

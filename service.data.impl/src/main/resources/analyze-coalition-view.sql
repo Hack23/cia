@@ -1,6 +1,6 @@
 -- Enable detailed query analysis with timeout protection
 SET track_io_timing = ON;
-SET enable_timing = ON;
+-- Note: timing is controlled within EXPLAIN command, not as a session parameter
 SET statement_timeout = '60s';  -- 60-second timeout per query
 
 \echo '=========================================================================='

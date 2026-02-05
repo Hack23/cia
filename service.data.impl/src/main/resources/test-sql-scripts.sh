@@ -4,7 +4,8 @@
 # Tests all SQL scripts for syntax, documentation, and execution
 #
 
-set -e
+# Don't exit on error - we want to test all scripts
+set +e
 
 # Colors for output
 RED='\033[0;31m'
