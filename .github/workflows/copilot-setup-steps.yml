@@ -177,16 +177,22 @@ jobs:
         with:
           distribution: "temurin"
           java-version: "25"
-          cache: "maven"
+          # Disable built-in cache - we use optimized manual caching below
+          cache: ""
 
-      - name: Cache Maven and Sonar artifacts
+      # Optimized Maven caching with multiple fallback levels for better resilience
+      - name: Cache Maven dependencies
         uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5.0.3
         with:
           path: |
             ~/.m2/repository
+            ~/.m2/wrapper
             ~/.sonar/cache
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          # Include Maven version in key for isolation
+          key: ${{ runner.os }}-maven-3.9.9-${{ hashFiles('**/pom.xml', '.mvn/**') }}
           restore-keys: |
+            ${{ runner.os }}-maven-3.9.9-${{ hashFiles('**/pom.xml') }}
+            ${{ runner.os }}-maven-3.9.9-
             ${{ runner.os }}-maven-
       - name: Cache APT packages
         uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5.0.3
@@ -404,10 +410,10 @@ jobs:
           maven-version: 3.9.9
 
       - name: Build with Maven
-        run: mvn -B clean install --file pom.xml -Prelease-site,all-modules -DskipTests -DfailIfNoTests=false -Dsurefire.failIfNoSpecifiedTests=false -Dspdx.skip=true
+        run: mvn -B clean install --file pom.xml -Prelease-site,all-modules -DskipTests -DfailIfNoTests=false -Dsurefire.failIfNoSpecifiedTests=false -Dspdx.skip=true -Dmaven.wagon.http.retryHandler.count=3 -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 -Dmaven.wagon.http.pool=true
 
       - name: Run all unit tests (excluding integration tests)
-        run: mvn -B test --file pom.xml -Prelease-site,all-modules -Dtest='!**ITest*,!**/XmlDateTypeAdapterTest,!**/XmlTimeTypeAdapterTest,!**/XmlDateTimeTypeAdapterTest' -DfailIfNoTests=false -Dsurefire.failIfNoSpecifiedTests=false -Dspdx.skip=true
+        run: mvn -B test --file pom.xml -Prelease-site,all-modules -Dtest='!**ITest*,!**/XmlDateTypeAdapterTest,!**/XmlTimeTypeAdapterTest,!**/XmlDateTimeTypeAdapterTest' -DfailIfNoTests=false -Dsurefire.failIfNoSpecifiedTests=false -Dspdx.skip=true -Dmaven.wagon.http.retryHandler.count=3 -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 -Dmaven.wagon.http.pool=true
         continue-on-error: true
 
       - name: Validate app startup and database connection

@@ -74,17 +74,23 @@ jobs:
           java-version: '25'
           java-package: 'jdk'
           check-latest: true
-          cache: 'maven'
+          # Disable built-in cache - we use optimized manual caching below
+          cache: ''
           architecture: 'x64'
 
-      - name: Cache Maven and Sonar artifacts
+      # Optimized Maven caching with multiple fallback levels for better resilience
+      - name: Cache Maven dependencies
         uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5.0.3
         with:
           path: |
             ~/.m2/repository
+            ~/.m2/wrapper
             ~/.sonar/cache
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          # Include Maven version in key for isolation
+          key: ${{ runner.os }}-maven-3.9.9-${{ hashFiles('**/pom.xml', '.mvn/**') }}
           restore-keys: |
+            ${{ runner.os }}-maven-3.9.9-${{ hashFiles('**/pom.xml') }}
+            ${{ runner.os }}-maven-3.9.9-
             ${{ runner.os }}-maven-
 
       - name: Cache APT packages
@@ -110,7 +116,7 @@ jobs:
         run: |
           cd citizen-intelligence-agency
           export MAVEN_OPTS="-server -Xmx6048m -Xms6048m --enable-native-access=ALL-UNNAMED"
-          mvn -B clean install site -Prelease-site -Dmaven.test.failure.ignore=true -DforkMode=once -Dannotation.failOnError=false -Dspdx.skip=true
+          mvn -B clean install site -Prelease-site -Dmaven.test.failure.ignore=true -DforkMode=once -Dannotation.failOnError=false -Dspdx.skip=true -Dmaven.wagon.http.retryHandler.count=3 -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 -Dmaven.wagon.http.pool=true
         env:
           MAVEN_OPTS: "-server -Xmx6048m -Xms6048m --enable-native-access=ALL-UNNAMED"
 

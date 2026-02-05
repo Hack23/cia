@@ -90,18 +90,24 @@ jobs:
         java-version: '25'
         java-package: 'jdk'  # Explicitly specify JDK package
         check-latest: true   # Always get latest patch version
-        cache: 'maven'
+        # Disable built-in cache - we use optimized manual caching below
+        cache: ''
         server-id: 'github' # Optional: For GitHub Packages authentication
         architecture: 'x64'  # Explicitly specify architecture
 
-    - name: Cache Maven and Sonar artifacts
+    # Optimized Maven caching with multiple fallback levels for better resilience
+    - name: Cache Maven dependencies
       uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5.0.3
       with:
         path: |
           ~/.m2/repository
+          ~/.m2/wrapper
           ~/.sonar/cache
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        # Include Maven version in key for isolation
+        key: ${{ runner.os }}-maven-3.9.9-${{ hashFiles('**/pom.xml', '.mvn/**') }}
         restore-keys: |
+          ${{ runner.os }}-maven-3.9.9-${{ hashFiles('**/pom.xml') }}
+          ${{ runner.os }}-maven-3.9.9-
           ${{ runner.os }}-maven-
 
     - name: Cache APT packages
@@ -233,7 +239,7 @@ jobs:
         maven-version: 3.9.9
 
     - name: Set Version for release
-      run: mvn -B --file parent-pom/pom.xml versions:set -DnewVersion="${{ github.event.inputs.release }}" -Pall-modules versions:commit
+      run: mvn -B --file parent-pom/pom.xml versions:set -DnewVersion="${{ github.event.inputs.release }}" -Pall-modules versions:commit -Dmaven.wagon.http.retryHandler.count=3 -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 -Dmaven.wagon.http.pool=true
 
     - uses: stefanzweifel/git-auto-commit-action@04702edda442b2e678b25b537cec683a1493fcb9 # v7.1.0
       with:
@@ -243,7 +249,7 @@ jobs:
         create_branch: true
 
     - name: Build with Maven
-      run: mvn -B --file pom.xml clean install -Prelease-site,all-modules -DforkMode=once '-Dtest=!**ITest*,!**DocumentationTest*' -Dmaven.test.skip=true -DfailIfNoTests=false
+      run: mvn -B --file pom.xml clean install -Prelease-site,all-modules -DforkMode=once '-Dtest=!**ITest*,!**DocumentationTest*' -Dmaven.test.skip=true -DfailIfNoTests=false -Dmaven.wagon.http.retryHandler.count=3 -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 -Dmaven.wagon.http.pool=true
 
     # Generate artifact attestation for DEB package
     - name: Generate artifact attestation for deb package

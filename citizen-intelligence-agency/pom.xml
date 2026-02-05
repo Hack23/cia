@@ -1424,19 +1424,6 @@
       <artifactId>commons-beanutils</artifactId>
     </dependency>
   </dependencies>
-  <repositories>
-    <repository>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-      <id>sonatype</id>
-      <name>Sonatype Open Source Repository</name>
-      <url>https://oss.sonatype.org/content/groups/public</url>
-    </repository>
-  </repositories>
   <build>
     <plugins>
       <plugin>
