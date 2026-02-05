@@ -30,7 +30,7 @@ jobs:
       pages: write        # Needed for GitHub Pages deployment
       id-token: write     # Required for attestation
       actions: read       # Basic read access to actions
-
+      pull-requests: write
 
     steps:
       - name: Harden Runner
