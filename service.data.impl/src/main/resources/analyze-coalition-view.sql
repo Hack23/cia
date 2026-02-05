@@ -384,7 +384,7 @@ ORDER BY attname;
 -- Reset settings
 RESET statement_timeout;
 RESET track_io_timing;
-RESET enable_timing;
+-- RESET enable_timing;  -- Not a valid PostgreSQL parameter
 
 \echo ''
 \echo 'Analysis complete with timeout protection (60s per query).'

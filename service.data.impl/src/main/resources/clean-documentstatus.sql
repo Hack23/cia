@@ -1,1 +1,27 @@
+-- clean-documentstatus.sql
+-- Document Status Cleanup Script
+--
+-- Purpose: Removes orphaned document_data records that don't have corresponding
+--          entries in document_status_container
+--
+-- Usage:
+--   psql -U postgres -d cia_dev -f clean-documentstatus.sql
+--
+-- ⚠️  WARNING: DESTRUCTIVE OPERATION
+--   This script permanently deletes data. Always backup before running.
+--   Test on non-production database first.
+--
+-- Description:
+--   Cleans up document_data table by removing records that lack a foreign key
+--   reference in document_status_container. This helps maintain referential
+--   integrity and reduces database bloat from orphaned records.
+--
+-- Output: Number of rows deleted from document_data
+--
+-- Safety: Run within a transaction for testing:
+--   BEGIN;
+--   \i clean-documentstatus.sql
+--   SELECT COUNT(*) FROM document_data; -- Verify count
+--   ROLLBACK; -- or COMMIT if satisfied
+
 delete  from document_data where id not in (select DOCUMENT_DOCUMENT_STATUS_CON_0 from document_status_container);
