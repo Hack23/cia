@@ -157,6 +157,25 @@ SET idle_in_transaction_session_timeout = '180s';  -- Kill idle transactions aft
 \echo '  Output format: CSV with headers'
 \echo ''
 
+-- ===========================================================================
+-- SECTION 0.0.5: CREATE EXTRACTION TRACKING TABLE
+-- ===========================================================================
+-- Track success/failure of each extraction for summary report at end
+-- ===========================================================================
+
+DROP TABLE IF EXISTS cia_extraction_tracking;
+CREATE TEMP TABLE cia_extraction_tracking (
+    object_type TEXT,
+    object_name TEXT,
+    status TEXT,  -- 'success', 'timeout', 'error', 'empty', 'skipped'
+    error_message TEXT,
+    row_count BIGINT,
+    extraction_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ON COMMIT PRESERVE ROWS;
+
+\echo 'Created extraction tracking table: cia_extraction_tracking'
+\echo ''
+
 DROP FUNCTION IF EXISTS cia_tmp_rowcount(text, text);
 CREATE OR REPLACE FUNCTION cia_tmp_rowcount(schema_name text, rel_name text)
 RETURNS bigint
@@ -1134,6 +1153,7 @@ table_extract AS (
 SELECT format(
     '\echo ''[TABLE-%s] Extracting: %I.%I (%s rows of %s total)''' || E'\n' ||
     '\copy (SELECT * FROM %I.%I ORDER BY random() LIMIT %s) TO ''%s_sample.csv'' CSV HEADER' || E'\n' ||
+    'INSERT INTO cia_extraction_tracking (object_type, object_name, status, row_count) VALUES (''table'', ''%I'', CASE WHEN %s = 0 THEN ''empty'' ELSE ''success'' END, %s);' || E'\n' ||
     CASE 
         WHEN row_count = 0 THEN '\echo ''  ℹ️  Empty table - header-only CSV generated: %s_sample.csv''' || E'\n'
         ELSE '\echo ''  ✓ Completed: %s_sample.csv''' || E'\n'
@@ -1147,6 +1167,9 @@ SELECT format(
     tablename,
     sample_rows,
     file_prefix,
+    tablename,
+    row_count,
+    row_count,
     file_prefix,
     file_prefix
 )
@@ -1422,6 +1445,7 @@ SELECT
                 ') ' ||
                 'SELECT * FROM temporal_strata WHERE rn <= %s LIMIT %s' ||
                 ') TO ''%s_sample.csv'' WITH CSV HEADER' || E'\n' ||
+                'INSERT INTO cia_extraction_tracking (object_type, object_name, status, row_count) VALUES (''view'', ''%I'', CASE WHEN %s = 0 THEN ''empty'' ELSE ''success'' END, %s);' || E'\n' ||
                 CASE 
                     WHEN row_count = 0 THEN '\echo ''  ℹ️  Empty view - header-only CSV generated: %s_sample.csv''' || E'\n'
                     ELSE '\echo ''  ✓ Completed: %s_sample.csv (temporal stratification: daily)''' || E'\n'
@@ -1430,7 +1454,9 @@ SELECT
                 samples_per_bucket,
                 temporal_column, schemaname, viewname, temporal_column,
                 samples_per_bucket, sample_rows,
-                file_prefix, file_prefix, file_prefix
+                file_prefix,
+                viewname, row_count, row_count,
+                file_prefix, file_prefix
             )
         
         -- =====================================================================
@@ -1448,6 +1474,8 @@ SELECT
                 ') ' ||
                 'SELECT * FROM temporal_strata WHERE rn <= %s LIMIT %s' ||
                 ') TO ''%s_sample.csv'' WITH CSV HEADER' || E'\n' ||
+                'INSERT INTO cia_extraction_tracking (object_type, object_name, status, row_count) VALUES (''view''', ''%I''', CASE WHEN %s = 0 THEN ''empty'' ELSE ''success'' END, %s);' || E''
+ ||
                 CASE 
                     WHEN row_count = 0 THEN '\echo ''  ℹ️  Empty view - header-only CSV generated: %s_sample.csv''' || E'\n'
                     ELSE '\echo ''  ✓ Completed: %s_sample.csv (temporal stratification: weekly)''' || E'\n'
@@ -1456,7 +1484,9 @@ SELECT
                 samples_per_bucket,
                 temporal_column, schemaname, viewname, temporal_column,
                 samples_per_bucket, sample_rows,
-                file_prefix, file_prefix, file_prefix
+                file_prefix,
+                viewname, row_count, row_count,
+                file_prefix, file_prefix
             )
         
         -- =====================================================================
@@ -1474,6 +1504,7 @@ SELECT
                 ') ' ||
                 'SELECT * FROM temporal_strata WHERE rn <= %s LIMIT %s' ||
                 ') TO ''%s_sample.csv'' WITH CSV HEADER' || E'\n' ||
+                'INSERT INTO cia_extraction_tracking (object_type, object_name, status, row_count) VALUES (''view'', ''%I'', CASE WHEN %s = 0 THEN ''empty'' ELSE ''success'' END, %s);' || E'\n' ||
                 CASE 
                     WHEN row_count = 0 THEN '\echo ''  ℹ️  Empty view - header-only CSV generated: %s_sample.csv''' || E'\n'
                     ELSE '\echo ''  ✓ Completed: %s_sample.csv (temporal stratification: monthly)''' || E'\n'
@@ -1482,7 +1513,9 @@ SELECT
                 samples_per_bucket,
                 temporal_column, schemaname, viewname, temporal_column,
                 samples_per_bucket, sample_rows,
-                file_prefix, file_prefix, file_prefix
+                file_prefix,
+                viewname, row_count, row_count,
+                file_prefix, file_prefix
             )
         
         -- =====================================================================
@@ -1499,6 +1532,7 @@ SELECT
                 ') ' ||
                 'SELECT * FROM temporal_strata WHERE rn <= %s LIMIT %s' ||
                 ') TO ''%s_sample.csv'' WITH CSV HEADER' || E'\n' ||
+                'INSERT INTO cia_extraction_tracking (object_type, object_name, status, row_count) VALUES (''view'', ''%I'', CASE WHEN %s = 0 THEN ''empty'' ELSE ''success'' END, %s);' || E'\n' ||
                 CASE 
                     WHEN row_count = 0 THEN '\echo ''  ℹ️  Empty view - header-only CSV generated: %s_sample.csv''' || E'\n'
                     ELSE '\echo ''  ✓ Completed: %s_sample.csv (temporal stratification: annual)''' || E'\n'
@@ -1507,7 +1541,9 @@ SELECT
                 samples_per_bucket,
                 temporal_column, schemaname, viewname,
                 samples_per_bucket, sample_rows,
-                file_prefix, file_prefix, file_prefix
+                file_prefix,
+                viewname, row_count, row_count,
+                file_prefix, file_prefix
             )
         
         -- =====================================================================
@@ -1525,6 +1561,7 @@ SELECT
                 ') ' ||
                 'SELECT * FROM temporal_buckets WHERE rn = 1 ORDER BY time_bucket DESC LIMIT %s' ||
                 ') TO ''%s_sample.csv'' WITH CSV HEADER' || E'\n' ||
+                'INSERT INTO cia_extraction_tracking (object_type, object_name, status, row_count) VALUES (''view'', ''%I'', CASE WHEN %s = 0 THEN ''empty'' ELSE ''success'' END, %s);' || E'\n' ||
                 CASE 
                     WHEN row_count = 0 THEN '\echo ''  ℹ️  Empty view - header-only CSV generated: %s_sample.csv''' || E'\n'
                     ELSE '\echo ''  ✓ Completed: %s_sample.csv (temporal stratification: trend)''' || E'\n'
@@ -1532,7 +1569,9 @@ SELECT
                 viewname,
                 temporal_column, temporal_column, schemaname, viewname,
                 sample_rows,
-                file_prefix, file_prefix, file_prefix
+                file_prefix,
+                viewname, row_count, row_count,
+                file_prefix, file_prefix
             )
         
         -- =====================================================================
@@ -1542,6 +1581,7 @@ SELECT
             format(
                 '\echo ''[VIEW-%s] Extracting: %s (%s rows of %s total)''' || E'\n' ||
                 '\copy (SELECT * FROM %I.%I ORDER BY random() LIMIT %s) TO ''%s_sample.csv'' WITH CSV HEADER' || E'\n' ||
+                'INSERT INTO cia_extraction_tracking (object_type, object_name, status, row_count) VALUES (''view'', ''%I'', CASE WHEN %s = 0 THEN ''empty'' ELSE ''success'' END, %s);' || E'\n' ||
                 CASE 
                     WHEN row_count = 0 THEN '\echo ''  ℹ️  Empty view - header-only CSV generated: %s_sample.csv''' || E'\n'
                     ELSE '\echo ''  ✓ Completed: %s_sample.csv''' || E'\n'
@@ -1551,6 +1591,13 @@ SELECT
                 sample_rows,
                 row_count,
                 schemaname,
+                viewname,
+                sample_rows,
+                file_prefix,
+                viewname, row_count, row_count,
+                file_prefix,
+                file_prefix
+            )
                 viewname,
                 sample_rows,
                 file_prefix,
@@ -2490,6 +2537,123 @@ RESET lock_timeout;
 RESET idle_in_transaction_session_timeout;
 
 \echo ''
+\echo '=================================================='
+\echo '=== EXTRACTION SUMMARY REPORT                  ==='
+\echo '=================================================='
+\echo ''
+
+-- Generate extraction summary report
+DO $$
+DECLARE
+    total_tables INTEGER;
+    total_views INTEGER;
+    success_tables INTEGER;
+    success_views INTEGER;
+    empty_tables INTEGER;
+    empty_views INTEGER;
+    timeout_tables INTEGER;
+    timeout_views INTEGER;
+    error_tables INTEGER;
+    error_views INTEGER;
+BEGIN
+    -- Count totals
+    SELECT COUNT(*) INTO total_tables FROM cia_extraction_tracking WHERE object_type = 'table';
+    SELECT COUNT(*) INTO total_views FROM cia_extraction_tracking WHERE object_type = 'view';
+    
+    -- Count by status for tables
+    SELECT COUNT(*) INTO success_tables FROM cia_extraction_tracking WHERE object_type = 'table' AND status = 'success';
+    SELECT COUNT(*) INTO empty_tables FROM cia_extraction_tracking WHERE object_type = 'table' AND status = 'empty';
+    SELECT COUNT(*) INTO timeout_tables FROM cia_extraction_tracking WHERE object_type = 'table' AND status = 'timeout';
+    SELECT COUNT(*) INTO error_tables FROM cia_extraction_tracking WHERE object_type = 'table' AND status = 'error';
+    
+    -- Count by status for views
+    SELECT COUNT(*) INTO success_views FROM cia_extraction_tracking WHERE object_type = 'view' AND status = 'success';
+    SELECT COUNT(*) INTO empty_views FROM cia_extraction_tracking WHERE object_type = 'view' AND status = 'empty';
+    SELECT COUNT(*) INTO timeout_views FROM cia_extraction_tracking WHERE object_type = 'view' AND status = 'timeout';
+    SELECT COUNT(*) INTO error_views FROM cia_extraction_tracking WHERE object_type = 'view' AND status = 'error';
+    
+    -- Display summary
+    RAISE NOTICE '';
+    RAISE NOTICE 'Extraction Summary:';
+    RAISE NOTICE '==================';
+    RAISE NOTICE '';
+    RAISE NOTICE 'TABLES:';
+    RAISE NOTICE '  Total processed: %', total_tables;
+    RAISE NOTICE '  ✅ Success (with data): %', success_tables;
+    RAISE NOTICE '  ℹ️  Empty (header only): %', empty_tables;
+    IF timeout_tables > 0 THEN
+        RAISE NOTICE '  ⏱️  Timed out: %', timeout_tables;
+    END IF;
+    IF error_tables > 0 THEN
+        RAISE NOTICE '  ❌ Errors: %', error_tables;
+    END IF;
+    RAISE NOTICE '';
+    RAISE NOTICE 'VIEWS:';
+    RAISE NOTICE '  Total processed: %', total_views;
+    RAISE NOTICE '  ✅ Success (with data): %', success_views;
+    RAISE NOTICE '  ℹ️  Empty (header only): %', empty_views;
+    IF timeout_views > 0 THEN
+        RAISE NOTICE '  ⏱️  Timed out: %', timeout_views;
+    END IF;
+    IF error_views > 0 THEN
+        RAISE NOTICE '  ❌ Errors: %', error_views;
+    END IF;
+    RAISE NOTICE '';
+    
+    -- Show details of timeouts/errors if any
+    IF timeout_tables > 0 OR timeout_views > 0 OR error_tables > 0 OR error_views > 0 THEN
+        RAISE NOTICE '================================================';
+        RAISE NOTICE 'DETAILS OF TIMEOUTS AND ERRORS:';
+        RAISE NOTICE '================================================';
+        RAISE NOTICE '';
+    END IF;
+END $$;
+
+-- Export detailed tracking report to CSV
+\echo 'Exporting extraction summary to: extraction_summary_report.csv'
+\copy (SELECT object_type, object_name, status, row_count, error_message, extraction_time FROM cia_extraction_tracking ORDER BY object_type, status, object_name) TO 'extraction_summary_report.csv' CSV HEADER
+
+-- Show failed extractions if any
+DO $$
+DECLARE
+    failed_rec RECORD;
+    has_failures BOOLEAN := FALSE;
+BEGIN
+    FOR failed_rec IN 
+        SELECT object_type, object_name, status, error_message
+        FROM cia_extraction_tracking
+        WHERE status IN ('timeout', 'error')
+        ORDER BY object_type, status, object_name
+    LOOP
+        IF NOT has_failures THEN
+            RAISE NOTICE '';
+            RAISE NOTICE 'Failed Extractions:';
+            RAISE NOTICE '-------------------';
+            has_failures := TRUE;
+        END IF;
+        
+        IF failed_rec.status = 'timeout' THEN
+            RAISE NOTICE '⏱️  TIMEOUT: % - %', failed_rec.object_type, failed_rec.object_name;
+        ELSE
+            RAISE NOTICE '❌ ERROR: % - %', failed_rec.object_type, failed_rec.object_name;
+            IF failed_rec.error_message IS NOT NULL THEN
+                RAISE NOTICE '   Message: %', failed_rec.error_message;
+            END IF;
+        END IF;
+    END LOOP;
+    
+    IF has_failures THEN
+        RAISE NOTICE '';
+        RAISE NOTICE 'See extraction_summary_report.csv for complete details';
+        RAISE NOTICE '';
+    END IF;
+END $$;
+
+\echo ''
+\echo '=================================================='
 \echo 'Sample data extraction complete.'
 \echo 'Timeout protection: 120s per query, 30s lock wait, 180s idle transaction'
 \echo 'Shell-level timeout (if configured): See EXTRACTION_TIMEOUT'
+\echo ''
+\echo 'Summary report: extraction_summary_report.csv'
+\echo '=================================================='
