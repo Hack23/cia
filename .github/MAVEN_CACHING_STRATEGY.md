@@ -78,38 +78,14 @@ Cache restoration follows a hierarchical fallback strategy:
 
 ## Maven Configuration for Resilience
 
-### Settings.xml Configuration
+### Maven Resilience Configuration
 
-Each workflow configures Maven with optimized settings for resilience:
+Maven resilience features are configured via command-line arguments passed to all Maven commands:
 
-```xml
-<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
-          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
-          https://maven.apache.org/xsd/settings-1.0.0.xsd">
-  <mirrors>
-    <!-- Primary: Maven Central via HTTPS -->
-    <mirror>
-      <id>central-secure</id>
-      <url>https://repo1.maven.org/maven2</url>
-      <mirrorOf>central</mirrorOf>
-    </mirror>
-  </mirrors>
-  <profiles>
-    <profile>
-      <id>github-retry</id>
-      <properties>
-        <!-- Increase retry count and timeout for better resilience -->
-        <maven.wagon.http.retryHandler.count>3</maven.wagon.http.retryHandler.count>
-        <maven.wagon.httpconnectionManager.ttlSeconds>120</maven.wagon.httpconnectionManager.ttlSeconds>
-        <maven.wagon.http.pool>true</maven.wagon.http.pool>
-      </properties>
-    </profile>
-  </profiles>
-  <activeProfiles>
-    <activeProfile>github-retry</activeProfile>
-  </activeProfiles>
-</settings>
+```bash
+-Dmaven.wagon.http.retryHandler.count=3
+-Dmaven.wagon.httpconnectionManager.ttlSeconds=120
+-Dmaven.wagon.http.pool=true
 ```
 
 ### Resilience Features
@@ -126,9 +102,7 @@ Each workflow configures Maven with optimized settings for resilience:
    - `maven.wagon.httpconnectionManager.ttlSeconds=120` - Keep connections alive
    - Balances connection reuse with resource cleanup
 
-4. **Secure Mirror**
-   - Uses HTTPS for Maven Central (`https://repo1.maven.org/maven2`)
-   - Ensures secure artifact downloads
+**Note:** Maven uses Maven Central by default with HTTPS, ensuring secure artifact downloads without explicit mirror configuration.
 
 ## Implementation Across Workflows
 
@@ -164,13 +138,10 @@ All Maven repositories are centralized in `parent-pom/pom.xml`:
 1. **vaadin.addons** - https://maven.vaadin.com/vaadin-addons/
    - Vaadin add-on components
    
-2. **mulesoft** - https://repository.mulesoft.org/nexus/content/repositories/public/
-   - MuleSoft artifacts (under review for removal)
-   
-3. **hack23.ciamodified** - https://raw.githubusercontent.com/Hack23/ciamavenrepo/main/
+2. **hack23.ciamodified** - https://raw.githubusercontent.com/Hack23/ciamavenrepo/main/
    - Custom/modified CIA project artifacts
 
-**Note:** The redundant sonatype repository has been removed from citizen-intelligence-agency/pom.xml as it duplicates Maven Central functionality.
+**Note:** The redundant sonatype and mulesoft repositories have been removed as they were not being used and duplicated Maven Central functionality.
 
 ### Workflows with Maven Caching
 
@@ -194,10 +165,10 @@ All workflows that use Maven have the optimized caching strategy:
    - Same cache keys across workflows = maximum reuse
    - Shared cache between workflows on same platform
 
-3. **Maven Settings Injection**
-   - Settings configured before build in each workflow
-   - Ensures retry and resilience features are active
-   - No persistent changes to repository
+3. **Maven CLI Retry Configuration**
+   - Retry and resilience options are passed as Maven command-line arguments in each workflow
+   - Ensures resilience features are active without relying on a custom settings.xml
+   - No settings files are created or persisted in the repository
 
 ## Cache Behavior
 
@@ -311,7 +282,7 @@ Monitor these metrics to track caching effectiveness:
 3. **Configuration Updates**
    - Keep retry settings optimized for GitHub Actions
    - Monitor Maven repository availability
-   - Update mirrors if needed
+   - Update repository configurations in parent-pom/pom.xml if needed
 
 ## Security Considerations
 
@@ -348,7 +319,7 @@ Monitor these metrics to track caching effectiveness:
   * `-Dmaven.wagon.http.pool=true`
 - Consolidated Maven repositories in parent-pom/pom.xml
 - Removed redundant sonatype repository from citizen-intelligence-agency/pom.xml
-- Added TODO for mulesoft repository review
+- Removed unused mulesoft repository from parent-pom/pom.xml
 
 ### 2026-02-05 - Initial Implementation
 - Implemented optimized Maven caching strategy

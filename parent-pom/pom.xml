@@ -696,17 +696,6 @@
       <id>vaadin.addons</id>
       <url>https://maven.vaadin.com/vaadin-addons/</url>
     </repository>
-    <!-- TODO: Verify if mulesoft repository is still needed - no MuleSoft dependencies found in current project -->
-    <repository>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-      <id>mulesoft</id>
-      <url>https://repository.mulesoft.org/nexus/content/repositories/public/</url>
-    </repository>
     <repository>
       <releases>
         <enabled>true</enabled>
