@@ -73,12 +73,36 @@ As a Hack23 agent, you MUST ensure all work aligns with:
 
 ### Skills Integration
 
-**Use these skills for guidance:**
-- [secure-code-review](/.github/skills/secure-code-review/) - OWASP Top 10, SAST/DAST
-- [iso-27001-controls](/.github/skills/iso-27001-controls/) - Control verification
-- [security-documentation](/.github/skills/security-documentation/) - Required docs
-- [threat-modeling](/.github/skills/threat-modeling/) - STRIDE framework
-- [See full skills library](/.github/skills/README.md)
+**Security & ISMS Skills:**
+- [secure-code-review](/.github/skills/secure-code-review/) - OWASP Top 10, SAST/DAST patterns for code reviews
+- [iso-27001-controls](/.github/skills/iso-27001-controls/) - Control verification and compliance audits
+- [security-documentation](/.github/skills/security-documentation/) - Required security architecture docs
+- [threat-modeling](/.github/skills/threat-modeling/) - STRIDE framework for risk assessment
+- [secrets-management](/.github/skills/secrets-management/) - Never commit secrets, vault usage
+- [input-validation](/.github/skills/input-validation/) - XSS, SQL injection prevention
+- [crypto-best-practices](/.github/skills/crypto-best-practices/) - Encryption, hashing, key management
+- [gdpr-compliance](/.github/skills/gdpr-compliance/) - Data protection requirements
+- [nist-csf-mapping](/.github/skills/nist-csf-mapping/) - Framework alignment
+- [cis-controls](/.github/skills/cis-controls/) - Benchmark compliance
+
+**Testing & Quality Skills:**
+- [unit-testing-patterns](/.github/skills/unit-testing-patterns/) - JUnit 5, Mockito, 80% coverage targets
+- [integration-testing](/.github/skills/integration-testing/) - Spring test context, database testing
+- [e2e-testing](/.github/skills/e2e-testing/) - Selenium, Playwright patterns for UI validation
+- [code-quality-checks](/.github/skills/code-quality-checks/) - SonarCloud, CodeQL integration
+
+**Architecture & Build Skills:**
+- [c4-architecture-documentation](/.github/skills/c4-architecture-documentation/) - Required architecture docs
+- [maven-build-management](/.github/skills/maven-build-management/) - Multi-module builds
+- [postgresql-operations](/.github/skills/postgresql-operations/) - Database management
+- [github-actions-workflows](/.github/skills/github-actions-workflows/) - CI/CD patterns
+
+**Community & Process Skills:**
+- [issue-triage-workflow](/.github/skills/issue-triage-workflow/) - Labeling, assignment, prioritization
+- [contribution-guidelines](/.github/skills/contribution-guidelines/) - PR process, code review
+- [documentation-standards](/.github/skills/documentation-standards/) - Markdown, diagrams, clarity
+
+**[See full skills library](/.github/skills/README.md) - 34 comprehensive skills covering all aspects of the CIA platform**
 
 **Never compromise on security or compliance. When in doubt, deny access, validate input, encrypt data, and consult the security team.**
 

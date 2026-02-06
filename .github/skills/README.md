@@ -73,6 +73,42 @@ This directory contains 34 comprehensive agent skills for the Citizen Intelligen
 | [legislative-monitoring](legislative-monitoring/) | Voting pattern analysis, committee effectiveness, bill tracking | Parliamentary oversight, legislative productivity, cross-party collaboration |
 | [risk-assessment-frameworks](risk-assessment-frameworks/) | Political risk, institutional risk, corruption indicators, early warning | Democratic backsliding, corruption detection, coalition stability |
 
+## Agent Cross-Reference
+
+The skills library is designed to support 6 specialized agents in the CIA platform. Each agent references relevant skills for their domain:
+
+### 📋 Task Agent (23 skills)
+**Primary Role**: Product quality, GitHub issue management, ISMS compliance  
+**Key Skills**: All security/ISMS skills (10), testing/quality (4), DevOps (3), community (3), architecture docs (3)  
+**See**: [.github/agents/task-agent.md](../agents/task-agent.md)
+
+### 🛠️ Stack Specialist (22 skills)
+**Primary Role**: Java/Spring/PostgreSQL technical expertise  
+**Key Skills**: All security/ISMS skills (10), architecture/framework (4), testing (3), DevOps (3), documentation (2)  
+**See**: [.github/agents/stack-specialist.md](../agents/stack-specialist.md)
+
+### 🎨 UI Enhancement Specialist (17 skills)
+**Primary Role**: Vaadin UI/UX, accessibility, data visualization  
+**Key Skills**: All security/ISMS skills (10), UI frameworks (3), testing (3), documentation (1)  
+**See**: [.github/agents/ui-enhancement-specialist.md](../agents/ui-enhancement-specialist.md)
+
+### 🔍 Intelligence Operative (21 skills)
+**Primary Role**: Political analysis, OSINT, intelligence methodologies  
+**Key Skills**: All security/ISMS skills (10), all intelligence/OSINT skills (10), documentation (1)  
+**See**: [.github/agents/intelligence-operative.md](../agents/intelligence-operative.md)
+
+### 💰 Business Development Specialist (16 skills)
+**Primary Role**: Strategic planning, partnerships, revenue models  
+**Key Skills**: All security/ISMS skills (10), market context (3), documentation (3)  
+**See**: [.github/agents/business-development-specialist.md](../agents/business-development-specialist.md)
+
+### 📢 Marketing Specialist (15 skills)
+**Primary Role**: Digital marketing, content strategy, community building  
+**Key Skills**: All security/ISMS skills (10), audience understanding (3), technical marketing (2)  
+**See**: [.github/agents/marketing-specialist.md](../agents/marketing-specialist.md)
+
+**For detailed agent-skill mappings, see [.github/agents/README.md](../agents/README.md#agent-skills-matrix)**
+
 ## Skill Structure
 
 Each skill follows this standardized structure:

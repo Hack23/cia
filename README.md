@@ -61,35 +61,57 @@ See the [agents README](.github/agents/README.md) for detailed information on us
 
 <div align="left">
 
-We maintain a comprehensive [skills library](.github/skills/) with 24 strategic skills following security-by-design principles:
+We maintain a comprehensive [skills library](.github/skills/) with **34 strategic skills** following security-by-design principles, organized into 6 categories:
 
-#### 🔒 Security-by-Design Skills
+#### 🔒 Security-by-Design Skills (5 skills)
 - 🛡️ **[Secure Code Review](.github/skills/secure-code-review/)** - OWASP Top 10, SAST/DAST patterns
 - 🎯 **[Threat Modeling](.github/skills/threat-modeling/)** - STRIDE framework, attack trees
 - 🔐 **[Secrets Management](.github/skills/secrets-management/)** - Never commit secrets, vault usage
 - ✅ **[Input Validation](.github/skills/input-validation/)** - Sanitization, XSS, SQL injection prevention
 - 🔑 **[Crypto Best Practices](.github/skills/crypto-best-practices/)** - Encryption, hashing, key management
 
-#### ✅ ISMS Compliance Skills
+#### ✅ ISMS Compliance Skills (5 skills)
 - 📋 **[ISO 27001 Controls](.github/skills/iso-27001-controls/)** - Control implementation verification
 - 🎯 **[NIST CSF Mapping](.github/skills/nist-csf-mapping/)** - Framework alignment
 - 🔧 **[CIS Controls](.github/skills/cis-controls/)** - Benchmark compliance
 - 🔒 **[GDPR Compliance](.github/skills/gdpr-compliance/)** - Data protection requirements
 - 📝 **[Security Documentation](.github/skills/security-documentation/)** - Required architecture docs
 
-#### 🧪 Testing & Quality Skills
+#### 🧪 Testing & Quality Skills (4 skills)
 - ✅ **[Unit Testing Patterns](.github/skills/unit-testing-patterns/)** - JUnit 5, Mockito, 80% coverage
 - 🔗 **[Integration Testing](.github/skills/integration-testing/)** - Spring test context, database testing
 - 🌐 **[E2E Testing](.github/skills/e2e-testing/)** - Selenium, Playwright patterns
 - 📊 **[Code Quality Checks](.github/skills/code-quality-checks/)** - SonarCloud, CodeQL integration
 
-#### 🏗️ Architecture & Design Skills
+#### 🏗️ Architecture & Design Skills (4 skills)
 - 🍃 **[Spring Framework Patterns](.github/skills/spring-framework-patterns/)** - DI, transaction management, AOP
 - 🗄️ **[JPA/Hibernate Optimization](.github/skills/jpa-hibernate-optimization/)** - Entity design, N+1 prevention
 - 🎨 **[Vaadin Component Design](.github/skills/vaadin-component-design/)** - UI patterns, lifecycle management
 - 📐 **[C4 Architecture Documentation](.github/skills/c4-architecture-documentation/)** - Required architecture docs
 
-See the [skills README](.github/skills/README.md) for the complete catalog of 24 skills covering CI/CD, DevOps, and open source community practices.
+#### ⚙️ CI/CD & DevOps Skills (3 skills)
+- 🚀 **[GitHub Actions Workflows](.github/skills/github-actions-workflows/)** - CI/CD pipeline patterns
+- 📦 **[Maven Build Management](.github/skills/maven-build-management/)** - Multi-module builds
+- 🗄️ **[PostgreSQL Operations](.github/skills/postgresql-operations/)** - Database management
+
+#### 🤝 Open Source & Community Skills (3 skills)
+- 👥 **[Contribution Guidelines](.github/skills/contribution-guidelines/)** - PR process, code review
+- 📄 **[Documentation Standards](.github/skills/documentation-standards/)** - Markdown, diagrams, clarity
+- 🏷️ **[Issue Triage Workflow](.github/skills/issue-triage-workflow/)** - Labeling, assignment, prioritization
+
+#### 🔍 Intelligence & OSINT Skills (10 skills)
+- 🎓 **[Political Science Analysis](.github/skills/political-science-analysis/)** - Comparative politics, policy analysis
+- 🕵️ **[OSINT Methodologies](.github/skills/osint-methodologies/)** - Source evaluation, data integration
+- 🧠 **[Intelligence Analysis Techniques](.github/skills/intelligence-analysis-techniques/)** - ACH, SWOT, Red Team
+- 🇸🇪 **[Swedish Political System](.github/skills/swedish-political-system/)** - Riksdag, party system, coalitions
+- 📊 **[Data Science for Intelligence](.github/skills/data-science-for-intelligence/)** - ML, NLP, network analysis
+- 🗳️ **[Electoral Analysis](.github/skills/electoral-analysis/)** - Election forecasting, voter behavior
+- 🧩 **[Behavioral Analysis](.github/skills/behavioral-analysis/)** - Political psychology, cognitive biases
+- 💬 **[Strategic Communication Analysis](.github/skills/strategic-communication-analysis/)** - Narrative, media analysis
+- 📜 **[Legislative Monitoring](.github/skills/legislative-monitoring/)** - Voting patterns, bill tracking
+- ⚠️ **[Risk Assessment Frameworks](.github/skills/risk-assessment-frameworks/)** - Political risk, early warnings
+
+**Skills Integration**: All 6 agents reference relevant skills for their domains. See the [skills README](.github/skills/README.md) for complete catalog and [agent-skill mappings](.github/agents/README.md#agent-skills-matrix).
 
 </div>
 
