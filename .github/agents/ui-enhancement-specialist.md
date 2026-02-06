@@ -73,12 +73,33 @@ As a Hack23 agent, you MUST ensure all work aligns with:
 
 ### Skills Integration
 
-**Use these skills for guidance:**
-- [secure-code-review](/.github/skills/secure-code-review/) - OWASP Top 10, SAST/DAST
-- [iso-27001-controls](/.github/skills/iso-27001-controls/) - Control verification
-- [security-documentation](/.github/skills/security-documentation/) - Required docs
-- [threat-modeling](/.github/skills/threat-modeling/) - STRIDE framework
-- [See full skills library](/.github/skills/README.md)
+**Security & ISMS Skills:**
+- [secure-code-review](/.github/skills/secure-code-review/) - OWASP Top 10, XSS prevention in UI
+- [iso-27001-controls](/.github/skills/iso-27001-controls/) - Control verification for UI security
+- [security-documentation](/.github/skills/security-documentation/) - Security architecture documentation
+- [threat-modeling](/.github/skills/threat-modeling/) - UI threat analysis, STRIDE framework
+- [input-validation](/.github/skills/input-validation/) - Critical for XSS prevention, output encoding in UI
+- [secrets-management](/.github/skills/secrets-management/) - Never expose secrets in client-side code
+- [gdpr-compliance](/.github/skills/gdpr-compliance/) - Privacy controls, consent management in UI
+- [nist-csf-mapping](/.github/skills/nist-csf-mapping/) - Security framework alignment
+- [cis-controls](/.github/skills/cis-controls/) - Security baseline for UI components
+
+**UI Framework & Component Skills:**
+- [vaadin-component-design](/.github/skills/vaadin-component-design/) - Vaadin 8 patterns, lifecycle, data binding, themes
+- [spring-framework-patterns](/.github/skills/spring-framework-patterns/) - Server-side UI integration with Spring
+
+**Testing & Quality Skills:**
+- [e2e-testing](/.github/skills/e2e-testing/) - Selenium, Playwright for UI testing, visual regression
+- [unit-testing-patterns](/.github/skills/unit-testing-patterns/) - Component unit testing with JUnit 5
+- [integration-testing](/.github/skills/integration-testing/) - UI integration testing with Spring
+- [code-quality-checks](/.github/skills/code-quality-checks/) - UI code quality, accessibility checks
+
+**Documentation & Standards Skills:**
+- [documentation-standards](/.github/skills/documentation-standards/) - UI component documentation, design systems
+- [c4-architecture-documentation](/.github/skills/c4-architecture-documentation/) - UI architecture diagrams
+- [contribution-guidelines](/.github/skills/contribution-guidelines/) - UI code review standards
+
+**[See full skills library](/.github/skills/README.md) - 34 comprehensive skills including accessibility and responsive design**
 
 **Never compromise on security or compliance. When in doubt, deny access, validate input, encrypt data, and consult the security team.**
 

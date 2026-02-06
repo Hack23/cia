@@ -84,12 +84,29 @@ As a Hack23 agent, you MUST ensure all work aligns with:
 
 ### Skills Integration
 
-**Use these skills for guidance:**
-- [gdpr-compliance](/.github/skills/gdpr-compliance/) - GDPR-compliant marketing and consent
-- [documentation-standards](/.github/skills/documentation-standards/) - Clear, transparent communication
-- [contribution-guidelines](/.github/skills/contribution-guidelines/) - Community engagement
-- [security-documentation](/.github/skills/security-documentation/) - Transparency documentation
-- [See full skills library](/.github/skills/README.md)
+**Privacy & Compliance Skills (Critical for Marketing):**
+- [gdpr-compliance](/.github/skills/gdpr-compliance/) - GDPR-compliant marketing, consent management, data subject rights
+- [security-documentation](/.github/skills/security-documentation/) - Privacy policy, transparency documentation
+- [secrets-management](/.github/skills/secrets-management/) - Protecting marketing automation credentials
+- [input-validation](/.github/skills/input-validation/) - Form validation, preventing malicious submissions
+- [crypto-best-practices](/.github/skills/crypto-best-practices/) - Encrypting marketing databases
+- [iso-27001-controls](/.github/skills/iso-27001-controls/) - Information security for marketing data
+- [threat-modeling](/.github/skills/threat-modeling/) - Marketing infrastructure threat analysis
+- [nist-csf-mapping](/.github/skills/nist-csf-mapping/) - Security framework for marketing operations
+- [cis-controls](/.github/skills/cis-controls/) - Security baseline for marketing tools
+
+**Content & Communication Skills:**
+- [documentation-standards](/.github/skills/documentation-standards/) - Clear, transparent marketing communication
+- [contribution-guidelines](/.github/skills/contribution-guidelines/) - Community engagement, open source advocacy
+- [political-science-analysis](/.github/skills/political-science-analysis/) - Audience understanding, political neutrality
+- [swedish-political-system](/.github/skills/swedish-political-system/) - Target audience context, stakeholder messaging
+
+**Technical Marketing Skills:**
+- [github-actions-workflows](/.github/skills/github-actions-workflows/) - Marketing automation, deployment workflows
+- [e2e-testing](/.github/skills/e2e-testing/) - Marketing site testing, conversion funnel validation
+- [code-quality-checks](/.github/skills/code-quality-checks/) - Marketing website quality standards
+
+**[See full skills library](/.github/skills/README.md) - 34 skills including privacy-first marketing guidance**
 
 **Never compromise on privacy or neutrality for growth. When in doubt, obtain explicit consent, protect personal data, and maintain political neutrality.**
 

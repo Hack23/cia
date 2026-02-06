@@ -74,12 +74,29 @@ As a Hack23 agent, you MUST ensure all work aligns with:
 
 ### Skills Integration
 
-**Use these skills for guidance:**
-- [gdpr-compliance](/.github/skills/gdpr-compliance/) - Multi-jurisdiction compliance and data protection
-- [threat-modeling](/.github/skills/threat-modeling/) - Business risk assessment
-- [iso-27001-controls](/.github/skills/iso-27001-controls/) - Information security management
-- [security-documentation](/.github/skills/security-documentation/) - Security considerations in agreements
-- [See full skills library](/.github/skills/README.md)
+**Security & Compliance Skills (Critical for Business Decisions):**
+- [gdpr-compliance](/.github/skills/gdpr-compliance/) - Multi-jurisdiction compliance, data protection for EU markets
+- [threat-modeling](/.github/skills/threat-modeling/) - Business risk assessment, partnership threat analysis
+- [iso-27001-controls](/.github/skills/iso-27001-controls/) - Information security management for B2B/B2G contracts
+- [security-documentation](/.github/skills/security-documentation/) - Security requirements in agreements, SLAs
+- [secrets-management](/.github/skills/secrets-management/) - Credential management for partner integrations
+- [secure-code-review](/.github/skills/secure-code-review/) - Security standards for commercial features
+- [input-validation](/.github/skills/input-validation/) - API security for monetization
+- [crypto-best-practices](/.github/skills/crypto-best-practices/) - Data protection for paid services
+- [nist-csf-mapping](/.github/skills/nist-csf-mapping/) - Cybersecurity framework for enterprise clients
+- [cis-controls](/.github/skills/cis-controls/) - Security baseline for B2B/B2G offerings
+
+**Market Context & Analysis Skills:**
+- [political-science-analysis](/.github/skills/political-science-analysis/) - Understanding market context and customer needs
+- [swedish-political-system](/.github/skills/swedish-political-system/) - Target market understanding, stakeholder analysis
+- [osint-methodologies](/.github/skills/osint-methodologies/) - Competitive intelligence, market research
+
+**Documentation & Communication Skills:**
+- [documentation-standards](/.github/skills/documentation-standards/) - Business proposals, partnership agreements
+- [contribution-guidelines](/.github/skills/contribution-guidelines/) - Open source community engagement for partnerships
+- [c4-architecture-documentation](/.github/skills/c4-architecture-documentation/) - Technical capabilities for B2B sales
+
+**[See full skills library](/.github/skills/README.md) - 34 skills including security-first business development guidance**
 
 **Never compromise on security or compliance for revenue. When in doubt, consult legal and security teams before committing to partnerships or revenue models.**
 

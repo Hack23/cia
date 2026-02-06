@@ -216,19 +216,110 @@ Our skills library covers 6 major categories:
 
 This table shows which skills are most relevant for each agent:
 
+#### Security & ISMS Skills
+
 | Skill | Task Agent | Stack Specialist | UI Enhancement | Intelligence | Business Dev | Marketing |
 |-------|:----------:|:----------------:|:--------------:|:------------:|:------------:|:---------:|
-| secure-code-review | ✅ | ✅ | ✅ | ⚪ | ⚪ | ⚪ |
-| threat-modeling | ✅ | ✅ | ✅ | ⚪ | ⚪ | ⚪ |
+| secure-code-review | ✅ | ✅ | ✅ | ✅ | ✅ | ⚪ |
+| threat-modeling | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| secrets-management | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| input-validation | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| crypto-best-practices | ✅ | ✅ | ⚪ | ✅ | ✅ | ✅ |
 | iso-27001-controls | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| unit-testing-patterns | ✅ | ✅ | ✅ | ⚪ | ⚪ | ⚪ |
-| spring-framework-patterns | ⚪ | ✅ | ⚪ | ⚪ | ⚪ | ⚪ |
-| vaadin-component-design | ⚪ | ✅ | ✅ | ⚪ | ⚪ | ⚪ |
+| nist-csf-mapping | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| cis-controls | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | gdpr-compliance | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| github-actions-workflows | ✅ | ✅ | ⚪ | ⚪ | ⚪ | ⚪ |
+| security-documentation | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+
+#### Testing & Quality Skills
+
+| Skill | Task Agent | Stack Specialist | UI Enhancement | Intelligence | Business Dev | Marketing |
+|-------|:----------:|:----------------:|:--------------:|:------------:|:------------:|:---------:|
+| unit-testing-patterns | ✅ | ✅ | ✅ | ⚪ | ⚪ | ⚪ |
+| integration-testing | ✅ | ✅ | ✅ | ⚪ | ⚪ | ⚪ |
+| e2e-testing | ✅ | ⚪ | ✅ | ⚪ | ⚪ | ✅ |
+| code-quality-checks | ✅ | ✅ | ✅ | ⚪ | ⚪ | ✅ |
+
+#### Architecture & Framework Skills
+
+| Skill | Task Agent | Stack Specialist | UI Enhancement | Intelligence | Business Dev | Marketing |
+|-------|:----------:|:----------------:|:--------------:|:------------:|:------------:|:---------:|
+| spring-framework-patterns | ⚪ | ✅ | ✅ | ⚪ | ⚪ | ⚪ |
+| jpa-hibernate-optimization | ⚪ | ✅ | ⚪ | ⚪ | ⚪ | ⚪ |
+| vaadin-component-design | ⚪ | ✅ | ✅ | ⚪ | ⚪ | ⚪ |
+| c4-architecture-documentation | ✅ | ✅ | ✅ | ✅ | ✅ | ⚪ |
+
+#### DevOps & Infrastructure Skills
+
+| Skill | Task Agent | Stack Specialist | UI Enhancement | Intelligence | Business Dev | Marketing |
+|-------|:----------:|:----------------:|:--------------:|:------------:|:------------:|:---------:|
+| github-actions-workflows | ✅ | ✅ | ⚪ | ⚪ | ⚪ | ✅ |
+| maven-build-management | ✅ | ✅ | ⚪ | ⚪ | ⚪ | ⚪ |
+| postgresql-operations | ✅ | ✅ | ⚪ | ⚪ | ⚪ | ⚪ |
+
+#### Community & Documentation Skills
+
+| Skill | Task Agent | Stack Specialist | UI Enhancement | Intelligence | Business Dev | Marketing |
+|-------|:----------:|:----------------:|:--------------:|:------------:|:------------:|:---------:|
 | contribution-guidelines | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| documentation-standards | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| issue-triage-workflow | ✅ | ⚪ | ⚪ | ⚪ | ⚪ | ⚪ |
+
+#### Intelligence & OSINT Skills (10 specialized skills)
+
+| Skill | Task Agent | Stack Specialist | UI Enhancement | Intelligence | Business Dev | Marketing |
+|-------|:----------:|:----------------:|:--------------:|:------------:|:------------:|:---------:|
+| political-science-analysis | ⚪ | ⚪ | ⚪ | ✅ | ✅ | ✅ |
+| osint-methodologies | ⚪ | ⚪ | ⚪ | ✅ | ✅ | ⚪ |
+| intelligence-analysis-techniques | ⚪ | ⚪ | ⚪ | ✅ | ⚪ | ⚪ |
+| swedish-political-system | ⚪ | ⚪ | ⚪ | ✅ | ✅ | ✅ |
+| data-science-for-intelligence | ⚪ | ⚪ | ⚪ | ✅ | ⚪ | ⚪ |
+| electoral-analysis | ⚪ | ⚪ | ⚪ | ✅ | ⚪ | ⚪ |
+| behavioral-analysis | ⚪ | ⚪ | ⚪ | ✅ | ⚪ | ⚪ |
+| strategic-communication-analysis | ⚪ | ⚪ | ⚪ | ✅ | ⚪ | ⚪ |
+| legislative-monitoring | ⚪ | ⚪ | ⚪ | ✅ | ⚪ | ⚪ |
+| risk-assessment-frameworks | ⚪ | ⚪ | ⚪ | ✅ | ⚪ | ⚪ |
 
 **Legend**: ✅ Primary use | ⚪ Occasional use
+
+### Skill Usage Summary by Agent
+
+**Task Agent (23 skills)**:
+- All 10 security/ISMS skills
+- All 4 testing/quality skills
+- All 3 architecture documentation skills
+- All 3 DevOps/infrastructure skills
+- All 3 community/documentation skills
+
+**Stack Specialist (22 skills)**:
+- All 10 security/ISMS skills
+- All 4 testing/quality skills
+- All 4 architecture/framework skills
+- All 3 DevOps/infrastructure skills
+- 1 community skill (documentation-standards)
+
+**UI Enhancement Specialist (17 skills)**:
+- All 10 security/ISMS skills (especially input-validation for XSS)
+- 3 testing/quality skills (unit, integration, e2e)
+- 3 architecture skills (vaadin, spring, c4-docs)
+- 1 community skill (documentation-standards)
+
+**Intelligence Operative (21 skills)**:
+- All 10 security/ISMS skills (GDPR critical for political data)
+- All 10 intelligence/OSINT skills (core competency)
+- 1 documentation skill
+
+**Business Development Specialist (16 skills)**:
+- All 10 security/ISMS skills (critical for B2B/B2G)
+- 3 intelligence skills (market context)
+- 3 community/documentation skills
+
+**Marketing Specialist (15 skills)**:
+- All 10 security/ISMS skills (GDPR for marketing)
+- 2 testing skills (e2e, code-quality for website)
+- 3 community/intelligence skills (audience understanding)
+
+**Total**: 34 comprehensive skills across 6 specialized agents
 
 ### How Agents Use Skills
 

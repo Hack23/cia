@@ -73,12 +73,39 @@ As a Hack23 agent, you MUST ensure all work aligns with:
 
 ### Skills Integration
 
-**Use these skills for guidance:**
-- [secure-code-review](/.github/skills/secure-code-review/) - OWASP Top 10, SAST/DAST
-- [iso-27001-controls](/.github/skills/iso-27001-controls/) - Control verification
-- [security-documentation](/.github/skills/security-documentation/) - Required docs
-- [threat-modeling](/.github/skills/threat-modeling/) - STRIDE framework
-- [See full skills library](/.github/skills/README.md)
+**Security & ISMS Skills:**
+- [secure-code-review](/.github/skills/secure-code-review/) - OWASP Top 10, SAST/DAST patterns
+- [iso-27001-controls](/.github/skills/iso-27001-controls/) - Control verification and compliance
+- [security-documentation](/.github/skills/security-documentation/) - Required architecture documentation
+- [threat-modeling](/.github/skills/threat-modeling/) - STRIDE framework for security design
+- [secrets-management](/.github/skills/secrets-management/) - Credential management, vault usage
+- [input-validation](/.github/skills/input-validation/) - SQL injection, XSS prevention
+- [crypto-best-practices](/.github/skills/crypto-best-practices/) - Encryption, hashing, key rotation
+- [gdpr-compliance](/.github/skills/gdpr-compliance/) - Data protection for political data
+- [nist-csf-mapping](/.github/skills/nist-csf-mapping/) - Security framework alignment
+- [cis-controls](/.github/skills/cis-controls/) - Security baseline compliance
+
+**Architecture & Framework Skills:**
+- [spring-framework-patterns](/.github/skills/spring-framework-patterns/) - DI, transactions, AOP best practices
+- [jpa-hibernate-optimization](/.github/skills/jpa-hibernate-optimization/) - Entity design, N+1 prevention, query optimization
+- [vaadin-component-design](/.github/skills/vaadin-component-design/) - UI patterns, lifecycle management
+- [c4-architecture-documentation](/.github/skills/c4-architecture-documentation/) - System architecture documentation
+
+**Database & Infrastructure Skills:**
+- [postgresql-operations](/.github/skills/postgresql-operations/) - Schema migrations, performance tuning, Liquibase
+- [maven-build-management](/.github/skills/maven-build-management/) - Multi-module project structure, dependency management
+
+**Testing & Quality Skills:**
+- [unit-testing-patterns](/.github/skills/unit-testing-patterns/) - JUnit 5, Mockito, 80% coverage
+- [integration-testing](/.github/skills/integration-testing/) - Spring test context, TestContainers, database fixtures
+- [code-quality-checks](/.github/skills/code-quality-checks/) - SonarCloud quality gates, CheckStyle, SpotBugs
+
+**DevOps & Process Skills:**
+- [github-actions-workflows](/.github/skills/github-actions-workflows/) - CI/CD pipeline patterns
+- [documentation-standards](/.github/skills/documentation-standards/) - Technical documentation, API docs
+- [contribution-guidelines](/.github/skills/contribution-guidelines/) - Code review, PR process
+
+**[See full skills library](/.github/skills/README.md) - 34 comprehensive skills for Java/Spring/PostgreSQL development**
 
 **Never compromise on security or compliance. When in doubt, deny access, validate input, encrypt data, and consult the security team.**
 

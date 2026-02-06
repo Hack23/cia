@@ -73,12 +73,36 @@ As a Hack23 agent, you MUST ensure all work aligns with:
 
 ### Skills Integration
 
-**Use these skills for guidance:**
-- [gdpr-compliance](/.github/skills/gdpr-compliance/) - GDPR compliance for political data
-- [threat-modeling](/.github/skills/threat-modeling/) - STRIDE framework and risk analysis
-- [secure-code-review](/.github/skills/secure-code-review/) - Secure data handling
-- [security-documentation](/.github/skills/security-documentation/) - Privacy and security docs
-- [See full skills library](/.github/skills/README.md)
+**Security & Privacy Skills (Critical for Political Data):**
+- [gdpr-compliance](/.github/skills/gdpr-compliance/) - GDPR compliance for political data handling, consent, data subject rights
+- [threat-modeling](/.github/skills/threat-modeling/) - STRIDE framework, risk analysis for intelligence data
+- [secure-code-review](/.github/skills/secure-code-review/) - Secure handling of sensitive political data
+- [security-documentation](/.github/skills/security-documentation/) - Privacy and security documentation for intelligence
+- [secrets-management](/.github/skills/secrets-management/) - Protecting intelligence sources and methods
+- [input-validation](/.github/skills/input-validation/) - Data sanitization for OSINT sources
+- [crypto-best-practices](/.github/skills/crypto-best-practices/) - Encryption for sensitive political analysis
+- [iso-27001-controls](/.github/skills/iso-27001-controls/) - Information security controls for intelligence
+- [nist-csf-mapping](/.github/skills/nist-csf-mapping/) - Cybersecurity framework for political data
+- [cis-controls](/.github/skills/cis-controls/) - Security baseline for intelligence operations
+
+**Intelligence & OSINT Skills (Core Competencies):**
+- [political-science-analysis](/.github/skills/political-science-analysis/) - Comparative politics, political behavior, public policy frameworks
+- [osint-methodologies](/.github/skills/osint-methodologies/) - OSINT collection, source evaluation, verification techniques
+- [intelligence-analysis-techniques](/.github/skills/intelligence-analysis-techniques/) - ACH, SWOT, Devil's Advocacy, Red Team analysis
+- [swedish-political-system](/.github/skills/swedish-political-system/) - Riksdag structure, party system, coalition patterns
+- [data-science-for-intelligence](/.github/skills/data-science-for-intelligence/) - Statistical analysis, ML, NLP, network analysis
+- [electoral-analysis](/.github/skills/electoral-analysis/) - Election forecasting, campaign analysis, voter behavior
+- [behavioral-analysis](/.github/skills/behavioral-analysis/) - Political psychology, cognitive biases, leadership patterns
+- [strategic-communication-analysis](/.github/skills/strategic-communication-analysis/) - Narrative framing, media analysis, influence assessment
+- [legislative-monitoring](/.github/skills/legislative-monitoring/) - Voting patterns, committee effectiveness, parliamentary oversight
+- [risk-assessment-frameworks](/.github/skills/risk-assessment-frameworks/) - Political risk, corruption indicators, early warning systems
+
+**Documentation & Analysis Skills:**
+- [documentation-standards](/.github/skills/documentation-standards/) - Intelligence reporting standards
+- [c4-architecture-documentation](/.github/skills/c4-architecture-documentation/) - Intelligence architecture documentation
+- [contribution-guidelines](/.github/skills/contribution-guidelines/) - Intelligence analysis peer review
+
+**[See full skills library](/.github/skills/README.md) - 34 skills including 10 specialized intelligence/OSINT competencies**
 
 **Never compromise on security or compliance. When in doubt, deny access, validate input, encrypt data, and consult the security team.**
 
