@@ -1,45 +1,57 @@
 value,count
-utskottet,42733
+utskottet,55745
 uppgift saknas,1533
-"",366
-reservation 1,21
+"",620
+reservation 1,41
+reservation 2,20
+reservation 11,16
+reservation 4,16
 oavgjort?,15
-reservation 11,11
-reservation 4,10
-reservation 2,9
-reservation 3,8
-reservation 5,8
-reservation 15,5
+reservation 3,14
+reservation 5,14
+bifall,13
+reservation 7,12
+reservation 15,8
+reservation 6,8
+reservation 9,7
+reservation 10,6
+reservation 16,6
+reservation 20,5
+reservation 23,5
 reservationen,5
-reservation 10,4
-reservation 7,4
-reservation 20,3
-reservation 23,3
-reservation 6,3
-reservation 8,3
-reservation 9,3
-reservation 12,2
-reservation 16,2
-reservation 18,2
+reservation 13,4
+reservation 18,4
+reservation 19,4
+reservation 27,4
+reservation 8,4
+reservation 12,3
+reservation 14,3
+reservation 51,3
+reservation 17,2
 reservation 21,2
-reservation 27,2
-reservation 51,2
-bifall,1
+reservation 22,2
+reservation 25,2
+reservation 26,2
+reservation 31,2
+reservation 43,2
+avslag,1
 ingen,1
+ovrigtyrkande,1
 reservation 110,1
-reservation 13,1
-reservation 14,1
-reservation 17,1
-reservation 19,1
-reservation 22,1
-reservation 25,1
-reservation 26,1
+reservation 24,1
 reservation 28,1
-reservation 31,1
+reservation 29,1
+reservation 32,1
 reservation 33,1
+reservation 34,1
 reservation 35,1
+reservation 36,1
+reservation 37,1
 reservation 40,1
+reservation 42,1
 reservation 5. Beslut fattat genom uppresning,1
+reservation 54,1
 reservation 58,1
 reservation 61,1
+reservation 69,1
 reservation 89,1

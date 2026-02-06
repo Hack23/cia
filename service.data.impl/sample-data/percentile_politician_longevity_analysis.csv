@@ -1,0 +1,14 @@
+column_name,data_type,distinct_count,min_value,max_value,p1,p10,p25,median,p75,p90,p99
+born_year,integer,88,1909,2001,1921,1934,1943,1956,1971,1982,1994
+first_activity_year,integer,54,1971,2026,1976,1980.1,1990,2002,2014,2020,2024
+last_activity_year,integer,51,1976,2029,1988,1991,1998,2012,2022,2026,2028
+total_career_days,integer,980,0,14134,16.91,289.1,1456,2941,5177.5,7061.6,10955
+total_career_years,numeric,266,0.0,38.7,0,0.8,4,8.1,14.2,19.3,30
+age_at_career_start,integer,61,18,80,23,29,36.75,45,52,57,71
+age_at_career_end,integer,61,22,89,27,37,46,56,62,67,76
+election_cycles_active,bigint,8,0,7,0,0,0,2,3,4,6
+total_votes_cast,bigint,651,0,10037,0,0,0,946.5,3059,4909.8,8178
+total_assignments,bigint,74,1,105,1,2,4,10,22,34,61
+avg_votes_per_year,numeric,865,0.0,2191.5,0,0,0,170.2,382.8,438.3,748.139999999999
+avg_assignments_per_year,numeric,560,0.08,365.25,0.209,0.5,0.92,1.5,2.88,5.66,47.6349999999995
+career_continuity_score,numeric,30,0.0,200.0,0,0,0,66.7,100,100,200

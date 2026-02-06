@@ -1,41 +1,41 @@
 party,party_name,active_members,inactive_members,documents_last_year,motions_last_year,propositions_last_year,docs_per_member,performance_level
-M,Moderaterna,0,0,1306,0,0,0.00,EXCELLENT
-KD,Kristdemokraterna,0,0,394,0,0,0.00,EXCELLENT
-L,Liberalerna,0,0,199,0,0,0.00,EXCELLENT
-SD,Sverigedemokraterna,0,0,688,0,0,0.00,GOOD
-C,Centerpartiet,0,0,398,0,0,0.00,GOOD
-S,Arbetarepartiet-Socialdemokraterna,0,0,853,0,0,0.00,GOOD
-V,Vänsterpartiet,0,0,136,0,0,0.00,GOOD
--,Politiskt Vilde,0,0,108,0,0,0.00,GOOD
-MP,Miljöpartiet de gröna,0,0,225,0,0,0.00,GOOD
----,Nordiska motståndsrörelsen,0,0,0,0,0,0.00,BELOW_AVERAGE
----,Mosebackedemokraterna,0,0,0,0,0,0.00,BELOW_AVERAGE
+M,Moderaterna,0,0,1299,0,0,0.00,EXCELLENT
+KD,Kristdemokraterna,0,0,387,0,0,0.00,EXCELLENT
+L,Liberalerna,0,0,200,0,0,0.00,EXCELLENT
+SD,Sverigedemokraterna,0,0,687,0,0,0.00,GOOD
+C,Centerpartiet,0,0,393,0,0,0.00,GOOD
+S,Arbetarepartiet-Socialdemokraterna,0,0,850,0,0,0.00,GOOD
+V,Vänsterpartiet,0,0,127,0,0,0.00,GOOD
+-,Politiskt Vilde,0,0,106,0,0,0.00,GOOD
+MP,Miljöpartiet de gröna,0,0,218,0,0,0.00,GOOD
+---,Frihetspartiet,0,0,0,0,0,0.00,BELOW_AVERAGE
 ---,Direktdemokraterna,0,0,0,0,0,0.00,BELOW_AVERAGE
-ALP,Allianspartiet/Medborgarens röst,0,0,0,0,0,0.00,BELOW_AVERAGE
-DjuP,Djurens parti,0,0,0,0,0,0.00,BELOW_AVERAGE
-EAP,Europeiska Arbetarpartiet-EAP,0,0,0,0,0,0.00,BELOW_AVERAGE
-ENH,Enhet,0,0,0,0,0,0.00,BELOW_AVERAGE
-FI,Feministiskt initiativ,0,0,0,0,0,0.00,BELOW_AVERAGE
-FP,Folkpartiet liberalerna,0,0,0,0,0,0.00,BELOW_AVERAGE
-JL,Junilistan,0,0,0,0,0,0.00,BELOW_AVERAGE
-K,Kommunistiska Partiet,0,0,0,0,0,0.00,BELOW_AVERAGE
-KLP,Klassiskt liberala partiet,0,0,0,0,0,0.00,BELOW_AVERAGE
-KrVP,Kristna Värdepartiet,0,0,0,0,0,0.00,BELOW_AVERAGE
-LBPO,Landsbygdspartiet Oberoende,0,0,0,0,0,0.00,BELOW_AVERAGE
+---,Borgerlig Framtid,0,0,0,0,0,0.00,BELOW_AVERAGE
 NYD,NyDemokrati,0,0,0,0,0,0.00,BELOW_AVERAGE
-NorrS,Norrländska Samlingspartiet,0,0,0,0,0,0.00,BELOW_AVERAGE
-PP,Piratpartiet,0,0,0,0,0,0.00,BELOW_AVERAGE
-RS,Rättvisepartiet Socialisterna,0,0,0,0,0,0.00,BELOW_AVERAGE
-SJP,Sjöbopartiet,0,0,0,0,0,0.00,BELOW_AVERAGE
 SKÅ,Skånepartiet,0,0,0,0,0,0.00,BELOW_AVERAGE
-SOC.P,Socialistiska Partiet,0,0,0,0,0,0.00,BELOW_AVERAGE
+NorrS,Norrländska Samlingspartiet,0,0,0,0,0,0.00,BELOW_AVERAGE
+FP,Folkpartiet liberalerna,0,0,0,0,0,0.00,BELOW_AVERAGE
+KLP,Klassiskt liberala partiet,0,0,0,0,0,0.00,BELOW_AVERAGE
+JL,Junilistan,0,0,0,0,0,0.00,BELOW_AVERAGE
+ALP,Allianspartiet/Medborgarens röst,0,0,0,0,0,0.00,BELOW_AVERAGE
+KrVP,Kristna Värdepartiet,0,0,0,0,0,0.00,BELOW_AVERAGE
+ENH,Enhet,0,0,0,0,0,0.00,BELOW_AVERAGE
+DjuP,Djurens parti,0,0,0,0,0,0.00,BELOW_AVERAGE
+K,Kommunistiska Partiet,0,0,0,0,0,0.00,BELOW_AVERAGE
 SPI,SPI Välfärden,0,0,0,0,0,0.00,BELOW_AVERAGE
+LBPO,Landsbygdspartiet Oberoende,0,0,0,0,0,0.00,BELOW_AVERAGE
+PP,Piratpartiet,0,0,0,0,0,0.00,BELOW_AVERAGE
+EAP,Europeiska Arbetarpartiet-EAP,0,0,0,0,0,0.00,BELOW_AVERAGE
+SOC.P,Socialistiska Partiet,0,0,0,0,0,0.00,BELOW_AVERAGE
+RS,Rättvisepartiet Socialisterna,0,0,0,0,0,0.00,BELOW_AVERAGE
 VägV,Vägvalet,0,0,0,0,0,0.00,BELOW_AVERAGE
+FI,Feministiskt initiativ,0,0,0,0,0,0.00,BELOW_AVERAGE
+SJP,Sjöbopartiet,0,0,0,0,0,0.00,BELOW_AVERAGE
 ---,Svenska Förnufts Partiet (SFP),0,0,0,0,0,0.00,BELOW_AVERAGE
 ---,Spritpartiet,0,0,0,0,0,0.00,BELOW_AVERAGE
----,Borgerlig Framtid,0,0,0,0,0,0.00,BELOW_AVERAGE
----,LOTTOKRATIN,0,0,0,0,0,0.00,BELOW_AVERAGE
----,Frihetspartiet,0,0,0,0,0,0.00,BELOW_AVERAGE
----,Högerpartiet de konservativa,0,0,0,0,0,0.00,BELOW_AVERAGE
 ---,Sociala Partiet (SP),0,0,0,0,0,0.00,BELOW_AVERAGE
 ---,Permalogiskt Samhälle,0,0,0,0,0,0.00,BELOW_AVERAGE
+---,Nordiska motståndsrörelsen,0,0,0,0,0,0.00,BELOW_AVERAGE
+---,Mosebackedemokraterna,0,0,0,0,0,0.00,BELOW_AVERAGE
+---,LOTTOKRATIN,0,0,0,0,0,0.00,BELOW_AVERAGE
+---,Högerpartiet de konservativa,0,0,0,0,0,0.00,BELOW_AVERAGE

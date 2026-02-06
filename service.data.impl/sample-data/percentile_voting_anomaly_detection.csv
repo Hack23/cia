@@ -1,0 +1,5 @@
+column_name,data_type,distinct_count,min_value,max_value,p1,p10,p25,median,p75,p90,p99
+total_rebellions,bigint,0,,,,,,,,,
+strong_consensus_rebellions,bigint,0,,,,,,,,,
+very_strong_consensus_rebellions,bigint,0,,,,,,,,,
+avg_consensus_strength_rebelled_against,numeric,0,,,,,,,,,

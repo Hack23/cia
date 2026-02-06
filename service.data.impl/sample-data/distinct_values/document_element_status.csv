@@ -1,106 +1,108 @@
 value,count
-"",89758
+"",111233
+Klar,40401
 Ank T,25591
-Klar,22587
-korrekturläst,22063
-inträffat,15135
+korrekturläst,22058
+Besvarad,21745
+inträffat,20472
+Inkommen,20303
 Trycklov,10630
-Inkommen,9973
-Besvarad,9838
-hämtad,6479
-Hänvisad,3949
-hämtad_2,2565
-Webbpublicering,2240
-Skickad,1775
-planerat,1589
-titel,1559
-ok,1527
-Publicerad,1309
-justerat,1144
+hämtad,6708
+Webbpublicering,4674
+Hänvisad,4118
+planerat,2636
+hämtad_2,2564
+Publicerad,2423
+Skickad,1857
+justerat,1798
+titel,1536
+ok,1526
 Tidigare riksdagsledamot,1116
-DokTextExtraktor,759
-Återtagen,593
-saknas,470
-Inga uppdrag,402
+Återtagen,1098
+DokTextExtraktor,893
+saknas,474
+Avslutad,456
+Avslag,426
+Inga uppdrag,405
 Tjänstgörande riksdagsledamot,327
+Utgången,314
 ANKT,292
-digitaliserad,283
 slutlig,283
-Avslag,273
+Inte besvarad,271
 Original,262
-Avslutad,236
-doktextextraktor,231
+Pågående,234
+doktextextraktor,230
+digitaliserad,225
 Tidigare ersättare,202
-Utgången,200
+Upphävd,139
 Tillgänglig ersättare,130
-Pågående,127
+Reviderad kallelse o,128
+Kallelse och föredra,125
 Avslutad 2008,124
-Upphävd,124
-Avslutad 2005,115
-Avslutad 2004,110
-Avslutad 2003,108
+Avslutad 2005,116
+Avslutad 2004,111
+Avslutad 2003,109
 Avslutad 2006,104
+Avvisat,100
 Avslutad 2007,98
 Avslutad 2009,98
 Avslutad 2015,98
 preliminär,95
 Avslutad 2010,90
 Avslutad 2011,87
-Reviderad kallelse o,86
 Avslutad 2002,80
 Avslutad 2017,79
+Avslutad 2021,79
+Gällande,79
+Avslutad 2018,78
 Avslutad 2012,77
-Avslutad 2018,77
 Avslutad 2013,70
 Avslutad 2014,70
 Avslutad 2016,68
-tillfälligt dok_id,63
+tillfälligt dok_id,66
+Avslutad 2022,64
+Avslutad 2020,61
 Avslutad 2001,57
-Kallelse och föredra,56
-Gällande,55
-Avvisat,54
 fel,53
-Inte besvarad,41
-Avslutad 2019,36
+Avslutad 2019,50
+Granskad,37
+Bifall,32
 Avgången riksdagsledamot,30
 Status saknas,30
-Granskad,29
-felkonverterat,27
+felkonverterat,28
+Europaparlamentariker,26
 Utskick 2,25
-Avslutad 2020,24
-Europaparlamentariker,24
 Distribution.UttagMo,22
 Tidigare europaparlamentariker,22
-Bifall,20
 Tidigare statsråd,19
-Avslutad 2021,18
 till Web,18
+Avskrivet,17
+Avslutad 2000,16
 Tidigare ledamot i Styrelsen för Stiftelsen Riksbankens Jubileumsfond,16
-Avslutad 2000,15
-Avslutad 2022,15
 Tidigare personlig suppleant i Styrelsen för Stiftelsen Riksbankens Jubileumsfond,14
 Tjänstgörande statsrådsersättare,13
 Förfallen,12
-Avskrivet,10
-Delvis bifall,7
+Delvis bifall,9
 Tjänstgörande ersättare,6
+LagdTillHandlingarna,5
 Ledamot i Styrelsen för Stiftelsen Riksbankens Jubileumsfond,5
 Tidigare riksrevisor i Riksrevisorerna,5
 Tjänstledig riksdagsledamot,5
+Utan åtgärd,5
 Personlig suppleant i Styrelsen för Stiftelsen Riksbankens Jubileumsfond,4
 Tidigare ställföreträdande ombudsman i Riksdagens ombudsmän,4
-Utan åtgärd,4
 Avliden  1989-05-08,3
 Delvis avslag,3
 Justitieombudsman i Riksdagens ombudsmän,3
-LagdTillHandlingarna,3
 Ledamot i Riksbanksfullmäktige,3
 Pågår,3
+Suppleant i Riksbanksfullmäktige,3
 Tidigare justitieombudsman i Riksdagens ombudsmän,3
 Tidigare ledamot i Nämnden för lön till riksdagens ombudsmän och riksrevisorn,3
 Tidigare ledamot i Riksbanksfullmäktige,3
 Tidigare riksrevisor med administrativt ansvar i Riksrevisorerna,3
 Tidigare utrikesminister,3
+Undanröjande/återför,3
 hï¿½mtad,3
 ojusterat,3
 slutfört,3
@@ -118,7 +120,6 @@ Ledamot i Statsrådsarvodesnämnden,2
 Partisekreterare,2
 Reviderad kallelse 2,2
 Ställföreträdande justitieombudsman i Riksdagens ombudsmän,2
-Suppleant i Riksbanksfullmäktige,2
 Suppleant i Valprövningsnämnden,2
 Tidigare chefsjustitieombudsman i Riksdagens ombudsmän,2
 Tidigare ersättare för ordföranden i Valprövningsnämnden,2
@@ -126,7 +127,6 @@ Tidigare kulturminister,2
 Tidigare ledamot i Riksdagens arvodesnämnd,2
 Tidigare näringsminister,2
 Tidigare ordförande i Riksdagens ansvarsnämnd,2
-Undanröjande/återför,2
 html saknas,2
 63681,1
 63682,1
@@ -424,6 +424,7 @@ Avliden  2025-11-01,1
 Avliden  2025-11-08,1
 Avliden  2025-11-28,1
 Avsltuad 2004,1
+Avslutad 1992,1
 "Avslutad 2008
 ",1
 Avslutad 2108,1
@@ -431,6 +432,7 @@ Avslutda 2008,1
 Avsutad 2002,1
 Bistånds- och utrikeshandelsminister,1
 Blivande ledamot i Styrelsen för Stiftelsen Riksbankens Jubileumsfond,1
+Blivande riksrevisor i Riksrevisorerna,1
 Bokstavskommitté,1
 Chefsjustitieombudsman i Riksdagens ombudsmän,1
 Civilminister,1
@@ -462,8 +464,8 @@ Ordförande i Riksdagens överklagandenämnd,1
 Ordförande i Statsrådsarvodesnämnden,1
 Ordförande i Styrelsen för Stiftelsen Riksbankens Jubileumsfond,1
 Ordförande i Valprövningsnämnden,1
-Preliminär,1
 Riksrevisionsdirektör i Riksrevisorerna,1
+Riksrevisor i Riksrevisorerna,1
 Sjukvårdsminister,1
 Socialminister,1
 Socialtjänstminister,1

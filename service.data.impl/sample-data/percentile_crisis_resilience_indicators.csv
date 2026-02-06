@@ -1,0 +1,8 @@
+column_name,data_type,distinct_count,min_value,max_value,p1,p10,p25,median,p75,p90,p99
+crisis_period_votes,bigint,80,0,2134,0,381.2,1051,1517,2134,2134,2134
+crisis_absence_rate,numeric,1,0.00,0.00,0,0,0,0,0,0,0
+crisis_party_discipline,numeric,1,0.00,0.00,0,0,0,0,0,0,0
+normal_period_votes,bigint,71,0,312,0,69,243,243,312,312,312
+normal_absence_rate,numeric,1,0.00,0.00,0,0,0,0,0,0,0
+absence_rate_change,numeric,1,0.00,0.00,0,0,0,0,0,0,0
+resilience_score,numeric,2,50.0000,80.0000,50,80,80,80,80,80,80

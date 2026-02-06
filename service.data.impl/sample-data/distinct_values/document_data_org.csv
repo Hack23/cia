@@ -1,73 +1,73 @@
 value,count
-SoU,9662
-TU,8017
-MJU,7402
-UbU,7328
-JuU,6533
-SkU,6241
-KU,5531
-NU,5318
-SfU,4469
-AU,4106
-CU,3998
-KrU,3721
-UU,3680
-FiU,3252
-FöU,1815
+SoU,11825
+TU,10010
+MJU,9212
+UbU,8824
+JuU,8326
+SkU,7545
+KU,6773
+NU,6516
+SfU,5521
+CU,5255
+AU,4768
+UU,4498
+KrU,4497
+FiU,4120
+FöU,2258
 LU,1286
+Finansdepartementet,845
+"",833
 BoU,824
 FI,817
-"",662
-Finansdepartementet,499
-Justitiedepartementet,360
+Justitiedepartementet,584
 JU,343
-kamm,337
+kamm,335
 N,299
-S,294
+S,295
+Socialdepartementet,290
 UD,194
-Socialdepartementet,163
+Näringsdepartementet,177
+Utrikesdepartementet,152
 Ju,141
-Näringsdepartementet,124
+Utbildningsdepartementet,137
 SKU,120
-FIU,114
+FIU,115
 JUU,113
-Utrikesdepartementet,94
-U,81
+U,79
 SOU,77
-Utbildningsdepartementet,77
+Arbetsmarknadsdepartementet,75
 M,72
 UBU,68
+UFöU,68
+Miljö- och energidepartementet,65
 SFU,64
+Försvarsdepartementet,61
 JO,61
+Kulturdepartementet,60
+Infrastrukturdepartementet,57
 A,52
-UFöU,50
+Klimat- och näringslivsdepartementet,49
 BOU,48
 KRU,48
+Landsbygds- och infrastrukturdepartementet,47
 Fö,46
-Miljö- och energidepartementet,46
-Försvarsdepartementet,42
-Arbetsmarknadsdepartementet,41
-Kulturdepartementet,36
+Miljödepartementet,34
+Statsrådsberedningen,34
 SB,31
-Landsbygds- och infrastrukturdepartementet,30
 M  t.o.m. 1 jan-07,30
 FÖU,27
-Klimat- och näringslivsdepartementet,27
 M t.o.m. -04,26
-Statsrådsberedningen,23
 Ku,22
 L,20
 U t.o.m. 1 jan-07,19
 IJ,18
-Miljödepartementet,13
 U t.o.m. -04,13
 KUD t.o.m. -04,9
-Infrastrukturdepartementet,8
 KUU,8
 UFÖU,7
-Jordbruksdepartementet,5
+Jordbruksdepartementet,4
 Miljö- och samhällsbyggnadsdepartementet,2
-Utbildningsdepartementet),2
+CKrU,1
 Integrations- och jämställdhetsdepartementet,1
 Kru,1
 Landsbygdsdepartementet,1
@@ -75,3 +75,5 @@ MjU,1
 So,1
 UMJU,1
 USOU,1
+Utbildningsdepartementet),1
+ku,1

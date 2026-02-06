@@ -1,90 +1,94 @@
 value,count
-Motion,77776
-Svar på skriftlig fråga,27247
-Skriftlig fråga,26877
-Utskottens kallelser och föredragningslistor,12505
-Omröstning,11007
-Interpellationsdebatt,10863
-Utskottens protokoll,8934
-Debatt om förslag,7224
-Riksdagsskrivelse,6367
-Beslut,5092
-Proposition,4649
-Bilaga till dokument från EU-nämnden,4502
-"",3808
-Svensk författningssamling,3077
-Statens offentliga utredningar,2900
-Kommittédirektiv,2890
-Protokoll,2327
-Kommittéberättelse,2114
-Kammarens föredragningslistor,2088
-Fakta-pm om EU-förslag,1957
+Motion,94633
+Svar på skriftlig fråga,37127
+Skriftlig fråga,36601
+Utskottens kallelser och föredragningslistor,19717
+Omröstning,14993
+Interpellationsdebatt,14071
+Utskottens protokoll,12564
+Debatt om förslag,9688
+Riksdagsskrivelse,8416
+Beslut,7553
+Proposition,5786
+Bilaga till dokument från EU-nämnden,5035
+"",4885
+Svensk författningssamling,3918
+Kommittédirektiv,3622
+Statens offentliga utredningar,3310
+Protokoll,2980
+Kammarens föredragningslistor,2835
+Kommittéberättelse,2608
+Fakta-pm om EU-förslag,2532
+Yttrande,1632
 Bilaga,1532
-Departementsserien,1258
-Yttrande,1257
-Talarlista,962
-EU-dokument,881
-EU-nämndens uppteckningar,815
-KU:s särskilda protokoll,760
-EU-nämndens protokoll,751
+Departementsserien,1421
+EU-dokument,1384
+Talarlista,1328
+KU:s särskilda kallelse och föredragningslista,1137
+EU-nämndens uppteckningar,1094
+KU:s särskilda protokoll,1037
+EU-nämndens protokoll,1028
+Framställning / redogörelse,769
 EU-nämndens skriftliga samråd,690
-Framställning / redogörelse,629
-KU:s särskilda kallelse och föredragningslista,591
-KU-anmälan,450
-EU-nämndens kallelse och föredragningslista,431
-Öppen utfrågning,380
-Valprövningsnämndens beslut,373
-Frågestund,327
-Utskottens verksamhetsberättelse,301
-Rapport från riksdagen,273
-Riksrevisionens granskningsrapport,267
-Föreskrifter i Riksdagsförvaltningens författningssamling,203
-Öppet seminarium,166
+EU-nämndens kallelse och föredragningslista,660
+KU-anmälan,607
+Valprövningsnämndens beslut,595
+Frågestund,561
+Öppen utfrågning,554
+Riksrevisionens granskningsrapport,413
+Utskottens verksamhetsberättelse,362
+Rapport från riksdagen,347
+Session,300
+Öppet seminarium,260
+Visning,258
+Föreskrifter i Riksdagsförvaltningens författningssamling,246
+Partiledardebatt,244
+Öppet sammanträde,176
 minråd,165
-Session,150
-Visning,123
-Partiledardebatt,115
-Öppet sammanträde,82
-Öppet samråd,75
-Information från regeringen,66
-Val,57
-Statsministerns frågestund,53
-Utrikespolitisk debatt,48
-Aktuell debatt,47
-Allmänpolitisk debatt,42
-Budgetdebatt,42
-Presskonferens,42
-Resa,41
-Riksmötets öppnande,36
-Utredning från Riksdagsförvaltningen,32
-Övrigt kammaren,31
-Debatt med anledning av vårpropositionen,27
-Särskild debatt,24
+Information från regeringen,135
+Resa,118
+Val,113
+Statsministerns frågestund,107
+Övrigt kammaren,103
+Öppet samråd,102
+Presskonferens,92
+Riksmötets öppnande,74
+Utrikespolitisk debatt,71
+Aktuell debatt,63
+Särskild debatt,61
+Allmänpolitisk debatt,59
+Bordläggning,59
+Budgetdebatt,59
+Övrig händelse,56
+Filmer om riksdagen,46
+Debatt med anledning av vårpropositionen,41
+Öppet hus,38
+Besök,36
+Utredning från Riksdagsförvaltningen,36
+Avslutning,33
+Ungdomens riksdag,30
+EU-nämndens verksamhetsberättelse,26
 utskottsdokument,22
-Övrig händelse,22
-Bordläggning,21
-EU-nämndens verksamhetsberättelse,21
-Filmer om riksdagen,21
-Ungdomens riksdag,18
-Avslutning,17
+Återrapportering,22
+Upprop,21
+Avtackning,20
+Regeringsförklaring,18
 EU-nämndens dokument,17
-Avtackning,14
-Upprop,13
-Återrapportering,12
-Inledning,11
-Parentation,11
-Öppet hus,11
-Besök,9
+Inledning,17
+Parentation,17
+EU-debatt,13
+Seminarium,8
 sam-debate,8
 Öppen konferens,8
-Seminarium,4
+Högtidlighållande,4
+Inkommande besök,4
+Träffa ledamöter,4
+Bordläggning av ärenden,3
 Hälsningsanförande,2
-Högtidlighållande,2
-Inkommande besök,2
 Register,2
 Remissdebatt,2
-Träffa ledamöter,2
+Utgående besök,2
+kam-interpellation,2
+sam-introduktion för nya ledamöter,2
 Allmän debattimme,1
-Bordläggning av ärenden,1
-EU-debatt,1
-Utgående besök,1
+Övrigt,1

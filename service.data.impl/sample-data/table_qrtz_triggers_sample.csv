@@ -1,5 +1,5 @@
 sched_name,trigger_name,trigger_group,job_name,job_group,description,next_fire_time,prev_fire_time,priority,trigger_state,trigger_type,start_time,end_time,calendar_name,misfire_instr,job_data
-quartzScheduler,agentJobCronTrigger,DEFAULT,agentJob,DEFAULT,,1768177800000,1768142831865,0,WAITING,CRON,1763913396000,0,,0,\x
-quartzScheduler,refreshViewsJobCronTrigger,DEFAULT,refreshViewsJob,DEFAULT,,1768181400000,1768142823019,0,WAITING,CRON,1763913396000,0,,0,\x
-quartzScheduler,UpdateRuleViolationsJobCronTrigger,DEFAULT,UpdateRuleViolationsJob,DEFAULT,,1768188600000,1768142820620,0,WAITING,CRON,1763913396000,0,,0,\x
-quartzScheduler,updateSearchIndexJobCronTrigger,DEFAULT,updateSearchIndexJob,DEFAULT,,1764124200000,1764040345133,0,PAUSED,CRON,1763913396000,0,,0,\x
+quartzScheduler,UpdateRuleViolationsJobCronTrigger,DEFAULT,UpdateRuleViolationsJob,DEFAULT,,1770435000000,1770404095471,0,WAITING,CRON,1768446049000,0,,0,\x
+quartzScheduler,agentJobCronTrigger,DEFAULT,agentJob,DEFAULT,,1770424200000,1770404096376,0,WAITING,CRON,1768446049000,0,,0,\x
+quartzScheduler,refreshViewsJobCronTrigger,DEFAULT,refreshViewsJob,DEFAULT,,1770427800000,1770404096151,0,WAITING,CRON,1768446049000,0,,0,\x
+quartzScheduler,updateSearchIndexJobCronTrigger,DEFAULT,updateSearchIndexJob,DEFAULT,,1770431400000,1770404095620,0,WAITING,CRON,1768446049000,0,,0,\x

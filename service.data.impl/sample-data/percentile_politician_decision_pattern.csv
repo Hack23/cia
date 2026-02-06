@@ -1,0 +1,10 @@
+column_name,data_type,distinct_count,min_value,max_value,p1,p10,p25,median,p75,p90,p99
+decision_year,numeric,26,2000,2025,2000,2002,2005,2012,2018,2022,2025
+decision_month_num,numeric,12,1,12,1,4,9,10,10,11,12
+total_decisions,bigint,41,1,71,1,1,1,1,2,4,12
+approved_decisions,bigint,18,0,18,0,0,0,0,0,0,1
+rejected_decisions,bigint,41,0,71,0,0,1,1,2,4,11
+referred_back_decisions,bigint,3,0,2,0,0,0,0,0,0,0
+other_decisions,bigint,30,0,52,0,0,0,0,0,0,5
+approval_rate,numeric,29,0.00,100.00,0,0,0,0,0,0,100
+rejection_rate,numeric,37,0.00,100.00,0,0,100,100,100,100,100
