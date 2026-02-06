@@ -9,10 +9,10 @@
 
    <tx:annotation-driven />
 
-   <bean id="securityManager" class="org.apache.activemq.artemis.spi.core.security.ActiveMQJAASSecurityManager">
-      <constructor-arg value="org.apache.activemq.artemis.spi.core.security.jaas.InVMLoginModule"/>
+   <bean id="securityManager" class="org.apache.artemis.spi.core.security.ActiveMQJAASSecurityManager">
+      <constructor-arg value="org.apache.artemis.spi.core.security.jaas.InVMLoginModule"/>
       <constructor-arg>
-         <bean class="org.apache.activemq.artemis.core.config.impl.SecurityConfiguration">
+         <bean class="org.apache.artemis.core.config.impl.SecurityConfiguration">
             <constructor-arg name="users">
                <map>
                   <entry key="guest" value="guest"/>
@@ -32,11 +32,11 @@
       </constructor-arg>
    </bean>
 
-   <bean id="EmbeddedActiveMQ" class="org.apache.activemq.artemis.core.server.embedded.EmbeddedActiveMQ" init-method="start" destroy-method="stop">
+   <bean id="EmbeddedActiveMQ" class="org.apache.artemis.core.server.embedded.EmbeddedActiveMQ" init-method="start" destroy-method="stop">
        <property name="SecurityManager" ref="securityManager"/>
    </bean>
 
-   <bean id="jmsFactory" class="org.apache.activemq.artemis.jms.client.ActiveMQXAConnectionFactory">
+   <bean id="jmsFactory" class="org.apache.artemis.jms.client.ActiveMQXAConnectionFactory">
       <constructor-arg value="vm://0"/>
    </bean>
 

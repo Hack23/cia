@@ -33,7 +33,7 @@
   </distributionManagement>
   <dependencies>
     <dependency>
-      <groupId>org.apache.activemq</groupId>
+      <groupId>org.apache.artemis</groupId>
       <artifactId>artemis-jms-client</artifactId>
       <version>2.50.0</version>
       <exclusions>
@@ -128,7 +128,7 @@
       </exclusions>
     </dependency>
     <dependency>
-      <groupId>org.apache.activemq</groupId>
+      <groupId>org.apache.artemis</groupId>
       <artifactId>artemis-server</artifactId>
       <version>2.50.0</version>
       <exclusions>

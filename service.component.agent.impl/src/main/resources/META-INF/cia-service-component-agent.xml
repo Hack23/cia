@@ -26,7 +26,7 @@
     <context:property-placeholder location="classpath:agent-jms-settings.properties" ignore-unresolvable="true" />
 
     <!-- Define the native XA connection factory for Artemis -->
-    <bean id="jmsFactory" class="org.apache.activemq.artemis.jms.client.ActiveMQXAConnectionFactory">
+    <bean id="jmsFactory" class="org.apache.artemis.jms.client.ActiveMQXAConnectionFactory">
         <constructor-arg value="vm://0"/>
     </bean>
         
@@ -122,19 +122,19 @@
     <!-- JMS Queue Definitions -->
     <!-- World Bank Queues -->
     <bean id="com.hack23.cia.model.external.worldbank.countries.impl.CountryElement"
-          class="org.apache.activemq.artemis.jms.client.ActiveMQQueue" autowire="constructor">
+          class="org.apache.artemis.jms.client.ActiveMQQueue" autowire="constructor">
         <constructor-arg>
             <value>com.hack23.cia.model.external.worldbank.countries.impl.CountryElement</value>
         </constructor-arg>
     </bean>
     <bean id="com.hack23.cia.model.external.worldbank.data.impl.Data"
-          class="org.apache.activemq.artemis.jms.client.ActiveMQQueue" autowire="constructor">
+          class="org.apache.artemis.jms.client.ActiveMQQueue" autowire="constructor">
         <constructor-arg>
             <value>com.hack23.cia.model.external.worldbank.data.impl.Data</value>
         </constructor-arg>
     </bean>
     <bean id="com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement"
-          class="org.apache.activemq.artemis.jms.client.ActiveMQQueue" autowire="constructor">
+          class="org.apache.artemis.jms.client.ActiveMQQueue" autowire="constructor">
         <constructor-arg>
             <value>com.hack23.cia.model.external.worldbank.indicators.impl.IndicatorElement</value>
         </constructor-arg>
@@ -142,43 +142,43 @@
 
     <!-- Riksdagen Queues -->
     <bean id="com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement"
-          class="org.apache.activemq.artemis.jms.client.ActiveMQQueue" autowire="constructor">
+          class="org.apache.artemis.jms.client.ActiveMQQueue" autowire="constructor">
         <constructor-arg>
             <value>com.hack23.cia.model.external.riksdagen.dokumentlista.impl.DocumentElement</value>
         </constructor-arg>
     </bean>
     <bean id="com.hack23.cia.service.component.agent.impl.riksdagen.workers.LoadDocumentWork"
-          class="org.apache.activemq.artemis.jms.client.ActiveMQQueue" autowire="constructor">
+          class="org.apache.artemis.jms.client.ActiveMQQueue" autowire="constructor">
         <constructor-arg>
             <value>com.hack23.cia.service.component.agent.impl.riksdagen.workers.LoadDocumentWork</value>
         </constructor-arg>
     </bean>
     <bean id="com.hack23.cia.model.external.riksdagen.personlista.impl.PersonElement"
-          class="org.apache.activemq.artemis.jms.client.ActiveMQQueue" autowire="constructor">
+          class="org.apache.artemis.jms.client.ActiveMQQueue" autowire="constructor">
         <constructor-arg>
             <value>com.hack23.cia.model.external.riksdagen.personlista.impl.PersonElement</value>
         </constructor-arg>
     </bean>
     <bean id="com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData"
-          class="org.apache.activemq.artemis.jms.client.ActiveMQQueue" autowire="constructor">
+          class="org.apache.artemis.jms.client.ActiveMQQueue" autowire="constructor">
         <constructor-arg>
             <value>com.hack23.cia.model.external.riksdagen.documentcontent.impl.DocumentContentData</value>
         </constructor-arg>
     </bean>
     <bean id="com.hack23.cia.model.external.riksdagen.votering.impl.VoteData"
-          class="org.apache.activemq.artemis.jms.client.ActiveMQQueue" autowire="constructor">
+          class="org.apache.artemis.jms.client.ActiveMQQueue" autowire="constructor">
         <constructor-arg>
             <value>com.hack23.cia.model.external.riksdagen.votering.impl.VoteData</value>
         </constructor-arg>
     </bean>
     <bean id="com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer"
-          class="org.apache.activemq.artemis.jms.client.ActiveMQQueue" autowire="constructor">
+          class="org.apache.artemis.jms.client.ActiveMQQueue" autowire="constructor">
         <constructor-arg>
             <value>com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer</value>
         </constructor-arg>
     </bean>
     <bean id="com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalComponentData"
-          class="org.apache.activemq.artemis.jms.client.ActiveMQQueue" autowire="constructor">
+          class="org.apache.artemis.jms.client.ActiveMQQueue" autowire="constructor">
         <constructor-arg>
             <value>com.hack23.cia.model.external.riksdagen.utskottsforslag.impl.CommitteeProposalComponentData</value>
         </constructor-arg>
@@ -186,19 +186,19 @@
 
     <!-- API Work Queues -->
     <bean id="RiksdagenApiAgentWorkQueue"
-          class="org.apache.activemq.artemis.jms.client.ActiveMQQueue" autowire="constructor">
+          class="org.apache.artemis.jms.client.ActiveMQQueue" autowire="constructor">
         <constructor-arg>
             <value>RiksdagenApiAgentWorkQueue</value>
         </constructor-arg>
     </bean>
     <bean id="WorldbankApiAgentWorkQueue"
-          class="org.apache.activemq.artemis.jms.client.ActiveMQQueue" autowire="constructor">
+          class="org.apache.artemis.jms.client.ActiveMQQueue" autowire="constructor">
         <constructor-arg>
             <value>WorldbankApiAgentWorkQueue</value>
         </constructor-arg>
     </bean>
     <bean id="AgentEventQueue"
-          class="org.apache.activemq.artemis.jms.client.ActiveMQQueue" autowire="constructor">
+          class="org.apache.artemis.jms.client.ActiveMQQueue" autowire="constructor">
         <constructor-arg>
             <value>AgentEventQueue</value>
         </constructor-arg>
