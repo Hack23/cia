@@ -23,7 +23,7 @@
 	<logger name="org.springframework.web" level="warn" />
 	<logger name="org.springframework.oxm.jaxb" level="error" />
 	<logger name="org.springframework.security" level="error" />
-	<logger name="org.apache.activemq.artemis" level="warn" />
+	<logger name="org.apache.artemis" level="warn" />
 	<logger name="ch.qos.logback.core" level="warn" />
 
 	<!-- Show server lifecycle events -->
