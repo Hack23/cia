@@ -1,21 +1,21 @@
 value,count
  Avslag,41982
-Avslag,24861
-"",6615
-avslag,2388
- Bifall,1543
-Bifall,1261
+Avslag,40880
+"",6885
+Bifall,2404
+avslag,2386
+ Bifall,1541
 " Avslag,  Avslag",418
+Delvis bifall,418
  Delvis bifall,384
-Delvis bifall,359
-bifall,141
-delvis bifall,108
+BifallDelvis,233
+bifall,113
+delvis bifall,104
 " Bifall,  Bifall",63
-BifallDelvis,42
 " Bifall,  Bifall,  Bifall",37
+"Avslag,Avslag",23
 " Avslag,  Avslag,  Avslag",22
 " Bifall,  Bifall,  Bifall,  Bifall",17
-"Avslag,Avslag",16
 " Bifall,  Delvis bifall",13
 " Bifall,  Bifall,  Bifall,  Bifall,  Bifall",12
 " Avslag,  Delvis bifall",11
@@ -23,9 +23,11 @@ BifallDelvis,42
 " Avslag,  Bifall",9
 " Avslag,  Avslag,  Avslag,  Avslag,  Avslag",8
 " Bifall,  Bifall,  Delvis bifall",7
+"Bifall,Bifall",6
 " Bifall,  Bifall,  Bifall,  Bifall,  Bifall,  Bifall",5
 " Bifall,  Bifall,  Bifall,  Bifall,  Bifall,  Bifall,  Bifall,  Bifall,  Bifall",4
 " Delvis bifall,  Delvis bifall",4
+",",4
 " Bifall,  Avslag",3
 " Bifall,  Bifall,  Bifall,  Bifall,  Bifall,  Bifall,  Bifall,  Bifall",3
 " Bifall,  Bifall,  Bifall,  Bifall,  Bifall,  Bifall,  Delvis bifall",3
@@ -40,7 +42,6 @@ AVSLAG,3
 " Bifall,  Delvis bifall,  Bifall",2
 " Delvis bifall,  Bifall",2
 " Delvis bifall,  Bifall,  Bifall",2
-",",2
 -,2
 " Avslag,  Avslag,  Avslag,  Avslag,  Avslag,  Avslag,  Avslag,  Avslag",1
 " Avslag,  Avslag,  Avslag,  Avslag,  Avslag,  Avslag,  Avslag,  Avslag,  Avslag,  Avslag,  Avslag,  Avslag,  Avslag",1
@@ -67,6 +68,6 @@ AVSLAG,3
 " Delvis bifall,  Delvis bifall,  Delvis bifall,  Bifall,  Delvis bifall",1
 "Avslag,Avslag,Avslag,Avslag",1
 "Avslag,Bifall",1
-"Bifall,Bifall",1
+"Bifall,BifallDelvis",1
 "bifall till konvention nr 182, i övrigt till handlingarna",1
 bifall till propositionen,1

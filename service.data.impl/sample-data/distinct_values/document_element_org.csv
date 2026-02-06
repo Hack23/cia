@@ -1,267 +1,280 @@
 value,count
-"",54152
-SoU,12159
-TU,10288
-KU,10003
-MJU,9908
-UbU,9534
-JuU,8952
-SkU,8060
-NU,7661
-SfU,6663
-s,6295
-AU,6047
-FiU,5852
-UU,5825
-CU,5721
-M,5647
-KrU,5553
-kamm,5551
-S,5316
-m,4371
-L,4186
-FöU,3690
-EUN,3260
-kd,2413
-v,2067
+"",75047
+SoU,15507
+TU,13031
+KU,12992
+MJU,12757
+UbU,11972
+JuU,11813
+M,10115
+SkU,10035
+NU,9709
+SfU,8438
+kamm,8059
+FiU,7882
+CU,7792
+S,7608
+UU,7378
+AU,7297
+KrU,6926
+s,6289
+FöU,4821
+SD,4608
+L,4550
+m,4383
+EUN,3678
+kd,2405
+V,2281
+v,2066
 LU,1745
-c,1527
-V,1521
-SD,1356
-mp,1188
+c,1531
+C,1485
+Europeiska kommissionen,1368
+Finansdepartementet,1255
+Ju-dep,1250
+mp,1183
+Socialdepartementet,1178
 BoU,1062
-Ju-dep,1058
-Europeiska kommissionen,871
+MP,969
+Justitiedepartementet,939
+KD,932
 FI,856
-Socialdepartementet,853
-C,771
-Finansdepartementet,759
-MP,683
-Fi-dep,667
-Justitiedepartementet,629
-Utbildningsdepartementet,542
-N-dep,519
-S-dep,513
-KD,468
+Fi-dep,799
+Utbildningsdepartementet,744
+S-dep,658
+eun,634
+VPN,607
+RR,557
+N-dep,544
+U-dep,497
+UFöU,490
 KK,450
-U-dep,415
-RR,387
-VPN,378
+Näringsdepartementet,424
 JU,344
-UFöU,344
-Näringsdepartementet,336
-eun,317
 JUU,303
 N,301
+RDF,285
+Kulturdepartementet,277
+Utrikesdepartementet,272
 UBU,269
 Nä-dep,257
-RDF,245
+-,244
+Fö-dep,239
 SOU,237
 Jo-dep,230
+Försvarsdepartementet,228
 SKU,228
-Kulturdepartementet,215
-FIU,214
+Statsrådsberedningen,227
+Justitie-dep,225
+Miljödepartementet,225
+Finans-dep,218
+M-dep,216
+FIU,215
 SFU,213
-Fö-dep,206
-Utrikesdepartementet,196
 UD,194
 RRS,193
-M-dep,191
-Miljödepartementet,179
-Finansdepartementet S3,166
-Försvarsdepartementet,166
+Arbetsmarknadsdepartementet,192
+Finansdepartementet S3,181
+Ku-dep,173
+Klimat- och näringslivsdepartementet,172
 BOU,160
+UD-dep,151
+Närings-dep,149
 KRU,148
-Ku-dep,145
 Ut-dep,145
+A-dep,144
 Ju,142
-Arbetsmarknadsdepartementet,139
-Justitie-dep,136
-UD-dep,135
--,127
-Finans-dep,125
-Klimat- och näringslivsdepartementet,125
-Närings-dep,99
-A-dep,91
-RS,91
+RS,115
+Miljö- och energidepartementet,114
+Landsbygds- och infrastrukturdepartementet RSL,105
+Utrikes-dep,104
+Finansdepartementet S2,101
+Landsbygds- och infrastrukturdepartementet RSIB TM,101
+Klimat- och näringslivsdepartementet RSE,100
+Justitiedepartementet DÅ,91
+JO,89
+Landsbygds- och infrastrukturdepartementet,89
+ku,89
 KUU,88
-Miljö- och energidepartementet,87
-Statsrådsberedningen,87
-JO,85
-Landsbygds- och infrastrukturdepartementet RSL,82
-U,82
-Klimat- och näringslivsdepartementet RSE,78
-Landsbygds- och infrastrukturdepartementet RSIB TM,75
-Justitiedepartementet DÅ,74
-RB,67
-Finansdepartementet S2,65
-Utrikes-dep,65
+Justitiedepartementet L4,86
+RB,86
+Infrastrukturdepartementet,82
+LI-dep,82
+U,80
+Justitiedepartementet L2,72
+Miljö-dep,70
+Justitiedepartementet BIRS,65
+KN-dep,64
 SB,62
-Justitiedepartementet BIRS,60
-Justitiedepartementet L2,57
-Justitiedepartementet L4,54
+Finansdepartementet S1,55
 A,52
 FÖU,52
-Landsbygds- och infrastrukturdepartementet,51
-Miljö-dep,49
-Finansdepartementet S1,48
+Arbetsmarknadsdepartementet AA,51
+Klimat- och näringslivsdepartementet RSN,48
+Arbetsmarknads-dep,47
 Fö,47
-Jordbruksdepartementet,44
+fiu,47
+Finansdepartementet FMA B,45
+Jordbruksdepartementet,45
+Justitiedepartementet L6,45
+Riksbanken,45
 Landsbygdsdepartementet,44
-Arbetsmarknadsdepartementet AA,43
+Arbetsmarknadsdepartementet IU,43
 IJ-dep,43
-Finansdepartementet FMA B,41
-Riksbanken,37
-Arbetsmarknadsdepartementet IU,36
-Justitiedepartementet L3,36
-Justitiedepartementet L6,36
-Klimat- och näringslivsdepartementet RSN,35
-Justitiedepartementet L1,34
-ku,32
-Finansdepartementet KO,30
+Justitiedepartementet L1,42
+Justitiedepartementet L5,41
+Justitiedepartementet L3,39
+Social-dep,39
+Infrastruktur-dep,35
+Utbildnings-dep,35
+Finansdepartementet FMA FPM,33
+Finansdepartementet KO,33
+Finansdepartementet FMA V,32
+Justitiedepartementet L7,31
+Näringsdepartementet RSL,31
 M t.o.m. 1 jan-07,30
-Näringsdepartementet RSL,30
 Bou,29
+NR,29
+Finansdepartementet DIS,28
 Justitiedepartementet DOM,28
-Justitiedepartementet L5,28
-LI-dep,27
-Arbetsmarknads-dep,26
+Arbetsmarknadsdepartementet ARM,27
+ER,26
+Finansdepartementet ESA,26
 M t.o.m. -04,26
-Finansdepartementet FMA FPM,25
-NR,25
-Finansdepartementet FMA V,24
-Justitiedepartementet L7,24
-Finansdepartementet ESA,23
-Utbildnings-dep,23
+Finansdepartementet OU,24
+I-dep,24
+Landsbygds- och infrastrukturdepartementet BB,24
+MjU,24
+RJ,24
+Finansdepartementet E2,23
+Finansdepartementet SKA,22
 JuSoU,22
-KN-dep,22
 Ku,22
-ER,21
-fiu,21
-Finansdepartementet E2,20
-MjU,20
-Arbetsmarknadsdepartementet ARM,19
-Finansdepartementet OU,19
+OSSE,22
+sou,20
 Landsbygds-dep,19
-RJ,19
+Miljö- och energi-dep,19
 U t.o.m. 1 jan-07,19
+Finansdepartementet SFÖ,18
 IJ,18
-Landsbygds- och infrastrukturdepartementet BB,18
-Finansdepartementet SKA,17
 Integrations- och jämställdhetsdepartementet,17
+Kultur-dep,17
+Näringsdepartementet RS N,17
 UMJU,17
-OSSE,16
-Finansdepartementet SFÖ,15
+Finansdepartementet DOF,16
+cu,16
 Finansinspektionen,15
-Näringsdepartementet RS N,15
+Justitiedepartementet KRIM,15
+Landsbygds- och infrastruktur-dep,15
+Landsbygds- och infrastrukturdepartementet RSIB TP,15
+Landsbygds- och infrastrukturdepartementet RSIB US,15
 RD,15
-Social-dep,15
-Finansdepartementet DIS,14
-Infrastrukturdepartementet,14
-Justitiedepartementet KRIM,14
+tu,15
+Finansdepartementet K,14
+SB-dep,14
 Finansdepartementet BA ToT,13
-Finansdepartementet K,13
-SB-dep,13
+Försäkringskassan,13
+NL,13
 U t.o.m. -04,13
+kru,13
+rd,13
+Arbetsmarknadsdepartementet MRD,12
+CKrU,12
+Försvars-dep,12
+PN,12
+RAN,12
+SN,12
+föu,12
 Justitiedepartementet Å,11
-Kultur-dep,11
-Landsbygds- och infrastrukturdepartementet RSIB TP,11
-Landsbygds- och infrastrukturdepartementet RSIB US,11
+RAR,11
+ÖN,11
+Arbetsmarknadsdepartementet JÄM,10
 Justitiedepartementet D,10
-Miljö- och samhällsbyggnadsdepartementet,10
+au,10
+juu,10
+nu,10
+ubu,10
 Integrations- och jämställdhetsdepartementet DISK,9
 KUD t.o.m. -04,9
+Miljö- och samhällsbyggnadsdepartementet,9
 Näringsdepartementet RSN,9
 UFÖU,9
-cu,9
-Arbetsmarknadsdepartementet MRD,8
-Försvars-dep,8
+URF,9
+sku,9
+uu,9
+"Europeiska kommissionen, Höga Representanten",8
+Landsbygds- och infrastrukturdepartementet SPN,8
+NSÖ,8
 Uk-dep,8
 Utbildnings- och kulturdepartementet,8
-sou,8
-tu,8
-ÖN,8
-"Europeiska kommissionen, Höga Representanten",7
-Finansdepartementet DOF,7
+Europol,7
 Finansdepartementet UR,7
-Försäkringskassan,7
-I-dep,7
-Miljö- och energi-dep,7
-NL,7
-PN,7
-RAN,7
-RAR,7
 USoU,7
-nu,7
-rd,7
-Arbetsmarknadsdepartementet JÄM,6
+mju,7
+sfu,7
 Finansdepartementet KL,6
 L-dep,6
-SN,6
 TM,6
-föu,6
-kru,6
 Näringsdepartementet RST,5
-au,5
-sku,5
-ubu,5
+uföu,5
+Europaparlamentet,4
 Finansdepartementet RS,4
 Infrastrukturdepartementet RSED D,4
 Infrastrukturdepartementet RSED E,4
 Integrations- och jämställdhetsdepartementet KO,4
-Landsbygds- och infrastrukturdepartementet SPN,4
+Landsbygds- och infrastrukturdepartementet RSIB,4
 "Miljödepartementet, Näringsdepartementet",4
+Rådet,4
 Statens bostadskreditnämnd,4
-URF,4
-juu,4
-sfu,4
-uu,4
 Arbetsmarknadsdepartementet SV,3
-CKrU,3
+Finansdepartementet FMA,3
 Finansdepartementet S5,3
 Finansdepartementet S7,3
-Infrastruktur-dep,3
-Infrastrukturdepartementet RST TM,3
 Justitiedepartementet PO,3
-Landsbygds- och infrastrukturdepartementet RSIB,3
+Klimat- och närings-dep,3
 Rr,3
-Europaparlamentet,2
+"föu,uu",3
 "FiU,KU",2
 Finansdepartementet BA EU,2
 Finansdepartementet BB,2
 Finansdepartementet BF,2
 Finansdepartementet IEA PRO,2
+Finansdepartementet V,2
+Infrastrukturdepartementet RST TM,2
 "JuU,SoU",2
+Justitiedepartementet SIM,2
 Landsbygds- och infrastrukturdepartementet SPN BB,2
 "Miljö-dep, Närings-dep",2
+"Närings-dep, Utrikes-dep",2
 RFK,2
 Riksförsäkringsverket,2
 "SkU,NU",2
 TK,2
-Utbildningsdepartementet),2
 Utrikesdepartementet HI,2
-uföu,2
 167,1
 181,1
 20170919,1
 3DCA,1
+"AU,KrU,SfU,SoU,UbU",1
+"Arbetsmarknads-dep, Statsrådsberedningen",1
 Arbetsmarknadsdepartementet I,1
 "Arbetsmarknadsdepartementet, Näringsdepartementet",1
-Europol,1
 "FiU, KU",1
 "FiU,KU,KrU,MJU,NU,UbU",1
 "FiU,SfU",1
+"Finans-dep, Statsrådsberedningen",1
 "Finans-dep, Utrikes-dep",1
 "Finansdep, Jordbruksdep, Näringsdep",1
 Finansdepartementet B,1
 Finansdepartementet BA,1
+Finansdepartementet BA BAS,1
 Finansdepartementet BO,1
 Finansdepartementet DF,1
 Finansdepartementet F,1
-Finansdepartementet FMA,1
 Finansdepartementet FPM,1
 Finansdepartementet Fi S3,1
 Finansdepartementet FÖ,1
+Finansdepartementet IEA SI,1
 Finansdepartementet MF,1
 Finansdepartementet SF,1
 Finansdepartementet SP,1
@@ -271,6 +284,7 @@ H.M. Konungen,1
 IPU,1
 Infrastrukturdepartementet RSED DF,1
 Infrastrukturdepartementet RST TP,1
+Infrastrukture-dep,1
 Integrations- och jämställdhetsdepartementet IM,1
 Jordbruks-dep,1
 "Jordbruksdepartementet, Socialdepartementet",1
@@ -278,7 +292,6 @@ Ju -dep,1
 "JuU,TU",1
 JuU|SoU,1
 Justitiedepartementet KO,1
-Justitiedepartementet SIM,1
 "Justitiedepartementet, Utrikesdepartementet",1
 KFiU,1
 "KU, FiU, MjU, NU, UbU, KrU",1
@@ -290,22 +303,24 @@ Kru,1
 "MJU, NU",1
 "Miljödepartementet, Utrikesdepartementet",1
 NATO,1
-NSÖ,1
 "NU,SoU,UbU",1
 "NU,UU",1
-"Närings-dep, Utrikes-dep",1
 Näringsdepartementet RS L,1
-Rådet,1
+RFR,1
+Riksåklagaren,1
 So,1
 "Statsrådsberedningen, Utrikesdepartementet",1
 USOU,1
 UbKrU,1
 UföU,1
 Ulf Nilsson (fp),1
+Utbildningsdepartementet),1
+"au,cu,fiu,föu,juu,kru,ku,mju,nu,sfu,sku,sou,tu,ubu,uu,ckru,uföu",1
+"au,kru,sfu,sou,ubu",1
+"ckru,eun",1
 f,1
 fI-dep,1
 ij-dep,1
-mju,1
 n N -dep,1
 s-dep,1
 "sku,uu",1

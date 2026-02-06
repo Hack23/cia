@@ -599,9 +599,9 @@ year,committee,assignment_count,unique_members
 2024,KrU,2,1
 2025,UFöU,70,40
 2025,KU,21,19
-2025,TU,21,19
+2025,TU,20,19
 2025,JuU,20,19
-2025,UbU,19,17
+2025,UbU,18,16
 2025,FöU,17,13
 2025,SkU,17,16
 2025,SoU,17,16
@@ -614,5 +614,10 @@ year,committee,assignment_count,unique_members
 2025,AU,11,11
 2025,EUN,10,9
 2025,FiU,7,7
+2026,JuU,5,5
+2026,KU,3,2
+2026,TU,2,2
 2026,UU,2,2
-2026,KU,1,1
+2026,SfU,1,1
+2026,EUN,1,1
+2026,SkU,1,1
