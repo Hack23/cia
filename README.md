@@ -61,7 +61,7 @@ See the [agents README](.github/agents/README.md) for detailed information on us
 
 <div align="left">
 
-We maintain a comprehensive [skills library](.github/skills/) with **34 strategic skills** following security-by-design principles, organized into 6 categories:
+We maintain a comprehensive [skills library](.github/skills/) with **41 strategic skills** following security-by-design principles, organized into 13 categories:
 
 #### 🔒 Security-by-Design Skills (5 skills)
 - 🛡️ **[Secure Code Review](.github/skills/secure-code-review/)** - OWASP Top 10, SAST/DAST patterns
@@ -110,6 +110,25 @@ We maintain a comprehensive [skills library](.github/skills/) with **34 strategi
 - 💬 **[Strategic Communication Analysis](.github/skills/strategic-communication-analysis/)** - Narrative, media analysis
 - 📜 **[Legislative Monitoring](.github/skills/legislative-monitoring/)** - Voting patterns, bill tracking
 - ⚠️ **[Risk Assessment Frameworks](.github/skills/risk-assessment-frameworks/)** - Political risk, early warnings
+
+#### 📊 Product Management & Agile (1 skill)
+- 📋 **[Product Management Patterns](.github/skills/product-management-patterns/)** - User stories, backlog, sprint planning
+
+#### ☁️ Cloud Operations (1 skill)
+- 📡 **[AWS CloudWatch Monitoring](.github/skills/aws-cloudwatch-monitoring/)** - Metrics, alarms, dashboards, log insights
+
+#### 🎨 UI/UX Excellence (2 skills)
+- ♿ **[Accessibility WCAG Patterns](.github/skills/accessibility-wcag-patterns/)** - WCAG 2.1 AA, ARIA, keyboard navigation
+- 📊 **[Data Visualization Principles](.github/skills/data-visualization-principles/)** - Chart selection, color theory, dashboards
+
+#### 🧪 Testing & Quality Assurance (1 skill)
+- 🎭 **[Playwright UI Testing](.github/skills/playwright-ui-testing/)** - Browser automation, visual regression, E2E
+
+#### 💼 Business Strategy (1 skill)
+- 💡 **[Business Model Canvas](.github/skills/business-model-canvas/)** - Value proposition, revenue streams, sustainability
+
+#### 📢 Marketing & Growth (1 skill)
+- 🔍 **[SEO Best Practices](.github/skills/seo-best-practices/)** - On-page SEO, technical SEO, keyword research
 
 **Skills Integration**: All 6 agents reference relevant skills for their domains. See the [skills README](.github/skills/README.md) for complete catalog and [agent-skill mappings](.github/agents/README.md#agent-skills-matrix).
 

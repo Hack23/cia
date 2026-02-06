@@ -1,6 +1,6 @@
 # CIA GitHub Copilot Skills Library
 
-This directory contains 34 comprehensive agent skills for the Citizen Intelligence Agency platform, following GitHub Copilot's December 2025 Agent Skills feature best practices.
+This directory contains 41 comprehensive agent skills for the Citizen Intelligence Agency platform, following GitHub Copilot's December 2025 Agent Skills feature best practices.
 
 ## Skills Overview
 
@@ -72,6 +72,43 @@ This directory contains 34 comprehensive agent skills for the Citizen Intelligen
 | [strategic-communication-analysis](strategic-communication-analysis/) | Narrative analysis, media analysis, discourse analysis | Media bias detection, framing analysis, influence assessment |
 | [legislative-monitoring](legislative-monitoring/) | Voting pattern analysis, committee effectiveness, bill tracking | Parliamentary oversight, legislative productivity, cross-party collaboration |
 | [risk-assessment-frameworks](risk-assessment-frameworks/) | Political risk, institutional risk, corruption indicators, early warning | Democratic backsliding, corruption detection, coalition stability |
+
+### 📊 Product Management & Agile (1 skill)
+
+| Skill | Description | Use Cases |
+|-------|-------------|-----------|
+| [product-management-patterns](product-management-patterns/) | User stories, backlog management, sprint planning, stakeholder communication | Product planning, agile development, requirements gathering |
+
+### ☁️ Cloud Operations (1 skill)
+
+| Skill | Description | Use Cases |
+|-------|-------------|-----------|
+| [aws-cloudwatch-monitoring](aws-cloudwatch-monitoring/) | CloudWatch metrics, alarms, dashboards, log insights, application monitoring | Performance monitoring, alerting, troubleshooting |
+
+### 🎨 UI/UX Excellence (2 skills)
+
+| Skill | Description | Use Cases |
+|-------|-------------|-----------|
+| [accessibility-wcag-patterns](accessibility-wcag-patterns/) | WCAG 2.1 AA compliance, ARIA attributes, keyboard navigation, screen readers | Accessible UI design, inclusive design |
+| [data-visualization-principles](data-visualization-principles/) | Chart selection, color theory, dashboard design, data storytelling | Political data visualization, dashboards |
+
+### 🎯 Testing & Quality Assurance (1 skill)
+
+| Skill | Description | Use Cases |
+|-------|-------------|-----------|
+| [playwright-ui-testing](playwright-ui-testing/) | Playwright automation, visual regression, accessibility testing, E2E workflows | UI testing, browser automation, quality assurance |
+
+### 💼 Business Strategy (1 skill)
+
+| Skill | Description | Use Cases |
+|-------|-------------|-----------|
+| [business-model-canvas](business-model-canvas/) | Value proposition, customer segments, revenue streams, business model design | Strategic planning, revenue modeling, sustainability |
+
+### 📢 Marketing & Growth (1 skill)
+
+| Skill | Description | Use Cases |
+|-------|-------------|-----------|
+| [seo-best-practices](seo-best-practices/) | On-page SEO, technical SEO, keyword research, content optimization | Search visibility, organic growth, content strategy |
 
 ## Agent Cross-Reference
 
