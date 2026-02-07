@@ -139,6 +139,18 @@ The script implements **two-level timeout protection**:
 - Partial results are preserved
 - Check `extract-sample-data.log` for details
 
+**Graceful Timeout Handling (Phase 1):**
+- Individual view timeouts do NOT abort the entire script
+- When a view times out during row counting:
+  - Script logs: "⏱️  TIMEOUT after 120s - skipping view and continuing with next"
+  - View is marked with row_count=-1 (timeout status)
+  - Timeout is tracked in `cia_extraction_tracking` table
+  - Script continues processing all remaining views
+  - Phase 2 and Phase 3 automatically skip timed-out views
+- Complex analytical views may timeout during query planning even with 0 rows
+- This behavior ensures maximum data extraction even with problematic views
+- Example: If view 24/109 times out, views 25-109 still get processed
+
 ## SQL Functions
 
 Load reusable functions in PostgreSQL:
@@ -253,16 +265,29 @@ validate_percentile_coverage
   ```
 
 **Phase 1 times out at specific view (e.g., "→ [24/109] Analyzing: view_election_cycle_network_analysis")**
-- **Cause**: Complex view takes too long to count rows (default 120s statement timeout)
-- **Why**: Even with 0 rows, PostgreSQL may timeout during query plan optimization for complex views
-- **Symptoms**:
-  - Error: "canceling statement due to statement timeout"
-  - Phase 1 stops mid-way (e.g., at 24/109 views)
-  - Phase 2 may show syntax errors due to incomplete row count cache
-- **Solution 1**: Increase statement timeout in script
+- **Previous behavior (FIXED)**: Script would abort completely when a view timed out, preventing all remaining views from being processed
+- **Current behavior**: Script now gracefully handles timeouts by:
+  - Catching timeout exceptions (SQLSTATE 57014: query_canceled)
+  - Logging timeout with ⏱️  TIMEOUT warning message
+  - Recording view as "timeout" status with row_count=-1 in tracking table
+  - **Continuing with next view** instead of aborting
+  - Skipping timed-out views in Phase 2 and Phase 3 extraction
+- **Symptoms** (still occur but no longer block progress):
+  - Warning: "⏱️  TIMEOUT after 120s - skipping view and continuing with next"
+  - Timed-out view excluded from Phase 2/3 extraction
+  - All remaining views continue to be processed normally
+- **Why timeouts occur**: Complex views may timeout during query plan optimization even with 0 rows due to:
+  - Multiple CTEs, window functions, and complex JOINs
+  - Query planner building execution plan before knowing result set size
+  - Statistics calculation overhead for analytical views
+- **Solution 1** (Recommended): Accept graceful timeout handling - script continues processing
+  - No action needed - timed-out views are safely skipped
+  - Check `cia_extraction_tracking` table for timeout summary
+- **Solution 2**: Increase statement timeout if specific view data is critical
   - Edit `extract-sample-data.sql` line ~134
   - Change `SET statement_timeout = '120s';` to `SET statement_timeout = '300s';`
-- **Solution 2**: Optimize the slow view
+  - Caution: May increase total extraction time significantly
+- **Solution 3**: Optimize the slow view query
   ```sql
   -- Analyze the problematic view's query plan
   EXPLAIN ANALYZE SELECT COUNT(*) FROM view_election_cycle_network_analysis;
@@ -270,12 +295,13 @@ validate_percentile_coverage
   -- Check for missing indexes
   -- Review view definition for optimization opportunities
   ```
-- **Solution 3**: Skip problematic views temporarily
+- **Solution 4**: Skip problematic views from extraction entirely (legacy approach)
   - Add view to exclusion list in script (around line 1224)
   ```sql
   AND viewname != 'view_riksdagen_intelligence_dashboard'
   AND viewname != 'view_election_cycle_network_analysis'  -- Add this line
   ```
+  - Note: Solution 1 (graceful timeout) is now preferred over exclusion
 
 **Phase 2 shows "syntax error at or near viewname LINE 301"**
 - **Cause**: Phase 1 didn't complete, so Phase 2 has incomplete row count data
