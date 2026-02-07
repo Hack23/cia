@@ -1,0 +1,4 @@
+extraction_type,file_count,total_rows
+tables,94,0
+views,81,0
+materialized_views,28,0

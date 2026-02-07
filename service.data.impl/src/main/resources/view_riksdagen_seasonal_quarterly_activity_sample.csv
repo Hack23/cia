@@ -1,0 +1,1 @@
+year,quarter,is_election_year,total_ballots,active_politicians,attendance_rate,documents_produced,q_baseline_ballots,q_stddev_ballots,ballot_z_score,q_baseline_docs,q_stddev_docs,doc_z_score,q_baseline_attendance,q_stddev_attendance,attendance_z_score,activity_classification

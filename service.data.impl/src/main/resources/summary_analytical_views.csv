@@ -1,0 +1,7 @@
+view_name,category,row_count,distinct_parties,distinct_levels
+view_riksdagen_voting_anomaly_detection,anomaly_detection,0,0,0
+view_riksdagen_politician_experience_summary,experience_analysis,0,0,0
+view_party_performance_metrics,performance_analysis,40,30,1
+view_committee_productivity,productivity_analysis,0,0,0
+view_ministry_risk_evolution,risk_assessment,0,0,0
+view_politician_risk_summary,risk_assessment,0,0,0

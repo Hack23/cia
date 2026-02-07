@@ -1,0 +1,12 @@
+column_name,data_type,distinct_count,min_value,max_value,p1,p10,p25,median,p75,p90,p99
+total_violations,bigint,0,,,,,,,,,
+absenteeism_violations,bigint,0,,,,,,,,,
+effectiveness_violations,bigint,0,,,,,,,,,
+discipline_violations,bigint,0,,,,,,,,,
+productivity_violations,bigint,0,,,,,,,,,
+collaboration_violations,bigint,0,,,,,,,,,
+annual_absence_rate,numeric,0,,,,,,,,,
+annual_rebel_rate,numeric,0,,,,,,,,,
+annual_vote_count,bigint,0,,,,,,,,,
+documents_last_year,bigint,0,,,,,,,,,
+risk_score,numeric,0,,,,,,,,,

@@ -1,0 +1,10 @@
+column_name,data_type,distinct_count,min_value,max_value,p1,p10,p25,median,p75,p90,p99
+year,numeric,0,,,,,,,,,
+quarter,numeric,0,,,,,,,,,
+ballots_participated,bigint,0,,,,,,,,,
+participation_rate,numeric,0,,,,,,,,,
+prev_quarter_rate,numeric,0,,,,,,,,,
+momentum,numeric,0,,,,,,,,,
+moving_avg_4q,numeric,0,,,,,,,,,
+volatility,numeric,0,,,,,,,,,
+acceleration,numeric,0,,,,,,,,,

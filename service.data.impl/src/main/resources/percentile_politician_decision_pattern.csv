@@ -1,0 +1,10 @@
+column_name,data_type,distinct_count,min_value,max_value,p1,p10,p25,median,p75,p90,p99
+decision_year,numeric,0,,,,,,,,,
+decision_month_num,numeric,0,,,,,,,,,
+total_decisions,bigint,0,,,,,,,,,
+approved_decisions,bigint,0,,,,,,,,,
+rejected_decisions,bigint,0,,,,,,,,,
+referred_back_decisions,bigint,0,,,,,,,,,
+other_decisions,bigint,0,,,,,,,,,
+approval_rate,numeric,0,,,,,,,,,
+rejection_rate,numeric,0,,,,,,,,,

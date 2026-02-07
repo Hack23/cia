@@ -1,0 +1,4 @@
+size_category,table_count
+1_tiny (<100),75
+2_small (100-1K),1
+3_medium (1K-10K),5

@@ -1,0 +1,8 @@
+column_name,data_type,distinct_count,min_value,max_value,p1,p10,p25,median,p75,p90,p99
+crisis_period_votes,bigint,0,,,,,,,,,
+crisis_absence_rate,numeric,0,,,,,,,,,
+crisis_party_discipline,numeric,0,,,,,,,,,
+normal_period_votes,bigint,0,,,,,,,,,
+normal_absence_rate,numeric,0,,,,,,,,,
+absence_rate_change,numeric,0,,,,,,,,,
+resilience_score,numeric,0,,,,,,,,,
