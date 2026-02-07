@@ -1597,12 +1597,6 @@ SELECT
                 file_prefix,
                 file_prefix
             )
-                viewname,
-                sample_rows,
-                file_prefix,
-                file_prefix,
-                file_prefix
-            )
     END AS extraction_command
 FROM view_extract
 ORDER BY 
