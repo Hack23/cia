@@ -47,3 +47,9 @@ create_view.sql
 __pycache__/
 network_analysis_output.txt
 view_analysis_part*.txt
+
+# Generated sample data CSV files (from extract-sample-data.sql)
+service.data.impl/src/main/resources/*.csv
+service.data.impl/src/main/resources/distinct_values/*.csv
+service.data.impl/src/main/resources/extraction_*.csv
+service.data.impl/src/main/resources/sample_data_manifest.csv

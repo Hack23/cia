@@ -216,6 +216,24 @@ validate_percentile_coverage
 - **Check**: `netstat -tlnp | grep 5432`
 - **Solution**: Start PostgreSQL or verify correct host/port
 
+**Script hangs with no output after "Starting extraction..."**
+- **Cause**: `PGPASSWORD` environment variable not set, `psql` waiting for password input
+- **Symptoms**: 
+  - Script shows "Starting extraction..." and stops
+  - No error messages
+  - Process must be manually killed (Ctrl+C)
+- **Solution**: Set PGPASSWORD before running
+  ```bash
+  export PGPASSWORD=your_password
+  ./extract-sample-data.sh
+  ```
+- **Alternative**: Configure password-less authentication
+  ```bash
+  # Add to ~/.pgpass
+  echo "localhost:5432:cia_dev:postgres:your_password" >> ~/.pgpass
+  chmod 600 ~/.pgpass
+  ```
+
 ### Timeout Issues
 
 **Extraction times out after 30 minutes**
@@ -233,6 +251,37 @@ validate_percentile_coverage
   ```bash
   grep "statement timeout" extract-sample-data.log
   ```
+
+**Phase 1 times out at specific view (e.g., "→ [24/109] Analyzing: view_election_cycle_network_analysis")**
+- **Cause**: Complex view takes too long to count rows (default 120s statement timeout)
+- **Why**: Even with 0 rows, PostgreSQL may timeout during query plan optimization for complex views
+- **Symptoms**:
+  - Error: "canceling statement due to statement timeout"
+  - Phase 1 stops mid-way (e.g., at 24/109 views)
+  - Phase 2 may show syntax errors due to incomplete row count cache
+- **Solution 1**: Increase statement timeout in script
+  - Edit `extract-sample-data.sql` line ~134
+  - Change `SET statement_timeout = '120s';` to `SET statement_timeout = '300s';`
+- **Solution 2**: Optimize the slow view
+  ```sql
+  -- Analyze the problematic view's query plan
+  EXPLAIN ANALYZE SELECT COUNT(*) FROM view_election_cycle_network_analysis;
+  
+  -- Check for missing indexes
+  -- Review view definition for optimization opportunities
+  ```
+- **Solution 3**: Skip problematic views temporarily
+  - Add view to exclusion list in script (around line 1224)
+  ```sql
+  AND viewname != 'view_riksdagen_intelligence_dashboard'
+  AND viewname != 'view_election_cycle_network_analysis'  -- Add this line
+  ```
+
+**Phase 2 shows "syntax error at or near viewname LINE 301"**
+- **Cause**: Phase 1 didn't complete, so Phase 2 has incomplete row count data
+- **Symptom**: Error when trying to execute generated extraction commands
+- **Root Cause**: Statement timeout in Phase 1 (see above)
+- **Solution**: Fix Phase 1 timeout issue first (see solutions above)
 
 **Script hangs indefinitely (no timeout)**
 - **Cause**: `timeout` command not available on system
