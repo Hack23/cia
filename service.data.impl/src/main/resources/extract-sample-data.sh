@@ -49,6 +49,30 @@ PSQL_PORT="${PSQL_PORT:-5432}"
 SQL_SCRIPT="$SCRIPT_DIR/extract-sample-data.sql"
 EXTRACTION_TIMEOUT="${EXTRACTION_TIMEOUT:-1800}"  # 30 minutes default timeout
 
+# Check for PGPASSWORD environment variable
+if [ -z "$PGPASSWORD" ]; then
+    echo "⚠️  WARNING: PGPASSWORD environment variable is not set"
+    echo "   PostgreSQL authentication may fail or hang waiting for password"
+    echo ""
+    echo "   To fix this, set the PGPASSWORD environment variable:"
+    echo "   export PGPASSWORD='your_password'"
+    echo "   $0 $@"
+    echo ""
+    echo "   Or use .pgpass file in your home directory:"
+    echo "   echo 'localhost:5432:$DATABASE:$PSQL_USER:your_password' >> ~/.pgpass"
+    echo "   chmod 600 ~/.pgpass"
+    echo ""
+    echo "   Alternatively, for local trust authentication, update pg_hba.conf:"
+    echo "   local   all   all   trust"
+    echo ""
+    read -p "Do you want to continue without PGPASSWORD? (y/N) " -n 1 -r
+    echo ""
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+        echo "Exiting. Please set PGPASSWORD and try again."
+        exit 1
+    fi
+fi
+
 echo "=================================================="
 echo "CIA Sample Data Extraction Wrapper"
 echo "=================================================="

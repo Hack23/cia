@@ -35,15 +35,6 @@ json-export-specs/__pycache__/
 # Backup files
 *.bak
 *~
-
-# Temporary report files (prefer living documentation)
-*_SUMMARY.md
-*_FIXES_*.md
-
 # Generated validation reports
 json-export-specs/FIELD_COMPLETENESS_REPORT.md
-*.bak
-create_view.sql
 __pycache__/
-network_analysis_output.txt
-view_analysis_part*.txt
