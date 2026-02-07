@@ -1,5 +1,0 @@
-id,author,changes,first_date,last_date
-292,service.impl.GovernmentBodyDataLoaderService,6520,2026-02-07 16:08:05.76,2026-02-07 16:08:12.396
-100,system.agent,40,2026-02-07 16:07:57.631,2026-02-07 16:07:57.804
-151,service.impl.BootstrapDefaultConfig,141,2026-02-07 16:07:58.29,2026-02-07 16:07:58.764
-140,system.init,11,2026-02-07 16:07:58.099,2026-02-07 16:07:58.206

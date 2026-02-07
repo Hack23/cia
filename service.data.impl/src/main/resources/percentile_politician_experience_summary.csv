@@ -1,9 +1,0 @@
-column_name,data_type,distinct_count,min_value,max_value,p1,p10,p25,median,p75,p90,p99
-total_days,numeric,0,,,,,,,,,
-total_weighted_exp,numeric,0,,,,,,,,,
-govt_days,numeric,0,,,,,,,,,
-riksdag_days,numeric,0,,,,,,,,,
-party_days,numeric,0,,,,,,,,,
-committee_days,numeric,0,,,,,,,,,
-total_substitute_days,numeric,0,,,,,,,,,
-total_leadership_days,numeric,0,,,,,,,,,
