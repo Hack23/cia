@@ -1474,8 +1474,7 @@ SELECT
                 ') ' ||
                 'SELECT * FROM temporal_strata WHERE rn <= %s LIMIT %s' ||
                 ') TO ''%s_sample.csv'' WITH CSV HEADER' || E'\n' ||
-                'INSERT INTO cia_extraction_tracking (object_type, object_name, status, row_count) VALUES (''view'', ''' || '%s' || ''', CASE WHEN %s = 0 THEN ''empty'' ELSE ''success'' END, %s);' || E''
- ||
+                'INSERT INTO cia_extraction_tracking (object_type, object_name, status, row_count) VALUES (''view'', ''' || '%s' || ''', CASE WHEN %s = 0 THEN ''empty'' ELSE ''success'' END, %s);' || E'\n' ||
                 CASE 
                     WHEN row_count = 0 THEN '\echo ''  ℹ️  Empty view - header-only CSV generated: %s_sample.csv''' || E'\n'
                     ELSE '\echo ''  ✓ Completed: %s_sample.csv (temporal stratification: weekly)''' || E'\n'
