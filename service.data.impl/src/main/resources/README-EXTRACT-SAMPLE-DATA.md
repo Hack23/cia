@@ -296,7 +296,7 @@ validate_percentile_coverage
   -- Review view definition for optimization opportunities
   ```
 - **Solution 4**: Skip problematic views from extraction entirely (legacy approach)
-  - Add view to exclusion list in script (around line 1224)
+  - In `extract-sample-data.sql`, search for the view exclusion list that filters out `view_riksdagen_intelligence_dashboard` and add the problematic view to that list
   ```sql
   AND viewname != 'view_riksdagen_intelligence_dashboard'
   AND viewname != 'view_election_cycle_network_analysis'  -- Add this line
