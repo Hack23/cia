@@ -284,7 +284,7 @@ validate_percentile_coverage
   - No action needed - timed-out views are safely skipped
   - Check `cia_extraction_tracking` table for timeout summary
 - **Solution 2**: Increase statement timeout if specific view data is critical
-  - Edit `extract-sample-data.sql` line ~134
+  - Edit `extract-sample-data.sql` (search for `SET statement_timeout`)
   - Change `SET statement_timeout = '120s';` to `SET statement_timeout = '300s';`
   - Caution: May increase total extraction time significantly
 - **Solution 3**: Optimize the slow view query

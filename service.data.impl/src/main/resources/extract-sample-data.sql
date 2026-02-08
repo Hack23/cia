@@ -186,9 +186,14 @@ DECLARE
 BEGIN
     EXECUTE format('SELECT COUNT(*) FROM %I.%I', schema_name, rel_name) INTO result;
     RETURN COALESCE(result, 0);
-EXCEPTION WHEN OTHERS THEN
-    RAISE NOTICE 'ERROR counting rows in %.%: %', schema_name, rel_name, SQLERRM;
-    RETURN 0;
+EXCEPTION 
+    WHEN query_canceled THEN
+        -- Re-raise query_canceled (timeout) so caller can handle it
+        RAISE;
+    WHEN OTHERS THEN
+        -- Log other errors and return 0
+        RAISE NOTICE 'ERROR counting rows in %.%: %', schema_name, rel_name, SQLERRM;
+        RETURN 0;
 END;
 $$;
 
@@ -1284,15 +1289,16 @@ BEGIN
         EXCEPTION 
             WHEN query_canceled THEN
                 -- Handle statement timeout (SQLSTATE 57014)
-                RAISE WARNING '  ⏱️  TIMEOUT after 120s - skipping view and continuing with next';
+                RAISE WARNING '  ⏱️  TIMEOUT after % - skipping view and continuing with next',
+                    current_setting('statement_timeout');
                 
                 -- Still cache with -1 to indicate timeout (so Phase 2 can skip it)
                 INSERT INTO cia_view_row_counts(schemaname, viewname, view_type, row_count)
                 VALUES (view_record.schemaname, view_record.object_name, view_record.object_type, -1);
                 
-                -- Track timeout in extraction tracking
+                -- Track timeout in extraction tracking (use lowercase 'view' for consistency)
                 INSERT INTO cia_extraction_tracking(object_type, object_name, status, error_message, row_count)
-                VALUES (view_record.object_type, view_record.object_name, 'timeout', 'Statement timeout during row count', -1);
+                VALUES ('view', view_record.object_name, 'timeout', 'Statement timeout during row count', -1);
                 
             WHEN OTHERS THEN
                 -- Handle any other errors
@@ -1302,9 +1308,9 @@ BEGIN
                 INSERT INTO cia_view_row_counts(schemaname, viewname, view_type, row_count)
                 VALUES (view_record.schemaname, view_record.object_name, view_record.object_type, -2);
                 
-                -- Track error in extraction tracking
+                -- Track error in extraction tracking (use lowercase 'view' for consistency)
                 INSERT INTO cia_extraction_tracking(object_type, object_name, status, error_message, row_count)
-                VALUES (view_record.object_type, view_record.object_name, 'error', SQLERRM, -2);
+                VALUES ('view', view_record.object_name, 'error', SQLERRM, -2);
         END;
         
         RAISE NOTICE '';
