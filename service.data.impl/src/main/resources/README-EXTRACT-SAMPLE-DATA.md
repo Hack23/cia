@@ -142,7 +142,7 @@ The script implements **two-level timeout protection**:
 **Graceful Timeout Handling (Phase 1):**
 - Individual view timeouts do NOT abort the entire script
 - When a view times out during row counting:
-  - Script logs: "⏱️  TIMEOUT after 120s - skipping view and continuing with next"
+  - Script logs: "⏱️  TIMEOUT after {timeout_value} - skipping view and continuing with next" (shows actual statement_timeout setting)
   - View is marked with row_count=-1 (timeout status)
   - Timeout is tracked in `cia_extraction_tracking` table
   - Script continues processing all remaining views
@@ -273,7 +273,7 @@ validate_percentile_coverage
   - **Continuing with next view** instead of aborting
   - Skipping timed-out views in Phase 2 and Phase 3 extraction
 - **Symptoms** (still occur but no longer block progress):
-  - Warning: "⏱️  TIMEOUT after 120s - skipping view and continuing with next"
+  - Warning: "⏱️  TIMEOUT after {timeout_value} - skipping view and continuing with next" (shows actual statement_timeout setting)
   - Timed-out view excluded from Phase 2/3 extraction
   - All remaining views continue to be processed normally
 - **Why timeouts occur**: Complex views may timeout during query plan optimization even with 0 rows due to:
