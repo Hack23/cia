@@ -282,7 +282,7 @@ validate_percentile_coverage
   - Statistics calculation overhead for analytical views
 - **Solution 1** (Recommended): Accept graceful timeout handling - script continues processing
   - No action needed - timed-out views are safely skipped
-  - Check `cia_extraction_tracking` table for timeout summary
+  - Check the exported `extraction_summary_report.csv` (and `extract-sample-data.log`) for timeout summary
 - **Solution 2**: Increase statement timeout if specific view data is critical
   - Edit `extract-sample-data.sql` (search for `SET statement_timeout`)
   - Change `SET statement_timeout = '120s';` to `SET statement_timeout = '300s';`
