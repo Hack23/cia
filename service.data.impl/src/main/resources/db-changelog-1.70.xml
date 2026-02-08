@@ -6,7 +6,7 @@
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
 
     <!-- 
-        Database Changelog 1.62: Election Year View Performance Optimization
+        Database Changelog 1.70: Election Year View Performance Optimization
         
         Purpose: Fix performance issues with election year analysis views that exceed 
         50GB temp file limit due to cartesian product in JOIN operations.
@@ -27,7 +27,7 @@
         Issue: GitHub issue - Election year view performance optimization
     -->
 
-    <changeSet id="create-mv-annual-voting-metrics-1.62-001" author="intelligence-operative">
+    <changeSet id="create-mv-annual-voting-metrics-1.70-001" author="intelligence-operative">
         <comment>
             Create materialized view for annual voting metrics (pre-aggregated from vote_data).
             
@@ -76,7 +76,7 @@
         </rollback>
     </changeSet>
 
-    <changeSet id="create-mv-annual-document-metrics-1.62-002" author="intelligence-operative">
+    <changeSet id="create-mv-annual-document-metrics-1.70-002" author="intelligence-operative">
         <comment>
             Create materialized view for annual document metrics (pre-aggregated from document_data).
             
@@ -118,7 +118,7 @@
         </rollback>
     </changeSet>
 
-    <changeSet id="recreate-view-riksdagen-election-year-behavioral-patterns-1.62-003" author="intelligence-operative">
+    <changeSet id="recreate-view-riksdagen-election-year-behavioral-patterns-1.70-003" author="intelligence-operative">
         <comment>
             Recreate view_riksdagen_election_year_behavioral_patterns using materialized views.
             
