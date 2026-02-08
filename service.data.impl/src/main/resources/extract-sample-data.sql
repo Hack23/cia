@@ -186,9 +186,14 @@ DECLARE
 BEGIN
     EXECUTE format('SELECT COUNT(*) FROM %I.%I', schema_name, rel_name) INTO result;
     RETURN COALESCE(result, 0);
-EXCEPTION WHEN OTHERS THEN
-    RAISE NOTICE 'ERROR counting rows in %.%: %', schema_name, rel_name, SQLERRM;
-    RETURN 0;
+EXCEPTION 
+    WHEN query_canceled THEN
+        -- Re-raise query_canceled (timeout) so caller can handle it
+        RAISE;
+    WHEN OTHERS THEN
+        -- Re-raise other errors so caller can capture full error details (SQLERRM)
+        -- This allows the caller's EXCEPTION handler to properly log and track the error
+        RAISE;
 END;
 $$;
 
@@ -1216,11 +1221,12 @@ DECLARE
     row_count BIGINT;
     extract_count INTEGER := 0;
 BEGIN
-    -- Get total view count (excluding coalition alignment matrix)
+    -- Get total view count (excluding coalition alignment matrix and intelligence dashboard)
     SELECT COUNT(*) INTO total_views
     FROM (
         SELECT viewname FROM pg_views 
         WHERE schemaname = 'public' 
+          AND viewname != 'view_riksdagen_coalition_alignment_matrix'
           AND viewname != 'view_riksdagen_intelligence_dashboard'
         UNION ALL
         SELECT matviewname FROM pg_matviews 
@@ -1229,7 +1235,7 @@ BEGIN
     
     RAISE NOTICE '';
     RAISE NOTICE 'Phase 1: Analyzing % views for row counts', total_views;
-    RAISE NOTICE 'Excluding: view_riksdagen_coalition_alignment_matrix (complex query)';
+    RAISE NOTICE 'Excluding: view_riksdagen_coalition_alignment_matrix, view_riksdagen_intelligence_dashboard';
     RAISE NOTICE 'This may take several minutes for complex views...';
     RAISE NOTICE '';
     
@@ -1255,29 +1261,68 @@ BEGIN
             view_record.object_type;
         
         -- Use fast pg_class statistics for materialized views, slow COUNT for regular views
-        IF view_record.object_type = 'MATERIALIZED VIEW' THEN
-            -- Fast: use cached statistics from pg_class
-            SELECT COALESCE(c.reltuples, 0)::BIGINT INTO row_count
-            FROM pg_class c
-            JOIN pg_namespace n ON n.oid = c.relnamespace
-            WHERE n.nspname = view_record.schemaname
-              AND c.relname = view_record.object_name;
-        ELSE
-            -- Regular views need actual COUNT (no cached stats)
-            row_count := cia_tmp_rowcount(view_record.schemaname, view_record.object_name);
-        END IF;
+        -- Wrap in exception handler to gracefully handle timeouts
+        BEGIN
+            IF view_record.object_type = 'MATERIALIZED VIEW' THEN
+                -- Fast: use cached statistics from pg_class
+                -- Note: reltuples can be -1 for unanalyzed matviews; normalize to 0 minimum
+                SELECT GREATEST(COALESCE(c.reltuples, 0), 0)::BIGINT INTO row_count
+                FROM pg_class c
+                JOIN pg_namespace n ON n.oid = c.relnamespace
+                WHERE n.nspname = view_record.schemaname
+                  AND c.relname = view_record.object_name;
+            ELSE
+                -- Regular views need actual COUNT (no cached stats)
+                row_count := cia_tmp_rowcount(view_record.schemaname, view_record.object_name);
+            END IF;
+            
+            -- Cache result in temp table for Phase 2 reuse
+            INSERT INTO cia_view_row_counts(schemaname, viewname, view_type, row_count)
+            VALUES (view_record.schemaname, view_record.object_name, view_record.object_type, row_count);
+            
+            -- Show result immediately after
+            IF row_count > 0 THEN
+                RAISE NOTICE '  ✓ Contains % rows', row_count;
+                extract_count := extract_count + 1;
+            ELSE
+                RAISE NOTICE '  ⚠️  EMPTY (0 rows)';
+            END IF;
+            
+        EXCEPTION 
+            WHEN query_canceled THEN
+                -- Distinguish between statement timeout and user cancel (Ctrl+C)
+                -- Re-raise if user-initiated cancel to allow script interruption
+                IF SQLERRM LIKE '%statement timeout%' OR SQLERRM LIKE '%canceling statement due to statement timeout%' THEN
+                    -- Handle statement timeout (SQLSTATE 57014)
+                    RAISE WARNING '  ⏱️  TIMEOUT after % - skipping view and continuing with next',
+                        current_setting('statement_timeout');
+                    
+                    -- Still cache with -1 to indicate timeout (so Phase 2 can skip it)
+                    INSERT INTO cia_view_row_counts(schemaname, viewname, view_type, row_count)
+                    VALUES (view_record.schemaname, view_record.object_name, view_record.object_type, -1);
+                    
+                    -- Track timeout in extraction tracking (use lowercase 'view' for consistency)
+                    -- Store actual SQLERRM for complete diagnostic context
+                    INSERT INTO cia_extraction_tracking(object_type, object_name, status, error_message, row_count)
+                    VALUES ('view', view_record.object_name, 'timeout', SQLERRM, -1);
+                ELSE
+                    -- User-initiated cancel (Ctrl+C) - re-raise to stop script
+                    RAISE;
+                END IF;
+                
+            WHEN OTHERS THEN
+                -- Handle any other errors
+                RAISE WARNING '  ❌ ERROR: % - skipping view and continuing with next', SQLERRM;
+                
+                -- Cache with -2 to indicate error (so Phase 2 can skip it)
+                INSERT INTO cia_view_row_counts(schemaname, viewname, view_type, row_count)
+                VALUES (view_record.schemaname, view_record.object_name, view_record.object_type, -2);
+                
+                -- Track error in extraction tracking (use lowercase 'view' for consistency)
+                INSERT INTO cia_extraction_tracking(object_type, object_name, status, error_message, row_count)
+                VALUES ('view', view_record.object_name, 'error', SQLERRM, -2);
+        END;
         
-        -- Cache result in temp table for Phase 2 reuse
-        INSERT INTO cia_view_row_counts(schemaname, viewname, view_type, row_count)
-        VALUES (view_record.schemaname, view_record.object_name, view_record.object_type, row_count);
-        
-        -- Show result immediately after
-        IF row_count > 0 THEN
-            RAISE NOTICE '  ✓ Contains % rows', row_count;
-            extract_count := extract_count + 1;
-        ELSE
-            RAISE NOTICE '  ⚠️  EMPTY (0 rows)';
-        END IF;
         RAISE NOTICE '';
     END LOOP;
     
@@ -1303,6 +1348,9 @@ WITH view_counts AS (
     FROM cia_view_row_counts
     WHERE viewname != 'view_riksdagen_coalition_alignment_matrix'
       AND viewname != 'view_riksdagen_intelligence_dashboard'
+      -- Skip views that timed out or had errors during Phase 1
+      -- row_count: -1 = timeout, -2 = error, 0+ = success
+      AND row_count >= 0
 ),
 -- ============================================================================
 -- TEMPORAL VIEW CLASSIFICATION
