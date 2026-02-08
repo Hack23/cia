@@ -1264,7 +1264,8 @@ BEGIN
         BEGIN
             IF view_record.object_type = 'MATERIALIZED VIEW' THEN
                 -- Fast: use cached statistics from pg_class
-                SELECT COALESCE(c.reltuples, 0)::BIGINT INTO row_count
+                -- Note: reltuples can be -1 for unanalyzed matviews; normalize to 0 minimum
+                SELECT GREATEST(COALESCE(c.reltuples, 0), 0)::BIGINT INTO row_count
                 FROM pg_class c
                 JOIN pg_namespace n ON n.oid = c.relnamespace
                 WHERE n.nspname = view_record.schemaname
@@ -1288,17 +1289,24 @@ BEGIN
             
         EXCEPTION 
             WHEN query_canceled THEN
-                -- Handle statement timeout (SQLSTATE 57014)
-                RAISE WARNING '  ⏱️  TIMEOUT after % - skipping view and continuing with next',
-                    current_setting('statement_timeout');
-                
-                -- Still cache with -1 to indicate timeout (so Phase 2 can skip it)
-                INSERT INTO cia_view_row_counts(schemaname, viewname, view_type, row_count)
-                VALUES (view_record.schemaname, view_record.object_name, view_record.object_type, -1);
-                
-                -- Track timeout in extraction tracking (use lowercase 'view' for consistency)
-                INSERT INTO cia_extraction_tracking(object_type, object_name, status, error_message, row_count)
-                VALUES ('view', view_record.object_name, 'timeout', 'Statement timeout during row count', -1);
+                -- Distinguish between statement timeout and user cancel (Ctrl+C)
+                -- Re-raise if user-initiated cancel to allow script interruption
+                IF SQLERRM LIKE '%statement timeout%' OR SQLERRM LIKE '%canceling statement due to statement timeout%' THEN
+                    -- Handle statement timeout (SQLSTATE 57014)
+                    RAISE WARNING '  ⏱️  TIMEOUT after % - skipping view and continuing with next',
+                        current_setting('statement_timeout');
+                    
+                    -- Still cache with -1 to indicate timeout (so Phase 2 can skip it)
+                    INSERT INTO cia_view_row_counts(schemaname, viewname, view_type, row_count)
+                    VALUES (view_record.schemaname, view_record.object_name, view_record.object_type, -1);
+                    
+                    -- Track timeout in extraction tracking (use lowercase 'view' for consistency)
+                    INSERT INTO cia_extraction_tracking(object_type, object_name, status, error_message, row_count)
+                    VALUES ('view', view_record.object_name, 'timeout', 'Statement timeout during row count', -1);
+                ELSE
+                    -- User-initiated cancel (Ctrl+C) - re-raise to stop script
+                    RAISE;
+                END IF;
                 
             WHEN OTHERS THEN
                 -- Handle any other errors
