@@ -188,7 +188,7 @@ BEGIN
     RETURN COALESCE(result, 0);
 EXCEPTION 
     WHEN query_canceled THEN
-        -- Re-raise query_canceled (timeout) so caller can handle it
+        -- Re-raise query_canceled (timeout or user cancel) so caller can handle it
         RAISE;
     WHEN OTHERS THEN
         -- Re-raise other errors so caller can capture full error details (SQLERRM)

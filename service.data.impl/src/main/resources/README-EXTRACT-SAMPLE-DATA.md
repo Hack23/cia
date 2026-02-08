@@ -144,7 +144,8 @@ The script implements **two-level timeout protection**:
 - When a view times out during row counting:
   - Script logs: "⏱️  TIMEOUT after {timeout_value} - skipping view and continuing with next" (shows actual statement_timeout setting)
   - View is marked with row_count=-1 (timeout status)
-  - Timeout is tracked in `cia_extraction_tracking` table
+  - Timeout is tracked in the temporary `cia_extraction_tracking` table (available only during the active `psql` session)
+  - Timeout and extraction status are persisted for later analysis in `extraction_summary_report.csv` and `extract-sample-data.log`
   - Script continues processing all remaining views
   - Phase 2 and Phase 3 automatically skip timed-out views
 - Complex analytical views may timeout during query planning even with 0 rows
@@ -174,6 +175,8 @@ After execution, you'll have:
 - **percentile_{view}.csv** - Distribution summaries for 24 analytical views
 - **validation_coverage_report.csv** - Coverage validation results
 - **extraction_statistics.csv** - Extraction statistics and metadata
+- **extraction_summary_report.csv** - Complete timeout/error summary with diagnostic details
+- **extract-sample-data.log** - Full script output including NOTICE messages and errors
 
 ## Validation
 
