@@ -191,9 +191,9 @@ EXCEPTION
         -- Re-raise query_canceled (timeout) so caller can handle it
         RAISE;
     WHEN OTHERS THEN
-        -- Log other errors and return error sentinel (-2) so caller can classify/skip
-        RAISE NOTICE 'ERROR counting rows in %.%: %', schema_name, rel_name, SQLERRM;
-        RETURN -2;
+        -- Re-raise other errors so caller can capture full error details (SQLERRM)
+        -- This allows the caller's EXCEPTION handler to properly log and track the error
+        RAISE;
 END;
 $$;
 
@@ -1274,30 +1274,16 @@ BEGIN
                 row_count := cia_tmp_rowcount(view_record.schemaname, view_record.object_name);
             END IF;
             
-            -- Check if cia_tmp_rowcount returned error sentinel (-2)
-            IF row_count = -2 THEN
-                -- Function returned error sentinel, treat as error
-                RAISE WARNING '  ❌ ERROR during row count - skipping view and continuing with next';
-                
-                -- Cache error status
-                INSERT INTO cia_view_row_counts(schemaname, viewname, view_type, row_count)
-                VALUES (view_record.schemaname, view_record.object_name, view_record.object_type, -2);
-                
-                -- Track error in extraction tracking
-                INSERT INTO cia_extraction_tracking(object_type, object_name, status, error_message, row_count)
-                VALUES ('view', view_record.object_name, 'error', 'Error during row count', -2);
+            -- Cache result in temp table for Phase 2 reuse
+            INSERT INTO cia_view_row_counts(schemaname, viewname, view_type, row_count)
+            VALUES (view_record.schemaname, view_record.object_name, view_record.object_type, row_count);
+            
+            -- Show result immediately after
+            IF row_count > 0 THEN
+                RAISE NOTICE '  ✓ Contains % rows', row_count;
+                extract_count := extract_count + 1;
             ELSE
-                -- Cache result in temp table for Phase 2 reuse
-                INSERT INTO cia_view_row_counts(schemaname, viewname, view_type, row_count)
-                VALUES (view_record.schemaname, view_record.object_name, view_record.object_type, row_count);
-                
-                -- Show result immediately after
-                IF row_count > 0 THEN
-                    RAISE NOTICE '  ✓ Contains % rows', row_count;
-                    extract_count := extract_count + 1;
-                ELSE
-                    RAISE NOTICE '  ⚠️  EMPTY (0 rows)';
-                END IF;
+                RAISE NOTICE '  ⚠️  EMPTY (0 rows)';
             END IF;
             
         EXCEPTION 
