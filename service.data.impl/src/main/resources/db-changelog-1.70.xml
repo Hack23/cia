@@ -15,7 +15,7 @@
         with document_data (109K rows) on year extraction, creating massive intermediate results.
         
         Solution: Create materialized views for pre-aggregated annual metrics, eliminating 
-        the cartesian product and reducing temp file usage from 50GB+ to <1GB.
+        the cartesian product and reducing temp file usage from 50GB+ to less than 1GB.
         
         Affected views (3 errors):
         - view_riksdagen_election_year_anomalies (ERROR: temp file > 50GB)
@@ -38,8 +38,8 @@
             
             Refresh: Daily via cron job (see MATERIALIZED_VIEW_REFRESH_SCHEDULE.md)
         </comment>
-        <sql>
-            CREATE MATERIALIZED VIEW mv_annual_voting_metrics AS
+        <sql><![CDATA[
+CREATE MATERIALIZED VIEW mv_annual_voting_metrics AS
             WITH election_years AS (
                 SELECT unnest(ARRAY[2002, 2006, 2010, 2014, 2018, 2022, 2026]) AS election_year
             )
@@ -70,7 +70,7 @@
                 'Pre-aggregated annual voting metrics from vote_data (2002-2026). 
                  Replaces expensive vote_data aggregation in annual_metrics CTE.
                  Refresh: Daily. Performance: Reduces 3.5M row scan to 24 pre-computed rows.';
-        </sql>
+        ]]></sql>
         <rollback>
             DROP MATERIALIZED VIEW IF EXISTS mv_annual_voting_metrics CASCADE;
         </rollback>
@@ -87,8 +87,8 @@
             
             Refresh: Daily via cron job (see MATERIALIZED_VIEW_REFRESH_SCHEDULE.md)
         </comment>
-        <sql>
-            CREATE MATERIALIZED VIEW mv_annual_document_metrics AS
+        <sql><![CDATA[
+CREATE MATERIALIZED VIEW mv_annual_document_metrics AS
             SELECT
                 EXTRACT(year FROM dd.made_public_date)::INTEGER AS year,
                 COUNT(DISTINCT dd.id) AS documents_produced,
@@ -112,7 +112,7 @@
                 'Pre-aggregated annual document metrics from document_data (2002-2026). 
                  Replaces expensive document_data aggregation in annual_metrics CTE.
                  Refresh: Daily. Performance: Reduces 109K row scan to 24 pre-computed rows.';
-        </sql>
+        ]]></sql>
         <rollback>
             DROP MATERIALIZED VIEW IF EXISTS mv_annual_document_metrics CASCADE;
         </rollback>
@@ -130,12 +130,12 @@
             Solution: Join pre-aggregated materialized views instead:
             - mv_annual_voting_metrics (24 rows) JOIN mv_annual_document_metrics (24 rows)
             - Total intermediate rows: 24 (one per year)
-            - Temp file usage: <1MB
+            - Temp file usage: less than 1MB
             
             Performance improvement: 99.99% reduction in intermediate result size.
         </comment>
-        <sql>
-            DROP VIEW IF EXISTS public.view_riksdagen_election_year_behavioral_patterns CASCADE;
+        <sql><![CDATA[
+DROP VIEW IF EXISTS public.view_riksdagen_election_year_behavioral_patterns CASCADE;
             
             CREATE VIEW public.view_riksdagen_election_year_behavioral_patterns AS
             WITH election_years AS (
@@ -289,8 +289,8 @@
                  composite classification considering multiple dimensions. Data Sources: vote_data (voting patterns), document_data (productivity). 
                  Election cycles: 7 election years, 17 midterm years (2002-2026). Framework 1: Temporal Analysis - Annual comparison. 
                  Use Case: Identify systematic election year behavioral shifts, detect unusual election patterns, predict future election behavior based on historical patterns. 
-                 Performance: Reduced from 50GB+ temp file usage to <1MB by using pre-aggregated materialized views.';
-        </sql>
+                 Performance: Reduced from 50GB+ temp file usage to less than 1MB by using pre-aggregated materialized views.';
+        ]]></sql>
         <rollback>
             -- Rollback would require recreating original view, which is complex
             -- Better to handle via new changeset if needed

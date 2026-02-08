@@ -49,8 +49,8 @@
             enhancing view_riksdagen_politician_influence_metrics to include party and year
             dimensions for proper joining.
         </comment>
-        <sql>
-            DROP VIEW IF EXISTS public.view_election_cycle_network_analysis CASCADE;
+        <sql><![CDATA[
+DROP VIEW IF EXISTS public.view_election_cycle_network_analysis CASCADE;
             
             CREATE VIEW public.view_election_cycle_network_analysis AS
             WITH v151_base AS (
@@ -151,7 +151,7 @@
                  Framework: Network Analysis. Use Case: Identify coalition formation patterns, track coalition stability 
                  over election cycles, predict future coalition scenarios.
                  Performance: Eliminated 212K cartesian product rows, query completes in <1 second (was timeout).';
-        </sql>
+        ]]></sql>
         <rollback>
             -- Rollback would require recreating original view with timeout issue
             -- Better to handle via new changeset if needed
