@@ -149,7 +149,7 @@ The script implements **two-level timeout protection**:
   - Phase 2 and Phase 3 automatically skip timed-out views
 - Complex analytical views may timeout during query planning even with 0 rows
 - This behavior ensures maximum data extraction even with problematic views
-- Example: If view 24/109 times out, views 25-109 still get processed
+- Example: If view 24/108 times out, views 25-108 still get processed
 
 ## SQL Functions
 
@@ -264,7 +264,7 @@ validate_percentile_coverage
   grep "statement timeout" extract-sample-data.log
   ```
 
-**Phase 1 times out at specific view (e.g., "→ [24/109] Analyzing: view_election_cycle_network_analysis")**
+**Phase 1 times out at specific view (e.g., "→ [24/108] Analyzing: view_election_cycle_network_analysis")**
 - **Previous behavior (FIXED)**: Script would abort completely when a view timed out, preventing all remaining views from being processed
 - **Current behavior**: Script now gracefully handles timeouts by:
   - Catching timeout exceptions (SQLSTATE 57014: query_canceled)

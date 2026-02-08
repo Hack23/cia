@@ -1235,7 +1235,7 @@ BEGIN
     
     RAISE NOTICE '';
     RAISE NOTICE 'Phase 1: Analyzing % views for row counts', total_views;
-    RAISE NOTICE 'Excluding: view_riksdagen_coalition_alignment_matrix (complex query)';
+    RAISE NOTICE 'Excluding: view_riksdagen_coalition_alignment_matrix, view_riksdagen_intelligence_dashboard';
     RAISE NOTICE 'This may take several minutes for complex views...';
     RAISE NOTICE '';
     
