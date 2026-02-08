@@ -1221,11 +1221,12 @@ DECLARE
     row_count BIGINT;
     extract_count INTEGER := 0;
 BEGIN
-    -- Get total view count (excluding coalition alignment matrix)
+    -- Get total view count (excluding coalition alignment matrix and intelligence dashboard)
     SELECT COUNT(*) INTO total_views
     FROM (
         SELECT viewname FROM pg_views 
         WHERE schemaname = 'public' 
+          AND viewname != 'view_riksdagen_coalition_alignment_matrix'
           AND viewname != 'view_riksdagen_intelligence_dashboard'
         UNION ALL
         SELECT matviewname FROM pg_matviews 
@@ -1301,8 +1302,9 @@ BEGIN
                     VALUES (view_record.schemaname, view_record.object_name, view_record.object_type, -1);
                     
                     -- Track timeout in extraction tracking (use lowercase 'view' for consistency)
+                    -- Store actual SQLERRM for complete diagnostic context
                     INSERT INTO cia_extraction_tracking(object_type, object_name, status, error_message, row_count)
-                    VALUES ('view', view_record.object_name, 'timeout', 'Statement timeout during row count', -1);
+                    VALUES ('view', view_record.object_name, 'timeout', SQLERRM, -1);
                 ELSE
                     -- User-initiated cancel (Ctrl+C) - re-raise to stop script
                     RAISE;
