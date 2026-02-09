@@ -1511,6 +1511,10 @@
               <sourcepath>src/main/java</sourcepath>
               <detectJavaApiLink>false</detectJavaApiLink>
               <detectOfflineLinks>false</detectOfflineLinks>
+              <detectLinks>false</detectLinks>
+              <failOnError>false</failOnError>
+              <offlineLinks combine.self="override"></offlineLinks>
+              <links combine.self="override"></links>
               <linksource>false</linksource>
               <sourceFileExcludes>
                 <sourceFileExclude>**/target/metamodel/**/*.java</sourceFileExclude>
@@ -1518,6 +1522,7 @@
               </sourceFileExcludes>
               <excludePackageNames>*.metamodel.*</excludePackageNames>
               <additionalOptions>
+                <additionalOption>--no-platform-links</additionalOption>
               </additionalOptions>
               <additionalDependencies>
                 <additionalDependency>
@@ -1538,7 +1543,7 @@
               <docletArtifact>
                 <groupId>nl.talsmasoftware</groupId>
                 <artifactId>umldoclet</artifactId>
-                <version>2.2.1</version>
+                <version>2.2.4</version>
               </docletArtifact>
               <useStandardDocletOptions>true</useStandardDocletOptions>
               <charset>UTF-8</charset>

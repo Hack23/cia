@@ -56,6 +56,16 @@
 		</exec>
 	</target>
 
+
+	<target name="site-cia-model" description="site-cia-model" depends="init">
+		<exec executable="${maven.binary}" dir="../parent-model-pom">
+			<env key="MAVEN_OPTS" value="-server -Xmx6048m -Xms6048m  " />
+			<arg
+				line="clean install site -Prelease-site -Dmaven.test.failure.ignore=true  -DforkMode=once -Dannotation.failOnError=false -Dspdx.skip=true" />
+		</exec>
+	</target>
+
+
 	<target name="site-cia" description="cia-site-cia" depends="init">
 		<exec executable="${maven.binary}" dir=".">
 			<env key="MAVEN_OPTS" value="-server -Xmx6048m -Xms6048m  " />
