@@ -143,7 +143,7 @@ These filters are **correct and appropriate**: coalition alignment uses a 25-yea
 These views are **production ready**:
 ✅ Performance optimized (<3ms)
 ✅ Proper error handling
-✅ Correct date filtering (5-20 year windows)
+✅ Correct date filtering (5-25 year windows)
 ✅ Dependency chain validated
 ✅ Logic verified with empty database
 

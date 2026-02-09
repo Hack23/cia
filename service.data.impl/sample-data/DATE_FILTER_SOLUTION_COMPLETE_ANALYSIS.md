@@ -86,7 +86,14 @@ SELECT pg_get_viewdef('view_riksdagen_coalition_alignment_matrix') LIKE '%25 yea
 -- Result: t (true) ✅
 ```
 
-**Changeset 2**: view_decision_temporal_trends (similar fix)
+**Changeset 1**: view_riksdagen_coalition_alignment_matrix ✅ COMPLETE
+```sql
+-- Verified 25-year filter applied
+SELECT pg_get_viewdef('view_riksdagen_coalition_alignment_matrix') LIKE '%25 years%';
+-- Result: t (true) ✅
+```
+
+**Remaining Changesets**: 5 views pending (decision_temporal_trends + 4 others)
 
 ## Comprehensive View Inventory
 
@@ -96,9 +103,9 @@ SELECT pg_get_viewdef('view_riksdagen_coalition_alignment_matrix') LIKE '%25 yea
 |--------------|-------|--------|----------|
 | 2 years | 3 | Review needed | view_riksdagen_politician_experience_summary |
 | 3 years | 15 | Review needed | view_risk_score_evolution |
-| 5 years | 7 | 2 fixed, 5 pending | coalition_alignment_matrix ✅, decision_temporal_trends ✅ |
+| 5 years | 7 | 1 fixed, 6 pending | coalition_alignment_matrix ✅ |
 | 20 years | 1 | Fixed in 1.73 | view_riksdagen_voting_anomaly_detection ✅ |
-| 25 years | 2 | Newly fixed | See above ✅ |
+| 25 years | 1 | Fixed in 1.74 | coalition_alignment_matrix ✅ |
 
 ### Materialized Views (30 total - all unpopulated)
 
@@ -186,8 +193,20 @@ SELECT pg_get_viewdef('view_riksdagen_coalition_alignment_matrix') LIKE '%25 yea
 
 ### Phase 4: Schema Maintenance
 
+**CRITICAL**: After all changesets complete, regenerate full_schema.sql:
+```bash
+sudo -u postgres bash -c "(pg_dump -U postgres -d cia_dev --schema-only --no-owner --no-privileges; \
+pg_dump -U postgres -d cia_dev --data-only --no-owner --no-privileges \
+--table=public.databasechangelog --table=public.databasechangeloglock)" > \
+service.data.impl/src/main/resources/full_schema.sql
+```
+
+**Reason**: CI/dev setup loads full_schema.sql directly for schema-only installation. Without regeneration, the new 25-year view definition won't be present when running validations/tests.
+
+**Reference**: service.data.impl/README-SCHEMA-MAINTENANCE.md lines 70-75
+
 **Documentation**:
-- [ ] Update full_schema.sql via pg_dump
+- [ ] Update full_schema.sql via pg_dump (CRITICAL)
 - [ ] Verify all Liquibase changesets applied
 - [ ] Update DATABASE_VIEW_INTELLIGENCE_CATALOG.md
 - [ ] Document date filter design decisions

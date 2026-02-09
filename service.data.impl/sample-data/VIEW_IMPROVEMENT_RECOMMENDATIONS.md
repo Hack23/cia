@@ -159,9 +159,10 @@ WHERE made_public_date >= (CURRENT_DATE - '25 years'::interval)  -- Changed from
 
 **Implementation**:
 1. Create additional changesets in db-changelog-1.74.xml
-2. Follow existing pattern from changesets 001-002
+2. Follow existing pattern from changeset 1.74-001
 3. Include rollback scripts
 4. Test each view after update
+5. Regenerate full_schema.sql via pg_dump (per README-SCHEMA-MAINTENANCE.md)
 
 **Impact**: **HIGH** - Unlocks 24 years of historical political intelligence
 

@@ -12,11 +12,11 @@
 <!--                                                                              -->
 <!-- PURPOSE:                                                                     -->
 <!-- Fix views that are empty even with full production database due to          -->
-<!-- hardcoded CURRENT_DATE filters excluding historical data (2002-2025).       -->
+<!-- hardcoded CURRENT_DATE filters excluding historical data (2002-2026).       -->
 <!--                                                                              -->
 <!-- ISSUE:                                                                       -->
 <!-- - Current date: 2026-02-09                                                  -->
-<!-- - Production data: 2002-2025 (23 years of historical data)                  -->
+<!-- - Production data: 2002-2026 (24 years of historical data)                  -->
 <!-- - 5-year filters: Only show 2021-2026 (exclude 2002-2020 data)             -->
 <!-- - Result: Views appear empty even with full database                        -->
 <!--                                                                              -->
@@ -48,7 +48,7 @@
         <comment>
             Fix view_riksdagen_coalition_alignment_matrix - Extend date filter from 5 to 25 years
             
-            ISSUE: View empty with full production database (2002-2025 data)
+            ISSUE: View empty with full production database (2002-2026 data)
             CAUSE: Filter (CURRENT_DATE - '5 years'::interval) excludes data before 2021
             FIX: Change to 25-year filter to capture all historical data
             
@@ -61,7 +61,7 @@
             IMPACT: Enables coalition analysis with 23 years of historical voting data
             BLOCKS: view_election_cycle_network_analysis and other dependent views
             
-            Performance: Indexed on (vote_date, party) via idx_vote_data_coalition
+            Performance: Indexed on (party, embedded_id_ballot_id, vote, vote_date) via idx_vote_data_coalition
         </comment>
         
         <sql><![CDATA[

@@ -93,11 +93,15 @@ WHERE vote_date >= (CURRENT_DATE - '5 years'::interval)
 
 ## Implementation Plan
 
-### Phase 1: Complete db-changelog-1.74.xml ✅ IN PROGRESS
+### Phase 1: Complete db-changelog-1.74.xml ✅ PARTIAL
 
-**Status**: Changelog created, 2 of 6 changesets implemented
+**Status**: Changelog created, 1 of 6 changesets implemented
+
+**Completed**:
+- [x] Add changeset 1: coalition_alignment_matrix (CRITICAL - blocks other views)
 
 **Remaining Work**:
+- [ ] Add changeset 2: decision_temporal_trends
 - [ ] Add changeset 3: committee_role_member
 - [ ] Add changeset 4: crisis_resilience_indicators
 - [ ] Add changeset 5: goverment_role_member
@@ -105,23 +109,26 @@ WHERE vote_date >= (CURRENT_DATE - '5 years'::interval)
 - [ ] Test all changesets
 - [ ] Update full_schema.sql via pg_dump
 
-**Time Estimate**: 2-3 hours
+**Time Estimate**: 4-6 hours
 
 ### Phase 2: Production Deployment
 
 **Prerequisites**:
-- [x] db-changelog-1.74.xml complete
-- [x] Tested in cia_dev
+- [ ] db-changelog-1.74.xml complete (currently 1 of 6 views implemented)
+- [ ] Tested in cia_dev
 - [ ] Backup production database
 - [ ] Schedule maintenance window (minimal downtime)
 
 **Deployment Steps**:
-1. Backup production database
-2. Apply db-changelog-1.74.xml via Liquibase
-3. Verify all 6 views updated (check for '25 years' in definitions)
-4. Test query performance (should be fast - indexed columns)
-5. Refresh materialized views (if needed)
-6. Validate data visible from 2002-2026
+1. Complete remaining 5 changesets in db-changelog-1.74.xml
+2. Regenerate full_schema.sql via pg_dump (per README-SCHEMA-MAINTENANCE.md)
+3. Test all views in cia_dev
+4. Backup production database
+5. Apply db-changelog-1.74.xml via Liquibase
+6. Verify updated view(s) (check for '25 years' in definition)
+7. Test query performance (should be fast - indexed columns)
+8. Refresh materialized views (if needed)
+9. Validate data visible from 2002-2026
 
 **Time Estimate**: 30-60 minutes
 
@@ -276,12 +283,13 @@ ORDER BY year;
 - **Benefit**: 4-5x more data for political intelligence analysis
 
 ### Recommendation
-✅ **Proceed with completing all 6 view fixes**
-✅ **Deploy to production within 1-2 business days**
+✅ **Complete remaining 5 view fixes in db-changelog-1.74.xml**
+✅ **Regenerate full_schema.sql after all changesets complete**
+✅ **Deploy to production after thorough testing**
 ✅ **Monitor query performance after deployment**
 ✅ **Validate with users that historical data is now accessible**
 
-This fix will significantly improve the value of the Citizen Intelligence Agency platform by providing users with complete historical context for Swedish political analysis.
+**Status**: 1 of 6 fixes applied. Completing all 6 view fixes will significantly improve the value of the Citizen Intelligence Agency platform by providing users with complete historical context for Swedish political analysis.
 
 ---
 
