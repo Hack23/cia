@@ -49,9 +49,9 @@ grep -E "^CREATE (OR REPLACE )?(MATERIALIZED )?VIEW" "$SCHEMA_FILE" | \
   sed 's/public\.//' | \
   sort | uniq > "$TEMP_DIR/schema_views.txt"
 
-# Extract documented views from catalog
+# Extract documented views from catalog (including both view_ and mv_ prefixes)
 echo "📚 Extracting documented views..."
-grep -E "^### view_" "$DOC_FILE" | \
+grep -E "^### (view_|mv_)" "$DOC_FILE" | \
   sed 's/### //' | \
   awk '{print $1}' | \
   sort | uniq > "$TEMP_DIR/documented_views.txt"
@@ -356,7 +356,7 @@ grep -E "^CREATE (OR REPLACE )?(MATERIALIZED )?VIEW" full_schema.sql | \\
   sed 's/.*VIEW //' | sed 's/ AS.*//' | sed 's/public\\.//' | sort | uniq
 
 # Extract documented views
-grep -E "^### view_" DATABASE_VIEW_INTELLIGENCE_CATALOG.md | \\
+grep -E "^### (view_|mv_)" DATABASE_VIEW_INTELLIGENCE_CATALOG.md | \\
   sed 's/### //' | awk '{print \$1}' | sort | uniq
 
 # Compare and calculate coverage
