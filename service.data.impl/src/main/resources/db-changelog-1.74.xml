@@ -26,13 +26,13 @@
 <!-- view_riksdagen_voting_anomaly_detection was fixed by extending 3-year to    -->
 <!-- 20-year filter.                                                             -->
 <!--                                                                              -->
-<!-- AFFECTED VIEWS:                                                              -->
+<!-- AFFECTED VIEW:                                                               -->
 <!-- 1. view_riksdagen_coalition_alignment_matrix (CRITICAL - blocks 3+ views)   -->
-<!-- 2. view_riksdagen_politician_career_path_10level (document filter)          -->
-<!-- 3. view_riksdagen_politician_longevity_analysis (document filter)           -->
-<!-- 4. view_riksdagen_politician_role_evolution (document filter)               -->
-<!-- 5. view_riksdagen_party_effectiveness_trends (vote filter)                  -->
-<!-- 6. view_riksdagen_seasonal_activity_patterns (vote filter)                  -->
+<!--                                                                              -->
+<!--                                                                              -->
+<!--                                                                              -->
+<!--                                                                              -->
+<!--                                                                              -->
 <!--                                                                              -->
 <!-- IMPACT:                                                                      -->
 <!-- - Enables views to work with historical production data                     -->
@@ -52,6 +52,12 @@
             CAUSE: Filter (CURRENT_DATE - '5 years'::interval) excludes data before 2021
             FIX: Change to 25-year filter to capture all historical data
             
+            PERFORMANCE IMPROVEMENTS:
+            - Added party_list CTE to generate distinct parties (8-10 rows)
+            - CROSS JOIN on party_list instead of vote-level rows (avoids million-row expansion)
+            - Added GROUP BY in party_ballot_votes to deduplicate politician-level votes
+            - Reduces intermediate result set from millions to thousands of rows
+            
             IMPACT: Enables coalition analysis with 23 years of historical voting data
             BLOCKS: view_election_cycle_network_analysis and other dependent views
             
@@ -60,18 +66,22 @@
         
         <sql><![CDATA[
             CREATE OR REPLACE VIEW public.view_riksdagen_coalition_alignment_matrix AS
-             WITH party_votes AS (
+             WITH party_ballot_votes AS (
                      SELECT vote_data.party,
                         vote_data.embedded_id_ballot_id AS ballot_id,
                         vote_data.vote,
                         vote_data.vote_date
                        FROM public.vote_data
                       WHERE ((vote_data.vote_date >= (CURRENT_DATE - '25 years'::interval)) AND (vote_data.party IS NOT NULL) AND (vote_data.vote IS NOT NULL))
+                      GROUP BY vote_data.party, vote_data.embedded_id_ballot_id, vote_data.vote, vote_data.vote_date
+                    ), party_list AS (
+                     SELECT DISTINCT party
+                       FROM party_ballot_votes
                     ), party_pairs AS (
-                     SELECT DISTINCT p1.party AS party1,
+                     SELECT p1.party AS party1,
                         p2.party AS party2
-                       FROM (party_votes p1
-                         CROSS JOIN party_votes p2)
+                       FROM party_list p1
+                         CROSS JOIN party_list p2
                       WHERE ((p1.party)::text < (p2.party)::text)
                     ), alignment_metrics AS (
                      SELECT pp.party1,
@@ -100,8 +110,8 @@
                         min(pv1.vote_date) AS earliest_vote,
                         max(pv1.vote_date) AS latest_vote
                        FROM ((party_pairs pp
-                         JOIN party_votes pv1 ON (((pv1.party)::text = (pp.party1)::text)))
-                         JOIN party_votes pv2 ON ((((pv2.party)::text = (pp.party2)::text) AND ((pv2.ballot_id)::text = (pv1.ballot_id)::text))))
+                         JOIN party_ballot_votes pv1 ON (((pv1.party)::text = (pp.party1)::text)))
+                         JOIN party_ballot_votes pv2 ON ((((pv2.party)::text = (pp.party2)::text) AND ((pv2.ballot_id)::text = (pv1.ballot_id)::text))))
                       GROUP BY pp.party1, pp.party2
                     )
              SELECT party1,
@@ -134,18 +144,22 @@
         <rollback>
             <sql><![CDATA[
                 CREATE OR REPLACE VIEW public.view_riksdagen_coalition_alignment_matrix AS
-                 WITH party_votes AS (
+                 WITH party_ballot_votes AS (
                          SELECT vote_data.party,
                             vote_data.embedded_id_ballot_id AS ballot_id,
                             vote_data.vote,
                             vote_data.vote_date
                            FROM public.vote_data
                           WHERE ((vote_data.vote_date >= (CURRENT_DATE - '5 years'::interval)) AND (vote_data.party IS NOT NULL) AND (vote_data.vote IS NOT NULL))
+                          GROUP BY vote_data.party, vote_data.embedded_id_ballot_id, vote_data.vote, vote_data.vote_date
+                        ), party_list AS (
+                         SELECT DISTINCT party
+                           FROM party_ballot_votes
                         ), party_pairs AS (
-                         SELECT DISTINCT p1.party AS party1,
+                         SELECT p1.party AS party1,
                             p2.party AS party2
-                           FROM (party_votes p1
-                             CROSS JOIN party_votes p2)
+                           FROM party_list p1
+                             CROSS JOIN party_list p2
                           WHERE ((p1.party)::text < (p2.party)::text)
                         ), alignment_metrics AS (
                          SELECT pp.party1,
@@ -174,8 +188,8 @@
                             min(pv1.vote_date) AS earliest_vote,
                             max(pv1.vote_date) AS latest_vote
                            FROM ((party_pairs pp
-                             JOIN party_votes pv1 ON (((pv1.party)::text = (pp.party1)::text)))
-                             JOIN party_votes pv2 ON ((((pv2.party)::text = (pp.party2)::text) AND ((pv2.ballot_id)::text = (pv1.ballot_id)::text))))
+                             JOIN party_ballot_votes pv1 ON (((pv1.party)::text = (pp.party1)::text)))
+                             JOIN party_ballot_votes pv2 ON ((((pv2.party)::text = (pp.party2)::text) AND ((pv2.ballot_id)::text = (pv1.ballot_id)::text))))
                           GROUP BY pp.party1, pp.party2
                         )
                  SELECT party1,

@@ -111,10 +111,10 @@ Views are correctly designed with temporal filters:
 
 | View | Filter | Current Date | Lookback Period | Data Required |
 |------|--------|--------------|-----------------|---------------|
-| view_riksdagen_coalition_alignment_matrix | vote_date >= CURRENT_DATE - 5 years | 2026-02-09 | 2021-02-09+ | Last 5 years of votes |
+| view_riksdagen_coalition_alignment_matrix | vote_date >= CURRENT_DATE - 25 years | 2026-02-09 | 2001-02-09+ | Last 25 years of votes |
 | view_riksdagen_voting_anomaly_detection | vote_date >= CURRENT_DATE - 20 years | 2026-02-09 | 2006-02-09+ | Last 20 years of votes |
 
-These filters are **correct and appropriate** for political intelligence analysis focusing on recent patterns.
+These filters are **correct and appropriate**: coalition alignment uses a 25-year historical window to capture all production data (2002-2026), while anomaly detection focuses on the last 20 years for political intelligence analysis.
 
 ## Recommendations
 
