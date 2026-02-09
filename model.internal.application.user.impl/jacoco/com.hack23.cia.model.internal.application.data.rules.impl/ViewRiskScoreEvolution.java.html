@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewRiskScoreEvolution.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.rules.impl</a> &gt; <span class="el_source">ViewRiskScoreEvolution.java</span></div><h1>ViewRiskScoreEvolution.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2025 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+ */
+package com.hack23.cia.model.internal.application.data.rules.impl;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+/**
+ * JPA entity for view_risk_score_evolution database view.
+ * 
+ * Intelligence Purpose: Track temporal evolution of risk scores with severity
+ * classification and trend analysis. Critical for all 45 rules.
+ * 
+ * Created by: Liquibase v1.30 (OSINT Performance Tracking)
+ * Risk Rules Supported: All 45 rules (cross-cutting risk assessment)
+ * 
+ * Monthly risk score calculation with severity escalation tracking
+ */
+@Entity(name = &quot;ViewRiskScoreEvolution&quot;)
+@Table(name = &quot;view_risk_score_evolution&quot;)
+public class ViewRiskScoreEvolution implements Serializable {
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
+
+	/** The person id. */
+	@Id
+	@Column(name = &quot;person_id&quot;, nullable = false, length = 255)
+	private String personId;
+
+	/** The assessment period. */
+	@Id
+	@Column(name = &quot;assessment_period&quot;, nullable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date assessmentPeriod;
+
+	/** The first name. */
+	@Column(name = &quot;first_name&quot;, length = 255)
+	private String firstName;
+
+	/** The last name. */
+	@Column(name = &quot;last_name&quot;, length = 255)
+	private String lastName;
+
+	/** The party. */
+	@Column(name = &quot;party&quot;, length = 50)
+	private String party;
+
+	/** The assessment period end. */
+	@Column(name = &quot;assessment_period_end&quot;)
+	@Temporal(TemporalType.DATE)
+	private Date assessmentPeriodEnd;
+
+	/** The absence rate. */
+	@Column(name = &quot;absence_rate&quot;, precision = 5, scale = 2)
+	private BigDecimal absenceRate;
+
+	/** The win rate. */
+	@Column(name = &quot;win_rate&quot;, precision = 5, scale = 2)
+	private BigDecimal winRate;
+
+	/** The rebel rate. */
+	@Column(name = &quot;rebel_rate&quot;, precision = 5, scale = 2)
+	private BigDecimal rebelRate;
+
+	/** The ballot count. */
+	@Column(name = &quot;ballot_count&quot;)
+	private Long ballotCount;
+
+	/** The document count. */
+	@Column(name = &quot;document_count&quot;)
+	private Long documentCount;
+
+	/** The violation count. */
+	@Column(name = &quot;violation_count&quot;)
+	private Integer violationCount;
+
+	/** The violation categories. */
+	@Column(name = &quot;violation_categories&quot;)
+	private Integer violationCategories;
+
+	/** The violation types. */
+	@Column(name = &quot;violation_types&quot;, length = 500)
+	private String violationTypes;
+
+	/** The risk score. */
+	@Column(name = &quot;risk_score&quot;, precision = 10, scale = 2)
+	private BigDecimal riskScore;
+
+	/** The prev risk score. */
+	@Column(name = &quot;prev_risk_score&quot;, precision = 10, scale = 2)
+	private BigDecimal prevRiskScore;
+
+	/** The risk score change. */
+	@Column(name = &quot;risk_score_change&quot;, precision = 10, scale = 2)
+	private BigDecimal riskScoreChange;
+
+	/** The risk trend. */
+	@Column(name = &quot;risk_trend&quot;, length = 50)
+	private String riskTrend;
+
+	/** The risk severity. */
+	@Column(name = &quot;risk_severity&quot;, length = 50)
+	private String riskSeverity;
+
+	/** The severity transition. */
+	@Column(name = &quot;severity_transition&quot;, length = 100)
+	private String severityTransition;
+
+	/** The risk assessment. */
+	@Column(name = &quot;risk_assessment&quot;, length = 255)
+	private String riskAssessment;
+
+	/**
+	 * Instantiates a new view risk score evolution.
+	 */
+	public ViewRiskScoreEvolution() {
+<span class="fc" id="L147">		super();</span>
+<span class="fc" id="L148">	}</span>
+
+	/**
+	 * Gets the person id.
+	 *
+	 * @return the person id
+	 */
+	public String getPersonId() {
+<span class="fc" id="L156">		return personId;</span>
+	}
+
+	/**
+	 * Sets the person id.
+	 *
+	 * @param personId the new person id
+	 */
+	public void setPersonId(final String personId) {
+<span class="fc" id="L165">		this.personId = personId;</span>
+<span class="fc" id="L166">	}</span>
+
+	/**
+	 * Gets the assessment period.
+	 *
+	 * @return the assessment period
+	 */
+	public Date getAssessmentPeriod() {
+<span class="fc" id="L174">		return assessmentPeriod;</span>
+	}
+
+	/**
+	 * Sets the assessment period.
+	 *
+	 * @param assessmentPeriod the new assessment period
+	 */
+	public void setAssessmentPeriod(final Date assessmentPeriod) {
+<span class="fc" id="L183">		this.assessmentPeriod = assessmentPeriod;</span>
+<span class="fc" id="L184">	}</span>
+
+	/**
+	 * Gets the first name.
+	 *
+	 * @return the first name
+	 */
+	public String getFirstName() {
+<span class="fc" id="L192">		return firstName;</span>
+	}
+
+	/**
+	 * Sets the first name.
+	 *
+	 * @param firstName the new first name
+	 */
+	public void setFirstName(final String firstName) {
+<span class="fc" id="L201">		this.firstName = firstName;</span>
+<span class="fc" id="L202">	}</span>
+
+	/**
+	 * Gets the last name.
+	 *
+	 * @return the last name
+	 */
+	public String getLastName() {
+<span class="fc" id="L210">		return lastName;</span>
+	}
+
+	/**
+	 * Sets the last name.
+	 *
+	 * @param lastName the new last name
+	 */
+	public void setLastName(final String lastName) {
+<span class="fc" id="L219">		this.lastName = lastName;</span>
+<span class="fc" id="L220">	}</span>
+
+	/**
+	 * Gets the party.
+	 *
+	 * @return the party
+	 */
+	public String getParty() {
+<span class="fc" id="L228">		return party;</span>
+	}
+
+	/**
+	 * Sets the party.
+	 *
+	 * @param party the new party
+	 */
+	public void setParty(final String party) {
+<span class="fc" id="L237">		this.party = party;</span>
+<span class="fc" id="L238">	}</span>
+
+	/**
+	 * Gets the assessment period end.
+	 *
+	 * @return the assessment period end
+	 */
+	public Date getAssessmentPeriodEnd() {
+<span class="fc" id="L246">		return assessmentPeriodEnd;</span>
+	}
+
+	/**
+	 * Sets the assessment period end.
+	 *
+	 * @param assessmentPeriodEnd the new assessment period end
+	 */
+	public void setAssessmentPeriodEnd(final Date assessmentPeriodEnd) {
+<span class="fc" id="L255">		this.assessmentPeriodEnd = assessmentPeriodEnd;</span>
+<span class="fc" id="L256">	}</span>
+
+	/**
+	 * Gets the absence rate.
+	 *
+	 * @return the absence rate
+	 */
+	public BigDecimal getAbsenceRate() {
+<span class="fc" id="L264">		return absenceRate;</span>
+	}
+
+	/**
+	 * Sets the absence rate.
+	 *
+	 * @param absenceRate the new absence rate
+	 */
+	public void setAbsenceRate(final BigDecimal absenceRate) {
+<span class="fc" id="L273">		this.absenceRate = absenceRate;</span>
+<span class="fc" id="L274">	}</span>
+
+	/**
+	 * Gets the win rate.
+	 *
+	 * @return the win rate
+	 */
+	public BigDecimal getWinRate() {
+<span class="fc" id="L282">		return winRate;</span>
+	}
+
+	/**
+	 * Sets the win rate.
+	 *
+	 * @param winRate the new win rate
+	 */
+	public void setWinRate(final BigDecimal winRate) {
+<span class="fc" id="L291">		this.winRate = winRate;</span>
+<span class="fc" id="L292">	}</span>
+
+	/**
+	 * Gets the rebel rate.
+	 *
+	 * @return the rebel rate
+	 */
+	public BigDecimal getRebelRate() {
+<span class="fc" id="L300">		return rebelRate;</span>
+	}
+
+	/**
+	 * Sets the rebel rate.
+	 *
+	 * @param rebelRate the new rebel rate
+	 */
+	public void setRebelRate(final BigDecimal rebelRate) {
+<span class="fc" id="L309">		this.rebelRate = rebelRate;</span>
+<span class="fc" id="L310">	}</span>
+
+	/**
+	 * Gets the ballot count.
+	 *
+	 * @return the ballot count
+	 */
+	public Long getBallotCount() {
+<span class="fc" id="L318">		return ballotCount;</span>
+	}
+
+	/**
+	 * Sets the ballot count.
+	 *
+	 * @param ballotCount the new ballot count
+	 */
+	public void setBallotCount(final Long ballotCount) {
+<span class="fc" id="L327">		this.ballotCount = ballotCount;</span>
+<span class="fc" id="L328">	}</span>
+
+	/**
+	 * Gets the document count.
+	 *
+	 * @return the document count
+	 */
+	public Long getDocumentCount() {
+<span class="fc" id="L336">		return documentCount;</span>
+	}
+
+	/**
+	 * Sets the document count.
+	 *
+	 * @param documentCount the new document count
+	 */
+	public void setDocumentCount(final Long documentCount) {
+<span class="fc" id="L345">		this.documentCount = documentCount;</span>
+<span class="fc" id="L346">	}</span>
+
+	/**
+	 * Gets the violation count.
+	 *
+	 * @return the violation count
+	 */
+	public Integer getViolationCount() {
+<span class="fc" id="L354">		return violationCount;</span>
+	}
+
+	/**
+	 * Sets the violation count.
+	 *
+	 * @param violationCount the new violation count
+	 */
+	public void setViolationCount(final Integer violationCount) {
+<span class="fc" id="L363">		this.violationCount = violationCount;</span>
+<span class="fc" id="L364">	}</span>
+
+	/**
+	 * Gets the violation categories.
+	 *
+	 * @return the violation categories
+	 */
+	public Integer getViolationCategories() {
+<span class="fc" id="L372">		return violationCategories;</span>
+	}
+
+	/**
+	 * Sets the violation categories.
+	 *
+	 * @param violationCategories the new violation categories
+	 */
+	public void setViolationCategories(final Integer violationCategories) {
+<span class="fc" id="L381">		this.violationCategories = violationCategories;</span>
+<span class="fc" id="L382">	}</span>
+
+	/**
+	 * Gets the violation types.
+	 *
+	 * @return the violation types
+	 */
+	public String getViolationTypes() {
+<span class="fc" id="L390">		return violationTypes;</span>
+	}
+
+	/**
+	 * Sets the violation types.
+	 *
+	 * @param violationTypes the new violation types
+	 */
+	public void setViolationTypes(final String violationTypes) {
+<span class="fc" id="L399">		this.violationTypes = violationTypes;</span>
+<span class="fc" id="L400">	}</span>
+
+	/**
+	 * Gets the risk score.
+	 *
+	 * @return the risk score
+	 */
+	public BigDecimal getRiskScore() {
+<span class="fc" id="L408">		return riskScore;</span>
+	}
+
+	/**
+	 * Sets the risk score.
+	 *
+	 * @param riskScore the new risk score
+	 */
+	public void setRiskScore(final BigDecimal riskScore) {
+<span class="fc" id="L417">		this.riskScore = riskScore;</span>
+<span class="fc" id="L418">	}</span>
+
+	/**
+	 * Gets the prev risk score.
+	 *
+	 * @return the prev risk score
+	 */
+	public BigDecimal getPrevRiskScore() {
+<span class="fc" id="L426">		return prevRiskScore;</span>
+	}
+
+	/**
+	 * Sets the prev risk score.
+	 *
+	 * @param prevRiskScore the new prev risk score
+	 */
+	public void setPrevRiskScore(final BigDecimal prevRiskScore) {
+<span class="fc" id="L435">		this.prevRiskScore = prevRiskScore;</span>
+<span class="fc" id="L436">	}</span>
+
+	/**
+	 * Gets the risk score change.
+	 *
+	 * @return the risk score change
+	 */
+	public BigDecimal getRiskScoreChange() {
+<span class="fc" id="L444">		return riskScoreChange;</span>
+	}
+
+	/**
+	 * Sets the risk score change.
+	 *
+	 * @param riskScoreChange the new risk score change
+	 */
+	public void setRiskScoreChange(final BigDecimal riskScoreChange) {
+<span class="fc" id="L453">		this.riskScoreChange = riskScoreChange;</span>
+<span class="fc" id="L454">	}</span>
+
+	/**
+	 * Gets the risk trend.
+	 *
+	 * @return the risk trend
+	 */
+	public String getRiskTrend() {
+<span class="fc" id="L462">		return riskTrend;</span>
+	}
+
+	/**
+	 * Sets the risk trend.
+	 *
+	 * @param riskTrend the new risk trend
+	 */
+	public void setRiskTrend(final String riskTrend) {
+<span class="fc" id="L471">		this.riskTrend = riskTrend;</span>
+<span class="fc" id="L472">	}</span>
+
+	/**
+	 * Gets the risk severity.
+	 *
+	 * @return the risk severity
+	 */
+	public String getRiskSeverity() {
+<span class="fc" id="L480">		return riskSeverity;</span>
+	}
+
+	/**
+	 * Sets the risk severity.
+	 *
+	 * @param riskSeverity the new risk severity
+	 */
+	public void setRiskSeverity(final String riskSeverity) {
+<span class="fc" id="L489">		this.riskSeverity = riskSeverity;</span>
+<span class="fc" id="L490">	}</span>
+
+	/**
+	 * Gets the severity transition.
+	 *
+	 * @return the severity transition
+	 */
+	public String getSeverityTransition() {
+<span class="fc" id="L498">		return severityTransition;</span>
+	}
+
+	/**
+	 * Sets the severity transition.
+	 *
+	 * @param severityTransition the new severity transition
+	 */
+	public void setSeverityTransition(final String severityTransition) {
+<span class="fc" id="L507">		this.severityTransition = severityTransition;</span>
+<span class="fc" id="L508">	}</span>
+
+	/**
+	 * Gets the risk assessment.
+	 *
+	 * @return the risk assessment
+	 */
+	public String getRiskAssessment() {
+<span class="fc" id="L516">		return riskAssessment;</span>
+	}
+
+	/**
+	 * Sets the risk assessment.
+	 *
+	 * @param riskAssessment the new risk assessment
+	 */
+	public void setRiskAssessment(final String riskAssessment) {
+<span class="fc" id="L525">		this.riskAssessment = riskAssessment;</span>
+<span class="fc" id="L526">	}</span>
+
+	@Override
+	public boolean equals(final Object obj) {
+<span class="fc" id="L530">		return EqualsBuilder.reflectionEquals(this, obj);</span>
+	}
+
+	@Override
+	public int hashCode() {
+<span class="fc" id="L535">		return HashCodeBuilder.reflectionHashCode(this);</span>
+	}
+
+	@Override
+	public String toString() {
+<span class="fc" id="L540">		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

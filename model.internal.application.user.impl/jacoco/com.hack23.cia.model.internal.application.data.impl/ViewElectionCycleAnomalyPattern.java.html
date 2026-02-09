@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewElectionCycleAnomalyPattern.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.impl</a> &gt; <span class="el_source">ViewElectionCycleAnomalyPattern.java</span></div><h1>ViewElectionCycleAnomalyPattern.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2026 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *$Id$
+ *  $HeadURL$
+ */
+package com.hack23.cia.model.internal.application.data.impl;
+
+import java.math.BigDecimal;
+
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+import com.hack23.cia.model.common.api.ModelObject;
+
+/**
+ * The Class ViewElectionCycleAnomalyPattern.
+ * 
+ * Anomaly and pattern detection aggregates across election cycles.
+ * 
+ * @author intelligence-operative
+ * @since v1.51 (Election Cycle Analytics)
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = &quot;ViewElectionCycleAnomalyPattern&quot;, propOrder = {
+    &quot;embeddedId&quot;,
+    &quot;cycleYear&quot;,
+    &quot;calendarYear&quot;,
+    &quot;anomalyType&quot;,
+    &quot;politicianCountWithRisk&quot;,
+    &quot;avgRiskScore&quot;,
+    &quot;riskEscalations&quot;,
+    &quot;highAnomalyCount&quot;,
+    &quot;avgTotalRebellions&quot;,
+    &quot;strongConsensusRebels&quot;,
+    &quot;avgRiskScorePrs&quot;,
+    &quot;highRiskPoliticians&quot;
+})
+@Entity(name = &quot;ViewElectionCycleAnomalyPattern&quot;)
+@Table(name = &quot;view_election_cycle_anomaly_pattern&quot;)
+@Inheritance(strategy = InheritanceType.JOINED)
+<span class="fc" id="L68">public class ViewElectionCycleAnomalyPattern implements ModelObject {</span>
+
+private static final long serialVersionUID = 1L;
+
+@XmlElement(required = true)
+protected ViewElectionCycleEmbeddedId embeddedId;
+
+@XmlElement(name = &quot;cycle_year&quot;)
+protected Integer cycleYear;
+
+@XmlElement(name = &quot;calendar_year&quot;)
+protected Integer calendarYear;
+
+@XmlElement(name = &quot;anomaly_type&quot;)
+protected String anomalyType;
+
+@XmlElement(name = &quot;politician_count_with_risk&quot;)
+protected Long politicianCountWithRisk;
+
+@XmlElement(name = &quot;avg_risk_score&quot;)
+protected BigDecimal avgRiskScore;
+
+@XmlElement(name = &quot;risk_escalations&quot;)
+protected Long riskEscalations;
+
+@XmlElement(name = &quot;high_anomaly_count&quot;)
+protected Long highAnomalyCount;
+
+@XmlElement(name = &quot;avg_total_rebellions&quot;)
+protected BigDecimal avgTotalRebellions;
+
+@XmlElement(name = &quot;strong_consensus_rebels&quot;)
+protected Long strongConsensusRebels;
+
+@XmlElement(name = &quot;avg_risk_score_prs&quot;)
+protected BigDecimal avgRiskScorePrs;
+
+@XmlElement(name = &quot;high_risk_politicians&quot;)
+protected Long highRiskPoliticians;
+
+@EmbeddedId
+public ViewElectionCycleEmbeddedId getEmbeddedId() {
+<span class="fc" id="L110">		return embeddedId;</span>
+}
+
+public void setEmbeddedId(final ViewElectionCycleEmbeddedId value) {
+
+
+<span class="fc" id="L116">	this.embeddedId = value;</span>
+
+
+<span class="fc" id="L119">}</span>
+
+@Basic
+@Column(name = &quot;CYCLE_YEAR&quot;)
+public Integer getCycleYear() {
+<span class="fc" id="L124">		return cycleYear;</span>
+}
+
+public void setCycleYear(final Integer value) {
+
+
+<span class="fc" id="L130">	this.cycleYear = value;</span>
+
+
+<span class="fc" id="L133">}</span>
+
+@Basic
+@Column(name = &quot;CALENDAR_YEAR&quot;)
+public Integer getCalendarYear() {
+<span class="fc" id="L138">		return calendarYear;</span>
+}
+
+public void setCalendarYear(final Integer value) {
+
+
+<span class="fc" id="L144">	this.calendarYear = value;</span>
+
+
+<span class="fc" id="L147">}</span>
+
+@Basic
+@Column(name = &quot;ANOMALY_TYPE&quot;, length = 50)
+public String getAnomalyType() {
+<span class="fc" id="L152">		return anomalyType;</span>
+}
+
+public void setAnomalyType(final String value) {
+
+
+<span class="fc" id="L158">	this.anomalyType = value;</span>
+
+
+<span class="fc" id="L161">}</span>
+
+@Basic
+@Column(name = &quot;POLITICIAN_COUNT_WITH_RISK&quot;, precision = 20)
+public Long getPoliticianCountWithRisk() {
+<span class="fc" id="L166">		return politicianCountWithRisk;</span>
+}
+
+public void setPoliticianCountWithRisk(final Long value) {
+
+
+<span class="fc" id="L172">	this.politicianCountWithRisk = value;</span>
+
+
+<span class="fc" id="L175">}</span>
+
+@Basic
+@Column(name = &quot;AVG_RISK_SCORE&quot;, precision = 5, scale = 2)
+public BigDecimal getAvgRiskScore() {
+<span class="fc" id="L180">		return avgRiskScore;</span>
+}
+
+public void setAvgRiskScore(final BigDecimal value) {
+
+
+<span class="fc" id="L186">	this.avgRiskScore = value;</span>
+
+
+<span class="fc" id="L189">}</span>
+
+@Basic
+@Column(name = &quot;RISK_ESCALATIONS&quot;, precision = 20)
+public Long getRiskEscalations() {
+<span class="fc" id="L194">		return riskEscalations;</span>
+}
+
+public void setRiskEscalations(final Long value) {
+
+
+<span class="fc" id="L200">	this.riskEscalations = value;</span>
+
+
+<span class="fc" id="L203">}</span>
+
+@Basic
+@Column(name = &quot;HIGH_ANOMALY_COUNT&quot;, precision = 20)
+public Long getHighAnomalyCount() {
+<span class="fc" id="L208">		return highAnomalyCount;</span>
+}
+
+public void setHighAnomalyCount(final Long value) {
+
+
+<span class="fc" id="L214">	this.highAnomalyCount = value;</span>
+
+
+<span class="fc" id="L217">}</span>
+
+@Basic
+@Column(name = &quot;AVG_TOTAL_REBELLIONS&quot;, precision = 5, scale = 2)
+public BigDecimal getAvgTotalRebellions() {
+<span class="fc" id="L222">		return avgTotalRebellions;</span>
+}
+
+public void setAvgTotalRebellions(final BigDecimal value) {
+
+
+<span class="fc" id="L228">	this.avgTotalRebellions = value;</span>
+
+
+<span class="fc" id="L231">}</span>
+
+@Basic
+@Column(name = &quot;STRONG_CONSENSUS_REBELS&quot;, precision = 20)
+public Long getStrongConsensusRebels() {
+<span class="fc" id="L236">		return strongConsensusRebels;</span>
+}
+
+public void setStrongConsensusRebels(final Long value) {
+
+
+<span class="fc" id="L242">	this.strongConsensusRebels = value;</span>
+
+
+<span class="fc" id="L245">}</span>
+
+@Basic
+@Column(name = &quot;AVG_RISK_SCORE_PRS&quot;, precision = 5, scale = 2)
+public BigDecimal getAvgRiskScorePrs() {
+<span class="fc" id="L250">		return avgRiskScorePrs;</span>
+}
+
+public void setAvgRiskScorePrs(final BigDecimal value) {
+
+
+<span class="fc" id="L256">	this.avgRiskScorePrs = value;</span>
+
+
+<span class="fc" id="L259">}</span>
+
+@Basic
+@Column(name = &quot;HIGH_RISK_POLITICIANS&quot;, precision = 20)
+public Long getHighRiskPoliticians() {
+<span class="fc" id="L264">		return highRiskPoliticians;</span>
+}
+
+public void setHighRiskPoliticians(final Long value) {
+
+
+<span class="fc" id="L270">	this.highRiskPoliticians = value;</span>
+
+
+<span class="fc" id="L273">}</span>
+
+@Override
+public final String toString() {
+<span class="fc" id="L277">		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);</span>
+}
+
+@Override
+public final boolean equals(final Object obj) {
+<span class="fc" id="L282">		return EqualsBuilder.reflectionEquals(this, obj);</span>
+}
+
+@Override
+public final int hashCode() {
+<span class="fc" id="L287">		return HashCodeBuilder.reflectionHashCode(this);</span>
+}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewRiksdagenCommitteeParliamentMemberProposal.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.committee.impl</a> &gt; <span class="el_source">ViewRiksdagenCommitteeParliamentMemberProposal.java</span></div><h1>ViewRiksdagenCommitteeParliamentMemberProposal.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2025 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.hack23.cia.model.internal.application.data.committee.impl;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+/**
+ * The Class ViewRiksdagenCommitteeParliamentMemberProposal.
+ * 
+ * &lt;p&gt;Provides a view of parliament member proposals (motions) submitted to committees.
+ * Maps committee assignments to their associated motion documents for analysis of
+ * legislative proposals from parliament members.&lt;/p&gt;
+ * 
+ * &lt;p&gt;&lt;b&gt;Intelligence Purpose:&lt;/b&gt; Supporting data access for temporal analysis of committee
+ * workload, member proposal activity, and legislative agenda patterns.&lt;/p&gt;
+ * 
+ * &lt;p&gt;&lt;b&gt;Use Cases:&lt;/b&gt;&lt;/p&gt;
+ * &lt;ul&gt;
+ *   &lt;li&gt;Committee workload analysis (motion volume per committee)&lt;/li&gt;
+ *   &lt;li&gt;Member proposal productivity tracking&lt;/li&gt;
+ *   &lt;li&gt;Legislative agenda analysis&lt;/li&gt;
+ *   &lt;li&gt;Committee-member engagement metrics&lt;/li&gt;
+ * &lt;/ul&gt;
+ * 
+ * &lt;p&gt;Database view: {@code view_riksdagen_committee_parliament_member_proposal}&lt;/p&gt;
+ * 
+ * &lt;p&gt;Schema location: full_schema.sql lines 7775-7803&lt;/p&gt;
+ */
+@Entity
+@Table(name = &quot;view_riksdagen_committee_parliament_member_proposal&quot;)
+public class ViewRiksdagenCommitteeParliamentMemberProposal implements Serializable {
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
+
+	/** The embedded id detail (committee detail). */
+	@Column(name = &quot;embedded_id_detail&quot;, length = 255)
+	private String embeddedIdDetail;
+
+	/** The embedded id org code (committee org code). */
+	@Column(name = &quot;embedded_id_org_code&quot;, length = 255)
+	private String embeddedIdOrgCode;
+
+	/** The total assignments (committee assignments count). */
+	@Column(name = &quot;total_assignments&quot;)
+	private Long totalAssignments;
+
+	/** The id (document id - primary key). */
+	@Id
+	@Column(name = &quot;id&quot;, length = 255, nullable = false)
+	private String id;
+
+	/** The committee report url xml. */
+	@Column(name = &quot;committee_report_url_xml&quot;, length = 1024)
+	private String committeeReportUrlXml;
+
+	/** The document status url www. */
+	@Column(name = &quot;document_status_url_www&quot;, length = 1024)
+	private String documentStatusUrlWww;
+
+	/** The document status url xml. */
+	@Column(name = &quot;document_status_url_xml&quot;, length = 1024)
+	private String documentStatusUrlXml;
+
+	/** The document type (MOT/mot/Motion). */
+	@Column(name = &quot;document_type&quot;, length = 255)
+	private String documentType;
+
+	/** The document url html. */
+	@Column(name = &quot;document_url_html&quot;, length = 1024)
+	private String documentUrlHtml;
+
+	/** The document url text. */
+	@Column(name = &quot;document_url_text&quot;, length = 1024)
+	private String documentUrlText;
+
+	/** The final number (document final number). */
+	@Column(name = &quot;final_number&quot;)
+	private Integer finalNumber;
+
+	/** The hangar id (document hangar identifier). */
+	@Column(name = &quot;hangar_id&quot;)
+	private Integer hangarId;
+
+	/** The label (document label). */
+	@Column(name = &quot;label&quot;, length = 255)
+	private String label;
+
+	/** The made public date. */
+	@Temporal(TemporalType.DATE)
+	@Column(name = &quot;made_public_date&quot;)
+	private Date madePublicDate;
+
+	/** The number value (document number). */
+	@Column(name = &quot;number_value&quot;)
+	private Integer numberValue;
+
+	/** The org (organization/committee). */
+	@Column(name = &quot;org&quot;, length = 255)
+	private String org;
+
+	/** The rm (riksmöte - parliament session). */
+	@Column(name = &quot;rm&quot;, length = 255)
+	private String rm;
+
+	/** The status (document status). */
+	@Column(name = &quot;status&quot;, length = 255)
+	private String status;
+
+	/** The sub title. */
+	@Column(name = &quot;sub_title&quot;, length = 1024)
+	private String subTitle;
+
+	/** The sub type (document sub type). */
+	@Column(name = &quot;sub_type&quot;, length = 255)
+	private String subType;
+
+	/** The temp label (temporary label). */
+	@Column(name = &quot;temp_label&quot;, length = 255)
+	private String tempLabel;
+
+	/** The title. */
+	@Column(name = &quot;title&quot;, length = 1024)
+	private String title;
+
+	/**
+	 * Instantiates a new view riksdagen committee parliament member proposal.
+	 */
+	public ViewRiksdagenCommitteeParliamentMemberProposal() {
+<span class="fc" id="L156">		super();</span>
+<span class="fc" id="L157">	}</span>
+
+	/**
+	 * Gets the embedded id detail.
+	 *
+	 * @return the embedded id detail
+	 */
+	public String getEmbeddedIdDetail() {
+<span class="fc" id="L165">		return embeddedIdDetail;</span>
+	}
+
+	/**
+	 * Sets the embedded id detail.
+	 *
+	 * @param embeddedIdDetail the new embedded id detail
+	 */
+	public void setEmbeddedIdDetail(final String embeddedIdDetail) {
+<span class="fc" id="L174">		this.embeddedIdDetail = embeddedIdDetail;</span>
+<span class="fc" id="L175">	}</span>
+
+	/**
+	 * Gets the embedded id org code.
+	 *
+	 * @return the embedded id org code
+	 */
+	public String getEmbeddedIdOrgCode() {
+<span class="fc" id="L183">		return embeddedIdOrgCode;</span>
+	}
+
+	/**
+	 * Sets the embedded id org code.
+	 *
+	 * @param embeddedIdOrgCode the new embedded id org code
+	 */
+	public void setEmbeddedIdOrgCode(final String embeddedIdOrgCode) {
+<span class="fc" id="L192">		this.embeddedIdOrgCode = embeddedIdOrgCode;</span>
+<span class="fc" id="L193">	}</span>
+
+	/**
+	 * Gets the total assignments.
+	 *
+	 * @return the total assignments
+	 */
+	public Long getTotalAssignments() {
+<span class="fc" id="L201">		return totalAssignments;</span>
+	}
+
+	/**
+	 * Sets the total assignments.
+	 *
+	 * @param totalAssignments the new total assignments
+	 */
+	public void setTotalAssignments(final Long totalAssignments) {
+<span class="fc" id="L210">		this.totalAssignments = totalAssignments;</span>
+<span class="fc" id="L211">	}</span>
+
+	/**
+	 * Gets the id.
+	 *
+	 * @return the id
+	 */
+	public String getId() {
+<span class="fc" id="L219">		return id;</span>
+	}
+
+	/**
+	 * Sets the id.
+	 *
+	 * @param id the new id
+	 */
+	public void setId(final String id) {
+<span class="fc" id="L228">		this.id = id;</span>
+<span class="fc" id="L229">	}</span>
+
+	/**
+	 * Gets the committee report url xml.
+	 *
+	 * @return the committee report url xml
+	 */
+	public String getCommitteeReportUrlXml() {
+<span class="fc" id="L237">		return committeeReportUrlXml;</span>
+	}
+
+	/**
+	 * Sets the committee report url xml.
+	 *
+	 * @param committeeReportUrlXml the new committee report url xml
+	 */
+	public void setCommitteeReportUrlXml(final String committeeReportUrlXml) {
+<span class="fc" id="L246">		this.committeeReportUrlXml = committeeReportUrlXml;</span>
+<span class="fc" id="L247">	}</span>
+
+	/**
+	 * Gets the document status url www.
+	 *
+	 * @return the document status url www
+	 */
+	public String getDocumentStatusUrlWww() {
+<span class="fc" id="L255">		return documentStatusUrlWww;</span>
+	}
+
+	/**
+	 * Sets the document status url www.
+	 *
+	 * @param documentStatusUrlWww the new document status url www
+	 */
+	public void setDocumentStatusUrlWww(final String documentStatusUrlWww) {
+<span class="fc" id="L264">		this.documentStatusUrlWww = documentStatusUrlWww;</span>
+<span class="fc" id="L265">	}</span>
+
+	/**
+	 * Gets the document status url xml.
+	 *
+	 * @return the document status url xml
+	 */
+	public String getDocumentStatusUrlXml() {
+<span class="fc" id="L273">		return documentStatusUrlXml;</span>
+	}
+
+	/**
+	 * Sets the document status url xml.
+	 *
+	 * @param documentStatusUrlXml the new document status url xml
+	 */
+	public void setDocumentStatusUrlXml(final String documentStatusUrlXml) {
+<span class="fc" id="L282">		this.documentStatusUrlXml = documentStatusUrlXml;</span>
+<span class="fc" id="L283">	}</span>
+
+	/**
+	 * Gets the document type.
+	 *
+	 * @return the document type
+	 */
+	public String getDocumentType() {
+<span class="fc" id="L291">		return documentType;</span>
+	}
+
+	/**
+	 * Sets the document type.
+	 *
+	 * @param documentType the new document type
+	 */
+	public void setDocumentType(final String documentType) {
+<span class="fc" id="L300">		this.documentType = documentType;</span>
+<span class="fc" id="L301">	}</span>
+
+	/**
+	 * Gets the document url html.
+	 *
+	 * @return the document url html
+	 */
+	public String getDocumentUrlHtml() {
+<span class="fc" id="L309">		return documentUrlHtml;</span>
+	}
+
+	/**
+	 * Sets the document url html.
+	 *
+	 * @param documentUrlHtml the new document url html
+	 */
+	public void setDocumentUrlHtml(final String documentUrlHtml) {
+<span class="fc" id="L318">		this.documentUrlHtml = documentUrlHtml;</span>
+<span class="fc" id="L319">	}</span>
+
+	/**
+	 * Gets the document url text.
+	 *
+	 * @return the document url text
+	 */
+	public String getDocumentUrlText() {
+<span class="fc" id="L327">		return documentUrlText;</span>
+	}
+
+	/**
+	 * Sets the document url text.
+	 *
+	 * @param documentUrlText the new document url text
+	 */
+	public void setDocumentUrlText(final String documentUrlText) {
+<span class="fc" id="L336">		this.documentUrlText = documentUrlText;</span>
+<span class="fc" id="L337">	}</span>
+
+	/**
+	 * Gets the final number.
+	 *
+	 * @return the final number
+	 */
+	public Integer getFinalNumber() {
+<span class="fc" id="L345">		return finalNumber;</span>
+	}
+
+	/**
+	 * Sets the final number.
+	 *
+	 * @param finalNumber the new final number
+	 */
+	public void setFinalNumber(final Integer finalNumber) {
+<span class="fc" id="L354">		this.finalNumber = finalNumber;</span>
+<span class="fc" id="L355">	}</span>
+
+	/**
+	 * Gets the hangar id.
+	 *
+	 * @return the hangar id
+	 */
+	public Integer getHangarId() {
+<span class="fc" id="L363">		return hangarId;</span>
+	}
+
+	/**
+	 * Sets the hangar id.
+	 *
+	 * @param hangarId the new hangar id
+	 */
+	public void setHangarId(final Integer hangarId) {
+<span class="fc" id="L372">		this.hangarId = hangarId;</span>
+<span class="fc" id="L373">	}</span>
+
+	/**
+	 * Gets the label.
+	 *
+	 * @return the label
+	 */
+	public String getLabel() {
+<span class="fc" id="L381">		return label;</span>
+	}
+
+	/**
+	 * Sets the label.
+	 *
+	 * @param label the new label
+	 */
+	public void setLabel(final String label) {
+<span class="fc" id="L390">		this.label = label;</span>
+<span class="fc" id="L391">	}</span>
+
+	/**
+	 * Gets the made public date.
+	 *
+	 * @return the made public date
+	 */
+	public Date getMadePublicDate() {
+<span class="fc" id="L399">		return madePublicDate;</span>
+	}
+
+	/**
+	 * Sets the made public date.
+	 *
+	 * @param madePublicDate the new made public date
+	 */
+	public void setMadePublicDate(final Date madePublicDate) {
+<span class="fc" id="L408">		this.madePublicDate = madePublicDate;</span>
+<span class="fc" id="L409">	}</span>
+
+	/**
+	 * Gets the number value.
+	 *
+	 * @return the number value
+	 */
+	public Integer getNumberValue() {
+<span class="fc" id="L417">		return numberValue;</span>
+	}
+
+	/**
+	 * Sets the number value.
+	 *
+	 * @param numberValue the new number value
+	 */
+	public void setNumberValue(final Integer numberValue) {
+<span class="fc" id="L426">		this.numberValue = numberValue;</span>
+<span class="fc" id="L427">	}</span>
+
+	/**
+	 * Gets the org.
+	 *
+	 * @return the org
+	 */
+	public String getOrg() {
+<span class="fc" id="L435">		return org;</span>
+	}
+
+	/**
+	 * Sets the org.
+	 *
+	 * @param org the new org
+	 */
+	public void setOrg(final String org) {
+<span class="fc" id="L444">		this.org = org;</span>
+<span class="fc" id="L445">	}</span>
+
+	/**
+	 * Gets the rm.
+	 *
+	 * @return the rm
+	 */
+	public String getRm() {
+<span class="fc" id="L453">		return rm;</span>
+	}
+
+	/**
+	 * Sets the rm.
+	 *
+	 * @param rm the new rm
+	 */
+	public void setRm(final String rm) {
+<span class="fc" id="L462">		this.rm = rm;</span>
+<span class="fc" id="L463">	}</span>
+
+	/**
+	 * Gets the status.
+	 *
+	 * @return the status
+	 */
+	public String getStatus() {
+<span class="fc" id="L471">		return status;</span>
+	}
+
+	/**
+	 * Sets the status.
+	 *
+	 * @param status the new status
+	 */
+	public void setStatus(final String status) {
+<span class="fc" id="L480">		this.status = status;</span>
+<span class="fc" id="L481">	}</span>
+
+	/**
+	 * Gets the sub title.
+	 *
+	 * @return the sub title
+	 */
+	public String getSubTitle() {
+<span class="fc" id="L489">		return subTitle;</span>
+	}
+
+	/**
+	 * Sets the sub title.
+	 *
+	 * @param subTitle the new sub title
+	 */
+	public void setSubTitle(final String subTitle) {
+<span class="fc" id="L498">		this.subTitle = subTitle;</span>
+<span class="fc" id="L499">	}</span>
+
+	/**
+	 * Gets the sub type.
+	 *
+	 * @return the sub type
+	 */
+	public String getSubType() {
+<span class="fc" id="L507">		return subType;</span>
+	}
+
+	/**
+	 * Sets the sub type.
+	 *
+	 * @param subType the new sub type
+	 */
+	public void setSubType(final String subType) {
+<span class="fc" id="L516">		this.subType = subType;</span>
+<span class="fc" id="L517">	}</span>
+
+	/**
+	 * Gets the temp label.
+	 *
+	 * @return the temp label
+	 */
+	public String getTempLabel() {
+<span class="fc" id="L525">		return tempLabel;</span>
+	}
+
+	/**
+	 * Sets the temp label.
+	 *
+	 * @param tempLabel the new temp label
+	 */
+	public void setTempLabel(final String tempLabel) {
+<span class="fc" id="L534">		this.tempLabel = tempLabel;</span>
+<span class="fc" id="L535">	}</span>
+
+	/**
+	 * Gets the title.
+	 *
+	 * @return the title
+	 */
+	public String getTitle() {
+<span class="fc" id="L543">		return title;</span>
+	}
+
+	/**
+	 * Sets the title.
+	 *
+	 * @param title the new title
+	 */
+	public void setTitle(final String title) {
+<span class="fc" id="L552">		this.title = title;</span>
+<span class="fc" id="L553">	}</span>
+
+	@Override
+	public boolean equals(Object obj) {
+<span class="fc" id="L557">		return EqualsBuilder.reflectionEquals(this, obj);</span>
+	}
+
+	@Override
+	public String toString() {
+<span class="fc" id="L562">		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);</span>
+	}
+
+	@Override
+	public int hashCode() {
+<span class="fc" id="L567">		return HashCodeBuilder.reflectionHashCode(this);</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

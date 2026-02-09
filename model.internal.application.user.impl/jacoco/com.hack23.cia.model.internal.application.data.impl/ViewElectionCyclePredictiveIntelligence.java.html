@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewElectionCyclePredictiveIntelligence.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.impl</a> &gt; <span class="el_source">ViewElectionCyclePredictiveIntelligence.java</span></div><h1>ViewElectionCyclePredictiveIntelligence.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2026 James Pether Sörling
+ */
+package com.hack23.cia.model.internal.application.data.impl;
+
+import java.math.BigDecimal;
+import javax.persistence.*;
+import javax.xml.bind.annotation.*;
+import org.apache.commons.lang3.builder.*;
+import com.hack23.cia.model.common.api.ModelObject;
+
+/**
+ * The Class ViewElectionCyclePredictiveIntelligence.
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = &quot;ViewElectionCyclePredictiveIntelligence&quot;)
+@Entity(name = &quot;ViewElectionCyclePredictiveIntelligence&quot;)
+@Table(name = &quot;view_election_cycle_predictive_intelligence&quot;)
+@Inheritance(strategy = InheritanceType.JOINED)
+<span class="fc" id="L20">public class ViewElectionCyclePredictiveIntelligence implements ModelObject {</span>
+private static final long serialVersionUID = 1L;
+
+@XmlElement(required = true)
+protected ViewElectionCycleEmbeddedId embeddedId;
+
+@XmlElement(name = &quot;cycle_year&quot;)
+protected Integer cycleYear;
+
+@XmlElement(name = &quot;calendar_year&quot;)
+protected Integer calendarYear;
+
+@XmlElement(name = &quot;risk_forecast_category&quot;)
+protected String riskForecastCategory;
+
+@XmlElement(name = &quot;politicians_at_risk&quot;)
+protected Long politiciansAtRisk;
+
+@XmlElement(name = &quot;avg_risk_score_change&quot;)
+protected BigDecimal avgRiskScoreChange;
+
+@XmlElement(name = &quot;ministries_at_risk&quot;)
+protected Long ministriesAtRisk;
+
+@XmlElement(name = &quot;avg_ministry_productivity&quot;)
+protected BigDecimal avgMinistryProductivity;
+
+@XmlElement(name = &quot;avg_party_win_rate_trend&quot;)
+protected BigDecimal avgPartyWinRateTrend;
+
+@XmlElement(name = &quot;parties_with_increasing_absence&quot;)
+protected Long partiesWithIncreasingAbsence;
+
+@EmbeddedId
+public ViewElectionCycleEmbeddedId getEmbeddedId() {
+<span class="fc" id="L55">		return embeddedId;</span>
+}
+
+public void setEmbeddedId(final ViewElectionCycleEmbeddedId value) {
+
+
+<span class="fc" id="L61">	this.embeddedId = value;</span>
+
+
+<span class="fc" id="L64">}</span>
+
+@Basic
+@Column(name = &quot;CYCLE_YEAR&quot;)
+public Integer getCycleYear() {
+<span class="fc" id="L69">		return cycleYear;</span>
+}
+
+public void setCycleYear(final Integer value) {
+
+
+<span class="fc" id="L75">	this.cycleYear = value;</span>
+
+
+<span class="fc" id="L78">}</span>
+
+@Basic
+@Column(name = &quot;CALENDAR_YEAR&quot;)
+public Integer getCalendarYear() {
+<span class="fc" id="L83">		return calendarYear;</span>
+}
+
+public void setCalendarYear(final Integer value) {
+
+
+<span class="fc" id="L89">	this.calendarYear = value;</span>
+
+
+<span class="fc" id="L92">}</span>
+
+@Basic
+@Column(name = &quot;RISK_FORECAST_CATEGORY&quot;, length = 50)
+public String getRiskForecastCategory() {
+<span class="fc" id="L97">		return riskForecastCategory;</span>
+}
+
+public void setRiskForecastCategory(final String value) {
+
+
+<span class="fc" id="L103">	this.riskForecastCategory = value;</span>
+
+
+<span class="fc" id="L106">}</span>
+
+@Basic
+@Column(name = &quot;POLITICIANS_AT_RISK&quot;, precision = 20)
+public Long getPoliticiansAtRisk() {
+<span class="fc" id="L111">		return politiciansAtRisk;</span>
+}
+
+public void setPoliticiansAtRisk(final Long value) {
+
+
+<span class="fc" id="L117">	this.politiciansAtRisk = value;</span>
+
+
+<span class="fc" id="L120">}</span>
+
+@Basic
+@Column(name = &quot;AVG_RISK_SCORE_CHANGE&quot;, precision = 5, scale = 2)
+public BigDecimal getAvgRiskScoreChange() {
+<span class="fc" id="L125">		return avgRiskScoreChange;</span>
+}
+
+public void setAvgRiskScoreChange(final BigDecimal value) {
+
+
+<span class="fc" id="L131">	this.avgRiskScoreChange = value;</span>
+
+
+<span class="fc" id="L134">}</span>
+
+@Basic
+@Column(name = &quot;MINISTRIES_AT_RISK&quot;, precision = 20)
+public Long getMinistriesAtRisk() {
+<span class="fc" id="L139">		return ministriesAtRisk;</span>
+}
+
+public void setMinistriesAtRisk(final Long value) {
+
+
+<span class="fc" id="L145">	this.ministriesAtRisk = value;</span>
+
+
+<span class="fc" id="L148">}</span>
+
+@Basic
+@Column(name = &quot;AVG_MINISTRY_PRODUCTIVITY&quot;, precision = 5, scale = 2)
+public BigDecimal getAvgMinistryProductivity() {
+<span class="fc" id="L153">		return avgMinistryProductivity;</span>
+}
+
+public void setAvgMinistryProductivity(final BigDecimal value) {
+
+
+<span class="fc" id="L159">	this.avgMinistryProductivity = value;</span>
+
+
+<span class="fc" id="L162">}</span>
+
+@Basic
+@Column(name = &quot;AVG_PARTY_WIN_RATE_TREND&quot;, precision = 5, scale = 2)
+public BigDecimal getAvgPartyWinRateTrend() {
+<span class="fc" id="L167">		return avgPartyWinRateTrend;</span>
+}
+
+public void setAvgPartyWinRateTrend(final BigDecimal value) {
+
+
+<span class="fc" id="L173">	this.avgPartyWinRateTrend = value;</span>
+
+
+<span class="fc" id="L176">}</span>
+
+@Basic
+@Column(name = &quot;PARTIES_WITH_INCREASING_ABSENCE&quot;, precision = 20)
+public Long getPartiesWithIncreasingAbsence() {
+<span class="fc" id="L181">		return partiesWithIncreasingAbsence;</span>
+}
+
+public void setPartiesWithIncreasingAbsence(final Long value) {
+
+
+<span class="fc" id="L187">	this.partiesWithIncreasingAbsence = value;</span>
+
+
+<span class="fc" id="L190">}</span>
+
+@Override
+public final String toString() {
+<span class="fc" id="L194">		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);</span>
+}
+
+@Override
+public final boolean equals(final Object obj) {
+<span class="fc" id="L199">		return EqualsBuilder.reflectionEquals(this, obj);</span>
+}
+
+@Override
+public final int hashCode() {
+<span class="fc" id="L204">		return HashCodeBuilder.reflectionHashCode(this);</span>
+}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewRiksdagenPartyDecisionFlowEmbeddedId.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.party.impl</a> &gt; <span class="el_source">ViewRiksdagenPartyDecisionFlowEmbeddedId.java</span></div><h1>ViewRiksdagenPartyDecisionFlowEmbeddedId.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2025 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+ */
+package com.hack23.cia.model.internal.application.data.party.impl;
+
+import java.util.Date;
+
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+import com.hack23.cia.model.common.api.ModelObject;
+
+/**
+ * The Class ViewRiksdagenPartyDecisionFlowEmbeddedId.
+ * 
+ * Composite key for party decision flow view.
+ * 
+ * @author intelligence-operative
+ * @since v1.35 (Decision Intelligence)
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = &quot;ViewRiksdagenPartyDecisionFlowEmbeddedId&quot;, propOrder = {
+    &quot;party&quot;,
+    &quot;committee&quot;,
+    &quot;decisionType&quot;,
+    &quot;decisionMonth&quot;
+})
+@Embeddable
+<span class="fc" id="L56">public class ViewRiksdagenPartyDecisionFlowEmbeddedId implements ModelObject {</span>
+
+	private static final long serialVersionUID = 1L;
+
+	@XmlElement(required = true)
+	protected String party;
+
+	@XmlElement(required = true)
+	protected String committee;
+
+	@XmlElement(name = &quot;decision_type&quot;, required = true)
+	protected String decisionType;
+
+	@XmlElement(name = &quot;decision_month&quot;, required = true)
+	protected Date decisionMonth;
+
+	/**
+	 * Gets the party.
+	 *
+	 * @return the party
+	 */
+	@Basic
+	@Column(name = &quot;PARTY&quot;)
+	public String getParty() {
+<span class="fc" id="L80">		return party;</span>
+	}
+
+	/**
+	 * Sets the party.
+	 *
+	 * @param value the new party
+	 */
+	public void setParty(final String value) {
+<span class="fc" id="L89">		this.party = value;</span>
+<span class="fc" id="L90">	}</span>
+
+	/**
+	 * Gets the committee.
+	 *
+	 * @return the committee
+	 */
+	@Basic
+	@Column(name = &quot;COMMITTEE&quot;)
+	public String getCommittee() {
+<span class="fc" id="L100">		return committee;</span>
+	}
+
+	/**
+	 * Sets the committee.
+	 *
+	 * @param value the new committee
+	 */
+	public void setCommittee(final String value) {
+<span class="fc" id="L109">		this.committee = value;</span>
+<span class="fc" id="L110">	}</span>
+
+	/**
+	 * Gets the decision type.
+	 *
+	 * @return the decision type
+	 */
+	@Basic
+	@Column(name = &quot;DECISION_TYPE&quot;)
+	public String getDecisionType() {
+<span class="fc" id="L120">		return decisionType;</span>
+	}
+
+	/**
+	 * Sets the decision type.
+	 *
+	 * @param value the new decision type
+	 */
+	public void setDecisionType(final String value) {
+<span class="fc" id="L129">		this.decisionType = value;</span>
+<span class="fc" id="L130">	}</span>
+
+	/**
+	 * Gets the decision month.
+	 *
+	 * @return the decision month
+	 */
+	@Basic
+	@Column(name = &quot;DECISION_MONTH&quot;)
+	@Temporal(TemporalType.TIMESTAMP)
+	public Date getDecisionMonth() {
+<span class="fc" id="L141">		return decisionMonth;</span>
+	}
+
+	/**
+	 * Sets the decision month.
+	 *
+	 * @param value the new decision month
+	 */
+	public void setDecisionMonth(final Date value) {
+<span class="fc" id="L150">		this.decisionMonth = value;</span>
+<span class="fc" id="L151">	}</span>
+
+	/**
+	 * With party.
+	 *
+	 * @param value the value
+	 * @return the embedded id
+	 */
+	public ViewRiksdagenPartyDecisionFlowEmbeddedId withParty(final String value) {
+<span class="fc" id="L160">		setParty(value);</span>
+<span class="fc" id="L161">		return this;</span>
+	}
+
+	/**
+	 * With committee.
+	 *
+	 * @param value the value
+	 * @return the embedded id
+	 */
+	public ViewRiksdagenPartyDecisionFlowEmbeddedId withCommittee(final String value) {
+<span class="fc" id="L171">		setCommittee(value);</span>
+<span class="fc" id="L172">		return this;</span>
+	}
+
+	/**
+	 * With decision type.
+	 *
+	 * @param value the value
+	 * @return the embedded id
+	 */
+	public ViewRiksdagenPartyDecisionFlowEmbeddedId withDecisionType(final String value) {
+<span class="fc" id="L182">		setDecisionType(value);</span>
+<span class="fc" id="L183">		return this;</span>
+	}
+
+	/**
+	 * With decision month.
+	 *
+	 * @param value the value
+	 * @return the embedded id
+	 */
+	public ViewRiksdagenPartyDecisionFlowEmbeddedId withDecisionMonth(final Date value) {
+<span class="fc" id="L193">		setDecisionMonth(value);</span>
+<span class="fc" id="L194">		return this;</span>
+	}
+
+	@Override
+	public final String toString() {
+<span class="fc" id="L199">		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);</span>
+	}
+
+	@Override
+	public final boolean equals(final Object obj) {
+<span class="fc" id="L204">		return EqualsBuilder.reflectionEquals(this, obj);</span>
+	}
+
+	@Override
+	public final int hashCode() {
+<span class="fc" id="L209">		return HashCodeBuilder.reflectionHashCode(this);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

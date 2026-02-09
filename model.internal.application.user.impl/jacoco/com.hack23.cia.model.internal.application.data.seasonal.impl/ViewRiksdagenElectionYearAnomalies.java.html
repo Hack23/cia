@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewRiksdagenElectionYearAnomalies.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.seasonal.impl</a> &gt; <span class="el_source">ViewRiksdagenElectionYearAnomalies.java</span></div><h1>ViewRiksdagenElectionYearAnomalies.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2026 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+ */
+package com.hack23.cia.model.internal.application.data.seasonal.impl;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+import org.hibernate.annotations.Immutable;
+
+/**
+ * The Class ViewRiksdagenElectionYearAnomalies.
+ * Database view for election year anomaly detection with z-score thresholds (|z| &gt; 1.5).
+ * Filters election years only with statistically unusual patterns.
+ */
+@Entity
+@Immutable
+@Table(name = &quot;view_riksdagen_election_year_anomalies&quot;)
+public class ViewRiksdagenElectionYearAnomalies implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@Column(name = &quot;year&quot;, nullable = false)
+	private Integer year;
+
+	@Column(name = &quot;total_ballots&quot;)
+	private Long totalBallots;
+
+	@Column(name = &quot;documents_produced&quot;)
+	private Long documentsProduced;
+
+	@Column(name = &quot;motions_filed&quot;)
+	private Long motionsFiled;
+
+	@Column(name = &quot;proposals_filed&quot;)
+	private Long proposalsFiled;
+
+	@Column(name = &quot;attendance_rate&quot;)
+	private BigDecimal attendanceRate;
+
+	@Column(name = &quot;ballot_z_score_vs_election_avg&quot;)
+	private BigDecimal ballotZScoreVsElectionAvg;
+
+	@Column(name = &quot;doc_z_score_vs_election_avg&quot;)
+	private BigDecimal docZScoreVsElectionAvg;
+
+	@Column(name = &quot;motion_z_score&quot;)
+	private BigDecimal motionZScore;
+
+	@Column(name = &quot;year_classification&quot;)
+	private String yearClassification;
+
+	@Column(name = &quot;composite_classification&quot;)
+	private String compositeClassification;
+
+	@Column(name = &quot;yoy_ballot_change_pct&quot;)
+	private BigDecimal yoyBallotChangePct;
+
+	@Column(name = &quot;has_ballot_anomaly&quot;)
+	private Boolean hasBallotAnomaly;
+
+	@Column(name = &quot;has_doc_anomaly&quot;)
+	private Boolean hasDocAnomaly;
+
+	@Column(name = &quot;has_motion_anomaly&quot;)
+	private Boolean hasMotionAnomaly;
+
+	@Column(name = &quot;anomaly_count&quot;)
+	private Integer anomalyCount;
+
+	@Column(name = &quot;anomaly_types&quot;)
+	private String anomalyTypes;
+
+	@Column(name = &quot;anomaly_severity&quot;)
+	private String anomalySeverity;
+
+	@Column(name = &quot;max_z_score&quot;)
+	private BigDecimal maxZScore;
+
+	@Column(name = &quot;anomaly_direction&quot;)
+	private String anomalyDirection;
+
+	@Column(name = &quot;election_avg_ballots&quot;)
+	private BigDecimal electionAvgBallots;
+
+	@Column(name = &quot;election_stddev_ballots&quot;)
+	private BigDecimal electionStddevBallots;
+
+	@Column(name = &quot;election_avg_docs&quot;)
+	private BigDecimal electionAvgDocs;
+
+	@Column(name = &quot;election_stddev_docs&quot;)
+	private BigDecimal electionStddevDocs;
+
+	@Column(name = &quot;election_avg_motions&quot;)
+	private BigDecimal electionAvgMotions;
+
+	@Column(name = &quot;election_stddev_motions&quot;)
+	private BigDecimal electionStddevMotions;
+
+	/**
+	 * Instantiates a new view riksdagen election year anomalies.
+	 */
+	public ViewRiksdagenElectionYearAnomalies() {
+<span class="fc" id="L130">		super();</span>
+<span class="fc" id="L131">	}</span>
+
+	// Getters and setters
+
+	public Integer getYear() {
+<span class="fc" id="L136">		return year;</span>
+	}
+
+	public void setYear(final Integer year) {
+<span class="fc" id="L140">		this.year = year;</span>
+<span class="fc" id="L141">	}</span>
+
+	public Long getTotalBallots() {
+<span class="fc" id="L144">		return totalBallots;</span>
+	}
+
+	public void setTotalBallots(final Long totalBallots) {
+<span class="fc" id="L148">		this.totalBallots = totalBallots;</span>
+<span class="fc" id="L149">	}</span>
+
+	public Long getDocumentsProduced() {
+<span class="fc" id="L152">		return documentsProduced;</span>
+	}
+
+	public void setDocumentsProduced(final Long documentsProduced) {
+<span class="fc" id="L156">		this.documentsProduced = documentsProduced;</span>
+<span class="fc" id="L157">	}</span>
+
+	public Long getMotionsFiled() {
+<span class="fc" id="L160">		return motionsFiled;</span>
+	}
+
+	public void setMotionsFiled(final Long motionsFiled) {
+<span class="fc" id="L164">		this.motionsFiled = motionsFiled;</span>
+<span class="fc" id="L165">	}</span>
+
+	public Long getProposalsFiled() {
+<span class="fc" id="L168">		return proposalsFiled;</span>
+	}
+
+	public void setProposalsFiled(final Long proposalsFiled) {
+<span class="fc" id="L172">		this.proposalsFiled = proposalsFiled;</span>
+<span class="fc" id="L173">	}</span>
+
+	public BigDecimal getAttendanceRate() {
+<span class="fc" id="L176">		return attendanceRate;</span>
+	}
+
+	public void setAttendanceRate(final BigDecimal attendanceRate) {
+<span class="fc" id="L180">		this.attendanceRate = attendanceRate;</span>
+<span class="fc" id="L181">	}</span>
+
+	public BigDecimal getBallotZScoreVsElectionAvg() {
+<span class="fc" id="L184">		return ballotZScoreVsElectionAvg;</span>
+	}
+
+	public void setBallotZScoreVsElectionAvg(final BigDecimal ballotZScoreVsElectionAvg) {
+<span class="fc" id="L188">		this.ballotZScoreVsElectionAvg = ballotZScoreVsElectionAvg;</span>
+<span class="fc" id="L189">	}</span>
+
+	public BigDecimal getDocZScoreVsElectionAvg() {
+<span class="fc" id="L192">		return docZScoreVsElectionAvg;</span>
+	}
+
+	public void setDocZScoreVsElectionAvg(final BigDecimal docZScoreVsElectionAvg) {
+<span class="fc" id="L196">		this.docZScoreVsElectionAvg = docZScoreVsElectionAvg;</span>
+<span class="fc" id="L197">	}</span>
+
+	public BigDecimal getMotionZScore() {
+<span class="fc" id="L200">		return motionZScore;</span>
+	}
+
+	public void setMotionZScore(final BigDecimal motionZScore) {
+<span class="fc" id="L204">		this.motionZScore = motionZScore;</span>
+<span class="fc" id="L205">	}</span>
+
+	public String getYearClassification() {
+<span class="fc" id="L208">		return yearClassification;</span>
+	}
+
+	public void setYearClassification(final String yearClassification) {
+<span class="fc" id="L212">		this.yearClassification = yearClassification;</span>
+<span class="fc" id="L213">	}</span>
+
+	public String getCompositeClassification() {
+<span class="fc" id="L216">		return compositeClassification;</span>
+	}
+
+	public void setCompositeClassification(final String compositeClassification) {
+<span class="fc" id="L220">		this.compositeClassification = compositeClassification;</span>
+<span class="fc" id="L221">	}</span>
+
+	public BigDecimal getYoyBallotChangePct() {
+<span class="fc" id="L224">		return yoyBallotChangePct;</span>
+	}
+
+	public void setYoyBallotChangePct(final BigDecimal yoyBallotChangePct) {
+<span class="fc" id="L228">		this.yoyBallotChangePct = yoyBallotChangePct;</span>
+<span class="fc" id="L229">	}</span>
+
+	public Boolean getHasBallotAnomaly() {
+<span class="fc" id="L232">		return hasBallotAnomaly;</span>
+	}
+
+	public void setHasBallotAnomaly(final Boolean hasBallotAnomaly) {
+<span class="fc" id="L236">		this.hasBallotAnomaly = hasBallotAnomaly;</span>
+<span class="fc" id="L237">	}</span>
+
+	public Boolean getHasDocAnomaly() {
+<span class="fc" id="L240">		return hasDocAnomaly;</span>
+	}
+
+	public void setHasDocAnomaly(final Boolean hasDocAnomaly) {
+<span class="fc" id="L244">		this.hasDocAnomaly = hasDocAnomaly;</span>
+<span class="fc" id="L245">	}</span>
+
+	public Boolean getHasMotionAnomaly() {
+<span class="fc" id="L248">		return hasMotionAnomaly;</span>
+	}
+
+	public void setHasMotionAnomaly(final Boolean hasMotionAnomaly) {
+<span class="fc" id="L252">		this.hasMotionAnomaly = hasMotionAnomaly;</span>
+<span class="fc" id="L253">	}</span>
+
+	public Integer getAnomalyCount() {
+<span class="fc" id="L256">		return anomalyCount;</span>
+	}
+
+	public void setAnomalyCount(final Integer anomalyCount) {
+<span class="fc" id="L260">		this.anomalyCount = anomalyCount;</span>
+<span class="fc" id="L261">	}</span>
+
+	public String getAnomalyTypes() {
+<span class="fc" id="L264">		return anomalyTypes;</span>
+	}
+
+	public void setAnomalyTypes(final String anomalyTypes) {
+<span class="fc" id="L268">		this.anomalyTypes = anomalyTypes;</span>
+<span class="fc" id="L269">	}</span>
+
+	public String getAnomalySeverity() {
+<span class="fc" id="L272">		return anomalySeverity;</span>
+	}
+
+	public void setAnomalySeverity(final String anomalySeverity) {
+<span class="fc" id="L276">		this.anomalySeverity = anomalySeverity;</span>
+<span class="fc" id="L277">	}</span>
+
+	public BigDecimal getMaxZScore() {
+<span class="fc" id="L280">		return maxZScore;</span>
+	}
+
+	public void setMaxZScore(final BigDecimal maxZScore) {
+<span class="fc" id="L284">		this.maxZScore = maxZScore;</span>
+<span class="fc" id="L285">	}</span>
+
+	public String getAnomalyDirection() {
+<span class="fc" id="L288">		return anomalyDirection;</span>
+	}
+
+	public void setAnomalyDirection(final String anomalyDirection) {
+<span class="fc" id="L292">		this.anomalyDirection = anomalyDirection;</span>
+<span class="fc" id="L293">	}</span>
+
+	public BigDecimal getElectionAvgBallots() {
+<span class="fc" id="L296">		return electionAvgBallots;</span>
+	}
+
+	public void setElectionAvgBallots(final BigDecimal electionAvgBallots) {
+<span class="fc" id="L300">		this.electionAvgBallots = electionAvgBallots;</span>
+<span class="fc" id="L301">	}</span>
+
+	public BigDecimal getElectionStddevBallots() {
+<span class="fc" id="L304">		return electionStddevBallots;</span>
+	}
+
+	public void setElectionStddevBallots(final BigDecimal electionStddevBallots) {
+<span class="fc" id="L308">		this.electionStddevBallots = electionStddevBallots;</span>
+<span class="fc" id="L309">	}</span>
+
+	public BigDecimal getElectionAvgDocs() {
+<span class="fc" id="L312">		return electionAvgDocs;</span>
+	}
+
+	public void setElectionAvgDocs(final BigDecimal electionAvgDocs) {
+<span class="fc" id="L316">		this.electionAvgDocs = electionAvgDocs;</span>
+<span class="fc" id="L317">	}</span>
+
+	public BigDecimal getElectionStddevDocs() {
+<span class="fc" id="L320">		return electionStddevDocs;</span>
+	}
+
+	public void setElectionStddevDocs(final BigDecimal electionStddevDocs) {
+<span class="fc" id="L324">		this.electionStddevDocs = electionStddevDocs;</span>
+<span class="fc" id="L325">	}</span>
+
+	public BigDecimal getElectionAvgMotions() {
+<span class="fc" id="L328">		return electionAvgMotions;</span>
+	}
+
+	public void setElectionAvgMotions(final BigDecimal electionAvgMotions) {
+<span class="fc" id="L332">		this.electionAvgMotions = electionAvgMotions;</span>
+<span class="fc" id="L333">	}</span>
+
+	public BigDecimal getElectionStddevMotions() {
+<span class="fc" id="L336">		return electionStddevMotions;</span>
+	}
+
+	public void setElectionStddevMotions(final BigDecimal electionStddevMotions) {
+<span class="fc" id="L340">		this.electionStddevMotions = electionStddevMotions;</span>
+<span class="fc" id="L341">	}</span>
+
+	@Override
+	public boolean equals(final Object obj) {
+<span class="fc" id="L345">		return EqualsBuilder.reflectionEquals(this, obj);</span>
+	}
+
+	@Override
+	public int hashCode() {
+<span class="fc" id="L350">		return HashCodeBuilder.reflectionHashCode(this);</span>
+	}
+
+	@Override
+	public String toString() {
+<span class="fc" id="L355">		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewRiksdagenElectionYearAnomalies_.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.seasonal.impl</a> &gt; <span class="el_source">ViewRiksdagenElectionYearAnomalies_.java</span></div><h1>ViewRiksdagenElectionYearAnomalies_.java</h1><pre class="source lang-java linenums">package com.hack23.cia.model.internal.application.data.seasonal.impl;
+
+import java.math.BigDecimal;
+import javax.persistence.metamodel.SingularAttribute;
+import javax.persistence.metamodel.StaticMetamodel;
+
+@StaticMetamodel(ViewRiksdagenElectionYearAnomalies.class)
+<span class="nc" id="L8">public abstract class ViewRiksdagenElectionYearAnomalies_ {</span>
+
+	public static volatile SingularAttribute&lt;ViewRiksdagenElectionYearAnomalies, String&gt; yearClassification;
+	public static volatile SingularAttribute&lt;ViewRiksdagenElectionYearAnomalies, BigDecimal&gt; motionZScore;
+	public static volatile SingularAttribute&lt;ViewRiksdagenElectionYearAnomalies, Integer&gt; year;
+	public static volatile SingularAttribute&lt;ViewRiksdagenElectionYearAnomalies, BigDecimal&gt; electionAvgDocs;
+	public static volatile SingularAttribute&lt;ViewRiksdagenElectionYearAnomalies, Boolean&gt; hasBallotAnomaly;
+	public static volatile SingularAttribute&lt;ViewRiksdagenElectionYearAnomalies, Long&gt; totalBallots;
+	public static volatile SingularAttribute&lt;ViewRiksdagenElectionYearAnomalies, BigDecimal&gt; maxZScore;
+	public static volatile SingularAttribute&lt;ViewRiksdagenElectionYearAnomalies, BigDecimal&gt; electionStddevBallots;
+	public static volatile SingularAttribute&lt;ViewRiksdagenElectionYearAnomalies, Long&gt; motionsFiled;
+	public static volatile SingularAttribute&lt;ViewRiksdagenElectionYearAnomalies, Long&gt; documentsProduced;
+	public static volatile SingularAttribute&lt;ViewRiksdagenElectionYearAnomalies, BigDecimal&gt; docZScoreVsElectionAvg;
+	public static volatile SingularAttribute&lt;ViewRiksdagenElectionYearAnomalies, BigDecimal&gt; ballotZScoreVsElectionAvg;
+	public static volatile SingularAttribute&lt;ViewRiksdagenElectionYearAnomalies, BigDecimal&gt; electionAvgBallots;
+	public static volatile SingularAttribute&lt;ViewRiksdagenElectionYearAnomalies, String&gt; anomalyTypes;
+	public static volatile SingularAttribute&lt;ViewRiksdagenElectionYearAnomalies, Boolean&gt; hasDocAnomaly;
+	public static volatile SingularAttribute&lt;ViewRiksdagenElectionYearAnomalies, String&gt; anomalyDirection;
+	public static volatile SingularAttribute&lt;ViewRiksdagenElectionYearAnomalies, String&gt; compositeClassification;
+	public static volatile SingularAttribute&lt;ViewRiksdagenElectionYearAnomalies, BigDecimal&gt; yoyBallotChangePct;
+	public static volatile SingularAttribute&lt;ViewRiksdagenElectionYearAnomalies, BigDecimal&gt; electionAvgMotions;
+	public static volatile SingularAttribute&lt;ViewRiksdagenElectionYearAnomalies, Integer&gt; anomalyCount;
+	public static volatile SingularAttribute&lt;ViewRiksdagenElectionYearAnomalies, Boolean&gt; hasMotionAnomaly;
+	public static volatile SingularAttribute&lt;ViewRiksdagenElectionYearAnomalies, Long&gt; proposalsFiled;
+	public static volatile SingularAttribute&lt;ViewRiksdagenElectionYearAnomalies, BigDecimal&gt; electionStddevDocs;
+	public static volatile SingularAttribute&lt;ViewRiksdagenElectionYearAnomalies, BigDecimal&gt; electionStddevMotions;
+	public static volatile SingularAttribute&lt;ViewRiksdagenElectionYearAnomalies, String&gt; anomalySeverity;
+	public static volatile SingularAttribute&lt;ViewRiksdagenElectionYearAnomalies, BigDecimal&gt; attendanceRate;
+
+	public static final String YEAR_CLASSIFICATION = &quot;yearClassification&quot;;
+	public static final String MOTION_ZSCORE = &quot;motionZScore&quot;;
+	public static final String YEAR = &quot;year&quot;;
+	public static final String ELECTION_AVG_DOCS = &quot;electionAvgDocs&quot;;
+	public static final String HAS_BALLOT_ANOMALY = &quot;hasBallotAnomaly&quot;;
+	public static final String TOTAL_BALLOTS = &quot;totalBallots&quot;;
+	public static final String MAX_ZSCORE = &quot;maxZScore&quot;;
+	public static final String ELECTION_STDDEV_BALLOTS = &quot;electionStddevBallots&quot;;
+	public static final String MOTIONS_FILED = &quot;motionsFiled&quot;;
+	public static final String DOCUMENTS_PRODUCED = &quot;documentsProduced&quot;;
+	public static final String DOC_ZSCORE_VS_ELECTION_AVG = &quot;docZScoreVsElectionAvg&quot;;
+	public static final String BALLOT_ZSCORE_VS_ELECTION_AVG = &quot;ballotZScoreVsElectionAvg&quot;;
+	public static final String ELECTION_AVG_BALLOTS = &quot;electionAvgBallots&quot;;
+	public static final String ANOMALY_TYPES = &quot;anomalyTypes&quot;;
+	public static final String HAS_DOC_ANOMALY = &quot;hasDocAnomaly&quot;;
+	public static final String ANOMALY_DIRECTION = &quot;anomalyDirection&quot;;
+	public static final String COMPOSITE_CLASSIFICATION = &quot;compositeClassification&quot;;
+	public static final String YOY_BALLOT_CHANGE_PCT = &quot;yoyBallotChangePct&quot;;
+	public static final String ELECTION_AVG_MOTIONS = &quot;electionAvgMotions&quot;;
+	public static final String ANOMALY_COUNT = &quot;anomalyCount&quot;;
+	public static final String HAS_MOTION_ANOMALY = &quot;hasMotionAnomaly&quot;;
+	public static final String PROPOSALS_FILED = &quot;proposalsFiled&quot;;
+	public static final String ELECTION_STDDEV_DOCS = &quot;electionStddevDocs&quot;;
+	public static final String ELECTION_STDDEV_MOTIONS = &quot;electionStddevMotions&quot;;
+	public static final String ANOMALY_SEVERITY = &quot;anomalySeverity&quot;;
+	public static final String ATTENDANCE_RATE = &quot;attendanceRate&quot;;
+
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

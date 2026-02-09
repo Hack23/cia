@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewCommitteeProductivityMatrix_.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.committee.impl</a> &gt; <span class="el_source">ViewCommitteeProductivityMatrix_.java</span></div><h1>ViewCommitteeProductivityMatrix_.java</h1><pre class="source lang-java linenums">package com.hack23.cia.model.internal.application.data.committee.impl;
+
+import java.math.BigDecimal;
+import java.util.Date;
+import javax.persistence.metamodel.SingularAttribute;
+import javax.persistence.metamodel.StaticMetamodel;
+
+@StaticMetamodel(ViewCommitteeProductivityMatrix.class)
+<span class="nc" id="L9">public abstract class ViewCommitteeProductivityMatrix_ {</span>
+
+	public static volatile SingularAttribute&lt;ViewCommitteeProductivityMatrix, BigDecimal&gt; periodMedianDocuments;
+	public static volatile SingularAttribute&lt;ViewCommitteeProductivityMatrix, BigDecimal&gt; periodAvgDocuments;
+	public static volatile SingularAttribute&lt;ViewCommitteeProductivityMatrix, String&gt; productivityTrend;
+	public static volatile SingularAttribute&lt;ViewCommitteeProductivityMatrix, Long&gt; periodMaxDocuments;
+	public static volatile SingularAttribute&lt;ViewCommitteeProductivityMatrix, Integer&gt; year;
+	public static volatile SingularAttribute&lt;ViewCommitteeProductivityMatrix, String&gt; committeeCode;
+	public static volatile SingularAttribute&lt;ViewCommitteeProductivityMatrix, Long&gt; motionsHandled;
+	public static volatile SingularAttribute&lt;ViewCommitteeProductivityMatrix, BigDecimal&gt; movingAvg4QuarterDocuments;
+	public static volatile SingularAttribute&lt;ViewCommitteeProductivityMatrix, Long&gt; committeeReports;
+	public static volatile SingularAttribute&lt;ViewCommitteeProductivityMatrix, Date&gt; firstDocumentDate;
+	public static volatile SingularAttribute&lt;ViewCommitteeProductivityMatrix, BigDecimal&gt; documentChangePct;
+	public static volatile SingularAttribute&lt;ViewCommitteeProductivityMatrix, Date&gt; periodEnd;
+	public static volatile SingularAttribute&lt;ViewCommitteeProductivityMatrix, String&gt; productivityLevel;
+	public static volatile SingularAttribute&lt;ViewCommitteeProductivityMatrix, String&gt; committeeCategory;
+	public static volatile SingularAttribute&lt;ViewCommitteeProductivityMatrix, BigDecimal&gt; reportsPerMember;
+	public static volatile SingularAttribute&lt;ViewCommitteeProductivityMatrix, BigDecimal&gt; vsAverage;
+	public static volatile SingularAttribute&lt;ViewCommitteeProductivityMatrix, Long&gt; documentChange;
+	public static volatile SingularAttribute&lt;ViewCommitteeProductivityMatrix, Integer&gt; activitySpanDays;
+	public static volatile SingularAttribute&lt;ViewCommitteeProductivityMatrix, BigDecimal&gt; vsAveragePct;
+	public static volatile SingularAttribute&lt;ViewCommitteeProductivityMatrix, BigDecimal&gt; documentsPerMember;
+	public static volatile SingularAttribute&lt;ViewCommitteeProductivityMatrix, Integer&gt; activeMembers;
+	public static volatile SingularAttribute&lt;ViewCommitteeProductivityMatrix, Long&gt; totalDocuments;
+	public static volatile SingularAttribute&lt;ViewCommitteeProductivityMatrix, String&gt; productivityAssessment;
+	public static volatile SingularAttribute&lt;ViewCommitteeProductivityMatrix, String&gt; committeeName;
+	public static volatile SingularAttribute&lt;ViewCommitteeProductivityMatrix, Long&gt; periodMinDocuments;
+	public static volatile SingularAttribute&lt;ViewCommitteeProductivityMatrix, Date&gt; periodStart;
+	public static volatile SingularAttribute&lt;ViewCommitteeProductivityMatrix, Date&gt; lastDocumentDate;
+	public static volatile SingularAttribute&lt;ViewCommitteeProductivityMatrix, Integer&gt; quarter;
+
+	public static final String PERIOD_MEDIAN_DOCUMENTS = &quot;periodMedianDocuments&quot;;
+	public static final String PERIOD_AVG_DOCUMENTS = &quot;periodAvgDocuments&quot;;
+	public static final String PRODUCTIVITY_TREND = &quot;productivityTrend&quot;;
+	public static final String PERIOD_MAX_DOCUMENTS = &quot;periodMaxDocuments&quot;;
+	public static final String YEAR = &quot;year&quot;;
+	public static final String COMMITTEE_CODE = &quot;committeeCode&quot;;
+	public static final String MOTIONS_HANDLED = &quot;motionsHandled&quot;;
+	public static final String MOVING_AVG4_QUARTER_DOCUMENTS = &quot;movingAvg4QuarterDocuments&quot;;
+	public static final String COMMITTEE_REPORTS = &quot;committeeReports&quot;;
+	public static final String FIRST_DOCUMENT_DATE = &quot;firstDocumentDate&quot;;
+	public static final String DOCUMENT_CHANGE_PCT = &quot;documentChangePct&quot;;
+	public static final String PERIOD_END = &quot;periodEnd&quot;;
+	public static final String PRODUCTIVITY_LEVEL = &quot;productivityLevel&quot;;
+	public static final String COMMITTEE_CATEGORY = &quot;committeeCategory&quot;;
+	public static final String REPORTS_PER_MEMBER = &quot;reportsPerMember&quot;;
+	public static final String VS_AVERAGE = &quot;vsAverage&quot;;
+	public static final String DOCUMENT_CHANGE = &quot;documentChange&quot;;
+	public static final String ACTIVITY_SPAN_DAYS = &quot;activitySpanDays&quot;;
+	public static final String VS_AVERAGE_PCT = &quot;vsAveragePct&quot;;
+	public static final String DOCUMENTS_PER_MEMBER = &quot;documentsPerMember&quot;;
+	public static final String ACTIVE_MEMBERS = &quot;activeMembers&quot;;
+	public static final String TOTAL_DOCUMENTS = &quot;totalDocuments&quot;;
+	public static final String PRODUCTIVITY_ASSESSMENT = &quot;productivityAssessment&quot;;
+	public static final String COMMITTEE_NAME = &quot;committeeName&quot;;
+	public static final String PERIOD_MIN_DOCUMENTS = &quot;periodMinDocuments&quot;;
+	public static final String PERIOD_START = &quot;periodStart&quot;;
+	public static final String LAST_DOCUMENT_DATE = &quot;lastDocumentDate&quot;;
+	public static final String QUARTER = &quot;quarter&quot;;
+
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

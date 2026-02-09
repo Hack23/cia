@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewRiksdagenPartyMomentumAnalysis.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.party.impl</a> &gt; <span class="el_source">ViewRiksdagenPartyMomentumAnalysis.java</span></div><h1>ViewRiksdagenPartyMomentumAnalysis.java</h1><pre class="source lang-java linenums">package com.hack23.cia.model.internal.application.data.party.impl;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+/**
+ * JPA entity for view_riksdagen_party_momentum_analysis database view.
+ * 
+ * Intelligence Purpose: Analyzes party performance momentum and acceleration patterns
+ * with quarterly aggregation, volatility tracking, and stability classifications.
+ * Enables detection of rising/declining party trajectories and political instability.
+ * 
+ * Created by: Liquibase v1.29 (Intelligence Operations)
+ * Risk Rules Supported: Pa-01, Pa-02, Pa-07 (Party momentum and stability assessment)
+ */
+@Entity(name = &quot;ViewRiksdagenPartyMomentumAnalysis&quot;)
+@Table(name = &quot;view_riksdagen_party_momentum_analysis&quot;)
+public class ViewRiksdagenPartyMomentumAnalysis implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@Column(name = &quot;party&quot;, nullable = false, length = 50)
+	private String party;
+
+	@Id
+	@Column(name = &quot;year&quot;, nullable = false)
+	private Integer year;
+
+	@Id
+	@Column(name = &quot;quarter&quot;, nullable = false)
+	private Integer quarter;
+
+	@Column(name = &quot;momentum&quot;, precision = 10, scale = 4)
+	private BigDecimal momentum;
+
+	@Column(name = &quot;acceleration&quot;, precision = 10, scale = 4)
+	private BigDecimal acceleration;
+
+	@Column(name = &quot;prev_quarter_rate&quot;, precision = 5, scale = 2)
+	private BigDecimal prevQuarterRate;
+
+	@Column(name = &quot;moving_avg_4q&quot;, precision = 5, scale = 2)
+	private BigDecimal movingAvg4Q;
+
+	@Column(name = &quot;volatility&quot;, precision = 10, scale = 4)
+	private BigDecimal volatility;
+
+	@Column(name = &quot;trend_direction&quot;, length = 50)
+	private String trendDirection;
+
+	@Column(name = &quot;stability_classification&quot;, length = 100)
+	private String stabilityClassification;
+
+	@Column(name = &quot;intelligence_assessment&quot;, length = 500)
+	private String intelligenceAssessment;
+
+	@Column(name = &quot;sample_size&quot;)
+	private Long sampleSize;
+
+	@Column(name = &quot;periods_analyzed&quot;)
+	private Integer periodsAnalyzed;
+
+	@Column(name = &quot;confidence_level&quot;, length = 50)
+	private String confidenceLevel;
+
+	/**
+	 * Default constructor.
+	 */
+	public ViewRiksdagenPartyMomentumAnalysis() {
+<span class="fc" id="L81">		super();</span>
+<span class="fc" id="L82">	}</span>
+
+	// Getters and Setters
+
+	public String getParty() {
+<span class="fc" id="L87">		return party;</span>
+	}
+
+	public void setParty(String party) {
+<span class="fc" id="L91">		this.party = party;</span>
+<span class="fc" id="L92">	}</span>
+
+	public Integer getYear() {
+<span class="fc" id="L95">		return year;</span>
+	}
+
+	public void setYear(Integer year) {
+<span class="fc" id="L99">		this.year = year;</span>
+<span class="fc" id="L100">	}</span>
+
+	public Integer getQuarter() {
+<span class="fc" id="L103">		return quarter;</span>
+	}
+
+	public void setQuarter(Integer quarter) {
+<span class="fc" id="L107">		this.quarter = quarter;</span>
+<span class="fc" id="L108">	}</span>
+
+	public BigDecimal getMomentum() {
+<span class="fc" id="L111">		return momentum;</span>
+	}
+
+	public void setMomentum(BigDecimal momentum) {
+<span class="fc" id="L115">		this.momentum = momentum;</span>
+<span class="fc" id="L116">	}</span>
+
+	public BigDecimal getAcceleration() {
+<span class="fc" id="L119">		return acceleration;</span>
+	}
+
+	public void setAcceleration(BigDecimal acceleration) {
+<span class="fc" id="L123">		this.acceleration = acceleration;</span>
+<span class="fc" id="L124">	}</span>
+
+	public BigDecimal getPrevQuarterRate() {
+<span class="fc" id="L127">		return prevQuarterRate;</span>
+	}
+
+	public void setPrevQuarterRate(BigDecimal prevQuarterRate) {
+<span class="fc" id="L131">		this.prevQuarterRate = prevQuarterRate;</span>
+<span class="fc" id="L132">	}</span>
+
+	public BigDecimal getMovingAvg4Q() {
+<span class="fc" id="L135">		return movingAvg4Q;</span>
+	}
+
+	public void setMovingAvg4Q(BigDecimal movingAvg4Q) {
+<span class="fc" id="L139">		this.movingAvg4Q = movingAvg4Q;</span>
+<span class="fc" id="L140">	}</span>
+
+	public BigDecimal getVolatility() {
+<span class="fc" id="L143">		return volatility;</span>
+	}
+
+	public void setVolatility(BigDecimal volatility) {
+<span class="fc" id="L147">		this.volatility = volatility;</span>
+<span class="fc" id="L148">	}</span>
+
+	public String getTrendDirection() {
+<span class="fc" id="L151">		return trendDirection;</span>
+	}
+
+	public void setTrendDirection(String trendDirection) {
+<span class="fc" id="L155">		this.trendDirection = trendDirection;</span>
+<span class="fc" id="L156">	}</span>
+
+	public String getStabilityClassification() {
+<span class="fc" id="L159">		return stabilityClassification;</span>
+	}
+
+	public void setStabilityClassification(String stabilityClassification) {
+<span class="fc" id="L163">		this.stabilityClassification = stabilityClassification;</span>
+<span class="fc" id="L164">	}</span>
+
+	public String getIntelligenceAssessment() {
+<span class="fc" id="L167">		return intelligenceAssessment;</span>
+	}
+
+	public void setIntelligenceAssessment(String intelligenceAssessment) {
+<span class="fc" id="L171">		this.intelligenceAssessment = intelligenceAssessment;</span>
+<span class="fc" id="L172">	}</span>
+
+	public Long getSampleSize() {
+<span class="fc" id="L175">		return sampleSize;</span>
+	}
+
+	public void setSampleSize(Long sampleSize) {
+<span class="fc" id="L179">		this.sampleSize = sampleSize;</span>
+<span class="fc" id="L180">	}</span>
+
+	public Integer getPeriodsAnalyzed() {
+<span class="fc" id="L183">		return periodsAnalyzed;</span>
+	}
+
+	public void setPeriodsAnalyzed(Integer periodsAnalyzed) {
+<span class="fc" id="L187">		this.periodsAnalyzed = periodsAnalyzed;</span>
+<span class="fc" id="L188">	}</span>
+
+	public String getConfidenceLevel() {
+<span class="fc" id="L191">		return confidenceLevel;</span>
+	}
+
+	public void setConfidenceLevel(String confidenceLevel) {
+<span class="fc" id="L195">		this.confidenceLevel = confidenceLevel;</span>
+<span class="fc" id="L196">	}</span>
+
+	@Override
+	public boolean equals(final Object obj) {
+<span class="fc bfc" id="L200" title="All 2 branches covered.">		if (this == obj) {</span>
+<span class="fc" id="L201">			return true;</span>
+		}
+<span class="pc bpc" id="L203" title="1 of 4 branches missed.">		if (obj == null || getClass() != obj.getClass()) {</span>
+<span class="fc" id="L204">			return false;</span>
+		}
+<span class="fc" id="L206">		final ViewRiksdagenPartyMomentumAnalysis other = (ViewRiksdagenPartyMomentumAnalysis) obj;</span>
+<span class="fc" id="L207">		return new EqualsBuilder()</span>
+<span class="fc" id="L208">				.append(party, other.party)</span>
+<span class="fc" id="L209">				.append(year, other.year)</span>
+<span class="fc" id="L210">				.append(quarter, other.quarter)</span>
+<span class="fc" id="L211">				.isEquals();</span>
+	}
+
+	@Override
+	public int hashCode() {
+<span class="fc" id="L216">		return new HashCodeBuilder()</span>
+<span class="fc" id="L217">				.append(party)</span>
+<span class="fc" id="L218">				.append(year)</span>
+<span class="fc" id="L219">				.append(quarter)</span>
+<span class="fc" id="L220">				.toHashCode();</span>
+	}
+
+	@Override
+	public String toString() {
+<span class="fc" id="L225">		return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)</span>
+<span class="fc" id="L226">				.append(&quot;party&quot;, party)</span>
+<span class="fc" id="L227">				.append(&quot;year&quot;, year)</span>
+<span class="fc" id="L228">				.append(&quot;quarter&quot;, quarter)</span>
+<span class="fc" id="L229">				.append(&quot;momentum&quot;, momentum)</span>
+<span class="fc" id="L230">				.append(&quot;trendDirection&quot;, trendDirection)</span>
+<span class="fc" id="L231">				.append(&quot;stabilityClassification&quot;, stabilityClassification)</span>
+<span class="fc" id="L232">				.toString();</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

@@ -1,0 +1,735 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewDecisionTemporalTrends.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.impl</a> &gt; <span class="el_source">ViewDecisionTemporalTrends.java</span></div><h1>ViewDecisionTemporalTrends.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2025 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+ */
+package com.hack23.cia.model.internal.application.data.impl;
+
+import java.math.BigDecimal;
+import java.util.Date;
+
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+import com.hack23.cia.model.common.api.ModelObject;
+
+/**
+ * The Class ViewDecisionTemporalTrends.
+ * 
+ * JPA Entity for view_decision_temporal_trends database view.
+ * 
+ * Provides daily decision-making trends with moving averages and year-over-year
+ * comparisons. Tracks decision volume, approval rates, and temporal patterns to
+ * identify seasonal variations, long-term trends, and anomalies in legislative
+ * decision-making activity.
+ * 
+ * &lt;p&gt;Intelligence Value: ⭐⭐⭐⭐⭐ VERY HIGH&lt;/p&gt;
+ * &lt;ul&gt;
+ * &lt;li&gt;Temporal pattern identification - detect seasonal and cyclical trends&lt;/li&gt;
+ * &lt;li&gt;Workload analysis - measure legislative productivity over time&lt;/li&gt;
+ * &lt;li&gt;Trend forecasting - predict future decision volumes and patterns&lt;/li&gt;
+ * &lt;li&gt;Anomaly detection - identify unusual spikes or drops in activity&lt;/li&gt;
+ * &lt;li&gt;Year-over-year comparison - track long-term changes in decision patterns&lt;/li&gt;
+ * &lt;/ul&gt;
+ * 
+ * &lt;p&gt;Use Cases:&lt;/p&gt;
+ * &lt;ul&gt;
+ * &lt;li&gt;Legislative Calendar Planning: Optimize scheduling based on patterns&lt;/li&gt;
+ * &lt;li&gt;Resource Allocation: Predict workload for committee staffing&lt;/li&gt;
+ * &lt;li&gt;Trend Analysis: Identify shifts in legislative productivity&lt;/li&gt;
+ * &lt;li&gt;Performance Benchmarking: Compare current vs historical activity&lt;/li&gt;
+ * &lt;li&gt;Crisis Detection: Spot unusual patterns indicating problems&lt;/li&gt;
+ * &lt;/ul&gt;
+ * 
+ * @author intelligence-operative
+ * @since v1.35 (Decision Intelligence)
+ * @see &lt;a href=&quot;https://github.com/Hack23/cia/issues/7921&quot;&gt;Issue #7921&lt;/a&gt;
+ * @see com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyDecisionFlow
+ * @see com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPoliticianDecisionPattern
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = &quot;ViewDecisionTemporalTrends&quot;, propOrder = {
+    &quot;decisionDay&quot;,
+    &quot;dailyDecisions&quot;,
+    &quot;dailyApprovalRate&quot;,
+    &quot;approvedDecisions&quot;,
+    &quot;rejectedDecisions&quot;,
+    &quot;referredBackDecisions&quot;,
+    &quot;committeeReferralDecisions&quot;,
+    &quot;ma7dayDecisions&quot;,
+    &quot;ma30dayDecisions&quot;,
+    &quot;ma90dayDecisions&quot;,
+    &quot;ma30dayApprovalRate&quot;,
+    &quot;decisionsLastYear&quot;,
+    &quot;yoyDecisionsChange&quot;,
+    &quot;yoyDecisionsChangePct&quot;,
+    &quot;decisionYear&quot;,
+    &quot;decisionMonth&quot;,
+    &quot;decisionWeek&quot;,
+    &quot;dayOfWeek&quot;
+})
+@Entity(name = &quot;ViewDecisionTemporalTrends&quot;)
+@Table(name = &quot;view_decision_temporal_trends&quot;)
+@Inheritance(strategy = InheritanceType.JOINED)
+<span class="fc" id="L103">public class ViewDecisionTemporalTrends implements ModelObject {</span>
+
+	private static final long serialVersionUID = 1L;
+
+	@XmlElement(name = &quot;decision_day&quot;, required = true)
+	protected Date decisionDay;
+
+	@XmlElement(name = &quot;daily_decisions&quot;)
+	protected long dailyDecisions;
+
+	@XmlElement(name = &quot;daily_approval_rate&quot;)
+	protected BigDecimal dailyApprovalRate;
+
+	@XmlElement(name = &quot;approved_decisions&quot;)
+	protected long approvedDecisions;
+
+	@XmlElement(name = &quot;rejected_decisions&quot;)
+	protected long rejectedDecisions;
+
+	@XmlElement(name = &quot;referred_back_decisions&quot;)
+	protected long referredBackDecisions;
+
+	@XmlElement(name = &quot;committee_referral_decisions&quot;)
+	protected long committeeReferralDecisions;
+
+	@XmlElement(name = &quot;ma_7day_decisions&quot;)
+	protected BigDecimal ma7dayDecisions;
+
+	@XmlElement(name = &quot;ma_30day_decisions&quot;)
+	protected BigDecimal ma30dayDecisions;
+
+	@XmlElement(name = &quot;ma_90day_decisions&quot;)
+	protected BigDecimal ma90dayDecisions;
+
+	@XmlElement(name = &quot;ma_30day_approval_rate&quot;)
+	protected BigDecimal ma30dayApprovalRate;
+
+	@XmlElement(name = &quot;decisions_last_year&quot;)
+	protected Long decisionsLastYear;
+
+	@XmlElement(name = &quot;yoy_decisions_change&quot;)
+	protected Long yoyDecisionsChange;
+
+	@XmlElement(name = &quot;yoy_decisions_change_pct&quot;)
+	protected BigDecimal yoyDecisionsChangePct;
+
+	@XmlElement(name = &quot;decision_year&quot;)
+	protected Integer decisionYear;
+
+	@XmlElement(name = &quot;decision_month&quot;)
+	protected Integer decisionMonth;
+
+	@XmlElement(name = &quot;decision_week&quot;)
+	protected Integer decisionWeek;
+
+	@XmlElement(name = &quot;day_of_week&quot;)
+	protected Integer dayOfWeek;
+
+	/**
+	 * Gets the decision day.
+	 *
+	 * @return the decision day
+	 */
+	@Id
+	@Column(name = &quot;DECISION_DAY&quot;)
+	@Temporal(TemporalType.DATE)
+	public Date getDecisionDay() {
+<span class="fc" id="L170">		return decisionDay;</span>
+	}
+
+	/**
+	 * Sets the decision day.
+	 *
+	 * @param value the new decision day
+	 */
+	public void setDecisionDay(final Date value) {
+<span class="fc" id="L179">		this.decisionDay = value;</span>
+<span class="fc" id="L180">	}</span>
+
+	/**
+	 * Gets the daily decisions.
+	 *
+	 * @return the daily decisions
+	 */
+	@Basic
+	@Column(name = &quot;DAILY_DECISIONS&quot;, precision = 20)
+	public long getDailyDecisions() {
+<span class="fc" id="L190">		return dailyDecisions;</span>
+	}
+
+	/**
+	 * Sets the daily decisions.
+	 *
+	 * @param value the new daily decisions
+	 */
+	public void setDailyDecisions(final long value) {
+<span class="fc" id="L199">		this.dailyDecisions = value;</span>
+<span class="fc" id="L200">	}</span>
+
+	/**
+	 * Gets the daily approval rate.
+	 *
+	 * @return the daily approval rate
+	 */
+	@Basic
+	@Column(name = &quot;DAILY_APPROVAL_RATE&quot;, precision = 5, scale = 2)
+	public BigDecimal getDailyApprovalRate() {
+<span class="fc" id="L210">		return dailyApprovalRate;</span>
+	}
+
+	/**
+	 * Sets the daily approval rate.
+	 *
+	 * @param value the new daily approval rate
+	 */
+	public void setDailyApprovalRate(final BigDecimal value) {
+<span class="fc" id="L219">		this.dailyApprovalRate = value;</span>
+<span class="fc" id="L220">	}</span>
+
+	/**
+	 * Gets the approved decisions.
+	 *
+	 * @return the approved decisions
+	 */
+	@Basic
+	@Column(name = &quot;APPROVED_DECISIONS&quot;, precision = 20)
+	public long getApprovedDecisions() {
+<span class="fc" id="L230">		return approvedDecisions;</span>
+	}
+
+	/**
+	 * Sets the approved decisions.
+	 *
+	 * @param value the new approved decisions
+	 */
+	public void setApprovedDecisions(final long value) {
+<span class="fc" id="L239">		this.approvedDecisions = value;</span>
+<span class="fc" id="L240">	}</span>
+
+	/**
+	 * Gets the rejected decisions.
+	 *
+	 * @return the rejected decisions
+	 */
+	@Basic
+	@Column(name = &quot;REJECTED_DECISIONS&quot;, precision = 20)
+	public long getRejectedDecisions() {
+<span class="fc" id="L250">		return rejectedDecisions;</span>
+	}
+
+	/**
+	 * Sets the rejected decisions.
+	 *
+	 * @param value the new rejected decisions
+	 */
+	public void setRejectedDecisions(final long value) {
+<span class="fc" id="L259">		this.rejectedDecisions = value;</span>
+<span class="fc" id="L260">	}</span>
+
+	/**
+	 * Gets the referred back decisions.
+	 *
+	 * @return the referred back decisions
+	 */
+	@Basic
+	@Column(name = &quot;REFERRED_BACK_DECISIONS&quot;, precision = 20)
+	public long getReferredBackDecisions() {
+<span class="fc" id="L270">		return referredBackDecisions;</span>
+	}
+
+	/**
+	 * Sets the referred back decisions.
+	 *
+	 * @param value the new referred back decisions
+	 */
+	public void setReferredBackDecisions(final long value) {
+<span class="fc" id="L279">		this.referredBackDecisions = value;</span>
+<span class="fc" id="L280">	}</span>
+
+	/**
+	 * Gets the committee referral decisions.
+	 *
+	 * @return the committee referral decisions
+	 */
+	@Basic
+	@Column(name = &quot;COMMITTEE_REFERRAL_DECISIONS&quot;, precision = 20)
+	public long getCommitteeReferralDecisions() {
+<span class="fc" id="L290">		return committeeReferralDecisions;</span>
+	}
+
+	/**
+	 * Sets the committee referral decisions.
+	 *
+	 * @param value the new committee referral decisions
+	 */
+	public void setCommitteeReferralDecisions(final long value) {
+<span class="fc" id="L299">		this.committeeReferralDecisions = value;</span>
+<span class="fc" id="L300">	}</span>
+
+	/**
+	 * Gets the 7-day moving average decisions.
+	 *
+	 * @return the 7-day moving average
+	 */
+	@Basic
+	@Column(name = &quot;MA_7DAY_DECISIONS&quot;, precision = 10, scale = 2)
+	public BigDecimal getMa7dayDecisions() {
+<span class="fc" id="L310">		return ma7dayDecisions;</span>
+	}
+
+	/**
+	 * Sets the 7-day moving average decisions.
+	 *
+	 * @param value the new 7-day moving average
+	 */
+	public void setMa7dayDecisions(final BigDecimal value) {
+<span class="fc" id="L319">		this.ma7dayDecisions = value;</span>
+<span class="fc" id="L320">	}</span>
+
+	/**
+	 * Gets the 30-day moving average decisions.
+	 *
+	 * @return the 30-day moving average
+	 */
+	@Basic
+	@Column(name = &quot;MA_30DAY_DECISIONS&quot;, precision = 10, scale = 2)
+	public BigDecimal getMa30dayDecisions() {
+<span class="fc" id="L330">		return ma30dayDecisions;</span>
+	}
+
+	/**
+	 * Sets the 30-day moving average decisions.
+	 *
+	 * @param value the new 30-day moving average
+	 */
+	public void setMa30dayDecisions(final BigDecimal value) {
+<span class="fc" id="L339">		this.ma30dayDecisions = value;</span>
+<span class="fc" id="L340">	}</span>
+
+	/**
+	 * Gets the 90-day moving average decisions.
+	 *
+	 * @return the 90-day moving average
+	 */
+	@Basic
+	@Column(name = &quot;MA_90DAY_DECISIONS&quot;, precision = 10, scale = 2)
+	public BigDecimal getMa90dayDecisions() {
+<span class="fc" id="L350">		return ma90dayDecisions;</span>
+	}
+
+	/**
+	 * Sets the 90-day moving average decisions.
+	 *
+	 * @param value the new 90-day moving average
+	 */
+	public void setMa90dayDecisions(final BigDecimal value) {
+<span class="fc" id="L359">		this.ma90dayDecisions = value;</span>
+<span class="fc" id="L360">	}</span>
+
+	/**
+	 * Gets the 30-day moving average approval rate.
+	 *
+	 * @return the 30-day moving average approval rate
+	 */
+	@Basic
+	@Column(name = &quot;MA_30DAY_APPROVAL_RATE&quot;, precision = 5, scale = 2)
+	public BigDecimal getMa30dayApprovalRate() {
+<span class="fc" id="L370">		return ma30dayApprovalRate;</span>
+	}
+
+	/**
+	 * Sets the 30-day moving average approval rate.
+	 *
+	 * @param value the new 30-day moving average approval rate
+	 */
+	public void setMa30dayApprovalRate(final BigDecimal value) {
+<span class="fc" id="L379">		this.ma30dayApprovalRate = value;</span>
+<span class="fc" id="L380">	}</span>
+
+	/**
+	 * Gets the decisions last year.
+	 *
+	 * @return the decisions last year
+	 */
+	@Basic
+	@Column(name = &quot;DECISIONS_LAST_YEAR&quot;, precision = 20)
+	public Long getDecisionsLastYear() {
+<span class="fc" id="L390">		return decisionsLastYear;</span>
+	}
+
+	/**
+	 * Sets the decisions last year.
+	 *
+	 * @param value the new decisions last year
+	 */
+	public void setDecisionsLastYear(final Long value) {
+<span class="fc" id="L399">		this.decisionsLastYear = value;</span>
+<span class="fc" id="L400">	}</span>
+
+	/**
+	 * Gets the year-over-year decisions change.
+	 *
+	 * @return the year-over-year change
+	 */
+	@Basic
+	@Column(name = &quot;YOY_DECISIONS_CHANGE&quot;, precision = 20)
+	public Long getYoyDecisionsChange() {
+<span class="fc" id="L410">		return yoyDecisionsChange;</span>
+	}
+
+	/**
+	 * Sets the year-over-year decisions change.
+	 *
+	 * @param value the new year-over-year change
+	 */
+	public void setYoyDecisionsChange(final Long value) {
+<span class="fc" id="L419">		this.yoyDecisionsChange = value;</span>
+<span class="fc" id="L420">	}</span>
+
+	/**
+	 * Gets the year-over-year decisions change percentage.
+	 *
+	 * @return the year-over-year change percentage
+	 */
+	@Basic
+	@Column(name = &quot;YOY_DECISIONS_CHANGE_PCT&quot;, precision = 5, scale = 2)
+	public BigDecimal getYoyDecisionsChangePct() {
+<span class="fc" id="L430">		return yoyDecisionsChangePct;</span>
+	}
+
+	/**
+	 * Sets the year-over-year decisions change percentage.
+	 *
+	 * @param value the new year-over-year change percentage
+	 */
+	public void setYoyDecisionsChangePct(final BigDecimal value) {
+<span class="fc" id="L439">		this.yoyDecisionsChangePct = value;</span>
+<span class="fc" id="L440">	}</span>
+
+	/**
+	 * Gets the decision year.
+	 *
+	 * @return the decision year
+	 */
+	@Basic
+	@Column(name = &quot;DECISION_YEAR&quot;)
+	public Integer getDecisionYear() {
+<span class="fc" id="L450">		return decisionYear;</span>
+	}
+
+	/**
+	 * Sets the decision year.
+	 *
+	 * @param value the new decision year
+	 */
+	public void setDecisionYear(final Integer value) {
+<span class="fc" id="L459">		this.decisionYear = value;</span>
+<span class="fc" id="L460">	}</span>
+
+	/**
+	 * Gets the decision month.
+	 *
+	 * @return the decision month
+	 */
+	@Basic
+	@Column(name = &quot;DECISION_MONTH&quot;)
+	public Integer getDecisionMonth() {
+<span class="fc" id="L470">		return decisionMonth;</span>
+	}
+
+	/**
+	 * Sets the decision month.
+	 *
+	 * @param value the new decision month
+	 */
+	public void setDecisionMonth(final Integer value) {
+<span class="fc" id="L479">		this.decisionMonth = value;</span>
+<span class="fc" id="L480">	}</span>
+
+	/**
+	 * Gets the decision week.
+	 *
+	 * @return the decision week
+	 */
+	@Basic
+	@Column(name = &quot;DECISION_WEEK&quot;)
+	public Integer getDecisionWeek() {
+<span class="fc" id="L490">		return decisionWeek;</span>
+	}
+
+	/**
+	 * Sets the decision week.
+	 *
+	 * @param value the new decision week
+	 */
+	public void setDecisionWeek(final Integer value) {
+<span class="fc" id="L499">		this.decisionWeek = value;</span>
+<span class="fc" id="L500">	}</span>
+
+	/**
+	 * Gets the day of week.
+	 *
+	 * @return the day of week
+	 */
+	@Basic
+	@Column(name = &quot;DAY_OF_WEEK&quot;)
+	public Integer getDayOfWeek() {
+<span class="fc" id="L510">		return dayOfWeek;</span>
+	}
+
+	/**
+	 * Sets the day of week.
+	 *
+	 * @param value the new day of week
+	 */
+	public void setDayOfWeek(final Integer value) {
+<span class="fc" id="L519">		this.dayOfWeek = value;</span>
+<span class="fc" id="L520">	}</span>
+
+	/**
+	 * With decision day.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewDecisionTemporalTrends withDecisionDay(final Date value) {
+<span class="fc" id="L529">		setDecisionDay(value);</span>
+<span class="fc" id="L530">		return this;</span>
+	}
+
+	/**
+	 * With daily decisions.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewDecisionTemporalTrends withDailyDecisions(final long value) {
+<span class="fc" id="L540">		setDailyDecisions(value);</span>
+<span class="fc" id="L541">		return this;</span>
+	}
+
+	/**
+	 * With daily approval rate.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewDecisionTemporalTrends withDailyApprovalRate(final BigDecimal value) {
+<span class="fc" id="L551">		setDailyApprovalRate(value);</span>
+<span class="fc" id="L552">		return this;</span>
+	}
+
+	/**
+	 * With approved decisions.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewDecisionTemporalTrends withApprovedDecisions(final long value) {
+<span class="fc" id="L562">		setApprovedDecisions(value);</span>
+<span class="fc" id="L563">		return this;</span>
+	}
+
+	/**
+	 * With rejected decisions.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewDecisionTemporalTrends withRejectedDecisions(final long value) {
+<span class="fc" id="L573">		setRejectedDecisions(value);</span>
+<span class="fc" id="L574">		return this;</span>
+	}
+
+	/**
+	 * With referred back decisions.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewDecisionTemporalTrends withReferredBackDecisions(final long value) {
+<span class="fc" id="L584">		setReferredBackDecisions(value);</span>
+<span class="fc" id="L585">		return this;</span>
+	}
+
+	/**
+	 * With committee referral decisions.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewDecisionTemporalTrends withCommitteeReferralDecisions(final long value) {
+<span class="fc" id="L595">		setCommitteeReferralDecisions(value);</span>
+<span class="fc" id="L596">		return this;</span>
+	}
+
+	/**
+	 * With 7-day moving average.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewDecisionTemporalTrends withMa7dayDecisions(final BigDecimal value) {
+<span class="fc" id="L606">		setMa7dayDecisions(value);</span>
+<span class="fc" id="L607">		return this;</span>
+	}
+
+	/**
+	 * With 30-day moving average.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewDecisionTemporalTrends withMa30dayDecisions(final BigDecimal value) {
+<span class="fc" id="L617">		setMa30dayDecisions(value);</span>
+<span class="fc" id="L618">		return this;</span>
+	}
+
+	/**
+	 * With 90-day moving average.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewDecisionTemporalTrends withMa90dayDecisions(final BigDecimal value) {
+<span class="fc" id="L628">		setMa90dayDecisions(value);</span>
+<span class="fc" id="L629">		return this;</span>
+	}
+
+	/**
+	 * With 30-day approval rate.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewDecisionTemporalTrends withMa30dayApprovalRate(final BigDecimal value) {
+<span class="fc" id="L639">		setMa30dayApprovalRate(value);</span>
+<span class="fc" id="L640">		return this;</span>
+	}
+
+	/**
+	 * With decisions last year.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewDecisionTemporalTrends withDecisionsLastYear(final Long value) {
+<span class="fc" id="L650">		setDecisionsLastYear(value);</span>
+<span class="fc" id="L651">		return this;</span>
+	}
+
+	/**
+	 * With year-over-year change.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewDecisionTemporalTrends withYoyDecisionsChange(final Long value) {
+<span class="fc" id="L661">		setYoyDecisionsChange(value);</span>
+<span class="fc" id="L662">		return this;</span>
+	}
+
+	/**
+	 * With year-over-year change percentage.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewDecisionTemporalTrends withYoyDecisionsChangePct(final BigDecimal value) {
+<span class="fc" id="L672">		setYoyDecisionsChangePct(value);</span>
+<span class="fc" id="L673">		return this;</span>
+	}
+
+	/**
+	 * With decision year.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewDecisionTemporalTrends withDecisionYear(final Integer value) {
+<span class="fc" id="L683">		setDecisionYear(value);</span>
+<span class="fc" id="L684">		return this;</span>
+	}
+
+	/**
+	 * With decision month.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewDecisionTemporalTrends withDecisionMonth(final Integer value) {
+<span class="fc" id="L694">		setDecisionMonth(value);</span>
+<span class="fc" id="L695">		return this;</span>
+	}
+
+	/**
+	 * With decision week.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewDecisionTemporalTrends withDecisionWeek(final Integer value) {
+<span class="fc" id="L705">		setDecisionWeek(value);</span>
+<span class="fc" id="L706">		return this;</span>
+	}
+
+	/**
+	 * With day of week.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewDecisionTemporalTrends withDayOfWeek(final Integer value) {
+<span class="fc" id="L716">		setDayOfWeek(value);</span>
+<span class="fc" id="L717">		return this;</span>
+	}
+
+	@Override
+	public final String toString() {
+<span class="fc" id="L722">		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);</span>
+	}
+
+	@Override
+	public final boolean equals(final Object obj) {
+<span class="fc" id="L727">		return EqualsBuilder.reflectionEquals(this, obj);</span>
+	}
+
+	@Override
+	public final int hashCode() {
+<span class="fc" id="L732">		return HashCodeBuilder.reflectionHashCode(this);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

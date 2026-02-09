@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewRiksdagenPersonSignedDocumentSummary.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.document.impl</a> &gt; <span class="el_source">ViewRiksdagenPersonSignedDocumentSummary.java</span></div><h1>ViewRiksdagenPersonSignedDocumentSummary.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2025 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+ */
+package com.hack23.cia.model.internal.application.data.document.impl;
+
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+import com.hack23.cia.model.common.api.ModelObject;
+
+/**
+ * The Class ViewRiksdagenPersonSignedDocumentSummary.
+ * 
+ * JPA Entity for view_riksdagen_person_signed_document_summary database view.
+ * 
+ * Aggregates document signature counts by person, enabling analysis of
+ * individual politician participation in legislative documents.
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = &quot;ViewRiksdagenPersonSignedDocumentSummary&quot;, propOrder = {
+    &quot;personId&quot;,
+    &quot;personName&quot;,
+    &quot;party&quot;,
+    &quot;total&quot;
+})
+@Entity(name = &quot;ViewRiksdagenPersonSignedDocumentSummary&quot;)
+@Table(name = &quot;view_riksdagen_person_signed_document_summary&quot;)
+@Inheritance(strategy = InheritanceType.JOINED)
+<span class="fc" id="L58">public class ViewRiksdagenPersonSignedDocumentSummary implements ModelObject {</span>
+
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = 1L;
+
+    /** The person id. */
+    @XmlElement(name = &quot;person_id&quot;, required = true)
+    protected String personId;
+
+    /** The person name. */
+    @XmlElement(name = &quot;person_name&quot;)
+    protected String personName;
+
+    /** The party. */
+    @XmlElement
+    protected String party;
+
+    /** The total. */
+    protected long total;
+
+    /**
+     * Gets the person id.
+     *
+     * @return the person id
+     */
+    @Id
+    @Column(name = &quot;PERSON_ID&quot;)
+    public String getPersonId() {
+<span class="fc" id="L86">        return personId;</span>
+    }
+
+    /**
+     * Sets the person id.
+     *
+     * @param value the new person id
+     */
+    public void setPersonId(String value) {
+<span class="fc" id="L95">        this.personId = value;</span>
+<span class="fc" id="L96">    }</span>
+
+    /**
+     * Gets the person name.
+     *
+     * @return the person name
+     */
+    @Basic
+    @Column(name = &quot;PERSON_NAME&quot;)
+    public String getPersonName() {
+<span class="fc" id="L106">        return personName;</span>
+    }
+
+    /**
+     * Sets the person name.
+     *
+     * @param value the new person name
+     */
+    public void setPersonName(String value) {
+<span class="fc" id="L115">        this.personName = value;</span>
+<span class="fc" id="L116">    }</span>
+
+    /**
+     * Gets the party.
+     *
+     * @return the party
+     */
+    @Basic
+    @Column(name = &quot;PARTY&quot;)
+    public String getParty() {
+<span class="fc" id="L126">        return party;</span>
+    }
+
+    /**
+     * Sets the party.
+     *
+     * @param value the new party
+     */
+    public void setParty(String value) {
+<span class="fc" id="L135">        this.party = value;</span>
+<span class="fc" id="L136">    }</span>
+
+    /**
+     * Gets the total.
+     *
+     * @return the total
+     */
+    @Basic
+    @Column(name = &quot;TOTAL&quot;)
+    public long getTotal() {
+<span class="fc" id="L146">        return total;</span>
+    }
+
+    /**
+     * Sets the total.
+     *
+     * @param value the new total
+     */
+    public void setTotal(long value) {
+<span class="fc" id="L155">        this.total = value;</span>
+<span class="fc" id="L156">    }</span>
+
+    /**
+     * With person id.
+     *
+     * @param value the value
+     * @return the view riksdagen person signed document summary
+     */
+    public ViewRiksdagenPersonSignedDocumentSummary withPersonId(String value) {
+<span class="fc" id="L165">        setPersonId(value);</span>
+<span class="fc" id="L166">        return this;</span>
+    }
+
+    /**
+     * With person name.
+     *
+     * @param value the value
+     * @return the view riksdagen person signed document summary
+     */
+    public ViewRiksdagenPersonSignedDocumentSummary withPersonName(String value) {
+<span class="fc" id="L176">        setPersonName(value);</span>
+<span class="fc" id="L177">        return this;</span>
+    }
+
+    /**
+     * With party.
+     *
+     * @param value the value
+     * @return the view riksdagen person signed document summary
+     */
+    public ViewRiksdagenPersonSignedDocumentSummary withParty(String value) {
+<span class="fc" id="L187">        setParty(value);</span>
+<span class="fc" id="L188">        return this;</span>
+    }
+
+    /**
+     * With total.
+     *
+     * @param value the value
+     * @return the view riksdagen person signed document summary
+     */
+    public ViewRiksdagenPersonSignedDocumentSummary withTotal(long value) {
+<span class="fc" id="L198">        setTotal(value);</span>
+<span class="fc" id="L199">        return this;</span>
+    }
+
+    /**
+     * To string.
+     *
+     * @return the string
+     */
+    @Override
+    public String toString() {
+<span class="fc" id="L209">        return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);</span>
+    }
+
+    /**
+     * Equals.
+     *
+     * @param obj the obj
+     * @return true, if successful
+     */
+    @Override
+    public boolean equals(Object obj) {
+<span class="fc" id="L220">        return EqualsBuilder.reflectionEquals(this, obj);</span>
+    }
+
+    /**
+     * Hash code.
+     *
+     * @return the int
+     */
+    @Override
+    public int hashCode() {
+<span class="fc" id="L230">        return HashCodeBuilder.reflectionHashCode(this);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

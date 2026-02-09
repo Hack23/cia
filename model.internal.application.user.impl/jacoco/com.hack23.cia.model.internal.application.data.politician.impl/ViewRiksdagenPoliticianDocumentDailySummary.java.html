@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewRiksdagenPoliticianDocumentDailySummary.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.politician.impl</a> &gt; <span class="el_source">ViewRiksdagenPoliticianDocumentDailySummary.java</span></div><h1>ViewRiksdagenPoliticianDocumentDailySummary.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2025 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.model.internal.application.data.politician.impl;
+
+import java.io.Serializable;
+import java.math.BigInteger;
+
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+import com.hack23.cia.model.common.api.ModelObject;
+import com.hack23.cia.model.internal.application.data.document.impl.RiksdagenDocumentPersonSummaryEmbeddedId;
+
+/**
+ * The Class ViewRiksdagenPoliticianDocumentDailySummary.
+ * 
+ * &lt;p&gt;Maps to the materialized view &lt;code&gt;view_riksdagen_politician_document_daily_summary&lt;/code&gt;
+ * which provides daily aggregated counts of documents by politician and document type.&lt;/p&gt;
+ * 
+ * &lt;p&gt;&lt;strong&gt;Intelligence Purpose:&lt;/strong&gt;&lt;/p&gt;
+ * &lt;ul&gt;
+ *   &lt;li&gt;&lt;strong&gt;Temporal Analysis Framework:&lt;/strong&gt; Daily politician productivity tracking and trend analysis&lt;/li&gt;
+ *   &lt;li&gt;&lt;strong&gt;Pattern Recognition:&lt;/strong&gt; Identifies daily document activity patterns and outliers&lt;/li&gt;
+ *   &lt;li&gt;&lt;strong&gt;Performance Monitoring:&lt;/strong&gt; Tracks individual politician legislative productivity by day&lt;/li&gt;
+ * &lt;/ul&gt;
+ * 
+ * &lt;p&gt;&lt;strong&gt;Key Analytics:&lt;/strong&gt;&lt;/p&gt;
+ * &lt;ul&gt;
+ *   &lt;li&gt;Daily document counts per politician (motions, propositions, interpellations)&lt;/li&gt;
+ *   &lt;li&gt;Time-series analysis of legislative activity&lt;/li&gt;
+ *   &lt;li&gt;Productivity spikes and patterns detection&lt;/li&gt;
+ *   &lt;li&gt;Document type distribution by politician and date&lt;/li&gt;
+ * &lt;/ul&gt;
+ * 
+ * &lt;p&gt;&lt;strong&gt;Risk Indicators:&lt;/strong&gt;&lt;/p&gt;
+ * &lt;ul&gt;
+ *   &lt;li&gt;Sudden productivity drops may indicate health issues or political challenges&lt;/li&gt;
+ *   &lt;li&gt;Abnormal activity spikes warrant investigation for quality concerns&lt;/li&gt;
+ *   &lt;li&gt;Extended periods of inactivity signal potential disengagement&lt;/li&gt;
+ * &lt;/ul&gt;
+ * 
+ * &lt;p&gt;&lt;strong&gt;OSINT Applications:&lt;/strong&gt;&lt;/p&gt;
+ * &lt;ul&gt;
+ *   &lt;li&gt;Track daily legislative workflow and productivity&lt;/li&gt;
+ *   &lt;li&gt;Identify politicians' activity patterns and work habits&lt;/li&gt;
+ *   &lt;li&gt;Detect changes in engagement levels over time&lt;/li&gt;
+ *   &lt;li&gt;Support workload balancing and resource allocation analysis&lt;/li&gt;
+ * &lt;/ul&gt;
+ */
+@Entity
+@Table(name = &quot;view_riksdagen_politician_document_daily_summary&quot;)
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = &quot;ViewRiksdagenPoliticianDocumentDailySummary&quot;, propOrder = {
+    &quot;embeddedId&quot;,
+    &quot;total&quot;
+})
+public class ViewRiksdagenPoliticianDocumentDailySummary implements Serializable, ModelObject {
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
+
+	/** The embedded id. */
+	@EmbeddedId
+	@AttributeOverrides({
+		@AttributeOverride(name = &quot;publicDate&quot;, column = @Column(name = &quot;EMBEDDED_ID_PUBLIC_DATE&quot;)),
+		@AttributeOverride(name = &quot;personId&quot;, column = @Column(name = &quot;EMBEDDED_ID_PERSON_ID&quot;)),
+		@AttributeOverride(name = &quot;documentType&quot;, column = @Column(name = &quot;EMBEDDED_ID_DOCUMENT_TYPE&quot;))
+	})
+	@XmlElement(name = &quot;embeddedId&quot;, required = true)
+	protected RiksdagenDocumentPersonSummaryEmbeddedId embeddedId;
+
+	/** The total count of documents. */
+	@Column(name = &quot;total&quot;, nullable = false)
+	@XmlElement(name = &quot;total&quot;, required = true)
+	protected BigInteger total;
+
+	/**
+	 * Instantiates a new view riksdagen politician document daily summary.
+	 */
+	public ViewRiksdagenPoliticianDocumentDailySummary() {
+<span class="fc" id="L110">		super();</span>
+<span class="fc" id="L111">	}</span>
+
+	/**
+	 * Gets the embedded id.
+	 *
+	 * @return the embedded id
+	 */
+	public RiksdagenDocumentPersonSummaryEmbeddedId getEmbeddedId() {
+<span class="fc" id="L119">		return embeddedId;</span>
+	}
+
+	/**
+	 * Sets the embedded id.
+	 *
+	 * @param embeddedId the new embedded id
+	 */
+	public void setEmbeddedId(final RiksdagenDocumentPersonSummaryEmbeddedId embeddedId) {
+<span class="fc" id="L128">		this.embeddedId = embeddedId;</span>
+<span class="fc" id="L129">	}</span>
+
+	/**
+	 * Gets the total.
+	 *
+	 * @return the total
+	 */
+	public BigInteger getTotal() {
+<span class="fc" id="L137">		return total;</span>
+	}
+
+	/**
+	 * Sets the total.
+	 *
+	 * @param total the new total
+	 */
+	public void setTotal(final BigInteger total) {
+<span class="fc" id="L146">		this.total = total;</span>
+<span class="fc" id="L147">	}</span>
+
+	/**
+	 * With embedded id riksdagen document person summary embedded id.
+	 *
+	 * @param value the value
+	 * @return the view riksdagen politician document daily summary
+	 */
+	public ViewRiksdagenPoliticianDocumentDailySummary withEmbeddedId(final RiksdagenDocumentPersonSummaryEmbeddedId value) {
+<span class="fc" id="L156">		setEmbeddedId(value);</span>
+<span class="fc" id="L157">		return this;</span>
+	}
+
+	/**
+	 * With total view riksdagen politician document daily summary.
+	 *
+	 * @param value the value
+	 * @return the view riksdagen politician document daily summary
+	 */
+	public ViewRiksdagenPoliticianDocumentDailySummary withTotal(final BigInteger value) {
+<span class="fc" id="L167">		setTotal(value);</span>
+<span class="fc" id="L168">		return this;</span>
+	}
+
+	@Override
+	public boolean equals(final Object obj) {
+<span class="fc" id="L173">		return EqualsBuilder.reflectionEquals(this, obj);</span>
+	}
+
+	@Override
+	public int hashCode() {
+<span class="fc" id="L178">		return HashCodeBuilder.reflectionHashCode(this);</span>
+	}
+
+	@Override
+	public String toString() {
+<span class="fc" id="L183">		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

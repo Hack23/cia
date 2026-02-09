@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewRiksdagenSeasonalQuarterlyActivity.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.seasonal.impl</a> &gt; <span class="el_source">ViewRiksdagenSeasonalQuarterlyActivity.java</span></div><h1>ViewRiksdagenSeasonalQuarterlyActivity.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2026 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+ */
+package com.hack23.cia.model.internal.application.data.seasonal.impl;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+import org.hibernate.annotations.Immutable;
+
+/**
+ * The Class ViewRiksdagenSeasonalQuarterlyActivity.
+ * Database view for seasonal quarterly activity analysis with z-score anomaly detection.
+ */
+@Entity
+@Immutable
+@Table(name = &quot;view_riksdagen_seasonal_quarterly_activity&quot;)
+public class ViewRiksdagenSeasonalQuarterlyActivity implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	@EmbeddedId
+	private ViewRiksdagenSeasonalQuarterlyActivityEmbeddedId embeddedId;
+
+	@Column(name = &quot;is_election_year&quot;)
+	private Boolean isElectionYear;
+
+	@Column(name = &quot;total_ballots&quot;)
+	private Long totalBallots;
+
+	@Column(name = &quot;active_politicians&quot;)
+	private Long activePoliticians;
+
+	@Column(name = &quot;attendance_rate&quot;)
+	private BigDecimal attendanceRate;
+
+	@Column(name = &quot;documents_produced&quot;)
+	private Long documentsProduced;
+
+	@Column(name = &quot;q_baseline_ballots&quot;)
+	private BigDecimal qBaselineBallots;
+
+	@Column(name = &quot;q_stddev_ballots&quot;)
+	private BigDecimal qStddevBallots;
+
+	@Column(name = &quot;ballot_z_score&quot;)
+	private BigDecimal ballotZScore;
+
+	@Column(name = &quot;q_baseline_docs&quot;)
+	private BigDecimal qBaselineDocs;
+
+	@Column(name = &quot;q_stddev_docs&quot;)
+	private BigDecimal qStddevDocs;
+
+	@Column(name = &quot;doc_z_score&quot;)
+	private BigDecimal docZScore;
+
+	@Column(name = &quot;q_baseline_attendance&quot;)
+	private BigDecimal qBaselineAttendance;
+
+	@Column(name = &quot;q_stddev_attendance&quot;)
+	private BigDecimal qStddevAttendance;
+
+	@Column(name = &quot;attendance_z_score&quot;)
+	private BigDecimal attendanceZScore;
+
+	@Column(name = &quot;activity_classification&quot;)
+	private String activityClassification;
+
+	/**
+	 * Instantiates a new view riksdagen seasonal quarterly activity.
+	 */
+	public ViewRiksdagenSeasonalQuarterlyActivity() {
+<span class="fc" id="L98">		super();</span>
+<span class="fc" id="L99">	}</span>
+
+	public ViewRiksdagenSeasonalQuarterlyActivityEmbeddedId getEmbeddedId() {
+<span class="fc" id="L102">		return embeddedId;</span>
+	}
+
+	public void setEmbeddedId(final ViewRiksdagenSeasonalQuarterlyActivityEmbeddedId embeddedId) {
+<span class="fc" id="L106">		this.embeddedId = embeddedId;</span>
+<span class="fc" id="L107">	}</span>
+
+	public Integer getYear() {
+<span class="nc bnc" id="L110" title="All 2 branches missed.">		return embeddedId != null ? embeddedId.getYear() : null;</span>
+	}
+
+	public Integer getQuarter() {
+<span class="nc bnc" id="L114" title="All 2 branches missed.">		return embeddedId != null ? embeddedId.getQuarter() : null;</span>
+	}
+
+	public Boolean getIsElectionYear() {
+<span class="fc" id="L118">		return isElectionYear;</span>
+	}
+
+	public void setIsElectionYear(final Boolean isElectionYear) {
+<span class="fc" id="L122">		this.isElectionYear = isElectionYear;</span>
+<span class="fc" id="L123">	}</span>
+
+	public Long getTotalBallots() {
+<span class="fc" id="L126">		return totalBallots;</span>
+	}
+
+	public void setTotalBallots(final Long totalBallots) {
+<span class="fc" id="L130">		this.totalBallots = totalBallots;</span>
+<span class="fc" id="L131">	}</span>
+
+	public Long getActivePoliticians() {
+<span class="fc" id="L134">		return activePoliticians;</span>
+	}
+
+	public void setActivePoliticians(final Long activePoliticians) {
+<span class="fc" id="L138">		this.activePoliticians = activePoliticians;</span>
+<span class="fc" id="L139">	}</span>
+
+	public BigDecimal getAttendanceRate() {
+<span class="fc" id="L142">		return attendanceRate;</span>
+	}
+
+	public void setAttendanceRate(final BigDecimal attendanceRate) {
+<span class="fc" id="L146">		this.attendanceRate = attendanceRate;</span>
+<span class="fc" id="L147">	}</span>
+
+	public Long getDocumentsProduced() {
+<span class="fc" id="L150">		return documentsProduced;</span>
+	}
+
+	public void setDocumentsProduced(final Long documentsProduced) {
+<span class="fc" id="L154">		this.documentsProduced = documentsProduced;</span>
+<span class="fc" id="L155">	}</span>
+
+	public BigDecimal getqBaselineBallots() {
+<span class="fc" id="L158">		return qBaselineBallots;</span>
+	}
+
+	public void setqBaselineBallots(final BigDecimal qBaselineBallots) {
+<span class="fc" id="L162">		this.qBaselineBallots = qBaselineBallots;</span>
+<span class="fc" id="L163">	}</span>
+
+	public BigDecimal getqStddevBallots() {
+<span class="fc" id="L166">		return qStddevBallots;</span>
+	}
+
+	public void setqStddevBallots(final BigDecimal qStddevBallots) {
+<span class="fc" id="L170">		this.qStddevBallots = qStddevBallots;</span>
+<span class="fc" id="L171">	}</span>
+
+	public BigDecimal getBallotZScore() {
+<span class="fc" id="L174">		return ballotZScore;</span>
+	}
+
+	public void setBallotZScore(final BigDecimal ballotZScore) {
+<span class="fc" id="L178">		this.ballotZScore = ballotZScore;</span>
+<span class="fc" id="L179">	}</span>
+
+	public BigDecimal getqBaselineDocs() {
+<span class="fc" id="L182">		return qBaselineDocs;</span>
+	}
+
+	public void setqBaselineDocs(final BigDecimal qBaselineDocs) {
+<span class="fc" id="L186">		this.qBaselineDocs = qBaselineDocs;</span>
+<span class="fc" id="L187">	}</span>
+
+	public BigDecimal getqStddevDocs() {
+<span class="fc" id="L190">		return qStddevDocs;</span>
+	}
+
+	public void setqStddevDocs(final BigDecimal qStddevDocs) {
+<span class="fc" id="L194">		this.qStddevDocs = qStddevDocs;</span>
+<span class="fc" id="L195">	}</span>
+
+	public BigDecimal getDocZScore() {
+<span class="fc" id="L198">		return docZScore;</span>
+	}
+
+	public void setDocZScore(final BigDecimal docZScore) {
+<span class="fc" id="L202">		this.docZScore = docZScore;</span>
+<span class="fc" id="L203">	}</span>
+
+	public BigDecimal getqBaselineAttendance() {
+<span class="fc" id="L206">		return qBaselineAttendance;</span>
+	}
+
+	public void setqBaselineAttendance(final BigDecimal qBaselineAttendance) {
+<span class="fc" id="L210">		this.qBaselineAttendance = qBaselineAttendance;</span>
+<span class="fc" id="L211">	}</span>
+
+	public BigDecimal getqStddevAttendance() {
+<span class="fc" id="L214">		return qStddevAttendance;</span>
+	}
+
+	public void setqStddevAttendance(final BigDecimal qStddevAttendance) {
+<span class="fc" id="L218">		this.qStddevAttendance = qStddevAttendance;</span>
+<span class="fc" id="L219">	}</span>
+
+	public BigDecimal getAttendanceZScore() {
+<span class="fc" id="L222">		return attendanceZScore;</span>
+	}
+
+	public void setAttendanceZScore(final BigDecimal attendanceZScore) {
+<span class="fc" id="L226">		this.attendanceZScore = attendanceZScore;</span>
+<span class="fc" id="L227">	}</span>
+
+	public String getActivityClassification() {
+<span class="fc" id="L230">		return activityClassification;</span>
+	}
+
+	public void setActivityClassification(final String activityClassification) {
+<span class="fc" id="L234">		this.activityClassification = activityClassification;</span>
+<span class="fc" id="L235">	}</span>
+
+	@Override
+	public boolean equals(final Object obj) {
+<span class="fc" id="L239">		return EqualsBuilder.reflectionEquals(this, obj);</span>
+	}
+
+	@Override
+	public int hashCode() {
+<span class="fc" id="L244">		return HashCodeBuilder.reflectionHashCode(this);</span>
+	}
+
+	@Override
+	public String toString() {
+<span class="fc" id="L249">		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

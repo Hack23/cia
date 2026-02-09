@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewRiksdagenElectionYearVsMidterm.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.seasonal.impl</a> &gt; <span class="el_source">ViewRiksdagenElectionYearVsMidterm.java</span></div><h1>ViewRiksdagenElectionYearVsMidterm.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2026 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+ */
+package com.hack23.cia.model.internal.application.data.seasonal.impl;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+import org.hibernate.annotations.Immutable;
+
+/**
+ * The Class ViewRiksdagenElectionYearVsMidterm.
+ * Database view for aggregate comparison of election years vs midterm years.
+ * Three-row summary: ELECTION_YEARS, MIDTERM_YEARS, COMPARISON_RATIO.
+ */
+@Entity
+@Immutable
+@Table(name = &quot;view_riksdagen_election_year_vs_midterm&quot;)
+public class ViewRiksdagenElectionYearVsMidterm implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@Column(name = &quot;period_type&quot;, nullable = false)
+	private String periodType;
+
+	@Column(name = &quot;avg_ballots&quot;)
+	private BigDecimal avgBallots;
+
+	@Column(name = &quot;avg_documents&quot;)
+	private BigDecimal avgDocuments;
+
+	@Column(name = &quot;avg_motions&quot;)
+	private BigDecimal avgMotions;
+
+	@Column(name = &quot;avg_proposals&quot;)
+	private BigDecimal avgProposals;
+
+	@Column(name = &quot;avg_attendance&quot;)
+	private BigDecimal avgAttendance;
+
+	@Column(name = &quot;avg_active_politicians&quot;)
+	private BigDecimal avgActivePoliticians;
+
+	@Column(name = &quot;year_count&quot;)
+	private Long yearCount;
+
+	@Column(name = &quot;years&quot;, columnDefinition = &quot;integer[]&quot;)
+	private String years;
+
+	@Column(name = &quot;min_ballots&quot;)
+	private BigDecimal minBallots;
+
+	@Column(name = &quot;max_ballots&quot;)
+	private BigDecimal maxBallots;
+
+	@Column(name = &quot;stddev_ballots&quot;)
+	private BigDecimal stddevBallots;
+
+	@Column(name = &quot;min_documents&quot;)
+	private BigDecimal minDocuments;
+
+	@Column(name = &quot;max_documents&quot;)
+	private BigDecimal maxDocuments;
+
+	@Column(name = &quot;stddev_documents&quot;)
+	private BigDecimal stddevDocuments;
+
+	/**
+	 * Instantiates a new view riksdagen election year vs midterm.
+	 */
+	public ViewRiksdagenElectionYearVsMidterm() {
+<span class="fc" id="L97">		super();</span>
+<span class="fc" id="L98">	}</span>
+
+	// Getters and setters
+
+	public String getPeriodType() {
+<span class="fc" id="L103">		return periodType;</span>
+	}
+
+	public void setPeriodType(final String periodType) {
+<span class="fc" id="L107">		this.periodType = periodType;</span>
+<span class="fc" id="L108">	}</span>
+
+	public BigDecimal getAvgBallots() {
+<span class="fc" id="L111">		return avgBallots;</span>
+	}
+
+	public void setAvgBallots(final BigDecimal avgBallots) {
+<span class="fc" id="L115">		this.avgBallots = avgBallots;</span>
+<span class="fc" id="L116">	}</span>
+
+	public BigDecimal getAvgDocuments() {
+<span class="fc" id="L119">		return avgDocuments;</span>
+	}
+
+	public void setAvgDocuments(final BigDecimal avgDocuments) {
+<span class="fc" id="L123">		this.avgDocuments = avgDocuments;</span>
+<span class="fc" id="L124">	}</span>
+
+	public BigDecimal getAvgMotions() {
+<span class="fc" id="L127">		return avgMotions;</span>
+	}
+
+	public void setAvgMotions(final BigDecimal avgMotions) {
+<span class="fc" id="L131">		this.avgMotions = avgMotions;</span>
+<span class="fc" id="L132">	}</span>
+
+	public BigDecimal getAvgProposals() {
+<span class="fc" id="L135">		return avgProposals;</span>
+	}
+
+	public void setAvgProposals(final BigDecimal avgProposals) {
+<span class="fc" id="L139">		this.avgProposals = avgProposals;</span>
+<span class="fc" id="L140">	}</span>
+
+	public BigDecimal getAvgAttendance() {
+<span class="fc" id="L143">		return avgAttendance;</span>
+	}
+
+	public void setAvgAttendance(final BigDecimal avgAttendance) {
+<span class="fc" id="L147">		this.avgAttendance = avgAttendance;</span>
+<span class="fc" id="L148">	}</span>
+
+	public BigDecimal getAvgActivePoliticians() {
+<span class="fc" id="L151">		return avgActivePoliticians;</span>
+	}
+
+	public void setAvgActivePoliticians(final BigDecimal avgActivePoliticians) {
+<span class="fc" id="L155">		this.avgActivePoliticians = avgActivePoliticians;</span>
+<span class="fc" id="L156">	}</span>
+
+	public Long getYearCount() {
+<span class="fc" id="L159">		return yearCount;</span>
+	}
+
+	public void setYearCount(final Long yearCount) {
+<span class="fc" id="L163">		this.yearCount = yearCount;</span>
+<span class="fc" id="L164">	}</span>
+
+	public String getYears() {
+<span class="fc" id="L167">		return years;</span>
+	}
+
+	public void setYears(final String years) {
+<span class="fc" id="L171">		this.years = years;</span>
+<span class="fc" id="L172">	}</span>
+
+	public BigDecimal getMinBallots() {
+<span class="fc" id="L175">		return minBallots;</span>
+	}
+
+	public void setMinBallots(final BigDecimal minBallots) {
+<span class="fc" id="L179">		this.minBallots = minBallots;</span>
+<span class="fc" id="L180">	}</span>
+
+	public BigDecimal getMaxBallots() {
+<span class="fc" id="L183">		return maxBallots;</span>
+	}
+
+	public void setMaxBallots(final BigDecimal maxBallots) {
+<span class="fc" id="L187">		this.maxBallots = maxBallots;</span>
+<span class="fc" id="L188">	}</span>
+
+	public BigDecimal getStddevBallots() {
+<span class="fc" id="L191">		return stddevBallots;</span>
+	}
+
+	public void setStddevBallots(final BigDecimal stddevBallots) {
+<span class="fc" id="L195">		this.stddevBallots = stddevBallots;</span>
+<span class="fc" id="L196">	}</span>
+
+	public BigDecimal getMinDocuments() {
+<span class="fc" id="L199">		return minDocuments;</span>
+	}
+
+	public void setMinDocuments(final BigDecimal minDocuments) {
+<span class="fc" id="L203">		this.minDocuments = minDocuments;</span>
+<span class="fc" id="L204">	}</span>
+
+	public BigDecimal getMaxDocuments() {
+<span class="fc" id="L207">		return maxDocuments;</span>
+	}
+
+	public void setMaxDocuments(final BigDecimal maxDocuments) {
+<span class="fc" id="L211">		this.maxDocuments = maxDocuments;</span>
+<span class="fc" id="L212">	}</span>
+
+	public BigDecimal getStddevDocuments() {
+<span class="fc" id="L215">		return stddevDocuments;</span>
+	}
+
+	public void setStddevDocuments(final BigDecimal stddevDocuments) {
+<span class="fc" id="L219">		this.stddevDocuments = stddevDocuments;</span>
+<span class="fc" id="L220">	}</span>
+
+	@Override
+	public boolean equals(final Object obj) {
+<span class="fc" id="L224">		return EqualsBuilder.reflectionEquals(this, obj);</span>
+	}
+
+	@Override
+	public int hashCode() {
+<span class="fc" id="L229">		return HashCodeBuilder.reflectionHashCode(this);</span>
+	}
+
+	@Override
+	public String toString() {
+<span class="fc" id="L234">		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

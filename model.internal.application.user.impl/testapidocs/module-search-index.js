@@ -1,1 +1,1 @@
-moduleSearchIndex = [];updateSearchResults();
+moduleSearchIndex = [{"l":"com.hack23.cia.model.internal.application.user.impl"}];updateSearchResults();

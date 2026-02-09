@@ -14,10 +14,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * &lt;p&gt;Java class for ApplicationEventGroup.
+ * &lt;p&gt;Java class for ApplicationEventGroup.&lt;/p&gt;
  *
- * &lt;p&gt;The following schema fragment specifies the expected content contained within this class.
- * &lt;p&gt;
+ * &lt;p&gt;The following schema fragment specifies the expected content contained within this class.&lt;/p&gt;
  * &lt;pre&gt;
  * &amp;lt;simpleType name=&quot;ApplicationEventGroup&quot;&amp;gt;
  *   &amp;lt;restriction base=&quot;{http://www.w3.org/2001/XMLSchema}string&quot;&amp;gt;
@@ -30,36 +29,36 @@ import javax.xml.bind.annotation.XmlType;
  * &lt;/pre&gt;
  *
  */
-<span class="fc" id="L33">@XmlType(name = &quot;ApplicationEventGroup&quot;)</span>
+<span class="fc" id="L32">@XmlType(name = &quot;ApplicationEventGroup&quot;)</span>
 @XmlEnum
 public enum ApplicationEventGroup {
 
-<span class="fc" id="L37">    @XmlEnumValue(&quot;Admin&quot;)</span>
+<span class="fc" id="L36">    @XmlEnumValue(&quot;Admin&quot;)</span>
     ADMIN(&quot;Admin&quot;),
-<span class="fc" id="L39">    @XmlEnumValue(&quot;User&quot;)</span>
+<span class="fc" id="L38">    @XmlEnumValue(&quot;User&quot;)</span>
     USER(&quot;User&quot;),
-<span class="fc" id="L41">    @XmlEnumValue(&quot;Application&quot;)</span>
+<span class="fc" id="L40">    @XmlEnumValue(&quot;Application&quot;)</span>
     APPLICATION(&quot;Application&quot;),
-<span class="fc" id="L43">    @XmlEnumValue(&quot;Error&quot;)</span>
+<span class="fc" id="L42">    @XmlEnumValue(&quot;Error&quot;)</span>
     ERROR(&quot;Error&quot;);
     private final String value;
 
-<span class="fc" id="L47">    ApplicationEventGroup(final String v) {</span>
-<span class="fc" id="L48">        value = v;</span>
-<span class="fc" id="L49">    }</span>
+<span class="fc" id="L46">    ApplicationEventGroup(final String v) {</span>
+<span class="fc" id="L47">        value = v;</span>
+<span class="fc" id="L48">    }</span>
 
     public String value() {
-<span class="fc" id="L52">        return value;</span>
+<span class="fc" id="L51">        return value;</span>
     }
 
     public static ApplicationEventGroup fromValue(final String v) {
-<span class="fc bfc" id="L56" title="All 2 branches covered.">        for (final ApplicationEventGroup c: ApplicationEventGroup.values()) {</span>
-<span class="fc bfc" id="L57" title="All 2 branches covered.">            if (c.value.equals(v)) {</span>
-<span class="fc" id="L58">                return c;</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        for (final ApplicationEventGroup c: ApplicationEventGroup.values()) {</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">            if (c.value.equals(v)) {</span>
+<span class="fc" id="L57">                return c;</span>
             }
         }
-<span class="fc" id="L61">        throw new IllegalArgumentException(v);</span>
+<span class="fc" id="L60">        throw new IllegalArgumentException(v);</span>
     }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

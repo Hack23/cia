@@ -1,0 +1,604 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewMinistryDecisionImpact.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.ministry.impl</a> &gt; <span class="el_source">ViewMinistryDecisionImpact.java</span></div><h1>ViewMinistryDecisionImpact.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2025 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+ */
+package com.hack23.cia.model.internal.application.data.ministry.impl;
+
+import java.math.BigDecimal;
+import java.util.Date;
+
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+import com.hack23.cia.model.common.api.ModelObject;
+
+/**
+ * The Class ViewMinistryDecisionImpact.
+ * 
+ * JPA Entity for view_ministry_decision_impact database view.
+ * 
+ * Tracks ministry-level proposal success rates and effectiveness, enabling
+ * analysis of government policy implementation, coalition stability, and
+ * ministry performance across different policy domains. Aggregates proposal
+ * outcomes by ministry, committee, decision type, and quarter to provide
+ * insights into government effectiveness and policy success patterns.
+ * 
+ * &lt;p&gt;Intelligence Value: ⭐⭐⭐⭐⭐ VERY HIGH&lt;/p&gt;
+ * &lt;ul&gt;
+ * &lt;li&gt;Government policy effectiveness measurement&lt;/li&gt;
+ * &lt;li&gt;Coalition stability monitoring via proposal success rates&lt;/li&gt;
+ * &lt;li&gt;Ministry performance benchmarking and comparison&lt;/li&gt;
+ * &lt;li&gt;Policy domain success patterns identification&lt;/li&gt;
+ * &lt;li&gt;Strategic planning and resource allocation insights&lt;/li&gt;
+ * &lt;/ul&gt;
+ * 
+ * &lt;p&gt;Use Cases:&lt;/p&gt;
+ * &lt;ul&gt;
+ * &lt;li&gt;Government Performance Scorecards: Track executive branch effectiveness&lt;/li&gt;
+ * &lt;li&gt;Coalition Health Monitoring: Detect weakening support for government&lt;/li&gt;
+ * &lt;li&gt;Policy Success Forecasting: Predict proposal outcomes based on patterns&lt;/li&gt;
+ * &lt;li&gt;Ministry Rankings: Compare effectiveness across departments&lt;/li&gt;
+ * &lt;li&gt;Opposition Strategy Analysis: Identify vulnerable policy areas&lt;/li&gt;
+ * &lt;/ul&gt;
+ * 
+ * @author intelligence-operative
+ * @since v1.35 (Decision Intelligence)
+ * @see &lt;a href=&quot;https://github.com/Hack23/cia/issues/7920&quot;&gt;Issue #7920&lt;/a&gt;
+ * @see com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyDecisionFlow
+ * @see ViewRiksdagenMinistry Core ministry information
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = &quot;ViewMinistryDecisionImpact&quot;, propOrder = {
+    &quot;embeddedId&quot;,
+    &quot;decisionYear&quot;,
+    &quot;quarterNum&quot;,
+    &quot;totalProposals&quot;,
+    &quot;approvedProposals&quot;,
+    &quot;rejectedProposals&quot;,
+    &quot;referredBackProposals&quot;,
+    &quot;committeeReferralProposals&quot;,
+    &quot;otherDecisions&quot;,
+    &quot;approvalRate&quot;,
+    &quot;rejectionRate&quot;,
+    &quot;committeeReferralRate&quot;,
+    &quot;earliestProposalDate&quot;,
+    &quot;latestProposalDate&quot;
+})
+@Entity(name = &quot;ViewMinistryDecisionImpact&quot;)
+@Table(name = &quot;view_ministry_decision_impact&quot;)
+@Inheritance(strategy = InheritanceType.JOINED)
+<span class="fc" id="L102">public class ViewMinistryDecisionImpact implements ModelObject {</span>
+
+	private static final long serialVersionUID = 1L;
+
+	@XmlElement(required = true)
+	protected ViewMinistryDecisionImpactEmbeddedId embeddedId;
+
+	@XmlElement(name = &quot;decision_year&quot;)
+	protected Integer decisionYear;
+
+	@XmlElement(name = &quot;quarter_num&quot;)
+	protected Integer quarterNum;
+
+	@XmlElement(name = &quot;total_proposals&quot;)
+	protected long totalProposals;
+
+	@XmlElement(name = &quot;approved_proposals&quot;)
+	protected long approvedProposals;
+
+	@XmlElement(name = &quot;rejected_proposals&quot;)
+	protected long rejectedProposals;
+
+	@XmlElement(name = &quot;referred_back_proposals&quot;)
+	protected long referredBackProposals;
+
+	@XmlElement(name = &quot;committee_referral_proposals&quot;)
+	protected long committeeReferralProposals;
+
+	@XmlElement(name = &quot;other_decisions&quot;)
+	protected long otherDecisions;
+
+	@XmlElement(name = &quot;approval_rate&quot;)
+	protected BigDecimal approvalRate;
+
+	@XmlElement(name = &quot;rejection_rate&quot;)
+	protected BigDecimal rejectionRate;
+
+	@XmlElement(name = &quot;committee_referral_rate&quot;)
+	protected BigDecimal committeeReferralRate;
+
+	@XmlElement(name = &quot;earliest_proposal_date&quot;)
+	protected Date earliestProposalDate;
+
+	@XmlElement(name = &quot;latest_proposal_date&quot;)
+	protected Date latestProposalDate;
+
+	/**
+	 * Gets the embedded id.
+	 *
+	 * @return the embedded id
+	 */
+	@EmbeddedId
+	@AttributeOverrides({
+		@AttributeOverride(name = &quot;ministryCode&quot;, column = @Column(name = &quot;EMBEDDED_ID_MINISTRY_CODE&quot;)),
+		@AttributeOverride(name = &quot;committee&quot;, column = @Column(name = &quot;EMBEDDED_ID_COMMITTEE&quot;)),
+		@AttributeOverride(name = &quot;decisionType&quot;, column = @Column(name = &quot;EMBEDDED_ID_DECISION_TYPE&quot;)),
+		@AttributeOverride(name = &quot;decisionQuarter&quot;, column = @Column(name = &quot;EMBEDDED_ID_DECISION_QUARTER&quot;))
+	})
+	public ViewMinistryDecisionImpactEmbeddedId getEmbeddedId() {
+<span class="fc" id="L161">		return embeddedId;</span>
+	}
+
+	/**
+	 * Sets the embedded id.
+	 *
+	 * @param value the new embedded id
+	 */
+	public void setEmbeddedId(final ViewMinistryDecisionImpactEmbeddedId value) {
+<span class="fc" id="L170">		this.embeddedId = value;</span>
+<span class="fc" id="L171">	}</span>
+
+	/**
+	 * Gets the decision year.
+	 *
+	 * @return the decision year
+	 */
+	@Basic
+	@Column(name = &quot;DECISION_YEAR&quot;)
+	public Integer getDecisionYear() {
+<span class="fc" id="L181">		return decisionYear;</span>
+	}
+
+	/**
+	 * Sets the decision year.
+	 *
+	 * @param value the new decision year
+	 */
+	public void setDecisionYear(final Integer value) {
+<span class="fc" id="L190">		this.decisionYear = value;</span>
+<span class="fc" id="L191">	}</span>
+
+	/**
+	 * Gets the quarter num.
+	 *
+	 * @return the quarter num
+	 */
+	@Basic
+	@Column(name = &quot;QUARTER_NUM&quot;)
+	public Integer getQuarterNum() {
+<span class="fc" id="L201">		return quarterNum;</span>
+	}
+
+	/**
+	 * Sets the quarter num.
+	 *
+	 * @param value the new quarter num
+	 */
+	public void setQuarterNum(final Integer value) {
+<span class="fc" id="L210">		this.quarterNum = value;</span>
+<span class="fc" id="L211">	}</span>
+
+	/**
+	 * Gets the total proposals.
+	 *
+	 * @return the total proposals
+	 */
+	@Basic
+	@Column(name = &quot;TOTAL_PROPOSALS&quot;, precision = 20)
+	public long getTotalProposals() {
+<span class="fc" id="L221">		return totalProposals;</span>
+	}
+
+	/**
+	 * Sets the total proposals.
+	 *
+	 * @param value the new total proposals
+	 */
+	public void setTotalProposals(final long value) {
+<span class="fc" id="L230">		this.totalProposals = value;</span>
+<span class="fc" id="L231">	}</span>
+
+	/**
+	 * Gets the approved proposals.
+	 *
+	 * @return the approved proposals
+	 */
+	@Basic
+	@Column(name = &quot;APPROVED_PROPOSALS&quot;, precision = 20)
+	public long getApprovedProposals() {
+<span class="fc" id="L241">		return approvedProposals;</span>
+	}
+
+	/**
+	 * Sets the approved proposals.
+	 *
+	 * @param value the new approved proposals
+	 */
+	public void setApprovedProposals(final long value) {
+<span class="fc" id="L250">		this.approvedProposals = value;</span>
+<span class="fc" id="L251">	}</span>
+
+	/**
+	 * Gets the rejected proposals.
+	 *
+	 * @return the rejected proposals
+	 */
+	@Basic
+	@Column(name = &quot;REJECTED_PROPOSALS&quot;, precision = 20)
+	public long getRejectedProposals() {
+<span class="fc" id="L261">		return rejectedProposals;</span>
+	}
+
+	/**
+	 * Sets the rejected proposals.
+	 *
+	 * @param value the new rejected proposals
+	 */
+	public void setRejectedProposals(final long value) {
+<span class="fc" id="L270">		this.rejectedProposals = value;</span>
+<span class="fc" id="L271">	}</span>
+
+	/**
+	 * Gets the referred back proposals.
+	 *
+	 * @return the referred back proposals
+	 */
+	@Basic
+	@Column(name = &quot;REFERRED_BACK_PROPOSALS&quot;, precision = 20)
+	public long getReferredBackProposals() {
+<span class="fc" id="L281">		return referredBackProposals;</span>
+	}
+
+	/**
+	 * Sets the referred back proposals.
+	 *
+	 * @param value the new referred back proposals
+	 */
+	public void setReferredBackProposals(final long value) {
+<span class="fc" id="L290">		this.referredBackProposals = value;</span>
+<span class="fc" id="L291">	}</span>
+
+	/**
+	 * Gets the committee referral proposals.
+	 *
+	 * @return the committee referral proposals
+	 */
+	@Basic
+	@Column(name = &quot;COMMITTEE_REFERRAL_PROPOSALS&quot;, precision = 20)
+	public long getCommitteeReferralProposals() {
+<span class="fc" id="L301">		return committeeReferralProposals;</span>
+	}
+
+	/**
+	 * Sets the committee referral proposals.
+	 *
+	 * @param value the new committee referral proposals
+	 */
+	public void setCommitteeReferralProposals(final long value) {
+<span class="fc" id="L310">		this.committeeReferralProposals = value;</span>
+<span class="fc" id="L311">	}</span>
+
+	/**
+	 * Gets the other decisions.
+	 *
+	 * @return the other decisions
+	 */
+	@Basic
+	@Column(name = &quot;OTHER_DECISIONS&quot;, precision = 20)
+	public long getOtherDecisions() {
+<span class="fc" id="L321">		return otherDecisions;</span>
+	}
+
+	/**
+	 * Sets the other decisions.
+	 *
+	 * @param value the new other decisions
+	 */
+	public void setOtherDecisions(final long value) {
+<span class="fc" id="L330">		this.otherDecisions = value;</span>
+<span class="fc" id="L331">	}</span>
+
+	/**
+	 * Gets the approval rate.
+	 *
+	 * @return the approval rate
+	 */
+	@Basic
+	@Column(name = &quot;APPROVAL_RATE&quot;, precision = 5, scale = 2)
+	public BigDecimal getApprovalRate() {
+<span class="fc" id="L341">		return approvalRate;</span>
+	}
+
+	/**
+	 * Sets the approval rate.
+	 *
+	 * @param value the new approval rate
+	 */
+	public void setApprovalRate(final BigDecimal value) {
+<span class="fc" id="L350">		this.approvalRate = value;</span>
+<span class="fc" id="L351">	}</span>
+
+	/**
+	 * Gets the rejection rate.
+	 *
+	 * @return the rejection rate
+	 */
+	@Basic
+	@Column(name = &quot;REJECTION_RATE&quot;, precision = 5, scale = 2)
+	public BigDecimal getRejectionRate() {
+<span class="fc" id="L361">		return rejectionRate;</span>
+	}
+
+	/**
+	 * Sets the rejection rate.
+	 *
+	 * @param value the new rejection rate
+	 */
+	public void setRejectionRate(final BigDecimal value) {
+<span class="fc" id="L370">		this.rejectionRate = value;</span>
+<span class="fc" id="L371">	}</span>
+
+	/**
+	 * Gets the committee referral rate.
+	 *
+	 * @return the committee referral rate
+	 */
+	@Basic
+	@Column(name = &quot;COMMITTEE_REFERRAL_RATE&quot;, precision = 5, scale = 2)
+	public BigDecimal getCommitteeReferralRate() {
+<span class="fc" id="L381">		return committeeReferralRate;</span>
+	}
+
+	/**
+	 * Sets the committee referral rate.
+	 *
+	 * @param value the new committee referral rate
+	 */
+	public void setCommitteeReferralRate(final BigDecimal value) {
+<span class="fc" id="L390">		this.committeeReferralRate = value;</span>
+<span class="fc" id="L391">	}</span>
+
+	/**
+	 * Gets the earliest proposal date.
+	 *
+	 * @return the earliest proposal date
+	 */
+	@Basic
+	@Column(name = &quot;EARLIEST_PROPOSAL_DATE&quot;)
+	@Temporal(TemporalType.DATE)
+	public Date getEarliestProposalDate() {
+<span class="fc" id="L402">		return earliestProposalDate;</span>
+	}
+
+	/**
+	 * Sets the earliest proposal date.
+	 *
+	 * @param value the new earliest proposal date
+	 */
+	public void setEarliestProposalDate(final Date value) {
+<span class="fc" id="L411">		this.earliestProposalDate = value;</span>
+<span class="fc" id="L412">	}</span>
+
+	/**
+	 * Gets the latest proposal date.
+	 *
+	 * @return the latest proposal date
+	 */
+	@Basic
+	@Column(name = &quot;LATEST_PROPOSAL_DATE&quot;)
+	@Temporal(TemporalType.DATE)
+	public Date getLatestProposalDate() {
+<span class="fc" id="L423">		return latestProposalDate;</span>
+	}
+
+	/**
+	 * Sets the latest proposal date.
+	 *
+	 * @param value the new latest proposal date
+	 */
+	public void setLatestProposalDate(final Date value) {
+<span class="fc" id="L432">		this.latestProposalDate = value;</span>
+<span class="fc" id="L433">	}</span>
+
+	/**
+	 * With embedded id.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewMinistryDecisionImpact withEmbeddedId(final ViewMinistryDecisionImpactEmbeddedId value) {
+<span class="fc" id="L442">		setEmbeddedId(value);</span>
+<span class="fc" id="L443">		return this;</span>
+	}
+
+	/**
+	 * With decision year.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewMinistryDecisionImpact withDecisionYear(final Integer value) {
+<span class="fc" id="L453">		setDecisionYear(value);</span>
+<span class="fc" id="L454">		return this;</span>
+	}
+
+	/**
+	 * With quarter num.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewMinistryDecisionImpact withQuarterNum(final Integer value) {
+<span class="fc" id="L464">		setQuarterNum(value);</span>
+<span class="fc" id="L465">		return this;</span>
+	}
+
+	/**
+	 * With total proposals.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewMinistryDecisionImpact withTotalProposals(final long value) {
+<span class="fc" id="L475">		setTotalProposals(value);</span>
+<span class="fc" id="L476">		return this;</span>
+	}
+
+	/**
+	 * With approved proposals.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewMinistryDecisionImpact withApprovedProposals(final long value) {
+<span class="fc" id="L486">		setApprovedProposals(value);</span>
+<span class="fc" id="L487">		return this;</span>
+	}
+
+	/**
+	 * With rejected proposals.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewMinistryDecisionImpact withRejectedProposals(final long value) {
+<span class="fc" id="L497">		setRejectedProposals(value);</span>
+<span class="fc" id="L498">		return this;</span>
+	}
+
+	/**
+	 * With referred back proposals.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewMinistryDecisionImpact withReferredBackProposals(final long value) {
+<span class="fc" id="L508">		setReferredBackProposals(value);</span>
+<span class="fc" id="L509">		return this;</span>
+	}
+
+	/**
+	 * With committee referral proposals.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewMinistryDecisionImpact withCommitteeReferralProposals(final long value) {
+<span class="fc" id="L519">		setCommitteeReferralProposals(value);</span>
+<span class="fc" id="L520">		return this;</span>
+	}
+
+	/**
+	 * With other decisions.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewMinistryDecisionImpact withOtherDecisions(final long value) {
+<span class="fc" id="L530">		setOtherDecisions(value);</span>
+<span class="fc" id="L531">		return this;</span>
+	}
+
+	/**
+	 * With approval rate.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewMinistryDecisionImpact withApprovalRate(final BigDecimal value) {
+<span class="fc" id="L541">		setApprovalRate(value);</span>
+<span class="fc" id="L542">		return this;</span>
+	}
+
+	/**
+	 * With rejection rate.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewMinistryDecisionImpact withRejectionRate(final BigDecimal value) {
+<span class="fc" id="L552">		setRejectionRate(value);</span>
+<span class="fc" id="L553">		return this;</span>
+	}
+
+	/**
+	 * With committee referral rate.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewMinistryDecisionImpact withCommitteeReferralRate(final BigDecimal value) {
+<span class="fc" id="L563">		setCommitteeReferralRate(value);</span>
+<span class="fc" id="L564">		return this;</span>
+	}
+
+	/**
+	 * With earliest proposal date.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewMinistryDecisionImpact withEarliestProposalDate(final Date value) {
+<span class="fc" id="L574">		setEarliestProposalDate(value);</span>
+<span class="fc" id="L575">		return this;</span>
+	}
+
+	/**
+	 * With latest proposal date.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewMinistryDecisionImpact withLatestProposalDate(final Date value) {
+<span class="fc" id="L585">		setLatestProposalDate(value);</span>
+<span class="fc" id="L586">		return this;</span>
+	}
+
+	@Override
+	public final String toString() {
+<span class="fc" id="L591">		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);</span>
+	}
+
+	@Override
+	public final boolean equals(final Object obj) {
+<span class="fc" id="L596">		return EqualsBuilder.reflectionEquals(this, obj);</span>
+	}
+
+	@Override
+	public final int hashCode() {
+<span class="fc" id="L601">		return HashCodeBuilder.reflectionHashCode(this);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

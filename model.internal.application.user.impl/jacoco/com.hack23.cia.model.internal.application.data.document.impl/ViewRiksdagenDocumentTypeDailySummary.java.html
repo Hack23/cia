@@ -32,7 +32,6 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import com.hack23.cia.model.common.api.ModelObject;
 
 
-// TODO: Auto-generated Javadoc
 /**
  * &lt;p&gt;Java class for ViewRiksdagenDocumentTypeDailySummary complex type.
  *
@@ -61,7 +60,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 @Entity(name = &quot;ViewRiksdagenDocumentTypeDailySummary&quot;)
 @Table(name = &quot;View_Riksdagen_Document_Type_Daily_Summary&quot;)
 @Inheritance(strategy = InheritanceType.JOINED)
-<span class="fc" id="L64">public class ViewRiksdagenDocumentTypeDailySummary</span>
+<span class="fc" id="L63">public class ViewRiksdagenDocumentTypeDailySummary</span>
     implements ModelObject
 {
 
@@ -90,7 +89,7 @@ import com.hack23.cia.model.common.api.ModelObject;
         @AttributeOverride(name = &quot;documentType&quot;, column = @Column(name = &quot;EMBEDDED_ID_DOCUMENT_TYPE&quot;))
     })
     public RiksdagenDocumentTypeSummaryEmbeddedId getEmbeddedId() {
-<span class="fc" id="L93">        return embeddedId;</span>
+<span class="fc" id="L92">        return embeddedId;</span>
     }
 
     /**
@@ -102,8 +101,8 @@ import com.hack23.cia.model.common.api.ModelObject;
      *
      */
     public void setEmbeddedId(final RiksdagenDocumentTypeSummaryEmbeddedId value) {
-<span class="fc" id="L105">        this.embeddedId = value;</span>
-<span class="fc" id="L106">    }</span>
+<span class="fc" id="L104">        this.embeddedId = value;</span>
+<span class="fc" id="L105">    }</span>
 
     /**
      * Gets the value of the total property.
@@ -113,7 +112,7 @@ import com.hack23.cia.model.common.api.ModelObject;
     @Basic
     @Column(name = &quot;TOTAL&quot;, precision = 20)
     public long getTotal() {
-<span class="fc" id="L116">        return total;</span>
+<span class="fc" id="L115">        return total;</span>
     }
 
     /**
@@ -122,8 +121,8 @@ import com.hack23.cia.model.common.api.ModelObject;
      * @param value the new total
      */
     public void setTotal(final long value) {
-<span class="fc" id="L125">        this.total = value;</span>
-<span class="fc" id="L126">    }</span>
+<span class="fc" id="L124">        this.total = value;</span>
+<span class="fc" id="L125">    }</span>
 
 
     /**
@@ -133,8 +132,8 @@ import com.hack23.cia.model.common.api.ModelObject;
      * @return the view riksdagen document type daily summary
      */
     public ViewRiksdagenDocumentTypeDailySummary withEmbeddedId(final RiksdagenDocumentTypeSummaryEmbeddedId value) {
-<span class="fc" id="L136">        setEmbeddedId(value);</span>
-<span class="fc" id="L137">        return this;</span>
+<span class="fc" id="L135">        setEmbeddedId(value);</span>
+<span class="fc" id="L136">        return this;</span>
     }
 
     /**
@@ -144,8 +143,8 @@ import com.hack23.cia.model.common.api.ModelObject;
      * @return the view riksdagen document type daily summary
      */
     public ViewRiksdagenDocumentTypeDailySummary withTotal(final long value) {
-<span class="fc" id="L147">        setTotal(value);</span>
-<span class="fc" id="L148">        return this;</span>
+<span class="fc" id="L146">        setTotal(value);</span>
+<span class="fc" id="L147">        return this;</span>
     }
 
 	/**
@@ -155,7 +154,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 	 */
 	@Override
 	public final String toString() {
-<span class="fc" id="L158">		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);</span>
+<span class="fc" id="L157">		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);</span>
 	}
 
 	/**
@@ -166,7 +165,7 @@ import com.hack23.cia.model.common.api.ModelObject;
 	 */
 	@Override
 	public final boolean equals(final Object obj) {
-<span class="fc" id="L169">		return EqualsBuilder.reflectionEquals(this, obj);</span>
+<span class="fc" id="L168">		return EqualsBuilder.reflectionEquals(this, obj);</span>
 	}
 
 	/**
@@ -176,8 +175,8 @@ import com.hack23.cia.model.common.api.ModelObject;
 	 */
 	@Override
 	public final int hashCode() {
-<span class="fc" id="L179">		return HashCodeBuilder.reflectionHashCode(this);</span>
+<span class="fc" id="L178">		return HashCodeBuilder.reflectionHashCode(this);</span>
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

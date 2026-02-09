@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewPoliticianRiskSummary.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.politician.impl</a> &gt; <span class="el_source">ViewPoliticianRiskSummary.java</span></div><h1>ViewPoliticianRiskSummary.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2025 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+ */
+package com.hack23.cia.model.internal.application.data.politician.impl;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+/**
+ * JPA entity for view_politician_risk_summary database view.
+ * 
+ * Intelligence Purpose: Aggregated politician risk indicators combining violations,
+ * voting behavior, and productivity metrics to generate a comprehensive risk score.
+ * Enables risk-based monitoring and early warning for performance issues.
+ * 
+ * Created by: Database schema v1.39+ (Fixed materialized view dependency)
+ * Risk Rules Supported: P-01 through P-24 (All politician risk rules)
+ * 
+ * Risk scoring algorithm considers:
+ * - Rule violations (weighted by count)
+ * - Absence rate (last 2 years)
+ * - Rebel rate (party discipline)
+ * - Document productivity (last year)
+ */
+@Entity(name = &quot;ViewPoliticianRiskSummary&quot;)
+@Table(name = &quot;view_politician_risk_summary&quot;)
+public class ViewPoliticianRiskSummary implements Serializable {
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
+
+	/** The person id. */
+	@Id
+	@Column(name = &quot;person_id&quot;, nullable = false, length = 255)
+	private String personId;
+
+	/** The first name. */
+	@Column(name = &quot;first_name&quot;, length = 255)
+	private String firstName;
+
+	/** The last name. */
+	@Column(name = &quot;last_name&quot;, length = 255)
+	private String lastName;
+
+	/** The party. */
+	@Column(name = &quot;party&quot;, length = 50)
+	private String party;
+
+	/** The status. */
+	@Column(name = &quot;status&quot;, length = 100)
+	private String status;
+
+	/** The total violations. */
+	@Column(name = &quot;total_violations&quot;)
+	private Long totalViolations;
+
+	/** The latest violation date. */
+	@Column(name = &quot;latest_violation_date&quot;)
+	@Temporal(TemporalType.DATE)
+	private Date latestViolationDate;
+
+	/** The absenteeism violations. */
+	@Column(name = &quot;absenteeism_violations&quot;)
+	private Long absenteeismViolations;
+
+	/** The effectiveness violations. */
+	@Column(name = &quot;effectiveness_violations&quot;)
+	private Long effectivenessViolations;
+
+	/** The discipline violations. */
+	@Column(name = &quot;discipline_violations&quot;)
+	private Long disciplineViolations;
+
+	/** The productivity violations. */
+	@Column(name = &quot;productivity_violations&quot;)
+	private Long productivityViolations;
+
+	/** The collaboration violations. */
+	@Column(name = &quot;collaboration_violations&quot;)
+	private Long collaborationViolations;
+
+	/** The annual absence rate. */
+	@Column(name = &quot;annual_absence_rate&quot;, precision = 10, scale = 2)
+	private BigDecimal annualAbsenceRate;
+
+	/** The annual rebel rate. */
+	@Column(name = &quot;annual_rebel_rate&quot;, precision = 10, scale = 2)
+	private BigDecimal annualRebelRate;
+
+	/** The annual vote count. */
+	@Column(name = &quot;annual_vote_count&quot;)
+	private Long annualVoteCount;
+
+	/** The documents last year. */
+	@Column(name = &quot;documents_last_year&quot;)
+	private Long documentsLastYear;
+
+	/** The risk score. */
+	@Column(name = &quot;risk_score&quot;, precision = 10, scale = 2)
+	private BigDecimal riskScore;
+
+	/** The risk level. */
+	@Column(name = &quot;risk_level&quot;, length = 50)
+	private String riskLevel;
+
+	/** The risk assessment. */
+	@Column(name = &quot;risk_assessment&quot;, length = 500)
+	private String riskAssessment;
+
+	/**
+	 * Instantiates a new view politician risk summary.
+	 */
+	public ViewPoliticianRiskSummary() {
+<span class="fc" id="L142">		super();</span>
+<span class="fc" id="L143">	}</span>
+
+	/**
+	 * Gets the person id.
+	 *
+	 * @return the person id
+	 */
+	public String getPersonId() {
+<span class="fc" id="L151">		return personId;</span>
+	}
+
+	/**
+	 * Sets the person id.
+	 *
+	 * @param personId the new person id
+	 */
+	public void setPersonId(final String personId) {
+<span class="fc" id="L160">		this.personId = personId;</span>
+<span class="fc" id="L161">	}</span>
+
+	/**
+	 * Gets the first name.
+	 *
+	 * @return the first name
+	 */
+	public String getFirstName() {
+<span class="fc" id="L169">		return firstName;</span>
+	}
+
+	/**
+	 * Sets the first name.
+	 *
+	 * @param firstName the new first name
+	 */
+	public void setFirstName(final String firstName) {
+<span class="fc" id="L178">		this.firstName = firstName;</span>
+<span class="fc" id="L179">	}</span>
+
+	/**
+	 * Gets the last name.
+	 *
+	 * @return the last name
+	 */
+	public String getLastName() {
+<span class="fc" id="L187">		return lastName;</span>
+	}
+
+	/**
+	 * Sets the last name.
+	 *
+	 * @param lastName the new last name
+	 */
+	public void setLastName(final String lastName) {
+<span class="fc" id="L196">		this.lastName = lastName;</span>
+<span class="fc" id="L197">	}</span>
+
+	/**
+	 * Gets the party.
+	 *
+	 * @return the party
+	 */
+	public String getParty() {
+<span class="fc" id="L205">		return party;</span>
+	}
+
+	/**
+	 * Sets the party.
+	 *
+	 * @param party the new party
+	 */
+	public void setParty(final String party) {
+<span class="fc" id="L214">		this.party = party;</span>
+<span class="fc" id="L215">	}</span>
+
+	/**
+	 * Gets the status.
+	 *
+	 * @return the status
+	 */
+	public String getStatus() {
+<span class="fc" id="L223">		return status;</span>
+	}
+
+	/**
+	 * Sets the status.
+	 *
+	 * @param status the new status
+	 */
+	public void setStatus(final String status) {
+<span class="fc" id="L232">		this.status = status;</span>
+<span class="fc" id="L233">	}</span>
+
+	/**
+	 * Gets the total violations.
+	 *
+	 * @return the total violations
+	 */
+	public Long getTotalViolations() {
+<span class="fc" id="L241">		return totalViolations;</span>
+	}
+
+	/**
+	 * Sets the total violations.
+	 *
+	 * @param totalViolations the new total violations
+	 */
+	public void setTotalViolations(final Long totalViolations) {
+<span class="fc" id="L250">		this.totalViolations = totalViolations;</span>
+<span class="fc" id="L251">	}</span>
+
+	/**
+	 * Gets the latest violation date.
+	 *
+	 * @return the latest violation date
+	 */
+	public Date getLatestViolationDate() {
+<span class="fc" id="L259">		return latestViolationDate;</span>
+	}
+
+	/**
+	 * Sets the latest violation date.
+	 *
+	 * @param latestViolationDate the new latest violation date
+	 */
+	public void setLatestViolationDate(final Date latestViolationDate) {
+<span class="fc" id="L268">		this.latestViolationDate = latestViolationDate;</span>
+<span class="fc" id="L269">	}</span>
+
+	/**
+	 * Gets the absenteeism violations.
+	 *
+	 * @return the absenteeism violations
+	 */
+	public Long getAbsenteeismViolations() {
+<span class="fc" id="L277">		return absenteeismViolations;</span>
+	}
+
+	/**
+	 * Sets the absenteeism violations.
+	 *
+	 * @param absenteeismViolations the new absenteeism violations
+	 */
+	public void setAbsenteeismViolations(final Long absenteeismViolations) {
+<span class="fc" id="L286">		this.absenteeismViolations = absenteeismViolations;</span>
+<span class="fc" id="L287">	}</span>
+
+	/**
+	 * Gets the effectiveness violations.
+	 *
+	 * @return the effectiveness violations
+	 */
+	public Long getEffectivenessViolations() {
+<span class="fc" id="L295">		return effectivenessViolations;</span>
+	}
+
+	/**
+	 * Sets the effectiveness violations.
+	 *
+	 * @param effectivenessViolations the new effectiveness violations
+	 */
+	public void setEffectivenessViolations(final Long effectivenessViolations) {
+<span class="fc" id="L304">		this.effectivenessViolations = effectivenessViolations;</span>
+<span class="fc" id="L305">	}</span>
+
+	/**
+	 * Gets the discipline violations.
+	 *
+	 * @return the discipline violations
+	 */
+	public Long getDisciplineViolations() {
+<span class="fc" id="L313">		return disciplineViolations;</span>
+	}
+
+	/**
+	 * Sets the discipline violations.
+	 *
+	 * @param disciplineViolations the new discipline violations
+	 */
+	public void setDisciplineViolations(final Long disciplineViolations) {
+<span class="fc" id="L322">		this.disciplineViolations = disciplineViolations;</span>
+<span class="fc" id="L323">	}</span>
+
+	/**
+	 * Gets the productivity violations.
+	 *
+	 * @return the productivity violations
+	 */
+	public Long getProductivityViolations() {
+<span class="fc" id="L331">		return productivityViolations;</span>
+	}
+
+	/**
+	 * Sets the productivity violations.
+	 *
+	 * @param productivityViolations the new productivity violations
+	 */
+	public void setProductivityViolations(final Long productivityViolations) {
+<span class="fc" id="L340">		this.productivityViolations = productivityViolations;</span>
+<span class="fc" id="L341">	}</span>
+
+	/**
+	 * Gets the collaboration violations.
+	 *
+	 * @return the collaboration violations
+	 */
+	public Long getCollaborationViolations() {
+<span class="fc" id="L349">		return collaborationViolations;</span>
+	}
+
+	/**
+	 * Sets the collaboration violations.
+	 *
+	 * @param collaborationViolations the new collaboration violations
+	 */
+	public void setCollaborationViolations(final Long collaborationViolations) {
+<span class="fc" id="L358">		this.collaborationViolations = collaborationViolations;</span>
+<span class="fc" id="L359">	}</span>
+
+	/**
+	 * Gets the annual absence rate.
+	 *
+	 * @return the annual absence rate
+	 */
+	public BigDecimal getAnnualAbsenceRate() {
+<span class="fc" id="L367">		return annualAbsenceRate;</span>
+	}
+
+	/**
+	 * Sets the annual absence rate.
+	 *
+	 * @param annualAbsenceRate the new annual absence rate
+	 */
+	public void setAnnualAbsenceRate(final BigDecimal annualAbsenceRate) {
+<span class="fc" id="L376">		this.annualAbsenceRate = annualAbsenceRate;</span>
+<span class="fc" id="L377">	}</span>
+
+	/**
+	 * Gets the annual rebel rate.
+	 *
+	 * @return the annual rebel rate
+	 */
+	public BigDecimal getAnnualRebelRate() {
+<span class="fc" id="L385">		return annualRebelRate;</span>
+	}
+
+	/**
+	 * Sets the annual rebel rate.
+	 *
+	 * @param annualRebelRate the new annual rebel rate
+	 */
+	public void setAnnualRebelRate(final BigDecimal annualRebelRate) {
+<span class="fc" id="L394">		this.annualRebelRate = annualRebelRate;</span>
+<span class="fc" id="L395">	}</span>
+
+	/**
+	 * Gets the annual vote count.
+	 *
+	 * @return the annual vote count
+	 */
+	public Long getAnnualVoteCount() {
+<span class="fc" id="L403">		return annualVoteCount;</span>
+	}
+
+	/**
+	 * Sets the annual vote count.
+	 *
+	 * @param annualVoteCount the new annual vote count
+	 */
+	public void setAnnualVoteCount(final Long annualVoteCount) {
+<span class="fc" id="L412">		this.annualVoteCount = annualVoteCount;</span>
+<span class="fc" id="L413">	}</span>
+
+	/**
+	 * Gets the documents last year.
+	 *
+	 * @return the documents last year
+	 */
+	public Long getDocumentsLastYear() {
+<span class="fc" id="L421">		return documentsLastYear;</span>
+	}
+
+	/**
+	 * Sets the documents last year.
+	 *
+	 * @param documentsLastYear the new documents last year
+	 */
+	public void setDocumentsLastYear(final Long documentsLastYear) {
+<span class="fc" id="L430">		this.documentsLastYear = documentsLastYear;</span>
+<span class="fc" id="L431">	}</span>
+
+	/**
+	 * Gets the risk score.
+	 *
+	 * @return the risk score
+	 */
+	public BigDecimal getRiskScore() {
+<span class="fc" id="L439">		return riskScore;</span>
+	}
+
+	/**
+	 * Sets the risk score.
+	 *
+	 * @param riskScore the new risk score
+	 */
+	public void setRiskScore(final BigDecimal riskScore) {
+<span class="fc" id="L448">		this.riskScore = riskScore;</span>
+<span class="fc" id="L449">	}</span>
+
+	/**
+	 * Gets the risk level.
+	 *
+	 * @return the risk level
+	 */
+	public String getRiskLevel() {
+<span class="fc" id="L457">		return riskLevel;</span>
+	}
+
+	/**
+	 * Sets the risk level.
+	 *
+	 * @param riskLevel the new risk level
+	 */
+	public void setRiskLevel(final String riskLevel) {
+<span class="fc" id="L466">		this.riskLevel = riskLevel;</span>
+<span class="fc" id="L467">	}</span>
+
+	/**
+	 * Gets the risk assessment.
+	 *
+	 * @return the risk assessment
+	 */
+	public String getRiskAssessment() {
+<span class="fc" id="L475">		return riskAssessment;</span>
+	}
+
+	/**
+	 * Sets the risk assessment.
+	 *
+	 * @param riskAssessment the new risk assessment
+	 */
+	public void setRiskAssessment(final String riskAssessment) {
+<span class="fc" id="L484">		this.riskAssessment = riskAssessment;</span>
+<span class="fc" id="L485">	}</span>
+
+	@Override
+	public boolean equals(final Object obj) {
+<span class="fc" id="L489">		return EqualsBuilder.reflectionEquals(this, obj);</span>
+	}
+
+	@Override
+	public int hashCode() {
+<span class="fc" id="L494">		return HashCodeBuilder.reflectionHashCode(this);</span>
+	}
+
+	@Override
+	public String toString() {
+<span class="fc" id="L499">		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

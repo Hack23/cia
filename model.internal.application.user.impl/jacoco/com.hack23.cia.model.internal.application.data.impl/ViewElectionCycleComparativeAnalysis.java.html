@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewElectionCycleComparativeAnalysis.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.impl</a> &gt; <span class="el_source">ViewElectionCycleComparativeAnalysis.java</span></div><h1>ViewElectionCycleComparativeAnalysis.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2026 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *$Id$
+ *  $HeadURL$
+ */
+package com.hack23.cia.model.internal.application.data.impl;
+
+import java.math.BigDecimal;
+
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+import com.hack23.cia.model.common.api.ModelObject;
+
+/**
+ * The Class ViewElectionCycleComparativeAnalysis.
+ * 
+ * Comparative party-level performance metrics across election cycles.
+ * 
+ * @author intelligence-operative
+ * @since v1.51 (Election Cycle Analytics)
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = &quot;ViewElectionCycleComparativeAnalysis&quot;, propOrder = {
+    &quot;embeddedId&quot;,
+    &quot;cycleYear&quot;,
+    &quot;calendarYear&quot;,
+    &quot;party&quot;,
+    &quot;performanceScore&quot;,
+    &quot;activeMembers&quot;,
+    &quot;partyViolations&quot;,
+    &quot;partyWinRate&quot;,
+    &quot;partyParticipationRate&quot;,
+    &quot;documentsLastYear&quot;,
+    &quot;partyAvgRebelRate&quot;,
+    &quot;committeesActive&quot;
+})
+@Entity(name = &quot;ViewElectionCycleComparativeAnalysis&quot;)
+@Table(name = &quot;view_election_cycle_comparative_analysis&quot;)
+@Inheritance(strategy = InheritanceType.JOINED)
+<span class="fc" id="L68">public class ViewElectionCycleComparativeAnalysis implements ModelObject {</span>
+
+private static final long serialVersionUID = 1L;
+
+@XmlElement(required = true)
+protected ViewElectionCycleEmbeddedId embeddedId;
+
+@XmlElement(name = &quot;cycle_year&quot;)
+protected Integer cycleYear;
+
+@XmlElement(name = &quot;calendar_year&quot;)
+protected Integer calendarYear;
+
+@XmlElement
+protected String party;
+
+@XmlElement(name = &quot;performance_score&quot;)
+protected BigDecimal performanceScore;
+
+@XmlElement(name = &quot;active_members&quot;)
+protected Long activeMembers;
+
+@XmlElement(name = &quot;party_violations&quot;)
+protected Long partyViolations;
+
+@XmlElement(name = &quot;party_win_rate&quot;)
+protected BigDecimal partyWinRate;
+
+@XmlElement(name = &quot;party_participation_rate&quot;)
+protected BigDecimal partyParticipationRate;
+
+@XmlElement(name = &quot;documents_last_year&quot;)
+protected Long documentsLastYear;
+
+@XmlElement(name = &quot;party_avg_rebel_rate&quot;)
+protected BigDecimal partyAvgRebelRate;
+
+@XmlElement(name = &quot;committees_active&quot;)
+protected Long committeesActive;
+
+@EmbeddedId
+public ViewElectionCycleEmbeddedId getEmbeddedId() {
+<span class="fc" id="L110">		return embeddedId;</span>
+}
+
+public void setEmbeddedId(final ViewElectionCycleEmbeddedId value) {
+
+
+<span class="fc" id="L116">	this.embeddedId = value;</span>
+
+
+<span class="fc" id="L119">}</span>
+
+@Basic
+@Column(name = &quot;CYCLE_YEAR&quot;)
+public Integer getCycleYear() {
+<span class="fc" id="L124">		return cycleYear;</span>
+}
+
+public void setCycleYear(final Integer value) {
+
+
+<span class="fc" id="L130">	this.cycleYear = value;</span>
+
+
+<span class="fc" id="L133">}</span>
+
+@Basic
+@Column(name = &quot;CALENDAR_YEAR&quot;)
+public Integer getCalendarYear() {
+<span class="fc" id="L138">		return calendarYear;</span>
+}
+
+public void setCalendarYear(final Integer value) {
+
+
+<span class="fc" id="L144">	this.calendarYear = value;</span>
+
+
+<span class="fc" id="L147">}</span>
+
+@Basic
+@Column(name = &quot;PARTY&quot;, length = 50)
+public String getParty() {
+<span class="fc" id="L152">		return party;</span>
+}
+
+public void setParty(final String value) {
+
+
+<span class="fc" id="L158">	this.party = value;</span>
+
+
+<span class="fc" id="L161">}</span>
+
+@Basic
+@Column(name = &quot;PERFORMANCE_SCORE&quot;, precision = 10, scale = 2)
+public BigDecimal getPerformanceScore() {
+<span class="fc" id="L166">		return performanceScore;</span>
+}
+
+public void setPerformanceScore(final BigDecimal value) {
+
+
+<span class="fc" id="L172">	this.performanceScore = value;</span>
+
+
+<span class="fc" id="L175">}</span>
+
+@Basic
+@Column(name = &quot;ACTIVE_MEMBERS&quot;, precision = 20)
+public Long getActiveMembers() {
+<span class="fc" id="L180">		return activeMembers;</span>
+}
+
+public void setActiveMembers(final Long value) {
+
+
+<span class="fc" id="L186">	this.activeMembers = value;</span>
+
+
+<span class="fc" id="L189">}</span>
+
+@Basic
+@Column(name = &quot;PARTY_VIOLATIONS&quot;, precision = 20)
+public Long getPartyViolations() {
+<span class="fc" id="L194">		return partyViolations;</span>
+}
+
+public void setPartyViolations(final Long value) {
+
+
+<span class="fc" id="L200">	this.partyViolations = value;</span>
+
+
+<span class="fc" id="L203">}</span>
+
+@Basic
+@Column(name = &quot;PARTY_WIN_RATE&quot;, precision = 5, scale = 2)
+public BigDecimal getPartyWinRate() {
+<span class="fc" id="L208">		return partyWinRate;</span>
+}
+
+public void setPartyWinRate(final BigDecimal value) {
+
+
+<span class="fc" id="L214">	this.partyWinRate = value;</span>
+
+
+<span class="fc" id="L217">}</span>
+
+@Basic
+@Column(name = &quot;PARTY_PARTICIPATION_RATE&quot;, precision = 5, scale = 2)
+public BigDecimal getPartyParticipationRate() {
+<span class="fc" id="L222">		return partyParticipationRate;</span>
+}
+
+public void setPartyParticipationRate(final BigDecimal value) {
+
+
+<span class="fc" id="L228">	this.partyParticipationRate = value;</span>
+
+
+<span class="fc" id="L231">}</span>
+
+@Basic
+@Column(name = &quot;DOCUMENTS_LAST_YEAR&quot;, precision = 20)
+public Long getDocumentsLastYear() {
+<span class="fc" id="L236">		return documentsLastYear;</span>
+}
+
+public void setDocumentsLastYear(final Long value) {
+
+
+<span class="fc" id="L242">	this.documentsLastYear = value;</span>
+
+
+<span class="fc" id="L245">}</span>
+
+@Basic
+@Column(name = &quot;PARTY_AVG_REBEL_RATE&quot;, precision = 5, scale = 2)
+public BigDecimal getPartyAvgRebelRate() {
+<span class="fc" id="L250">		return partyAvgRebelRate;</span>
+}
+
+public void setPartyAvgRebelRate(final BigDecimal value) {
+
+
+<span class="fc" id="L256">	this.partyAvgRebelRate = value;</span>
+
+
+<span class="fc" id="L259">}</span>
+
+@Basic
+@Column(name = &quot;COMMITTEES_ACTIVE&quot;, precision = 20)
+public Long getCommitteesActive() {
+<span class="fc" id="L264">		return committeesActive;</span>
+}
+
+public void setCommitteesActive(final Long value) {
+
+
+<span class="fc" id="L270">	this.committeesActive = value;</span>
+
+
+<span class="fc" id="L273">}</span>
+
+@Override
+public final String toString() {
+<span class="fc" id="L277">		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);</span>
+}
+
+@Override
+public final boolean equals(final Object obj) {
+<span class="fc" id="L282">		return EqualsBuilder.reflectionEquals(this, obj);</span>
+}
+
+@Override
+public final int hashCode() {
+<span class="fc" id="L287">		return HashCodeBuilder.reflectionHashCode(this);</span>
+}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

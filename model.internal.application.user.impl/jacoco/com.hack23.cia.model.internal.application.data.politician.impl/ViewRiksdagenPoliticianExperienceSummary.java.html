@@ -1,0 +1,931 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewRiksdagenPoliticianExperienceSummary.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.politician.impl</a> &gt; <span class="el_source">ViewRiksdagenPoliticianExperienceSummary.java</span></div><h1>ViewRiksdagenPoliticianExperienceSummary.java</h1><pre class="source lang-java linenums">package com.hack23.cia.model.internal.application.data.politician.impl;
+
+import java.util.List;
+import java.util.Locale;
+
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Id;
+import javax.persistence.PostLoad;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hack23.cia.model.common.api.ModelObject;
+
+
+/**
+ * The Class ViewRiksdagenPoliticianExperienceSummary.
+ */
+@Entity
+@Table(name = &quot;view_riksdagen_politician_experience_summary&quot;)
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = &quot;ViewRiksdagenPoliticianExperienceSummary&quot;)
+@XmlRootElement(name = &quot;ViewRiksdagenPoliticianExperienceSummary&quot;)
+<span class="fc" id="L40">public class ViewRiksdagenPoliticianExperienceSummary implements ModelObject {</span>
+
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = 1L;
+
+    /** The person id. */
+    @Id
+    @Column(name = &quot;person_id&quot;)
+    private String personId;
+
+    /** The first name. */
+    @Basic
+    @Column(name = &quot;first_name&quot;)
+    private String firstName;
+
+    /** The last name. */
+    @Basic
+    @Column(name = &quot;last_name&quot;)
+    private String lastName;
+
+    /** The total days. */
+    @Basic
+    @Column(name = &quot;total_days&quot;)
+    private Long totalDays;
+
+    /** The total weighted exp. */
+    @Basic
+    @Column(name = &quot;total_weighted_exp&quot;)
+    private Long totalWeightedExp;
+
+    /** The govt days. */
+    @Basic
+    @Column(name = &quot;govt_days&quot;)
+    private Long govtDays;
+
+    /** The riksdag days. */
+    @Basic
+    @Column(name = &quot;riksdag_days&quot;)
+    private Long riksdagDays;
+
+    /** The party days. */
+    @Basic
+    @Column(name = &quot;party_days&quot;)
+    private Long partyDays;
+
+    /** The committee days. */
+    @Basic
+    @Column(name = &quot;committee_days&quot;)
+    private Long committeeDays;
+
+    /** The total substitute days. */
+    @Basic
+    @Column(name = &quot;total_substitute_days&quot;)
+    private Long totalSubstituteDays;
+
+    /** The total leadership days. */
+    @Basic
+    @Column(name = &quot;total_leadership_days&quot;)
+    private Long totalLeadershipDays;
+
+    /** The knowledge areas json. */
+    @Basic
+    @Column(name = &quot;knowledge_areas_json&quot;, columnDefinition = &quot;text&quot;)
+    private String knowledgeAreasJson;
+
+    /** The roles json. */
+    @Basic
+    @Column(name = &quot;roles_json&quot;, columnDefinition = &quot;text&quot;)
+    private String rolesJson;
+
+    /** The experience level. */
+    @Enumerated(EnumType.STRING)
+    @Column(name = &quot;experience_level&quot;)
+    private ExperienceLevel experienceLevel;
+
+    /** The experience breadth. */
+    @Enumerated(EnumType.STRING)
+    @Column(name = &quot;experience_breadth&quot;)
+    private ExperienceBreadth experienceBreadth;
+
+    /** The leadership profile. */
+    @Enumerated(EnumType.STRING)
+    @Column(name = &quot;leadership_profile&quot;)
+    private LeadershipProfile leadershipProfile;
+
+    /** The role stability. */
+    @Enumerated(EnumType.STRING)
+    @Column(name = &quot;role_stability&quot;)
+    private RoleStability roleStability;
+
+    /** The career phase. */
+    @Enumerated(EnumType.STRING)
+    @Column(name = &quot;career_phase&quot;)
+    private CareerPhase careerPhase;
+
+    /** The specialization level. */
+    @Enumerated(EnumType.STRING)
+    @Column(name = &quot;specialization_level&quot;)
+    private SpecializationLevel specializationLevel;
+
+    /** The political analysis comment. */
+    @Basic
+    @Column(name = &quot;political_analysis_comment&quot;, length = 4000)
+    private String politicalAnalysisComment;
+
+    /** The knowledge areas. */
+    @Transient
+    private List&lt;KnowledgeArea&gt; knowledgeAreas;
+
+    /** The roles. */
+    @Transient
+    private List&lt;PoliticalRole&gt; roles;
+
+    /**
+     * Experience level enum.
+     */
+<span class="fc" id="L156">    public enum ExperienceLevel {</span>
+        /** The extensive experience. */
+<span class="fc" id="L158">        EXTENSIVE_EXPERIENCE,</span>
+        /** The significant government. */
+<span class="fc" id="L160">        SIGNIFICANT_GOVERNMENT,</span>
+        /** The long serving parliament. */
+<span class="fc" id="L162">        LONG_SERVING_PARLIAMENT,</span>
+        /** The active committees. */
+<span class="fc" id="L164">        ACTIVE_COMMITTEES,</span>
+        /** The party leadership. */
+<span class="fc" id="L166">        PARTY_LEADERSHIP,</span>
+        /** The mixed experience. */
+<span class="fc" id="L168">        MIXED_EXPERIENCE</span>
+    }
+
+    /**
+     * Experience breadth enum.
+     */
+<span class="fc" id="L174">    public enum ExperienceBreadth {</span>
+        /** The high. */
+<span class="fc" id="L176">        HIGH,</span>
+        /** The medium. */
+<span class="fc" id="L178">        MEDIUM,</span>
+        /** The low. */
+<span class="fc" id="L180">        LOW,        </span>
+        /** The very low. */
+<span class="fc" id="L182">        VERY_LOW</span>
+    }
+
+    /**
+     * Leadership profile enum.
+     */
+<span class="fc" id="L188">    public enum LeadershipProfile {</span>
+        /** The significant leadership. */
+<span class="fc" id="L190">        SIGNIFICANT_LEADERSHIP,</span>
+        /** The moderate leadership. */
+<span class="fc" id="L192">        MODERATE_LEADERSHIP,</span>
+        /** The some leadership. */
+<span class="fc" id="L194">        SOME_LEADERSHIP,</span>
+        /** The no leadership. */
+<span class="fc" id="L196">        NO_LEADERSHIP</span>
+    }
+
+    /**
+     * Role stability enum.
+     */
+<span class="fc" id="L202">    public enum RoleStability {</span>
+        /** The primarily substitute. */
+<span class="fc" id="L204">        PRIMARILY_SUBSTITUTE,</span>
+        /** The frequent substitute. */
+<span class="fc" id="L206">        FREQUENT_SUBSTITUTE,</span>
+        /** The occasional substitute. */
+<span class="fc" id="L208">        OCCASIONAL_SUBSTITUTE,</span>
+        /** The regular roles. */
+<span class="fc" id="L210">        REGULAR_ROLES</span>
+    }
+
+    /**
+     * Career phase enum.
+     */
+<span class="fc" id="L216">    public enum CareerPhase {</span>
+        /** The senior statesperson. */
+<span class="fc" id="L218">        SENIOR_STATESPERSON,</span>
+        /** The established politician. */
+<span class="fc" id="L220">        ESTABLISHED_POLITICIAN,</span>
+        /** The experienced politician. */
+<span class="fc" id="L222">        EXPERIENCED_POLITICIAN,</span>
+        /** The mid career. */
+<span class="fc" id="L224">        MID_CAREER,</span>
+        /** The early career. */
+<span class="fc" id="L226">        EARLY_CAREER</span>
+    }
+
+    /**
+     * Specialization level enum.
+     */
+<span class="fc" id="L232">    public enum SpecializationLevel {</span>
+        /** The highly specialized. */
+<span class="fc" id="L234">        HIGHLY_SPECIALIZED,</span>
+        /** The moderately specialized. */
+<span class="fc" id="L236">        MODERATELY_SPECIALIZED,</span>
+        /** The broadly experienced. */
+<span class="fc" id="L238">        BROADLY_EXPERIENCED</span>
+    }
+
+    /**
+     * The Class KnowledgeArea.
+     */
+    @JsonIgnoreProperties(ignoreUnknown = true)
+<span class="fc" id="L245">    public static class KnowledgeArea {</span>
+        /** The area. */
+        private String area;
+        /** The days. */
+        private Long days;
+        /** The weighted exp. */
+        private Long weightedExp;
+
+        /**
+         * Gets the area.
+         *
+         * @return the area
+         */
+        public String getArea() {
+<span class="fc" id="L259">            return area;</span>
+        }
+
+        /**
+         * Sets the area.
+         *
+         * @param area the new area
+         */
+        public void setArea(String area) {
+<span class="fc" id="L268">            this.area = area;</span>
+<span class="fc" id="L269">        }</span>
+
+        /**
+         * Gets the days.
+         *
+         * @return the days
+         */
+        public Long getDays() {
+<span class="fc" id="L277">            return days;</span>
+        }
+
+        /**
+         * Sets the days.
+         *
+         * @param days the new days
+         */
+        public void setDays(Long days) {
+<span class="fc" id="L286">            this.days = days;</span>
+<span class="fc" id="L287">        }</span>
+
+        /**
+         * Gets the weighted exp.
+         *
+         * @return the weighted exp
+         */
+        public Long getWeightedExp() {
+<span class="fc" id="L295">            return weightedExp;</span>
+        }
+
+        /**
+         * Sets the weighted exp.
+         *
+         * @param weightedExp the new weighted exp
+         */
+        public void setWeightedExp(Long weightedExp) {
+<span class="fc" id="L304">            this.weightedExp = weightedExp;</span>
+<span class="fc" id="L305">        }</span>
+    }
+
+    /**
+     * The Class PoliticalRole.
+     */
+    @JsonIgnoreProperties(ignoreUnknown = true)
+<span class="fc" id="L312">    public static class PoliticalRole {</span>
+        /** The type. */
+        private String type;
+        /** The role. */
+        private String role;
+        /** The org. */
+        private String org;
+        /** The days. */
+        private Long days;
+        /** The weighted exp. */
+        private Long weightedExp;
+        /** The substitute days. */
+        private Long substituteDays;
+        /** The leadership days. */
+        private Long leadershipDays;
+
+        /**
+         * Gets the type.
+         *
+         * @return the type
+         */
+        public String getType() {
+<span class="fc" id="L334">            return type;</span>
+        }
+
+        /**
+         * Sets the type.
+         *
+         * @param type the new type
+         */
+        public void setType(String type) {
+<span class="fc" id="L343">            this.type = type;</span>
+<span class="fc" id="L344">        }</span>
+
+        /**
+         * Gets the role.
+         *
+         * @return the role
+         */
+        public String getRole() {
+<span class="fc" id="L352">            return role;</span>
+        }
+
+        /**
+         * Sets the role.
+         *
+         * @param role the new role
+         */
+        public void setRole(String role) {
+<span class="fc" id="L361">            this.role = role;</span>
+<span class="fc" id="L362">        }</span>
+
+        /**
+         * Gets the org.
+         *
+         * @return the org
+         */
+        public String getOrg() {
+<span class="fc" id="L370">            return org;</span>
+        }
+
+        /**
+         * Sets the org.
+         *
+         * @param org the new org
+         */
+        public void setOrg(String org) {
+<span class="fc" id="L379">            this.org = org;</span>
+<span class="fc" id="L380">        }</span>
+
+        /**
+         * Gets the days.
+         *
+         * @return the days
+         */
+        public Long getDays() {
+<span class="fc" id="L388">            return days;</span>
+        }
+
+        /**
+         * Sets the days.
+         *
+         * @param days the new days
+         */
+        public void setDays(Long days) {
+<span class="fc" id="L397">            this.days = days;</span>
+<span class="fc" id="L398">        }</span>
+
+        /**
+         * Gets the weighted exp.
+         *
+         * @return the weighted exp
+         */
+        public Long getWeightedExp() {
+<span class="fc" id="L406">            return weightedExp;</span>
+        }
+
+        /**
+         * Sets the weighted exp.
+         *
+         * @param weightedExp the new weighted exp
+         */
+        public void setWeightedExp(Long weightedExp) {
+<span class="fc" id="L415">            this.weightedExp = weightedExp;</span>
+<span class="fc" id="L416">        }</span>
+
+        /**
+         * Gets the substitute days.
+         *
+         * @return the substitute days
+         */
+        public Long getSubstituteDays() {
+<span class="fc" id="L424">            return substituteDays;</span>
+        }
+
+        /**
+         * Sets the substitute days.
+         *
+         * @param substituteDays the new substitute days
+         */
+        public void setSubstituteDays(Long substituteDays) {
+<span class="fc" id="L433">            this.substituteDays = substituteDays;</span>
+<span class="fc" id="L434">        }</span>
+
+        /**
+         * Gets the leadership days.
+         *
+         * @return the leadership days
+         */
+        public Long getLeadershipDays() {
+<span class="fc" id="L442">            return leadershipDays;</span>
+        }
+
+        /**
+         * Sets the leadership days.
+         *
+         * @param leadershipDays the new leadership days
+         */
+        public void setLeadershipDays(Long leadershipDays) {
+<span class="fc" id="L451">            this.leadershipDays = leadershipDays;</span>
+<span class="fc" id="L452">        }</span>
+    }
+
+    /**
+     * Load json data.
+     */
+    @PostLoad
+    private void loadJsonData() {
+<span class="nc" id="L460">        final ObjectMapper mapper = new ObjectMapper();</span>
+        try {
+<span class="nc bnc" id="L462" title="All 2 branches missed.">            if (knowledgeAreasJson != null) {</span>
+<span class="nc" id="L463">                knowledgeAreas = mapper.readValue(knowledgeAreasJson,</span>
+<span class="fc" id="L464">                    new TypeReference&lt;List&lt;KnowledgeArea&gt;&gt;() {});</span>
+            }
+<span class="nc bnc" id="L466" title="All 2 branches missed.">            if (rolesJson != null) {</span>
+<span class="nc" id="L467">                roles = mapper.readValue(rolesJson,</span>
+<span class="fc" id="L468">                    new TypeReference&lt;List&lt;PoliticalRole&gt;&gt;() {});</span>
+            }
+<span class="nc" id="L470">        } catch (final JsonProcessingException e) {</span>
+<span class="nc" id="L471">            throw new RuntimeException(&quot;Error parsing JSON data&quot;, e);</span>
+<span class="nc" id="L472">        }</span>
+<span class="nc" id="L473">    }</span>
+
+    /**
+     * Gets the formatted experience summary.
+     *
+     * @return the formatted experience summary
+     */
+    public String getFormattedExperienceSummary() {
+<span class="nc" id="L481">        return String.format(Locale.ENGLISH,&quot;%s %s: %s - %s, %s, %s&quot;,</span>
+            firstName,
+            lastName,
+            experienceLevel,
+            careerPhase,
+            leadershipProfile,
+            specializationLevel);
+    }
+
+    // Standard getters and setters for all fields
+
+
+    /**
+     * Gets the person id.
+     *
+     * @return the person id
+     */
+    public String getPersonId() {
+<span class="fc" id="L499">        return personId;</span>
+    }
+
+    /**
+     * Sets the person id.
+     *
+     * @param personId the new person id
+     */
+    public void setPersonId(String personId) {
+<span class="fc" id="L508">        this.personId = personId;</span>
+<span class="fc" id="L509">    }</span>
+
+
+    /**
+     * Gets the first name.
+     *
+     * @return the first name
+     */
+    public String getFirstName() {
+<span class="fc" id="L518">		return firstName;</span>
+	}
+
+	/**
+	 * Sets the first name.
+	 *
+	 * @param firstName the new first name
+	 */
+	public void setFirstName(String firstName) {
+<span class="fc" id="L527">		this.firstName = firstName;</span>
+<span class="fc" id="L528">	}</span>
+
+	/**
+	 * Gets the last name.
+	 *
+	 * @return the last name
+	 */
+	public String getLastName() {
+<span class="fc" id="L536">		return lastName;</span>
+	}
+
+	/**
+	 * Sets the last name.
+	 *
+	 * @param lastName the new last name
+	 */
+	public void setLastName(String lastName) {
+<span class="fc" id="L545">		this.lastName = lastName;</span>
+<span class="fc" id="L546">	}</span>
+
+	/**
+	 * Gets the total days.
+	 *
+	 * @return the total days
+	 */
+	public Long getTotalDays() {
+<span class="fc" id="L554">		return totalDays;</span>
+	}
+
+	/**
+	 * Sets the total days.
+	 *
+	 * @param totalDays the new total days
+	 */
+	public void setTotalDays(Long totalDays) {
+<span class="fc" id="L563">		this.totalDays = totalDays;</span>
+<span class="fc" id="L564">	}</span>
+
+	/**
+	 * Gets the total weighted exp.
+	 *
+	 * @return the total weighted exp
+	 */
+	public Long getTotalWeightedExp() {
+<span class="fc" id="L572">		return totalWeightedExp;</span>
+	}
+
+	/**
+	 * Sets the total weighted exp.
+	 *
+	 * @param totalWeightedExp the new total weighted exp
+	 */
+	public void setTotalWeightedExp(Long totalWeightedExp) {
+<span class="fc" id="L581">		this.totalWeightedExp = totalWeightedExp;</span>
+<span class="fc" id="L582">	}</span>
+
+	/**
+	 * Gets the govt days.
+	 *
+	 * @return the govt days
+	 */
+	public Long getGovtDays() {
+<span class="fc" id="L590">		return govtDays;</span>
+	}
+
+	/**
+	 * Sets the govt days.
+	 *
+	 * @param govtDays the new govt days
+	 */
+	public void setGovtDays(Long govtDays) {
+<span class="fc" id="L599">		this.govtDays = govtDays;</span>
+<span class="fc" id="L600">	}</span>
+
+	/**
+	 * Gets the riksdag days.
+	 *
+	 * @return the riksdag days
+	 */
+	public Long getRiksdagDays() {
+<span class="fc" id="L608">		return riksdagDays;</span>
+	}
+
+	/**
+	 * Sets the riksdag days.
+	 *
+	 * @param riksdagDays the new riksdag days
+	 */
+	public void setRiksdagDays(Long riksdagDays) {
+<span class="fc" id="L617">		this.riksdagDays = riksdagDays;</span>
+<span class="fc" id="L618">	}</span>
+
+	/**
+	 * Gets the party days.
+	 *
+	 * @return the party days
+	 */
+	public Long getPartyDays() {
+<span class="fc" id="L626">		return partyDays;</span>
+	}
+
+	/**
+	 * Sets the party days.
+	 *
+	 * @param partyDays the new party days
+	 */
+	public void setPartyDays(Long partyDays) {
+<span class="fc" id="L635">		this.partyDays = partyDays;</span>
+<span class="fc" id="L636">	}</span>
+
+	/**
+	 * Gets the committee days.
+	 *
+	 * @return the committee days
+	 */
+	public Long getCommitteeDays() {
+<span class="fc" id="L644">		return committeeDays;</span>
+	}
+
+	/**
+	 * Sets the committee days.
+	 *
+	 * @param committeeDays the new committee days
+	 */
+	public void setCommitteeDays(Long committeeDays) {
+<span class="fc" id="L653">		this.committeeDays = committeeDays;</span>
+<span class="fc" id="L654">	}</span>
+
+	/**
+	 * Gets the total substitute days.
+	 *
+	 * @return the total substitute days
+	 */
+	public Long getTotalSubstituteDays() {
+<span class="fc" id="L662">		return totalSubstituteDays;</span>
+	}
+
+	/**
+	 * Sets the total substitute days.
+	 *
+	 * @param totalSubstituteDays the new total substitute days
+	 */
+	public void setTotalSubstituteDays(Long totalSubstituteDays) {
+<span class="fc" id="L671">		this.totalSubstituteDays = totalSubstituteDays;</span>
+<span class="fc" id="L672">	}</span>
+
+	/**
+	 * Gets the total leadership days.
+	 *
+	 * @return the total leadership days
+	 */
+	public Long getTotalLeadershipDays() {
+<span class="fc" id="L680">		return totalLeadershipDays;</span>
+	}
+
+	/**
+	 * Sets the total leadership days.
+	 *
+	 * @param totalLeadershipDays the new total leadership days
+	 */
+	public void setTotalLeadershipDays(Long totalLeadershipDays) {
+<span class="fc" id="L689">		this.totalLeadershipDays = totalLeadershipDays;</span>
+<span class="fc" id="L690">	}</span>
+
+	/**
+	 * Gets the knowledge areas json.
+	 *
+	 * @return the knowledge areas json
+	 */
+	public String getKnowledgeAreasJson() {
+<span class="fc" id="L698">		return knowledgeAreasJson;</span>
+	}
+
+	/**
+	 * Sets the knowledge areas json.
+	 *
+	 * @param knowledgeAreasJson the new knowledge areas json
+	 */
+	public void setKnowledgeAreasJson(String knowledgeAreasJson) {
+<span class="fc" id="L707">		this.knowledgeAreasJson = knowledgeAreasJson;</span>
+<span class="fc" id="L708">	}</span>
+
+	/**
+	 * Gets the roles json.
+	 *
+	 * @return the roles json
+	 */
+	public String getRolesJson() {
+<span class="fc" id="L716">		return rolesJson;</span>
+	}
+
+	/**
+	 * Sets the roles json.
+	 *
+	 * @param rolesJson the new roles json
+	 */
+	public void setRolesJson(String rolesJson) {
+<span class="fc" id="L725">		this.rolesJson = rolesJson;</span>
+<span class="fc" id="L726">	}</span>
+
+	/**
+	 * Gets the experience level.
+	 *
+	 * @return the experience level
+	 */
+	public ExperienceLevel getExperienceLevel() {
+<span class="fc" id="L734">		return experienceLevel;</span>
+	}
+
+	/**
+	 * Sets the experience level.
+	 *
+	 * @param experienceLevel the new experience level
+	 */
+	public void setExperienceLevel(ExperienceLevel experienceLevel) {
+<span class="fc" id="L743">		this.experienceLevel = experienceLevel;</span>
+<span class="fc" id="L744">	}</span>
+
+	/**
+	 * Gets the experience breadth.
+	 *
+	 * @return the experience breadth
+	 */
+	public ExperienceBreadth getExperienceBreadth() {
+<span class="fc" id="L752">		return experienceBreadth;</span>
+	}
+
+	/**
+	 * Sets the experience breadth.
+	 *
+	 * @param experienceBreadth the new experience breadth
+	 */
+	public void setExperienceBreadth(ExperienceBreadth experienceBreadth) {
+<span class="fc" id="L761">		this.experienceBreadth = experienceBreadth;</span>
+<span class="fc" id="L762">	}</span>
+
+	/**
+	 * Gets the leadership profile.
+	 *
+	 * @return the leadership profile
+	 */
+	public LeadershipProfile getLeadershipProfile() {
+<span class="fc" id="L770">		return leadershipProfile;</span>
+	}
+
+	/**
+	 * Sets the leadership profile.
+	 *
+	 * @param leadershipProfile the new leadership profile
+	 */
+	public void setLeadershipProfile(LeadershipProfile leadershipProfile) {
+<span class="fc" id="L779">		this.leadershipProfile = leadershipProfile;</span>
+<span class="fc" id="L780">	}</span>
+
+	/**
+	 * Gets the role stability.
+	 *
+	 * @return the role stability
+	 */
+	public RoleStability getRoleStability() {
+<span class="fc" id="L788">		return roleStability;</span>
+	}
+
+	/**
+	 * Sets the role stability.
+	 *
+	 * @param roleStability the new role stability
+	 */
+	public void setRoleStability(RoleStability roleStability) {
+<span class="fc" id="L797">		this.roleStability = roleStability;</span>
+<span class="fc" id="L798">	}</span>
+
+	/**
+	 * Gets the career phase.
+	 *
+	 * @return the career phase
+	 */
+	public CareerPhase getCareerPhase() {
+<span class="fc" id="L806">		return careerPhase;</span>
+	}
+
+	/**
+	 * Sets the career phase.
+	 *
+	 * @param careerPhase the new career phase
+	 */
+	public void setCareerPhase(CareerPhase careerPhase) {
+<span class="fc" id="L815">		this.careerPhase = careerPhase;</span>
+<span class="fc" id="L816">	}</span>
+
+	/**
+	 * Gets the specialization level.
+	 *
+	 * @return the specialization level
+	 */
+	public SpecializationLevel getSpecializationLevel() {
+<span class="fc" id="L824">		return specializationLevel;</span>
+	}
+
+	/**
+	 * Sets the specialization level.
+	 *
+	 * @param specializationLevel the new specialization level
+	 */
+	public void setSpecializationLevel(SpecializationLevel specializationLevel) {
+<span class="fc" id="L833">		this.specializationLevel = specializationLevel;</span>
+<span class="fc" id="L834">	}</span>
+
+	/**
+	 * Gets the political analysis comment.
+	 *
+	 * @return the political analysis comment
+	 */
+	public String getPoliticalAnalysisComment() {
+<span class="fc" id="L842">		return politicalAnalysisComment;</span>
+	}
+
+	/**
+	 * Sets the political analysis comment.
+	 *
+	 * @param politicalAnalysisComment the new political analysis comment
+	 */
+	public void setPoliticalAnalysisComment(String politicalAnalysisComment) {
+<span class="fc" id="L851">		this.politicalAnalysisComment = politicalAnalysisComment;</span>
+<span class="fc" id="L852">	}</span>
+
+	/**
+	 * Gets the knowledge areas.
+	 *
+	 * @return the knowledge areas
+	 */
+	public List&lt;KnowledgeArea&gt; getKnowledgeAreas() {
+<span class="fc" id="L860">		return knowledgeAreas;</span>
+	}
+
+	/**
+	 * Sets the knowledge areas.
+	 *
+	 * @param knowledgeAreas the new knowledge areas
+	 */
+	public void setKnowledgeAreas(List&lt;KnowledgeArea&gt; knowledgeAreas) {
+<span class="fc" id="L869">		this.knowledgeAreas = knowledgeAreas;</span>
+<span class="fc" id="L870">	}</span>
+
+	/**
+	 * Gets the roles.
+	 *
+	 * @return the roles
+	 */
+	public List&lt;PoliticalRole&gt; getRoles() {
+<span class="fc" id="L878">		return roles;</span>
+	}
+
+	/**
+	 * Sets the roles.
+	 *
+	 * @param roles the new roles
+	 */
+	public void setRoles(List&lt;PoliticalRole&gt; roles) {
+<span class="fc" id="L887">		this.roles = roles;</span>
+<span class="fc" id="L888">	}</span>
+
+	/**
+	 * Gets the serialversionuid.
+	 *
+	 * @return the serialversionuid
+	 */
+	public static long getSerialversionuid() {
+<span class="nc" id="L896">		return serialVersionUID;</span>
+	}
+
+	/**
+     * To string.
+     *
+     * @return the string
+     */
+    @Override
+    public String toString() {
+<span class="fc" id="L906">        return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);</span>
+    }
+
+    /**
+     * Equals.
+     *
+     * @param obj the obj
+     * @return true, if successful
+     */
+    @Override
+    public boolean equals(final Object obj) {
+<span class="fc" id="L917">        return EqualsBuilder.reflectionEquals(this, obj);</span>
+    }
+
+    /**
+     * Hash code.
+     *
+     * @return the int
+     */
+    @Override
+    public int hashCode() {
+<span class="fc" id="L927">        return HashCodeBuilder.reflectionHashCode(this);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

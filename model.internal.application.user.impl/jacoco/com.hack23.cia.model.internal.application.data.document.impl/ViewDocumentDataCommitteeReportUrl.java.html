@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewDocumentDataCommitteeReportUrl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.document.impl</a> &gt; <span class="el_source">ViewDocumentDataCommitteeReportUrl.java</span></div><h1>ViewDocumentDataCommitteeReportUrl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2025 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+ */
+package com.hack23.cia.model.internal.application.data.document.impl;
+
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+import com.hack23.cia.model.common.api.ModelObject;
+
+/**
+ * The Class ViewDocumentDataCommitteeReportUrl.
+ * 
+ * JPA Entity for view_document_data_committee_report_url database view.
+ * 
+ * Provides access to documents with committee report URLs for linkage analysis
+ * and report validation workflows.
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = &quot;ViewDocumentDataCommitteeReportUrl&quot;, propOrder = {
+    &quot;id&quot;,
+    &quot;committeeReportUrlXml&quot;
+})
+@Entity(name = &quot;ViewDocumentDataCommitteeReportUrl&quot;)
+@Table(name = &quot;view_document_data_committee_report_url&quot;)
+@Inheritance(strategy = InheritanceType.JOINED)
+<span class="fc" id="L56">public class ViewDocumentDataCommitteeReportUrl implements ModelObject {</span>
+
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = 1L;
+
+    /** The id. */
+    @XmlElement(required = true)
+    protected String id;
+
+    /** The committee report url xml. */
+    @XmlElement(name = &quot;committee_report_url_xml&quot;)
+    protected String committeeReportUrlXml;
+
+    /**
+     * Gets the id.
+     *
+     * @return the id
+     */
+    @Id
+    @Column(name = &quot;ID&quot;)
+    public String getId() {
+<span class="fc" id="L77">        return id;</span>
+    }
+
+    /**
+     * Sets the id.
+     *
+     * @param value the new id
+     */
+    public void setId(String value) {
+<span class="fc" id="L86">        this.id = value;</span>
+<span class="fc" id="L87">    }</span>
+
+    /**
+     * Gets the committee report url xml.
+     *
+     * @return the committee report url xml
+     */
+    @Basic
+    @Column(name = &quot;COMMITTEE_REPORT_URL_XML&quot;)
+    public String getCommitteeReportUrlXml() {
+<span class="fc" id="L97">        return committeeReportUrlXml;</span>
+    }
+
+    /**
+     * Sets the committee report url xml.
+     *
+     * @param value the new committee report url xml
+     */
+    public void setCommitteeReportUrlXml(String value) {
+<span class="fc" id="L106">        this.committeeReportUrlXml = value;</span>
+<span class="fc" id="L107">    }</span>
+
+    /**
+     * With id.
+     *
+     * @param value the value
+     * @return the view document data committee report url
+     */
+    public ViewDocumentDataCommitteeReportUrl withId(String value) {
+<span class="fc" id="L116">        setId(value);</span>
+<span class="fc" id="L117">        return this;</span>
+    }
+
+    /**
+     * With committee report url xml.
+     *
+     * @param value the value
+     * @return the view document data committee report url
+     */
+    public ViewDocumentDataCommitteeReportUrl withCommitteeReportUrlXml(String value) {
+<span class="fc" id="L127">        setCommitteeReportUrlXml(value);</span>
+<span class="fc" id="L128">        return this;</span>
+    }
+
+    /**
+     * To string.
+     *
+     * @return the string
+     */
+    @Override
+    public String toString() {
+<span class="fc" id="L138">        return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);</span>
+    }
+
+    /**
+     * Equals.
+     *
+     * @param obj the obj
+     * @return true, if successful
+     */
+    @Override
+    public boolean equals(Object obj) {
+<span class="fc" id="L149">        return EqualsBuilder.reflectionEquals(this, obj);</span>
+    }
+
+    /**
+     * Hash code.
+     *
+     * @return the int
+     */
+    @Override
+    public int hashCode() {
+<span class="fc" id="L159">        return HashCodeBuilder.reflectionHashCode(this);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

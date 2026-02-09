@@ -1,0 +1,655 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewPoliticianBehavioralTrends.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.politician.impl</a> &gt; <span class="el_source">ViewPoliticianBehavioralTrends.java</span></div><h1>ViewPoliticianBehavioralTrends.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2025 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+ */
+package com.hack23.cia.model.internal.application.data.politician.impl;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+/**
+ * JPA entity for view_politician_behavioral_trends database view.
+ * 
+ * Intelligence Purpose: Tracks individual politician behavioral metrics 
+ * (absence, effectiveness, rebellion) over time with automated classification.
+ * 
+ * Created by: Liquibase v1.30 (OSINT Performance Tracking)
+ * Risk Rules Supported: P-01 to P-24 (All politician behavioral analysis rules)
+ * 
+ * Time Series Analysis: Monthly granularity with 3-year historical window
+ * Behavioral Metrics: Attendance, voting effectiveness, party discipline
+ * Classification: Automated risk assessment and performance categorization
+ */
+@Entity(name = &quot;ViewPoliticianBehavioralTrends&quot;)
+@Table(name = &quot;view_politician_behavioral_trends&quot;)
+public class ViewPoliticianBehavioralTrends implements Serializable {
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
+
+	/** The person id. */
+	@Id
+	@Column(name = &quot;person_id&quot;, nullable = false, length = 255)
+	private String personId;
+
+	/** The period start. */
+	@Id
+	@Column(name = &quot;period_start&quot;, nullable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date periodStart;
+
+	/** The period end. */
+	@Column(name = &quot;period_end&quot;)
+	@Temporal(TemporalType.DATE)
+	private Date periodEnd;
+
+	/** The first name. */
+	@Column(name = &quot;first_name&quot;, length = 255)
+	private String firstName;
+
+	/** The last name. */
+	@Column(name = &quot;last_name&quot;, length = 255)
+	private String lastName;
+
+	/** The party. */
+	@Column(name = &quot;party&quot;, length = 50)
+	private String party;
+
+	/** The total ballots. */
+	@Column(name = &quot;total_ballots&quot;)
+	private Long totalBallots;
+
+	/** The total votes. */
+	@Column(name = &quot;total_votes&quot;)
+	private Long totalVotes;
+
+	/** The avg absence rate. */
+	@Column(name = &quot;avg_absence_rate&quot;, precision = 5, scale = 2)
+	private BigDecimal avgAbsenceRate;
+
+	/** The avg yes rate. */
+	@Column(name = &quot;avg_yes_rate&quot;, precision = 5, scale = 2)
+	private BigDecimal avgYesRate;
+
+	/** The avg no rate. */
+	@Column(name = &quot;avg_no_rate&quot;, precision = 5, scale = 2)
+	private BigDecimal avgNoRate;
+
+	/** The avg abstain rate. */
+	@Column(name = &quot;avg_abstain_rate&quot;, precision = 5, scale = 2)
+	private BigDecimal avgAbstainRate;
+
+	/** The avg win rate. */
+	@Column(name = &quot;avg_win_rate&quot;, precision = 5, scale = 2)
+	private BigDecimal avgWinRate;
+
+	/** The avg rebel rate. */
+	@Column(name = &quot;avg_rebel_rate&quot;, precision = 5, scale = 2)
+	private BigDecimal avgRebelRate;
+
+	/** The violation count. */
+	@Column(name = &quot;violation_count&quot;)
+	private Integer violationCount;
+
+	/** The violation types. */
+	@Column(name = &quot;violation_types&quot;)
+	private Integer violationTypes;
+
+	/** The absence trend. */
+	@Column(name = &quot;absence_trend&quot;, precision = 5, scale = 2)
+	private BigDecimal absenceTrend;
+
+	/** The win rate trend. */
+	@Column(name = &quot;win_rate_trend&quot;, precision = 5, scale = 2)
+	private BigDecimal winRateTrend;
+
+	/** The rebel rate trend. */
+	@Column(name = &quot;rebel_rate_trend&quot;, precision = 5, scale = 2)
+	private BigDecimal rebelRateTrend;
+
+	/** The ma 3month absence. */
+	@Column(name = &quot;ma_3month_absence&quot;, precision = 5, scale = 2)
+	private BigDecimal movingAvg3MonthAbsence;
+
+	/** The ma 3month win rate. */
+	@Column(name = &quot;ma_3month_win_rate&quot;, precision = 5, scale = 2)
+	private BigDecimal movingAvg3MonthWinRate;
+
+	/** The ma 3month rebel rate. */
+	@Column(name = &quot;ma_3month_rebel_rate&quot;, precision = 5, scale = 2)
+	private BigDecimal movingAvg3MonthRebelRate;
+
+	/** The attendance status. */
+	@Column(name = &quot;attendance_status&quot;, length = 50)
+	private String attendanceStatus;
+
+	/** The effectiveness status. */
+	@Column(name = &quot;effectiveness_status&quot;, length = 50)
+	private String effectivenessStatus;
+
+	/** The discipline status. */
+	@Column(name = &quot;discipline_status&quot;, length = 50)
+	private String disciplineStatus;
+
+	/** The behavioral assessment. */
+	@Column(name = &quot;behavioral_assessment&quot;, length = 50)
+	private String behavioralAssessment;
+
+	/**
+	 * Instantiates a new view politician behavioral trends.
+	 */
+	public ViewPoliticianBehavioralTrends() {
+<span class="fc" id="L169">		super();</span>
+<span class="fc" id="L170">	}</span>
+
+	/**
+	 * Gets the person id.
+	 *
+	 * @return the person id
+	 */
+	public String getPersonId() {
+<span class="fc" id="L178">		return personId;</span>
+	}
+
+	/**
+	 * Sets the person id.
+	 *
+	 * @param personId the new person id
+	 */
+	public void setPersonId(final String personId) {
+<span class="fc" id="L187">		this.personId = personId;</span>
+<span class="fc" id="L188">	}</span>
+
+	/**
+	 * Gets the period start.
+	 *
+	 * @return the period start
+	 */
+	public Date getPeriodStart() {
+<span class="fc" id="L196">		return periodStart;</span>
+	}
+
+	/**
+	 * Sets the period start.
+	 *
+	 * @param periodStart the new period start
+	 */
+	public void setPeriodStart(final Date periodStart) {
+<span class="fc" id="L205">		this.periodStart = periodStart;</span>
+<span class="fc" id="L206">	}</span>
+
+	/**
+	 * Gets the period end.
+	 *
+	 * @return the period end
+	 */
+	public Date getPeriodEnd() {
+<span class="fc" id="L214">		return periodEnd;</span>
+	}
+
+	/**
+	 * Sets the period end.
+	 *
+	 * @param periodEnd the new period end
+	 */
+	public void setPeriodEnd(final Date periodEnd) {
+<span class="fc" id="L223">		this.periodEnd = periodEnd;</span>
+<span class="fc" id="L224">	}</span>
+
+	/**
+	 * Gets the first name.
+	 *
+	 * @return the first name
+	 */
+	public String getFirstName() {
+<span class="fc" id="L232">		return firstName;</span>
+	}
+
+	/**
+	 * Sets the first name.
+	 *
+	 * @param firstName the new first name
+	 */
+	public void setFirstName(final String firstName) {
+<span class="fc" id="L241">		this.firstName = firstName;</span>
+<span class="fc" id="L242">	}</span>
+
+	/**
+	 * Gets the last name.
+	 *
+	 * @return the last name
+	 */
+	public String getLastName() {
+<span class="fc" id="L250">		return lastName;</span>
+	}
+
+	/**
+	 * Sets the last name.
+	 *
+	 * @param lastName the new last name
+	 */
+	public void setLastName(final String lastName) {
+<span class="fc" id="L259">		this.lastName = lastName;</span>
+<span class="fc" id="L260">	}</span>
+
+	/**
+	 * Gets the party.
+	 *
+	 * @return the party
+	 */
+	public String getParty() {
+<span class="fc" id="L268">		return party;</span>
+	}
+
+	/**
+	 * Sets the party.
+	 *
+	 * @param party the new party
+	 */
+	public void setParty(final String party) {
+<span class="fc" id="L277">		this.party = party;</span>
+<span class="fc" id="L278">	}</span>
+
+	/**
+	 * Gets the total ballots.
+	 *
+	 * @return the total ballots
+	 */
+	public Long getTotalBallots() {
+<span class="fc" id="L286">		return totalBallots;</span>
+	}
+
+	/**
+	 * Sets the total ballots.
+	 *
+	 * @param totalBallots the new total ballots
+	 */
+	public void setTotalBallots(final Long totalBallots) {
+<span class="fc" id="L295">		this.totalBallots = totalBallots;</span>
+<span class="fc" id="L296">	}</span>
+
+	/**
+	 * Gets the total votes.
+	 *
+	 * @return the total votes
+	 */
+	public Long getTotalVotes() {
+<span class="fc" id="L304">		return totalVotes;</span>
+	}
+
+	/**
+	 * Sets the total votes.
+	 *
+	 * @param totalVotes the new total votes
+	 */
+	public void setTotalVotes(final Long totalVotes) {
+<span class="fc" id="L313">		this.totalVotes = totalVotes;</span>
+<span class="fc" id="L314">	}</span>
+
+	/**
+	 * Gets the avg absence rate.
+	 *
+	 * @return the avg absence rate
+	 */
+	public BigDecimal getAvgAbsenceRate() {
+<span class="fc" id="L322">		return avgAbsenceRate;</span>
+	}
+
+	/**
+	 * Sets the avg absence rate.
+	 *
+	 * @param avgAbsenceRate the new avg absence rate
+	 */
+	public void setAvgAbsenceRate(final BigDecimal avgAbsenceRate) {
+<span class="fc" id="L331">		this.avgAbsenceRate = avgAbsenceRate;</span>
+<span class="fc" id="L332">	}</span>
+
+	/**
+	 * Gets the avg yes rate.
+	 *
+	 * @return the avg yes rate
+	 */
+	public BigDecimal getAvgYesRate() {
+<span class="fc" id="L340">		return avgYesRate;</span>
+	}
+
+	/**
+	 * Sets the avg yes rate.
+	 *
+	 * @param avgYesRate the new avg yes rate
+	 */
+	public void setAvgYesRate(final BigDecimal avgYesRate) {
+<span class="fc" id="L349">		this.avgYesRate = avgYesRate;</span>
+<span class="fc" id="L350">	}</span>
+
+	/**
+	 * Gets the avg no rate.
+	 *
+	 * @return the avg no rate
+	 */
+	public BigDecimal getAvgNoRate() {
+<span class="fc" id="L358">		return avgNoRate;</span>
+	}
+
+	/**
+	 * Sets the avg no rate.
+	 *
+	 * @param avgNoRate the new avg no rate
+	 */
+	public void setAvgNoRate(final BigDecimal avgNoRate) {
+<span class="fc" id="L367">		this.avgNoRate = avgNoRate;</span>
+<span class="fc" id="L368">	}</span>
+
+	/**
+	 * Gets the avg abstain rate.
+	 *
+	 * @return the avg abstain rate
+	 */
+	public BigDecimal getAvgAbstainRate() {
+<span class="fc" id="L376">		return avgAbstainRate;</span>
+	}
+
+	/**
+	 * Sets the avg abstain rate.
+	 *
+	 * @param avgAbstainRate the new avg abstain rate
+	 */
+	public void setAvgAbstainRate(final BigDecimal avgAbstainRate) {
+<span class="fc" id="L385">		this.avgAbstainRate = avgAbstainRate;</span>
+<span class="fc" id="L386">	}</span>
+
+	/**
+	 * Gets the avg win rate.
+	 *
+	 * @return the avg win rate
+	 */
+	public BigDecimal getAvgWinRate() {
+<span class="fc" id="L394">		return avgWinRate;</span>
+	}
+
+	/**
+	 * Sets the avg win rate.
+	 *
+	 * @param avgWinRate the new avg win rate
+	 */
+	public void setAvgWinRate(final BigDecimal avgWinRate) {
+<span class="fc" id="L403">		this.avgWinRate = avgWinRate;</span>
+<span class="fc" id="L404">	}</span>
+
+	/**
+	 * Gets the avg rebel rate.
+	 *
+	 * @return the avg rebel rate
+	 */
+	public BigDecimal getAvgRebelRate() {
+<span class="fc" id="L412">		return avgRebelRate;</span>
+	}
+
+	/**
+	 * Sets the avg rebel rate.
+	 *
+	 * @param avgRebelRate the new avg rebel rate
+	 */
+	public void setAvgRebelRate(final BigDecimal avgRebelRate) {
+<span class="fc" id="L421">		this.avgRebelRate = avgRebelRate;</span>
+<span class="fc" id="L422">	}</span>
+
+	/**
+	 * Gets the violation count.
+	 *
+	 * @return the violation count
+	 */
+	public Integer getViolationCount() {
+<span class="fc" id="L430">		return violationCount;</span>
+	}
+
+	/**
+	 * Sets the violation count.
+	 *
+	 * @param violationCount the new violation count
+	 */
+	public void setViolationCount(final Integer violationCount) {
+<span class="fc" id="L439">		this.violationCount = violationCount;</span>
+<span class="fc" id="L440">	}</span>
+
+	/**
+	 * Gets the violation types.
+	 *
+	 * @return the violation types
+	 */
+	public Integer getViolationTypes() {
+<span class="fc" id="L448">		return violationTypes;</span>
+	}
+
+	/**
+	 * Sets the violation types.
+	 *
+	 * @param violationTypes the new violation types
+	 */
+	public void setViolationTypes(final Integer violationTypes) {
+<span class="fc" id="L457">		this.violationTypes = violationTypes;</span>
+<span class="fc" id="L458">	}</span>
+
+	/**
+	 * Gets the absence trend.
+	 *
+	 * @return the absence trend
+	 */
+	public BigDecimal getAbsenceTrend() {
+<span class="fc" id="L466">		return absenceTrend;</span>
+	}
+
+	/**
+	 * Sets the absence trend.
+	 *
+	 * @param absenceTrend the new absence trend
+	 */
+	public void setAbsenceTrend(final BigDecimal absenceTrend) {
+<span class="fc" id="L475">		this.absenceTrend = absenceTrend;</span>
+<span class="fc" id="L476">	}</span>
+
+	/**
+	 * Gets the win rate trend.
+	 *
+	 * @return the win rate trend
+	 */
+	public BigDecimal getWinRateTrend() {
+<span class="fc" id="L484">		return winRateTrend;</span>
+	}
+
+	/**
+	 * Sets the win rate trend.
+	 *
+	 * @param winRateTrend the new win rate trend
+	 */
+	public void setWinRateTrend(final BigDecimal winRateTrend) {
+<span class="fc" id="L493">		this.winRateTrend = winRateTrend;</span>
+<span class="fc" id="L494">	}</span>
+
+	/**
+	 * Gets the rebel rate trend.
+	 *
+	 * @return the rebel rate trend
+	 */
+	public BigDecimal getRebelRateTrend() {
+<span class="fc" id="L502">		return rebelRateTrend;</span>
+	}
+
+	/**
+	 * Sets the rebel rate trend.
+	 *
+	 * @param rebelRateTrend the new rebel rate trend
+	 */
+	public void setRebelRateTrend(final BigDecimal rebelRateTrend) {
+<span class="fc" id="L511">		this.rebelRateTrend = rebelRateTrend;</span>
+<span class="fc" id="L512">	}</span>
+
+	/**
+	 * Gets the moving avg 3 month absence.
+	 *
+	 * @return the moving avg 3 month absence
+	 */
+	public BigDecimal getMovingAvg3MonthAbsence() {
+<span class="fc" id="L520">		return movingAvg3MonthAbsence;</span>
+	}
+
+	/**
+	 * Sets the moving avg 3 month absence.
+	 *
+	 * @param movingAvg3MonthAbsence the new moving avg 3 month absence
+	 */
+	public void setMovingAvg3MonthAbsence(final BigDecimal movingAvg3MonthAbsence) {
+<span class="fc" id="L529">		this.movingAvg3MonthAbsence = movingAvg3MonthAbsence;</span>
+<span class="fc" id="L530">	}</span>
+
+	/**
+	 * Gets the moving avg 3 month win rate.
+	 *
+	 * @return the moving avg 3 month win rate
+	 */
+	public BigDecimal getMovingAvg3MonthWinRate() {
+<span class="fc" id="L538">		return movingAvg3MonthWinRate;</span>
+	}
+
+	/**
+	 * Sets the moving avg 3 month win rate.
+	 *
+	 * @param movingAvg3MonthWinRate the new moving avg 3 month win rate
+	 */
+	public void setMovingAvg3MonthWinRate(final BigDecimal movingAvg3MonthWinRate) {
+<span class="fc" id="L547">		this.movingAvg3MonthWinRate = movingAvg3MonthWinRate;</span>
+<span class="fc" id="L548">	}</span>
+
+	/**
+	 * Gets the moving avg 3 month rebel rate.
+	 *
+	 * @return the moving avg 3 month rebel rate
+	 */
+	public BigDecimal getMovingAvg3MonthRebelRate() {
+<span class="fc" id="L556">		return movingAvg3MonthRebelRate;</span>
+	}
+
+	/**
+	 * Sets the moving avg 3 month rebel rate.
+	 *
+	 * @param movingAvg3MonthRebelRate the new moving avg 3 month rebel rate
+	 */
+	public void setMovingAvg3MonthRebelRate(final BigDecimal movingAvg3MonthRebelRate) {
+<span class="fc" id="L565">		this.movingAvg3MonthRebelRate = movingAvg3MonthRebelRate;</span>
+<span class="fc" id="L566">	}</span>
+
+	/**
+	 * Gets the attendance status.
+	 *
+	 * @return the attendance status
+	 */
+	public String getAttendanceStatus() {
+<span class="fc" id="L574">		return attendanceStatus;</span>
+	}
+
+	/**
+	 * Sets the attendance status.
+	 *
+	 * @param attendanceStatus the new attendance status
+	 */
+	public void setAttendanceStatus(final String attendanceStatus) {
+<span class="fc" id="L583">		this.attendanceStatus = attendanceStatus;</span>
+<span class="fc" id="L584">	}</span>
+
+	/**
+	 * Gets the effectiveness status.
+	 *
+	 * @return the effectiveness status
+	 */
+	public String getEffectivenessStatus() {
+<span class="fc" id="L592">		return effectivenessStatus;</span>
+	}
+
+	/**
+	 * Sets the effectiveness status.
+	 *
+	 * @param effectivenessStatus the new effectiveness status
+	 */
+	public void setEffectivenessStatus(final String effectivenessStatus) {
+<span class="fc" id="L601">		this.effectivenessStatus = effectivenessStatus;</span>
+<span class="fc" id="L602">	}</span>
+
+	/**
+	 * Gets the discipline status.
+	 *
+	 * @return the discipline status
+	 */
+	public String getDisciplineStatus() {
+<span class="fc" id="L610">		return disciplineStatus;</span>
+	}
+
+	/**
+	 * Sets the discipline status.
+	 *
+	 * @param disciplineStatus the new discipline status
+	 */
+	public void setDisciplineStatus(final String disciplineStatus) {
+<span class="fc" id="L619">		this.disciplineStatus = disciplineStatus;</span>
+<span class="fc" id="L620">	}</span>
+
+	/**
+	 * Gets the behavioral assessment.
+	 *
+	 * @return the behavioral assessment
+	 */
+	public String getBehavioralAssessment() {
+<span class="fc" id="L628">		return behavioralAssessment;</span>
+	}
+
+	/**
+	 * Sets the behavioral assessment.
+	 *
+	 * @param behavioralAssessment the new behavioral assessment
+	 */
+	public void setBehavioralAssessment(final String behavioralAssessment) {
+<span class="fc" id="L637">		this.behavioralAssessment = behavioralAssessment;</span>
+<span class="fc" id="L638">	}</span>
+
+	@Override
+	public boolean equals(final Object obj) {
+<span class="fc" id="L642">		return EqualsBuilder.reflectionEquals(this, obj);</span>
+	}
+
+	@Override
+	public int hashCode() {
+<span class="fc" id="L647">		return HashCodeBuilder.reflectionHashCode(this);</span>
+	}
+
+	@Override
+	public String toString() {
+<span class="fc" id="L652">		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

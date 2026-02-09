@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewElectionCycleDecisionIntelligence.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.impl</a> &gt; <span class="el_source">ViewElectionCycleDecisionIntelligence.java</span></div><h1>ViewElectionCycleDecisionIntelligence.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2026 James Pether Sörling
+ */
+package com.hack23.cia.model.internal.application.data.impl;
+
+import java.math.BigDecimal;
+import javax.persistence.*;
+import javax.xml.bind.annotation.*;
+import org.apache.commons.lang3.builder.*;
+import com.hack23.cia.model.common.api.ModelObject;
+
+/**
+ * The Class ViewElectionCycleDecisionIntelligence.
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = &quot;ViewElectionCycleDecisionIntelligence&quot;)
+@Entity(name = &quot;ViewElectionCycleDecisionIntelligence&quot;)
+@Table(name = &quot;view_election_cycle_decision_intelligence&quot;)
+@Inheritance(strategy = InheritanceType.JOINED)
+<span class="fc" id="L20">public class ViewElectionCycleDecisionIntelligence implements ModelObject {</span>
+private static final long serialVersionUID = 1L;
+
+@XmlElement(required = true)
+protected ViewElectionCycleEmbeddedId embeddedId;
+
+@XmlElement(name = &quot;cycle_year&quot;)
+protected Integer cycleYear;
+
+@XmlElement(name = &quot;calendar_year&quot;)
+protected Integer calendarYear;
+
+@XmlElement
+protected String party;
+
+@XmlElement(name = &quot;total_proposals&quot;)
+protected Long totalProposals;
+
+@XmlElement(name = &quot;approved_proposals&quot;)
+protected Long approvedProposals;
+
+@XmlElement(name = &quot;rejected_proposals&quot;)
+protected Long rejectedProposals;
+
+@XmlElement(name = &quot;avg_approval_rate&quot;)
+protected BigDecimal avgApprovalRate;
+
+@XmlElement(name = &quot;decision_effectiveness&quot;)
+protected String decisionEffectiveness;
+
+@XmlElement(name = &quot;temporal_approval_rate&quot;)
+protected BigDecimal temporalApprovalRate;
+
+@XmlElement(name = &quot;temporal_decision_count&quot;)
+protected Long temporalDecisionCount;
+
+@XmlElement(name = &quot;ministry_impact_score&quot;)
+protected BigDecimal ministryImpactScore;
+
+@XmlElement(name = &quot;ministries_with_decisions&quot;)
+protected Long ministriesWithDecisions;
+
+@EmbeddedId
+public ViewElectionCycleEmbeddedId getEmbeddedId() {
+<span class="fc" id="L64">		return embeddedId;</span>
+}
+
+public void setEmbeddedId(final ViewElectionCycleEmbeddedId value) {
+
+
+<span class="fc" id="L70">	this.embeddedId = value;</span>
+
+
+<span class="fc" id="L73">}</span>
+
+@Basic
+@Column(name = &quot;CYCLE_YEAR&quot;)
+public Integer getCycleYear() {
+<span class="fc" id="L78">		return cycleYear;</span>
+}
+
+public void setCycleYear(final Integer value) {
+
+
+<span class="fc" id="L84">	this.cycleYear = value;</span>
+
+
+<span class="fc" id="L87">}</span>
+
+@Basic
+@Column(name = &quot;CALENDAR_YEAR&quot;)
+public Integer getCalendarYear() {
+<span class="fc" id="L92">		return calendarYear;</span>
+}
+
+public void setCalendarYear(final Integer value) {
+
+
+<span class="fc" id="L98">	this.calendarYear = value;</span>
+
+
+<span class="fc" id="L101">}</span>
+
+@Basic
+@Column(name = &quot;PARTY&quot;, length = 50)
+public String getParty() {
+<span class="fc" id="L106">		return party;</span>
+}
+
+public void setParty(final String value) {
+
+
+<span class="fc" id="L112">	this.party = value;</span>
+
+
+<span class="fc" id="L115">}</span>
+
+@Basic
+@Column(name = &quot;TOTAL_PROPOSALS&quot;, precision = 20)
+public Long getTotalProposals() {
+<span class="fc" id="L120">		return totalProposals;</span>
+}
+
+public void setTotalProposals(final Long value) {
+
+
+<span class="fc" id="L126">	this.totalProposals = value;</span>
+
+
+<span class="fc" id="L129">}</span>
+
+@Basic
+@Column(name = &quot;APPROVED_PROPOSALS&quot;, precision = 20)
+public Long getApprovedProposals() {
+<span class="fc" id="L134">		return approvedProposals;</span>
+}
+
+public void setApprovedProposals(final Long value) {
+
+
+<span class="fc" id="L140">	this.approvedProposals = value;</span>
+
+
+<span class="fc" id="L143">}</span>
+
+@Basic
+@Column(name = &quot;REJECTED_PROPOSALS&quot;, precision = 20)
+public Long getRejectedProposals() {
+<span class="fc" id="L148">		return rejectedProposals;</span>
+}
+
+public void setRejectedProposals(final Long value) {
+
+
+<span class="fc" id="L154">	this.rejectedProposals = value;</span>
+
+
+<span class="fc" id="L157">}</span>
+
+@Basic
+@Column(name = &quot;AVG_APPROVAL_RATE&quot;, precision = 5, scale = 2)
+public BigDecimal getAvgApprovalRate() {
+<span class="fc" id="L162">		return avgApprovalRate;</span>
+}
+
+public void setAvgApprovalRate(final BigDecimal value) {
+
+
+<span class="fc" id="L168">	this.avgApprovalRate = value;</span>
+
+
+<span class="fc" id="L171">}</span>
+
+@Basic
+@Column(name = &quot;DECISION_EFFECTIVENESS&quot;, length = 50)
+public String getDecisionEffectiveness() {
+<span class="fc" id="L176">		return decisionEffectiveness;</span>
+}
+
+public void setDecisionEffectiveness(final String value) {
+
+
+<span class="fc" id="L182">	this.decisionEffectiveness = value;</span>
+
+
+<span class="fc" id="L185">}</span>
+
+@Basic
+@Column(name = &quot;TEMPORAL_APPROVAL_RATE&quot;, precision = 5, scale = 2)
+public BigDecimal getTemporalApprovalRate() {
+<span class="fc" id="L190">		return temporalApprovalRate;</span>
+}
+
+public void setTemporalApprovalRate(final BigDecimal value) {
+
+
+<span class="fc" id="L196">	this.temporalApprovalRate = value;</span>
+
+
+<span class="fc" id="L199">}</span>
+
+@Basic
+@Column(name = &quot;TEMPORAL_DECISION_COUNT&quot;, precision = 20)
+public Long getTemporalDecisionCount() {
+<span class="fc" id="L204">		return temporalDecisionCount;</span>
+}
+
+public void setTemporalDecisionCount(final Long value) {
+
+
+<span class="fc" id="L210">	this.temporalDecisionCount = value;</span>
+
+
+<span class="fc" id="L213">}</span>
+
+@Basic
+@Column(name = &quot;MINISTRY_IMPACT_SCORE&quot;, precision = 5, scale = 2)
+public BigDecimal getMinistryImpactScore() {
+<span class="fc" id="L218">		return ministryImpactScore;</span>
+}
+
+public void setMinistryImpactScore(final BigDecimal value) {
+
+
+<span class="fc" id="L224">	this.ministryImpactScore = value;</span>
+
+
+<span class="fc" id="L227">}</span>
+
+@Basic
+@Column(name = &quot;MINISTRIES_WITH_DECISIONS&quot;, precision = 20)
+public Long getMinistriesWithDecisions() {
+<span class="fc" id="L232">		return ministriesWithDecisions;</span>
+}
+
+public void setMinistriesWithDecisions(final Long value) {
+
+
+<span class="fc" id="L238">	this.ministriesWithDecisions = value;</span>
+
+
+<span class="fc" id="L241">}</span>
+
+@Override
+public final String toString() {
+<span class="fc" id="L245">		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);</span>
+}
+
+@Override
+public final boolean equals(final Object obj) {
+<span class="fc" id="L250">		return EqualsBuilder.reflectionEquals(this, obj);</span>
+}
+
+@Override
+public final int hashCode() {
+<span class="fc" id="L255">		return HashCodeBuilder.reflectionHashCode(this);</span>
+}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

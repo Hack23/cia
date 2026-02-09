@@ -1,0 +1,609 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewPartyPerformanceMetrics.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.party.impl</a> &gt; <span class="el_source">ViewPartyPerformanceMetrics.java</span></div><h1>ViewPartyPerformanceMetrics.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2025 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+ */
+package com.hack23.cia.model.internal.application.data.party.impl;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+/**
+ * JPA entity for view_party_performance_metrics database view.
+ * 
+ * Intelligence Purpose: Comprehensive party performance indicators combining
+ * member counts, voting records, document production, violations, and government representation.
+ * Calculates an overall performance score based on multiple factors.
+ * 
+ * Created by: Database schema v1.0+
+ * Risk Rules Supported: Pa-01 through Pa-10 (All party-level effectiveness rules)
+ * 
+ * Provides snapshot metrics for party benchmarking and comparative analysis
+ */
+@Entity(name = &quot;ViewPartyPerformanceMetrics&quot;)
+@Table(name = &quot;view_party_performance_metrics&quot;)
+public class ViewPartyPerformanceMetrics implements Serializable {
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
+
+	/** The party. */
+	@Id
+	@Column(name = &quot;party&quot;, nullable = false, length = 50)
+	private String party;
+
+	/** The party name. */
+	@Column(name = &quot;party_name&quot;, length = 255)
+	private String partyName;
+
+	/** The registration date. */
+	@Column(name = &quot;registration_date&quot;)
+	@Temporal(TemporalType.DATE)
+	private Date registrationDate;
+
+	/** The active members. */
+	@Column(name = &quot;active_members&quot;)
+	private Long activeMembers;
+
+	/** The inactive members. */
+	@Column(name = &quot;inactive_members&quot;)
+	private Long inactiveMembers;
+
+	/** The total violations. */
+	@Column(name = &quot;total_violations&quot;)
+	private Long totalViolations;
+
+	/** The members with violations. */
+	@Column(name = &quot;members_with_violations&quot;)
+	private Long membersWithViolations;
+
+	/** The violation rate percentage. */
+	@Column(name = &quot;violation_rate_percentage&quot;, precision = 10, scale = 2)
+	private BigDecimal violationRatePercentage;
+
+	/** The latest member violation. */
+	@Column(name = &quot;latest_member_violation&quot;)
+	@Temporal(TemporalType.DATE)
+	private Date latestMemberViolation;
+
+	/** The total votes last year. */
+	@Column(name = &quot;total_votes_last_year&quot;)
+	private Long totalVotesLastYear;
+
+	/** The avg absence rate. */
+	@Column(name = &quot;avg_absence_rate&quot;, precision = 10, scale = 2)
+	private BigDecimal avgAbsenceRate;
+
+	/** The avg win rate. */
+	@Column(name = &quot;avg_win_rate&quot;, precision = 10, scale = 2)
+	private BigDecimal avgWinRate;
+
+	/** The avg rebel rate. */
+	@Column(name = &quot;avg_rebel_rate&quot;, precision = 10, scale = 2)
+	private BigDecimal avgRebelRate;
+
+	/** The avg participation rate. */
+	@Column(name = &quot;avg_participation_rate&quot;, precision = 10, scale = 2)
+	private BigDecimal avgParticipationRate;
+
+	/** The documents last year. */
+	@Column(name = &quot;documents_last_year&quot;)
+	private Long documentsLastYear;
+
+	/** The motions last year. */
+	@Column(name = &quot;motions_last_year&quot;)
+	private Long motionsLastYear;
+
+	/** The propositions last year. */
+	@Column(name = &quot;propositions_last_year&quot;)
+	private Long propositionsLastYear;
+
+	/** The docs per member. */
+	@Column(name = &quot;docs_per_member&quot;, precision = 10, scale = 2)
+	private BigDecimal docsPerMember;
+
+	/** The current ministers. */
+	@Column(name = &quot;current_ministers&quot;)
+	private Long currentMinisters;
+
+	/** The current committee chairs. */
+	@Column(name = &quot;current_committee_chairs&quot;)
+	private Long currentCommitteeChairs;
+
+	/** The performance score. */
+	@Column(name = &quot;performance_score&quot;, precision = 10, scale = 2)
+	private BigDecimal performanceScore;
+
+	/** The performance level. */
+	@Column(name = &quot;performance_level&quot;, length = 50)
+	private String performanceLevel;
+
+	/** The strengths. */
+	@Column(name = &quot;strengths&quot;, length = 500)
+	private String strengths;
+
+	/** The weaknesses. */
+	@Column(name = &quot;weaknesses&quot;, length = 500)
+	private String weaknesses;
+
+	/**
+	 * Instantiates a new view party performance metrics.
+	 */
+	public ViewPartyPerformanceMetrics() {
+<span class="fc" id="L159">		super();</span>
+<span class="fc" id="L160">	}</span>
+
+	/**
+	 * Gets the party.
+	 *
+	 * @return the party
+	 */
+	public String getParty() {
+<span class="fc" id="L168">		return party;</span>
+	}
+
+	/**
+	 * Sets the party.
+	 *
+	 * @param party the new party
+	 */
+	public void setParty(final String party) {
+<span class="fc" id="L177">		this.party = party;</span>
+<span class="fc" id="L178">	}</span>
+
+	/**
+	 * Gets the party name.
+	 *
+	 * @return the party name
+	 */
+	public String getPartyName() {
+<span class="fc" id="L186">		return partyName;</span>
+	}
+
+	/**
+	 * Sets the party name.
+	 *
+	 * @param partyName the new party name
+	 */
+	public void setPartyName(final String partyName) {
+<span class="fc" id="L195">		this.partyName = partyName;</span>
+<span class="fc" id="L196">	}</span>
+
+	/**
+	 * Gets the registration date.
+	 *
+	 * @return the registration date
+	 */
+	public Date getRegistrationDate() {
+<span class="fc" id="L204">		return registrationDate;</span>
+	}
+
+	/**
+	 * Sets the registration date.
+	 *
+	 * @param registrationDate the new registration date
+	 */
+	public void setRegistrationDate(final Date registrationDate) {
+<span class="fc" id="L213">		this.registrationDate = registrationDate;</span>
+<span class="fc" id="L214">	}</span>
+
+	/**
+	 * Gets the active members.
+	 *
+	 * @return the active members
+	 */
+	public Long getActiveMembers() {
+<span class="fc" id="L222">		return activeMembers;</span>
+	}
+
+	/**
+	 * Sets the active members.
+	 *
+	 * @param activeMembers the new active members
+	 */
+	public void setActiveMembers(final Long activeMembers) {
+<span class="fc" id="L231">		this.activeMembers = activeMembers;</span>
+<span class="fc" id="L232">	}</span>
+
+	/**
+	 * Gets the inactive members.
+	 *
+	 * @return the inactive members
+	 */
+	public Long getInactiveMembers() {
+<span class="fc" id="L240">		return inactiveMembers;</span>
+	}
+
+	/**
+	 * Sets the inactive members.
+	 *
+	 * @param inactiveMembers the new inactive members
+	 */
+	public void setInactiveMembers(final Long inactiveMembers) {
+<span class="fc" id="L249">		this.inactiveMembers = inactiveMembers;</span>
+<span class="fc" id="L250">	}</span>
+
+	/**
+	 * Gets the total violations.
+	 *
+	 * @return the total violations
+	 */
+	public Long getTotalViolations() {
+<span class="fc" id="L258">		return totalViolations;</span>
+	}
+
+	/**
+	 * Sets the total violations.
+	 *
+	 * @param totalViolations the new total violations
+	 */
+	public void setTotalViolations(final Long totalViolations) {
+<span class="fc" id="L267">		this.totalViolations = totalViolations;</span>
+<span class="fc" id="L268">	}</span>
+
+	/**
+	 * Gets the members with violations.
+	 *
+	 * @return the members with violations
+	 */
+	public Long getMembersWithViolations() {
+<span class="fc" id="L276">		return membersWithViolations;</span>
+	}
+
+	/**
+	 * Sets the members with violations.
+	 *
+	 * @param membersWithViolations the new members with violations
+	 */
+	public void setMembersWithViolations(final Long membersWithViolations) {
+<span class="fc" id="L285">		this.membersWithViolations = membersWithViolations;</span>
+<span class="fc" id="L286">	}</span>
+
+	/**
+	 * Gets the violation rate percentage.
+	 *
+	 * @return the violation rate percentage
+	 */
+	public BigDecimal getViolationRatePercentage() {
+<span class="fc" id="L294">		return violationRatePercentage;</span>
+	}
+
+	/**
+	 * Sets the violation rate percentage.
+	 *
+	 * @param violationRatePercentage the new violation rate percentage
+	 */
+	public void setViolationRatePercentage(final BigDecimal violationRatePercentage) {
+<span class="fc" id="L303">		this.violationRatePercentage = violationRatePercentage;</span>
+<span class="fc" id="L304">	}</span>
+
+	/**
+	 * Gets the latest member violation.
+	 *
+	 * @return the latest member violation
+	 */
+	public Date getLatestMemberViolation() {
+<span class="fc" id="L312">		return latestMemberViolation;</span>
+	}
+
+	/**
+	 * Sets the latest member violation.
+	 *
+	 * @param latestMemberViolation the new latest member violation
+	 */
+	public void setLatestMemberViolation(final Date latestMemberViolation) {
+<span class="fc" id="L321">		this.latestMemberViolation = latestMemberViolation;</span>
+<span class="fc" id="L322">	}</span>
+
+	/**
+	 * Gets the total votes last year.
+	 *
+	 * @return the total votes last year
+	 */
+	public Long getTotalVotesLastYear() {
+<span class="fc" id="L330">		return totalVotesLastYear;</span>
+	}
+
+	/**
+	 * Sets the total votes last year.
+	 *
+	 * @param totalVotesLastYear the new total votes last year
+	 */
+	public void setTotalVotesLastYear(final Long totalVotesLastYear) {
+<span class="fc" id="L339">		this.totalVotesLastYear = totalVotesLastYear;</span>
+<span class="fc" id="L340">	}</span>
+
+	/**
+	 * Gets the avg absence rate.
+	 *
+	 * @return the avg absence rate
+	 */
+	public BigDecimal getAvgAbsenceRate() {
+<span class="fc" id="L348">		return avgAbsenceRate;</span>
+	}
+
+	/**
+	 * Sets the avg absence rate.
+	 *
+	 * @param avgAbsenceRate the new avg absence rate
+	 */
+	public void setAvgAbsenceRate(final BigDecimal avgAbsenceRate) {
+<span class="fc" id="L357">		this.avgAbsenceRate = avgAbsenceRate;</span>
+<span class="fc" id="L358">	}</span>
+
+	/**
+	 * Gets the avg win rate.
+	 *
+	 * @return the avg win rate
+	 */
+	public BigDecimal getAvgWinRate() {
+<span class="fc" id="L366">		return avgWinRate;</span>
+	}
+
+	/**
+	 * Sets the avg win rate.
+	 *
+	 * @param avgWinRate the new avg win rate
+	 */
+	public void setAvgWinRate(final BigDecimal avgWinRate) {
+<span class="fc" id="L375">		this.avgWinRate = avgWinRate;</span>
+<span class="fc" id="L376">	}</span>
+
+	/**
+	 * Gets the avg rebel rate.
+	 *
+	 * @return the avg rebel rate
+	 */
+	public BigDecimal getAvgRebelRate() {
+<span class="fc" id="L384">		return avgRebelRate;</span>
+	}
+
+	/**
+	 * Sets the avg rebel rate.
+	 *
+	 * @param avgRebelRate the new avg rebel rate
+	 */
+	public void setAvgRebelRate(final BigDecimal avgRebelRate) {
+<span class="fc" id="L393">		this.avgRebelRate = avgRebelRate;</span>
+<span class="fc" id="L394">	}</span>
+
+	/**
+	 * Gets the avg participation rate.
+	 *
+	 * @return the avg participation rate
+	 */
+	public BigDecimal getAvgParticipationRate() {
+<span class="fc" id="L402">		return avgParticipationRate;</span>
+	}
+
+	/**
+	 * Sets the avg participation rate.
+	 *
+	 * @param avgParticipationRate the new avg participation rate
+	 */
+	public void setAvgParticipationRate(final BigDecimal avgParticipationRate) {
+<span class="fc" id="L411">		this.avgParticipationRate = avgParticipationRate;</span>
+<span class="fc" id="L412">	}</span>
+
+	/**
+	 * Gets the documents last year.
+	 *
+	 * @return the documents last year
+	 */
+	public Long getDocumentsLastYear() {
+<span class="fc" id="L420">		return documentsLastYear;</span>
+	}
+
+	/**
+	 * Sets the documents last year.
+	 *
+	 * @param documentsLastYear the new documents last year
+	 */
+	public void setDocumentsLastYear(final Long documentsLastYear) {
+<span class="fc" id="L429">		this.documentsLastYear = documentsLastYear;</span>
+<span class="fc" id="L430">	}</span>
+
+	/**
+	 * Gets the motions last year.
+	 *
+	 * @return the motions last year
+	 */
+	public Long getMotionsLastYear() {
+<span class="fc" id="L438">		return motionsLastYear;</span>
+	}
+
+	/**
+	 * Sets the motions last year.
+	 *
+	 * @param motionsLastYear the new motions last year
+	 */
+	public void setMotionsLastYear(final Long motionsLastYear) {
+<span class="fc" id="L447">		this.motionsLastYear = motionsLastYear;</span>
+<span class="fc" id="L448">	}</span>
+
+	/**
+	 * Gets the propositions last year.
+	 *
+	 * @return the propositions last year
+	 */
+	public Long getPropositionsLastYear() {
+<span class="fc" id="L456">		return propositionsLastYear;</span>
+	}
+
+	/**
+	 * Sets the propositions last year.
+	 *
+	 * @param propositionsLastYear the new propositions last year
+	 */
+	public void setPropositionsLastYear(final Long propositionsLastYear) {
+<span class="fc" id="L465">		this.propositionsLastYear = propositionsLastYear;</span>
+<span class="fc" id="L466">	}</span>
+
+	/**
+	 * Gets the docs per member.
+	 *
+	 * @return the docs per member
+	 */
+	public BigDecimal getDocsPerMember() {
+<span class="fc" id="L474">		return docsPerMember;</span>
+	}
+
+	/**
+	 * Sets the docs per member.
+	 *
+	 * @param docsPerMember the new docs per member
+	 */
+	public void setDocsPerMember(final BigDecimal docsPerMember) {
+<span class="fc" id="L483">		this.docsPerMember = docsPerMember;</span>
+<span class="fc" id="L484">	}</span>
+
+	/**
+	 * Gets the current ministers.
+	 *
+	 * @return the current ministers
+	 */
+	public Long getCurrentMinisters() {
+<span class="fc" id="L492">		return currentMinisters;</span>
+	}
+
+	/**
+	 * Sets the current ministers.
+	 *
+	 * @param currentMinisters the new current ministers
+	 */
+	public void setCurrentMinisters(final Long currentMinisters) {
+<span class="fc" id="L501">		this.currentMinisters = currentMinisters;</span>
+<span class="fc" id="L502">	}</span>
+
+	/**
+	 * Gets the current committee chairs.
+	 *
+	 * @return the current committee chairs
+	 */
+	public Long getCurrentCommitteeChairs() {
+<span class="fc" id="L510">		return currentCommitteeChairs;</span>
+	}
+
+	/**
+	 * Sets the current committee chairs.
+	 *
+	 * @param currentCommitteeChairs the new current committee chairs
+	 */
+	public void setCurrentCommitteeChairs(final Long currentCommitteeChairs) {
+<span class="fc" id="L519">		this.currentCommitteeChairs = currentCommitteeChairs;</span>
+<span class="fc" id="L520">	}</span>
+
+	/**
+	 * Gets the performance score.
+	 *
+	 * @return the performance score
+	 */
+	public BigDecimal getPerformanceScore() {
+<span class="fc" id="L528">		return performanceScore;</span>
+	}
+
+	/**
+	 * Sets the performance score.
+	 *
+	 * @param performanceScore the new performance score
+	 */
+	public void setPerformanceScore(final BigDecimal performanceScore) {
+<span class="fc" id="L537">		this.performanceScore = performanceScore;</span>
+<span class="fc" id="L538">	}</span>
+
+	/**
+	 * Gets the performance level.
+	 *
+	 * @return the performance level
+	 */
+	public String getPerformanceLevel() {
+<span class="fc" id="L546">		return performanceLevel;</span>
+	}
+
+	/**
+	 * Sets the performance level.
+	 *
+	 * @param performanceLevel the new performance level
+	 */
+	public void setPerformanceLevel(final String performanceLevel) {
+<span class="fc" id="L555">		this.performanceLevel = performanceLevel;</span>
+<span class="fc" id="L556">	}</span>
+
+	/**
+	 * Gets the strengths.
+	 *
+	 * @return the strengths
+	 */
+	public String getStrengths() {
+<span class="fc" id="L564">		return strengths;</span>
+	}
+
+	/**
+	 * Sets the strengths.
+	 *
+	 * @param strengths the new strengths
+	 */
+	public void setStrengths(final String strengths) {
+<span class="fc" id="L573">		this.strengths = strengths;</span>
+<span class="fc" id="L574">	}</span>
+
+	/**
+	 * Gets the weaknesses.
+	 *
+	 * @return the weaknesses
+	 */
+	public String getWeaknesses() {
+<span class="fc" id="L582">		return weaknesses;</span>
+	}
+
+	/**
+	 * Sets the weaknesses.
+	 *
+	 * @param weaknesses the new weaknesses
+	 */
+	public void setWeaknesses(final String weaknesses) {
+<span class="fc" id="L591">		this.weaknesses = weaknesses;</span>
+<span class="fc" id="L592">	}</span>
+
+	@Override
+	public boolean equals(final Object obj) {
+<span class="fc" id="L596">		return EqualsBuilder.reflectionEquals(this, obj);</span>
+	}
+
+	@Override
+	public int hashCode() {
+<span class="fc" id="L601">		return HashCodeBuilder.reflectionHashCode(this);</span>
+	}
+
+	@Override
+	public String toString() {
+<span class="fc" id="L606">		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

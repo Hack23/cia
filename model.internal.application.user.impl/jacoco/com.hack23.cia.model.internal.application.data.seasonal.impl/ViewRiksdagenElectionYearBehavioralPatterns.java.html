@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewRiksdagenElectionYearBehavioralPatterns.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.seasonal.impl</a> &gt; <span class="el_source">ViewRiksdagenElectionYearBehavioralPatterns.java</span></div><h1>ViewRiksdagenElectionYearBehavioralPatterns.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2026 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+ */
+package com.hack23.cia.model.internal.application.data.seasonal.impl;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+import org.hibernate.annotations.Immutable;
+
+/**
+ * The Class ViewRiksdagenElectionYearBehavioralPatterns.
+ * Database view for election year behavioral pattern analysis comparing
+ * 7 election years (2002-2026) vs midterm years with statistical baselines.
+ */
+@Entity
+@Immutable
+@Table(name = &quot;view_riksdagen_election_year_behavioral_patterns&quot;)
+public class ViewRiksdagenElectionYearBehavioralPatterns implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@Column(name = &quot;year&quot;, nullable = false)
+	private Integer year;
+
+	@Column(name = &quot;is_election_year&quot;)
+	private Boolean isElectionYear;
+
+	@Column(name = &quot;total_ballots&quot;)
+	private Long totalBallots;
+
+	@Column(name = &quot;active_politicians&quot;)
+	private Long activePoliticians;
+
+	@Column(name = &quot;attendance_rate&quot;)
+	private BigDecimal attendanceRate;
+
+	@Column(name = &quot;avg_yes_rate&quot;)
+	private BigDecimal avgYesRate;
+
+	@Column(name = &quot;avg_no_rate&quot;)
+	private BigDecimal avgNoRate;
+
+	@Column(name = &quot;avg_abstain_rate&quot;)
+	private BigDecimal avgAbstainRate;
+
+	@Column(name = &quot;documents_produced&quot;)
+	private Long documentsProduced;
+
+	@Column(name = &quot;motions_filed&quot;)
+	private Long motionsFiled;
+
+	@Column(name = &quot;proposals_filed&quot;)
+	private Long proposalsFiled;
+
+	@Column(name = &quot;election_median_ballots&quot;)
+	private BigDecimal electionMedianBallots;
+
+	@Column(name = &quot;election_avg_ballots&quot;)
+	private BigDecimal electionAvgBallots;
+
+	@Column(name = &quot;election_stddev_ballots&quot;)
+	private BigDecimal electionStddevBallots;
+
+	@Column(name = &quot;midterm_avg_ballots&quot;)
+	private BigDecimal midtermAvgBallots;
+
+	@Column(name = &quot;midterm_stddev_ballots&quot;)
+	private BigDecimal midtermStddevBallots;
+
+	@Column(name = &quot;ballot_ratio_vs_midterm&quot;)
+	private BigDecimal ballotRatioVsMidterm;
+
+	@Column(name = &quot;ballot_ratio_vs_election_avg&quot;)
+	private BigDecimal ballotRatioVsElectionAvg;
+
+	@Column(name = &quot;election_median_docs&quot;)
+	private BigDecimal electionMedianDocs;
+
+	@Column(name = &quot;election_avg_docs&quot;)
+	private BigDecimal electionAvgDocs;
+
+	@Column(name = &quot;election_stddev_docs&quot;)
+	private BigDecimal electionStddevDocs;
+
+	@Column(name = &quot;midterm_avg_docs&quot;)
+	private BigDecimal midtermAvgDocs;
+
+	@Column(name = &quot;doc_ratio_vs_midterm&quot;)
+	private BigDecimal docRatioVsMidterm;
+
+	@Column(name = &quot;doc_ratio_vs_election_avg&quot;)
+	private BigDecimal docRatioVsElectionAvg;
+
+	@Column(name = &quot;election_median_motions&quot;)
+	private BigDecimal electionMedianMotions;
+
+	@Column(name = &quot;election_avg_motions&quot;)
+	private BigDecimal electionAvgMotions;
+
+	@Column(name = &quot;election_stddev_motions&quot;)
+	private BigDecimal electionStddevMotions;
+
+	@Column(name = &quot;midterm_avg_motions&quot;)
+	private BigDecimal midtermAvgMotions;
+
+	@Column(name = &quot;motion_ratio_vs_midterm&quot;)
+	private BigDecimal motionRatioVsMidterm;
+
+	@Column(name = &quot;election_avg_attendance&quot;)
+	private BigDecimal electionAvgAttendance;
+
+	@Column(name = &quot;midterm_avg_attendance&quot;)
+	private BigDecimal midtermAvgAttendance;
+
+	@Column(name = &quot;ballot_z_score_vs_election_avg&quot;)
+	private BigDecimal ballotZScoreVsElectionAvg;
+
+	@Column(name = &quot;doc_z_score_vs_election_avg&quot;)
+	private BigDecimal docZScoreVsElectionAvg;
+
+	@Column(name = &quot;year_classification&quot;)
+	private String yearClassification;
+
+	@Column(name = &quot;composite_classification&quot;)
+	private String compositeClassification;
+
+	@Column(name = &quot;prev_year_ballots&quot;)
+	private Long prevYearBallots;
+
+	@Column(name = &quot;yoy_ballot_change_pct&quot;)
+	private BigDecimal yoyBallotChangePct;
+
+	/**
+	 * Instantiates a new view riksdagen election year behavioral patterns.
+	 */
+	public ViewRiksdagenElectionYearBehavioralPatterns() {
+<span class="fc" id="L163">		super();</span>
+<span class="fc" id="L164">	}</span>
+
+	// Getters and setters
+
+	public Integer getYear() {
+<span class="fc" id="L169">		return year;</span>
+	}
+
+	public void setYear(final Integer year) {
+<span class="fc" id="L173">		this.year = year;</span>
+<span class="fc" id="L174">	}</span>
+
+	public Boolean getIsElectionYear() {
+<span class="fc" id="L177">		return isElectionYear;</span>
+	}
+
+	public void setIsElectionYear(final Boolean isElectionYear) {
+<span class="fc" id="L181">		this.isElectionYear = isElectionYear;</span>
+<span class="fc" id="L182">	}</span>
+
+	public Long getTotalBallots() {
+<span class="fc" id="L185">		return totalBallots;</span>
+	}
+
+	public void setTotalBallots(final Long totalBallots) {
+<span class="fc" id="L189">		this.totalBallots = totalBallots;</span>
+<span class="fc" id="L190">	}</span>
+
+	public Long getActivePoliticians() {
+<span class="fc" id="L193">		return activePoliticians;</span>
+	}
+
+	public void setActivePoliticians(final Long activePoliticians) {
+<span class="fc" id="L197">		this.activePoliticians = activePoliticians;</span>
+<span class="fc" id="L198">	}</span>
+
+	public BigDecimal getAttendanceRate() {
+<span class="fc" id="L201">		return attendanceRate;</span>
+	}
+
+	public void setAttendanceRate(final BigDecimal attendanceRate) {
+<span class="fc" id="L205">		this.attendanceRate = attendanceRate;</span>
+<span class="fc" id="L206">	}</span>
+
+	public BigDecimal getAvgYesRate() {
+<span class="fc" id="L209">		return avgYesRate;</span>
+	}
+
+	public void setAvgYesRate(final BigDecimal avgYesRate) {
+<span class="fc" id="L213">		this.avgYesRate = avgYesRate;</span>
+<span class="fc" id="L214">	}</span>
+
+	public BigDecimal getAvgNoRate() {
+<span class="fc" id="L217">		return avgNoRate;</span>
+	}
+
+	public void setAvgNoRate(final BigDecimal avgNoRate) {
+<span class="fc" id="L221">		this.avgNoRate = avgNoRate;</span>
+<span class="fc" id="L222">	}</span>
+
+	public BigDecimal getAvgAbstainRate() {
+<span class="fc" id="L225">		return avgAbstainRate;</span>
+	}
+
+	public void setAvgAbstainRate(final BigDecimal avgAbstainRate) {
+<span class="fc" id="L229">		this.avgAbstainRate = avgAbstainRate;</span>
+<span class="fc" id="L230">	}</span>
+
+	public Long getDocumentsProduced() {
+<span class="fc" id="L233">		return documentsProduced;</span>
+	}
+
+	public void setDocumentsProduced(final Long documentsProduced) {
+<span class="fc" id="L237">		this.documentsProduced = documentsProduced;</span>
+<span class="fc" id="L238">	}</span>
+
+	public Long getMotionsFiled() {
+<span class="fc" id="L241">		return motionsFiled;</span>
+	}
+
+	public void setMotionsFiled(final Long motionsFiled) {
+<span class="fc" id="L245">		this.motionsFiled = motionsFiled;</span>
+<span class="fc" id="L246">	}</span>
+
+	public Long getProposalsFiled() {
+<span class="fc" id="L249">		return proposalsFiled;</span>
+	}
+
+	public void setProposalsFiled(final Long proposalsFiled) {
+<span class="fc" id="L253">		this.proposalsFiled = proposalsFiled;</span>
+<span class="fc" id="L254">	}</span>
+
+	public BigDecimal getElectionMedianBallots() {
+<span class="fc" id="L257">		return electionMedianBallots;</span>
+	}
+
+	public void setElectionMedianBallots(final BigDecimal electionMedianBallots) {
+<span class="fc" id="L261">		this.electionMedianBallots = electionMedianBallots;</span>
+<span class="fc" id="L262">	}</span>
+
+	public BigDecimal getElectionAvgBallots() {
+<span class="fc" id="L265">		return electionAvgBallots;</span>
+	}
+
+	public void setElectionAvgBallots(final BigDecimal electionAvgBallots) {
+<span class="fc" id="L269">		this.electionAvgBallots = electionAvgBallots;</span>
+<span class="fc" id="L270">	}</span>
+
+	public BigDecimal getElectionStddevBallots() {
+<span class="fc" id="L273">		return electionStddevBallots;</span>
+	}
+
+	public void setElectionStddevBallots(final BigDecimal electionStddevBallots) {
+<span class="fc" id="L277">		this.electionStddevBallots = electionStddevBallots;</span>
+<span class="fc" id="L278">	}</span>
+
+	public BigDecimal getMidtermAvgBallots() {
+<span class="fc" id="L281">		return midtermAvgBallots;</span>
+	}
+
+	public void setMidtermAvgBallots(final BigDecimal midtermAvgBallots) {
+<span class="fc" id="L285">		this.midtermAvgBallots = midtermAvgBallots;</span>
+<span class="fc" id="L286">	}</span>
+
+	public BigDecimal getMidtermStddevBallots() {
+<span class="fc" id="L289">		return midtermStddevBallots;</span>
+	}
+
+	public void setMidtermStddevBallots(final BigDecimal midtermStddevBallots) {
+<span class="fc" id="L293">		this.midtermStddevBallots = midtermStddevBallots;</span>
+<span class="fc" id="L294">	}</span>
+
+	public BigDecimal getBallotRatioVsMidterm() {
+<span class="fc" id="L297">		return ballotRatioVsMidterm;</span>
+	}
+
+	public void setBallotRatioVsMidterm(final BigDecimal ballotRatioVsMidterm) {
+<span class="fc" id="L301">		this.ballotRatioVsMidterm = ballotRatioVsMidterm;</span>
+<span class="fc" id="L302">	}</span>
+
+	public BigDecimal getBallotRatioVsElectionAvg() {
+<span class="fc" id="L305">		return ballotRatioVsElectionAvg;</span>
+	}
+
+	public void setBallotRatioVsElectionAvg(final BigDecimal ballotRatioVsElectionAvg) {
+<span class="fc" id="L309">		this.ballotRatioVsElectionAvg = ballotRatioVsElectionAvg;</span>
+<span class="fc" id="L310">	}</span>
+
+	public BigDecimal getElectionMedianDocs() {
+<span class="fc" id="L313">		return electionMedianDocs;</span>
+	}
+
+	public void setElectionMedianDocs(final BigDecimal electionMedianDocs) {
+<span class="fc" id="L317">		this.electionMedianDocs = electionMedianDocs;</span>
+<span class="fc" id="L318">	}</span>
+
+	public BigDecimal getElectionAvgDocs() {
+<span class="fc" id="L321">		return electionAvgDocs;</span>
+	}
+
+	public void setElectionAvgDocs(final BigDecimal electionAvgDocs) {
+<span class="fc" id="L325">		this.electionAvgDocs = electionAvgDocs;</span>
+<span class="fc" id="L326">	}</span>
+
+	public BigDecimal getElectionStddevDocs() {
+<span class="fc" id="L329">		return electionStddevDocs;</span>
+	}
+
+	public void setElectionStddevDocs(final BigDecimal electionStddevDocs) {
+<span class="fc" id="L333">		this.electionStddevDocs = electionStddevDocs;</span>
+<span class="fc" id="L334">	}</span>
+
+	public BigDecimal getMidtermAvgDocs() {
+<span class="fc" id="L337">		return midtermAvgDocs;</span>
+	}
+
+	public void setMidtermAvgDocs(final BigDecimal midtermAvgDocs) {
+<span class="fc" id="L341">		this.midtermAvgDocs = midtermAvgDocs;</span>
+<span class="fc" id="L342">	}</span>
+
+	public BigDecimal getDocRatioVsMidterm() {
+<span class="fc" id="L345">		return docRatioVsMidterm;</span>
+	}
+
+	public void setDocRatioVsMidterm(final BigDecimal docRatioVsMidterm) {
+<span class="fc" id="L349">		this.docRatioVsMidterm = docRatioVsMidterm;</span>
+<span class="fc" id="L350">	}</span>
+
+	public BigDecimal getDocRatioVsElectionAvg() {
+<span class="fc" id="L353">		return docRatioVsElectionAvg;</span>
+	}
+
+	public void setDocRatioVsElectionAvg(final BigDecimal docRatioVsElectionAvg) {
+<span class="fc" id="L357">		this.docRatioVsElectionAvg = docRatioVsElectionAvg;</span>
+<span class="fc" id="L358">	}</span>
+
+	public BigDecimal getElectionMedianMotions() {
+<span class="fc" id="L361">		return electionMedianMotions;</span>
+	}
+
+	public void setElectionMedianMotions(final BigDecimal electionMedianMotions) {
+<span class="fc" id="L365">		this.electionMedianMotions = electionMedianMotions;</span>
+<span class="fc" id="L366">	}</span>
+
+	public BigDecimal getElectionAvgMotions() {
+<span class="fc" id="L369">		return electionAvgMotions;</span>
+	}
+
+	public void setElectionAvgMotions(final BigDecimal electionAvgMotions) {
+<span class="fc" id="L373">		this.electionAvgMotions = electionAvgMotions;</span>
+<span class="fc" id="L374">	}</span>
+
+	public BigDecimal getElectionStddevMotions() {
+<span class="fc" id="L377">		return electionStddevMotions;</span>
+	}
+
+	public void setElectionStddevMotions(final BigDecimal electionStddevMotions) {
+<span class="fc" id="L381">		this.electionStddevMotions = electionStddevMotions;</span>
+<span class="fc" id="L382">	}</span>
+
+	public BigDecimal getMidtermAvgMotions() {
+<span class="fc" id="L385">		return midtermAvgMotions;</span>
+	}
+
+	public void setMidtermAvgMotions(final BigDecimal midtermAvgMotions) {
+<span class="fc" id="L389">		this.midtermAvgMotions = midtermAvgMotions;</span>
+<span class="fc" id="L390">	}</span>
+
+	public BigDecimal getMotionRatioVsMidterm() {
+<span class="fc" id="L393">		return motionRatioVsMidterm;</span>
+	}
+
+	public void setMotionRatioVsMidterm(final BigDecimal motionRatioVsMidterm) {
+<span class="fc" id="L397">		this.motionRatioVsMidterm = motionRatioVsMidterm;</span>
+<span class="fc" id="L398">	}</span>
+
+	public BigDecimal getElectionAvgAttendance() {
+<span class="fc" id="L401">		return electionAvgAttendance;</span>
+	}
+
+	public void setElectionAvgAttendance(final BigDecimal electionAvgAttendance) {
+<span class="fc" id="L405">		this.electionAvgAttendance = electionAvgAttendance;</span>
+<span class="fc" id="L406">	}</span>
+
+	public BigDecimal getMidtermAvgAttendance() {
+<span class="fc" id="L409">		return midtermAvgAttendance;</span>
+	}
+
+	public void setMidtermAvgAttendance(final BigDecimal midtermAvgAttendance) {
+<span class="fc" id="L413">		this.midtermAvgAttendance = midtermAvgAttendance;</span>
+<span class="fc" id="L414">	}</span>
+
+	public BigDecimal getBallotZScoreVsElectionAvg() {
+<span class="fc" id="L417">		return ballotZScoreVsElectionAvg;</span>
+	}
+
+	public void setBallotZScoreVsElectionAvg(final BigDecimal ballotZScoreVsElectionAvg) {
+<span class="fc" id="L421">		this.ballotZScoreVsElectionAvg = ballotZScoreVsElectionAvg;</span>
+<span class="fc" id="L422">	}</span>
+
+	public BigDecimal getDocZScoreVsElectionAvg() {
+<span class="fc" id="L425">		return docZScoreVsElectionAvg;</span>
+	}
+
+	public void setDocZScoreVsElectionAvg(final BigDecimal docZScoreVsElectionAvg) {
+<span class="fc" id="L429">		this.docZScoreVsElectionAvg = docZScoreVsElectionAvg;</span>
+<span class="fc" id="L430">	}</span>
+
+	public String getYearClassification() {
+<span class="fc" id="L433">		return yearClassification;</span>
+	}
+
+	public void setYearClassification(final String yearClassification) {
+<span class="fc" id="L437">		this.yearClassification = yearClassification;</span>
+<span class="fc" id="L438">	}</span>
+
+	public String getCompositeClassification() {
+<span class="fc" id="L441">		return compositeClassification;</span>
+	}
+
+	public void setCompositeClassification(final String compositeClassification) {
+<span class="fc" id="L445">		this.compositeClassification = compositeClassification;</span>
+<span class="fc" id="L446">	}</span>
+
+	public Long getPrevYearBallots() {
+<span class="fc" id="L449">		return prevYearBallots;</span>
+	}
+
+	public void setPrevYearBallots(final Long prevYearBallots) {
+<span class="fc" id="L453">		this.prevYearBallots = prevYearBallots;</span>
+<span class="fc" id="L454">	}</span>
+
+	public BigDecimal getYoyBallotChangePct() {
+<span class="fc" id="L457">		return yoyBallotChangePct;</span>
+	}
+
+	public void setYoyBallotChangePct(final BigDecimal yoyBallotChangePct) {
+<span class="fc" id="L461">		this.yoyBallotChangePct = yoyBallotChangePct;</span>
+<span class="fc" id="L462">	}</span>
+
+	@Override
+	public boolean equals(final Object obj) {
+<span class="fc" id="L466">		return EqualsBuilder.reflectionEquals(this, obj);</span>
+	}
+
+	@Override
+	public int hashCode() {
+<span class="fc" id="L471">		return HashCodeBuilder.reflectionHashCode(this);</span>
+	}
+
+	@Override
+	public String toString() {
+<span class="fc" id="L476">		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

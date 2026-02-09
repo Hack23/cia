@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewMinistryRiskEvolution.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.ministry.impl</a> &gt; <span class="el_source">ViewMinistryRiskEvolution.java</span></div><h1>ViewMinistryRiskEvolution.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2025 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+ */
+package com.hack23.cia.model.internal.application.data.ministry.impl;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+/**
+ * JPA entity for view_ministry_risk_evolution database view.
+ * 
+ * Intelligence Purpose: Track historical changes in ministry risk scores and monitor
+ * risk severity transitions for ministries. Identifies risk patterns and triggers
+ * at ministry level through quarterly risk assessment with trend analysis.
+ * 
+ * Created by: Liquibase 1.31+
+ * Risk Rules Supported: M-01 through M-04 (Ministry risk forecasting rules)
+ * 
+ * Enables predictive risk intelligence by analyzing document production decline,
+ * staffing shortfalls, and legislative output trends to identify ministries
+ * requiring intervention.
+ */
+@Entity(name = &quot;ViewMinistryRiskEvolution&quot;)
+@Table(name = &quot;view_ministry_risk_evolution&quot;)
+public class ViewMinistryRiskEvolution implements Serializable {
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * The Class CompositePrimaryKey.
+	 * 
+	 * &lt;p&gt;Composite primary key combining organization code and assessment period.&lt;/p&gt;
+	 */
+	@Embeddable
+	public static class CompositePrimaryKey implements Serializable {
+
+		/** The Constant serialVersionUID. */
+		private static final long serialVersionUID = 1L;
+
+		/** The org code. */
+		@Column(name = &quot;org_code&quot;, nullable = false, length = 255)
+		private String orgCode;
+
+		/** The assessment period. */
+		@Column(name = &quot;assessment_period&quot;, nullable = false)
+		@Temporal(TemporalType.TIMESTAMP)
+		private Date assessmentPeriod;
+
+		/**
+		 * Instantiates a new composite primary key.
+		 */
+		public CompositePrimaryKey() {
+<span class="fc" id="L83">			super();</span>
+<span class="fc" id="L84">		}</span>
+
+		/**
+		 * Instantiates a new composite primary key.
+		 *
+		 * @param orgCode the org code
+		 * @param assessmentPeriod the assessment period
+		 */
+		public CompositePrimaryKey(final String orgCode, final Date assessmentPeriod) {
+<span class="nc" id="L93">			super();</span>
+<span class="nc" id="L94">			this.orgCode = orgCode;</span>
+<span class="nc" id="L95">			this.assessmentPeriod = assessmentPeriod;</span>
+<span class="nc" id="L96">		}</span>
+
+		/**
+		 * Gets the org code.
+		 *
+		 * @return the org code
+		 */
+		public String getOrgCode() {
+<span class="fc" id="L104">			return orgCode;</span>
+		}
+
+		/**
+		 * Sets the org code.
+		 *
+		 * @param orgCode the new org code
+		 */
+		public void setOrgCode(final String orgCode) {
+<span class="fc" id="L113">			this.orgCode = orgCode;</span>
+<span class="fc" id="L114">		}</span>
+
+		/**
+		 * Gets the assessment period.
+		 *
+		 * @return the assessment period
+		 */
+		public Date getAssessmentPeriod() {
+<span class="fc" id="L122">			return assessmentPeriod;</span>
+		}
+
+		/**
+		 * Sets the assessment period.
+		 *
+		 * @param assessmentPeriod the new assessment period
+		 */
+		public void setAssessmentPeriod(final Date assessmentPeriod) {
+<span class="fc" id="L131">			this.assessmentPeriod = assessmentPeriod;</span>
+<span class="fc" id="L132">		}</span>
+
+		@Override
+		public boolean equals(final Object obj) {
+<span class="fc" id="L136">			return EqualsBuilder.reflectionEquals(this, obj);</span>
+		}
+
+		@Override
+		public int hashCode() {
+<span class="fc" id="L141">			return HashCodeBuilder.reflectionHashCode(this);</span>
+		}
+
+		@Override
+		public String toString() {
+<span class="fc" id="L146">			return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);</span>
+		}
+	}
+
+	/** The embedded id. */
+	@EmbeddedId
+	private CompositePrimaryKey embeddedId;
+
+	/** The name. */
+	@Column(name = &quot;name&quot;, length = 255)
+	private String name;
+
+	/** The period end. */
+	@Column(name = &quot;period_end&quot;)
+	@Temporal(TemporalType.DATE)
+	private Date periodEnd;
+
+	/** The year. */
+	@Column(name = &quot;year&quot;)
+	private Integer year;
+
+	/** The quarter. */
+	@Column(name = &quot;quarter&quot;)
+	private Integer quarter;
+
+	/** The documents produced. */
+	@Column(name = &quot;documents_produced&quot;)
+	private Long documentsProduced;
+
+	/** The legislative count. */
+	@Column(name = &quot;legislative_count&quot;)
+	private Long legislativeCount;
+
+	/** The active members. */
+	@Column(name = &quot;active_members&quot;)
+	private Long activeMembers;
+
+	/** The document trend. */
+	@Column(name = &quot;document_trend&quot;)
+	private Long documentTrend;
+
+	/** The legislative trend. */
+	@Column(name = &quot;legislative_trend&quot;)
+	private Long legislativeTrend;
+
+	/** The staffing trend. */
+	@Column(name = &quot;staffing_trend&quot;)
+	private Long staffingTrend;
+
+	/** The rolling avg documents. */
+	@Column(name = &quot;rolling_avg_documents&quot;, precision = 10, scale = 2)
+	private BigDecimal rollingAvgDocuments;
+
+	/** The risk level. */
+	@Column(name = &quot;risk_level&quot;, length = 50)
+	private String riskLevel;
+
+	/** The risk assessment. */
+	@Column(name = &quot;risk_assessment&quot;, length = 500)
+	private String riskAssessment;
+
+	/**
+	 * Instantiates a new view ministry risk evolution.
+	 */
+	public ViewMinistryRiskEvolution() {
+<span class="fc" id="L211">		super();</span>
+<span class="fc" id="L212">	}</span>
+
+	/**
+	 * Gets the embedded id.
+	 *
+	 * @return the embedded id
+	 */
+	public CompositePrimaryKey getEmbeddedId() {
+<span class="fc" id="L220">		return embeddedId;</span>
+	}
+
+	/**
+	 * Sets the embedded id.
+	 *
+	 * @param embeddedId the new embedded id
+	 */
+	public void setEmbeddedId(final CompositePrimaryKey embeddedId) {
+<span class="fc" id="L229">		this.embeddedId = embeddedId;</span>
+<span class="fc" id="L230">	}</span>
+
+	/**
+	 * Gets the name.
+	 *
+	 * @return the name
+	 */
+	public String getName() {
+<span class="fc" id="L238">		return name;</span>
+	}
+
+	/**
+	 * Sets the name.
+	 *
+	 * @param name the new name
+	 */
+	public void setName(final String name) {
+<span class="fc" id="L247">		this.name = name;</span>
+<span class="fc" id="L248">	}</span>
+
+	/**
+	 * Gets the period end.
+	 *
+	 * @return the period end
+	 */
+	public Date getPeriodEnd() {
+<span class="fc" id="L256">		return periodEnd;</span>
+	}
+
+	/**
+	 * Sets the period end.
+	 *
+	 * @param periodEnd the new period end
+	 */
+	public void setPeriodEnd(final Date periodEnd) {
+<span class="fc" id="L265">		this.periodEnd = periodEnd;</span>
+<span class="fc" id="L266">	}</span>
+
+	/**
+	 * Gets the year.
+	 *
+	 * @return the year
+	 */
+	public Integer getYear() {
+<span class="fc" id="L274">		return year;</span>
+	}
+
+	/**
+	 * Sets the year.
+	 *
+	 * @param year the new year
+	 */
+	public void setYear(final Integer year) {
+<span class="fc" id="L283">		this.year = year;</span>
+<span class="fc" id="L284">	}</span>
+
+	/**
+	 * Gets the quarter.
+	 *
+	 * @return the quarter
+	 */
+	public Integer getQuarter() {
+<span class="fc" id="L292">		return quarter;</span>
+	}
+
+	/**
+	 * Sets the quarter.
+	 *
+	 * @param quarter the new quarter
+	 */
+	public void setQuarter(final Integer quarter) {
+<span class="fc" id="L301">		this.quarter = quarter;</span>
+<span class="fc" id="L302">	}</span>
+
+	/**
+	 * Gets the documents produced.
+	 *
+	 * @return the documents produced
+	 */
+	public Long getDocumentsProduced() {
+<span class="fc" id="L310">		return documentsProduced;</span>
+	}
+
+	/**
+	 * Sets the documents produced.
+	 *
+	 * @param documentsProduced the new documents produced
+	 */
+	public void setDocumentsProduced(final Long documentsProduced) {
+<span class="fc" id="L319">		this.documentsProduced = documentsProduced;</span>
+<span class="fc" id="L320">	}</span>
+
+	/**
+	 * Gets the legislative count.
+	 *
+	 * @return the legislative count
+	 */
+	public Long getLegislativeCount() {
+<span class="fc" id="L328">		return legislativeCount;</span>
+	}
+
+	/**
+	 * Sets the legislative count.
+	 *
+	 * @param legislativeCount the new legislative count
+	 */
+	public void setLegislativeCount(final Long legislativeCount) {
+<span class="fc" id="L337">		this.legislativeCount = legislativeCount;</span>
+<span class="fc" id="L338">	}</span>
+
+	/**
+	 * Gets the active members.
+	 *
+	 * @return the active members
+	 */
+	public Long getActiveMembers() {
+<span class="fc" id="L346">		return activeMembers;</span>
+	}
+
+	/**
+	 * Sets the active members.
+	 *
+	 * @param activeMembers the new active members
+	 */
+	public void setActiveMembers(final Long activeMembers) {
+<span class="fc" id="L355">		this.activeMembers = activeMembers;</span>
+<span class="fc" id="L356">	}</span>
+
+	/**
+	 * Gets the document trend.
+	 *
+	 * @return the document trend
+	 */
+	public Long getDocumentTrend() {
+<span class="fc" id="L364">		return documentTrend;</span>
+	}
+
+	/**
+	 * Sets the document trend.
+	 *
+	 * @param documentTrend the new document trend
+	 */
+	public void setDocumentTrend(final Long documentTrend) {
+<span class="fc" id="L373">		this.documentTrend = documentTrend;</span>
+<span class="fc" id="L374">	}</span>
+
+	/**
+	 * Gets the legislative trend.
+	 *
+	 * @return the legislative trend
+	 */
+	public Long getLegislativeTrend() {
+<span class="fc" id="L382">		return legislativeTrend;</span>
+	}
+
+	/**
+	 * Sets the legislative trend.
+	 *
+	 * @param legislativeTrend the new legislative trend
+	 */
+	public void setLegislativeTrend(final Long legislativeTrend) {
+<span class="fc" id="L391">		this.legislativeTrend = legislativeTrend;</span>
+<span class="fc" id="L392">	}</span>
+
+	/**
+	 * Gets the staffing trend.
+	 *
+	 * @return the staffing trend
+	 */
+	public Long getStaffingTrend() {
+<span class="fc" id="L400">		return staffingTrend;</span>
+	}
+
+	/**
+	 * Sets the staffing trend.
+	 *
+	 * @param staffingTrend the new staffing trend
+	 */
+	public void setStaffingTrend(final Long staffingTrend) {
+<span class="fc" id="L409">		this.staffingTrend = staffingTrend;</span>
+<span class="fc" id="L410">	}</span>
+
+	/**
+	 * Gets the rolling avg documents.
+	 *
+	 * @return the rolling avg documents
+	 */
+	public BigDecimal getRollingAvgDocuments() {
+<span class="fc" id="L418">		return rollingAvgDocuments;</span>
+	}
+
+	/**
+	 * Sets the rolling avg documents.
+	 *
+	 * @param rollingAvgDocuments the new rolling avg documents
+	 */
+	public void setRollingAvgDocuments(final BigDecimal rollingAvgDocuments) {
+<span class="fc" id="L427">		this.rollingAvgDocuments = rollingAvgDocuments;</span>
+<span class="fc" id="L428">	}</span>
+
+	/**
+	 * Gets the risk level.
+	 *
+	 * @return the risk level
+	 */
+	public String getRiskLevel() {
+<span class="fc" id="L436">		return riskLevel;</span>
+	}
+
+	/**
+	 * Sets the risk level.
+	 *
+	 * @param riskLevel the new risk level
+	 */
+	public void setRiskLevel(final String riskLevel) {
+<span class="fc" id="L445">		this.riskLevel = riskLevel;</span>
+<span class="fc" id="L446">	}</span>
+
+	/**
+	 * Gets the risk assessment.
+	 *
+	 * @return the risk assessment
+	 */
+	public String getRiskAssessment() {
+<span class="fc" id="L454">		return riskAssessment;</span>
+	}
+
+	/**
+	 * Sets the risk assessment.
+	 *
+	 * @param riskAssessment the new risk assessment
+	 */
+	public void setRiskAssessment(final String riskAssessment) {
+<span class="fc" id="L463">		this.riskAssessment = riskAssessment;</span>
+<span class="fc" id="L464">	}</span>
+
+	@Override
+	public boolean equals(final Object obj) {
+<span class="fc" id="L468">		return EqualsBuilder.reflectionEquals(this, obj);</span>
+	}
+
+	@Override
+	public int hashCode() {
+<span class="fc" id="L473">		return HashCodeBuilder.reflectionHashCode(this);</span>
+	}
+
+	@Override
+	public String toString() {
+<span class="fc" id="L478">		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

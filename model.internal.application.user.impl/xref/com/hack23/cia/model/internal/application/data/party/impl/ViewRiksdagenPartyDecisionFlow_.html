@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang="">
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>ViewRiksdagenPartyDecisionFlow_ xref</title>
+<link type="text/css" rel="stylesheet" href="../../../../../../../../../stylesheet.css" />
+</head>
+<body>
+<div id="overview"><a href="../../../../../../../../../../apidocs/com/hack23/cia/model/internal/application/data/party/impl/ViewRiksdagenPartyDecisionFlow_.html">View Javadoc</a></div><pre>
+<a class="jxr_linenumber" name="L1" href="#L1">1</a>   <strong class="jxr_keyword">package</strong> com.hack23.cia.model.internal.application.data.party.impl;
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <strong class="jxr_keyword">import</strong> java.math.BigDecimal;
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> java.util.Date;
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">import</strong> javax.persistence.metamodel.SingularAttribute;
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <strong class="jxr_keyword">import</strong> javax.persistence.metamodel.StaticMetamodel;
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   @StaticMetamodel(ViewRiksdagenPartyDecisionFlow.<strong class="jxr_keyword">class</strong>)
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">abstract</strong> <strong class="jxr_keyword">class</strong> <a name="ViewRiksdagenPartyDecisionFlow_" href="../../../../../../../../../com/hack23/cia/model/internal/application/data/party/impl/ViewRiksdagenPartyDecisionFlow_.html#ViewRiksdagenPartyDecisionFlow_">ViewRiksdagenPartyDecisionFlow_</a> {
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">volatile</strong> SingularAttribute&lt;ViewRiksdagenPartyDecisionFlow, Date&gt; earliestDecisionDate;
+<a class="jxr_linenumber" name="L12" href="#L12">12</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">volatile</strong> SingularAttribute&lt;ViewRiksdagenPartyDecisionFlow, Long&gt; totalProposals;
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">volatile</strong> SingularAttribute&lt;ViewRiksdagenPartyDecisionFlow, String&gt; committeeOrg;
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">volatile</strong> SingularAttribute&lt;ViewRiksdagenPartyDecisionFlow, Long&gt; otherDecisions;
+<a class="jxr_linenumber" name="L15" href="#L15">15</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">volatile</strong> SingularAttribute&lt;ViewRiksdagenPartyDecisionFlow, Long&gt; rejectedProposals;
+<a class="jxr_linenumber" name="L16" href="#L16">16</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">volatile</strong> SingularAttribute&lt;ViewRiksdagenPartyDecisionFlow, BigDecimal&gt; rejectionRate;
+<a class="jxr_linenumber" name="L17" href="#L17">17</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">volatile</strong> SingularAttribute&lt;ViewRiksdagenPartyDecisionFlow, Long&gt; approvedProposals;
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">volatile</strong> SingularAttribute&lt;ViewRiksdagenPartyDecisionFlow, Date&gt; latestDecisionDate;
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">volatile</strong> SingularAttribute&lt;ViewRiksdagenPartyDecisionFlow, Long&gt; referredBackProposals;
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">volatile</strong> SingularAttribute&lt;ViewRiksdagenPartyDecisionFlow, Integer&gt; decisionYear;
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">volatile</strong> SingularAttribute&lt;ViewRiksdagenPartyDecisionFlow, BigDecimal&gt; approvalRate;
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">volatile</strong> SingularAttribute&lt;ViewRiksdagenPartyDecisionFlow, Integer&gt; decisionMonthNum;
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">volatile</strong> SingularAttribute&lt;ViewRiksdagenPartyDecisionFlow, ViewRiksdagenPartyDecisionFlowEmbeddedId&gt; embeddedId;
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>  
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String EARLIEST_DECISION_DATE = <span class="jxr_string">"earliestDecisionDate"</span>;
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String TOTAL_PROPOSALS = <span class="jxr_string">"totalProposals"</span>;
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String COMMITTEE_ORG = <span class="jxr_string">"committeeOrg"</span>;
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String OTHER_DECISIONS = <span class="jxr_string">"otherDecisions"</span>;
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String REJECTED_PROPOSALS = <span class="jxr_string">"rejectedProposals"</span>;
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String REJECTION_RATE = <span class="jxr_string">"rejectionRate"</span>;
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String APPROVED_PROPOSALS = <span class="jxr_string">"approvedProposals"</span>;
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String LATEST_DECISION_DATE = <span class="jxr_string">"latestDecisionDate"</span>;
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String REFERRED_BACK_PROPOSALS = <span class="jxr_string">"referredBackProposals"</span>;
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String DECISION_YEAR = <span class="jxr_string">"decisionYear"</span>;
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String APPROVAL_RATE = <span class="jxr_string">"approvalRate"</span>;
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String DECISION_MONTH_NUM = <span class="jxr_string">"decisionMonthNum"</span>;
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String EMBEDDED_ID = <span class="jxr_string">"embeddedId"</span>;
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>  
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>  }
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>  
+</pre>
+<hr/>
+<div id="footer">© 2010–2026 <a href="http://www.hack23.com">www.hack23.com</a></div>
+</body>
+</html>

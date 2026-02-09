@@ -1,0 +1,584 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewRiksdagenPoliticianDocumentSummary.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.politician.impl</a> &gt; <span class="el_source">ViewRiksdagenPoliticianDocumentSummary.java</span></div><h1>ViewRiksdagenPoliticianDocumentSummary.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2025 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.model.internal.application.data.politician.impl;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+/**
+ * The Class ViewRiksdagenPoliticianDocumentSummary.
+ * 
+ * &lt;p&gt;Maps to the materialized view &lt;code&gt;view_riksdagen_politician_document_summary&lt;/code&gt;
+ * which provides all-time aggregated document statistics by politician.&lt;/p&gt;
+ * 
+ * &lt;p&gt;&lt;strong&gt;Intelligence Purpose:&lt;/strong&gt;&lt;/p&gt;
+ * &lt;ul&gt;
+ *   &lt;li&gt;&lt;strong&gt;Temporal Analysis Framework:&lt;/strong&gt; All-time politician productivity comparison and analysis&lt;/li&gt;
+ *   &lt;li&gt;&lt;strong&gt;Pattern Recognition:&lt;/strong&gt; Identifies document activity profiles (Party-focused, Individual-focused, etc.)&lt;/li&gt;
+ *   &lt;li&gt;&lt;strong&gt;Performance Monitoring:&lt;/strong&gt; Tracks overall politician legislative productivity metrics&lt;/li&gt;
+ *   &lt;li&gt;&lt;strong&gt;Strategic Analysis:&lt;/strong&gt; Analyzes collaboration patterns and activity levels across careers&lt;/li&gt;
+ * &lt;/ul&gt;
+ * 
+ * &lt;p&gt;&lt;strong&gt;Key Metrics:&lt;/strong&gt;&lt;/p&gt;
+ * &lt;ul&gt;
+ *   &lt;li&gt;Total documents and document type breakdown (motions, propositions)&lt;/li&gt;
+ *   &lt;li&gt;Motion type classification (party, individual, committee, multi-party)&lt;/li&gt;
+ *   &lt;li&gt;Activity timeline (first/last document, years active, docs per year)&lt;/li&gt;
+ *   &lt;li&gt;Activity profile classification (Party-focused/Individual-focused/Committee-focused/Mixed)&lt;/li&gt;
+ *   &lt;li&gt;Activity level classification (Very High/High/Medium/Low/Inactive)&lt;/li&gt;
+ *   &lt;li&gt;Collaboration percentage based on multi-party motions&lt;/li&gt;
+ * &lt;/ul&gt;
+ * 
+ * @author James Pether Sörling
+ */
+@Entity
+@Table(name = &quot;view_riksdagen_politician_document_summary&quot;)
+public class ViewRiksdagenPoliticianDocumentSummary implements Serializable {
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
+
+	/** The person reference id. */
+	@Id
+	@Column(name = &quot;person_reference_id&quot;, nullable = false, length = 255)
+	private String personReferenceId;
+
+	/** The total documents. */
+	@Column(name = &quot;total_documents&quot;, nullable = false)
+	private BigInteger totalDocuments;
+
+	/** The party motions. */
+	@Column(name = &quot;party_motions&quot;, nullable = false)
+	private BigInteger partyMotions;
+
+	/** The individual motions. */
+	@Column(name = &quot;individual_motions&quot;, nullable = false)
+	private BigInteger individualMotions;
+
+	/** The follow up motions. */
+	@Column(name = &quot;follow_up_motions&quot;, nullable = false)
+	private BigInteger followUpMotions;
+
+	/** The committee motions. */
+	@Column(name = &quot;committee_motions&quot;, nullable = false)
+	private BigInteger committeeMotions;
+
+	/** The multi party motions. */
+	@Column(name = &quot;multi_party_motions&quot;, nullable = false)
+	private BigInteger multiPartyMotions;
+
+	/** The party motions pct. */
+	@Column(name = &quot;party_motions_pct&quot;, precision = 131089)
+	private BigDecimal partyMotionsPct;
+
+	/** The individual motions pct. */
+	@Column(name = &quot;individual_motions_pct&quot;, precision = 131089)
+	private BigDecimal individualMotionsPct;
+
+	/** The committee motions pct. */
+	@Column(name = &quot;committee_motions_pct&quot;, precision = 131089)
+	private BigDecimal committeeMotionsPct;
+
+	/** The first document date. */
+	@Column(name = &quot;first_document_date&quot;)
+	@Temporal(TemporalType.DATE)
+	private Date firstDocumentDate;
+
+	/** The last document date. */
+	@Column(name = &quot;last_document_date&quot;)
+	@Temporal(TemporalType.DATE)
+	private Date lastDocumentDate;
+
+	/** The years active. */
+	@Column(name = &quot;years_active&quot;)
+	private Integer yearsActive;
+
+	/** The docs per year. */
+	@Column(name = &quot;docs_per_year&quot;, precision = 131089)
+	private BigDecimal docsPerYear;
+
+	/** The documents last year. */
+	@Column(name = &quot;documents_last_year&quot;, nullable = false)
+	private BigInteger documentsLastYear;
+
+	/** The propositions. */
+	@Column(name = &quot;propositions&quot;, nullable = false)
+	private BigInteger propositions;
+
+	/** The government communications. */
+	@Column(name = &quot;government_communications&quot;, nullable = false)
+	private BigInteger governmentCommunications;
+
+	/** The document types as string. */
+	@Column(name = &quot;document_types&quot;)
+	private String documentTypesString;
+
+	/** The activity profile. */
+	@Column(name = &quot;activity_profile&quot;, length = 20)
+	private String activityProfile;
+
+	/** The activity level. */
+	@Column(name = &quot;activity_level&quot;, length = 20)
+	private String activityLevel;
+
+	/** The collaboration percentage. */
+	@Column(name = &quot;collaboration_percentage&quot;, precision = 131089)
+	private BigDecimal collaborationPercentage;
+
+	/**
+	 * Instantiates a new view riksdagen politician document summary.
+	 */
+	public ViewRiksdagenPoliticianDocumentSummary() {
+<span class="fc" id="L163">		super();</span>
+<span class="fc" id="L164">	}</span>
+
+	/**
+	 * Gets the person reference id.
+	 *
+	 * @return the person reference id
+	 */
+	public String getPersonReferenceId() {
+<span class="fc" id="L172">		return personReferenceId;</span>
+	}
+
+	/**
+	 * Sets the person reference id.
+	 *
+	 * @param personReferenceId the new person reference id
+	 */
+	public void setPersonReferenceId(final String personReferenceId) {
+<span class="fc" id="L181">		this.personReferenceId = personReferenceId;</span>
+<span class="fc" id="L182">	}</span>
+
+	/**
+	 * Gets the total documents.
+	 *
+	 * @return the total documents
+	 */
+	public BigInteger getTotalDocuments() {
+<span class="fc" id="L190">		return totalDocuments;</span>
+	}
+
+	/**
+	 * Sets the total documents.
+	 *
+	 * @param totalDocuments the new total documents
+	 */
+	public void setTotalDocuments(final BigInteger totalDocuments) {
+<span class="fc" id="L199">		this.totalDocuments = totalDocuments;</span>
+<span class="fc" id="L200">	}</span>
+
+	/**
+	 * Gets the party motions.
+	 *
+	 * @return the party motions
+	 */
+	public BigInteger getPartyMotions() {
+<span class="fc" id="L208">		return partyMotions;</span>
+	}
+
+	/**
+	 * Sets the party motions.
+	 *
+	 * @param partyMotions the new party motions
+	 */
+	public void setPartyMotions(final BigInteger partyMotions) {
+<span class="fc" id="L217">		this.partyMotions = partyMotions;</span>
+<span class="fc" id="L218">	}</span>
+
+	/**
+	 * Gets the individual motions.
+	 *
+	 * @return the individual motions
+	 */
+	public BigInteger getIndividualMotions() {
+<span class="fc" id="L226">		return individualMotions;</span>
+	}
+
+	/**
+	 * Sets the individual motions.
+	 *
+	 * @param individualMotions the new individual motions
+	 */
+	public void setIndividualMotions(final BigInteger individualMotions) {
+<span class="fc" id="L235">		this.individualMotions = individualMotions;</span>
+<span class="fc" id="L236">	}</span>
+
+	/**
+	 * Gets the follow up motions.
+	 *
+	 * @return the follow up motions
+	 */
+	public BigInteger getFollowUpMotions() {
+<span class="fc" id="L244">		return followUpMotions;</span>
+	}
+
+	/**
+	 * Sets the follow up motions.
+	 *
+	 * @param followUpMotions the new follow up motions
+	 */
+	public void setFollowUpMotions(final BigInteger followUpMotions) {
+<span class="fc" id="L253">		this.followUpMotions = followUpMotions;</span>
+<span class="fc" id="L254">	}</span>
+
+	/**
+	 * Gets the committee motions.
+	 *
+	 * @return the committee motions
+	 */
+	public BigInteger getCommitteeMotions() {
+<span class="fc" id="L262">		return committeeMotions;</span>
+	}
+
+	/**
+	 * Sets the committee motions.
+	 *
+	 * @param committeeMotions the new committee motions
+	 */
+	public void setCommitteeMotions(final BigInteger committeeMotions) {
+<span class="fc" id="L271">		this.committeeMotions = committeeMotions;</span>
+<span class="fc" id="L272">	}</span>
+
+	/**
+	 * Gets the multi party motions.
+	 *
+	 * @return the multi party motions
+	 */
+	public BigInteger getMultiPartyMotions() {
+<span class="fc" id="L280">		return multiPartyMotions;</span>
+	}
+
+	/**
+	 * Sets the multi party motions.
+	 *
+	 * @param multiPartyMotions the new multi party motions
+	 */
+	public void setMultiPartyMotions(final BigInteger multiPartyMotions) {
+<span class="fc" id="L289">		this.multiPartyMotions = multiPartyMotions;</span>
+<span class="fc" id="L290">	}</span>
+
+	/**
+	 * Gets the party motions pct.
+	 *
+	 * @return the party motions pct
+	 */
+	public BigDecimal getPartyMotionsPct() {
+<span class="fc" id="L298">		return partyMotionsPct;</span>
+	}
+
+	/**
+	 * Sets the party motions pct.
+	 *
+	 * @param partyMotionsPct the new party motions pct
+	 */
+	public void setPartyMotionsPct(final BigDecimal partyMotionsPct) {
+<span class="fc" id="L307">		this.partyMotionsPct = partyMotionsPct;</span>
+<span class="fc" id="L308">	}</span>
+
+	/**
+	 * Gets the individual motions pct.
+	 *
+	 * @return the individual motions pct
+	 */
+	public BigDecimal getIndividualMotionsPct() {
+<span class="fc" id="L316">		return individualMotionsPct;</span>
+	}
+
+	/**
+	 * Sets the individual motions pct.
+	 *
+	 * @param individualMotionsPct the new individual motions pct
+	 */
+	public void setIndividualMotionsPct(final BigDecimal individualMotionsPct) {
+<span class="fc" id="L325">		this.individualMotionsPct = individualMotionsPct;</span>
+<span class="fc" id="L326">	}</span>
+
+	/**
+	 * Gets the committee motions pct.
+	 *
+	 * @return the committee motions pct
+	 */
+	public BigDecimal getCommitteeMotionsPct() {
+<span class="fc" id="L334">		return committeeMotionsPct;</span>
+	}
+
+	/**
+	 * Sets the committee motions pct.
+	 *
+	 * @param committeeMotionsPct the new committee motions pct
+	 */
+	public void setCommitteeMotionsPct(final BigDecimal committeeMotionsPct) {
+<span class="fc" id="L343">		this.committeeMotionsPct = committeeMotionsPct;</span>
+<span class="fc" id="L344">	}</span>
+
+	/**
+	 * Gets the first document date.
+	 *
+	 * @return the first document date
+	 */
+	public Date getFirstDocumentDate() {
+<span class="fc" id="L352">		return firstDocumentDate;</span>
+	}
+
+	/**
+	 * Sets the first document date.
+	 *
+	 * @param firstDocumentDate the new first document date
+	 */
+	public void setFirstDocumentDate(final Date firstDocumentDate) {
+<span class="fc" id="L361">		this.firstDocumentDate = firstDocumentDate;</span>
+<span class="fc" id="L362">	}</span>
+
+	/**
+	 * Gets the last document date.
+	 *
+	 * @return the last document date
+	 */
+	public Date getLastDocumentDate() {
+<span class="fc" id="L370">		return lastDocumentDate;</span>
+	}
+
+	/**
+	 * Sets the last document date.
+	 *
+	 * @param lastDocumentDate the new last document date
+	 */
+	public void setLastDocumentDate(final Date lastDocumentDate) {
+<span class="fc" id="L379">		this.lastDocumentDate = lastDocumentDate;</span>
+<span class="fc" id="L380">	}</span>
+
+	/**
+	 * Gets the years active.
+	 *
+	 * @return the years active
+	 */
+	public Integer getYearsActive() {
+<span class="fc" id="L388">		return yearsActive;</span>
+	}
+
+	/**
+	 * Sets the years active.
+	 *
+	 * @param yearsActive the new years active
+	 */
+	public void setYearsActive(final Integer yearsActive) {
+<span class="fc" id="L397">		this.yearsActive = yearsActive;</span>
+<span class="fc" id="L398">	}</span>
+
+	/**
+	 * Gets the docs per year.
+	 *
+	 * @return the docs per year
+	 */
+	public BigDecimal getDocsPerYear() {
+<span class="fc" id="L406">		return docsPerYear;</span>
+	}
+
+	/**
+	 * Sets the docs per year.
+	 *
+	 * @param docsPerYear the new docs per year
+	 */
+	public void setDocsPerYear(final BigDecimal docsPerYear) {
+<span class="fc" id="L415">		this.docsPerYear = docsPerYear;</span>
+<span class="fc" id="L416">	}</span>
+
+	/**
+	 * Gets the documents last year.
+	 *
+	 * @return the documents last year
+	 */
+	public BigInteger getDocumentsLastYear() {
+<span class="fc" id="L424">		return documentsLastYear;</span>
+	}
+
+	/**
+	 * Sets the documents last year.
+	 *
+	 * @param documentsLastYear the new documents last year
+	 */
+	public void setDocumentsLastYear(final BigInteger documentsLastYear) {
+<span class="fc" id="L433">		this.documentsLastYear = documentsLastYear;</span>
+<span class="fc" id="L434">	}</span>
+
+	/**
+	 * Gets the propositions.
+	 *
+	 * @return the propositions
+	 */
+	public BigInteger getPropositions() {
+<span class="fc" id="L442">		return propositions;</span>
+	}
+
+	/**
+	 * Sets the propositions.
+	 *
+	 * @param propositions the new propositions
+	 */
+	public void setPropositions(final BigInteger propositions) {
+<span class="fc" id="L451">		this.propositions = propositions;</span>
+<span class="fc" id="L452">	}</span>
+
+	/**
+	 * Gets the government communications.
+	 *
+	 * @return the government communications
+	 */
+	public BigInteger getGovernmentCommunications() {
+<span class="fc" id="L460">		return governmentCommunications;</span>
+	}
+
+	/**
+	 * Sets the government communications.
+	 *
+	 * @param governmentCommunications the new government communications
+	 */
+	public void setGovernmentCommunications(final BigInteger governmentCommunications) {
+<span class="fc" id="L469">		this.governmentCommunications = governmentCommunications;</span>
+<span class="fc" id="L470">	}</span>
+
+	/**
+	 * Gets the document types.
+	 *
+	 * @return the document types
+	 */
+	public String[] getDocumentTypes() {
+<span class="nc bnc" id="L478" title="All 2 branches missed.">		if (documentTypesString != null) {</span>
+<span class="nc" id="L479">			return documentTypesString.replace(&quot;{&quot;, &quot;&quot;).replace(&quot;}&quot;, &quot;&quot;).split(&quot;,&quot;);</span>
+		}
+<span class="nc" id="L481">		return new String[0];</span>
+	}
+
+	/**
+	 * Sets the document types.
+	 *
+	 * @param documentTypes the new document types
+	 */
+	public void setDocumentTypes(final String[] documentTypes) {
+<span class="nc bnc" id="L490" title="All 4 branches missed.">		if (documentTypes != null &amp;&amp; documentTypes.length &gt; 0) {</span>
+<span class="nc" id="L491">			this.documentTypesString = &quot;{&quot; + String.join(&quot;,&quot;, documentTypes) + &quot;}&quot;;</span>
+		} else {
+<span class="nc" id="L493">			this.documentTypesString = null;</span>
+		}
+<span class="nc" id="L495">	}</span>
+
+	/**
+	 * Gets the document types string.
+	 *
+	 * @return the document types string
+	 */
+	public String getDocumentTypesString() {
+<span class="fc" id="L503">		return documentTypesString;</span>
+	}
+
+	/**
+	 * Sets the document types string.
+	 *
+	 * @param documentTypesString the new document types string
+	 */
+	public void setDocumentTypesString(final String documentTypesString) {
+<span class="fc" id="L512">		this.documentTypesString = documentTypesString;</span>
+<span class="fc" id="L513">	}</span>
+
+	/**
+	 * Gets the activity profile.
+	 *
+	 * @return the activity profile
+	 */
+	public String getActivityProfile() {
+<span class="fc" id="L521">		return activityProfile;</span>
+	}
+
+	/**
+	 * Sets the activity profile.
+	 *
+	 * @param activityProfile the new activity profile
+	 */
+	public void setActivityProfile(final String activityProfile) {
+<span class="fc" id="L530">		this.activityProfile = activityProfile;</span>
+<span class="fc" id="L531">	}</span>
+
+	/**
+	 * Gets the activity level.
+	 *
+	 * @return the activity level
+	 */
+	public String getActivityLevel() {
+<span class="fc" id="L539">		return activityLevel;</span>
+	}
+
+	/**
+	 * Sets the activity level.
+	 *
+	 * @param activityLevel the new activity level
+	 */
+	public void setActivityLevel(final String activityLevel) {
+<span class="fc" id="L548">		this.activityLevel = activityLevel;</span>
+<span class="fc" id="L549">	}</span>
+
+	/**
+	 * Gets the collaboration percentage.
+	 *
+	 * @return the collaboration percentage
+	 */
+	public BigDecimal getCollaborationPercentage() {
+<span class="fc" id="L557">		return collaborationPercentage;</span>
+	}
+
+	/**
+	 * Sets the collaboration percentage.
+	 *
+	 * @param collaborationPercentage the new collaboration percentage
+	 */
+	public void setCollaborationPercentage(final BigDecimal collaborationPercentage) {
+<span class="fc" id="L566">		this.collaborationPercentage = collaborationPercentage;</span>
+<span class="fc" id="L567">	}</span>
+
+	@Override
+	public boolean equals(final Object obj) {
+<span class="fc" id="L571">		return EqualsBuilder.reflectionEquals(this, obj);</span>
+	}
+
+	@Override
+	public String toString() {
+<span class="fc" id="L576">		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);</span>
+	}
+
+	@Override
+	public int hashCode() {
+<span class="fc" id="L581">		return HashCodeBuilder.reflectionHashCode(this);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

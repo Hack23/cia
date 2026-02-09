@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewRiksdagenSeasonalQuarterlyActivityEmbeddedId.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.seasonal.impl</a> &gt; <span class="el_source">ViewRiksdagenSeasonalQuarterlyActivityEmbeddedId.java</span></div><h1>ViewRiksdagenSeasonalQuarterlyActivityEmbeddedId.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2026 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+ */
+package com.hack23.cia.model.internal.application.data.seasonal.impl;
+
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+/**
+ * The Class ViewRiksdagenSeasonalQuarterlyActivityEmbeddedId.
+ * Composite key for seasonal quarterly activity (year + quarter).
+ */
+@Embeddable
+public class ViewRiksdagenSeasonalQuarterlyActivityEmbeddedId implements Serializable {
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
+
+	/** The year. */
+	@Column(name = &quot;year&quot;, nullable = false)
+	private Integer year;
+
+	/** The quarter. */
+	@Column(name = &quot;quarter&quot;, nullable = false)
+	private Integer quarter;
+
+	/**
+	 * Instantiates a new view riksdagen seasonal quarterly activity embedded id.
+	 */
+	public ViewRiksdagenSeasonalQuarterlyActivityEmbeddedId() {
+<span class="fc" id="L53">		super();</span>
+<span class="fc" id="L54">	}</span>
+
+	/**
+	 * Gets the year.
+	 *
+	 * @return the year
+	 */
+	public Integer getYear() {
+<span class="fc" id="L62">		return year;</span>
+	}
+
+	/**
+	 * Sets the year.
+	 *
+	 * @param year the new year
+	 */
+	public void setYear(final Integer year) {
+<span class="fc" id="L71">		this.year = year;</span>
+<span class="fc" id="L72">	}</span>
+
+	/**
+	 * Gets the quarter.
+	 *
+	 * @return the quarter
+	 */
+	public Integer getQuarter() {
+<span class="fc" id="L80">		return quarter;</span>
+	}
+
+	/**
+	 * Sets the quarter.
+	 *
+	 * @param quarter the new quarter
+	 */
+	public void setQuarter(final Integer quarter) {
+<span class="fc" id="L89">		this.quarter = quarter;</span>
+<span class="fc" id="L90">	}</span>
+
+	@Override
+	public boolean equals(final Object obj) {
+<span class="fc" id="L94">		return EqualsBuilder.reflectionEquals(this, obj);</span>
+	}
+
+	@Override
+	public int hashCode() {
+<span class="fc" id="L99">		return HashCodeBuilder.reflectionHashCode(this);</span>
+	}
+
+	@Override
+	public String toString() {
+<span class="fc" id="L104">		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

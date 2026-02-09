@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewRiksdagenPartySwitcherOutcomes.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.party.impl</a> &gt; <span class="el_source">ViewRiksdagenPartySwitcherOutcomes.java</span></div><h1>ViewRiksdagenPartySwitcherOutcomes.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2025 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+ */
+package com.hack23.cia.model.internal.application.data.party.impl;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.Objects;
+
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.Immutable;
+
+/**
+ * The Class ViewRiksdagenPartySwitcherOutcomes.
+ * Database view measuring post-transition career success for party switchers.
+ */
+@Entity
+@Immutable
+@Table(name = &quot;view_riksdagen_party_switcher_outcomes&quot;)
+public class ViewRiksdagenPartySwitcherOutcomes implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	@EmbeddedId
+	private ViewRiksdagenPartySwitcherOutcomesEmbeddedId embeddedId;
+
+	@Column(name = &quot;first_name&quot;)
+	private String firstName;
+
+	@Column(name = &quot;last_name&quot;)
+	private String lastName;
+
+	@Column(name = &quot;previous_party&quot;)
+	private String previousParty;
+
+	@Column(name = &quot;new_party&quot;)
+	private String newParty;
+
+	@Temporal(TemporalType.DATE)
+	@Column(name = &quot;next_election&quot;)
+	private Date nextElection;
+
+	@Column(name = &quot;months_until_next_election&quot;)
+	private Integer monthsUntilNextElection;
+
+	@Column(name = &quot;total_subsequent_assignments&quot;)
+	private Long totalSubsequentAssignments;
+
+	@Column(name = &quot;total_days_served_after_switch&quot;)
+	private Long totalDaysServedAfterSwitch;
+
+	@Column(name = &quot;continued_as_active_mp&quot;)
+	private Integer continuedAsActiveMp;
+
+	@Column(name = &quot;served_in_next_election&quot;)
+	private Integer servedInNextElection;
+
+	@Column(name = &quot;attained_leadership_post_switch&quot;)
+	private Integer attainedLeadershipPostSwitch;
+
+	@Column(name = &quot;post_switch_roles&quot;)
+	private String postSwitchRoles;
+
+	@Column(name = &quot;current_status&quot;)
+	private String currentStatus;
+
+	/**
+	 * Instantiates a new view riksdagen party switcher outcomes.
+	 */
+	public ViewRiksdagenPartySwitcherOutcomes() {
+<span class="fc" id="L92">		super();</span>
+<span class="fc" id="L93">	}</span>
+
+	/**
+	 * Gets the embedded id.
+	 *
+	 * @return the embedded id
+	 */
+	public ViewRiksdagenPartySwitcherOutcomesEmbeddedId getEmbeddedId() {
+<span class="fc" id="L101">		return embeddedId;</span>
+	}
+
+	/**
+	 * Sets the embedded id.
+	 *
+	 * @param embeddedId the new embedded id
+	 */
+	public void setEmbeddedId(final ViewRiksdagenPartySwitcherOutcomesEmbeddedId embeddedId) {
+<span class="fc" id="L110">		this.embeddedId = embeddedId;</span>
+<span class="fc" id="L111">	}</span>
+
+	/**
+	 * Gets the person id.
+	 *
+	 * @return the person id
+	 */
+	public String getPersonId() {
+<span class="fc bfc" id="L119" title="All 2 branches covered.">		return embeddedId != null ? embeddedId.getPersonId() : null;</span>
+	}
+
+	/**
+	 * Sets the person id.
+	 *
+	 * @param personId the new person id
+	 */
+	public void setPersonId(final String personId) {
+<span class="nc bnc" id="L128" title="All 2 branches missed.">		if (this.embeddedId == null) {</span>
+<span class="nc" id="L129">			this.embeddedId = new ViewRiksdagenPartySwitcherOutcomesEmbeddedId();</span>
+		}
+<span class="nc" id="L131">		this.embeddedId.setPersonId(personId);</span>
+<span class="nc" id="L132">	}</span>
+
+	/**
+	 * Gets the transition date.
+	 *
+	 * @return the transition date
+	 */
+	public Date getTransitionDate() {
+<span class="fc bfc" id="L140" title="All 2 branches covered.">		return embeddedId != null ? embeddedId.getTransitionDate() : null;</span>
+	}
+
+	/**
+	 * Sets the transition date.
+	 *
+	 * @param transitionDate the new transition date
+	 */
+	public void setTransitionDate(final Date transitionDate) {
+<span class="nc bnc" id="L149" title="All 2 branches missed.">		if (this.embeddedId == null) {</span>
+<span class="nc" id="L150">			this.embeddedId = new ViewRiksdagenPartySwitcherOutcomesEmbeddedId();</span>
+		}
+<span class="nc" id="L152">		this.embeddedId.setTransitionDate(transitionDate);</span>
+<span class="nc" id="L153">	}</span>
+
+	/**
+	 * Gets the first name.
+	 *
+	 * @return the first name
+	 */
+	public String getFirstName() {
+<span class="fc" id="L161">		return firstName;</span>
+	}
+
+	/**
+	 * Sets the first name.
+	 *
+	 * @param firstName the new first name
+	 */
+	public void setFirstName(final String firstName) {
+<span class="fc" id="L170">		this.firstName = firstName;</span>
+<span class="fc" id="L171">	}</span>
+
+	/**
+	 * Gets the last name.
+	 *
+	 * @return the last name
+	 */
+	public String getLastName() {
+<span class="fc" id="L179">		return lastName;</span>
+	}
+
+	/**
+	 * Sets the last name.
+	 *
+	 * @param lastName the new last name
+	 */
+	public void setLastName(final String lastName) {
+<span class="fc" id="L188">		this.lastName = lastName;</span>
+<span class="fc" id="L189">	}</span>
+
+	/**
+	 * Gets the previous party.
+	 *
+	 * @return the previous party
+	 */
+	public String getPreviousParty() {
+<span class="fc" id="L197">		return previousParty;</span>
+	}
+
+	/**
+	 * Sets the previous party.
+	 *
+	 * @param previousParty the new previous party
+	 */
+	public void setPreviousParty(final String previousParty) {
+<span class="fc" id="L206">		this.previousParty = previousParty;</span>
+<span class="fc" id="L207">	}</span>
+
+	/**
+	 * Gets the new party.
+	 *
+	 * @return the new party
+	 */
+	public String getNewParty() {
+<span class="fc" id="L215">		return newParty;</span>
+	}
+
+	/**
+	 * Sets the new party.
+	 *
+	 * @param newParty the new new party
+	 */
+	public void setNewParty(final String newParty) {
+<span class="fc" id="L224">		this.newParty = newParty;</span>
+<span class="fc" id="L225">	}</span>
+
+	/**
+	 * Gets the next election.
+	 *
+	 * @return the next election
+	 */
+	public Date getNextElection() {
+<span class="fc" id="L233">		return nextElection;</span>
+	}
+
+	/**
+	 * Sets the next election.
+	 *
+	 * @param nextElection the new next election
+	 */
+	public void setNextElection(final Date nextElection) {
+<span class="fc" id="L242">		this.nextElection = nextElection;</span>
+<span class="fc" id="L243">	}</span>
+
+	/**
+	 * Gets the months until next election.
+	 *
+	 * @return the months until next election
+	 */
+	public Integer getMonthsUntilNextElection() {
+<span class="fc" id="L251">		return monthsUntilNextElection;</span>
+	}
+
+	/**
+	 * Sets the months until next election.
+	 *
+	 * @param monthsUntilNextElection the new months until next election
+	 */
+	public void setMonthsUntilNextElection(final Integer monthsUntilNextElection) {
+<span class="fc" id="L260">		this.monthsUntilNextElection = monthsUntilNextElection;</span>
+<span class="fc" id="L261">	}</span>
+
+	/**
+	 * Gets the total subsequent assignments.
+	 *
+	 * @return the total subsequent assignments
+	 */
+	public Long getTotalSubsequentAssignments() {
+<span class="fc" id="L269">		return totalSubsequentAssignments;</span>
+	}
+
+	/**
+	 * Sets the total subsequent assignments.
+	 *
+	 * @param totalSubsequentAssignments the new total subsequent assignments
+	 */
+	public void setTotalSubsequentAssignments(final Long totalSubsequentAssignments) {
+<span class="fc" id="L278">		this.totalSubsequentAssignments = totalSubsequentAssignments;</span>
+<span class="fc" id="L279">	}</span>
+
+	/**
+	 * Gets the total days served after switch.
+	 *
+	 * @return the total days served after switch
+	 */
+	public Long getTotalDaysServedAfterSwitch() {
+<span class="fc" id="L287">		return totalDaysServedAfterSwitch;</span>
+	}
+
+	/**
+	 * Sets the total days served after switch.
+	 *
+	 * @param totalDaysServedAfterSwitch the new total days served after switch
+	 */
+	public void setTotalDaysServedAfterSwitch(final Long totalDaysServedAfterSwitch) {
+<span class="fc" id="L296">		this.totalDaysServedAfterSwitch = totalDaysServedAfterSwitch;</span>
+<span class="fc" id="L297">	}</span>
+
+	/**
+	 * Gets the continued as active mp.
+	 *
+	 * @return the continued as active mp
+	 */
+	public Integer getContinuedAsActiveMp() {
+<span class="fc" id="L305">		return continuedAsActiveMp;</span>
+	}
+
+	/**
+	 * Sets the continued as active mp.
+	 *
+	 * @param continuedAsActiveMp the new continued as active mp
+	 */
+	public void setContinuedAsActiveMp(final Integer continuedAsActiveMp) {
+<span class="fc" id="L314">		this.continuedAsActiveMp = continuedAsActiveMp;</span>
+<span class="fc" id="L315">	}</span>
+
+	/**
+	 * Gets the served in next election.
+	 *
+	 * @return the served in next election
+	 */
+	public Integer getServedInNextElection() {
+<span class="fc" id="L323">		return servedInNextElection;</span>
+	}
+
+	/**
+	 * Sets the served in next election.
+	 *
+	 * @param servedInNextElection the new served in next election
+	 */
+	public void setServedInNextElection(final Integer servedInNextElection) {
+<span class="fc" id="L332">		this.servedInNextElection = servedInNextElection;</span>
+<span class="fc" id="L333">	}</span>
+
+	/**
+	 * Gets the attained leadership post switch.
+	 *
+	 * @return the attained leadership post switch
+	 */
+	public Integer getAttainedLeadershipPostSwitch() {
+<span class="fc" id="L341">		return attainedLeadershipPostSwitch;</span>
+	}
+
+	/**
+	 * Sets the attained leadership post switch.
+	 *
+	 * @param attainedLeadershipPostSwitch the new attained leadership post switch
+	 */
+	public void setAttainedLeadershipPostSwitch(final Integer attainedLeadershipPostSwitch) {
+<span class="fc" id="L350">		this.attainedLeadershipPostSwitch = attainedLeadershipPostSwitch;</span>
+<span class="fc" id="L351">	}</span>
+
+	/**
+	 * Gets the post switch roles.
+	 *
+	 * @return the post switch roles
+	 */
+	public String getPostSwitchRoles() {
+<span class="fc" id="L359">		return postSwitchRoles;</span>
+	}
+
+	/**
+	 * Sets the post switch roles.
+	 *
+	 * @param postSwitchRoles the new post switch roles
+	 */
+	public void setPostSwitchRoles(final String postSwitchRoles) {
+<span class="fc" id="L368">		this.postSwitchRoles = postSwitchRoles;</span>
+<span class="fc" id="L369">	}</span>
+
+	/**
+	 * Gets the current status.
+	 *
+	 * @return the current status
+	 */
+	public String getCurrentStatus() {
+<span class="fc" id="L377">		return currentStatus;</span>
+	}
+
+	/**
+	 * Sets the current status.
+	 *
+	 * @param currentStatus the new current status
+	 */
+	public void setCurrentStatus(final String currentStatus) {
+<span class="fc" id="L386">		this.currentStatus = currentStatus;</span>
+<span class="fc" id="L387">	}</span>
+
+	@Override
+	public boolean equals(final Object obj) {
+<span class="fc bfc" id="L391" title="All 2 branches covered.">		if (this == obj) {</span>
+<span class="fc" id="L392">			return true;</span>
+		}
+<span class="pc bpc" id="L394" title="1 of 4 branches missed.">		if (obj == null || getClass() != obj.getClass()) {</span>
+<span class="fc" id="L395">			return false;</span>
+		}
+<span class="fc" id="L397">		final ViewRiksdagenPartySwitcherOutcomes that = (ViewRiksdagenPartySwitcherOutcomes) obj;</span>
+<span class="pc bpc" id="L398" title="1 of 2 branches missed.">		return Objects.equals(getPersonId(), that.getPersonId()) &amp;&amp;</span>
+<span class="pc bpc" id="L399" title="1 of 2 branches missed.">				Objects.equals(getTransitionDate(), that.getTransitionDate());</span>
+	}
+
+	@Override
+	public int hashCode() {
+<span class="fc" id="L404">		return Objects.hash(getPersonId(), getTransitionDate());</span>
+	}
+
+	@Override
+	public String toString() {
+<span class="fc" id="L409">		return &quot;ViewRiksdagenPartySwitcherOutcomes{&quot; +</span>
+<span class="fc" id="L410">				&quot;personId='&quot; + getPersonId() + '\'' +</span>
+				&quot;, firstName='&quot; + firstName + '\'' +
+				&quot;, lastName='&quot; + lastName + '\'' +
+				&quot;, previousParty='&quot; + previousParty + '\'' +
+				&quot;, newParty='&quot; + newParty + '\'' +
+<span class="fc" id="L415">				&quot;, transitionDate=&quot; + getTransitionDate() +</span>
+				&quot;, totalSubsequentAssignments=&quot; + totalSubsequentAssignments +
+				&quot;, continuedAsActiveMp=&quot; + continuedAsActiveMp +
+				&quot;, servedInNextElection=&quot; + servedInNextElection +
+				&quot;, attainedLeadershipPostSwitch=&quot; + attainedLeadershipPostSwitch +
+				&quot;, currentStatus='&quot; + currentStatus + '\'' +
+				'}';
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

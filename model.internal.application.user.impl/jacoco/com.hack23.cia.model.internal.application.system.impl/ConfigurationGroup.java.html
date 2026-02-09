@@ -13,10 +13,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * &lt;p&gt;Java class for ConfigurationGroup.
+ * &lt;p&gt;Java class for ConfigurationGroup.&lt;/p&gt;
  *
- * &lt;p&gt;The following schema fragment specifies the expected content contained within this class.
- * &lt;p&gt;
+ * &lt;p&gt;The following schema fragment specifies the expected content contained within this class.&lt;/p&gt;
  * &lt;pre&gt;
  * &amp;lt;simpleType name=&quot;ConfigurationGroup&quot;&amp;gt;
  *   &amp;lt;restriction base=&quot;{http://www.w3.org/2001/XMLSchema}string&quot;&amp;gt;
@@ -29,22 +28,22 @@ import javax.xml.bind.annotation.XmlType;
  * &lt;/pre&gt;
  *
  */
-<span class="fc" id="L32">@XmlType(name = &quot;ConfigurationGroup&quot;)</span>
+<span class="fc" id="L31">@XmlType(name = &quot;ConfigurationGroup&quot;)</span>
 @XmlEnum
 public enum ConfigurationGroup {
 
-<span class="fc" id="L36">    AUTHENTICATION,</span>
-<span class="fc" id="L37">    AUTHORIZATION,</span>
-<span class="fc" id="L38">    AGENT,</span>
-<span class="fc" id="L39">    EXTERNAL_SERVICES;</span>
+<span class="fc" id="L35">    AUTHENTICATION,</span>
+<span class="fc" id="L36">    AUTHORIZATION,</span>
+<span class="fc" id="L37">    AGENT,</span>
+<span class="fc" id="L38">    EXTERNAL_SERVICES;</span>
 
     public String value() {
-<span class="fc" id="L42">        return name();</span>
+<span class="fc" id="L41">        return name();</span>
     }
 
     public static ConfigurationGroup fromValue(final String v) {
-<span class="fc" id="L46">        return valueOf(v);</span>
+<span class="fc" id="L45">        return valueOf(v);</span>
     }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

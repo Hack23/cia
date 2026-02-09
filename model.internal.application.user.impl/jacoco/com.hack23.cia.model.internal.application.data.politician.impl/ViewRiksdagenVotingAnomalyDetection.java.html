@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewRiksdagenVotingAnomalyDetection.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.politician.impl</a> &gt; <span class="el_source">ViewRiksdagenVotingAnomalyDetection.java</span></div><h1>ViewRiksdagenVotingAnomalyDetection.java</h1><pre class="source lang-java linenums">package com.hack23.cia.model.internal.application.data.politician.impl;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+/**
+ * JPA entity for view_riksdagen_voting_anomaly_detection database view.
+ * 
+ * Intelligence Purpose: Detects voting anomalies and party discipline violations
+ * through analysis of individual politician voting patterns against party lines.
+ * Identifies rebellion rates, unanimous vote deviations, and defection risks.
+ * 
+ * Created by: Liquibase v1.29 (Intelligence Operations)
+ * Risk Rules Supported: P-03, P-05, P-13 (Rebellion and party discipline assessment)
+ */
+@Entity(name = &quot;ViewRiksdagenVotingAnomalyDetection&quot;)
+@Table(name = &quot;view_riksdagen_voting_anomaly_detection&quot;)
+public class ViewRiksdagenVotingAnomalyDetection implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@Column(name = &quot;person_id&quot;, nullable = false, length = 255)
+	private String personId;
+
+	@Id
+	@Column(name = &quot;party&quot;, nullable = false, length = 50)
+	private String party;
+
+	@Column(name = &quot;first_name&quot;, length = 255)
+	private String firstName;
+
+	@Column(name = &quot;last_name&quot;, length = 255)
+	private String lastName;
+
+	@Column(name = &quot;total_votes&quot;)
+	private Long totalVotes;
+
+	@Column(name = &quot;aligned_votes&quot;)
+	private Long alignedVotes;
+
+	@Column(name = &quot;opposed_votes&quot;)
+	private Long opposedVotes;
+
+	@Column(name = &quot;party_discipline_score&quot;, precision = 5, scale = 2)
+	private BigDecimal partyDisciplineScore;
+
+	@Column(name = &quot;rebellion_rate&quot;, precision = 5, scale = 2)
+	private BigDecimal rebellionRate;
+
+	@Column(name = &quot;unanimous_deviations&quot;)
+	private Long unanimousDeviations;
+
+	@Column(name = &quot;discipline_classification&quot;, length = 100)
+	private String disciplineClassification;
+
+	@Column(name = &quot;defection_risk_assessment&quot;, length = 255)
+	private String defectionRiskAssessment;
+
+	@Column(name = &quot;anomaly_count&quot;)
+	private Long anomalyCount;
+
+	/**
+	 * Default constructor.
+	 */
+	public ViewRiksdagenVotingAnomalyDetection() {
+<span class="fc" id="L77">		super();</span>
+<span class="fc" id="L78">	}</span>
+
+	// Getters and Setters
+
+	public String getPersonId() {
+<span class="fc" id="L83">		return personId;</span>
+	}
+
+	public void setPersonId(String personId) {
+<span class="fc" id="L87">		this.personId = personId;</span>
+<span class="fc" id="L88">	}</span>
+
+	public String getParty() {
+<span class="fc" id="L91">		return party;</span>
+	}
+
+	public void setParty(String party) {
+<span class="fc" id="L95">		this.party = party;</span>
+<span class="fc" id="L96">	}</span>
+
+	public String getFirstName() {
+<span class="fc" id="L99">		return firstName;</span>
+	}
+
+	public void setFirstName(String firstName) {
+<span class="fc" id="L103">		this.firstName = firstName;</span>
+<span class="fc" id="L104">	}</span>
+
+	public String getLastName() {
+<span class="fc" id="L107">		return lastName;</span>
+	}
+
+	public void setLastName(String lastName) {
+<span class="fc" id="L111">		this.lastName = lastName;</span>
+<span class="fc" id="L112">	}</span>
+
+	public Long getTotalVotes() {
+<span class="fc" id="L115">		return totalVotes;</span>
+	}
+
+	public void setTotalVotes(Long totalVotes) {
+<span class="fc" id="L119">		this.totalVotes = totalVotes;</span>
+<span class="fc" id="L120">	}</span>
+
+	public Long getAlignedVotes() {
+<span class="fc" id="L123">		return alignedVotes;</span>
+	}
+
+	public void setAlignedVotes(Long alignedVotes) {
+<span class="fc" id="L127">		this.alignedVotes = alignedVotes;</span>
+<span class="fc" id="L128">	}</span>
+
+	public Long getOpposedVotes() {
+<span class="fc" id="L131">		return opposedVotes;</span>
+	}
+
+	public void setOpposedVotes(Long opposedVotes) {
+<span class="fc" id="L135">		this.opposedVotes = opposedVotes;</span>
+<span class="fc" id="L136">	}</span>
+
+	public BigDecimal getPartyDisciplineScore() {
+<span class="fc" id="L139">		return partyDisciplineScore;</span>
+	}
+
+	public void setPartyDisciplineScore(BigDecimal partyDisciplineScore) {
+<span class="fc" id="L143">		this.partyDisciplineScore = partyDisciplineScore;</span>
+<span class="fc" id="L144">	}</span>
+
+	public BigDecimal getRebellionRate() {
+<span class="fc" id="L147">		return rebellionRate;</span>
+	}
+
+	public void setRebellionRate(BigDecimal rebellionRate) {
+<span class="fc" id="L151">		this.rebellionRate = rebellionRate;</span>
+<span class="fc" id="L152">	}</span>
+
+	public Long getUnanimousDeviations() {
+<span class="fc" id="L155">		return unanimousDeviations;</span>
+	}
+
+	public void setUnanimousDeviations(Long unanimousDeviations) {
+<span class="fc" id="L159">		this.unanimousDeviations = unanimousDeviations;</span>
+<span class="fc" id="L160">	}</span>
+
+	public String getDisciplineClassification() {
+<span class="fc" id="L163">		return disciplineClassification;</span>
+	}
+
+	public void setDisciplineClassification(String disciplineClassification) {
+<span class="fc" id="L167">		this.disciplineClassification = disciplineClassification;</span>
+<span class="fc" id="L168">	}</span>
+
+	public String getDefectionRiskAssessment() {
+<span class="fc" id="L171">		return defectionRiskAssessment;</span>
+	}
+
+	public void setDefectionRiskAssessment(String defectionRiskAssessment) {
+<span class="fc" id="L175">		this.defectionRiskAssessment = defectionRiskAssessment;</span>
+<span class="fc" id="L176">	}</span>
+
+	public Long getAnomalyCount() {
+<span class="fc" id="L179">		return anomalyCount;</span>
+	}
+
+	public void setAnomalyCount(Long anomalyCount) {
+<span class="fc" id="L183">		this.anomalyCount = anomalyCount;</span>
+<span class="fc" id="L184">	}</span>
+
+	@Override
+	public boolean equals(final Object obj) {
+<span class="fc bfc" id="L188" title="All 2 branches covered.">		if (this == obj) {</span>
+<span class="fc" id="L189">			return true;</span>
+		}
+<span class="pc bpc" id="L191" title="1 of 4 branches missed.">		if (obj == null || getClass() != obj.getClass()) {</span>
+<span class="fc" id="L192">			return false;</span>
+		}
+<span class="fc" id="L194">		final ViewRiksdagenVotingAnomalyDetection other = (ViewRiksdagenVotingAnomalyDetection) obj;</span>
+<span class="fc" id="L195">		return new EqualsBuilder()</span>
+<span class="fc" id="L196">				.append(personId, other.personId)</span>
+<span class="fc" id="L197">				.append(party, other.party)</span>
+<span class="fc" id="L198">				.isEquals();</span>
+	}
+
+	@Override
+	public int hashCode() {
+<span class="fc" id="L203">		return new HashCodeBuilder()</span>
+<span class="fc" id="L204">				.append(personId)</span>
+<span class="fc" id="L205">				.append(party)</span>
+<span class="fc" id="L206">				.toHashCode();</span>
+	}
+
+	@Override
+	public String toString() {
+<span class="fc" id="L211">		return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)</span>
+<span class="fc" id="L212">				.append(&quot;personId&quot;, personId)</span>
+<span class="fc" id="L213">				.append(&quot;firstName&quot;, firstName)</span>
+<span class="fc" id="L214">				.append(&quot;lastName&quot;, lastName)</span>
+<span class="fc" id="L215">				.append(&quot;party&quot;, party)</span>
+<span class="fc" id="L216">				.append(&quot;rebellionRate&quot;, rebellionRate)</span>
+<span class="fc" id="L217">				.append(&quot;disciplineClassification&quot;, disciplineClassification)</span>
+<span class="fc" id="L218">				.toString();</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

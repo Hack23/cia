@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewPartyEffectivenessTrends_.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.party.impl</a> &gt; <span class="el_source">ViewPartyEffectivenessTrends_.java</span></div><h1>ViewPartyEffectivenessTrends_.java</h1><pre class="source lang-java linenums">package com.hack23.cia.model.internal.application.data.party.impl;
+
+import java.math.BigDecimal;
+import java.util.Date;
+import javax.persistence.metamodel.SingularAttribute;
+import javax.persistence.metamodel.StaticMetamodel;
+
+@StaticMetamodel(ViewPartyEffectivenessTrends.class)
+<span class="nc" id="L9">public abstract class ViewPartyEffectivenessTrends_ {</span>
+
+	public static volatile SingularAttribute&lt;ViewPartyEffectivenessTrends, Integer&gt; memberChange;
+	public static volatile SingularAttribute&lt;ViewPartyEffectivenessTrends, Integer&gt; year;
+	public static volatile SingularAttribute&lt;ViewPartyEffectivenessTrends, Long&gt; motionsCount;
+	public static volatile SingularAttribute&lt;ViewPartyEffectivenessTrends, Integer&gt; membersWithViolations;
+	public static volatile SingularAttribute&lt;ViewPartyEffectivenessTrends, Long&gt; totalBallots;
+	public static volatile SingularAttribute&lt;ViewPartyEffectivenessTrends, BigDecimal&gt; winRateTrend;
+	public static volatile SingularAttribute&lt;ViewPartyEffectivenessTrends, BigDecimal&gt; movingAvg4QuarterAbsence;
+	public static volatile SingularAttribute&lt;ViewPartyEffectivenessTrends, Long&gt; totalVotes;
+	public static volatile SingularAttribute&lt;ViewPartyEffectivenessTrends, BigDecimal&gt; docsPerMember;
+	public static volatile SingularAttribute&lt;ViewPartyEffectivenessTrends, BigDecimal&gt; avgRebelRate;
+	public static volatile SingularAttribute&lt;ViewPartyEffectivenessTrends, String&gt; performanceLevel;
+	public static volatile SingularAttribute&lt;ViewPartyEffectivenessTrends, Long&gt; documentsProduced;
+	public static volatile SingularAttribute&lt;ViewPartyEffectivenessTrends, BigDecimal&gt; movingAvg4QuarterWinRate;
+	public static volatile SingularAttribute&lt;ViewPartyEffectivenessTrends, Date&gt; periodEnd;
+	public static volatile SingularAttribute&lt;ViewPartyEffectivenessTrends, String&gt; productivityLevel;
+	public static volatile SingularAttribute&lt;ViewPartyEffectivenessTrends, BigDecimal&gt; avgYesRate;
+	public static volatile SingularAttribute&lt;ViewPartyEffectivenessTrends, BigDecimal&gt; votesPerMember;
+	public static volatile SingularAttribute&lt;ViewPartyEffectivenessTrends, BigDecimal&gt; violationsPerMember;
+	public static volatile SingularAttribute&lt;ViewPartyEffectivenessTrends, String&gt; effectivenessAssessment;
+	public static volatile SingularAttribute&lt;ViewPartyEffectivenessTrends, Integer&gt; activeMembers;
+	public static volatile SingularAttribute&lt;ViewPartyEffectivenessTrends, Integer&gt; activeDocumentAuthors;
+	public static volatile SingularAttribute&lt;ViewPartyEffectivenessTrends, BigDecimal&gt; absenceTrend;
+	public static volatile SingularAttribute&lt;ViewPartyEffectivenessTrends, Long&gt; violationCount;
+	public static volatile SingularAttribute&lt;ViewPartyEffectivenessTrends, BigDecimal&gt; avgAbsenceRate;
+	public static volatile SingularAttribute&lt;ViewPartyEffectivenessTrends, Date&gt; periodStart;
+	public static volatile SingularAttribute&lt;ViewPartyEffectivenessTrends, BigDecimal&gt; avgWinRate;
+	public static volatile SingularAttribute&lt;ViewPartyEffectivenessTrends, String&gt; party;
+	public static volatile SingularAttribute&lt;ViewPartyEffectivenessTrends, Integer&gt; quarter;
+
+	public static final String MEMBER_CHANGE = &quot;memberChange&quot;;
+	public static final String YEAR = &quot;year&quot;;
+	public static final String MOTIONS_COUNT = &quot;motionsCount&quot;;
+	public static final String MEMBERS_WITH_VIOLATIONS = &quot;membersWithViolations&quot;;
+	public static final String TOTAL_BALLOTS = &quot;totalBallots&quot;;
+	public static final String WIN_RATE_TREND = &quot;winRateTrend&quot;;
+	public static final String MOVING_AVG4_QUARTER_ABSENCE = &quot;movingAvg4QuarterAbsence&quot;;
+	public static final String TOTAL_VOTES = &quot;totalVotes&quot;;
+	public static final String DOCS_PER_MEMBER = &quot;docsPerMember&quot;;
+	public static final String AVG_REBEL_RATE = &quot;avgRebelRate&quot;;
+	public static final String PERFORMANCE_LEVEL = &quot;performanceLevel&quot;;
+	public static final String DOCUMENTS_PRODUCED = &quot;documentsProduced&quot;;
+	public static final String MOVING_AVG4_QUARTER_WIN_RATE = &quot;movingAvg4QuarterWinRate&quot;;
+	public static final String PERIOD_END = &quot;periodEnd&quot;;
+	public static final String PRODUCTIVITY_LEVEL = &quot;productivityLevel&quot;;
+	public static final String AVG_YES_RATE = &quot;avgYesRate&quot;;
+	public static final String VOTES_PER_MEMBER = &quot;votesPerMember&quot;;
+	public static final String VIOLATIONS_PER_MEMBER = &quot;violationsPerMember&quot;;
+	public static final String EFFECTIVENESS_ASSESSMENT = &quot;effectivenessAssessment&quot;;
+	public static final String ACTIVE_MEMBERS = &quot;activeMembers&quot;;
+	public static final String ACTIVE_DOCUMENT_AUTHORS = &quot;activeDocumentAuthors&quot;;
+	public static final String ABSENCE_TREND = &quot;absenceTrend&quot;;
+	public static final String VIOLATION_COUNT = &quot;violationCount&quot;;
+	public static final String AVG_ABSENCE_RATE = &quot;avgAbsenceRate&quot;;
+	public static final String PERIOD_START = &quot;periodStart&quot;;
+	public static final String AVG_WIN_RATE = &quot;avgWinRate&quot;;
+	public static final String PARTY = &quot;party&quot;;
+	public static final String QUARTER = &quot;quarter&quot;;
+
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

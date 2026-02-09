@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewRiksdagenGovermentProposals.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.ministry.impl</a> &gt; <span class="el_source">ViewRiksdagenGovermentProposals.java</span></div><h1>ViewRiksdagenGovermentProposals.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2025 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+ */
+package com.hack23.cia.model.internal.application.data.ministry.impl;
+
+import java.util.Date;
+
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+import com.hack23.cia.model.common.api.ModelObject;
+
+/**
+ * The Class ViewRiksdagenGovermentProposals.
+ * 
+ * JPA Entity for view_riksdagen_goverment_proposals database view.
+ * 
+ * Provides access to government propositions (proposals) enabling analysis of
+ * government legislative initiatives and policy proposals.
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = &quot;ViewRiksdagenGovermentProposals&quot;, propOrder = {
+    &quot;id&quot;,
+    &quot;title&quot;,
+    &quot;subTitle&quot;,
+    &quot;status&quot;,
+    &quot;org&quot;,
+    &quot;hangarId&quot;,
+    &quot;label&quot;,
+    &quot;madePublicDate&quot;,
+    &quot;numberValue&quot;,
+    &quot;documentStatusUrlXml&quot;
+})
+@Entity(name = &quot;ViewRiksdagenGovermentProposals&quot;)
+@Table(name = &quot;view_riksdagen_goverment_proposals&quot;)
+@Inheritance(strategy = InheritanceType.JOINED)
+<span class="fc" id="L68">public class ViewRiksdagenGovermentProposals implements ModelObject {</span>
+
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = 1L;
+
+    /** The id. */
+    @XmlElement(required = true)
+    protected String id;
+
+    /** The title. */
+    @XmlElement
+    protected String title;
+
+    /** The sub title. */
+    @XmlElement(name = &quot;sub_title&quot;)
+    protected String subTitle;
+
+    /** The status. */
+    @XmlElement
+    protected String status;
+
+    /** The org. */
+    @XmlElement
+    protected String org;
+
+    /** The hangar id. */
+    @XmlElement(name = &quot;hangar_id&quot;)
+    protected String hangarId;
+
+    /** The label. */
+    @XmlElement
+    protected String label;
+
+    /** The made public date. */
+    @XmlElement(name = &quot;made_public_date&quot;)
+    protected Date madePublicDate;
+
+    /** The number value. */
+    @XmlElement(name = &quot;number_value&quot;)
+    protected Integer numberValue;
+
+    /** The document status url xml. */
+    @XmlElement(name = &quot;document_status_url_xml&quot;)
+    protected String documentStatusUrlXml;
+
+    /**
+     * Gets the id.
+     *
+     * @return the id
+     */
+    @Id
+    @Column(name = &quot;ID&quot;)
+    public String getId() {
+<span class="fc" id="L121">        return id;</span>
+    }
+
+    /**
+     * Sets the id.
+     *
+     * @param value the new id
+     */
+    public void setId(String value) {
+<span class="fc" id="L130">        this.id = value;</span>
+<span class="fc" id="L131">    }</span>
+
+    /**
+     * Gets the title.
+     *
+     * @return the title
+     */
+    @Basic
+    @Column(name = &quot;TITLE&quot;)
+    public String getTitle() {
+<span class="fc" id="L141">        return title;</span>
+    }
+
+    /**
+     * Sets the title.
+     *
+     * @param value the new title
+     */
+    public void setTitle(String value) {
+<span class="fc" id="L150">        this.title = value;</span>
+<span class="fc" id="L151">    }</span>
+
+    /**
+     * Gets the sub title.
+     *
+     * @return the sub title
+     */
+    @Basic
+    @Column(name = &quot;SUB_TITLE&quot;)
+    public String getSubTitle() {
+<span class="fc" id="L161">        return subTitle;</span>
+    }
+
+    /**
+     * Sets the sub title.
+     *
+     * @param value the new sub title
+     */
+    public void setSubTitle(String value) {
+<span class="fc" id="L170">        this.subTitle = value;</span>
+<span class="fc" id="L171">    }</span>
+
+    /**
+     * Gets the status.
+     *
+     * @return the status
+     */
+    @Basic
+    @Column(name = &quot;STATUS&quot;)
+    public String getStatus() {
+<span class="fc" id="L181">        return status;</span>
+    }
+
+    /**
+     * Sets the status.
+     *
+     * @param value the new status
+     */
+    public void setStatus(String value) {
+<span class="fc" id="L190">        this.status = value;</span>
+<span class="fc" id="L191">    }</span>
+
+    /**
+     * Gets the org.
+     *
+     * @return the org
+     */
+    @Basic
+    @Column(name = &quot;ORG&quot;)
+    public String getOrg() {
+<span class="fc" id="L201">        return org;</span>
+    }
+
+    /**
+     * Sets the org.
+     *
+     * @param value the new org
+     */
+    public void setOrg(String value) {
+<span class="fc" id="L210">        this.org = value;</span>
+<span class="fc" id="L211">    }</span>
+
+    /**
+     * Gets the hangar id.
+     *
+     * @return the hangar id
+     */
+    @Basic
+    @Column(name = &quot;HANGAR_ID&quot;)
+    public String getHangarId() {
+<span class="fc" id="L221">        return hangarId;</span>
+    }
+
+    /**
+     * Sets the hangar id.
+     *
+     * @param value the new hangar id
+     */
+    public void setHangarId(String value) {
+<span class="fc" id="L230">        this.hangarId = value;</span>
+<span class="fc" id="L231">    }</span>
+
+    /**
+     * Gets the label.
+     *
+     * @return the label
+     */
+    @Basic
+    @Column(name = &quot;LABEL&quot;)
+    public String getLabel() {
+<span class="fc" id="L241">        return label;</span>
+    }
+
+    /**
+     * Sets the label.
+     *
+     * @param value the new label
+     */
+    public void setLabel(String value) {
+<span class="fc" id="L250">        this.label = value;</span>
+<span class="fc" id="L251">    }</span>
+
+    /**
+     * Gets the made public date.
+     *
+     * @return the made public date
+     */
+    @Basic
+    @Column(name = &quot;MADE_PUBLIC_DATE&quot;)
+    @Temporal(TemporalType.DATE)
+    public Date getMadePublicDate() {
+<span class="fc" id="L262">        return madePublicDate;</span>
+    }
+
+    /**
+     * Sets the made public date.
+     *
+     * @param value the new made public date
+     */
+    public void setMadePublicDate(Date value) {
+<span class="fc" id="L271">        this.madePublicDate = value;</span>
+<span class="fc" id="L272">    }</span>
+
+    /**
+     * Gets the number value.
+     *
+     * @return the number value
+     */
+    @Basic
+    @Column(name = &quot;NUMBER_VALUE&quot;)
+    public Integer getNumberValue() {
+<span class="fc" id="L282">        return numberValue;</span>
+    }
+
+    /**
+     * Sets the number value.
+     *
+     * @param value the new number value
+     */
+    public void setNumberValue(Integer value) {
+<span class="fc" id="L291">        this.numberValue = value;</span>
+<span class="fc" id="L292">    }</span>
+
+    /**
+     * Gets the document status url xml.
+     *
+     * @return the document status url xml
+     */
+    @Basic
+    @Column(name = &quot;DOCUMENT_STATUS_URL_XML&quot;)
+    public String getDocumentStatusUrlXml() {
+<span class="fc" id="L302">        return documentStatusUrlXml;</span>
+    }
+
+    /**
+     * Sets the document status url xml.
+     *
+     * @param value the new document status url xml
+     */
+    public void setDocumentStatusUrlXml(String value) {
+<span class="fc" id="L311">        this.documentStatusUrlXml = value;</span>
+<span class="fc" id="L312">    }</span>
+
+    /**
+     * With id.
+     *
+     * @param value the value
+     * @return the view riksdagen goverment proposals
+     */
+    public ViewRiksdagenGovermentProposals withId(String value) {
+<span class="fc" id="L321">        setId(value);</span>
+<span class="fc" id="L322">        return this;</span>
+    }
+
+    /**
+     * With title.
+     *
+     * @param value the value
+     * @return the view riksdagen goverment proposals
+     */
+    public ViewRiksdagenGovermentProposals withTitle(String value) {
+<span class="fc" id="L332">        setTitle(value);</span>
+<span class="fc" id="L333">        return this;</span>
+    }
+
+    /**
+     * With sub title.
+     *
+     * @param value the value
+     * @return the view riksdagen goverment proposals
+     */
+    public ViewRiksdagenGovermentProposals withSubTitle(String value) {
+<span class="fc" id="L343">        setSubTitle(value);</span>
+<span class="fc" id="L344">        return this;</span>
+    }
+
+    /**
+     * With status.
+     *
+     * @param value the value
+     * @return the view riksdagen goverment proposals
+     */
+    public ViewRiksdagenGovermentProposals withStatus(String value) {
+<span class="fc" id="L354">        setStatus(value);</span>
+<span class="fc" id="L355">        return this;</span>
+    }
+
+    /**
+     * With org.
+     *
+     * @param value the value
+     * @return the view riksdagen goverment proposals
+     */
+    public ViewRiksdagenGovermentProposals withOrg(String value) {
+<span class="fc" id="L365">        setOrg(value);</span>
+<span class="fc" id="L366">        return this;</span>
+    }
+
+    /**
+     * With hangar id.
+     *
+     * @param value the value
+     * @return the view riksdagen goverment proposals
+     */
+    public ViewRiksdagenGovermentProposals withHangarId(String value) {
+<span class="fc" id="L376">        setHangarId(value);</span>
+<span class="fc" id="L377">        return this;</span>
+    }
+
+    /**
+     * With label.
+     *
+     * @param value the value
+     * @return the view riksdagen goverment proposals
+     */
+    public ViewRiksdagenGovermentProposals withLabel(String value) {
+<span class="fc" id="L387">        setLabel(value);</span>
+<span class="fc" id="L388">        return this;</span>
+    }
+
+    /**
+     * With made public date.
+     *
+     * @param value the value
+     * @return the view riksdagen goverment proposals
+     */
+    public ViewRiksdagenGovermentProposals withMadePublicDate(Date value) {
+<span class="fc" id="L398">        setMadePublicDate(value);</span>
+<span class="fc" id="L399">        return this;</span>
+    }
+
+    /**
+     * With number value.
+     *
+     * @param value the value
+     * @return the view riksdagen goverment proposals
+     */
+    public ViewRiksdagenGovermentProposals withNumberValue(Integer value) {
+<span class="fc" id="L409">        setNumberValue(value);</span>
+<span class="fc" id="L410">        return this;</span>
+    }
+
+    /**
+     * With document status url xml.
+     *
+     * @param value the value
+     * @return the view riksdagen goverment proposals
+     */
+    public ViewRiksdagenGovermentProposals withDocumentStatusUrlXml(String value) {
+<span class="fc" id="L420">        setDocumentStatusUrlXml(value);</span>
+<span class="fc" id="L421">        return this;</span>
+    }
+
+    /**
+     * To string.
+     *
+     * @return the string
+     */
+    @Override
+    public String toString() {
+<span class="fc" id="L431">        return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);</span>
+    }
+
+    /**
+     * Equals.
+     *
+     * @param obj the obj
+     * @return true, if successful
+     */
+    @Override
+    public boolean equals(Object obj) {
+<span class="fc" id="L442">        return EqualsBuilder.reflectionEquals(this, obj);</span>
+    }
+
+    /**
+     * Hash code.
+     *
+     * @return the int
+     */
+    @Override
+    public int hashCode() {
+<span class="fc" id="L452">        return HashCodeBuilder.reflectionHashCode(this);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

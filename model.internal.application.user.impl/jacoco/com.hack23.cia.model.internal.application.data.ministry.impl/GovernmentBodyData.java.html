@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GovernmentBodyData.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.ministry.impl</a> &gt; <span class="el_source">GovernmentBodyData.java</span></div><h1>GovernmentBodyData.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2025 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+ */
+package com.hack23.cia.model.internal.application.data.ministry.impl;
+
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+/**
+ * The Class GovernmentBodyData.
+ * Represents government body information from ESV (Swedish Financial Management Authority).
+ * Data source: Myndighetsinformation.xls
+ * Indexes are managed by Liquibase changelog.
+ */
+@Entity
+@Table(name = &quot;government_body_data&quot;)
+public class GovernmentBodyData implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	private Long id;
+	private Integer year;
+	private String name;
+	private Integer consecutiveNumber;
+	private String governmentBodyId;
+	private String mCode;
+	private String ministry;
+	private String orgNumber;
+	private Integer headCount;
+	private Integer annualWorkHeadCount;
+	private String vat;
+	private String comment;
+
+	/**
+	 * Instantiates a new government body data.
+	 */
+	public GovernmentBodyData() {
+<span class="fc" id="L64">		super();</span>
+<span class="fc" id="L65">	}</span>
+
+	/**
+	 * Instantiates a new government body data.
+	 *
+	 * @param year                 the year
+	 * @param name                 the name
+	 * @param consecutiveNumber    the consecutive number
+	 * @param governmentBodyId     the government body id
+	 * @param mCode                the m code
+	 * @param ministry             the ministry
+	 * @param orgNumber            the org number
+	 * @param headCount            the head count
+	 * @param annualWorkHeadCount  the annual work head count
+	 * @param vat                  the vat
+	 * @param comment              the comment
+	 */
+	public GovernmentBodyData(final Integer year, final String name, final Integer consecutiveNumber,
+			final String governmentBodyId, final String mCode, final String ministry, final String orgNumber,
+<span class="fc" id="L84">			final Integer headCount, final Integer annualWorkHeadCount, final String vat, final String comment) {</span>
+<span class="fc" id="L85">		this.year = year;</span>
+<span class="fc" id="L86">		this.name = name;</span>
+<span class="fc" id="L87">		this.consecutiveNumber = consecutiveNumber;</span>
+<span class="fc" id="L88">		this.governmentBodyId = governmentBodyId;</span>
+<span class="fc" id="L89">		this.mCode = mCode;</span>
+<span class="fc" id="L90">		this.ministry = ministry;</span>
+<span class="fc" id="L91">		this.orgNumber = orgNumber;</span>
+<span class="fc" id="L92">		this.headCount = headCount;</span>
+<span class="fc" id="L93">		this.annualWorkHeadCount = annualWorkHeadCount;</span>
+<span class="fc" id="L94">		this.vat = vat;</span>
+<span class="fc" id="L95">		this.comment = comment;</span>
+<span class="fc" id="L96">	}</span>
+
+	/**
+	 * Gets the id.
+	 *
+	 * @return the id
+	 */
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = &quot;id&quot;, nullable = false)
+	public Long getId() {
+		return id;
+	}
+
+	/**
+	 * Sets the id.
+	 *
+	 * @param id the new id
+	 */
+	public void setId(final Long id) {
+<span class="fc" id="L116">		this.id = id;</span>
+<span class="fc" id="L117">	}</span>
+
+	/**
+	 * Gets the year.
+	 *
+	 * @return the year
+	 */
+	@Column(name = &quot;year&quot;, nullable = false)
+	public Integer getYear() {
+<span class="fc" id="L126">		return year;</span>
+	}
+
+	/**
+	 * Sets the year.
+	 *
+	 * @param year the new year
+	 */
+	public void setYear(final Integer year) {
+<span class="fc" id="L135">		this.year = year;</span>
+<span class="fc" id="L136">	}</span>
+
+	/**
+	 * Gets the name.
+	 *
+	 * @return the name
+	 */
+	@Column(name = &quot;name&quot;, nullable = false, length = 500)
+	public String getName() {
+<span class="fc" id="L145">		return name;</span>
+	}
+
+	/**
+	 * Sets the name.
+	 *
+	 * @param name the new name
+	 */
+	public void setName(final String name) {
+<span class="fc" id="L154">		this.name = name;</span>
+<span class="fc" id="L155">	}</span>
+
+	/**
+	 * Gets the consecutive number.
+	 *
+	 * @return the consecutive number
+	 */
+	@Column(name = &quot;consecutive_number&quot;)
+	public Integer getConsecutiveNumber() {
+<span class="fc" id="L164">		return consecutiveNumber;</span>
+	}
+
+	/**
+	 * Sets the consecutive number.
+	 *
+	 * @param consecutiveNumber the new consecutive number
+	 */
+	public void setConsecutiveNumber(final Integer consecutiveNumber) {
+<span class="fc" id="L173">		this.consecutiveNumber = consecutiveNumber;</span>
+<span class="fc" id="L174">	}</span>
+
+	/**
+	 * Gets the government body id.
+	 *
+	 * @return the government body id
+	 */
+	@Column(name = &quot;government_body_id&quot;, length = 100)
+	public String getGovernmentBodyId() {
+<span class="fc" id="L183">		return governmentBodyId;</span>
+	}
+
+	/**
+	 * Sets the government body id.
+	 *
+	 * @param governmentBodyId the new government body id
+	 */
+	public void setGovernmentBodyId(final String governmentBodyId) {
+<span class="fc" id="L192">		this.governmentBodyId = governmentBodyId;</span>
+<span class="fc" id="L193">	}</span>
+
+	/**
+	 * Gets the m code.
+	 *
+	 * @return the m code
+	 */
+	@Column(name = &quot;m_code&quot;, length = 50)
+	public String getmCode() {
+<span class="fc" id="L202">		return mCode;</span>
+	}
+
+	/**
+	 * Sets the m code.
+	 *
+	 * @param mCode the new m code
+	 */
+	public void setmCode(final String mCode) {
+<span class="fc" id="L211">		this.mCode = mCode;</span>
+<span class="fc" id="L212">	}</span>
+
+	/**
+	 * Gets the ministry.
+	 *
+	 * @return the ministry
+	 */
+	@Column(name = &quot;ministry&quot;, length = 500)
+	public String getMinistry() {
+<span class="fc" id="L221">		return ministry;</span>
+	}
+
+	/**
+	 * Sets the ministry.
+	 *
+	 * @param ministry the new ministry
+	 */
+	public void setMinistry(final String ministry) {
+<span class="fc" id="L230">		this.ministry = ministry;</span>
+<span class="fc" id="L231">	}</span>
+
+	/**
+	 * Gets the org number.
+	 *
+	 * @return the org number
+	 */
+	@Column(name = &quot;org_number&quot;, length = 50)
+	public String getOrgNumber() {
+<span class="fc" id="L240">		return orgNumber;</span>
+	}
+
+	/**
+	 * Sets the org number.
+	 *
+	 * @param orgNumber the new org number
+	 */
+	public void setOrgNumber(final String orgNumber) {
+<span class="fc" id="L249">		this.orgNumber = orgNumber;</span>
+<span class="fc" id="L250">	}</span>
+
+	/**
+	 * Gets the head count.
+	 *
+	 * @return the head count
+	 */
+	@Column(name = &quot;head_count&quot;)
+	public Integer getHeadCount() {
+<span class="fc" id="L259">		return headCount;</span>
+	}
+
+	/**
+	 * Sets the head count.
+	 *
+	 * @param headCount the new head count
+	 */
+	public void setHeadCount(final Integer headCount) {
+<span class="fc" id="L268">		this.headCount = headCount;</span>
+<span class="fc" id="L269">	}</span>
+
+	/**
+	 * Gets the annual work head count.
+	 *
+	 * @return the annual work head count
+	 */
+	@Column(name = &quot;annual_work_head_count&quot;)
+	public Integer getAnnualWorkHeadCount() {
+<span class="fc" id="L278">		return annualWorkHeadCount;</span>
+	}
+
+	/**
+	 * Sets the annual work head count.
+	 *
+	 * @param annualWorkHeadCount the new annual work head count
+	 */
+	public void setAnnualWorkHeadCount(final Integer annualWorkHeadCount) {
+<span class="fc" id="L287">		this.annualWorkHeadCount = annualWorkHeadCount;</span>
+<span class="fc" id="L288">	}</span>
+
+	/**
+	 * Gets the vat.
+	 *
+	 * @return the vat
+	 */
+	@Column(name = &quot;vat&quot;, length = 50)
+	public String getVat() {
+<span class="fc" id="L297">		return vat;</span>
+	}
+
+	/**
+	 * Sets the vat.
+	 *
+	 * @param vat the new vat
+	 */
+	public void setVat(final String vat) {
+<span class="fc" id="L306">		this.vat = vat;</span>
+<span class="fc" id="L307">	}</span>
+
+	/**
+	 * Gets the comment.
+	 *
+	 * @return the comment
+	 */
+	@Column(name = &quot;comment&quot;, length = 1000)
+	public String getComment() {
+<span class="fc" id="L316">		return comment;</span>
+	}
+
+	/**
+	 * Sets the comment.
+	 *
+	 * @param comment the new comment
+	 */
+	public void setComment(final String comment) {
+<span class="fc" id="L325">		this.comment = comment;</span>
+<span class="fc" id="L326">	}</span>
+
+	@Override
+	public boolean equals(final Object obj) {
+<span class="fc" id="L330">		return EqualsBuilder.reflectionEquals(this, obj);</span>
+	}
+
+	@Override
+	public int hashCode() {
+<span class="fc" id="L335">		return HashCodeBuilder.reflectionHashCode(this);</span>
+	}
+
+	@Override
+	public String toString() {
+<span class="fc" id="L340">		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

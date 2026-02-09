@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewRiksdagenPartyLongitudinalPerformanceEmbeddedId.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.party.impl</a> &gt; <span class="el_source">ViewRiksdagenPartyLongitudinalPerformanceEmbeddedId.java</span></div><h1>ViewRiksdagenPartyLongitudinalPerformanceEmbeddedId.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2025 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+ */
+package com.hack23.cia.model.internal.application.data.party.impl;
+
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+/**
+ * The Class ViewRiksdagenPartyLongitudinalPerformanceEmbeddedId.
+ * Composite key for party longitudinal performance tracking (party + election_cycle_id + semester).
+ */
+@Embeddable
+public class ViewRiksdagenPartyLongitudinalPerformanceEmbeddedId implements Serializable {
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
+
+	/** The party. */
+	@Column(name = &quot;party&quot;, nullable = false)
+	private String party;
+
+	/** The election cycle id. */
+	@Column(name = &quot;election_cycle_id&quot;, nullable = false)
+	private String electionCycleId;
+
+	/** The semester. */
+	@Column(name = &quot;semester&quot;, nullable = false)
+	private String semester;
+
+	/**
+	 * Instantiates a new view riksdagen party longitudinal performance embedded id.
+	 */
+	public ViewRiksdagenPartyLongitudinalPerformanceEmbeddedId() {
+<span class="fc" id="L57">		super();</span>
+<span class="fc" id="L58">	}</span>
+
+	/**
+	 * Gets the party.
+	 *
+	 * @return the party
+	 */
+	public String getParty() {
+<span class="fc" id="L66">		return party;</span>
+	}
+
+	/**
+	 * Sets the party.
+	 *
+	 * @param party the new party
+	 */
+	public void setParty(final String party) {
+<span class="fc" id="L75">		this.party = party;</span>
+<span class="fc" id="L76">	}</span>
+
+	/**
+	 * Gets the election cycle id.
+	 *
+	 * @return the election cycle id
+	 */
+	public String getElectionCycleId() {
+<span class="fc" id="L84">		return electionCycleId;</span>
+	}
+
+	/**
+	 * Sets the election cycle id.
+	 *
+	 * @param electionCycleId the new election cycle id
+	 */
+	public void setElectionCycleId(final String electionCycleId) {
+<span class="fc" id="L93">		this.electionCycleId = electionCycleId;</span>
+<span class="fc" id="L94">	}</span>
+
+	/**
+	 * Gets the semester.
+	 *
+	 * @return the semester
+	 */
+	public String getSemester() {
+<span class="fc" id="L102">		return semester;</span>
+	}
+
+	/**
+	 * Sets the semester.
+	 *
+	 * @param semester the new semester
+	 */
+	public void setSemester(final String semester) {
+<span class="fc" id="L111">		this.semester = semester;</span>
+<span class="fc" id="L112">	}</span>
+
+	@Override
+	public boolean equals(final Object obj) {
+<span class="fc" id="L116">		return EqualsBuilder.reflectionEquals(this, obj);</span>
+	}
+
+	@Override
+	public int hashCode() {
+<span class="fc" id="L121">		return HashCodeBuilder.reflectionHashCode(this);</span>
+	}
+
+	@Override
+	public String toString() {
+<span class="fc" id="L126">		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

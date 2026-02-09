@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewRiksdagenCoalitionAlignmentMatrix.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.party.impl</a> &gt; <span class="el_source">ViewRiksdagenCoalitionAlignmentMatrix.java</span></div><h1>ViewRiksdagenCoalitionAlignmentMatrix.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2025 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+ */
+package com.hack23.cia.model.internal.application.data.party.impl;
+
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+import com.hack23.cia.model.common.api.ModelObject;
+
+/**
+ * Coalition alignment matrix view.
+ */
+@Entity
+@Table(name = &quot;view_riksdagen_coalition_alignment_matrix&quot;)
+public final class ViewRiksdagenCoalitionAlignmentMatrix implements ModelObject {
+
+	private static final long serialVersionUID = 1L;
+
+	@EmbeddedId
+	private ViewRiksdagenCoalitionAlignmentMatrixEmbeddedId embeddedId;
+
+	@Column(name = &quot;shared_votes&quot;)
+	private Long sharedVotes;
+
+	@Column(name = &quot;aligned_votes&quot;)
+	private Long alignedVotes;
+
+	@Column(name = &quot;opposed_votes&quot;)
+	private Long opposedVotes;
+
+	@Column(name = &quot;alignment_rate&quot;)
+	private Double alignmentRate;
+
+	@Column(name = &quot;coalition_likelihood&quot;)
+	private String coalitionLikelihood;
+
+	@Column(name = &quot;bloc_relationship&quot;)
+	private String blocRelationship;
+
+	@Column(name = &quot;intelligence_comment&quot;)
+	private String intelligenceComment;
+
+	@Column(name = &quot;first_year&quot;)
+	private Integer firstYear;
+
+	@Column(name = &quot;last_year&quot;)
+	private Integer lastYear;
+
+	@Column(name = &quot;years_observed&quot;)
+	private Integer yearsObserved;
+
+	public ViewRiksdagenCoalitionAlignmentMatrix() {
+<span class="fc" id="L78">		super();</span>
+<span class="fc" id="L79">	}</span>
+
+	public ViewRiksdagenCoalitionAlignmentMatrixEmbeddedId getEmbeddedId() {
+<span class="fc" id="L82">		return embeddedId;</span>
+	}
+
+	public void setEmbeddedId(final ViewRiksdagenCoalitionAlignmentMatrixEmbeddedId embeddedId) {
+<span class="fc" id="L86">		this.embeddedId = embeddedId;</span>
+<span class="fc" id="L87">	}</span>
+
+	public Long getSharedVotes() {
+<span class="fc" id="L90">		return sharedVotes;</span>
+	}
+
+	public void setSharedVotes(final Long sharedVotes) {
+<span class="fc" id="L94">		this.sharedVotes = sharedVotes;</span>
+<span class="fc" id="L95">	}</span>
+
+	public Long getAlignedVotes() {
+<span class="fc" id="L98">		return alignedVotes;</span>
+	}
+
+	public void setAlignedVotes(final Long alignedVotes) {
+<span class="fc" id="L102">		this.alignedVotes = alignedVotes;</span>
+<span class="fc" id="L103">	}</span>
+
+	public Long getOpposedVotes() {
+<span class="fc" id="L106">		return opposedVotes;</span>
+	}
+
+	public void setOpposedVotes(final Long opposedVotes) {
+<span class="fc" id="L110">		this.opposedVotes = opposedVotes;</span>
+<span class="fc" id="L111">	}</span>
+
+	public Double getAlignmentRate() {
+<span class="fc" id="L114">		return alignmentRate;</span>
+	}
+
+	public void setAlignmentRate(final Double alignmentRate) {
+<span class="fc" id="L118">		this.alignmentRate = alignmentRate;</span>
+<span class="fc" id="L119">	}</span>
+
+	public String getCoalitionLikelihood() {
+<span class="fc" id="L122">		return coalitionLikelihood;</span>
+	}
+
+	public void setCoalitionLikelihood(final String coalitionLikelihood) {
+<span class="fc" id="L126">		this.coalitionLikelihood = coalitionLikelihood;</span>
+<span class="fc" id="L127">	}</span>
+
+	public String getBlocRelationship() {
+<span class="fc" id="L130">		return blocRelationship;</span>
+	}
+
+	public void setBlocRelationship(final String blocRelationship) {
+<span class="fc" id="L134">		this.blocRelationship = blocRelationship;</span>
+<span class="fc" id="L135">	}</span>
+
+	public String getIntelligenceComment() {
+<span class="fc" id="L138">		return intelligenceComment;</span>
+	}
+
+	public void setIntelligenceComment(final String intelligenceComment) {
+<span class="fc" id="L142">		this.intelligenceComment = intelligenceComment;</span>
+<span class="fc" id="L143">	}</span>
+
+	public Integer getFirstYear() {
+<span class="fc" id="L146">		return firstYear;</span>
+	}
+
+	public void setFirstYear(final Integer firstYear) {
+<span class="fc" id="L150">		this.firstYear = firstYear;</span>
+<span class="fc" id="L151">	}</span>
+
+	public Integer getLastYear() {
+<span class="fc" id="L154">		return lastYear;</span>
+	}
+
+	public void setLastYear(final Integer lastYear) {
+<span class="fc" id="L158">		this.lastYear = lastYear;</span>
+<span class="fc" id="L159">	}</span>
+
+	public Integer getYearsObserved() {
+<span class="fc" id="L162">		return yearsObserved;</span>
+	}
+
+	public void setYearsObserved(final Integer yearsObserved) {
+<span class="fc" id="L166">		this.yearsObserved = yearsObserved;</span>
+<span class="fc" id="L167">	}</span>
+
+	@Override
+	public boolean equals(final Object obj) {
+<span class="fc" id="L171">		return EqualsBuilder.reflectionEquals(this, obj);</span>
+	}
+
+	@Override
+	public String toString() {
+<span class="fc" id="L176">		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);</span>
+	}
+
+	@Override
+	public int hashCode() {
+<span class="fc" id="L181">		return HashCodeBuilder.reflectionHashCode(this);</span>
+	}
+
+	/**
+	 * Compare to.
+	 *
+	 * @param o the o
+	 * @return the int
+	 */
+	public int compareTo(final ModelObject o) {
+<span class="fc bfc" id="L191" title="All 2 branches covered.">		if (this == o) {</span>
+<span class="fc" id="L192">			return 0;</span>
+		}
+<span class="fc bfc" id="L194" title="All 2 branches covered.">		if (embeddedId == null) {</span>
+<span class="fc" id="L195">			return -1;</span>
+		}
+<span class="pc bpc" id="L197" title="1 of 4 branches missed.">		if (o == null || !(o instanceof ViewRiksdagenCoalitionAlignmentMatrix)) {</span>
+<span class="fc" id="L198">			return -1;</span>
+		}
+<span class="fc" id="L200">		final ViewRiksdagenCoalitionAlignmentMatrix other = (ViewRiksdagenCoalitionAlignmentMatrix) o;</span>
+<span class="pc bpc" id="L201" title="1 of 2 branches missed.">		if (other.embeddedId == null) {</span>
+<span class="nc" id="L202">			return 1;</span>
+		}
+<span class="fc" id="L204">		return embeddedId.compareTo(other.embeddedId);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

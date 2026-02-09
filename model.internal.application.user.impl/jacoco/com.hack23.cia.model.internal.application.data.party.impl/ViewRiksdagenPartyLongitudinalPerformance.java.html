@@ -1,0 +1,1638 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewRiksdagenPartyLongitudinalPerformance.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.party.impl</a> &gt; <span class="el_source">ViewRiksdagenPartyLongitudinalPerformance.java</span></div><h1>ViewRiksdagenPartyLongitudinalPerformance.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2025 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *$Id$
+ *  $HeadURL$
+ */
+package com.hack23.cia.model.internal.application.data.party.impl;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.Immutable;
+
+/**
+ * The Class ViewRiksdagenPartyLongitudinalPerformance.
+ * Database view for party performance tracking across election cycles with semester granularity.
+ */
+@Entity
+@Immutable
+@Table(name = &quot;view_riksdagen_party_longitudinal_performance&quot;)
+public class ViewRiksdagenPartyLongitudinalPerformance implements Serializable {
+
+private static final long serialVersionUID = 1L;
+
+@EmbeddedId
+private ViewRiksdagenPartyLongitudinalPerformanceEmbeddedId embeddedId;
+
+	/** The cycle year. */
+	@Column(name = &quot;cycle_year&quot;)
+	private Integer cycleYear;
+
+	/** The calendar year. */
+	@Column(name = &quot;calendar_year&quot;)
+	private Integer calendarYear;
+
+	/** The is election year. */
+	@Column(name = &quot;is_election_year&quot;)
+	private Boolean isElectionYear;
+
+	/** The total ballots. */
+	@Column(name = &quot;total_ballots&quot;)
+	private BigDecimal totalBallots;
+
+	/** The participation rate. */
+	@Column(name = &quot;participation_rate&quot;)
+	private BigDecimal participationRate;
+
+	/** The win rate. */
+	@Column(name = &quot;win_rate&quot;)
+	private BigDecimal winRate;
+
+	/** The yes rate. */
+	@Column(name = &quot;yes_rate&quot;)
+	private BigDecimal yesRate;
+
+	/** The no rate. */
+	@Column(name = &quot;no_rate&quot;)
+	private BigDecimal noRate;
+
+	/** The approval rate. */
+	@Column(name = &quot;approval_rate&quot;)
+	private BigDecimal approvalRate;
+
+	/** The total votes. */
+	@Column(name = &quot;total_votes&quot;)
+	private BigDecimal totalVotes;
+
+	/** The yes votes. */
+	@Column(name = &quot;yes_votes&quot;)
+	private BigDecimal yesVotes;
+
+	/** The ballots won. */
+	@Column(name = &quot;ballots_won&quot;)
+	private BigDecimal ballotsWon;
+
+	/** The decisions approved. */
+	@Column(name = &quot;decisions_approved&quot;)
+	private BigDecimal decisionsApproved;
+
+	/** The active members. */
+	@Column(name = &quot;active_members&quot;)
+	private Long activeMembers;
+
+	/** The documents last year. */
+	@Column(name = &quot;documents_last_year&quot;)
+	private Long documentsLastYear;
+
+	/** The avg rebel rate. */
+	@Column(name = &quot;avg_rebel_rate&quot;)
+	private BigDecimal avgRebelRate;
+
+	/** The current performance score. */
+	@Column(name = &quot;current_performance_score&quot;)
+	private BigDecimal currentPerformanceScore;
+
+	/** The rank by win rate. */
+	@Column(name = &quot;rank_by_win_rate&quot;)
+	private Long rankByWinRate;
+
+	/** The rank by participation. */
+	@Column(name = &quot;rank_by_participation&quot;)
+	private Long rankByParticipation;
+
+	/** The rank by size. */
+	@Column(name = &quot;rank_by_size&quot;)
+	private Long rankBySize;
+
+	/** The rank by approval. */
+	@Column(name = &quot;rank_by_approval&quot;)
+	private Long rankByApproval;
+
+	/** The rank by productivity. */
+	@Column(name = &quot;rank_by_productivity&quot;)
+	private Long rankByProductivity;
+
+	/** The rank by discipline. */
+	@Column(name = &quot;rank_by_discipline&quot;)
+	private Long rankByDiscipline;
+
+	/** The percentile win rate. */
+	@Column(name = &quot;percentile_win_rate&quot;)
+	private Double percentileWinRate;
+
+	/** The percentile participation. */
+	@Column(name = &quot;percentile_participation&quot;)
+	private Double percentileParticipation;
+
+	/** The percentile approval. */
+	@Column(name = &quot;percentile_approval&quot;)
+	private Double percentileApproval;
+
+	/** The percentile productivity. */
+	@Column(name = &quot;percentile_productivity&quot;)
+	private Double percentileProductivity;
+
+	/** The quartile by win rate. */
+	@Column(name = &quot;quartile_by_win_rate&quot;)
+	private Integer quartileByWinRate;
+
+	/** The quartile by overall performance. */
+	@Column(name = &quot;quartile_by_overall_performance&quot;)
+	private Integer quartileByOverallPerformance;
+
+	/** The prev semester win rate. */
+	@Column(name = &quot;prev_semester_win_rate&quot;)
+	private BigDecimal prevSemesterWinRate;
+
+	/** The prev semester participation. */
+	@Column(name = &quot;prev_semester_participation&quot;)
+	private BigDecimal prevSemesterParticipation;
+
+	/** The prev semester members. */
+	@Column(name = &quot;prev_semester_members&quot;)
+	private Long prevSemesterMembers;
+
+	/** The prev semester approval. */
+	@Column(name = &quot;prev_semester_approval&quot;)
+	private BigDecimal prevSemesterApproval;
+
+	/** The prev semester documents. */
+	@Column(name = &quot;prev_semester_documents&quot;)
+	private Long prevSemesterDocuments;
+
+	/** The prev semester rebel rate. */
+	@Column(name = &quot;prev_semester_rebel_rate&quot;)
+	private BigDecimal prevSemesterRebelRate;
+
+	/** The next semester win rate. */
+	@Column(name = &quot;next_semester_win_rate&quot;)
+	private BigDecimal nextSemesterWinRate;
+
+	/** The next semester participation. */
+	@Column(name = &quot;next_semester_participation&quot;)
+	private BigDecimal nextSemesterParticipation;
+
+	/** The next semester members. */
+	@Column(name = &quot;next_semester_members&quot;)
+	private Long nextSemesterMembers;
+
+	/** The stddev win rate sector. */
+	@Column(name = &quot;stddev_win_rate_sector&quot;)
+	private BigDecimal stddevWinRateSector;
+
+	/** The stddev participation sector. */
+	@Column(name = &quot;stddev_participation_sector&quot;)
+	private BigDecimal stddevParticipationSector;
+
+	/** The stddev win rate party. */
+	@Column(name = &quot;stddev_win_rate_party&quot;)
+	private BigDecimal stddevWinRateParty;
+
+	/** The stddev participation party. */
+	@Column(name = &quot;stddev_participation_party&quot;)
+	private BigDecimal stddevParticipationParty;
+
+	/** The ma 3semester win rate. */
+	@Column(name = &quot;ma_3semester_win_rate&quot;)
+	private BigDecimal ma3semesterWinRate;
+
+	/** The ma 3semester participation. */
+	@Column(name = &quot;ma_3semester_participation&quot;)
+	private BigDecimal ma3semesterParticipation;
+
+	/** The win rate change absolute. */
+	@Column(name = &quot;win_rate_change_absolute&quot;)
+	private BigDecimal winRateChangeAbsolute;
+
+	/** The win rate change pct. */
+	@Column(name = &quot;win_rate_change_pct&quot;)
+	private BigDecimal winRateChangePct;
+
+	/** The participation change absolute. */
+	@Column(name = &quot;participation_change_absolute&quot;)
+	private BigDecimal participationChangeAbsolute;
+
+	/** The membership change. */
+	@Column(name = &quot;membership_change&quot;)
+	private Long membershipChange;
+
+	/** The approval rate change. */
+	@Column(name = &quot;approval_rate_change&quot;)
+	private BigDecimal approvalRateChange;
+
+	/** The documents change. */
+	@Column(name = &quot;documents_change&quot;)
+	private Long documentsChange;
+
+	/** The discipline change. */
+	@Column(name = &quot;discipline_change&quot;)
+	private BigDecimal disciplineChange;
+
+	/** The trajectory win rate. */
+	@Column(name = &quot;trajectory_win_rate&quot;)
+	private String trajectoryWinRate;
+
+	/** The trajectory participation. */
+	@Column(name = &quot;trajectory_participation&quot;)
+	private String trajectoryParticipation;
+
+	/** The composite performance index. */
+	@Column(name = &quot;composite_performance_index&quot;)
+	private BigDecimal compositePerformanceIndex;
+
+	/** The discipline effectiveness score. */
+	@Column(name = &quot;discipline_effectiveness_score&quot;)
+	private BigDecimal disciplineEffectivenessScore;
+
+	/** The legislative effectiveness score. */
+	@Column(name = &quot;legislative_effectiveness_score&quot;)
+	private BigDecimal legislativeEffectivenessScore;
+
+	/** The volatility classification. */
+	@Column(name = &quot;volatility_classification&quot;)
+	private String volatilityClassification;
+
+	/** The stability classification. */
+	@Column(name = &quot;stability_classification&quot;)
+	private String stabilityClassification;
+
+	/** The forecast trend. */
+	@Column(name = &quot;forecast_trend&quot;)
+	private String forecastTrend;
+
+	/** The trend deviation from ma. */
+	@Column(name = &quot;trend_deviation_from_ma&quot;)
+	private BigDecimal trendDeviationFromMa;
+
+	/** The trend position. */
+	@Column(name = &quot;trend_position&quot;)
+	private String trendPosition;
+
+	/** The momentum z score win rate. */
+	@Column(name = &quot;momentum_z_score_win_rate&quot;)
+	private BigDecimal momentumZScoreWinRate;
+
+	/** The momentum z score participation. */
+	@Column(name = &quot;momentum_z_score_participation&quot;)
+	private BigDecimal momentumZScoreParticipation;
+
+	/** The performance tier. */
+	@Column(name = &quot;performance_tier&quot;)
+	private String performanceTier;
+
+	/** The productivity tier. */
+	@Column(name = &quot;productivity_tier&quot;)
+	private String productivityTier;
+
+	/** The early warning flag. */
+	@Column(name = &quot;early_warning_flag&quot;)
+	private String earlyWarningFlag;
+
+	/** The trajectory confidence score. */
+	@Column(name = &quot;trajectory_confidence_score&quot;)
+	private BigDecimal trajectoryConfidenceScore;
+
+	/** The is pre election spring. */
+	@Column(name = &quot;is_pre_election_spring&quot;)
+	private Boolean isPreElectionSpring;
+
+	/** The is election autumn. */
+	@Column(name = &quot;is_election_autumn&quot;)
+	private Boolean isElectionAutumn;
+
+	/** The is election cycle end. */
+	@Column(name = &quot;is_election_cycle_end&quot;)
+	private Boolean isElectionCycleEnd;
+
+	/**
+	 * Instantiates a new view riksdagen party longitudinal performance.
+	 */
+	public ViewRiksdagenPartyLongitudinalPerformance() {
+<span class="fc" id="L329">		super();</span>
+<span class="fc" id="L330">	}</span>
+
+	/**
+	 * Gets the embedded id.
+	 *
+	 * @return the embedded id
+	 */
+	public ViewRiksdagenPartyLongitudinalPerformanceEmbeddedId getEmbeddedId() {
+<span class="fc" id="L338">		return embeddedId;</span>
+	}
+
+	/**
+	 * Sets the embedded id.
+	 *
+	 * @param embeddedId the new embedded id
+	 */
+	public void setEmbeddedId(final ViewRiksdagenPartyLongitudinalPerformanceEmbeddedId embeddedId) {
+<span class="fc" id="L347">		this.embeddedId = embeddedId;</span>
+<span class="fc" id="L348">	}</span>
+
+	/**
+	 * Gets the party.
+	 *
+	 * @return the party
+	 */
+	public String getParty() {
+<span class="nc bnc" id="L356" title="All 2 branches missed.">		return embeddedId != null ? embeddedId.getParty() : null;</span>
+	}
+
+	/**
+	 * Gets the election cycle id.
+	 *
+	 * @return the election cycle id
+	 */
+	public String getElectionCycleId() {
+<span class="nc bnc" id="L365" title="All 2 branches missed.">		return embeddedId != null ? embeddedId.getElectionCycleId() : null;</span>
+	}
+
+	/**
+	 * Gets the semester.
+	 *
+	 * @return the semester
+	 */
+	public String getSemester() {
+<span class="nc bnc" id="L374" title="All 2 branches missed.">		return embeddedId != null ? embeddedId.getSemester() : null;</span>
+	}
+
+	/**
+	 * Gets the cycle year.
+	 *
+	 * @return the cycle year
+	 */
+	public Integer getCycleYear() {
+<span class="fc" id="L383">		return cycleYear;</span>
+	}
+
+	/**
+	 * Sets the cycle year.
+	 *
+	 * @param cycleYear the new cycle year
+	 */
+	public void setCycleYear(final Integer cycleYear) {
+<span class="fc" id="L392">		this.cycleYear = cycleYear;</span>
+<span class="fc" id="L393">	}</span>
+
+	/**
+	 * Gets the calendar year.
+	 *
+	 * @return the calendar year
+	 */
+	public Integer getCalendarYear() {
+<span class="fc" id="L401">		return calendarYear;</span>
+	}
+
+	/**
+	 * Sets the calendar year.
+	 *
+	 * @param calendarYear the new calendar year
+	 */
+	public void setCalendarYear(final Integer calendarYear) {
+<span class="fc" id="L410">		this.calendarYear = calendarYear;</span>
+<span class="fc" id="L411">	}</span>
+
+	/**
+	 * Gets the is election year.
+	 *
+	 * @return the is election year
+	 */
+	public Boolean getIsElectionYear() {
+<span class="fc" id="L419">		return isElectionYear;</span>
+	}
+
+	/**
+	 * Sets the is election year.
+	 *
+	 * @param isElectionYear the new is election year
+	 */
+	public void setIsElectionYear(final Boolean isElectionYear) {
+<span class="fc" id="L428">		this.isElectionYear = isElectionYear;</span>
+<span class="fc" id="L429">	}</span>
+
+	/**
+	 * Gets the total ballots.
+	 *
+	 * @return the total ballots
+	 */
+	public BigDecimal getTotalBallots() {
+<span class="fc" id="L437">		return totalBallots;</span>
+	}
+
+	/**
+	 * Sets the total ballots.
+	 *
+	 * @param totalBallots the new total ballots
+	 */
+	public void setTotalBallots(final BigDecimal totalBallots) {
+<span class="fc" id="L446">		this.totalBallots = totalBallots;</span>
+<span class="fc" id="L447">	}</span>
+
+	/**
+	 * Gets the participation rate.
+	 *
+	 * @return the participation rate
+	 */
+	public BigDecimal getParticipationRate() {
+<span class="fc" id="L455">		return participationRate;</span>
+	}
+
+	/**
+	 * Sets the participation rate.
+	 *
+	 * @param participationRate the new participation rate
+	 */
+	public void setParticipationRate(final BigDecimal participationRate) {
+<span class="fc" id="L464">		this.participationRate = participationRate;</span>
+<span class="fc" id="L465">	}</span>
+
+	/**
+	 * Gets the win rate.
+	 *
+	 * @return the win rate
+	 */
+	public BigDecimal getWinRate() {
+<span class="fc" id="L473">		return winRate;</span>
+	}
+
+	/**
+	 * Sets the win rate.
+	 *
+	 * @param winRate the new win rate
+	 */
+	public void setWinRate(final BigDecimal winRate) {
+<span class="fc" id="L482">		this.winRate = winRate;</span>
+<span class="fc" id="L483">	}</span>
+
+	/**
+	 * Gets the yes rate.
+	 *
+	 * @return the yes rate
+	 */
+	public BigDecimal getYesRate() {
+<span class="fc" id="L491">		return yesRate;</span>
+	}
+
+	/**
+	 * Sets the yes rate.
+	 *
+	 * @param yesRate the new yes rate
+	 */
+	public void setYesRate(final BigDecimal yesRate) {
+<span class="fc" id="L500">		this.yesRate = yesRate;</span>
+<span class="fc" id="L501">	}</span>
+
+	/**
+	 * Gets the no rate.
+	 *
+	 * @return the no rate
+	 */
+	public BigDecimal getNoRate() {
+<span class="fc" id="L509">		return noRate;</span>
+	}
+
+	/**
+	 * Sets the no rate.
+	 *
+	 * @param noRate the new no rate
+	 */
+	public void setNoRate(final BigDecimal noRate) {
+<span class="fc" id="L518">		this.noRate = noRate;</span>
+<span class="fc" id="L519">	}</span>
+
+	/**
+	 * Gets the approval rate.
+	 *
+	 * @return the approval rate
+	 */
+	public BigDecimal getApprovalRate() {
+<span class="fc" id="L527">		return approvalRate;</span>
+	}
+
+	/**
+	 * Sets the approval rate.
+	 *
+	 * @param approvalRate the new approval rate
+	 */
+	public void setApprovalRate(final BigDecimal approvalRate) {
+<span class="fc" id="L536">		this.approvalRate = approvalRate;</span>
+<span class="fc" id="L537">	}</span>
+
+	/**
+	 * Gets the total votes.
+	 *
+	 * @return the total votes
+	 */
+	public BigDecimal getTotalVotes() {
+<span class="fc" id="L545">		return totalVotes;</span>
+	}
+
+	/**
+	 * Sets the total votes.
+	 *
+	 * @param totalVotes the new total votes
+	 */
+	public void setTotalVotes(final BigDecimal totalVotes) {
+<span class="fc" id="L554">		this.totalVotes = totalVotes;</span>
+<span class="fc" id="L555">	}</span>
+
+	/**
+	 * Gets the yes votes.
+	 *
+	 * @return the yes votes
+	 */
+	public BigDecimal getYesVotes() {
+<span class="fc" id="L563">		return yesVotes;</span>
+	}
+
+	/**
+	 * Sets the yes votes.
+	 *
+	 * @param yesVotes the new yes votes
+	 */
+	public void setYesVotes(final BigDecimal yesVotes) {
+<span class="fc" id="L572">		this.yesVotes = yesVotes;</span>
+<span class="fc" id="L573">	}</span>
+
+	/**
+	 * Gets the ballots won.
+	 *
+	 * @return the ballots won
+	 */
+	public BigDecimal getBallotsWon() {
+<span class="fc" id="L581">		return ballotsWon;</span>
+	}
+
+	/**
+	 * Sets the ballots won.
+	 *
+	 * @param ballotsWon the new ballots won
+	 */
+	public void setBallotsWon(final BigDecimal ballotsWon) {
+<span class="fc" id="L590">		this.ballotsWon = ballotsWon;</span>
+<span class="fc" id="L591">	}</span>
+
+	/**
+	 * Gets the decisions approved.
+	 *
+	 * @return the decisions approved
+	 */
+	public BigDecimal getDecisionsApproved() {
+<span class="fc" id="L599">		return decisionsApproved;</span>
+	}
+
+	/**
+	 * Sets the decisions approved.
+	 *
+	 * @param decisionsApproved the new decisions approved
+	 */
+	public void setDecisionsApproved(final BigDecimal decisionsApproved) {
+<span class="fc" id="L608">		this.decisionsApproved = decisionsApproved;</span>
+<span class="fc" id="L609">	}</span>
+
+	/**
+	 * Gets the active members.
+	 *
+	 * @return the active members
+	 */
+	public Long getActiveMembers() {
+<span class="fc" id="L617">		return activeMembers;</span>
+	}
+
+	/**
+	 * Sets the active members.
+	 *
+	 * @param activeMembers the new active members
+	 */
+	public void setActiveMembers(final Long activeMembers) {
+<span class="fc" id="L626">		this.activeMembers = activeMembers;</span>
+<span class="fc" id="L627">	}</span>
+
+	/**
+	 * Gets the documents last year.
+	 *
+	 * @return the documents last year
+	 */
+	public Long getDocumentsLastYear() {
+<span class="fc" id="L635">		return documentsLastYear;</span>
+	}
+
+	/**
+	 * Sets the documents last year.
+	 *
+	 * @param documentsLastYear the new documents last year
+	 */
+	public void setDocumentsLastYear(final Long documentsLastYear) {
+<span class="fc" id="L644">		this.documentsLastYear = documentsLastYear;</span>
+<span class="fc" id="L645">	}</span>
+
+	/**
+	 * Gets the avg rebel rate.
+	 *
+	 * @return the avg rebel rate
+	 */
+	public BigDecimal getAvgRebelRate() {
+<span class="fc" id="L653">		return avgRebelRate;</span>
+	}
+
+	/**
+	 * Sets the avg rebel rate.
+	 *
+	 * @param avgRebelRate the new avg rebel rate
+	 */
+	public void setAvgRebelRate(final BigDecimal avgRebelRate) {
+<span class="fc" id="L662">		this.avgRebelRate = avgRebelRate;</span>
+<span class="fc" id="L663">	}</span>
+
+	/**
+	 * Gets the current performance score.
+	 *
+	 * @return the current performance score
+	 */
+	public BigDecimal getCurrentPerformanceScore() {
+<span class="fc" id="L671">		return currentPerformanceScore;</span>
+	}
+
+	/**
+	 * Sets the current performance score.
+	 *
+	 * @param currentPerformanceScore the new current performance score
+	 */
+	public void setCurrentPerformanceScore(final BigDecimal currentPerformanceScore) {
+<span class="fc" id="L680">		this.currentPerformanceScore = currentPerformanceScore;</span>
+<span class="fc" id="L681">	}</span>
+
+	/**
+	 * Gets the rank by win rate.
+	 *
+	 * @return the rank by win rate
+	 */
+	public Long getRankByWinRate() {
+<span class="fc" id="L689">		return rankByWinRate;</span>
+	}
+
+	/**
+	 * Sets the rank by win rate.
+	 *
+	 * @param rankByWinRate the new rank by win rate
+	 */
+	public void setRankByWinRate(final Long rankByWinRate) {
+<span class="fc" id="L698">		this.rankByWinRate = rankByWinRate;</span>
+<span class="fc" id="L699">	}</span>
+
+	/**
+	 * Gets the rank by participation.
+	 *
+	 * @return the rank by participation
+	 */
+	public Long getRankByParticipation() {
+<span class="fc" id="L707">		return rankByParticipation;</span>
+	}
+
+	/**
+	 * Sets the rank by participation.
+	 *
+	 * @param rankByParticipation the new rank by participation
+	 */
+	public void setRankByParticipation(final Long rankByParticipation) {
+<span class="fc" id="L716">		this.rankByParticipation = rankByParticipation;</span>
+<span class="fc" id="L717">	}</span>
+
+	/**
+	 * Gets the rank by size.
+	 *
+	 * @return the rank by size
+	 */
+	public Long getRankBySize() {
+<span class="fc" id="L725">		return rankBySize;</span>
+	}
+
+	/**
+	 * Sets the rank by size.
+	 *
+	 * @param rankBySize the new rank by size
+	 */
+	public void setRankBySize(final Long rankBySize) {
+<span class="fc" id="L734">		this.rankBySize = rankBySize;</span>
+<span class="fc" id="L735">	}</span>
+
+	/**
+	 * Gets the rank by approval.
+	 *
+	 * @return the rank by approval
+	 */
+	public Long getRankByApproval() {
+<span class="fc" id="L743">		return rankByApproval;</span>
+	}
+
+	/**
+	 * Sets the rank by approval.
+	 *
+	 * @param rankByApproval the new rank by approval
+	 */
+	public void setRankByApproval(final Long rankByApproval) {
+<span class="fc" id="L752">		this.rankByApproval = rankByApproval;</span>
+<span class="fc" id="L753">	}</span>
+
+	/**
+	 * Gets the rank by productivity.
+	 *
+	 * @return the rank by productivity
+	 */
+	public Long getRankByProductivity() {
+<span class="fc" id="L761">		return rankByProductivity;</span>
+	}
+
+	/**
+	 * Sets the rank by productivity.
+	 *
+	 * @param rankByProductivity the new rank by productivity
+	 */
+	public void setRankByProductivity(final Long rankByProductivity) {
+<span class="fc" id="L770">		this.rankByProductivity = rankByProductivity;</span>
+<span class="fc" id="L771">	}</span>
+
+	/**
+	 * Gets the rank by discipline.
+	 *
+	 * @return the rank by discipline
+	 */
+	public Long getRankByDiscipline() {
+<span class="fc" id="L779">		return rankByDiscipline;</span>
+	}
+
+	/**
+	 * Sets the rank by discipline.
+	 *
+	 * @param rankByDiscipline the new rank by discipline
+	 */
+	public void setRankByDiscipline(final Long rankByDiscipline) {
+<span class="fc" id="L788">		this.rankByDiscipline = rankByDiscipline;</span>
+<span class="fc" id="L789">	}</span>
+
+	/**
+	 * Gets the percentile win rate.
+	 *
+	 * @return the percentile win rate
+	 */
+	public Double getPercentileWinRate() {
+<span class="fc" id="L797">		return percentileWinRate;</span>
+	}
+
+	/**
+	 * Sets the percentile win rate.
+	 *
+	 * @param percentileWinRate the new percentile win rate
+	 */
+	public void setPercentileWinRate(final Double percentileWinRate) {
+<span class="fc" id="L806">		this.percentileWinRate = percentileWinRate;</span>
+<span class="fc" id="L807">	}</span>
+
+	/**
+	 * Gets the percentile participation.
+	 *
+	 * @return the percentile participation
+	 */
+	public Double getPercentileParticipation() {
+<span class="fc" id="L815">		return percentileParticipation;</span>
+	}
+
+	/**
+	 * Sets the percentile participation.
+	 *
+	 * @param percentileParticipation the new percentile participation
+	 */
+	public void setPercentileParticipation(final Double percentileParticipation) {
+<span class="fc" id="L824">		this.percentileParticipation = percentileParticipation;</span>
+<span class="fc" id="L825">	}</span>
+
+	/**
+	 * Gets the percentile approval.
+	 *
+	 * @return the percentile approval
+	 */
+	public Double getPercentileApproval() {
+<span class="fc" id="L833">		return percentileApproval;</span>
+	}
+
+	/**
+	 * Sets the percentile approval.
+	 *
+	 * @param percentileApproval the new percentile approval
+	 */
+	public void setPercentileApproval(final Double percentileApproval) {
+<span class="fc" id="L842">		this.percentileApproval = percentileApproval;</span>
+<span class="fc" id="L843">	}</span>
+
+	/**
+	 * Gets the percentile productivity.
+	 *
+	 * @return the percentile productivity
+	 */
+	public Double getPercentileProductivity() {
+<span class="fc" id="L851">		return percentileProductivity;</span>
+	}
+
+	/**
+	 * Sets the percentile productivity.
+	 *
+	 * @param percentileProductivity the new percentile productivity
+	 */
+	public void setPercentileProductivity(final Double percentileProductivity) {
+<span class="fc" id="L860">		this.percentileProductivity = percentileProductivity;</span>
+<span class="fc" id="L861">	}</span>
+
+	/**
+	 * Gets the quartile by win rate.
+	 *
+	 * @return the quartile by win rate
+	 */
+	public Integer getQuartileByWinRate() {
+<span class="fc" id="L869">		return quartileByWinRate;</span>
+	}
+
+	/**
+	 * Sets the quartile by win rate.
+	 *
+	 * @param quartileByWinRate the new quartile by win rate
+	 */
+	public void setQuartileByWinRate(final Integer quartileByWinRate) {
+<span class="fc" id="L878">		this.quartileByWinRate = quartileByWinRate;</span>
+<span class="fc" id="L879">	}</span>
+
+	/**
+	 * Gets the quartile by overall performance.
+	 *
+	 * @return the quartile by overall performance
+	 */
+	public Integer getQuartileByOverallPerformance() {
+<span class="fc" id="L887">		return quartileByOverallPerformance;</span>
+	}
+
+	/**
+	 * Sets the quartile by overall performance.
+	 *
+	 * @param quartileByOverallPerformance the new quartile by overall performance
+	 */
+	public void setQuartileByOverallPerformance(final Integer quartileByOverallPerformance) {
+<span class="fc" id="L896">		this.quartileByOverallPerformance = quartileByOverallPerformance;</span>
+<span class="fc" id="L897">	}</span>
+
+	/**
+	 * Gets the prev semester win rate.
+	 *
+	 * @return the prev semester win rate
+	 */
+	public BigDecimal getPrevSemesterWinRate() {
+<span class="fc" id="L905">		return prevSemesterWinRate;</span>
+	}
+
+	/**
+	 * Sets the prev semester win rate.
+	 *
+	 * @param prevSemesterWinRate the new prev semester win rate
+	 */
+	public void setPrevSemesterWinRate(final BigDecimal prevSemesterWinRate) {
+<span class="fc" id="L914">		this.prevSemesterWinRate = prevSemesterWinRate;</span>
+<span class="fc" id="L915">	}</span>
+
+	/**
+	 * Gets the prev semester participation.
+	 *
+	 * @return the prev semester participation
+	 */
+	public BigDecimal getPrevSemesterParticipation() {
+<span class="fc" id="L923">		return prevSemesterParticipation;</span>
+	}
+
+	/**
+	 * Sets the prev semester participation.
+	 *
+	 * @param prevSemesterParticipation the new prev semester participation
+	 */
+	public void setPrevSemesterParticipation(final BigDecimal prevSemesterParticipation) {
+<span class="fc" id="L932">		this.prevSemesterParticipation = prevSemesterParticipation;</span>
+<span class="fc" id="L933">	}</span>
+
+	/**
+	 * Gets the prev semester members.
+	 *
+	 * @return the prev semester members
+	 */
+	public Long getPrevSemesterMembers() {
+<span class="fc" id="L941">		return prevSemesterMembers;</span>
+	}
+
+	/**
+	 * Sets the prev semester members.
+	 *
+	 * @param prevSemesterMembers the new prev semester members
+	 */
+	public void setPrevSemesterMembers(final Long prevSemesterMembers) {
+<span class="fc" id="L950">		this.prevSemesterMembers = prevSemesterMembers;</span>
+<span class="fc" id="L951">	}</span>
+
+	/**
+	 * Gets the prev semester approval.
+	 *
+	 * @return the prev semester approval
+	 */
+	public BigDecimal getPrevSemesterApproval() {
+<span class="fc" id="L959">		return prevSemesterApproval;</span>
+	}
+
+	/**
+	 * Sets the prev semester approval.
+	 *
+	 * @param prevSemesterApproval the new prev semester approval
+	 */
+	public void setPrevSemesterApproval(final BigDecimal prevSemesterApproval) {
+<span class="fc" id="L968">		this.prevSemesterApproval = prevSemesterApproval;</span>
+<span class="fc" id="L969">	}</span>
+
+	/**
+	 * Gets the prev semester documents.
+	 *
+	 * @return the prev semester documents
+	 */
+	public Long getPrevSemesterDocuments() {
+<span class="fc" id="L977">		return prevSemesterDocuments;</span>
+	}
+
+	/**
+	 * Sets the prev semester documents.
+	 *
+	 * @param prevSemesterDocuments the new prev semester documents
+	 */
+	public void setPrevSemesterDocuments(final Long prevSemesterDocuments) {
+<span class="fc" id="L986">		this.prevSemesterDocuments = prevSemesterDocuments;</span>
+<span class="fc" id="L987">	}</span>
+
+	/**
+	 * Gets the prev semester rebel rate.
+	 *
+	 * @return the prev semester rebel rate
+	 */
+	public BigDecimal getPrevSemesterRebelRate() {
+<span class="fc" id="L995">		return prevSemesterRebelRate;</span>
+	}
+
+	/**
+	 * Sets the prev semester rebel rate.
+	 *
+	 * @param prevSemesterRebelRate the new prev semester rebel rate
+	 */
+	public void setPrevSemesterRebelRate(final BigDecimal prevSemesterRebelRate) {
+<span class="fc" id="L1004">		this.prevSemesterRebelRate = prevSemesterRebelRate;</span>
+<span class="fc" id="L1005">	}</span>
+
+	/**
+	 * Gets the next semester win rate.
+	 *
+	 * @return the next semester win rate
+	 */
+	public BigDecimal getNextSemesterWinRate() {
+<span class="fc" id="L1013">		return nextSemesterWinRate;</span>
+	}
+
+	/**
+	 * Sets the next semester win rate.
+	 *
+	 * @param nextSemesterWinRate the new next semester win rate
+	 */
+	public void setNextSemesterWinRate(final BigDecimal nextSemesterWinRate) {
+<span class="fc" id="L1022">		this.nextSemesterWinRate = nextSemesterWinRate;</span>
+<span class="fc" id="L1023">	}</span>
+
+	/**
+	 * Gets the next semester participation.
+	 *
+	 * @return the next semester participation
+	 */
+	public BigDecimal getNextSemesterParticipation() {
+<span class="fc" id="L1031">		return nextSemesterParticipation;</span>
+	}
+
+	/**
+	 * Sets the next semester participation.
+	 *
+	 * @param nextSemesterParticipation the new next semester participation
+	 */
+	public void setNextSemesterParticipation(final BigDecimal nextSemesterParticipation) {
+<span class="fc" id="L1040">		this.nextSemesterParticipation = nextSemesterParticipation;</span>
+<span class="fc" id="L1041">	}</span>
+
+	/**
+	 * Gets the next semester members.
+	 *
+	 * @return the next semester members
+	 */
+	public Long getNextSemesterMembers() {
+<span class="fc" id="L1049">		return nextSemesterMembers;</span>
+	}
+
+	/**
+	 * Sets the next semester members.
+	 *
+	 * @param nextSemesterMembers the new next semester members
+	 */
+	public void setNextSemesterMembers(final Long nextSemesterMembers) {
+<span class="fc" id="L1058">		this.nextSemesterMembers = nextSemesterMembers;</span>
+<span class="fc" id="L1059">	}</span>
+
+	/**
+	 * Gets the stddev win rate sector.
+	 *
+	 * @return the stddev win rate sector
+	 */
+	public BigDecimal getStddevWinRateSector() {
+<span class="fc" id="L1067">		return stddevWinRateSector;</span>
+	}
+
+	/**
+	 * Sets the stddev win rate sector.
+	 *
+	 * @param stddevWinRateSector the new stddev win rate sector
+	 */
+	public void setStddevWinRateSector(final BigDecimal stddevWinRateSector) {
+<span class="fc" id="L1076">		this.stddevWinRateSector = stddevWinRateSector;</span>
+<span class="fc" id="L1077">	}</span>
+
+	/**
+	 * Gets the stddev participation sector.
+	 *
+	 * @return the stddev participation sector
+	 */
+	public BigDecimal getStddevParticipationSector() {
+<span class="fc" id="L1085">		return stddevParticipationSector;</span>
+	}
+
+	/**
+	 * Sets the stddev participation sector.
+	 *
+	 * @param stddevParticipationSector the new stddev participation sector
+	 */
+	public void setStddevParticipationSector(final BigDecimal stddevParticipationSector) {
+<span class="fc" id="L1094">		this.stddevParticipationSector = stddevParticipationSector;</span>
+<span class="fc" id="L1095">	}</span>
+
+	/**
+	 * Gets the stddev win rate party.
+	 *
+	 * @return the stddev win rate party
+	 */
+	public BigDecimal getStddevWinRateParty() {
+<span class="fc" id="L1103">		return stddevWinRateParty;</span>
+	}
+
+	/**
+	 * Sets the stddev win rate party.
+	 *
+	 * @param stddevWinRateParty the new stddev win rate party
+	 */
+	public void setStddevWinRateParty(final BigDecimal stddevWinRateParty) {
+<span class="fc" id="L1112">		this.stddevWinRateParty = stddevWinRateParty;</span>
+<span class="fc" id="L1113">	}</span>
+
+	/**
+	 * Gets the stddev participation party.
+	 *
+	 * @return the stddev participation party
+	 */
+	public BigDecimal getStddevParticipationParty() {
+<span class="fc" id="L1121">		return stddevParticipationParty;</span>
+	}
+
+	/**
+	 * Sets the stddev participation party.
+	 *
+	 * @param stddevParticipationParty the new stddev participation party
+	 */
+	public void setStddevParticipationParty(final BigDecimal stddevParticipationParty) {
+<span class="fc" id="L1130">		this.stddevParticipationParty = stddevParticipationParty;</span>
+<span class="fc" id="L1131">	}</span>
+
+	/**
+	 * Gets the ma 3semester win rate.
+	 *
+	 * @return the ma 3semester win rate
+	 */
+	public BigDecimal getMa3semesterWinRate() {
+<span class="fc" id="L1139">		return ma3semesterWinRate;</span>
+	}
+
+	/**
+	 * Sets the ma 3semester win rate.
+	 *
+	 * @param ma3semesterWinRate the new ma 3semester win rate
+	 */
+	public void setMa3semesterWinRate(final BigDecimal ma3semesterWinRate) {
+<span class="fc" id="L1148">		this.ma3semesterWinRate = ma3semesterWinRate;</span>
+<span class="fc" id="L1149">	}</span>
+
+	/**
+	 * Gets the ma 3semester participation.
+	 *
+	 * @return the ma 3semester participation
+	 */
+	public BigDecimal getMa3semesterParticipation() {
+<span class="fc" id="L1157">		return ma3semesterParticipation;</span>
+	}
+
+	/**
+	 * Sets the ma 3semester participation.
+	 *
+	 * @param ma3semesterParticipation the new ma 3semester participation
+	 */
+	public void setMa3semesterParticipation(final BigDecimal ma3semesterParticipation) {
+<span class="fc" id="L1166">		this.ma3semesterParticipation = ma3semesterParticipation;</span>
+<span class="fc" id="L1167">	}</span>
+
+	/**
+	 * Gets the win rate change absolute.
+	 *
+	 * @return the win rate change absolute
+	 */
+	public BigDecimal getWinRateChangeAbsolute() {
+<span class="fc" id="L1175">		return winRateChangeAbsolute;</span>
+	}
+
+	/**
+	 * Sets the win rate change absolute.
+	 *
+	 * @param winRateChangeAbsolute the new win rate change absolute
+	 */
+	public void setWinRateChangeAbsolute(final BigDecimal winRateChangeAbsolute) {
+<span class="fc" id="L1184">		this.winRateChangeAbsolute = winRateChangeAbsolute;</span>
+<span class="fc" id="L1185">	}</span>
+
+	/**
+	 * Gets the win rate change pct.
+	 *
+	 * @return the win rate change pct
+	 */
+	public BigDecimal getWinRateChangePct() {
+<span class="fc" id="L1193">		return winRateChangePct;</span>
+	}
+
+	/**
+	 * Sets the win rate change pct.
+	 *
+	 * @param winRateChangePct the new win rate change pct
+	 */
+	public void setWinRateChangePct(final BigDecimal winRateChangePct) {
+<span class="fc" id="L1202">		this.winRateChangePct = winRateChangePct;</span>
+<span class="fc" id="L1203">	}</span>
+
+	/**
+	 * Gets the participation change absolute.
+	 *
+	 * @return the participation change absolute
+	 */
+	public BigDecimal getParticipationChangeAbsolute() {
+<span class="fc" id="L1211">		return participationChangeAbsolute;</span>
+	}
+
+	/**
+	 * Sets the participation change absolute.
+	 *
+	 * @param participationChangeAbsolute the new participation change absolute
+	 */
+	public void setParticipationChangeAbsolute(final BigDecimal participationChangeAbsolute) {
+<span class="fc" id="L1220">		this.participationChangeAbsolute = participationChangeAbsolute;</span>
+<span class="fc" id="L1221">	}</span>
+
+	/**
+	 * Gets the membership change.
+	 *
+	 * @return the membership change
+	 */
+	public Long getMembershipChange() {
+<span class="fc" id="L1229">		return membershipChange;</span>
+	}
+
+	/**
+	 * Sets the membership change.
+	 *
+	 * @param membershipChange the new membership change
+	 */
+	public void setMembershipChange(final Long membershipChange) {
+<span class="fc" id="L1238">		this.membershipChange = membershipChange;</span>
+<span class="fc" id="L1239">	}</span>
+
+	/**
+	 * Gets the approval rate change.
+	 *
+	 * @return the approval rate change
+	 */
+	public BigDecimal getApprovalRateChange() {
+<span class="fc" id="L1247">		return approvalRateChange;</span>
+	}
+
+	/**
+	 * Sets the approval rate change.
+	 *
+	 * @param approvalRateChange the new approval rate change
+	 */
+	public void setApprovalRateChange(final BigDecimal approvalRateChange) {
+<span class="fc" id="L1256">		this.approvalRateChange = approvalRateChange;</span>
+<span class="fc" id="L1257">	}</span>
+
+	/**
+	 * Gets the documents change.
+	 *
+	 * @return the documents change
+	 */
+	public Long getDocumentsChange() {
+<span class="fc" id="L1265">		return documentsChange;</span>
+	}
+
+	/**
+	 * Sets the documents change.
+	 *
+	 * @param documentsChange the new documents change
+	 */
+	public void setDocumentsChange(final Long documentsChange) {
+<span class="fc" id="L1274">		this.documentsChange = documentsChange;</span>
+<span class="fc" id="L1275">	}</span>
+
+	/**
+	 * Gets the discipline change.
+	 *
+	 * @return the discipline change
+	 */
+	public BigDecimal getDisciplineChange() {
+<span class="fc" id="L1283">		return disciplineChange;</span>
+	}
+
+	/**
+	 * Sets the discipline change.
+	 *
+	 * @param disciplineChange the new discipline change
+	 */
+	public void setDisciplineChange(final BigDecimal disciplineChange) {
+<span class="fc" id="L1292">		this.disciplineChange = disciplineChange;</span>
+<span class="fc" id="L1293">	}</span>
+
+	/**
+	 * Gets the trajectory win rate.
+	 *
+	 * @return the trajectory win rate
+	 */
+	public String getTrajectoryWinRate() {
+<span class="fc" id="L1301">		return trajectoryWinRate;</span>
+	}
+
+	/**
+	 * Sets the trajectory win rate.
+	 *
+	 * @param trajectoryWinRate the new trajectory win rate
+	 */
+	public void setTrajectoryWinRate(final String trajectoryWinRate) {
+<span class="fc" id="L1310">		this.trajectoryWinRate = trajectoryWinRate;</span>
+<span class="fc" id="L1311">	}</span>
+
+	/**
+	 * Gets the trajectory participation.
+	 *
+	 * @return the trajectory participation
+	 */
+	public String getTrajectoryParticipation() {
+<span class="fc" id="L1319">		return trajectoryParticipation;</span>
+	}
+
+	/**
+	 * Sets the trajectory participation.
+	 *
+	 * @param trajectoryParticipation the new trajectory participation
+	 */
+	public void setTrajectoryParticipation(final String trajectoryParticipation) {
+<span class="fc" id="L1328">		this.trajectoryParticipation = trajectoryParticipation;</span>
+<span class="fc" id="L1329">	}</span>
+
+	/**
+	 * Gets the composite performance index.
+	 *
+	 * @return the composite performance index
+	 */
+	public BigDecimal getCompositePerformanceIndex() {
+<span class="fc" id="L1337">		return compositePerformanceIndex;</span>
+	}
+
+	/**
+	 * Sets the composite performance index.
+	 *
+	 * @param compositePerformanceIndex the new composite performance index
+	 */
+	public void setCompositePerformanceIndex(final BigDecimal compositePerformanceIndex) {
+<span class="fc" id="L1346">		this.compositePerformanceIndex = compositePerformanceIndex;</span>
+<span class="fc" id="L1347">	}</span>
+
+	/**
+	 * Gets the discipline effectiveness score.
+	 *
+	 * @return the discipline effectiveness score
+	 */
+	public BigDecimal getDisciplineEffectivenessScore() {
+<span class="fc" id="L1355">		return disciplineEffectivenessScore;</span>
+	}
+
+	/**
+	 * Sets the discipline effectiveness score.
+	 *
+	 * @param disciplineEffectivenessScore the new discipline effectiveness score
+	 */
+	public void setDisciplineEffectivenessScore(final BigDecimal disciplineEffectivenessScore) {
+<span class="fc" id="L1364">		this.disciplineEffectivenessScore = disciplineEffectivenessScore;</span>
+<span class="fc" id="L1365">	}</span>
+
+	/**
+	 * Gets the legislative effectiveness score.
+	 *
+	 * @return the legislative effectiveness score
+	 */
+	public BigDecimal getLegislativeEffectivenessScore() {
+<span class="fc" id="L1373">		return legislativeEffectivenessScore;</span>
+	}
+
+	/**
+	 * Sets the legislative effectiveness score.
+	 *
+	 * @param legislativeEffectivenessScore the new legislative effectiveness score
+	 */
+	public void setLegislativeEffectivenessScore(final BigDecimal legislativeEffectivenessScore) {
+<span class="fc" id="L1382">		this.legislativeEffectivenessScore = legislativeEffectivenessScore;</span>
+<span class="fc" id="L1383">	}</span>
+
+	/**
+	 * Gets the volatility classification.
+	 *
+	 * @return the volatility classification
+	 */
+	public String getVolatilityClassification() {
+<span class="fc" id="L1391">		return volatilityClassification;</span>
+	}
+
+	/**
+	 * Sets the volatility classification.
+	 *
+	 * @param volatilityClassification the new volatility classification
+	 */
+	public void setVolatilityClassification(final String volatilityClassification) {
+<span class="fc" id="L1400">		this.volatilityClassification = volatilityClassification;</span>
+<span class="fc" id="L1401">	}</span>
+
+	/**
+	 * Gets the stability classification.
+	 *
+	 * @return the stability classification
+	 */
+	public String getStabilityClassification() {
+<span class="fc" id="L1409">		return stabilityClassification;</span>
+	}
+
+	/**
+	 * Sets the stability classification.
+	 *
+	 * @param stabilityClassification the new stability classification
+	 */
+	public void setStabilityClassification(final String stabilityClassification) {
+<span class="fc" id="L1418">		this.stabilityClassification = stabilityClassification;</span>
+<span class="fc" id="L1419">	}</span>
+
+	/**
+	 * Gets the forecast trend.
+	 *
+	 * @return the forecast trend
+	 */
+	public String getForecastTrend() {
+<span class="fc" id="L1427">		return forecastTrend;</span>
+	}
+
+	/**
+	 * Sets the forecast trend.
+	 *
+	 * @param forecastTrend the new forecast trend
+	 */
+	public void setForecastTrend(final String forecastTrend) {
+<span class="fc" id="L1436">		this.forecastTrend = forecastTrend;</span>
+<span class="fc" id="L1437">	}</span>
+
+	/**
+	 * Gets the trend deviation from ma.
+	 *
+	 * @return the trend deviation from ma
+	 */
+	public BigDecimal getTrendDeviationFromMa() {
+<span class="fc" id="L1445">		return trendDeviationFromMa;</span>
+	}
+
+	/**
+	 * Sets the trend deviation from ma.
+	 *
+	 * @param trendDeviationFromMa the new trend deviation from ma
+	 */
+	public void setTrendDeviationFromMa(final BigDecimal trendDeviationFromMa) {
+<span class="fc" id="L1454">		this.trendDeviationFromMa = trendDeviationFromMa;</span>
+<span class="fc" id="L1455">	}</span>
+
+	/**
+	 * Gets the trend position.
+	 *
+	 * @return the trend position
+	 */
+	public String getTrendPosition() {
+<span class="fc" id="L1463">		return trendPosition;</span>
+	}
+
+	/**
+	 * Sets the trend position.
+	 *
+	 * @param trendPosition the new trend position
+	 */
+	public void setTrendPosition(final String trendPosition) {
+<span class="fc" id="L1472">		this.trendPosition = trendPosition;</span>
+<span class="fc" id="L1473">	}</span>
+
+	/**
+	 * Gets the momentum z score win rate.
+	 *
+	 * @return the momentum z score win rate
+	 */
+	public BigDecimal getMomentumZScoreWinRate() {
+<span class="fc" id="L1481">		return momentumZScoreWinRate;</span>
+	}
+
+	/**
+	 * Sets the momentum z score win rate.
+	 *
+	 * @param momentumZScoreWinRate the new momentum z score win rate
+	 */
+	public void setMomentumZScoreWinRate(final BigDecimal momentumZScoreWinRate) {
+<span class="fc" id="L1490">		this.momentumZScoreWinRate = momentumZScoreWinRate;</span>
+<span class="fc" id="L1491">	}</span>
+
+	/**
+	 * Gets the momentum z score participation.
+	 *
+	 * @return the momentum z score participation
+	 */
+	public BigDecimal getMomentumZScoreParticipation() {
+<span class="fc" id="L1499">		return momentumZScoreParticipation;</span>
+	}
+
+	/**
+	 * Sets the momentum z score participation.
+	 *
+	 * @param momentumZScoreParticipation the new momentum z score participation
+	 */
+	public void setMomentumZScoreParticipation(final BigDecimal momentumZScoreParticipation) {
+<span class="fc" id="L1508">		this.momentumZScoreParticipation = momentumZScoreParticipation;</span>
+<span class="fc" id="L1509">	}</span>
+
+	/**
+	 * Gets the performance tier.
+	 *
+	 * @return the performance tier
+	 */
+	public String getPerformanceTier() {
+<span class="fc" id="L1517">		return performanceTier;</span>
+	}
+
+	/**
+	 * Sets the performance tier.
+	 *
+	 * @param performanceTier the new performance tier
+	 */
+	public void setPerformanceTier(final String performanceTier) {
+<span class="fc" id="L1526">		this.performanceTier = performanceTier;</span>
+<span class="fc" id="L1527">	}</span>
+
+	/**
+	 * Gets the productivity tier.
+	 *
+	 * @return the productivity tier
+	 */
+	public String getProductivityTier() {
+<span class="fc" id="L1535">		return productivityTier;</span>
+	}
+
+	/**
+	 * Sets the productivity tier.
+	 *
+	 * @param productivityTier the new productivity tier
+	 */
+	public void setProductivityTier(final String productivityTier) {
+<span class="fc" id="L1544">		this.productivityTier = productivityTier;</span>
+<span class="fc" id="L1545">	}</span>
+
+	/**
+	 * Gets the early warning flag.
+	 *
+	 * @return the early warning flag
+	 */
+	public String getEarlyWarningFlag() {
+<span class="fc" id="L1553">		return earlyWarningFlag;</span>
+	}
+
+	/**
+	 * Sets the early warning flag.
+	 *
+	 * @param earlyWarningFlag the new early warning flag
+	 */
+	public void setEarlyWarningFlag(final String earlyWarningFlag) {
+<span class="fc" id="L1562">		this.earlyWarningFlag = earlyWarningFlag;</span>
+<span class="fc" id="L1563">	}</span>
+
+	/**
+	 * Gets the trajectory confidence score.
+	 *
+	 * @return the trajectory confidence score
+	 */
+	public BigDecimal getTrajectoryConfidenceScore() {
+<span class="fc" id="L1571">		return trajectoryConfidenceScore;</span>
+	}
+
+	/**
+	 * Sets the trajectory confidence score.
+	 *
+	 * @param trajectoryConfidenceScore the new trajectory confidence score
+	 */
+	public void setTrajectoryConfidenceScore(final BigDecimal trajectoryConfidenceScore) {
+<span class="fc" id="L1580">		this.trajectoryConfidenceScore = trajectoryConfidenceScore;</span>
+<span class="fc" id="L1581">	}</span>
+
+	/**
+	 * Gets the is pre election spring.
+	 *
+	 * @return the is pre election spring
+	 */
+	public Boolean getIsPreElectionSpring() {
+<span class="fc" id="L1589">		return isPreElectionSpring;</span>
+	}
+
+	/**
+	 * Sets the is pre election spring.
+	 *
+	 * @param isPreElectionSpring the new is pre election spring
+	 */
+	public void setIsPreElectionSpring(final Boolean isPreElectionSpring) {
+<span class="fc" id="L1598">		this.isPreElectionSpring = isPreElectionSpring;</span>
+<span class="fc" id="L1599">	}</span>
+
+	/**
+	 * Gets the is election autumn.
+	 *
+	 * @return the is election autumn
+	 */
+	public Boolean getIsElectionAutumn() {
+<span class="fc" id="L1607">		return isElectionAutumn;</span>
+	}
+
+	/**
+	 * Sets the is election autumn.
+	 *
+	 * @param isElectionAutumn the new is election autumn
+	 */
+	public void setIsElectionAutumn(final Boolean isElectionAutumn) {
+<span class="fc" id="L1616">		this.isElectionAutumn = isElectionAutumn;</span>
+<span class="fc" id="L1617">	}</span>
+
+	/**
+	 * Gets the is election cycle end.
+	 *
+	 * @return the is election cycle end
+	 */
+	public Boolean getIsElectionCycleEnd() {
+<span class="fc" id="L1625">		return isElectionCycleEnd;</span>
+	}
+
+	/**
+	 * Sets the is election cycle end.
+	 *
+	 * @param isElectionCycleEnd the new is election cycle end
+	 */
+	public void setIsElectionCycleEnd(final Boolean isElectionCycleEnd) {
+<span class="fc" id="L1634">		this.isElectionCycleEnd = isElectionCycleEnd;</span>
+<span class="fc" id="L1635">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

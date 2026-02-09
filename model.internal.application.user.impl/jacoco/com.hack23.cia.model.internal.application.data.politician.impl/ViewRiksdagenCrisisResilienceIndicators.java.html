@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewRiksdagenCrisisResilienceIndicators.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.politician.impl</a> &gt; <span class="el_source">ViewRiksdagenCrisisResilienceIndicators.java</span></div><h1>ViewRiksdagenCrisisResilienceIndicators.java</h1><pre class="source lang-java linenums">package com.hack23.cia.model.internal.application.data.politician.impl;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+/**
+ * JPA entity for view_riksdagen_crisis_resilience_indicators database view.
+ * 
+ * Intelligence Purpose: Assesses politician performance under pressure by comparing
+ * behavior during crisis periods versus normal periods. Identifies resilient
+ * leaders and those showing performance degradation under stress.
+ * 
+ * Created by: Liquibase v1.29 (Intelligence Operations)
+ * Risk Rules Supported: P-08, P-22 (Performance under pressure assessment)
+ */
+@Entity(name = &quot;ViewRiksdagenCrisisResilienceIndicators&quot;)
+@Table(name = &quot;view_riksdagen_crisis_resilience_indicators&quot;)
+public class ViewRiksdagenCrisisResilienceIndicators implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@Column(name = &quot;person_id&quot;, nullable = false, length = 255)
+	private String personId;
+
+	@Column(name = &quot;first_name&quot;, length = 255)
+	private String firstName;
+
+	@Column(name = &quot;last_name&quot;, length = 255)
+	private String lastName;
+
+	@Column(name = &quot;party&quot;, length = 50)
+	private String party;
+
+	@Column(name = &quot;crisis_period_votes&quot;)
+	private Long crisisPeriodVotes;
+
+	@Column(name = &quot;crisis_absence_rate&quot;, precision = 5, scale = 2)
+	private BigDecimal crisisAbsenceRate;
+
+	@Column(name = &quot;crisis_party_discipline&quot;, precision = 5, scale = 2)
+	private BigDecimal crisisPartyDiscipline;
+
+	@Column(name = &quot;normal_period_votes&quot;)
+	private Long normalPeriodVotes;
+
+	@Column(name = &quot;normal_absence_rate&quot;, precision = 5, scale = 2)
+	private BigDecimal normalAbsenceRate;
+
+	@Column(name = &quot;absence_rate_change&quot;, precision = 5, scale = 2)
+	private BigDecimal absenceRateChange;
+
+	@Column(name = &quot;resilience_score&quot;, precision = 10, scale = 4)
+	private BigDecimal resilienceScore;
+
+	@Column(name = &quot;resilience_classification&quot;, length = 100)
+	private String resilienceClassification;
+
+	@Column(name = &quot;pressure_performance_assessment&quot;, length = 255)
+	private String pressurePerformanceAssessment;
+
+	/**
+	 * Default constructor.
+	 */
+	public ViewRiksdagenCrisisResilienceIndicators() {
+<span class="fc" id="L76">		super();</span>
+<span class="fc" id="L77">	}</span>
+
+	// Getters and Setters
+
+	public String getPersonId() {
+<span class="fc" id="L82">		return personId;</span>
+	}
+
+	public void setPersonId(String personId) {
+<span class="fc" id="L86">		this.personId = personId;</span>
+<span class="fc" id="L87">	}</span>
+
+	public String getFirstName() {
+<span class="fc" id="L90">		return firstName;</span>
+	}
+
+	public void setFirstName(String firstName) {
+<span class="fc" id="L94">		this.firstName = firstName;</span>
+<span class="fc" id="L95">	}</span>
+
+	public String getLastName() {
+<span class="fc" id="L98">		return lastName;</span>
+	}
+
+	public void setLastName(String lastName) {
+<span class="fc" id="L102">		this.lastName = lastName;</span>
+<span class="fc" id="L103">	}</span>
+
+	public String getParty() {
+<span class="fc" id="L106">		return party;</span>
+	}
+
+	public void setParty(String party) {
+<span class="fc" id="L110">		this.party = party;</span>
+<span class="fc" id="L111">	}</span>
+
+	public Long getCrisisPeriodVotes() {
+<span class="fc" id="L114">		return crisisPeriodVotes;</span>
+	}
+
+	public void setCrisisPeriodVotes(Long crisisPeriodVotes) {
+<span class="fc" id="L118">		this.crisisPeriodVotes = crisisPeriodVotes;</span>
+<span class="fc" id="L119">	}</span>
+
+	public BigDecimal getCrisisAbsenceRate() {
+<span class="fc" id="L122">		return crisisAbsenceRate;</span>
+	}
+
+	public void setCrisisAbsenceRate(BigDecimal crisisAbsenceRate) {
+<span class="fc" id="L126">		this.crisisAbsenceRate = crisisAbsenceRate;</span>
+<span class="fc" id="L127">	}</span>
+
+	public BigDecimal getCrisisPartyDiscipline() {
+<span class="fc" id="L130">		return crisisPartyDiscipline;</span>
+	}
+
+	public void setCrisisPartyDiscipline(BigDecimal crisisPartyDiscipline) {
+<span class="fc" id="L134">		this.crisisPartyDiscipline = crisisPartyDiscipline;</span>
+<span class="fc" id="L135">	}</span>
+
+	public Long getNormalPeriodVotes() {
+<span class="fc" id="L138">		return normalPeriodVotes;</span>
+	}
+
+	public void setNormalPeriodVotes(Long normalPeriodVotes) {
+<span class="fc" id="L142">		this.normalPeriodVotes = normalPeriodVotes;</span>
+<span class="fc" id="L143">	}</span>
+
+	public BigDecimal getNormalAbsenceRate() {
+<span class="fc" id="L146">		return normalAbsenceRate;</span>
+	}
+
+	public void setNormalAbsenceRate(BigDecimal normalAbsenceRate) {
+<span class="fc" id="L150">		this.normalAbsenceRate = normalAbsenceRate;</span>
+<span class="fc" id="L151">	}</span>
+
+	public BigDecimal getAbsenceRateChange() {
+<span class="fc" id="L154">		return absenceRateChange;</span>
+	}
+
+	public void setAbsenceRateChange(BigDecimal absenceRateChange) {
+<span class="fc" id="L158">		this.absenceRateChange = absenceRateChange;</span>
+<span class="fc" id="L159">	}</span>
+
+	public BigDecimal getResilienceScore() {
+<span class="fc" id="L162">		return resilienceScore;</span>
+	}
+
+	public void setResilienceScore(BigDecimal resilienceScore) {
+<span class="fc" id="L166">		this.resilienceScore = resilienceScore;</span>
+<span class="fc" id="L167">	}</span>
+
+	public String getResilienceClassification() {
+<span class="fc" id="L170">		return resilienceClassification;</span>
+	}
+
+	public void setResilienceClassification(String resilienceClassification) {
+<span class="fc" id="L174">		this.resilienceClassification = resilienceClassification;</span>
+<span class="fc" id="L175">	}</span>
+
+	public String getPressurePerformanceAssessment() {
+<span class="fc" id="L178">		return pressurePerformanceAssessment;</span>
+	}
+
+	public void setPressurePerformanceAssessment(String pressurePerformanceAssessment) {
+<span class="fc" id="L182">		this.pressurePerformanceAssessment = pressurePerformanceAssessment;</span>
+<span class="fc" id="L183">	}</span>
+
+	@Override
+	public boolean equals(final Object obj) {
+<span class="fc bfc" id="L187" title="All 2 branches covered.">		if (this == obj) {</span>
+<span class="fc" id="L188">			return true;</span>
+		}
+<span class="pc bpc" id="L190" title="1 of 4 branches missed.">		if (obj == null || getClass() != obj.getClass()) {</span>
+<span class="fc" id="L191">			return false;</span>
+		}
+<span class="fc" id="L193">		final ViewRiksdagenCrisisResilienceIndicators other = (ViewRiksdagenCrisisResilienceIndicators) obj;</span>
+<span class="fc" id="L194">		return new EqualsBuilder()</span>
+<span class="fc" id="L195">				.append(personId, other.personId)</span>
+<span class="fc" id="L196">				.isEquals();</span>
+	}
+
+	@Override
+	public int hashCode() {
+<span class="fc" id="L201">		return new HashCodeBuilder()</span>
+<span class="fc" id="L202">				.append(personId)</span>
+<span class="fc" id="L203">				.toHashCode();</span>
+	}
+
+	@Override
+	public String toString() {
+<span class="fc" id="L208">		return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)</span>
+<span class="fc" id="L209">				.append(&quot;personId&quot;, personId)</span>
+<span class="fc" id="L210">				.append(&quot;firstName&quot;, firstName)</span>
+<span class="fc" id="L211">				.append(&quot;lastName&quot;, lastName)</span>
+<span class="fc" id="L212">				.append(&quot;party&quot;, party)</span>
+<span class="fc" id="L213">				.append(&quot;resilienceScore&quot;, resilienceScore)</span>
+<span class="fc" id="L214">				.append(&quot;resilienceClassification&quot;, resilienceClassification)</span>
+<span class="fc" id="L215">				.toString();</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

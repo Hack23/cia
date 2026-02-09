@@ -1,0 +1,670 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewRiksdagenPoliticianDecisionPattern.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.politician.impl</a> &gt; <span class="el_source">ViewRiksdagenPoliticianDecisionPattern.java</span></div><h1>ViewRiksdagenPoliticianDecisionPattern.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2025 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+ */
+package com.hack23.cia.model.internal.application.data.politician.impl;
+
+import java.math.BigDecimal;
+import java.util.Date;
+
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+import com.hack23.cia.model.common.api.ModelObject;
+
+/**
+ * The Class ViewRiksdagenPoliticianDecisionPattern.
+ * 
+ * JPA Entity for view_riksdagen_politician_decision_pattern database view.
+ * 
+ * Tracks individual politician decision patterns from proposal data, enabling
+ * analysis of politician-level proposal success rates, committee work effectiveness,
+ * and legislative productivity. Provides granular insights into each politician's
+ * decision-making record across different committees and time periods.
+ * 
+ * &lt;p&gt;Intelligence Value: ⭐⭐⭐⭐⭐ VERY HIGH&lt;/p&gt;
+ * &lt;ul&gt;
+ * &lt;li&gt;Individual politician decision effectiveness tracking&lt;/li&gt;
+ * &lt;li&gt;Committee specialization and expertise analysis&lt;/li&gt;
+ * &lt;li&gt;Legislative productivity measurement per politician&lt;/li&gt;
+ * &lt;li&gt;Party discipline and independent decision patterns&lt;/li&gt;
+ * &lt;li&gt;Career progression and influence trajectory analysis&lt;/li&gt;
+ * &lt;/ul&gt;
+ * 
+ * &lt;p&gt;Use Cases:&lt;/p&gt;
+ * &lt;ul&gt;
+ * &lt;li&gt;Politician Scorecards: Individual performance metrics and rankings&lt;/li&gt;
+ * &lt;li&gt;Committee Expertise Mapping: Identify subject matter experts&lt;/li&gt;
+ * &lt;li&gt;Influence Analysis: Track decision success rates over time&lt;/li&gt;
+ * &lt;li&gt;Party Discipline Monitoring: Detect independent vs. party-line voting&lt;/li&gt;
+ * &lt;/ul&gt;
+ * 
+ * @author intelligence-operative
+ * @since v1.35 (Decision Intelligence)
+ * @see &lt;a href=&quot;https://github.com/Hack23/cia/issues/7919&quot;&gt;Issue #7919&lt;/a&gt;
+ * @see com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyDecisionFlow
+ * @see ViewRiksdagenPolitician Core politician information
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = &quot;ViewRiksdagenPoliticianDecisionPattern&quot;, propOrder = {
+    &quot;embeddedId&quot;,
+    &quot;firstName&quot;,
+    &quot;lastName&quot;,
+    &quot;party&quot;,
+    &quot;committeeOrg&quot;,
+    &quot;decisionYear&quot;,
+    &quot;decisionMonthNum&quot;,
+    &quot;totalDecisions&quot;,
+    &quot;approvedDecisions&quot;,
+    &quot;rejectedDecisions&quot;,
+    &quot;referredBackDecisions&quot;,
+    &quot;otherDecisions&quot;,
+    &quot;approvalRate&quot;,
+    &quot;rejectionRate&quot;,
+    &quot;earliestDecisionDate&quot;,
+    &quot;latestDecisionDate&quot;
+})
+@Entity(name = &quot;ViewRiksdagenPoliticianDecisionPattern&quot;)
+@Table(name = &quot;view_riksdagen_politician_decision_pattern&quot;)
+@Inheritance(strategy = InheritanceType.JOINED)
+<span class="fc" id="L102">public class ViewRiksdagenPoliticianDecisionPattern implements ModelObject {</span>
+
+	private static final long serialVersionUID = 1L;
+
+	@XmlElement(required = true)
+	protected ViewRiksdagenPoliticianDecisionPatternEmbeddedId embeddedId;
+
+	@XmlElement(name = &quot;first_name&quot;)
+	protected String firstName;
+
+	@XmlElement(name = &quot;last_name&quot;)
+	protected String lastName;
+
+	protected String party;
+
+	@XmlElement(name = &quot;committee_org&quot;)
+	protected String committeeOrg;
+
+	@XmlElement(name = &quot;decision_year&quot;)
+	protected Integer decisionYear;
+
+	@XmlElement(name = &quot;decision_month_num&quot;)
+	protected Integer decisionMonthNum;
+
+	@XmlElement(name = &quot;total_decisions&quot;)
+	protected long totalDecisions;
+
+	@XmlElement(name = &quot;approved_decisions&quot;)
+	protected long approvedDecisions;
+
+	@XmlElement(name = &quot;rejected_decisions&quot;)
+	protected long rejectedDecisions;
+
+	@XmlElement(name = &quot;referred_back_decisions&quot;)
+	protected long referredBackDecisions;
+
+	@XmlElement(name = &quot;other_decisions&quot;)
+	protected long otherDecisions;
+
+	@XmlElement(name = &quot;approval_rate&quot;)
+	protected BigDecimal approvalRate;
+
+	@XmlElement(name = &quot;rejection_rate&quot;)
+	protected BigDecimal rejectionRate;
+
+	@XmlElement(name = &quot;earliest_decision_date&quot;)
+	protected Date earliestDecisionDate;
+
+	@XmlElement(name = &quot;latest_decision_date&quot;)
+	protected Date latestDecisionDate;
+
+	/**
+	 * Gets the embedded id.
+	 *
+	 * @return the embedded id
+	 */
+	@EmbeddedId
+	@AttributeOverrides({
+		@AttributeOverride(name = &quot;personId&quot;, column = @Column(name = &quot;EMBEDDED_ID_PERSON_ID&quot;)),
+		@AttributeOverride(name = &quot;committee&quot;, column = @Column(name = &quot;EMBEDDED_ID_COMMITTEE&quot;)),
+		@AttributeOverride(name = &quot;decisionMonth&quot;, column = @Column(name = &quot;EMBEDDED_ID_DECISION_MONTH&quot;))
+	})
+	public ViewRiksdagenPoliticianDecisionPatternEmbeddedId getEmbeddedId() {
+<span class="fc" id="L165">		return embeddedId;</span>
+	}
+
+	/**
+	 * Sets the embedded id.
+	 *
+	 * @param value the new embedded id
+	 */
+	public void setEmbeddedId(final ViewRiksdagenPoliticianDecisionPatternEmbeddedId value) {
+<span class="fc" id="L174">		this.embeddedId = value;</span>
+<span class="fc" id="L175">	}</span>
+
+	/**
+	 * Gets the first name.
+	 *
+	 * @return the first name
+	 */
+	@Basic
+	@Column(name = &quot;FIRST_NAME&quot;)
+	public String getFirstName() {
+<span class="fc" id="L185">		return firstName;</span>
+	}
+
+	/**
+	 * Sets the first name.
+	 *
+	 * @param value the new first name
+	 */
+	public void setFirstName(final String value) {
+<span class="fc" id="L194">		this.firstName = value;</span>
+<span class="fc" id="L195">	}</span>
+
+	/**
+	 * Gets the last name.
+	 *
+	 * @return the last name
+	 */
+	@Basic
+	@Column(name = &quot;LAST_NAME&quot;)
+	public String getLastName() {
+<span class="fc" id="L205">		return lastName;</span>
+	}
+
+	/**
+	 * Sets the last name.
+	 *
+	 * @param value the new last name
+	 */
+	public void setLastName(final String value) {
+<span class="fc" id="L214">		this.lastName = value;</span>
+<span class="fc" id="L215">	}</span>
+
+	/**
+	 * Gets the party.
+	 *
+	 * @return the party
+	 */
+	@Basic
+	@Column(name = &quot;PARTY&quot;)
+	public String getParty() {
+<span class="fc" id="L225">		return party;</span>
+	}
+
+	/**
+	 * Sets the party.
+	 *
+	 * @param value the new party
+	 */
+	public void setParty(final String value) {
+<span class="fc" id="L234">		this.party = value;</span>
+<span class="fc" id="L235">	}</span>
+
+	/**
+	 * Gets the committee org.
+	 *
+	 * @return the committee org
+	 */
+	@Basic
+	@Column(name = &quot;COMMITTEE_ORG&quot;)
+	public String getCommitteeOrg() {
+<span class="fc" id="L245">		return committeeOrg;</span>
+	}
+
+	/**
+	 * Sets the committee org.
+	 *
+	 * @param value the new committee org
+	 */
+	public void setCommitteeOrg(final String value) {
+<span class="fc" id="L254">		this.committeeOrg = value;</span>
+<span class="fc" id="L255">	}</span>
+
+	/**
+	 * Gets the decision year.
+	 *
+	 * @return the decision year
+	 */
+	@Basic
+	@Column(name = &quot;DECISION_YEAR&quot;)
+	public Integer getDecisionYear() {
+<span class="fc" id="L265">		return decisionYear;</span>
+	}
+
+	/**
+	 * Sets the decision year.
+	 *
+	 * @param value the new decision year
+	 */
+	public void setDecisionYear(final Integer value) {
+<span class="fc" id="L274">		this.decisionYear = value;</span>
+<span class="fc" id="L275">	}</span>
+
+	/**
+	 * Gets the decision month num.
+	 *
+	 * @return the decision month num
+	 */
+	@Basic
+	@Column(name = &quot;DECISION_MONTH_NUM&quot;)
+	public Integer getDecisionMonthNum() {
+<span class="fc" id="L285">		return decisionMonthNum;</span>
+	}
+
+	/**
+	 * Sets the decision month num.
+	 *
+	 * @param value the new decision month num
+	 */
+	public void setDecisionMonthNum(final Integer value) {
+<span class="fc" id="L294">		this.decisionMonthNum = value;</span>
+<span class="fc" id="L295">	}</span>
+
+	/**
+	 * Gets the total decisions.
+	 *
+	 * @return the total decisions
+	 */
+	@Basic
+	@Column(name = &quot;TOTAL_DECISIONS&quot;, precision = 20)
+	public long getTotalDecisions() {
+<span class="fc" id="L305">		return totalDecisions;</span>
+	}
+
+	/**
+	 * Sets the total decisions.
+	 *
+	 * @param value the new total decisions
+	 */
+	public void setTotalDecisions(final long value) {
+<span class="fc" id="L314">		this.totalDecisions = value;</span>
+<span class="fc" id="L315">	}</span>
+
+	/**
+	 * Gets the approved decisions.
+	 *
+	 * @return the approved decisions
+	 */
+	@Basic
+	@Column(name = &quot;APPROVED_DECISIONS&quot;, precision = 20)
+	public long getApprovedDecisions() {
+<span class="fc" id="L325">		return approvedDecisions;</span>
+	}
+
+	/**
+	 * Sets the approved decisions.
+	 *
+	 * @param value the new approved decisions
+	 */
+	public void setApprovedDecisions(final long value) {
+<span class="fc" id="L334">		this.approvedDecisions = value;</span>
+<span class="fc" id="L335">	}</span>
+
+	/**
+	 * Gets the rejected decisions.
+	 *
+	 * @return the rejected decisions
+	 */
+	@Basic
+	@Column(name = &quot;REJECTED_DECISIONS&quot;, precision = 20)
+	public long getRejectedDecisions() {
+<span class="fc" id="L345">		return rejectedDecisions;</span>
+	}
+
+	/**
+	 * Sets the rejected decisions.
+	 *
+	 * @param value the new rejected decisions
+	 */
+	public void setRejectedDecisions(final long value) {
+<span class="fc" id="L354">		this.rejectedDecisions = value;</span>
+<span class="fc" id="L355">	}</span>
+
+	/**
+	 * Gets the referred back decisions.
+	 *
+	 * @return the referred back decisions
+	 */
+	@Basic
+	@Column(name = &quot;REFERRED_BACK_DECISIONS&quot;, precision = 20)
+	public long getReferredBackDecisions() {
+<span class="fc" id="L365">		return referredBackDecisions;</span>
+	}
+
+	/**
+	 * Sets the referred back decisions.
+	 *
+	 * @param value the new referred back decisions
+	 */
+	public void setReferredBackDecisions(final long value) {
+<span class="fc" id="L374">		this.referredBackDecisions = value;</span>
+<span class="fc" id="L375">	}</span>
+
+	/**
+	 * Gets the other decisions.
+	 *
+	 * @return the other decisions
+	 */
+	@Basic
+	@Column(name = &quot;OTHER_DECISIONS&quot;, precision = 20)
+	public long getOtherDecisions() {
+<span class="fc" id="L385">		return otherDecisions;</span>
+	}
+
+	/**
+	 * Sets the other decisions.
+	 *
+	 * @param value the new other decisions
+	 */
+	public void setOtherDecisions(final long value) {
+<span class="fc" id="L394">		this.otherDecisions = value;</span>
+<span class="fc" id="L395">	}</span>
+
+	/**
+	 * Gets the approval rate.
+	 *
+	 * @return the approval rate
+	 */
+	@Basic
+	@Column(name = &quot;APPROVAL_RATE&quot;, precision = 5, scale = 2)
+	public BigDecimal getApprovalRate() {
+<span class="fc" id="L405">		return approvalRate;</span>
+	}
+
+	/**
+	 * Sets the approval rate.
+	 *
+	 * @param value the new approval rate
+	 */
+	public void setApprovalRate(final BigDecimal value) {
+<span class="fc" id="L414">		this.approvalRate = value;</span>
+<span class="fc" id="L415">	}</span>
+
+	/**
+	 * Gets the rejection rate.
+	 *
+	 * @return the rejection rate
+	 */
+	@Basic
+	@Column(name = &quot;REJECTION_RATE&quot;, precision = 5, scale = 2)
+	public BigDecimal getRejectionRate() {
+<span class="fc" id="L425">		return rejectionRate;</span>
+	}
+
+	/**
+	 * Sets the rejection rate.
+	 *
+	 * @param value the new rejection rate
+	 */
+	public void setRejectionRate(final BigDecimal value) {
+<span class="fc" id="L434">		this.rejectionRate = value;</span>
+<span class="fc" id="L435">	}</span>
+
+	/**
+	 * Gets the earliest decision date.
+	 *
+	 * @return the earliest decision date
+	 */
+	@Basic
+	@Column(name = &quot;EARLIEST_DECISION_DATE&quot;)
+	@Temporal(TemporalType.DATE)
+	public Date getEarliestDecisionDate() {
+<span class="fc" id="L446">		return earliestDecisionDate;</span>
+	}
+
+	/**
+	 * Sets the earliest decision date.
+	 *
+	 * @param value the new earliest decision date
+	 */
+	public void setEarliestDecisionDate(final Date value) {
+<span class="fc" id="L455">		this.earliestDecisionDate = value;</span>
+<span class="fc" id="L456">	}</span>
+
+	/**
+	 * Gets the latest decision date.
+	 *
+	 * @return the latest decision date
+	 */
+	@Basic
+	@Column(name = &quot;LATEST_DECISION_DATE&quot;)
+	@Temporal(TemporalType.DATE)
+	public Date getLatestDecisionDate() {
+<span class="fc" id="L467">		return latestDecisionDate;</span>
+	}
+
+	/**
+	 * Sets the latest decision date.
+	 *
+	 * @param value the new latest decision date
+	 */
+	public void setLatestDecisionDate(final Date value) {
+<span class="fc" id="L476">		this.latestDecisionDate = value;</span>
+<span class="fc" id="L477">	}</span>
+
+	/**
+	 * With embedded id.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewRiksdagenPoliticianDecisionPattern withEmbeddedId(final ViewRiksdagenPoliticianDecisionPatternEmbeddedId value) {
+<span class="fc" id="L486">		setEmbeddedId(value);</span>
+<span class="fc" id="L487">		return this;</span>
+	}
+
+	/**
+	 * With first name.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewRiksdagenPoliticianDecisionPattern withFirstName(final String value) {
+<span class="fc" id="L497">		setFirstName(value);</span>
+<span class="fc" id="L498">		return this;</span>
+	}
+
+	/**
+	 * With last name.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewRiksdagenPoliticianDecisionPattern withLastName(final String value) {
+<span class="fc" id="L508">		setLastName(value);</span>
+<span class="fc" id="L509">		return this;</span>
+	}
+
+	/**
+	 * With party.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewRiksdagenPoliticianDecisionPattern withParty(final String value) {
+<span class="fc" id="L519">		setParty(value);</span>
+<span class="fc" id="L520">		return this;</span>
+	}
+
+	/**
+	 * With committee org.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewRiksdagenPoliticianDecisionPattern withCommitteeOrg(final String value) {
+<span class="fc" id="L530">		setCommitteeOrg(value);</span>
+<span class="fc" id="L531">		return this;</span>
+	}
+
+	/**
+	 * With decision year.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewRiksdagenPoliticianDecisionPattern withDecisionYear(final Integer value) {
+<span class="fc" id="L541">		setDecisionYear(value);</span>
+<span class="fc" id="L542">		return this;</span>
+	}
+
+	/**
+	 * With decision month num.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewRiksdagenPoliticianDecisionPattern withDecisionMonthNum(final Integer value) {
+<span class="fc" id="L552">		setDecisionMonthNum(value);</span>
+<span class="fc" id="L553">		return this;</span>
+	}
+
+	/**
+	 * With total decisions.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewRiksdagenPoliticianDecisionPattern withTotalDecisions(final long value) {
+<span class="fc" id="L563">		setTotalDecisions(value);</span>
+<span class="fc" id="L564">		return this;</span>
+	}
+
+	/**
+	 * With approved decisions.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewRiksdagenPoliticianDecisionPattern withApprovedDecisions(final long value) {
+<span class="fc" id="L574">		setApprovedDecisions(value);</span>
+<span class="fc" id="L575">		return this;</span>
+	}
+
+	/**
+	 * With rejected decisions.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewRiksdagenPoliticianDecisionPattern withRejectedDecisions(final long value) {
+<span class="fc" id="L585">		setRejectedDecisions(value);</span>
+<span class="fc" id="L586">		return this;</span>
+	}
+
+	/**
+	 * With referred back decisions.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewRiksdagenPoliticianDecisionPattern withReferredBackDecisions(final long value) {
+<span class="fc" id="L596">		setReferredBackDecisions(value);</span>
+<span class="fc" id="L597">		return this;</span>
+	}
+
+	/**
+	 * With other decisions.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewRiksdagenPoliticianDecisionPattern withOtherDecisions(final long value) {
+<span class="fc" id="L607">		setOtherDecisions(value);</span>
+<span class="fc" id="L608">		return this;</span>
+	}
+
+	/**
+	 * With approval rate.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewRiksdagenPoliticianDecisionPattern withApprovalRate(final BigDecimal value) {
+<span class="fc" id="L618">		setApprovalRate(value);</span>
+<span class="fc" id="L619">		return this;</span>
+	}
+
+	/**
+	 * With rejection rate.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewRiksdagenPoliticianDecisionPattern withRejectionRate(final BigDecimal value) {
+<span class="fc" id="L629">		setRejectionRate(value);</span>
+<span class="fc" id="L630">		return this;</span>
+	}
+
+	/**
+	 * With earliest decision date.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewRiksdagenPoliticianDecisionPattern withEarliestDecisionDate(final Date value) {
+<span class="fc" id="L640">		setEarliestDecisionDate(value);</span>
+<span class="fc" id="L641">		return this;</span>
+	}
+
+	/**
+	 * With latest decision date.
+	 *
+	 * @param value the value
+	 * @return the view
+	 */
+	public ViewRiksdagenPoliticianDecisionPattern withLatestDecisionDate(final Date value) {
+<span class="fc" id="L651">		setLatestDecisionDate(value);</span>
+<span class="fc" id="L652">		return this;</span>
+	}
+
+	@Override
+	public final String toString() {
+<span class="fc" id="L657">		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);</span>
+	}
+
+	@Override
+	public final boolean equals(final Object obj) {
+<span class="fc" id="L662">		return EqualsBuilder.reflectionEquals(this, obj);</span>
+	}
+
+	@Override
+	public final int hashCode() {
+<span class="fc" id="L667">		return HashCodeBuilder.reflectionHashCode(this);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

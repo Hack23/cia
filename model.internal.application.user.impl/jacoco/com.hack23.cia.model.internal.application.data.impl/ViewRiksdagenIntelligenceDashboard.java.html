@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewRiksdagenIntelligenceDashboard.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.impl</a> &gt; <span class="el_source">ViewRiksdagenIntelligenceDashboard.java</span></div><h1>ViewRiksdagenIntelligenceDashboard.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2025 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+ */
+package com.hack23.cia.model.internal.application.data.impl;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+/**
+ * JPA entity for view_riksdagen_intelligence_dashboard database view.
+ * 
+ * Intelligence Purpose: Executive intelligence dashboard with stability
+ * and coalition assessments providing high-level summary across all risk rules.
+ * 
+ * Created by: Liquibase v1.29 (Intelligence Operations Enhancement)
+ * Risk Rules Supported: All 45 rules (executive summary)
+ */
+@Entity(name = &quot;ViewRiksdagenIntelligenceDashboard&quot;)
+@Table(name = &quot;view_riksdagen_intelligence_dashboard&quot;)
+public class ViewRiksdagenIntelligenceDashboard implements Serializable {
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
+
+	/** The stability assessment. */
+	@Id
+	@Column(name = &quot;stability_assessment&quot;, nullable = false, length = 500)
+	private String stabilityAssessment;
+
+	/** The coalition assessment. */
+	@Column(name = &quot;coalition_assessment&quot;, length = 500)
+	private String coalitionAssessment;
+
+	/** The intelligence report timestamp. */
+	@Column(name = &quot;intelligence_report_timestamp&quot;)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date intelligenceReportTimestamp;
+
+	/**
+	 * Instantiates a new view riksdagen intelligence dashboard.
+	 */
+	public ViewRiksdagenIntelligenceDashboard() {
+<span class="fc" id="L70">		super();</span>
+<span class="fc" id="L71">	}</span>
+
+	/**
+	 * Gets the stability assessment.
+	 *
+	 * @return the stability assessment
+	 */
+	public String getStabilityAssessment() {
+<span class="fc" id="L79">		return stabilityAssessment;</span>
+	}
+
+	/**
+	 * Sets the stability assessment.
+	 *
+	 * @param stabilityAssessment the new stability assessment
+	 */
+	public void setStabilityAssessment(final String stabilityAssessment) {
+<span class="fc" id="L88">		this.stabilityAssessment = stabilityAssessment;</span>
+<span class="fc" id="L89">	}</span>
+
+	/**
+	 * Gets the coalition assessment.
+	 *
+	 * @return the coalition assessment
+	 */
+	public String getCoalitionAssessment() {
+<span class="fc" id="L97">		return coalitionAssessment;</span>
+	}
+
+	/**
+	 * Sets the coalition assessment.
+	 *
+	 * @param coalitionAssessment the new coalition assessment
+	 */
+	public void setCoalitionAssessment(final String coalitionAssessment) {
+<span class="fc" id="L106">		this.coalitionAssessment = coalitionAssessment;</span>
+<span class="fc" id="L107">	}</span>
+
+	/**
+	 * Gets the intelligence report timestamp.
+	 *
+	 * @return the intelligence report timestamp
+	 */
+	public Date getIntelligenceReportTimestamp() {
+<span class="fc" id="L115">		return intelligenceReportTimestamp;</span>
+	}
+
+	/**
+	 * Sets the intelligence report timestamp.
+	 *
+	 * @param intelligenceReportTimestamp the new intelligence report timestamp
+	 */
+	public void setIntelligenceReportTimestamp(final Date intelligenceReportTimestamp) {
+<span class="fc" id="L124">		this.intelligenceReportTimestamp = intelligenceReportTimestamp;</span>
+<span class="fc" id="L125">	}</span>
+
+	@Override
+	public boolean equals(final Object obj) {
+<span class="fc" id="L129">		return EqualsBuilder.reflectionEquals(this, obj);</span>
+	}
+
+	@Override
+	public int hashCode() {
+<span class="fc" id="L134">		return HashCodeBuilder.reflectionHashCode(this);</span>
+	}
+
+	@Override
+	public String toString() {
+<span class="fc" id="L139">		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

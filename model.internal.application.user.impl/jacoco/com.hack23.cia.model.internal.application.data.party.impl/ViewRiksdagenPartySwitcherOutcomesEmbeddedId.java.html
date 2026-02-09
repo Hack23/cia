@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewRiksdagenPartySwitcherOutcomesEmbeddedId.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.party.impl</a> &gt; <span class="el_source">ViewRiksdagenPartySwitcherOutcomesEmbeddedId.java</span></div><h1>ViewRiksdagenPartySwitcherOutcomesEmbeddedId.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2025 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+ */
+package com.hack23.cia.model.internal.application.data.party.impl;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+/**
+ * The Class ViewRiksdagenPartySwitcherOutcomesEmbeddedId.
+ * Composite key for party switcher outcomes (person_id + transition_date).
+ */
+@Embeddable
+public class ViewRiksdagenPartySwitcherOutcomesEmbeddedId implements Serializable {
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
+
+	/** The person id. */
+	@Column(name = &quot;person_id&quot;, nullable = false)
+	private String personId;
+
+	/** The transition date. */
+	@Column(name = &quot;transition_date&quot;, nullable = false)
+	@Temporal(TemporalType.DATE)
+	private Date transitionDate;
+
+	/**
+	 * Instantiates a new view riksdagen party switcher outcomes embedded id.
+	 */
+	public ViewRiksdagenPartySwitcherOutcomesEmbeddedId() {
+<span class="fc" id="L57">		super();</span>
+<span class="fc" id="L58">	}</span>
+
+	/**
+	 * Gets the person id.
+	 *
+	 * @return the person id
+	 */
+	public String getPersonId() {
+<span class="fc" id="L66">		return personId;</span>
+	}
+
+	/**
+	 * Sets the person id.
+	 *
+	 * @param personId the new person id
+	 */
+	public void setPersonId(final String personId) {
+<span class="fc" id="L75">		this.personId = personId;</span>
+<span class="fc" id="L76">	}</span>
+
+	/**
+	 * Gets the transition date.
+	 *
+	 * @return the transition date
+	 */
+	public Date getTransitionDate() {
+<span class="fc" id="L84">		return transitionDate;</span>
+	}
+
+	/**
+	 * Sets the transition date.
+	 *
+	 * @param transitionDate the new transition date
+	 */
+	public void setTransitionDate(final Date transitionDate) {
+<span class="fc" id="L93">		this.transitionDate = transitionDate;</span>
+<span class="fc" id="L94">	}</span>
+
+	@Override
+	public boolean equals(final Object obj) {
+<span class="fc" id="L98">		return EqualsBuilder.reflectionEquals(this, obj);</span>
+	}
+
+	@Override
+	public int hashCode() {
+<span class="fc" id="L103">		return HashCodeBuilder.reflectionHashCode(this);</span>
+	}
+
+	@Override
+	public String toString() {
+<span class="fc" id="L108">		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

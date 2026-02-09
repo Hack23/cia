@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewMinistryProductivityMatrix.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.ministry.impl</a> &gt; <span class="el_source">ViewMinistryProductivityMatrix.java</span></div><h1>ViewMinistryProductivityMatrix.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2025 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+ */
+package com.hack23.cia.model.internal.application.data.ministry.impl;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+/**
+ * JPA entity for view_ministry_productivity_matrix database view.
+ * 
+ * Intelligence Purpose: Annual ministry productivity benchmarking with quartile
+ * rankings and performance assessments. Enables comparison of ministry output
+ * against peer institutions using statistical benchmarks.
+ * 
+ * Created by: Database schema v1.0+
+ * Risk Rules Supported: M-01 through M-04 (Ministry productivity rules)
+ * 
+ * Provides percentile-based ministry productivity classification for identification
+ * of high-performing and underperforming government institutions.
+ */
+@Entity(name = &quot;ViewMinistryProductivityMatrix&quot;)
+@Table(name = &quot;view_ministry_productivity_matrix&quot;)
+public class ViewMinistryProductivityMatrix implements Serializable {
+
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * The Class CompositePrimaryKey.
+	 * 
+	 * &lt;p&gt;Composite primary key combining organization code and year.&lt;/p&gt;
+	 */
+	@Embeddable
+	public static class CompositePrimaryKey implements Serializable {
+
+		/** The Constant serialVersionUID. */
+		private static final long serialVersionUID = 1L;
+
+		/** The org code. */
+		@Column(name = &quot;org_code&quot;, nullable = false, length = 255)
+		private String orgCode;
+
+		/** The year. */
+		@Column(name = &quot;year&quot;, nullable = false)
+		private Integer year;
+
+		/**
+		 * Instantiates a new composite primary key.
+		 */
+		public CompositePrimaryKey() {
+<span class="fc" id="L81">			super();</span>
+<span class="fc" id="L82">		}</span>
+
+		/**
+		 * Instantiates a new composite primary key.
+		 *
+		 * @param orgCode the org code
+		 * @param year the year
+		 */
+		public CompositePrimaryKey(final String orgCode, final Integer year) {
+<span class="nc" id="L91">			super();</span>
+<span class="nc" id="L92">			this.orgCode = orgCode;</span>
+<span class="nc" id="L93">			this.year = year;</span>
+<span class="nc" id="L94">		}</span>
+
+		/**
+		 * Gets the org code.
+		 *
+		 * @return the org code
+		 */
+		public String getOrgCode() {
+<span class="fc" id="L102">			return orgCode;</span>
+		}
+
+		/**
+		 * Sets the org code.
+		 *
+		 * @param orgCode the new org code
+		 */
+		public void setOrgCode(final String orgCode) {
+<span class="fc" id="L111">			this.orgCode = orgCode;</span>
+<span class="fc" id="L112">		}</span>
+
+		/**
+		 * Gets the year.
+		 *
+		 * @return the year
+		 */
+		public Integer getYear() {
+<span class="fc" id="L120">			return year;</span>
+		}
+
+		/**
+		 * Sets the year.
+		 *
+		 * @param year the new year
+		 */
+		public void setYear(final Integer year) {
+<span class="fc" id="L129">			this.year = year;</span>
+<span class="fc" id="L130">		}</span>
+
+		@Override
+		public boolean equals(final Object obj) {
+<span class="fc" id="L134">			return EqualsBuilder.reflectionEquals(this, obj);</span>
+		}
+
+		@Override
+		public int hashCode() {
+<span class="fc" id="L139">			return HashCodeBuilder.reflectionHashCode(this);</span>
+		}
+
+		@Override
+		public String toString() {
+<span class="fc" id="L144">			return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);</span>
+		}
+	}
+
+	/** The embedded id. */
+	@EmbeddedId
+	private CompositePrimaryKey embeddedId;
+
+	/** The short code. */
+	@Column(name = &quot;short_code&quot;, length = 255)
+	private String shortCode;
+
+	/** The name. */
+	@Column(name = &quot;name&quot;, length = 255)
+	private String name;
+
+	/** The documents produced. */
+	@Column(name = &quot;documents_produced&quot;)
+	private Long documentsProduced;
+
+	/** The propositions. */
+	@Column(name = &quot;propositions&quot;)
+	private Long propositions;
+
+	/** The government bills. */
+	@Column(name = &quot;government_bills&quot;)
+	private Long governmentBills;
+
+	/** The unique contributors. */
+	@Column(name = &quot;unique_contributors&quot;)
+	private Long uniqueContributors;
+
+	/** The earliest document. */
+	@Column(name = &quot;earliest_document&quot;)
+	@Temporal(TemporalType.DATE)
+	private Date earliestDocument;
+
+	/** The latest document. */
+	@Column(name = &quot;latest_document&quot;)
+	@Temporal(TemporalType.DATE)
+	private Date latestDocument;
+
+	/** The median documents. */
+	@Column(name = &quot;median_documents&quot;, precision = 10, scale = 2)
+	private BigDecimal medianDocuments;
+
+	/** The avg documents. */
+	@Column(name = &quot;avg_documents&quot;, precision = 10, scale = 2)
+	private BigDecimal avgDocuments;
+
+	/** The p25 documents. */
+	@Column(name = &quot;p25_documents&quot;, precision = 10, scale = 2)
+	private BigDecimal p25Documents;
+
+	/** The p75 documents. */
+	@Column(name = &quot;p75_documents&quot;, precision = 10, scale = 2)
+	private BigDecimal p75Documents;
+
+	/** The pct vs average. */
+	@Column(name = &quot;pct_vs_average&quot;, precision = 10, scale = 2)
+	private BigDecimal pctVsAverage;
+
+	/** The productivity quartile. */
+	@Column(name = &quot;productivity_quartile&quot;, length = 50)
+	private String productivityQuartile;
+
+	/** The performance assessment. */
+	@Column(name = &quot;performance_assessment&quot;, length = 255)
+	private String performanceAssessment;
+
+	/**
+	 * Instantiates a new view ministry productivity matrix.
+	 */
+	public ViewMinistryProductivityMatrix() {
+<span class="fc" id="L218">		super();</span>
+<span class="fc" id="L219">	}</span>
+
+	/**
+	 * Gets the embedded id.
+	 *
+	 * @return the embedded id
+	 */
+	public CompositePrimaryKey getEmbeddedId() {
+<span class="fc" id="L227">		return embeddedId;</span>
+	}
+
+	/**
+	 * Sets the embedded id.
+	 *
+	 * @param embeddedId the new embedded id
+	 */
+	public void setEmbeddedId(final CompositePrimaryKey embeddedId) {
+<span class="fc" id="L236">		this.embeddedId = embeddedId;</span>
+<span class="fc" id="L237">	}</span>
+
+	/**
+	 * Gets the short code.
+	 *
+	 * @return the short code
+	 */
+	public String getShortCode() {
+<span class="fc" id="L245">		return shortCode;</span>
+	}
+
+	/**
+	 * Sets the short code.
+	 *
+	 * @param shortCode the new short code
+	 */
+	public void setShortCode(final String shortCode) {
+<span class="fc" id="L254">		this.shortCode = shortCode;</span>
+<span class="fc" id="L255">	}</span>
+
+	/**
+	 * Gets the name.
+	 *
+	 * @return the name
+	 */
+	public String getName() {
+<span class="fc" id="L263">		return name;</span>
+	}
+
+	/**
+	 * Sets the name.
+	 *
+	 * @param name the new name
+	 */
+	public void setName(final String name) {
+<span class="fc" id="L272">		this.name = name;</span>
+<span class="fc" id="L273">	}</span>
+
+	/**
+	 * Gets the documents produced.
+	 *
+	 * @return the documents produced
+	 */
+	public Long getDocumentsProduced() {
+<span class="fc" id="L281">		return documentsProduced;</span>
+	}
+
+	/**
+	 * Sets the documents produced.
+	 *
+	 * @param documentsProduced the new documents produced
+	 */
+	public void setDocumentsProduced(final Long documentsProduced) {
+<span class="fc" id="L290">		this.documentsProduced = documentsProduced;</span>
+<span class="fc" id="L291">	}</span>
+
+	/**
+	 * Gets the propositions.
+	 *
+	 * @return the propositions
+	 */
+	public Long getPropositions() {
+<span class="fc" id="L299">		return propositions;</span>
+	}
+
+	/**
+	 * Sets the propositions.
+	 *
+	 * @param propositions the new propositions
+	 */
+	public void setPropositions(final Long propositions) {
+<span class="fc" id="L308">		this.propositions = propositions;</span>
+<span class="fc" id="L309">	}</span>
+
+	/**
+	 * Gets the government bills.
+	 *
+	 * @return the government bills
+	 */
+	public Long getGovernmentBills() {
+<span class="fc" id="L317">		return governmentBills;</span>
+	}
+
+	/**
+	 * Sets the government bills.
+	 *
+	 * @param governmentBills the new government bills
+	 */
+	public void setGovernmentBills(final Long governmentBills) {
+<span class="fc" id="L326">		this.governmentBills = governmentBills;</span>
+<span class="fc" id="L327">	}</span>
+
+	/**
+	 * Gets the unique contributors.
+	 *
+	 * @return the unique contributors
+	 */
+	public Long getUniqueContributors() {
+<span class="fc" id="L335">		return uniqueContributors;</span>
+	}
+
+	/**
+	 * Sets the unique contributors.
+	 *
+	 * @param uniqueContributors the new unique contributors
+	 */
+	public void setUniqueContributors(final Long uniqueContributors) {
+<span class="fc" id="L344">		this.uniqueContributors = uniqueContributors;</span>
+<span class="fc" id="L345">	}</span>
+
+	/**
+	 * Gets the earliest document.
+	 *
+	 * @return the earliest document
+	 */
+	public Date getEarliestDocument() {
+<span class="fc" id="L353">		return earliestDocument;</span>
+	}
+
+	/**
+	 * Sets the earliest document.
+	 *
+	 * @param earliestDocument the new earliest document
+	 */
+	public void setEarliestDocument(final Date earliestDocument) {
+<span class="fc" id="L362">		this.earliestDocument = earliestDocument;</span>
+<span class="fc" id="L363">	}</span>
+
+	/**
+	 * Gets the latest document.
+	 *
+	 * @return the latest document
+	 */
+	public Date getLatestDocument() {
+<span class="fc" id="L371">		return latestDocument;</span>
+	}
+
+	/**
+	 * Sets the latest document.
+	 *
+	 * @param latestDocument the new latest document
+	 */
+	public void setLatestDocument(final Date latestDocument) {
+<span class="fc" id="L380">		this.latestDocument = latestDocument;</span>
+<span class="fc" id="L381">	}</span>
+
+	/**
+	 * Gets the median documents.
+	 *
+	 * @return the median documents
+	 */
+	public BigDecimal getMedianDocuments() {
+<span class="fc" id="L389">		return medianDocuments;</span>
+	}
+
+	/**
+	 * Sets the median documents.
+	 *
+	 * @param medianDocuments the new median documents
+	 */
+	public void setMedianDocuments(final BigDecimal medianDocuments) {
+<span class="fc" id="L398">		this.medianDocuments = medianDocuments;</span>
+<span class="fc" id="L399">	}</span>
+
+	/**
+	 * Gets the avg documents.
+	 *
+	 * @return the avg documents
+	 */
+	public BigDecimal getAvgDocuments() {
+<span class="fc" id="L407">		return avgDocuments;</span>
+	}
+
+	/**
+	 * Sets the avg documents.
+	 *
+	 * @param avgDocuments the new avg documents
+	 */
+	public void setAvgDocuments(final BigDecimal avgDocuments) {
+<span class="fc" id="L416">		this.avgDocuments = avgDocuments;</span>
+<span class="fc" id="L417">	}</span>
+
+	/**
+	 * Gets the p25 documents.
+	 *
+	 * @return the p25 documents
+	 */
+	public BigDecimal getP25Documents() {
+<span class="fc" id="L425">		return p25Documents;</span>
+	}
+
+	/**
+	 * Sets the p25 documents.
+	 *
+	 * @param p25Documents the new p25 documents
+	 */
+	public void setP25Documents(final BigDecimal p25Documents) {
+<span class="fc" id="L434">		this.p25Documents = p25Documents;</span>
+<span class="fc" id="L435">	}</span>
+
+	/**
+	 * Gets the p75 documents.
+	 *
+	 * @return the p75 documents
+	 */
+	public BigDecimal getP75Documents() {
+<span class="fc" id="L443">		return p75Documents;</span>
+	}
+
+	/**
+	 * Sets the p75 documents.
+	 *
+	 * @param p75Documents the new p75 documents
+	 */
+	public void setP75Documents(final BigDecimal p75Documents) {
+<span class="fc" id="L452">		this.p75Documents = p75Documents;</span>
+<span class="fc" id="L453">	}</span>
+
+	/**
+	 * Gets the pct vs average.
+	 *
+	 * @return the pct vs average
+	 */
+	public BigDecimal getPctVsAverage() {
+<span class="fc" id="L461">		return pctVsAverage;</span>
+	}
+
+	/**
+	 * Sets the pct vs average.
+	 *
+	 * @param pctVsAverage the new pct vs average
+	 */
+	public void setPctVsAverage(final BigDecimal pctVsAverage) {
+<span class="fc" id="L470">		this.pctVsAverage = pctVsAverage;</span>
+<span class="fc" id="L471">	}</span>
+
+	/**
+	 * Gets the productivity quartile.
+	 *
+	 * @return the productivity quartile
+	 */
+	public String getProductivityQuartile() {
+<span class="fc" id="L479">		return productivityQuartile;</span>
+	}
+
+	/**
+	 * Sets the productivity quartile.
+	 *
+	 * @param productivityQuartile the new productivity quartile
+	 */
+	public void setProductivityQuartile(final String productivityQuartile) {
+<span class="fc" id="L488">		this.productivityQuartile = productivityQuartile;</span>
+<span class="fc" id="L489">	}</span>
+
+	/**
+	 * Gets the performance assessment.
+	 *
+	 * @return the performance assessment
+	 */
+	public String getPerformanceAssessment() {
+<span class="fc" id="L497">		return performanceAssessment;</span>
+	}
+
+	/**
+	 * Sets the performance assessment.
+	 *
+	 * @param performanceAssessment the new performance assessment
+	 */
+	public void setPerformanceAssessment(final String performanceAssessment) {
+<span class="fc" id="L506">		this.performanceAssessment = performanceAssessment;</span>
+<span class="fc" id="L507">	}</span>
+
+	@Override
+	public boolean equals(final Object obj) {
+<span class="fc" id="L511">		return EqualsBuilder.reflectionEquals(this, obj);</span>
+	}
+
+	@Override
+	public int hashCode() {
+<span class="fc" id="L516">		return HashCodeBuilder.reflectionHashCode(this);</span>
+	}
+
+	@Override
+	public String toString() {
+<span class="fc" id="L521">		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewRiksdagenPartyDefectorAnalysis.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.party.impl</a> &gt; <span class="el_source">ViewRiksdagenPartyDefectorAnalysis.java</span></div><h1>ViewRiksdagenPartyDefectorAnalysis.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2025 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+ */
+package com.hack23.cia.model.internal.application.data.party.impl;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.Objects;
+
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.Immutable;
+
+/**
+ * The Class ViewRiksdagenPartyDefectorAnalysis.
+ * Database view analyzing behavioral patterns of politicians who defected from their party.
+ */
+@Entity
+@Immutable
+@Table(name = &quot;view_riksdagen_party_defector_analysis&quot;)
+public class ViewRiksdagenPartyDefectorAnalysis implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	@EmbeddedId
+	private ViewRiksdagenPartyDefectorAnalysisEmbeddedId embeddedId;
+
+	@Column(name = &quot;first_name&quot;)
+	private String firstName;
+
+	@Column(name = &quot;last_name&quot;)
+	private String lastName;
+
+	@Column(name = &quot;previous_party&quot;)
+	private String previousParty;
+
+	@Column(name = &quot;new_party&quot;)
+	private String newParty;
+
+	@Column(name = &quot;months_until_next_election&quot;)
+	private Integer monthsUntilNextElection;
+
+	@Column(name = &quot;pre_transition_attendance&quot;)
+	private BigDecimal preTransitionAttendance;
+
+	@Column(name = &quot;post_transition_attendance&quot;)
+	private BigDecimal postTransitionAttendance;
+
+	@Column(name = &quot;attendance_change&quot;)
+	private BigDecimal attendanceChange;
+
+	@Column(name = &quot;docs_before&quot;)
+	private Long docsBefore;
+
+	@Column(name = &quot;docs_after&quot;)
+	private Long docsAfter;
+
+	@Column(name = &quot;defection_timing&quot;)
+	private String defectionTiming;
+
+	/**
+	 * Instantiates a new view riksdagen party defector analysis.
+	 */
+	public ViewRiksdagenPartyDefectorAnalysis() {
+<span class="fc" id="L86">		super();</span>
+<span class="fc" id="L87">	}</span>
+
+	/**
+	 * Gets the embedded id.
+	 *
+	 * @return the embedded id
+	 */
+	public ViewRiksdagenPartyDefectorAnalysisEmbeddedId getEmbeddedId() {
+<span class="fc" id="L95">		return embeddedId;</span>
+	}
+
+	/**
+	 * Sets the embedded id.
+	 *
+	 * @param embeddedId the new embedded id
+	 */
+	public void setEmbeddedId(final ViewRiksdagenPartyDefectorAnalysisEmbeddedId embeddedId) {
+<span class="fc" id="L104">		this.embeddedId = embeddedId;</span>
+<span class="fc" id="L105">	}</span>
+
+	/**
+	 * Gets the person id.
+	 *
+	 * @return the person id
+	 */
+	public String getPersonId() {
+<span class="fc bfc" id="L113" title="All 2 branches covered.">		return embeddedId != null ? embeddedId.getPersonId() : null;</span>
+	}
+
+	/**
+	 * Sets the person id.
+	 *
+	 * @param personId the new person id
+	 */
+	public void setPersonId(final String personId) {
+<span class="nc bnc" id="L122" title="All 2 branches missed.">		if (this.embeddedId == null) {</span>
+<span class="nc" id="L123">			this.embeddedId = new ViewRiksdagenPartyDefectorAnalysisEmbeddedId();</span>
+		}
+<span class="nc" id="L125">		this.embeddedId.setPersonId(personId);</span>
+<span class="nc" id="L126">	}</span>
+
+	/**
+	 * Gets the transition date.
+	 *
+	 * @return the transition date
+	 */
+	public Date getTransitionDate() {
+<span class="fc bfc" id="L134" title="All 2 branches covered.">		return embeddedId != null ? embeddedId.getTransitionDate() : null;</span>
+	}
+
+	/**
+	 * Sets the transition date.
+	 *
+	 * @param transitionDate the new transition date
+	 */
+	public void setTransitionDate(final Date transitionDate) {
+<span class="nc bnc" id="L143" title="All 2 branches missed.">		if (this.embeddedId == null) {</span>
+<span class="nc" id="L144">			this.embeddedId = new ViewRiksdagenPartyDefectorAnalysisEmbeddedId();</span>
+		}
+<span class="nc" id="L146">		this.embeddedId.setTransitionDate(transitionDate);</span>
+<span class="nc" id="L147">	}</span>
+
+	/**
+	 * Gets the first name.
+	 *
+	 * @return the first name
+	 */
+	public String getFirstName() {
+<span class="fc" id="L155">		return firstName;</span>
+	}
+
+	/**
+	 * Sets the first name.
+	 *
+	 * @param firstName the new first name
+	 */
+	public void setFirstName(final String firstName) {
+<span class="fc" id="L164">		this.firstName = firstName;</span>
+<span class="fc" id="L165">	}</span>
+
+	/**
+	 * Gets the last name.
+	 *
+	 * @return the last name
+	 */
+	public String getLastName() {
+<span class="fc" id="L173">		return lastName;</span>
+	}
+
+	/**
+	 * Sets the last name.
+	 *
+	 * @param lastName the new last name
+	 */
+	public void setLastName(final String lastName) {
+<span class="fc" id="L182">		this.lastName = lastName;</span>
+<span class="fc" id="L183">	}</span>
+
+	/**
+	 * Gets the previous party.
+	 *
+	 * @return the previous party
+	 */
+	public String getPreviousParty() {
+<span class="fc" id="L191">		return previousParty;</span>
+	}
+
+	/**
+	 * Sets the previous party.
+	 *
+	 * @param previousParty the new previous party
+	 */
+	public void setPreviousParty(final String previousParty) {
+<span class="fc" id="L200">		this.previousParty = previousParty;</span>
+<span class="fc" id="L201">	}</span>
+
+	/**
+	 * Gets the new party.
+	 *
+	 * @return the new party
+	 */
+	public String getNewParty() {
+<span class="fc" id="L209">		return newParty;</span>
+	}
+
+	/**
+	 * Sets the new party.
+	 *
+	 * @param newParty the new new party
+	 */
+	public void setNewParty(final String newParty) {
+<span class="fc" id="L218">		this.newParty = newParty;</span>
+<span class="fc" id="L219">	}</span>
+
+	/**
+	 * Gets the months until next election.
+	 *
+	 * @return the months until next election
+	 */
+	public Integer getMonthsUntilNextElection() {
+<span class="fc" id="L227">		return monthsUntilNextElection;</span>
+	}
+
+	/**
+	 * Sets the months until next election.
+	 *
+	 * @param monthsUntilNextElection the new months until next election
+	 */
+	public void setMonthsUntilNextElection(final Integer monthsUntilNextElection) {
+<span class="fc" id="L236">		this.monthsUntilNextElection = monthsUntilNextElection;</span>
+<span class="fc" id="L237">	}</span>
+
+	/**
+	 * Gets the pre transition attendance.
+	 *
+	 * @return the pre transition attendance
+	 */
+	public BigDecimal getPreTransitionAttendance() {
+<span class="fc" id="L245">		return preTransitionAttendance;</span>
+	}
+
+	/**
+	 * Sets the pre transition attendance.
+	 *
+	 * @param preTransitionAttendance the new pre transition attendance
+	 */
+	public void setPreTransitionAttendance(final BigDecimal preTransitionAttendance) {
+<span class="fc" id="L254">		this.preTransitionAttendance = preTransitionAttendance;</span>
+<span class="fc" id="L255">	}</span>
+
+	/**
+	 * Gets the post transition attendance.
+	 *
+	 * @return the post transition attendance
+	 */
+	public BigDecimal getPostTransitionAttendance() {
+<span class="fc" id="L263">		return postTransitionAttendance;</span>
+	}
+
+	/**
+	 * Sets the post transition attendance.
+	 *
+	 * @param postTransitionAttendance the new post transition attendance
+	 */
+	public void setPostTransitionAttendance(final BigDecimal postTransitionAttendance) {
+<span class="fc" id="L272">		this.postTransitionAttendance = postTransitionAttendance;</span>
+<span class="fc" id="L273">	}</span>
+
+	/**
+	 * Gets the attendance change.
+	 *
+	 * @return the attendance change
+	 */
+	public BigDecimal getAttendanceChange() {
+<span class="fc" id="L281">		return attendanceChange;</span>
+	}
+
+	/**
+	 * Sets the attendance change.
+	 *
+	 * @param attendanceChange the new attendance change
+	 */
+	public void setAttendanceChange(final BigDecimal attendanceChange) {
+<span class="fc" id="L290">		this.attendanceChange = attendanceChange;</span>
+<span class="fc" id="L291">	}</span>
+
+	/**
+	 * Gets the docs before.
+	 *
+	 * @return the docs before
+	 */
+	public Long getDocsBefore() {
+<span class="fc" id="L299">		return docsBefore;</span>
+	}
+
+	/**
+	 * Sets the docs before.
+	 *
+	 * @param docsBefore the new docs before
+	 */
+	public void setDocsBefore(final Long docsBefore) {
+<span class="fc" id="L308">		this.docsBefore = docsBefore;</span>
+<span class="fc" id="L309">	}</span>
+
+	/**
+	 * Gets the docs after.
+	 *
+	 * @return the docs after
+	 */
+	public Long getDocsAfter() {
+<span class="fc" id="L317">		return docsAfter;</span>
+	}
+
+	/**
+	 * Sets the docs after.
+	 *
+	 * @param docsAfter the new docs after
+	 */
+	public void setDocsAfter(final Long docsAfter) {
+<span class="fc" id="L326">		this.docsAfter = docsAfter;</span>
+<span class="fc" id="L327">	}</span>
+
+	/**
+	 * Gets the defection timing.
+	 *
+	 * @return the defection timing
+	 */
+	public String getDefectionTiming() {
+<span class="fc" id="L335">		return defectionTiming;</span>
+	}
+
+	/**
+	 * Sets the defection timing.
+	 *
+	 * @param defectionTiming the new defection timing
+	 */
+	public void setDefectionTiming(final String defectionTiming) {
+<span class="fc" id="L344">		this.defectionTiming = defectionTiming;</span>
+<span class="fc" id="L345">	}</span>
+
+	@Override
+	public boolean equals(final Object obj) {
+<span class="fc bfc" id="L349" title="All 2 branches covered.">		if (this == obj) {</span>
+<span class="fc" id="L350">			return true;</span>
+		}
+<span class="pc bpc" id="L352" title="1 of 4 branches missed.">		if (obj == null || getClass() != obj.getClass()) {</span>
+<span class="fc" id="L353">			return false;</span>
+		}
+<span class="fc" id="L355">		final ViewRiksdagenPartyDefectorAnalysis that = (ViewRiksdagenPartyDefectorAnalysis) obj;</span>
+<span class="pc bpc" id="L356" title="1 of 2 branches missed.">		return Objects.equals(getPersonId(), that.getPersonId()) &amp;&amp;</span>
+<span class="pc bpc" id="L357" title="1 of 2 branches missed.">				Objects.equals(getTransitionDate(), that.getTransitionDate());</span>
+	}
+
+	@Override
+	public int hashCode() {
+<span class="fc" id="L362">		return Objects.hash(getPersonId(), getTransitionDate());</span>
+	}
+
+	@Override
+	public String toString() {
+<span class="fc" id="L367">		return &quot;ViewRiksdagenPartyDefectorAnalysis{&quot; +</span>
+<span class="fc" id="L368">				&quot;personId='&quot; + getPersonId() + '\'' +</span>
+				&quot;, firstName='&quot; + firstName + '\'' +
+				&quot;, lastName='&quot; + lastName + '\'' +
+				&quot;, previousParty='&quot; + previousParty + '\'' +
+				&quot;, newParty='&quot; + newParty + '\'' +
+<span class="fc" id="L373">				&quot;, transitionDate=&quot; + getTransitionDate() +</span>
+				&quot;, monthsUntilNextElection=&quot; + monthsUntilNextElection +
+				&quot;, preTransitionAttendance=&quot; + preTransitionAttendance +
+				&quot;, postTransitionAttendance=&quot; + postTransitionAttendance +
+				&quot;, attendanceChange=&quot; + attendanceChange +
+				&quot;, defectionTiming='&quot; + defectionTiming + '\'' +
+				'}';
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

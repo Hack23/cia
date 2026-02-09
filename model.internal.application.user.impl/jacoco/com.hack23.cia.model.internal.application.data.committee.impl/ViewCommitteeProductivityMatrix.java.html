@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewCommitteeProductivityMatrix.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.committee.impl</a> &gt; <span class="el_source">ViewCommitteeProductivityMatrix.java</span></div><h1>ViewCommitteeProductivityMatrix.java</h1><pre class="source lang-java linenums">package com.hack23.cia.model.internal.application.data.committee.impl;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+/**
+ * JPA entity for view_committee_productivity_matrix database view.
+ * 
+ * Intelligence Purpose: Tracks committee productivity metrics over time with
+ * quarterly aggregation, trend analysis, and automated productivity classifications.
+ * Provides comprehensive assessment of committee performance patterns and efficiency.
+ * 
+ * Created by: Liquibase v1.30 (OSINT Performance Tracking)
+ * Risk Rules Supported: C-01 to C-04 (Committee performance and productivity rules)
+ */
+@Entity(name = &quot;ViewCommitteeProductivityMatrix&quot;)
+@Table(name = &quot;view_committee_productivity_matrix&quot;)
+public class ViewCommitteeProductivityMatrix implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@Column(name = &quot;committee_code&quot;, nullable = false, length = 50)
+	private String committeeCode;
+
+	@Id
+	@Column(name = &quot;period_start&quot;, nullable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date periodStart;
+
+	@Column(name = &quot;committee_name&quot;, length = 255)
+	private String committeeName;
+
+	@Column(name = &quot;committee_category&quot;, length = 100)
+	private String committeeCategory;
+
+	@Column(name = &quot;period_end&quot;)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date periodEnd;
+
+	@Column(name = &quot;year&quot;)
+	private Integer year;
+
+	@Column(name = &quot;quarter&quot;)
+	private Integer quarter;
+
+	@Column(name = &quot;total_documents&quot;)
+	private Long totalDocuments;
+
+	@Column(name = &quot;committee_reports&quot;)
+	private Long committeeReports;
+
+	@Column(name = &quot;motions_handled&quot;)
+	private Long motionsHandled;
+
+	@Column(name = &quot;active_members&quot;)
+	private Integer activeMembers;
+
+	@Column(name = &quot;documents_per_member&quot;, precision = 10, scale = 2)
+	private BigDecimal documentsPerMember;
+
+	@Column(name = &quot;reports_per_member&quot;, precision = 10, scale = 2)
+	private BigDecimal reportsPerMember;
+
+	@Column(name = &quot;document_change&quot;)
+	private Long documentChange;
+
+	@Column(name = &quot;document_change_pct&quot;, precision = 10, scale = 2)
+	private BigDecimal documentChangePct;
+
+	@Column(name = &quot;ma_4quarter_documents&quot;, precision = 10, scale = 2)
+	private BigDecimal movingAvg4QuarterDocuments;
+
+	@Column(name = &quot;period_avg_documents&quot;, precision = 10, scale = 2)
+	private BigDecimal periodAvgDocuments;
+
+	@Column(name = &quot;period_median_documents&quot;, precision = 10, scale = 2)
+	private BigDecimal periodMedianDocuments;
+
+	@Column(name = &quot;period_max_documents&quot;)
+	private Long periodMaxDocuments;
+
+	@Column(name = &quot;period_min_documents&quot;)
+	private Long periodMinDocuments;
+
+	@Column(name = &quot;vs_average&quot;, precision = 10, scale = 2)
+	private BigDecimal vsAverage;
+
+	@Column(name = &quot;vs_average_pct&quot;, precision = 10, scale = 2)
+	private BigDecimal vsAveragePct;
+
+	@Column(name = &quot;productivity_level&quot;, length = 50)
+	private String productivityLevel;
+
+	@Column(name = &quot;productivity_trend&quot;, length = 50)
+	private String productivityTrend;
+
+	@Column(name = &quot;productivity_assessment&quot;, length = 255)
+	private String productivityAssessment;
+
+	@Column(name = &quot;first_document_date&quot;)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date firstDocumentDate;
+
+	@Column(name = &quot;last_document_date&quot;)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date lastDocumentDate;
+
+	@Column(name = &quot;activity_span_days&quot;)
+	private Integer activitySpanDays;
+
+	/**
+	 * Default constructor.
+	 */
+	public ViewCommitteeProductivityMatrix() {
+<span class="fc" id="L129">		super();</span>
+<span class="fc" id="L130">	}</span>
+
+	// Getters and Setters
+
+	public String getCommitteeCode() {
+<span class="fc" id="L135">		return committeeCode;</span>
+	}
+
+	public void setCommitteeCode(String committeeCode) {
+<span class="fc" id="L139">		this.committeeCode = committeeCode;</span>
+<span class="fc" id="L140">	}</span>
+
+	public Date getPeriodStart() {
+<span class="fc" id="L143">		return periodStart;</span>
+	}
+
+	public void setPeriodStart(Date periodStart) {
+<span class="fc" id="L147">		this.periodStart = periodStart;</span>
+<span class="fc" id="L148">	}</span>
+
+	public String getCommitteeName() {
+<span class="fc" id="L151">		return committeeName;</span>
+	}
+
+	public void setCommitteeName(String committeeName) {
+<span class="fc" id="L155">		this.committeeName = committeeName;</span>
+<span class="fc" id="L156">	}</span>
+
+	public String getCommitteeCategory() {
+<span class="fc" id="L159">		return committeeCategory;</span>
+	}
+
+	public void setCommitteeCategory(String committeeCategory) {
+<span class="fc" id="L163">		this.committeeCategory = committeeCategory;</span>
+<span class="fc" id="L164">	}</span>
+
+	public Date getPeriodEnd() {
+<span class="fc" id="L167">		return periodEnd;</span>
+	}
+
+	public void setPeriodEnd(Date periodEnd) {
+<span class="fc" id="L171">		this.periodEnd = periodEnd;</span>
+<span class="fc" id="L172">	}</span>
+
+	public Integer getYear() {
+<span class="fc" id="L175">		return year;</span>
+	}
+
+	public void setYear(Integer year) {
+<span class="fc" id="L179">		this.year = year;</span>
+<span class="fc" id="L180">	}</span>
+
+	public Integer getQuarter() {
+<span class="fc" id="L183">		return quarter;</span>
+	}
+
+	public void setQuarter(Integer quarter) {
+<span class="fc" id="L187">		this.quarter = quarter;</span>
+<span class="fc" id="L188">	}</span>
+
+	public Long getTotalDocuments() {
+<span class="fc" id="L191">		return totalDocuments;</span>
+	}
+
+	public void setTotalDocuments(Long totalDocuments) {
+<span class="fc" id="L195">		this.totalDocuments = totalDocuments;</span>
+<span class="fc" id="L196">	}</span>
+
+	public Long getCommitteeReports() {
+<span class="fc" id="L199">		return committeeReports;</span>
+	}
+
+	public void setCommitteeReports(Long committeeReports) {
+<span class="fc" id="L203">		this.committeeReports = committeeReports;</span>
+<span class="fc" id="L204">	}</span>
+
+	public Long getMotionsHandled() {
+<span class="fc" id="L207">		return motionsHandled;</span>
+	}
+
+	public void setMotionsHandled(Long motionsHandled) {
+<span class="fc" id="L211">		this.motionsHandled = motionsHandled;</span>
+<span class="fc" id="L212">	}</span>
+
+	public Integer getActiveMembers() {
+<span class="fc" id="L215">		return activeMembers;</span>
+	}
+
+	public void setActiveMembers(Integer activeMembers) {
+<span class="fc" id="L219">		this.activeMembers = activeMembers;</span>
+<span class="fc" id="L220">	}</span>
+
+	public BigDecimal getDocumentsPerMember() {
+<span class="fc" id="L223">		return documentsPerMember;</span>
+	}
+
+	public void setDocumentsPerMember(BigDecimal documentsPerMember) {
+<span class="fc" id="L227">		this.documentsPerMember = documentsPerMember;</span>
+<span class="fc" id="L228">	}</span>
+
+	public BigDecimal getReportsPerMember() {
+<span class="fc" id="L231">		return reportsPerMember;</span>
+	}
+
+	public void setReportsPerMember(BigDecimal reportsPerMember) {
+<span class="fc" id="L235">		this.reportsPerMember = reportsPerMember;</span>
+<span class="fc" id="L236">	}</span>
+
+	public Long getDocumentChange() {
+<span class="fc" id="L239">		return documentChange;</span>
+	}
+
+	public void setDocumentChange(Long documentChange) {
+<span class="fc" id="L243">		this.documentChange = documentChange;</span>
+<span class="fc" id="L244">	}</span>
+
+	public BigDecimal getDocumentChangePct() {
+<span class="fc" id="L247">		return documentChangePct;</span>
+	}
+
+	public void setDocumentChangePct(BigDecimal documentChangePct) {
+<span class="fc" id="L251">		this.documentChangePct = documentChangePct;</span>
+<span class="fc" id="L252">	}</span>
+
+	public BigDecimal getMovingAvg4QuarterDocuments() {
+<span class="fc" id="L255">		return movingAvg4QuarterDocuments;</span>
+	}
+
+	public void setMovingAvg4QuarterDocuments(BigDecimal movingAvg4QuarterDocuments) {
+<span class="fc" id="L259">		this.movingAvg4QuarterDocuments = movingAvg4QuarterDocuments;</span>
+<span class="fc" id="L260">	}</span>
+
+	public BigDecimal getPeriodAvgDocuments() {
+<span class="fc" id="L263">		return periodAvgDocuments;</span>
+	}
+
+	public void setPeriodAvgDocuments(BigDecimal periodAvgDocuments) {
+<span class="fc" id="L267">		this.periodAvgDocuments = periodAvgDocuments;</span>
+<span class="fc" id="L268">	}</span>
+
+	public BigDecimal getPeriodMedianDocuments() {
+<span class="fc" id="L271">		return periodMedianDocuments;</span>
+	}
+
+	public void setPeriodMedianDocuments(BigDecimal periodMedianDocuments) {
+<span class="fc" id="L275">		this.periodMedianDocuments = periodMedianDocuments;</span>
+<span class="fc" id="L276">	}</span>
+
+	public Long getPeriodMaxDocuments() {
+<span class="fc" id="L279">		return periodMaxDocuments;</span>
+	}
+
+	public void setPeriodMaxDocuments(Long periodMaxDocuments) {
+<span class="fc" id="L283">		this.periodMaxDocuments = periodMaxDocuments;</span>
+<span class="fc" id="L284">	}</span>
+
+	public Long getPeriodMinDocuments() {
+<span class="fc" id="L287">		return periodMinDocuments;</span>
+	}
+
+	public void setPeriodMinDocuments(Long periodMinDocuments) {
+<span class="fc" id="L291">		this.periodMinDocuments = periodMinDocuments;</span>
+<span class="fc" id="L292">	}</span>
+
+	public BigDecimal getVsAverage() {
+<span class="fc" id="L295">		return vsAverage;</span>
+	}
+
+	public void setVsAverage(BigDecimal vsAverage) {
+<span class="fc" id="L299">		this.vsAverage = vsAverage;</span>
+<span class="fc" id="L300">	}</span>
+
+	public BigDecimal getVsAveragePct() {
+<span class="fc" id="L303">		return vsAveragePct;</span>
+	}
+
+	public void setVsAveragePct(BigDecimal vsAveragePct) {
+<span class="fc" id="L307">		this.vsAveragePct = vsAveragePct;</span>
+<span class="fc" id="L308">	}</span>
+
+	public String getProductivityLevel() {
+<span class="fc" id="L311">		return productivityLevel;</span>
+	}
+
+	public void setProductivityLevel(String productivityLevel) {
+<span class="fc" id="L315">		this.productivityLevel = productivityLevel;</span>
+<span class="fc" id="L316">	}</span>
+
+	public String getProductivityTrend() {
+<span class="fc" id="L319">		return productivityTrend;</span>
+	}
+
+	public void setProductivityTrend(String productivityTrend) {
+<span class="fc" id="L323">		this.productivityTrend = productivityTrend;</span>
+<span class="fc" id="L324">	}</span>
+
+	public String getProductivityAssessment() {
+<span class="fc" id="L327">		return productivityAssessment;</span>
+	}
+
+	public void setProductivityAssessment(String productivityAssessment) {
+<span class="fc" id="L331">		this.productivityAssessment = productivityAssessment;</span>
+<span class="fc" id="L332">	}</span>
+
+	public Date getFirstDocumentDate() {
+<span class="fc" id="L335">		return firstDocumentDate;</span>
+	}
+
+	public void setFirstDocumentDate(Date firstDocumentDate) {
+<span class="fc" id="L339">		this.firstDocumentDate = firstDocumentDate;</span>
+<span class="fc" id="L340">	}</span>
+
+	public Date getLastDocumentDate() {
+<span class="fc" id="L343">		return lastDocumentDate;</span>
+	}
+
+	public void setLastDocumentDate(Date lastDocumentDate) {
+<span class="fc" id="L347">		this.lastDocumentDate = lastDocumentDate;</span>
+<span class="fc" id="L348">	}</span>
+
+	public Integer getActivitySpanDays() {
+<span class="fc" id="L351">		return activitySpanDays;</span>
+	}
+
+	public void setActivitySpanDays(Integer activitySpanDays) {
+<span class="fc" id="L355">		this.activitySpanDays = activitySpanDays;</span>
+<span class="fc" id="L356">	}</span>
+
+	@Override
+	public boolean equals(final Object obj) {
+<span class="fc bfc" id="L360" title="All 2 branches covered.">		if (this == obj) {</span>
+<span class="fc" id="L361">			return true;</span>
+		}
+<span class="pc bpc" id="L363" title="1 of 4 branches missed.">		if (obj == null || getClass() != obj.getClass()) {</span>
+<span class="fc" id="L364">			return false;</span>
+		}
+<span class="fc" id="L366">		final ViewCommitteeProductivityMatrix other = (ViewCommitteeProductivityMatrix) obj;</span>
+<span class="fc" id="L367">		return new EqualsBuilder()</span>
+<span class="fc" id="L368">				.append(committeeCode, other.committeeCode)</span>
+<span class="fc" id="L369">				.append(periodStart, other.periodStart)</span>
+<span class="fc" id="L370">				.isEquals();</span>
+	}
+
+	@Override
+	public int hashCode() {
+<span class="fc" id="L375">		return new HashCodeBuilder()</span>
+<span class="fc" id="L376">				.append(committeeCode)</span>
+<span class="fc" id="L377">				.append(periodStart)</span>
+<span class="fc" id="L378">				.toHashCode();</span>
+	}
+
+	@Override
+	public String toString() {
+<span class="fc" id="L383">		return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)</span>
+<span class="fc" id="L384">				.append(&quot;committeeCode&quot;, committeeCode)</span>
+<span class="fc" id="L385">				.append(&quot;periodStart&quot;, periodStart)</span>
+<span class="fc" id="L386">				.append(&quot;committeeName&quot;, committeeName)</span>
+<span class="fc" id="L387">				.append(&quot;productivityLevel&quot;, productivityLevel)</span>
+<span class="fc" id="L388">				.append(&quot;productivityAssessment&quot;, productivityAssessment)</span>
+<span class="fc" id="L389">				.toString();</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

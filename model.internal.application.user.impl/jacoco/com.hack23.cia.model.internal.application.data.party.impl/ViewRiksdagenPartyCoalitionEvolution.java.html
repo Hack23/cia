@@ -1,0 +1,1031 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewRiksdagenPartyCoalitionEvolution.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">model.internal.application.user.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.model.internal.application.data.party.impl</a> &gt; <span class="el_source">ViewRiksdagenPartyCoalitionEvolution.java</span></div><h1>ViewRiksdagenPartyCoalitionEvolution.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2025 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *$Id$
+ *  $HeadURL$
+ */
+package com.hack23.cia.model.internal.application.data.party.impl;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.Immutable;
+
+/**
+ * The Class ViewRiksdagenPartyCoalitionEvolution.
+ * Database view for tracking coalition alignment and evolution between party pairs across election cycles.
+ */
+@Entity
+@Immutable
+@Table(name = &quot;view_riksdagen_party_coalition_evolution&quot;)
+public class ViewRiksdagenPartyCoalitionEvolution implements Serializable {
+
+private static final long serialVersionUID = 1L;
+
+@EmbeddedId
+private ViewRiksdagenPartyCoalitionEvolutionEmbeddedId embeddedId;
+
+	/** The cycle year. */
+	@Column(name = &quot;cycle_year&quot;)
+	private Integer cycleYear;
+
+	/** The calendar year. */
+	@Column(name = &quot;calendar_year&quot;)
+	private Integer calendarYear;
+
+	/** The joint voting days. */
+	@Column(name = &quot;joint_voting_days&quot;)
+	private Long jointVotingDays;
+
+	/** The joint ballots. */
+	@Column(name = &quot;joint_ballots&quot;)
+	private BigDecimal jointBallots;
+
+	/** The aligned ballots. */
+	@Column(name = &quot;aligned_ballots&quot;)
+	private BigDecimal alignedBallots;
+
+	/** The alignment rate. */
+	@Column(name = &quot;alignment_rate&quot;)
+	private BigDecimal alignmentRate;
+
+	/** The avg vote divergence. */
+	@Column(name = &quot;avg_vote_divergence&quot;)
+	private BigDecimal avgVoteDivergence;
+
+	/** The vote divergence stddev. */
+	@Column(name = &quot;vote_divergence_stddev&quot;)
+	private BigDecimal voteDivergenceStddev;
+
+	/** The rank by alignment. */
+	@Column(name = &quot;rank_by_alignment&quot;)
+	private Long rankByAlignment;
+
+	/** The rank by activity. */
+	@Column(name = &quot;rank_by_activity&quot;)
+	private Long rankByActivity;
+
+	/** The rank by consistency. */
+	@Column(name = &quot;rank_by_consistency&quot;)
+	private Long rankByConsistency;
+
+	/** The percentile alignment. */
+	@Column(name = &quot;percentile_alignment&quot;)
+	private Double percentileAlignment;
+
+	/** The percentile cohesion. */
+	@Column(name = &quot;percentile_cohesion&quot;)
+	private Double percentileCohesion;
+
+	/** The quartile coalition strength. */
+	@Column(name = &quot;quartile_coalition_strength&quot;)
+	private Integer quartileCoalitionStrength;
+
+	/** The prev semester alignment. */
+	@Column(name = &quot;prev_semester_alignment&quot;)
+	private BigDecimal prevSemesterAlignment;
+
+	/** The prev semester joint ballots. */
+	@Column(name = &quot;prev_semester_joint_ballots&quot;)
+	private BigDecimal prevSemesterJointBallots;
+
+	/** The prev semester divergence. */
+	@Column(name = &quot;prev_semester_divergence&quot;)
+	private BigDecimal prevSemesterDivergence;
+
+	/** The next semester alignment. */
+	@Column(name = &quot;next_semester_alignment&quot;)
+	private BigDecimal nextSemesterAlignment;
+
+	/** The next semester divergence. */
+	@Column(name = &quot;next_semester_divergence&quot;)
+	private BigDecimal nextSemesterDivergence;
+
+	/** The stddev alignment sector. */
+	@Column(name = &quot;stddev_alignment_sector&quot;)
+	private BigDecimal stddevAlignmentSector;
+
+	/** The stddev alignment pair. */
+	@Column(name = &quot;stddev_alignment_pair&quot;)
+	private BigDecimal stddevAlignmentPair;
+
+	/** The stddev divergence pair. */
+	@Column(name = &quot;stddev_divergence_pair&quot;)
+	private BigDecimal stddevDivergencePair;
+
+	/** The ma 3semester alignment. */
+	@Column(name = &quot;ma_3semester_alignment&quot;)
+	private BigDecimal ma3semesterAlignment;
+
+	/** The alignment change absolute. */
+	@Column(name = &quot;alignment_change_absolute&quot;)
+	private BigDecimal alignmentChangeAbsolute;
+
+	/** The alignment change pct. */
+	@Column(name = &quot;alignment_change_pct&quot;)
+	private BigDecimal alignmentChangePct;
+
+	/** The activity change. */
+	@Column(name = &quot;activity_change&quot;)
+	private BigDecimal activityChange;
+
+	/** The divergence change. */
+	@Column(name = &quot;divergence_change&quot;)
+	private BigDecimal divergenceChange;
+
+	/** The coalition strength. */
+	@Column(name = &quot;coalition_strength&quot;)
+	private String coalitionStrength;
+
+	/** The coalition trend. */
+	@Column(name = &quot;coalition_trend&quot;)
+	private String coalitionTrend;
+
+	/** The strategic shift. */
+	@Column(name = &quot;strategic_shift&quot;)
+	private String strategicShift;
+
+	/** The volatility classification. */
+	@Column(name = &quot;volatility_classification&quot;)
+	private String volatilityClassification;
+
+	/** The consistency classification. */
+	@Column(name = &quot;consistency_classification&quot;)
+	private String consistencyClassification;
+
+	/** The forecast trend. */
+	@Column(name = &quot;forecast_trend&quot;)
+	private String forecastTrend;
+
+	/** The alignment deviation from ma. */
+	@Column(name = &quot;alignment_deviation_from_ma&quot;)
+	private BigDecimal alignmentDeviationFromMa;
+
+	/** The trend position. */
+	@Column(name = &quot;trend_position&quot;)
+	private String trendPosition;
+
+	/** The coalition tier. */
+	@Column(name = &quot;coalition_tier&quot;)
+	private String coalitionTier;
+
+	/** The momentum z score. */
+	@Column(name = &quot;momentum_z_score&quot;)
+	private BigDecimal momentumZScore;
+
+	/** The stability score. */
+	@Column(name = &quot;stability_score&quot;)
+	private BigDecimal stabilityScore;
+
+	/** The breakup risk score. */
+	@Column(name = &quot;breakup_risk_score&quot;)
+	private BigDecimal breakupRiskScore;
+
+	/** The realignment probability. */
+	@Column(name = &quot;realignment_probability&quot;)
+	private String realignmentProbability;
+
+	/** The coalition density score. */
+	@Column(name = &quot;coalition_density_score&quot;)
+	private BigDecimal coalitionDensityScore;
+
+	/** The bridge classification. */
+	@Column(name = &quot;bridge_classification&quot;)
+	private String bridgeClassification;
+
+	/**
+	 * Instantiates a new view riksdagen party coalition evolution.
+	 */
+	public ViewRiksdagenPartyCoalitionEvolution() {
+<span class="fc" id="L217">		super();</span>
+<span class="fc" id="L218">	}</span>
+
+	/**
+	 * Gets the embedded id.
+	 *
+	 * @return the embedded id
+	 */
+	public ViewRiksdagenPartyCoalitionEvolutionEmbeddedId getEmbeddedId() {
+<span class="fc" id="L226">		return embeddedId;</span>
+	}
+
+	/**
+	 * Sets the embedded id.
+	 *
+	 * @param embeddedId the new embedded id
+	 */
+	public void setEmbeddedId(final ViewRiksdagenPartyCoalitionEvolutionEmbeddedId embeddedId) {
+<span class="fc" id="L235">		this.embeddedId = embeddedId;</span>
+<span class="fc" id="L236">	}</span>
+
+	/**
+	 * Gets the party 1.
+	 *
+	 * @return the party 1
+	 */
+	public String getParty1() {
+<span class="nc bnc" id="L244" title="All 2 branches missed.">		return embeddedId != null ? embeddedId.getParty1() : null;</span>
+	}
+
+	/**
+	 * Gets the party 2.
+	 *
+	 * @return the party 2
+	 */
+	public String getParty2() {
+<span class="nc bnc" id="L253" title="All 2 branches missed.">		return embeddedId != null ? embeddedId.getParty2() : null;</span>
+	}
+
+	/**
+	 * Gets the election cycle id.
+	 *
+	 * @return the election cycle id
+	 */
+	public String getElectionCycleId() {
+<span class="nc bnc" id="L262" title="All 2 branches missed.">		return embeddedId != null ? embeddedId.getElectionCycleId() : null;</span>
+	}
+
+	/**
+	 * Gets the semester.
+	 *
+	 * @return the semester
+	 */
+	public String getSemester() {
+<span class="nc bnc" id="L271" title="All 2 branches missed.">		return embeddedId != null ? embeddedId.getSemester() : null;</span>
+	}
+
+	/**
+	 * Gets the cycle year.
+	 *
+	 * @return the cycle year
+	 */
+	public Integer getCycleYear() {
+<span class="fc" id="L280">		return cycleYear;</span>
+	}
+
+	/**
+	 * Sets the cycle year.
+	 *
+	 * @param cycleYear the new cycle year
+	 */
+	public void setCycleYear(final Integer cycleYear) {
+<span class="fc" id="L289">		this.cycleYear = cycleYear;</span>
+<span class="fc" id="L290">	}</span>
+
+	/**
+	 * Gets the calendar year.
+	 *
+	 * @return the calendar year
+	 */
+	public Integer getCalendarYear() {
+<span class="fc" id="L298">		return calendarYear;</span>
+	}
+
+	/**
+	 * Sets the calendar year.
+	 *
+	 * @param calendarYear the new calendar year
+	 */
+	public void setCalendarYear(final Integer calendarYear) {
+<span class="fc" id="L307">		this.calendarYear = calendarYear;</span>
+<span class="fc" id="L308">	}</span>
+
+	/**
+	 * Gets the joint voting days.
+	 *
+	 * @return the joint voting days
+	 */
+	public Long getJointVotingDays() {
+<span class="fc" id="L316">		return jointVotingDays;</span>
+	}
+
+	/**
+	 * Sets the joint voting days.
+	 *
+	 * @param jointVotingDays the new joint voting days
+	 */
+	public void setJointVotingDays(final Long jointVotingDays) {
+<span class="fc" id="L325">		this.jointVotingDays = jointVotingDays;</span>
+<span class="fc" id="L326">	}</span>
+
+	/**
+	 * Gets the joint ballots.
+	 *
+	 * @return the joint ballots
+	 */
+	public BigDecimal getJointBallots() {
+<span class="fc" id="L334">		return jointBallots;</span>
+	}
+
+	/**
+	 * Sets the joint ballots.
+	 *
+	 * @param jointBallots the new joint ballots
+	 */
+	public void setJointBallots(final BigDecimal jointBallots) {
+<span class="fc" id="L343">		this.jointBallots = jointBallots;</span>
+<span class="fc" id="L344">	}</span>
+
+	/**
+	 * Gets the aligned ballots.
+	 *
+	 * @return the aligned ballots
+	 */
+	public BigDecimal getAlignedBallots() {
+<span class="fc" id="L352">		return alignedBallots;</span>
+	}
+
+	/**
+	 * Sets the aligned ballots.
+	 *
+	 * @param alignedBallots the new aligned ballots
+	 */
+	public void setAlignedBallots(final BigDecimal alignedBallots) {
+<span class="fc" id="L361">		this.alignedBallots = alignedBallots;</span>
+<span class="fc" id="L362">	}</span>
+
+	/**
+	 * Gets the alignment rate.
+	 *
+	 * @return the alignment rate
+	 */
+	public BigDecimal getAlignmentRate() {
+<span class="fc" id="L370">		return alignmentRate;</span>
+	}
+
+	/**
+	 * Sets the alignment rate.
+	 *
+	 * @param alignmentRate the new alignment rate
+	 */
+	public void setAlignmentRate(final BigDecimal alignmentRate) {
+<span class="fc" id="L379">		this.alignmentRate = alignmentRate;</span>
+<span class="fc" id="L380">	}</span>
+
+	/**
+	 * Gets the avg vote divergence.
+	 *
+	 * @return the avg vote divergence
+	 */
+	public BigDecimal getAvgVoteDivergence() {
+<span class="fc" id="L388">		return avgVoteDivergence;</span>
+	}
+
+	/**
+	 * Sets the avg vote divergence.
+	 *
+	 * @param avgVoteDivergence the new avg vote divergence
+	 */
+	public void setAvgVoteDivergence(final BigDecimal avgVoteDivergence) {
+<span class="fc" id="L397">		this.avgVoteDivergence = avgVoteDivergence;</span>
+<span class="fc" id="L398">	}</span>
+
+	/**
+	 * Gets the vote divergence stddev.
+	 *
+	 * @return the vote divergence stddev
+	 */
+	public BigDecimal getVoteDivergenceStddev() {
+<span class="fc" id="L406">		return voteDivergenceStddev;</span>
+	}
+
+	/**
+	 * Sets the vote divergence stddev.
+	 *
+	 * @param voteDivergenceStddev the new vote divergence stddev
+	 */
+	public void setVoteDivergenceStddev(final BigDecimal voteDivergenceStddev) {
+<span class="fc" id="L415">		this.voteDivergenceStddev = voteDivergenceStddev;</span>
+<span class="fc" id="L416">	}</span>
+
+	/**
+	 * Gets the rank by alignment.
+	 *
+	 * @return the rank by alignment
+	 */
+	public Long getRankByAlignment() {
+<span class="fc" id="L424">		return rankByAlignment;</span>
+	}
+
+	/**
+	 * Sets the rank by alignment.
+	 *
+	 * @param rankByAlignment the new rank by alignment
+	 */
+	public void setRankByAlignment(final Long rankByAlignment) {
+<span class="fc" id="L433">		this.rankByAlignment = rankByAlignment;</span>
+<span class="fc" id="L434">	}</span>
+
+	/**
+	 * Gets the rank by activity.
+	 *
+	 * @return the rank by activity
+	 */
+	public Long getRankByActivity() {
+<span class="fc" id="L442">		return rankByActivity;</span>
+	}
+
+	/**
+	 * Sets the rank by activity.
+	 *
+	 * @param rankByActivity the new rank by activity
+	 */
+	public void setRankByActivity(final Long rankByActivity) {
+<span class="fc" id="L451">		this.rankByActivity = rankByActivity;</span>
+<span class="fc" id="L452">	}</span>
+
+	/**
+	 * Gets the rank by consistency.
+	 *
+	 * @return the rank by consistency
+	 */
+	public Long getRankByConsistency() {
+<span class="fc" id="L460">		return rankByConsistency;</span>
+	}
+
+	/**
+	 * Sets the rank by consistency.
+	 *
+	 * @param rankByConsistency the new rank by consistency
+	 */
+	public void setRankByConsistency(final Long rankByConsistency) {
+<span class="fc" id="L469">		this.rankByConsistency = rankByConsistency;</span>
+<span class="fc" id="L470">	}</span>
+
+	/**
+	 * Gets the percentile alignment.
+	 *
+	 * @return the percentile alignment
+	 */
+	public Double getPercentileAlignment() {
+<span class="fc" id="L478">		return percentileAlignment;</span>
+	}
+
+	/**
+	 * Sets the percentile alignment.
+	 *
+	 * @param percentileAlignment the new percentile alignment
+	 */
+	public void setPercentileAlignment(final Double percentileAlignment) {
+<span class="fc" id="L487">		this.percentileAlignment = percentileAlignment;</span>
+<span class="fc" id="L488">	}</span>
+
+	/**
+	 * Gets the percentile cohesion.
+	 *
+	 * @return the percentile cohesion
+	 */
+	public Double getPercentileCohesion() {
+<span class="fc" id="L496">		return percentileCohesion;</span>
+	}
+
+	/**
+	 * Sets the percentile cohesion.
+	 *
+	 * @param percentileCohesion the new percentile cohesion
+	 */
+	public void setPercentileCohesion(final Double percentileCohesion) {
+<span class="fc" id="L505">		this.percentileCohesion = percentileCohesion;</span>
+<span class="fc" id="L506">	}</span>
+
+	/**
+	 * Gets the quartile coalition strength.
+	 *
+	 * @return the quartile coalition strength
+	 */
+	public Integer getQuartileCoalitionStrength() {
+<span class="fc" id="L514">		return quartileCoalitionStrength;</span>
+	}
+
+	/**
+	 * Sets the quartile coalition strength.
+	 *
+	 * @param quartileCoalitionStrength the new quartile coalition strength
+	 */
+	public void setQuartileCoalitionStrength(final Integer quartileCoalitionStrength) {
+<span class="fc" id="L523">		this.quartileCoalitionStrength = quartileCoalitionStrength;</span>
+<span class="fc" id="L524">	}</span>
+
+	/**
+	 * Gets the prev semester alignment.
+	 *
+	 * @return the prev semester alignment
+	 */
+	public BigDecimal getPrevSemesterAlignment() {
+<span class="fc" id="L532">		return prevSemesterAlignment;</span>
+	}
+
+	/**
+	 * Sets the prev semester alignment.
+	 *
+	 * @param prevSemesterAlignment the new prev semester alignment
+	 */
+	public void setPrevSemesterAlignment(final BigDecimal prevSemesterAlignment) {
+<span class="fc" id="L541">		this.prevSemesterAlignment = prevSemesterAlignment;</span>
+<span class="fc" id="L542">	}</span>
+
+	/**
+	 * Gets the prev semester joint ballots.
+	 *
+	 * @return the prev semester joint ballots
+	 */
+	public BigDecimal getPrevSemesterJointBallots() {
+<span class="fc" id="L550">		return prevSemesterJointBallots;</span>
+	}
+
+	/**
+	 * Sets the prev semester joint ballots.
+	 *
+	 * @param prevSemesterJointBallots the new prev semester joint ballots
+	 */
+	public void setPrevSemesterJointBallots(final BigDecimal prevSemesterJointBallots) {
+<span class="fc" id="L559">		this.prevSemesterJointBallots = prevSemesterJointBallots;</span>
+<span class="fc" id="L560">	}</span>
+
+	/**
+	 * Gets the prev semester divergence.
+	 *
+	 * @return the prev semester divergence
+	 */
+	public BigDecimal getPrevSemesterDivergence() {
+<span class="fc" id="L568">		return prevSemesterDivergence;</span>
+	}
+
+	/**
+	 * Sets the prev semester divergence.
+	 *
+	 * @param prevSemesterDivergence the new prev semester divergence
+	 */
+	public void setPrevSemesterDivergence(final BigDecimal prevSemesterDivergence) {
+<span class="fc" id="L577">		this.prevSemesterDivergence = prevSemesterDivergence;</span>
+<span class="fc" id="L578">	}</span>
+
+	/**
+	 * Gets the next semester alignment.
+	 *
+	 * @return the next semester alignment
+	 */
+	public BigDecimal getNextSemesterAlignment() {
+<span class="fc" id="L586">		return nextSemesterAlignment;</span>
+	}
+
+	/**
+	 * Sets the next semester alignment.
+	 *
+	 * @param nextSemesterAlignment the new next semester alignment
+	 */
+	public void setNextSemesterAlignment(final BigDecimal nextSemesterAlignment) {
+<span class="fc" id="L595">		this.nextSemesterAlignment = nextSemesterAlignment;</span>
+<span class="fc" id="L596">	}</span>
+
+	/**
+	 * Gets the next semester divergence.
+	 *
+	 * @return the next semester divergence
+	 */
+	public BigDecimal getNextSemesterDivergence() {
+<span class="fc" id="L604">		return nextSemesterDivergence;</span>
+	}
+
+	/**
+	 * Sets the next semester divergence.
+	 *
+	 * @param nextSemesterDivergence the new next semester divergence
+	 */
+	public void setNextSemesterDivergence(final BigDecimal nextSemesterDivergence) {
+<span class="fc" id="L613">		this.nextSemesterDivergence = nextSemesterDivergence;</span>
+<span class="fc" id="L614">	}</span>
+
+	/**
+	 * Gets the stddev alignment sector.
+	 *
+	 * @return the stddev alignment sector
+	 */
+	public BigDecimal getStddevAlignmentSector() {
+<span class="fc" id="L622">		return stddevAlignmentSector;</span>
+	}
+
+	/**
+	 * Sets the stddev alignment sector.
+	 *
+	 * @param stddevAlignmentSector the new stddev alignment sector
+	 */
+	public void setStddevAlignmentSector(final BigDecimal stddevAlignmentSector) {
+<span class="fc" id="L631">		this.stddevAlignmentSector = stddevAlignmentSector;</span>
+<span class="fc" id="L632">	}</span>
+
+	/**
+	 * Gets the stddev alignment pair.
+	 *
+	 * @return the stddev alignment pair
+	 */
+	public BigDecimal getStddevAlignmentPair() {
+<span class="fc" id="L640">		return stddevAlignmentPair;</span>
+	}
+
+	/**
+	 * Sets the stddev alignment pair.
+	 *
+	 * @param stddevAlignmentPair the new stddev alignment pair
+	 */
+	public void setStddevAlignmentPair(final BigDecimal stddevAlignmentPair) {
+<span class="fc" id="L649">		this.stddevAlignmentPair = stddevAlignmentPair;</span>
+<span class="fc" id="L650">	}</span>
+
+	/**
+	 * Gets the stddev divergence pair.
+	 *
+	 * @return the stddev divergence pair
+	 */
+	public BigDecimal getStddevDivergencePair() {
+<span class="fc" id="L658">		return stddevDivergencePair;</span>
+	}
+
+	/**
+	 * Sets the stddev divergence pair.
+	 *
+	 * @param stddevDivergencePair the new stddev divergence pair
+	 */
+	public void setStddevDivergencePair(final BigDecimal stddevDivergencePair) {
+<span class="fc" id="L667">		this.stddevDivergencePair = stddevDivergencePair;</span>
+<span class="fc" id="L668">	}</span>
+
+	/**
+	 * Gets the ma 3semester alignment.
+	 *
+	 * @return the ma 3semester alignment
+	 */
+	public BigDecimal getMa3semesterAlignment() {
+<span class="fc" id="L676">		return ma3semesterAlignment;</span>
+	}
+
+	/**
+	 * Sets the ma 3semester alignment.
+	 *
+	 * @param ma3semesterAlignment the new ma 3semester alignment
+	 */
+	public void setMa3semesterAlignment(final BigDecimal ma3semesterAlignment) {
+<span class="fc" id="L685">		this.ma3semesterAlignment = ma3semesterAlignment;</span>
+<span class="fc" id="L686">	}</span>
+
+	/**
+	 * Gets the alignment change absolute.
+	 *
+	 * @return the alignment change absolute
+	 */
+	public BigDecimal getAlignmentChangeAbsolute() {
+<span class="fc" id="L694">		return alignmentChangeAbsolute;</span>
+	}
+
+	/**
+	 * Sets the alignment change absolute.
+	 *
+	 * @param alignmentChangeAbsolute the new alignment change absolute
+	 */
+	public void setAlignmentChangeAbsolute(final BigDecimal alignmentChangeAbsolute) {
+<span class="fc" id="L703">		this.alignmentChangeAbsolute = alignmentChangeAbsolute;</span>
+<span class="fc" id="L704">	}</span>
+
+	/**
+	 * Gets the alignment change pct.
+	 *
+	 * @return the alignment change pct
+	 */
+	public BigDecimal getAlignmentChangePct() {
+<span class="fc" id="L712">		return alignmentChangePct;</span>
+	}
+
+	/**
+	 * Sets the alignment change pct.
+	 *
+	 * @param alignmentChangePct the new alignment change pct
+	 */
+	public void setAlignmentChangePct(final BigDecimal alignmentChangePct) {
+<span class="fc" id="L721">		this.alignmentChangePct = alignmentChangePct;</span>
+<span class="fc" id="L722">	}</span>
+
+	/**
+	 * Gets the activity change.
+	 *
+	 * @return the activity change
+	 */
+	public BigDecimal getActivityChange() {
+<span class="fc" id="L730">		return activityChange;</span>
+	}
+
+	/**
+	 * Sets the activity change.
+	 *
+	 * @param activityChange the new activity change
+	 */
+	public void setActivityChange(final BigDecimal activityChange) {
+<span class="fc" id="L739">		this.activityChange = activityChange;</span>
+<span class="fc" id="L740">	}</span>
+
+	/**
+	 * Gets the divergence change.
+	 *
+	 * @return the divergence change
+	 */
+	public BigDecimal getDivergenceChange() {
+<span class="fc" id="L748">		return divergenceChange;</span>
+	}
+
+	/**
+	 * Sets the divergence change.
+	 *
+	 * @param divergenceChange the new divergence change
+	 */
+	public void setDivergenceChange(final BigDecimal divergenceChange) {
+<span class="fc" id="L757">		this.divergenceChange = divergenceChange;</span>
+<span class="fc" id="L758">	}</span>
+
+	/**
+	 * Gets the coalition strength.
+	 *
+	 * @return the coalition strength
+	 */
+	public String getCoalitionStrength() {
+<span class="fc" id="L766">		return coalitionStrength;</span>
+	}
+
+	/**
+	 * Sets the coalition strength.
+	 *
+	 * @param coalitionStrength the new coalition strength
+	 */
+	public void setCoalitionStrength(final String coalitionStrength) {
+<span class="fc" id="L775">		this.coalitionStrength = coalitionStrength;</span>
+<span class="fc" id="L776">	}</span>
+
+	/**
+	 * Gets the coalition trend.
+	 *
+	 * @return the coalition trend
+	 */
+	public String getCoalitionTrend() {
+<span class="fc" id="L784">		return coalitionTrend;</span>
+	}
+
+	/**
+	 * Sets the coalition trend.
+	 *
+	 * @param coalitionTrend the new coalition trend
+	 */
+	public void setCoalitionTrend(final String coalitionTrend) {
+<span class="fc" id="L793">		this.coalitionTrend = coalitionTrend;</span>
+<span class="fc" id="L794">	}</span>
+
+	/**
+	 * Gets the strategic shift.
+	 *
+	 * @return the strategic shift
+	 */
+	public String getStrategicShift() {
+<span class="fc" id="L802">		return strategicShift;</span>
+	}
+
+	/**
+	 * Sets the strategic shift.
+	 *
+	 * @param strategicShift the new strategic shift
+	 */
+	public void setStrategicShift(final String strategicShift) {
+<span class="fc" id="L811">		this.strategicShift = strategicShift;</span>
+<span class="fc" id="L812">	}</span>
+
+	/**
+	 * Gets the volatility classification.
+	 *
+	 * @return the volatility classification
+	 */
+	public String getVolatilityClassification() {
+<span class="fc" id="L820">		return volatilityClassification;</span>
+	}
+
+	/**
+	 * Sets the volatility classification.
+	 *
+	 * @param volatilityClassification the new volatility classification
+	 */
+	public void setVolatilityClassification(final String volatilityClassification) {
+<span class="fc" id="L829">		this.volatilityClassification = volatilityClassification;</span>
+<span class="fc" id="L830">	}</span>
+
+	/**
+	 * Gets the consistency classification.
+	 *
+	 * @return the consistency classification
+	 */
+	public String getConsistencyClassification() {
+<span class="fc" id="L838">		return consistencyClassification;</span>
+	}
+
+	/**
+	 * Sets the consistency classification.
+	 *
+	 * @param consistencyClassification the new consistency classification
+	 */
+	public void setConsistencyClassification(final String consistencyClassification) {
+<span class="fc" id="L847">		this.consistencyClassification = consistencyClassification;</span>
+<span class="fc" id="L848">	}</span>
+
+	/**
+	 * Gets the forecast trend.
+	 *
+	 * @return the forecast trend
+	 */
+	public String getForecastTrend() {
+<span class="fc" id="L856">		return forecastTrend;</span>
+	}
+
+	/**
+	 * Sets the forecast trend.
+	 *
+	 * @param forecastTrend the new forecast trend
+	 */
+	public void setForecastTrend(final String forecastTrend) {
+<span class="fc" id="L865">		this.forecastTrend = forecastTrend;</span>
+<span class="fc" id="L866">	}</span>
+
+	/**
+	 * Gets the alignment deviation from ma.
+	 *
+	 * @return the alignment deviation from ma
+	 */
+	public BigDecimal getAlignmentDeviationFromMa() {
+<span class="fc" id="L874">		return alignmentDeviationFromMa;</span>
+	}
+
+	/**
+	 * Sets the alignment deviation from ma.
+	 *
+	 * @param alignmentDeviationFromMa the new alignment deviation from ma
+	 */
+	public void setAlignmentDeviationFromMa(final BigDecimal alignmentDeviationFromMa) {
+<span class="fc" id="L883">		this.alignmentDeviationFromMa = alignmentDeviationFromMa;</span>
+<span class="fc" id="L884">	}</span>
+
+	/**
+	 * Gets the trend position.
+	 *
+	 * @return the trend position
+	 */
+	public String getTrendPosition() {
+<span class="fc" id="L892">		return trendPosition;</span>
+	}
+
+	/**
+	 * Sets the trend position.
+	 *
+	 * @param trendPosition the new trend position
+	 */
+	public void setTrendPosition(final String trendPosition) {
+<span class="fc" id="L901">		this.trendPosition = trendPosition;</span>
+<span class="fc" id="L902">	}</span>
+
+	/**
+	 * Gets the coalition tier.
+	 *
+	 * @return the coalition tier
+	 */
+	public String getCoalitionTier() {
+<span class="fc" id="L910">		return coalitionTier;</span>
+	}
+
+	/**
+	 * Sets the coalition tier.
+	 *
+	 * @param coalitionTier the new coalition tier
+	 */
+	public void setCoalitionTier(final String coalitionTier) {
+<span class="fc" id="L919">		this.coalitionTier = coalitionTier;</span>
+<span class="fc" id="L920">	}</span>
+
+	/**
+	 * Gets the momentum z score.
+	 *
+	 * @return the momentum z score
+	 */
+	public BigDecimal getMomentumZScore() {
+<span class="fc" id="L928">		return momentumZScore;</span>
+	}
+
+	/**
+	 * Sets the momentum z score.
+	 *
+	 * @param momentumZScore the new momentum z score
+	 */
+	public void setMomentumZScore(final BigDecimal momentumZScore) {
+<span class="fc" id="L937">		this.momentumZScore = momentumZScore;</span>
+<span class="fc" id="L938">	}</span>
+
+	/**
+	 * Gets the stability score.
+	 *
+	 * @return the stability score
+	 */
+	public BigDecimal getStabilityScore() {
+<span class="fc" id="L946">		return stabilityScore;</span>
+	}
+
+	/**
+	 * Sets the stability score.
+	 *
+	 * @param stabilityScore the new stability score
+	 */
+	public void setStabilityScore(final BigDecimal stabilityScore) {
+<span class="fc" id="L955">		this.stabilityScore = stabilityScore;</span>
+<span class="fc" id="L956">	}</span>
+
+	/**
+	 * Gets the breakup risk score.
+	 *
+	 * @return the breakup risk score
+	 */
+	public BigDecimal getBreakupRiskScore() {
+<span class="fc" id="L964">		return breakupRiskScore;</span>
+	}
+
+	/**
+	 * Sets the breakup risk score.
+	 *
+	 * @param breakupRiskScore the new breakup risk score
+	 */
+	public void setBreakupRiskScore(final BigDecimal breakupRiskScore) {
+<span class="fc" id="L973">		this.breakupRiskScore = breakupRiskScore;</span>
+<span class="fc" id="L974">	}</span>
+
+	/**
+	 * Gets the realignment probability.
+	 *
+	 * @return the realignment probability
+	 */
+	public String getRealignmentProbability() {
+<span class="fc" id="L982">		return realignmentProbability;</span>
+	}
+
+	/**
+	 * Sets the realignment probability.
+	 *
+	 * @param realignmentProbability the new realignment probability
+	 */
+	public void setRealignmentProbability(final String realignmentProbability) {
+<span class="fc" id="L991">		this.realignmentProbability = realignmentProbability;</span>
+<span class="fc" id="L992">	}</span>
+
+	/**
+	 * Gets the coalition density score.
+	 *
+	 * @return the coalition density score
+	 */
+	public BigDecimal getCoalitionDensityScore() {
+<span class="fc" id="L1000">		return coalitionDensityScore;</span>
+	}
+
+	/**
+	 * Sets the coalition density score.
+	 *
+	 * @param coalitionDensityScore the new coalition density score
+	 */
+	public void setCoalitionDensityScore(final BigDecimal coalitionDensityScore) {
+<span class="fc" id="L1009">		this.coalitionDensityScore = coalitionDensityScore;</span>
+<span class="fc" id="L1010">	}</span>
+
+	/**
+	 * Gets the bridge classification.
+	 *
+	 * @return the bridge classification
+	 */
+	public String getBridgeClassification() {
+<span class="fc" id="L1018">		return bridgeClassification;</span>
+	}
+
+	/**
+	 * Sets the bridge classification.
+	 *
+	 * @param bridgeClassification the new bridge classification
+	 */
+	public void setBridgeClassification(final String bridgeClassification) {
+<span class="fc" id="L1027">		this.bridgeClassification = bridgeClassification;</span>
+<span class="fc" id="L1028">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>
