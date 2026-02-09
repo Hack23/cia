@@ -295,5 +295,5 @@ ORDER BY year;
 
 **Document Version**: 1.0
 **Last Updated**: 2026-02-09
-**Status**: 2 of 6 fixes applied, 4 remaining
+**Status**: 1 of 6 fixes applied, 5 remaining
 **Next Action**: Complete db-changelog-1.74.xml changesets

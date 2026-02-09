@@ -149,15 +149,13 @@ SELECT pg_get_viewdef('view_riksdagen_coalition_alignment_matrix') LIKE '%25 yea
 
 **Completed**:
 - [x] Fix view_riksdagen_coalition_alignment_matrix (CRITICAL)
-- [x] Fix view_decision_temporal_trends
 - [x] Create db-changelog-1.74.xml with rollback support
 - [x] Register changelog in db-changelog.xml
 - [x] Verify changes in database
 
 **Remaining**:
-- [ ] Fix 5 remaining views with 5-year filters
-- [ ] Add changesets to db-changelog-1.74.xml for each
-- [ ] Review 15 views with 3-year filters (case-by-case analysis)
+- [ ] Fix view_decision_temporal_trends
+- [ ] Fix 4 additional views with 5-year filters
 - [ ] Review 3 views with 2-year filters (may be appropriate)
 
 ### Phase 2: Data Loading (Critical Next Step)

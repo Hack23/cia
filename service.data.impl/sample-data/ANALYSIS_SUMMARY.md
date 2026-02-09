@@ -165,7 +165,7 @@ All 4 "problem" views are working correctly:
 - Views are **correctly designed** with appropriate date filters
 - Performance is **excellent** (<3ms execution time)
 - Timeout was **already fixed** in PR #8362
-- **No code changes required**
+- **Code changes**: db-changelog-1.74.xml extends coalition_alignment_matrix filter to 25 years (1 of 6 planned fixes)
 
 The sample data extraction process correctly identified these views as empty/timeout, and now we've documented why this is expected behavior. When production data is loaded, these views will automatically populate with political intelligence data.
 

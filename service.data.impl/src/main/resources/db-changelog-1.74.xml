@@ -58,7 +58,7 @@
             - CROSS JOIN on party_list instead of vote-level rows (avoids million-row expansion)
             - Reduces intermediate result set from millions to thousands of rows
             
-            IMPACT: Enables coalition analysis with 23 years of historical voting data
+            IMPACT: Enables coalition analysis with 24 years of historical voting data
             BLOCKS: view_election_cycle_network_analysis and other dependent views
             
             Performance: Indexed on (party, embedded_id_ballot_id, vote, vote_date) via idx_vote_data_coalition
@@ -105,17 +105,17 @@
                             END) AS aligned_votes,
                         count(DISTINCT
                             CASE
-                                WHEN (((pv1.vote)::text = 'Ja'::text) AND ((pv2.vote)::text = 'Ja'::text)) THEN pv1.ballot_id
+                                WHEN (((pv1.vote)::text = 'JA'::text) AND ((pv2.vote)::text = 'JA'::text)) THEN pv1.ballot_id
                                 ELSE NULL::character varying
                             END) AS both_yes,
                         count(DISTINCT
                             CASE
-                                WHEN (((pv1.vote)::text = 'Nej'::text) AND ((pv2.vote)::text = 'Nej'::text)) THEN pv1.ballot_id
+                                WHEN (((pv1.vote)::text = 'NEJ'::text) AND ((pv2.vote)::text = 'NEJ'::text)) THEN pv1.ballot_id
                                 ELSE NULL::character varying
                             END) AS both_no,
                         count(DISTINCT
                             CASE
-                                WHEN (((pv1.vote)::text = 'Avstå'::text) OR ((pv2.vote)::text = 'Avstå'::text)) THEN pv1.ballot_id
+                                WHEN (((pv1.vote)::text = 'AVSTÅR'::text) OR ((pv2.vote)::text = 'AVSTÅR'::text)) THEN pv1.ballot_id
                                 ELSE NULL::character varying
                             END) AS abstention_count,
                         min(pv1.vote_date) AS earliest_vote,
@@ -194,17 +194,17 @@
                                 END) AS aligned_votes,
                             count(DISTINCT
                                 CASE
-                                    WHEN (((pv1.vote)::text = 'Ja'::text) AND ((pv2.vote)::text = 'Ja'::text)) THEN pv1.ballot_id
+                                    WHEN (((pv1.vote)::text = 'JA'::text) AND ((pv2.vote)::text = 'JA'::text)) THEN pv1.ballot_id
                                     ELSE NULL::character varying
                                 END) AS both_yes,
                             count(DISTINCT
                                 CASE
-                                    WHEN (((pv1.vote)::text = 'Nej'::text) AND ((pv2.vote)::text = 'Nej'::text)) THEN pv1.ballot_id
+                                    WHEN (((pv1.vote)::text = 'NEJ'::text) AND ((pv2.vote)::text = 'NEJ'::text)) THEN pv1.ballot_id
                                     ELSE NULL::character varying
                                 END) AS both_no,
                             count(DISTINCT
                                 CASE
-                                    WHEN (((pv1.vote)::text = 'Avstå'::text) OR ((pv2.vote)::text = 'Avstå'::text)) THEN pv1.ballot_id
+                                    WHEN (((pv1.vote)::text = 'AVSTÅR'::text) OR ((pv2.vote)::text = 'AVSTÅR'::text)) THEN pv1.ballot_id
                                     ELSE NULL::character varying
                                 END) AS abstention_count,
                             min(pv1.vote_date) AS earliest_vote,
