@@ -66,23 +66,30 @@
         
         <sql><![CDATA[
             CREATE OR REPLACE VIEW public.view_riksdagen_coalition_alignment_matrix AS
-             WITH party_ballot_votes AS (
+             WITH vote_counts AS (
+                     SELECT vote_data.party,
+                            vote_data.embedded_id_ballot_id AS ballot_id,
+                            vote_data.vote,
+                            vote_data.vote_date,
+                            COUNT(*) AS vote_count
+                       FROM public.vote_data
+                      WHERE ((vote_data.vote_date >= (CURRENT_DATE - '25 years'::interval)) AND (vote_data.party IS NOT NULL) AND (vote_data.vote IS NOT NULL))
+                      GROUP BY vote_data.party, vote_data.embedded_id_ballot_id, vote_data.vote, vote_data.vote_date
+                    ), party_ballot_votes AS (
                      SELECT party,
                         ballot_id,
                         vote,
                         vote_date
                        FROM (
-                                SELECT vote_data.party,
-                                       vote_data.embedded_id_ballot_id AS ballot_id,
-                                       vote_data.vote,
-                                       vote_data.vote_date,
+                                SELECT party,
+                                       ballot_id,
+                                       vote,
+                                       vote_date,
                                        ROW_NUMBER() OVER (
-                                           PARTITION BY vote_data.party, vote_data.embedded_id_ballot_id
-                                           ORDER BY (COUNT(*) OVER (PARTITION BY vote_data.party, vote_data.embedded_id_ballot_id, vote_data.vote)) DESC,
-                                                    vote_data.vote
+                                           PARTITION BY party, ballot_id
+                                           ORDER BY vote_count DESC, vote
                                        ) AS rn
-                                  FROM public.vote_data
-                                 WHERE ((vote_data.vote_date >= (CURRENT_DATE - '25 years'::interval)) AND (vote_data.party IS NOT NULL) AND (vote_data.vote IS NOT NULL))
+                                  FROM vote_counts
                             ) majority_votes
                       WHERE rn = 1
                     ), party_list AS (
@@ -155,23 +162,30 @@
         <rollback>
             <sql><![CDATA[
                 CREATE OR REPLACE VIEW public.view_riksdagen_coalition_alignment_matrix AS
-                 WITH party_ballot_votes AS (
+                 WITH vote_counts AS (
+                         SELECT vote_data.party,
+                                vote_data.embedded_id_ballot_id AS ballot_id,
+                                vote_data.vote,
+                                vote_data.vote_date,
+                                COUNT(*) AS vote_count
+                           FROM public.vote_data
+                          WHERE ((vote_data.vote_date >= (CURRENT_DATE - '5 years'::interval)) AND (vote_data.party IS NOT NULL) AND (vote_data.vote IS NOT NULL))
+                          GROUP BY vote_data.party, vote_data.embedded_id_ballot_id, vote_data.vote, vote_data.vote_date
+                        ), party_ballot_votes AS (
                          SELECT party,
                             ballot_id,
                             vote,
                             vote_date
                            FROM (
-                                    SELECT vote_data.party,
-                                           vote_data.embedded_id_ballot_id AS ballot_id,
-                                           vote_data.vote,
-                                           vote_data.vote_date,
+                                    SELECT party,
+                                           ballot_id,
+                                           vote,
+                                           vote_date,
                                            ROW_NUMBER() OVER (
-                                               PARTITION BY vote_data.party, vote_data.embedded_id_ballot_id
-                                               ORDER BY (COUNT(*) OVER (PARTITION BY vote_data.party, vote_data.embedded_id_ballot_id, vote_data.vote)) DESC,
-                                                        vote_data.vote
+                                               PARTITION BY party, ballot_id
+                                               ORDER BY vote_count DESC, vote
                                            ) AS rn
-                                      FROM public.vote_data
-                                     WHERE ((vote_data.vote_date >= (CURRENT_DATE - '5 years'::interval)) AND (vote_data.party IS NOT NULL) AND (vote_data.vote IS NOT NULL))
+                                      FROM vote_counts
                                 ) majority_votes
                           WHERE rn = 1
                         ), party_list AS (
