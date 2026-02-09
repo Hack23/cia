@@ -142,7 +142,6 @@ ORDER BY year DESC, count DESC;
 
 **Already Fixed**:
 - ✅ `view_riksdagen_coalition_alignment_matrix` (db-changelog-1.74.xml)
-- ✅ `view_decision_temporal_trends` (db-changelog-1.74.xml)
 
 **Impact Analysis**:
 - **Current**: Shows 2021-2026 only (5 years = 20% of data)

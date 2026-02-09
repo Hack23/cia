@@ -20,11 +20,11 @@
 
 **Solution**: Extend date filters from 5 years to 25 years (2001-2026)
 
-**Fixed Views** (2 of 7 critical views):
+**Fixed Views** (1 of 7 critical views):
 1. ✅ `view_riksdagen_coalition_alignment_matrix` (line 7959) - **CRITICAL DEPENDENCY**
-2. ✅ `view_decision_temporal_trends` (line 6690)
 
 **Remaining Views** with 5-year filters (need fixing):
+- `view_decision_temporal_trends` (line 6690)
 - `view_riksdagen_committee_role_member` (line 9251)
 - `view_riksdagen_crisis_resilience_indicators` (lines 9293, 9334) 
 - `view_riksdagen_goverment_role_member` (line 10160)

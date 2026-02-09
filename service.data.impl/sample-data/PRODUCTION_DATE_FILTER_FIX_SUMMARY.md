@@ -58,7 +58,7 @@ WHERE vote_date >= (CURRENT_DATE - '5 years'::interval)
 
 ## Fixes Applied
 
-### Completed (2 of 6 views)
+### Completed (1 of 6 views)
 
 1. ✅ **view_riksdagen_coalition_alignment_matrix** (line 7959)
    ```sql
@@ -68,15 +68,12 @@ WHERE vote_date >= (CURRENT_DATE - '5 years'::interval)
    **Impact**: Now analyzes coalition patterns across full 24-year history
    **Verified**: ✅ Applied to cia_dev database
 
-2. ✅ **view_decision_temporal_trends** (line 6690)
-   ```sql
-   -- OLD: WHERE made_public_date >= (CURRENT_DATE - '5 years'::interval)
-   -- NEW: WHERE made_public_date >= (CURRENT_DATE - '25 years'::interval)
-   ```
-   **Impact**: Now shows parliamentary decision trends 2002-2026
-   **Verified**: ✅ Applied to cia_dev database
+### Ready to Apply (5 views)
 
-### Ready to Apply (4 views)
+2. ⏳ **view_decision_temporal_trends** (line 6690)
+   - **Current filter**: 5 years (2021-2026 only)
+   - **Target filter**: 25 years (2002-2026)
+   - **Impact**: Full parliamentary decision trend history
 
 3. ⏳ **view_riksdagen_committee_role_member** (line 9251)
    - **Current rows**: 19,072 (2021-2026 only)
