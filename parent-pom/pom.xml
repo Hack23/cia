@@ -1518,7 +1518,6 @@
               </sourceFileExcludes>
               <excludePackageNames>*.metamodel.*</excludePackageNames>
               <additionalOptions>
-                <additionalOption>--enable-native-access=ALL-UNNAMED</additionalOption>
               </additionalOptions>
               <additionalDependencies>
                 <additionalDependency>
