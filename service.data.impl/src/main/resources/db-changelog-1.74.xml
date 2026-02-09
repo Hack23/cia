@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-5.0.xsd">
+
+<!-- ============================================================================ -->
+<!-- CHANGELOG: 1.74 - Fix Date Filters for Historical Data                       -->
+<!-- Author: intelligence-operative                                               -->
+<!-- Date: 2026-02-09                                                            -->
+<!--                                                                              -->
+<!-- PURPOSE:                                                                     -->
+<!-- Fix views that are empty even with full production database due to          -->
+<!-- hardcoded CURRENT_DATE filters excluding historical data (2002-2026).       -->
+<!--                                                                              -->
+<!-- ISSUE:                                                                       -->
+<!-- - Current date: 2026-02-09                                                  -->
+<!-- - Production data: 2002-2026 (24 years of historical data)                  -->
+<!-- - 5-year filters: Only show 2021-2026 (exclude 2002-2020 data)             -->
+<!-- - Result: Views appear empty even with full database                        -->
+<!--                                                                              -->
+<!-- SOLUTION:                                                                    -->
+<!-- Extend date filters from 5 years to 25 years to capture all historical data -->
+<!-- (2002-2026). This follows the pattern from db-changelog-1.73.xml where      -->
+<!-- view_riksdagen_voting_anomaly_detection was fixed by extending 3-year to    -->
+<!-- 20-year filter.                                                             -->
+<!--                                                                              -->
+<!-- AFFECTED VIEW:                                                               -->
+<!-- 1. view_riksdagen_coalition_alignment_matrix (CRITICAL - blocks 3+ views)   -->
+<!--                                                                              -->
+<!--                                                                              -->
+<!--                                                                              -->
+<!--                                                                              -->
+<!--                                                                              -->
+<!--                                                                              -->
+<!-- IMPACT:                                                                      -->
+<!-- - Enables views to work with historical production data                     -->
+<!-- - Consistent with db-changelog-1.73.xml approach (20-year filter)           -->
+<!-- - Maintains performance with indexed date columns                           -->
+<!-- ============================================================================ -->
+
+    <!-- ======================================================================== -->
+    <!-- CHANGESET 1: Fix view_riksdagen_coalition_alignment_matrix              -->
+    <!-- CRITICAL: This view blocks multiple dependent views                     -->
+    <!-- ======================================================================== -->
+    <changeSet id="fix-coalition-alignment-date-filter-1.74-001" author="intelligence-operative">
+        <comment>
+            Fix view_riksdagen_coalition_alignment_matrix - Extend date filter from 5 to 25 years
+            
+            ISSUE: View empty with full production database (2002-2026 data)
+            CAUSE: Filter (CURRENT_DATE - '5 years'::interval) excludes data before 2021
+            FIX: Change to 25-year filter to capture all historical data
+            
+            PERFORMANCE IMPROVEMENTS:
+            - Uses ROW_NUMBER() to select majority vote per party-ballot (single row per party-ballot)
+            - Added party_list CTE to generate distinct parties (8-10 rows)
+            - CROSS JOIN on party_list instead of vote-level rows (avoids million-row expansion)
+            - Reduces intermediate result set from millions to thousands of rows
+            
+            IMPACT: Enables coalition analysis with 24 years of historical voting data
+            BLOCKS: view_election_cycle_network_analysis and other dependent views
+            
+            Performance: Indexed on (party, embedded_id_ballot_id, vote, vote_date) via idx_vote_data_coalition
+        </comment>
+        
+        <sql><![CDATA[
+            CREATE OR REPLACE VIEW public.view_riksdagen_coalition_alignment_matrix AS
+             WITH vote_counts AS (
+                     SELECT vote_data.party,
+                            vote_data.embedded_id_ballot_id AS ballot_id,
+                            vote_data.vote,
+                            vote_data.vote_date,
+                            COUNT(*) AS vote_count
+                       FROM public.vote_data
+                      WHERE ((vote_data.vote_date >= (CURRENT_DATE - '25 years'::interval)) AND (vote_data.party IS NOT NULL) AND (vote_data.vote IS NOT NULL))
+                      GROUP BY vote_data.party, vote_data.embedded_id_ballot_id, vote_data.vote, vote_data.vote_date
+                    ), party_ballot_votes AS (
+                     SELECT party,
+                        ballot_id,
+                        vote,
+                        vote_date
+                       FROM (
+                                SELECT party,
+                                       ballot_id,
+                                       vote,
+                                       vote_date,
+                                       ROW_NUMBER() OVER (
+                                           PARTITION BY party, ballot_id
+                                           ORDER BY vote_count DESC, vote
+                                       ) AS rn
+                                  FROM vote_counts
+                            ) majority_votes
+                      WHERE rn = 1
+                    ), party_list AS (
+                     SELECT DISTINCT party
+                       FROM party_ballot_votes
+                    ), party_pairs AS (
+                     SELECT p1.party AS party1,
+                        p2.party AS party2
+                       FROM party_list p1
+                         CROSS JOIN party_list p2
+                      WHERE ((p1.party)::text < (p2.party)::text)
+                    ), alignment_metrics AS (
+                     SELECT pp.party1,
+                        pp.party2,
+                        count(DISTINCT pv1.ballot_id) AS total_votes,
+                        count(DISTINCT
+                            CASE
+                                WHEN ((pv1.vote)::text = (pv2.vote)::text) THEN pv1.ballot_id
+                                ELSE NULL::character varying
+                            END) AS aligned_votes,
+                        count(DISTINCT
+                            CASE
+                                WHEN (((pv1.vote)::text = 'JA'::text) AND ((pv2.vote)::text = 'JA'::text)) THEN pv1.ballot_id
+                                ELSE NULL::character varying
+                            END) AS both_yes,
+                        count(DISTINCT
+                            CASE
+                                WHEN (((pv1.vote)::text = 'NEJ'::text) AND ((pv2.vote)::text = 'NEJ'::text)) THEN pv1.ballot_id
+                                ELSE NULL::character varying
+                            END) AS both_no,
+                        count(DISTINCT
+                            CASE
+                                WHEN (((pv1.vote)::text = 'AVSTÅR'::text) OR ((pv2.vote)::text = 'AVSTÅR'::text)) THEN pv1.ballot_id
+                                ELSE NULL::character varying
+                            END) AS abstention_count,
+                        min(pv1.vote_date) AS earliest_vote,
+                        max(pv1.vote_date) AS latest_vote
+                       FROM ((party_pairs pp
+                         JOIN party_ballot_votes pv1 ON (((pv1.party)::text = (pp.party1)::text)))
+                         JOIN party_ballot_votes pv2 ON ((((pv2.party)::text = (pp.party2)::text) AND ((pv2.ballot_id)::text = (pv1.ballot_id)::text))))
+                      GROUP BY pp.party1, pp.party2
+                    )
+             SELECT party1,
+                party2,
+                total_votes AS shared_votes,
+                aligned_votes,
+                (total_votes - aligned_votes) AS opposed_votes,
+                round(((aligned_votes)::numeric / (NULLIF(total_votes, 0))::numeric), 4) AS alignment_rate,
+                    CASE
+                        WHEN (((aligned_votes)::numeric / (NULLIF(total_votes, 0))::numeric) >= 0.80) THEN 'STRONG_COALITION'::text
+                        WHEN (((aligned_votes)::numeric / (NULLIF(total_votes, 0))::numeric) >= 0.60) THEN 'MODERATE_COALITION'::text
+                        WHEN (((aligned_votes)::numeric / (NULLIF(total_votes, 0))::numeric) >= 0.40) THEN 'WEAK_ALIGNMENT'::text
+                        ELSE 'OPPOSITION'::text
+                    END AS coalition_likelihood,
+                'N/A'::text AS bloc_relationship,
+                    CASE
+                        WHEN (((aligned_votes)::numeric / (NULLIF(total_votes, 0))::numeric) >= 0.80) THEN 'Strong coalition partnership - consistent aligned voting'::text
+                        WHEN (((aligned_votes)::numeric / (NULLIF(total_votes, 0))::numeric) >= 0.60) THEN 'Moderate coalition alignment - generally cooperative'::text
+                        WHEN (((aligned_votes)::numeric / (NULLIF(total_votes, 0))::numeric) <= 0.40) THEN 'Opposition positioning - frequently divergent votes'::text
+                        ELSE 'Neutral relationship - mixed voting patterns'::text
+                    END AS intelligence_comment,
+                (EXTRACT(year FROM earliest_vote))::integer AS first_year,
+                (EXTRACT(year FROM latest_vote))::integer AS last_year,
+                (((EXTRACT(year FROM latest_vote) - EXTRACT(year FROM earliest_vote)) + (1)::numeric))::integer AS years_observed
+               FROM alignment_metrics
+              WHERE (total_votes >= 10)
+              ORDER BY (round(((aligned_votes)::numeric / (NULLIF(total_votes, 0))::numeric), 4)) DESC, total_votes DESC;
+        ]]></sql>
+        
+        <rollback>
+            <sql><![CDATA[
+                CREATE OR REPLACE VIEW public.view_riksdagen_coalition_alignment_matrix AS
+                 WITH vote_counts AS (
+                         SELECT vote_data.party,
+                                vote_data.embedded_id_ballot_id AS ballot_id,
+                                vote_data.vote,
+                                vote_data.vote_date,
+                                COUNT(*) AS vote_count
+                           FROM public.vote_data
+                          WHERE ((vote_data.vote_date >= (CURRENT_DATE - '5 years'::interval)) AND (vote_data.party IS NOT NULL) AND (vote_data.vote IS NOT NULL))
+                          GROUP BY vote_data.party, vote_data.embedded_id_ballot_id, vote_data.vote, vote_data.vote_date
+                        ), party_ballot_votes AS (
+                         SELECT party,
+                            ballot_id,
+                            vote,
+                            vote_date
+                           FROM (
+                                    SELECT party,
+                                           ballot_id,
+                                           vote,
+                                           vote_date,
+                                           ROW_NUMBER() OVER (
+                                               PARTITION BY party, ballot_id
+                                               ORDER BY vote_count DESC, vote
+                                           ) AS rn
+                                      FROM vote_counts
+                                ) majority_votes
+                          WHERE rn = 1
+                        ), party_list AS (
+                         SELECT DISTINCT party
+                           FROM party_ballot_votes
+                        ), party_pairs AS (
+                         SELECT p1.party AS party1,
+                            p2.party AS party2
+                           FROM party_list p1
+                             CROSS JOIN party_list p2
+                          WHERE ((p1.party)::text < (p2.party)::text)
+                        ), alignment_metrics AS (
+                         SELECT pp.party1,
+                            pp.party2,
+                            count(DISTINCT pv1.ballot_id) AS total_votes,
+                            count(DISTINCT
+                                CASE
+                                    WHEN ((pv1.vote)::text = (pv2.vote)::text) THEN pv1.ballot_id
+                                    ELSE NULL::character varying
+                                END) AS aligned_votes,
+                            count(DISTINCT
+                                CASE
+                                    WHEN (((pv1.vote)::text = 'JA'::text) AND ((pv2.vote)::text = 'JA'::text)) THEN pv1.ballot_id
+                                    ELSE NULL::character varying
+                                END) AS both_yes,
+                            count(DISTINCT
+                                CASE
+                                    WHEN (((pv1.vote)::text = 'NEJ'::text) AND ((pv2.vote)::text = 'NEJ'::text)) THEN pv1.ballot_id
+                                    ELSE NULL::character varying
+                                END) AS both_no,
+                            count(DISTINCT
+                                CASE
+                                    WHEN (((pv1.vote)::text = 'AVSTÅR'::text) OR ((pv2.vote)::text = 'AVSTÅR'::text)) THEN pv1.ballot_id
+                                    ELSE NULL::character varying
+                                END) AS abstention_count,
+                            min(pv1.vote_date) AS earliest_vote,
+                            max(pv1.vote_date) AS latest_vote
+                           FROM ((party_pairs pp
+                             JOIN party_ballot_votes pv1 ON (((pv1.party)::text = (pp.party1)::text)))
+                             JOIN party_ballot_votes pv2 ON ((((pv2.party)::text = (pp.party2)::text) AND ((pv2.ballot_id)::text = (pv1.ballot_id)::text))))
+                          GROUP BY pp.party1, pp.party2
+                        )
+                 SELECT party1,
+                    party2,
+                    total_votes AS shared_votes,
+                    aligned_votes,
+                    (total_votes - aligned_votes) AS opposed_votes,
+                    round(((aligned_votes)::numeric / (NULLIF(total_votes, 0))::numeric), 4) AS alignment_rate,
+                        CASE
+                            WHEN (((aligned_votes)::numeric / (NULLIF(total_votes, 0))::numeric) >= 0.80) THEN 'STRONG_COALITION'::text
+                            WHEN (((aligned_votes)::numeric / (NULLIF(total_votes, 0))::numeric) >= 0.60) THEN 'MODERATE_COALITION'::text
+                            WHEN (((aligned_votes)::numeric / (NULLIF(total_votes, 0))::numeric) >= 0.40) THEN 'WEAK_ALIGNMENT'::text
+                            ELSE 'OPPOSITION'::text
+                        END AS coalition_likelihood,
+                    'N/A'::text AS bloc_relationship,
+                        CASE
+                            WHEN (((aligned_votes)::numeric / (NULLIF(total_votes, 0))::numeric) >= 0.80) THEN 'Strong coalition partnership - consistent aligned voting'::text
+                            WHEN (((aligned_votes)::numeric / (NULLIF(total_votes, 0))::numeric) >= 0.60) THEN 'Moderate coalition alignment - generally cooperative'::text
+                            WHEN (((aligned_votes)::numeric / (NULLIF(total_votes, 0))::numeric) <= 0.40) THEN 'Opposition positioning - frequently divergent votes'::text
+                            ELSE 'Neutral relationship - mixed voting patterns'::text
+                        END AS intelligence_comment,
+                    (EXTRACT(year FROM earliest_vote))::integer AS first_year,
+                    (EXTRACT(year FROM latest_vote))::integer AS last_year,
+                    (((EXTRACT(year FROM latest_vote) - EXTRACT(year FROM earliest_vote)) + (1)::numeric))::integer AS years_observed
+                   FROM alignment_metrics
+                  WHERE (total_votes >= 10)
+                  ORDER BY (round(((aligned_votes)::numeric / (NULLIF(total_votes, 0))::numeric), 4)) DESC, total_votes DESC;
+            ]]></sql>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

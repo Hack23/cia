@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict 5KczGsWDLUKe38EUNwPA2VeQU5Co2hdY7GAfhXALAev1IdepFeda0q5ncgW5gT7
+\restrict c5Vp0QKoeRKv8ZMnhjdk5CSaz3ZVS7k0JP9GnVuXYyZYuepDxGjHwj5rOTd4SnL
 
 -- Dumped from database version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
@@ -6687,7 +6687,7 @@ CREATE VIEW public.view_decision_temporal_trends AS
              JOIN public.document_proposal_container dpc ON ((dpc.proposal_document_proposal_c_0 = dpd.hjid)))
              JOIN public.document_status_container dsc ON ((dsc.document_proposal_document_s_0 = dpc.hjid)))
              JOIN public.document_data dd ON (((dd.id)::text = (dsc.document_document_status_con_0)::text)))
-          WHERE ((dd.made_public_date IS NOT NULL) AND (dd.made_public_date >= (CURRENT_DATE - '5 years'::interval)) AND (dpd.chamber IS NOT NULL) AND (length((dpd.chamber)::text) >= 6) AND (length((dpd.chamber)::text) <= 29))
+          WHERE ((dd.made_public_date IS NOT NULL) AND (dd.made_public_date >= (CURRENT_DATE - '25 years'::interval)) AND (dpd.chamber IS NOT NULL) AND (length((dpd.chamber)::text) >= 6) AND (length((dpd.chamber)::text) <= 29))
           GROUP BY dd.made_public_date
         )
  SELECT decision_day,
@@ -7950,18 +7950,35 @@ CREATE VIEW public.view_election_cycle_decision_intelligence AS
 --
 
 CREATE VIEW public.view_riksdagen_coalition_alignment_matrix AS
- WITH party_votes AS (
+ WITH vote_counts AS (
          SELECT vote_data.party,
             vote_data.embedded_id_ballot_id AS ballot_id,
             vote_data.vote,
-            vote_data.vote_date
+            vote_data.vote_date,
+            count(*) AS vote_count
            FROM public.vote_data
-          WHERE ((vote_data.vote_date >= (CURRENT_DATE - '5 years'::interval)) AND (vote_data.party IS NOT NULL) AND (vote_data.vote IS NOT NULL))
+          WHERE ((vote_data.vote_date >= (CURRENT_DATE - '25 years'::interval)) AND (vote_data.party IS NOT NULL) AND (vote_data.vote IS NOT NULL))
+          GROUP BY vote_data.party, vote_data.embedded_id_ballot_id, vote_data.vote, vote_data.vote_date
+        ), party_ballot_votes AS (
+         SELECT majority_votes.party,
+            majority_votes.ballot_id,
+            majority_votes.vote,
+            majority_votes.vote_date
+           FROM ( SELECT vote_counts.party,
+                    vote_counts.ballot_id,
+                    vote_counts.vote,
+                    vote_counts.vote_date,
+                    row_number() OVER (PARTITION BY vote_counts.party, vote_counts.ballot_id ORDER BY vote_counts.vote_count DESC, vote_counts.vote) AS rn
+                   FROM vote_counts) majority_votes
+          WHERE (majority_votes.rn = 1)
+        ), party_list AS (
+         SELECT DISTINCT party_ballot_votes.party
+           FROM party_ballot_votes
         ), party_pairs AS (
-         SELECT DISTINCT p1.party AS party1,
+         SELECT p1.party AS party1,
             p2.party AS party2
-           FROM (party_votes p1
-             CROSS JOIN party_votes p2)
+           FROM (party_list p1
+             CROSS JOIN party_list p2)
           WHERE ((p1.party)::text < (p2.party)::text)
         ), alignment_metrics AS (
          SELECT pp.party1,
@@ -7974,24 +7991,24 @@ CREATE VIEW public.view_riksdagen_coalition_alignment_matrix AS
                 END) AS aligned_votes,
             count(DISTINCT
                 CASE
-                    WHEN (((pv1.vote)::text = 'Ja'::text) AND ((pv2.vote)::text = 'Ja'::text)) THEN pv1.ballot_id
+                    WHEN (((pv1.vote)::text = 'JA'::text) AND ((pv2.vote)::text = 'JA'::text)) THEN pv1.ballot_id
                     ELSE NULL::character varying
                 END) AS both_yes,
             count(DISTINCT
                 CASE
-                    WHEN (((pv1.vote)::text = 'Nej'::text) AND ((pv2.vote)::text = 'Nej'::text)) THEN pv1.ballot_id
+                    WHEN (((pv1.vote)::text = 'NEJ'::text) AND ((pv2.vote)::text = 'NEJ'::text)) THEN pv1.ballot_id
                     ELSE NULL::character varying
                 END) AS both_no,
             count(DISTINCT
                 CASE
-                    WHEN (((pv1.vote)::text = 'Avstå'::text) OR ((pv2.vote)::text = 'Avstå'::text)) THEN pv1.ballot_id
+                    WHEN (((pv1.vote)::text = 'AVSTÅR'::text) OR ((pv2.vote)::text = 'AVSTÅR'::text)) THEN pv1.ballot_id
                     ELSE NULL::character varying
                 END) AS abstention_count,
             min(pv1.vote_date) AS earliest_vote,
             max(pv1.vote_date) AS latest_vote
            FROM ((party_pairs pp
-             JOIN party_votes pv1 ON (((pv1.party)::text = (pp.party1)::text)))
-             JOIN party_votes pv2 ON ((((pv2.party)::text = (pp.party2)::text) AND ((pv2.ballot_id)::text = (pv1.ballot_id)::text))))
+             JOIN party_ballot_votes pv1 ON (((pv1.party)::text = (pp.party1)::text)))
+             JOIN party_ballot_votes pv2 ON ((((pv2.party)::text = (pp.party2)::text) AND ((pv2.ballot_id)::text = (pv1.ballot_id)::text))))
           GROUP BY pp.party1, pp.party2
         )
  SELECT party1,
@@ -9248,7 +9265,7 @@ CREATE VIEW public.view_riksdagen_committee_role_member AS
                     ELSE NULL::integer
                 END) AS initiatives
            FROM public.view_riksdagen_politician_document
-          WHERE (view_riksdagen_politician_document.made_public_date >= (CURRENT_DATE - '5 years'::interval))
+          WHERE (view_riksdagen_politician_document.made_public_date >= (CURRENT_DATE - '25 years'::interval))
           GROUP BY view_riksdagen_politician_document.person_reference_id) doc_stats ON (((doc_stats.person_reference_id)::text = (p.id)::text)))
   WHERE ((a.org_code IS NOT NULL) AND ((a.assignment_type)::text = 'uppdrag'::text))
   ORDER BY a.detail,
@@ -9261,9 +9278,8 @@ CREATE VIEW public.view_riksdagen_committee_role_member AS
             WHEN 'Ledamot'::text THEN 6
             WHEN 'Suppleant'::text THEN 7
             WHEN 'Extra suppleant'::text THEN 8
-            WHEN 'Deputerad'::text THEN 9
-            ELSE 10
-        END, a.from_date DESC, p.last_name, p.first_name;
+            ELSE 9
+        END, a.from_date DESC;
 
 
 --
@@ -9290,7 +9306,7 @@ CREATE VIEW public.view_riksdagen_crisis_resilience_indicators AS
          SELECT date_trunc('month'::text, (vote_data.vote_date)::timestamp with time zone) AS activity_month,
             count(DISTINCT vote_data.embedded_id_ballot_id) AS ballot_count
            FROM public.vote_data
-          WHERE (vote_data.vote_date >= (CURRENT_DATE - '5 years'::interval))
+          WHERE (vote_data.vote_date >= (CURRENT_DATE - '25 years'::interval))
           GROUP BY (date_trunc('month'::text, (vote_data.vote_date)::timestamp with time zone))
         ), activity_thresholds AS (
          SELECT percentile_cont((0.5)::double precision) WITHIN GROUP (ORDER BY ((monthly_activity.ballot_count)::double precision)) AS median_ballots,
@@ -9331,7 +9347,7 @@ CREATE VIEW public.view_riksdagen_crisis_resilience_indicators AS
         ), all_voting_politicians AS (
          SELECT DISTINCT vote_data.embedded_id_intressent_id AS person_id
            FROM public.vote_data
-          WHERE (vote_data.vote_date >= (CURRENT_DATE - '5 years'::interval))
+          WHERE (vote_data.vote_date >= (CURRENT_DATE - '25 years'::interval))
         )
  SELECT p.id AS person_id,
     p.first_name,
@@ -10157,7 +10173,7 @@ CREATE VIEW public.view_riksdagen_goverment_role_member AS
                     ELSE NULL::integer
                 END) AS government_bills
            FROM public.view_riksdagen_politician_document
-          WHERE (view_riksdagen_politician_document.made_public_date >= (CURRENT_DATE - '5 years'::interval))
+          WHERE (view_riksdagen_politician_document.made_public_date >= (CURRENT_DATE - '25 years'::interval))
           GROUP BY view_riksdagen_politician_document.person_reference_id) doc_stats ON (((doc_stats.person_reference_id)::text = (p.id)::text)))
   WHERE (((a.role_code)::text ~~ '%MINISTER%'::text) OR ((a.role_code)::text = 'STATSRÅD'::text) OR ((a.detail)::text ~~ '%departementet'::text) OR ((a.detail)::text = 'Statsrådsberedningen'::text))
   ORDER BY a.detail, a.from_date DESC;
@@ -11767,7 +11783,7 @@ CREATE VIEW public.view_riksdagen_party_role_member AS
                     ELSE NULL::integer
                 END) AS written_questions
            FROM public.view_riksdagen_politician_document
-          WHERE (view_riksdagen_politician_document.made_public_date >= (CURRENT_DATE - '5 years'::interval))
+          WHERE (view_riksdagen_politician_document.made_public_date >= (CURRENT_DATE - '25 years'::interval))
           GROUP BY view_riksdagen_politician_document.person_reference_id) doc_stats ON (((doc_stats.person_reference_id)::text = (p.id)::text)))
   WHERE ((a.assignment_type)::text = 'partiuppdrag'::text)
   ORDER BY a.detail, a.role_code, a.from_date DESC;
@@ -16517,13 +16533,13 @@ ALTER TABLE ONLY public.jv_snapshot
 -- PostgreSQL database dump complete
 --
 
-\unrestrict 5KczGsWDLUKe38EUNwPA2VeQU5Co2hdY7GAfhXALAev1IdepFeda0q5ncgW5gT7
+\unrestrict c5Vp0QKoeRKv8ZMnhjdk5CSaz3ZVS7k0JP9GnVuXYyZYuepDxGjHwj5rOTd4SnL
 
 --
 -- PostgreSQL database dump
 --
 
-\restrict hAdNgR7HSO6A7YDfefMuaEoiOzNrseFvv6JdtfqDW7wreNE0WoewWFv2ARgmUPb
+\restrict LEKqlam2AHIduycfaQb46JgMDhy1XS933cnnb3ssKsPQ9exWJ8mwqCNxMrx5qVZ
 
 -- Dumped from database version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
 -- Dumped by pg_dump version 16.11 (Ubuntu 16.11-1.pgdg24.04+1)
@@ -17170,6 +17186,12 @@ fix-view-election-cycle-network-analysis-timeout-1.71-001	intelligence-operative
 insert-minimal-test-data-party-transitions-1.72-001	intelligence-operative	db-changelog-1.72.xml	2026-02-09 00:19:27.720416	635	EXECUTED	9:b58ccbba139421be117e3695e1d1caef	sql	Insert minimal test data for party transition views.\n            \n            Test Scenario: 2 politicians who switched parties while serving\n            - Person 1: Social Democrats (S) → Moderates (M) in 2011\n            - Person 2: Left Party (...	\N	5.0.1	\N	\N	0596364809
 fix-view-riksdagen-voting-anomaly-detection-1.73-001	intelligence-operative	db-changelog-1.73.xml	2026-02-09 00:19:27.736628	636	EXECUTED	9:acceb76ea168f97217d66bdb8fb5e82c	sql	Fix view_riksdagen_voting_anomaly_detection - Remove hardcoded 3-year date filter\n            \n            BUG: Hardcoded filter (CURRENT_DATE - '3 years'::interval) excludes all historical data\n            FIX: Change to 20-year lookback to captu...	\N	5.0.1	\N	\N	0596364809
 fix-view-riksdagen-party-transition-history-1.73-002	intelligence-operative	db-changelog-1.73.xml	2026-02-09 00:19:27.751251	637	EXECUTED	9:a0f99d56572cfc51346514d44a86ed23	sql	Fix view_riksdagen_party_transition_history - Add deterministic ordering to window functions\n            \n            BUG: Window function ORDER BY from_date alone causes non-deterministic results when multiple\n            assignments have same fr...	\N	5.0.1	\N	\N	0596364809
+fix-coalition-alignment-date-filter-1.74-001	intelligence-operative	db-changelog-1.74.xml	2026-02-09 23:21:33.110011	638	EXECUTED	9:2b6e2798390c5b4a4f097d229f2bb852	sql	Fix view_riksdagen_coalition_alignment_matrix - Extend date filter from 5 to 25 years\n            \n            ISSUE: View empty with full production database (2002-2026 data)\n            CAUSE: Filter (CURRENT_DATE - '5 years'::interval) excludes...	\N	5.0.1	\N	\N	0679289595
+fix-decision-temporal-trends-date-filter-1.75-001	copilot	db-changelog-1.75.xml	2026-02-09 23:21:33.139	639	EXECUTED	9:8b624ce155b434ed3ccf17efa4584f64	sql	Fix view_decision_temporal_trends date filter: extend from 5 to 25 years.\n            \n            Enables analysis of document decision trends with 24 years of historical data \n            (2002-2026) instead of limiting to 2021-2026.\n           ...	\N	5.0.1	\N	\N	0679289595
+fix-committee-role-member-date-filter-1.75-002	copilot	db-changelog-1.75.xml	2026-02-09 23:21:33.168478	640	EXECUTED	9:6e66916660d3c44cc4480fd3d0f9adb3	sql	Fix view_riksdagen_committee_role_member date filter: extend from 5 to 25 years.\n            \n            Enables analysis of committee member document production with 24 years of \n            historical data instead of limiting to recent 5 years....	\N	5.0.1	\N	\N	0679289595
+fix-crisis-resilience-date-filter-1.75-003	copilot	db-changelog-1.75.xml	2026-02-09 23:21:33.207547	641	EXECUTED	9:ae15425323b485f5da2a48935e3bac3b	sql	Fix view_riksdagen_crisis_resilience_indicators date filter: extend from 5 to 25 years.\n            \n            Enables analysis of politician behavior during crisis periods with 24 years of \n            historical voting data, capturing multiple...	\N	5.0.1	\N	\N	0679289595
+fix-goverment-role-member-date-filter-1.75-004	copilot	db-changelog-1.75.xml	2026-02-09 23:21:33.223409	642	EXECUTED	9:f13d8db50c91b338765efa5a95ff94e9	sql	Fix view_riksdagen_goverment_role_member date filter: extend from 5 to 25 years.\n            \n            Enables analysis of government minister document production with 24 years of \n            historical data, capturing multiple government form...	\N	5.0.1	\N	\N	0679289595
+fix-party-role-member-date-filter-1.75-005	copilot	db-changelog-1.75.xml	2026-02-09 23:21:33.239525	643	EXECUTED	9:981ccb37cd8df2d5cd77c5247d272782	sql	Fix view_riksdagen_party_role_member date filter: extend from 5 to 25 years.\n            \n            Enables analysis of party leadership document production with 24 years of \n            historical data across multiple party leaderships and coal...	\N	5.0.1	\N	\N	0679289595
 \.
 
 
@@ -17186,5 +17208,5 @@ COPY public.databasechangeloglock (id, locked, lockgranted, lockedby) FROM stdin
 -- PostgreSQL database dump complete
 --
 
-\unrestrict hAdNgR7HSO6A7YDfefMuaEoiOzNrseFvv6JdtfqDW7wreNE0WoewWFv2ARgmUPb
+\unrestrict LEKqlam2AHIduycfaQb46JgMDhy1XS933cnnb3ssKsPQ9exWJ8mwqCNxMrx5qVZ
 
