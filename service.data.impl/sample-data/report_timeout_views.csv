@@ -1,0 +1,2 @@
+view_name,timeout_status,timeout_reason,resolution,performance_notes
+view_election_cycle_network_analysis,RESOLVED,Cartesian product from always-true JOIN removed in db-changelog-1.71.xml,"View now runs in <1s, returns 0 rows due to empty vote_data dependency","Fixed in PR #8362. Runs successfully but requires production data (depends on view_riksdagen_coalition_alignment_matrix which requires vote_data from last 5 years)"
