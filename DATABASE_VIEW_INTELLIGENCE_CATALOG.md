@@ -2477,12 +2477,6 @@ Catalog of government roles, ministries, and position definitions. Reference dat
 
 ---
 
-### view_riksdagen_ministry ⭐⭐⭐⭐
-
-**Category:** Government Structure (v1.68)  
-**Type:** Standard View  
-**Intelligence Value:** HIGH - Ministry Aggregation Profile  
-
 #### Purpose
 
 Aggregates ministry/government department data from assignment_data, providing ministry-level statistics including total assignments, member counts, activity periods, and current operational status. Serves as the foundational reference for ministry-level comparative analysis and government structure tracking.
@@ -6338,13 +6332,6 @@ From [RISK_RULES_INTOP_OSINT.md](RISK_RULES_INTOP_OSINT.md):
 
 ---
 
-### view_riksdagen_intelligence_dashboard ⭐⭐⭐⭐⭐
-
-**Category:** Intelligence Views (v1.29, v1.40, v1.62 recreated)  
-**Type:** Standard View  
-**Intelligence Value:** VERY HIGH - Unified Intelligence Dashboard  
-**Changelog:** v1.29 Initial, v1.40 CASCADE recreation, v1.62 Final recreation
-
 #### Purpose
 
 Unified intelligence dashboard aggregating key metrics from five core intelligence dimensions into a single real-time overview. Provides at-a-glance assessment of political stability, coalition dynamics, defection risks, influence networks, and crisis readiness. Designed for executive-level intelligence briefings and rapid situational awareness.
@@ -8503,6 +8490,125 @@ See [Validation History](#-validation-history) section for complete validation m
 **Intelligence Value:** HIGH - Election Year Pattern Detection  
 **Changelog:** v1.60 Election Year Behavioral Pattern Analysis
 
+### mv_annual_document_metrics ⭐⭐⭐⭐
+
+**Category:** Performance Optimization (v1.70)  
+**Type:** Materialized View  
+**Intelligence Value:** HIGH - Annual Document Aggregation  
+
+#### Purpose
+
+Pre-aggregated annual document metrics materialized view created to optimize election year analysis queries. Eliminates cartesian products by aggregating document_data by year BEFORE joining with voting metrics. Refreshes daily at 2:00 AM via CONCURRENTLY to avoid blocking queries.
+
+#### Key Columns
+
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `year` | INTEGER | Calendar year extracted from made_public_date | 2022 |
+| `documents_produced` | BIGINT | Total unique documents published in year | 5,678 |
+| `motions_filed` | BIGINT | Total motions filed in year | 2,345 |
+| `proposals_submitted` | BIGINT | Total proposals submitted in year | 567 |
+| `first_document_date` | DATE | Earliest document publication date | '2022-01-01' |
+| `last_document_date` | DATE | Latest document publication date | '2022-12-31' |
+
+#### Performance Characteristics
+
+- **Refresh Time**: <10 seconds for 24 rows (2002-2026)
+- **Data Volume**: 24 rows (one per year)
+- **Refresh Method**: CONCURRENTLY (non-blocking)
+- **Refresh Schedule**: Daily at 2:00 AM UTC
+- **Index**: Unique index on `year` column (required for CONCURRENT refresh)
+
+#### Dependencies
+
+**Source Tables:**
+- `document_data` - Document records with made_public_date, doc_type
+
+**Framework Integration:**
+- Framework 1 (Temporal Analysis): Year-over-year document trends
+- Framework 7 (Performance Optimization): Query optimization via pre-aggregation
+
+#### Use Cases
+
+- **Election Year Analysis**: Powers view_riksdagen_election_year_behavioral_patterns
+- **Performance Optimization**: Reduces 109K document_data rows to 24 aggregate rows
+- **Cartesian Product Prevention**: Eliminates 3.5M × 109K joins (billions of intermediate rows)
+- **Query Acceleration**: 99.99% reduction in temp file usage (>50GB → <1MB)
+
+#### Refresh Procedure
+
+```sql
+-- Manual refresh (if needed outside schedule)
+REFRESH MATERIALIZED VIEW CONCURRENTLY mv_annual_document_metrics;
+
+-- Check last refresh time
+SELECT schemaname, matviewname, last_refresh 
+FROM pg_matviews 
+WHERE matviewname = 'mv_annual_document_metrics';
+```
+
+---
+
+### mv_annual_voting_metrics ⭐⭐⭐⭐
+
+**Category:** Performance Optimization (v1.70)  
+**Type:** Materialized View  
+**Intelligence Value:** HIGH - Annual Voting Aggregation  
+
+#### Purpose
+
+Pre-aggregated annual voting metrics materialized view created to optimize election year analysis queries. Eliminates cartesian products by aggregating vote_data by year BEFORE joining with document metrics. Refreshes daily at 2:00 AM via CONCURRENTLY to avoid blocking queries.
+
+#### Key Columns
+
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `year` | INTEGER | Calendar year extracted from vote_date | 2022 |
+| `total_ballots` | BIGINT | Total unique ballots voted on in year | 1,250 |
+| `total_votes` | BIGINT | Total individual votes cast in year | 435,750 |
+| `avg_attendance_rate` | NUMERIC | Average attendance percentage | 87.50 |
+| `active_politicians` | BIGINT | Unique politicians who voted in year | 349 |
+| `first_vote_date` | DATE | Earliest vote date in year | '2022-01-01' |
+| `last_vote_date` | DATE | Latest vote date in year | '2022-12-31' |
+
+#### Performance Characteristics
+
+- **Refresh Time**: <10 seconds for 24 rows (2002-2026)
+- **Data Volume**: 24 rows (one per year)
+- **Refresh Method**: CONCURRENTLY (non-blocking)
+- **Refresh Schedule**: Daily at 2:00 AM UTC
+- **Index**: Unique index on `year` column (required for CONCURRENT refresh)
+
+#### Dependencies
+
+**Source Tables:**
+- `vote_data` - Voting records with vote_date, ballot_id, intressent_id
+
+**Framework Integration:**
+- Framework 1 (Temporal Analysis): Year-over-year voting trends
+- Framework 7 (Performance Optimization): Query optimization via pre-aggregation
+
+#### Use Cases
+
+- **Election Year Analysis**: Powers view_riksdagen_election_year_behavioral_patterns
+- **Performance Optimization**: Reduces 3.5M vote_data rows to 24 aggregate rows
+- **Cartesian Product Prevention**: Eliminates 3.5M × 109K joins (billions of intermediate rows)
+- **Query Acceleration**: 99.99% reduction in temp file usage (>50GB → <1MB)
+
+#### Refresh Procedure
+
+```sql
+-- Manual refresh (if needed outside schedule)
+REFRESH MATERIALIZED VIEW CONCURRENTLY mv_annual_voting_metrics;
+
+-- Check last refresh time
+SELECT schemaname, matviewname, last_refresh 
+FROM pg_matviews 
+WHERE matviewname = 'mv_annual_voting_metrics';
+```
+
+---
+
 #### Purpose
 
 Systematic analysis of election year behavioral patterns across 7 Swedish election cycles (2002-2026) compared to midterm years. Enables detection of election-driven behavioral shifts through statistical baseline calculations and z-score analysis. Provides annual aggregation with 37 metrics including ballots, documents, motions, proposals, and attendance rates.
@@ -8620,13 +8726,6 @@ ORDER BY year;
 
 ---
 
-### view_riksdagen_election_year_vs_midterm ⭐⭐⭐⭐
-
-**Category:** Temporal Pattern Analysis Views (v1.60)  
-**Type:** Aggregate Summary View  
-**Intelligence Value:** HIGH - Election/Midterm Comparison  
-**Changelog:** v1.60 Election Year Behavioral Pattern Analysis
-
 #### Purpose
 
 Three-row aggregate summary comparing election years (7 years) vs midterm years (17 years) with comprehensive statistical measures. Provides direct comparison ratios, min/max values, standard deviations, and year arrays for reference. Enables quick assessment of election year vs midterm year differences.
@@ -8722,13 +8821,6 @@ WHERE period_type = 'ELECTION_YEARS';
 - **API Integration**: Simplified endpoint for dashboards
 
 ---
-
-### view_riksdagen_election_year_anomalies ⭐⭐⭐⭐⭐
-
-**Category:** Temporal Pattern Analysis Views (v1.60)  
-**Type:** Anomaly Detection View  
-**Intelligence Value:** VERY HIGH - Election Year Anomaly Detection  
-**Changelog:** v1.60 Election Year Behavioral Pattern Analysis
 
 #### Purpose
 

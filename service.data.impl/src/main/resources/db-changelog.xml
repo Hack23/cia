@@ -71,7 +71,11 @@
   <include file="db-changelog-1.64.xml" />
   <include file="db-changelog-1.65.xml" />
   <include file="db-changelog-1.66.xml" />
-  <include file="db-changelog-1.67.xml" />
-  <include file="db-changelog-1.68.xml" />
-  <include file="db-changelog-1.69.xml" />
+  <include file="db-changelog-1.67.xml" relativeToChangelogFile="true"/>
+  <include file="db-changelog-1.68.xml" relativeToChangelogFile="true"/>
+  <include file="db-changelog-1.69.xml" relativeToChangelogFile="true"/>
+  <include file="db-changelog-1.70.xml" relativeToChangelogFile="true"/>
+  <include file="db-changelog-1.71.xml" relativeToChangelogFile="true"/>
+  <include file="db-changelog-1.72.xml" relativeToChangelogFile="true"/>
+  <include file="db-changelog-1.73.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>
