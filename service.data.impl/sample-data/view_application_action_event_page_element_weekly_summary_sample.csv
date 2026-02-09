@@ -1,9 +1,9 @@
 embedded_id_page,embedded_id_element_id,embedded_id_created_date,hits,rank_percentage,rank,rn
-politician,0386912710815,2026-01-12 00:00:00,1,0,1,1
-countryranking,MS.MIL.XPND.CD,2026-01-12 00:00:00,1,0,1,2
-politicianranking,DATAGRID,2026-01-19 00:00:00,3,0,1,1
-partyranking,DATAGRID,2026-01-19 00:00:00,8,0,1,2
+countryranking,FM.LBL.BMNY.CN,2026-01-12 00:00:00,1,0,1,1
+main,REGISTER,2026-01-12 00:00:00,1,1,2,2
+partyranking,DATAGRID,2026-01-19 00:00:00,8,0,1,1
+politicianranking,DATAGRID,2026-01-19 00:00:00,3,0,1,2
 partyranking,DATAGRID,2026-01-26 00:00:00,1,0,1,1
-politicianranking,DATAGRID,2026-01-26 00:00:00,2,0,1,2
-adminapplicationsession,CHARTS,2026-02-02 00:00:00,1,0,1,1
-committeeranking,ALLPARTIES,2026-02-02 00:00:00,1,0,1,2
+main,LOGIN,2026-01-26 00:00:00,1,0,1,2
+committeeranking,CURRENTCOMMITTEESBYPARTYDAYSSERVED,2026-02-02 00:00:00,1,0,1,1
+userhome,SECURITY_SETTINGS,2026-02-02 00:00:00,8,0,1,2

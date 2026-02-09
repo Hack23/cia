@@ -1,13 +1,13 @@
 party_number,party_name,party_id,website,registered_date,head_count,total_documents,avg_documents_per_member,documents_last_year,very_high_activity_members,high_activity_members,medium_activity_members,low_activity_members,party_focused_members,committee_focused_members,individual_focused_members,avg_collaboration_percentage
-1,Moderaterna,M,www.moderat.se,2013-09-06,471,53001,112.5,1990,98,75,45,94,17,64,225,1.5
-68,Kristdemokraterna,KD,www.kristdemokraterna.se,1996-08-29,128,25642,200.3,451,50,22,13,21,10,62,30,2.8
 524,Piratpartiet,PP,www.piratpartiet.se,2006-02-15,2,0,0.0,0,0,0,0,0,0,0,0,0.0
-110,Sverigedemokraterna,SD,www.sverigedemokraterna.se,1991-02-08,126,20568,163.2,1009,39,20,30,22,6,58,47,0.0
-232323,Politiskt Vilde,-,"",1971-01-01,26,3275,126.0,112,6,5,6,4,3,7,11,1.9
-3,Folkpartiet liberalerna,FP,www.folkpartiet.se,1990-12-17,191,7389,38.7,0,17,14,4,4,8,9,22,2.2
-55,Miljöpartiet de gröna,MP,www.mp.se,1985-02-04,142,19845,139.8,1178,39,28,19,19,27,29,46,1.6
-4,Centerpartiet,C,www.centerpartiet.se,1995-05-18,256,21481,83.9,940,41,25,10,16,9,25,58,1.6
-170,NyDemokrati,NYD,"",1991-02-15,24,0,0.0,0,0,0,0,0,0,0,0,0.0
-3,Liberalerna,L,www.liberalerna.se,2015-11-30,72,13349,185.4,290,26,13,4,21,12,15,32,2.2
+55,Miljöpartiet de gröna,MP,www.mp.se,1985-02-04,143,19845,138.8,1178,39,28,19,19,27,29,46,1.6
+3,Folkpartiet liberalerna,FP,www.folkpartiet.se,1990-12-17,83,4693,56.5,0,10,10,3,1,5,6,13,2.7
 5,Vänsterpartiet,V,www.vansterpartiet.se,1990-06-15,139,28014,201.5,934,55,19,15,11,67,32,1,1.6
+1,Moderaterna,M,www.moderat.se,2013-09-06,472,53001,112.3,1990,98,75,45,94,17,64,225,1.5
+232323,Politiskt Vilde,-,"",1971-01-01,26,3275,126.0,112,6,5,6,4,3,7,11,1.9
+4,Centerpartiet,C,www.centerpartiet.se,1995-05-18,256,21481,83.9,940,41,25,10,16,9,25,58,1.6
+3,Liberalerna,L,www.liberalerna.se,2015-11-30,180,16045,89.1,290,33,17,5,24,15,18,41,2.0
 2,Arbetarepartiet-Socialdemokraterna,S,www.socialdemokraterna.se,1956-08-02,854,73807,86.4,2668,131,105,65,123,6,6,391,0.7
+170,NyDemokrati,NYD,"",1991-02-15,24,0,0.0,0,0,0,0,0,0,0,0,0.0
+68,Kristdemokraterna,KD,www.kristdemokraterna.se,1996-08-29,128,25642,200.3,451,50,22,13,21,10,62,30,2.8
+110,Sverigedemokraterna,SD,www.sverigedemokraterna.se,1991-02-08,126,20568,163.2,1009,39,20,30,22,6,58,47,0.0

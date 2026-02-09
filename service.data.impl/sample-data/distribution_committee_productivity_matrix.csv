@@ -170,7 +170,7 @@ FiU,Finansutskottet,2023,2,95,70,HIGHLY_PRODUCTIVE,Exceptional committee product
 JuU,Justitieutskottet,2023,2,62,18,HIGHLY_PRODUCTIVE,Exceptional committee productivity and engagement
 KU,Konstitutionsutskottet,2023,2,24,12,AVERAGE,Standard committee operations
 UU,Utrikesutskottet,2023,2,23,18,AVERAGE,Significant productivity decline detected
-SoU,Socialutskottet,2023,2,20,16,AVERAGE,Significant productivity decline detected
+SoU,Socialutskottet,2023,2,20,16,AVERAGE,Standard committee operations
 UbU,Utbildningsutskottet,2023,2,16,14,BELOW_AVERAGE,Standard committee operations
 CU,Civilutskottet,2023,2,7,4,UNDERPERFORMING,Committee productivity concerns - investigation recommended
 SfU,Socialförsäkringsutskottet,2023,2,7,7,UNDERPERFORMING,Committee productivity concerns - investigation recommended
@@ -178,15 +178,15 @@ SkU,Skatteutskottet,2023,2,5,1,UNDERPERFORMING,Committee productivity concerns -
 TU,Trafikutskottet,2023,2,4,4,UNDERPERFORMING,Committee productivity concerns - investigation recommended
 AU,Arbetsmarknadsutskottet,2023,2,2,2,UNDERPERFORMING,Committee productivity concerns - investigation recommended
 UU,Utrikesutskottet,2023,1,42,24,HIGHLY_PRODUCTIVE,Exceptional committee productivity and engagement
-SoU,Socialutskottet,2023,1,40,16,HIGHLY_PRODUCTIVE,Exceptional committee productivity and engagement
-JuU,Justitieutskottet,2023,1,34,19,HIGHLY_PRODUCTIVE,Exceptional committee productivity and engagement
-FiU,Finansutskottet,2023,1,23,17,ABOVE_AVERAGE,Above-average committee performance
-CU,Civilutskottet,2023,1,21,20,AVERAGE,Standard committee operations
+JuU,Justitieutskottet,2023,1,33,19,HIGHLY_PRODUCTIVE,Exceptional committee productivity and engagement
+FiU,Finansutskottet,2023,1,23,17,HIGHLY_PRODUCTIVE,Exceptional committee productivity and engagement
+CU,Civilutskottet,2023,1,21,20,ABOVE_AVERAGE,Above-average committee performance
+SoU,Socialutskottet,2023,1,16,16,AVERAGE,Standard committee operations
 SkU,Skatteutskottet,2023,1,15,12,AVERAGE,Standard committee operations
-KU,Konstitutionsutskottet,2023,1,15,0,AVERAGE,Standard committee operations
-SfU,Socialförsäkringsutskottet,2023,1,13,13,BELOW_AVERAGE,Standard committee operations
-UbU,Utbildningsutskottet,2023,1,11,10,BELOW_AVERAGE,Standard committee operations
-TU,Trafikutskottet,2023,1,9,4,UNDERPERFORMING,Committee productivity concerns - investigation recommended
+SfU,Socialförsäkringsutskottet,2023,1,13,13,AVERAGE,Standard committee operations
+UbU,Utbildningsutskottet,2023,1,10,10,BELOW_AVERAGE,Standard committee operations
+TU,Trafikutskottet,2023,1,9,4,BELOW_AVERAGE,Standard committee operations
 AU,Arbetsmarknadsutskottet,2023,1,6,6,UNDERPERFORMING,Committee productivity concerns - investigation recommended
 FöU,Försvarsutskottet,2023,1,5,0,UNDERPERFORMING,Committee productivity concerns - investigation recommended
 NU,Näringsutskottet,2023,1,3,2,UNDERPERFORMING,Committee productivity concerns - investigation recommended
+KU,Konstitutionsutskottet,2023,1,1,0,UNDERPERFORMING,Committee productivity concerns - investigation recommended

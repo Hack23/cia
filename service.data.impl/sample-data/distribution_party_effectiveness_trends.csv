@@ -11,7 +11,7 @@ party,year,quarter,documents_produced,motions_count,active_members,avg_win_rate,
 -,2025,3,27,0,2,100.00,Solid party performance
 -,2025,4,64,0,4,30.31,Standard party operations
 -,2026,1,10,0,5,39.60,Standard party operations
-C,2023,1,20,0,25,34.83,Standard party operations
+C,2023,1,14,0,25,36.49,Standard party operations
 C,2023,2,42,0,24,36.04,Standard party operations
 C,2023,3,6,0,24,28.88,Standard party operations
 C,2023,4,764,0,24,50.85,Standard party operations
@@ -24,7 +24,7 @@ C,2025,2,82,0,24,40.30,Standard party operations
 C,2025,3,44,0,24,87.50,Solid party performance
 C,2025,4,775,0,26,53.70,Standard party operations
 C,2026,1,21,0,24,36.10,Standard party operations
-KD,2023,1,19,0,19,80.12,Solid party performance
+KD,2023,1,19,0,19,80.28,Solid party performance
 KD,2023,2,9,0,19,82.66,Solid party performance
 KD,2023,3,87,0,19,89.47,Solid party performance
 KD,2023,4,136,0,19,81.58,Solid party performance
@@ -37,7 +37,7 @@ KD,2025,2,18,0,19,81.30,Solid party performance
 KD,2025,3,49,0,19,89.47,Solid party performance
 KD,2025,4,360,0,19,85.38,Solid party performance
 KD,2026,1,1,0,19,85.53,Solid party performance
-L,2023,1,4,0,16,82.47,Solid party performance
+L,2023,1,4,0,16,82.08,Solid party performance
 L,2023,2,4,0,18,84.61,Solid party performance
 L,2023,3,56,0,16,72.88,Solid party performance
 L,2023,4,40,0,16,79.69,Solid party performance
@@ -50,7 +50,7 @@ L,2025,2,6,0,16,79.18,Solid party performance
 L,2025,3,3,0,16,81.25,Solid party performance
 L,2025,4,272,0,16,80.56,Solid party performance
 L,2026,1,2,0,16,83.63,Solid party performance
-M,2023,1,59,0,69,84.26,Solid party performance
+M,2023,1,59,0,69,83.90,Solid party performance
 M,2023,2,66,0,70,87.27,Solid party performance
 M,2023,3,49,0,68,88.24,Solid party performance
 M,2023,4,935,0,68,85.85,Solid party performance
@@ -63,7 +63,7 @@ M,2025,2,90,0,71,85.23,Solid party performance
 M,2025,3,127,0,68,88.24,Solid party performance
 M,2025,4,1692,0,69,87.25,Solid party performance
 M,2026,1,23,0,68,86.40,Solid party performance
-MP,2023,1,54,0,18,31.85,Standard party operations
+MP,2023,1,50,0,18,30.97,Standard party operations
 MP,2023,2,53,0,19,41.06,Standard party operations
 MP,2023,3,42,0,18,58.67,Solid party performance
 MP,2023,4,725,0,18,28.86,Standard party operations
@@ -76,7 +76,7 @@ MP,2025,2,149,0,18,27.54,Standard party operations
 MP,2025,3,169,0,18,0.00,Standard party operations
 MP,2025,4,781,0,19,38.65,Standard party operations
 MP,2026,1,45,0,18,30.63,Standard party operations
-S,2023,1,48,0,109,43.56,Standard party operations
+S,2023,1,34,0,109,45.44,Standard party operations
 S,2023,2,55,0,109,51.75,Standard party operations
 S,2023,3,46,0,107,86.92,Solid party performance
 S,2023,4,2126,0,110,39.28,Standard party operations
@@ -89,7 +89,7 @@ S,2025,2,115,0,109,39.33,Standard party operations
 S,2025,3,263,0,106,87.74,Solid party performance
 S,2025,4,2232,0,108,52.86,Standard party operations
 S,2026,1,39,0,107,37.66,Standard party operations
-SD,2023,1,12,0,73,57.37,Solid party performance
+SD,2023,1,12,0,73,57.57,Solid party performance
 SD,2023,2,16,0,74,50.53,Standard party operations
 SD,2023,3,823,0,72,87.50,Solid party performance
 SD,2023,4,598,0,72,83.79,Solid party performance
@@ -102,7 +102,7 @@ SD,2025,2,38,0,72,60.84,Solid party performance
 SD,2025,3,450,0,72,86.81,Solid party performance
 SD,2025,4,516,0,75,69.43,Solid party performance
 SD,2026,1,5,0,72,76.31,Solid party performance
-V,2023,1,56,0,24,39.86,Standard party operations
+V,2023,1,56,0,24,37.36,Standard party operations
 V,2023,2,82,0,25,43.58,Standard party operations
 V,2023,3,170,0,24,26.13,Standard party operations
 V,2023,4,423,0,24,12.93,Standard party operations

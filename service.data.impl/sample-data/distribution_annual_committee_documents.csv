@@ -51,18 +51,18 @@ year,committee,doc_count
 2001,Finansdepartementet,56
 2001,Justitiedepartementet,40
 2001,FI,20
-2001,N,16
 2001,Socialdepartementet,16
+2001,N,16
 2001,JU,11
 2001,Utrikesdepartementet,10
 2001,S,9
 2001,Näringsdepartementet,7
 2001,Miljödepartementet,6
 2001,Utbildningsdepartementet,6
-2001,M t.o.m. -04,5
-2001,Försvarsdepartementet,5
-2001,UD,5
 2001,U t.o.m. -04,5
+2001,M t.o.m. -04,5
+2001,UD,5
+2001,Försvarsdepartementet,5
 2001,Fö,2
 2001,JO,2
 2001,Kulturdepartementet,1
@@ -94,14 +94,14 @@ year,committee,doc_count
 2002,Näringsdepartementet,7
 2002,M t.o.m. -04,4
 2002,Finansdepartementet,4
+2002,Fö,3
 2002,JO,3
 2002,KUD t.o.m. -04,3
-2002,Fö,3
 2002,U t.o.m. -04,2
-2002,Socialdepartementet,1
-2002,Kulturdepartementet,1
 2002,SB,1
 2002,Miljödepartementet,1
+2002,Socialdepartementet,1
+2002,Kulturdepartementet,1
 2003,SoU,480
 2003,TU,381
 2003,UbU,323
@@ -120,19 +120,19 @@ year,committee,doc_count
 2003,FöU,85
 2003,FI,56
 2003,JU,41
-2003,S,19
 2003,N,19
+2003,S,19
 2003,UD,17
 2003,Finansdepartementet,12
 2003,JO,11
 2003,M t.o.m. -04,8
-2003,Utrikesdepartementet,4
 2003,Fö,4
-2003,Justitiedepartementet,2
-2003,Näringsdepartementet,2
+2003,Utrikesdepartementet,4
 2003,KUD t.o.m. -04,2
-2003,U t.o.m. -04,1
+2003,Näringsdepartementet,2
+2003,Justitiedepartementet,2
 2003,Statsrådsberedningen,1
+2003,U t.o.m. -04,1
 2004,SoU,495
 2004,MJU,388
 2004,JuU,353
@@ -190,12 +190,12 @@ year,committee,doc_count
 2005,JO,4
 2005,Försvarsdepartementet,2
 2005,JUU,1
-2005,Utrikesdepartementet,1
+2005,SB,1
 2005,Miljö- och samhällsbyggnadsdepartementet,1
+2005,Utrikesdepartementet,1
+2005,UFöU,1
 2005,Fö,1
 2005,Justitiedepartementet,1
-2005,UFöU,1
-2005,SB,1
 2006,KU,360
 2006,MJU,357
 2006,SoU,355
@@ -216,19 +216,19 @@ year,committee,doc_count
 2006,FiU,109
 2006,SOU,77
 2006,UBU,68
-2006,FöU,63
 2006,SFU,63
-2006,KRU,47
-2006,BOU,47
+2006,FöU,63
 2006,JU,47
-2006,FÖU,27
-2006,FI,27
+2006,BOU,47
+2006,KRU,47
 2006,S,27
+2006,FI,27
+2006,FÖU,27
 2006,BoU,19
 2006,N,18
 2006,M  t.o.m. 1 jan-07,17
-2006,JO,13
 2006,UD,13
+2006,JO,13
 2006,U t.o.m. 1 jan-07,11
 2006,kamm,8
 2006,UFÖU,7
@@ -236,13 +236,13 @@ year,committee,doc_count
 2006,UFöU,4
 2006,Fö,4
 2006,SB,2
-2006,UMJU,1
 2006,Utrikesdepartementet,1
 2006,Näringsdepartementet,1
 2006,Miljö- och samhällsbyggnadsdepartementet,1
 2006,USOU,1
 2006,U,1
 2006,Finansdepartementet,1
+2006,UMJU,1
 2007,SoU,429
 2007,TU,380
 2007,UbU,374
@@ -260,13 +260,13 @@ year,committee,doc_count
 2007,FöU,89
 2007,FI,47
 2007,JU,23
-2007,N,12
 2007,S,12
+2007,N,12
 2007,U,8
 2007,UD,8
 2007,M,7
-2007,Fö,5
 2007,UFöU,5
+2007,Fö,5
 2007,A,4
 2007,JO,4
 2007,SB,3
@@ -329,10 +329,10 @@ year,committee,doc_count
 2009,U,9
 2009,Ku,7
 2009,IJ,7
-2009,A,6
 2009,JO,6
-2009,UFöU,3
+2009,A,6
 2009,Fö,3
+2009,UFöU,3
 2009,SB,3
 2010,SoU,440
 2010,TU,357
@@ -380,15 +380,15 @@ year,committee,doc_count
 2011,KrU,135
 2011,FI,96
 2011,FöU,48
-2011,Ju,25
 2011,N,25
+2011,Ju,25
 2011,UD,17
 2011,S,15
 2011,U,11
 2011,M,10
 2011,L,6
-2011,A,5
 2011,Fö,5
+2011,A,5
 2011,UFöU,4
 2011,SB,3
 2011,Ku,1
