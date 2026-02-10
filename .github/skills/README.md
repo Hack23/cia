@@ -1,6 +1,6 @@
 # CIA GitHub Copilot Skills Library
 
-This directory contains 44 comprehensive agent skills for the Citizen Intelligence Agency platform, following GitHub Copilot's December 2025 Agent Skills feature best practices.
+This directory contains 50 comprehensive agent skills for the Citizen Intelligence Agency platform, following GitHub Copilot's December 2025 Agent Skills feature best practices.
 
 ## Skills Overview
 
