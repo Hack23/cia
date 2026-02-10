@@ -699,12 +699,30 @@ Before deploying code that processes user input:
 
 ## Hack23 ISMS Policy References
 
-- **Secure Development Policy**: https://github.com/Hack23/ISMS-PUBLIC/blob/main/policies/secure-development-policy.md
-- **Data Protection Policy**: https://github.com/Hack23/ISMS-PUBLIC/blob/main/policies/data-protection-policy.md
+**Input Validation & Secure Coding Framework:**
+- [Secure Development Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md) - Comprehensive input validation requirements and OWASP Top 10 mitigation
+- [Information Security Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Information_Security_Policy.md) - Security principles and defense-in-depth
+- [Data Classification Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Data_Classification_Policy.md) - Data protection requirements
+- [Threat Modeling](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Threat_Modeling.md) - Input attack vectors and STRIDE analysis
+- [Vulnerability Management](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Vulnerability_Management.md) - Input validation vulnerability lifecycle
+
+**All Hack23 ISMS Policies**: https://github.com/Hack23/ISMS-PUBLIC
+
+## CIA Platform Architecture References
+
+- **Security Architecture**: [CIA SECURITY_ARCHITECTURE.md](https://github.com/Hack23/cia/blob/master/SECURITY_ARCHITECTURE.md) - Input validation implementation
+- **Threat Model**: [CIA THREAT_MODEL.md](https://github.com/Hack23/cia/blob/master/THREAT_MODEL.md) - Input-based attack scenarios
 
 ## References
 
-- OWASP Input Validation Cheat Sheet: https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html
-- OWASP XSS Prevention: https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html
-- Bean Validation (JSR-380): https://beanvalidation.org/
-- OWASP AntiSamy: https://owasp.org/www-project-antisamy/
+### Standards & Guidelines
+- **OWASP Input Validation**: https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html
+- **OWASP XSS Prevention**: https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html
+- **OWASP SQL Injection Prevention**: https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html
+- **ISO 27001:2022 A.8.28**: Secure coding requirements
+- **CWE-20**: Improper Input Validation
+
+### Tools & Libraries
+- **Bean Validation (JSR-380)**: https://beanvalidation.org/
+- **OWASP AntiSamy**: https://owasp.org/www-project-antisamy/
+- **ESAPI**: https://owasp.org/www-project-enterprise-security-api/

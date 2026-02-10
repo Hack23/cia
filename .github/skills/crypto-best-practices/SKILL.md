@@ -584,11 +584,25 @@ public class KeyRotationService {
 
 ## Hack23 ISMS Policy References
 
-- **Cryptography Policy**: https://github.com/Hack23/ISMS-PUBLIC/blob/main/policies/cryptography-policy.md
-- **Key Management Policy**: https://github.com/Hack23/ISMS-PUBLIC/blob/main/policies/key-management-policy.md
+**Cryptographic Controls Framework:**
+- [Cryptography Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Cryptography_Policy.md) - Complete cryptographic standards and implementation guidance
+- [Information Security Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Information_Security_Policy.md) - Overarching security principles
+- [Data Classification Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Data_Classification_Policy.md) - Encryption requirements per classification
+- [Access Control Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Access_Control_Policy.md) - Key access and authorization
+- [Secure Development Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md) - Secure cryptographic implementation
+
+**All Hack23 ISMS Policies**: https://github.com/Hack23/ISMS-PUBLIC
+
+## CIA Platform Architecture References
+
+- **Security Architecture**: [CIA SECURITY_ARCHITECTURE.md](https://github.com/Hack23/cia/blob/master/SECURITY_ARCHITECTURE.md) - Encryption implementation
+- **Future Security**: [CIA FUTURE_SECURITY_ARCHITECTURE.md](https://github.com/Hack23/cia/blob/master/FUTURE_SECURITY_ARCHITECTURE.md) - Planned enhancements
 
 ## References
 
-- OWASP Cryptographic Storage Cheat Sheet: https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html
-- NIST Cryptographic Standards: https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines
-- Spring Security Crypto: https://docs.spring.io/spring-security/reference/features/integrations/cryptography.html
+### Standards & Guidelines
+- **OWASP Crypto Cheat Sheet**: https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html
+- **NIST Crypto Standards**: https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines
+- **NIST FIPS 140-2**: https://csrc.nist.gov/publications/detail/fips/140/2/final
+- **ISO 27001:2022 A.8.24**: Cryptography requirements
+- **Spring Security Crypto**: https://docs.spring.io/spring-security/reference/features/integrations/cryptography.html

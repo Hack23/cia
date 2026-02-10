@@ -736,20 +736,31 @@ echo "Completed: $(date)"
 
 ## Hack23 ISMS Policy References
 
-- **Key Management Policy**: https://github.com/Hack23/ISMS-PUBLIC/blob/main/policies/key-management-policy.md
-- **Access Control Policy**: https://github.com/Hack23/ISMS-PUBLIC/blob/main/policies/access-control-policy.md
-- **Incident Response Policy**: https://github.com/Hack23/ISMS-PUBLIC/blob/main/policies/incident-response-policy.md
+**Secrets & Key Management Framework:**
+- [Cryptography Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Cryptography_Policy.md) - Key lifecycle management and storage requirements
+- [Access Control Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Access_Control_Policy.md) - Secrets access authorization
+- [Secure Development Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md) - Never commit secrets requirement
+- [Incident Response Plan](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Incident_Response_Plan.md) - Secret exposure response procedures
+- [Information Security Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Information_Security_Policy.md) - Security principles
+
+**All Hack23 ISMS Policies**: https://github.com/Hack23/ISMS-PUBLIC
+
+## CIA Platform Architecture References
+
+- **Security Architecture**: [CIA SECURITY_ARCHITECTURE.md](https://github.com/Hack23/cia/blob/master/SECURITY_ARCHITECTURE.md) - Secrets management implementation
+- **Setup Instructions**: [CIA README.md](https://github.com/Hack23/cia/blob/master/README.md) - Configuration guidance
 
 ## References
 
-### Tools
-- AWS Secrets Manager: https://aws.amazon.com/secrets-manager/
-- HashiCorp Vault: https://www.vaultproject.io/
-- git-secrets: https://github.com/awslabs/git-secrets
-- Gitleaks: https://github.com/gitleaks/gitleaks
-- TruffleHog: https://github.com/trufflesecurity/trufflehog
+### Standards & Guidelines
+- **OWASP Secrets Management**: https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html
+- **NIST SP 800-57**: https://csrc.nist.gov/publications/detail/sp/800-57-part-1/rev-5/final
+- **ISO 27001:2022 A.8.24**: Cryptography and key management
 
-### Documentation
-- OWASP Secrets Management: https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html
-- Spring Cloud Config: https://spring.io/projects/spring-cloud-config
-- CIA Project README.md - Setup instructions
+### Tools & Services
+- **AWS Secrets Manager**: https://aws.amazon.com/secrets-manager/
+- **HashiCorp Vault**: https://www.vaultproject.io/
+- **git-secrets**: https://github.com/awslabs/git-secrets
+- **Gitleaks**: https://github.com/gitleaks/gitleaks
+- **TruffleHog**: https://github.com/trufflesecurity/trufflehog
+- **Spring Cloud Config**: https://spring.io/projects/spring-cloud-config
