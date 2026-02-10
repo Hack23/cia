@@ -155,7 +155,30 @@ mvn sonar:sonar -Dsonar.qualitygate.wait=true
 3. **IG3** - Comprehensive controls for large organizations
    - Controls 17-18: Advanced/specialized
 
+## Hack23 ISMS Policy References
+
+**CIS Controls Implementation:**
+- [Information Security Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Information_Security_Policy.md) - Governance (14.1-14.9)
+- [Asset Register](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Asset_Register.md) - Control 1 (Asset Management)
+- [Data Classification Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Data_Classification_Policy.md) - Control 3 (Data Protection)
+- [Access Control Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Access_Control_Policy.md) - Control 5-6 (Access Control)
+- [Vulnerability Management](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Vulnerability_Management.md) - Control 7 (Vulnerability Management)
+- [Secure Development Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md) - Control 16 (Application Security)
+- [Incident Response Plan](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Incident_Response_Plan.md) - Control 17 (Incident Response)
+- [Backup Recovery Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Backup_Recovery_Policy.md) - Control 11 (Data Recovery)
+- [Change Management](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Change_Management.md) - Control 8 (Audit Logging)
+- [Risk Assessment Methodology](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Risk_Assessment_Methodology.md) - Control 4 (Secure Configuration)
+
+**All Hack23 ISMS Policies**: https://github.com/Hack23/ISMS-PUBLIC
+
+## CIA Platform Architecture References
+
+- **Security Architecture**: [CIA SECURITY_ARCHITECTURE.md](https://github.com/Hack23/cia/blob/master/SECURITY_ARCHITECTURE.md) - CIS Controls implementation
+- **Architecture**: [CIA ARCHITECTURE.md](https://github.com/Hack23/cia/blob/master/ARCHITECTURE.md) - System design
+
 ## References
 
-- CIS Controls v8: https://www.cisecurity.org/controls/v8
-- ISMS_COMPLIANCE_MAPPING.md
+- **CIS Controls v8.1**: https://www.cisecurity.org/controls/v8
+- **CIS Implementation Guide**: https://www.cisecurity.org/controls/cis-controls-implementation-guide
+- **ISO 27001:2022**: https://www.iso.org/standard/27001
+- **NIST CSF 2.0**: https://www.nist.gov/cyberframework
