@@ -105,7 +105,31 @@ public class SecurityMonitoringService {
 - ✅ Define incident response procedures
 - ✅ Test recovery procedures
 
+## Hack23 ISMS Policy References
+
+**NIST CSF Framework Implementation:**
+- [Information Security Strategy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Information_Security_Strategy.md) - Strategic CSF alignment
+- [Information Security Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Information_Security_Policy.md) - Governance framework (GV)
+- [Risk Assessment Methodology](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Risk_Assessment_Methodology.md) - Identify function (ID)
+- [Access Control Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Access_Control_Policy.md) - Protect function (PR.AC)
+- [Cryptography Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Cryptography_Policy.md) - Data security (PR.DS)
+- [Secure Development Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md) - Platform security (PR.IP)
+- [Vulnerability Management](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Vulnerability_Management.md) - Detect function (DE.CM)
+- [Incident Response Plan](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Incident_Response_Plan.md) - Respond function (RS)
+- [Business Continuity Plan](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Business_Continuity_Plan.md) - Recover function (RC)
+- [Backup Recovery Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Backup_Recovery_Policy.md) - Recovery planning (RC.RP)
+- [Change Management](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Change_Management.md) - Configuration management (PR.IP)
+
+**All Hack23 ISMS Policies**: https://github.com/Hack23/ISMS-PUBLIC
+
+## CIA Platform Architecture References
+
+- **Security Architecture**: [CIA SECURITY_ARCHITECTURE.md](https://github.com/Hack23/cia/blob/master/SECURITY_ARCHITECTURE.md) - CSF control implementation
+- **Threat Model**: [CIA THREAT_MODEL.md](https://github.com/Hack23/cia/blob/master/THREAT_MODEL.md) - Risk identification (ID.RA)
+
 ## References
 
-- NIST CSF 2.0: https://www.nist.gov/cyberframework
-- ISMS_COMPLIANCE_MAPPING.md
+- **NIST CSF 2.0**: https://www.nist.gov/cyberframework
+- **NIST CSF Implementation Guide**: https://doi.org/10.6028/NIST.CSWP.29
+- **ISO 27001:2022**: https://www.iso.org/standard/27001
+- **CIS Controls v8.1**: https://www.cisecurity.org/controls

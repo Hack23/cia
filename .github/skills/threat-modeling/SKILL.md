@@ -747,24 +747,36 @@ Internet Users (Untrusted)
 
 ## Hack23 ISMS Policy References
 
-- **Risk Management Policy**: https://github.com/Hack23/ISMS-PUBLIC/blob/main/policies/risk-management-policy.md
-- **Secure Development Policy**: https://github.com/Hack23/ISMS-PUBLIC/blob/main/policies/secure-development-policy.md
-- **Architecture Security Policy**: https://github.com/Hack23/ISMS-PUBLIC/blob/main/policies/architecture-security-policy.md
+**Threat Management Framework:**
+- [Threat Modeling](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Threat_Modeling.md) - Official STRIDE methodology and attack trees
+- [Risk Register](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Risk_Register.md) - Identified risks and treatments
+- [Risk Assessment Methodology](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Risk_Assessment_Methodology.md) - Quantitative risk analysis
+- [Secure Development Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md) - Security-by-design requirements
+- [Information Security Strategy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Information_Security_Strategy.md) - Defense-in-depth architecture
+- [Incident Response Plan](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Incident_Response_Plan.md) - Response procedures
+- [Vulnerability Management](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Vulnerability_Management.md) - Vulnerability lifecycle
+
+**All Hack23 ISMS Policies**: https://github.com/Hack23/ISMS-PUBLIC
+
+## CIA Platform Architecture References
+
+- **Threat Model**: [CIA THREAT_MODEL.md](https://github.com/Hack23/cia/blob/master/THREAT_MODEL.md) - Complete STRIDE analysis
+- **Security Architecture**: [CIA SECURITY_ARCHITECTURE.md](https://github.com/Hack23/cia/blob/master/SECURITY_ARCHITECTURE.md) - Control implementation
+- **Future Security**: [CIA FUTURE_SECURITY_ARCHITECTURE.md](https://github.com/Hack23/cia/blob/master/FUTURE_SECURITY_ARCHITECTURE.md) - Enhancement roadmap
+- **System Architecture**: [CIA ARCHITECTURE.md](https://github.com/Hack23/cia/blob/master/ARCHITECTURE.md) - C4 models and DFDs
+- **Data Model**: [CIA DATA_MODEL.md](https://github.com/Hack23/cia/blob/master/DATA_MODEL.md) - Data flows
 
 ## References
 
-### Threat Modeling Resources
-- Microsoft STRIDE: https://learn.microsoft.com/en-us/azure/security/develop/threat-modeling-tool
-- OWASP Threat Modeling: https://owasp.org/www-community/Threat_Modeling
-- PASTA Methodology: https://versprite.com/pasta-threat-modeling/
-- MITRE ATT&CK Framework: https://attack.mitre.org/
+### Threat Modeling Standards
+- **Microsoft STRIDE**: https://learn.microsoft.com/en-us/azure/security/develop/threat-modeling-tool
+- **OWASP Threat Modeling**: https://owasp.org/www-community/Threat_Modeling
+- **PASTA Methodology**: https://versprite.com/pasta-threat-modeling/
+- **MITRE ATT&CK**: https://attack.mitre.org/
+- **ISO 27005:2022**: https://www.iso.org/standard/80585.html
+- **NIST SP 800-30**: https://csrc.nist.gov/publications/detail/sp/800-30/rev-1/final
 
-### CIA Project Documentation
-- THREAT_MODEL.md - Current threat model
-- SECURITY_ARCHITECTURE.md - Security architecture
-- ARCHITECTURE.md - System architecture
-
-### Tools
-- Microsoft Threat Modeling Tool
-- OWASP Threat Dragon: https://owasp.org/www-project-threat-dragon/
-- Draw.io for DFDs: https://app.diagrams.net/
+### Tools & Frameworks
+- **Microsoft Threat Modeling Tool**: https://www.microsoft.com/en-us/securityengineering/sdl/threatmodeling
+- **OWASP Threat Dragon**: https://owasp.org/www-project-threat-dragon/
+- **Draw.io for DFDs**: https://app.diagrams.net/

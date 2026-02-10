@@ -1,10 +1,10 @@
 # CIA GitHub Copilot Skills Library
 
-This directory contains 41 comprehensive agent skills for the Citizen Intelligence Agency platform, following GitHub Copilot's December 2025 Agent Skills feature best practices.
+This directory contains 50 comprehensive agent skills for the Citizen Intelligence Agency platform, following GitHub Copilot's December 2025 Agent Skills feature best practices.
 
 ## Skills Overview
 
-### 🔒 Security-by-Design (5 skills)
+### 🔒 Security-by-Design (8 skills)
 
 | Skill | Description | Use Cases |
 |-------|-------------|-----------|
@@ -13,6 +13,9 @@ This directory contains 41 comprehensive agent skills for the Citizen Intelligen
 | [secrets-management](secrets-management/) | Never commit secrets, vault usage | Credential management, key rotation |
 | [input-validation](input-validation/) | Sanitization, XSS, SQL injection prevention | User input handling, API security |
 | [crypto-best-practices](crypto-best-practices/) | Encryption, hashing, key management | Data protection, authentication |
+| [vulnerability-management](vulnerability-management/) | Systematic vulnerability lifecycle management with SLAs: Critical 7d, High 30d | Dependabot response, OWASP findings, security patching |
+| [incident-response](incident-response/) | Security incident detection, containment, recovery per NIST SP 800-61r2 | Security breaches, GDPR notifications, incident handling |
+| [cryptography-policy](cryptography-policy/) | TLS 1.3, AES-256-GCM, bcrypt, RSA-4096, key management per NIST FIPS 140-2 | Encryption implementation, TLS configuration, key rotation |
 
 ### 📋 ISMS Compliance (5 skills)
 

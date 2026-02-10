@@ -279,13 +279,37 @@ Before marking security documentation complete:
 - ✅ Reviewed by security team
 - ✅ Approved by CISO/security officer
 
-## ISMS Compliance
+## Hack23 ISMS Policy References
+
+**Security Documentation Framework:**
+- [Secure Development Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md) - Required architecture documentation portfolio
+- [Information Security Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Information_Security_Policy.md) - Documentation requirements (ISO 27001 A.5.10)
+- [ISMS Transparency Plan](https://github.com/Hack23/ISMS-PUBLIC/blob/main/ISMS_Transparency_Plan.md) - Public security posture documentation
+- [Threat Modeling](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Threat_Modeling.md) - Threat model documentation requirements
+- [Incident Response Plan](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Incident_Response_Plan.md) - Incident procedures documentation (ISO 27001 A.16.1)
+- [Change Management](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Change_Management.md) - Change documentation requirements
+- [CLASSIFICATION.md](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) - Documentation classification requirements
+
+**All Hack23 ISMS Policies**: https://github.com/Hack23/ISMS-PUBLIC
+
+## CIA Platform Documentation Examples
+
+**Current State Architecture:**
+- **Security Architecture**: [CIA SECURITY_ARCHITECTURE.md](https://github.com/Hack23/cia/blob/master/SECURITY_ARCHITECTURE.md) - Complete security controls
+- **Threat Model**: [CIA THREAT_MODEL.md](https://github.com/Hack23/cia/blob/master/THREAT_MODEL.md) - STRIDE analysis
+- **Architecture**: [CIA ARCHITECTURE.md](https://github.com/Hack23/cia/blob/master/ARCHITECTURE.md) - C4 models
+- **Data Model**: [CIA DATA_MODEL.md](https://github.com/Hack23/cia/blob/master/DATA_MODEL.md) - Database schema
+- **Flowchart**: [CIA FLOWCHART.md](https://github.com/Hack23/cia/blob/master/FLOWCHART.md) - Process flows
+- **SWOT**: [CIA SWOT.md](https://github.com/Hack23/cia/blob/master/SWOT.md) - Strategic analysis
+
+**Future State Architecture:**
+- **Future Security**: [CIA FUTURE_SECURITY_ARCHITECTURE.md](https://github.com/Hack23/cia/blob/master/FUTURE_SECURITY_ARCHITECTURE.md)
+- **Future Architecture**: [CIA FUTURE_ARCHITECTURE.md](https://github.com/Hack23/cia/blob/master/FUTURE_ARCHITECTURE.md)
+
+## References
 
 - **ISO 27001:2022 A.5.10**: Information security policies documented
 - **ISO 27001:2022 A.16.1**: Incident management procedures documented
 - **NIST CSF ID.GV-1**: Cybersecurity policy established
-
-## References
-
-- Hack23 Documentation Standards: https://github.com/Hack23/ISMS-PUBLIC/blob/main/standards/documentation-standard.md
-- DOCUMENTATION_NAMING_CONVENTION.md
+- **NIST SP 800-53 SA-5**: System documentation requirements
+- **CIS Control 1.4**: Maintain detailed asset inventory documentation

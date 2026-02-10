@@ -374,8 +374,31 @@ Required when processing involves:
 - ✅ International data transfer safeguards
 - ✅ Regular compliance audits
 
+## Hack23 ISMS Policy References
+
+**GDPR Compliance Framework:**
+- [Privacy Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Privacy_Policy.md) - Transparency and lawful processing
+- [Data Classification Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Data_Classification_Policy.md) - Data protection by classification
+- [Information Security Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Information_Security_Policy.md) - Security of processing (Art. 32)
+- [Access Control Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Access_Control_Policy.md) - Access to personal data (Art. 32)
+- [Cryptography Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Cryptography_Policy.md) - Pseudonymization and encryption (Art. 32)
+- [Incident Response Plan](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Incident_Response_Plan.md) - Data breach notification (Art. 33-34)
+- [Backup Recovery Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Backup_Recovery_Policy.md) - Data availability (Art. 32)
+- [Risk Assessment Methodology](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Risk_Assessment_Methodology.md) - Data protection impact assessment (Art. 35)
+- [Third Party Management](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Third_Party_Management.md) - Data processing agreements (Art. 28)
+- [ISMS Transparency Plan](https://github.com/Hack23/ISMS-PUBLIC/blob/main/ISMS_Transparency_Plan.md) - Public accountability
+
+**All Hack23 ISMS Policies**: https://github.com/Hack23/ISMS-PUBLIC
+
+## CIA Platform Architecture References
+
+- **Security Architecture**: [CIA SECURITY_ARCHITECTURE.md](https://github.com/Hack23/cia/blob/master/SECURITY_ARCHITECTURE.md) - GDPR technical measures
+- **Data Model**: [CIA DATA_MODEL.md](https://github.com/Hack23/cia/blob/master/DATA_MODEL.md) - Personal data processing
+
 ## References
 
-- GDPR Full Text: https://gdpr-info.eu/
-- ICO GDPR Guidance: https://ico.org.uk/for-organisations/guide-to-data-protection/guide-to-the-general-data-protection-regulation-gdpr/
-- Hack23 Data Protection Policy: https://github.com/Hack23/ISMS-PUBLIC/blob/main/policies/data-protection-policy.md
+- **GDPR Full Text**: https://gdpr-info.eu/
+- **ICO GDPR Guidance**: https://ico.org.uk/for-organisations/guide-to-data-protection/guide-to-the-general-data-protection-regulation-gdpr/
+- **EDPB Guidelines**: https://edpb.europa.eu/our-work-tools/general-guidance_en
+- **ISO 27001:2022**: https://www.iso.org/standard/27001
+- **ISO 27701:2019**: https://www.iso.org/standard/71670.html (Privacy Information Management)

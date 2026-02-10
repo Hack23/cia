@@ -651,25 +651,43 @@ Before approving a PR, verify:
 - ✅ Security test cases added for sensitive features
 - ✅ Documentation updated if security architecture changed
 
+## Hack23 ISMS Policy References
+
+**Secure Development Framework:**
+- [Secure Development Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md) - Comprehensive SDLC security requirements
+- [Information Security Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Information_Security_Policy.md) - Master governance and security principles
+- [Cryptography Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Cryptography_Policy.md) - Approved algorithms and key management
+- [Vulnerability Management](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Vulnerability_Management.md) - SLAs and remediation procedures
+- [Threat Modeling](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Threat_Modeling.md) - STRIDE framework and attack trees
+- [Change Management](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Change_Management.md) - Secure change control procedures
+- [Incident Response Plan](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Incident_Response_Plan.md) - Security incident handling
+
+**All Hack23 ISMS Policies**: https://github.com/Hack23/ISMS-PUBLIC
+
+## CIA Platform Architecture References
+
+- **Security Architecture**: [CIA SECURITY_ARCHITECTURE.md](https://github.com/Hack23/cia/blob/master/SECURITY_ARCHITECTURE.md) - Current security controls
+- **Future Security**: [CIA FUTURE_SECURITY_ARCHITECTURE.md](https://github.com/Hack23/cia/blob/master/FUTURE_SECURITY_ARCHITECTURE.md) - Planned enhancements
+- **Threat Model**: [CIA THREAT_MODEL.md](https://github.com/Hack23/cia/blob/master/THREAT_MODEL.md) - STRIDE analysis and attack trees
+- **Architecture**: [CIA ARCHITECTURE.md](https://github.com/Hack23/cia/blob/master/ARCHITECTURE.md) - System design
+- **Security Policy**: [CIA SECURITY.md](https://github.com/Hack23/cia/blob/master/SECURITY.md) - Vulnerability disclosure
+
 ## References
 
-### Official Documentation
-- OWASP Top 10: https://owasp.org/www-project-top-ten/
-- OWASP ASVS: https://owasp.org/www-project-application-security-verification-standard/
-- CWE Top 25: https://cwe.mitre.org/top25/
-- Spring Security Reference: https://docs.spring.io/spring-security/reference/
+### Official Standards
+- **OWASP Top 10**: https://owasp.org/www-project-top-ten/
+- **OWASP ASVS**: https://owasp.org/www-project-application-security-verification-standard/
+- **CWE Top 25**: https://cwe.mitre.org/top25/
+- **SANS Top 25**: https://www.sans.org/top25-software-errors/
+- **ISO 27001:2022**: https://www.iso.org/standard/27001
+- **NIST SP 800-53**: https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final
 
-### CIA Project Documentation
-- SECURITY_ARCHITECTURE.md - Security controls overview
-- THREAT_MODEL.md - Identified threats and mitigations
-- SECURITY.md - Vulnerability reporting process
-- .github/workflows/codeql.yml - SAST configuration
-
-### Tools
-- CodeQL: https://codeql.github.com/
-- SonarCloud: https://sonarcloud.io/
-- OWASP Dependency Check: https://owasp.org/www-project-dependency-check/
-- SpotBugs with FindSecBugs: https://find-sec-bugs.github.io/
+### Tools & Frameworks
+- **CodeQL**: https://codeql.github.com/
+- **SonarCloud**: https://sonarcloud.io/
+- **OWASP Dependency Check**: https://owasp.org/www-project-dependency-check/
+- **SpotBugs with FindSecBugs**: https://find-sec-bugs.github.io/
+- **Spring Security**: https://docs.spring.io/spring-security/reference/
 
 ## Success Metrics
 
