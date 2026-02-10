@@ -147,11 +147,11 @@ restrictions: null
 ```yaml
 # .github/workflows/release.yml
 - name: Sign artifacts
-  uses: sigstore/gh-action-sigstore-python@v2
+  uses: sigstore/gh-action-sigstore-python@cd84bbf8fc2bdfd61e0b9bb63e1a18050dd9ff99 # v2.1.1
   with:
     inputs: ./dist/*
 - name: Generate SBOM
-  uses: anchore/sbom-action@v0
+  uses: anchore/sbom-action@d94f46e13c6c62f59525ac9a1e147a99dc0b9bf5 # v0.15.1
   with:
     format: cyclonedx-json
 ```
@@ -323,7 +323,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
       - name: Build
         run: |
           npm ci
@@ -388,8 +388,8 @@ jobs:
   fossa:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: fossas/fossa-action@v1
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+      - uses: fossas/fossa-action@f61a2c7c4e3c0f1b20a199f4eafe9e8e02d5bd7d # v1.3.3
         with:
           api-key: ${{ secrets.FOSSA_API_KEY }}
 ```
