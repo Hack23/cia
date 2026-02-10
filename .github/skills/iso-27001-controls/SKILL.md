@@ -502,12 +502,39 @@ Maintain these documents for ISO 27001 compliance:
 
 ## Hack23 ISMS Policy References
 
-- **Information Security Policy**: https://github.com/Hack23/ISMS-PUBLIC/blob/main/policies/information-security-policy.md
-- **Risk Management Policy**: https://github.com/Hack23/ISMS-PUBLIC/blob/main/policies/risk-management-policy.md
-- **All Policies**: https://github.com/Hack23/ISMS-PUBLIC/tree/main/policies
+**Comprehensive ISO 27001 Implementation Documentation:**
+- [Compliance Checklist](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Compliance_Checklist.md) - Complete Annex A control mapping to policies
+- [Information Security Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Information_Security_Policy.md) - Master governance framework
+- [Information Security Strategy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Information_Security_Strategy.md) - Strategic control implementation
+- [Secure Development Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md) - A.8.28, A.14.2 implementation
+- [Access Control Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Access_Control_Policy.md) - A.8.2, A.8.3, A.5.15 implementation
+- [Cryptography Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Cryptography_Policy.md) - A.8.24 implementation
+- [Incident Response Plan](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Incident_Response_Plan.md) - A.16.1 implementation
+- [Risk Assessment Methodology](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Risk_Assessment_Methodology.md) - A.5.7, A.8.8 implementation
+- [Vulnerability Management](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Vulnerability_Management.md) - A.8.8 SLAs and procedures
+- [Data Classification Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Data_Classification_Policy.md) - A.5.12, A.5.13 implementation
+- [Physical Security Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Physical_Security_Policy.md) - A.7 controls
+- [Asset Register](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Asset_Register.md) - A.5.9 asset inventory
+- [Risk Register](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Risk_Register.md) - Risk treatment evidence
+- [Segregation of Duties Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Segregation_of_Duties_Policy.md) - A.5.3 compensating controls
+- [Change Management](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Change_Management.md) - A.8.9, A.8.32 procedures
+- [Business Continuity Plan](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Business_Continuity_Plan.md) - A.17 resilience
+- [Backup Recovery Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Backup_Recovery_Policy.md) - A.8.13 data backup
+
+**All Hack23 ISMS Policies**: https://github.com/Hack23/ISMS-PUBLIC
+
+## CIA Platform Architecture References
+
+- **Security Architecture**: [CIA SECURITY_ARCHITECTURE.md](https://github.com/Hack23/cia/blob/master/SECURITY_ARCHITECTURE.md) - Current control implementation
+- **Future Security**: [CIA FUTURE_SECURITY_ARCHITECTURE.md](https://github.com/Hack23/cia/blob/master/FUTURE_SECURITY_ARCHITECTURE.md) - Planned improvements
+- **Threat Model**: [CIA THREAT_MODEL.md](https://github.com/Hack23/cia/blob/master/THREAT_MODEL.md) - STRIDE analysis
+- **System Architecture**: [CIA ARCHITECTURE.md](https://github.com/Hack23/cia/blob/master/ARCHITECTURE.md) - C4 models
+- **Data Model**: [CIA DATA_MODEL.md](https://github.com/Hack23/cia/blob/master/DATA_MODEL.md) - Database schema
 
 ## References
 
-- ISO/IEC 27001:2022: https://www.iso.org/standard/27001
-- ISO/IEC 27002:2022: https://www.iso.org/standard/75652.html
-- ISMS Compliance Mapping: ISMS_COMPLIANCE_MAPPING.md
+- **ISO/IEC 27001:2022**: https://www.iso.org/standard/27001
+- **ISO/IEC 27002:2022**: https://www.iso.org/standard/75652.html
+- **ISO/IEC 27005:2022**: https://www.iso.org/standard/80585.html
+- **NIST Cybersecurity Framework 2.0**: https://www.nist.gov/cyberframework
+- **CIS Controls v8.1**: https://www.cisecurity.org/controls
