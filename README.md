@@ -61,7 +61,7 @@ See the [agents README](.github/agents/README.md) for detailed information on us
 
 <div align="left">
 
-We maintain a comprehensive [skills library](.github/skills/) with **41 strategic skills** following security-by-design principles, organized into 13 categories:
+We maintain a comprehensive [skills library](.github/skills/) with **51 strategic skills** following security-by-design principles, organized into 13 categories:
 
 #### 🔒 Security-by-Design Skills (5 skills)
 - 🛡️ **[Secure Code Review](.github/skills/secure-code-review/)** - OWASP Top 10, SAST/DAST patterns
@@ -89,8 +89,9 @@ We maintain a comprehensive [skills library](.github/skills/) with **41 strategi
 - 🎨 **[Vaadin Component Design](.github/skills/vaadin-component-design/)** - UI patterns, lifecycle management
 - 📐 **[C4 Architecture Documentation](.github/skills/c4-architecture-documentation/)** - Required architecture docs
 
-#### ⚙️ CI/CD & DevOps Skills (3 skills)
+#### ⚙️ CI/CD & DevOps Skills (4 skills)
 - 🚀 **[GitHub Actions Workflows](.github/skills/github-actions-workflows/)** - CI/CD pipeline patterns
+- 🤖 **[GitHub Agentic Workflows](.github/skills/github-agentic-workflows/)** - AI-driven automation with MCP, orchestration, OWASP Agentic security
 - 📦 **[Maven Build Management](.github/skills/maven-build-management/)** - Multi-module builds
 - 🗄️ **[PostgreSQL Operations](.github/skills/postgresql-operations/)** - Database management
 

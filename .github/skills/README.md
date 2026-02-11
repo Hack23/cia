@@ -1,6 +1,6 @@
 # CIA GitHub Copilot Skills Library
 
-This directory contains 50 comprehensive agent skills for the Citizen Intelligence Agency platform, following GitHub Copilot's December 2025 Agent Skills feature best practices.
+This directory contains 51 comprehensive agent skills for the Citizen Intelligence Agency platform, following GitHub Copilot's December 2025 Agent Skills feature best practices.
 
 ## Skills Overview
 
@@ -45,11 +45,12 @@ This directory contains 50 comprehensive agent skills for the Citizen Intelligen
 | [vaadin-component-design](vaadin-component-design/) | UI patterns, lifecycle management | UI development, component design |
 | [c4-architecture-documentation](c4-architecture-documentation/) | Required architecture docs | Architecture documentation, diagrams |
 
-### ⚙️ CI/CD & DevOps (3 skills)
+### ⚙️ CI/CD & DevOps (4 skills)
 
 | Skill | Description | Use Cases |
 |-------|-------------|-----------|
 | [github-actions-workflows](github-actions-workflows/) | CI/CD patterns | Pipeline creation, automation |
+| [github-agentic-workflows](github-agentic-workflows/) | AI-driven automation with MCP tools, orchestration, OWASP Agentic security | Autonomous workflows, multi-agent orchestration, secure AI operations |
 | [maven-build-management](maven-build-management/) | Multi-module builds | Dependency management, build configuration |
 | [postgresql-operations](postgresql-operations/) | Database management | Schema migrations, performance tuning |
 
