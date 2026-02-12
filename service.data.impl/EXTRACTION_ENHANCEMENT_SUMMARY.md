@@ -128,7 +128,7 @@ All **33 CSV files** required by `download-csv.sh` are now properly generated wi
 8. `distribution_behavioral_patterns_by_party.csv` - Behavioral patterns
 9. `distribution_decision_patterns_by_party.csv` - Decision patterns
 
-### Voting Files (6)
+### Voting Files (7)
 10. `distribution_annual_party_votes.csv` - Party voting patterns (**FIXED**)
 11. `distribution_annual_ballots.csv` - Ballot volume by year (**FIXED**)
 12. `distribution_decision_trends.csv` - Decision temporal trends
@@ -155,7 +155,7 @@ All **33 CSV files** required by `download-csv.sh` are now properly generated wi
 27. `distribution_ministry_risk_quarterly.csv` - Quarterly risk levels
 28. `distribution_crisis_resilience.csv` - Crisis resilience indicators
 
-### Other Files (6)
+### Other Files (5)
 29. `distribution_anomaly_by_party.csv` - Voting anomalies by party
 30. `distribution_election_regions.csv` - Election region data
 31. `distribution_experience_levels.csv` - Politician experience levels

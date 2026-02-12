@@ -2126,11 +2126,12 @@ DROP TABLE tmp_empty_views;
 
 -- ---------------------------------------------------------------------------
 -- 6.35: Coalition Alignment Matrix Distribution
--- Optimized query with reasonable row limit for riksdagsmonitor integration
+-- Top 200 party pairs by alignment rate (performance optimization)
+-- Deterministic ordering ensures reproducible results across runs
 -- ---------------------------------------------------------------------------
 \echo '6.35: Coalition Alignment...'
 \copy (SELECT party1, party2, shared_votes, aligned_votes, opposed_votes, ROUND(alignment_rate, 2) AS alignment_rate, coalition_likelihood, bloc_relationship FROM view_riksdagen_coalition_alignment_matrix WHERE shared_votes > 0 ORDER BY alignment_rate DESC LIMIT 200) TO 'distribution_coalition_alignment.csv' WITH CSV HEADER
-\echo '✓ Generated: distribution_coalition_alignment.csv'
+\echo '✓ Generated: distribution_coalition_alignment.csv (top 200 by alignment_rate)'
 
 -- ---------------------------------------------------------------------------
 -- 6.36: Politician Experience Level Distribution

@@ -47,7 +47,7 @@ Generates 7 files:
 
 ### Riksdagsmonitor Integration
 
-The main extraction script generates **33 complete distribution CSV files** (not sampled) for the [Riksdagsmonitor](https://github.com/Hack23/riksdagsmonitor) dashboard. These files are downloaded by `download-csv.sh`:
+The main extraction script generates **33 distribution CSV files** with aggregate statistics for the [Riksdagsmonitor](https://github.com/Hack23/riksdagsmonitor) dashboard. Most files contain complete aggregated data; some use deterministic top-N limits (e.g., coalition alignment top 200 by rate) for performance while maintaining reproducibility. Files are downloaded by `download-csv.sh`:
 
 **Party (9):** party_performance, party_effectiveness_trends, party_momentum, coalition_alignment, annual_party_members, gender_by_party, experience_by_party, behavioral_patterns_by_party, decision_patterns_by_party
 

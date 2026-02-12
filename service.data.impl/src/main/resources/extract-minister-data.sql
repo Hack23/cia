@@ -30,7 +30,8 @@
 
 \echo '=================================================='
 \echo 'CIA Complete Minister Data Extraction'
-\echo 'Started:' `date`
+\echo 'Started:'
+\! date
 \echo '=================================================='
 \echo ''
 

@@ -174,7 +174,7 @@ After execution, you'll have:
 ### Sample Data (Main Script)
 - **table_{name}_sample.csv** - Sample data for each table (200-500 rows)
 - **view_{name}_sample.csv** - Sample data for each view (200-500 rows)
-- **distribution_{name}.csv** - Complete distribution files for riksdagsmonitor (33 files, NO sampling)
+- **distribution_{name}.csv** - Distribution files for riksdagsmonitor (33 files, aggregate data with deterministic top-N limits where needed for performance)
 - **percentile_{view}.csv** - Distribution summaries for 24 analytical views (P1-P99)
 - **trend_{name}.csv** - Temporal trend data
 - **validation_coverage_report.csv** - Coverage validation results

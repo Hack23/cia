@@ -224,6 +224,8 @@ extract_minister_data() {
         else
             print_warning "Expected 7 minister files, got $minister_files"
         fi
+        
+        return 0
     else
         print_error "Minister data extraction failed"
         return 1
