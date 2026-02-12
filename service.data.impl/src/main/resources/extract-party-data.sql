@@ -35,6 +35,20 @@
 \echo ''
 
 -- ===========================================================================
+-- 0. REFRESH MATERIALIZED VIEWS
+-- ===========================================================================
+-- Ensure all materialized views are populated before extraction
+-- Note: This may take time on empty database but ensures queries work
+--
+\echo 'Refreshing required materialized views...'
+-- Note: Order matters due to dependencies
+REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_summary;
+REFRESH MATERIALIZED VIEW view_riksdagen_politician_document;
+REFRESH MATERIALIZED VIEW view_riksdagen_vote_data_ballot_party_summary;
+\echo '   ✓ Materialized views refreshed'
+\echo ''
+
+-- ===========================================================================
 -- 1. PARTY MASTER DATA
 -- ===========================================================================
 -- Complete extraction of all registered political parties from val.se (Swedish Election Authority)
@@ -90,7 +104,7 @@
 -- Aggregated voting statistics by party
 --
 \echo '6. Extracting Party Voting Summary...'
-\copy (SELECT party, COUNT(DISTINCT ballot_id) AS total_ballots, SUM(party_total) AS total_votes, SUM(party_yes) AS yes_votes, SUM(party_no) AS no_votes, SUM(party_abstain) AS abstain_votes, SUM(party_absent) AS absent_votes, ROUND(100.0 * SUM(party_yes) / NULLIF(SUM(party_total), 0), 2) AS yes_percentage, ROUND(100.0 * SUM(party_no) / NULLIF(SUM(party_total), 0), 2) AS no_percentage, ROUND(100.0 * SUM(party_abstain) / NULLIF(SUM(party_total), 0), 2) AS abstain_percentage, ROUND(100.0 * SUM(party_absent) / NULLIF(SUM(party_total), 0), 2) AS absent_percentage, ROUND(100.0 * SUM(CASE WHEN party_approved THEN 1 ELSE 0 END) / NULLIF(COUNT(*), 0), 2) AS win_rate FROM view_riksdagen_vote_data_ballot_party_summary WHERE party IS NOT NULL GROUP BY party ORDER BY party) TO 'party_voting_summary.csv' WITH CSV HEADER
+\copy (SELECT embedded_id_party AS party, COUNT(DISTINCT embedded_id_ballot_id) AS total_ballots, SUM(party_total_votes) AS total_votes, SUM(party_yes_votes) AS yes_votes, SUM(party_no_votes) AS no_votes, SUM(party_abstain_votes) AS abstain_votes, SUM(party_absent_votes) AS absent_votes, ROUND(COALESCE(100.0 * SUM(party_yes_votes) / NULLIF(SUM(party_total_votes), 0), 0), 2) AS yes_percentage, ROUND(COALESCE(100.0 * SUM(party_no_votes) / NULLIF(SUM(party_total_votes), 0), 0), 2) AS no_percentage, ROUND(COALESCE(100.0 * SUM(party_abstain_votes) / NULLIF(SUM(party_total_votes), 0), 0), 2) AS abstain_percentage, ROUND(COALESCE(100.0 * SUM(party_absent_votes) / NULLIF(SUM(party_total_votes), 0), 0), 2) AS absent_percentage, ROUND(COALESCE(100.0 * SUM(CASE WHEN approved THEN 1 ELSE 0 END) / NULLIF(COUNT(*), 0), 0), 2) AS win_rate FROM view_riksdagen_vote_data_ballot_party_summary WHERE embedded_id_party IS NOT NULL GROUP BY embedded_id_party ORDER BY embedded_id_party) TO 'party_voting_summary.csv' WITH CSV HEADER
 \echo '   ✓ party_voting_summary.csv - Party-level voting statistics'
 \echo ''
 

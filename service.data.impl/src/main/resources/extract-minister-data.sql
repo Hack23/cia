@@ -35,6 +35,17 @@
 \echo ''
 
 -- ===========================================================================
+-- 0. REFRESH MATERIALIZED VIEWS
+-- ===========================================================================
+-- Ensure all materialized views are populated before extraction
+-- Note: This may take time on empty database but ensures queries work
+--
+\echo 'Refreshing required materialized views...'
+REFRESH MATERIALIZED VIEW view_riksdagen_politician_document;
+\echo '   ✓ Materialized views refreshed'
+\echo ''
+
+-- ===========================================================================
 -- 1. CURRENT GOVERNMENT MINISTERS
 -- ===========================================================================
 -- All currently serving government ministers with their roles
@@ -100,7 +111,7 @@
 -- Performance metrics for ministers with document production
 --
 \echo '7. Extracting Minister Performance Metrics...'
-\copy (SELECT person_id, first_name, last_name, party, detail AS ministry, role_code, from_date, to_date, total_days_served, active, total_documents, documents_last_year, total_propositions, total_government_bills, activity_level, ROUND(total_documents::NUMERIC / NULLIF(total_days_served, 0) * 365, 2) AS docs_per_year, ROUND(total_government_bills::NUMERIC / NULLIF(total_documents, 0) * 100, 2) AS govt_bill_percentage FROM view_riksdagen_goverment_role_member WHERE total_days_served > 0 ORDER BY total_documents DESC, total_days_served DESC) TO 'minister_performance.csv' WITH CSV HEADER
+\copy (SELECT person_id, first_name, last_name, party, detail AS ministry, role_code, from_date, to_date, total_days_served, active, total_documents, documents_last_year, total_propositions, total_government_bills, activity_level, ROUND(COALESCE(total_documents::NUMERIC / NULLIF(total_days_served, 0) * 365, 0), 2) AS docs_per_year, ROUND(COALESCE(total_government_bills::NUMERIC / NULLIF(total_documents, 0) * 100, 0), 2) AS govt_bill_percentage FROM view_riksdagen_goverment_role_member WHERE total_days_served > 0 ORDER BY total_documents DESC, total_days_served DESC) TO 'minister_performance.csv' WITH CSV HEADER
 \echo '   ✓ minister_performance.csv - Minister performance metrics'
 \echo ''
 
