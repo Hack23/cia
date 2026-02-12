@@ -265,7 +265,7 @@ service.data.impl/
 
 ## Security & Compliance
 
-✅ **Read-Only Operations:** All extraction scripts use SELECT only, no data modification  
+✅ **Query Profile:** Extraction scripts primarily use SELECT statements for read-only data retrieval. Some scripts also run `REFRESH MATERIALIZED VIEW` commands, which update materialized views (requiring write/lock privileges on those views but not modifying base tables)  
 ✅ **No Hardcoded Credentials:** Uses PGPASSWORD environment variable  
 ✅ **GDPR Compliant:** Only public political data, no personal sensitive data  
 ✅ **Audit Trail:** Complete extraction logs with timestamps  

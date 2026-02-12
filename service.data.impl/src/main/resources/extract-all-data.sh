@@ -134,14 +134,24 @@ extract_party_data() {
     cd "$OUTPUT_DIR"
     if psql -h "$PSQL_HOST" -p "$PSQL_PORT" -U "$PSQL_USER" -d "$DATABASE" \
         -f "$SCRIPT_DIR/extract-party-data.sql" 2>&1 | tee -a extract-sample-data.log; then
+        
+        # Check for SQL errors in the log
+        if grep -q "^ERROR:" extract-sample-data.log; then
+            print_error "SQL errors detected in party data extraction (see log)"
+            return 1
+        fi
+        
         print_success "Party data extraction completed"
         
-        # Verify files
-        local party_files=$(ls party_*.csv 2>/dev/null | wc -l)
-        if [ "$party_files" -eq 7 ]; then
+        # Verify files (safely handle globs)
+        shopt -s nullglob
+        local party_files=(party_*.csv)
+        shopt -u nullglob
+        
+        if [ ${#party_files[@]} -eq 7 ]; then
             print_success "All 7 party data files generated"
         else
-            print_warning "Expected 7 party files, got $party_files"
+            print_warning "Expected 7 party files, got ${#party_files[@]}"
         fi
     else
         print_error "Party data extraction failed"
@@ -185,26 +195,28 @@ generate_summary() {
     
     cd "$OUTPUT_DIR"
     
-    # Count all CSV files by type
-    local total_csvs=$(ls *.csv 2>/dev/null | wc -l)
-    local table_samples=$(ls table_*.csv 2>/dev/null | wc -l)
-    local view_samples=$(ls view_*.csv 2>/dev/null | wc -l)
-    local distributions=$(ls distribution_*.csv 2>/dev/null | wc -l)
-    local percentiles=$(ls percentile_*.csv 2>/dev/null | wc -l)
-    local trends=$(ls trend_*.csv 2>/dev/null | wc -l)
-    local party_files=$(ls party_*.csv 2>/dev/null | wc -l)
-    local minister_files=$(ls minister*.csv government*.csv ministry*.csv 2>/dev/null | wc -l)
+    # Count all CSV files by type (safely handle empty globs)
+    shopt -s nullglob
+    local all_csvs=(*.csv)
+    local table_samples=(table_*.csv)
+    local view_samples=(view_*.csv)
+    local distributions=(distribution_*.csv)
+    local percentiles=(percentile_*.csv)
+    local trends=(trend_*.csv)
+    local party_files=(party_*.csv)
+    local minister_files=(minister*.csv government*.csv ministry*.csv)
+    shopt -u nullglob
     
-    print_info "Total CSV files generated: $total_csvs"
+    print_info "Total CSV files generated: ${#all_csvs[@]}"
     echo ""
     print_info "Breakdown:"
-    print_info "  📊 Table samples:        $table_samples"
-    print_info "  📈 View samples:         $view_samples"
-    print_info "  📉 Distribution files:   $distributions (riksdagsmonitor)"
-    print_info "  📐 Percentile summaries: $percentiles"
-    print_info "  📅 Trend files:          $trends"
-    print_info "  🏛️  Party data:           $party_files"
-    print_info "  👔 Minister data:        $minister_files"
+    print_info "  📊 Table samples:        ${#table_samples[@]}"
+    print_info "  📈 View samples:         ${#view_samples[@]}"
+    print_info "  📉 Distribution files:   ${#distributions[@]} (riksdagsmonitor)"
+    print_info "  📐 Percentile summaries: ${#percentiles[@]}"
+    print_info "  📅 Trend files:          ${#trends[@]}"
+    print_info "  🏛️  Party data:           ${#party_files[@]}"
+    print_info "  👔 Minister data:        ${#minister_files[@]}"
     echo ""
     
     # Check for riksdagsmonitor required files
