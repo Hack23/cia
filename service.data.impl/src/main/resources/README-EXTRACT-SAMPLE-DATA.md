@@ -171,12 +171,34 @@ SELECT * FROM cia_generate_distribution_summary('view_name');
 
 After execution, you'll have:
 
-- **{table}_sample.csv** - Sample data for each table/view (200-500 rows)
-- **percentile_{view}.csv** - Distribution summaries for 24 analytical views
+### Sample Data (Main Script)
+- **table_{name}_sample.csv** - Sample data for each table (200-500 rows)
+- **view_{name}_sample.csv** - Sample data for each view (200-500 rows)
+- **distribution_{name}.csv** - Complete distribution files for riksdagsmonitor (33 files, NO sampling)
+- **percentile_{view}.csv** - Distribution summaries for 24 analytical views (P1-P99)
+- **trend_{name}.csv** - Temporal trend data
 - **validation_coverage_report.csv** - Coverage validation results
 - **extraction_statistics.csv** - Extraction statistics and metadata
 - **extraction_summary_report.csv** - Complete timeout/error summary with diagnostic details
 - **extract-sample-data.log** - Full script output including NOTICE messages and errors
+
+### Party Data (extract-party-data.sql)
+- **party_master_data.csv** - All registered political parties
+- **party_members_current.csv** - Current active parliament members by party
+- **party_members_historical.csv** - Complete party membership history
+- **party_leaders_current.csv** - Current party leadership positions
+- **party_leaders_historical.csv** - Historical party leadership transitions
+- **party_voting_summary.csv** - Party-level voting statistics
+- **party_composition_timeline.csv** - Annual party composition changes
+
+### Minister Data (extract-minister-data.sql)
+- **minister_current.csv** - Currently serving government ministers
+- **minister_historical.csv** - Complete minister history
+- **ministry_assignments_current.csv** - Current ministry assignments
+- **ministry_assignments_historical.csv** - Complete assignment history
+- **government_composition.csv** - Current government structure by ministry
+- **government_transitions.csv** - Government changes over time
+- **minister_performance.csv** - Minister performance metrics
 
 ## Validation
 

@@ -1999,7 +1999,7 @@ DROP TABLE tmp_view_sizes;
 
 -- 6.21: Ballot Activity by Year (showing ballot volume and outcomes over time)
 \echo 'Generating annual ballot summary...'
-\copy (SELECT EXTRACT(YEAR FROM vote_date)::int AS year, COUNT(DISTINCT CONCAT(embedded_id_ballot_id, embedded_id_concern, embedded_id_issue)) AS unique_ballots, COUNT(*) AS total_votes, ROUND(AVG(CASE WHEN vote = 'Ja' THEN 1 WHEN vote = 'Nej' THEN 0 END)::numeric, 3) AS avg_yes_rate FROM vote_data WHERE vote_date IS NOT NULL AND vote_date >= '1990-01-01' GROUP BY EXTRACT(YEAR FROM vote_date)::int ORDER BY year) TO 'distribution_annual_ballots.csv' WITH CSV HEADER
+\copy (SELECT EXTRACT(YEAR FROM vote_date)::int AS year, COUNT(DISTINCT CONCAT(embedded_id_ballot_id, embedded_id_concern, embedded_id_issue)) AS unique_ballots, COUNT(*) AS total_votes, ROUND(AVG(CASE WHEN vote = 'JA' THEN 1 WHEN vote = 'NEJ' THEN 0 END)::numeric, 3) AS avg_yes_rate FROM vote_data WHERE vote_date IS NOT NULL AND vote_date >= '1990-01-01' GROUP BY EXTRACT(YEAR FROM vote_date)::int ORDER BY year) TO 'distribution_annual_ballots.csv' WITH CSV HEADER
 \echo '✓ Generated: distribution_annual_ballots.csv'
 
 -- 6.22: Ministry/Government Roles by Year
@@ -2126,11 +2126,11 @@ DROP TABLE tmp_empty_views;
 
 -- ---------------------------------------------------------------------------
 -- 6.35: Coalition Alignment Matrix Distribution
--- (SKIPPED - view_riksdagen_coalition_alignment_matrix is very slow to query)
+-- Optimized query with reasonable row limit for riksdagsmonitor integration
 -- ---------------------------------------------------------------------------
-\echo '6.35: Coalition Alignment... (SKIPPED - slow view)'
--- \copy (SELECT party1, party2, shared_votes, aligned_votes, opposed_votes, ROUND(alignment_rate, 2) AS alignment_rate, coalition_likelihood, bloc_relationship FROM view_riksdagen_coalition_alignment_matrix WHERE shared_votes > 0 ORDER BY alignment_rate DESC LIMIT 100) TO 'distribution_coalition_alignment.csv' WITH CSV HEADER
-\echo '✓ Skipped: distribution_coalition_alignment.csv'
+\echo '6.35: Coalition Alignment...'
+\copy (SELECT party1, party2, shared_votes, aligned_votes, opposed_votes, ROUND(alignment_rate, 2) AS alignment_rate, coalition_likelihood, bloc_relationship FROM view_riksdagen_coalition_alignment_matrix WHERE shared_votes > 0 ORDER BY alignment_rate DESC LIMIT 200) TO 'distribution_coalition_alignment.csv' WITH CSV HEADER
+\echo '✓ Generated: distribution_coalition_alignment.csv'
 
 -- ---------------------------------------------------------------------------
 -- 6.36: Politician Experience Level Distribution
