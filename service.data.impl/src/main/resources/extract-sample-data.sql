@@ -1989,7 +1989,7 @@ DROP TABLE tmp_view_sizes;
 
 -- 6.19: Votes by Year and Party (showing voting activity patterns)
 \echo 'Generating annual party voting distribution...'
-\copy (SELECT EXTRACT(YEAR FROM vote_date)::int AS year, party, COUNT(*) AS vote_count, SUM(CASE WHEN vote = 'Ja' THEN 1 ELSE 0 END) AS yes_votes, SUM(CASE WHEN vote = 'Nej' THEN 1 ELSE 0 END) AS no_votes, SUM(CASE WHEN vote = 'Frånvarande' THEN 1 ELSE 0 END) AS absent FROM vote_data WHERE vote_date IS NOT NULL AND vote_date >= '1990-01-01' AND party IS NOT NULL GROUP BY EXTRACT(YEAR FROM vote_date)::int, party ORDER BY year, vote_count DESC) TO 'distribution_annual_party_votes.csv' WITH CSV HEADER
+\copy (SELECT EXTRACT(YEAR FROM vote_date)::int AS year, party, COUNT(*) AS vote_count, SUM(CASE WHEN vote = 'JA' THEN 1 ELSE 0 END) AS yes_votes, SUM(CASE WHEN vote = 'NEJ' THEN 1 ELSE 0 END) AS no_votes, SUM(CASE WHEN vote = 'FRÅNVARANDE' THEN 1 ELSE 0 END) AS absent FROM vote_data WHERE vote_date IS NOT NULL AND vote_date >= '1990-01-01' AND party IS NOT NULL GROUP BY EXTRACT(YEAR FROM vote_date)::int, party ORDER BY year, vote_count DESC) TO 'distribution_annual_party_votes.csv' WITH CSV HEADER
 \echo '✓ Generated: distribution_annual_party_votes.csv'
 
 -- 6.20: Committee Assignments by Year (showing committee existence over time)
@@ -1999,7 +1999,7 @@ DROP TABLE tmp_view_sizes;
 
 -- 6.21: Ballot Activity by Year (showing ballot volume and outcomes over time)
 \echo 'Generating annual ballot summary...'
-\copy (SELECT EXTRACT(YEAR FROM vote_date)::int AS year, COUNT(DISTINCT CONCAT(embedded_id_ballot_id, embedded_id_concern, embedded_id_issue)) AS unique_ballots, COUNT(*) AS total_votes, ROUND(AVG(CASE WHEN vote = 'Ja' THEN 1 WHEN vote = 'Nej' THEN 0 END)::numeric, 3) AS avg_yes_rate FROM vote_data WHERE vote_date IS NOT NULL AND vote_date >= '1990-01-01' GROUP BY EXTRACT(YEAR FROM vote_date)::int ORDER BY year) TO 'distribution_annual_ballots.csv' WITH CSV HEADER
+\copy (SELECT EXTRACT(YEAR FROM vote_date)::int AS year, COUNT(DISTINCT CONCAT(embedded_id_ballot_id, embedded_id_concern, embedded_id_issue)) AS unique_ballots, COUNT(*) AS total_votes, ROUND(AVG(CASE WHEN vote = 'JA' THEN 1 WHEN vote = 'NEJ' THEN 0 END)::numeric, 3) AS avg_yes_rate FROM vote_data WHERE vote_date IS NOT NULL AND vote_date >= '1990-01-01' GROUP BY EXTRACT(YEAR FROM vote_date)::int ORDER BY year) TO 'distribution_annual_ballots.csv' WITH CSV HEADER
 \echo '✓ Generated: distribution_annual_ballots.csv'
 
 -- 6.22: Ministry/Government Roles by Year
@@ -2126,11 +2126,12 @@ DROP TABLE tmp_empty_views;
 
 -- ---------------------------------------------------------------------------
 -- 6.35: Coalition Alignment Matrix Distribution
--- (SKIPPED - view_riksdagen_coalition_alignment_matrix is very slow to query)
+-- Top 200 party pairs by alignment rate (performance optimization)
+-- Deterministic ordering ensures reproducible results across runs
 -- ---------------------------------------------------------------------------
-\echo '6.35: Coalition Alignment... (SKIPPED - slow view)'
--- \copy (SELECT party1, party2, shared_votes, aligned_votes, opposed_votes, ROUND(alignment_rate, 2) AS alignment_rate, coalition_likelihood, bloc_relationship FROM view_riksdagen_coalition_alignment_matrix WHERE shared_votes > 0 ORDER BY alignment_rate DESC LIMIT 100) TO 'distribution_coalition_alignment.csv' WITH CSV HEADER
-\echo '✓ Skipped: distribution_coalition_alignment.csv'
+\echo '6.35: Coalition Alignment...'
+\copy (SELECT party1, party2, shared_votes, aligned_votes, opposed_votes, ROUND(alignment_rate, 2) AS alignment_rate, coalition_likelihood, bloc_relationship FROM view_riksdagen_coalition_alignment_matrix WHERE shared_votes > 0 ORDER BY alignment_rate DESC LIMIT 200) TO 'distribution_coalition_alignment.csv' WITH CSV HEADER
+\echo '✓ Generated: distribution_coalition_alignment.csv (top 200 by alignment_rate)'
 
 -- ---------------------------------------------------------------------------
 -- 6.36: Politician Experience Level Distribution
