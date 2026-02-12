@@ -51,7 +51,7 @@ The main extraction script generates **33 complete distribution CSV files** (not
 
 **Party (9):** party_performance, party_effectiveness_trends, party_momentum, coalition_alignment, annual_party_members, gender_by_party, experience_by_party, behavioral_patterns_by_party, decision_patterns_by_party
 
-**Voting (6):** annual_party_votes, annual_ballots, decision_trends, document_types, annual_document_types, document_status, annual_document_status
+**Voting (7):** annual_party_votes, annual_ballots, decision_trends, document_types, annual_document_types, document_status, annual_document_status
 
 **Committee (5):** committee_activity, committee_productivity, committee_productivity_matrix, annual_committee_assignments, annual_committee_documents
 
@@ -59,7 +59,7 @@ The main extraction script generates **33 complete distribution CSV files** (not
 
 **Risk (3):** ministry_risk_levels, ministry_risk_quarterly, crisis_resilience
 
-**Other (6):** anomaly_by_party, election_regions, experience_levels, assignment_roles, influence_buckets
+**Other (5):** anomaly_by_party, election_regions, experience_levels, assignment_roles, influence_buckets
 
 ## Sample Size Configuration
 

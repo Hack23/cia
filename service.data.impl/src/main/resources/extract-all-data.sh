@@ -98,30 +98,39 @@ extract_sample_data() {
     echo ""
     
     cd "$OUTPUT_DIR"
-    if psql -h "$PSQL_HOST" -p "$PSQL_PORT" -U "$PSQL_USER" -d "$DATABASE" \
-        -f "$SCRIPT_DIR/extract-sample-data.sql" 2>&1 | tee extract-sample-data.log; then
-        print_success "Sample data extraction completed"
-        
-        # Count generated files using safe nullglob pattern
-        shopt -s nullglob
-        local table_files=(table_*.csv)
-        local view_files=(view_*.csv)
-        local dist_files=(distribution_*.csv)
-        local percentile_files=(percentile_*.csv)
-        local table_count=${#table_files[@]}
-        local view_count=${#view_files[@]}
-        local dist_count=${#dist_files[@]}
-        local percentile_count=${#percentile_files[@]}
-        shopt -u nullglob
-        
-        print_info "Generated:"
-        print_info "  - $table_count table samples"
-        print_info "  - $view_count view samples"
-        print_info "  - $dist_count distribution files"
-        print_info "  - $percentile_count percentile summaries"
-    else
-        print_warning "Sample data extraction completed with warnings (check log)"
+    psql -h "$PSQL_HOST" -p "$PSQL_PORT" -U "$PSQL_USER" -d "$DATABASE" \
+        -f "$SCRIPT_DIR/extract-sample-data.sql" 2>&1 | tee extract-sample-data.log
+    local psql_status=${PIPESTATUS[0]}
+
+    if [[ $psql_status -ne 0 ]]; then
+        print_error "Sample data extraction failed (psql exit code: $psql_status). See extract-sample-data.log for details."
+        return 1
     fi
+
+    if grep -q "^ERROR:" extract-sample-data.log; then
+        print_error "Sample data extraction encountered SQL errors. See extract-sample-data.log for details."
+        return 1
+    fi
+
+    print_success "Sample data extraction completed"
+    
+    # Count generated files using safe nullglob pattern
+    shopt -s nullglob
+    local table_files=(table_*.csv)
+    local view_files=(view_*.csv)
+    local dist_files=(distribution_*.csv)
+    local percentile_files=(percentile_*.csv)
+    local table_count=${#table_files[@]}
+    local view_count=${#view_files[@]}
+    local dist_count=${#dist_files[@]}
+    local percentile_count=${#percentile_files[@]}
+    shopt -u nullglob
+    
+    print_info "Generated:"
+    print_info "  - $table_count table samples"
+    print_info "  - $view_count view samples"
+    print_info "  - $dist_count distribution files"
+    print_info "  - $percentile_count percentile summaries"
 }
 
 extract_party_data() {
@@ -138,30 +147,35 @@ extract_party_data() {
     echo ""
     
     cd "$OUTPUT_DIR"
-    if psql -h "$PSQL_HOST" -p "$PSQL_PORT" -U "$PSQL_USER" -d "$DATABASE" \
-        -f "$SCRIPT_DIR/extract-party-data.sql" 2>&1 | tee -a extract-sample-data.log; then
-        
-        # Check for SQL errors in the log
-        if grep -q "^ERROR:" extract-sample-data.log; then
-            print_error "SQL errors detected in party data extraction (see log)"
-            return 1
-        fi
-        
-        print_success "Party data extraction completed"
-        
-        # Verify files (safely handle globs)
-        shopt -s nullglob
-        local party_files=(party_*.csv)
-        shopt -u nullglob
-        
-        if [ ${#party_files[@]} -eq 7 ]; then
-            print_success "All 7 party data files generated"
-        else
-            print_warning "Expected 7 party files, got ${#party_files[@]}"
-        fi
-    else
-        print_error "Party data extraction failed"
+    psql -h "$PSQL_HOST" -p "$PSQL_PORT" -U "$PSQL_USER" -d "$DATABASE" \
+        -f "$SCRIPT_DIR/extract-party-data.sql" 2>&1 | tee extract-party-data.log
+    local psql_status=${PIPESTATUS[0]}
+    
+    # Append to consolidated log
+    cat extract-party-data.log >> extract-sample-data.log
+    
+    if [[ $psql_status -ne 0 ]]; then
+        print_error "Party data extraction failed (psql exit code: $psql_status). See extract-party-data.log for details."
         return 1
+    fi
+    
+    # Check for SQL errors in this phase's log only
+    if grep -q "^ERROR:" extract-party-data.log; then
+        print_error "SQL errors detected in party data extraction (see extract-party-data.log)"
+        return 1
+    fi
+    
+    print_success "Party data extraction completed"
+    
+    # Verify files (safely handle globs)
+    shopt -s nullglob
+    local party_files=(party_*.csv)
+    shopt -u nullglob
+    
+    if [ ${#party_files[@]} -eq 7 ]; then
+        print_success "All 7 party data files generated"
+    else
+        print_warning "Expected 7 party files, got ${#party_files[@]}"
     fi
 }
 
@@ -179,25 +193,34 @@ extract_minister_data() {
     echo ""
     
     cd "$OUTPUT_DIR"
-    if psql -h "$PSQL_HOST" -p "$PSQL_PORT" -U "$PSQL_USER" -d "$DATABASE" \
-        -f "$SCRIPT_DIR/extract-minister-data.sql" 2>&1 | tee -a extract-sample-data.log; then
-        
-        # Check for SQL errors in the log
-        if grep -q "^ERROR:" extract-sample-data.log; then
-            print_error "SQL errors detected in minister data extraction (see log)"
-            return 1
-        fi
-        
-        print_success "Minister data extraction completed"
-        
-        # Verify files using safe nullglob pattern
-        shopt -s nullglob
-        local minister_files_array=(minister*.csv government*.csv ministry*.csv)
-        local minister_files=${#minister_files_array[@]}
-        shopt -u nullglob
-        
-        if [ "$minister_files" -eq 7 ]; then
-            print_success "All 7 minister data files generated"
+    psql -h "$PSQL_HOST" -p "$PSQL_PORT" -U "$PSQL_USER" -d "$DATABASE" \
+        -f "$SCRIPT_DIR/extract-minister-data.sql" 2>&1 | tee extract-minister-data.log
+    local psql_status=${PIPESTATUS[0]}
+    
+    # Append to consolidated log
+    cat extract-minister-data.log >> extract-sample-data.log
+    
+    if [[ $psql_status -ne 0 ]]; then
+        print_error "Minister data extraction failed (psql exit code: $psql_status). See extract-minister-data.log for details."
+        return 1
+    fi
+    
+    # Check for SQL errors in this phase's log only
+    if grep -q "^ERROR:" extract-minister-data.log; then
+        print_error "SQL errors detected in minister data extraction (see extract-minister-data.log)"
+        return 1
+    fi
+    
+    print_success "Minister data extraction completed"
+    
+    # Verify files using safe nullglob pattern
+    shopt -s nullglob
+    local minister_files_array=(minister*.csv government*.csv ministry*.csv)
+    local minister_files=${#minister_files_array[@]}
+    shopt -u nullglob
+    
+    if [ "$minister_files" -eq 7 ]; then
+        print_success "All 7 minister data files generated"
         else
             print_warning "Expected 7 minister files, got $minister_files"
         fi
@@ -279,10 +302,24 @@ main() {
     # Track start time
     local start_time=$(date +%s)
     
+    # Track failures
+    local exit_code=0
+    
     # Run extractions
-    extract_sample_data || print_warning "Sample data extraction had issues"
-    extract_party_data || print_warning "Party data extraction had issues"
-    extract_minister_data || print_warning "Minister data extraction had issues"
+    if ! extract_sample_data; then
+        print_warning "Sample data extraction had issues"
+        exit_code=1
+    fi
+    
+    if ! extract_party_data; then
+        print_warning "Party data extraction had issues"
+        exit_code=1
+    fi
+    
+    if ! extract_minister_data; then
+        print_warning "Minister data extraction had issues"
+        exit_code=1
+    fi
     
     # Generate summary
     generate_summary
@@ -297,7 +334,11 @@ main() {
     print_success "Total time: ${minutes}m ${seconds}s"
     print_info "All data extracted to: $OUTPUT_DIR"
     echo ""
+    
+    # Return exit code (0 if all succeeded, 1 if any failed)
+    return $exit_code
 }
 
-# Run main function
+# Run main function and propagate exit code
 main "$@"
+exit $?
