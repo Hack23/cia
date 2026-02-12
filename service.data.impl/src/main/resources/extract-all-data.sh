@@ -102,11 +102,17 @@ extract_sample_data() {
         -f "$SCRIPT_DIR/extract-sample-data.sql" 2>&1 | tee extract-sample-data.log; then
         print_success "Sample data extraction completed"
         
-        # Count generated files
-        local table_count=$(ls table_*.csv 2>/dev/null | wc -l)
-        local view_count=$(ls view_*.csv 2>/dev/null | wc -l)
-        local dist_count=$(ls distribution_*.csv 2>/dev/null | wc -l)
-        local percentile_count=$(ls percentile_*.csv 2>/dev/null | wc -l)
+        # Count generated files using safe nullglob pattern
+        shopt -s nullglob
+        local table_files=(table_*.csv)
+        local view_files=(view_*.csv)
+        local dist_files=(distribution_*.csv)
+        local percentile_files=(percentile_*.csv)
+        local table_count=${#table_files[@]}
+        local view_count=${#view_files[@]}
+        local dist_count=${#dist_files[@]}
+        local percentile_count=${#percentile_files[@]}
+        shopt -u nullglob
         
         print_info "Generated:"
         print_info "  - $table_count table samples"
@@ -175,10 +181,21 @@ extract_minister_data() {
     cd "$OUTPUT_DIR"
     if psql -h "$PSQL_HOST" -p "$PSQL_PORT" -U "$PSQL_USER" -d "$DATABASE" \
         -f "$SCRIPT_DIR/extract-minister-data.sql" 2>&1 | tee -a extract-sample-data.log; then
+        
+        # Check for SQL errors in the log
+        if grep -q "^ERROR:" extract-sample-data.log; then
+            print_error "SQL errors detected in minister data extraction (see log)"
+            return 1
+        fi
+        
         print_success "Minister data extraction completed"
         
-        # Verify files
-        local minister_files=$(ls minister*.csv government*.csv ministry*.csv 2>/dev/null | wc -l)
+        # Verify files using safe nullglob pattern
+        shopt -s nullglob
+        local minister_files_array=(minister*.csv government*.csv ministry*.csv)
+        local minister_files=${#minister_files_array[@]}
+        shopt -u nullglob
+        
         if [ "$minister_files" -eq 7 ]; then
             print_success "All 7 minister data files generated"
         else
