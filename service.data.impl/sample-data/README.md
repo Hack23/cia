@@ -6,13 +6,60 @@ This directory contains sample data extracted from the CIA database for:
 - Data quality analysis
 - Temporal pattern understanding
 
-## Extraction Script
+## Extraction Scripts
 
+### Main Extraction (All Data)
 Run from database server:
 ```bash
 cd /workspaces/cia/service.data.impl/sample-data
 psql -h localhost -U eris -d cia_dev -f ../src/main/resources/extract-sample-data.sql 2>&1 | tee extract-sample-data.log
 ```
+
+### Party Data Extraction
+Extract complete party master data, members, leaders, and voting patterns:
+```bash
+psql -h localhost -U eris -d cia_dev -f ../src/main/resources/extract-party-data.sql
+```
+
+Generates 7 files:
+- `party_master_data.csv` - All registered political parties
+- `party_members_current.csv` - Current active members
+- `party_members_historical.csv` - Complete membership history
+- `party_leaders_current.csv` - Current leadership positions
+- `party_leaders_historical.csv` - Historical leadership transitions
+- `party_voting_summary.csv` - Party voting statistics
+- `party_composition_timeline.csv` - Annual membership changes
+
+### Minister Data Extraction
+Extract complete government minister data, ministries, and assignments:
+```bash
+psql -h localhost -U eris -d cia_dev -f ../src/main/resources/extract-minister-data.sql
+```
+
+Generates 7 files:
+- `minister_current.csv` - Current government ministers
+- `minister_historical.csv` - Complete minister history
+- `ministry_assignments_current.csv` - Current ministry assignments
+- `ministry_assignments_historical.csv` - Complete assignment history
+- `government_composition.csv` - Current government structure
+- `government_transitions.csv` - Government changes over time
+- `minister_performance.csv` - Minister performance metrics
+
+### Riksdagsmonitor Integration
+
+The main extraction script generates **33 complete distribution CSV files** (not sampled) for the [Riksdagsmonitor](https://github.com/Hack23/riksdagsmonitor) dashboard. These files are downloaded by `download-csv.sh`:
+
+**Party (9):** party_performance, party_effectiveness_trends, party_momentum, coalition_alignment, annual_party_members, gender_by_party, experience_by_party, behavioral_patterns_by_party, decision_patterns_by_party
+
+**Voting (6):** annual_party_votes, annual_ballots, decision_trends, document_types, annual_document_types, document_status, annual_document_status
+
+**Committee (5):** committee_activity, committee_productivity, committee_productivity_matrix, annual_committee_assignments, annual_committee_documents
+
+**Ministry (4):** ministry_effectiveness, ministry_productivity_matrix, ministry_decision_impact, annual_ministry_assignments
+
+**Risk (3):** ministry_risk_levels, ministry_risk_quarterly, crisis_resilience
+
+**Other (6):** anomaly_by_party, election_regions, experience_levels, assignment_roles, influence_buckets
 
 ## Sample Size Configuration
 

@@ -1,0 +1,274 @@
+#!/bin/bash
+# extract-all-data.sh
+# Comprehensive Data Extraction for CIA Platform
+# Citizen Intelligence Agency - Open Source Intelligence Platform
+#
+# Purpose: Orchestrates complete data extraction including:
+#   - Sample data for all tables/views (200-500 rows)
+#   - Complete distribution files for riksdagsmonitor (33 files)
+#   - Complete party data (7 files)
+#   - Complete minister data (7 files)
+#
+# Usage:
+#   ./extract-all-data.sh [output_directory] [database]
+#
+# Example:
+#   ./extract-all-data.sh /tmp/cia-data cia_dev
+#
+# Environment Variables:
+#   PSQL_HOST     - PostgreSQL host (default: localhost)
+#   PSQL_PORT     - PostgreSQL port (default: 5432)
+#   PSQL_USER     - PostgreSQL user (default: postgres)
+#   PGPASSWORD    - PostgreSQL password (required if not using peer auth)
+#
+# ===========================================================================
+
+set -euo pipefail
+
+# Configuration
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+OUTPUT_DIR="${1:-${PWD}}"
+DATABASE="${2:-cia_dev}"
+PSQL_HOST="${PSQL_HOST:-localhost}"
+PSQL_PORT="${PSQL_PORT:-5432}"
+PSQL_USER="${PSQL_USER:-postgres}"
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+# Functions
+print_header() {
+    echo ""
+    echo -e "${BLUE}========================================${NC}"
+    echo -e "${BLUE}$1${NC}"
+    echo -e "${BLUE}========================================${NC}"
+    echo ""
+}
+
+print_success() {
+    echo -e "${GREEN}✓${NC} $1"
+}
+
+print_warning() {
+    echo -e "${YELLOW}⚠${NC} $1"
+}
+
+print_error() {
+    echo -e "${RED}✗${NC} $1"
+}
+
+print_info() {
+    echo -e "${BLUE}ℹ${NC} $1"
+}
+
+check_prerequisites() {
+    print_header "Checking Prerequisites"
+    
+    # Check psql
+    if ! command -v psql &> /dev/null; then
+        print_error "psql not found. Please install PostgreSQL client."
+        exit 1
+    fi
+    print_success "psql found: $(psql --version)"
+    
+    # Check database connection
+    if ! psql -h "$PSQL_HOST" -p "$PSQL_PORT" -U "$PSQL_USER" -d "$DATABASE" -c "SELECT 1" &> /dev/null; then
+        print_error "Cannot connect to database: $DATABASE on $PSQL_HOST:$PSQL_PORT"
+        print_info "Make sure PostgreSQL is running and PGPASSWORD is set if needed"
+        exit 1
+    fi
+    print_success "Database connection successful"
+    
+    # Create output directory
+    mkdir -p "$OUTPUT_DIR"
+    print_success "Output directory: $OUTPUT_DIR"
+}
+
+extract_sample_data() {
+    print_header "Phase 1: Extracting Sample Data + Distribution Files"
+    print_info "Running extract-sample-data.sql..."
+    print_info "This generates:"
+    print_info "  - Sample data for all tables/views (200-500 rows)"
+    print_info "  - 33 complete distribution files for riksdagsmonitor"
+    print_info "  - Percentile summaries (P1-P99)"
+    echo ""
+    
+    cd "$OUTPUT_DIR"
+    if psql -h "$PSQL_HOST" -p "$PSQL_PORT" -U "$PSQL_USER" -d "$DATABASE" \
+        -f "$SCRIPT_DIR/extract-sample-data.sql" 2>&1 | tee extract-sample-data.log; then
+        print_success "Sample data extraction completed"
+        
+        # Count generated files
+        local table_count=$(ls table_*.csv 2>/dev/null | wc -l)
+        local view_count=$(ls view_*.csv 2>/dev/null | wc -l)
+        local dist_count=$(ls distribution_*.csv 2>/dev/null | wc -l)
+        local percentile_count=$(ls percentile_*.csv 2>/dev/null | wc -l)
+        
+        print_info "Generated:"
+        print_info "  - $table_count table samples"
+        print_info "  - $view_count view samples"
+        print_info "  - $dist_count distribution files"
+        print_info "  - $percentile_count percentile summaries"
+    else
+        print_warning "Sample data extraction completed with warnings (check log)"
+    fi
+}
+
+extract_party_data() {
+    print_header "Phase 2: Extracting Complete Party Data"
+    print_info "Running extract-party-data.sql..."
+    print_info "This generates 7 files:"
+    print_info "  - party_master_data.csv"
+    print_info "  - party_members_current.csv"
+    print_info "  - party_members_historical.csv"
+    print_info "  - party_leaders_current.csv"
+    print_info "  - party_leaders_historical.csv"
+    print_info "  - party_voting_summary.csv"
+    print_info "  - party_composition_timeline.csv"
+    echo ""
+    
+    cd "$OUTPUT_DIR"
+    if psql -h "$PSQL_HOST" -p "$PSQL_PORT" -U "$PSQL_USER" -d "$DATABASE" \
+        -f "$SCRIPT_DIR/extract-party-data.sql" 2>&1 | tee -a extract-sample-data.log; then
+        print_success "Party data extraction completed"
+        
+        # Verify files
+        local party_files=$(ls party_*.csv 2>/dev/null | wc -l)
+        if [ "$party_files" -eq 7 ]; then
+            print_success "All 7 party data files generated"
+        else
+            print_warning "Expected 7 party files, got $party_files"
+        fi
+    else
+        print_error "Party data extraction failed"
+        return 1
+    fi
+}
+
+extract_minister_data() {
+    print_header "Phase 3: Extracting Complete Minister Data"
+    print_info "Running extract-minister-data.sql..."
+    print_info "This generates 7 files:"
+    print_info "  - minister_current.csv"
+    print_info "  - minister_historical.csv"
+    print_info "  - ministry_assignments_current.csv"
+    print_info "  - ministry_assignments_historical.csv"
+    print_info "  - government_composition.csv"
+    print_info "  - government_transitions.csv"
+    print_info "  - minister_performance.csv"
+    echo ""
+    
+    cd "$OUTPUT_DIR"
+    if psql -h "$PSQL_HOST" -p "$PSQL_PORT" -U "$PSQL_USER" -d "$DATABASE" \
+        -f "$SCRIPT_DIR/extract-minister-data.sql" 2>&1 | tee -a extract-sample-data.log; then
+        print_success "Minister data extraction completed"
+        
+        # Verify files
+        local minister_files=$(ls minister*.csv government*.csv ministry*.csv 2>/dev/null | wc -l)
+        if [ "$minister_files" -eq 7 ]; then
+            print_success "All 7 minister data files generated"
+        else
+            print_warning "Expected 7 minister files, got $minister_files"
+        fi
+    else
+        print_error "Minister data extraction failed"
+        return 1
+    fi
+}
+
+generate_summary() {
+    print_header "Extraction Summary"
+    
+    cd "$OUTPUT_DIR"
+    
+    # Count all CSV files by type
+    local total_csvs=$(ls *.csv 2>/dev/null | wc -l)
+    local table_samples=$(ls table_*.csv 2>/dev/null | wc -l)
+    local view_samples=$(ls view_*.csv 2>/dev/null | wc -l)
+    local distributions=$(ls distribution_*.csv 2>/dev/null | wc -l)
+    local percentiles=$(ls percentile_*.csv 2>/dev/null | wc -l)
+    local trends=$(ls trend_*.csv 2>/dev/null | wc -l)
+    local party_files=$(ls party_*.csv 2>/dev/null | wc -l)
+    local minister_files=$(ls minister*.csv government*.csv ministry*.csv 2>/dev/null | wc -l)
+    
+    print_info "Total CSV files generated: $total_csvs"
+    echo ""
+    print_info "Breakdown:"
+    print_info "  📊 Table samples:        $table_samples"
+    print_info "  📈 View samples:         $view_samples"
+    print_info "  📉 Distribution files:   $distributions (riksdagsmonitor)"
+    print_info "  📐 Percentile summaries: $percentiles"
+    print_info "  📅 Trend files:          $trends"
+    print_info "  🏛️  Party data:           $party_files"
+    print_info "  👔 Minister data:        $minister_files"
+    echo ""
+    
+    # Check for riksdagsmonitor required files
+    print_info "Riksdagsmonitor integration:"
+    local required_files=(
+        "distribution_party_performance.csv"
+        "distribution_coalition_alignment.csv"
+        "distribution_annual_party_members.csv"
+        "distribution_annual_party_votes.csv"
+        "distribution_committee_productivity.csv"
+        "distribution_ministry_effectiveness.csv"
+    )
+    
+    local missing_count=0
+    for file in "${required_files[@]}"; do
+        if [ ! -f "$file" ]; then
+            print_warning "Missing: $file"
+            ((missing_count++))
+        fi
+    done
+    
+    if [ $missing_count -eq 0 ]; then
+        print_success "All sample riksdagsmonitor files present"
+    else
+        print_warning "$missing_count riksdagsmonitor files missing (check extraction log)"
+    fi
+    
+    echo ""
+    print_info "Output directory: $OUTPUT_DIR"
+    print_info "Extraction log: $OUTPUT_DIR/extract-sample-data.log"
+    print_info "Summary report: $OUTPUT_DIR/extraction_summary_report.csv"
+}
+
+# Main execution
+main() {
+    print_header "CIA Platform - Complete Data Extraction"
+    print_info "Database: $DATABASE @ $PSQL_HOST:$PSQL_PORT"
+    print_info "User: $PSQL_USER"
+    print_info "Output: $OUTPUT_DIR"
+    
+    check_prerequisites
+    
+    # Track start time
+    local start_time=$(date +%s)
+    
+    # Run extractions
+    extract_sample_data || print_warning "Sample data extraction had issues"
+    extract_party_data || print_warning "Party data extraction had issues"
+    extract_minister_data || print_warning "Minister data extraction had issues"
+    
+    # Generate summary
+    generate_summary
+    
+    # Calculate duration
+    local end_time=$(date +%s)
+    local duration=$((end_time - start_time))
+    local minutes=$((duration / 60))
+    local seconds=$((duration % 60))
+    
+    print_header "Extraction Complete"
+    print_success "Total time: ${minutes}m ${seconds}s"
+    print_info "All data extracted to: $OUTPUT_DIR"
+    echo ""
+}
+
+# Run main function
+main "$@"
