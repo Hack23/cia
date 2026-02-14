@@ -1,403 +1,403 @@
 person_id,first_name,last_name,party,network_connections,network_median,influence_classification,broker_classification,influence_assessment
-0112806493429,Fredrik,Saweståhl,M,192,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-0692076685824,Camilla,Hansén,MP,25,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-028954589415,Ann-Sofie,Alm,M,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0371013828421,Lars,Larsson,SD,0,146.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
-0504851635310,Daniel,Helldén,MP,25,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0406831930624,Henrik,Vinge,SD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-098412828516,Magdalena,Andersson,S,127,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0845783625227,Arwin,Sohrabi,S,133,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0360187680814,Mats,Hellhoff,SD,193,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-0624994476012,Nermina,Mizimovic,S,0,146.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
-0148424181819,Ann-Christine,Frohm,SD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0119672047211,Madeleine,Atlas,C,23,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0604604418610,Jacob,Risberg,MP,26,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-037781229619,Staffan,Eklöf,SD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0773497241728,Roger,Hedlund,SD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0452755722723,Björn,Söder,SD,205,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-0313390540217,Ingela,Nylund Watz,S,125,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0630820052511,Per-Arne,Håkansson,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0955748436811,Robert,Stenkvist,SD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0768554866215,Katja,Nyberg,SD,205,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-0926477102420,Cecilia,Rönn,L,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0665485817222,Daniel,Bäckström,C,30,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0472349361027,Kalle,Olsson,S,124,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0202626512110,Lars-Ingvar,Ljungman,M,181,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-0198917587520,Maj,Karlsson,V,28,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0538387395826,Mats,Green,M,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-012547905113,Christina,Nilsson,SD,0,146.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
-0405594274208,Ewa,Pihl Krabbe,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0315499690028,Teresa,Carvalho,S,127,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0522240580423,Arin,Karapet,M,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0766496753128,Fredrik,Malm,L,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-041911485722,Magdalena,Thuresson,M,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0972636989226,Dzenan,Cisija,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0358514648113,Marléne,Lund Kopparklint,M,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0606863154419,Mats,Berglund,MP,22,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0837394708917,Anders,Ådahl,C,28,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0926214745119,Heléne,Björklund,S,127,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0191189790215,Peter,Ollén,M,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0905254899611,Louise,Thunström,S,125,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0502688311316,Anna,Vikström,S,125,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0309480686522,Leila,Ali Elmi,MP,25,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0229350341619,Ilona,Szatmári Waldau,V,27,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0229627943828,Jytte,Guteland,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0150200797210,Mats,Sander,M,183,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-0875221317013,Gunilla,Carlsson,S,127,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0227531635413,Lars,Püss,M,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0226631365426,Mikael,Larsson,C,30,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0509415296421,Kjell-Arne,Ottosson,KD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0973782197017,Mikael,Oscarsson,KD,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0822010116020,Jim,Svensk Larm,S,110,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-02910042914,Carina,Ödebrink,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0645111757928,Elin,Gustafsson,S,0,146.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
-0512009811316,Lena,Malm,S,91,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0627450126815,Kajsa,Fredholm,V,27,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0409655917321,Jakob,Olofsgård,L,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0694273653613,Margareta,Fransson,MP,0,146.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
-0111479807829,Anna,Wallentheim,S,125,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0926002991620,Pontus,Andersson Garpvall,SD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-030110584526,Caroline,Täljeblad,V,29,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0671241874717,Elisabeth,Björnsdotter Rahm,M,0,146.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
-0333193598116,Bo,Broman,SD,205,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-0526748040023,Ludvig,Aspling,SD,205,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-0153782796218,Ulf,Rexefjord,SD,172,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-0987246082523,Paula,Örn,S,111,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0598792324417,Ulrika,Jörgensen,M,0,146.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
-010643534813,Eric,Westroth,SD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-099099202224,Paulina,Brandberg,L,0,146.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
-0793372891224,Noria,Manouchi,M,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0966063008623,Leonid,Yurkovskiy,SD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0855286184126,Jessica,Rodén,S,125,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0939158389321,Samuel,Gonzalez Westling,V,27,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0389795960120,Martin,Marmgren,MP,0,146.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
-0710595759638,Aida,Birinxhiku,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0121015874810,Torsten,Elofsson,KD,208,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-048561486727,Isabell,Mixter,V,26,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0877778793323,Johan,Büser,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0279488554424,Alexander,Christiansson,SD,205,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-0338088431726,Sara,Gille,SD,205,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-0204240926023,Markus,Wiechel,SD,205,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-0653904370212,Fredrik,Olovsson,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-033935884729,Martina,Johansson,C,29,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0395762282903,Elsemarie,Bjellqvist,S,0,146.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
-0331791853028,Yasmine,Eriksson,SD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0140985614421,Peder,Björk,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0792733370419,Magnus,Oscarsson,KD,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0397073482210,Camilla,Mårtensen,L,202,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-010392780417,Marie,Olsson,S,116,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0275884973900,Monica,Andersson,S,0,146.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
-0619928872229,Laila,Naraghi,S,125,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0564126739422,Åsa,Coenraads,M,174,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-025931369428,Jonas,Andersson,SD,205,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-0667220767927,Erik,Ezelius,S,127,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0503029811325,David,Josefsson,M,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0800956862429,Gulan,Avci,L,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0222102752213,Stefan,Olsson,M,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0427321850912,Lars Mejern,Larsson,S,127,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0747883322423,Amir,Jawad,L,277,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0411459873625,Hanna,Gunnarsson,V,28,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0163772273014,Anna,Vedin,M,195,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-0340418158820,Daniel,Persson,SD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0764422217512,Lars,Engsund,M,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-083953568015,Malin,Höglund,M,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-023767922422,Mats,Persson,L,179,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-0456680171315,Charlotte,Quensel,SD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0764949934324,Ulrika,Heindorff,M,203,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-0563922839001,Katarina,Olofsson,SD,0,146.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
-0744993950910,Anders,Ygeman,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0932000030511,Maria,Stockhaus,M,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-051207517226,Jimmie,Åkesson,SD,169,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-0980092192122,Joar,Forssell,L,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0838085832923,Ann-Sofie,Lifvenhage,M,208,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0373223420310,Niclas,Malmberg,MP,0,146.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
-0803753212716,Richard,Jomshof,SD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0588282566419,Lars,Beckman,M,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0612916684825,Johan,Löfstrand,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0121939297619,Jamal,El-Haj,-,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0386912710815,Mats,Arkhem,SD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0984153507725,Gustaf,Göthberg,M,208,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0828721176319,Sten,Bergheden,M,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0138741628520,Angelika,Bengtsson,SD,200,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-0890152141226,Nadja,Awad,V,27,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0834510274913,Charlotte,Nordström,M,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0274462857213,Petter,Löberg,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0603366539729,Malin,Danielsson,L,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0246927519019,Karin,Rågsjö,V,27,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0433422973328,Kristoffer,Lindberg,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0285527517421,Caroline,Nordengrip,SD,0,146.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
-0576619284416,Aphram,Melki,C,0,146.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
-0866055333028,Alexandra,Anstrell,M,209,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0962410717322,Sultan,Kayhan,S,0,146.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
-0105632258713,Boriana,Åberg,M,208,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0256404677510,Cecilia,Engström,KD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0519740099915,Saila,Quicklund,M,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0880137451720,Emma,Nohrén,MP,24,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0184968091618,Jan,Riise,MP,25,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0473783431010,Morgan,Johansson,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0564232053610,Mikael,Sandström,M,0,146.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
-0861521539920,Aron,Emilsson,SD,205,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-0304498908019,Gudrun,Brunegård,KD,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0161972600410,Elsa,Widding,-,205,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-0986091320811,Catarina,Deremar,C,31,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0398471271026,Frida,Tånghag,V,25,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0130789484021,Mattias,Bäckström Johansson,SD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0615175917521,Kent,Kumpula,SD,201,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-0475778011711,Hans,Ekström,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-037561614928,Lawen,Redar,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0448973586529,Adrian,Magnusson,S,125,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0250583732424,Jesper,Skalberg Karlsson,M,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0584183916016,Ulf,Holm,MP,38,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0783069490115,Mirja,Räihä,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0803790353229,Azra,Muranovic,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0410231576416,Lars,Johnsson,M,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0534870997412,Åsa,Hartzell,M,175,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-0287315215921,Mona,Smedman,C,41,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0992867772421,Nils,Seye Larsen,MP,21,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0522054204918,Mattias,Karlsson,M,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0339894357417,Jennie,Nilsson,S,127,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0776705932527,Ciczie,Weidby,V,28,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0426843954410,Ulrik,Bergman,M,0,146.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
-0228027853620,Vasiliki,Tsouplaki,V,29,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0290003389021,Chris,Dahlqvist,SD,180,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-0476362590123,Louise,Mörk,S,0,146.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
-0591055036519,Mauricio,Rojas,L,205,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-0307835692938,Emelie,Nyman,C,117,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0546731406922,Rebecka,Le Moine,MP,24,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0742883909221,John,E Weinerhall,M,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0271338654822,Ola,Möller,S,125,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0440225263920,Robert,Olesen,S,111,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0828001951212,Ingemar,Kihlström,KD,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0904448094023,Linus,Lakso,MP,23,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0494242537816,Hans,Eklind,KD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0963046628824,Christian,Lindefjärd,SD,193,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-0316505710324,Janine,Alm Ericson,MP,24,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-094145171913,Unni,Björnerfors,SD,194,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-0161616238120,Lina,Nordquist,L,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0999976269027,Amanda,Palmstierna,MP,22,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0511863596121,Erica,Nådin,S,0,146.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
-0348383585915,Marielle,Lahti,MP,24,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0554852839719,Mikael,Dahlqvist,S,125,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0245113256029,Daniel,Vencu Velasquez Castro,S,125,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-025967059622,Magnus,Manhammar,S,122,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0360160202728,Emma,Ahlström Köster,M,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0663840649717,Anette,Rangdag,SD,196,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-069534526423,Mathias,Bengtsson,KD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0506541436524,Sanne,Lennström,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-07921826010,Anna-Belle,Strömberg,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0468956880528,Mikael,Eskilandersson,SD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0796312429425,Viktor,Wärnick,M,208,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0880018341619,Thomas,Morell,SD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0469384565811,Anders,Alftberg,SD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0249730539015,Anders,Karlsson,C,29,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0452784937426,Christopher,Lindvall,S,0,146.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
-0371882294919,Carita,Boulwén,SD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-086684470825,Tobias,Andersson,SD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-04571388712,Adam,Reuterskiöld,M,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0496341906327,Alexandra,Völker,S,127,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0345062474310,Mona,Olin,SD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0358278412329,Björn,Petersson,S,119,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0970259744617,Margareta,Cederfelt,M,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0244552157217,Annelie,Sjöberg,SD,160,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-0344222203323,Dennis,Dioukarev,SD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0170585430421,Jimmy,Ståhl,SD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0802606848923,Mariya,Voyvodova,S,109,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0990587970528,Zinaida,Kajevic,S,115,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0749416304126,Marie,Nicholson,M,205,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-0985426914829,Anna,Lasses,C,29,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0717363246311,Jessica,Stegrud,SD,205,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-0412148992926,Hanna,Westerén,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0301987597720,Liza-Maria,Norlin,KD,176,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-0607691439013,Karin,Enström,M,204,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-0341628241813,Marianne,Fundahn,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-088461404416,Richard,Herrey,M,0,146.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
-0557180142229,Fredrik,Lindahl,SD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0832311880029,Erik,Ottoson,M,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0248492534018,Pia,Trollehjelm,SD,186,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-0977592683711,Magnus,Jacobsson,KD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0682989845822,Håkan,Svenneling,V,27,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0327372175911,Fredrik,Ahlstedt,M,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0947134226212,Markus,Kauppinen,S,114,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0602744999917,Elisabeth,Thand Ringqvist,C,26,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0706528359123,Linus,Sköld,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0499755198526,Mattias,Jonsson,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0466653728712,Denis,Begic,S,125,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0103624617217,Helén,Pettersson,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-07012286624,Daniel,Riazat,-,27,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0183544538819,Patrik,Jönsson,SD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-071293048118,Thomas,Ragnarsson,M,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0779329190517,Kjell,Jansson,M,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0847676507229,Stina,Larsson,C,28,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0130640724922,Clara,Aranda,SD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0720250789315,Mats,Wiking,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0425115010020,Kadir,Kasirga,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0488332307829,Abraham,Halef,S,0,146.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
-0640627133410,Elisabeth,Falkhaven,MP,0,146.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
-066036027425,Mikael,Damsgaard,M,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0469084171710,Ulrika,Westerlund,MP,24,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-036926802512,Blåvitt,Elofsson,S,113,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0940980416614,Jan,Ericson,M,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-075747847023,Gustaf,Lantz,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0296384583518,Åsa,Eriksson,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0810201628512,Ann-Charlotte,Hammar Johnsson,M,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0430865615328,Linda,Lindberg,SD,205,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-039102787629,Oliver,Rosengren,M,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0961483563503,Gudrun,Nordborg,V,28,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0589561178823,Peter,Hedberg,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0760500234712,Monica,Haider,S,125,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0283284978818,Markus,Kallifatides,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0729710260118,Helena,Bouveng,M,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0492644357418,Per,Söderlund,SD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0112333043027,Rasmus,Giertz,SD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0721509806321,Nooshi,Dadgostar,V,28,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0157618290428,Rashid,Farivar,SD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-035234573112,Anna-Lena,Hedberg,SD,203,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-049290762318,ClasGöran,Carlsson,S,0,146.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
-0523902030928,Aylin,Nouri,S,124,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0587736055221,Niels,Paarup-Petersen,C,28,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0600069352021,Fredrik,Kärrholm,M,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0220064764318,Camilla,Brunsberg,M,205,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-0765747165821,Marcus,Jonsson,KD,0,146.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
-0525562399327,Caroline,Högström,M,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0530425150220,Annika,Strandhäll,S,124,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0376461485627,Henrik,Edin,L,0,146.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
-0604811710522,Ida,Drougge,M,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0381853591928,Malte,Tängmark Roos,MP,23,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0474290584024,Azadeh,Rojhan,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0665360289423,Fredrik,Stenberg,S,121,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0853395328224,Lena,Hallengren,S,125,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0210444373111,Katarina,Luhr,MP,25,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0613297818326,Mathias,Tegnér,S,125,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0992473266516,Larry,Söder,KD,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0378597308227,Camilla,Brodin,KD,208,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0644591005314,Crister,Spets,SD,0,146.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
-0376353897112,Leif,Nysmed,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0930305890123,Sara-Lena,Bjälkö,-,205,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-0737824098113,Magnus,Berntsson,KD,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0497217816024,Markus,Selin,S,125,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0372414474424,Oskar,Svärd,M,208,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0111697351426,Louise,Eklund,L,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0161597857912,Tuve,Skånberg,KD,0,146.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
-0512645510895,Jonathan,Svensson,S,120,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0737666060225,Joakim,Järrebring,S,127,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0906620634423,Eleonore,Lundkvist,M,178,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-0852475703226,Lorena,Delgado Varas,-,28,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0694917698222,Michael,Rubbestad,SD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0860364634014,Mattias,Ottosson,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0178323535715,Johnny,Svedin,SD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0481460392727,Jessica,Wetterling,V,27,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0825441263617,Birger,Lahti,V,27,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0254695027922,Malcolm Momodou,Jallow,V,28,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0983984918111,Matilda,Ernkrans,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0146133946627,Andreas,Lennkvist Manriquez,V,26,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0709911904721,Johanna,Rantsi,M,208,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0521260619925,Sofia,Amloh,S,127,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0888807074321,Amanda,Lind,MP,25,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0652497579621,Johanna,Haraldsson,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0618938634020,Marcus,Wennerström,S,111,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0456522027421,Linnéa,Wickman,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0144048894712,Ellen,Juntti,M,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0920901966627,Tony,Haddou,V,27,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0281670919717,Jörgen,Grubb,SD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0537400268911,Caroline,Helmersson Olsson,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0802091197024,Andrea,Andersson Tay,V,27,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0442073683012,Zara,Leghissa,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0964730940415,Johan,Andersson,S,127,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0641953830512,Magnus,Persson,SD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0494843794418,Martin,Ådahl,C,27,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0202577142527,Matheus,Enholm,SD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0831039938224,Adam,Marttinen,SD,205,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-02658325625,Angelica,Lundberg,SD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-025877594729,John,Widegren,M,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0722683622001,Lars,Jilmstad,M,180,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-0364687971222,Alireza,Akhondi,C,28,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0903081277919,Helena,Vilhelmsson,C,32,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0655418111118,Laila,Olsen,S,0,146.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
-0256716955026,Serkan,Köse,S,127,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0819601620927,Annika,Hirvonen,MP,25,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0831636664429,Mattias,Karlsson,SD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-084624777218,Helena,Lindahl,C,28,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0418929039326,Patrik,Lundqvist,S,121,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0591020192311,Ulf,Lindholm,SD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0427836082425,Fredrik,Lindstål,C,25,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0599661454115,Lena,Bäckelin,S,120,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-091303475611,Eric,Palmqvist,SD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0899169869710,Helena,Gellerman,L,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0502490570219,Kristina,Axén Olin,M,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0576122429317,Martin,Melin,L,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0937688366013,Peter,Hultqvist,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0389220391128,Christian,Carlsson,KD,208,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0457722435319,Tomas,Kronståhl,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0516528386117,Patrik,Björck,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0376395541120,Joakim,Sandell,S,122,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0136268785826,Nima,Gholam Ali Pour,SD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0119851690521,David,Perez,SD,204,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-0545733815610,Patrick,Reslow,SD,205,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-0802546764724,Åsa,Westlund,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-055257333723,Oscar,Sjöstedt,SD,205,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-0892978334516,Michael,Anefur,KD,0,146.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
-0251136832626,Muharrem,Demirok,C,28,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0369212790927,Sofia,Skönnbrink,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0678597762924,Martin,Westmont,SD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0265240520811,Leif,Gripestam,M,177,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-0388994689418,Malin,Östh,V,27,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0229760896014,Anders,W Jonsson,C,29,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-065701062615,Runar,Filper,SD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0323000187920,Solange,Olame Bayibsa,S,0,146.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
-0985943148917,Victoria,Tiblom,SD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0671571847522,Mattias,Eriksson Falk,SD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0204443909416,Johan,Hedin,C,0,146.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
-065105536026,Niklas,Karlsson,S,127,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0237055280513,Roland,Utbult,KD,208,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0362779191527,Erik,Hellsborn,SD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0254021157518,Lars,Andersson,SD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-011548866929,Elin,Nilsson,L,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-025158809026,Ida,Gabrielsson,V,29,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0922497728524,Ardalan,Shekarabi,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0174490514929,Marcus,Andersson,S,121,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0810852280213,Marie-Louise,Hänel Sandström,M,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0911916463828,Fredrik,Lundh Sammeli,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0273506284025,Edward,Riedl,M,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0648224557612,Åsa,Karlsson,S,127,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0482689573825,Björn,Wiechel,S,123,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0509830681123,Ida,Karkiainen,S,124,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0836001490919,Ulrika,Heie,C,28,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0515213566019,Lars,Isacsson,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0503363679811,Stefan,Plath,SD,0,146.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
-0203877548421,Malin,Larsson,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0262411569110,Helene,Odenjung,L,189,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-0211757295524,Josef,Fransson,SD,201,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-0628005785225,Jörgen,Berglund,M,208,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0965245623824,Nicklas,Attefjord,MP,0,146.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
-0132818093422,Rickard,Nordin,C,28,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-027964311318,Karin,Sundin,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0122987223112,Lotta,Johnsson Fornarve,V,27,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0412502344925,Ida,Ekeroth Clausson,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0410640630411,Ulrik,Nilsson,M,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0575283695521,Helena,Storckenfeldt,M,207,146.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
-0780214960516,Eva,Lindh,S,125,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0127744006318,Cecilia,Gustafsson,M,183,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-0257313105220,Arber,Gashi,S,116,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0947572086414,Anne-Li,Sjölund,C,29,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0859909330720,Sanna,Backeskog,S,125,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-082139988919,Kerstin,Hermansson,C,0,146.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
-0973350087929,Patrik,Karlson,L,202,146.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
-0879782396219,Olle,Thorell,S,125,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0845133742919,Lili,André,KD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0236597884217,Rose-Marie,Carlsson,S,124,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0951905661227,Christofer,Bergenblock,C,29,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0938171000810,Annette,Rydell,S,110,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-014744660015,Mikael,Damberg,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0653578338415,Agneta,Nilsson,S,113,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0440673458216,Ulrika,Liljeberg,C,30,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0559925283228,Teres,Lindberg,S,0,146.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
-0911067396229,Mattias,Vepsä,S,125,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0610162335824,Niklas,Sigvardsson,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0407081382317,Anna-Caren,Sätherberg,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0240670797111,Björn,Tidland,SD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
-0910803550317,Lena,Johansson,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0970709885516,Inga-Lill,Sjöblom,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0506482805418,Isak,From,S,126,146.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
-0697733600628,Alexander,Wasberg,S,0,146.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
-0395154929710,Anders,Frimert,S,0,146.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
-0294138886823,Martin,Kinnunen,SD,206,146.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+066036027425,Mikael,Damsgaard,M,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0138741628520,Angelika,Bengtsson,SD,200,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0515213566019,Lars,Isacsson,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0600069352021,Fredrik,Kärrholm,M,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0427836082425,Fredrik,Lindstål,C,26,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0315499690028,Teresa,Carvalho,S,127,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0963046628824,Christian,Lindefjärd,SD,193,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0112806493429,Fredrik,Saweståhl,M,192,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0262411569110,Helene,Odenjung,L,189,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0627450126815,Kajsa,Fredholm,V,28,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0764422217512,Lars,Engsund,M,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0482689573825,Björn,Wiechel,S,123,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0903081277919,Helena,Vilhelmsson,C,32,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0340418158820,Daniel,Persson,SD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+098412828516,Magdalena,Andersson,S,127,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0619928872229,Laila,Naraghi,S,125,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0671571847522,Mattias,Eriksson Falk,SD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0153782796218,Ulf,Rexefjord,SD,172,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0986091320811,Catarina,Deremar,C,32,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0407081382317,Anna-Caren,Sätherberg,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0469384565811,Anders,Alftberg,SD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0834510274913,Charlotte,Nordström,M,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0161972600410,Elsa,Widding,-,205,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0183544538819,Patrik,Jönsson,SD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0825441263617,Birger,Lahti,V,27,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0983984918111,Matilda,Ernkrans,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0150200797210,Mats,Sander,M,183,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+07012286624,Daniel,Riazat,-,27,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0203877548421,Malin,Larsson,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0618938634020,Marcus,Wennerström,S,112,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0257313105220,Arber,Gashi,S,116,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0940980416614,Jan,Ericson,M,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0294138886823,Martin,Kinnunen,SD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0598792324417,Ulrika,Jörgensen,M,0,147.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
+0564232053610,Mikael,Sandström,M,0,147.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
+0502688311316,Anna,Vikström,S,125,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0170585430421,Jimmy,Ståhl,SD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0313390540217,Ingela,Nylund Watz,S,125,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0494242537816,Hans,Eklind,KD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0503363679811,Stefan,Plath,SD,0,147.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
+0525562399327,Caroline,Högström,M,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0198917587520,Maj,Karlsson,V,28,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0737666060225,Joakim,Järrebring,S,127,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0265240520811,Leif,Gripestam,M,177,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0163772273014,Anna,Vedin,M,197,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0859909330720,Sanna,Backeskog,S,125,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+010392780417,Marie,Olsson,S,116,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0395154929710,Anders,Frimert,S,0,147.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
+0481460392727,Jessica,Wetterling,V,28,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0546731406922,Rebecka,Le Moine,MP,24,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0964730940415,Johan,Andersson,S,127,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0847676507229,Stina,Larsson,C,28,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0440225263920,Robert,Olesen,S,111,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+035234573112,Anna-Lena,Hedberg,SD,203,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0663840649717,Anette,Rangdag,SD,196,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0980092192122,Joar,Forssell,L,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0905254899611,Louise,Thunström,S,125,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0985426914829,Anna,Lasses,C,29,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0371882294919,Carita,Boulwén,SD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0331791853028,Yasmine,Eriksson,SD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0904448094023,Linus,Lakso,MP,23,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0184968091618,Jan,Riise,MP,25,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0602744999917,Elisabeth,Thand Ringqvist,C,28,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0140985614421,Peder,Björk,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0296384583518,Åsa,Eriksson,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0947572086414,Anne-Li,Sjölund,C,29,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0378597308227,Camilla,Brodin,KD,208,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0765747165821,Marcus,Jonsson,KD,0,147.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
+084624777218,Helena,Lindahl,C,29,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0157618290428,Rashid,Farivar,SD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0890152141226,Nadja,Awad,V,28,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0406831930624,Henrik,Vinge,SD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0412502344925,Ida,Ekeroth Clausson,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+088461404416,Richard,Herrey,M,0,147.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
+0938171000810,Annette,Rydell,S,111,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0803753212716,Richard,Jomshof,SD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0271338654822,Ola,Möller,S,125,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0860364634014,Mattias,Ottosson,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0345062474310,Mona,Olin,SD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0475778011711,Hans,Ekström,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0845133742919,Lili,André,KD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0589561178823,Peter,Hedberg,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0624994476012,Nermina,Mizimovic,S,0,147.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
+0433422973328,Kristoffer,Lindberg,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0721509806321,Nooshi,Dadgostar,V,28,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0575283695521,Helena,Storckenfeldt,M,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0749416304126,Marie,Nicholson,M,205,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0764949934324,Ulrika,Heindorff,M,202,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0591020192311,Ulf,Lindholm,SD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0937688366013,Peter,Hultqvist,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0526748040023,Ludvig,Aspling,SD,205,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0607691439013,Karin,Enström,M,204,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0376353897112,Leif,Nysmed,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0372414474424,Oskar,Svärd,M,208,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0229350341619,Ilona,Szatmári Waldau,V,27,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0604604418610,Jacob,Risberg,MP,26,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0509415296421,Kjell-Arne,Ottosson,KD,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0810852280213,Marie-Louise,Hänel Sandström,M,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0119672047211,Madeleine,Atlas,C,23,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0229760896014,Anders,W Jonsson,C,29,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0389795960120,Martin,Marmgren,MP,0,147.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
+0906620634423,Eleonore,Lundkvist,M,178,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0800956862429,Gulan,Avci,L,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0474290584024,Azadeh,Rojhan,S,127,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0249730539015,Anders,Karlsson,C,29,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+027964311318,Karin,Sundin,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0692076685824,Camilla,Hansén,MP,25,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0358514648113,Marléne,Lund Kopparklint,M,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+082139988919,Kerstin,Hermansson,C,0,147.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
+025158809026,Ida,Gabrielsson,V,29,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0220064764318,Camilla,Brunsberg,M,205,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0210444373111,Katarina,Luhr,MP,25,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+014744660015,Mikael,Damberg,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0512009811316,Lena,Malm,S,91,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0970259744617,Margareta,Cederfelt,M,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0977592683711,Magnus,Jacobsson,KD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0146133946627,Andreas,Lennkvist Manriquez,V,26,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0316505710324,Janine,Alm Ericson,MP,24,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0405594274208,Ewa,Pihl Krabbe,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0926477102420,Cecilia,Rönn,L,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0127744006318,Cecilia,Gustafsson,M,183,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0395762282903,Elsemarie,Bjellqvist,S,0,147.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
+0604811710522,Ida,Drougge,M,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0655418111118,Laila,Olsen,S,0,147.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
+0653904370212,Fredrik,Olovsson,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0709911904721,Johanna,Rantsi,M,208,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0362779191527,Erik,Hellsborn,SD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0557180142229,Fredrik,Lindahl,SD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0984153507725,Gustaf,Göthberg,M,208,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0966063008623,Leonid,Yurkovskiy,SD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0105632258713,Boriana,Åberg,M,208,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+039102787629,Oliver,Rosengren,M,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0576122429317,Martin,Melin,L,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0412148992926,Hanna,Westerén,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0892978334516,Michael,Anefur,KD,0,147.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
+025877594729,John,Widegren,M,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0985943148917,Victoria,Tiblom,SD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0506541436524,Sanne,Lennström,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0999976269027,Amanda,Palmstierna,MP,22,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0376461485627,Henrik,Edin,L,0,147.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
+0174490514929,Marcus,Andersson,S,121,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0226631365426,Mikael,Larsson,C,30,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0911067396229,Mattias,Vepsä,S,125,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0640627133410,Elisabeth,Falkhaven,MP,0,147.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
+0866055333028,Alexandra,Anstrell,M,209,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0564126739422,Åsa,Coenraads,M,176,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0879782396219,Olle,Thorell,S,125,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0706528359123,Linus,Sköld,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0697733600628,Alexander,Wasberg,S,0,147.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
+0911916463828,Fredrik,Lundh Sammeli,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0274462857213,Petter,Löberg,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0283284978818,Markus,Kallifatides,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0802091197024,Andrea,Andersson Tay,V,28,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0309480686522,Leila,Ali Elmi,MP,25,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0452755722723,Björn,Söder,SD,205,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0828001951212,Ingemar,Kihlström,KD,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0250583732424,Jesper,Skalberg Karlsson,M,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0245113256029,Daniel,Vencu Velasquez Castro,S,125,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0610162335824,Niklas,Sigvardsson,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0776705932527,Ciczie,Weidby,V,29,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0641953830512,Magnus,Persson,SD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0853395328224,Lena,Hallengren,S,125,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0563922839001,Katarina,Olofsson,SD,0,147.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
+0628005785225,Jörgen,Berglund,M,208,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0121015874810,Torsten,Elofsson,KD,208,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0307835692938,Emelie,Nyman,C,116,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0554852839719,Mikael,Dahlqvist,S,125,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0653578338415,Agneta,Nilsson,S,113,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0301987597720,Liza-Maria,Norlin,KD,176,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0612916684825,Johan,Löfstrand,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0783069490115,Mirja,Räihä,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0499755198526,Mattias,Jonsson,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+055257333723,Oscar,Sjöstedt,SD,205,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0228027853620,Vasiliki,Tsouplaki,V,30,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0584183916016,Ulf,Holm,MP,43,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+036926802512,Blåvitt,Elofsson,S,113,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0652497579621,Johanna,Haraldsson,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0522054204918,Mattias,Karlsson,M,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0178323535715,Johnny,Svedin,SD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0275884973900,Monica,Andersson,S,0,147.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
+0720250789315,Mats,Wiking,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0831636664429,Mattias,Karlsson,SD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0290003389021,Chris,Dahlqvist,SD,180,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0333193598116,Bo,Broman,SD,205,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0591055036519,Mauricio,Rojas,L,205,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0603366539729,Malin,Danielsson,L,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0136268785826,Nima,Gholam Ali Pour,SD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0939158389321,Samuel,Gonzalez Westling,V,29,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0369212790927,Sofia,Skönnbrink,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0273506284025,Edward,Riedl,M,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0922497728524,Ardalan,Shekarabi,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0779329190517,Kjell,Jansson,M,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0802546764724,Åsa,Westlund,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0838085832923,Ann-Sofie,Lifvenhage,M,208,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0747883322423,Amir,Jawad,L,277,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0386912710815,Mats,Arkhem,SD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0229627943828,Jytte,Guteland,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0831039938224,Adam,Marttinen,SD,205,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0502490570219,Kristina,Axén Olin,M,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0494843794418,Martin,Ådahl,C,27,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0244552157217,Annelie,Sjöberg,SD,162,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0130789484021,Mattias,Bäckström Johansson,SD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0792733370419,Magnus,Oscarsson,KD,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0211757295524,Josef,Fransson,SD,202,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0773497241728,Roger,Hedlund,SD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0910803550317,Lena,Johansson,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0737824098113,Magnus,Berntsson,KD,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0144048894712,Ellen,Juntti,M,205,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0828721176319,Sten,Bergheden,M,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0796312429425,Viktor,Wärnick,M,208,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0348383585915,Marielle,Lahti,MP,26,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0665360289423,Fredrik,Stenberg,S,121,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0992867772421,Nils,Seye Larsen,MP,21,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+049290762318,ClasGöran,Carlsson,S,0,147.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
+0227531635413,Lars,Püss,M,208,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0990587970528,Zinaida,Kajevic,S,116,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0509830681123,Ida,Karkiainen,S,124,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0545733815610,Patrick,Reslow,SD,205,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0722683622001,Lars,Jilmstad,M,180,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0803790353229,Azra,Muranovic,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0204240926023,Markus,Wiechel,SD,205,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0191189790215,Peter,Ollén,M,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0327372175911,Fredrik,Ahlstedt,M,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0588282566419,Lars,Beckman,M,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0279488554424,Alexander,Christiansson,SD,205,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0534870997412,Åsa,Hartzell,M,175,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0492644357418,Per,Söderlund,SD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0246927519019,Karin,Rågsjö,V,27,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0452784937426,Christopher,Lindvall,S,0,147.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
+0511863596121,Erica,Nådin,S,0,147.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
+0236597884217,Rose-Marie,Carlsson,S,124,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0388994689418,Malin,Östh,V,27,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0606863154419,Mats,Berglund,MP,22,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0111479807829,Anna,Wallentheim,S,125,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0819601620927,Annika,Hirvonen,MP,25,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0398471271026,Frida,Tånghag,V,27,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+037561614928,Lawen,Redar,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0256716955026,Serkan,Köse,S,127,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0119851690521,David,Perez,SD,204,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0222102752213,Stefan,Olsson,M,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0456680171315,Charlotte,Quensel,SD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0360187680814,Mats,Hellhoff,SD,193,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0410640630411,Ulrik,Nilsson,M,208,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0523902030928,Aylin,Nouri,S,124,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0397073482210,Camilla,Mårtensen,L,202,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0504851635310,Daniel,Helldén,MP,26,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0793372891224,Noria,Manouchi,M,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0121939297619,Jamal,El-Haj,-,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0457722435319,Tomas,Kronståhl,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0344222203323,Dennis,Dioukarev,SD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0472349361027,Kalle,Olsson,S,124,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0710595759638,Aida,Birinxhiku,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0559925283228,Teres,Lindberg,S,0,147.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
+075747847023,Gustaf,Lantz,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0667220767927,Erik,Ezelius,S,127,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0418929039326,Patrik,Lundqvist,S,121,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0729710260118,Helena,Bouveng,M,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0530425150220,Annika,Strandhäll,S,124,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0962410717322,Sultan,Kayhan,S,0,147.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
+0973350087929,Patrik,Karlson,L,202,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0961483563503,Gudrun,Nordborg,V,28,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+069534526423,Mathias,Bengtsson,KD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+048561486727,Isabell,Mixter,V,29,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0358278412329,Björn,Petersson,S,119,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0473783431010,Morgan,Johansson,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0587736055221,Niels,Paarup-Petersen,C,28,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0237055280513,Roland,Utbult,KD,208,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0645111757928,Elin,Gustafsson,S,0,147.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
+0694273653613,Margareta,Fransson,MP,0,147.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
+0409655917321,Jakob,Olofsgård,L,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0132818093422,Rickard,Nordin,C,28,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0496341906327,Alexandra,Völker,S,127,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0822010116020,Jim,Svensk Larm,S,111,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0122987223112,Lotta,Johnsson Fornarve,V,27,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0780214960516,Eva,Lindh,S,125,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0103624617217,Helén,Pettersson,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0161597857912,Tuve,Skånberg,KD,0,147.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
+0503029811325,David,Josefsson,M,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0202577142527,Matheus,Enholm,SD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0521260619925,Sofia,Amloh,S,127,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0341628241813,Marianne,Fundahn,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0947134226212,Markus,Kauppinen,S,114,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0373223420310,Niclas,Malmberg,MP,0,147.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
+0852475703226,Lorena,Delgado Varas,-,28,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0442073683012,Zara,Leghissa,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0880018341619,Thomas,Morell,SD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0926214745119,Heléne,Björklund,S,127,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0488332307829,Abraham,Halef,S,0,147.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
+0251136832626,Muharrem,Demirok,C,28,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+051207517226,Jimmie,Åkesson,SD,169,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0899169869710,Helena,Gellerman,L,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0287315215921,Mona,Smedman,C,43,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0665485817222,Daniel,Bäckström,C,30,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0992473266516,Larry,Söder,KD,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0742883909221,John,E Weinerhall,M,208,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0256404677510,Cecilia,Engström,KD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+037781229619,Staffan,Eklöf,SD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0371013828421,Lars,Larsson,SD,0,147.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
+0888807074321,Amanda,Lind,MP,26,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0410231576416,Lars,Johnsson,M,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0760500234712,Monica,Haider,S,125,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0376395541120,Joakim,Sandell,S,122,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0381853591928,Malte,Tängmark Roos,MP,23,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0810201628512,Ann-Charlotte,Hammar Johnsson,M,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0466653728712,Denis,Begic,S,125,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+010643534813,Eric,Westroth,SD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0469084171710,Ulrika,Westerlund,MP,24,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+02910042914,Carina,Ödebrink,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0648224557612,Åsa,Karlsson,S,127,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0516528386117,Patrik,Björck,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+033935884729,Martina,Johansson,C,29,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0855286184126,Jessica,Rodén,S,125,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0682989845822,Håkan,Svenneling,V,27,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0630820052511,Per-Arne,Håkansson,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0845783625227,Arwin,Sohrabi,S,133,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0836001490919,Ulrika,Heie,C,29,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0304498908019,Gudrun,Brunegård,KD,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0130640724922,Clara,Aranda,SD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0281670919717,Jörgen,Grubb,SD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0338088431726,Sara,Gille,SD,205,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+028954589415,Ann-Sofie,Alm,M,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0766496753128,Fredrik,Malm,L,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0497217816024,Markus,Selin,S,125,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0476362590123,Louise,Mörk,S,0,147.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
+0254021157518,Lars,Andersson,SD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+065105536026,Niklas,Karlsson,S,127,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0717363246311,Jessica,Stegrud,SD,205,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0973782197017,Mikael,Oscarsson,KD,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0837394708917,Anders,Ådahl,C,28,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+012547905113,Christina,Nilsson,SD,0,147.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
+0430865615328,Linda,Lindberg,SD,205,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0112333043027,Rasmus,Giertz,SD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0802606848923,Mariya,Voyvodova,S,109,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0161616238120,Lina,Nordquist,L,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0285527517421,Caroline,Nordengrip,SD,0,147.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
+025967059622,Magnus,Manhammar,S,122,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0644591005314,Crister,Spets,SD,0,147.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
+0576619284416,Aphram,Melki,C,0,147.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
+030110584526,Caroline,Täljeblad,V,29,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0339894357417,Jennie,Nilsson,S,127,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0599661454115,Lena,Bäckelin,S,121,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0671241874717,Elisabeth,Björnsdotter Rahm,M,0,147.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
+0364687971222,Alireza,Akhondi,C,28,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0389220391128,Christian,Carlsson,KD,208,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+04571388712,Adam,Reuterskiöld,M,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0360160202728,Emma,Ahlström Köster,M,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0694917698222,Michael,Rubbestad,SD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0519740099915,Saila,Quicklund,M,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0987246082523,Paula,Örn,S,111,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0512645510895,Jonathan,Svensson,S,121,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0522240580423,Arin,Karapet,M,208,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+02658325625,Angelica,Lundberg,SD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0920901966627,Tony,Haddou,V,27,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0202626512110,Lars-Ingvar,Ljungman,M,181,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0468956880528,Mikael,Eskilandersson,SD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0972636989226,Dzenan,Cisija,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0448973586529,Adrian,Magnusson,S,125,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0148424181819,Ann-Christine,Frohm,SD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0965245623824,Nicklas,Attefjord,MP,0,147.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
+0427321850912,Lars Mejern,Larsson,S,127,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0970709885516,Inga-Lill,Sjöblom,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0877778793323,Johan,Büser,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0323000187920,Solange,Olame Bayibsa,S,0,147.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
+0538387395826,Mats,Green,M,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0744993950910,Anders,Ygeman,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0425115010020,Kadir,Kasirga,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+094145171913,Unni,Björnerfors,SD,194,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0768554866215,Katja,Nyberg,SD,205,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0615175917521,Kent,Kumpula,SD,201,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0955748436811,Robert,Stenkvist,SD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0426843954410,Ulrik,Bergman,M,0,147.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
+071293048118,Thomas,Ragnarsson,M,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0613297818326,Mathias,Tegnér,S,125,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+065701062615,Runar,Filper,SD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0111697351426,Louise,Eklund,L,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+023767922422,Mats,Persson,L,179,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0951905661227,Christofer,Bergenblock,C,29,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0456522027421,Linnéa,Wickman,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+091303475611,Eric,Palmqvist,SD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0537400268911,Caroline,Helmersson Olsson,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+07921826010,Anna-Belle,Strömberg,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0204443909416,Johan,Hedin,C,0,147.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
+011548866929,Elin,Nilsson,L,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0254695027922,Malcolm Momodou,Jallow,V,28,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0678597762924,Martin,Westmont,SD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+083953568015,Malin,Höglund,M,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+041911485722,Magdalena,Thuresson,M,208,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+025931369428,Jonas,Andersson,SD,205,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0880137451720,Emma,Nohrén,MP,24,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+099099202224,Paulina,Brandberg,L,0,147.50,MINIMAL_INFLUENCE,NON_BROKER,Minimal network influence detected
+0930305890123,Sara-Lena,Bjälkö,-,205,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0240670797111,Björn,Tidland,SD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0506482805418,Isak,From,S,126,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0440673458216,Ulrika,Liljeberg,C,30,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+0248492534018,Pia,Trollehjelm,SD,186,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0926002991620,Pontus,Andersson Garpvall,SD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0932000030511,Maria,Stockhaus,M,208,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0411459873625,Hanna,Gunnarsson,V,29,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections
+086684470825,Tobias,Andersson,SD,206,147.50,INFLUENTIAL,STRONG_BROKER,Notable influence - top 25% network centrality
+0861521539920,Aron,Emilsson,SD,205,147.50,MODERATELY_INFLUENTIAL,STRONG_BROKER,Standard influence - above median engagement
+0832311880029,Erik,Ottoson,M,207,147.50,HIGHLY_INFLUENTIAL,STRONG_BROKER,High influence - top 10% network connections
+0875221317013,Gunilla,Carlsson,S,127,147.50,LIMITED_INFLUENCE,STRONG_BROKER,Limited influence - below median connections

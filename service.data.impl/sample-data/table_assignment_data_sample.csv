@@ -1,201 +1,501 @@
 hjid,assignment_type,detail,from_date,intressent_id,order_number,org_code,role_code,status,to_date,assignment_list_person_assig_0
-50928,uppdrag,Sammansatta utrikes- och försvarsutskottet,2015-11-17,0973782197017,16,UFöU,Deputerad,"",2015-12-16,50869
-22348,Riksdagsorgan,Valberedningen,2010-10-04,0193378456716,2,VB,Ordförande,"",2014-09-29,22331
-4731,uppdrag,Skatteutskottet,2003-05-05,0773506435611,0,SkU,Suppleant,"",2003-12-19,4726
-18665,uppdrag,Sammansatta utrikes- och försvarsutskottet,1999-03-23,0900533740700,0,UFöU,Suppleant,"",1999-09-13,18636
-7925,kammaruppdrag,Raimo Pärssinen 1992-02-19 - 1992-04-30,1992-02-19,0165732384110,312,kam,Riksdagsledamot,Ledig,1992-04-30,7915
-38365,uppdrag,Konstitutionsutskottet,2023-09-12,0371013828421,0,KU,Extra suppleant,"",2023-10-02,38356
-4715,Riksdagsorgan,Nordiska rådets svenska delegation,2012-10-17,0699506181311,2,NR,Ordförande,"",2013-09-16,4701
-42864,Riksdagsorgan,Ledamotsrådet,2022-10-12,0992473266516,6,LR,Ledamot,"",2026-10-12,42827
-12305,Riksdagsorgan,Nordiska rådets svenska delegation,1997-12-01,0502609471907,0,NR,Suppleant,"",1998-10-05,12293
-14785,Riksdagsorgan,Riksdagens delegation till Interparlamentariska unionen,1994-12-08,0559791876105,0,IPU,Suppleant,"",1998-10-20,14765
-38649,kammaruppdrag,"",2018-09-24,0773497241728,310,kam,Riksdagsledamot,Tjänstgörande,2022-09-26,38647
-2547,uppdrag,Lagutskottet,2002-10-08,0634013303818,0,LU,Ledamot,"",2004-12-31,2540
-49777,uppdrag,Kulturutskottet,2016-08-14,0502688311316,0,KrU,Extra suppleant,"",2017-04-01,49753
-38814,Riksdagsorgan,Valprövningsnämnden,2023-03-23,0506541436524,4,VPN,Ledamot,"",2027-03-23,38785
-28838,uppdrag,Utbildningsutskottet,2020-03-18,0446541913415,100,UbU,Suppleant,"",2022-09-26,28817
-32018,Riksdagsorgan,Riksrevisionens parlamentariska råd,2018-10-09,051870309210,8,RRPR,Ledamot,"",2019-03-31,31992
-45051,uppdrag,Civilutskottet,2020-03-20,0130789484021,305,CU,Suppleant,"",2022-09-26,45041
-46557,uppdrag,Miljö- och jordbruksutskottet,2023-09-29,065701062615,1,MJU,Suppleant,"",2025-12-12,46551
-17740,uppdrag,Näringsutskottet,1998-10-13,0225823431305,0,NU,Suppleant,"",2002-09-30,17732
-32361,Riksdagsorgan,Nordiska rådets svenska delegation,2018-10-09,0238095659621,19,NR,Ledamot,"",2019-10-02,32337
-16322,kammaruppdrag,Eva Julin 1995-10-10 - 1995-11-15,1995-10-10,0817472556307,309,kam,Riksdagsledamot,Ledig,1995-11-15,16313
-4260,uppdrag,Finansutskottet,1994-10-12,0387691310906,0,FiU,Vice ordförande,"",1998-10-04,4244
-38255,uppdrag,Socialutskottet,2018-10-02,0363228965800,14,SoU,Suppleant,"",2022-09-26,38238
-9964,kammaruppdrag,"",1988-10-05,0609514779691,135,kam,Riksdagsledamot,Tjänstgörande,1991-09-30,9962
-53582,uppdrag,Utbildningsutskottet,2020-03-18,0796071663617,313,UbU,Suppleant,"",2022-09-26,53559
-40740,uppdrag,Försvarsutskottet,2020-03-18,0383111552218,237,FöU,Suppleant,"",2020-09-03,40721
-53431,uppdrag,Socialförsäkringsutskottet,2020-03-18,0338088431726,295,SfU,Suppleant,"",2022-09-26,53409
-18251,uppdrag,Utbildningsutskottet,2002-10-15,0185503778507,0,UbU,Suppleant,"",2006-10-02,18243
-15639,uppdrag,Konstitutionsutskottet,1985-09-30,0841802782704,0,KU,Ledamot,"",1988-10-02,15623
-37565,kammaruppdrag,Hannah Bergstedt 2007-08-20 - 2008-03-31,2007-08-20,0911916463828,349,kam,Riksdagsledamot,Ledig,2008-03-31,37555
-42630,uppdrag,Utbildningsutskottet,2022-10-04,0236597884217,2,UbU,Suppleant,"",2025-03-19,42620
-28954,kammaruppdrag,"",2006-10-02,0962841101917,300,kam,Riksdagsledamot,Tjänstgörande,2010-10-04,28949
-52452,kammaruppdrag,"",2022-09-26,0358514648113,269,kam,Riksdagsledamot,Tjänstgörande,2026-09-28,52451
-29211,kammaruppdrag,"",2015-05-31,0397924710612,28,kam,Riksdagsledamot,Tjänstgörande,2017-05-17,29206
-15761,uppdrag,Socialförsäkringsutskottet,1993-03-18,0637482737005,0,SfU,Ledamot,"",1994-10-02,15758
-50327,uppdrag,Justitieutskottet,2020-03-18,019430605328,68,JuU,Suppleant,"",2022-09-26,50316
-42429,kammaruppdrag,"",2010-10-04,0828721176319,160,kam,Riksdagsledamot,Tjänstgörande,2014-09-29,42425
-7871,kammaruppdrag,"",2009-02-02,0959102638818,86,kam,Riksdagsledamot,Tjänstgörande,2010-10-04,7863
-46270,partiuppdrag,Moderaterna,2018-09-24,0128805841317,0,M,Kvittningsperson,"",2022-09-26,46269
-3847,kammaruppdrag,"",1988-10-03,0314386385815,112,kam,Riksdagsledamot,Tjänstgörande,1991-09-30,3844
-25174,uppdrag,Justitieutskottet,2014-10-07,0791649913415,10,JuU,Suppleant,"",2017-11-30,25170
-8187,uppdrag,Sammansatta utrikes- och försvarsutskottet,2004-02-05,0274710563201,0,UFöU,Suppleant,"",2004-02-18,8164
-22240,uppdrag,Sammansatta utrikes- och försvarsutskottet,2016-04-12,088028607414,7,UFöU,Deputerad,"",2016-05-25,22223
-20388,kammaruppdrag,"",2010-10-04,0568055205114,61,kam,Riksdagsledamot,Tjänstgörande,2014-09-29,20387
-20342,uppdrag,Arbetsmarknadsutskottet,2002-10-08,0155044813008,0,AU,Suppleant,"",2003-11-24,20336
-48087,uppdrag,EU-nämnden,2010-10-19,0125036219125,26,EUN,Suppleant,"",2012-09-26,48068
-44788,uppdrag,Försvarsutskottet,2022-10-04,0103624617217,4,FöU,Ordförande,"",2022-10-19,44779
-46251,uppdrag,Utrikesutskottet,2020-03-18,010643534813,263,UU,Suppleant,"",2020-09-03,46231
-17706,uppdrag,Lagutskottet,2002-10-08,019623784404,0,LU,Ledamot,"",2006-10-02,17701
-47392,uppdrag,Skatteutskottet,2025-02-14,0204240926023,9,SkU,Ledamot,"",2026-09-28,47383
-49101,Riksdagsorgan,Nordiska rådets svenska delegation,2014-10-07,0407081382317,12,NR,Suppleant,"",2015-10-01,49064
-14147,uppdrag,Bostadsutskottet,1994-10-12,0277100069203,0,BoU,Ordförande,"",1998-10-04,14137
-17472,kammaruppdrag,"",1985-09-30,0880162479603,0,kam,Riksdagsledamot,Tjänstgörande,1988-10-03,17468
-4406,kammaruppdrag,"",1976-10-04,089241104007,0,kam,Riksdagsledamot,Tjänstgörande,1979-10-01,4400
-38835,uppdrag,Finansutskottet,2020-03-20,0557180142229,283,FiU,Suppleant,"",2022-09-26,38826
-18824,Riksdagsorgan,Styrelsen för Stiftelsen Riksbankens Jubileumsfond,2004-10-28,0853813080501,0,RJ,Vice ordförande,"",2006-10-02,18811
-16264,Riksdagsorgan,Riksbanksfullmäktige,2010-10-19,0552112259207,6,RB,Suppleant,"",2014-10-14,16255
-16459,uppdrag,Näringsutskottet,2003-03-12,0165360915617,0,NU,Suppleant,"",2006-10-02,16444
-33199,uppdrag,Arbetsmarknadsutskottet,2020-03-18,0497217816024,211,AU,Suppleant,"",2022-09-26,33190
-48343,uppdrag,Kulturutskottet,2020-03-19,0542160909628,24,KrU,Suppleant,"",2022-09-26,48325
-10806,kammaruppdrag,"",1976-10-04,0680796436301,0,kam,Riksdagsledamot,Tjänstgörande,1979-10-01,10802
-19002,kammaruppdrag,Ola Rask,2006-05-31,0573273704102,41,kam,Ersättare,Ersättare,2006-08-31,19000
-38360,uppdrag,Konstitutionsutskottet,2023-10-04,0371013828421,0,KU,Extra suppleant,"",2023-10-08,38356
-24508,uppdrag,Konstitutionsutskottet,2014-10-07,0604459858621,17,KU,Ledamot,"",2016-06-28,24483
-32186,uppdrag,Konstitutionsutskottet,2020-03-18,0547805254924,242,KU,Suppleant,"",2020-09-03,32171
-11504,kammaruppdrag,"",1982-10-04,0566638963807,0,kam,Riksdagsledamot,Tjänstgörande,1985-09-30,11499
-47976,Departement,Klimat- och näringslivsdepartementet,2025-06-28,0875693083423,19,KN,Statsråd,"",2025-09-07,47973
-12769,uppdrag,Sammansatta utrikes- och försvarsutskottet,1999-03-23,0283299919701,0,UFöU,Deputerad,"",1999-09-13,12754
-53941,uppdrag,Sammansatta utrikes- och försvarsutskottet,2024-11-05,0227531635413,15,UFöU,Suppleant,"",2024-12-12,53912
-29032,uppdrag,Trafikutskottet,2020-03-18,0363721826713,119,TU,Suppleant,"",2021-09-30,29017
-29719,uppdrag,Civilutskottet,2020-03-18,0308306375022,104,CU,Suppleant,"",2022-09-26,29714
-12848,kammaruppdrag,"",1998-10-05,0508589337602,122,kam,Riksdagsledamot,Tjänstgörande,2002-09-30,12847
-6047,Riksdagsorgan,Utrikesnämnden,2010-10-12,0371688419616,8,UN,Ledamot,"",2012-02-13,6019
-44556,uppdrag,Socialförsäkringsutskottet,2020-02-04,0819601620927,27,SfU,Suppleant,"",2022-09-26,44523
-46146,uppdrag,Arbetsmarknadsutskottet,2014-03-20,014386615025,0,AU,Extra suppleant,"",2014-05-14,46114
-39652,Riksdagsorgan,Krigsdelegationen,2016-03-18,0630824497414,16,KD,Ledamot,"",2018-10-09,39624
-39765,partiuppdrag,Moderaterna,2015-01-10,012053331219,0,M,Partiledare,"",2017-10-01,39764
-50089,uppdrag,Näringsutskottet,2020-03-18,0256716955026,213,NU,Suppleant,"",2022-09-26,50075
-53574,uppdrag,Finansutskottet,2020-03-18,0796071663617,260,FiU,Suppleant,"",2022-09-26,53559
-35717,Departement,Justitiedepartementet,2006-10-06,0956595590924,17,Ju,Statsråd,"",2010-07-06,35711
-44115,kammaruppdrag,"",2018-09-24,0603753860213,258,kam,Riksdagsledamot,Tjänstgörande,2022-09-26,44111
-14406,uppdrag,Sammansatta utrikes- och försvarsutskottet,1995-10-26,0531431759204,0,UFöU,Suppleant,"",1995-12-06,14387
-8591,kammaruppdrag,"",2002-09-30,031414803913,88,kam,Riksdagsledamot,Tjänstgörande,2006-10-02,8583
-39351,uppdrag,Justitieutskottet,2022-10-04,0719332223713,17,JuU,Ledamot,"",2024-03-01,39348
-8321,uppdrag,Utbildningsutskottet,1990-10-02,036360942301,0,UbU,Suppleant,"",1990-10-31,8318
-14986,uppdrag,Bostadsutskottet,1995-10-11,0462541496508,0,BoU,Ledamot,"",1998-10-04,14975
-51016,uppdrag,Justitieutskottet,2020-03-18,028954589415,31,JuU,Suppleant,"",2022-09-26,51005
-27067,uppdrag,Skatteutskottet,2020-11-13,0365696629917,157,SkU,Suppleant,"",2021-09-08,27057
-27458,Riksdagsorgan,Styrelsen för Stiftelsen Riksbankens Jubileumsfond,2008-11-01,0280164118408,2,RJ,Personlig suppleant,"",2010-10-04,27449
-49561,uppdrag,Socialförsäkringsutskottet,2019-06-18,0148424181819,19,SfU,Suppleant,"",2022-09-26,49548
-8667,uppdrag,Lagutskottet,2002-10-15,0324815829026,0,LU,Suppleant,"",2006-10-02,8650
-39964,uppdrag,EU-nämnden,2020-03-18,0166790812128,99,EUN,Suppleant,"",2022-09-26,39938
-27998,kammaruppdrag,"",2010-10-04,0909948830718,302,kam,Riksdagsledamot,Tjänstgörande,2014-09-29,27995
-51248,uppdrag,Utbildningsutskottet,2016-08-01,0866055333028,0,UbU,Extra suppleant,"",2017-01-31,51223
-27196,uppdrag,Sammansatta utrikes- och försvarsutskottet,1996-10-21,0738969851001,0,UFöU,Suppleant,"",1996-11-20,27168
-5895,uppdrag,Försvarsutskottet,1994-10-11,0512357753412,0,FöU,Ledamot,"",1998-10-04,5885
-51903,uppdrag,Konstitutionsutskottet,2020-03-18,0825441263617,233,KU,Suppleant,"",2020-09-03,51882
-47870,uppdrag,Justitieutskottet,2020-03-18,0572788110724,69,JuU,Suppleant,"",2022-09-26,47855
-8643,uppdrag,Näringsutskottet,2003-01-01,0244345953026,0,NU,Suppleant,"",2006-10-02,8638
-28822,kammaruppdrag,"",2010-10-04,0446541913415,35,kam,Riksdagsledamot,Tjänstgörande,2014-09-29,28817
-37859,kammaruppdrag,"",1982-10-04,0446973363306,0,kam,Riksdagsledamot,Tjänstgörande,1985-09-30,37852
-26959,kammaruppdrag,"",2002-09-30,0327857385513,294,kam,Riksdagsledamot,Tjänstgörande,2006-10-02,26956
-44784,kammaruppdrag,"",2006-10-02,0103624617217,204,kam,Riksdagsledamot,Tjänstgörande,2010-10-04,44779
-20535,kammaruppdrag,Anders Ygeman,2014-10-03,0720249554818,50,kam,Statsrådsersättare,Ersättare,2015-09-30,20532
-21147,uppdrag,Miljö- och jordbruksutskottet,2002-10-08,031005479013,0,MJU,Ordförande,"",2002-12-31,21122
-4339,kammaruppdrag,"",1994-10-03,0790996600918,113,kam,Riksdagsledamot,Tjänstgörande,1998-10-05,4337
-25083,uppdrag,Justitieutskottet,2019-01-16,0853831481615,27,JuU,Suppleant,"",2020-01-30,25064
-7006,uppdrag,Näringsutskottet,1993-10-13,0464639640213,0,NU,Suppleant,"",1994-10-02,6994
-43006,uppdrag,Näringsutskottet,2020-03-18,0122987223112,232,NU,Suppleant,"",2022-09-26,42991
-44463,kammaruppdrag,"",2022-09-26,0612916684825,88,kam,Riksdagsledamot,Tjänstgörande,2026-09-28,44460
-10052,kammaruppdrag,"",1993-05-04,0383675638504,208,kam,Riksdagsledamot,Tjänstgörande,1994-10-03,10050
+11596,kammaruppdrag,"",1985-09-30,0213468747208,0,kam,Riksdagsledamot,Tjänstgörande,1988-10-03,11590
+31227,uppdrag,Utbildningsutskottet,2015-09-18,0519542449425,9,UbU,Suppleant,"",2018-09-24,31207
+17470,kammaruppdrag,"",1991-09-30,0880162479603,301,kam,Riksdagsledamot,Tjänstgörande,1991-10-09,17468
+53057,uppdrag,Socialförsäkringsutskottet,2025-12-11,0587736055221,14,SfU,Suppleant,"",2026-09-28,53050
+42554,uppdrag,Näringsutskottet,2020-03-18,0170585430421,267,NU,Suppleant,"",2022-09-26,42541
+10158,kammaruppdrag,"",1976-10-04,0987605799006,0,kam,Riksdagsledamot,Tjänstgörande,1979-10-01,10153
+39115,uppdrag,Näringsutskottet,2020-09-03,0970709885516,141,NU,Suppleant,"",2020-12-15,39104
+51257,uppdrag,Sammansatta utrikes- och försvarsutskottet,2020-03-26,0866055333028,2,UFöU,Suppleant,"",2020-09-13,51223
+42435,uppdrag,Arbetsmarknadsutskottet,2020-03-18,0828721176319,35,AU,Suppleant,"",2022-09-26,42425
+1782,kammaruppdrag,"",2002-09-30,0903751303011,167,kam,Riksdagsledamot,Tjänstgörande,2006-10-02,1780
+18162,kammaruppdrag,Ewa Björling,2008-03-01,0824343942006,144,kam,Statsrådsersättare,Ersättare,2010-10-04,18161
+27502,uppdrag,Trafikutskottet,2020-03-18,025931369428,269,TU,Suppleant,"",2022-09-26,27487
+5245,kammaruppdrag,Cinnika Beiming,2004-01-19,0228907110117,0,kam,Ersättare,Ersättare,2004-03-07,5241
 1335,uppdrag,Justitieutskottet,2002-10-08,0792474127508,0,JuU,Suppleant,"",2006-10-02,1327
-14571,uppdrag,Lagutskottet,2002-10-08,0798631972204,0,LU,Suppleant,"",2006-10-02,14559
-17003,uppdrag,EES-utskottet,1992-05-26,0567842515701,0,EU,Ledamot,"",1993-06-04,16981
-35751,uppdrag,Sammansatta utrikes- och försvarsutskottet,2020-03-26,0956595590924,23,UFöU,Suppleant,"",2020-09-13,35711
-16550,kammaruppdrag,"Margareta Israelsson 1982-10-08 - 1984-10-02, Göran Magnusson 1984-10-03 - 1985-09-30",1982-10-08,0439752610809,0,kam,Riksdagsledamot,Ledig,1985-09-30,16542
-23270,partiuppdrag,Miljöpartiet de gröna,2016-11-01,0157062733618,0,MP,Gruppledare,"",2018-01-15,23265
-28309,uppdrag,Sammansatta utrikes- och försvarsutskottet,2011-03-31,0860429409414,15,UFöU,Deputerad,"",2011-04-01,28256
-11286,Riksdagsorgan,EFTA-delegationen,1988-10-18,0736538502404,0,EFTA,Ledamot,"",1993-10-05,11285
-3974,uppdrag,Utbildningsutskottet,1994-01-27,033486567915,0,UbU,Suppleant,"",1994-10-02,3968
-45438,uppdrag,Försvarsutskottet,2006-05-19,0653904370212,0,FöU,Ledamot,"",2006-10-02,45398
-37652,Riksdagsorgan,Nordiska rådets svenska delegation,2018-10-09,0780214960516,13,NR,Ledamot,"",2019-10-02,37615
-6131,Riksdagsorgan,Riksdagens delegation till Interparlamentariska unionen,2002-02-21,0600928907216,0,IPU,Suppleant,"",2002-12-18,6072
-25258,uppdrag,Utrikesutskottet,2020-03-18,0598792324417,64,UU,Suppleant,"",2020-09-03,25242
-541,uppdrag,Utrikesutskottet,2006-10-10,0502174718806,15,UU,Suppleant,"",2008-04-15,535
-45799,uppdrag,EU-nämnden,2018-10-02,0294138886823,5,EUN,Ledamot,"",2022-10-04,45776
-29947,uppdrag,EU-nämnden,2020-03-18,072019517020,73,EUN,Suppleant,"",2020-05-03,29915
-44618,uppdrag,Utbildningsutskottet,2018-10-02,0940980416614,4,UbU,Suppleant,"",2019-02-13,44592
-50812,uppdrag,Civilutskottet,2011-09-30,0970259744617,7,CU,Ledamot,"",2014-09-29,50778
-4074,kammaruppdrag,"",1994-10-03,07776758016,24,kam,Riksdagsledamot,Tjänstgörande,1998-10-05,4071
-19119,uppdrag,Sammansatta konstitutions- och utrikesutskottet,2001-10-16,0782713019602,0,KUU,Deputerad,"",2001-12-06,19082
-42835,uppdrag,Skatteutskottet,2022-11-09,0992473266516,20,SkU,Suppleant,"",2026-09-28,42827
-8198,uppdrag,Bostadsutskottet,1988-10-03,0274710563201,0,BoU,Ordförande,"",1991-09-29,8164
-49565,uppdrag,Utbildningsutskottet,2020-03-18,0148424181819,251,UbU,Suppleant,"",2022-09-26,49548
-5257,uppdrag,Försvarsutskottet,2003-01-24,0228907110117,0,FöU,Suppleant,"",2003-02-28,5241
-4558,kammaruppdrag,"",1994-10-03,0435526123410,151,kam,Riksdagsledamot,Tjänstgörande,1998-10-05,4555
-47094,uppdrag,Konstitutionsutskottet,2020-03-18,066036027425,44,KU,Suppleant,"",2020-09-03,47074
-44007,uppdrag,EU-nämnden,2023-05-22,0744139167426,74,EUN,Suppleant,"",2024-10-04,43967
-42122,kammaruppdrag,Stefan Löfven,2017-05-29,0559925283228,280,kam,Statsrådsersättare,Ersättare,2017-09-24,42119
-42474,uppdrag,Socialförsäkringsutskottet,2025-02-10,0381853591928,16,SfU,Ledamot,"",2026-09-21,42471
-52949,uppdrag,Försvarsutskottet,2023-11-28,0861521539920,9,FöU,Suppleant,"",2025-02-14,52939
-49506,uppdrag,Försvarsutskottet,2020-09-07,0254021157518,5,FöU,Suppleant,"",2022-09-26,49494
-40790,kammaruppdrag,"",2014-09-29,084624777218,139,kam,Riksdagsledamot,Tjänstgörande,2018-09-24,40787
+23561,kammaruppdrag,"",2007-06-01,0103812031214,274,kam,Riksdagsledamot,Tjänstgörande,2009-04-30,23557
+46914,uppdrag,Kulturutskottet,2025-11-03,094145171913,0,KrU,Extra suppleant,"",2025-12-17,46908
+26894,kammaruppdrag,Johan Hedin,2021-01-01,0249261021627,172,kam,Ersättare,Ersättare,2021-02-28,26892
+50808,uppdrag,Konstitutionsutskottet,2020-03-18,0970259744617,42,KU,Suppleant,"",2020-09-03,50778
+14904,kammaruppdrag,"",1985-09-30,0505931201806,0,kam,Riksdagsledamot,Tjänstgörande,1988-10-03,14900
+53493,kammaruppdrag,"",2025-11-21,0211757295524,203,kam,Riksdagsledamot,Tjänstgörande,2026-09-28,53492
+25282,uppdrag,EU-nämnden,2017-05-04,0600784831409,67,EUN,Suppleant,"",2018-09-24,25277
+30462,uppdrag,Socialförsäkringsutskottet,2018-10-02,0521844714515,8,SfU,Suppleant,"",2021-10-22,30447
+481,uppdrag,"Sammansatta utrikes-, miljö- och jordbruksutskottet",2003-02-18,0761548559113,0,UMJU,Suppleant,"",2003-05-21,461
+18675,Riksdagsorgan,Riksdagens förvaltningskontor,1988-10-11,0900533740700,0,RFK,Suppleant,"",1990-10-03,18636
+24360,uppdrag,Civilutskottet,2020-03-18,0691264514114,137,CU,Suppleant,"",2022-09-26,24352
+1904,uppdrag,Kulturutskottet,2002-10-08,0556854176401,0,KrU,Ledamot,"",2006-10-02,1898
+4442,kammaruppdrag,"",1998-10-05,0489096664719,151,kam,Riksdagsledamot,Tjänstgörande,2002-09-30,4440
+22495,uppdrag,Skatteutskottet,2002-10-08,0658668232410,0,SkU,Suppleant,"",2003-11-23,22474
+5632,Riksdagsorgan,Riksdagens delegation till Interparlamentariska unionen,2004-04-14,0699787174310,0,IPU,Suppleant,"",2006-10-02,5600
+42109,Riksdagsorgan,Krigsdelegationen,2018-10-09,0134101155612,25,KD,Ledamot,"",2022-09-26,42085
+2511,Riksdagsorgan,ESK-delegationen,1994-10-18,0529963707818,0,ESK,Ledamot,"",1994-12-31,2480
+41301,Riksdagsorgan,Riksdagens delegation till Europarådets parlamentariska församling,2018-11-07,0859968278117,1,ER,Vice ordförande,"",2022-09-26,41259
+1600,uppdrag,Arbetsmarknadsutskottet,1998-10-13,0928964569700,0,AU,Vice ordförande,"",2002-09-29,1592
+23749,uppdrag,Socialförsäkringsutskottet,2002-10-15,0275724540919,0,SfU,Suppleant,"",2004-09-13,23735
+28469,uppdrag,Näringsutskottet,2020-03-18,0409540163215,78,NU,Suppleant,"",2022-09-26,28456
+44573,uppdrag,EU-nämnden,2019-08-29,0819601620927,57,EUN,Suppleant,"",2022-10-04,44523
+17608,Riksdagsorgan,Valprövningsnämnden,1998-12-01,0575413157004,0,VPN,Ledamot,"",2002-12-09,17586
+49568,uppdrag,Utrikesutskottet,2020-03-18,0148424181819,249,UU,Suppleant,"",2020-09-03,49548
+45015,uppdrag,Socialutskottet,2010-10-12,0853395328224,2,SoU,Vice ordförande,"",2014-09-29,44993
+10573,kammaruppdrag,"",1978-10-20,0853366412307,0,kam,Riksdagsledamot,Tjänstgörande,1978-12-20,10565
+14396,uppdrag,Justitieutskottet,1994-10-11,0531431759204,0,JuU,Suppleant,"",1995-01-15,14387
+28958,uppdrag,Finansutskottet,2020-03-18,0962841101917,127,FiU,Suppleant,"",2022-09-26,28949
+11213,kammaruppdrag,"",1985-09-30,0252987797901,0,kam,Riksdagsledamot,Tjänstgörande,1988-10-03,11207
+2055,uppdrag,Sammansatta utrikes- och försvarsutskottet,2002-01-17,0262124593702,0,UFöU,Suppleant,"",2002-01-18,2040
+3498,kammaruppdrag,"",1994-10-03,0681085425612,247,kam,Riksdagsledamot,Tjänstgörande,1998-10-05,3495
+30251,uppdrag,Civilutskottet,2020-03-18,0204494765606,89,CU,Suppleant,"",2022-09-26,30245
+49389,Riksdagsorgan,Krigsdelegationen,2010-10-19,0744993950910,17,KD,Ledamot,"",2014-10-14,49329
+5532,kammaruppdrag,Melker Strand 1985-10-15 - 1985-11-15,1985-10-15,0123927542506,0,kam,Riksdagsledamot,Ledig,1985-11-15,5519
+48749,uppdrag,Miljö- och jordbruksutskottet,2020-03-18,0229350341619,242,MJU,Suppleant,"",2022-09-26,48734
+40872,kammaruppdrag,"",2014-09-29,0442629549320,296,kam,Riksdagsledamot,Tjänstgörande,2018-09-24,40867
+26808,uppdrag,Arbetsmarknadsutskottet,1976-10-04,088849148003,0,AU,Ledamot,"",1978-10-03,26784
+30797,uppdrag,Civilutskottet,2020-03-18,0277648711624,135,CU,Suppleant,"",2022-09-26,30790
+53314,Riksdagsorgan,Krigsdelegationen,2024-02-15,0624040854527,50,KD,Ledamot,"",2025-09-28,53287
+6931,kammaruppdrag,"",2010-10-04,0964379974219,82,kam,Riksdagsledamot,Tjänstgörande,2014-09-29,6930
+45148,uppdrag,Näringsutskottet,2022-10-04,0378597308227,13,NU,Ledamot,"",2026-09-28,45145
+5657,kammaruppdrag,"",2002-09-30,0747667590310,261,kam,Riksdagsledamot,Tjänstgörande,2006-10-02,5655
+21861,Riksdagsorgan,Riksdagens delegation till OSSE:s parlamentariska församling,2018-10-09,043972220518,6,OSSE,Ledamot,"",2022-09-26,21830
+44952,uppdrag,Skatteutskottet,2020-03-18,0638497389621,267,SkU,Suppleant,"",2022-09-26,44927
+2879,uppdrag,Socialförsäkringsutskottet,1996-01-22,0875425244515,0,SfU,Ledamot,"",1998-10-04,2864
+52167,Riksdagsorgan,Ledamotsrådet,2022-10-12,0802091197024,4,LR,Ledamot,"",2023-11-08,52159
+25739,uppdrag,Skatteutskottet,2018-10-02,0962410717322,1,SkU,Suppleant,"",2020-09-23,25718
+15954,uppdrag,Kulturutskottet,1985-09-30,0229002789006,0,KrU,Suppleant,"",1988-10-02,15931
+38798,uppdrag,Justitieutskottet,2018-10-02,0506541436524,11,JuU,Suppleant,"",2022-09-26,38785
+31171,uppdrag,Försvarsutskottet,2018-10-02,0468765214727,8,FöU,Suppleant,"",2022-09-26,31165
+50106,uppdrag,EU-nämnden,2020-03-18,0256716955026,250,EUN,Suppleant,"",2022-10-04,50075
+22668,uppdrag,Sammansatta utrikes- och försvarsutskottet,2016-11-15,0558039843819,11,UFöU,Suppleant,"",2016-12-14,22650
+19022,uppdrag,Sammansatta justitie- och socialutskottet,2006-02-09,0573273704102,0,JuSoU,Deputerad,"",2006-04-26,19000
+44120,uppdrag,Socialutskottet,2018-10-02,0603753860213,10,SoU,Ledamot,"",2022-09-26,44111
+6702,Riksdagsorgan,Riksrevisionens styrelse,2003-03-12,0731809135516,0,RRS,Suppleant,"",2006-10-16,6684
+50358,kammaruppdrag,Tobias Billström,2024-09-06,04571388712,8,kam,Statsrådsersättare,Ersättare,2024-09-09,50356
+45971,uppdrag,Näringsutskottet,2010-10-12,0700424025906,15,NU,Ordförande,"",2012-10-03,45954
+51063,uppdrag,Utrikesutskottet,2023-02-08,0331791853028,1,UU,Suppleant,"",2024-09-11,51058
+38829,kammaruppdrag,"",2022-09-26,0557180142229,247,kam,Riksdagsledamot,Tjänstgörande,2026-09-21,38826
+48306,uppdrag,Arbetsmarknadsutskottet,2024-04-02,0301987597720,0,AU,Extra suppleant,"",2024-06-16,48299
+3845,kammaruppdrag,"",1994-10-03,0314386385815,105,kam,Riksdagsledamot,Tjänstgörande,1995-09-30,3844
+21274,uppdrag,Socialutskottet,2003-03-12,0958776965517,0,SoU,Suppleant,"",2006-10-02,21258
+53832,Riksdagsorgan,Riksdagens delegation till parlamentariska Östersjökonferensen,2018-10-24,0831636664429,5,BSPC,Ledamot,"",2018-10-24,53780
+40215,uppdrag,EU-nämnden,2018-01-26,0603490586517,49,EUN,Suppleant,"",2018-10-02,40201
+15109,uppdrag,Socialutskottet,1994-10-11,0332721987700,0,SoU,Suppleant,"",1995-10-10,15100
+53609,uppdrag,Justitieutskottet,2019-06-18,0492644357418,10,JuU,Suppleant,"",2022-09-26,53599
+4870,kammaruppdrag,"",2006-10-02,045666679112,227,kam,Riksdagsledamot,Tjänstgörande,2010-10-04,4868
+47559,uppdrag,Utbildningsutskottet,2023-09-29,0694917698222,9,UbU,Suppleant,"",2025-03-11,47551
+38913,uppdrag,Konstitutionsutskottet,2022-11-16,0639398547124,26,KU,Suppleant,"",2023-04-09,38911
+22591,Riksdagsorgan,Valberedningen,1998-10-05,0584659199514,0,VB,Ledamot,"",2004-04-29,22565
+14671,kammaruppdrag,"",1979-10-01,0126791491904,0,kam,Riksdagsledamot,Tjänstgörande,1982-10-04,14667
+23714,kammaruppdrag,Rebwar Hassan 2012-11-23 - 2013-05-17  Föräldraledighet,2012-11-23,0951854268017,279,kam,Riksdagsledamot,Ledig,2013-05-17,23704
+4247,kammaruppdrag,"",1991-09-30,0387691310906,196,kam,Riksdagsledamot,Tjänstgörande,1994-10-03,4244
+49527,Riksdagsorgan,Nordiska rådets svenska delegation,2025-10-15,0254021157518,15,NR,Suppleant,"",2026-10-31,49494
+22799,Riksdagsorgan,Nordiska rådets svenska delegation,2019-10-02,0752691002718,3,NR,Ledamot,"",2020-10-14,22753
+20443,kammaruppdrag,"",1982-10-04,0117814135893,0,kam,Riksdagsledamot,Tjänstgörande,1985-09-30,20439
+38641,kammaruppdrag,Ellen Juntti,2024-01-15,0163772273014,298,kam,Ersättare,Ersättare,2024-04-12,38640
+19752,kammaruppdrag,"",1976-10-04,0205437173407,0,kam,Riksdagsledamot,Tjänstgörande,1979-10-01,19748
+33141,uppdrag,Utrikesutskottet,2020-03-18,0364687971222,107,UU,Suppleant,"",2020-09-03,33116
+44961,uppdrag,Utrikesutskottet,2014-10-07,0638497389621,6,UU,Ledamot,"",2016-09-27,44927
+12868,kammaruppdrag,"",1991-09-30,0695579897102,145,kam,Riksdagsledamot,Tjänstgörande,1994-10-03,12865
+21506,kammaruppdrag,"",2017-10-16,0251617324715,79,kam,Riksdagsledamot,Tjänstgörande,2017-10-18,21504
+20597,uppdrag,Konstitutionsutskottet,2002-10-08,0161597857912,0,KU,Suppleant,"",2006-01-17,20563
+23218,uppdrag,Utrikesutskottet,2020-03-18,0455086201022,268,UU,Suppleant,"",2020-09-03,23199
+5093,kammaruppdrag,"",1994-10-03,0476457225115,190,kam,Riksdagsledamot,Tjänstgörande,1998-10-05,5088
+13363,uppdrag,Socialutskottet,1998-10-20,0336920874106,0,SoU,Suppleant,"",2002-09-20,13353
+39643,uppdrag,Socialutskottet,2010-10-12,0630824497414,1,SoU,Ledamot,"",2010-11-01,39624
+2845,kammaruppdrag,"",1994-05-30,0751995030915,170,kam,Riksdagsledamot,Tjänstgörande,1994-10-03,2844
+51243,uppdrag,Konstitutionsutskottet,2020-03-18,0866055333028,31,KU,Suppleant,"",2020-09-03,51223
+48130,uppdrag,EU-nämnden,2020-03-18,0506482805418,210,EUN,Suppleant,"",2022-10-04,48103
+48598,uppdrag,Utrikesutskottet,2020-03-18,023767922422,99,UU,Suppleant,"",2020-09-03,48563
+3403,kammaruppdrag,Annika Jonsell 1995-01-10 - 1995-10-09,1995-01-10,012855230311,226,kam,Riksdagsledamot,Ledig,1995-10-09,3399
+1442,kammaruppdrag,"",1991-09-30,0209004049600,151,kam,Riksdagsledamot,Tjänstgörande,1994-10-03,1441
+18079,kammaruppdrag,Lars-Olof Karlsson 1993-10-25 - 1993-11-26,1993-10-25,0610573125306,239,kam,Riksdagsledamot,Ledig,1993-11-26,18074
+12828,kammaruppdrag,"",1988-10-03,0519019074802,302,kam,Riksdagsledamot,Tjänstgörande,1990-11-11,12821
+29047,uppdrag,EU-nämnden,2021-09-17,0363721826713,159,EUN,Suppleant,"",2021-09-30,29017
+54020,uppdrag,Försvarsutskottet,2025-02-14,0930305890123,5,FöU,Suppleant,"",2025-03-14,54008
+6722,kammaruppdrag,Inger Lundberg,2001-03-26,0919509837117,269,kam,Ersättare,Ersättare,2001-04-29,6721
+2349,uppdrag,Finansutskottet,1994-10-11,0987224899103,0,FiU,Suppleant,"",1996-11-26,2338
+43307,uppdrag,Utrikesutskottet,2024-04-11,0983984918111,10,UU,Suppleant,"",2026-09-28,43285
+52958,uppdrag,Näringsutskottet,2020-03-18,0861521539920,251,NU,Suppleant,"",2022-09-26,52939
+25831,uppdrag,Konstitutionsutskottet,2022-10-12,0951905661227,20,KU,Suppleant,"",2026-09-21,25827
+37833,uppdrag,Kulturutskottet,2006-10-24,0745594497101,0,KrU,Suppleant,"",2009-01-31,37829
+7151,uppdrag,Trafikutskottet,1982-10-04,0637939864601,0,TU,Suppleant,"",1985-09-29,7136
+19015,uppdrag,Konstitutionsutskottet,2005-01-01,0573273704102,0,KU,Suppleant,"",2006-10-02,19000
+26154,Riksdagsorgan,Valprövningsnämnden,2007-01-18,0361652802700,1,VPN,Ledamot,"",2011-04-05,26145
+29505,uppdrag,Sammansatta utrikes- och försvarsutskottet,2013-02-21,0843345349823,3,UFöU,Suppleant,"",2013-03-06,29471
+51959,uppdrag,Finansutskottet,2020-03-20,0452755722723,273,FiU,Suppleant,"",2022-09-26,51945
 25832,uppdrag,Socialutskottet,2022-10-04,0951905661227,14,SoU,Suppleant,"",2023-08-31,25827
-13273,kammaruppdrag,"",1993-05-10,0997350894105,0,kam,Riksdagsledamot,Tjänstgörande,1993-05-31,13270
-28797,uppdrag,Utrikesutskottet,2010-10-12,0285631067215,15,UU,Suppleant,"",2014-09-29,28771
-1190,Riksdagsorgan,Riksdagens delegation till OSSE:s parlamentariska församling,2010-10-19,0251564185908,8,OSSE,Suppleant,"",2014-09-29,1169
-11040,uppdrag,Socialförsäkringsutskottet,1988-10-11,0830987619206,0,SfU,Suppleant,"",1991-09-29,11034
-48588,uppdrag,Miljö- och jordbruksutskottet,2020-03-18,023767922422,101,MJU,Suppleant,"",2022-09-26,48563
-40169,uppdrag,Näringsutskottet,2018-10-02,0499755198526,3,NU,Ledamot,"",2022-09-26,40163
-22337,uppdrag,Skatteutskottet,2015-12-10,0193378456716,25,SkU,Suppleant,"",2016-03-03,22331
-27615,uppdrag,Sammansatta utrikes- och försvarsutskottet,2013-11-26,0352254228107,11,UFöU,Suppleant,"",2013-12-17,27594
-53707,kammaruppdrag,Daniel Bäckström,2024-01-01,0287315215921,163,kam,Ersättare,Ersättare,2024-05-31,53705
-15713,kammaruppdrag,"Gerd Engman 1985-10-01 - 1985-10-14, Erkki Tammenoksa 1985-10-15 - 1988-10-03",1985-10-01,0334042720405,0,kam,Riksdagsledamot,Ledig,1988-10-03,15703
-29367,kammaruppdrag,"",2009-01-02,0878075468027,92,kam,Riksdagsledamot,Tjänstgörande,2009-09-13,29356
-11614,Riksdagsorgan,Riksdagens delegation till Europarådets parlamentariska församling,1992-04-09,0213468747208,0,ER,Ledamot,"",1993-11-23,11590
-34676,uppdrag,Arbetsmarknadsutskottet,2024-01-17,0307835692938,27,AU,Suppleant,"",2024-06-23,34674
-17408,kammaruppdrag,"",2002-01-14,0480182220803,314,kam,Riksdagsledamot,Tjänstgörande,2002-09-30,17407
-5220,kammaruppdrag,"",1995-11-01,0115057914316,328,kam,Riksdagsledamot,Tjänstgörande,1998-10-05,5213
-19991,Riksdagsorgan,Ledamotsrådet,2013-04-25,0116084827614,3,LR,Suppleant,"",2014-09-29,19974
-30249,uppdrag,Kulturutskottet,2018-10-02,0204494765606,9,KrU,Ledamot,"",2022-09-26,30245
-46688,uppdrag,Finansutskottet,2020-09-22,0947572086414,121,FiU,Suppleant,"",2021-03-31,46677
-35752,uppdrag,EU-nämnden,2019-02-14,0956595590924,30,EUN,Suppleant,"",2022-10-04,35711
-35661,kammaruppdrag,"",2016-01-05,0150118366721,149,kam,Riksdagsledamot,Tjänstgörande,2018-09-24,35658
-29721,uppdrag,Justitieutskottet,2020-03-18,0308306375022,107,JuU,Suppleant,"",2022-09-26,29714
-10616,uppdrag,Försvarsutskottet,1994-10-12,0275356156309,0,FöU,Ordförande,"",1998-10-04,10608
-29297,uppdrag,Finansutskottet,2002-10-08,0893004490313,0,FiU,Suppleant,"",2005-10-26,29266
-23650,uppdrag,Trafikutskottet,2014-11-25,0936723349517,27,TU,Suppleant,"",2015-01-31,23642
-32250,uppdrag,Skatteutskottet,2020-03-18,0267085997926,186,SkU,Suppleant,"",2021-09-02,32239
-29989,uppdrag,Finansutskottet,2010-11-26,0132698667318,23,FiU,Suppleant,"",2012-04-12,29982
-53120,uppdrag,Socialutskottet,2012-09-06,0229760896014,11,SoU,Ledamot,"",2012-09-18,53090
-39581,uppdrag,EU-nämnden,2018-10-09,069436402021,25,EUN,Suppleant,"",2019-02-14,39555
-17760,uppdrag,Sammansatta utrikes- och försvarsutskottet,2002-05-31,0457213878205,0,UFöU,Suppleant,"",2002-06-12,17746
-33121,uppdrag,Arbetsmarknadsutskottet,2021-09-17,0364687971222,7,AU,Ledamot,"",2022-09-26,33116
-45836,uppdrag,Utbildningsutskottet,2020-03-18,0199751900210,141,UbU,Suppleant,"",2022-09-26,45818
-26047,kammaruppdrag,"",1994-10-03,0764840691205,145,kam,Riksdagsledamot,Tjänstgörande,1998-10-05,26045
-46577,uppdrag,Miljö- och jordbruksutskottet,2017-03-03,065701062615,6,MJU,Suppleant,"",2017-06-07,46551
-46579,uppdrag,Miljö- och jordbruksutskottet,2014-10-07,065701062615,6,MJU,Suppleant,"",2017-03-02,46551
-18453,kammaruppdrag,"",2002-09-30,0708483204009,339,kam,Riksdagsledamot,Tjänstgörande,2006-10-02,18452
-5622,uppdrag,Sammansatta utrikes- och försvarsutskottet,2006-05-18,0699787174310,0,UFöU,Deputerad,"",2006-06-14,5600
-33060,uppdrag,EU-nämnden,2010-10-19,0516528386117,10,EUN,Suppleant,"",2013-06-16,33025
-32204,uppdrag,Justitieutskottet,2020-03-18,0322827326923,106,JuU,Suppleant,"",2022-09-26,32199
-18938,uppdrag,Bostadsutskottet,1994-10-11,0117613859601,0,BoU,Ledamot,"",1998-10-04,18927
-51429,Riksdagsorgan,Ledamotsrådet,2019-03-27,0667220767927,1,LR,Ledamot,"",2022-10-10,51383
-28774,kammaruppdrag,"",2010-10-04,0285631067215,315,kam,Riksdagsledamot,Tjänstgörande,2014-09-29,28771
-28471,uppdrag,Skatteutskottet,2020-03-18,0409540163215,79,SkU,Suppleant,"",2022-09-26,28456
-20558,Riksdagsorgan,Styrelsen för Stiftelsen Riksbankens Jubileumsfond,2004-11-01,0720249554818,0,RJ,Personlig suppleant,"",2006-10-02,20532
-52814,uppdrag,Sammansatta justitie- och socialutskottet,2008-01-29,0105632258713,0,JuSoU,Suppleant,"",2008-03-14,52779
-48084,uppdrag,Miljö- och jordbruksutskottet,2006-10-10,0125036219125,0,MJU,Suppleant,"",2007-10-25,48068
-31211,uppdrag,Arbetsmarknadsutskottet,2020-03-18,0519542449425,107,AU,Suppleant,"",2022-09-26,31207
-47933,uppdrag,Miljö- och jordbruksutskottet,2020-03-18,0108109641223,40,MJU,Suppleant,"",2022-09-26,47911
-42125,kammaruppdrag,"",2013-01-01,0559925283228,24,kam,Riksdagsledamot,Tjänstgörande,2014-09-29,42119
-21360,uppdrag,Trafikutskottet,1993-02-18,0573136138218,0,TU,Suppleant,"",1994-10-02,21330
-24496,uppdrag,Miljö- och jordbruksutskottet,2020-03-18,0604459858621,156,MJU,Suppleant,"",2022-09-26,24483
-48965,uppdrag,Justitieutskottet,2002-10-08,0224712677012,0,JuU,Ordförande,"",2006-10-02,48915
-49839,uppdrag,Utbildningsutskottet,2020-03-18,0720250789315,195,UbU,Suppleant,"",2022-09-26,49818
-15460,uppdrag,Utbildningsutskottet,1994-10-11,0455181302203,0,UbU,Suppleant,"",1996-02-22,15457
-38364,uppdrag,Justitieutskottet,2023-09-12,0371013828421,0,JuU,Extra suppleant,"",2023-10-02,38356
-7710,kammaruppdrag,"",1998-10-05,0864542495614,275,kam,Riksdagsledamot,Tjänstgörande,2002-09-30,7702
-48105,kammaruppdrag,"",2022-09-26,0506482805418,205,kam,Riksdagsledamot,Tjänstgörande,2026-09-28,48103
+29508,uppdrag,Sammansatta utrikes- och försvarsutskottet,2011-09-20,0843345349823,7,UFöU,Deputerad,"",2011-09-21,29471
+45973,uppdrag,Finansutskottet,2002-10-08,0700424025906,0,FiU,Ledamot,"",2006-10-02,45954
+41408,uppdrag,Civilutskottet,2020-03-18,0121939297619,171,CU,Suppleant,"",2022-09-26,41399
+24039,uppdrag,Utrikesutskottet,2006-10-10,0901257862125,14,UU,Ledamot,"",2010-10-04,24029
+1953,uppdrag,"Sammansatta utrikes-, miljö- och jordbruksutskottet",2003-02-18,0667054859301,0,UMJU,Deputerad,"",2003-05-21,1931
+15820,uppdrag,Socialutskottet,1998-10-13,027112189005,0,SoU,Ledamot,"",2002-09-30,15816
+46184,Riksdagsorgan,Krigsdelegationen,2010-10-19,0791786201912,18,KD,Ledamot,"",2014-10-14,46165
+28862,uppdrag,Sammansatta utrikes- och försvarsutskottet,2015-05-19,0446541913415,14,UFöU,Ordförande,"",2015-06-16,28817
+13258,Riksdagsorgan,EES-EFTA delegationen,1994-10-11,0719430958705,0,EES,Suppleant,"",1994-12-31,13228
+51085,Riksdagsorgan,Riksdagens delegation till Interparlamentariska unionen,2025-09-16,0331791853028,4,IPU,Ledamot,"",2026-10-26,51058
+14626,kammaruppdrag,Jan-Erik Wikström,1978-03-07,0972391843904,0,kam,Ersättare,Ersättare,1978-09-30,14623
+24110,uppdrag,Finansutskottet,2020-03-18,0306286538528,265,FiU,Suppleant,"",2022-09-26,24105
+52224,kammaruppdrag,"",2018-03-22,0296384583518,343,kam,Riksdagsledamot,Tjänstgörande,2018-09-24,52221
+1022,uppdrag,Konstitutionsutskottet,1988-10-11,0874604979107,0,KU,Suppleant,"",1991-09-29,1007
+2878,uppdrag,Socialförsäkringsutskottet,1998-10-05,0875425244515,0,SfU,Ledamot,"",2002-09-29,2864
+46182,Riksdagsorgan,Riksbanksfullmäktige,2019-01-30,0791786201912,9,RB,Suppleant,"",2022-10-09,46165
+13610,uppdrag,Justitieutskottet,1988-10-11,0683260207407,0,JuU,Ledamot,"",1991-09-29,13592
+42124,kammaruppdrag,Ylva Johansson,2014-10-03,0559925283228,81,kam,Statsrådsersättare,Ersättare,2015-09-30,42119
+19479,Riksdagsorgan,Nordiska rådets svenska delegation,2002-10-15,0810673119603,0,NR,Ledamot,"",2006-10-02,19459
+32992,uppdrag,Civilutskottet,2006-10-10,0585684563812,25,CU,Ledamot,"",2009-02-09,32977
+30178,Riksdagsorgan,Riksdagens delegation till Natos parlamentariska församling,2014-10-28,0173946230722,1,NATO,Suppleant,"",2016-10-18,30167
+15142,kammaruppdrag,Johan Linander,2008-02-04,0631251014601,259,kam,Ersättare,Ersättare,2008-06-27,15141
+30548,Riksdagsorgan,Nordiska rådets svenska delegation,2012-10-04,0671241874717,7,NR,Ledamot,"",2013-09-16,30513
+43905,uppdrag,Sammansatta utrikes- och försvarsutskottet,2020-03-26,049290762318,11,UFöU,Deputerad,"",2020-09-13,43878
+31598,uppdrag,Socialförsäkringsutskottet,1988-10-11,0653617472000,0,SfU,Suppleant,"",1991-09-29,31590
+36841,uppdrag,Miljö- och jordbruksutskottet,2020-03-18,0481460392727,247,MJU,Suppleant,"",2022-09-26,36829
+2173,uppdrag,Sammansatta konstitutions- och utrikesutskottet,2003-02-18,0857394544302,0,KUU,Suppleant,"",2003-11-20,2157
+22627,uppdrag,Trafikutskottet,1998-10-13,0975579292417,0,TU,Ledamot,"",2002-09-30,22609
+18279,uppdrag,Sammansatta utrikes- och försvarsutskottet,2002-05-31,0209063197208,0,UFöU,Deputerad,"",2002-06-12,18258
+48916,Departement,Utbildningsdepartementet,2024-09-10,0224712677012,6,U,Utbildningsminister,"",2025-06-27,48915
+2652,kammaruppdrag,"",2002-09-30,0926555793514,298,kam,Riksdagsledamot,Tjänstgörande,2006-10-02,2651
+11972,Riksdagsorgan,Riksdagens förvaltningskontor,1991-01-01,0288448506702,0,RFK,Ledamot,"",1998-10-05,11954
+48471,Riksdagsorgan,Utrikesnämnden,2002-10-08,0714307225418,0,UN,Ledamot,"",2004-10-31,48435
+20995,uppdrag,Justitieutskottet,1990-05-04,0144653147601,0,JuU,Ledamot,"",1990-10-03,20989
+42890,uppdrag,Näringsutskottet,2020-03-18,0875221317013,162,NU,Suppleant,"",2022-09-26,42872
+39286,Riksdagsorgan,Riksdagens delegation till OSSE:s parlamentariska församling,2014-10-14,0772402807013,6,OSSE,Suppleant,"",2018-10-09,39236
+27688,uppdrag,Konstitutionsutskottet,1988-10-11,0262017901513,0,KU,Suppleant,"",1988-10-27,27661
+11463,uppdrag,Miljö- och jordbruksutskottet,2004-04-23,0281408160607,0,MJU,Suppleant,"",2004-07-03,11455
+24011,Riksdagsorgan,Krigsdelegationen,2012-05-08,0788526088220,49,KD,Ledamot,"",2014-10-14,23993
+12833,uppdrag,Utrikesutskottet,1991-10-08,0519019074802,0,UU,Suppleant,"",1994-10-02,12821
+41386,Departement,Landsbygds- och infrastrukturdepartementet,2024-09-10,0168348837024,17,LI,Landsbygdsminister,"",2025-06-27,41383
+20320,uppdrag,Miljö- och jordbruksutskottet,1991-10-08,0137934715906,0,MJU,Suppleant,"",1994-10-02,20312
+30817,uppdrag,Sammansatta utrikes- och försvarsutskottet,2016-11-15,0277648711624,12,UFöU,Suppleant,"",2016-12-14,30790
+21442,kammaruppdrag,"",1999-10-15,0232236105111,149,kam,Riksdagsledamot,Tjänstgörande,2002-09-30,21441
+20672,uppdrag,Näringsutskottet,2014-10-07,0192918410514,4,NU,Suppleant,"",2018-09-24,20668
+24828,uppdrag,Utrikesutskottet,2014-06-24,0280087199210,14,UU,Ledamot,"",2014-09-29,24823
+44670,uppdrag,Arbetsmarknadsutskottet,2021-10-13,0692076685824,324,AU,Suppleant,"",2022-09-26,44657
+53410,kammaruppdrag,"",2023-04-01,0338088431726,74,kam,Riksdagsledamot,Tjänstgörande,2026-09-28,53409
+53985,uppdrag,Finansutskottet,2020-03-18,0838085832923,67,FiU,Suppleant,"",2022-09-26,53977
+41443,uppdrag,Justitieutskottet,2022-10-04,075747847023,8,JuU,Suppleant,"",2026-09-21,41434
+29819,uppdrag,Socialutskottet,2020-03-18,0216534495014,229,SoU,Suppleant,"",2022-09-26,29805
+44733,uppdrag,Konstitutionsutskottet,2020-03-18,0766496753128,93,KU,Suppleant,"",2020-09-03,44703
+48436,partiuppdrag,Socialdemokraterna,2010-10-04,0714307225418,0,S,Gruppledare,"",2011-04-12,48435
+9085,uppdrag,Bostadsutskottet,1988-10-11,0144891150008,0,BoU,Suppleant,"",1991-09-29,9070
+1502,Riksdagsorgan,Riksdagens delegation till Interparlamentariska unionen,1995-11-22,0512424416400,0,IPU,Suppleant,"",1998-10-20,1476
+41653,Riksdagsorgan,Styrelsen för Stiftelsen Riksbankens Jubileumsfond,2024-11-01,025877594729,2,RJ,Personlig suppleant,"",2028-10-31,41628
+46121,kammaruppdrag,Josefin Brink,2013-02-13,014386615025,208,kam,Ersättare,Ersättare,2013-04-30,46114
+40591,kammaruppdrag,"",2006-10-02,0476336341120,291,kam,Riksdagsledamot,Tjänstgörande,2008-10-31,40571
+40890,uppdrag,Konstitutionsutskottet,2020-03-18,0442629549320,134,KU,Suppleant,"",2020-09-03,40867
+29679,uppdrag,Civilutskottet,2007-08-23,012576033427,0,CU,Suppleant,"",2008-03-31,29644
+2983,Departement,Utbildningsdepartementet,2007-01-01,0980725315516,0,U,Utbildningsminister,"",2007-09-10,2981
+25967,kammaruppdrag,"",2017-06-02,0271543079118,122,kam,Riksdagsledamot,Tjänstgörande,2018-09-24,25966
+11858,uppdrag,Försvarsutskottet,1988-11-07,0145888252000,0,FöU,Suppleant,"",1991-09-29,11831
+18096,uppdrag,Sammansatta utrikes- och försvarsutskottet,2004-10-19,0610573125306,0,UFöU,Suppleant,"",2004-12-15,18074
+49877,uppdrag,Näringsutskottet,2020-03-18,0980092192122,96,NU,Suppleant,"",2020-10-23,49829
+33663,kammaruppdrag,"",1981-03-15,0859925892507,0,kam,Riksdagsledamot,Tjänstgörande,1981-11-12,33651
+17527,uppdrag,EU-nämnden,2018-05-01,0114869877121,5,EUN,Ledamot,"",2018-05-14,17520
+20483,uppdrag,Socialförsäkringsutskottet,2014-10-07,0196077326617,9,SfU,Ledamot,"",2018-09-24,20460
+51070,uppdrag,Miljö- och jordbruksutskottet,2018-10-02,0331791853028,5,MJU,Suppleant,"",2022-09-26,51058
+2433,uppdrag,Lagutskottet,1999-10-21,0479355987014,0,LU,Suppleant,"",2001-03-22,2412
+52060,uppdrag,Kulturutskottet,1995-01-19,0888530335200,0,KrU,Suppleant,"",1998-10-04,52046
+25422,uppdrag,Socialutskottet,2018-03-09,0716036604716,10,SoU,Suppleant,"",2018-09-24,25418
+43315,uppdrag,Miljö- och jordbruksutskottet,2010-10-12,0983984918111,2,MJU,Ledamot,"",2010-10-12,43285
+17669,uppdrag,Försvarsutskottet,1998-10-13,0996403729104,0,FöU,Vice ordförande,"",2002-09-30,17662
+50236,uppdrag,Kulturutskottet,2022-01-28,0502490570219,2,KrU,Ledamot,"",2022-02-03,50220
+38937,uppdrag,Kulturutskottet,2020-03-18,0132818093422,124,KrU,Suppleant,"",2022-09-26,38921
+30662,uppdrag,Utbildningsutskottet,2020-03-18,0495218011521,117,UbU,Suppleant,"",2021-09-02,30648
+45054,uppdrag,Kulturutskottet,2020-03-18,0130789484021,281,KrU,Suppleant,"",2022-09-26,45041
+26969,uppdrag,Konstitutionsutskottet,1996-02-06,0327857385513,0,KU,Suppleant,"",1996-02-29,26956
+44376,uppdrag,Näringsutskottet,1991-10-08,0919710128803,0,NU,Suppleant,"",1994-10-02,44367
+29376,uppdrag,Finansutskottet,2020-03-18,0878075468027,167,FiU,Suppleant,"",2022-09-26,29356
+49444,uppdrag,Försvarsutskottet,2020-03-18,0852475703226,225,FöU,Suppleant,"",2020-09-03,49425
+45924,kammaruppdrag,"",2014-09-29,0495314169413,256,kam,Riksdagsledamot,Tjänstgörande,2015-09-27,45921
+14149,uppdrag,Bostadsutskottet,1991-09-30,0277100069203,0,BoU,Ledamot,"",1994-10-02,14137
+7655,uppdrag,Skatteutskottet,1998-10-13,0824721092613,0,SkU,Suppleant,"",2002-09-30,7642
+38626,uppdrag,Konstitutionsutskottet,2020-03-18,0779329190517,56,KU,Suppleant,"",2020-09-03,38605
+42886,uppdrag,Civilutskottet,2020-03-18,0875221317013,159,CU,Suppleant,"",2022-09-26,42872
+30895,kammaruppdrag,"",2014-12-22,0574355225922,223,kam,Riksdagsledamot,Tjänstgörande,2018-09-24,30894
+47577,uppdrag,EU-nämnden,2020-03-18,0694917698222,297,EUN,Suppleant,"",2022-10-04,47551
+3580,uppdrag,Sammansatta utrikes- och försvarsutskottet,2009-11-12,087735695612,2,UFöU,Deputerad,"",2009-12-09,3567
+45442,uppdrag,Sammansatta utrikes- och försvarsutskottet,2006-05-18,0653904370212,0,UFöU,Suppleant,"",2006-06-14,45398
+30293,uppdrag,Justitieutskottet,2020-03-18,089246126523,154,JuU,Suppleant,"",2022-09-26,30286
+1983,uppdrag,Socialutskottet,1998-10-13,0654974921901,0,SoU,Ledamot,"",2000-09-19,1979
+24210,uppdrag,Arbetsmarknadsutskottet,2020-03-18,0884738092723,130,AU,Suppleant,"",2022-09-26,24204
+15057,uppdrag,Konstitutionsutskottet,1996-09-24,0235331390700,0,KU,Suppleant,"",1996-11-08,15050
+38378,uppdrag,Civilutskottet,2020-03-18,0860364634014,194,CU,Suppleant,"",2022-09-26,38371
+53054,kammaruppdrag,"",2018-09-24,0587736055221,221,kam,Riksdagsledamot,Tjänstgörande,2022-09-26,53050
+43499,uppdrag,Utrikesutskottet,2006-10-10,0257612529618,9,UU,Ledamot,"",2010-10-04,43468
+40937,kammaruppdrag,"",2018-09-24,0468956880528,296,kam,Riksdagsledamot,Tjänstgörande,2022-09-26,40935
+28972,uppdrag,Näringsutskottet,2018-10-02,0962841101917,17,NU,Ledamot,"",2019-03-14,28949
+22821,kammaruppdrag,John Skoglund 2015-10-29 - 2015-12-07  Sjukledighet,2015-10-29,0205360448417,160,kam,Riksdagsledamot,Ledig,2015-12-07,22819
+40133,kammaruppdrag,"",2011-08-16,0973474532717,108,kam,Riksdagsledamot,Tjänstgörande,2014-09-29,40121
+24758,uppdrag,EU-nämnden,2014-10-14,0236051814311,33,EUN,Suppleant,"",2018-09-24,24735
+48704,uppdrag,Justitieutskottet,2018-10-02,0803753212716,5,JuU,Suppleant,"",2019-06-18,48681
+25111,uppdrag,Trafikutskottet,2022-01-24,0503363679811,0,TU,Extra suppleant,"",2022-09-26,25106
+48685,kammaruppdrag,"",2014-09-29,0803753212716,13,kam,Riksdagsledamot,Tjänstgörande,2018-09-24,48681
+34734,uppdrag,EU-nämnden,2020-12-01,0760500234712,3,EUN,Suppleant,"",2021-09-02,34709
+46248,uppdrag,Utbildningsutskottet,2020-03-18,010643534813,264,UbU,Suppleant,"",2022-09-26,46231
+2139,uppdrag,Bostadsutskottet,2005-04-06,0702674089702,0,BoU,Ledamot,"",2006-10-02,2133
+50099,uppdrag,Arbetsmarknadsutskottet,2014-10-07,0256716955026,3,AU,Suppleant,"",2018-09-24,50075
+45243,uppdrag,Trafikutskottet,2020-03-18,065105536026,198,TU,Suppleant,"",2022-09-26,45224
+37379,uppdrag,Kulturutskottet,2020-03-18,0281670919717,271,KrU,Suppleant,"",2022-09-26,37370
+6950,uppdrag,Miljö- och jordbruksutskottet,2006-10-10,0154189076919,17,MJU,Ledamot,"",2010-10-04,6945
+926,uppdrag,Skatteutskottet,1982-10-04,0537484650407,0,SkU,Ledamot,"",1985-09-29,903
+9402,uppdrag,Skatteutskottet,2011-11-22,0950559490627,0,SkU,Extra suppleant,"",2012-02-04,9396
+7117,uppdrag,Trafikutskottet,1991-10-08,0422439378601,0,TU,Suppleant,"",1994-10-02,7104
+38515,uppdrag,Försvarsutskottet,2020-03-20,0526748040023,297,FöU,Suppleant,"",2020-09-03,38493
+19114,uppdrag,Sammansatta utrikes- och försvarsutskottet,2002-12-03,0782713019602,0,UFöU,Deputerad,"",2002-12-18,19082
+42780,kammaruppdrag,Sara Gille,2023-01-18,0998575875190,74,kam,Ersättare,Ersättare,2023-03-31,42777
+39575,uppdrag,Arbetsmarknadsutskottet,2010-10-12,069436402021,1,AU,Ordförande,"",2012-06-18,39555
+29929,uppdrag,Justitieutskottet,2020-03-18,072019517020,30,JuU,Suppleant,"",2020-05-03,29915
+28633,Riksdagsorgan,Riksdagens råd för Riksrevisionen,2022-01-27,0136310791918,1,RRR,Ordförande,"",2022-09-26,28632
+46571,uppdrag,Försvarsutskottet,2020-03-20,065701062615,317,FöU,Suppleant,"",2020-09-03,46551
+53806,uppdrag,Trafikutskottet,2020-03-18,0831636664429,283,TU,Suppleant,"",2022-09-26,53780
+51545,kammaruppdrag,"",2010-10-04,0155487380917,83,kam,Riksdagsledamot,Tjänstgörande,2014-09-29,51539
+28966,uppdrag,Trafikutskottet,2020-03-18,0962841101917,125,TU,Suppleant,"",2022-09-26,28949
+33212,uppdrag,Konstitutionsutskottet,2020-03-18,0497217816024,190,KU,Suppleant,"",2020-09-03,33190
+12102,kammaruppdrag,Eva Thede 1998-04-03 - 1998-05-06,1998-04-03,0366609643504,175,kam,Riksdagsledamot,Ledig,1998-05-06,12100
+11484,kammaruppdrag,"",1988-10-03,0306428620407,133,kam,Riksdagsledamot,Tjänstgörande,1991-09-30,11482
+10610,kammaruppdrag,"",1991-09-30,0275356156309,224,kam,Riksdagsledamot,Tjänstgörande,1994-10-03,10608
+43617,uppdrag,Utbildningsutskottet,2022-10-04,0184968091618,16,UbU,Suppleant,"",2026-09-21,43611
+6525,uppdrag,Miljö- och jordbruksutskottet,2001-10-19,0299768872013,0,MJU,Ledamot,"",2002-09-29,6521
+44540,uppdrag,Skatteutskottet,2024-01-01,0819601620927,16,SkU,Ledamot,"",2026-09-28,44523
+1728,Riksdagsorgan,Nordiska rådets svenska delegation,2013-09-17,0409551181119,20,NR,Ledamot,"",2014-09-29,1720
+52508,kammaruppdrag,"",2022-09-26,0932000030511,52,kam,Riksdagsledamot,Tjänstgörande,2026-09-28,52507
+28849,uppdrag,Sammansatta utrikes- och försvarsutskottet,2021-11-11,0446541913415,23,UFöU,Suppleant,"",2021-12-15,28817
+23620,uppdrag,EU-nämnden,2014-10-07,067992138910,8,EUN,Suppleant,"",2016-03-18,23590
+43453,uppdrag,Socialförsäkringsutskottet,2022-10-04,0371882294919,9,SfU,Suppleant,"",2023-09-20,43448
+32924,partiuppdrag,Vänsterpartiet,2010-10-05,0628190530410,0,V,Förste vice gruppledare,"",2012-02-13,32923
+45683,uppdrag,Socialutskottet,2020-03-18,0333193598116,254,SoU,Suppleant,"",2022-09-26,45667
+42015,uppdrag,Näringsutskottet,2020-03-18,0718034011110,77,NU,Suppleant,"",2022-09-26,42000
+2084,uppdrag,Konstitutionsutskottet,1998-10-13,0330714384902,0,KU,Suppleant,"",2002-09-30,2081
+10822,kammaruppdrag,Ingvar Carlsson,1976-10-04,0687866836701,0,kam,Ersättare,Ersättare,1976-10-08,10818
+48225,uppdrag,Utbildningsutskottet,2022-10-04,0793372891224,7,UbU,Ledamot,"",2024-09-17,48217
+19472,uppdrag,Lagutskottet,1994-10-11,0810673119603,0,LU,Suppleant,"",1998-10-04,19459
+23399,kammaruppdrag,"",1998-10-05,0910241260018,159,kam,Riksdagsledamot,Tjänstgörande,2002-09-30,23392
+50590,uppdrag,Arbetsmarknadsutskottet,2020-03-18,0628005785225,36,AU,Suppleant,"",2022-09-26,50580
+34478,uppdrag,Arbetsmarknadsutskottet,2022-10-04,0376353897112,6,AU,Suppleant,"",2026-09-21,34471
+5227,uppdrag,Kulturutskottet,2001-03-28,0115057914316,0,KrU,Suppleant,"",2002-09-29,5213
+51615,uppdrag,EU-nämnden,2010-10-19,0155487380917,29,EUN,Suppleant,"",2014-10-07,51539
+53442,uppdrag,Sammansatta utrikes- och försvarsutskottet,2020-11-10,0338088431726,5,UFöU,Suppleant,"",2020-12-15,53409
+29648,kammaruppdrag,"",2018-06-15,012576033427,277,kam,Riksdagsledamot,Tjänstgörande,2018-09-24,29644
+46535,uppdrag,Utrikesutskottet,2020-03-18,0522240580423,65,UU,Suppleant,"",2020-09-03,46513
+30669,uppdrag,Kulturutskottet,2014-10-07,0495218011521,9,KrU,Suppleant,"",2018-09-24,30648
+47802,Departement,Finansdepartementet,2025-06-28,0767167947420,12,Fi,Statsråd,"",2025-09-07,47799
+26098,kammaruppdrag,Åsa Westlund,2015-11-01,0150027900515,283,kam,Ersättare,Ersättare,2016-04-30,26095
+7044,uppdrag,Utbildningsutskottet,1995-10-11,0962700307214,0,UbU,Suppleant,"",1998-10-04,7031
+42542,kammaruppdrag,"",2022-09-26,0170585430421,41,kam,Riksdagsledamot,Tjänstgörande,2026-09-21,42541
+42579,kammaruppdrag,"",2021-02-11,0389220391128,111,kam,Riksdagsledamot,Tjänstgörande,2021-11-14,42573
+2378,uppdrag,Socialutskottet,2008-12-01,0963654118003,8,SoU,Suppleant,"",2010-10-04,2373
+49644,kammaruppdrag,"",2006-10-02,0427321850912,102,kam,Riksdagsledamot,Tjänstgörande,2010-10-04,49639
+2675,uppdrag,Justitieutskottet,2006-10-10,0992604658114,25,JuU,Ledamot,"",2008-10-22,2669
+22586,Riksdagsorgan,Krigsdelegationen,2010-10-19,0584659199514,15,KD,Ledamot,"",2014-10-14,22565
+30654,uppdrag,Justitieutskottet,2020-03-18,0495218011521,116,JuU,Suppleant,"",2021-09-02,30648
+25722,kammaruppdrag,Annika Strandhäll,2018-09-24,0962410717322,281,kam,Statsrådsersättare,Ersättare,2019-09-05,25718
+52882,partiuppdrag,Vänsterpartiet,2022-09-26,0939158389321,0,V,Gruppledare,"",,52881
+8004,uppdrag,Konstitutionsutskottet,1994-10-11,0634320940409,0,KU,Ledamot,"",1998-10-04,7996
+4930,uppdrag,EU-nämnden,2002-10-08,0483316376813,0,EUN,Ledamot,"",2003-11-24,4907
+48482,uppdrag,Civilutskottet,2025-09-19,0302393368216,20,CU,Suppleant,"",2026-09-28,48478
+5528,kammaruppdrag,"",1986-11-15,0123927542506,0,kam,Riksdagsledamot,Tjänstgörande,1988-10-03,5519
+47261,uppdrag,Justitieutskottet,2020-03-18,0729710260118,41,JuU,Suppleant,"",2022-09-26,47248
+11503,kammaruppdrag,"",1985-09-30,0566638963807,0,kam,Riksdagsledamot,Tjänstgörande,1988-10-03,11499
+19471,uppdrag,Bostadsutskottet,1994-10-11,0810673119603,0,BoU,Ledamot,"",1998-10-04,19459
+8688,kammaruppdrag,Pär Nuder,2006-10-02,0542215898226,52,kam,Statsrådsersättare,Ersättare,2006-10-06,8684
+10174,kammaruppdrag,"",1976-10-04,060225811106,0,kam,Riksdagsledamot,Tjänstgörande,1979-10-01,10170
+31348,uppdrag,Kulturutskottet,2020-03-18,0505783078517,165,KrU,Suppleant,"",2020-07-31,31337
+49053,uppdrag,EU-nämnden,2014-10-07,037561614928,8,EUN,Ledamot,"",2018-10-02,49026
+50221,kammaruppdrag,"",2022-09-26,0502490570219,111,kam,Riksdagsledamot,Tjänstgörande,2026-09-28,50220
+22616,uppdrag,Finansutskottet,2014-10-07,0975579292417,3,FiU,Ledamot,"",2018-09-24,22609
+41045,partiuppdrag,Miljöpartiet de gröna,2020-07-15,0316505710324,0,MP,Förste vice gruppledare,"",2021-02-23,41043
+39535,uppdrag,Sammansatta utrikes- och försvarsutskottet,2015-11-17,0284039893826,10,UFöU,Suppleant,"",2015-12-16,39525
+43869,uppdrag,Konstitutionsutskottet,2019-12-20,0665360289423,0,KU,Extra suppleant,"",2020-08-09,43847
+47945,uppdrag,Konstitutionsutskottet,2018-10-02,0108109641223,4,KU,Suppleant,"",2019-06-17,47911
+50522,partiuppdrag,Sverigedemokraterna,2022-10-04,0202577142527,0,SD,Kvittningsperson,"",,50520
+43471,kammaruppdrag,"",2018-09-24,0257612529618,264,kam,Riksdagsledamot,Tjänstgörande,2022-09-26,43468
+17566,Riksdagsorgan,Riksbanksfullmäktige,2006-10-17,0534173087404,3,RB,Suppleant,"",2010-10-19,17555
+27188,uppdrag,Sammansatta utrikes- och försvarsutskottet,1998-10-05,0738969851001,0,UFöU,Suppleant,"",2002-09-30,27168
+47490,uppdrag,Sammansatta utrikes- och försvarsutskottet,2019-05-09,0665485817222,7,UFöU,Deputerad,"",2019-06-12,47445
+48669,uppdrag,Civilutskottet,2017-10-13,0538387395826,2,CU,Ledamot,"",2018-09-24,48644
+28092,kammaruppdrag,"",2014-09-29,0547818628111,9,kam,Riksdagsledamot,Tjänstgörande,2018-09-24,28090
+2795,kammaruppdrag,"",2002-09-30,0481005050915,246,kam,Riksdagsledamot,Tjänstgörande,2006-10-02,2793
+17461,uppdrag,EU-nämnden,1995-01-01,0544752215503,0,EUN,Ledamot,"",1995-10-17,17449
+45052,uppdrag,Finansutskottet,2020-03-20,0130789484021,301,FiU,Suppleant,"",2022-09-26,45041
+24719,uppdrag,Arbetsmarknadsutskottet,2014-10-07,0905637653912,5,AU,Suppleant,"",2018-09-24,24715
+2204,kammaruppdrag,"",1994-10-03,0972914963202,66,kam,Riksdagsledamot,Tjänstgörande,1998-10-05,2203
+24252,uppdrag,Skatteutskottet,2015-12-10,0695090885212,11,SkU,Suppleant,"",2016-10-28,24245
+20879,kammaruppdrag,"Agneta Brendt 1996-03-04 - 1996-03-23, Raimo Pärssinen 1996-03-23 - 1996-04-30",1996-03-23,0232551233302,302,kam,Riksdagsledamot,Ledig,1996-04-30,20878
+18188,kammaruppdrag,"",1989-10-04,0551013247907,68,kam,Riksdagsledamot,Tjänstgörande,1991-09-30,18184
+35746,uppdrag,Socialförsäkringsutskottet,2005-04-06,0956595590924,0,SfU,Ledamot,"",2006-10-02,35711
+21489,uppdrag,Trafikutskottet,2017-10-24,0771287795114,0,TU,Extra suppleant,"",2018-03-30,21482
+23080,uppdrag,Utrikesutskottet,2014-10-07,0618560932311,4,UU,Ledamot,"",2015-01-19,23071
+42881,uppdrag,Konstitutionsutskottet,2022-10-04,0875221317013,10,KU,Suppleant,"",2026-09-28,42872
+52244,uppdrag,Utrikesutskottet,2020-03-18,0296384583518,218,UU,Suppleant,"",2020-09-03,52221
+26522,uppdrag,Konstitutionsutskottet,1991-10-08,0213606215200,0,KU,Vice ordförande,"",1994-10-02,26515
+5426,uppdrag,Miljö- och jordbruksutskottet,2006-10-10,0758217192418,0,MJU,Ledamot,"",2008-12-31,5423
+26262,uppdrag,Sammansatta utrikes- och försvarsutskottet,2010-11-23,0637028706011,14,UFöU,Suppleant,"",2010-12-15,26243
+41425,uppdrag,Sammansatta utrikes- och försvarsutskottet,2020-11-10,0121939297619,19,UFöU,Suppleant,"",2020-12-15,41399
+28488,uppdrag,Sammansatta utrikes- och försvarsutskottet,2018-11-15,0409540163215,17,UFöU,Deputerad,"",2018-12-05,28456
+50097,uppdrag,Utrikesutskottet,2020-03-18,0256716955026,210,UU,Suppleant,"",2020-09-03,50075
+46647,uppdrag,Skatteutskottet,2020-03-18,069309987221,57,SkU,Suppleant,"",2022-09-26,46626
+20220,kammaruppdrag,"",2002-09-30,0395416536118,342,kam,Riksdagsledamot,Tjänstgörande,2006-10-02,20217
+47944,uppdrag,Utrikesutskottet,2020-03-18,0108109641223,42,UU,Suppleant,"",2020-09-03,47911
+44113,partiuppdrag,Sverigedemokraterna,2021-09-27,0603753860213,0,SD,Kvittningsperson,"",2022-02-13,44111
+52630,uppdrag,Civilutskottet,2020-03-18,0607691439013,42,CU,Suppleant,"",2022-09-26,52613
+46062,kammaruppdrag,Mikael Sandström,2008-03-01,0538404901718,282,kam,Ersättare,Ersättare,2009-09-14,46059
+31288,uppdrag,Socialförsäkringsutskottet,2020-03-18,085742305813,207,SfU,Suppleant,"",2022-01-09,31277
+18935,uppdrag,Skatteutskottet,2002-10-15,0117613859601,0,SkU,Suppleant,"",2005-03-09,18927
+30272,Riksdagsorgan,Riksdagens delegation till Europarådets parlamentariska församling,2018-11-01,0204494765606,4,ER,Suppleant,"",2022-10-31,30245
+38241,kammaruppdrag,"",2010-10-04,0363228965800,110,kam,Riksdagsledamot,Tjänstgörande,2014-09-29,38238
+25548,uppdrag,Kulturutskottet,2021-11-17,0630993685307,0,KrU,Extra suppleant,"",2022-01-28,25546
+26054,uppdrag,Lagutskottet,1994-10-11,0764840691205,0,LU,Ledamot,"",1998-10-04,26045
+48850,partiuppdrag,Miljöpartiet de gröna,2016-01-01,0462699892622,0,MP,Gruppledare,"",2016-11-01,48846
+12876,uppdrag,Miljö- och jordbruksutskottet,1988-10-03,0695579897102,0,MJU,Ledamot,"",1991-09-29,12865
+21952,uppdrag,Finansutskottet,2006-10-10,0731442709013,0,FiU,Ledamot,"",2007-10-03,21913
+23337,Riksdagsorgan,Nordiska rådets svenska delegation,2015-10-01,0925451929216,19,NR,Ledamot,"",2016-09-29,23323
+24900,Riksdagsorgan,Riksdagsstyrelsen,2014-10-07,0299937536814,1,RS,Ersättare,"",2016-06-28,24891
+52146,Riksdagsorgan,Riksdagens delegation till OSSE:s parlamentariska församling,2025-11-14,0749416304126,7,OSSE,Ledamot,"",2026-10-13,52140
+40726,Europaparlamentet,Europaparlamentet,2024-07-16,0383111552218,20,EP,Ledamot,"",2029-07-16,40721
+6122,uppdrag,Sammansatta utrikes- och försvarsutskottet,1999-03-23,0600928907216,0,UFöU,Suppleant,"",1999-09-13,6072
+44450,uppdrag,EU-nämnden,2022-10-25,011548866929,17,EUN,Ledamot,"",2026-09-28,44445
+21989,uppdrag,Finansutskottet,2006-10-10,0376867803913,11,FiU,Ledamot,"",2010-10-04,21980
+14970,uppdrag,Konstitutionsutskottet,1990-11-12,0392711595808,0,KU,Suppleant,"",1990-12-12,14968
+25658,kammaruppdrag,"",2014-10-04,0222691314314,179,kam,Riksdagsledamot,Tjänstgörande,2018-09-24,25650
+21603,kammaruppdrag,"",2010-10-04,0454447556218,116,kam,Riksdagsledamot,Tjänstgörande,2014-09-29,21602
+15297,Riksdagsorgan,Riksdagens förvaltningskontor,1988-10-11,0522191574902,0,RFK,Suppleant,"",1991-09-30,15271
+17108,kammaruppdrag,"",1991-10-05,0181942435301,49,kam,Riksdagsledamot,Tjänstgörande,1994-10-03,17096
+47915,Departement,Försvarsdepartementet,2025-04-01,0108109641223,19,Fö,Statsråd,"",2025-06-27,47911
+17206,kammaruppdrag,Pär Axel Sahlberg 1998-10-20 - 1999-03-31,1998-10-20,0311892218602,187,kam,Riksdagsledamot,Ledig,1999-03-31,17205
+44577,Riksdagsorgan,Riksdagsstyrelsen,2023-09-04,0819601620927,10,RS,Ersättare,"",2024-08-20,44523
+13547,uppdrag,Utbildningsutskottet,1991-10-08,0333810623907,0,UbU,Ordförande,"",1993-10-05,13541
+20910,uppdrag,Utrikesutskottet,1988-10-11,0126076270500,0,UU,Ledamot,"",1991-09-29,20902
+42949,uppdrag,Arbetsmarknadsutskottet,2024-09-13,0977592683711,13,AU,Suppleant,"",2026-09-28,42944
+51992,uppdrag,Sammansatta utrikes- och försvarsutskottet,2024-11-05,0452755722723,5,UFöU,Suppleant,"",2024-12-12,51945
+22933,uppdrag,Sammansatta utrikes- och försvarsutskottet,2006-10-10,0219220227418,0,UFöU,Suppleant,"",2006-10-13,22917
+50409,Departement,Försvarsdepartementet,2016-05-25,0937688366013,8,Fö,Försvarsminister,"",2018-03-08,50402
+30655,uppdrag,Kulturutskottet,2020-03-18,0495218011521,115,KrU,Suppleant,"",2021-09-02,30648
+1389,kammaruppdrag,"",2002-09-30,0104804820009,92,kam,Riksdagsledamot,Tjänstgörande,2002-12-31,1388
+2257,kammaruppdrag,Anna Corshammar-Bojerud 1996-03-11 - 1996-05-31,1996-03-11,0370034713503,168,kam,Riksdagsledamot,Ledig,1996-05-31,2253
+52871,Riksdagsorgan,Valberedningen,2018-09-24,0198917587520,5,VB,Suppleant,"",2022-09-26,52838
+22611,kammaruppdrag,"",2010-10-04,0975579292417,43,kam,Riksdagsledamot,Tjänstgörande,2014-09-29,22609
+45245,uppdrag,Konstitutionsutskottet,2020-03-18,065105536026,199,KU,Suppleant,"",2020-09-03,45224
+9879,kammaruppdrag,"",1982-10-04,0747484716698,0,kam,Riksdagsledamot,Tjänstgörande,1985-09-30,9877
+40734,uppdrag,Näringsutskottet,2020-03-18,0383111552218,238,NU,Suppleant,"",2020-11-03,40721
+20031,kammaruppdrag,"",1988-10-03,0791916121004,33,kam,Riksdagsledamot,Tjänstgörande,1991-09-30,20030
+10246,kammaruppdrag,"",1991-09-30,0991145731807,191,kam,Riksdagsledamot,Tjänstgörande,1993-11-17,10242
+51226,kammaruppdrag,Ida Drougge,2016-08-01,0866055333028,320,kam,Ersättare,Ersättare,2017-01-31,51223
+1795,uppdrag,Sammansatta utrikes- och socialutskottet,2005-02-15,0903751303011,0,USoU,Deputerad,"",2005-03-16,1780
+43203,uppdrag,Försvarsutskottet,2022-11-08,0576122429317,0,FöU,Extra suppleant,"",2023-04-30,43189
+20476,uppdrag,Skatteutskottet,2020-03-18,0196077326617,130,SkU,Suppleant,"",2020-12-31,20460
+46824,kammaruppdrag,Lena Bäckelin 2023-01-15 - 2023-02-24,2023-01-15,0472349361027,239,kam,Riksdagsledamot,Ledig,2023-02-24,46818
+21342,uppdrag,Justitieutskottet,2014-10-07,0573136138218,3,JuU,Suppleant,"",2018-09-24,21330
+48192,uppdrag,Kulturutskottet,2022-10-27,083953568015,11,KrU,Suppleant,"",2025-01-31,48185
+15840,kammaruppdrag,"",2002-09-30,0166402877505,7,kam,Riksdagsledamot,Tjänstgörande,2006-10-02,15839
+17624,kammaruppdrag,"",1991-09-30,0673813596104,183,kam,Riksdagsledamot,Tjänstgörande,1994-10-03,17623
+26907,uppdrag,Sammansatta utrikes- och försvarsutskottet,2008-11-20,088327461512,0,UFöU,Suppleant,"",2008-12-19,26900
+43414,uppdrag,Utbildningsutskottet,2020-03-18,0246927519019,237,UbU,Suppleant,"",2022-09-26,43394
+562,uppdrag,Sammansatta utrikes- och försvarsutskottet,2009-02-12,0502174718806,0,UFöU,Suppleant,"",2009-03-12,535
+47692,uppdrag,Socialutskottet,2020-03-18,0642224351118,60,SoU,Suppleant,"",2022-09-26,47671
+32096,uppdrag,Miljö- och jordbruksutskottet,2018-10-02,0952789103522,8,MJU,Ledamot,"",2022-09-26,32094
+21957,uppdrag,Skatteutskottet,2002-10-15,0731442709013,0,SkU,Suppleant,"",2004-09-14,21913
+45060,uppdrag,Utbildningsutskottet,2020-03-18,0130789484021,282,UbU,Suppleant,"",2022-09-26,45041
+21706,uppdrag,Miljö- och jordbruksutskottet,2010-10-12,0743081365718,15,MJU,Ledamot,"",2014-09-29,21703
+19482,Riksdagsorgan,Valberedningen,1998-10-05,0810673119603,0,VB,Ledamot,"",2002-09-30,19459
+15595,uppdrag,Konstitutionsutskottet,2002-10-15,0390912778804,0,KU,Suppleant,"",2003-10-02,15587
+48122,uppdrag,Utbildningsutskottet,2020-03-18,0506482805418,171,UbU,Suppleant,"",2022-09-26,48103
+38375,uppdrag,Trafikutskottet,2022-10-04,0860364634014,4,TU,Ledamot,"",2026-09-21,38371
+38979,uppdrag,Justitieutskottet,2020-12-01,0323000187920,165,JuU,Suppleant,"",2021-11-30,38971
+5145,kammaruppdrag,"",2003-02-14,0965607699115,0,kam,Ersättare,Ersättare,2003-03-15,5144
+17626,uppdrag,Utrikesutskottet,1992-02-10,0673813596104,0,UU,Suppleant,"",1994-10-02,17623
+18111,uppdrag,Sammansatta utrikes- och försvarsutskottet,1995-10-26,0610573125306,0,UFöU,Suppleant,"",1995-12-06,18074
+18366,kammaruppdrag,"",1998-10-05,0553513261108,234,kam,Riksdagsledamot,Tjänstgörande,2002-09-30,18358
+44323,partiuppdrag,Liberalerna,2022-11-24,0397073482210,0,L,Kvittningsperson,"",2025-06-27,44322
+20321,uppdrag,Sammansatta utrikes- och försvarsutskottet,1995-10-26,0137934715906,0,UFöU,Suppleant,"",1995-12-06,20312
+37778,Riksdagsorgan,Nordiska rådets svenska delegation,2014-10-07,0237055280513,19,NR,Suppleant,"",2015-10-01,37734
+39671,Departement,Kulturdepartementet,2017-07-27,0787584650516,14,Ku,Kultur- och demokratiminister,"",2019-01-21,39664
+12898,uppdrag,Kulturutskottet,1991-10-08,0600369882602,0,KrU,Suppleant,"",1992-07-31,12891
+29765,kammaruppdrag,"",2014-10-16,0210198640127,54,kam,Riksdagsledamot,Tjänstgörande,2018-09-24,29762
+41098,uppdrag,Sammansatta utrikes- och försvarsutskottet,2020-11-10,0316505710324,16,UFöU,Deputerad,"",2020-12-15,41043
+359,uppdrag,EU-nämnden,2010-10-12,0701525641715,4,EUN,Ledamot,"",2014-09-29,342
+9974,uppdrag,EES-utskottet,1992-05-26,0609514779691,0,EU,Ledamot,"",1993-06-04,9962
+47564,uppdrag,Civilutskottet,2020-03-20,0694917698222,307,CU,Suppleant,"",2022-09-26,47551
+40536,uppdrag,Lagutskottet,1994-10-11,0447198048312,0,LU,Suppleant,"",1998-10-04,40511
+8937,kammaruppdrag,Lena Adelsohn Liljeroth,2010-10-26,0538982776628,141,kam,Statsrådsersättare,Ersättare,2014-09-29,8936
+4773,kammaruppdrag,"",1988-10-03,041436203711,134,kam,Riksdagsledamot,Tjänstgörande,1991-09-30,4771
+45147,kammaruppdrag,"",2018-09-24,0378597308227,284,kam,Riksdagsledamot,Tjänstgörande,2022-09-26,45145
+20152,uppdrag,Sammansatta utrikes- och försvarsutskottet,2008-11-20,0780836041816,0,UFöU,Suppleant,"",2008-12-19,20138
+8879,uppdrag,Justitieutskottet,2008-05-16,0872978640827,22,JuU,Suppleant,"",2010-10-04,8870
+54043,uppdrag,Socialförsäkringsutskottet,2022-10-04,0600069352021,17,SfU,Suppleant,"",2026-09-28,54036
+22693,kammaruppdrag,"",2010-10-04,0640669898710,215,kam,Riksdagsledamot,Tjänstgörande,2014-09-29,22690
+13027,kammaruppdrag,Birgit Henriksson 1995-01-10 - 1995-10-09,1995-01-10,0199809132302,279,kam,Riksdagsledamot,Ledig,1995-10-09,13019
+9509,uppdrag,Näringsutskottet,2019-02-15,0652497579621,6,NU,Suppleant,"",2022-09-26,9496
+14532,kammaruppdrag,"",1982-10-04,0729731578904,0,kam,Riksdagsledamot,Tjänstgörande,1985-09-30,14526
+13081,uppdrag,Utrikesutskottet,1991-10-08,0931369291903,0,UU,Suppleant,"",1994-10-02,13072
+12605,kammaruppdrag,Marianne Jönsson 1986-11-11 - 1986-12-13,1986-11-11,0611699417309,0,kam,Riksdagsledamot,Ledig,1986-12-13,12603
+27435,uppdrag,Konstitutionsutskottet,2003-11-19,0951422950012,0,KU,Suppleant,"",2003-12-18,27430
+43515,uppdrag,Sammansatta utrikes- och försvarsutskottet,2015-11-17,0257612529618,1,UFöU,Ordförande,"",2015-12-16,43468
+45125,Riksdagsorgan,Utrikesnämnden,2012-02-24,014744660015,2,UN,Ledamot,"",2014-10-03,45087
+45484,uppdrag,EU-nämnden,2020-03-18,0344222203323,283,EUN,Suppleant,"",2022-10-04,45461
+48392,Riksdagsorgan,Riksdagens delegation till Arktiska parlamentarikerkonferensen,2022-10-26,0627450126815,4,CPAR,Ledamot,"",2026-10-26,48386
+20762,uppdrag,Miljö- och jordbruksutskottet,1991-11-13,0557059020608,0,MJU,Suppleant,"",1994-10-02,20757
+9086,uppdrag,EU-nämnden,1995-01-01,0144891150008,0,EUN,Suppleant,"",1995-06-14,9070
+21895,uppdrag,Lagutskottet,1998-10-13,0113077554312,0,LU,Suppleant,"",2002-09-30,21877
+17135,kammaruppdrag,"Karin Pilsäter 1991-10-05 - 1993-03-07, Sören Norrby 1993-03-08 - 1993-05-09, Karin Pilsäter 1993-05-10 - 1994-06-19, Lars Bergstig 1994-06-20 - 1994-10-03",1991-10-05,0201502585302,44,kam,Riksdagsledamot,Ledig,1994-10-03,17131
+38653,uppdrag,Civilutskottet,2018-10-02,0773497241728,10,CU,Ledamot,"",2022-09-26,38647
+16160,uppdrag,Näringsutskottet,1990-03-05,080652068106,0,NU,Suppleant,"",1991-09-29,16150
+20007,kammaruppdrag,"",1993-11-01,0500493436208,0,kam,Riksdagsledamot,Tjänstgörande,1994-10-03,20004
+27672,kammaruppdrag,Carl Erik Hedlund 1994-10-03 - 1994-10-07,1994-10-03,0262017901513,21,kam,Riksdagsledamot,Ledig,1994-10-07,27661
+11900,Riksdagsorgan,Krigsdelegationen,1994-10-18,0348268153001,0,KD,Ledamot,"",1998-10-05,11886
+41255,uppdrag,Socialförsäkringsutskottet,2023-10-14,0653578338415,0,SfU,Extra suppleant,"",2023-11-13,41251
+555,uppdrag,Socialförsäkringsutskottet,1998-10-13,0507199415917,0,SfU,Suppleant,"",2002-09-29,544
+30620,uppdrag,Utbildningsutskottet,2019-09-05,0758652610,17,UbU,Ledamot,"",2019-11-15,30612
+51697,kammaruppdrag,"",2024-08-29,0327372175911,146,kam,Riksdagsledamot,Tjänstgörande,2026-09-28,51696
+40043,uppdrag,Skatteutskottet,2020-03-18,0899112324519,82,SkU,Suppleant,"",2022-09-26,40021
+47726,Riksdagsorgan,Nordiska rådets svenska delegation,2017-09-28,0642224351118,16,NR,Suppleant,"",2018-10-09,47671
+36585,uppdrag,Konstitutionsutskottet,2002-10-15,0591055036519,0,KU,Suppleant,"",2006-01-17,36567
+50974,uppdrag,Miljö- och jordbruksutskottet,2020-03-18,0226631365426,119,MJU,Suppleant,"",2022-09-26,50963
+40878,uppdrag,Arbetsmarknadsutskottet,2020-03-18,0442629549320,133,AU,Suppleant,"",2022-09-26,40867
+1406,uppdrag,Skatteutskottet,1983-10-04,0104804820009,0,SkU,Suppleant,"",1985-09-29,1388
+27401,uppdrag,Trafikutskottet,2002-10-08,0455256796113,0,TU,Suppleant,"",2006-10-02,27388
+21169,Riksdagsorgan,Valberedningen,1998-10-05,031005479013,0,VB,Suppleant,"",2002-11-13,21122
+1131,kammaruppdrag,"",1994-10-03,0960030082916,261,kam,Riksdagsledamot,Tjänstgörande,1998-10-05,1126
+1823,uppdrag,Socialförsäkringsutskottet,2000-06-08,0346261747912,0,SfU,Suppleant,"",2000-10-18,1814
+18673,Riksdagsorgan,Nordiska rådets svenska delegation,1988-10-18,0900533740700,0,NR,Ledamot,"",1991-09-30,18636
+26565,uppdrag,Sammansatta utrikes- och försvarsutskottet,2017-11-14,0802826314426,11,UFöU,Deputerad,"",2017-12-15,26543
+18051,partiuppdrag,Kristdemokraterna,2002-09-30,0548843588006,0,KD,Kvittningsperson,"",2010-10-04,18041
+39951,uppdrag,Socialutskottet,2020-03-18,0166790812128,35,SoU,Suppleant,"",2022-09-26,39938
+4935,Riksdagsorgan,Utrikesnämnden,2003-11-19,0483316376813,0,UN,Suppleant,"",2006-10-10,4907
+24357,kammaruppdrag,Shadiye Heydari 2014-10-03 - 2017-07-27  Statsråd,2014-10-03,0691264514114,299,kam,Riksdagsledamot,Ledig,2017-07-27,24352
+2525,kammaruppdrag,"",2002-09-30,0698785853314,134,kam,Riksdagsledamot,Tjänstgörande,2006-10-02,2524
+14568,uppdrag,Arbetsmarknadsutskottet,1991-01-11,0798631972204,0,AU,Suppleant,"",1991-09-29,14559
+40575,Departement,Statsrådsberedningen,2021-07-09,0218878014918,1,SB,Statsminister,"",2021-11-30,40568
+14464,kammaruppdrag,"",2000-12-02,0664751846104,108,kam,Riksdagsledamot,Tjänstgörande,2002-09-30,14463
+52920,uppdrag,EU-nämnden,2022-10-12,0349986646724,48,EUN,Suppleant,"",2025-09-07,52904
+7951,uppdrag,Konstitutionsutskottet,2002-10-08,0546982180011,0,KU,Ledamot,"",2006-10-02,7947
+40976,uppdrag,Försvarsutskottet,2014-11-05,0414687558527,25,FöU,Suppleant,"",2018-09-24,40973
+21243,Riksdagsorgan,Nordiska rådets svenska delegation,2012-10-04,0641486384014,17,NR,Ledamot,"",2013-09-16,21214
+6299,Riksdagsorgan,Krigsdelegationen,2009-11-18,0338278373318,49,KD,Ledamot,"",2010-10-19,6286
+52846,uppdrag,Socialutskottet,2022-10-04,0198917587520,12,SoU,Suppleant,"",2026-09-28,52838
+29511,uppdrag,Sammansatta utrikes- och försvarsutskottet,2010-11-23,0843345349823,7,UFöU,Suppleant,"",2010-12-15,29471
+8674,Riksdagsorgan,Nordiska rådets svenska delegation,2006-10-17,0324815829026,20,NR,Ledamot,"",2010-10-04,8650
+8718,uppdrag,Näringsutskottet,2007-02-13,0279385965920,0,NU,Suppleant,"",2007-07-15,8715
+389,uppdrag,Socialförsäkringsutskottet,2002-10-08,08644719105,0,SfU,Ledamot,"",2006-10-02,382
+22342,uppdrag,Skatteutskottet,2011-09-01,0193378456716,3,SkU,Ordförande,"",2011-12-31,22331
+22971,uppdrag,Sammansatta utrikes- och försvarsutskottet,2003-06-11,0110600080618,0,UFöU,Deputerad,"",2003-06-12,22946
+45670,kammaruppdrag,"",2018-09-24,0333193598116,247,kam,Riksdagsledamot,Tjänstgörande,2022-09-26,45667
+53688,kammaruppdrag,Caroline Täljeblad 2025-11-25 - 2025-12-31,2025-11-25,0961483563503,312,kam,Riksdagsledamot,Ledig,2025-12-31,53686
+23526,uppdrag,Arbetsmarknadsutskottet,2006-10-10,064601872511,0,AU,Ordförande,"",2008-02-14,23513
+52116,uppdrag,Socialutskottet,2020-03-18,0575283695521,33,SoU,Suppleant,"",2022-09-26,52099
+52632,uppdrag,Justitieutskottet,2020-03-18,0607691439013,47,JuU,Suppleant,"",2022-09-26,52613
+38710,uppdrag,Miljö- och jordbruksutskottet,2020-03-18,0475778011711,166,MJU,Suppleant,"",2022-09-26,38695
+6962,kammaruppdrag,Mikael Sandström 2006-10-06 - 2006-10-12,2006-10-06,0388849444310,282,kam,Riksdagsledamot,Ledig,2006-10-12,6959
+3007,Riksdagsorgan,Utrikesnämnden,2002-10-08,0980725315516,0,UN,Ledamot,"",2006-10-10,2981
+37477,uppdrag,Försvarsutskottet,2020-03-18,0509415296421,264,FöU,Suppleant,"",2020-09-03,37457
+25198,uppdrag,Näringsutskottet,2021-10-12,0640627133410,301,NU,Suppleant,"",2022-09-26,25188
+2313,Riksdagsorgan,Krigsdelegationen,1994-10-18,0825004049003,0,KD,Ledamot,"",1998-10-05,2291
+8097,uppdrag,Försvarsutskottet,1991-09-30,0573810408500,0,FöU,Suppleant,"",1994-10-03,8090
+27082,uppdrag,Socialförsäkringsutskottet,1994-10-11,0161018662505,0,SfU,Ledamot,"",1998-10-04,27077
+22364,kammaruppdrag,"",2010-10-04,037508021018,59,kam,Riksdagsledamot,Tjänstgörande,2014-09-29,22361
+46154,Riksdagsorgan,Riksbanksfullmäktige,2018-10-09,014386615025,8,RB,Ledamot,"",2022-02-04,46114
+24466,uppdrag,Sammansatta civil- och kulturutskottet,2018-03-13,0266517781926,14,CKrU,Suppleant,"",2018-05-24,24457
+38093,uppdrag,Utrikesutskottet,2022-11-10,0365748677411,15,UU,Suppleant,"",2023-01-15,38089
+2025,uppdrag,Skatteutskottet,2010-10-12,039984931601,17,SkU,Ledamot,"",2014-06-30,2020
+41683,uppdrag,Socialutskottet,2018-10-02,0130640724922,5,SoU,Suppleant,"",2022-01-19,41667
+12384,kammaruppdrag,"",1982-10-04,0177639310807,0,kam,Riksdagsledamot,Tjänstgörande,1985-09-30,12379
+48599,uppdrag,Utbildningsutskottet,2019-02-15,023767922422,17,UbU,Ledamot,"",2019-09-05,48563
+27405,uppdrag,Sammansatta utrikes- och försvarsutskottet,2013-02-21,0455256796113,9,UFöU,Suppleant,"",2013-03-06,27388
+11730,Riksdagsorgan,EFTA-delegationen,1991-10-15,0393108743200,0,EFTA,Ledamot,"",1994-10-10,11727

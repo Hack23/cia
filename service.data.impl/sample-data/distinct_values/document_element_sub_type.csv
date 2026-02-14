@@ -1,39 +1,39 @@
 value,count
-"",133162
+"",133265
 Enskild motion,75756
 föredragningslista,15961
 huvudvotering,14993
-Kommittémotion,14654
-Protokoll,13582
-bet,8829
-vo,7553
-Sammanträde,4576
-prop,4408
-sfst,3918
+Kommittémotion,14656
+Protokoll,13584
+bet,8832
+vo,7554
+Sammanträde,4631
+prop,4411
+sfst,3919
 Partimotion,1954
 Flerpartimotion,1440
 COM,1368
-skr,1160
-Särskilt protokoll,1038
+skr,1161
+Särskilt protokoll,1044
 yttr,740
 KU-anmälan,610
 fs,561
 ou,554
-ap,538
+ap,539
 -,483
-ip,406
+ip,408
 Departements-PM,378
-Granskning,376
+Granskning,378
 Verksamhetsberättelser,356
 utl,322
-ss,300
+ss,301
 se,268
-vi,258
+vi,262
 pd,244
-redog,235
-st,176
-zz,160
-ar,157
+redog,239
+st,181
+zz,163
+ar,158
 Ändring,137
 re,118
 va,113
@@ -42,7 +42,7 @@ os,102
 Kommenterad dagordning,93
 pk,92
 ro,74
-ud,71
+ud,74
 framst,69
 Grund,66
 ad,63
@@ -78,8 +78,8 @@ Infofilm,9
 JOIN,8
 debate,8
 ko,8
+Offentligt,6
 Utbildningsfilm,6
-Offentligt,5
 URD,5
 arbete,4
 hh,4

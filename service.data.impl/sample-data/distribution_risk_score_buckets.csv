@@ -1,4 +1,4 @@
 score_bucket,politician_count,avg_score,min_score,max_score
-50-69 (High),34,51.59,50.00,56.00
-30-49 (Medium),322,40.12,30.00,48.00
+50-69 (High),31,51.55,50.00,56.00
+30-49 (Medium),325,40.12,30.00,48.00
 10-29 (Low),46,10.26,10.00,16.00

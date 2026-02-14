@@ -1,4 +1,1 @@
-view_name,view_type,row_count,view_category,empty_reason,requires_production_data,notes
-view_riksdagen_voting_anomaly_detection,intelligence_analytical,0,Anomaly Detection,No vote data in database,YES,Requires vote_data table with 20+ years history. Filter: vote_date >= CURRENT_DATE - 20 years. Works correctly with production data.
-view_riksdagen_party_defector_analysis,intelligence_analytical,0,Behavioral Analysis,No vote data in database,YES,"Requires view_riksdagen_party_transition_history (2 test rows when db-changelog-1.72.xml test-data changeset applied; empty in schema-only DB) and vote_data for attendance calculations. Works correctly with production data."
-view_riksdagen_party_coalition_evolution,intelligence_analytical,0,Coalition Analysis,Materialized view not populated,YES,Requires view_riksdagen_vote_data_ballot_party_summary_annual to be populated. Run REFRESH MATERIALIZED VIEW after loading production data.
+view_name,view_type,row_count,view_category

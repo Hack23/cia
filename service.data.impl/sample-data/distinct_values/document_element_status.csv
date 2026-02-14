@@ -1,24 +1,24 @@
 value,count
-"",111233
+"",111284
 Klar,40401
 Ank T,25591
 korrekturläst,22058
-Besvarad,21753
-inträffat,20472
-Inkommen,20303
+Besvarad,21773
+inträffat,20475
+Inkommen,20327
 Trycklov,10630
 hämtad,6708
-Webbpublicering,4674
-Hänvisad,4118
-planerat,2636
+Webbpublicering,4681
+Hänvisad,4121
+planerat,2693
 hämtad_2,2564
-Publicerad,2423
-Skickad,1849
+Publicerad,2424
+Skickad,1874
 justerat,1798
 titel,1536
 ok,1526
 Tidigare riksdagsledamot,1116
-Återtagen,1098
+Återtagen,1103
 DokTextExtraktor,893
 saknas,474
 Avslutad,456
@@ -31,7 +31,7 @@ slutlig,283
 Inte besvarad,271
 Original,262
 Pågående,234
-doktextextraktor,230
+doktextextraktor,234
 digitaliserad,225
 Tidigare ersättare,202
 Upphävd,139
@@ -65,7 +65,7 @@ Avslutad 2020,61
 Avslutad 2001,57
 fel,53
 Avslutad 2019,50
-Granskad,37
+Granskad,38
 Bifall,32
 Avgången riksdagsledamot,30
 Status saknas,30
@@ -95,6 +95,7 @@ Avliden  1989-05-08,3
 Delvis avslag,3
 Justitieombudsman i Riksdagens ombudsmän,3
 Ledamot i Riksbanksfullmäktige,3
+Preliminär,3
 Pågår,3
 Suppleant i Riksbanksfullmäktige,3
 Tidigare justitieombudsman i Riksdagens ombudsmän,3

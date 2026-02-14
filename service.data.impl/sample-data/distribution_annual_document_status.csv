@@ -80,6 +80,7 @@ year,status,doc_count
 2006,63854,1
 2006,63730,1
 2006,63708,1
+2006,63828,1
 2006,63793,1
 2006,63761,1
 2006,63820,1
@@ -132,29 +133,29 @@ year,status,doc_count
 2006,63802,1
 2006,63704,1
 2006,63725,1
-2006,63828,1
 2007,Ank T,3480
 2007,"",278
 2007,hämtad_2,134
 2007,Trycklov,45
 2007,Original,2
-2007,Pågår,2
 2007,hämtad,2
+2007,Pågår,2
 2007,fel,1
 2008,Ank T,3933
 2008,"",317
 2008,hämtad_2,221
 2008,Trycklov,8
 2008,hämtad,4
-2008,Inkommen,1
 2008,Klar,1
+2008,Inkommen,1
 2009,Ank T,3994
 2009,"",350
 2009,hämtad_2,222
 2009,Trycklov,22
-2009,hämtad,6
+2009,hämtad,5
 2009,Pågår,1
 2009,doktextextraktor,1
+2009,Inkommen,1
 2010,Ank T,3361
 2010,"",279
 2010,hämtad_2,241
@@ -164,18 +165,19 @@ year,status,doc_count
 2011,"",110
 2011,Trycklov,7
 2011,hämtad,4
-2011,Original,1
 2011,DokTextExtraktor,1
+2011,Original,1
 2012,Ank T,2713
-2012,"",336
-2012,inträffat,311
+2012,"",337
+2012,inträffat,310
 2012,hämtad_2,224
-2012,hämtad,221
+2012,hämtad,220
 2012,Distribution.UttagMo,10
 2012,Trycklov,4
 2012,fel,3
 2012,DokTextExtraktor,2
 2012,titel,1
+2012,Inkommen,1
 2012,ank T,1
 2013,Ank T,3115
 2013,"",331
@@ -185,8 +187,8 @@ year,status,doc_count
 2013,fel,11
 2013,inträffat,8
 2013,Webbpublicering,6
-2013,Trycklov,1
 2013,Hänvisad,1
+2013,Trycklov,1
 2014,Klar,2965
 2014,Ank T,1273
 2014,"",288
@@ -198,10 +200,10 @@ year,status,doc_count
 2014,planerat,9
 2014,inträffat,7
 2014,doktextextraktor,3
-2014,html saknas,2
 2014,Trycklov,2
-2014,Utgår,1
+2014,html saknas,2
 2014,slutfört,1
+2014,Utgår,1
 2015,Klar,3459
 2015,Webbpublicering,274
 2015,Hänvisad,44
@@ -232,8 +234,8 @@ year,status,doc_count
 2019,Webbpublicering,391
 2019,Hänvisad,46
 2019,Utgången,23
-2019,planerat,4
 2019,"",4
+2019,planerat,4
 2020,Klar,4093
 2020,Webbpublicering,383
 2020,Hänvisad,40
@@ -267,19 +269,19 @@ year,status,doc_count
 2024,"",30
 2024,inträffat,1
 2024,planerat,1
-2025,Hänvisad,3279
-2025,Klar,831
-2025,Webbpublicering,273
-2025,planerat,104
+2025,Hänvisad,3278
+2025,Klar,832
+2025,Webbpublicering,283
+2025,planerat,94
 2025,Utgången,64
 2025,"",55
 2025,Granskad,9
-2025,LagdTillHandlingarna,1
 2025,inträffat,1
-2026,planerat,99
-2026,Granskad,15
-2026,"",13
-2026,Hänvisad,12
-2026,Inkommen,4
-2026,Utgången,1
+2025,LagdTillHandlingarna,1
+2026,planerat,102
+2026,Granskad,16
+2026,"",15
+2026,Hänvisad,15
+2026,Inkommen,2
 2026,Webbpublicering,1
+2026,Utgången,1
