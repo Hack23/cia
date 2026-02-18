@@ -317,15 +317,46 @@ Our analysis is powered by authoritative Swedish government and international da
 
 | JDK Version | Status | Release Info |
 |-------------|--------|--------------|
-| ![JDK-21](https://img.shields.io/badge/JDK-21-brightgreen.svg) | Supported | LTS Release |
+| ![JDK-21](https://img.shields.io/badge/JDK-21-brightgreen.svg) | Source Level | LTS - Source Compatibility |
 | ![JDK-22](https://img.shields.io/badge/JDK-22-orange.svg) | Compatible | Feature Release |
 | ![JDK-23](https://img.shields.io/badge/JDK-23-orange.svg) | Compatible | Feature Release |
 | ![JDK-24](https://img.shields.io/badge/JDK-24-orange.svg) | Compatible | Feature Release |
-| ![JDK-24](https://img.shields.io/badge/JDK-25-brightgreen.svg) | Supported | Current LTS |
+| ![JDK-25](https://img.shields.io/badge/JDK-25-brightgreen.svg) | Runtime (LTS) | Current Production LTS |
+
+**Build Configuration:** Source Java 21, Target Java 21, Runtime Java 25
 
 </div>
 
 For details on our technology lifecycle management, see the [End-of-Life Strategy](End-of-Life-Strategy.md).
+
+## 🛠️ Development Environment Requirements
+
+<div align="center">
+
+| Component | Version | Purpose | Reference |
+|-----------|---------|---------|-----------|
+| **Java JDK** | 25 (Temurin) | Runtime environment | [Setup Java](https://adoptium.net/) |
+| **Java Source** | 21 | Source compatibility | Maven compiler configuration |
+| **Maven** | 3.9.9+ | Build automation | [Maven Install](https://maven.apache.org/install.html) |
+| **Node.js** | 24+ | Copilot MCP servers, Playwright testing | [Node.js](https://nodejs.org/) |
+| **PostgreSQL** | 16+ | Database (optional for full integration testing) | [PostgreSQL](https://www.postgresql.org/) |
+
+</div>
+
+**Quick Start:**
+```bash
+# Build the project (skipping tests)
+mvn clean install -DskipTests
+
+# Build with tests
+mvn clean install
+
+# Run specific module
+cd citizen-intelligence-agency
+mvn spring-boot:run
+```
+
+For detailed setup instructions, see [copilot-setup-steps.yml](.github/workflows/copilot-setup-steps.yml).
 
 
 ## 📚 Architecture Documentation Map

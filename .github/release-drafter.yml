@@ -66,14 +66,64 @@ template: |
   - Decision-making analysis
   - Risk assessment
 
-  ## Security Compliance
+  ## 🔐 Hack23 ISMS Policies & Governance
+
+  Hack23 is committed to transparency and evidence-based security. Our complete Information Security Management System (ISMS) is publicly available:
+
+  [![ISMS Public Repository](https://img.shields.io/badge/ISMS-PUBLIC-0066CC?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC)
+  [![Information Security Policy](https://img.shields.io/badge/Security-Policy-DC143C?style=for-the-badge&logo=shield&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Information_Security_Policy.md)
+  [![Open Source Policy](https://img.shields.io/badge/Open_Source-Policy-2E8B57?style=for-the-badge&logo=opensource&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Open_Source_Policy.md)
+  [![Secure Development Policy](https://img.shields.io/badge/Secure_Development-Policy-FF6347?style=for-the-badge&logo=codesandbox&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md)
+
+  **Coverage:** 32 ISMS policies • 100+ security controls • ISO 27001:2022 • NIST CSF 2.0 • CIS Controls v8.1
+
+  ## 🛡️ Security & Compliance
+
+  ### SLSA Build Attestations
   [![SLSA 3](https://slsa.dev/images/gh-badge-level3.svg)](https://github.com/Hack23/cia/attestations/)
+
+  **Artifact Attestations Available:**
+  - [DEB Package Build Provenance](https://github.com/Hack23/cia/attestations/) - SLSA Level 3 provenance for cia-dist-deb-$RESOLVED_VERSION.all.deb
+  - [WAR Build Provenance](https://github.com/Hack23/cia/attestations/) - SLSA Level 3 provenance for citizen-intelligence-agency-$RESOLVED_VERSION.war
+  - [DEB SBOM Attestation](https://github.com/Hack23/cia/attestations/) - Software Bill of Materials in SPDX format
+  - [WAR SBOM Attestation](https://github.com/Hack23/cia/attestations/) - Software Bill of Materials in SPDX format
+
+  ### Security Posture
   [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/770/badge)](https://bestpractices.coreinfrastructure.org/projects/770)
   [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/Hack23/cia/badge)](https://scorecard.dev/viewer/?uri=github.com/Hack23/cia)
   [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FHack23%2Fcia.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FHack23%2Fcia?ref=badge_shield)
   [![CLA assistant](https://cla-assistant.io/readme/badge/Hack23/cia)](https://cla-assistant.io/Hack23/cia)
 
-  ## Contributors
+  ### Security Scanning Results
+  [![CodeQL](https://github.com/Hack23/cia/workflows/CodeQL/badge.svg)](https://github.com/Hack23/cia/security/code-scanning)
+  [![ZAP Scan](https://github.com/Hack23/cia/workflows/ZAP%20Scan/badge.svg)](https://github.com/Hack23/cia/actions/workflows/zap-scan.yml)
+  [![Dependency Review](https://github.com/Hack23/cia/workflows/Dependency%20Review/badge.svg)](https://github.com/Hack23/cia/actions/workflows/dependency-review.yml)
+
+  ## 📊 Quality & Testing
+
+  ### Code Quality Reports
+  [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Hack23_cia)
+  [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=coverage)](https://sonarcloud.io/summary/new_code?id=Hack23_cia)
+  [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=Hack23_cia&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=Hack23_cia)
+
+  **Detailed Reports Available:**
+  - [Maven Site Documentation](https://hack23.github.io/cia/) - Complete project documentation
+  - [JaCoCo Test Coverage](https://hack23.github.io/cia/jacoco/) - Unit test coverage reports (80%+ line, 70%+ branch)
+  - [JavaDoc API Documentation](https://hack23.github.io/cia/apidocs/) - Complete API reference
+  - [SonarCloud Dashboard](https://sonarcloud.io/summary/new_code?id=Hack23_cia) - Code quality metrics
+
+  ### Testing Standards
+  Per [Secure Development Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md):
+  - ✅ Minimum 80% line coverage
+  - ✅ Minimum 70% branch coverage
+  - ✅ Automated security scanning (SAST/DAST)
+  - ✅ Dependency vulnerability checks
+
+  ## 💻 Technology Stack
+
+  **Runtime:** Java 25 (LTS) • **Source:** Java 21 (LTS) • **Build:** Maven 3.9.9 • **Database:** PostgreSQL 16
+
+  ## 🙏 Contributors
   Thanks to $CONTRIBUTORS for their contributions to this release!
 
   **Full Changelog**: https://github.com/Hack23/cia/compare/$PREVIOUS_TAG...$RESOLVED_VERSION
