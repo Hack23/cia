@@ -821,6 +821,24 @@ SHOW max_connections;
 
 4. Confirm the new IPv6 entry in `pg_hba.conf` is functioning as expected by connecting via `psql` over `::1`.
 
+## 🛠️ Development Environment Requirements
+
+For local development and CI/CD workflows, the following tools are required:
+
+### Core Requirements
+- **Java**: OpenJDK 21+ (runtime supports Java 25)
+- **Maven**: 3.9.9 or later
+- **PostgreSQL**: 16+ with extensions (pgaudit, pgvector, pgcrypto)
+- **Node.js**: 24+ (required for GitHub Copilot MCP servers, Playwright testing, and workflow tooling)
+
+### Node.js Usage
+Node.js 24 is used in this project for:
+- **GitHub Copilot MCP Servers**: Model Context Protocol servers for AI-assisted development
+- **Playwright Browser Testing**: End-to-end UI testing and validation
+- **Build Tooling**: npm packages for workflow automation and testing infrastructure
+
+See `.github/workflows/copilot-setup-steps.yml` and `.github/copilot-mcp-config.json` for complete MCP server configuration.
+
 ## Database Setup
 
 Create an empty database:

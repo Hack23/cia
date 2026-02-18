@@ -66,14 +66,67 @@ template: |
   - Decision-making analysis
   - Risk assessment
 
-  ## Security Compliance
+  ---
+
+  ## 🔐 Security & Compliance
+
+  ### 🏆 Security Posture
   [![SLSA 3](https://slsa.dev/images/gh-badge-level3.svg)](https://github.com/Hack23/cia/attestations/)
   [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/770/badge)](https://bestpractices.coreinfrastructure.org/projects/770)
   [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/Hack23/cia/badge)](https://scorecard.dev/viewer/?uri=github.com/Hack23/cia)
   [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FHack23%2Fcia.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FHack23%2Fcia?ref=badge_shield)
-  [![CLA assistant](https://cla-assistant.io/readme/badge/Hack23/cia)](https://cla-assistant.io/Hack23/cia)
 
-  ## Contributors
+  ### 📋 Hack23 ISMS Policies
+  [![Information Security Policy](https://img.shields.io/badge/ISMS-Information_Security_Policy-blue?style=for-the-badge&logo=security&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Information_Security_Policy.md)
+  [![Open Source Policy](https://img.shields.io/badge/ISMS-Open_Source_Policy-green?style=for-the-badge&logo=opensourceinitiative&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Open_Source_Policy.md)
+
+  ### 🔒 Build Attestations & Provenance
+  **Release $RESOLVED_VERSION Attestations:**
+  - 📦 [DEB Package Attestation](https://github.com/Hack23/cia/attestations/)
+  - ⚙️ [WAR Artifact Attestation](https://github.com/Hack23/cia/attestations/)
+  - 📋 [SBOM (Software Bill of Materials)](https://github.com/Hack23/cia/attestations/)
+
+  **View all attestations:** [https://github.com/Hack23/cia/attestations](https://github.com/Hack23/cia/attestations/)
+
+  ---
+
+  ## 📊 Quality & Testing
+
+  ### 🧪 Test Coverage & Quality Metrics
+  [![Build Status](https://github.com/Hack23/cia/workflows/Verify%20and%20Release/badge.svg)](https://github.com/Hack23/cia/actions/workflows/release.yml)
+  [![CodeQL](https://github.com/Hack23/cia/workflows/CodeQL/badge.svg)](https://github.com/Hack23/cia/actions/workflows/codeql-analysis.yml)
+
+  **Quality Reports:**
+  - 📈 [Maven Site Documentation](https://hack23.github.io/cia/)
+  - 🔍 [CodeQL Analysis Results](https://github.com/Hack23/cia/security/code-scanning)
+  - 📊 [Dependency Review](https://github.com/Hack23/cia/security/dependabot)
+
+  ### 🛡️ Security Scanning
+  [![ZAP Scan](https://github.com/Hack23/cia/workflows/OWASP%20ZAP%20Scan/badge.svg)](https://github.com/Hack23/cia/actions/workflows/zap-scan.yml)
+  [![Scorecards](https://github.com/Hack23/cia/workflows/Scorecards/badge.svg)](https://github.com/Hack23/cia/actions/workflows/scorecards.yml)
+
+  ---
+
+  ## 🤝 Community & Licensing
+
+  [![CLA assistant](https://cla-assistant.io/readme/badge/Hack23/cia)](https://cla-assistant.io/Hack23/cia)
+  [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
+  ---
+
+  ## 📦 Release Artifacts
+
+  This release includes the following verified artifacts:
+  - `cia-dist-deb-$RESOLVED_VERSION.all.deb` - Debian package with build attestation
+  - `citizen-intelligence-agency-$RESOLVED_VERSION.war` - WAR file with build attestation
+  - `*.spdx.json` - Software Bill of Materials (SBOM) in SPDX format
+  - `*.intoto.jsonl` - In-toto attestation bundles
+
+  All artifacts are signed and include SLSA Level 3 provenance attestations.
+
+  ---
+
+  ## 👥 Contributors
   Thanks to $CONTRIBUTORS for their contributions to this release!
 
   **Full Changelog**: https://github.com/Hack23/cia/compare/$PREVIOUS_TAG...$RESOLVED_VERSION
