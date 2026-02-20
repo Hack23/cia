@@ -163,9 +163,8 @@ public class RiksdagEntityMapper {
 
     private String sanitize(String input) {
         if (input == null) return null;
-        return input.trim()
-            .replaceAll("[\\p{Cntrl}]", "")  // Remove control characters
-            .substring(0, Math.min(input.length(), 255));
+        String trimmed = input.trim().replaceAll("[\\p{Cntrl}]", "");  // Remove control characters
+        return trimmed.substring(0, Math.min(trimmed.length(), 255));
     }
 
     private String normalizeParty(String party) {

@@ -113,7 +113,8 @@ public class EuropeanParliamentApiClient {
                 attempts++;
                 if (attempts >= MAX_RETRIES) throw e;
                 try {
-                    Thread.sleep((long) Math.pow(2, attempts) * 1000);
+                    // Use TimeUnit for clarity; consider ScheduledExecutorService for non-blocking retries
+                    TimeUnit.SECONDS.sleep((long) Math.pow(2, attempts));
                 } catch (InterruptedException ie) {
                     Thread.currentThread().interrupt();
                     throw new RuntimeException(ie);

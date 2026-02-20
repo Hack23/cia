@@ -56,7 +56,12 @@ public class ResilientApiClient {
                 }
                 long delay = calculateBackoff(attempt);
                 LOG.warn("Retry {}/{} for {} after {}ms", attempt, MAX_RETRIES, operationName, delay);
-                sleep(delay);
+                try {
+                    Thread.sleep(delay);
+                } catch (InterruptedException ie) {
+                    Thread.currentThread().interrupt();
+                    throw new ApiIntegrationException(operationName, ie);
+                }
             }
         }
     }
