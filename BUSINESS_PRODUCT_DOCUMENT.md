@@ -2846,8 +2846,8 @@ flowchart TB
 **Document Version:** 1.1  
 **Date:** 2026-01-19  
 **Prepared By:** Business Development Team  
-**Reviewed By:** [To be completed]  
-**Approved By:** [To be completed]
+**Reviewed By:** James Pether Sörling, CEO  
+**Approved By:** James Pether Sörling, CEO
 
 **Changes in v1.1:**
 - Added comprehensive Advanced Intelligence Views section (v1.40-v1.43, v1.55, v1.57-v1.61)

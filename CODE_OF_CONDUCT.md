@@ -5,8 +5,8 @@
 <h1 align="center">📜 Code of Conduct — Citizen Intelligence Agency</h1>
 
 <p align="center">
-  <strong>🤝 Professional and Inclusive Community Standards</strong><br>
-  <em>🎯 We Are All Adults - Contributions Matter</em>
+  <strong>🤝 Open Community — No Code of Conduct</strong><br>
+  <em>🎯 We Are All Adults — Contributions Matter, Nothing Else</em>
 </p>
 
 <p align="center">
@@ -23,7 +23,7 @@
 
 ## 🎯 **Purpose Statement**
 
-This code of conduct establishes community standards for the Citizen Intelligence Agency project, aligned with Hack23 AB's commitment to **professional excellence** and **inclusive collaboration**.
+This project follows the [No Code of Conduct](https://github.com/domgetter/NCoC) — we are all adults, we accept anyone's contributions, and nothing else matters. This document formalizes that stance within Hack23 AB's governance framework.
 
 *— James Pether Sörling, CEO/Founder*
 
@@ -54,7 +54,7 @@ For more information please visit the [No Code of Conduct](https://github.com/do
 **📋 Document Control:**  
 **✅ Approved by:** James Pether Sörling, CEO  
 **📤 Distribution:** Public  
-**🏷️ Classification:** [![Confidentiality: Public](https://img.shields.io/badge/C-Public-lightgrey?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#confidentiality-levels)  
+**🏷️ Classification:** [![Confidentiality: Public](https://img.shields.io/badge/C-Public-lightgrey?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#confidentiality-levels) [![Integrity: Moderate](https://img.shields.io/badge/I-Moderate-yellow?style=flat-square&logo=check-circle&logoColor=black)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#integrity-levels) [![Availability: Standard](https://img.shields.io/badge/A-Standard-lightgreen?style=flat-square&logo=server&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#availability-levels)  
 **📅 Effective Date:** 2025-09-18  
 **⏰ Next Review:** 2026-09-18  
 **🎯 Framework Compliance:** [![ISO 27001](https://img.shields.io/badge/ISO_27001-2022_Aligned-blue?style=flat-square&logo=iso&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) [![NIST CSF 2.0](https://img.shields.io/badge/NIST_CSF-2.0_Aligned-green?style=flat-square&logo=nist&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) [![CIS Controls](https://img.shields.io/badge/CIS_Controls-v8.1_Aligned-orange?style=flat-square&logo=cisecurity&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) [![AWS Well-Architected](https://img.shields.io/badge/AWS-Well_Architected-orange?style=flat-square&logo=amazon-aws&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md)
