@@ -1,3 +1,26 @@
+<p align="center">
+  <img src="https://hack23.com/icon-192.png" alt="Hack23 Logo" width="192" height="192">
+</p>
+
+<h1 align="center">💰 Financial Security Plan — Citizen Intelligence Agency</h1>
+
+<p align="center">
+  <strong>🛡️ Cost-Efficient Security Implementation for Democratic Transparency</strong><br>
+  <em>🎯 AWS Infrastructure Investment and Security Controls</em>
+</p>
+
+<p align="center">
+  <a href="#"><img src="https://img.shields.io/badge/Owner-CEO-0A66C2?style=for-the-badge" alt="Owner"/></a>
+  <a href="#"><img src="https://img.shields.io/badge/Version-1.0-555?style=for-the-badge" alt="Version"/></a>
+  <a href="#"><img src="https://img.shields.io/badge/Effective-2025--09--18-success?style=for-the-badge" alt="Effective Date"/></a>
+  <a href="#"><img src="https://img.shields.io/badge/Review-Annual-orange?style=for-the-badge" alt="Review Cycle"/></a>
+</p>
+
+**📋 Document Owner:** CEO | **📄 Version:** 1.0 | **📅 Last Updated:** 2025-09-18 (UTC)  
+**🔄 Review Cycle:** Annual | **⏰ Next Review:** 2026-09-18
+
+---
+
 ## Comprehensive Financial and Security Plan
 
 This document outlines the financial and security implementation for the Citizen Intelligence Agency platform. For the architectural context, see the [Architecture Documentation](ARCHITECTURE.md) and [End-of-Life Strategy](End-of-Life-Strategy.md).
@@ -212,12 +235,36 @@ These **FSBP-aligned controls** ensure the CIA project maintains robust security
 
 For more details on AWS deployment, see [README.md - AWS Services Stack](README.md#aws-services-stack) and [CloudFormation template](https://hack23.github.io/cia/cia-dist-cloudformation/src/main/resources/cia-dist-cloudformation.json).
 
-## Related Documentation
+## 📚 Related Documents
 
-- [Architecture Documentation](ARCHITECTURE.md) - System architecture overview
-- [AWS Services Stack](README.md#aws-services-stack) - CloudFormation and AWS deployment details
-- [End-of-Life Strategy](End-of-Life-Strategy.md) - Technology maintenance planning
-- [Security Architecture](SECURITY_ARCHITECTURE.md) - Security model details
-- [README](README.md) - Project overview and quick links
-- [CIA Features](https://hack23.com/cia-features.html) - Feature showcase with screenshots
-- [Threat Model](THREAT_MODEL.md) - Risk-driven justification for selected security services
+### 🏗️ Architecture & Planning
+- [🏛️ Architecture](./ARCHITECTURE.md) - System architecture overview
+- [📅 End-of-Life Strategy](./End-of-Life-Strategy.md) - Technology maintenance planning
+- [📋 README](./README.md) - Project overview and quick links
+- [🚀 CIA Features](https://hack23.com/cia-features.html) - Feature showcase with screenshots
+
+### 🛡️ Security & Compliance
+- [🛡️ Security Architecture](./SECURITY_ARCHITECTURE.md) - Security model details
+- [🎯 Threat Model](./THREAT_MODEL.md) - Risk-driven justification for selected security services
+- [🗺️ ISMS Compliance Mapping](./ISMS_COMPLIANCE_MAPPING.md) - Complete ISMS policy mapping
+- [📋 CRA Assessment](./CRA-ASSESSMENT.md) - EU Cyber Resilience Act compliance
+
+### ☁️ AWS & Deployment
+- [☁️ AWS Services Stack](README.md#aws-services-stack) - CloudFormation and AWS deployment details
+- [📊 CloudFormation Template](https://hack23.github.io/cia/cia-dist-cloudformation/src/main/resources/cia-dist-cloudformation.json) - Infrastructure as code
+
+### 🔐 ISMS Policies
+- [🔐 Information Security Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Information_Security_Policy.md) - Overall security governance
+- [🔍 Vulnerability Management](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Vulnerability_Management.md) - Security testing and remediation
+- [🚨 Incident Response Plan](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Incident_Response_Plan.md) - Security incident management
+- [🏷️ Classification Framework](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) - Business impact and risk assessment
+
+---
+
+**📋 Document Control:**  
+**✅ Approved by:** James Pether Sörling, CEO  
+**📤 Distribution:** Public  
+**🏷️ Classification:** [![Confidentiality: Public](https://img.shields.io/badge/C-Public-lightgrey?style=flat-square&logo=shield&logoColor=black)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#confidentiality-levels) [![Integrity: Moderate](https://img.shields.io/badge/I-Moderate-yellow?style=flat-square&logo=check-circle&logoColor=black)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#integrity-levels) [![Availability: Standard](https://img.shields.io/badge/A-Standard-lightgreen?style=flat-square&logo=server&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#availability-levels)  
+**📅 Effective Date:** 2025-09-18  
+**⏰ Next Review:** 2026-09-18  
+**🎯 Framework Compliance:** [![ISO 27001](https://img.shields.io/badge/ISO_27001-2022_Aligned-blue?style=flat-square&logo=iso&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) [![NIST CSF 2.0](https://img.shields.io/badge/NIST_CSF-2.0_Aligned-green?style=flat-square&logo=nist&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) [![CIS Controls](https://img.shields.io/badge/CIS_Controls-v8.1_Aligned-orange?style=flat-square&logo=cisecurity&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) [![AWS Well-Architected](https://img.shields.io/badge/AWS-Well_Architected-orange?style=flat-square&logo=amazon-aws&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md)
