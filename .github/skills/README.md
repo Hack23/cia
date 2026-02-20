@@ -1,6 +1,6 @@
 # CIA GitHub Copilot Skills Library
 
-This directory contains 51 comprehensive agent skills for the Citizen Intelligence Agency platform, following GitHub Copilot's December 2025 Agent Skills feature best practices.
+This directory contains 79 comprehensive agent skills for the Citizen Intelligence Agency platform, following GitHub Copilot's December 2025 Agent Skills feature best practices.
 
 ## Skills Overview
 
@@ -113,6 +113,62 @@ This directory contains 51 comprehensive agent skills for the Citizen Intelligen
 | Skill | Description | Use Cases |
 |-------|-------------|-----------|
 | [seo-best-practices](seo-best-practices/) | On-page SEO, technical SEO, keyword research, content optimization | Search visibility, organic growth, content strategy |
+
+### 🤖 AI & MCP Skills (4 skills)
+
+| Skill | Description | Use Cases |
+|-------|-------------|-----------|
+| [ai-governance](ai-governance/) | EU AI Act compliance, OWASP LLM security, responsible AI practices | GitHub Copilot agents, AI risk assessment, LLM security |
+| [mcp-server-development](mcp-server-development/) | MCP server patterns, tool development, GitHub MCP integration | MCP tool creation, server configuration, AI tool integration |
+| [mcp-gateway-configuration](mcp-gateway-configuration/) | Multi-server MCP setup, tool routing, access control | MCP gateway setup, multi-agent orchestration |
+| [mcp-gateway-security](mcp-gateway-security/) | MCP security patterns, token management, request validation | MCP communications security, audit logging |
+
+### 🛡️ Advanced Security (6 skills)
+
+| Skill | Description | Use Cases |
+|-------|-------------|-----------|
+| [security-by-design](security-by-design/) | STRIDE methodology, defense in depth, security in SDLC | Feature design, architecture review, threat prevention |
+| [aws-security-architecture](aws-security-architecture/) | VPC security, IAM, KMS, CloudTrail, GuardDuty | AWS deployment, cloud security, infrastructure hardening |
+| [secure-development-lifecycle](secure-development-lifecycle/) | Secure SDLC phases, security requirements, testing integration | Development lifecycle, security gates, release management |
+| [secure-development-policy](secure-development-policy/) | Hack23 secure development policy, SAST/DAST, dependency scanning | Policy enforcement, security scanning, code signing |
+| [security-architecture-validation](security-architecture-validation/) | Security architecture review, control validation, pen testing | Architecture audits, compliance verification, security reviews |
+| [ci-cd-security](ci-cd-security/) | Pipeline security, supply chain, SLSA compliance, artifact signing | CI/CD hardening, supply chain security, build integrity |
+
+### 📊 Compliance & Governance (5 skills)
+
+| Skill | Description | Use Cases |
+|-------|-------------|-----------|
+| [compliance-frameworks](compliance-frameworks/) | Multi-framework compliance (ISO 27001, NIST CSF, CIS, GDPR, NIS2, EU CRA) | Compliance mapping, audit preparation, control verification |
+| [hack23-isms-compliance](hack23-isms-compliance/) | Hack23 org-wide ISMS compliance requirements, policy enforcement | Organization compliance, audit preparation, policy alignment |
+| [compliance-framework-alignment](compliance-framework-alignment/) | Cross-framework control mapping and alignment | Control harmonization, multi-standard compliance |
+| [classification-framework-enforcement](classification-framework-enforcement/) | Data classification enforcement, sensitivity labeling | Data handling, information classification, access controls |
+| [testing-strategy-enforcement](testing-strategy-enforcement/) | Test coverage enforcement (80% line, 70% branch), CI gates | Quality gates, coverage enforcement, test governance |
+
+### 📐 Architecture & Data Engineering (5 skills)
+
+| Skill | Description | Use Cases |
+|-------|-------------|-----------|
+| [hack23-future-architecture-standards](hack23-future-architecture-standards/) | Hack23 C4 model requirements, architecture documentation standards | Architecture docs, ADRs, future state planning |
+| [data-pipeline-engineering](data-pipeline-engineering/) | ETL processes, Spring Integration, batch processing | Data processing, political data pipelines, data loading |
+| [cia-data-integration](cia-data-integration/) | CIA data model, riksdag data processing, entity mapping | Data integration, political entity mapping, data quality |
+| [advanced-data-visualization](advanced-data-visualization/) | Advanced charts, political data visualization, time series | Dashboard design, political trends, data storytelling |
+| [api-integration](api-integration/) | External API patterns, retry logic, circuit breakers, caching | Government API integration, data fetching, resilience |
+
+### 🔧 Quality & Performance (4 skills)
+
+| Skill | Description | Use Cases |
+|-------|-------------|-----------|
+| [performance-optimization](performance-optimization/) | JVM tuning, database query optimization, Vaadin performance | Application performance, response time, resource efficiency |
+| [product-quality-analysis](product-quality-analysis/) | SonarCloud analysis, technical debt, quality gates | Quality metrics, tech debt management, code quality |
+| [data-protection](data-protection/) | Data classification (CIA triad), GDPR privacy, encryption | Data handling, privacy by design, encryption standards |
+| [ui-ux-design-system](ui-ux-design-system/) | Vaadin design system, component library, accessibility | UI consistency, design patterns, accessible components |
+
+### 🌐 Cross-Platform Integration (2 skills)
+
+| Skill | Description | Use Cases |
+|-------|-------------|-----------|
+| [european-parliament-api](european-parliament-api/) | EU Parliament open data API, MEP data, voting records | Cross-parliament analysis, EU political monitoring |
+| [typescript-strict-patterns](typescript-strict-patterns/) | TypeScript strict mode, type safety, type guards | Frontend tooling, CI/CD scripts, type-safe integrations |
 
 ## Agent Cross-Reference
 
@@ -290,5 +346,5 @@ All skills are licensed under Apache License 2.0, consistent with the CIA projec
 ---
 
 **Last Updated**: February 2026  
-**Skill Count**: 34  
-**Compliance Standards**: ISO 27001:2022, NIST CSF 2.0, CIS Controls v8, GDPR
+**Skill Count**: 79  
+**Compliance Standards**: ISO 27001:2022, NIST CSF 2.0, CIS Controls v8, GDPR, NIS2, EU CRA

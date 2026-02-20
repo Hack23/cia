@@ -7,7 +7,7 @@
 1. **[README.md](../README.md)** - Project overview, features, and documentation links
 2. **[.github/workflows/copilot-setup-steps.yml](workflows/copilot-setup-steps.yml)** - Build environment, tools, and workflow permissions
 3. **[.github/copilot-mcp-config.json](copilot-mcp-config.json)** - MCP server configuration and available tools
-4. **[.github/skills/](skills/)** - 24 strategic skills for security, testing, and architecture
+4. **[.github/skills/](skills/)** - 79 strategic skills for security, testing, architecture, and compliance
 5. **[.github/agents/](agents/)** - 6 specialized agents for different domains
 
 **Never skip reading these files. They contain critical context that prevents mistakes.**
@@ -26,7 +26,7 @@ The Citizen Intelligence Agency (CIA) is a volunteer-driven, open-source intelli
 
 **Available Resources:**
 - **[6 Specialized Agents](agents/)** - Task management, stack expertise, UI/UX, intelligence, business, marketing
-- **[24 Skills Library](skills/)** - Security, ISMS compliance, testing, architecture, CI/CD, community
+- **[79 Skills Library](skills/)** - Security, ISMS compliance, testing, architecture, CI/CD, data protection, AI governance, MCP, and more
 
 ## Build and Development
 
@@ -169,6 +169,61 @@ mvn dependency-check:check
 - Keep technical documentation up to date with code changes
 - Use Markdown for all documentation files
 
+### Architecture Documentation Matrix (Hack23 Organization Standard)
+
+Every Hack23 repository MUST maintain comprehensive architectural documentation following the C4 model:
+
+**Current State Architecture:**
+- 🏛️ **ARCHITECTURE.md** — Complete C4 models (Context, Container, Component views)
+- 📊 **DATA_MODEL.md** — Data structures, entities, and relationships
+- 🔄 **FLOWCHART.md** — Business process and data flows
+- 📈 **STATEDIAGRAM.md** — System state transitions and lifecycles
+- 🧠 **MINDMAP.md** — System conceptual relationships
+- 💼 **SWOT.md** — Strategic analysis and positioning
+
+**Future State Planning:**
+- 🚀 **FUTURE_ARCHITECTURE.md** — Architectural evolution roadmap
+- 📊 **FUTURE_DATA_MODEL.md** — Enhanced data architecture plans
+- 🔄 **FUTURE_FLOWCHART.md** — Improved process workflows
+- 📈 **FUTURE_STATEDIAGRAM.md** — Advanced state management
+- 🧠 **FUTURE_MINDMAP.md** — Capability expansion plans
+- 💼 **FUTURE_SWOT.md** — Future strategic opportunities
+
+**Security Architecture (Mandatory):**
+- 🏛️ **SECURITY_ARCHITECTURE.md** — Current implemented security design and controls
+- 🚀 **FUTURE_SECURITY_ARCHITECTURE.md** — Planned security improvements and roadmap
+- 🛡️ **THREAT_MODEL.md** — Threat analysis and mitigation strategies
+
+**Mandatory Security Architecture Content:**
+- Authentication & Authorization patterns
+- Session & Action Tracking (audit capabilities)
+- Data Integrity & Auditing (tamper-evident logging)
+- Data Protection & Key Management (encryption, key lifecycle)
+- Network Security & Perimeter Protection
+- High Availability & Resilience
+- Threat Detection & Investigation
+- Vulnerability Management
+- Application Security Controls (input validation, output encoding)
+- Defense-in-Depth Strategy
+- Compliance Framework Mapping (ISO 27001, NIST CSF, CIS Controls, GDPR)
+
+**Reference:** [Hack23 Secure Development Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md)
+
+### Hack23 Organization Repository Portfolio
+
+| Repository | Description | Key Documentation |
+|-----------|-------------|-------------------|
+| [cia](https://github.com/Hack23/cia) | Political intelligence platform (Java/Spring/Vaadin) | [Architecture](../ARCHITECTURE.md), [Security](../SECURITY_ARCHITECTURE.md) |
+| [cia-compliance-manager](https://github.com/Hack23/cia-compliance-manager) | CIA compliance assessment (TypeScript/React) | [Architecture](https://github.com/Hack23/cia-compliance-manager/blob/main/ARCHITECTURE.md) |
+| [blacktrigram](https://github.com/Hack23/blacktrigram) | Korean martial arts combat simulator (TypeScript/React/Three.js) | [Architecture](https://github.com/Hack23/blacktrigram/blob/main/ARCHITECTURE.md) |
+| [game](https://github.com/Hack23/game) | React/Three.js game template | [Architecture](https://github.com/Hack23/game/blob/main/ARCHITECTURE.md) |
+| [homepage](https://github.com/Hack23/homepage) | Organization website (hack23.com) | [Architecture](https://github.com/Hack23/homepage/blob/master/ARCHITECTURE.md) |
+| [riksdagsmonitor](https://github.com/Hack23/riksdagsmonitor) | Swedish Parliament monitoring platform | [Architecture](https://github.com/Hack23/riksdagsmonitor/blob/main/ARCHITECTURE.md) |
+| [euparliamentmonitor](https://github.com/Hack23/euparliamentmonitor) | EU Parliament intelligence platform | [Architecture](https://github.com/Hack23/euparliamentmonitor/blob/main/ARCHITECTURE.md) |
+| [European-Parliament-MCP-Server](https://github.com/Hack23/European-Parliament-MCP-Server) | MCP Server for EU Parliament data | [Architecture](https://github.com/Hack23/European-Parliament-MCP-Server/blob/main/ARCHITECTURE.md) |
+| [lambda-in-private-vpc](https://github.com/Hack23/lambda-in-private-vpc) | Multi-region AWS Lambda architecture | [Architecture](https://github.com/Hack23/lambda-in-private-vpc/blob/main/ARCHITECTURE.md) |
+| [ISMS-PUBLIC](https://github.com/Hack23/ISMS-PUBLIC) | Public ISMS documentation | [Security Architecture](https://github.com/Hack23/ISMS-PUBLIC/blob/main/SECURITY_ARCHITECTURE.md) |
+
 ## External Data Sources
 
 The project integrates with several external APIs:
@@ -296,13 +351,31 @@ All PRs must:
 **Only escalate truly unique scenarios not covered by these frameworks.**
 
 ### Rule 6: Use Skills and Agents
-**Before implementing, check relevant skills:**
+**Before implementing, check relevant skills (79 skills available):**
+
+**Security & Compliance:**
 - [secure-code-review](skills/secure-code-review/) - OWASP Top 10, security patterns
-- [unit-testing-patterns](skills/unit-testing-patterns/) - JUnit 5, Mockito, 80% coverage
+- [security-by-design](skills/security-by-design/) - STRIDE, defense in depth, SDLC security
+- [input-validation](skills/input-validation/) - XSS, SQL injection prevention
+- [ai-governance](skills/ai-governance/) - EU AI Act, OWASP LLM, responsible AI
+- [compliance-frameworks](skills/compliance-frameworks/) - ISO 27001, NIST CSF, CIS, GDPR, NIS2
+- [data-protection](skills/data-protection/) - Data classification, GDPR, encryption
+
+**Architecture & Development:**
 - [spring-framework-patterns](skills/spring-framework-patterns/) - DI, transactions, AOP
 - [jpa-hibernate-optimization](skills/jpa-hibernate-optimization/) - Entity design, N+1 prevention
-- [input-validation](skills/input-validation/) - XSS, SQL injection prevention
-- See [full skills catalog](skills/README.md)
+- [vaadin-component-design](skills/vaadin-component-design/) - Vaadin UI components
+- [api-integration](skills/api-integration/) - External API patterns, retry, caching
+- [data-pipeline-engineering](skills/data-pipeline-engineering/) - Spring Integration, ETL
+- [hack23-future-architecture-standards](skills/hack23-future-architecture-standards/) - C4 model, docs
+
+**Testing & Quality:**
+- [unit-testing-patterns](skills/unit-testing-patterns/) - JUnit 5, Mockito, 80% coverage
+- [testing-strategy-enforcement](skills/testing-strategy-enforcement/) - Coverage gates, test pyramid
+- [product-quality-analysis](skills/product-quality-analysis/) - SonarCloud, quality gates
+- [ci-cd-security](skills/ci-cd-security/) - Pipeline security, SLSA compliance
+
+**See full catalog:** [skills/README.md](skills/README.md)
 
 **Delegate to specialized agents when appropriate:**
 - [task-agent](agents/task-agent.md) - GitHub issue management, ISMS compliance
