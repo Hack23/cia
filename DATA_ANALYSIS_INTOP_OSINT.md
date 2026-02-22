@@ -1,11 +1,23 @@
-# Data Analysis - Intelligence Operations & OSINT Perspective
+<p align="center">
+  <img src="https://hack23.com/icon-192.png" alt="Hack23 Logo" width="192" height="192">
+</p>
 
-**Document Type:** Framework (Living Document)  
-**Status:** Active - Continuously Updated  
-**Last Updated:** 2026-01-19  
-**Purpose:** Comprehensive documentation of data analysis methodologies, OSINT techniques, and intelligence operations frameworks  
-**Classification:** Public Documentation  
-**External References:** Yes - Referenced in hack23.com blog posts and technical documentation
+<h1 align="center">📊 Data Analysis — Intelligence Operations & OSINT</h1>
+
+<p align="center">
+  <strong>🔍 Comprehensive OSINT Methodologies and Analytical Frameworks</strong><br>
+  <em>🎯 Bridging Data Collection, Analysis, and Intelligence Products</em>
+</p>
+
+<p align="center">
+  <a href="#"><img src="https://img.shields.io/badge/Owner-CEO-0A66C2?style=for-the-badge" alt="Owner"/></a>
+  <a href="#"><img src="https://img.shields.io/badge/Version-1.0-555?style=for-the-badge" alt="Version"/></a>
+  <a href="#"><img src="https://img.shields.io/badge/Effective-2026--01--19-success?style=for-the-badge" alt="Effective Date"/></a>
+  <a href="#"><img src="https://img.shields.io/badge/Review-Quarterly-orange?style=for-the-badge" alt="Review Cycle"/></a>
+</p>
+
+**📋 Document Owner:** CEO | **📄 Version:** 1.0 | **📅 Last Updated:** 2026-01-19 (UTC)  
+**🔄 Review Cycle:** Quarterly | **⏰ Next Review:** 2026-04-19
 
 ---
 
@@ -10086,11 +10098,12 @@ print(f"95th Percentile: {percentile_95:.2f}%")
 
 ---
 
-**Document Classification**: Internal - Open Source
-**Distribution**: Public (GitHub)
-**Review Cycle**: Annual
-**Next Review**: 2026-11-15
-
----
+**📋 Document Control:**  
+**✅ Approved by:** James Pether Sörling, CEO  
+**📤 Distribution:** Public  
+**🏷️ Classification:** [![Confidentiality: Public](https://img.shields.io/badge/C-Public-lightgrey?style=flat-square&logo=shield&logoColor=black)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#confidentiality-levels) [![Integrity: Moderate](https://img.shields.io/badge/I-Moderate-yellow?style=flat-square&logo=check-circle&logoColor=black)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#integrity-levels) [![Availability: Standard](https://img.shields.io/badge/A-Standard-lightgreen?style=flat-square&logo=server&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#availability-levels)  
+**📅 Effective Date:** 2026-01-19  
+**⏰ Next Review:** 2026-04-19  
+**🎯 Framework Compliance:** [![ISO 27001](https://img.shields.io/badge/ISO_27001-2022_Aligned-blue?style=flat-square&logo=iso&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) [![NIST CSF 2.0](https://img.shields.io/badge/NIST_CSF-2.0_Aligned-green?style=flat-square&logo=nist&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) [![CIS Controls](https://img.shields.io/badge/CIS_Controls-v8.1_Aligned-orange?style=flat-square&logo=cisecurity&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) [![AWS Well-Architected](https://img.shields.io/badge/AWS-Well_Architected-orange?style=flat-square&logo=amazon-aws&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md)
 
 *This document is part of the Citizen Intelligence Agency's commitment to transparency, accountability, and ethical intelligence operations. All methodologies are open-source and designed to strengthen democratic processes.*

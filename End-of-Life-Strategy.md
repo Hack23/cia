@@ -1,4 +1,25 @@
-# CIA Project End-of-Life (EOL) Strategy
+<p align="center">
+  <img src="https://hack23.com/icon-192.png" alt="Hack23 Logo" width="192" height="192">
+</p>
+
+<h1 align="center">📅 End-of-Life Strategy — Citizen Intelligence Agency</h1>
+
+<p align="center">
+  <strong>🔄 Lifecycle Management and Maintenance Planning</strong><br>
+  <em>🎯 Ensuring Stability, Compatibility, and Security Until EOL</em>
+</p>
+
+<p align="center">
+  <a href="#"><img src="https://img.shields.io/badge/Owner-CEO-0A66C2?style=for-the-badge" alt="Owner"/></a>
+  <a href="#"><img src="https://img.shields.io/badge/Version-1.0-555?style=for-the-badge" alt="Version"/></a>
+  <a href="#"><img src="https://img.shields.io/badge/Effective-2025--09--18-success?style=for-the-badge" alt="Effective Date"/></a>
+  <a href="#"><img src="https://img.shields.io/badge/Review-Annual-orange?style=for-the-badge" alt="Review Cycle"/></a>
+</p>
+
+**📋 Document Owner:** CEO | **📄 Version:** 1.0 | **📅 Last Updated:** 2025-09-18 (UTC)  
+**🔄 Review Cycle:** Annual | **⏰ Next Review:** 2026-09-18
+
+---
 
 ## Overview
 
@@ -108,13 +129,41 @@ For a conceptual overview of how these components interact, see the [System Mind
 - **Security Focus**: Prioritize security updates for dependencies in **Spring Security**, **Logback**, and **Bouncy Castle**.
 - **Documentation**: See each dependency's documentation for details and licensing options, as summarized on [endoflife.date](https://endoflife.date/).
 
-## Related Documentation
+---
 
-- [README](README.md) - Project overview and quick links
-- [Architecture Documentation](ARCHITECTURE.md) - Current system architecture
-- [Financial Security Plan](FinancialSecurityPlan.md) - Security implementation details
-- [Future Architecture Vision](FUTURE_MINDMAP.md) - Long-term roadmap
-- [CIA Features](https://hack23.com/cia-features.html) - Feature showcase with screenshots
-- [Project Documentation](https://hack23.github.io/cia/) - Comprehensive developer resources
-- [Threat Model](THREAT_MODEL.md) - Lifecycle risk and residual threat alignment
+## 📚 Related Documents
 
+### 🏗️ Architecture & Planning
+- [🏛️ Architecture](./ARCHITECTURE.md) - Current system architecture
+- [🚀 Future Architecture](./FUTURE_ARCHITECTURE.md) - Long-term architectural vision
+- [🧠 Future Mindmap](./FUTURE_MINDMAP.md) - Capability expansion plans
+- [📋 README](./README.md) - Project overview and quick links
+
+### 🛡️ Security & Compliance
+- [🛡️ Security Architecture](./SECURITY_ARCHITECTURE.md) - Current security implementation
+- [🎯 Threat Model](./THREAT_MODEL.md) - Lifecycle risk and residual threat alignment
+- [💰 Financial Security Plan](./FinancialSecurityPlan.md) - Security implementation details
+- [📋 CRA Assessment](./CRA-ASSESSMENT.md) - EU Cyber Resilience Act compliance
+- [🗺️ ISMS Compliance Mapping](./ISMS_COMPLIANCE_MAPPING.md) - Complete ISMS policy mapping
+
+### 🔄 Operations & Workflows
+- [🔄 CI/CD Workflows](./WORKFLOWS.md) - Security-hardened CI/CD pipelines
+- [🔮 Future Workflows](./FUTURE_WORKFLOWS.md) - Enhanced CI/CD roadmap
+- [🚀 CIA Features](https://hack23.com/cia-features.html) - Feature showcase with screenshots
+- [📊 Project Documentation](https://hack23.github.io/cia/) - Comprehensive developer resources
+
+### 🔐 ISMS Policies
+- [🔐 Information Security Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Information_Security_Policy.md) - Overall security governance
+- [🔍 Vulnerability Management](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Vulnerability_Management.md) - Security testing and remediation
+- [📝 Change Management](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Change_Management.md) - Risk-controlled change processes
+- [🏷️ Classification Framework](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) - Business impact and risk assessment
+
+---
+
+**📋 Document Control:**  
+**✅ Approved by:** James Pether Sörling, CEO  
+**📤 Distribution:** Public  
+**🏷️ Classification:** [![Confidentiality: Public](https://img.shields.io/badge/C-Public-lightgrey?style=flat-square&logo=shield&logoColor=black)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#confidentiality-levels) [![Integrity: Moderate](https://img.shields.io/badge/I-Moderate-yellow?style=flat-square&logo=check-circle&logoColor=black)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#integrity-levels) [![Availability: Standard](https://img.shields.io/badge/A-Standard-lightgreen?style=flat-square&logo=server&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#availability-levels)  
+**📅 Effective Date:** 2025-09-18  
+**⏰ Next Review:** 2026-09-18  
+**🎯 Framework Compliance:** [![ISO 27001](https://img.shields.io/badge/ISO_27001-2022_Aligned-blue?style=flat-square&logo=iso&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) [![NIST CSF 2.0](https://img.shields.io/badge/NIST_CSF-2.0_Aligned-green?style=flat-square&logo=nist&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) [![CIS Controls](https://img.shields.io/badge/CIS_Controls-v8.1_Aligned-orange?style=flat-square&logo=cisecurity&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) [![AWS Well-Architected](https://img.shields.io/badge/AWS-Well_Architected-orange?style=flat-square&logo=amazon-aws&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md)
