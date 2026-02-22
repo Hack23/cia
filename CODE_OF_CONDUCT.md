@@ -29,7 +29,7 @@ This project follows the [No Code of Conduct](https://github.com/domgetter/NCoC)
 
 ---
 
-# Contributor Code of Conduct
+## Contributor Code of Conduct
 
 This project adheres to No Code of Conduct. We are all adults. We accept anyone's contributions. Nothing else matters.
 
