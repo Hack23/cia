@@ -288,7 +288,8 @@ Several external threats could impact the project's success:
 Based on the SWOT analysis, the following strategic focus areas emerge as priorities:
 
 1. **Modernize Critical Architecture Components**:
-   - Implement the transition to Jetty 12 as described in [End-of-Life Strategy](End-of-Life-Strategy.md)
+   - Maintain current dependency versions and apply security patches promptly
+   - Invest in AI-enhanced analytics capabilities as described in [Future Architecture](FUTURE_ARCHITECTURE.md)
    - Evaluate selective modernization of UI components
    - Strengthen security implementation as outlined in [Financial Security Plan](FinancialSecurityPlan.md)
 
@@ -323,21 +324,21 @@ graph TD
     end
     
     subgraph "Short-Term Priorities"
-        ST1[Jetty 12 Migration]
+        ST1[AI-Enhanced Analytics Integration]
         ST2[Data Processing Automation]
-        ST3[Mobile UI Improvements]
+        ST3[Accessibility Improvements]
     end
     
     subgraph "Medium-Term Priorities"
         MT1[API Ecosystem Development]
-        MT2[ML Data Structure Preparation]
+        MT2[LLM-Powered Document Analysis]
         MT3[Integration Capabilities]
     end
     
     subgraph "Long-Term Vision"
         LT1[International Expansion]
-        LT2[AI-Enhanced Analytics]
-        LT3[Business Intelligence Integration]
+        LT2[Autonomous Political Intelligence]
+        LT3[Citizen Engagement Platform]
     end
     
     IP1 --> ST1
@@ -375,35 +376,35 @@ gantt
     dateFormat YYYY-Q1
     axisFormat %Y-%q
     
-    section Technology Stability
-    Jetty 12 Migration                    :a1, 2024-Q1, 2quarters
-    Dependency Security Updates           :a2, 2024-Q1, 4quarters
-    Documentation Enhancement             :a3, 2024-Q1, 3quarters
+    section Platform Stability
+    Dependency Security Updates           :a1, 2025-Q3, 4quarters
+    Documentation Enhancement             :a2, 2025-Q3, 3quarters
+    ISMS Compliance Alignment             :a3, 2025-Q4, 2quarters
     
     section Data Processing
-    Automated Data Pipeline Improvement   :b1, 2024-Q2, 2quarters
-    Data Validation Enhancement           :b2, 2024-Q3, 2quarters
-    Data Source Monitoring                :b3, 2024-Q4, 1quarters
+    Automated Data Pipeline Improvement   :b1, 2025-Q4, 2quarters
+    Data Validation Enhancement           :b2, 2026-Q1, 2quarters
+    AI-Enhanced Data Quality Monitoring   :b3, 2026-Q2, 2quarters
     
     section User Experience
-    Mobile Responsive Improvements        :c1, 2024-Q3, 2quarters
-    UI Component Modernization            :c2, 2025-Q1, 3quarters
-    Performance Optimization              :c3, 2025-Q2, 2quarters
+    Accessibility WCAG 2.1 AA            :c1, 2026-Q1, 2quarters
+    UI Dashboard Modernization            :c2, 2026-Q1, 3quarters
+    Performance Optimization              :c3, 2026-Q2, 2quarters
     
-    section Future Capabilities
-    API Ecosystem Development             :d1, 2024-Q4, 3quarters
-    ML Data Structure Preparation         :d2, 2025-Q1, 2quarters
-    Integration Framework                 :d3, 2025-Q2, 2quarters
-    Initial AI Analytics Features         :d4, 2025-Q3, 3quarters
+    section AI & Analytics
+    LLM Document Summarization            :d1, 2026-Q1, 2quarters
+    Semantic Search via pgvector          :d2, 2026-Q2, 2quarters
+    API Ecosystem Development             :d3, 2026-Q2, 3quarters
+    AI-Enhanced Risk Analytics            :d4, 2026-Q3, 3quarters
 ```
 
 ## Conclusion
 
-The Citizen Intelligence Agency platform has established strong foundations with its comprehensive political data and robust visualization capabilities. By addressing key weaknesses in the technology stack, mobile experience, and data processing automation, while simultaneously preparing for future AI-enhanced analytics, the platform can maintain its relevance and impact.
+The Citizen Intelligence Agency platform has established strong foundations with its comprehensive political data and robust visualization capabilities. By addressing key weaknesses in accessibility, data processing automation, and AI integration, while simultaneously preparing for future LLM-enhanced analytics and international expansion, the platform can maintain its relevance and impact.
 
-Strategic priorities should balance immediate stability needs with incremental progress toward the future vision outlined in the [Future Mindmap](FUTURE_MINDMAP.md). The volunteer-driven nature of the project necessitates careful resource allocation, with an emphasis on sustainable development practices and community building.
+Strategic priorities should balance immediate stability needs with incremental progress toward the AI-enhanced future vision outlined in the [Future SWOT Analysis](FUTURE_SWOT.md) and [Future Architecture](FUTURE_ARCHITECTURE.md). The volunteer-driven nature of the project necessitates careful resource allocation, with GitHub Copilot agents and AI-assisted development helping to maximize development capacity.
 
-The ultimate goal remains enhancing political transparency and citizen engagement, with technology serving as an enabler for democratic participation and informed decision-making.
+The ultimate goal remains enhancing political transparency and citizen engagement, with AI technology serving as an enabler for democratic participation and informed decision-making.
 
 <div class="chart-legend">
 The color scheme used in these diagrams follows the consistent palette used throughout the architecture documentation:

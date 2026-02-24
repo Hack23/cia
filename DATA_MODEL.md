@@ -723,20 +723,21 @@ timeline
     title Data Model Evolution Plan
     section Current Model
         Now : Core political entities
-            : Basic analytical views
-            : Simple aggregations
-    section Near Future
-        Q3 2024 : ML-ready data structures
-               : Enhanced relationship models
-               : Predictive analytics tables
-    section Mid-Term
-        Q1 2025 : Real-time data streams
-               : Natural language processing
-               : Network analysis models
-    section Long-Term
-        Q3 2025 : AI decision support structures
-            : Semantic knowledge graphs
-            : Autonomous pattern detection
+            : Comprehensive analytical views
+            : Materialized view aggregations
+            : Intelligence analysis views
+    section Near Future (2026)
+        2026 : AI analysis tables (ai_person_analysis, ai_document_analysis)
+             : Vector embeddings via pgvector for semantic search
+             : AI model audit trail
+    section Mid-Term (2027–2028)
+        2027-2028 : Knowledge graph entity relationships
+                  : Cross-national parliament data schema
+                  : Temporal event stream tables
+    section Long-Term (2029+)
+        2029+ : Policy impact simulation storage
+             : Self-optimizing schema via AI
+             : Federated political data exchange
 ```
 
 ## 🧩 Key Data Model Implementation Features
@@ -759,6 +760,7 @@ For more detailed information on specific entities, please refer to the [Entity 
 
 - [Architecture Documentation](ARCHITECTURE.md) - System architecture overview
 - [Entity Model Documentation](https://hack23.github.io/cia/service.data.impl/hbm2doc/entities/index.html) - Detailed entity documentation
+- [Future Data Model](FUTURE_DATA_MODEL.md) - Enhanced political data architecture roadmap (2026–2037)
 - [Future Vision](FUTURE_MINDMAP.md) - Roadmap for AI-enhanced capabilities
 - [MINDMAP Documentation](MINDMAP.md) - Conceptual overview of system components
 - [AWS Services Stack](README.md#aws-services-stack) - Cloud deployment architecture
