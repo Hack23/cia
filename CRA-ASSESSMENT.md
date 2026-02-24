@@ -496,10 +496,12 @@ CRA assessment updated only when changes constitute "substantial modification" u
 
 ---
 
-**Document Control:**  
-**Approved by:** James Pether Sörling, CEO  
-**Distribution:** Public  
-**Classification:** [![Confidentiality: Public](https://img.shields.io/badge/C-Public-lightgrey?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#confidentiality-levels)  
-**Effective Date:** 2025-08-23  
-**CRA Alignment:** Template supports CRA Annex V technical documentation and self-assessment requirements
-**ISMS Integration:** Comprehensive alignment with public ISMS framework for operational excellence
+**📋 Document Control:**  
+**✅ Approved by:** James Pether Sörling, CEO - Hack23 AB  
+**📤 Distribution:** Public  
+**🏷️ Classification:** [![Confidentiality: Public](https://img.shields.io/badge/C-Public-lightgrey?style=flat-square&logo=shield&logoColor=black)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#confidentiality-levels) [![Integrity: High](https://img.shields.io/badge/I-High-orange?style=flat-square&logo=check-circle&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#integrity-levels) [![Availability: Moderate](https://img.shields.io/badge/A-Moderate-yellow?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#availability-levels)  
+**📅 Effective Date:** 2025-08-23  
+**⏰ Next Review:** 2025-11-23  
+**🎯 Framework Compliance:** [![ISO 27001](https://img.shields.io/badge/ISO_27001-2022_Aligned-blue?style=flat-square&logo=iso&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) [![NIST CSF 2.0](https://img.shields.io/badge/NIST_CSF-2.0_Aligned-green?style=flat-square&logo=nist&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) [![CIS Controls](https://img.shields.io/badge/CIS_Controls-v8.1_Aligned-orange?style=flat-square&logo=cisecurity&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md)  
+**🇪🇺 CRA Alignment:** Template supports CRA Annex V technical documentation and self-assessment requirements  
+**🔐 ISMS Integration:** Comprehensive alignment with public ISMS framework for operational excellence
