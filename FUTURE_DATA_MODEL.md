@@ -1,6 +1,6 @@
 # 📊 Future Data Model Vision: 2026–2037 Roadmap
 
-This document outlines the evolution of the Citizen Intelligence Agency data model from practical 2026 enhancements through visionary 2037 capabilities. The roadmap accounts for AI/LLM advancement—currently leveraging Anthropic Opus 4.6 with minor updates every ~2.3 months and major version upgrades annually—and anticipates how evolving AI capabilities will transform political data structures and relationships.
+This document outlines the evolution of the Citizen Intelligence Agency data model from practical 2026 enhancements through visionary 2037 capabilities. The roadmap accounts for AI/LLM advancement—currently leveraging Anthropic Opus 4.6 with minor updates every ~2.3 months and major version upgrades annually—while anticipating competitor models (GPT-N, Gemini, Llama), emergent architectures, and the trajectory toward AGI, and how these will transform political data structures and relationships.
 
 ## 📚 Related Architecture Documentation
 
