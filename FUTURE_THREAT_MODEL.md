@@ -299,8 +299,8 @@ Following [MITRE ATT&CK-Driven Analysis](https://github.com/Hack23/ISMS-PUBLIC/b
 |-----------------|--------------------|-----------------------|---------------------|
 | **🤖 LLM Guardrails** | [M1031](https://attack.mitre.org/mitigations/M1031/) Network Intrusion Prevention | T1190, T1059, T1565 | 85% — Evolving with adversarial training |
 | **🔐 PQC Migration** | [M1041](https://attack.mitre.org/mitigations/M1041/) Encrypt Sensitive Information | T1557, T1040 | 95% — Quantum-resistant foundation |
-| **🤖 AI Agent Sandboxing** | [M1038](https://attack.mitre.org/mitigations/M1038/) Execution Prevention | T1648, T1068 | 80% — Requires continuous tuning |
-| **📊 Model Integrity Monitoring** | [M1049](https://attack.mitre.org/mitigations/M1049/) Antivirus/Antimalware | T1195.002, T1027 | 75% — Emerging capability |
+| **🤖 AI Agent Sandboxing** | [M1038](https://attack.mitre.org/mitigations/M1038/) Execution Prevention | T1648, T1068, T1195.003 | 80% — Requires continuous tuning |
+| **📊 Model Integrity Monitoring** | [M1049](https://attack.mitre.org/mitigations/M1049/) Antivirus/Antimalware | T1195.002, T1195.003, T1027 | 75% — Emerging capability |
 | **🔍 AI Output Validation** | [M1054](https://attack.mitre.org/mitigations/M1054/) Software Configuration | T1565, T1041, T1491 | 80% — Multi-model consensus |
 | **🛡️ Election Period Hardening** | [M1030](https://attack.mitre.org/mitigations/M1030/) Network Segmentation | T1499, T1498, T1491 | 90% — Proven surge capability |
 
