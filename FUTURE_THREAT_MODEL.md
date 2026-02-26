@@ -264,15 +264,18 @@ Following [MITRE ATT&CK-Driven Analysis](https://github.com/Hack23/ISMS-PUBLIC/b
 | **🔍 Initial Access** | Exploit Public-Facing AI Interface | [T1190](https://attack.mitre.org/techniques/T1190/) | Prompt injection via political query interface | Input sanitization, prompt filtering, LLM guardrails | AI input monitoring, anomaly detection |
 | **🔍 Initial Access** | Supply Chain Compromise: AI Models | [T1195.002](https://attack.mitre.org/techniques/T1195/002/) | Poisoned LLM model update or fine-tuning data | Model provenance verification, SBOM for AI | Model integrity monitoring, behavioral drift detection |
 | **⚡ Execution** | Serverless Execution (AI Functions) | [T1648](https://attack.mitre.org/techniques/T1648/) | Malicious code via AI agent orchestration | Agent sandboxing, action allowlisting | Agent behavior monitoring, execution auditing |
-| **🔄 Persistence** | AI Model Backdoor | [T1546](https://attack.mitre.org/techniques/T1546/) | Backdoor in fine-tuned political analysis model | Model scanning, adversarial testing | Output anomaly detection, baseline comparison |
+| **🔄 Persistence** | AI Model Backdoor | Emerging ¹ | Backdoor in fine-tuned political analysis model | Model scanning, adversarial testing | Output anomaly detection, baseline comparison |
 | **⬆️ Privilege Escalation** | AI Agent Privilege Abuse | [T1068](https://attack.mitre.org/techniques/T1068/) | AI agent exploits broad permissions for lateral access | Least-privilege AI roles, action boundaries | Permission monitoring, anomalous action alerts |
 | **🎭 Defense Evasion** | Adversarial ML Evasion | [T1027](https://attack.mitre.org/techniques/T1027/) | Crafted inputs that bypass AI security classifiers | Ensemble detection models, adversarial training | Multi-model consensus, drift detection |
 | **🔑 Credential Access** | AI-Generated Phishing | [T1566](https://attack.mitre.org/techniques/T1566/) | LLM-generated targeted phishing of platform admins | AI-powered email analysis, MFA enforcement | AI-assisted phishing detection, behavioral analysis |
 | **🔍 Discovery** | AI-Assisted Reconnaissance | [T1595](https://attack.mitre.org/techniques/T1595/) | Automated discovery of API patterns and vulnerabilities | Rate limiting, honeypots, behavioral analysis | Traffic pattern analysis, reconnaissance detection |
 | **📤 Exfiltration** | Prompt-Based Data Extraction | [T1041](https://attack.mitre.org/techniques/T1041/) | Extracting training data or PII via crafted prompts | Output filtering, data loss prevention for AI | Response monitoring, PII detection in outputs |
 | **💥 Impact** | AI Output Manipulation | [T1565](https://attack.mitre.org/techniques/T1565/) | Manipulating political analysis results to spread disinformation | Output validation, multi-source verification | Integrity checks, human review for critical outputs |
-| **💥 Impact** | Quantum Decryption | [T1486](https://attack.mitre.org/techniques/T1486/) | Harvest-now-decrypt-later of encrypted civic data | PQC migration, quantum-safe algorithms | Encryption audit, algorithm inventory monitoring |
+| **💥 Impact** | Harvest-Now-Decrypt-Later | Emerging ² | Harvest-now-decrypt-later of encrypted civic data | PQC migration, quantum-safe algorithms | Encryption audit, algorithm inventory monitoring |
 | **💥 Impact** | Democratic Process Disruption | [T1499](https://attack.mitre.org/techniques/T1499/) | Coordinated attack during Swedish election periods | Election-period hardening, surge capacity | Election monitoring dashboard, threat escalation |
+
+> **¹** AI Model Backdoor is an emerging threat without a direct MITRE ATT&CK mapping. Closest existing techniques: [T1195.003](https://attack.mitre.org/techniques/T1195/003/) (Supply Chain Compromise: Compromise Software Dependencies) and [T1554](https://attack.mitre.org/techniques/T1554/) (Compromise Host Software Binary).  
+> **²** Harvest-Now-Decrypt-Later is an emerging quantum computing threat without a direct MITRE ATT&CK mapping. It involves intercepting and storing encrypted data today for future decryption when quantum computers become capable.
 
 ### **📊 Future ATT&CK Coverage Analysis**
 
@@ -294,10 +297,10 @@ Following [MITRE ATT&CK-Driven Analysis](https://github.com/Hack23/ISMS-PUBLIC/b
 
 | Security Control | ATT&CK Mitigations | Techniques Addressed | Future Effectiveness |
 |-----------------|--------------------|-----------------------|---------------------|
-| **🤖 LLM Guardrails** | [M1031](https://attack.mitre.org/mitigations/M1031/) Input Validation | T1190, T1059, T1565 | 85% — Evolving with adversarial training |
-| **🔐 PQC Migration** | [M1041](https://attack.mitre.org/mitigations/M1041/) Encrypt Sensitive Info | T1486, T1557, T1040 | 95% — Quantum-resistant foundation |
-| **🤖 AI Agent Sandboxing** | [M1038](https://attack.mitre.org/mitigations/M1038/) Execution Prevention | T1648, T1068, T1546 | 80% — Requires continuous tuning |
-| **📊 Model Integrity Monitoring** | [M1049](https://attack.mitre.org/mitigations/M1049/) Anti-Tampering | T1195.002, T1546, T1027 | 75% — Emerging capability |
+| **🤖 LLM Guardrails** | [M1031](https://attack.mitre.org/mitigations/M1031/) Network Intrusion Prevention | T1190, T1059, T1565 | 85% — Evolving with adversarial training |
+| **🔐 PQC Migration** | [M1041](https://attack.mitre.org/mitigations/M1041/) Encrypt Sensitive Information | T1557, T1040 | 95% — Quantum-resistant foundation |
+| **🤖 AI Agent Sandboxing** | [M1038](https://attack.mitre.org/mitigations/M1038/) Execution Prevention | T1648, T1068 | 80% — Requires continuous tuning |
+| **📊 Model Integrity Monitoring** | [M1049](https://attack.mitre.org/mitigations/M1049/) Antivirus/Antimalware | T1195.002, T1027 | 75% — Emerging capability |
 | **🔍 AI Output Validation** | [M1054](https://attack.mitre.org/mitigations/M1054/) Software Configuration | T1565, T1041, T1491 | 80% — Multi-model consensus |
 | **🛡️ Election Period Hardening** | [M1030](https://attack.mitre.org/mitigations/M1030/) Network Segmentation | T1499, T1498, T1491 | 90% — Proven surge capability |
 
@@ -330,10 +333,10 @@ Following [Hack23 AB Threat Agent Classification](https://github.com/Hack23/ISMS
 | Threat Agent | Category | Future CIA Context | Capability (2027+) | Motivation | Priority MITRE Techniques | Risk Level |
 |-------------|----------|-------------------|--------------------:|-----------|--------------------------|-----------|
 | **🏛️ Nation-State Actors** | External | AI-enhanced political interference targeting Swedish democratic transparency | Very High — State-funded AI research | Political influence, democratic undermining | T1190, T1565, T1195.002 | [![Critical](https://img.shields.io/badge/Risk-Critical-red?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) |
-| **🤖 AI-Powered Adversaries** | External | Autonomous attack systems targeting AI components, adversarial ML | High — Off-the-shelf AI attack tools | Disruption, data theft, model manipulation | T1027, T1546, T1648 | [![Critical](https://img.shields.io/badge/Risk-Critical-red?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) |
+| **🤖 AI-Powered Adversaries** | External | Autonomous attack systems targeting AI components, adversarial ML | High — Off-the-shelf AI attack tools | Disruption, data theft, model manipulation | T1027, T1195.003, T1648 | [![Critical](https://img.shields.io/badge/Risk-Critical-red?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) |
 | **🎭 Political Manipulation Groups** | External | Organized campaigns to bias AI-generated political analysis | Medium-High — Social engineering + AI tools | Political agenda, election influence | T1566, T1565, T1491 | [![High](https://img.shields.io/badge/Risk-High-orange?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) |
 | **💰 Cybercriminals** | External | Ransomware targeting AI infrastructure, crypto mining on AI compute | High — Ransomware-as-a-Service | Financial gain, extortion | T1486, T1496, T1499 | [![High](https://img.shields.io/badge/Risk-High-orange?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) |
-| **🔒 Malicious Insiders** | Internal | AI training data poisoning, model backdoor insertion | Medium — Legitimate access + AI knowledge | Political bias, sabotage | T1546, T1565, T1485 | [![High](https://img.shields.io/badge/Risk-High-orange?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) |
+| **🔒 Malicious Insiders** | Internal | AI training data poisoning, model backdoor insertion | Medium — Legitimate access + AI knowledge | Political bias, sabotage | T1195.003, T1565, T1485 | [![High](https://img.shields.io/badge/Risk-High-orange?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) |
 | **🤝 AI Service Providers** | Third-party | Model supply chain compromise, training data contamination | Medium — API-level access | Accidental or targeted | T1195.002, T1078, T1040 | [![Medium](https://img.shields.io/badge/Risk-Medium-yellow?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) |
 
 ### **📊 Threat Agent Capability Evolution**
