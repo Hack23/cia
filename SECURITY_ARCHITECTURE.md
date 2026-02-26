@@ -62,6 +62,7 @@ This document outlines the comprehensive security architecture of the Citizen In
 | [🏛️ Architecture](ARCHITECTURE.md) | System Design | Overall platform architecture |
 | [📅 End-of-Life Strategy](End-of-Life-Strategy.md) | Lifecycle | Technology maintenance and patching strategy |
 | [🎯 Threat Model](THREAT_MODEL.md) | Risk Analysis | STRIDE/MITRE ATT&CK threat analysis |
+| [🔮 Future Threat Model](FUTURE_THREAT_MODEL.md) | Risk Analysis | Future threat landscape (AI/PQC/2026-2037) |
 | [🛡️ CRA Assessment](CRA-ASSESSMENT.md) | Compliance | EU Cyber Resilience Act conformity |
 
 ## 🔑 Authentication Architecture

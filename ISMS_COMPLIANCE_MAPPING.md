@@ -470,6 +470,7 @@ graph LR
 | **🛡️ Security Architecture** | Complete security implementation details | [SECURITY_ARCHITECTURE.md](SECURITY_ARCHITECTURE.md) |
 | **🚀 Future Security Architecture** | Planned security enhancements | [FUTURE_SECURITY_ARCHITECTURE.md](FUTURE_SECURITY_ARCHITECTURE.md) |
 | **🎯 Threat Model** | STRIDE analysis and risk scenarios | [THREAT_MODEL.md](THREAT_MODEL.md) |
+| **🔮 Future Threat Model** | Future threat landscape (AI/PQC/2026-2037) | [FUTURE_THREAT_MODEL.md](FUTURE_THREAT_MODEL.md) |
 | **🏗️ System Architecture** | Overall platform architecture | [ARCHITECTURE.md](ARCHITECTURE.md) |
 | **📋 CRA Assessment** | EU Cyber Resilience Act compliance | [CRA-ASSESSMENT.md](CRA-ASSESSMENT.md) |
 | **⚡ Workflows** | CI/CD and security automation | [WORKFLOWS.md](WORKFLOWS.md) |
