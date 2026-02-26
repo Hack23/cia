@@ -13,6 +13,7 @@ This document presents the security architecture evolution roadmap for the Citiz
 | **[Security Architecture](SECURITY_ARCHITECTURE.md)** | 🛡️ Security | Current security implementation           | [View Source](https://github.com/Hack23/cia/blob/master/SECURITY_ARCHITECTURE.md) |
 | **[Future Security Architecture](FUTURE_SECURITY_ARCHITECTURE.md)** | 🛡️ Security | Future security roadmap            | [View Source](https://github.com/Hack23/cia/blob/master/FUTURE_SECURITY_ARCHITECTURE.md) |
 | **[Threat Model](THREAT_MODEL.md)**                 | 🎯 Security     | STRIDE/MITRE ATT&CK threat analysis      | [View Source](https://github.com/Hack23/cia/blob/master/THREAT_MODEL.md)        |
+| **[Future Threat Model](FUTURE_THREAT_MODEL.md)**   | 🎯 Security     | Future threat landscape (AI/PQC/2026-2037)| [View Source](https://github.com/Hack23/cia/blob/master/FUTURE_THREAT_MODEL.md) |
 | **[ISMS Compliance Mapping](ISMS_COMPLIANCE_MAPPING.md)** | 🔐 ISMS | Comprehensive ISMS-PUBLIC policy mapping | [View Source](https://github.com/Hack23/cia/blob/master/ISMS_COMPLIANCE_MAPPING.md) |
 | **[End-of-Life Strategy](End-of-Life-Strategy.md)** | 📅 Lifecycle    | Maintenance and EOL planning              | [View Source](https://github.com/Hack23/cia/blob/master/End-of-Life-Strategy.md) |
 | **[Financial Security Plan](FinancialSecurityPlan.md)** | 💰 Security | Cost and security implementation          | [View Source](https://github.com/Hack23/cia/blob/master/FinancialSecurityPlan.md) |
