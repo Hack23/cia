@@ -68,7 +68,7 @@ jobs:
           files.pythonhosted.org:443
           pypi.org:443
           www.bridgecrew.cloud:443
-          docs.github.com:433
+          docs.github.com:443
           dlcdn.apache.org:443
           archive.apache.org:443          
           esm.ubuntu.com:443
@@ -109,14 +109,6 @@ jobs:
           ${{ runner.os }}-maven-3.9.9-${{ hashFiles('**/pom.xml') }}
           ${{ runner.os }}-maven-3.9.9-
           ${{ runner.os }}-maven-
-
-    - name: Cache APT packages
-      uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5.0.3
-      with:
-        path: /var/cache/apt/archives
-        key: ${{ runner.os }}-apt-${{ hashFiles('.github/workflows/release.yml') }}
-        restore-keys: |
-          ${{ runner.os }}-apt-
 
     - name: APT update
       run: sudo apt-get update
@@ -264,7 +256,7 @@ jobs:
     # Generate SBOM attestation for DEB package
     - name: Generate SBOM attestation for deb package
       id: attestsbom_deb
-      uses: actions/attest-sbom@07e74fc4e78d1aad915e867f9a094073a9f71527 # v4.0.0
+      uses: actions/attest@59d89421af93a897026c735860bf21b6eb4f7b26 # v4.1.0
       with:
         subject-path: 'cia-dist-deb/target/cia-dist-deb-${{ github.event.inputs.release }}.all.deb'
         sbom-path: 'cia-dist-deb/target/site/com.hack23.cia_cia-dist-deb-${{ github.event.inputs.release }}.spdx.json'
@@ -285,7 +277,7 @@ jobs:
     # Generate SBOM attestation for WAR
     - name: Generate SBOM attestation for WAR
       id: attestsbom_war
-      uses: actions/attest-sbom@07e74fc4e78d1aad915e867f9a094073a9f71527 # v4.0.0
+      uses: actions/attest@59d89421af93a897026c735860bf21b6eb4f7b26 # v4.1.0
       with:
         subject-path: 'citizen-intelligence-agency/target/citizen-intelligence-agency-${{ github.event.inputs.release }}.war'
         sbom-path: 'citizen-intelligence-agency/target/site/com.hack23.cia_citizen-intelligence-agency-${{ github.event.inputs.release }}.spdx.json'
@@ -294,23 +286,18 @@ jobs:
       run: cp ${{ steps.attestsbom_war.outputs.bundle-path }} citizen-intelligence-agency/target/site/com.hack23.cia_citizen-intelligence-agency-${{ github.event.inputs.release }}.spdx.json.intoto.jsonl
 
     - name: Draft Release Notes
+      id: release-notes
       uses: release-drafter/release-drafter@6db134d15f3909ccc9eefd369f02bd1e9cffdf97 # v6.2.0
       with:
         version: ${{ github.event.inputs.release }}
         tag: ${{ github.event.inputs.release }}
         name: Release ${{ github.event.inputs.release }}
+        config-name: release-drafter.yml
         publish: false
         prerelease: false
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Get Release Notes
-      id: release-notes
-      uses: release-drafter/release-drafter@6db134d15f3909ccc9eefd369f02bd1e9cffdf97 # v6.2.0
-      with:
-        config-name: release-drafter.yml
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Create a GitHub release
       uses: ncipollo/release-action@b7eabc95ff50cbeeedec83973935c8f306dfcd0b # v1.20.0
       with:
@@ -320,14 +307,14 @@ jobs:
         name: Release ${{ github.event.inputs.release }}
         body: ${{ steps.release-notes.outputs.body }}
         artifacts: |
-          cia-dist-deb/target/cia-dist-deb-${{ github.event.inputs.release }}.all.deb,
-          cia-dist-deb/target/cia-dist-deb-${{ github.event.inputs.release }}.all.deb.intoto.jsonl,
-          cia-dist-deb/target/site/com.hack23.cia_cia-dist-deb-${{ github.event.inputs.release }}.spdx.json.intoto.jsonl,
-          cia-dist-deb/target/site/com.hack23.cia_cia-dist-deb-${{ github.event.inputs.release }}.spdx.json,
-          citizen-intelligence-agency/target/citizen-intelligence-agency-${{ github.event.inputs.release }}.war,
-          citizen-intelligence-agency/target/citizen-intelligence-agency-${{ github.event.inputs.release }}.war.intoto.jsonl,
-          citizen-intelligence-agency/target/site/com.hack23.cia_citizen-intelligence-agency-${{ github.event.inputs.release }}.spdx.json.intoto.jsonl,
-          citizen-intelligence-agency/target/site/com.hack23.cia_citizen-intelligence-agency-${{ github.event.inputs.release }}.spdx.json,
+          cia-dist-deb/target/cia-dist-deb-${{ github.event.inputs.release }}.all.deb
+          cia-dist-deb/target/cia-dist-deb-${{ github.event.inputs.release }}.all.deb.intoto.jsonl
+          cia-dist-deb/target/site/com.hack23.cia_cia-dist-deb-${{ github.event.inputs.release }}.spdx.json.intoto.jsonl
+          cia-dist-deb/target/site/com.hack23.cia_cia-dist-deb-${{ github.event.inputs.release }}.spdx.json
+          citizen-intelligence-agency/target/citizen-intelligence-agency-${{ github.event.inputs.release }}.war
+          citizen-intelligence-agency/target/citizen-intelligence-agency-${{ github.event.inputs.release }}.war.intoto.jsonl
+          citizen-intelligence-agency/target/site/com.hack23.cia_citizen-intelligence-agency-${{ github.event.inputs.release }}.spdx.json.intoto.jsonl
+          citizen-intelligence-agency/target/site/com.hack23.cia_citizen-intelligence-agency-${{ github.event.inputs.release }}.spdx.json
           cia-dist-cloudformation/src/main/resources/cia-dist-cloudformation.json
 
     - name: Submit Dependency Release
