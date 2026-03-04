@@ -21,16 +21,16 @@
 # SAMPLE SIZE CONFIGURATION
 # ===========================================================================
 # Default sample size for standard views
-export DEFAULT_SAMPLE_SIZE=200
+export DEFAULT_SAMPLE_SIZE=5000
 
 # Increased sample size for temporal trend views requiring better coverage
-export TREND_SAMPLE_SIZE=500
+export TREND_SAMPLE_SIZE=5000
 
 # Sample sizes for specific view types
-export DAILY_SAMPLE_SIZE=200
-export WEEKLY_SAMPLE_SIZE=200
-export MONTHLY_SAMPLE_SIZE=200
-export ANNUAL_SAMPLE_SIZE=200
+export DAILY_SAMPLE_SIZE=5000
+export WEEKLY_SAMPLE_SIZE=5000
+export MONTHLY_SAMPLE_SIZE=5000
+export ANNUAL_SAMPLE_SIZE=5000
 
 # ===========================================================================
 # TEMPORAL DATA CONFIGURATION
@@ -40,7 +40,7 @@ export MIN_YEAR=2002
 export MAX_YEAR=2026
 
 # Minimum year range required for validation
-export MIN_YEAR_RANGE=10
+export MIN_YEAR_RANGE=24
 
 # Date range for temporal sampling
 export TEMPORAL_START_DATE="${MIN_YEAR}-01-01"

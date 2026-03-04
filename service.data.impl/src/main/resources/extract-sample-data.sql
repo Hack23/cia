@@ -106,14 +106,14 @@
 -- Set statement timeout for individual extraction queries
 -- This prevents individual queries from hanging indefinitely
 -- The shell script provides overall timeout protection
-SET statement_timeout = '120s';  -- Increased from 30s to 120s for complex views
+SET statement_timeout = '240s';  -- Increased from 30s to 120s for complex views
 SET lock_timeout = '30s';        -- Wait max 30s for locks
 SET idle_in_transaction_session_timeout = '180s';  -- Kill idle transactions after 3 minutes
 
 \echo '=================================================='
 \echo 'CIA Sample Data Extraction'
 \echo 'Started:' `date`
-\echo 'Statement timeout: 120s per query'
+\echo 'Statement timeout: 240s per query'
 \echo 'Lock timeout: 30s'
 \echo '=================================================='
 
@@ -121,23 +121,23 @@ SET idle_in_transaction_session_timeout = '180s';  -- Kill idle transactions aft
 -- CONFIGURATION - Sample Size Settings
 -- ============================================================================
 -- Default sample size for most tables/views (increased from 50 for better coverage)
-\set SAMPLE_SIZE 200
+\set SAMPLE_SIZE 5000
 
 -- Threshold for complete extraction (tables/views under this size extracted fully)
-\set COMPLETE_EXTRACTION_THRESHOLD 3000
+\set COMPLETE_EXTRACTION_THRESHOLD 10000
 
 -- Extended sample sizes for important entity types
-\set PARTY_SAMPLE_SIZE 500
-\set COMMITTEE_SAMPLE_SIZE 500  
-\set PERSON_SAMPLE_SIZE 500
+\set PARTY_SAMPLE_SIZE 5000
+\set COMMITTEE_SAMPLE_SIZE 5000  
+\set PERSON_SAMPLE_SIZE 5000
 
 -- Extended sample sizes for document and voting analysis  
-\set DOCUMENT_SAMPLE_SIZE 300
-\set VOTING_SAMPLE_SIZE 300
-\set WORLDBANK_SAMPLE_SIZE 300
+\set DOCUMENT_SAMPLE_SIZE 3000
+\set VOTING_SAMPLE_SIZE 3000
+\set WORLDBANK_SAMPLE_SIZE 3000
 
 -- Extended sample sizes for analytical trend views (increased for better temporal coverage)
-\set TREND_SAMPLE_SIZE 500
+\set TREND_SAMPLE_SIZE 5000
 
 \set TABLE_CMD_FILE '/tmp/cia_table_extract_commands.sql'
 \set VIEW_CMD_FILE '/tmp/cia_view_extract_commands.sql'
@@ -150,10 +150,10 @@ SET idle_in_transaction_session_timeout = '180s';  -- Kill idle transactions aft
 
 \echo ''
 \echo 'Configuration:'
-\echo '  Default sample size: 200 rows'
-\echo '  Party/Committee/Person sample size: 500 rows'
-\echo '  Document/Voting/Worldbank sample size: 300 rows'
-\echo '  Complete extraction threshold: 3000 rows (smaller datasets extracted fully)'
+\echo '  Default sample size: 5000 rows'
+\echo '  Party/Committee/Person sample size: 5000 rows'
+\echo '  Document/Voting/Worldbank sample size: 3000 rows'
+\echo '  Complete extraction threshold: 10000 rows (smaller datasets extracted fully)'
 \echo '  Output format: CSV with headers'
 \echo ''
 
