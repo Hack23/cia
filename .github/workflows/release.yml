@@ -287,7 +287,7 @@ jobs:
 
     - name: Draft Release Notes
       id: release-notes
-      uses: release-drafter/release-drafter@6db134d15f3909ccc9eefd369f02bd1e9cffdf97 # v6.2.0
+      uses: release-drafter/release-drafter@00ce30b0ce8a4d67bccfca59421cdf6c55dd0784 # v6.3.0
       with:
         config-name: release-drafter.yml
         version: ${{ github.event.inputs.release }}
