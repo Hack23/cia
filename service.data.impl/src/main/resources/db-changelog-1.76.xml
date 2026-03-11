@@ -582,9 +582,7 @@ CREATE VIEW public.view_riksdagen_party_coalition_evolution AS
                  voting records, regardless of current status.
         </comment>
         <sql><![CDATA[
-DROP VIEW IF EXISTS public.view_riksdagen_voting_anomaly_detection CASCADE;
-
-CREATE VIEW public.view_riksdagen_voting_anomaly_detection AS
+CREATE OR REPLACE VIEW public.view_riksdagen_voting_anomaly_detection AS
  WITH party_consensus AS (
          SELECT vote_data.embedded_id_ballot_id,
             vote_data.party,
