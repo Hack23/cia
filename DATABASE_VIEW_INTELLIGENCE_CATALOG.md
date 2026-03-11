@@ -5903,13 +5903,12 @@ Election Cycle Views (v1.51) provide META/META-level historical analysis of Swed
 
 ### Framework Coverage
 
-All 6 analytical frameworks are explicitly covered with corresponding views:
+All 5 analytical frameworks are explicitly covered with corresponding views:
 
 | Framework | View | Supporting Views | Risk Rules | Operational |
 |-----------|------|------------------|------------|-------------|
 | **Temporal Analysis** | view_election_cycle_temporal_trends | 35 views | 20+ rules | 100% |
 | **Comparative Analysis** | view_election_cycle_comparative_analysis | 26 views | 15+ rules | 100% |
-| **Pattern Recognition** | view_election_cycle_anomaly_pattern | 23 views | 12/13 rules | 95% |
 | **Predictive Intelligence** | view_election_cycle_predictive_intelligence | 14 views | 8/8 rules | 100% |
 | **Network Analysis** | view_election_cycle_network_analysis | 11 views | 3/4 rules | 75% |
 | **Decision Intelligence** | view_election_cycle_decision_intelligence | 5 views | 5/5 rules | 100% |
@@ -5920,7 +5919,6 @@ All 6 analytical frameworks are explicitly covered with corresponding views:
 |-----------|-----------|-------------------|-------------|
 | view_election_cycle_temporal_trends | Temporal Analysis | ⭐⭐⭐⭐⭐ | Attendance, ballots, violations by cycle/semester |
 | view_election_cycle_comparative_analysis | Comparative Analysis | ⭐⭐⭐⭐⭐ | Party-level metrics comparison by cycle/semester |
-| view_election_cycle_anomaly_pattern | Pattern Recognition | ⭐⭐⭐⭐⭐ | Risk escalations and behavioral anomalies by cycle |
 | view_election_cycle_predictive_intelligence | Predictive Intelligence | ⭐⭐⭐⭐⭐ | Risk forecasts and trajectory analysis by cycle |
 | view_election_cycle_network_analysis | Network Analysis | ⭐⭐⭐⭐⭐ | Coalition alignment structure by election cycle |
 | view_election_cycle_decision_intelligence | Decision Intelligence | ⭐⭐⭐⭐⭐ | Proposal success rates and effectiveness by cycle |
@@ -6027,31 +6025,6 @@ Party-level comparative analysis across election cycles with semester granularit
 
 #### Source Views
 - **view_riksdagen_vote_data_ballot_party_summary_monthly**
-
----
-
-### view_election_cycle_anomaly_pattern ⭐⭐⭐⭐⭐
-
-**Category:** Election Cycle Views (v1.51)  
-**Framework:** Pattern Recognition (23 supporting views)  
-
-#### Purpose
-
-High-level anomaly and pattern detection for each semester and election cycle, identifying behavioral anomalies and risk escalations.
-
-#### Key Columns
-
-| Column | Type | Description |
-|--------|------|-------------|
-| `anomaly_type` | TEXT | Classification of detected anomaly |
-| `politician_count_with_risk` | BIGINT | Politicians with elevated risk |
-| `avg_risk_score` | NUMERIC(5,2) | Average risk score |
-| `risk_escalations` | BIGINT | Count of severity transitions |
-| `behavioral_anomalies` | BIGINT | Significant behavioral changes |
-
-#### Source Views
-- **view_risk_score_evolution**
-- **view_politician_behavioral_trends**
 
 ---
 
@@ -8605,6 +8578,165 @@ REFRESH MATERIALIZED VIEW CONCURRENTLY mv_annual_voting_metrics;
 SELECT schemaname, matviewname, last_refresh 
 FROM pg_matviews 
 WHERE matviewname = 'mv_annual_voting_metrics';
+```
+
+### mv_decision_temporal_trends ⭐⭐⭐⭐
+
+**Category:** Performance Optimization (v1.76)  
+**Type:** Materialized View  
+**Intelligence Value:** HIGH - Decision Temporal Pre-aggregation  
+
+#### Purpose
+
+Pre-aggregated daily decision temporal trends materialized view created to optimize the `view_election_cycle_decision_intelligence` query. Materializes the `view_decision_temporal_trends` base view which computes daily decision counts, approval/rejection rates, moving averages (7/30/90-day), year-over-year changes, and parliamentary period classification. Eliminates repeated expensive scans of document_proposal_data and document_data joins.
+
+#### Key Columns
+
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `decision_day` | DATE | Calendar date of decisions | '2024-03-15' |
+| `daily_decisions` | BIGINT | Total decisions on this day | 42 |
+| `daily_approval_rate` | NUMERIC | Approval percentage for the day | 78.50 |
+| `approved_decisions` | BIGINT | Approved decisions count | 33 |
+| `rejected_decisions` | BIGINT | Rejected decisions count | 7 |
+| `referred_back_decisions` | BIGINT | Referred back to committee | 2 |
+| `ma_7day_decisions` | NUMERIC | 7-day moving average of decisions | 38.71 |
+| `ma_30day_decisions` | NUMERIC | 30-day moving average of decisions | 35.20 |
+| `ma_90day_decisions` | NUMERIC | 90-day moving average of decisions | 32.15 |
+| `ma_30day_approval_rate` | NUMERIC | 30-day moving avg approval rate | 75.30 |
+| `yoy_decisions_change` | BIGINT | Year-over-year decision count delta | +5 |
+| `yoy_decisions_change_pct` | NUMERIC | Year-over-year percentage change | 13.51 |
+| `parliamentary_period` | TEXT | Session classification | 'Autumn Session' |
+| `decision_quarter` | TEXT | Quarter label | 'Q1 2024' |
+
+#### Performance Characteristics
+
+- **Source View**: `view_decision_temporal_trends`
+- **Data Volume**: ~6,000 rows (one per decision day over 25 years)
+- **Refresh Method**: CONCURRENTLY (non-blocking)
+- **Index**: Unique index on `decision_day` column
+
+#### Dependencies
+
+**Source Tables (via view_decision_temporal_trends):**
+- `document_proposal_data` - Proposal chamber decisions
+- `document_proposal_container` - Proposal containers
+- `document_status_container` - Document status linkage
+- `document_data` - Document dates and metadata
+
+**Consumed By:**
+- `view_election_cycle_decision_intelligence` - Election cycle decision analysis
+
+#### Refresh Procedure
+
+```sql
+REFRESH MATERIALIZED VIEW CONCURRENTLY mv_decision_temporal_trends;
+```
+
+### mv_ministry_decision_impact ⭐⭐⭐⭐
+
+**Category:** Performance Optimization (v1.76)  
+**Type:** Materialized View  
+**Intelligence Value:** HIGH - Ministry Decision Pre-aggregation  
+
+#### Purpose
+
+Pre-aggregated ministry-level decision impact materialized view created to optimize the `view_election_cycle_decision_intelligence` query. Materializes the `view_ministry_decision_impact` base view which computes proposal outcomes (approved, rejected, referred back, committee referral) grouped by ministry, committee, decision type, and quarter. Provides approval and rejection rates per ministry-committee combination.
+
+#### Key Columns
+
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `ministry_code` | TEXT | Government ministry identifier | 'Fi' |
+| `committee` | TEXT | Parliamentary committee | 'FiU' |
+| `decision_type` | TEXT | Type of decision | 'prop' |
+| `decision_quarter` | TIMESTAMP | Quarter start date | '2024-01-01' |
+| `decision_year` | NUMERIC | Calendar year | 2024 |
+| `quarter_num` | NUMERIC | Quarter number (1-4) | 1 |
+| `total_proposals` | BIGINT | Total proposals in group | 15 |
+| `approved_proposals` | BIGINT | Approved proposal count | 12 |
+| `rejected_proposals` | BIGINT | Rejected proposal count | 2 |
+| `referred_back_proposals` | BIGINT | Referred back count | 1 |
+| `approval_rate` | NUMERIC | Approval percentage | 80.00 |
+| `rejection_rate` | NUMERIC | Rejection percentage | 13.33 |
+| `committee_referral_rate` | NUMERIC | Committee referral percentage | 0.00 |
+
+#### Performance Characteristics
+
+- **Source View**: `view_ministry_decision_impact`
+- **Data Volume**: ~2,000 rows (ministry × committee × quarter combinations)
+- **Refresh Method**: CONCURRENTLY (non-blocking)
+- **Index**: Unique index on `ministry_code, committee, decision_type, decision_quarter`
+
+#### Dependencies
+
+**Source Tables (via view_ministry_decision_impact):**
+- `document_data` - Government proposals (document_type = 'prop')
+- `document_status_container` - Document status linkage
+- `document_proposal_container` - Proposal containers
+- `document_proposal_data` - Committee decisions and chamber outcomes
+
+**Consumed By:**
+- `view_election_cycle_decision_intelligence` - Election cycle decision analysis
+
+#### Refresh Procedure
+
+```sql
+REFRESH MATERIALIZED VIEW CONCURRENTLY mv_ministry_decision_impact;
+```
+
+### mv_party_decision_flow ⭐⭐⭐⭐
+
+**Category:** Performance Optimization (v1.76)  
+**Type:** Materialized View  
+**Intelligence Value:** HIGH - Party Decision Flow Pre-aggregation  
+
+#### Purpose
+
+Pre-aggregated party-level decision flow materialized view created to optimize the `view_election_cycle_decision_intelligence` query. Materializes the `view_riksdagen_party_decision_flow` base view which computes proposal outcomes grouped by party, committee, decision type, and month. Tracks which parties drive proposals through which committees and their success rates.
+
+#### Key Columns
+
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| `party` | TEXT | Political party short code | 'S' |
+| `committee` | TEXT | Parliamentary committee | 'FiU' |
+| `decision_type` | TEXT | Type of decision | 'mot' |
+| `committee_org` | TEXT | Originating organization | 'Fi' |
+| `decision_month` | TIMESTAMP | Month start date | '2024-03-01' |
+| `decision_year` | NUMERIC | Calendar year | 2024 |
+| `decision_month_num` | NUMERIC | Month number (1-12) | 3 |
+| `total_proposals` | BIGINT | Total proposals in group | 8 |
+| `approved_proposals` | BIGINT | Approved proposal count | 5 |
+| `rejected_proposals` | BIGINT | Rejected proposal count | 2 |
+| `referred_back_proposals` | BIGINT | Referred back count | 1 |
+| `approval_rate` | NUMERIC | Approval percentage | 62.50 |
+| `rejection_rate` | NUMERIC | Rejection percentage | 25.00 |
+
+#### Performance Characteristics
+
+- **Source View**: `view_riksdagen_party_decision_flow`
+- **Data Volume**: ~5,000 rows (party × committee × month combinations)
+- **Refresh Method**: CONCURRENTLY (non-blocking)
+- **Index**: Unique index on `party, committee, decision_type, decision_month`
+
+#### Dependencies
+
+**Source Tables (via view_riksdagen_party_decision_flow):**
+- `document_proposal_data` - Proposal decisions
+- `document_proposal_container` - Proposal containers
+- `document_status_container` - Document status linkage
+- `document_data` - Document dates
+- `document_person_reference_co_0` - Person references
+- `document_person_reference_da_0` - Party short codes
+
+**Consumed By:**
+- `view_election_cycle_decision_intelligence` - Election cycle decision analysis
+
+#### Refresh Procedure
+
+```sql
+REFRESH MATERIALIZED VIEW CONCURRENTLY mv_party_decision_flow;
 ```
 
 ---
