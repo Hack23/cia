@@ -709,17 +709,30 @@ CREATE VIEW public.view_riksdagen_party_transition_history AS
             LAG(pc.new_party) OVER (PARTITION BY pc.person_id ORDER BY pc.transition_date) AS lag_new_party,
             LAG(pc.previous_party) OVER (PARTITION BY pc.person_id ORDER BY pc.transition_date) AS lag_previous_party
            FROM party_changes pc
-        ), distinct_transitions AS (
+        ), filtered_changes AS (
          SELECT nc.person_id,
             nc.previous_party,
             nc.new_party,
-            min(nc.transition_date) AS transition_date
+            nc.transition_date,
+            nc.change_seq
            FROM numbered_changes nc
           WHERE nc.change_seq = 1
              OR (nc.previous_party)::text <> COALESCE((nc.lag_previous_party)::text, '')
              OR (nc.new_party)::text <> COALESCE((nc.lag_new_party)::text, '')
-          GROUP BY nc.person_id, nc.previous_party, nc.new_party,
-                   nc.change_seq - ROW_NUMBER() OVER (PARTITION BY nc.person_id, nc.previous_party, nc.new_party ORDER BY nc.change_seq)
+        ), grouped_changes AS (
+         SELECT fc.person_id,
+            fc.previous_party,
+            fc.new_party,
+            fc.transition_date,
+            fc.change_seq - ROW_NUMBER() OVER (PARTITION BY fc.person_id, fc.previous_party, fc.new_party ORDER BY fc.change_seq) AS grp
+           FROM filtered_changes fc
+        ), distinct_transitions AS (
+         SELECT gc.person_id,
+            gc.previous_party,
+            gc.new_party,
+            min(gc.transition_date) AS transition_date
+           FROM grouped_changes gc
+          GROUP BY gc.person_id, gc.previous_party, gc.new_party, gc.grp
         ), pre_transition_activity AS (
          SELECT vd.embedded_id_intressent_id AS person_id,
             vd.vote_date,
