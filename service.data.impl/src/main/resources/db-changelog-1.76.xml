@@ -959,7 +959,7 @@ CREATE OR REPLACE VIEW public.view_politician_risk_summary AS
  WITH party_ballot_consensus AS (
          SELECT vd.embedded_id_ballot_id,
             vd.party,
-            UPPER((mode() WITHIN GROUP (ORDER BY vd.vote))::text) AS party_consensus_vote
+            mode() WITHIN GROUP (ORDER BY UPPER((vd.vote)::text)) AS party_consensus_vote
            FROM public.vote_data vd
           WHERE (UPPER((vd.vote)::text) <> 'FRÅNVARANDE'::text)
             AND vd.party IS NOT NULL
