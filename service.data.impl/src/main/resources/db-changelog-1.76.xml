@@ -700,18 +700,33 @@ CREATE VIEW public.view_riksdagen_party_transition_history AS
             AND (vwl.prev_party)::text <> (vwl.party)::text
             AND (vwl.prev_party)::text <> ALL (ARRAY['-'::text, ''::text])
             AND (vwl.party)::text <> ALL (ARRAY['-'::text, ''::text])
-        ), distinct_transitions AS (
+        ), numbered_changes AS (
          SELECT pc.person_id,
             pc.previous_party,
             pc.new_party,
-            min(pc.transition_date) AS transition_date
+            pc.transition_date,
+            ROW_NUMBER() OVER (PARTITION BY pc.person_id ORDER BY pc.transition_date) AS change_seq,
+            LAG(pc.new_party) OVER (PARTITION BY pc.person_id ORDER BY pc.transition_date) AS lag_new_party,
+            LAG(pc.previous_party) OVER (PARTITION BY pc.person_id ORDER BY pc.transition_date) AS lag_previous_party
            FROM party_changes pc
-          GROUP BY pc.person_id, pc.previous_party, pc.new_party,
-                   (SELECT count(*) FROM party_changes pc2
-                    WHERE (pc2.person_id)::text = (pc.person_id)::text
-                      AND pc2.transition_date <= pc.transition_date
-                      AND ((pc2.previous_party)::text <> (pc.previous_party)::text
-                           OR (pc2.new_party)::text <> (pc.new_party)::text))
+        ), distinct_transitions AS (
+         SELECT nc.person_id,
+            nc.previous_party,
+            nc.new_party,
+            min(nc.transition_date) AS transition_date
+           FROM numbered_changes nc
+          WHERE nc.change_seq = 1
+             OR (nc.previous_party)::text <> COALESCE((nc.lag_previous_party)::text, '')
+             OR (nc.new_party)::text <> COALESCE((nc.lag_new_party)::text, '')
+          GROUP BY nc.person_id, nc.previous_party, nc.new_party,
+                   nc.change_seq - ROW_NUMBER() OVER (PARTITION BY nc.person_id, nc.previous_party, nc.new_party ORDER BY nc.change_seq)
+        ), pre_transition_activity AS (
+         SELECT vd.embedded_id_intressent_id AS person_id,
+            vd.vote_date,
+            count(*) AS vote_count
+           FROM public.vote_data vd
+          WHERE vd.vote_date >= '2002-01-01'::date
+          GROUP BY vd.embedded_id_intressent_id, vd.vote_date
         ), election_proximity AS (
          SELECT unnest(ARRAY['2002-09-15'::date, '2006-09-17'::date, '2010-09-19'::date, '2014-09-14'::date, '2018-09-09'::date, '2022-09-11'::date, '2026-09-13'::date]) AS election_date
         )
@@ -722,10 +737,7 @@ CREATE VIEW public.view_riksdagen_party_transition_history AS
     dt.new_party,
     dt.transition_date,
         CASE
-            WHEN (SELECT count(*) FROM public.vote_data vd2
-                  WHERE (vd2.embedded_id_intressent_id)::text = (dt.person_id)::text
-                    AND vd2.vote_date >= (dt.transition_date - '30 days'::interval)
-                    AND vd2.vote_date < dt.transition_date) = 0 THEN 'REJOINED_RIKSDAGEN'::text
+            WHEN COALESCE(pta.vote_count, 0) = 0 THEN 'REJOINED_RIKSDAGEN'::text
             ELSE 'SWITCHED_WHILE_SERVING'::text
         END AS transition_type,
     EXTRACT(year FROM dt.transition_date)::integer AS transition_year,
@@ -747,6 +759,13 @@ CREATE VIEW public.view_riksdagen_party_transition_history AS
           WHERE ed.election_date < dt.transition_date))::timestamp with time zone)))::integer AS months_since_last_election
    FROM distinct_transitions dt
    JOIN public.person_data p ON (dt.person_id)::text = (p.id)::text
+   LEFT JOIN LATERAL (
+       SELECT count(*) AS vote_count
+       FROM pre_transition_activity pta2
+       WHERE (pta2.person_id)::text = (dt.person_id)::text
+         AND pta2.vote_date >= (dt.transition_date - '30 days'::interval)
+         AND pta2.vote_date < dt.transition_date
+   ) pta ON true
   ORDER BY dt.transition_date DESC;
         ]]></sql>
     </changeSet>
