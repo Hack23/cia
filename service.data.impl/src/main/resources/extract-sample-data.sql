@@ -1231,11 +1231,12 @@ BEGIN
         UNION ALL
         SELECT matviewname FROM pg_matviews 
         WHERE schemaname = 'public'
+          AND matviewname NOT LIKE 'mv_%'
     ) v;
     
     RAISE NOTICE '';
     RAISE NOTICE 'Phase 1: Analyzing % views for row counts', total_views;
-    RAISE NOTICE 'Excluding: view_riksdagen_coalition_alignment_matrix, view_riksdagen_intelligence_dashboard';
+    RAISE NOTICE 'Excluding: view_riksdagen_coalition_alignment_matrix, view_riksdagen_intelligence_dashboard, mv_* intermediate matviews';
     RAISE NOTICE 'This may take several minutes for complex views...';
     RAISE NOTICE '';
     
@@ -1250,6 +1251,7 @@ BEGIN
         SELECT schemaname, matviewname AS object_name, 'MATERIALIZED VIEW' AS object_type
         FROM pg_matviews
         WHERE schemaname = 'public'
+          AND matviewname NOT LIKE 'mv_%'
         ORDER BY object_name
     LOOP
         view_count := view_count + 1;
@@ -1348,6 +1350,7 @@ WITH view_counts AS (
     FROM cia_view_row_counts
     WHERE viewname != 'view_riksdagen_coalition_alignment_matrix'
       AND viewname != 'view_riksdagen_intelligence_dashboard'
+      AND viewname NOT LIKE 'mv_%'
       -- Skip views that timed out or had errors during Phase 1
       -- row_count: -1 = timeout, -2 = error, 0+ = success
       AND row_count >= 0
@@ -2261,7 +2264,23 @@ FROM view_committee_productivity
 UNION ALL
 SELECT 'view_riksdagen_politician_experience_summary', 'experience_analysis', COUNT(*),
     0, COUNT(DISTINCT experience_level)
-FROM view_riksdagen_politician_experience_summary;
+FROM view_riksdagen_politician_experience_summary
+UNION ALL
+SELECT 'view_election_cycle_decision_intelligence', 'election_cycle', COUNT(*),
+    COUNT(DISTINCT party), COUNT(DISTINCT decision_effectiveness)
+FROM view_election_cycle_decision_intelligence
+UNION ALL
+SELECT 'view_riksdagen_party_coalition_evolution', 'coalition_analysis', COUNT(*),
+    COUNT(DISTINCT party_1), COUNT(DISTINCT coalition_strength)
+FROM view_riksdagen_party_coalition_evolution
+UNION ALL
+SELECT 'view_riksdagen_party_transition_history', 'party_transitions', COUNT(*),
+    0, COUNT(DISTINCT transition_type)
+FROM view_riksdagen_party_transition_history
+UNION ALL
+SELECT 'view_riksdagen_party_defector_analysis', 'defector_analysis', COUNT(*),
+    0, COUNT(DISTINCT defection_timing)
+FROM view_riksdagen_party_defector_analysis;
 
 \copy (SELECT * FROM tmp_analytical_view_stats ORDER BY category, view_name) TO 'summary_analytical_views.csv' WITH CSV HEADER
 DROP TABLE tmp_analytical_view_stats;
@@ -2393,6 +2412,12 @@ DROP TABLE tmp_analytical_view_stats;
 -- 6.5.8: Career & Longevity Views - Percentile Distributions
 -- ---------------------------------------------------------------------------
 \echo '6.5.8: Career & Longevity Views - Percentile Distributions...'
+
+\copy (SELECT * FROM cia_generate_distribution_summary('view_election_cycle_decision_intelligence')) TO 'percentile_election_cycle_decision_intelligence.csv' WITH CSV HEADER
+\echo '✓ Generated: percentile_election_cycle_decision_intelligence.csv'
+
+\copy (SELECT * FROM cia_generate_distribution_summary('view_riksdagen_party_coalition_evolution')) TO 'percentile_party_coalition_evolution.csv' WITH CSV HEADER
+\echo '✓ Generated: percentile_party_coalition_evolution.csv'
 
 \copy (SELECT * FROM cia_generate_distribution_summary('view_riksdagen_politician_career_trajectory')) TO 'percentile_politician_career_trajectory.csv' WITH CSV HEADER
 \echo '✓ Generated: percentile_politician_career_trajectory.csv'
@@ -2552,6 +2577,9 @@ DROP TABLE IF EXISTS cia_view_row_counts;
 \echo '    - percentile_seasonal_activity_patterns.csv'
 \echo '    - percentile_party_effectiveness_trends.csv'
 \echo '    - percentile_ministry_effectiveness_trend.csv'
+\echo '  Election Cycle & Coalition Views:'
+\echo '    - percentile_election_cycle_decision_intelligence.csv'
+\echo '    - percentile_party_coalition_evolution.csv'
 \echo '  Career & Longevity Views:'
 \echo '    - percentile_politician_career_trajectory.csv'
 \echo '    - percentile_politician_longevity_analysis.csv'
