@@ -5903,7 +5903,7 @@ Election Cycle Views (v1.51) provide META/META-level historical analysis of Swed
 
 ### Framework Coverage
 
-All 5 analytical frameworks are explicitly covered with corresponding views:
+All 6 analytical frameworks are explicitly covered with corresponding views:
 
 | Framework | View | Supporting Views | Risk Rules | Operational |
 |-----------|------|------------------|------------|-------------|
@@ -5912,6 +5912,7 @@ All 5 analytical frameworks are explicitly covered with corresponding views:
 | **Predictive Intelligence** | view_election_cycle_predictive_intelligence | 14 views | 8/8 rules | 100% |
 | **Network Analysis** | view_election_cycle_network_analysis | 11 views | 3/4 rules | 75% |
 | **Decision Intelligence** | view_election_cycle_decision_intelligence | 5 views | 5/5 rules | 100% |
+| **Pattern Recognition** | view_election_cycle_anomaly_pattern | 23 views | 12/13 rules | 92% |
 
 ### View Inventory
 
@@ -5922,6 +5923,7 @@ All 5 analytical frameworks are explicitly covered with corresponding views:
 | view_election_cycle_predictive_intelligence | Predictive Intelligence | ⭐⭐⭐⭐⭐ | Risk forecasts and trajectory analysis by cycle |
 | view_election_cycle_network_analysis | Network Analysis | ⭐⭐⭐⭐⭐ | Coalition alignment structure by election cycle |
 | view_election_cycle_decision_intelligence | Decision Intelligence | ⭐⭐⭐⭐⭐ | Proposal success rates and effectiveness by cycle |
+| view_election_cycle_anomaly_pattern | Pattern Recognition | ⭐⭐⭐⭐⭐ | Anomaly detection and risk pattern aggregation by cycle |
 
 ---
 
@@ -6097,6 +6099,51 @@ Policy success, coalition stability, and legislative outcome analysis by electio
 
 #### Source Views
 - **view_riksdagen_party_decision_flow**
+
+---
+
+### view_election_cycle_anomaly_pattern ⭐⭐⭐⭐⭐
+
+**Category:** Election Cycle Views (v1.51)  
+**Type:** Standard View (META/META level)  
+**Framework:** Pattern Recognition (23 supporting views)  
+**Intelligence Value:** VERY HIGH - Anomaly Detection & Risk Pattern Intelligence  
+
+#### Purpose
+
+Multi-source anomaly pattern detection aggregating risk score evolution, voting anomaly classification, and politician risk summaries across election cycles and semesters. Identifies risk escalation patterns, behavioral outliers, and anomaly acceleration trends with windowed statistics including semester-over-semester change tracking.
+
+#### Key Columns
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `election_cycle_id` | TEXT | Election cycle identifier (e.g., '2018-2022') |
+| `anomaly_type` | TEXT | Pattern classification type |
+| `politician_count_with_risk` | BIGINT | Politicians with HIGH/CRITICAL risk severity |
+| `avg_risk_score` | NUMERIC(5,2) | Average risk score across cycle |
+| `risk_escalations` | BIGINT | Count of risk severity escalations |
+| `high_anomaly_count` | BIGINT | Frequent/consistent rebel count |
+| `avg_total_rebellions` | NUMERIC(5,2) | Average rebellion count |
+| `strong_consensus_rebels` | BIGINT | Politicians with 5+ strong consensus rebellions |
+| `avg_risk_score_prs` | NUMERIC(5,2) | Average risk score from politician risk summary |
+| `high_risk_politicians` | BIGINT | HIGH/CRITICAL risk level politicians |
+| `risk_trend` | TEXT | Risk trajectory (escalating/improving/stable) |
+| `anomaly_acceleration` | BIGINT | Change in anomaly count vs previous semester |
+
+#### Sample Query
+
+```sql
+SELECT election_cycle_id, semester, avg_risk_score,
+       high_anomaly_count, risk_trend, anomaly_acceleration
+FROM view_election_cycle_anomaly_pattern
+WHERE risk_trend = 'escalating'
+ORDER BY election_cycle_id, cycle_year, semester;
+```
+
+#### Source Views
+- **view_risk_score_evolution**
+- **view_riksdagen_voting_anomaly_detection**
+- **view_politician_risk_summary**
 
 ---
 
