@@ -179,7 +179,9 @@ CREATE INDEX IF NOT EXISTS idx_mv_ministry_decision_impact_year
             when underlying data changes.
         </comment>
         <sql><![CDATA[
-CREATE OR REPLACE VIEW public.view_election_cycle_decision_intelligence AS
+DROP VIEW IF EXISTS public.view_election_cycle_decision_intelligence CASCADE;
+
+CREATE VIEW public.view_election_cycle_decision_intelligence AS
  WITH v151_base AS (
          WITH election_cycle_periods AS (
                  SELECT ((((1994)::numeric + (floor((((year_series.year_series - 1994))::numeric / 4.0)) * (4)::numeric)) || '-'::text) || (((1994)::numeric + (floor((((year_series.year_series - 1994))::numeric / 4.0)) * (4)::numeric)) + (4)::numeric)) AS election_cycle_id,
@@ -308,7 +310,9 @@ CREATE OR REPLACE VIEW public.view_election_cycle_decision_intelligence AS
                  and satisfying the HAVING threshold.
         </comment>
         <sql><![CDATA[
-CREATE OR REPLACE VIEW public.view_riksdagen_party_coalition_evolution AS
+DROP VIEW IF EXISTS public.view_riksdagen_party_coalition_evolution CASCADE;
+
+CREATE VIEW public.view_riksdagen_party_coalition_evolution AS
  WITH election_cycle_periods AS (
          SELECT year_series.year_series AS calendar_year,
                 CASE
@@ -506,8 +510,56 @@ CREATE OR REPLACE VIEW public.view_riksdagen_party_coalition_evolution AS
             WHEN (vote_divergence_stddev > (20)::numeric) THEN 'INCONSISTENT_ALIGNMENT'::text
             WHEN (vote_divergence_stddev > (10)::numeric) THEN 'MODERATE_CONSISTENCY'::text
             ELSE 'HIGH_CONSISTENCY'::text
-        END AS consistency_classification
-   FROM windowed_statistics ws;
+        END AS consistency_classification,
+        CASE
+            WHEN (next_semester_alignment IS NULL) THEN 'NO_FORECAST'::text
+            WHEN (next_semester_alignment > (alignment_rate + (10)::numeric)) THEN 'EXPECTED_STRENGTHENING'::text
+            WHEN (next_semester_alignment < (alignment_rate - (10)::numeric)) THEN 'EXPECTED_WEAKENING'::text
+            WHEN (next_semester_alignment > (alignment_rate + (5)::numeric)) THEN 'EXPECTED_IMPROVEMENT'::text
+            WHEN (next_semester_alignment < (alignment_rate - (5)::numeric)) THEN 'EXPECTED_DECLINE'::text
+            ELSE 'EXPECTED_STABLE'::text
+        END AS forecast_trend,
+    round((ma_3semester_alignment - alignment_rate), 2) AS alignment_deviation_from_ma,
+        CASE
+            WHEN (ma_3semester_alignment > (alignment_rate + (5)::numeric)) THEN 'BELOW_TREND'::text
+            WHEN (ma_3semester_alignment < (alignment_rate - (5)::numeric)) THEN 'ABOVE_TREND'::text
+            ELSE 'ON_TREND'::text
+        END AS trend_position,
+        CASE
+            WHEN (percentile_alignment >= (0.75)::double precision) THEN 'ELITE_COALITION'::text
+            WHEN (percentile_alignment >= (0.50)::double precision) THEN 'STRONG_COALITION_TIER'::text
+            WHEN (percentile_alignment >= (0.25)::double precision) THEN 'MODERATE_COALITION_TIER'::text
+            ELSE 'WEAK_COALITION_TIER'::text
+        END AS coalition_tier,
+        CASE
+            WHEN ((prev_semester_alignment IS NOT NULL) AND (stddev_alignment_pair > (0)::numeric)) THEN round(((alignment_rate - prev_semester_alignment) / NULLIF(stddev_alignment_pair, (0)::numeric)), 2)
+            ELSE NULL::numeric
+        END AS momentum_z_score,
+    round((((alignment_rate * 0.4) + (((100)::numeric - COALESCE(avg_vote_divergence, (0)::numeric)) * 0.3)) + (((100)::numeric - COALESCE(vote_divergence_stddev, (0)::numeric)) * 0.3)), 2) AS stability_score,
+        CASE
+            WHEN ((alignment_rate < (50)::numeric) AND (prev_semester_alignment >= (65)::numeric)) THEN 90.0
+            WHEN ((alignment_rate < (50)::numeric) AND (stddev_alignment_pair > (15)::numeric)) THEN 75.0
+            WHEN ((alignment_rate < (65)::numeric) AND ((alignment_rate - prev_semester_alignment) < ('-10'::integer)::numeric)) THEN 60.0
+            WHEN (stddev_alignment_pair > (15)::numeric) THEN 50.0
+            WHEN (alignment_rate < (50)::numeric) THEN 40.0
+            WHEN ((alignment_rate - prev_semester_alignment) < ('-8'::integer)::numeric) THEN 30.0
+            ELSE 10.0
+        END AS breakup_risk_score,
+        CASE
+            WHEN ((stddev_alignment_pair > (15)::numeric) AND (abs((alignment_rate - prev_semester_alignment)) > (10)::numeric)) THEN 'HIGH_PROBABILITY'::text
+            WHEN ((stddev_alignment_pair > (10)::numeric) OR (abs((alignment_rate - prev_semester_alignment)) > (15)::numeric)) THEN 'MODERATE_PROBABILITY'::text
+            WHEN (abs((alignment_rate - prev_semester_alignment)) > (5)::numeric) THEN 'LOW_PROBABILITY'::text
+            ELSE 'VERY_LOW_PROBABILITY'::text
+        END AS realignment_probability,
+    round(((alignment_rate * joint_ballots) / NULLIF(max(joint_ballots) OVER (PARTITION BY election_cycle_id, semester), (0)::numeric)), 2) AS coalition_density_score,
+        CASE
+            WHEN ((percentile_alignment >= (0.75)::double precision) AND (percentile_cohesion >= (0.75)::double precision)) THEN 'CORE_COALITION_BRIDGE'::text
+            WHEN (percentile_alignment >= (0.50)::double precision) THEN 'STRONG_BRIDGE'::text
+            WHEN (percentile_alignment >= (0.25)::double precision) THEN 'MODERATE_BRIDGE'::text
+            ELSE 'WEAK_BRIDGE'::text
+        END AS bridge_classification
+   FROM windowed_statistics ws
+  ORDER BY party_1, party_2, election_cycle_id, cycle_year, semester;
         ]]></sql>
     </changeSet>
 
@@ -534,12 +586,12 @@ CREATE OR REPLACE VIEW public.view_riksdagen_voting_anomaly_detection AS
  WITH party_consensus AS (
          SELECT vote_data.embedded_id_ballot_id,
             vote_data.party,
-            vote_data.vote,
+            UPPER((vote_data.vote)::text) AS vote,
             count(*) AS vote_count,
             row_number() OVER (PARTITION BY vote_data.embedded_id_ballot_id, vote_data.party ORDER BY (count(*)) DESC) AS rank
            FROM public.vote_data
-          WHERE (((vote_data.vote)::text = ANY ((ARRAY['Ja'::character varying, 'Nej'::character varying, 'Avstår'::character varying])::text[])) AND (vote_data.party IS NOT NULL) AND (vote_data.vote_date >= (CURRENT_DATE - '25 years'::interval)))
-          GROUP BY vote_data.embedded_id_ballot_id, vote_data.party, vote_data.vote
+          WHERE ((UPPER((vote_data.vote)::text) = ANY (ARRAY['JA'::text, 'NEJ'::text, 'AVSTÅR'::text])) AND (vote_data.party IS NOT NULL) AND (vote_data.vote_date >= (CURRENT_DATE - '25 years'::interval)))
+          GROUP BY vote_data.embedded_id_ballot_id, vote_data.party, UPPER((vote_data.vote)::text)
         ), party_majority_vote AS (
          SELECT party_consensus.embedded_id_ballot_id,
             party_consensus.party,
@@ -566,7 +618,7 @@ CREATE OR REPLACE VIEW public.view_riksdagen_voting_anomaly_detection AS
            FROM ((public.vote_data vd
              JOIN party_majority_vote pmv ON ((((vd.embedded_id_ballot_id)::text = (pmv.embedded_id_ballot_id)::text) AND ((vd.party)::text = (pmv.party)::text))))
              JOIN party_vote_counts pvc ON ((((vd.embedded_id_ballot_id)::text = (pvc.embedded_id_ballot_id)::text) AND ((vd.party)::text = (pvc.party)::text))))
-          WHERE (((vd.vote)::text <> (pmv.party_consensus_vote)::text) AND ((vd.vote)::text = ANY ((ARRAY['Ja'::character varying, 'Nej'::character varying, 'Avstår'::character varying])::text[])) AND (vd.vote_date >= (CURRENT_DATE - '25 years'::interval)))
+          WHERE ((UPPER((vd.vote)::text) <> (pmv.party_consensus_vote)::text) AND (UPPER((vd.vote)::text) = ANY (ARRAY['JA'::text, 'NEJ'::text, 'AVSTÅR'::text])) AND (vd.vote_date >= (CURRENT_DATE - '25 years'::interval)))
         ), person_rebellions AS (
          SELECT rv.person_id,
             count(DISTINCT rv.embedded_id_ballot_id) AS total_rebellions,
@@ -626,64 +678,108 @@ CREATE OR REPLACE VIEW public.view_riksdagen_voting_anomaly_detection AS
                  vote under the new party.
         </comment>
         <sql><![CDATA[
-CREATE OR REPLACE VIEW public.view_riksdagen_party_transition_history AS
- WITH person_party_periods AS (
+DROP VIEW IF EXISTS public.view_riksdagen_party_transition_history CASCADE;
+
+CREATE VIEW public.view_riksdagen_party_transition_history AS
+ WITH vote_with_lag AS (
          SELECT vd.embedded_id_intressent_id AS person_id,
             vd.party,
-            min(vd.vote_date) AS first_vote_date,
-            max(vd.vote_date) AS last_vote_date,
-            count(*) AS vote_count
+            vd.vote_date,
+            LAG(vd.party) OVER (PARTITION BY vd.embedded_id_intressent_id ORDER BY vd.vote_date, vd.embedded_id_ballot_id) AS prev_party
            FROM public.vote_data vd
           WHERE vd.party IS NOT NULL
             AND vd.vote_date IS NOT NULL
             AND vd.vote_date >= '2002-01-01'::date
-          GROUP BY vd.embedded_id_intressent_id, vd.party
-        ), party_sequence AS (
-         SELECT ppp.person_id,
-            ppp.party,
-            ppp.first_vote_date,
-            ppp.last_vote_date,
-            ppp.vote_count,
-            LAG(ppp.party) OVER (PARTITION BY ppp.person_id ORDER BY ppp.first_vote_date) AS previous_party,
-            LAG(ppp.last_vote_date) OVER (PARTITION BY ppp.person_id ORDER BY ppp.first_vote_date) AS previous_party_end
-           FROM person_party_periods ppp
+        ), party_changes AS (
+         SELECT vwl.person_id,
+            vwl.party AS new_party,
+            vwl.prev_party AS previous_party,
+            vwl.vote_date AS transition_date
+           FROM vote_with_lag vwl
+          WHERE vwl.prev_party IS NOT NULL
+            AND (vwl.prev_party)::text <> (vwl.party)::text
+            AND (vwl.prev_party)::text <> ALL (ARRAY['-'::text, ''::text])
+            AND (vwl.party)::text <> ALL (ARRAY['-'::text, ''::text])
+        ), numbered_changes AS (
+         SELECT pc.person_id,
+            pc.previous_party,
+            pc.new_party,
+            pc.transition_date,
+            ROW_NUMBER() OVER (PARTITION BY pc.person_id ORDER BY pc.transition_date) AS change_seq,
+            LAG(pc.new_party) OVER (PARTITION BY pc.person_id ORDER BY pc.transition_date) AS lag_new_party,
+            LAG(pc.previous_party) OVER (PARTITION BY pc.person_id ORDER BY pc.transition_date) AS lag_previous_party
+           FROM party_changes pc
+        ), filtered_changes AS (
+         SELECT nc.person_id,
+            nc.previous_party,
+            nc.new_party,
+            nc.transition_date,
+            nc.change_seq
+           FROM numbered_changes nc
+          WHERE nc.change_seq = 1
+             OR (nc.previous_party)::text <> COALESCE((nc.lag_previous_party)::text, '')
+             OR (nc.new_party)::text <> COALESCE((nc.lag_new_party)::text, '')
+        ), grouped_changes AS (
+         SELECT fc.person_id,
+            fc.previous_party,
+            fc.new_party,
+            fc.transition_date,
+            fc.change_seq - ROW_NUMBER() OVER (PARTITION BY fc.person_id, fc.previous_party, fc.new_party ORDER BY fc.change_seq) AS grp
+           FROM filtered_changes fc
+        ), distinct_transitions AS (
+         SELECT gc.person_id,
+            gc.previous_party,
+            gc.new_party,
+            min(gc.transition_date) AS transition_date
+           FROM grouped_changes gc
+          GROUP BY gc.person_id, gc.previous_party, gc.new_party, gc.grp
+        ), pre_transition_activity AS (
+         SELECT vd.embedded_id_intressent_id AS person_id,
+            vd.vote_date,
+            count(*) AS vote_count
+           FROM public.vote_data vd
+          WHERE vd.vote_date >= '2002-01-01'::date
+          GROUP BY vd.embedded_id_intressent_id, vd.vote_date
         ), election_proximity AS (
          SELECT unnest(ARRAY['2002-09-15'::date, '2006-09-17'::date, '2010-09-19'::date, '2014-09-14'::date, '2018-09-09'::date, '2022-09-11'::date, '2026-09-13'::date]) AS election_date
         )
- SELECT ps.person_id,
+ SELECT dt.person_id,
     p.first_name,
     p.last_name,
-    ps.previous_party,
-    ps.party AS new_party,
-    ps.first_vote_date AS transition_date,
+    dt.previous_party,
+    dt.new_party,
+    dt.transition_date,
         CASE
-            WHEN ps.previous_party_end IS NULL OR (ps.first_vote_date - ps.previous_party_end) > 365 THEN 'REJOINED_RIKSDAGEN'::text
+            WHEN COALESCE(pta.vote_count, 0) = 0 THEN 'REJOINED_RIKSDAGEN'::text
             ELSE 'SWITCHED_WHILE_SERVING'::text
         END AS transition_type,
-    EXTRACT(year FROM ps.first_vote_date)::integer AS transition_year,
+    EXTRACT(year FROM dt.transition_date)::integer AS transition_year,
     ( SELECT min(ed.election_date)
            FROM election_proximity ed
-          WHERE ed.election_date > ps.first_vote_date) AS next_election,
+          WHERE ed.election_date > dt.transition_date) AS next_election,
     (EXTRACT(year FROM age((( SELECT min(ed.election_date)
            FROM election_proximity ed
-          WHERE ed.election_date > ps.first_vote_date))::timestamp with time zone, ps.first_vote_date::timestamp with time zone)) * 12 + EXTRACT(month FROM age((( SELECT min(ed.election_date)
+          WHERE ed.election_date > dt.transition_date))::timestamp with time zone, dt.transition_date::timestamp with time zone)) * 12 + EXTRACT(month FROM age((( SELECT min(ed.election_date)
            FROM election_proximity ed
-          WHERE ed.election_date > ps.first_vote_date))::timestamp with time zone, ps.first_vote_date::timestamp with time zone)))::integer AS months_until_next_election,
+          WHERE ed.election_date > dt.transition_date))::timestamp with time zone, dt.transition_date::timestamp with time zone)))::integer AS months_until_next_election,
     ( SELECT max(ed.election_date)
            FROM election_proximity ed
-          WHERE ed.election_date < ps.first_vote_date) AS previous_election,
-    (EXTRACT(year FROM age(ps.first_vote_date::timestamp with time zone, (( SELECT max(ed.election_date)
+          WHERE ed.election_date < dt.transition_date) AS previous_election,
+    (EXTRACT(year FROM age(dt.transition_date::timestamp with time zone, (( SELECT max(ed.election_date)
            FROM election_proximity ed
-          WHERE ed.election_date < ps.first_vote_date))::timestamp with time zone)) * 12 + EXTRACT(month FROM age(ps.first_vote_date::timestamp with time zone, (( SELECT max(ed.election_date)
+          WHERE ed.election_date < dt.transition_date))::timestamp with time zone)) * 12 + EXTRACT(month FROM age(dt.transition_date::timestamp with time zone, (( SELECT max(ed.election_date)
            FROM election_proximity ed
-          WHERE ed.election_date < ps.first_vote_date))::timestamp with time zone)))::integer AS months_since_last_election
-   FROM party_sequence ps
-   JOIN public.person_data p ON (ps.person_id)::text = (p.id)::text
-  WHERE ps.previous_party IS NOT NULL
-    AND (ps.previous_party)::text <> (ps.party)::text
-    AND (ps.previous_party)::text <> ALL (ARRAY['-'::text, ''::text])
-    AND (ps.party)::text <> ALL (ARRAY['-'::text, ''::text])
-  ORDER BY ps.first_vote_date DESC;
+          WHERE ed.election_date < dt.transition_date))::timestamp with time zone)))::integer AS months_since_last_election
+   FROM distinct_transitions dt
+   JOIN public.person_data p ON (dt.person_id)::text = (p.id)::text
+   LEFT JOIN LATERAL (
+       SELECT count(*) AS vote_count
+       FROM pre_transition_activity pta2
+       WHERE (pta2.person_id)::text = (dt.person_id)::text
+         AND pta2.vote_date >= (dt.transition_date - '30 days'::interval)
+         AND pta2.vote_date < dt.transition_date
+   ) pta ON true
+  ORDER BY dt.transition_date DESC;
         ]]></sql>
     </changeSet>
 
@@ -705,7 +801,9 @@ CREATE OR REPLACE VIEW public.view_riksdagen_party_transition_history AS
                  window matching which may miss votes.
         </comment>
         <sql><![CDATA[
-CREATE OR REPLACE VIEW public.view_riksdagen_party_defector_analysis AS
+DROP VIEW IF EXISTS public.view_riksdagen_party_defector_analysis CASCADE;
+
+CREATE VIEW public.view_riksdagen_party_defector_analysis AS
  WITH defector_performance AS (
          SELECT pt.person_id,
             pt.first_name,
@@ -718,7 +816,7 @@ CREATE OR REPLACE VIEW public.view_riksdagen_party_defector_analysis AS
                 CASE
                     WHEN ((vd.vote_date >= (pt.transition_date - '12 mons'::interval)) AND (vd.vote_date < pt.transition_date)) THEN
                     CASE
-                        WHEN ((vd.vote)::text <> 'Frånvarande'::text) THEN 1
+                        WHEN (UPPER((vd.vote)::text) <> 'FRÅNVARANDE'::text) THEN 1
                         ELSE 0
                     END
                     ELSE NULL::integer
@@ -727,7 +825,7 @@ CREATE OR REPLACE VIEW public.view_riksdagen_party_defector_analysis AS
                 CASE
                     WHEN ((vd.vote_date >= pt.transition_date) AND (vd.vote_date <= (pt.transition_date + '12 mons'::interval))) THEN
                     CASE
-                        WHEN ((vd.vote)::text <> 'Frånvarande'::text) THEN 1
+                        WHEN (UPPER((vd.vote)::text) <> 'FRÅNVARANDE'::text) THEN 1
                         ELSE 0
                     END
                     ELSE NULL::integer
@@ -853,6 +951,120 @@ CREATE VIEW public.view_riksdagen_party_switcher_outcomes AS
 REFRESH MATERIALIZED VIEW public.mv_party_decision_flow;
 REFRESH MATERIALIZED VIEW public.mv_decision_temporal_trends;
 REFRESH MATERIALIZED VIEW public.mv_ministry_decision_impact;
+        ]]></sql>
+    </changeSet>
+
+    <!-- ======================================================================== -->
+    <!-- Changeset 1.76-011: Fix view_politician_risk_summary rebel_votes          -->
+    <!-- Wrong rebel calculation: compared vote to party code instead of consensus -->
+    <!-- ======================================================================== -->
+    <changeSet id="fix-politician-risk-summary-1.76-011" author="intelligence-operative">
+        <comment>
+            Fix view_politician_risk_summary: rebel_votes compared vote value (JA/NEJ/etc.)
+            to party code (S/M/etc.), inflating rebel rates for every non-absent vote.
+            
+            FIX: Compute rebel votes by comparing member's vote to the party's majority
+            consensus vote for the same ballot. Also normalize vote comparisons with
+            UPPER() for case-insensitive matching (data may be 'Ja' or 'JA').
+        </comment>
+        <sql><![CDATA[
+CREATE OR REPLACE VIEW public.view_politician_risk_summary AS
+ WITH party_ballot_consensus AS (
+         SELECT vd.embedded_id_ballot_id,
+            vd.party,
+            mode() WITHIN GROUP (ORDER BY UPPER((vd.vote)::text)) AS party_consensus_vote
+           FROM public.vote_data vd
+          WHERE (UPPER((vd.vote)::text) <> 'FRÅNVARANDE'::text)
+            AND vd.party IS NOT NULL
+            AND vd.vote_date >= (CURRENT_DATE - '2 years'::interval)
+          GROUP BY vd.embedded_id_ballot_id, vd.party
+        ), politician_vote_metrics AS (
+         SELECT p.id AS person_id,
+            count(DISTINCT vd.embedded_id_ballot_id) AS total_votes,
+            count(DISTINCT vd.embedded_id_ballot_id) FILTER (WHERE (UPPER((vd.vote)::text) = 'FRÅNVARANDE'::text)) AS absent_votes,
+            count(DISTINCT vd.embedded_id_ballot_id) FILTER (
+                WHERE (
+                    pbc.party_consensus_vote IS NOT NULL
+                    AND UPPER((vd.vote)::text) <> pbc.party_consensus_vote
+                    AND UPPER((vd.vote)::text) <> 'FRÅNVARANDE'::text
+                )
+            ) AS rebel_votes
+           FROM (public.person_data p
+             LEFT JOIN public.vote_data vd ON ((((vd.embedded_id_intressent_id)::text = (p.id)::text) AND (vd.vote_date >= (CURRENT_DATE - '2 years'::interval))))
+             LEFT JOIN party_ballot_consensus pbc ON (((pbc.embedded_id_ballot_id)::text = (vd.embedded_id_ballot_id)::text) AND ((pbc.party)::text = (vd.party)::text)))
+          WHERE ((p.status)::text = ANY (ARRAY[('Tjänstgörande riksdagsledamot'::character varying)::text, ('Tjänstgörande ersättare'::character varying)::text, ('Tillgänglig ersättare'::character varying)::text]))
+          GROUP BY p.id
+        ), politician_document_metrics AS (
+         SELECT dpr.person_reference_id,
+            count(DISTINCT dsc.hjid) AS documents_last_year
+           FROM (((public.document_status_container dsc
+             LEFT JOIN public.document_data dd ON (((dsc.document_document_status_con_0)::text = (dd.id)::text)))
+             LEFT JOIN public.document_person_reference_co_0 dprc ON ((dsc.hjid = dprc.hjid)))
+             LEFT JOIN public.document_person_reference_da_0 dpr ON ((dpr.document_person_reference_li_1 = dprc.hjid)))
+          WHERE ((dd.made_public_date >= (CURRENT_DATE - '1 year'::interval)) AND (dpr.person_reference_id IS NOT NULL))
+          GROUP BY dpr.person_reference_id
+        ), risk_calculations AS (
+         SELECT p.id AS person_id,
+            p.first_name,
+            p.last_name,
+            p.party,
+            p.status,
+            count(DISTINCT rv.id) AS total_violations,
+            max(rv.detected_date) AS latest_violation_date,
+            count(DISTINCT rv.id) FILTER (WHERE ((rv.rule_group)::text = 'ABSENTEEISM'::text)) AS absenteeism_violations,
+            count(DISTINCT rv.id) FILTER (WHERE ((rv.rule_group)::text = 'EFFECTIVENESS'::text)) AS effectiveness_violations,
+            count(DISTINCT rv.id) FILTER (WHERE ((rv.rule_group)::text = 'DISCIPLINE'::text)) AS discipline_violations,
+            count(DISTINCT rv.id) FILTER (WHERE ((rv.rule_group)::text = 'PRODUCTIVITY'::text)) AS productivity_violations,
+            count(DISTINCT rv.id) FILTER (WHERE ((rv.rule_group)::text = 'COLLABORATION'::text)) AS collaboration_violations,
+            COALESCE(round((((pvm.absent_votes)::numeric / (NULLIF(pvm.total_votes, 0))::numeric) * (100)::numeric), 2), (0)::numeric) AS annual_absence_rate,
+            COALESCE(round((((pvm.rebel_votes)::numeric / (NULLIF(pvm.total_votes, 0))::numeric) * (100)::numeric), 2), (0)::numeric) AS annual_rebel_rate,
+            COALESCE(pvm.total_votes, (0)::bigint) AS annual_vote_count,
+            COALESCE(pdm.documents_last_year, (0)::bigint) AS documents_last_year,
+            ((((LEAST((count(DISTINCT rv.id) * 2), (40)::bigint))::numeric + ((COALESCE(round((((pvm.absent_votes)::numeric / (NULLIF(pvm.total_votes, 0))::numeric) * (100)::numeric), 2), (0)::numeric) * (30)::numeric) / 100.0)) + ((COALESCE(round((((pvm.rebel_votes)::numeric / (NULLIF(pvm.total_votes, 0))::numeric) * (100)::numeric), 2), (0)::numeric) * (20)::numeric) / 100.0)) + (
+                CASE
+                    WHEN (COALESCE(pdm.documents_last_year, (0)::bigint) < 5) THEN 10
+                    ELSE 0
+                END)::numeric) AS calculated_risk_score
+           FROM (((public.person_data p
+             LEFT JOIN politician_vote_metrics pvm ON (((pvm.person_id)::text = (p.id)::text)))
+             LEFT JOIN politician_document_metrics pdm ON (((pdm.person_reference_id)::text = (p.id)::text)))
+             LEFT JOIN public.rule_violation rv ON ((((rv.reference_id)::text = (p.id)::text) AND ((rv.resource_type)::text = 'POLITICIAN'::text) AND ((rv.status)::text = ANY (ARRAY[('MINOR'::character varying)::text, ('MAJOR'::character varying)::text, ('CRITICAL'::character varying)::text])))))
+          WHERE ((p.status)::text = ANY (ARRAY[('Tjänstgörande riksdagsledamot'::character varying)::text, ('Tjänstgörande ersättare'::character varying)::text, ('Tillgänglig ersättare'::character varying)::text]))
+          GROUP BY p.id, p.first_name, p.last_name, p.party, p.status, pvm.absent_votes, pvm.total_votes, pvm.rebel_votes, pdm.documents_last_year
+        )
+ SELECT person_id,
+    first_name,
+    last_name,
+    party,
+    status,
+    total_violations,
+    latest_violation_date,
+    absenteeism_violations,
+    effectiveness_violations,
+    discipline_violations,
+    productivity_violations,
+    collaboration_violations,
+    annual_absence_rate,
+    annual_rebel_rate,
+    annual_vote_count,
+    documents_last_year,
+    round(calculated_risk_score, 2) AS risk_score,
+        CASE
+            WHEN (calculated_risk_score >= (65)::numeric) THEN 'CRITICAL'::text
+            WHEN (calculated_risk_score >= (45)::numeric) THEN 'HIGH'::text
+            WHEN (calculated_risk_score >= (25)::numeric) THEN 'MEDIUM'::text
+            WHEN (calculated_risk_score >= (10)::numeric) THEN 'LOW'::text
+            ELSE 'MINIMAL'::text
+        END AS risk_level,
+        CASE
+            WHEN (calculated_risk_score >= (65)::numeric) THEN 'Critical risk politician - immediate investigation required'::text
+            WHEN (calculated_risk_score >= (45)::numeric) THEN 'High risk politician - performance concerns warrant review'::text
+            WHEN (calculated_risk_score >= (25)::numeric) THEN 'Moderate risk - monitor for declining performance'::text
+            WHEN (calculated_risk_score >= (10)::numeric) THEN 'Low risk - performing within acceptable standards'::text
+            ELSE 'Standard risk profile'::text
+        END AS risk_assessment
+   FROM risk_calculations
+  ORDER BY calculated_risk_score DESC;
         ]]></sql>
     </changeSet>
 
