@@ -179,7 +179,9 @@ CREATE INDEX IF NOT EXISTS idx_mv_ministry_decision_impact_year
             when underlying data changes.
         </comment>
         <sql><![CDATA[
-CREATE OR REPLACE VIEW public.view_election_cycle_decision_intelligence AS
+DROP VIEW IF EXISTS public.view_election_cycle_decision_intelligence CASCADE;
+
+CREATE VIEW public.view_election_cycle_decision_intelligence AS
  WITH v151_base AS (
          WITH election_cycle_periods AS (
                  SELECT ((((1994)::numeric + (floor((((year_series.year_series - 1994))::numeric / 4.0)) * (4)::numeric)) || '-'::text) || (((1994)::numeric + (floor((((year_series.year_series - 1994))::numeric / 4.0)) * (4)::numeric)) + (4)::numeric)) AS election_cycle_id,
@@ -308,7 +310,9 @@ CREATE OR REPLACE VIEW public.view_election_cycle_decision_intelligence AS
                  and satisfying the HAVING threshold.
         </comment>
         <sql><![CDATA[
-CREATE OR REPLACE VIEW public.view_riksdagen_party_coalition_evolution AS
+DROP VIEW IF EXISTS public.view_riksdagen_party_coalition_evolution CASCADE;
+
+CREATE VIEW public.view_riksdagen_party_coalition_evolution AS
  WITH election_cycle_periods AS (
          SELECT year_series.year_series AS calendar_year,
                 CASE
@@ -506,8 +510,56 @@ CREATE OR REPLACE VIEW public.view_riksdagen_party_coalition_evolution AS
             WHEN (vote_divergence_stddev > (20)::numeric) THEN 'INCONSISTENT_ALIGNMENT'::text
             WHEN (vote_divergence_stddev > (10)::numeric) THEN 'MODERATE_CONSISTENCY'::text
             ELSE 'HIGH_CONSISTENCY'::text
-        END AS consistency_classification
-   FROM windowed_statistics ws;
+        END AS consistency_classification,
+        CASE
+            WHEN (next_semester_alignment IS NULL) THEN 'NO_FORECAST'::text
+            WHEN (next_semester_alignment > (alignment_rate + (10)::numeric)) THEN 'EXPECTED_STRENGTHENING'::text
+            WHEN (next_semester_alignment < (alignment_rate - (10)::numeric)) THEN 'EXPECTED_WEAKENING'::text
+            WHEN (next_semester_alignment > (alignment_rate + (5)::numeric)) THEN 'EXPECTED_IMPROVEMENT'::text
+            WHEN (next_semester_alignment < (alignment_rate - (5)::numeric)) THEN 'EXPECTED_DECLINE'::text
+            ELSE 'EXPECTED_STABLE'::text
+        END AS forecast_trend,
+    round((ma_3semester_alignment - alignment_rate), 2) AS alignment_deviation_from_ma,
+        CASE
+            WHEN (ma_3semester_alignment > (alignment_rate + (5)::numeric)) THEN 'BELOW_TREND'::text
+            WHEN (ma_3semester_alignment < (alignment_rate - (5)::numeric)) THEN 'ABOVE_TREND'::text
+            ELSE 'ON_TREND'::text
+        END AS trend_position,
+        CASE
+            WHEN (percentile_alignment >= (0.75)::double precision) THEN 'ELITE_COALITION'::text
+            WHEN (percentile_alignment >= (0.50)::double precision) THEN 'STRONG_COALITION_TIER'::text
+            WHEN (percentile_alignment >= (0.25)::double precision) THEN 'MODERATE_COALITION_TIER'::text
+            ELSE 'WEAK_COALITION_TIER'::text
+        END AS coalition_tier,
+        CASE
+            WHEN ((prev_semester_alignment IS NOT NULL) AND (stddev_alignment_pair > (0)::numeric)) THEN round(((alignment_rate - prev_semester_alignment) / NULLIF(stddev_alignment_pair, (0)::numeric)), 2)
+            ELSE NULL::numeric
+        END AS momentum_z_score,
+    round((((alignment_rate * 0.4) + (((100)::numeric - COALESCE(avg_vote_divergence, (0)::numeric)) * 0.3)) + (((100)::numeric - COALESCE(vote_divergence_stddev, (0)::numeric)) * 0.3)), 2) AS stability_score,
+        CASE
+            WHEN ((alignment_rate < (50)::numeric) AND (prev_semester_alignment >= (65)::numeric)) THEN 90.0
+            WHEN ((alignment_rate < (50)::numeric) AND (stddev_alignment_pair > (15)::numeric)) THEN 75.0
+            WHEN ((alignment_rate < (65)::numeric) AND ((alignment_rate - prev_semester_alignment) < ('-10'::integer)::numeric)) THEN 60.0
+            WHEN (stddev_alignment_pair > (15)::numeric) THEN 50.0
+            WHEN (alignment_rate < (50)::numeric) THEN 40.0
+            WHEN ((alignment_rate - prev_semester_alignment) < ('-8'::integer)::numeric) THEN 30.0
+            ELSE 10.0
+        END AS breakup_risk_score,
+        CASE
+            WHEN ((stddev_alignment_pair > (15)::numeric) AND (abs((alignment_rate - prev_semester_alignment)) > (10)::numeric)) THEN 'HIGH_PROBABILITY'::text
+            WHEN ((stddev_alignment_pair > (10)::numeric) OR (abs((alignment_rate - prev_semester_alignment)) > (15)::numeric)) THEN 'MODERATE_PROBABILITY'::text
+            WHEN (abs((alignment_rate - prev_semester_alignment)) > (5)::numeric) THEN 'LOW_PROBABILITY'::text
+            ELSE 'VERY_LOW_PROBABILITY'::text
+        END AS realignment_probability,
+    round(((alignment_rate * joint_ballots) / NULLIF(max(joint_ballots) OVER (PARTITION BY election_cycle_id, semester), (0)::numeric)), 2) AS coalition_density_score,
+        CASE
+            WHEN ((percentile_alignment >= (0.75)::double precision) AND (percentile_cohesion >= (0.75)::double precision)) THEN 'CORE_COALITION_BRIDGE'::text
+            WHEN (percentile_alignment >= (0.50)::double precision) THEN 'STRONG_BRIDGE'::text
+            WHEN (percentile_alignment >= (0.25)::double precision) THEN 'MODERATE_BRIDGE'::text
+            ELSE 'WEAK_BRIDGE'::text
+        END AS bridge_classification
+   FROM windowed_statistics ws
+  ORDER BY party_1, party_2, election_cycle_id, cycle_year, semester;
         ]]></sql>
     </changeSet>
 
@@ -530,7 +582,9 @@ CREATE OR REPLACE VIEW public.view_riksdagen_party_coalition_evolution AS
                  voting records, regardless of current status.
         </comment>
         <sql><![CDATA[
-CREATE OR REPLACE VIEW public.view_riksdagen_voting_anomaly_detection AS
+DROP VIEW IF EXISTS public.view_riksdagen_voting_anomaly_detection CASCADE;
+
+CREATE VIEW public.view_riksdagen_voting_anomaly_detection AS
  WITH party_consensus AS (
          SELECT vote_data.embedded_id_ballot_id,
             vote_data.party,
@@ -626,7 +680,9 @@ CREATE OR REPLACE VIEW public.view_riksdagen_voting_anomaly_detection AS
                  vote under the new party.
         </comment>
         <sql><![CDATA[
-CREATE OR REPLACE VIEW public.view_riksdagen_party_transition_history AS
+DROP VIEW IF EXISTS public.view_riksdagen_party_transition_history CASCADE;
+
+CREATE VIEW public.view_riksdagen_party_transition_history AS
  WITH person_party_periods AS (
          SELECT vd.embedded_id_intressent_id AS person_id,
             vd.party,
@@ -705,7 +761,9 @@ CREATE OR REPLACE VIEW public.view_riksdagen_party_transition_history AS
                  window matching which may miss votes.
         </comment>
         <sql><![CDATA[
-CREATE OR REPLACE VIEW public.view_riksdagen_party_defector_analysis AS
+DROP VIEW IF EXISTS public.view_riksdagen_party_defector_analysis CASCADE;
+
+CREATE VIEW public.view_riksdagen_party_defector_analysis AS
  WITH defector_performance AS (
          SELECT pt.person_id,
             pt.first_name,
