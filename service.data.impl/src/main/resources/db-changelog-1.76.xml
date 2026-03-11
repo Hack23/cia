@@ -394,6 +394,9 @@ CREATE OR REPLACE VIEW public.view_riksdagen_party_coalition_evolution AS
                     WHEN ((EXTRACT(month FROM vbps1.embedded_id_vote_date) >= (9)::numeric) OR (EXTRACT(month FROM vbps1.embedded_id_vote_date) <= (1)::numeric)) THEN 'autumn'::text
                     ELSE 'spring'::text
                 END, vbps1.embedded_id_party, vbps2.embedded_id_party
+         -- Threshold >= 3: With monthly matview, each semester has ~5-6 months.
+         -- Requiring 3+ distinct monthly dates ensures minimum semester representation
+         -- while still capturing party pairs with some inactive months.
          HAVING (count(DISTINCT vbps1.embedded_id_vote_date) >= 3)
         ), windowed_statistics AS (
          SELECT csd.election_cycle_id,
@@ -627,9 +630,9 @@ CREATE OR REPLACE VIEW public.view_riksdagen_party_transition_history AS
  WITH person_party_periods AS (
          SELECT vd.embedded_id_intressent_id AS person_id,
             vd.party,
-            MIN(vd.vote_date) AS first_vote_date,
-            MAX(vd.vote_date) AS last_vote_date,
-            COUNT(*) AS vote_count
+            min(vd.vote_date) AS first_vote_date,
+            max(vd.vote_date) AS last_vote_date,
+            count(*) AS vote_count
            FROM public.vote_data vd
           WHERE vd.party IS NOT NULL
             AND vd.vote_date IS NOT NULL
