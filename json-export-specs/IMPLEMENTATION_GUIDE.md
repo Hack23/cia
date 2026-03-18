@@ -590,7 +590,7 @@ jobs:
       - name: Set up Java
         uses: actions/setup-java@v3
         with:
-          java-version: '25'
+          java-version: '26'
           distribution: 'temurin'
       
       - name: Build JSON Export Service

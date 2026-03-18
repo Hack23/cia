@@ -414,10 +414,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Set up JDK 25
+      - name: Set up JDK 26
         uses: actions/setup-java@v4
         with:
-          java-version: '25'
+          java-version: '26'
       - name: Run Tests
         run: mvn clean test jacoco:report
       - name: SonarCloud Analysis

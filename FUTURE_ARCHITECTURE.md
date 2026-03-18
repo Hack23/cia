@@ -299,7 +299,7 @@ timeline
 
 | Layer | 2026 (Current+) | 2028 | 2030 | 2033 | 2037 |
 |-------|-----------------|------|------|------|------|
-| **Language** | Java 21 (src) / Java 25 (runtime) | Java 25+ | Java 29+ or Kotlin | Polyglot (JVM + AI-native) | AI-managed polyglot |
+| **Language** | Java 21 (src) / Java 26 (runtime) | Java 26+ | Java 29+ or Kotlin | Polyglot (JVM + AI-native) | AI-managed polyglot |
 | **Framework** | Spring Framework 5.x | Spring Boot 3.x / Spring 6 | Cloud-native Spring | AI-orchestrated services | AGI-managed infrastructure |
 | **UI** | Vaadin 24 | Vaadin + React components | Conversational + visual UI | Multi-modal interfaces | AGI-personalized experiences |
 | **Database** | PostgreSQL 16 | PostgreSQL 17+ with vector extensions | Distributed PostgreSQL + graph DB | Multi-model data platform | Self-optimizing data fabric |

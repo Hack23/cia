@@ -50,7 +50,7 @@ mvn -B test --file pom.xml -Prelease-site,all-modules \
 **Test Execution**: Same as CodeQL workflow
 
 **Environment**:
-- Java 25 (Temurin)
+- Java 26 (Temurin)
 - Maven 3.9.9
 - PostgreSQL 16 with pgaudit, pgvector extensions
 - Google Chrome for UI testing

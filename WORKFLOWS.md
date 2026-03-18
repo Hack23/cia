@@ -203,10 +203,10 @@ flowchart TB
 **Workflow:** `Verify and Release` (`release.yml`)  
 **Trigger:** Manual workflow dispatch with version input  
 **Duration:** ~15-20 minutes  
-**Runtime:** Ubuntu 24.04, JDK 25 (Temurin), Maven 3.9.9, PostgreSQL 16
+**Runtime:** Ubuntu 24.04, JDK 26 (Temurin), Maven 3.9.9, PostgreSQL 16
 
 **Quality Gates:**
-- ✅ Maven build success (Java 25, source 21)
+- ✅ Maven build success (Java 26, source 21)
 - ✅ All modules compile successfully
 - ✅ Unit tests pass (207+ tests across modules)
 - ✅ Integration tests pass
@@ -807,11 +807,11 @@ The GitHub Actions workflows use several key configuration patterns:
 
 ## JDK Configuration
 
-The project's workflows are configured to use JDK 21 for building and testing:
+The project's workflows are configured to use JDK 26 for building and testing:
 
 ```mermaid
 graph TD
-    A[JDK Configuration] --> B[Java 21]
+    A[JDK Configuration] --> B[Java 26]
     B --> C[Temurin Distribution]
     C --> D[Maven Build]
     D --> E[Compatibility with Spring]

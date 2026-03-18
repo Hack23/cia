@@ -121,7 +121,7 @@ template: |
 
   ## 💻 Technology Stack
 
-  **Runtime:** Java 25 (LTS) • **Source:** Java 21 (LTS) • **Build:** Maven 3.9.9 • **Database:** PostgreSQL 16
+  **Runtime:** Java 26 (Feature Release) • **Source:** Java 21 (LTS) • **Build:** Maven 3.9.9 • **Database:** PostgreSQL 16
 
   ## 🙏 Contributors
   Thanks to $CONTRIBUTORS for their contributions to this release!

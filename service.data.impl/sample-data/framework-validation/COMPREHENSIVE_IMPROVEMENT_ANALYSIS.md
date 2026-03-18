@@ -253,11 +253,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       
-      - name: Set up Java 25
+      - name: Set up Java 26
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '25'
+          java-version: '26'
       
       - name: Run Framework Validation
         run: |
