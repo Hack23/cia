@@ -73,34 +73,16 @@ jobs:
             libxfixes3 libxrandr2 libxrender1 \
             libxshmfence1 xdg-utils wget libxkbcommon0 xkb-data
 
-          # Install Google Chrome Stable for Web WebGL support
-          wget -qO- https://dl.google.com/linux/linux_signing_key.pub | sudo gpg --dearmor -o /usr/share/keyrings/google-chrome.gpg
-          echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
-          sudo apt-get update
-          sudo apt-get install -y google-chrome-stable
-
           # Setup D-Bus for Chrome
           sudo mkdir -p /var/run/dbus
           sudo dbus-daemon --system --fork || true
                     
-          # Verify Chrome installation
-          google-chrome --version
           echo "✅ Web test environment setup complete"
         env:
           DISPLAY: ":99"
           XKB_DEFAULT_RULES: evdev
           XKB_DEFAULT_MODEL: pc105
           XKB_DEFAULT_LAYOUT: us
-
-      # Start Xvfb early for Playwright/Chrome
-      - name: Start Xvfb
-        run: |
-          echo "🖥️ Starting Xvfb virtual display..."
-          Xvfb :99 -screen 0 1920x1080x24 &
-          sleep 2
-          echo "DISPLAY=:99" >> $GITHUB_ENV
-          echo "✅ Xvfb started on display :99"
-
 
       # JavaScript/TypeScript setup
       - name: Setup Node.js
@@ -166,11 +148,6 @@ jobs:
           echo "📍 GitHub MCP Server: Using HTTP endpoint (https://api.githubcopilot.com/mcp/insiders)"         
           echo "✅ MCP server verification complete"
 
-      - name: Install Playwright browsers (and OS deps)
-        run: npx playwright install --with-deps
-        env:
-          DISPLAY: ":99"
-          PLAYWRIGHT_BROWSERS_PATH: "0"
 
       - name: Set up JDK 26
         uses: actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654 # v5.2.0
@@ -415,107 +392,4 @@ jobs:
       - name: Run all unit tests (excluding integration tests)
         run: mvn -B test --file pom.xml -Prelease-site,all-modules -Dtest='!**ITest*,!**/XmlDateTypeAdapterTest,!**/XmlTimeTypeAdapterTest,!**/XmlDateTimeTypeAdapterTest' -DfailIfNoTests=false -Dsurefire.failIfNoSpecifiedTests=false -Dspdx.skip=true -Dmaven.wagon.http.retryHandler.count=3 -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 -Dmaven.wagon.http.pool=true
         continue-on-error: true
-
-      - name: Validate app startup and database connection
-        run: |
-          cd citizen-intelligence-agency
-
-          # Start the application in background with a timeout
-          echo "Starting application..."
-          timeout 240 ant start > /tmp/app-startup.log 2>&1 &
-          APP_PID=$!
-
-          echo "Application starting with PID: $APP_PID"
-
-          # Wait for application to start and apply database changelogs
-          MAX_WAIT=60
-          for i in $(seq 1 $MAX_WAIT); do
-            if sudo -u postgres psql -d cia_dev -c "SELECT COUNT(*) FROM databasechangelog;" > /dev/null 2>&1; then
-              echo "✓ Database changelogs verified successfully"
-              CHANGELOG_COUNT=$(sudo -u postgres psql -d cia_dev -t -c "SELECT COUNT(*) FROM databasechangelog;")
-              echo "  Found $CHANGELOG_COUNT changelog entries"
-              break
-            fi
-            echo "Waiting for application to initialize and apply changelogs... ($i/$MAX_WAIT)"
-            sleep 3
-          done
-
-          # Check if we successfully verified the changelogs
-          if sudo -u postgres psql -d cia_dev -c "SELECT COUNT(*) FROM databasechangelog;" > /dev/null 2>&1; then
-            echo "✓ Application startup validation successful"
-          else
-            echo "⚠ Database changelog table not created yet - check logs"
-            echo "Application logs:"
-            tail -50 /tmp/app-startup.log || echo "No logs available"
-          fi
-
-          PORT=28443
-          APP_URL="https://localhost:${PORT}/cia/"
-          MAX_PORT_WAIT=60
-          PORT_READY=0
-
-          # Wait for port to be listening
-          echo "Waiting for port ${PORT} to open..."
-          for i in $(seq 1 30); do
-            if ss -ltn | grep -q ":${PORT} "; then
-              echo "✓ Port ${PORT} is listening (${i}/30)"
-              break
-            fi
-            echo "  Waiting for port ${PORT} to open (${i}/30)"
-            sleep 2
-          done
-
-          # Now wait for actual HTTP readiness by monitoring logs
-          echo "Waiting for application to be ready for requests..."
-          for i in $(seq 1 $MAX_PORT_WAIT); do
-            # Check if server reports it's started
-            if grep -q "Server Started" /tmp/app-startup.log 2>/dev/null; then
-              echo "✓ Application reports server started"
-              # Give it a moment to finish initialization
-              sleep 3
-              
-              # Try HTTP request
-              if curl --insecure --silent --show-error --fail --max-time 5 "$APP_URL" >/dev/null 2>&1; then
-                echo "✓ Application responded over HTTPS at ${APP_URL}"
-                PORT_READY=1
-                break
-              else
-                echo "  Server started but HTTP not ready yet, retrying..."
-              fi
-            fi
-            
-            # Fallback: check for Spring context initialization complete
-            if grep -q "Root WebApplicationContext: initialization completed" /tmp/app-startup.log 2>/dev/null; then
-              echo "✓ Spring context initialization completed"
-              sleep 2
-              
-              if curl --insecure --silent --show-error --fail --max-time 5 "$APP_URL" >/dev/null 2>&1; then
-                echo "✓ Application responded over HTTPS at ${APP_URL}"
-                PORT_READY=1
-                break
-              fi
-            fi
-            
-            sleep 2
-          done
-
-          if [ "$PORT_READY" -ne 1 ]; then
-            echo "⚠ Application never responded on ${APP_URL}"
-            echo "Server status:"
-            ss -ltnp | grep "${PORT}" || true
-            echo ""
-            echo "Last 100 lines of application log:"
-            tail -100 /tmp/app-startup.log || true
-          else
-            echo "✓ Application validation successful - server is ready"
-          fi
-
-          # Stop the application gracefully
-          if kill -0 $APP_PID 2>/dev/null; then
-            echo "Stopping application (PID: $APP_PID)..."
-            kill $APP_PID 2>/dev/null || true
-            sleep 2
-            kill -9 $APP_PID 2>/dev/null || true
-          fi
-
           wait $APP_PID 2>/dev/null || echo "Application validation completed"
