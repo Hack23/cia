@@ -57,7 +57,7 @@ mindmap
         Rate limiting and authentication
         Third-party research access
     🏗️ Platform Modernization
-      Java 21 Source / Java 25 Runtime
+      Java 21 Source / Java 26 Runtime
         Virtual threads adoption
         Pattern matching enhancements
         Record types for data transfer

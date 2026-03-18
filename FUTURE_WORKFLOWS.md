@@ -356,6 +356,109 @@ timeline
 | `release-drafter.yml` for release notes | AI-generated comprehensive release documentation | Autonomous release planning and execution | AGI-managed continuous delivery |
 | `labeler.yml` for PR categorization | AI intent-based PR classification and routing | Autonomous issue-to-deployment pipeline | Self-organizing development workflow |
 
+## ☕ Java Platform Roadmap & CI/CD Integration
+
+The CIA platform runs on Java (Temurin distribution) and tracks the OpenJDK release cadence to ensure secure, performant, and up-to-date CI/CD pipelines.
+
+### Java Release Timeline & CI/CD Impact
+
+```mermaid
+timeline
+    title Java Platform Roadmap — CIA CI/CD Integration 2024–2033
+
+    section 2024 — LTS Adoption
+      Java 21 LTS : Source compilation level — stable API baseline
+      Java 22 : Feature release — CI compatibility validated
+      Java 23 : Feature release — runtime tested
+
+    section 2025 — Runtime Upgrades
+      Java 24 : Feature release — CI pipeline upgraded
+      Java 25 LTS : LTS milestone — previously used as production runtime
+
+    section 2026 — Current State
+      Java 26 : Current production runtime — CI/CD and all workflows updated
+      JVM flags stabilized : --enable-native-access=ALL-UNNAMED standard
+
+    section 2027 — Feature Releases
+      Java 27 : Feature release — CI compatibility validated
+      Java 28 : Feature release — CI compatibility maintained
+      Source still Java 21 : Stable source compatibility maintained
+
+    section 2028–2029 — Next LTS Horizon
+      Java 29 LTS : Next LTS after 25 — planned as production runtime upgrade
+      Java 30 : Feature release — CI compatibility maintained automatically
+      Jakarta evaluation : Assess whether migration enables new LTS benefits
+
+    section 2030–2033 — AGI Era
+      Java 31–32 : Feature releases — CI compatibility maintained
+      Java 33 LTS : Next major LTS — potential Jakarta migration trigger
+      AGI-assisted migration : AI-managed namespace transition if required
+```
+
+### Java Upgrade Strategy for CI/CD Workflows
+
+| Java Version | Type | CI/CD Action | Timeline |
+|---|---|---|---|
+| **Java 21** | LTS | Source compilation level — no change | Maintained indefinitely |
+| **Java 25** | LTS | Previously runtime — now fallback compatible | Maintained in POM profile |
+| **Java 26** | Feature | **Current runtime** — all workflows updated | Active (2026) |
+| **Java 27** | Feature | CI compatibility test within 3 months of GA | Projected September 2027 |
+| **Java 28** | Feature | CI compatibility test within 3 months of GA | Projected March 2028 |
+| **Java 29** | LTS | Priority upgrade — CI/CD pipeline update within 1 month of GA | Projected September 2028 |
+| **Java 30** | Feature | CI compatibility test within 3 months of GA | Projected March 2029 |
+| **Java 31** | Feature | CI compatibility test within 3 months of GA | Projected September 2029 |
+| **Java 33** | LTS | Major upgrade — evaluate Jakarta migration | Projected September 2030 |
+
+### Maven Profile Strategy per Java Version
+
+The `parent-pom/pom.xml` maintains version-specific profiles for JVM flags and toolchain compatibility:
+
+```xml
+<!-- Active profiles for multi-version CI compatibility -->
+<profile>
+  <id>java21</id>   <!-- Source-level validation -->
+  <activation><jdk>21</jdk></activation>
+</profile>
+<profile>
+  <id>java25</id>   <!-- LTS fallback compatibility -->
+  <activation><jdk>25</jdk></activation>
+</profile>
+<profile>
+  <id>java26</id>   <!-- Current production runtime -->
+  <activation><jdk>26</jdk></activation>
+</profile>
+<!-- Future profiles added as new Java versions are adopted -->
+```
+
+**Profile Conventions:**
+- All profiles with Java ≥ 22 set `<forbiddenapis.skip>true</forbiddenapis.skip>` (unavailable signatures)
+- Profiles for Java ≥ 25 include `--enable-native-access=ALL-UNNAMED` for modern JVM compatibility (the `java21` profile does not require this flag)
+- Source and target remain at Java 21 across all profiles for library compatibility
+
+### GitHub Actions Setup-Java Configuration
+
+```yaml
+# Current configuration — Java 26 (pinned SHA for supply-chain security)
+- name: Set up JDK 26
+  uses: actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654 # v5.2.0
+  with:
+    distribution: 'temurin'
+    java-version: '26'
+    java-package: 'jdk'
+    check-latest: true
+    architecture: 'x64'
+
+# Future configuration template — Java 29 LTS (projected 2028)
+- name: Set up JDK 29
+  uses: actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654 # v5.2.0
+  with:
+    distribution: 'temurin'
+    java-version: '29'
+    java-package: 'jdk'
+    check-latest: true
+    architecture: 'x64'
+```
+
 ## AI Provider Considerations for CI/CD
 
 | Design Principle | Rationale |

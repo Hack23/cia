@@ -572,11 +572,11 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v5.0.0
       
-    - name: Set up JDK 25
+    - name: Set up JDK 26
       uses: actions/setup-java@v5.0.0
       with:
         distribution: 'temurin'
-        java-version: '25'
+        java-version: '26'
         cache: 'maven'
         
     - name: Build and Test
@@ -628,7 +628,7 @@ mvn test -Dtest=UserHomeTest
 
 **Test Execution Environment**:
 - **OS**: Ubuntu 24.04 (latest stable)
-- **Java**: OpenJDK 25 (Temurin distribution)
+- **Java**: OpenJDK 26 (Temurin distribution)
 - **Maven**: Latest stable version
 - **Browser**: Chrome (headless mode via Selenium Manager)
 - **Database**: PostgreSQL (embedded or containerized)

@@ -321,9 +321,10 @@ Our analysis is powered by authoritative Swedish government and international da
 | ![JDK-22](https://img.shields.io/badge/JDK-22-orange.svg) | Compatible | Feature Release |
 | ![JDK-23](https://img.shields.io/badge/JDK-23-orange.svg) | Compatible | Feature Release |
 | ![JDK-24](https://img.shields.io/badge/JDK-24-orange.svg) | Compatible | Feature Release |
-| ![JDK-25](https://img.shields.io/badge/JDK-25-brightgreen.svg) | Runtime (LTS) | Current Production LTS |
+| ![JDK-25](https://img.shields.io/badge/JDK-25-brightgreen.svg) | Compatible (LTS) | LTS Release — Previous Production Runtime |
+| ![JDK-26](https://img.shields.io/badge/JDK-26-brightgreen.svg) | **Current Runtime** | Feature Release — Active Production Runtime |
 
-**Build Configuration:** Source Java 21, Target Java 21, Runtime Java 25
+**Build Configuration:** Source Java 21, Target Java 21, Runtime Java 26
 
 </div>
 
@@ -335,7 +336,7 @@ For details on our technology lifecycle management, see the [End-of-Life Strateg
 
 | Component | Version | Purpose | Reference |
 |-----------|---------|---------|-----------|
-| **Java JDK** | 25 (Temurin) | Runtime environment | [Setup Java](https://adoptium.net/) |
+| **Java JDK** | 26 (Temurin) | Runtime environment | [Setup Java](https://adoptium.net/) |
 | **Java Source** | 21 | Source compatibility | Maven compiler configuration |
 | **Maven** | 3.9.9+ | Build automation | [Maven Install](https://maven.apache.org/install.html) |
 | **Node.js** | 24+ | Copilot MCP servers, Playwright testing | [Node.js](https://nodejs.org/) |

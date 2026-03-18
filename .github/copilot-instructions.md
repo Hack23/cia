@@ -17,7 +17,7 @@
 The Citizen Intelligence Agency (CIA) is a volunteer-driven, open-source intelligence (OSINT) project providing comprehensive analysis of Swedish political activities. The platform monitors political figures and institutions, delivering financial performance metrics, risk assessment analytics, political trend analysis, and transparency insights.
 
 **Technology Stack:**
-- Java 25 (src 21) with Maven build system
+- Java 26 (src 21) with Maven build system
 - Spring Framework 5.x (MVC, Security, Data)
 - Vaadin for UI
 - Hibernate/JPA for data access
@@ -31,7 +31,7 @@ The Citizen Intelligence Agency (CIA) is a volunteer-driven, open-source intelli
 ## Build and Development
 
 ### Prerequisites
-- Java 25 JDK
+- Java 26 JDK
 - Maven 3.9.9 or later
 - PostgreSQL (for full integration testing, review ../service.data.impl/README-SCHEMA-MAINTENANCE.md for task related to any database changes)
 
@@ -87,7 +87,7 @@ mvn dependency-check:check
 ## Coding Standards
 
 ### Java Code Style
-- Use Java 21 (src 21, runtime 25) features where appropriate
+- Use Java 21 (src 21, runtime 26) features where appropriate
 - Follow existing code formatting in the project
 - Use meaningful variable and method names
 - Add JavaDoc for public APIs

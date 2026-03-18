@@ -49,8 +49,34 @@ See [README.md - Deployment Options](README.md#deployment-options) for deploymen
 
 ### JVM Compatibility
 
+- **Current Runtime**: Java 26 (Temurin) — production runtime as of 2026
+- **Source Compatibility**: Java 21 LTS — source compilation level maintained for stability
 - **JVM Monitoring**: Regularly evaluate compatibility with new JVM versions.
 - **EOL Trigger**: The project will officially end when updates require Jakarta namespaces for continued compatibility.
+
+#### Java Roadmap & Future Projections
+
+| Java Release | Status | Type | EOL | CIA Platform Impact |
+|---|---|---|---|---|
+| **Java 21** | ✅ Source Level | LTS | September 2031 | Source compilation target — maintained for stability |
+| **Java 22** | 🔵 Compatible | Feature | March 2025 | No changes required |
+| **Java 23** | 🔵 Compatible | Feature | March 2025 | No changes required |
+| **Java 24** | 🔵 Compatible | Feature | September 2025 | No changes required |
+| **Java 25** | 🟡 Compatible | LTS | September 2031 | LTS milestone — previously used as runtime |
+| **Java 26** | 🟢 **Current Runtime** | Feature | March 2027 | **Active production runtime** — used in CI/CD and deployments |
+| **Java 27** | 🔮 Projected | Feature | March 2028 (est.) | Feature release — compatibility testing planned |
+| **Java 28** | 🔮 Projected | Feature | September 2028 (est.) | Feature release |
+| **Java 29** | 🔮 Projected | LTS | September 2034 (est.) | Next LTS after 25 — planned runtime upgrade |
+| **Java 30** | 🔮 Projected | Feature | March 2029 (est.) | Feature release |
+| **Java 31** | 🔮 Projected | Feature | September 2029 (est.) | Feature release |
+| **Java 33** | 🔮 Projected | LTS | September 2036 (est.) | Next LTS after 29 — major upgrade candidate if Jakarta migration occurs |
+
+> **Note**: Java feature releases follow a 6-month cadence (March and September). LTS releases occur every 2 years (21, 25, 29, 33…). CIA platform targets the latest available runtime while maintaining Java 21 source compatibility to maximize tooling and library support without requiring a Jakarta namespace migration.
+
+**Runtime Upgrade Strategy**:
+- Feature releases: Upgrade runtime within 3 months of release (after CI validation)
+- LTS releases: Priority upgrade — validated and deployed within 1 month
+- Source level: Remain at Java 21 until Jakarta migration is undertaken
 
 ### Dependency Updates
 

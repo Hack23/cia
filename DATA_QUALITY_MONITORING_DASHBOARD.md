@@ -792,7 +792,7 @@ See: [Data Quality Analysis](service.data.impl/README-SCHEMA-MAINTENANCE.md#-dat
 
 ### Technology Stack
 
-- **Backend**: Spring Framework 5.x, Java 25 (src 21)
+- **Backend**: Spring Framework 5.x, Java 26 (src 21)
 - **Frontend**: Vaadin 8 (server-side rendering)
 - **Security**: Spring Security (@Secured annotation)
 - **Database**: PostgreSQL 16 (via Hibernate/JPA)
@@ -891,7 +891,7 @@ This dashboard integrates with comprehensive intelligence documentation across t
 
 ### Technology Stack
 
-- **Backend**: Spring Framework 5.x, Java 25 (src 21)
+- **Backend**: Spring Framework 5.x, Java 26 (src 21)
 - **Frontend**: Vaadin 8 (server-side rendering)
 - **Security**: Spring Security (@Secured annotation, ROLE_ADMIN)
 - **Database**: PostgreSQL 16 (via Hibernate/JPA)
