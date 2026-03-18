@@ -379,16 +379,19 @@ timeline
       Java 26 : Current production runtime — CI/CD and all workflows updated
       JVM flags stabilized : --enable-native-access=ALL-UNNAMED standard
 
-    section 2027 — LTS Horizon
-      Java 27 LTS : Projected LTS — planned as next production runtime upgrade
+    section 2027 — Feature Releases
+      Java 27 : Feature release — CI compatibility validated
+      Java 28 : Feature release — CI compatibility maintained
       Source still Java 21 : Stable source compatibility maintained
 
-    section 2028–2029 — Feature Releases
-      Java 28–30 : Feature releases — CI compatibility maintained automatically
+    section 2028–2029 — Next LTS Horizon
+      Java 29 LTS : Next LTS after 25 — planned as production runtime upgrade
+      Java 30 : Feature release — CI compatibility maintained automatically
       Jakarta evaluation : Assess whether migration enables new LTS benefits
 
     section 2030–2033 — AGI Era
-      Java 31 LTS : Next major LTS — potential Jakarta migration trigger
+      Java 31–32 : Feature releases — CI compatibility maintained
+      Java 33 LTS : Next major LTS — potential Jakarta migration trigger
       AGI-assisted migration : AI-managed namespace transition if required
 ```
 
@@ -399,11 +402,12 @@ timeline
 | **Java 21** | LTS | Source compilation level — no change | Maintained indefinitely |
 | **Java 25** | LTS | Previously runtime — now fallback compatible | Maintained in POM profile |
 | **Java 26** | Feature | **Current runtime** — all workflows updated | Active (2026) |
-| **Java 27** | LTS | Priority upgrade — CI/CD pipeline update within 1 month of GA | Projected 2027 |
+| **Java 27** | Feature | CI compatibility test within 3 months of GA | Projected September 2027 |
 | **Java 28** | Feature | CI compatibility test within 3 months of GA | Projected March 2028 |
-| **Java 29** | Feature | CI compatibility test within 3 months of GA | Projected September 2028 |
+| **Java 29** | LTS | Priority upgrade — CI/CD pipeline update within 1 month of GA | Projected September 2028 |
 | **Java 30** | Feature | CI compatibility test within 3 months of GA | Projected March 2029 |
-| **Java 31** | LTS | Major upgrade — evaluate Jakarta migration | Projected September 2029 |
+| **Java 31** | Feature | CI compatibility test within 3 months of GA | Projected September 2029 |
+| **Java 33** | LTS | Major upgrade — evaluate Jakarta migration | Projected September 2030 |
 
 ### Maven Profile Strategy per Java Version
 
@@ -428,15 +432,15 @@ The `parent-pom/pom.xml` maintains version-specific profiles for JVM flags and t
 
 **Profile Conventions:**
 - All profiles with Java ≥ 22 set `<forbiddenapis.skip>true</forbiddenapis.skip>` (unavailable signatures)
-- All profiles use `--enable-native-access=ALL-UNNAMED` for modern JVM compatibility
+- Profiles for Java ≥ 25 include `--enable-native-access=ALL-UNNAMED` for modern JVM compatibility (the `java21` profile does not require this flag)
 - Source and target remain at Java 21 across all profiles for library compatibility
 
 ### GitHub Actions Setup-Java Configuration
 
 ```yaml
-# Current configuration — Java 26
+# Current configuration — Java 26 (pinned SHA for supply-chain security)
 - name: Set up JDK 26
-  uses: actions/setup-java@v5
+  uses: actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654 # v5.2.0
   with:
     distribution: 'temurin'
     java-version: '26'
@@ -444,12 +448,12 @@ The `parent-pom/pom.xml` maintains version-specific profiles for JVM flags and t
     check-latest: true
     architecture: 'x64'
 
-# Future configuration template — Java 27 LTS (projected 2027)
-- name: Set up JDK 27
-  uses: actions/setup-java@v5
+# Future configuration template — Java 29 LTS (projected 2028)
+- name: Set up JDK 29
+  uses: actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654 # v5.2.0
   with:
     distribution: 'temurin'
-    java-version: '27'
+    java-version: '29'
     java-package: 'jdk'
     check-latest: true
     architecture: 'x64'
