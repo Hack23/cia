@@ -216,8 +216,8 @@ This section maps each ISMS-PUBLIC policy to specific CIA platform implementatio
 | [**Incident Response Plan**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Incident_Response_Plan.md) | GuardDuty monitoring, Security Hub integration, coordinated disclosure | [SECURITY_ARCHITECTURE.md](SECURITY_ARCHITECTURE.md#-security-event-monitoring) | ✅ Implemented |
 | [**Vulnerability Management**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Vulnerability_Management.md) | Dependabot automated patching, CodeQL scanning, OWASP ZAP | [WORKFLOWS.md](WORKFLOWS.md), [SECURITY.md](SECURITY.md) | ✅ Implemented |
 | [**Change Management**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Change_Management.md) | GitHub PR workflow, automated testing, code review | [WORKFLOWS.md](WORKFLOWS.md), [CONTRIBUTING.md](CONTRIBUTING.md) | ✅ Implemented |
-| [**Business Continuity Plan**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Business_Continuity_Plan.md) | Multi-AZ architecture, health checks, RTO/RPO targets | [SECURITY_ARCHITECTURE.md](SECURITY_ARCHITECTURE.md#-high-availability-design) | ✅ Implemented |
-| [**Disaster Recovery Plan**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Disaster_Recovery_Plan.md) | Automated backups, cross-region replication, restoration testing | [SECURITY_ARCHITECTURE.md](SECURITY_ARCHITECTURE.md#-data-protection) | ✅ Implemented |
+| [**Business Continuity Plan**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Business_Continuity_Plan.md) | Multi-AZ architecture, health checks, RTO/RPO targets | [SECURITY_ARCHITECTURE.md](SECURITY_ARCHITECTURE.md#-high-availability-design), [BCPPlan.md](BCPPlan.md) | ✅ Implemented |
+| [**Disaster Recovery Plan**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Disaster_Recovery_Plan.md) | Automated backups, cross-region replication, restoration testing | [SECURITY_ARCHITECTURE.md](SECURITY_ARCHITECTURE.md#-data-protection), [BCPPlan.md](BCPPlan.md) | ✅ Implemented |
 
 ### 🤝 Third-Party & Supply Chain Security
 

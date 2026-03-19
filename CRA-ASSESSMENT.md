@@ -211,8 +211,8 @@ Reference: [📊 Risk Assessment Methodology](https://github.com/Hack23/ISMS-PUB
 **📋 Risk Management Framework Evidence:**
 - **📊 Methodology:** [Risk Assessment Framework](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Risk_Assessment_Methodology.md)
 - **⚠️ Risk Tracking:** [Active Risk Register](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Risk_Register.md)
-- **🔄 Business Continuity:** [Continuity Planning](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Business_Continuity_Plan.md) + [Multi-AZ Evidence](https://github.com/Hack23/cia/blob/master/ARCHITECTURE.md)
-- **🆘 Disaster Recovery:** [Recovery Procedures](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Disaster_Recovery_Plan.md) + [AWS Implementation](https://github.com/Hack23/cia/blob/master/FinancialSecurityPlan.md)
+- **🔄 Business Continuity:** [Continuity Planning](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Business_Continuity_Plan.md) + [Platform BCP](BCPPlan.md) + [Multi-AZ Evidence](https://github.com/Hack23/cia/blob/master/ARCHITECTURE.md)
+- **🆘 Disaster Recovery:** [Recovery Procedures](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Disaster_Recovery_Plan.md) + [Platform BCP](BCPPlan.md) + [AWS Implementation](https://github.com/Hack23/cia/blob/master/FinancialSecurityPlan.md)
 - **📈 Risk Monitoring:** [Security Metrics](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Security_Metrics.md) + [Dashboard Evidence](https://sonarcloud.io/project/overview?id=Hack23_cia)
 
 ---
