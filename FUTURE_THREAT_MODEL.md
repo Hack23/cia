@@ -91,6 +91,8 @@ Integrated with:
 | **[Future Threat Model](FUTURE_THREAT_MODEL.md)** | 🎯 Security | Future threat landscape (this document) | [View](https://github.com/Hack23/cia/blob/master/FUTURE_THREAT_MODEL.md) |
 | **[ISMS Compliance](ISMS_COMPLIANCE_MAPPING.md)** | 🔐 ISMS | Policy alignment mapping | [View](https://github.com/Hack23/cia/blob/master/ISMS_COMPLIANCE_MAPPING.md) |
 | **[CRA Assessment](CRA-ASSESSMENT.md)** | 🛡️ Compliance | EU Cyber Resilience Act | [View](https://github.com/Hack23/cia/blob/master/CRA-ASSESSMENT.md) |
+| **[Business Continuity Plan](BCPPlan.md)** | 📋 Resilience | RTO/RPO targets and recovery | [View](https://github.com/Hack23/cia/blob/master/BCPPlan.md) |
+| **[Business Product Document](BUSINESS_PRODUCT_DOCUMENT.md)** | 💼 Business | Risk intelligence products | [View](https://github.com/Hack23/cia/blob/master/BUSINESS_PRODUCT_DOCUMENT.md) |
 
 </div>
 

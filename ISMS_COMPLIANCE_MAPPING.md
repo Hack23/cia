@@ -207,7 +207,7 @@ This section maps each ISMS-PUBLIC policy to specific CIA platform implementatio
 | [**Secure Development Policy**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md) | SAST (SonarCloud), SCA (Dependabot), DAST (OWASP ZAP), SBOM generation | [WORKFLOWS.md](WORKFLOWS.md), [CRA-ASSESSMENT.md](CRA-ASSESSMENT.md#6%EF%B8%8F%E2%83%A3-security-testing--validation) | ✅ Implemented |
 | [**AI Policy**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/AI_Policy.md) | AI-assisted code review with human oversight | [WORKFLOWS.md](WORKFLOWS.md) | ✅ Implemented |
 | [**OWASP LLM Security Policy**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/OWASP_LLM_Security_Policy.md) | Not currently applicable (no LLM integration) | N/A | ⏭️ Future |
-| [**Open Source Policy**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Open_Source_Policy.md) | Apache 2.0 license, FOSSA license compliance, SBOM | [README.md](README.md), [CRA-ASSESSMENT.md](CRA-ASSESSMENT.md#7%EF%B8%8F%E2%83%A3-intellectual-property--licensing) | ✅ Implemented |
+| [**Open Source Policy**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Open_Source_Policy.md) | Apache 2.0 license, FOSSA license compliance, SBOM generation (SPDX/CycloneDX), OpenSSF Scorecard (target ≥7.0, monitored), CII Best Practices, SLSA Level 3, CLA (badge-tracked via CLA assistant), Dependabot supply chain security | [README.md](README.md), [CRA-ASSESSMENT.md](CRA-ASSESSMENT.md), [WORKFLOWS.md](WORKFLOWS.md), [CONTRIBUTING.md](CONTRIBUTING.md), [SECURITY.md](SECURITY.md) | ✅ Implemented |
 
 ### 🚨 Incident Response & Operations Security
 
@@ -216,8 +216,8 @@ This section maps each ISMS-PUBLIC policy to specific CIA platform implementatio
 | [**Incident Response Plan**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Incident_Response_Plan.md) | GuardDuty monitoring, Security Hub integration, coordinated disclosure | [SECURITY_ARCHITECTURE.md](SECURITY_ARCHITECTURE.md#-security-event-monitoring) | ✅ Implemented |
 | [**Vulnerability Management**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Vulnerability_Management.md) | Dependabot automated patching, CodeQL scanning, OWASP ZAP | [WORKFLOWS.md](WORKFLOWS.md), [SECURITY.md](SECURITY.md) | ✅ Implemented |
 | [**Change Management**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Change_Management.md) | GitHub PR workflow, automated testing, code review | [WORKFLOWS.md](WORKFLOWS.md), [CONTRIBUTING.md](CONTRIBUTING.md) | ✅ Implemented |
-| [**Business Continuity Plan**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Business_Continuity_Plan.md) | Multi-AZ architecture, health checks, RTO/RPO targets | [SECURITY_ARCHITECTURE.md](SECURITY_ARCHITECTURE.md#-high-availability-design) | ✅ Implemented |
-| [**Disaster Recovery Plan**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Disaster_Recovery_Plan.md) | Automated backups, cross-region replication, restoration testing | [SECURITY_ARCHITECTURE.md](SECURITY_ARCHITECTURE.md#-data-protection) | ✅ Implemented |
+| [**Business Continuity Plan**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Business_Continuity_Plan.md) | Multi-AZ architecture, health checks, RTO/RPO targets | [SECURITY_ARCHITECTURE.md](SECURITY_ARCHITECTURE.md#-high-availability-design), [BCPPlan.md](BCPPlan.md) | ✅ Implemented |
+| [**Disaster Recovery Plan**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Disaster_Recovery_Plan.md) | Automated backups, cross-region replication, restoration testing | [SECURITY_ARCHITECTURE.md](SECURITY_ARCHITECTURE.md#-data-protection), [BCPPlan.md](BCPPlan.md) | ✅ Implemented |
 
 ### 🤝 Third-Party & Supply Chain Security
 
@@ -238,7 +238,7 @@ This section maps each ISMS-PUBLIC policy to specific CIA platform implementatio
 
 | 📋 ISMS Policy | 🎯 CIA Platform Implementation | 📋 Evidence Location | ✅ Status |
 |---------------|-------------------------------|---------------------|----------|
-| [**CRA Conformity Assessment Process**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CRA_Conformity_Assessment_Process.md) | Complete CRA assessment with evidence | [CRA-ASSESSMENT.md](CRA-ASSESSMENT.md) | ✅ Implemented |
+| [**CRA Conformity Assessment Process**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CRA_Conformity_Assessment_Process.md) | Complete CRA assessment following ISMS template (Sections 1-9), classification badges, AI Agent-Driven compliance, EU AI Act integration, risk assessment, essential requirements, conformity evidence, post-market surveillance | [CRA-ASSESSMENT.md](CRA-ASSESSMENT.md) | ✅ Implemented |
 | [**ISMS Transparency Plan**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/ISMS_Transparency_Plan.md) | Public documentation demonstrating transparency | This document, [README.md](README.md) | ✅ Implemented |
 | [**Compliance Checklist**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Compliance_Checklist.md) | ISO 27001, NIST CSF 2.0, CIS Controls alignment | [SECURITY_ARCHITECTURE.md](SECURITY_ARCHITECTURE.md#-compliance-framework) | ✅ Implemented |
 
@@ -531,9 +531,9 @@ This document fulfills all requirements from [Issue #7778](https://github.com/Ha
 **📋 Document Control:**  
 **✅ Approved by:** James Pether Sörling, CEO - Hack23 AB  
 **📤 Distribution:** Public  
-**🏷️ Classification:** [![Confidentiality: Public](https://img.shields.io/badge/C-Public-lightgrey?style=flat-square&logo=shield&logoColor=black)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#confidentiality-levels)  
+**🏷️ Classification:** [![Confidentiality: Public](https://img.shields.io/badge/C-Public-lightgrey?style=flat-square&logo=shield&logoColor=black)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#confidentiality-levels) [![Integrity: High](https://img.shields.io/badge/I-High-orange?style=flat-square&logo=check-circle&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#integrity-levels) [![Availability: Moderate](https://img.shields.io/badge/A-Moderate-yellow?style=flat-square&logo=server&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#availability-levels)  
 **📅 Effective Date:** 2025-11-10  
-**⏰ Next Review:** 2026-02-10  
+**⏰ Next Review:** 2026-06-19  
 **🎯 Framework Compliance:** [![ISO 27001](https://img.shields.io/badge/ISO_27001-2022_Aligned-blue?style=flat-square&logo=iso&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) [![NIST CSF 2.0](https://img.shields.io/badge/NIST_CSF-2.0_Aligned-green?style=flat-square&logo=nist&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) [![CIS Controls](https://img.shields.io/badge/CIS_Controls-v8.1_Aligned-orange?style=flat-square&logo=cisecurity&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) [![EU CRA](https://img.shields.io/badge/EU-CRA_Compliant-003399?style=flat-square)](https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act)
 
 ---
