@@ -207,7 +207,7 @@ This section maps each ISMS-PUBLIC policy to specific CIA platform implementatio
 | [**Secure Development Policy**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md) | SAST (SonarCloud), SCA (Dependabot), DAST (OWASP ZAP), SBOM generation | [WORKFLOWS.md](WORKFLOWS.md), [CRA-ASSESSMENT.md](CRA-ASSESSMENT.md#6%EF%B8%8F%E2%83%A3-security-testing--validation) | ✅ Implemented |
 | [**AI Policy**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/AI_Policy.md) | AI-assisted code review with human oversight | [WORKFLOWS.md](WORKFLOWS.md) | ✅ Implemented |
 | [**OWASP LLM Security Policy**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/OWASP_LLM_Security_Policy.md) | Not currently applicable (no LLM integration) | N/A | ⏭️ Future |
-| [**Open Source Policy**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Open_Source_Policy.md) | Apache 2.0 license, FOSSA license compliance, SBOM generation (SPDX/CycloneDX), OpenSSF Scorecard ≥7.0, CII Best Practices, SLSA Level 3, CLA enforcement, Dependabot supply chain security | [README.md](README.md), [CRA-ASSESSMENT.md](CRA-ASSESSMENT.md), [WORKFLOWS.md](WORKFLOWS.md), [CONTRIBUTING.md](CONTRIBUTING.md), [SECURITY.md](SECURITY.md) | ✅ Implemented |
+| [**Open Source Policy**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Open_Source_Policy.md) | Apache 2.0 license, FOSSA license compliance, SBOM generation (SPDX/CycloneDX), OpenSSF Scorecard (target ≥7.0, monitored), CII Best Practices, SLSA Level 3, CLA (badge-tracked via CLA assistant), Dependabot supply chain security | [README.md](README.md), [CRA-ASSESSMENT.md](CRA-ASSESSMENT.md), [WORKFLOWS.md](WORKFLOWS.md), [CONTRIBUTING.md](CONTRIBUTING.md), [SECURITY.md](SECURITY.md) | ✅ Implemented |
 
 ### 🚨 Incident Response & Operations Security
 
@@ -533,7 +533,7 @@ This document fulfills all requirements from [Issue #7778](https://github.com/Ha
 **📤 Distribution:** Public  
 **🏷️ Classification:** [![Confidentiality: Public](https://img.shields.io/badge/C-Public-lightgrey?style=flat-square&logo=shield&logoColor=black)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#confidentiality-levels) [![Integrity: High](https://img.shields.io/badge/I-High-orange?style=flat-square&logo=check-circle&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#integrity-levels) [![Availability: Moderate](https://img.shields.io/badge/A-Moderate-yellow?style=flat-square&logo=server&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#availability-levels)  
 **📅 Effective Date:** 2025-11-10  
-**⏰ Next Review:** 2026-02-10  
+**⏰ Next Review:** 2026-06-19  
 **🎯 Framework Compliance:** [![ISO 27001](https://img.shields.io/badge/ISO_27001-2022_Aligned-blue?style=flat-square&logo=iso&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) [![NIST CSF 2.0](https://img.shields.io/badge/NIST_CSF-2.0_Aligned-green?style=flat-square&logo=nist&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) [![CIS Controls](https://img.shields.io/badge/CIS_Controls-v8.1_Aligned-orange?style=flat-square&logo=cisecurity&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) [![EU CRA](https://img.shields.io/badge/EU-CRA_Compliant-003399?style=flat-square)](https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act)
 
 ---

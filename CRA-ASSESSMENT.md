@@ -490,7 +490,7 @@ flowchart TD
 
 | Requirement | Implementation | Evidence Location |
 |-------------|----------------|-------------------|
-| **AI System Documentation** | Agent profiles and MCP configurations | `.github/agents/*.md`, `.github/copilot-mcp.json` |
+| **AI System Documentation** | Agent profiles and MCP configurations | `.github/agents/*.md`, `.github/copilot-mcp-config.json` |
 | **Human Oversight Procedures** | CEO approval workflow for all PRs | GitHub PR review history |
 | **Risk Assessment** | AI risk classification per AI Policy | [🤖 AI Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/AI_Policy.md) |
 | **Transparency Obligations** | Clear AI attribution in all outputs | Git commit messages, issue descriptions |
