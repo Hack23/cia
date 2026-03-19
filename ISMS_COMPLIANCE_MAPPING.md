@@ -207,7 +207,7 @@ This section maps each ISMS-PUBLIC policy to specific CIA platform implementatio
 | [**Secure Development Policy**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md) | SAST (SonarCloud), SCA (Dependabot), DAST (OWASP ZAP), SBOM generation | [WORKFLOWS.md](WORKFLOWS.md), [CRA-ASSESSMENT.md](CRA-ASSESSMENT.md#6%EF%B8%8F%E2%83%A3-security-testing--validation) | ✅ Implemented |
 | [**AI Policy**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/AI_Policy.md) | AI-assisted code review with human oversight | [WORKFLOWS.md](WORKFLOWS.md) | ✅ Implemented |
 | [**OWASP LLM Security Policy**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/OWASP_LLM_Security_Policy.md) | Not currently applicable (no LLM integration) | N/A | ⏭️ Future |
-| [**Open Source Policy**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Open_Source_Policy.md) | Apache 2.0 license, FOSSA license compliance, SBOM | [README.md](README.md), [CRA-ASSESSMENT.md](CRA-ASSESSMENT.md#7%EF%B8%8F%E2%83%A3-intellectual-property--licensing) | ✅ Implemented |
+| [**Open Source Policy**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Open_Source_Policy.md) | Apache 2.0 license, FOSSA license compliance, SBOM generation (SPDX/CycloneDX), OpenSSF Scorecard ≥7.0, CII Best Practices, SLSA Level 3, CLA enforcement, Dependabot supply chain security | [README.md](README.md), [CRA-ASSESSMENT.md](CRA-ASSESSMENT.md), [WORKFLOWS.md](WORKFLOWS.md), [CONTRIBUTING.md](CONTRIBUTING.md), [SECURITY.md](SECURITY.md) | ✅ Implemented |
 
 ### 🚨 Incident Response & Operations Security
 
@@ -238,7 +238,7 @@ This section maps each ISMS-PUBLIC policy to specific CIA platform implementatio
 
 | 📋 ISMS Policy | 🎯 CIA Platform Implementation | 📋 Evidence Location | ✅ Status |
 |---------------|-------------------------------|---------------------|----------|
-| [**CRA Conformity Assessment Process**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CRA_Conformity_Assessment_Process.md) | Complete CRA assessment with evidence | [CRA-ASSESSMENT.md](CRA-ASSESSMENT.md) | ✅ Implemented |
+| [**CRA Conformity Assessment Process**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CRA_Conformity_Assessment_Process.md) | Complete CRA assessment following ISMS template (Sections 1-9), classification badges, AI Agent-Driven compliance, EU AI Act integration, risk assessment, essential requirements, conformity evidence, post-market surveillance | [CRA-ASSESSMENT.md](CRA-ASSESSMENT.md) | ✅ Implemented |
 | [**ISMS Transparency Plan**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/ISMS_Transparency_Plan.md) | Public documentation demonstrating transparency | This document, [README.md](README.md) | ✅ Implemented |
 | [**Compliance Checklist**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Compliance_Checklist.md) | ISO 27001, NIST CSF 2.0, CIS Controls alignment | [SECURITY_ARCHITECTURE.md](SECURITY_ARCHITECTURE.md#-compliance-framework) | ✅ Implemented |
 
