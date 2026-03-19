@@ -447,11 +447,11 @@ Hack23 AB's AI agent ecosystem complies with EU AI Act transparency obligations 
 
 | AI System | Risk Classification | Transparency Obligations | Human Oversight |
 |-----------|-------------------|-------------------------|-----------------|
-| **🤖 GitHub Copilot** | Minimal Risk | AI-generated code clearly marked in commits | All code reviewed by CEO before merge |
-| **💬 OpenAI GPT** | Minimal Risk | AI-generated content documented in issues | Human validation of all outputs |
+| **🤖 GitHub Copilot** | Minimal Risk | AI-generated code attributed via `Co-authored-by` trailers in PR descriptions where applicable | All code reviewed by CEO before merge |
+| **💬 OpenAI GPT** | Minimal Risk | AI-generated content documented in issues where applicable | Human validation of all outputs |
 
 **🔐 Transparency Implementation:**
-- **Clear Attribution:** All AI-generated content includes agent attribution in commits/issues
+- **Clear Attribution:** AI-generated content attributed via `Co-authored-by` trailers and PR descriptions where applicable
 - **Audit Trail:** Complete provenance chain for all agent actions via GitHub
 - **Documentation:** AI usage documented in agent profiles (`.github/agents/*.md`)
 - **Version Control:** All AI-generated changes subject to Git history and review
