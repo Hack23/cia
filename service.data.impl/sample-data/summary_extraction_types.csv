@@ -1,4 +1,4 @@
 extraction_type,file_count,total_rows
 tables,94,0
 views,79,0
-materialized_views,30,0
+materialized_views,33,0

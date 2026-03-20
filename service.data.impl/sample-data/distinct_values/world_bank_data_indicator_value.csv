@@ -1,4 +1,16 @@
 value,count
+"Human capital index plus (HCI+): overall score, male (scale 0–325)",396
+"Human capital index plus (HCI+): overall score, total (scale 0–325)",396
+"Human capital index plus (HCI+): education pillar score, female (scale 0–188)",396
+"Human capital index plus (HCI+): education pillar score, male (scale 0–188)",396
+"Human capital index plus (HCI+): education pillar score, total (scale 0–188)",396
+"Human capital index plus (HCI+): health pillar score, female (scale 0–50)",396
+"Human capital index plus (HCI+): health pillar score, male (scale 0–50)",396
+"Human capital index plus (HCI+): health pillar score, total (scale 0–50)",396
+"Human capital index plus (HCI+): on-the-job learning pillar score, female (scale -30–87)",396
+"Human capital index plus (HCI+): on-the-job learning pillar score, male (scale -30–87)",396
+"Human capital index plus (HCI+): on-the-job learning pillar score, total (scale -30–87)",396
+"Human capital index plus (HCI+): overall score, female (scale 0–325)",396
 ARI treatment (% of children under 5 taken to a health provider),390
 Access to clean fuels and technologies for cooking (% of population),390
 "Access to clean fuels and technologies for cooking, rural (% of rural population)",390
@@ -987,15 +999,3 @@ Number of deaths ages 5-9 years,390
 Number of infant deaths,390
 Number of maternal deaths,390
 Number of neonatal deaths,390
-"Number of surgical procedures (per 100,000 population)",390
-Number of under-five deaths,390
-Number of visits or required meetings with tax officials (average for affected firms),390
-"Nurses and midwives (per 1,000 people)",390
-"Official exchange rate (LCU per US$, period average)",390
-Oil rents (% of GDP),390
-Ores and metals exports (% of merchandise exports),390
-Ores and metals imports (% of merchandise imports),390
-Other expense (% of expense),390
-Other expense (current LCU),390
-Other manufacturing (% of value added in manufacturing),390
-Other people in need of international protection by country or territory of asylum,390

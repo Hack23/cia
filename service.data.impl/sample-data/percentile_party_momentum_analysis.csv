@@ -1,7 +1,7 @@
 column_name,data_type,distinct_count,min_value,max_value,p1,p10,p25,median,p75,p90,p99
 year,numeric,17,2010,2026,2010,2011,2014,2018,2022,2024,2026
 quarter,numeric,4,1,4,1,1,1,2,4,4,4
-ballots_participated,bigint,48,5,428,5,36,68,128,193,255.8,428
+ballots_participated,bigint,47,5,428,5,36,69,129,193,255.8,428
 participation_rate,numeric,1,0.0000,0.0000,0,0,0,0,0,0,0
 prev_quarter_rate,numeric,1,0.0000,0.0000,0,0,0,0,0,0,0
 momentum,numeric,1,0.0000,0.0000,0,0,0,0,0,0,0

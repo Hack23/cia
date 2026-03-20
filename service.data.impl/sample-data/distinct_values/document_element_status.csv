@@ -1,41 +1,41 @@
 value,count
-"",111284
-Klar,40401
+"",111965
+Klar,40425
 Ank T,25591
 korrekturläst,22058
-Besvarad,21773
-inträffat,20475
-Inkommen,20327
+Besvarad,21940
+inträffat,20625
+Inkommen,20465
 Trycklov,10630
 hämtad,6708
-Webbpublicering,4681
-Hänvisad,4121
-planerat,2693
+Webbpublicering,4768
+Hänvisad,4124
+planerat,3013
 hämtad_2,2564
-Publicerad,2424
-Skickad,1874
-justerat,1798
+Publicerad,2461
+Skickad,1869
+justerat,1821
 titel,1536
 ok,1526
+Återtagen,1120
 Tidigare riksdagsledamot,1116
-Återtagen,1103
 DokTextExtraktor,893
 saknas,474
 Avslutad,456
 Avslag,426
 Inga uppdrag,405
-Tjänstgörande riksdagsledamot,327
-Utgången,314
+Tjänstgörande riksdagsledamot,328
+Utgången,315
 ANKT,292
 slutlig,283
 Inte besvarad,271
+doktextextraktor,265
 Original,262
-Pågående,234
-doktextextraktor,234
+Pågående,241
 digitaliserad,225
 Tidigare ersättare,202
 Upphävd,139
-Tillgänglig ersättare,130
+Tillgänglig ersättare,133
 Reviderad kallelse o,128
 Kallelse och föredra,125
 Avslutad 2008,124
@@ -59,16 +59,16 @@ Avslutad 2012,77
 Avslutad 2013,70
 Avslutad 2014,70
 Avslutad 2016,68
-tillfälligt dok_id,66
+tillfälligt dok_id,67
 Avslutad 2022,64
 Avslutad 2020,61
+Granskad,60
 Avslutad 2001,57
 fel,53
 Avslutad 2019,50
-Granskad,38
 Bifall,32
+Status saknas,31
 Avgången riksdagsledamot,30
-Status saknas,30
 felkonverterat,28
 Europaparlamentariker,26
 Utskick 2,25
@@ -79,22 +79,22 @@ till Web,18
 Avskrivet,17
 Avslutad 2000,16
 Tidigare ledamot i Styrelsen för Stiftelsen Riksbankens Jubileumsfond,16
-Tidigare personlig suppleant i Styrelsen för Stiftelsen Riksbankens Jubileumsfond,14
+Tidigare personlig suppleant i Styrelsen för Stiftelsen Riksbankens Jubileumsfond,15
 Tjänstgörande statsrådsersättare,13
 Förfallen,12
 Delvis bifall,9
-Tjänstgörande ersättare,6
-LagdTillHandlingarna,5
+LagdTillHandlingarna,6
 Ledamot i Styrelsen för Stiftelsen Riksbankens Jubileumsfond,5
 Tidigare riksrevisor i Riksrevisorerna,5
-Tjänstledig riksdagsledamot,5
+Tjänstgörande ersättare,5
 Utan åtgärd,5
-Personlig suppleant i Styrelsen för Stiftelsen Riksbankens Jubileumsfond,4
 Tidigare ställföreträdande ombudsman i Riksdagens ombudsmän,4
+Tjänstledig riksdagsledamot,4
 Avliden  1989-05-08,3
 Delvis avslag,3
 Justitieombudsman i Riksdagens ombudsmän,3
 Ledamot i Riksbanksfullmäktige,3
+Personlig suppleant i Styrelsen för Stiftelsen Riksbankens Jubileumsfond,3
 Preliminär,3
 Pågår,3
 Suppleant i Riksbanksfullmäktige,3
@@ -235,7 +235,7 @@ html saknas,2
 63928,1
 Andre vice talman (tjänstgörande riksdagsledamot),1
 AnkT,1
-Arbetsmarknadsminister,1
+Arbetsmarknadsminister och vikarierande klimat- och miljöminister,1
 Avliden  1989-05-06,1
 Avliden  1990-02-16,1
 Avliden  1991-01-23,1

@@ -124,12 +124,12 @@ SET idle_in_transaction_session_timeout = '180s';  -- Kill idle transactions aft
 \set SAMPLE_SIZE 5000
 
 -- Threshold for complete extraction (tables/views under this size extracted fully)
-\set COMPLETE_EXTRACTION_THRESHOLD 10000
+\set COMPLETE_EXTRACTION_THRESHOLD 25000
 
 -- Extended sample sizes for important entity types
-\set PARTY_SAMPLE_SIZE 5000
-\set COMMITTEE_SAMPLE_SIZE 5000  
-\set PERSON_SAMPLE_SIZE 5000
+\set PARTY_SAMPLE_SIZE 50000
+\set COMMITTEE_SAMPLE_SIZE 50000
+\set PERSON_SAMPLE_SIZE 50000
 
 -- Extended sample sizes for document and voting analysis  
 \set DOCUMENT_SAMPLE_SIZE 3000
@@ -137,7 +137,7 @@ SET idle_in_transaction_session_timeout = '180s';  -- Kill idle transactions aft
 \set WORLDBANK_SAMPLE_SIZE 3000
 
 -- Extended sample sizes for analytical trend views (increased for better temporal coverage)
-\set TREND_SAMPLE_SIZE 5000
+\set TREND_SAMPLE_SIZE 50000
 
 \set TABLE_CMD_FILE '/tmp/cia_table_extract_commands.sql'
 \set VIEW_CMD_FILE '/tmp/cia_view_extract_commands.sql'

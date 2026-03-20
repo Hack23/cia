@@ -1,7 +1,11 @@
 view_name,category,row_count,distinct_parties,distinct_levels
-view_riksdagen_voting_anomaly_detection,anomaly_detection,0,0,0
+view_riksdagen_voting_anomaly_detection,anomaly_detection,1064,10,5
+view_riksdagen_party_coalition_evolution,coalition_analysis,1377,8,5
+view_riksdagen_party_defector_analysis,defector_analysis,0,0,0
+view_election_cycle_decision_intelligence,election_cycle,414,15,3
 view_riksdagen_politician_experience_summary,experience_analysis,2094,0,6
+view_riksdagen_party_transition_history,party_transitions,0,0,0
 view_party_performance_metrics,performance_analysis,40,30,3
 view_committee_productivity,productivity_analysis,32,26,4
 view_ministry_risk_evolution,risk_assessment,168,20,2
-view_politician_risk_summary,risk_assessment,402,9,3
+view_politician_risk_summary,risk_assessment,403,9,3
