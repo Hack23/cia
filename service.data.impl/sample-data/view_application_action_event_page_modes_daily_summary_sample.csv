@@ -1,5 +1,5 @@
 embedded_id_page,embedded_id_page_mode,embedded_id_created_date,hits,rank_percentage,rank,rn
-adminagentoperation,"",2026-03-11 00:00:00,1,0.16666666666666666,2,1
-userhome,OVERVIEW,2026-03-11 00:00:00,1,0.16666666666666666,2,2
-userhome,OVERVIEW,2026-03-20 00:00:00,1,0.5,2,1
-adminagentoperation,"",2026-03-20 00:00:00,1,0.5,2,2
+AdminMonitoringView,!adminmonitoring,2026-03-11 00:00:00,1,0.16666666666666666,2,1
+partyranking,CHARTS,2026-03-11 00:00:00,1,0.16666666666666666,2,2
+main,Overview,2026-03-20 00:00:00,2,0,1,1
+userhome,OVERVIEW,2026-03-20 00:00:00,1,0.5,2,2

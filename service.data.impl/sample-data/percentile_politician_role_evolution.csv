@@ -9,4 +9,4 @@ peak_role_weight,integer,14,50,1000,100,400,400,400,600,850,900
 career_first_year,integer,54,1971,2026,1976,1985,1994,2006,2014,2018,2023
 career_last_year,integer,51,1976,2029,1990,1998,2010,2022,2026,2026,2028
 years_in_role,integer,34,1,36,1,1,2,3,5,10,21
-advancement_velocity,numeric,160,-800.00,850.00,-450,-150,-28.9275,0,75,250,450
+advancement_velocity,numeric,160,-800.00,850.00,-450,-150,-27.9775,0,75,250,450
