@@ -100,19 +100,27 @@ DROP VIEW IF EXISTS public.view_riksdagen_party_transition_history CASCADE;
 
 CREATE VIEW public.view_riksdagen_party_transition_history AS
  WITH known_parties AS (
+     -- Authoritative party codes from sweden_political_party table
      SELECT short_code FROM public.sweden_political_party
      WHERE short_code IS NOT NULL AND short_code <> '' AND short_code <> '-'
      UNION
+     -- Historical party codes found in person_data.party but not in
+     -- sweden_political_party (source: Riksdagen open data API person records)
      SELECT unnest(ARRAY['FP','NYD','VPK','K','H','BF','KrVP']) AS short_code
  ),
  party_name_map AS (
+     -- Official Swedish party name changes (source: Swedish Parliament records)
+     -- Maps historical codes to their modern equivalents to distinguish
+     -- party RENAMES from genuine political SWITCHES
+     -- Note: Historical codes kept in SQL rather than sweden_political_party
+     -- table to avoid side effects on other views that use that table
      SELECT * FROM (VALUES
-         ('FP', 'L'),
-         ('VPK', 'V'),
-         ('K - VPK', 'V'),
-         ('K', 'V'),
-         ('BF - C', 'C'),
-         ('H - M', 'M')
+         ('FP', 'L'),       -- Folkpartiet → Liberalerna (renamed 2015)
+         ('VPK', 'V'),      -- Vänsterpartiet kommunisterna → Vänsterpartiet (1990)
+         ('K - VPK', 'V'),  -- Kommunisterna → VPK → Vänsterpartiet
+         ('K', 'V'),        -- Kommunisterna (historical)
+         ('BF - C', 'C'),   -- Bondeförbundet → Centerpartiet (renamed 1957)
+         ('H - M', 'M')     -- Högerpartiet → Moderaterna (renamed 1969)
      ) AS t(old_code, new_code)
  ),
  assignment_party_periods AS (
