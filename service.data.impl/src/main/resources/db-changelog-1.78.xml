@@ -346,7 +346,12 @@ CREATE OR REPLACE VIEW public.view_politician_risk_summary AS
         )
  SELECT person_id, first_name, last_name, party, status,
     total_violations, latest_violation_date,
-    -- Keep original column names for backward compatibility but populate from actual rule_groups
+    -- Column name backward compatibility mapping (actual DRL rule_group → legacy column name):
+    -- 'Behavior' (PoliticianLazy, HighRebelRate, LowEngagement) → absenteeism_violations
+    -- 'Experience' (MinisterWithoutParliamentExperience) → effectiveness_violations
+    -- 'Assignments' (BalancedRules: multiple assignments) → discipline_violations
+    -- 'Party' (LeftPartyStillHoldingPositions) → productivity_violations
+    -- 'Role' (Speaker, LeadershipRole) → collaboration_violations
     behavior_violations AS absenteeism_violations,
     experience_violations AS effectiveness_violations,
     assignments_violations AS discipline_violations,
