@@ -291,7 +291,7 @@ SELECT * FROM view_riksdagen_politician LIMIT 100;
 **Solution:**
 1. Check base table indexes exist
 2. Try non-concurrent refresh: `REFRESH MATERIALIZED VIEW view_name;`
-3. Check error logs: `tail -f /var/log/postgresql/postgresql-16-main.log`
+3. Check error logs: `tail -f /var/log/postgresql/postgresql-18-main.log`
 
 ---
 

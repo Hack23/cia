@@ -21,7 +21,7 @@ The project uses multiple workflows for continuous integration, security analysi
 - Runs CodeQL security scanning
 - Runs Checkov for CloudFormation template analysis
 - Executes all unit tests (excludes integration tests)
-- PostgreSQL 16 with SSL/TLS configuration
+- PostgreSQL 18 with SSL/TLS configuration
 - Dependency submission for GitHub dependency graph
 
 **Test Execution**:
@@ -42,7 +42,7 @@ mvn -B test --file pom.xml -Prelease-site,all-modules \
 
 **Key Features**:
 - Complete web test environment (Chrome, Xvfb)
-- PostgreSQL 16 with SSL certificates
+- PostgreSQL 18 with SSL certificates
 - Full application startup validation
 - All unit test execution
 - Comprehensive environment caching
@@ -52,7 +52,7 @@ mvn -B test --file pom.xml -Prelease-site,all-modules \
 **Environment**:
 - Java 26 (Temurin)
 - Maven 3.9.9
-- PostgreSQL 16 with pgaudit, pgvector extensions
+- PostgreSQL 18 with pgaudit, pgvector extensions
 - Google Chrome for UI testing
 - Xvfb for headless browser testing
 

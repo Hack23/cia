@@ -3,7 +3,7 @@
 -- ===================================================================================
 -- Generated: 2026-01-22
 -- Purpose: Analyze 11 Network Analysis Framework views for performance optimization
--- Database: cia_dev (PostgreSQL 16.11 with pg_stat_statements)
+-- Database: cia_dev (PostgreSQL 18 with pg_stat_statements)
 -- ===================================================================================
 
 \timing on

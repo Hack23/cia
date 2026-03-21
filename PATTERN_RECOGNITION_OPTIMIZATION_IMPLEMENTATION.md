@@ -5,7 +5,7 @@
 **Date:** 2026-01-23  
 **Implemented By:** Performance Engineer Agent  
 **Target:** Pattern Recognition Framework (23 Views)  
-**Database:** PostgreSQL 16 with Liquibase 5.0.1  
+**Database:** PostgreSQL 18 with Liquibase 5.0.1  
 **Changelog Version:** db-changelog-1.65.xml
 
 ---
@@ -447,7 +447,7 @@ WINDOW
 
 ### Prerequisites
 
-- PostgreSQL 16 with Liquibase 5.0.1
+- PostgreSQL 18 with Liquibase 5.0.1
 - Maven 3.9.9+
 - Java 26
 - Database: cia_dev (development) or cia_prod (production)

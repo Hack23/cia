@@ -5,7 +5,7 @@
 This package contains a comprehensive performance analysis of the Citizen Intelligence Agency's Temporal Analysis Framework, covering 27 temporal views across daily, weekly, monthly, and annual granularities.
 
 **Analysis Date:** 2026-01-22  
-**Database:** PostgreSQL 16.11  
+**Database:** PostgreSQL 18.11  
 **Views Analyzed:** 27 of 35 (8 missing - see report)  
 **Status:** ✅ Complete
 

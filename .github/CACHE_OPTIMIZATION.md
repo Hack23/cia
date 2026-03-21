@@ -35,7 +35,7 @@ This ensures consistency and security across all workflows.
 - `fakeroot`, `devscripts`, `debhelper`, `dh-make` - Debian package building
 - `wget` - File downloads
 - `ant` - Build tool (in copilot-setup-steps and codeql-analysis)
-- `postgresql-16`, `postgresql-contrib-16`, `postgresql-16-pgaudit`, `postgresql-16-pgvector` - Database server and extensions
+- `postgresql-18`, `postgresql-contrib-18`, `postgresql-18-pgaudit`, `postgresql-18-pgvector` - Database server and extensions
 
 **Benefits**:
 - Saves 2-3 minutes per workflow run on package downloads

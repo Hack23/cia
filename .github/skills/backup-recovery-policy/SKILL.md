@@ -179,7 +179,7 @@ Resources:
     Properties:
       DBInstanceIdentifier: cia-production-db
       Engine: postgres
-      EngineVersion: "16.1"
+      EngineVersion: "18.3"
       DBInstanceClass: db.t3.medium
       AllocatedStorage: 100
       StorageType: gp3

@@ -230,7 +230,7 @@ See: [Data Quality Analysis](service.data.impl/README-SCHEMA-MAINTENANCE.md#-dat
 
 ### Performance Metrics
 
-**Source**: SQL query execution validation (PostgreSQL 16)  
+**Source**: SQL query execution validation (PostgreSQL 18)  
 **Last Validated**: 2025-11-28
 
 **Query Execution Times**:
@@ -367,7 +367,7 @@ See: [Data Quality Analysis](service.data.impl/README-SCHEMA-MAINTENANCE.md#-dat
 **Performance Improvements**:
 - View fixes (2025-11-28) reduced execution times by 15-20%
 - Materialized view refresh optimization (+10% faster)
-- Query plan improvements from PostgreSQL 16 upgrade
+- Query plan improvements from PostgreSQL 18 upgrade
 
 **Remaining Optimizations**:
 - 68 missing FK indexes (potential 20-30% improvement)
@@ -569,7 +569,7 @@ See: [Data Quality Analysis](service.data.impl/README-SCHEMA-MAINTENANCE.md#-dat
 
 4. **Analyze Slow Queries**:
    ```sql
-   -- Find slow running queries (PostgreSQL 16)
+   -- Find slow running queries (PostgreSQL 18)
    -- Note: Requires pg_stat_statements extension to be enabled
    -- Enable with: CREATE EXTENSION IF NOT EXISTS pg_stat_statements;
    SELECT 
@@ -795,7 +795,7 @@ See: [Data Quality Analysis](service.data.impl/README-SCHEMA-MAINTENANCE.md#-dat
 - **Backend**: Spring Framework 5.x, Java 26 (src 21)
 - **Frontend**: Vaadin 8 (server-side rendering)
 - **Security**: Spring Security (@Secured annotation)
-- **Database**: PostgreSQL 16 (via Hibernate/JPA)
+- **Database**: PostgreSQL 18 (via Hibernate/JPA)
 - **Layout**: ResponsiveLayout (responsive grid system)
 
 ---
@@ -894,7 +894,7 @@ This dashboard integrates with comprehensive intelligence documentation across t
 - **Backend**: Spring Framework 5.x, Java 26 (src 21)
 - **Frontend**: Vaadin 8 (server-side rendering)
 - **Security**: Spring Security (@Secured annotation, ROLE_ADMIN)
-- **Database**: PostgreSQL 16 (via Hibernate/JPA)
+- **Database**: PostgreSQL 18 (via Hibernate/JPA)
 - **Layout**: ResponsiveLayout (responsive grid system)
 - **Validation**: SQL scripts, Liquibase changesets
 - **Monitoring**: Health check queries, validation reports

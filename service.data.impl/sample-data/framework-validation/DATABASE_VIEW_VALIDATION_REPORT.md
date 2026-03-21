@@ -2,7 +2,7 @@
 
 **Date:** 2026-01-19  
 **Purpose:** Validate all database views referenced in Framework-Validation Enhancement  
-**Database:** cia_dev (PostgreSQL 16)  
+**Database:** cia_dev (PostgreSQL 18)  
 **Status:** ✅ VALIDATED
 
 ---

@@ -90,12 +90,12 @@ chmod 600 server.key server.crt
 chown postgres:postgres server.key server.crt
 
 # Configure PostgreSQL SSL and other settings
-cp server.crt /var/lib/postgresql/16/main/server.crt
-cp server.key /var/lib/postgresql/16/main/server.key
+cp server.crt /var/lib/postgresql/18/main/server.crt
+cp server.key /var/lib/postgresql/18/main/server.key
 rm server.key
-chmod 700 /var/lib/postgresql/16/main/server.key
-chmod 700 /var/lib/postgresql/16/main/server.crt
-chown -R postgres:postgres /var/lib/postgresql/16/main/
+chmod 700 /var/lib/postgresql/18/main/server.key
+chmod 700 /var/lib/postgresql/18/main/server.crt
+chown -R postgres:postgres /var/lib/postgresql/18/main/
 
 # Create .postgresql directory for the vscode user
 mkdir -p /home/vscode/.postgresql
@@ -105,15 +105,15 @@ chown -R vscode:vscode /home/vscode/.postgresql
 rm server.crt
 
 # Update PostgreSQL configuration
-echo "ssl = on" >> /etc/postgresql/16/main/postgresql.conf
-echo "ssl_cert_file = '/var/lib/postgresql/16/main/server.crt'" >> /etc/postgresql/16/main/postgresql.conf
-echo "ssl_key_file = '/var/lib/postgresql/16/main/server.key'" >> /etc/postgresql/16/main/postgresql.conf
-echo "max_prepared_transactions = 100" >> /etc/postgresql/16/main/postgresql.conf
-echo "shared_preload_libraries = 'pg_stat_statements, pgaudit, pgcrypto'" >> /etc/postgresql/16/main/postgresql.conf
-echo "pgaudit.log = ddl" >> /etc/postgresql/16/main/postgresql.conf
-echo "pg_stat_statements.track = all" >> /etc/postgresql/16/main/postgresql.conf
-echo "pg_stat_statements.max = 10000" >> /etc/postgresql/16/main/postgresql.conf
-echo "listen_addresses = '*'" >> /etc/postgresql/16/main/postgresql.conf
+echo "ssl = on" >> /etc/postgresql/18/main/postgresql.conf
+echo "ssl_cert_file = '/var/lib/postgresql/18/main/server.crt'" >> /etc/postgresql/18/main/postgresql.conf
+echo "ssl_key_file = '/var/lib/postgresql/18/main/server.key'" >> /etc/postgresql/18/main/postgresql.conf
+echo "max_prepared_transactions = 100" >> /etc/postgresql/18/main/postgresql.conf
+echo "shared_preload_libraries = 'pg_stat_statements, pgaudit, pgcrypto'" >> /etc/postgresql/18/main/postgresql.conf
+echo "pgaudit.log = ddl" >> /etc/postgresql/18/main/postgresql.conf
+echo "pg_stat_statements.track = all" >> /etc/postgresql/18/main/postgresql.conf
+echo "pg_stat_statements.max = 10000" >> /etc/postgresql/18/main/postgresql.conf
+echo "listen_addresses = '*'" >> /etc/postgresql/18/main/postgresql.conf
 
 # Performance optimization settings per README-SCHEMA-MAINTENANCE.md
 # Note: Some settings require PostgreSQL restart (shared_buffers, max_connections),
@@ -121,30 +121,30 @@ echo "listen_addresses = '*'" >> /etc/postgresql/16/main/postgresql.conf
 
 # Memory settings (scaled for Codespaces 2-4GB environment)
 # shared_buffers: 256MB is ~10% of 2GB minimum RAM (requires restart)
-echo "shared_buffers = '256MB'" >> /etc/postgresql/16/main/postgresql.conf
+echo "shared_buffers = '256MB'" >> /etc/postgresql/18/main/postgresql.conf
 # effective_cache_size: Hint to planner about OS cache availability (reload OK)
-echo "effective_cache_size = '768MB'" >> /etc/postgresql/16/main/postgresql.conf
+echo "effective_cache_size = '768MB'" >> /etc/postgresql/18/main/postgresql.conf
 # work_mem: Per-operation memory for sorts/hashes - 8MB conservative for 100 connections (reload OK)
-echo "work_mem = '8MB'" >> /etc/postgresql/16/main/postgresql.conf
+echo "work_mem = '8MB'" >> /etc/postgresql/18/main/postgresql.conf
 # maintenance_work_mem: Memory for VACUUM, CREATE INDEX, etc. (reload OK)
-echo "maintenance_work_mem = '128MB'" >> /etc/postgresql/16/main/postgresql.conf
+echo "maintenance_work_mem = '128MB'" >> /etc/postgresql/18/main/postgresql.conf
 
 # Checkpoint settings for write performance (reload OK)
-echo "checkpoint_completion_target = 0.9" >> /etc/postgresql/16/main/postgresql.conf
-echo "wal_buffers = '8MB'" >> /etc/postgresql/16/main/postgresql.conf
-echo "max_wal_size = '1GB'" >> /etc/postgresql/16/main/postgresql.conf
-echo "min_wal_size = '256MB'" >> /etc/postgresql/16/main/postgresql.conf
+echo "checkpoint_completion_target = 0.9" >> /etc/postgresql/18/main/postgresql.conf
+echo "wal_buffers = '8MB'" >> /etc/postgresql/18/main/postgresql.conf
+echo "max_wal_size = '1GB'" >> /etc/postgresql/18/main/postgresql.conf
+echo "min_wal_size = '256MB'" >> /etc/postgresql/18/main/postgresql.conf
 
 # Query planning optimizations for SSD storage (reload OK)
-echo "random_page_cost = 1.1" >> /etc/postgresql/16/main/postgresql.conf
-echo "effective_io_concurrency = 200" >> /etc/postgresql/16/main/postgresql.conf
+echo "random_page_cost = 1.1" >> /etc/postgresql/18/main/postgresql.conf
+echo "effective_io_concurrency = 200" >> /etc/postgresql/18/main/postgresql.conf
 
 # Connection settings (requires restart)
-echo "max_connections = 100" >> /etc/postgresql/16/main/postgresql.conf
+echo "max_connections = 100" >> /etc/postgresql/18/main/postgresql.conf
 
 # Update pg_hba.conf
-echo "hostssl all all 0.0.0.0/0 md5" >> /etc/postgresql/16/main/pg_hba.conf
-echo "hostssl all all ::1/128 md5" >> /etc/postgresql/16/main/pg_hba.conf
+echo "hostssl all all 0.0.0.0/0 md5" >> /etc/postgresql/18/main/pg_hba.conf
+echo "hostssl all all ::1/128 md5" >> /etc/postgresql/18/main/pg_hba.conf
 
 # Verify SSL configuration
 if ! su - postgres -c "psql -c 'SHOW ssl'" | grep -q 'on'; then
@@ -159,4 +159,4 @@ if ! service postgresql status | grep -q "active (running)"; then
     exit 1
 fi
 
-echo "PostgreSQL 16 initialization completed successfully"
+echo "PostgreSQL 18 initialization completed successfully"

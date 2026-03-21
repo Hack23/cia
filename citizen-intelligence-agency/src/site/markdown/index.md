@@ -179,13 +179,13 @@ This guide will walk you through installing the CIA project on Debian and Ubuntu
 1. Install OpenJDK and PostgreSQL:
 
    ```bash
-   sudo apt-get install openjdk-21-jdk postgresql-16
+   sudo apt-get install openjdk-21-jdk postgresql-18
    ```
 
 2. Install PostgreSQL on Ubuntu:
 
    ```bash
-   sudo apt-get install postgresql-16 postgresql-contrib postgresql-16-pgaudit
+   sudo apt-get install postgresql-18 postgresql-contrib postgresql-18-pgaudit
    ```
 
 ### Database Setup
@@ -209,7 +209,7 @@ This guide will walk you through installing the CIA project on Debian and Ubuntu
 
 4. Enable prepared transactions and required extensions:
 
-   Edit `/etc/postgresql/16/main/postgresql.conf` and set:
+   Edit `/etc/postgresql/18/main/postgresql.conf` and set:
 
    ```ini
    max_prepared_transactions = 100
@@ -221,7 +221,7 @@ This guide will walk you through installing the CIA project on Debian and Ubuntu
 
 5. Modify PostgreSQL settings:
 
-   Edit `/etc/postgresql/16/main/pg_hba.conf` and add the following line:
+   Edit `/etc/postgresql/18/main/pg_hba.conf` and add the following line:
 
    ```ini
    host all all ::1/128 md5

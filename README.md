@@ -641,18 +641,18 @@ For local or self-hosted deployment on Debian/Ubuntu 24.4+:
 
 1. Install prerequisites:
    ```bash
-   sudo apt-get install openjdk-21-jdk postgresql-16 postgresql-contrib postgresql-16-pgaudit postgresql-16-pgvector
+   sudo apt-get install openjdk-21-jdk postgresql-18 postgresql-contrib postgresql-18-pgaudit postgresql-18-pgvector
    ```
 
 2. Configure PostgreSQL as detailed below.
 
-## PostgreSQL 16 Configuration Guide
+## PostgreSQL 18 Configuration Guide
 
-A step-by-step guide to configure PostgreSQL 16 with SSL, prepared transactions, and required extensions.
+A step-by-step guide to configure PostgreSQL 18 with SSL, prepared transactions, and required extensions.
 
 ### 1. Enable Prepared Transactions and Required Extensions
 
-1. **Edit** `/etc/postgresql/16/main/postgresql.conf` and add or update the following lines:
+1. **Edit** `/etc/postgresql/18/main/postgresql.conf` and add or update the following lines:
    ```ini
    max_prepared_transactions = 100
    shared_preload_libraries = 'pg_stat_statements, pgaudit, pgcrypto'
@@ -664,7 +664,7 @@ A step-by-step guide to configure PostgreSQL 16 with SSL, prepared transactions,
 
 ### 2. Update `pg_hba.conf` for IPv6 Loopback Access
 
-1. **Edit** `/etc/postgresql/16/main/pg_hba.conf` and add the following line:
+1. **Edit** `/etc/postgresql/18/main/pg_hba.conf` and add the following line:
    ```ini
    host all all ::1/128 md5
    ```
@@ -709,25 +709,25 @@ A step-by-step guide to configure PostgreSQL 16 with SSL, prepared transactions,
 
 1. Copy the new certificate and key into the PostgreSQL data directory:
    ```bash
-   cp server.crt /var/lib/postgresql/16/main/server.crt
-   cp server.key /var/lib/postgresql/16/main/server.key
+   cp server.crt /var/lib/postgresql/18/main/server.crt
+   cp server.key /var/lib/postgresql/18/main/server.key
    rm server.key
    ```
 
 2. Secure the certificate and key:
    ```bash
-   chmod 700 /var/lib/postgresql/16/main/server.key
-   chmod 700 /var/lib/postgresql/16/main/server.crt
-   chown -R postgres:postgres /var/lib/postgresql/16/main/
+   chmod 700 /var/lib/postgresql/18/main/server.key
+   chmod 700 /var/lib/postgresql/18/main/server.crt
+   chown -R postgres:postgres /var/lib/postgresql/18/main/
    ```
 
 3. Enable SSL in PostgreSQL by adding the following lines to
-   `/etc/postgresql/16/main/postgresql.conf`:
+   `/etc/postgresql/18/main/postgresql.conf`:
    ```bash
-   echo "ssl_cert_file = '/var/lib/postgresql/16/main/server.crt'" \
-       >> /etc/postgresql/16/main/postgresql.conf
-   echo "ssl_key_file = '/var/lib/postgresql/16/main/server.key'" \
-       >> /etc/postgresql/16/main/postgresql.conf
+   echo "ssl_cert_file = '/var/lib/postgresql/18/main/server.crt'" \
+       >> /etc/postgresql/18/main/postgresql.conf
+   echo "ssl_key_file = '/var/lib/postgresql/18/main/server.key'" \
+       >> /etc/postgresql/18/main/postgresql.conf
    ```
 
 ### 5. Provide SSL Certificate to the `cia` User
@@ -751,7 +751,7 @@ A step-by-step guide to configure PostgreSQL 16 with SSL, prepared transactions,
 
 ### 6. Performance Tuning (Recommended)
 
-For optimal performance with the CIA platform's 85+ views and 93 tables, add the following settings to `/etc/postgresql/16/main/postgresql.conf`. Values should be adjusted based on your server's available RAM.
+For optimal performance with the CIA platform's 85+ views and 93 tables, add the following settings to `/etc/postgresql/18/main/postgresql.conf`. Values should be adjusted based on your server's available RAM.
 
 #### Memory Settings
 

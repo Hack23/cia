@@ -89,7 +89,7 @@ mvn test -Dtest=RiskRulesIntegrationTest -X
 ### CI/CD
 
 The tests run automatically in GitHub Actions workflow:
-- PostgreSQL 16 is provisioned
+- PostgreSQL 18 is provisioned
 - Schema is loaded from `full_schema.sql`
 - Tests execute as part of integration test suite
 

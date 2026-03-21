@@ -236,7 +236,7 @@ After implementation, the `vote_data` table now has **9 indexes total**:
 
 ### Current State (Test Environment)
 
-**Database:** cia_dev (PostgreSQL 16.11)  
+**Database:** cia_dev (PostgreSQL 18.11)  
 **Vote Data Rows:** 0 (empty table)  
 **Index Sizes:** 8KB each (minimal - empty indexes)  
 **Query Behavior:** Sequential scans (expected for empty tables)

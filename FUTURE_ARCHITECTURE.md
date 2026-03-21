@@ -96,7 +96,7 @@ C4Container
     Container(aiModule, "AI Analysis Module", "Spring + LLM Client", "LLM-powered text summarization, sentiment analysis, political speech parsing")
     Container(dataImport, "Data Import Services", "Spring Integration", "Scheduled import from external political data sources")
     Container(analyticsEngine, "Analytics Engine", "Java 21 + SQL", "Risk scoring, voting pattern analysis, performance metrics")
-    ContainerDb(postgres, "PostgreSQL 16", "PostgreSQL", "Political data store with materialized views and intelligence analytics")
+    ContainerDb(postgres, "PostgreSQL 18", "PostgreSQL", "Political data store with materialized views and intelligence analytics")
     ContainerDb(cache, "Application Cache", "Spring Cache / Ehcache", "Frequently accessed data and computed analytics")
   }
 
@@ -304,7 +304,7 @@ timeline
 | **Language** | Java 21 (src) / Java 26 (runtime) | Java 26+ | Java 29+ or Kotlin | Polyglot (JVM + AI-native) | AI-managed polyglot |
 | **Framework** | Spring Framework 5.x | Spring Boot 3.x / Spring 6 | Cloud-native Spring | AI-orchestrated services | AGI-managed infrastructure |
 | **UI** | Vaadin 24 | Vaadin + React components | Conversational + visual UI | Multi-modal interfaces | AGI-personalized experiences |
-| **Database** | PostgreSQL 16 | PostgreSQL 17+ with vector extensions | Distributed PostgreSQL + graph DB | Multi-model data platform | Self-optimizing data fabric |
+| **Database** | PostgreSQL 18 | PostgreSQL 18+ with vector extensions | Distributed PostgreSQL + graph DB | Multi-model data platform | Self-optimizing data fabric |
 | **AI/LLM** | Anthropic Opus 4.6 via API | Multi-provider LLM layer | Specialized political AI models | Proto-AGI integration | Full AGI services |
 | **CI/CD** | GitHub Actions + Copilot | AI-enhanced testing + deployment | Autonomous CI/CD agents | Self-healing pipelines | AGI-managed development lifecycle |
 | **Security** | Spring Security + AWS WAF | Zero-trust + AI threat detection | AI-augmented security operations | Autonomous security posture | Post-quantum + AGI security |

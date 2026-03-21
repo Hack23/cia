@@ -1,7 +1,7 @@
 -- schema-validation-v2.sql
 -- Enhanced Database Schema Validation with 100% Coverage
 -- Citizen Intelligence Agency - Open Source Intelligence Platform
--- Generated for PostgreSQL 16
+-- Generated for PostgreSQL 18
 --
 -- Purpose: Validates ALL 177 database objects (93 tables + 56 views + 28 materialized views)
 --          defined in full_schema.sql with comprehensive coverage reporting

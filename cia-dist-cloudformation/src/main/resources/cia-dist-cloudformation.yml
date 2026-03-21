@@ -1378,7 +1378,7 @@ Resources:
     Type: AWS::RDS::DBParameterGroup
     Properties:
       Description: Database Parameter Group + pg_stat_statements
-      Family: postgres14
+      Family: postgres18
       Parameters:
         max_prepared_transactions: LEAST({DBInstanceClassMemory/9531392},5000)
         max_parallel_workers_per_gather: '4'
@@ -1463,7 +1463,7 @@ Resources:
           Value: Standard
       DBInstanceClass: !Ref 'DBClass'
       Engine: postgres
-      EngineVersion: '14.4'
+      EngineVersion: '18.3'
       MultiAZ: 'true'
       PubliclyAccessible: 'false'
       BackupRetentionPeriod: '7'

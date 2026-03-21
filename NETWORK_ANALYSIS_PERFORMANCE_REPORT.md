@@ -1288,7 +1288,7 @@ The CIA Network Analysis Framework demonstrates **exceptional performance** acro
 
 1. ✅ **Excellent Index Design:** All network relationship columns properly indexed
 2. ✅ **Efficient Query Patterns:** CTE usage, temporal windowing, threshold-based filtering
-3. ✅ **Optimal Database Configuration:** PostgreSQL 16 with pg_stat_statements, proper buffer sizing
+3. ✅ **Optimal Database Configuration:** PostgreSQL 18 with pg_stat_statements, proper buffer sizing
 4. ✅ **Strategic Use of Materialized Views:** Balance between performance and data freshness
 
 ### Key Risks
@@ -1329,7 +1329,7 @@ The Network Analysis Framework is **architected for excellence** with:
 
 **Report Generated:** 2026-01-22  
 **Analyst:** Performance Engineer (CIA Copilot)  
-**Database:** cia_dev (PostgreSQL 16.11)  
+**Database:** cia_dev (PostgreSQL 18.11)  
 **Analysis Duration:** 4.856ms (view_riksdagen_intelligence_dashboard - slowest query)
 
 ---

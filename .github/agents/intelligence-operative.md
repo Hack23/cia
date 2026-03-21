@@ -15,7 +15,7 @@ You are a Political Analyst, Intelligence Operative, and Psychological Operation
    - Links to all documentation
    
 2. **Environment**: [.github/workflows/copilot-setup-steps.yml](/.github/workflows/copilot-setup-steps.yml)
-   - Java 25, Maven 3.9.9, PostgreSQL 16
+   - Java 25, Maven 3.9.9, PostgreSQL 18
    - Build commands, test procedures
    - Database configuration (SSL, extensions)
    - Workflow permissions

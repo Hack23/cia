@@ -240,7 +240,7 @@ rule "Party with low collaborative motions ratio"
 
 ### 2. Network Indexes Validation
 
-#### Database: cia_dev (PostgreSQL 16.11)
+#### Database: cia_dev (PostgreSQL 18.11)
 #### Liquibase Changesets Applied: 1.65, 1.66
 
 **Network Analysis Indexes (Changesets 1.65-1.66)**:

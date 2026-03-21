@@ -103,7 +103,7 @@ graph LR
 
 | Stage | Tool/Service | Trigger | Quality Gate | Duration |
 |-------|-------------|---------|--------------|----------|
-| **Build & Test** | Maven, JUnit, PostgreSQL 16 | Manual workflow dispatch | Tests pass, Coverage ≥80% | ~15-20 min |
+| **Build & Test** | Maven, JUnit, PostgreSQL 18 | Manual workflow dispatch | Tests pass, Coverage ≥80% | ~15-20 min |
 | **SCA** | Dependabot, Dependency Review | Daily / PR | No critical vulnerabilities | ~2 min |
 | **CodeQL** | GitHub CodeQL | PR, Push to master, Weekly | No critical/high issues | ~20 min |
 | **Quality Gate** | Multiple tools | Every commit | Overall quality ≥A | Auto |
@@ -205,7 +205,7 @@ flowchart TB
 **Workflow:** `Verify and Release` (`release.yml`)  
 **Trigger:** Manual workflow dispatch with version input  
 **Duration:** ~15-20 minutes  
-**Runtime:** Ubuntu 24.04, JDK 26 (Temurin), Maven 3.9.9, PostgreSQL 16
+**Runtime:** Ubuntu 24.04, JDK 26 (Temurin), Maven 3.9.9, PostgreSQL 18
 
 **Quality Gates:**
 - ✅ Maven build success (Java 26, source 21)
@@ -217,18 +217,18 @@ flowchart TB
 **Key Steps:**
 ```yaml
 - name: Install PostgreSQL
-  run: sudo apt-get install -y postgresql-16 postgresql-contrib-16 postgresql-16-pgaudit postgresql-16-pgvector
+  run: sudo apt-get install -y postgresql-18 postgresql-contrib-18 postgresql-18-pgaudit postgresql-18-pgvector
 
 - name: Configure PostgreSQL
   run: |
     # Enable prepared transactions and required extensions
-    sudo sed -i "s/#max_prepared_transactions = 0/max_prepared_transactions = 100/" /etc/postgresql/16/main/postgresql.conf
-    sudo sed -i "s/#shared_preload_libraries = ''/shared_preload_libraries = 'pg_stat_statements, pgaudit, pgcrypto'/" /etc/postgresql/16/main/postgresql.conf
+    sudo sed -i "s/#max_prepared_transactions = 0/max_prepared_transactions = 100/" /etc/postgresql/18/main/postgresql.conf
+    sudo sed -i "s/#shared_preload_libraries = ''/shared_preload_libraries = 'pg_stat_statements, pgaudit, pgcrypto'/" /etc/postgresql/18/main/postgresql.conf
     
     # Performance optimization settings
-    echo "shared_buffers = '1GB'" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
-    echo "effective_cache_size = '4GB'" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
-    echo "work_mem = '32MB'" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+    echo "shared_buffers = '1GB'" | sudo tee -a /etc/postgresql/18/main/postgresql.conf
+    echo "effective_cache_size = '4GB'" | sudo tee -a /etc/postgresql/18/main/postgresql.conf
+    echo "work_mem = '32MB'" | sudo tee -a /etc/postgresql/18/main/postgresql.conf
 
 - name: Generate SSL certificates for PostgreSQL
   # Self-signed certificate generation with 2048-bit key

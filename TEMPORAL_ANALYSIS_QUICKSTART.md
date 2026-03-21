@@ -192,7 +192,7 @@ ORDER BY ratio ASC;
 For issues or questions:
 1. Check the [TEMPORAL_ANALYSIS_PERFORMANCE_REPORT.md](TEMPORAL_ANALYSIS_PERFORMANCE_REPORT.md) for detailed analysis
 2. Review [TEMPORAL_ANALYSIS_UPDATE_SUMMARY.md](TEMPORAL_ANALYSIS_UPDATE_SUMMARY.md) for enhancement details
-3. Consult the PostgreSQL logs: `/var/log/postgresql/postgresql-16-main.log`
+3. Consult the PostgreSQL logs: `/var/log/postgresql/postgresql-18-main.log`
 
 ---
 

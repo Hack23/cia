@@ -387,7 +387,7 @@ All agents include a standardized section instructing them to read these critica
 | File | Purpose |
 |------|---------|
 | [README.md](../../README.md) | Project mission, features, quality metrics |
-| [copilot-setup-steps.yml](../workflows/copilot-setup-steps.yml) | Dev environment: Java 25, Maven 3.9.9, PostgreSQL 16, build commands, workflow permissions |
+| [copilot-setup-steps.yml](../workflows/copilot-setup-steps.yml) | Dev environment: Java 25, Maven 3.9.9, PostgreSQL 18, build commands, workflow permissions |
 | [copilot-mcp-config.json](../copilot-mcp-config.json) | MCP servers (github, filesystem, postgres, git), coding standards, security rules, external APIs |
 | [.github/skills/](../skills/) | 24 strategic skills for security, ISMS, testing, architecture |
 

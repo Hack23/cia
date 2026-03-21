@@ -136,7 +136,7 @@ For a conceptual overview of how these components interact, see the [System Mind
 |-----------------------------|----------------------------------------------------------------------------------------------------|-----------------------------|
 | **Core Framework**          | [Spring Framework 5.x](https://spring.io/projects/spring-framework)                                | **August 31, 2024**             |
 | **Security**                | [Spring Security](https://spring.io/projects/spring-security), [Bouncy Castle](https://www.bouncycastle.org/) | Aligns with Spring 5.x |
-| **Data Access**             | [Hibernate](https://hibernate.org/), JPA, [PostgreSQL](https://www.postgresql.org/), JDBC          | Hibernate 5.x: Ended; PostgreSQL 16: **Nov 2028** |
+| **Data Access**             | [Hibernate](https://hibernate.org/), JPA, [PostgreSQL](https://www.postgresql.org/), JDBC          | Hibernate 5.x: Ended; PostgreSQL 18: **Nov 2028** |
 | **Transaction Management**  | [Narayana](https://narayana.io/)                                                                   | Active                      |
 | **Data Auditing**           | [Javers](https://javers.org/)                                                                      | Active                      |
 | **Business Rules Engine**   | [Drools](https://www.drools.org/)                                                                  | Active                      |
