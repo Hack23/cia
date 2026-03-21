@@ -724,8 +724,8 @@ A step-by-step guide to configure PostgreSQL 18 with SSL, prepared transactions,
 
 2. Secure the certificate and key:
    ```bash
-   chmod 700 /var/lib/postgresql/18/main/server.key
-   chmod 700 /var/lib/postgresql/18/main/server.crt
+   chmod 600 /var/lib/postgresql/18/main/server.key
+   chmod 644 /var/lib/postgresql/18/main/server.crt
    chown -R postgres:postgres /var/lib/postgresql/18/main/
    ```
 

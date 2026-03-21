@@ -93,8 +93,8 @@ chown postgres:postgres server.key server.crt
 cp server.crt /var/lib/postgresql/18/main/server.crt
 cp server.key /var/lib/postgresql/18/main/server.key
 rm server.key
-chmod 700 /var/lib/postgresql/18/main/server.key
-chmod 700 /var/lib/postgresql/18/main/server.crt
+chmod 600 /var/lib/postgresql/18/main/server.key
+chmod 644 /var/lib/postgresql/18/main/server.crt
 chown -R postgres:postgres /var/lib/postgresql/18/main/
 
 # Create .postgresql directory for the vscode user
