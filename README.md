@@ -637,14 +637,22 @@ The Citizen Intelligence Agency can be deployed on AWS using our provided CloudF
 
 ### Debian/Ubuntu Installation
 
-For local or self-hosted deployment on Debian/Ubuntu 24.4+:
+For local or self-hosted deployment on Debian/Ubuntu 24.04+:
 
-1. Install prerequisites:
+1. Add the PostgreSQL PGDG repository (required for PostgreSQL 18 on Ubuntu 24.04):
+   ```bash
+   sudo install -d /usr/share/postgresql-common/pgdg
+   sudo curl -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc --fail https://www.postgresql.org/media/keys/ACCC4CF8.asc
+   echo "deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list
+   sudo apt-get update
+   ```
+
+2. Install prerequisites:
    ```bash
    sudo apt-get install openjdk-21-jdk postgresql-18 postgresql-contrib postgresql-18-pgaudit postgresql-18-pgvector
    ```
 
-2. Configure PostgreSQL as detailed below.
+3. Configure PostgreSQL as detailed below.
 
 ## PostgreSQL 18 Configuration Guide
 

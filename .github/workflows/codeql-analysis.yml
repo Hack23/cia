@@ -69,8 +69,8 @@ jobs:
             pypi.org:443
             www.bridgecrew.cloud:443
             www.postgresql.org:443
-            docs.github.com:433
-            dlcdn.apache.org
+            docs.github.com:443
+            dlcdn.apache.org:443
             gwtproject.org:443
             java.sun.com:443
             jetty.org:443
@@ -156,6 +156,14 @@ jobs:
 
       - name: Install buildtools and PostgreSQL
         run: sudo apt-get install -y graphviz build-essential fakeroot devscripts debhelper dh-make wget ant postgresql-18 postgresql-contrib-18 postgresql-18-pgaudit postgresql-18-pgvector
+
+      - name: Create PostgreSQL 18 cluster
+        run: |
+          # Drop pre-installed PostgreSQL clusters that block port 5432
+          sudo pg_dropcluster --stop 14 main || true
+          sudo pg_dropcluster --stop 16 main || true
+          # Create and start PostgreSQL 18 cluster
+          sudo pg_createcluster 18 main --start
 
       - name: Configure PostgreSQL
         run: |

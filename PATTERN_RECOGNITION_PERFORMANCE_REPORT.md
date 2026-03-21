@@ -5,7 +5,7 @@
 **Date:** 2026-01-22  
 **Analyzed By:** Performance Engineer Agent  
 **Target:** Pattern Recognition Framework (23 Views)  
-**Database:** PostgreSQL 18.11 with pg_stat_statements, auto_explain, pgaudit
+**Database:** PostgreSQL 18.x with pg_stat_statements, auto_explain, pgaudit
 
 ---
 

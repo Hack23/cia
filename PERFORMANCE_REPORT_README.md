@@ -269,7 +269,7 @@ This analysis exemplifies:
 |-----------|-------|
 | **Analyst** | Performance Engineer (AI Agent) |
 | **Date** | 2026-01-22 |
-| **Database** | cia_dev (PostgreSQL 18.11) |
+| **Database** | cia_dev (PostgreSQL 18.x) |
 | **Views Analyzed** | 25 of 26 (96% coverage) |
 | **Indexes Recommended** | 62 new indexes |
 | **Lines of Analysis** | 3,263 lines |

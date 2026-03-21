@@ -1329,7 +1329,7 @@ The Network Analysis Framework is **architected for excellence** with:
 
 **Report Generated:** 2026-01-22  
 **Analyst:** Performance Engineer (CIA Copilot)  
-**Database:** cia_dev (PostgreSQL 18.11)  
+**Database:** cia_dev (PostgreSQL 18.x)  
 **Analysis Duration:** 4.856ms (view_riksdagen_intelligence_dashboard - slowest query)
 
 ---

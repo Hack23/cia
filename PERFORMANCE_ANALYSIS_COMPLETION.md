@@ -203,7 +203,7 @@ SELECT 'view_riksdagen_party_coalition_evolution', COUNT(*) FROM view_riksdagen_
 ## 📚 Analysis Methodology
 
 ### Tools Used
-1. ✅ **PostgreSQL 18.11** - Database engine
+1. ✅ **PostgreSQL 18.x** - Database engine
 2. ✅ **pg_stat_statements 1.10** - Query statistics
 3. ✅ **EXPLAIN (ANALYZE, BUFFERS, VERBOSE)** - Query plan analysis
 4. ✅ **pg_depend** - Dependency mapping

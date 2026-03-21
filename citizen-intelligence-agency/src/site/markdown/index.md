@@ -176,16 +176,19 @@ This guide will walk you through installing the CIA project on Debian and Ubuntu
 
 ### Prerequisites
 
-1. Install OpenJDK and PostgreSQL:
+1. Add the PostgreSQL PGDG repository (required for PostgreSQL 18 on Ubuntu 24.04):
 
    ```bash
-   sudo apt-get install openjdk-21-jdk postgresql-18
+   sudo install -d /usr/share/postgresql-common/pgdg
+   sudo curl -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc --fail https://www.postgresql.org/media/keys/ACCC4CF8.asc
+   echo "deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list
+   sudo apt-get update
    ```
 
-2. Install PostgreSQL on Ubuntu:
+2. Install OpenJDK and PostgreSQL:
 
    ```bash
-   sudo apt-get install postgresql-18 postgresql-contrib postgresql-18-pgaudit
+   sudo apt-get install openjdk-21-jdk postgresql-18 postgresql-contrib postgresql-18-pgaudit
    ```
 
 ### Database Setup

@@ -2,7 +2,7 @@
 
 **Analysis Date:** 2026-01-22  
 **Status:** ✅ Complete  
-**Database:** CIA PostgreSQL 18.11 with pg_stat_statements  
+**Database:** CIA PostgreSQL 18.x with pg_stat_statements  
 **Views Analyzed:** 11 Network Analysis Framework views
 
 ---

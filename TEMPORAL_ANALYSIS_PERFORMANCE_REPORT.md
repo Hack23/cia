@@ -3,7 +3,7 @@
 **Generated:** 2026-01-22 15:36:00 UTC  
 **Updated with Enhanced Statistics:** 2026-01-22 (PR #8271 + PR #8274)
 
-**Database:** PostgreSQL 18.11 (cia_dev)
+**Database:** PostgreSQL 18.x (cia_dev)
 
 ---
 
