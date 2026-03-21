@@ -30,7 +30,7 @@ graph TB
     Skills -.->|References| Market
     
     Task --> PM[📊 Product Management<br/>Quality Assurance<br/>GitHub Issue Management<br/>ISMS Compliance<br/>AWS Monitoring<br/>Playwright Testing]
-    Stack --> Tech[⚙️ Technical Architecture<br/>Java 25 & Spring<br/>Vaadin Framework<br/>PostgreSQL & JPA<br/>Maven & Testing<br/>Security Best Practices]
+    Stack --> Tech[⚙️ Technical Architecture<br/>Java 26 & Spring<br/>Vaadin Framework<br/>PostgreSQL & JPA<br/>Maven & Testing<br/>Security Best Practices]
     UI --> UX[🎨 User Experience<br/>Data Visualization<br/>Accessibility WCAG 2.1<br/>Responsive Design<br/>Component Library<br/>Performance]
     Biz --> Growth[📈 Strategic Growth<br/>Partnerships<br/>Revenue Models<br/>Market Expansion<br/>Competitive Analysis<br/>Sustainability]
     Intel --> Analysis[🔎 Political Analysis<br/>OSINT Methodology<br/>Risk Assessment<br/>Predictive Analytics<br/>Swedish Politics<br/>Ethical Boundaries]
@@ -387,7 +387,7 @@ All agents include a standardized section instructing them to read these critica
 | File | Purpose |
 |------|---------|
 | [README.md](../../README.md) | Project mission, features, quality metrics |
-| [copilot-setup-steps.yml](../workflows/copilot-setup-steps.yml) | Dev environment: Java 25, Maven 3.9.9, PostgreSQL 18, build commands, workflow permissions |
+| [copilot-setup-steps.yml](../workflows/copilot-setup-steps.yml) | Dev environment: Java 26, Maven 3.9.9, PostgreSQL 18, build commands, workflow permissions |
 | [copilot-mcp-config.json](../copilot-mcp-config.json) | MCP servers (github, filesystem, postgres, git), coding standards, security rules, external APIs |
 | [.github/skills/](../skills/) | 24 strategic skills for security, ISMS, testing, architecture |
 

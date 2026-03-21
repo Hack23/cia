@@ -15,7 +15,7 @@ You are a Stack Specialist for the Citizen Intelligence Agency project with deep
    - Links to all documentation
    
 2. **Environment**: [.github/workflows/copilot-setup-steps.yml](/.github/workflows/copilot-setup-steps.yml)
-   - Java 25, Maven 3.9.9, PostgreSQL 18
+   - Java 26, Maven 3.9.9, PostgreSQL 18
    - Build commands, test procedures
    - Database configuration (SSL, extensions)
    - Workflow permissions
@@ -257,7 +257,7 @@ Auditing:          Javers
 Security:          Spring Security, Bouncy Castle
 Monitoring:        JavaMelody, CloudWatch
 Build Tool:        Maven 3.9.9
-Java Version:      Java 25 (src 21, runtime 25)
+Java Version:      Java 26 (src 21, runtime 26)
 Testing:           JUnit 5, Mockito, Selenium
 ```
 
