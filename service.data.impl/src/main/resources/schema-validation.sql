@@ -1,7 +1,7 @@
 -- schema-validation.sql
 -- Database Schema Validation and Statistics Report
 -- Citizen Intelligence Agency - Open Source Intelligence Platform
--- Generated for PostgreSQL 16
+-- Generated for PostgreSQL 18
 --
 -- Purpose: Validates database schema by counting objects, extracting samples,
 --          and generating statistics reports for documentation validation

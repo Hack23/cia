@@ -61,7 +61,7 @@ public class PoliticianIntegrationTest {
 public class DatabaseIntegrationTest {
     
     @ClassRule
-    public static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:15")
+    public static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:18")
         .withDatabaseName("cia_test")
         .withUsername("test")
         .withPassword("test");

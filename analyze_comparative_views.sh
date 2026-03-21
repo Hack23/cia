@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Comprehensive Performance Analysis of 26 Comparative Analysis Framework Views
-# CIA Platform - PostgreSQL 16.11
+# CIA Platform - PostgreSQL 18
 #
 
 set -e

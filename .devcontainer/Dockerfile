@@ -38,10 +38,10 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | gpg --dearmor -o /usr/share/keyrings/postgres-archive-keyring.gpg \
     && apt-get update \
     && apt-get -y install --no-install-recommends \
-    postgresql-16 \
-    postgresql-contrib-16 \
-    postgresql-16-pgaudit \
-    postgresql-16-pgvector \
+    postgresql-18 \
+    postgresql-contrib-18 \
+    postgresql-18-pgaudit \
+    postgresql-18-pgvector \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /etc/apt/sources.list.d/pgdg.list
 
@@ -86,9 +86,9 @@ RUN mkdir -p /home/vscode/.m2 \
     && chmod -R 755 /home/vscode/.m2
 
 # Configure persistent storage directories
-RUN mkdir -p /var/lib/postgresql/16/main \
-    && chown -R postgres:postgres /var/lib/postgresql/16/main \
-    && chmod 700 /var/lib/postgresql/16/main
+RUN mkdir -p /var/lib/postgresql/18/main \
+    && chown -R postgres:postgres /var/lib/postgresql/18/main \
+    && chmod 700 /var/lib/postgresql/18/main
 
 # Remove VOLUME instruction to prevent conflicts with named volumes
 # VOLUME /home/vscode/.m2

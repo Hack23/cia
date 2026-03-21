@@ -1,6 +1,6 @@
 -- Database View Validation Script for Framework-Validation Enhancement
 -- Purpose: Validate all views referenced in the enhancement work
--- Database: cia_dev (PostgreSQL 16)
+-- Database: cia_dev (PostgreSQL 18)
 -- Reference: service.data.impl/README-SCHEMA-MAINTENANCE.md
 
 \echo '========================================================================'

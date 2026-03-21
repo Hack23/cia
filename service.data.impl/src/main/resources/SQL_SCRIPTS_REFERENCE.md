@@ -61,8 +61,8 @@ sudo -u postgres bash -c "(pg_dump -U postgres -d cia_dev --schema-only --no-own
 
 **Important Notes:**
 - Always regenerate using pg_dump (documented in README-SCHEMA-MAINTENANCE.md)
-- Use the same PostgreSQL version as target deployment (currently PostgreSQL 16)
-- Running pg_dump against PostgreSQL 17+ may include unsupported settings (e.g., `transaction_timeout`)
+- Use the same PostgreSQL version as target deployment (currently PostgreSQL 18)
+- Running pg_dump against PostgreSQL 19+ may include unsupported settings (e.g., `transaction_timeout`)
 - Manual edits will be lost on next regeneration
 - Not tested by test-sql-scripts.sh (skipped as generated artifact)
 

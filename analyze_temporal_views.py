@@ -355,7 +355,7 @@ def generate_markdown_report(results: List[Dict[str, Any]], recommendations: Lis
 
 **Generated:** {datetime.now().strftime('%Y-%m-%d %H:%M:%S UTC')}
 
-**Database:** PostgreSQL 16.11 (cia_test)
+**Database:** PostgreSQL 18 (cia_test)
 
 ---
 

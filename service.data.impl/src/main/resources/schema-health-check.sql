@@ -1,7 +1,7 @@
 -- schema-health-check.sql
 -- Comprehensive Database Schema Health Check
 -- Citizen Intelligence Agency - Open Source Intelligence Platform
--- Generated for PostgreSQL 16
+-- Generated for PostgreSQL 18
 --
 -- Purpose: Validates database schema integrity, checks view dependencies,
 --          verifies data consistency, analyzes performance characteristics,

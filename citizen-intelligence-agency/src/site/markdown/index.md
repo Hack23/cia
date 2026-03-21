@@ -172,20 +172,23 @@ To launch the CloudFormation stack, follow these steps:
 
 ## Installing Debian/Ubuntu package
 
-This guide will walk you through installing the CIA project on Debian and Ubuntu 24.4+ systems.
+This guide will walk you through installing the CIA project on Debian and Ubuntu 24.04+ systems.
 
 ### Prerequisites
 
-1. Install OpenJDK and PostgreSQL:
+1. Add the PostgreSQL PGDG repository (required for PostgreSQL 18 on Ubuntu 24.04):
 
    ```bash
-   sudo apt-get install openjdk-21-jdk postgresql-16
+   sudo install -d /usr/share/postgresql-common/pgdg
+   sudo curl -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc --fail https://www.postgresql.org/media/keys/ACCC4CF8.asc
+   echo "deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list
+   sudo apt-get update
    ```
 
-2. Install PostgreSQL on Ubuntu:
+2. Install OpenJDK and PostgreSQL:
 
    ```bash
-   sudo apt-get install postgresql-16 postgresql-contrib postgresql-16-pgaudit
+   sudo apt-get install openjdk-21-jdk postgresql-18 postgresql-contrib-18 postgresql-18-pgaudit postgresql-18-pgvector
    ```
 
 ### Database Setup
@@ -209,7 +212,7 @@ This guide will walk you through installing the CIA project on Debian and Ubuntu
 
 4. Enable prepared transactions and required extensions:
 
-   Edit `/etc/postgresql/16/main/postgresql.conf` and set:
+   Edit `/etc/postgresql/18/main/postgresql.conf` and set:
 
    ```ini
    max_prepared_transactions = 100
@@ -221,7 +224,7 @@ This guide will walk you through installing the CIA project on Debian and Ubuntu
 
 5. Modify PostgreSQL settings:
 
-   Edit `/etc/postgresql/16/main/pg_hba.conf` and add the following line:
+   Edit `/etc/postgresql/18/main/pg_hba.conf` and add the following line:
 
    ```ini
    host all all ::1/128 md5

@@ -934,7 +934,7 @@ year | total_ballots | documents | motions | attendance | ballot_z | doc_z | mot
 
 ##### Performance Metrics
 
-**Query Execution Times** (PostgreSQL 16.10):
+**Query Execution Times** (PostgreSQL 18.3):
 - Daily monitoring queries: 100-250ms ✅ (real-time suitable)
 - Monthly trend queries: 500-800ms ✅ (dashboard suitable)
 - Annual analysis queries: 800ms-1.5s ✅ (report suitable)
@@ -1702,7 +1702,7 @@ year | type                  | transitions | switchers | avg_to_elect | avg_sinc
 
 ##### Performance Metrics
 
-**Query Execution Times** (PostgreSQL 16.10):
+**Query Execution Times** (PostgreSQL 18.3):
 - Simple peer comparisons: 300-500ms ✅ (dashboard suitable)
 - Party aggregations: 400-600ms ✅ (report suitable)
 - Coalition alignment matrix: 600-800ms ✅ (weekly analysis)
@@ -2948,7 +2948,7 @@ WHERE pattern_persistence_pct >= 50  -- Pattern must persist in ≥50% of months
 
 ##### Performance Metrics
 
-**Query Execution Times** (PostgreSQL 16.10):
+**Query Execution Times** (PostgreSQL 18.3):
 - Simple pattern queries: 500-800ms ✅
 - Behavioral clustering: 1.0-1.5s ✅ (complex CTEs)
 - Multi-factor correlation: 1.5-2.0s ℹ️ (statistical calculations)
@@ -4125,7 +4125,7 @@ print(f"Model should be used with caution if test MAE > 10% higher than CV MAE")
 
 ##### Performance Metrics
 
-**Query Execution Times** (PostgreSQL 16.10):
+**Query Execution Times** (PostgreSQL 18.3):
 - Simple trend queries: 500-800ms ✅ (suitable for dashboards)
 - Linear regression forecasts: 800ms-1.2s ✅ (acceptable for predictions)
 - Coalition stability analysis: 600-800ms ✅ (real-time forecasting)
@@ -5422,7 +5422,7 @@ validate_network(G)
 
 ##### Performance Metrics
 
-**Query Execution Times** (PostgreSQL 16.10):
+**Query Execution Times** (PostgreSQL 18.3):
 - Simple network queries (committee lists): 200-400ms ✅
 - Collaboration network (co-authorship): 800ms-1.2s ✅
 - Voting similarity matrices: 1.5-2.0s ℹ️ (acceptable for analysis)
@@ -6173,7 +6173,7 @@ The Decision Intelligence Framework provides unique analytical capabilities not 
 
 **Decision Analysis Queries Validated**: 5 queries across all decision dimensions
 
-**Query Performance** (PostgreSQL 16.10):
+**Query Performance** (PostgreSQL 18.3):
 - Party decision flow query: ~400ms ✅ (13,830 records)
 - Politician success rate query: ~600ms ✅ (96,891 records)
 - Ministry performance query: ~400ms ✅ (1,177 records, post-fix)
@@ -6236,7 +6236,7 @@ The Decision Intelligence Framework provides unique analytical capabilities not 
 
 ##### Performance Metrics
 
-**Query Execution Times** (PostgreSQL 16.10):
+**Query Execution Times** (PostgreSQL 18.3):
 - Simple decision queries: 300-400ms ✅ (suitable for dashboards)
 - Complex aggregations: 600-800ms ✅ (acceptable for reports)
 - Ministry trend analysis: 400-600ms ✅ (post-fix optimization)
@@ -7715,7 +7715,7 @@ ROUND(value1 / value2, 4)
 ### Query Validation Status
 
 **Last Validated**: 2025-11-18  
-**Database Version**: PostgreSQL 16.10  
+**Database Version**: PostgreSQL 18.3  
 **Schema Version**: v1.31 (from full_schema.sql)  
 **Intelligence Views**: v1.29-v1.30 (validated 2025-11-13)
 

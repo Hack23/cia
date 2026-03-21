@@ -179,76 +179,94 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-apt-
 
+      - name: Add PostgreSQL PGDG repository
+        run: |
+          sudo install -d /usr/share/postgresql-common/pgdg
+          sudo curl -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc --fail https://www.postgresql.org/media/keys/ACCC4CF8.asc
+          echo "deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list
+
       - name: APT update
         run: sudo apt-get update
 
       - name: Install buildtools and PostgreSQL
-        run: sudo apt-get install -y graphviz build-essential fakeroot devscripts debhelper dh-make wget ant postgresql-16 postgresql-contrib-16 postgresql-16-pgaudit postgresql-16-pgvector
+        run: sudo apt-get install -y graphviz build-essential fakeroot devscripts debhelper dh-make wget ant postgresql-18 postgresql-contrib-18 postgresql-18-pgaudit postgresql-18-pgvector
+
+      - name: Create PostgreSQL 18 cluster
+        run: |
+          # Drop pre-installed PostgreSQL clusters that block port 5432
+          sudo pg_dropcluster --stop 14 main || true
+          sudo pg_dropcluster --stop 16 main || true
+          # Create and start PostgreSQL 18 cluster (idempotent)
+          if sudo pg_lsclusters 18 main >/dev/null 2>&1; then
+            sudo pg_ctlcluster 18 main start
+          else
+            sudo pg_createcluster 18 main --start
+          fi
 
       - name: Configure PostgreSQL
         run: |
           # Enable prepared transactions and required extensions
-          sudo sed -i "s/#max_prepared_transactions = 0/max_prepared_transactions = 100/" /etc/postgresql/16/main/postgresql.conf
-          sudo sed -i "s/#shared_preload_libraries = ''/shared_preload_libraries = 'pg_stat_statements, pgaudit, pgcrypto, auto_explain'/" /etc/postgresql/16/main/postgresql.conf
-          echo "pgaudit.log = ddl" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
-          echo "pg_stat_statements.track = all" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
-          echo "pg_stat_statements.max = 10000" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+          sudo sed -i "s/#max_prepared_transactions = 0/max_prepared_transactions = 100/" /etc/postgresql/18/main/postgresql.conf
+          sudo sed -i "s/#shared_preload_libraries = ''/shared_preload_libraries = 'pg_stat_statements, pgaudit, pgcrypto, auto_explain'/" /etc/postgresql/18/main/postgresql.conf
+          echo "pgaudit.log = ddl" | sudo tee -a /etc/postgresql/18/main/postgresql.conf
+          echo "pg_stat_statements.track = all" | sudo tee -a /etc/postgresql/18/main/postgresql.conf
+          echo "pg_stat_statements.max = 10000" | sudo tee -a /etc/postgresql/18/main/postgresql.conf
 
           # Performance optimization settings per README-SCHEMA-MAINTENANCE.md
           # Memory settings (adjusted for GitHub Actions ~7GB RAM, lower than production recommendations)
-          echo "shared_buffers = '1GB'" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
-          echo "effective_cache_size = '4GB'" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
-          echo "work_mem = '32MB'" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
-          echo "maintenance_work_mem = '256MB'" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+          echo "shared_buffers = '1GB'" | sudo tee -a /etc/postgresql/18/main/postgresql.conf
+          echo "effective_cache_size = '4GB'" | sudo tee -a /etc/postgresql/18/main/postgresql.conf
+          echo "work_mem = '32MB'" | sudo tee -a /etc/postgresql/18/main/postgresql.conf
+          echo "maintenance_work_mem = '256MB'" | sudo tee -a /etc/postgresql/18/main/postgresql.conf
 
           # Checkpoint settings for write performance
-          echo "checkpoint_completion_target = 0.9" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
-          echo "wal_buffers = '16MB'" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
-          echo "max_wal_size = '2GB'" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
-          echo "min_wal_size = '512MB'" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+          echo "checkpoint_completion_target = 0.9" | sudo tee -a /etc/postgresql/18/main/postgresql.conf
+          echo "wal_buffers = '16MB'" | sudo tee -a /etc/postgresql/18/main/postgresql.conf
+          echo "max_wal_size = '2GB'" | sudo tee -a /etc/postgresql/18/main/postgresql.conf
+          echo "min_wal_size = '512MB'" | sudo tee -a /etc/postgresql/18/main/postgresql.conf
 
           # Query planning optimizations (SSD storage on GitHub Actions)
-          echo "random_page_cost = 1.1" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
-          echo "effective_io_concurrency = 200" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+          echo "random_page_cost = 1.1" | sudo tee -a /etc/postgresql/18/main/postgresql.conf
+          echo "effective_io_concurrency = 200" | sudo tee -a /etc/postgresql/18/main/postgresql.conf
 
           # Connection settings (reduced for CI environment)
-          echo "max_connections = 100" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+          echo "max_connections = 100" | sudo tee -a /etc/postgresql/18/main/postgresql.conf
 
           # Extended Statistics for Better Query Planning
           # Note: default_statistics_target = 100 is PostgreSQL's default, but explicitly set for documentation clarity
-          echo "default_statistics_target = 100" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
-          echo "constraint_exclusion = partition" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+          echo "default_statistics_target = 100" | sudo tee -a /etc/postgresql/18/main/postgresql.conf
+          echo "constraint_exclusion = partition" | sudo tee -a /etc/postgresql/18/main/postgresql.conf
 
           # Auto-Explain Extension for Automatic Query Plan Logging
-          echo "auto_explain.log_min_duration = 1000" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
-          echo "auto_explain.log_analyze = true" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
-          echo "auto_explain.log_buffers = true" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
-          echo "auto_explain.log_timing = true" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
-          echo "auto_explain.log_verbose = true" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+          echo "auto_explain.log_min_duration = 1000" | sudo tee -a /etc/postgresql/18/main/postgresql.conf
+          echo "auto_explain.log_analyze = true" | sudo tee -a /etc/postgresql/18/main/postgresql.conf
+          echo "auto_explain.log_buffers = true" | sudo tee -a /etc/postgresql/18/main/postgresql.conf
+          echo "auto_explain.log_timing = true" | sudo tee -a /etc/postgresql/18/main/postgresql.conf
+          echo "auto_explain.log_verbose = true" | sudo tee -a /etc/postgresql/18/main/postgresql.conf
 
           # Enhanced pg_stat_statements Configuration
-          echo "pg_stat_statements.track_planning = on" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
-          echo "pg_stat_statements.track_utility = on" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+          echo "pg_stat_statements.track_planning = on" | sudo tee -a /etc/postgresql/18/main/postgresql.conf
+          echo "pg_stat_statements.track_utility = on" | sudo tee -a /etc/postgresql/18/main/postgresql.conf
 
           # Query Planner Settings for View Analysis
-          echo "enable_partitionwise_join = on" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
-          echo "enable_partitionwise_aggregate = on" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
-          echo "jit = on" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
-          echo "jit_above_cost = 100000" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+          echo "enable_partitionwise_join = on" | sudo tee -a /etc/postgresql/18/main/postgresql.conf
+          echo "enable_partitionwise_aggregate = on" | sudo tee -a /etc/postgresql/18/main/postgresql.conf
+          echo "jit = on" | sudo tee -a /etc/postgresql/18/main/postgresql.conf
+          echo "jit_above_cost = 100000" | sudo tee -a /etc/postgresql/18/main/postgresql.conf
 
           # Statistics Collection Enhancement
-          echo "track_activities = on" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
-          echo "track_counts = on" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
-          echo "track_io_timing = on" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
-          echo "track_functions = all" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+          echo "track_activities = on" | sudo tee -a /etc/postgresql/18/main/postgresql.conf
+          echo "track_counts = on" | sudo tee -a /etc/postgresql/18/main/postgresql.conf
+          echo "track_io_timing = on" | sudo tee -a /etc/postgresql/18/main/postgresql.conf
+          echo "track_functions = all" | sudo tee -a /etc/postgresql/18/main/postgresql.conf
 
           # Logging for Query Analysis
-          echo "log_min_duration_statement = 1000" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
-          echo "log_line_prefix = '%t [%p]: [%l-1] user=%u,db=%d,app=%a,client=%h '" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
-          echo "log_statement = 'ddl'" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+          echo "log_min_duration_statement = 1000" | sudo tee -a /etc/postgresql/18/main/postgresql.conf
+          echo "log_line_prefix = '%t [%p]: [%l-1] user=%u,db=%d,app=%a,client=%h '" | sudo tee -a /etc/postgresql/18/main/postgresql.conf
+          echo "log_statement = 'ddl'" | sudo tee -a /etc/postgresql/18/main/postgresql.conf
 
           # Add IPv6 loopback access
-          echo "host all all ::1/128 md5" | sudo tee -a /etc/postgresql/16/main/pg_hba.conf
+          echo "host all all ::1/128 md5" | sudo tee -a /etc/postgresql/18/main/pg_hba.conf
 
       - name: Generate SSL certificates for PostgreSQL
         run: |
@@ -302,19 +320,19 @@ jobs:
           chmod 600 server.key server.crt
 
           # Copy certificate and key to PostgreSQL data directory
-          sudo cp server.crt /var/lib/postgresql/16/main/server.crt
-          sudo cp server.key /var/lib/postgresql/16/main/server.key
+          sudo cp server.crt /var/lib/postgresql/18/main/server.crt
+          sudo cp server.key /var/lib/postgresql/18/main/server.key
 
           # Secure the certificate and key
-          sudo chmod 600 /var/lib/postgresql/16/main/server.key
-          sudo chmod 644 /var/lib/postgresql/16/main/server.crt
-          sudo chown postgres:postgres /var/lib/postgresql/16/main/server.key
-          sudo chown postgres:postgres /var/lib/postgresql/16/main/server.crt
+          sudo chmod 600 /var/lib/postgresql/18/main/server.key
+          sudo chmod 644 /var/lib/postgresql/18/main/server.crt
+          sudo chown postgres:postgres /var/lib/postgresql/18/main/server.key
+          sudo chown postgres:postgres /var/lib/postgresql/18/main/server.crt
 
           # Enable SSL in PostgreSQL
-          echo "ssl = on" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
-          echo "ssl_cert_file = '/var/lib/postgresql/16/main/server.crt'" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
-          echo "ssl_key_file = '/var/lib/postgresql/16/main/server.key'" | sudo tee -a /etc/postgresql/16/main/postgresql.conf
+          echo "ssl = on" | sudo tee -a /etc/postgresql/18/main/postgresql.conf
+          echo "ssl_cert_file = '/var/lib/postgresql/18/main/server.crt'" | sudo tee -a /etc/postgresql/18/main/postgresql.conf
+          echo "ssl_key_file = '/var/lib/postgresql/18/main/server.key'" | sudo tee -a /etc/postgresql/18/main/postgresql.conf
 
           # Provide SSL certificate to the runner user
           mkdir -p $HOME/.postgresql

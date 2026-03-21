@@ -92,7 +92,7 @@ The CIA platform's 26 Comparative Analysis framework views are **well-designed s
 
 ### Tools Used
 
-1. **PostgreSQL 16.11** with enhanced monitoring extensions:
+1. **PostgreSQL 18.x** with enhanced monitoring extensions:
    - `pg_stat_statements` - Query performance tracking
    - `auto_explain` - Automatic query plan logging
    - `pgaudit` - Audit logging
@@ -2678,7 +2678,7 @@ SELECT * FROM metrics;
 ### Testing Environment
 
 **Requirements:**
-- PostgreSQL 16.11 with all extensions enabled
+- PostgreSQL 18.x with all extensions enabled
 - Production-scale data (minimum):
   - 350+ politicians (historical + active)
   - 100K+ votes

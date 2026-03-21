@@ -2,7 +2,7 @@
 -- TEMPORAL ANALYSIS FRAMEWORK: IMMEDIATE OPTIMIZATION SCRIPT
 -- ============================================================================
 -- Generated: 2026-01-22
--- Database: PostgreSQL 16.11
+-- Database: PostgreSQL 18
 -- Purpose: Optimize performance of 27 temporal analysis views
 --
 -- Execution Time: ~15 minutes

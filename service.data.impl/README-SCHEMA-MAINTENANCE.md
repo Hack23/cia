@@ -63,8 +63,8 @@ sudo -u postgres bash -c "(pg_dump -U postgres -d cia_dev --schema-only --no-own
 
 **PostgreSQL Version Compatibility:**
 - ⚠️ The `pg_dump` command must be run against the **same PostgreSQL version** as the target deployment
-- Current CI/CD uses **PostgreSQL 16**
-- If pg_dump is run against PostgreSQL 17+, it may include settings not supported in earlier versions (e.g., `transaction_timeout`)
+- Current CI/CD uses **PostgreSQL 18**
+- If pg_dump is run against PostgreSQL 19+, it may include settings not supported in earlier versions (e.g., `transaction_timeout`)
 - Always verify the PostgreSQL version before running pg_dump: `psql --version`
 
 **When to Update:**
@@ -280,7 +280,7 @@ The view refresh is integrated into the application's scheduled job system:
 
 The Copilot agent environment uses a specific PostgreSQL setup defined in `.github/workflows/copilot-setup-steps.yml`. This section documents the database configuration for development and CI/CD environments.
 
-### PostgreSQL 16 Configuration
+### PostgreSQL 18 Configuration
 
 The setup includes:
 
@@ -413,7 +413,7 @@ auto_explain.log_verbose = true           -- Include detailed plan information
 
 **Usage**: Slow queries are automatically logged to PostgreSQL logs with full EXPLAIN ANALYZE output. No manual intervention required.
 
-**Performance Impact**: Minimal overhead for logged queries. According to PostgreSQL 16 documentation (https://www.postgresql.org/docs/16/auto-explain.html), auto_explain adds negligible overhead for queries below the threshold and minimal overhead (<5%) for queries being explained, as analysis only occurs for queries exceeding 1000ms.
+**Performance Impact**: Minimal overhead for logged queries. According to PostgreSQL documentation (https://www.postgresql.org/docs/current/auto-explain.html), auto_explain adds negligible overhead for queries below the threshold and minimal overhead (<5%) for queries being explained, as analysis only occurs for queries exceeding 1000ms.
 
 #### Enhanced pg_stat_statements Tracking
 
@@ -444,7 +444,7 @@ Optimized query planner settings for complex view analysis:
 - **jit_above_cost = 100000**: Apply JIT for queries with estimated cost > 100,000
 
 **Benefits**:
-- JIT compilation typically provides 20-50% speedup for complex analytical queries according to PostgreSQL 16 documentation (https://www.postgresql.org/docs/16/jit.html), though performance varies by query complexity and hardware
+- JIT compilation typically provides 20-50% speedup for complex analytical queries according to PostgreSQL documentation (https://www.postgresql.org/docs/current/jit.html), though performance varies by query complexity and hardware
 - Partitionwise operations improve performance for large partitioned tables
 - Better optimization for multi-table view queries
 
@@ -671,7 +671,7 @@ When creating or modifying database views in Liquibase changelogs, follow this v
 
 #### Prerequisites
 
-- PostgreSQL 16+ installed and running
+- PostgreSQL 18+ installed and running
 - Test database created (e.g., `cia_validation_test`)
 - Access to source tables referenced in views
 
@@ -852,7 +852,7 @@ When creating new db-changelog-*.xml files:
 Before deploying schema changes to production:
 
 #### Pre-Deployment Validation
-- [ ] All SQL syntax validated against PostgreSQL 16+
+- [ ] All SQL syntax validated against PostgreSQL 18+
 - [ ] Liquibase changelog validated: `mvn liquibase:validate`
 - [ ] Preview SQL reviewed: `mvn liquibase:updateSQL`
 - [ ] All table/column references verified against schema
@@ -1690,7 +1690,7 @@ jobs:
     runs-on: ubuntu-latest
     services:
       postgres:
-        image: postgres:16
+        image: postgres:18
         env:
           POSTGRES_DB: cia_dev
           POSTGRES_PASSWORD: postgres
@@ -2004,7 +2004,7 @@ If loading the schema fails:
 
 ```bash
 # Check PostgreSQL logs
-sudo tail -f /var/log/postgresql/postgresql-16-main.log
+sudo tail -f /var/log/postgresql/postgresql-18-main.log
 
 # Verify PostgreSQL extensions are installed
 sudo -u postgres psql -d cia_dev -c "\dx"
@@ -3909,9 +3909,9 @@ psql -U postgres -d cia_dev -f analyze-view-dependencies.sql > deps.csv
 
 ## Additional Resources
 
-- [PostgreSQL pg_dump Documentation](https://www.postgresql.org/docs/16/app-pgdump.html)
-- [PostgreSQL Information Schema](https://www.postgresql.org/docs/16/information-schema.html)
-- [PostgreSQL System Catalogs](https://www.postgresql.org/docs/16/catalogs.html)
+- [PostgreSQL pg_dump Documentation](https://www.postgresql.org/docs/current/app-pgdump.html)
+- [PostgreSQL Information Schema](https://www.postgresql.org/docs/current/information-schema.html)
+- [PostgreSQL System Catalogs](https://www.postgresql.org/docs/current/catalogs.html)
 - [Liquibase Documentation](https://docs.liquibase.com/)
 - [CIA Architecture Documentation](../ARCHITECTURE.md)
 - [CIA Data Model Documentation](../DATA_MODEL.md)

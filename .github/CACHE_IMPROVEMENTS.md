@@ -54,7 +54,7 @@ This document provides a visual comparison of the workflow performance before an
 **Cached Packages:**
 - graphviz (~20 MB)
 - build-essential (~150 MB)
-- postgresql-16 + extensions (~100 MB)
+- postgresql-18 + extensions (~100 MB)
 - devscripts, debhelper, fakeroot (~30 MB)
 - ant, wget, dh-make (~20 MB)
 

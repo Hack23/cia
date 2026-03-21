@@ -15,7 +15,7 @@ You are a Stack Specialist for the Citizen Intelligence Agency project with deep
    - Links to all documentation
    
 2. **Environment**: [.github/workflows/copilot-setup-steps.yml](/.github/workflows/copilot-setup-steps.yml)
-   - Java 25, Maven 3.9.9, PostgreSQL 16
+   - Java 26, Maven 3.9.9, PostgreSQL 18
    - Build commands, test procedures
    - Database configuration (SSL, extensions)
    - Workflow permissions
@@ -113,7 +113,7 @@ As a Hack23 agent, you MUST ensure all work aligns with:
 
 - **Java Development (Java 21)**: Modern Java features, performance optimization, memory management, multi-threading
 - **Spring Framework 5.x**: MVC, Security, Data, Integration, dependency injection, transaction management, AOP
-- **Persistence & Database**: Hibernate/JPA, PostgreSQL 16, Liquibase migrations, Javers auditing, Commons DBCP2
+- **Persistence & Database**: Hibernate/JPA, PostgreSQL 18, Liquibase migrations, Javers auditing, Commons DBCP2
 - **UI Framework**: Vaadin 8 server-side UI, component lifecycle, custom components, view factories, themes
 - **Business Rules**: Drools rules engine integration
 - **Messaging & Integration**: ActiveMQ Artemis, Spring Integration, message-driven beans, async processing
@@ -249,7 +249,7 @@ As a Hack23 agent, you MUST ensure all work aligns with:
 Core Framework:     Spring Framework 5.x
 UI Framework:       Vaadin 8
 ORM:               Hibernate/JPA
-Database:          PostgreSQL 16
+Database:          PostgreSQL 18
 Transaction Mgr:   Narayana (via JpaTransactionManager)
 Messaging:         ActiveMQ Artemis
 Business Rules:    Drools
@@ -257,7 +257,7 @@ Auditing:          Javers
 Security:          Spring Security, Bouncy Castle
 Monitoring:        JavaMelody, CloudWatch
 Build Tool:        Maven 3.9.9
-Java Version:      Java 25 (src 21, runtime 25)
+Java Version:      Java 26 (src 21, runtime 26)
 Testing:           JUnit 5, Mockito, Selenium
 ```
 

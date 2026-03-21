@@ -1,7 +1,7 @@
 -- schema-coverage-analysis.sql
 -- Schema Coverage Analysis - Generates detailed comparison report
 -- Citizen Intelligence Agency - Open Source Intelligence Platform
--- Generated for PostgreSQL 16
+-- Generated for PostgreSQL 18
 --
 -- Purpose: Generates detailed coverage analysis comparing full_schema.sql
 --          expected objects with actual database objects

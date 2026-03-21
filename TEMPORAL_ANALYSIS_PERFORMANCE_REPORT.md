@@ -3,7 +3,7 @@
 **Generated:** 2026-01-22 15:36:00 UTC  
 **Updated with Enhanced Statistics:** 2026-01-22 (PR #8271 + PR #8274)
 
-**Database:** PostgreSQL 16.11 (cia_dev)
+**Database:** PostgreSQL 18.x (cia_dev)
 
 ---
 
@@ -243,7 +243,7 @@ ORDER BY estimate_error_pct DESC;
 
 3. **Check auto_explain logs** for queries >1000ms:
    ```bash
-   sudo tail -f /var/log/postgresql/postgresql-16-main.log | grep "duration:"
+   sudo tail -f /var/log/postgresql/postgresql-18-main.log | grep "duration:"
    ```
 
 4. **Verify statistics freshness**:
