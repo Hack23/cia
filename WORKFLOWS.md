@@ -216,6 +216,12 @@ flowchart TB
 
 **Key Steps:**
 ```yaml
+- name: Add PostgreSQL PGDG repository
+  run: |
+    sudo install -d /usr/share/postgresql-common/pgdg
+    sudo curl -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc --fail https://www.postgresql.org/media/keys/ACCC4CF8.asc
+    echo "deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list
+
 - name: Install PostgreSQL
   run: sudo apt-get install -y postgresql-18 postgresql-contrib-18 postgresql-18-pgaudit postgresql-18-pgvector
 

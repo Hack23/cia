@@ -42,6 +42,7 @@ jobs:
             api.adoptopenjdk.net:443
             api.adoptium.net:443
             api.github.com:443
+            apt.postgresql.org:443
             archive.apache.org:443
             azure.archive.ubuntu.com:80
             azure.archive.ubuntu.com:443
@@ -67,6 +68,7 @@ jobs:
             files.pythonhosted.org:443
             pypi.org:443
             www.bridgecrew.cloud:443
+            www.postgresql.org:443
             docs.github.com:433
             dlcdn.apache.org
             gwtproject.org:443
@@ -142,6 +144,12 @@ jobs:
           key: ${{ runner.os }}-apt-${{ hashFiles('.github/workflows/codeql-analysis.yml') }}
           restore-keys: |
             ${{ runner.os }}-apt-
+
+      - name: Add PostgreSQL PGDG repository
+        run: |
+          sudo install -d /usr/share/postgresql-common/pgdg
+          sudo curl -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc --fail https://www.postgresql.org/media/keys/ACCC4CF8.asc
+          echo "deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list
 
       - name: APT update
         run: sudo apt-get update

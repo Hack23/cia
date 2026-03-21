@@ -1471,7 +1471,7 @@ Resources:
       EnableCloudwatchLogsExports:
         - postgresql
         - upgrade
-      StorageType: gp2
+      StorageType: gp3
       DBInstanceIdentifier: rotation-instance
       MasterUsername: !If
         - useDBSnapshot
