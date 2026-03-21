@@ -413,7 +413,7 @@ auto_explain.log_verbose = true           -- Include detailed plan information
 
 **Usage**: Slow queries are automatically logged to PostgreSQL logs with full EXPLAIN ANALYZE output. No manual intervention required.
 
-**Performance Impact**: Minimal overhead for logged queries. According to PostgreSQL 18 documentation (https://www.postgresql.org/docs/16/auto-explain.html), auto_explain adds negligible overhead for queries below the threshold and minimal overhead (<5%) for queries being explained, as analysis only occurs for queries exceeding 1000ms.
+**Performance Impact**: Minimal overhead for logged queries. According to PostgreSQL documentation (https://www.postgresql.org/docs/current/auto-explain.html), auto_explain adds negligible overhead for queries below the threshold and minimal overhead (<5%) for queries being explained, as analysis only occurs for queries exceeding 1000ms.
 
 #### Enhanced pg_stat_statements Tracking
 
@@ -444,7 +444,7 @@ Optimized query planner settings for complex view analysis:
 - **jit_above_cost = 100000**: Apply JIT for queries with estimated cost > 100,000
 
 **Benefits**:
-- JIT compilation typically provides 20-50% speedup for complex analytical queries according to PostgreSQL 18 documentation (https://www.postgresql.org/docs/16/jit.html), though performance varies by query complexity and hardware
+- JIT compilation typically provides 20-50% speedup for complex analytical queries according to PostgreSQL documentation (https://www.postgresql.org/docs/current/jit.html), though performance varies by query complexity and hardware
 - Partitionwise operations improve performance for large partitioned tables
 - Better optimization for multi-table view queries
 
@@ -3909,9 +3909,9 @@ psql -U postgres -d cia_dev -f analyze-view-dependencies.sql > deps.csv
 
 ## Additional Resources
 
-- [PostgreSQL pg_dump Documentation](https://www.postgresql.org/docs/16/app-pgdump.html)
-- [PostgreSQL Information Schema](https://www.postgresql.org/docs/16/information-schema.html)
-- [PostgreSQL System Catalogs](https://www.postgresql.org/docs/16/catalogs.html)
+- [PostgreSQL pg_dump Documentation](https://www.postgresql.org/docs/current/app-pgdump.html)
+- [PostgreSQL Information Schema](https://www.postgresql.org/docs/current/information-schema.html)
+- [PostgreSQL System Catalogs](https://www.postgresql.org/docs/current/catalogs.html)
 - [Liquibase Documentation](https://docs.liquibase.com/)
 - [CIA Architecture Documentation](../ARCHITECTURE.md)
 - [CIA Data Model Documentation](../DATA_MODEL.md)

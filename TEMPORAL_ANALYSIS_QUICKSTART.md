@@ -184,8 +184,8 @@ ORDER BY ratio ASC;
 
 - [Enhanced Statistics Analysis](TEMPORAL_ANALYSIS_PERFORMANCE_REPORT.md#enhanced-statistics-analysis-pr-8271)
 - [Update Summary](TEMPORAL_ANALYSIS_UPDATE_SUMMARY.md)
-- [PostgreSQL pg_stat_statements Documentation](https://www.postgresql.org/docs/16/pgstatstatements.html)
-- [PostgreSQL auto_explain Documentation](https://www.postgresql.org/docs/16/auto-explain.html)
+- [PostgreSQL pg_stat_statements Documentation](https://www.postgresql.org/docs/current/pgstatstatements.html)
+- [PostgreSQL auto_explain Documentation](https://www.postgresql.org/docs/current/auto-explain.html)
 
 ## Support
 
