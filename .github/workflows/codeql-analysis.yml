@@ -162,8 +162,12 @@ jobs:
           # Drop pre-installed PostgreSQL clusters that block port 5432
           sudo pg_dropcluster --stop 14 main || true
           sudo pg_dropcluster --stop 16 main || true
-          # Create and start PostgreSQL 18 cluster
-          sudo pg_createcluster 18 main --start
+          # Create and start PostgreSQL 18 cluster (idempotent)
+          if sudo pg_lsclusters 18 main >/dev/null 2>&1; then
+            sudo pg_ctlcluster 18 main start
+          else
+            sudo pg_createcluster 18 main --start
+          fi
 
       - name: Configure PostgreSQL
         run: |

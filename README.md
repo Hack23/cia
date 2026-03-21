@@ -649,7 +649,7 @@ For local or self-hosted deployment on Debian/Ubuntu 24.04+:
 
 2. Install prerequisites:
    ```bash
-   sudo apt-get install openjdk-21-jdk postgresql-18 postgresql-contrib postgresql-18-pgaudit postgresql-18-pgvector
+   sudo apt-get install openjdk-21-jdk postgresql-18 postgresql-contrib-18 postgresql-18-pgaudit postgresql-18-pgvector
    ```
 
 3. Configure PostgreSQL as detailed below.

@@ -188,7 +188,7 @@ This guide will walk you through installing the CIA project on Debian and Ubuntu
 2. Install OpenJDK and PostgreSQL:
 
    ```bash
-   sudo apt-get install openjdk-21-jdk postgresql-18 postgresql-contrib postgresql-18-pgaudit
+   sudo apt-get install openjdk-21-jdk postgresql-18 postgresql-contrib-18 postgresql-18-pgaudit
    ```
 
 ### Database Setup
