@@ -466,4 +466,1124 @@ ORDER BY a.detail,
         </createView>
     </changeSet>
 
+    <!-- ======================================================================== -->
+    <!-- 1.79-005: Fix mv_annual_voting_metrics — vote case sensitivity            -->
+    <!-- MATERIALIZED VIEW: must DROP + CREATE. Cascades to                        -->
+    <!-- view_riksdagen_election_year_behavioral_patterns.                          -->
+    <!-- ======================================================================== -->
+    <changeSet id="1.79-005" author="copilot">
+        <comment>Fix mv_annual_voting_metrics: vote values stored UPPERCASE (JA, NEJ, FRÅNVARANDE, AVSTÅR)
+        but view compared with title-case ('Ja','Nej','Frånvarande','Avstår').
+        This caused avg_yes_rate, avg_no_rate, avg_abstain_rate to always be 0.
+        Must use DROP + CREATE for materialized views (no CREATE OR REPLACE support).
+        Also drops/recreates dependent view_riksdagen_election_year_behavioral_patterns.</comment>
+        <sql>
+DROP VIEW IF EXISTS view_riksdagen_election_year_behavioral_patterns CASCADE;
+DROP MATERIALIZED VIEW IF EXISTS mv_annual_voting_metrics CASCADE;
+
+CREATE MATERIALIZED VIEW mv_annual_voting_metrics AS
+WITH election_years AS (
+    SELECT unnest(ARRAY[2002, 2006, 2010, 2014, 2018, 2022, 2026]) AS election_year
+)
+SELECT (EXTRACT(year FROM vd.vote_date))::integer AS year,
+    CASE WHEN ey.election_year IS NOT NULL THEN true ELSE false END AS is_election_year,
+    count(DISTINCT vd.embedded_id_ballot_id) AS total_ballots,
+    count(DISTINCT vd.embedded_id_intressent_id) AS active_politicians,
+    round((avg(CASE WHEN UPPER((vd.vote)::text) &lt;&gt; 'FRÅNVARANDE' THEN 1 ELSE 0 END) * 100::numeric), 2) AS attendance_rate,
+    round((avg(CASE WHEN UPPER((vd.vote)::text) = 'JA' THEN 1 ELSE 0 END) * 100::numeric), 2) AS avg_yes_rate,
+    round((avg(CASE WHEN UPPER((vd.vote)::text) = 'NEJ' THEN 1 ELSE 0 END) * 100::numeric), 2) AS avg_no_rate,
+    round((avg(CASE WHEN UPPER((vd.vote)::text) = 'AVSTÅR' THEN 1 ELSE 0 END) * 100::numeric), 2) AS avg_abstain_rate
+FROM vote_data vd
+  LEFT JOIN election_years ey ON ey.election_year::numeric = EXTRACT(year FROM vd.vote_date)
+WHERE vd.vote_date IS NOT NULL
+  AND EXTRACT(year FROM vd.vote_date) >= 2002
+  AND EXTRACT(year FROM vd.vote_date) &lt;= 2026
+GROUP BY (EXTRACT(year FROM vd.vote_date))::integer,
+    CASE WHEN ey.election_year IS NOT NULL THEN true ELSE false END
+WITH NO DATA;
+
+COMMENT ON MATERIALIZED VIEW mv_annual_voting_metrics IS 'Pre-aggregated annual voting metrics from vote_data (2002-2026). Uses UPPER() for vote comparisons. Refresh: Daily.';
+        </sql>
+    </changeSet>
+
+    <!-- ======================================================================== -->
+    <!-- 1.79-006: Recreate view_riksdagen_election_year_behavioral_patterns       -->
+    <!-- Dropped by CASCADE in 1.79-005.                                           -->
+    <!-- ======================================================================== -->
+    <changeSet id="1.79-006" author="copilot">
+        <comment>Recreate view_riksdagen_election_year_behavioral_patterns dropped by CASCADE
+        when fixing mv_annual_voting_metrics. View definition unchanged — reads from
+        corrected materialized view.</comment>
+        <sql>
+CREATE OR REPLACE VIEW view_riksdagen_election_year_behavioral_patterns AS
+WITH election_years AS (
+    SELECT unnest(ARRAY[2002, 2006, 2010, 2014, 2018, 2022, 2026]) AS election_year
+), annual_metrics AS (
+    SELECT vm.year,
+        vm.is_election_year,
+        vm.total_ballots,
+        vm.active_politicians,
+        vm.attendance_rate,
+        vm.avg_yes_rate,
+        vm.avg_no_rate,
+        vm.avg_abstain_rate,
+        COALESCE(dm.documents_produced, 0::bigint) AS documents_produced,
+        COALESCE(dm.motions_filed, 0::bigint) AS motions_filed,
+        COALESCE(dm.proposals_filed, 0::bigint) AS proposals_filed
+    FROM mv_annual_voting_metrics vm
+      LEFT JOIN mv_annual_document_metrics dm ON vm.year = dm.year
+), election_baseline AS (
+    SELECT
+        percentile_cont(0.5) WITHIN GROUP (ORDER BY total_ballots::double precision) FILTER (WHERE is_election_year) AS election_median_ballots,
+        avg(total_ballots) FILTER (WHERE is_election_year) AS election_avg_ballots,
+        stddev(total_ballots) FILTER (WHERE is_election_year) AS election_stddev_ballots,
+        avg(total_ballots) FILTER (WHERE NOT is_election_year) AS midterm_avg_ballots,
+        stddev(total_ballots) FILTER (WHERE NOT is_election_year) AS midterm_stddev_ballots,
+        percentile_cont(0.5) WITHIN GROUP (ORDER BY documents_produced::double precision) FILTER (WHERE is_election_year) AS election_median_docs,
+        avg(documents_produced) FILTER (WHERE is_election_year) AS election_avg_docs,
+        stddev(documents_produced) FILTER (WHERE is_election_year) AS election_stddev_docs,
+        avg(documents_produced) FILTER (WHERE NOT is_election_year) AS midterm_avg_docs,
+        percentile_cont(0.5) WITHIN GROUP (ORDER BY motions_filed::double precision) FILTER (WHERE is_election_year) AS election_median_motions,
+        avg(motions_filed) FILTER (WHERE is_election_year) AS election_avg_motions,
+        stddev(motions_filed) FILTER (WHERE is_election_year) AS election_stddev_motions,
+        avg(motions_filed) FILTER (WHERE NOT is_election_year) AS midterm_avg_motions,
+        avg(attendance_rate) FILTER (WHERE is_election_year) AS election_avg_attendance,
+        stddev(attendance_rate) FILTER (WHERE is_election_year) AS election_stddev_attendance,
+        avg(attendance_rate) FILTER (WHERE NOT is_election_year) AS midterm_avg_attendance
+    FROM annual_metrics
+)
+SELECT am.year,
+    am.is_election_year,
+    am.total_ballots,
+    am.active_politicians,
+    am.attendance_rate,
+    am.avg_yes_rate,
+    am.avg_no_rate,
+    am.avg_abstain_rate,
+    am.documents_produced,
+    am.motions_filed,
+    am.proposals_filed,
+    round(eb.election_median_ballots::numeric, 2) AS election_median_ballots,
+    round(eb.election_avg_ballots, 2) AS election_avg_ballots,
+    round(eb.election_stddev_ballots, 2) AS election_stddev_ballots,
+    round(eb.midterm_avg_ballots, 2) AS midterm_avg_ballots,
+    round(eb.election_median_docs::numeric, 2) AS election_median_docs,
+    round(eb.election_avg_docs, 2) AS election_avg_docs,
+    round(eb.midterm_avg_docs, 2) AS midterm_avg_docs,
+    round(eb.election_median_motions::numeric, 2) AS election_median_motions,
+    round(eb.election_avg_motions, 2) AS election_avg_motions,
+    round(eb.midterm_avg_motions, 2) AS midterm_avg_motions,
+    round(eb.election_avg_attendance, 2) AS election_avg_attendance,
+    round(eb.midterm_avg_attendance, 2) AS midterm_avg_attendance,
+    CASE
+        WHEN am.is_election_year AND eb.election_stddev_ballots > 0 THEN
+            round(((am.total_ballots::numeric - eb.election_avg_ballots) / eb.election_stddev_ballots), 2)
+        WHEN NOT am.is_election_year AND eb.midterm_stddev_ballots > 0 THEN
+            round(((am.total_ballots::numeric - eb.midterm_avg_ballots) / eb.midterm_stddev_ballots), 2)
+        ELSE 0
+    END AS ballot_z_score,
+    CASE
+        WHEN am.is_election_year AND eb.election_stddev_docs > 0 THEN
+            round(((am.documents_produced::numeric - eb.election_avg_docs) / eb.election_stddev_docs), 2)
+        WHEN NOT am.is_election_year THEN
+            round(((am.documents_produced::numeric - COALESCE(eb.midterm_avg_docs, 0)) / NULLIF(eb.election_stddev_docs, 0)), 2)
+        ELSE 0
+    END AS document_z_score,
+    CASE
+        WHEN am.is_election_year AND eb.election_stddev_motions > 0 THEN
+            round(((am.motions_filed::numeric - eb.election_avg_motions) / eb.election_stddev_motions), 2)
+        ELSE 0
+    END AS motion_z_score,
+    CASE
+        WHEN am.is_election_year AND eb.election_stddev_attendance > 0 THEN
+            round(((am.attendance_rate - eb.election_avg_attendance) / eb.election_stddev_attendance), 2)
+        ELSE 0
+    END AS attendance_z_score,
+    CASE
+        WHEN am.is_election_year THEN 'ELECTION_YEAR'
+        ELSE 'MIDTERM_YEAR'
+    END AS year_classification,
+    CASE
+        WHEN am.is_election_year AND am.total_ballots > COALESCE(eb.election_avg_ballots, 0) THEN 'ABOVE_ELECTION_AVERAGE'
+        WHEN am.is_election_year THEN 'BELOW_ELECTION_AVERAGE'
+        WHEN am.total_ballots > COALESCE(eb.midterm_avg_ballots, 0) THEN 'ABOVE_MIDTERM_AVERAGE'
+        ELSE 'BELOW_MIDTERM_AVERAGE'
+    END AS ballot_assessment,
+    CASE
+        WHEN am.documents_produced > COALESCE(eb.election_avg_docs, 0) AND am.motions_filed > COALESCE(eb.election_avg_motions, 0) THEN 'HIGH_LEGISLATIVE_ACTIVITY'
+        WHEN am.documents_produced > COALESCE(eb.midterm_avg_docs, 0) THEN 'ABOVE_AVERAGE_ACTIVITY'
+        WHEN am.documents_produced &lt; COALESCE(eb.midterm_avg_docs, 0) * 0.5 THEN 'LOW_LEGISLATIVE_ACTIVITY'
+        ELSE 'NORMAL_LEGISLATIVE_ACTIVITY'
+    END AS legislative_assessment
+FROM annual_metrics am
+  CROSS JOIN election_baseline eb
+ORDER BY am.year;
+        </sql>
+    </changeSet>
+
+    <!-- ======================================================================== -->
+    <!-- 1.79-007: Fix view_riksdagen_seasonal_quarterly_activity — vote case      -->
+    <!-- Uses CREATE OR REPLACE. Cascades fix to seasonal_activity_patterns,       -->
+    <!-- seasonal_anomaly_detection, q4_election_year_comparison.                   -->
+    <!-- ======================================================================== -->
+    <changeSet id="1.79-007" author="copilot">
+        <comment>Fix view_riksdagen_seasonal_quarterly_activity: vote comparison used
+        title-case 'Frånvarande' but data is UPPERCASE 'FRÅNVARANDE'.
+        This caused attendance_rate to always be ~100%, making q_stddev_attendance = 0
+        and attendance_z_score = 0 in all seasonal views.</comment>
+        <createView viewName="view_riksdagen_seasonal_quarterly_activity" replaceIfExists="true">
+WITH election_years AS (
+    SELECT unnest(ARRAY[2002, 2006, 2010, 2014, 2018, 2022, 2026]) AS election_year
+), ballot_quarterly_activity AS (
+    SELECT EXTRACT(year FROM vote_data.vote_date) AS year,
+        EXTRACT(quarter FROM vote_data.vote_date) AS quarter,
+        CASE WHEN ey.election_year IS NOT NULL THEN true ELSE false END AS is_election_year,
+        count(DISTINCT vote_data.embedded_id_ballot_id) AS total_ballots,
+        count(DISTINCT vote_data.embedded_id_intressent_id) AS active_politicians,
+        (avg(CASE WHEN UPPER((vote_data.vote)::text) &lt;&gt; 'FRÅNVARANDE' THEN 1 ELSE 0 END) * 100::numeric) AS attendance_rate
+    FROM vote_data
+      LEFT JOIN election_years ey ON ey.election_year::numeric = EXTRACT(year FROM vote_data.vote_date)
+    WHERE vote_data.vote_date IS NOT NULL
+    GROUP BY EXTRACT(year FROM vote_data.vote_date), EXTRACT(quarter FROM vote_data.vote_date),
+        CASE WHEN ey.election_year IS NOT NULL THEN true ELSE false END
+), document_quarterly_activity AS (
+    SELECT EXTRACT(year FROM document_data.made_public_date) AS year,
+        EXTRACT(quarter FROM document_data.made_public_date) AS quarter,
+        count(DISTINCT document_data.id) AS documents_produced
+    FROM document_data
+    WHERE document_data.made_public_date IS NOT NULL
+    GROUP BY EXTRACT(year FROM document_data.made_public_date), EXTRACT(quarter FROM document_data.made_public_date)
+), quarterly_activity AS (
+    SELECT bqa.year,
+        bqa.quarter,
+        bqa.is_election_year,
+        COALESCE(bqa.total_ballots, 0::bigint) AS total_ballots,
+        COALESCE(bqa.active_politicians, 0::bigint) AS active_politicians,
+        COALESCE(bqa.attendance_rate, 0::numeric) AS attendance_rate,
+        COALESCE(dqa.documents_produced, 0::bigint) AS documents_produced
+    FROM ballot_quarterly_activity bqa
+      LEFT JOIN document_quarterly_activity dqa ON bqa.year = dqa.year AND bqa.quarter = dqa.quarter
+), baseline_calculation AS (
+    SELECT quarter,
+        avg(total_ballots) FILTER (WHERE NOT is_election_year) AS q_baseline_ballots,
+        stddev(total_ballots) FILTER (WHERE NOT is_election_year) AS q_stddev_ballots,
+        avg(documents_produced) FILTER (WHERE NOT is_election_year) AS q_baseline_docs,
+        stddev(documents_produced) FILTER (WHERE NOT is_election_year) AS q_stddev_docs,
+        avg(attendance_rate) FILTER (WHERE NOT is_election_year) AS q_baseline_attendance,
+        stddev(attendance_rate) FILTER (WHERE NOT is_election_year) AS q_stddev_attendance
+    FROM quarterly_activity
+    GROUP BY quarter
+)
+SELECT qa.year,
+    qa.quarter,
+    qa.is_election_year,
+    qa.total_ballots,
+    qa.active_politicians,
+    qa.attendance_rate,
+    qa.documents_produced,
+    bc.q_baseline_ballots,
+    bc.q_stddev_ballots,
+    CASE WHEN bc.q_stddev_ballots > 0::numeric THEN ((qa.total_ballots::numeric - bc.q_baseline_ballots) / bc.q_stddev_ballots) ELSE 0::numeric END AS ballot_z_score,
+    bc.q_baseline_docs,
+    bc.q_stddev_docs,
+    CASE WHEN bc.q_stddev_docs > 0::numeric THEN ((qa.documents_produced::numeric - bc.q_baseline_docs) / bc.q_stddev_docs) ELSE 0::numeric END AS doc_z_score,
+    bc.q_baseline_attendance,
+    bc.q_stddev_attendance,
+    CASE WHEN bc.q_stddev_attendance > 0::numeric THEN ((qa.attendance_rate - bc.q_baseline_attendance) / bc.q_stddev_attendance) ELSE 0::numeric END AS attendance_z_score,
+    CASE
+        WHEN abs(COALESCE(((qa.total_ballots::numeric - bc.q_baseline_ballots) / NULLIF(bc.q_stddev_ballots, 0::numeric)), 0::numeric)) > 2::numeric THEN 'ANOMALY_DETECTED'
+        WHEN abs(COALESCE(((qa.total_ballots::numeric - bc.q_baseline_ballots) / NULLIF(bc.q_stddev_ballots, 0::numeric)), 0::numeric)) > 1.5 THEN 'ELEVATED'
+        WHEN abs(COALESCE(((qa.total_ballots::numeric - bc.q_baseline_ballots) / NULLIF(bc.q_stddev_ballots, 0::numeric)), 0::numeric)) > 1 THEN 'NOTABLE'
+        ELSE 'NORMAL'
+    END AS activity_classification
+FROM quarterly_activity qa
+  LEFT JOIN baseline_calculation bc ON qa.quarter = bc.quarter
+ORDER BY qa.year DESC, qa.quarter DESC
+        </createView>
+    </changeSet>
+
+    <!-- ======================================================================== -->
+    <!-- 1.79-008: Fix view_committee_productivity — wrong sub_type/label filters  -->
+    <!-- Uses CREATE OR REPLACE. Has dependents.                                   -->
+    <!-- ======================================================================== -->
+    <changeSet id="1.79-008" author="copilot">
+        <comment>Fix view_committee_productivity: committee_documents CTE used
+        sub_type = 'mot'/'prop' but committee_document_data sub_types are: bet, (empty), utl, ap.
+        Also label LIKE '%bet%' should be sub_type = 'bet' for reports.
+        Changed to use sub_type = 'bet' for reports and count total committee docs properly.</comment>
+        <createView viewName="view_committee_productivity" replaceIfExists="true">
+WITH committee_membership AS (
+    SELECT rc.embedded_id_org_code AS committee_code,
+        rc.embedded_id_detail AS committee_name,
+        count(DISTINCT ad.intressent_id) AS total_members,
+        count(DISTINCT ad.intressent_id) FILTER (WHERE ad.role_code::text = 'Ordförande') AS chairs_count,
+        count(DISTINCT ad.intressent_id) FILTER (WHERE ad.role_code::text = 'Vice ordförande') AS vice_chairs_count,
+        count(DISTINCT ad.intressent_id) FILTER (WHERE ad.role_code::text = 'Ledamot') AS regular_members,
+        count(DISTINCT ad.intressent_id) FILTER (WHERE ad.role_code::text ~~* '%suppleant%' OR ad.role_code::text ~~* '%ersättare%') AS substitutes
+    FROM view_riksdagen_committee rc
+      LEFT JOIN assignment_data ad ON ad.org_code::text = rc.embedded_id_org_code::text
+        AND ad.assignment_type::text = ANY (ARRAY['uppdrag', 'Riksdagsorgan'])
+        AND (ad.to_date IS NULL OR ad.to_date >= CURRENT_DATE)
+    GROUP BY rc.embedded_id_org_code, rc.embedded_id_detail
+), committee_decisions AS (
+    SELECT org AS committee_code,
+        count(DISTINCT embedded_id_id) AS total_decisions,
+        count(DISTINCT embedded_id_id) FILTER (WHERE public_date >= (CURRENT_DATE - interval '1 year')) AS decisions_last_year,
+        count(DISTINCT embedded_id_id) FILTER (WHERE public_date >= (CURRENT_DATE - interval '1 month')) AS decisions_last_month,
+        max(public_date) AS latest_decision_date,
+        min(public_date) FILTER (WHERE public_date >= (CURRENT_DATE - interval '1 year')) AS first_decision_last_year
+    FROM view_riksdagen_committee_decisions
+    GROUP BY org
+), committee_documents AS (
+    SELECT upper(cdd.org::text) AS committee_code,
+        count(DISTINCT cdd.id) AS total_documents,
+        count(DISTINCT cdd.id) FILTER (WHERE cdd.public_date >= (CURRENT_DATE - interval '1 year')) AS documents_last_year,
+        count(DISTINCT cdd.id) FILTER (WHERE cdd.sub_type::text = 'bet') AS reports,
+        count(DISTINCT cdd.id) FILTER (WHERE cdd.sub_type::text = 'utl') AS statements,
+        count(DISTINCT cdd.id) FILTER (WHERE cdd.sub_type::text NOT IN ('bet', 'utl') OR cdd.sub_type IS NULL) AS other_documents
+    FROM committee_document_data cdd
+    WHERE cdd.public_date >= (CURRENT_DATE - interval '2 years')
+    GROUP BY upper(cdd.org::text)
+), committee_ballots AS (
+    SELECT org AS committee_code,
+        count(DISTINCT ballot_id) AS total_ballots_decided,
+        avg(percentage_yes) AS avg_yes_percentage,
+        avg(percentage_no) AS avg_no_percentage
+    FROM view_riksdagen_committee_ballot_decision_summary
+    WHERE vote_date >= (CURRENT_DATE - interval '1 year')
+    GROUP BY org
+), productivity_calculations AS (
+    SELECT cm.committee_code,
+        cm.committee_name,
+        cm.total_members,
+        cm.chairs_count,
+        cm.vice_chairs_count,
+        cm.regular_members,
+        cm.substitutes,
+        cd.total_decisions,
+        cd.decisions_last_year,
+        cd.decisions_last_month,
+        cd.latest_decision_date,
+        cdoc.total_documents,
+        cdoc.documents_last_year,
+        cdoc.reports,
+        cdoc.statements,
+        cdoc.other_documents,
+        cb.total_ballots_decided,
+        cb.avg_yes_percentage,
+        (LEAST(COALESCE(cd.decisions_last_year, 0)::numeric / 20.0, 1.0) * 30
+         + LEAST(COALESCE(cdoc.documents_last_year, 0)::numeric / 30.0, 1.0) * 25
+         + (CASE
+             WHEN cd.latest_decision_date >= (CURRENT_DATE - interval '1 month') THEN 20
+             WHEN cd.latest_decision_date >= (CURRENT_DATE - interval '3 months') THEN 15
+             WHEN cd.latest_decision_date >= (CURRENT_DATE - interval '6 months') THEN 10
+             ELSE 0
+           END)::numeric
+         + (CASE
+             WHEN cm.chairs_count > 0 AND cm.total_members >= 10 THEN 15
+             WHEN cm.chairs_count > 0 AND cm.total_members >= 5 THEN 10
+             WHEN cm.total_members >= 5 THEN 5
+             ELSE 0
+           END)::numeric
+         + LEAST(CASE WHEN cm.total_members > 0 THEN COALESCE(cd.decisions_last_year, 0)::numeric / cm.total_members::numeric / 2.0 ELSE 0 END, 1.0) * 10
+        ) AS calculated_productivity_score
+    FROM committee_membership cm
+      LEFT JOIN committee_decisions cd ON cd.committee_code = cm.committee_code::text
+      LEFT JOIN committee_documents cdoc ON cdoc.committee_code = cm.committee_code::text
+      LEFT JOIN committee_ballots cb ON cb.committee_code = cm.committee_code::text
+)
+SELECT committee_code,
+    committee_name,
+    total_members,
+    chairs_count,
+    vice_chairs_count,
+    regular_members,
+    substitutes,
+    CASE
+        WHEN chairs_count = 0 THEN 'NO_LEADERSHIP'
+        WHEN total_members &lt; 10 THEN 'UNDERSTAFFED'
+        WHEN total_members >= 15 THEN 'WELL_STAFFED'
+        ELSE 'ADEQUATE_STAFFING'
+    END AS staffing_status,
+    COALESCE(total_decisions, 0::bigint) AS total_decisions_all_time,
+    COALESCE(decisions_last_year, 0::bigint) AS decisions_last_year,
+    COALESCE(decisions_last_month, 0::bigint) AS decisions_last_month,
+    latest_decision_date,
+    COALESCE((CURRENT_DATE - latest_decision_date), -1) AS days_since_last_decision,
+    COALESCE(total_documents, 0::bigint) AS total_documents,
+    COALESCE(documents_last_year, 0::bigint) AS documents_last_year,
+    COALESCE(reports, 0::bigint) AS motions_count,
+    COALESCE(statements, 0::bigint) AS propositions_count,
+    COALESCE(other_documents, 0::bigint) AS reports_count,
+    CASE WHEN total_members > 0 THEN round(COALESCE(decisions_last_year, 0)::numeric / total_members::numeric, 2) ELSE 0 END AS decisions_per_member,
+    CASE WHEN total_members > 0 THEN round(COALESCE(documents_last_year, 0)::numeric / total_members::numeric, 2) ELSE 0 END AS documents_per_member,
+    COALESCE(total_ballots_decided, 0::bigint) AS ballots_decided_last_year,
+    round(COALESCE(avg_yes_percentage, 0::numeric), 2) AS avg_approval_rate,
+    round(calculated_productivity_score, 2) AS productivity_score,
+    CASE
+        WHEN calculated_productivity_score >= 70 THEN 'HIGHLY_PRODUCTIVE'
+        WHEN calculated_productivity_score >= 50 THEN 'PRODUCTIVE'
+        WHEN calculated_productivity_score >= 30 THEN 'BELOW_AVERAGE'
+        ELSE 'INACTIVE'
+    END AS productivity_level,
+    concat_ws(' | ',
+        CASE WHEN chairs_count = 0 THEN 'Missing leadership' END,
+        CASE WHEN total_members &lt; 10 THEN 'Understaffed' END,
+        CASE WHEN COALESCE(decisions_last_year, 0) &lt; 10 THEN 'Low decision output' END,
+        CASE WHEN COALESCE(documents_last_year, 0) &lt; 5 THEN 'Low document production' END,
+        CASE WHEN latest_decision_date IS NOT NULL AND latest_decision_date &lt; (CURRENT_DATE - interval '3 months') THEN 'Stagnant activity' END
+    ) AS performance_concerns,
+    CASE
+        WHEN chairs_count = 0 THEN 'Appoint committee leadership immediately'
+        WHEN total_members &lt; 10 AND COALESCE(decisions_last_year, 0) &lt; 10 THEN 'Increase staffing and provide resources'
+        WHEN COALESCE(decisions_last_year, 0) &lt; 10 THEN 'Review committee mandate and workload'
+        WHEN latest_decision_date IS NOT NULL AND latest_decision_date &lt; (CURRENT_DATE - interval '3 months') THEN 'Investigate inactivity causes'
+        ELSE 'Maintain current operations'
+    END AS recommendation
+FROM productivity_calculations
+ORDER BY round(calculated_productivity_score, 2) DESC, COALESCE(decisions_last_year, 0) DESC
+        </createView>
+    </changeSet>
+
+    <!-- ======================================================================== -->
+    <!-- 1.79-009: Fix view_committee_productivity_matrix — wrong document_type    -->
+    <!-- Uses CREATE OR REPLACE. Has dependents.                                   -->
+    <!-- ======================================================================== -->
+    <changeSet id="1.79-009" author="copilot">
+        <comment>Fix view_committee_productivity_matrix: document_type 'Utskottsbetänkande'
+        and 'Motion' don't exist. Actual types are lowercase: 'bet', 'mot'.
+        Changed to use correct lowercase document_type codes.</comment>
+        <createView viewName="view_committee_productivity_matrix" replaceIfExists="true">
+WITH committee_documents AS (
+    SELECT org AS committee_code,
+        date_trunc('quarter', made_public_date::timestamp with time zone) AS period_start,
+        count(*) AS total_documents,
+        count(DISTINCT CASE WHEN document_type::text = 'bet' THEN doc_id END) AS committee_reports,
+        count(DISTINCT CASE WHEN document_type::text = 'mot' THEN doc_id END) AS motions_handled,
+        count(DISTINCT person_reference_id) AS active_members,
+        min(made_public_date) AS first_document_date,
+        max(made_public_date) AS last_document_date
+    FROM view_riksdagen_politician_document
+    WHERE made_public_date >= (CURRENT_DATE - interval '3 years')
+      AND org IS NOT NULL
+      AND org::text LIKE '%U'
+    GROUP BY org, date_trunc('quarter', made_public_date::timestamp with time zone)
+), committee_info AS (
+    SELECT DISTINCT embedded_id_org_code AS committee_code,
+        embedded_id_detail AS committee_name,
+        CASE WHEN embedded_id_org_code::text LIKE '%U' THEN 'Committee' ELSE 'Other' END AS committee_category
+    FROM view_riksdagen_committee
+    WHERE embedded_id_org_code IS NOT NULL
+), productivity_benchmarks AS (
+    SELECT period_start,
+        avg(total_documents) AS avg_documents_per_committee,
+        stddev(total_documents) AS stddev_documents,
+        max(total_documents) AS max_documents,
+        min(total_documents) AS min_documents,
+        percentile_cont(0.5) WITHIN GROUP (ORDER BY total_documents::double precision) AS median_documents
+    FROM committee_documents
+    GROUP BY period_start
+), productivity_analysis AS (
+    SELECT cd.committee_code,
+        ci.committee_name,
+        ci.committee_category,
+        cd.period_start,
+        cd.total_documents,
+        cd.committee_reports,
+        cd.motions_handled,
+        cd.active_members,
+        cd.first_document_date,
+        cd.last_document_date,
+        pb.avg_documents_per_committee,
+        pb.median_documents,
+        pb.max_documents,
+        pb.min_documents,
+        lag(cd.total_documents, 1) OVER (PARTITION BY cd.committee_code ORDER BY cd.period_start) AS prev_documents,
+        lag(cd.active_members, 1) OVER (PARTITION BY cd.committee_code ORDER BY cd.period_start) AS prev_members,
+        round(avg(cd.total_documents) OVER (PARTITION BY cd.committee_code ORDER BY cd.period_start ROWS BETWEEN 3 PRECEDING AND CURRENT ROW), 2) AS ma_4quarter_documents
+    FROM committee_documents cd
+      LEFT JOIN committee_info ci ON cd.committee_code::text = ci.committee_code::text
+      LEFT JOIN productivity_benchmarks pb ON cd.period_start = pb.period_start
+)
+SELECT committee_code,
+    committee_name,
+    committee_category,
+    period_start,
+    (period_start + interval '3 months' - interval '1 day')::date AS period_end,
+    EXTRACT(year FROM period_start) AS year,
+    EXTRACT(quarter FROM period_start) AS quarter,
+    total_documents,
+    committee_reports,
+    motions_handled,
+    active_members,
+    round(total_documents::numeric / NULLIF(active_members, 0)::numeric, 2) AS documents_per_member,
+    round(committee_reports::numeric / NULLIF(active_members, 0)::numeric, 2) AS reports_per_member,
+    (total_documents - COALESCE(prev_documents, total_documents)) AS document_change,
+    round(((total_documents - COALESCE(prev_documents, total_documents))::numeric / NULLIF(prev_documents, 0)::numeric) * 100, 2) AS document_change_pct,
+    ma_4quarter_documents,
+    round(avg_documents_per_committee, 2) AS period_avg_documents,
+    round(median_documents::numeric, 2) AS period_median_documents,
+    max_documents AS period_max_documents,
+    min_documents AS period_min_documents,
+    round(total_documents::numeric - avg_documents_per_committee, 2) AS vs_average,
+    round(((total_documents::numeric / NULLIF(avg_documents_per_committee, 0)) - 1) * 100, 2) AS vs_average_pct,
+    CASE
+        WHEN total_documents::numeric >= avg_documents_per_committee * 1.5 THEN 'HIGHLY_PRODUCTIVE'
+        WHEN total_documents::numeric >= avg_documents_per_committee * 1.2 THEN 'ABOVE_AVERAGE'
+        WHEN total_documents::numeric >= avg_documents_per_committee * 0.8 THEN 'AVERAGE'
+        WHEN total_documents::numeric >= avg_documents_per_committee * 0.5 THEN 'BELOW_AVERAGE'
+        ELSE 'UNDERPERFORMING'
+    END AS productivity_level,
+    CASE
+        WHEN (total_documents - COALESCE(prev_documents, total_documents)) >= 10 THEN 'STRONG_INCREASE'
+        WHEN (total_documents - COALESCE(prev_documents, total_documents)) >= 5 THEN 'MODERATE_INCREASE'
+        WHEN (total_documents - COALESCE(prev_documents, total_documents)) > 0 THEN 'SLIGHT_INCREASE'
+        WHEN (total_documents - COALESCE(prev_documents, total_documents)) &lt;= -10 THEN 'STRONG_DECREASE'
+        WHEN (total_documents - COALESCE(prev_documents, total_documents)) &lt;= -5 THEN 'MODERATE_DECREASE'
+        WHEN (total_documents - COALESCE(prev_documents, total_documents)) &lt; 0 THEN 'SLIGHT_DECREASE'
+        ELSE 'STABLE'
+    END AS productivity_trend,
+    CASE
+        WHEN total_documents::numeric >= avg_documents_per_committee * 1.5 AND active_members >= 10 THEN 'Exceptional committee productivity and engagement'
+        WHEN total_documents::numeric >= avg_documents_per_committee * 1.2 THEN 'Above-average committee performance'
+        WHEN total_documents::numeric &lt; avg_documents_per_committee * 0.5 THEN 'Committee productivity concerns - investigation recommended'
+        WHEN (total_documents - COALESCE(prev_documents, total_documents)) &lt;= -10 THEN 'Significant productivity decline detected'
+        ELSE 'Standard committee operations'
+    END AS productivity_assessment,
+    first_document_date,
+    last_document_date,
+    (last_document_date - first_document_date) AS activity_span_days
+FROM productivity_analysis
+WHERE committee_code IS NOT NULL
+ORDER BY period_start DESC, total_documents DESC
+        </createView>
+    </changeSet>
+
+    <!-- ======================================================================== -->
+    <!-- 1.79-010: Fix view_ministry_effectiveness_trends — wrong doc join + 'ds'  -->
+    <!-- Uses CREATE OR REPLACE. No dependents.                                    -->
+    <!-- ======================================================================== -->
+    <changeSet id="1.79-010" author="copilot">
+        <comment>Fix view_ministry_effectiveness_trends: wrong document join
+        (dsc.hjid = dprc.hjid instead of dsc.document_person_reference_co_1 = dprc.hjid)
+        and non-existent document_type 'ds'. Only: mot, bet, prop, kammakt.
+        Replaced 'ds' with 'bet' for legislative documents (committee reports).</comment>
+        <createView viewName="view_ministry_effectiveness_trends" replaceIfExists="true">
+WITH ministry_base AS (
+    SELECT DISTINCT org_code,
+        lower(org_code::text) AS org_code_lower,
+        org_code AS short_code,
+        detail AS name
+    FROM assignment_data
+    WHERE assignment_type::text = 'Departement' AND org_code IS NOT NULL
+), ministry_document_data AS (
+    SELECT dsc.hjid AS id,
+        dd.document_type,
+        dd.made_public_date,
+        dd.org,
+        dpr.person_reference_id
+    FROM document_status_container dsc
+      LEFT JOIN document_data dd ON dsc.document_document_status_con_0::text = dd.id::text
+      LEFT JOIN document_person_reference_co_0 dprc ON dsc.document_person_reference_co_1 = dprc.hjid
+      LEFT JOIN document_person_reference_da_0 dpr ON dpr.document_person_reference_li_1 = dprc.hjid
+    WHERE dd.made_public_date IS NOT NULL
+), ministry_quarterly_metrics AS (
+    SELECT m.org_code,
+        m.short_code,
+        m.name,
+        date_trunc('quarter', doc.made_public_date::timestamp with time zone) AS period_start,
+        count(DISTINCT doc.id) AS documents_produced,
+        count(DISTINCT CASE WHEN lower(doc.document_type::text) = 'prop' THEN doc.id END) AS propositions,
+        count(DISTINCT CASE WHEN lower(doc.document_type::text) = 'bet' THEN doc.id END) AS government_bills,
+        count(DISTINCT CASE WHEN lower(doc.document_type::text) IN ('prop', 'bet') THEN doc.id END) AS legislative_documents,
+        count(DISTINCT doc.person_reference_id) AS active_members
+    FROM ministry_base m
+      LEFT JOIN ministry_document_data doc ON lower(doc.org::text) = m.org_code_lower
+        AND doc.made_public_date >= (CURRENT_DATE - interval '3 years')
+    GROUP BY m.org_code, m.short_code, m.name, date_trunc('quarter', doc.made_public_date::timestamp with time zone)
+), trend_calculations AS (
+    SELECT org_code, short_code, name, period_start,
+        documents_produced, propositions, government_bills, legislative_documents, active_members,
+        lag(documents_produced, 1) OVER (PARTITION BY org_code ORDER BY period_start) AS prev_documents,
+        lag(active_members, 1) OVER (PARTITION BY org_code ORDER BY period_start) AS prev_members,
+        lag(legislative_documents, 1) OVER (PARTITION BY org_code ORDER BY period_start) AS prev_legislative,
+        round(avg(documents_produced) OVER (PARTITION BY org_code ORDER BY period_start ROWS BETWEEN 3 PRECEDING AND CURRENT ROW), 2) AS ma_4quarter_documents,
+        round(avg(legislative_documents) OVER (PARTITION BY org_code ORDER BY period_start ROWS BETWEEN 3 PRECEDING AND CURRENT ROW), 2) AS ma_4quarter_legislative,
+        round(avg(active_members::numeric) OVER (PARTITION BY org_code ORDER BY period_start ROWS BETWEEN 3 PRECEDING AND CURRENT ROW), 2) AS ma_4quarter_members
+    FROM ministry_quarterly_metrics
+    WHERE period_start IS NOT NULL
+)
+SELECT org_code, short_code, name, period_start,
+    (period_start + interval '3 months' - interval '1 day')::date AS period_end,
+    EXTRACT(year FROM period_start) AS year,
+    EXTRACT(quarter FROM period_start) AS quarter,
+    documents_produced, propositions, government_bills, legislative_documents, active_members,
+    (documents_produced - COALESCE(prev_documents, documents_produced)) AS document_change,
+    (active_members - COALESCE(prev_members, active_members)) AS member_change,
+    (legislative_documents - COALESCE(prev_legislative, legislative_documents)) AS legislative_change,
+    ma_4quarter_documents, ma_4quarter_legislative, ma_4quarter_members,
+    round(documents_produced::numeric / NULLIF(active_members, 0)::numeric, 2) AS documents_per_member,
+    round(legislative_documents::numeric / NULLIF(active_members, 0)::numeric, 2) AS legislative_per_member,
+    CASE
+        WHEN documents_produced >= 50 THEN 'HIGHLY_PRODUCTIVE'
+        WHEN documents_produced >= 30 THEN 'PRODUCTIVE'
+        WHEN documents_produced >= 15 THEN 'MODERATE'
+        ELSE 'LOW_PRODUCTIVITY'
+    END AS productivity_level,
+    CASE
+        WHEN legislative_documents = 0 THEN 'INACTIVE_LEGISLATION'
+        WHEN legislative_documents >= 10 THEN 'HIGH_LEGISLATIVE_OUTPUT'
+        WHEN legislative_documents >= 5 THEN 'MODERATE_LEGISLATIVE_OUTPUT'
+        ELSE 'LOW_LEGISLATIVE_OUTPUT'
+    END AS legislative_status,
+    CASE
+        WHEN active_members = 0 THEN 'NO_ACTIVE_STAFF'
+        WHEN active_members = 1 THEN 'CRITICALLY_UNDERSTAFFED'
+        WHEN active_members &lt;= 3 THEN 'UNDERSTAFFED'
+        WHEN active_members &lt;= 10 THEN 'ADEQUATELY_STAFFED'
+        ELSE 'WELL_STAFFED'
+    END AS staffing_status,
+    CASE
+        WHEN ma_4quarter_documents &lt; 10 AND (documents_produced - COALESCE(prev_documents, documents_produced)) &lt;= -5 THEN 'SEVERE_DECLINE'
+        WHEN ma_4quarter_documents &lt; 20 AND (documents_produced - COALESCE(prev_documents, documents_produced)) &lt;= -3 THEN 'MODERATE_DECLINE'
+        WHEN (documents_produced - COALESCE(prev_documents, documents_produced)) &lt; 0 THEN 'SLIGHT_DECLINE'
+        WHEN (documents_produced - COALESCE(prev_documents, documents_produced)) > 0 THEN 'IMPROVING'
+        ELSE 'STABLE'
+    END AS stagnation_indicator,
+    CASE
+        WHEN documents_produced >= 50 AND active_members >= 10 AND legislative_documents >= 10 THEN 'Exceptional ministry performance - high output and capacity'
+        WHEN documents_produced >= 30 AND active_members >= 5 THEN 'Strong ministry effectiveness'
+        WHEN documents_produced &lt; 15 OR active_members &lt;= 3 OR legislative_documents = 0 THEN 'Ministry performance concerns - investigation recommended'
+        WHEN ma_4quarter_documents &lt; 20 AND (documents_produced - COALESCE(prev_documents, documents_produced)) &lt;= -5 THEN 'Significant ministry decline detected - intervention needed'
+        ELSE 'Standard ministry operations'
+    END AS effectiveness_assessment
+FROM trend_calculations
+ORDER BY org_code, period_start DESC
+        </createView>
+    </changeSet>
+
+    <!-- ======================================================================== -->
+    <!-- 1.79-011: Fix view_ministry_risk_evolution — wrong doc join + 'ds'        -->
+    <!-- Uses CREATE OR REPLACE. Has dependents.                                   -->
+    <!-- ======================================================================== -->
+    <changeSet id="1.79-011" author="copilot">
+        <comment>Fix view_ministry_risk_evolution: same wrong document join
+        and non-existent 'ds' type. Replaced with correct FK join and 'bet' type.</comment>
+        <createView viewName="view_ministry_risk_evolution" replaceIfExists="true">
+WITH ministry_base AS (
+    SELECT DISTINCT org_code,
+        lower(org_code::text) AS org_code_lower,
+        detail AS name
+    FROM assignment_data
+    WHERE assignment_type::text = 'Departement' AND org_code IS NOT NULL
+), quarterly_periods AS (
+    SELECT date_trunc('quarter', CURRENT_DATE - make_interval(months => n.n)) AS period_start
+    FROM generate_series(0, 21, 3) n(n)
+), ministry_quarters AS (
+    SELECT m.org_code, m.org_code_lower, m.name, qp.period_start AS assessment_period
+    FROM ministry_base m CROSS JOIN quarterly_periods qp
+), ministry_document_data AS (
+    SELECT dsc.hjid AS id,
+        dd.document_type,
+        dd.made_public_date,
+        dd.org,
+        dpr.person_reference_id
+    FROM document_status_container dsc
+      LEFT JOIN document_data dd ON dsc.document_document_status_con_0::text = dd.id::text
+      LEFT JOIN document_person_reference_co_0 dprc ON dsc.document_person_reference_co_1 = dprc.hjid
+      LEFT JOIN document_person_reference_da_0 dpr ON dpr.document_person_reference_li_1 = dprc.hjid
+    WHERE dd.made_public_date IS NOT NULL
+), quarterly_performance AS (
+    SELECT mq.org_code, mq.name, mq.assessment_period,
+        count(DISTINCT doc.id) AS documents_produced,
+        count(DISTINCT CASE WHEN lower(doc.document_type::text) IN ('prop', 'bet') THEN doc.id END) AS legislative_count,
+        count(DISTINCT doc.person_reference_id) AS active_members
+    FROM ministry_quarters mq
+      LEFT JOIN ministry_document_data doc ON lower(doc.org::text) = mq.org_code_lower
+        AND date_trunc('quarter', doc.made_public_date::timestamp with time zone) = mq.assessment_period
+        AND doc.made_public_date >= (CURRENT_DATE - interval '2 years')
+    GROUP BY mq.org_code, mq.name, mq.assessment_period
+), risk_calculations AS (
+    SELECT org_code, name, assessment_period,
+        documents_produced, legislative_count, active_members,
+        lag(documents_produced, 1) OVER (PARTITION BY org_code ORDER BY assessment_period) AS prev_documents,
+        lag(legislative_count, 1) OVER (PARTITION BY org_code ORDER BY assessment_period) AS prev_legislative,
+        lag(active_members, 1) OVER (PARTITION BY org_code ORDER BY assessment_period) AS prev_members,
+        avg(documents_produced) OVER (PARTITION BY org_code ORDER BY assessment_period ROWS BETWEEN 3 PRECEDING AND CURRENT ROW) AS rolling_avg_documents
+    FROM quarterly_performance
+)
+SELECT org_code, name, assessment_period,
+    (assessment_period + interval '3 months' - interval '1 day')::date AS period_end,
+    EXTRACT(year FROM assessment_period) AS year,
+    EXTRACT(quarter FROM assessment_period) AS quarter,
+    documents_produced, legislative_count, active_members,
+    (documents_produced - COALESCE(prev_documents, documents_produced)) AS document_trend,
+    (legislative_count - COALESCE(prev_legislative, legislative_count)) AS legislative_trend,
+    (active_members - COALESCE(prev_members, active_members)) AS staffing_trend,
+    rolling_avg_documents,
+    CASE
+        WHEN documents_produced = 0 AND active_members = 0 THEN 'CRITICAL'
+        WHEN documents_produced &lt; 5 OR active_members &lt;= 1 THEN 'HIGH'
+        WHEN documents_produced &lt; 10 OR active_members &lt;= 2 THEN 'MEDIUM'
+        WHEN (documents_produced - COALESCE(prev_documents, documents_produced)) &lt; -5 THEN 'ELEVATED'
+        ELSE 'LOW'
+    END AS risk_level,
+    CASE
+        WHEN documents_produced = 0 AND active_members = 0 THEN 'Critical: No activity detected - immediate review required'
+        WHEN documents_produced &lt; 5 THEN 'High Risk: Minimal document production - capacity concerns'
+        WHEN active_members &lt;= 1 THEN 'High Risk: Critically understaffed ministry'
+        WHEN (documents_produced - COALESCE(prev_documents, documents_produced)) &lt; -5 THEN 'Elevated Risk: Significant production decline detected'
+        WHEN documents_produced >= 20 AND active_members >= 5 THEN 'Low Risk: Healthy ministry operations'
+        ELSE 'Medium Risk: Standard operations with minor concerns'
+    END AS risk_assessment
+FROM risk_calculations
+ORDER BY org_code, assessment_period DESC
+        </createView>
+    </changeSet>
+
+    <!-- ======================================================================== -->
+    <!-- 1.79-012: Fix view_ministry_productivity_matrix — wrong doc join + 'ds'   -->
+    <!-- Uses CREATE OR REPLACE. No dependents.                                    -->
+    <!-- ======================================================================== -->
+    <changeSet id="1.79-012" author="copilot">
+        <comment>Fix view_ministry_productivity_matrix: same wrong document join
+        and non-existent 'ds' type. Replaced with correct FK join and 'bet' type.</comment>
+        <createView viewName="view_ministry_productivity_matrix" replaceIfExists="true">
+WITH ministry_base AS (
+    SELECT DISTINCT org_code,
+        org_code AS short_code,
+        detail AS name,
+        lower(detail::text) AS name_lower
+    FROM assignment_data
+    WHERE assignment_type::text = 'Departement' AND org_code IS NOT NULL AND detail IS NOT NULL
+), ministry_document_data AS (
+    SELECT dsc.hjid AS id,
+        dd.document_type,
+        dd.made_public_date,
+        dd.org,
+        lower(dd.org::text) AS org_lower,
+        dpr.person_reference_id
+    FROM document_status_container dsc
+      LEFT JOIN document_data dd ON dsc.document_document_status_con_0::text = dd.id::text
+      LEFT JOIN document_person_reference_co_0 dprc ON dsc.document_person_reference_co_1 = dprc.hjid
+      LEFT JOIN document_person_reference_da_0 dpr ON dpr.document_person_reference_li_1 = dprc.hjid
+    WHERE dd.made_public_date IS NOT NULL
+), ministry_annual_metrics AS (
+    SELECT m.org_code, m.short_code, m.name,
+        EXTRACT(year FROM doc.made_public_date) AS year,
+        count(DISTINCT doc.id) AS documents_produced,
+        count(DISTINCT CASE WHEN lower(doc.document_type::text) = 'prop' THEN doc.id END) AS propositions,
+        count(DISTINCT CASE WHEN lower(doc.document_type::text) = 'bet' THEN doc.id END) AS government_bills,
+        count(DISTINCT doc.person_reference_id) AS unique_contributors,
+        min(doc.made_public_date) AS earliest_document,
+        max(doc.made_public_date) AS latest_document
+    FROM ministry_base m
+      LEFT JOIN ministry_document_data doc ON doc.org_lower = m.name_lower
+        AND doc.made_public_date >= (CURRENT_DATE - interval '3 years')
+    GROUP BY m.org_code, m.short_code, m.name, EXTRACT(year FROM doc.made_public_date)
+), productivity_benchmarks AS (
+    SELECT year,
+        percentile_cont(0.25) WITHIN GROUP (ORDER BY documents_produced::double precision) AS p25_documents,
+        percentile_cont(0.50) WITHIN GROUP (ORDER BY documents_produced::double precision) AS median_documents,
+        percentile_cont(0.75) WITHIN GROUP (ORDER BY documents_produced::double precision) AS p75_documents,
+        avg(documents_produced) AS avg_documents
+    FROM ministry_annual_metrics
+    WHERE year IS NOT NULL
+    GROUP BY year
+)
+SELECT mam.org_code, mam.short_code, mam.name, mam.year,
+    mam.documents_produced, mam.propositions, mam.government_bills,
+    mam.unique_contributors, mam.earliest_document, mam.latest_document,
+    pb.median_documents, pb.avg_documents, pb.p25_documents, pb.p75_documents,
+    round(((mam.documents_produced::numeric - pb.avg_documents) / NULLIF(pb.avg_documents, 0)) * 100, 2) AS pct_vs_average,
+    CASE
+        WHEN mam.documents_produced::numeric::double precision >= pb.p75_documents THEN 'TOP_QUARTILE'
+        WHEN mam.documents_produced::numeric::double precision >= pb.median_documents THEN 'ABOVE_MEDIAN'
+        WHEN mam.documents_produced::numeric::double precision >= pb.p25_documents THEN 'BELOW_MEDIAN'
+        ELSE 'BOTTOM_QUARTILE'
+    END AS productivity_quartile,
+    CASE
+        WHEN mam.documents_produced::numeric::double precision >= pb.p75_documents THEN 'High-performing ministry'
+        WHEN mam.documents_produced::numeric::double precision &lt; pb.p25_documents THEN 'Underperforming ministry - review needed'
+        ELSE 'Standard ministry performance'
+    END AS performance_assessment
+FROM ministry_annual_metrics mam
+  LEFT JOIN productivity_benchmarks pb ON pb.year = mam.year
+WHERE mam.year IS NOT NULL
+ORDER BY mam.year DESC, mam.documents_produced DESC
+        </createView>
+    </changeSet>
+
+    <!-- ======================================================================== -->
+    <!-- 1.79-013: Fix view_risk_score_evolution — wrong document join             -->
+    <!-- Already fixed for vote case in 1.78-001 but document join still wrong.    -->
+    <!-- Uses CREATE OR REPLACE. Has dependents.                                   -->
+    <!-- ======================================================================== -->
+    <changeSet id="1.79-013" author="copilot">
+        <comment>Fix view_risk_score_evolution: document join still uses
+        dsc.hjid = dprc.hjid instead of correct FK dsc.document_person_reference_co_1.
+        The 1.78-001 fix corrected vote case sensitivity but not the document join,
+        causing document_count to always be 0.</comment>
+        <sql><![CDATA[
+CREATE OR REPLACE VIEW public.view_risk_score_evolution AS
+ WITH party_ballot_majority AS (
+         SELECT vote_data.embedded_id_ballot_id,
+            vote_data.party,
+            sum(CASE WHEN UPPER((vote_data.vote)::text) = 'JA' THEN 1 ELSE 0 END) AS party_yes_count,
+            sum(CASE WHEN UPPER((vote_data.vote)::text) = 'NEJ' THEN 1 ELSE 0 END) AS party_no_count,
+            (sum(CASE WHEN UPPER((vote_data.vote)::text) = 'JA' THEN 1 ELSE 0 END) >
+             sum(CASE WHEN UPPER((vote_data.vote)::text) = 'NEJ' THEN 1 ELSE 0 END)) AS party_approved
+           FROM public.vote_data
+          WHERE vote_data.vote_date >= (CURRENT_DATE - '3 years'::interval)
+            AND vote_data.party IS NOT NULL
+          GROUP BY vote_data.embedded_id_ballot_id, vote_data.party
+        ), politician_votes_with_rebel AS (
+         SELECT vd.embedded_id_intressent_id,
+            vd.embedded_id_ballot_id,
+            vd.vote,
+            vd.vote_date,
+            vd.party,
+            pbm.party_approved,
+                CASE
+                    WHEN UPPER((vd.vote)::text) = 'NEJ' AND pbm.party_approved = true THEN true
+                    WHEN UPPER((vd.vote)::text) = 'JA' AND pbm.party_approved = false THEN true
+                    ELSE false
+                END AS is_rebel
+           FROM public.vote_data vd
+             JOIN party_ballot_majority pbm
+               ON (vd.embedded_id_ballot_id)::text = (pbm.embedded_id_ballot_id)::text
+              AND (vd.party)::text = (pbm.party)::text
+          WHERE vd.vote_date >= (CURRENT_DATE - '3 years'::interval)
+        ), politician_document_data AS (
+         SELECT dpr.person_reference_id,
+            dd.made_public_date,
+            dd.id
+           FROM public.document_status_container dsc
+             LEFT JOIN public.document_data dd ON (dsc.document_document_status_con_0)::text = (dd.id)::text
+             LEFT JOIN public.document_person_reference_co_0 dprc ON dsc.document_person_reference_co_1 = dprc.hjid
+             LEFT JOIN public.document_person_reference_da_0 dpr ON dpr.document_person_reference_li_1 = dprc.hjid
+          WHERE dd.made_public_date >= (CURRENT_DATE - '3 years'::interval)
+            AND dpr.person_reference_id IS NOT NULL
+        ), monthly_risk_base AS (
+         SELECT p.id AS person_id,
+            p.first_name,
+            p.last_name,
+            p.party,
+            date_trunc('month'::text, (pvr.vote_date)::timestamp with time zone) AS assessment_period,
+            round(((count(*) FILTER (WHERE UPPER((pvr.vote)::text) = 'FRÅNVARANDE'))::numeric
+                   / NULLIF(count(*), 0)::numeric) * 100, 2) AS absence_rate,
+            round(((count(*) FILTER (WHERE pvr.is_rebel = true))::numeric
+                   / NULLIF(count(*) FILTER (WHERE UPPER((pvr.vote)::text) IN ('JA', 'NEJ')), 0)::numeric) * 100, 2) AS rebel_rate,
+            count(*) AS ballot_count,
+            count(DISTINCT vpd.id) AS document_count
+           FROM public.person_data p
+             LEFT JOIN politician_votes_with_rebel pvr
+               ON (pvr.embedded_id_intressent_id)::text = (p.id)::text
+             LEFT JOIN politician_document_data vpd
+               ON (vpd.person_reference_id)::text = (p.id)::text
+              AND vpd.made_public_date >= (CURRENT_DATE - '3 years'::interval)
+              AND date_trunc('month'::text, (vpd.made_public_date)::timestamp with time zone) =
+                  date_trunc('month'::text, (pvr.vote_date)::timestamp with time zone)
+          WHERE (p.status)::text = ANY (ARRAY[
+              'Tjänstgörande riksdagsledamot'::text,
+              'Tjänstgörande ersättare'::text,
+              'Tillgänglig ersättare'::text])
+          GROUP BY p.id, p.first_name, p.last_name, p.party,
+                   date_trunc('month'::text, (pvr.vote_date)::timestamp with time zone)
+        ), monthly_violations AS (
+         SELECT rule_violation.reference_id AS person_id,
+            date_trunc('month'::text, rule_violation.detected_date) AS assessment_period,
+            count(*) AS violation_count,
+            count(DISTINCT rule_violation.rule_group) AS violation_categories,
+            string_agg(DISTINCT (rule_violation.rule_group)::text, ', '::text
+                       ORDER BY (rule_violation.rule_group)::text) AS violation_types
+           FROM public.rule_violation
+          WHERE (rule_violation.resource_type)::text = 'POLITICIAN'
+            AND (rule_violation.status)::text = ANY (ARRAY['MINOR'::text, 'MAJOR'::text, 'CRITICAL'::text])
+            AND rule_violation.detected_date >= (CURRENT_DATE - '3 years'::interval)
+          GROUP BY rule_violation.reference_id, date_trunc('month'::text, rule_violation.detected_date)
+        ), risk_calculations AS (
+         SELECT mrb.person_id,
+            mrb.first_name,
+            mrb.last_name,
+            mrb.party,
+            mrb.assessment_period,
+            mrb.absence_rate,
+            mrb.rebel_rate,
+            mrb.ballot_count,
+            mrb.document_count,
+            COALESCE(mv.violation_count, 0::bigint) AS violation_count,
+            COALESCE(mv.violation_categories, 0::bigint) AS violation_categories,
+            COALESCE(mv.violation_types, ''::text) AS violation_types,
+            round(((LEAST(COALESCE(mv.violation_count, 0::bigint) * 2, 40::bigint))::numeric
+                   + (COALESCE(mrb.absence_rate, 0::numeric) * 30 / 100.0)
+                   + (COALESCE(mrb.rebel_rate, 0::numeric) * 20 / 100.0)
+                   + (CASE WHEN mrb.document_count < 5 THEN 10 ELSE 0 END)::numeric), 2) AS calculated_risk_score,
+            lag(round(((LEAST(COALESCE(mv.violation_count, 0::bigint) * 2, 40::bigint))::numeric
+                   + (COALESCE(mrb.absence_rate, 0::numeric) * 30 / 100.0)
+                   + (COALESCE(mrb.rebel_rate, 0::numeric) * 20 / 100.0)
+                   + (CASE WHEN mrb.document_count < 5 THEN 10 ELSE 0 END)::numeric), 2), 1)
+              OVER (PARTITION BY mrb.person_id ORDER BY mrb.assessment_period) AS prev_risk_score
+           FROM monthly_risk_base mrb
+             LEFT JOIN monthly_violations mv
+               ON (mrb.person_id)::text = (mv.person_id)::text
+              AND mrb.assessment_period = mv.assessment_period
+          WHERE mrb.ballot_count >= 5
+            AND mrb.assessment_period IS NOT NULL
+        )
+ SELECT person_id, first_name, last_name, party,
+    assessment_period,
+    ((assessment_period + '1 mon'::interval) - '1 day'::interval)::date AS assessment_period_end,
+    absence_rate, rebel_rate, ballot_count, document_count,
+    violation_count, violation_categories, violation_types,
+    calculated_risk_score AS risk_score,
+    prev_risk_score,
+    round(calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score), 2) AS risk_score_change,
+    CASE
+        WHEN (calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score)) >= 10 THEN 'SIGNIFICANT_INCREASE'
+        WHEN (calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score)) >= 5 THEN 'MODERATE_INCREASE'
+        WHEN (calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score)) > 0 THEN 'SLIGHT_INCREASE'
+        WHEN (calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score)) <= -10 THEN 'SIGNIFICANT_DECREASE'
+        WHEN (calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score)) <= -5 THEN 'MODERATE_DECREASE'
+        WHEN (calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score)) < 0 THEN 'SLIGHT_DECREASE'
+        ELSE 'STABLE'
+    END AS risk_trend,
+    CASE
+        WHEN calculated_risk_score >= 65 THEN 'CRITICAL'
+        WHEN calculated_risk_score >= 45 THEN 'HIGH'
+        WHEN calculated_risk_score >= 25 THEN 'MODERATE'
+        WHEN calculated_risk_score >= 15 THEN 'LOW'
+        ELSE 'MINIMAL'
+    END AS risk_severity,
+    CASE
+        WHEN COALESCE(prev_risk_score, 0) > 0 THEN
+            CASE
+                WHEN prev_risk_score < 25 AND calculated_risk_score >= 25 THEN 'ESCALATION_TO_MODERATE'
+                WHEN prev_risk_score < 45 AND calculated_risk_score >= 45 THEN 'ESCALATION_TO_HIGH'
+                WHEN prev_risk_score < 65 AND calculated_risk_score >= 65 THEN 'ESCALATION_TO_CRITICAL'
+                WHEN prev_risk_score >= 65 AND calculated_risk_score < 65 THEN 'DEESCALATION_FROM_CRITICAL'
+                WHEN prev_risk_score >= 45 AND calculated_risk_score < 45 THEN 'DEESCALATION_FROM_HIGH'
+                WHEN prev_risk_score >= 25 AND calculated_risk_score < 25 THEN 'DEESCALATION_FROM_MODERATE'
+                ELSE 'NO_SEVERITY_TRANSITION'
+            END
+        ELSE 'INITIAL_ASSESSMENT'
+    END AS severity_transition,
+    CASE
+        WHEN calculated_risk_score >= 65 THEN 'CRITICAL: Immediate attention required'
+        WHEN calculated_risk_score >= 45 AND (calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score)) >= 5 THEN 'HIGH RISK: Escalating trend detected'
+        WHEN calculated_risk_score >= 45 THEN 'HIGH RISK: Monitor closely'
+        WHEN calculated_risk_score >= 25 AND (calculated_risk_score - COALESCE(prev_risk_score, calculated_risk_score)) >= 10 THEN 'MODERATE RISK: Rapid escalation warning'
+        WHEN calculated_risk_score >= 25 THEN 'MODERATE RISK: Standard monitoring'
+        WHEN prev_risk_score >= 45 AND calculated_risk_score < 25 THEN 'IMPROVING: Effective risk mitigation'
+        ELSE 'LOW RISK: Normal operations'
+    END AS risk_assessment
+   FROM risk_calculations
+  ORDER BY person_id, assessment_period DESC;
+]]></sql>
+    </changeSet>
+
+    <!-- ======================================================================== -->
+    <!-- 1.79-014: Fix view_riksdagen_crisis_resilience_indicators — vote case     -->
+    <!-- Uses CREATE OR REPLACE. No dependents.                                    -->
+    <!-- ======================================================================== -->
+    <changeSet id="1.79-014" author="copilot">
+        <comment>Fix view_riksdagen_crisis_resilience_indicators: vote comparison used
+        title-case 'Frånvarande' but data is UPPERCASE 'FRÅNVARANDE'.
+        This caused crisis_absence_rate, crisis_party_discipline, normal_absence_rate
+        to always be 0. Applied UPPER() to all vote comparisons.</comment>
+        <sql><![CDATA[
+CREATE OR REPLACE VIEW view_riksdagen_crisis_resilience_indicators AS
+WITH monthly_activity AS (
+    SELECT date_trunc('month', vote_date::timestamp with time zone) AS activity_month,
+        count(DISTINCT embedded_id_ballot_id) AS ballot_count
+    FROM vote_data WHERE vote_date >= (CURRENT_DATE - interval '25 years')
+    GROUP BY date_trunc('month', vote_date::timestamp with time zone)
+), activity_thresholds AS (
+    SELECT percentile_cont(0.5) WITHIN GROUP (ORDER BY ballot_count::double precision) AS median_ballots,
+        percentile_cont(0.75) WITHIN GROUP (ORDER BY ballot_count::double precision) AS p75_ballots,
+        avg(ballot_count) AS avg_ballots
+    FROM monthly_activity
+), classified_periods AS (
+    SELECT ma.activity_month, ma.ballot_count,
+        CASE WHEN ma.ballot_count::double precision >= at.p75_ballots THEN 'CRISIS'
+             WHEN ma.ballot_count::double precision >= at.median_ballots THEN 'ELEVATED'
+             ELSE 'NORMAL' END AS period_type
+    FROM monthly_activity ma CROSS JOIN activity_thresholds at
+), crisis_voting AS (
+    SELECT vd.embedded_id_intressent_id AS person_id, vd.party,
+        count(*) AS crisis_votes,
+        count(*) FILTER (WHERE UPPER((vd.vote)::text) = 'FRÅNVARANDE') AS crisis_absent,
+        count(*) FILTER (WHERE UPPER((vd.vote)::text) = 'JA') AS crisis_yes,
+        count(*) FILTER (WHERE UPPER((vd.vote)::text) = 'NEJ') AS crisis_no,
+        count(*) FILTER (WHERE UPPER((vd.vote)::text) NOT IN ('FRÅNVARANDE','AVSTÅR') AND UPPER((vd.vote)::text) <> UPPER((vd.party)::text)) AS crisis_rebellions
+    FROM vote_data vd
+      JOIN classified_periods cp ON date_trunc('month', vd.vote_date::timestamp with time zone) = cp.activity_month
+        AND cp.period_type IN ('CRISIS', 'ELEVATED')
+    GROUP BY vd.embedded_id_intressent_id, vd.party
+), normal_voting AS (
+    SELECT vd.embedded_id_intressent_id AS person_id,
+        count(*) AS normal_votes,
+        count(*) FILTER (WHERE UPPER((vd.vote)::text) = 'FRÅNVARANDE') AS normal_absent,
+        count(*) FILTER (WHERE UPPER((vd.vote)::text) = 'JA') AS normal_yes,
+        count(*) FILTER (WHERE UPPER((vd.vote)::text) = 'NEJ') AS normal_no,
+        count(*) FILTER (WHERE UPPER((vd.vote)::text) NOT IN ('FRÅNVARANDE','AVSTÅR') AND UPPER((vd.vote)::text) <> UPPER((vd.party)::text)) AS normal_rebellions
+    FROM vote_data vd
+      JOIN classified_periods cp ON date_trunc('month', vd.vote_date::timestamp with time zone) = cp.activity_month
+        AND cp.period_type = 'NORMAL'
+    GROUP BY vd.embedded_id_intressent_id
+), all_voting_politicians AS (
+    SELECT DISTINCT embedded_id_intressent_id AS person_id FROM vote_data WHERE vote_date >= (CURRENT_DATE - interval '25 years')
+)
+SELECT p.id AS person_id, p.first_name, p.last_name, p.party,
+    COALESCE(cv.crisis_votes, 0) AS crisis_period_votes,
+    round((COALESCE(cv.crisis_absent, 0)::numeric / NULLIF(cv.crisis_votes, 0)::numeric) * 100, 2) AS crisis_absence_rate,
+    round(100 - (COALESCE(cv.crisis_rebellions, 0)::numeric / NULLIF(cv.crisis_votes, 0)::numeric) * 100, 2) AS crisis_party_discipline,
+    COALESCE(nv.normal_votes, 0) AS normal_period_votes,
+    round((COALESCE(nv.normal_absent, 0)::numeric / NULLIF(nv.normal_votes, 0)::numeric) * 100, 2) AS normal_absence_rate,
+    round(((COALESCE(cv.crisis_absent, 0)::numeric / NULLIF(cv.crisis_votes, 0)::numeric) * 100) - ((COALESCE(nv.normal_absent, 0)::numeric / NULLIF(nv.normal_votes, 0)::numeric) * 100), 2) AS absence_rate_change,
+    round(CASE WHEN COALESCE(cv.crisis_votes, 0) < 5 THEN NULL
+        ELSE (50 - LEAST(50, (COALESCE(cv.crisis_absent, 0)::numeric / NULLIF(cv.crisis_votes, 0)::numeric) * 100))
+             + (30 - LEAST(30, abs(((COALESCE(cv.crisis_absent, 0)::numeric / NULLIF(cv.crisis_votes, 0)::numeric) * 100) - ((COALESCE(nv.normal_absent, 0)::numeric / NULLIF(nv.normal_votes, 0)::numeric) * 100))))
+             + (20 - LEAST(20, (COALESCE(cv.crisis_rebellions, 0)::numeric / NULLIF(cv.crisis_votes, 0)::numeric) * 100))
+    END, 4) AS resilience_score,
+    CASE
+        WHEN COALESCE(cv.crisis_votes, 0) >= 10 AND (COALESCE(cv.crisis_absent, 0)::numeric / NULLIF(cv.crisis_votes, 0)::numeric) < 0.1 THEN 'HIGHLY_RESILIENT'
+        WHEN COALESCE(cv.crisis_votes, 0) >= 5 AND (COALESCE(cv.crisis_absent, 0)::numeric / NULLIF(cv.crisis_votes, 0)::numeric) < 0.2 THEN 'RESILIENT'
+        WHEN COALESCE(cv.crisis_votes, 0) >= 5 AND (COALESCE(cv.crisis_absent, 0)::numeric / NULLIF(cv.crisis_votes, 0)::numeric) < 0.4 THEN 'MODERATE_RESILIENCE'
+        WHEN COALESCE(cv.crisis_votes, 0) < 5 THEN 'INSUFFICIENT_DATA'
+        ELSE 'LOW_RESILIENCE'
+    END AS resilience_classification,
+    CASE
+        WHEN COALESCE(cv.crisis_votes, 0) >= 10 AND (COALESCE(cv.crisis_absent, 0)::numeric / NULLIF(cv.crisis_votes, 0)::numeric) < 0.1 THEN 'Highly engaged during crisis periods - strong institutional resilience'
+        WHEN COALESCE(cv.crisis_votes, 0) >= 5 AND (COALESCE(cv.crisis_absent, 0)::numeric / NULLIF(cv.crisis_votes, 0)::numeric) < 0.2 THEN 'Good crisis response - reliable during high-activity periods'
+        WHEN COALESCE(cv.crisis_votes, 0) >= 5 AND (COALESCE(cv.crisis_absent, 0)::numeric / NULLIF(cv.crisis_votes, 0)::numeric) < 0.4 THEN 'Moderate crisis engagement - some absence during critical votes'
+        WHEN COALESCE(cv.crisis_votes, 0) < 5 THEN 'Insufficient crisis period data for assessment'
+        ELSE 'Poor crisis response - high absence during high-activity periods'
+    END AS pressure_performance_assessment
+FROM person_data p
+  JOIN all_voting_politicians avp ON avp.person_id::text = p.id::text
+  LEFT JOIN crisis_voting cv ON cv.person_id::text = p.id::text
+  LEFT JOIN normal_voting nv ON nv.person_id::text = p.id::text
+WHERE (p.status)::text = ANY (ARRAY['Tjänstgörande riksdagsledamot', 'Tjänstgörande ersättare', 'Tillgänglig ersättare'])
+ORDER BY
+    CASE
+        WHEN COALESCE(cv.crisis_votes, 0) >= 10 AND (COALESCE(cv.crisis_absent, 0)::numeric / NULLIF(cv.crisis_votes, 0)::numeric) < 0.1 THEN 1
+        WHEN COALESCE(cv.crisis_votes, 0) >= 5 AND (COALESCE(cv.crisis_absent, 0)::numeric / NULLIF(cv.crisis_votes, 0)::numeric) < 0.2 THEN 2
+        WHEN COALESCE(cv.crisis_votes, 0) >= 5 AND (COALESCE(cv.crisis_absent, 0)::numeric / NULLIF(cv.crisis_votes, 0)::numeric) < 0.4 THEN 3
+        WHEN COALESCE(cv.crisis_votes, 0) < 5 THEN 4
+        ELSE 5
+    END, p.last_name, p.first_name;
+]]></sql>
+    </changeSet>
+
+    <!-- ======================================================================== -->
+    <!-- 1.79-015: Fix view_riksdagen_party_momentum_analysis — vote case          -->
+    <!-- Uses CREATE OR REPLACE. No dependents.                                    -->
+    <!-- ======================================================================== -->
+    <changeSet id="1.79-015" author="copilot">
+        <comment>Fix view_riksdagen_party_momentum_analysis: vote comparisons used
+        title-case values but data is UPPERCASE. Applied UPPER() to all vote comparisons.
+        This caused participation_rate to always be 0.</comment>
+        <sql><![CDATA[
+CREATE OR REPLACE VIEW public.view_riksdagen_party_momentum_analysis AS
+ WITH quarterly_support AS (
+         SELECT vote_data.party,
+            EXTRACT(year FROM vote_data.vote_date) AS year,
+            EXTRACT(quarter FROM vote_data.vote_date) AS quarter,
+            count(DISTINCT vote_data.embedded_id_ballot_id) AS ballots_participated,
+            count(
+                CASE
+                    WHEN (UPPER((vote_data.vote)::text) = 'JA'::text) THEN 1
+                    ELSE NULL::integer
+                END) AS yes_votes,
+            count(
+                CASE
+                    WHEN (UPPER((vote_data.vote)::text) = 'NEJ'::text) THEN 1
+                    ELSE NULL::integer
+                END) AS no_votes,
+            count(
+                CASE
+                    WHEN (UPPER((vote_data.vote)::text) = 'AVSTÅR'::text) THEN 1
+                    ELSE NULL::integer
+                END) AS abstain_votes,
+            count(
+                CASE
+                    WHEN (UPPER((vote_data.vote)::text) = 'FRÅNVARANDE'::text) THEN 1
+                    ELSE NULL::integer
+                END) AS absent_votes,
+            ((count(
+                CASE
+                    WHEN (UPPER((vote_data.vote)::text) = 'JA'::text) THEN 1
+                    ELSE NULL::integer
+                END))::double precision / (NULLIF(count(*), 0))::double precision) AS participation_rate
+           FROM public.vote_data
+          WHERE (vote_data.vote_date >= '2010-01-01'::date)
+          GROUP BY vote_data.party, (EXTRACT(year FROM vote_data.vote_date)), (EXTRACT(quarter FROM vote_data.vote_date))
+        ), momentum_calc AS (
+         SELECT quarterly_support.party,
+            quarterly_support.year,
+            quarterly_support.quarter,
+            quarterly_support.ballots_participated,
+            quarterly_support.participation_rate,
+            lag(quarterly_support.participation_rate, 1) OVER (PARTITION BY quarterly_support.party ORDER BY quarterly_support.year, quarterly_support.quarter) AS prev_quarter_rate,
+            (quarterly_support.participation_rate - lag(quarterly_support.participation_rate, 1) OVER (PARTITION BY quarterly_support.party ORDER BY quarterly_support.year, quarterly_support.quarter)) AS momentum,
+            avg(quarterly_support.participation_rate) OVER (PARTITION BY quarterly_support.party ORDER BY quarterly_support.year, quarterly_support.quarter ROWS BETWEEN 3 PRECEDING AND CURRENT ROW) AS ma_4quarter,
+            stddev(quarterly_support.participation_rate) OVER (PARTITION BY quarterly_support.party ORDER BY quarterly_support.year, quarterly_support.quarter ROWS BETWEEN 3 PRECEDING AND CURRENT ROW) AS volatility_4quarter
+           FROM quarterly_support
+        ), acceleration_calc AS (
+         SELECT momentum_calc.party,
+            momentum_calc.year,
+            momentum_calc.quarter,
+            momentum_calc.ballots_participated,
+            momentum_calc.participation_rate,
+            momentum_calc.prev_quarter_rate,
+            momentum_calc.momentum,
+            momentum_calc.ma_4quarter,
+            momentum_calc.volatility_4quarter,
+            (COALESCE(momentum_calc.momentum, (0)::double precision) - COALESCE(lag(momentum_calc.momentum, 1) OVER (PARTITION BY momentum_calc.party ORDER BY momentum_calc.year, momentum_calc.quarter), (0)::double precision)) AS acceleration
+           FROM momentum_calc
+        )
+ SELECT party,
+    year,
+    quarter,
+    concat(year, '-Q', quarter) AS period,
+    ballots_participated,
+    round((participation_rate)::numeric, 4) AS participation_rate,
+    round((prev_quarter_rate)::numeric, 4) AS prev_quarter_rate,
+    round((momentum)::numeric, 4) AS momentum,
+    round((ma_4quarter)::numeric, 4) AS moving_avg_4q,
+    round((volatility_4quarter)::numeric, 4) AS volatility,
+    round((acceleration)::numeric, 4) AS acceleration,
+        CASE
+            WHEN (COALESCE(momentum, (0)::double precision) > (0.05)::double precision) THEN 'STRONG_POSITIVE'::text
+            WHEN (COALESCE(momentum, (0)::double precision) > (0.02)::double precision) THEN 'POSITIVE'::text
+            WHEN (COALESCE(momentum, (0)::double precision) > ('-0.02'::numeric)::double precision) THEN 'STABLE'::text
+            WHEN (COALESCE(momentum, (0)::double precision) > ('-0.05'::numeric)::double precision) THEN 'NEGATIVE'::text
+            ELSE 'STRONG_NEGATIVE'::text
+        END AS trend_direction,
+        CASE
+            WHEN (COALESCE(volatility_4quarter, (0)::double precision) < (0.02)::double precision) THEN 'VERY_STABLE'::text
+            WHEN (COALESCE(volatility_4quarter, (0)::double precision) < (0.05)::double precision) THEN 'STABLE'::text
+            WHEN (COALESCE(volatility_4quarter, (0)::double precision) < (0.10)::double precision) THEN 'MODERATE'::text
+            WHEN (COALESCE(volatility_4quarter, (0)::double precision) < (0.15)::double precision) THEN 'VOLATILE'::text
+            ELSE 'HIGHLY_VOLATILE'::text
+        END AS stability_classification,
+        CASE
+            WHEN ((COALESCE(momentum, (0)::double precision) > (0)::double precision) AND (COALESCE(volatility_4quarter, (0)::double precision) < (0.05)::double precision)) THEN 'SUSTAINED_GROWTH'::text
+            WHEN ((COALESCE(momentum, (0)::double precision) > (0)::double precision) AND (COALESCE(volatility_4quarter, (0)::double precision) >= (0.05)::double precision)) THEN 'UNSTABLE_GROWTH'::text
+            WHEN ((COALESCE(momentum, (0)::double precision) < (0)::double precision) AND (COALESCE(volatility_4quarter, (0)::double precision) < (0.05)::double precision)) THEN 'STEADY_DECLINE'::text
+            WHEN ((COALESCE(momentum, (0)::double precision) < (0)::double precision) AND (COALESCE(volatility_4quarter, (0)::double precision) >= (0.05)::double precision)) THEN 'VOLATILE_DECLINE'::text
+            ELSE 'STABLE'::text
+        END AS intelligence_assessment
+   FROM acceleration_calc
+  WHERE (ballots_participated >= 5)
+  ORDER BY party, year DESC, quarter DESC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+]]></sql>
+    </changeSet>
+
 </databaseChangeLog>

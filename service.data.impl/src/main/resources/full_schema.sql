@@ -2,14 +2,15 @@
 -- PostgreSQL database dump
 --
 
-\restrict DczdlaaFZCkKuuKo8us4Vs3dnUI1R24aKHSb8ADqwmuY3A4Oyexi3Shht3gEqQZ
+\restrict Wd6fdjbNhpUi9bVBYAyVWtFmKxFvjtayaaAIw99FmvIMlagvyZaZSyfbWZqvtqO
 
--- Dumped from database version 16.13 (Ubuntu 16.13-1.pgdg24.04+1)
--- Dumped by pg_dump version 16.13 (Ubuntu 16.13-1.pgdg24.04+1)
+-- Dumped from database version 18.3 (Ubuntu 18.3-1.pgdg24.04+1)
+-- Dumped by pg_dump version 18.3 (Ubuntu 18.3-1.pgdg24.04+1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
+SET transaction_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
@@ -17,6 +18,20 @@ SET check_function_bodies = false;
 SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
+
+--
+-- Name: public; Type: SCHEMA; Schema: -; Owner: -
+--
+
+-- *not* creating schema, since initdb creates it
+
+
+--
+-- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON SCHEMA public IS '';
+
 
 --
 -- Name: pg_stat_statements; Type: EXTENSION; Schema: -; Owner: -
@@ -3636,27 +3651,27 @@ CREATE MATERIALIZED VIEW public.mv_annual_voting_metrics AS
     count(DISTINCT vd.embedded_id_intressent_id) AS active_politicians,
     round((avg(
         CASE
-            WHEN ((vd.vote)::text <> 'Frånvarande'::text) THEN 1
+            WHEN (upper((vd.vote)::text) <> 'FRÅNVARANDE'::text) THEN 1
             ELSE 0
         END) * (100)::numeric), 2) AS attendance_rate,
     round((avg(
         CASE
-            WHEN ((vd.vote)::text = 'Ja'::text) THEN 1
+            WHEN (upper((vd.vote)::text) = 'JA'::text) THEN 1
             ELSE 0
         END) * (100)::numeric), 2) AS avg_yes_rate,
     round((avg(
         CASE
-            WHEN ((vd.vote)::text = 'Nej'::text) THEN 1
+            WHEN (upper((vd.vote)::text) = 'NEJ'::text) THEN 1
             ELSE 0
         END) * (100)::numeric), 2) AS avg_no_rate,
     round((avg(
         CASE
-            WHEN ((vd.vote)::text = 'Avstår'::text) THEN 1
+            WHEN (upper((vd.vote)::text) = 'AVSTÅR'::text) THEN 1
             ELSE 0
         END) * (100)::numeric), 2) AS avg_abstain_rate
    FROM (public.vote_data vd
      LEFT JOIN election_years ey ON (((ey.election_year)::numeric = EXTRACT(year FROM vd.vote_date))))
-  WHERE ((vd.vote_date IS NOT NULL) AND ((EXTRACT(year FROM vd.vote_date) >= (2002)::numeric) AND (EXTRACT(year FROM vd.vote_date) <= (2026)::numeric)))
+  WHERE ((vd.vote_date IS NOT NULL) AND (EXTRACT(year FROM vd.vote_date) >= (2002)::numeric) AND (EXTRACT(year FROM vd.vote_date) <= (2026)::numeric))
   GROUP BY ((EXTRACT(year FROM vd.vote_date))::integer),
         CASE
             WHEN (ey.election_year IS NOT NULL) THEN true
@@ -3669,9 +3684,7 @@ CREATE MATERIALIZED VIEW public.mv_annual_voting_metrics AS
 -- Name: MATERIALIZED VIEW mv_annual_voting_metrics; Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON MATERIALIZED VIEW public.mv_annual_voting_metrics IS 'Pre-aggregated annual voting metrics from vote_data (2002-2026). 
-                 Replaces expensive vote_data aggregation in annual_metrics CTE.
-                 Refresh: Daily. Performance: Reduces 3.5M row scan to 24 pre-computed rows.';
+COMMENT ON MATERIALIZED VIEW public.mv_annual_voting_metrics IS 'Pre-aggregated annual voting metrics from vote_data (2002-2026). Uses UPPER() for vote comparisons. Refresh: Daily.';
 
 
 --
@@ -6606,7 +6619,7 @@ CREATE VIEW public.view_committee_productivity AS
             count(DISTINCT ad.intressent_id) FILTER (WHERE ((ad.role_code)::text = 'Ledamot'::text)) AS regular_members,
             count(DISTINCT ad.intressent_id) FILTER (WHERE (((ad.role_code)::text ~~* '%suppleant%'::text) OR ((ad.role_code)::text ~~* '%ersättare%'::text))) AS substitutes
            FROM (public.view_riksdagen_committee rc
-             LEFT JOIN public.assignment_data ad ON ((((ad.org_code)::text = (rc.embedded_id_org_code)::text) AND ((ad.assignment_type)::text = ANY (ARRAY[('uppdrag'::character varying)::text, ('Riksdagsorgan'::character varying)::text])) AND ((ad.to_date IS NULL) OR (ad.to_date >= CURRENT_DATE)))))
+             LEFT JOIN public.assignment_data ad ON ((((ad.org_code)::text = (rc.embedded_id_org_code)::text) AND ((ad.assignment_type)::text = ANY (ARRAY['uppdrag'::text, 'Riksdagsorgan'::text])) AND ((ad.to_date IS NULL) OR (ad.to_date >= CURRENT_DATE)))))
           GROUP BY rc.embedded_id_org_code, rc.embedded_id_detail
         ), committee_decisions AS (
          SELECT view_riksdagen_committee_decisions.org AS committee_code,
@@ -6621,9 +6634,9 @@ CREATE VIEW public.view_committee_productivity AS
          SELECT upper((cdd.org)::text) AS committee_code,
             count(DISTINCT cdd.id) AS total_documents,
             count(DISTINCT cdd.id) FILTER (WHERE (cdd.public_date >= (CURRENT_DATE - '1 year'::interval))) AS documents_last_year,
-            count(DISTINCT cdd.id) FILTER (WHERE ((cdd.sub_type)::text = 'mot'::text)) AS motions,
-            count(DISTINCT cdd.id) FILTER (WHERE ((cdd.sub_type)::text = 'prop'::text)) AS propositions,
-            count(DISTINCT cdd.id) FILTER (WHERE ((cdd.label)::text ~~ '%bet%'::text)) AS reports
+            count(DISTINCT cdd.id) FILTER (WHERE ((cdd.sub_type)::text = 'bet'::text)) AS reports,
+            count(DISTINCT cdd.id) FILTER (WHERE ((cdd.sub_type)::text = 'utl'::text)) AS statements,
+            count(DISTINCT cdd.id) FILTER (WHERE (((cdd.sub_type)::text <> ALL (ARRAY['bet'::text, 'utl'::text])) OR (cdd.sub_type IS NULL))) AS other_documents
            FROM public.committee_document_data cdd
           WHERE (cdd.public_date >= (CURRENT_DATE - '2 years'::interval))
           GROUP BY (upper((cdd.org)::text))
@@ -6649,9 +6662,9 @@ CREATE VIEW public.view_committee_productivity AS
             cd.latest_decision_date,
             cdoc.total_documents,
             cdoc.documents_last_year,
-            cdoc.motions,
-            cdoc.propositions,
             cdoc.reports,
+            cdoc.statements,
+            cdoc.other_documents,
             cb.total_ballots_decided,
             cb.avg_yes_percentage,
             (((((LEAST(((COALESCE(cd.decisions_last_year, (0)::bigint))::numeric / 20.0), 1.0) * (30)::numeric) + (LEAST(((COALESCE(cdoc.documents_last_year, (0)::bigint))::numeric / 30.0), 1.0) * (25)::numeric)) + (
@@ -6696,9 +6709,9 @@ CREATE VIEW public.view_committee_productivity AS
     COALESCE((CURRENT_DATE - latest_decision_date), '-1'::integer) AS days_since_last_decision,
     COALESCE(total_documents, (0)::bigint) AS total_documents,
     COALESCE(documents_last_year, (0)::bigint) AS documents_last_year,
-    COALESCE(motions, (0)::bigint) AS motions_count,
-    COALESCE(propositions, (0)::bigint) AS propositions_count,
-    COALESCE(reports, (0)::bigint) AS reports_count,
+    COALESCE(reports, (0)::bigint) AS motions_count,
+    COALESCE(statements, (0)::bigint) AS propositions_count,
+    COALESCE(other_documents, (0)::bigint) AS reports_count,
         CASE
             WHEN (total_members > 0) THEN round(((COALESCE(decisions_last_year, (0)::bigint))::numeric / (total_members)::numeric), 2)
             ELSE (0)::numeric
@@ -6759,12 +6772,12 @@ CREATE VIEW public.view_committee_productivity_matrix AS
             count(*) AS total_documents,
             count(DISTINCT
                 CASE
-                    WHEN ((view_riksdagen_politician_document.document_type)::text = 'Utskottsbetänkande'::text) THEN view_riksdagen_politician_document.doc_id
+                    WHEN ((view_riksdagen_politician_document.document_type)::text = 'bet'::text) THEN view_riksdagen_politician_document.doc_id
                     ELSE NULL::character varying
                 END) AS committee_reports,
             count(DISTINCT
                 CASE
-                    WHEN ((view_riksdagen_politician_document.document_type)::text = 'Motion'::text) THEN view_riksdagen_politician_document.doc_id
+                    WHEN ((view_riksdagen_politician_document.document_type)::text = 'mot'::text) THEN view_riksdagen_politician_document.doc_id
                     ELSE NULL::character varying
                 END) AS motions_handled,
             count(DISTINCT view_riksdagen_politician_document.person_reference_id) AS active_members,
@@ -6818,8 +6831,8 @@ CREATE VIEW public.view_committee_productivity_matrix AS
     committee_category,
     period_start,
     (((period_start + '3 mons'::interval) - '1 day'::interval))::date AS period_end,
-    EXTRACT(year FROM (period_start)::timestamp without time zone) AS year,
-    EXTRACT(quarter FROM (period_start)::timestamp without time zone) AS quarter,
+    EXTRACT(year FROM period_start) AS year,
+    EXTRACT(quarter FROM period_start) AS quarter,
     total_documents,
     committee_reports,
     motions_handled,
@@ -6904,7 +6917,7 @@ CREATE VIEW public.view_politician_risk_summary AS
             count(DISTINCT dsc.hjid) AS documents_last_year
            FROM (((public.document_status_container dsc
              LEFT JOIN public.document_data dd ON (((dsc.document_document_status_con_0)::text = (dd.id)::text)))
-             LEFT JOIN public.document_person_reference_co_0 dprc ON ((dsc.hjid = dprc.hjid)))
+             LEFT JOIN public.document_person_reference_co_0 dprc ON ((dsc.document_person_reference_co_1 = dprc.hjid)))
              LEFT JOIN public.document_person_reference_da_0 dpr ON ((dpr.document_person_reference_li_1 = dprc.hjid)))
           WHERE ((dd.made_public_date >= (CURRENT_DATE - '1 year'::interval)) AND (dpr.person_reference_id IS NOT NULL))
           GROUP BY dpr.person_reference_id
@@ -7101,7 +7114,7 @@ CREATE VIEW public.view_risk_score_evolution AS
             dd.id
            FROM (((public.document_status_container dsc
              LEFT JOIN public.document_data dd ON (((dsc.document_document_status_con_0)::text = (dd.id)::text)))
-             LEFT JOIN public.document_person_reference_co_0 dprc ON ((dsc.hjid = dprc.hjid)))
+             LEFT JOIN public.document_person_reference_co_0 dprc ON ((dsc.document_person_reference_co_1 = dprc.hjid)))
              LEFT JOIN public.document_person_reference_da_0 dpr ON ((dpr.document_person_reference_li_1 = dprc.hjid)))
           WHERE ((dd.made_public_date >= (CURRENT_DATE - '3 years'::interval)) AND (dpr.person_reference_id IS NOT NULL))
         ), monthly_risk_base AS (
@@ -8280,7 +8293,7 @@ CREATE VIEW public.view_ministry_risk_evolution AS
             dpr.person_reference_id
            FROM (((public.document_status_container dsc
              LEFT JOIN public.document_data dd ON (((dsc.document_document_status_con_0)::text = (dd.id)::text)))
-             LEFT JOIN public.document_person_reference_co_0 dprc ON ((dsc.hjid = dprc.hjid)))
+             LEFT JOIN public.document_person_reference_co_0 dprc ON ((dsc.document_person_reference_co_1 = dprc.hjid)))
              LEFT JOIN public.document_person_reference_da_0 dpr ON ((dpr.document_person_reference_li_1 = dprc.hjid)))
           WHERE (dd.made_public_date IS NOT NULL)
         ), quarterly_performance AS (
@@ -8290,7 +8303,7 @@ CREATE VIEW public.view_ministry_risk_evolution AS
             count(DISTINCT doc.id) AS documents_produced,
             count(DISTINCT
                 CASE
-                    WHEN (lower((doc.document_type)::text) = ANY (ARRAY['prop'::text, 'ds'::text])) THEN doc.id
+                    WHEN (lower((doc.document_type)::text) = ANY (ARRAY['prop'::text, 'bet'::text])) THEN doc.id
                     ELSE NULL::bigint
                 END) AS legislative_count,
             count(DISTINCT doc.person_reference_id) AS active_members
@@ -8665,7 +8678,6 @@ CREATE VIEW public.view_politician_behavioral_trends AS
   ORDER BY person_id, period_start DESC;
 
 
-
 --
 -- Name: view_election_cycle_temporal_trends; Type: VIEW; Schema: public; Owner: -
 --
@@ -8886,7 +8898,7 @@ CREATE VIEW public.view_ministry_effectiveness_trends AS
             dpr.person_reference_id
            FROM (((public.document_status_container dsc
              LEFT JOIN public.document_data dd ON (((dsc.document_document_status_con_0)::text = (dd.id)::text)))
-             LEFT JOIN public.document_person_reference_co_0 dprc ON ((dsc.hjid = dprc.hjid)))
+             LEFT JOIN public.document_person_reference_co_0 dprc ON ((dsc.document_person_reference_co_1 = dprc.hjid)))
              LEFT JOIN public.document_person_reference_da_0 dpr ON ((dpr.document_person_reference_li_1 = dprc.hjid)))
           WHERE (dd.made_public_date IS NOT NULL)
         ), ministry_quarterly_metrics AS (
@@ -8902,12 +8914,12 @@ CREATE VIEW public.view_ministry_effectiveness_trends AS
                 END) AS propositions,
             count(DISTINCT
                 CASE
-                    WHEN (lower((doc.document_type)::text) = 'ds'::text) THEN doc.id
+                    WHEN (lower((doc.document_type)::text) = 'bet'::text) THEN doc.id
                     ELSE NULL::bigint
                 END) AS government_bills,
             count(DISTINCT
                 CASE
-                    WHEN (lower((doc.document_type)::text) = ANY (ARRAY['prop'::text, 'ds'::text])) THEN doc.id
+                    WHEN (lower((doc.document_type)::text) = ANY (ARRAY['prop'::text, 'bet'::text])) THEN doc.id
                     ELSE NULL::bigint
                 END) AS legislative_documents,
             count(DISTINCT doc.person_reference_id) AS active_members
@@ -9011,7 +9023,7 @@ CREATE VIEW public.view_ministry_productivity_matrix AS
             dpr.person_reference_id
            FROM (((public.document_status_container dsc
              LEFT JOIN public.document_data dd ON (((dsc.document_document_status_con_0)::text = (dd.id)::text)))
-             LEFT JOIN public.document_person_reference_co_0 dprc ON ((dsc.hjid = dprc.hjid)))
+             LEFT JOIN public.document_person_reference_co_0 dprc ON ((dsc.document_person_reference_co_1 = dprc.hjid)))
              LEFT JOIN public.document_person_reference_da_0 dpr ON ((dpr.document_person_reference_li_1 = dprc.hjid)))
           WHERE (dd.made_public_date IS NOT NULL)
         ), ministry_annual_metrics AS (
@@ -9027,7 +9039,7 @@ CREATE VIEW public.view_ministry_productivity_matrix AS
                 END) AS propositions,
             count(DISTINCT
                 CASE
-                    WHEN (lower((doc.document_type)::text) = 'ds'::text) THEN doc.id
+                    WHEN (lower((doc.document_type)::text) = 'bet'::text) THEN doc.id
                     ELSE NULL::bigint
                 END) AS government_bills,
             count(DISTINCT doc.person_reference_id) AS unique_contributors,
@@ -9396,7 +9408,6 @@ CREATE VIEW public.view_riksdagen_committee_role_member AS
         END, a.from_date DESC;
 
 
-
 --
 -- Name: view_riksdagen_committee_roles; Type: VIEW; Schema: public; Owner: -
 --
@@ -9442,20 +9453,20 @@ CREATE VIEW public.view_riksdagen_crisis_resilience_indicators AS
          SELECT vd.embedded_id_intressent_id AS person_id,
             vd.party,
             count(*) AS crisis_votes,
-            count(*) FILTER (WHERE ((vd.vote)::text = 'Frånvarande'::text)) AS crisis_absent,
-            count(*) FILTER (WHERE ((vd.vote)::text = 'Ja'::text)) AS crisis_yes,
-            count(*) FILTER (WHERE ((vd.vote)::text = 'Nej'::text)) AS crisis_no,
-            count(*) FILTER (WHERE (((vd.vote)::text <> (vd.party)::text) AND ((vd.vote)::text <> 'Frånvarande'::text))) AS crisis_rebellions
+            count(*) FILTER (WHERE (upper((vd.vote)::text) = 'FRÅNVARANDE'::text)) AS crisis_absent,
+            count(*) FILTER (WHERE (upper((vd.vote)::text) = 'JA'::text)) AS crisis_yes,
+            count(*) FILTER (WHERE (upper((vd.vote)::text) = 'NEJ'::text)) AS crisis_no,
+            count(*) FILTER (WHERE ((upper((vd.vote)::text) <> ALL (ARRAY['FRÅNVARANDE'::text, 'AVSTÅR'::text])) AND (upper((vd.vote)::text) <> upper((vd.party)::text)))) AS crisis_rebellions
            FROM (public.vote_data vd
              JOIN classified_periods cp ON (((date_trunc('month'::text, (vd.vote_date)::timestamp with time zone) = cp.activity_month) AND (cp.period_type = ANY (ARRAY['CRISIS'::text, 'ELEVATED'::text])))))
           GROUP BY vd.embedded_id_intressent_id, vd.party
         ), normal_voting AS (
          SELECT vd.embedded_id_intressent_id AS person_id,
             count(*) AS normal_votes,
-            count(*) FILTER (WHERE ((vd.vote)::text = 'Frånvarande'::text)) AS normal_absent,
-            count(*) FILTER (WHERE ((vd.vote)::text = 'Ja'::text)) AS normal_yes,
-            count(*) FILTER (WHERE ((vd.vote)::text = 'Nej'::text)) AS normal_no,
-            count(*) FILTER (WHERE (((vd.vote)::text <> (vd.party)::text) AND ((vd.vote)::text <> 'Frånvarande'::text))) AS normal_rebellions
+            count(*) FILTER (WHERE (upper((vd.vote)::text) = 'FRÅNVARANDE'::text)) AS normal_absent,
+            count(*) FILTER (WHERE (upper((vd.vote)::text) = 'JA'::text)) AS normal_yes,
+            count(*) FILTER (WHERE (upper((vd.vote)::text) = 'NEJ'::text)) AS normal_no,
+            count(*) FILTER (WHERE ((upper((vd.vote)::text) <> ALL (ARRAY['FRÅNVARANDE'::text, 'AVSTÅR'::text])) AND (upper((vd.vote)::text) <> upper((vd.party)::text)))) AS normal_rebellions
            FROM (public.vote_data vd
              JOIN classified_periods cp ON (((date_trunc('month'::text, (vd.vote_date)::timestamp with time zone) = cp.activity_month) AND (cp.period_type = 'NORMAL'::text))))
           GROUP BY vd.embedded_id_intressent_id
@@ -9497,7 +9508,7 @@ CREATE VIEW public.view_riksdagen_crisis_resilience_indicators AS
      JOIN all_voting_politicians avp ON (((avp.person_id)::text = (p.id)::text)))
      LEFT JOIN crisis_voting cv ON (((cv.person_id)::text = (p.id)::text)))
      LEFT JOIN normal_voting nv ON (((nv.person_id)::text = (p.id)::text)))
-  WHERE ((p.status)::text = ANY (ARRAY[('Tjänstgörande riksdagsledamot'::character varying)::text, ('Tjänstgörande ersättare'::character varying)::text, ('Tillgänglig ersättare'::character varying)::text]))
+  WHERE ((p.status)::text = ANY (ARRAY['Tjänstgörande riksdagsledamot'::text, 'Tjänstgörande ersättare'::text, 'Tillgänglig ersättare'::text]))
   ORDER BY
         CASE
             WHEN ((COALESCE(cv.crisis_votes, (0)::bigint) >= 10) AND (((COALESCE(cv.crisis_absent, (0)::bigint))::numeric / (NULLIF(cv.crisis_votes, 0))::numeric) < 0.1)) THEN 1
@@ -10077,72 +10088,51 @@ CREATE VIEW public.view_riksdagen_election_year_behavioral_patterns AS
     round(eb.election_avg_ballots, 2) AS election_avg_ballots,
     round(eb.election_stddev_ballots, 2) AS election_stddev_ballots,
     round(eb.midterm_avg_ballots, 2) AS midterm_avg_ballots,
-    round(eb.midterm_stddev_ballots, 2) AS midterm_stddev_ballots,
-    round(((am.total_ballots)::numeric / NULLIF(eb.midterm_avg_ballots, (0)::numeric)), 2) AS ballot_ratio_vs_midterm,
-    round(((am.total_ballots)::numeric / NULLIF(eb.election_avg_ballots, (0)::numeric)), 2) AS ballot_ratio_vs_election_avg,
     round((eb.election_median_docs)::numeric, 2) AS election_median_docs,
     round(eb.election_avg_docs, 2) AS election_avg_docs,
-    round(eb.election_stddev_docs, 2) AS election_stddev_docs,
     round(eb.midterm_avg_docs, 2) AS midterm_avg_docs,
-    round(((am.documents_produced)::numeric / NULLIF(eb.midterm_avg_docs, (0)::numeric)), 2) AS doc_ratio_vs_midterm,
-    round(((am.documents_produced)::numeric / NULLIF(eb.election_avg_docs, (0)::numeric)), 2) AS doc_ratio_vs_election_avg,
     round((eb.election_median_motions)::numeric, 2) AS election_median_motions,
     round(eb.election_avg_motions, 2) AS election_avg_motions,
-    round(eb.election_stddev_motions, 2) AS election_stddev_motions,
     round(eb.midterm_avg_motions, 2) AS midterm_avg_motions,
-    round(((am.motions_filed)::numeric / NULLIF(eb.midterm_avg_motions, (0)::numeric)), 2) AS motion_ratio_vs_midterm,
     round(eb.election_avg_attendance, 2) AS election_avg_attendance,
     round(eb.midterm_avg_attendance, 2) AS midterm_avg_attendance,
         CASE
-            WHEN ((eb.election_stddev_ballots > (0)::numeric) AND am.is_election_year) THEN round((((am.total_ballots)::numeric - eb.election_avg_ballots) / eb.election_stddev_ballots), 2)
+            WHEN (am.is_election_year AND (eb.election_stddev_ballots > (0)::numeric)) THEN round((((am.total_ballots)::numeric - eb.election_avg_ballots) / eb.election_stddev_ballots), 2)
+            WHEN ((NOT am.is_election_year) AND (eb.midterm_stddev_ballots > (0)::numeric)) THEN round((((am.total_ballots)::numeric - eb.midterm_avg_ballots) / eb.midterm_stddev_ballots), 2)
             ELSE (0)::numeric
-        END AS ballot_z_score_vs_election_avg,
+        END AS ballot_z_score,
         CASE
-            WHEN ((eb.election_stddev_docs > (0)::numeric) AND am.is_election_year) THEN round((((am.documents_produced)::numeric - eb.election_avg_docs) / eb.election_stddev_docs), 2)
+            WHEN (am.is_election_year AND (eb.election_stddev_docs > (0)::numeric)) THEN round((((am.documents_produced)::numeric - eb.election_avg_docs) / eb.election_stddev_docs), 2)
+            WHEN (NOT am.is_election_year) THEN round((((am.documents_produced)::numeric - COALESCE(eb.midterm_avg_docs, (0)::numeric)) / NULLIF(eb.election_stddev_docs, (0)::numeric)), 2)
             ELSE (0)::numeric
-        END AS doc_z_score_vs_election_avg,
+        END AS document_z_score,
         CASE
-            WHEN (am.is_election_year AND ((am.total_ballots)::numeric > (eb.election_avg_ballots + eb.election_stddev_ballots))) THEN 'HIGH_ELECTION_ACTIVITY'::text
-            WHEN (am.is_election_year AND ((am.total_ballots)::numeric < (eb.election_avg_ballots - eb.election_stddev_ballots))) THEN 'LOW_ELECTION_ACTIVITY'::text
-            WHEN am.is_election_year THEN 'NORMAL_ELECTION_ACTIVITY'::text
+            WHEN (am.is_election_year AND (eb.election_stddev_motions > (0)::numeric)) THEN round((((am.motions_filed)::numeric - eb.election_avg_motions) / eb.election_stddev_motions), 2)
+            ELSE (0)::numeric
+        END AS motion_z_score,
+        CASE
+            WHEN (am.is_election_year AND (eb.election_stddev_attendance > (0)::numeric)) THEN round(((am.attendance_rate - eb.election_avg_attendance) / eb.election_stddev_attendance), 2)
+            ELSE (0)::numeric
+        END AS attendance_z_score,
+        CASE
+            WHEN am.is_election_year THEN 'ELECTION_YEAR'::text
             ELSE 'MIDTERM_YEAR'::text
         END AS year_classification,
         CASE
-            WHEN am.is_election_year THEN
-            CASE
-                WHEN (((am.total_ballots)::numeric > (eb.election_avg_ballots + eb.election_stddev_ballots)) OR ((am.documents_produced)::numeric > (eb.election_avg_docs + eb.election_stddev_docs)) OR ((am.motions_filed)::numeric > (eb.election_avg_motions + eb.election_stddev_motions))) THEN 'HIGH_ACTIVITY_ELECTION'::text
-                WHEN (((am.total_ballots)::numeric < (eb.election_avg_ballots - eb.election_stddev_ballots)) AND ((am.documents_produced)::numeric < (eb.election_avg_docs - eb.election_stddev_docs))) THEN 'LOW_ACTIVITY_ELECTION'::text
-                ELSE 'TYPICAL_ELECTION'::text
-            END
-            ELSE
-            CASE
-                WHEN ((am.total_ballots)::numeric > (eb.midterm_avg_ballots + COALESCE(eb.midterm_stddev_ballots, (0)::numeric))) THEN 'HIGH_ACTIVITY_MIDTERM'::text
-                WHEN ((am.total_ballots)::numeric < (eb.midterm_avg_ballots - COALESCE(eb.midterm_stddev_ballots, (0)::numeric))) THEN 'LOW_ACTIVITY_MIDTERM'::text
-                ELSE 'TYPICAL_MIDTERM'::text
-            END
-        END AS composite_classification,
-    lag(am.total_ballots) OVER (ORDER BY am.year) AS prev_year_ballots,
+            WHEN (am.is_election_year AND ((am.total_ballots)::numeric > COALESCE(eb.election_avg_ballots, (0)::numeric))) THEN 'ABOVE_ELECTION_AVERAGE'::text
+            WHEN am.is_election_year THEN 'BELOW_ELECTION_AVERAGE'::text
+            WHEN ((am.total_ballots)::numeric > COALESCE(eb.midterm_avg_ballots, (0)::numeric)) THEN 'ABOVE_MIDTERM_AVERAGE'::text
+            ELSE 'BELOW_MIDTERM_AVERAGE'::text
+        END AS ballot_assessment,
         CASE
-            WHEN ((lag(am.total_ballots) OVER (ORDER BY am.year) IS NOT NULL) AND (lag(am.total_ballots) OVER (ORDER BY am.year) > 0)) THEN round(((((am.total_ballots - lag(am.total_ballots) OVER (ORDER BY am.year)))::numeric / (lag(am.total_ballots) OVER (ORDER BY am.year))::numeric) * (100)::numeric), 2)
-            ELSE NULL::numeric
-        END AS yoy_ballot_change_pct
+            WHEN (((am.documents_produced)::numeric > COALESCE(eb.election_avg_docs, (0)::numeric)) AND ((am.motions_filed)::numeric > COALESCE(eb.election_avg_motions, (0)::numeric))) THEN 'HIGH_LEGISLATIVE_ACTIVITY'::text
+            WHEN ((am.documents_produced)::numeric > COALESCE(eb.midterm_avg_docs, (0)::numeric)) THEN 'ABOVE_AVERAGE_ACTIVITY'::text
+            WHEN ((am.documents_produced)::numeric < (COALESCE(eb.midterm_avg_docs, (0)::numeric) * 0.5)) THEN 'LOW_LEGISLATIVE_ACTIVITY'::text
+            ELSE 'NORMAL_LEGISLATIVE_ACTIVITY'::text
+        END AS legislative_assessment
    FROM (annual_metrics am
      CROSS JOIN election_baseline eb)
   ORDER BY am.year;
-
-
---
--- Name: VIEW view_riksdagen_election_year_behavioral_patterns; Type: COMMENT; Schema: public; Owner: -
---
-
-COMMENT ON VIEW public.view_riksdagen_election_year_behavioral_patterns IS 'Annual behavioral pattern comparison across all election years (2002, 2006, 2010, 2014, 2018, 2022, 2026) vs midterm years. 
-                 OPTIMIZED: Uses materialized views (mv_annual_voting_metrics, mv_annual_document_metrics) to eliminate cartesian product. 
-                 Features: multi-dimensional metrics (voting, documents, motions, attendance), election year baseline calculation using median and average, 
-                 activity ratios vs both election and midterm baselines, z-score anomaly detection, year classification (HIGH/NORMAL/LOW election activity), 
-                 composite classification considering multiple dimensions. Data Sources: vote_data (voting patterns), document_data (productivity). 
-                 Election cycles: 7 election years, 17 midterm years (2002-2026). Framework 1: Temporal Analysis - Annual comparison. 
-                 Use Case: Identify systematic election year behavioral shifts, detect unusual election patterns, predict future election behavior based on historical patterns. 
-                 Performance: Reduced from 50GB+ temp file usage to less than 1MB by using pre-aggregated materialized views.';
 
 
 --
@@ -11848,27 +11838,27 @@ CREATE VIEW public.view_riksdagen_party_momentum_analysis AS
             count(DISTINCT vote_data.embedded_id_ballot_id) AS ballots_participated,
             count(
                 CASE
-                    WHEN ((vote_data.vote)::text = 'Ja'::text) THEN 1
+                    WHEN (upper((vote_data.vote)::text) = 'JA'::text) THEN 1
                     ELSE NULL::integer
                 END) AS yes_votes,
             count(
                 CASE
-                    WHEN ((vote_data.vote)::text = 'Nej'::text) THEN 1
+                    WHEN (upper((vote_data.vote)::text) = 'NEJ'::text) THEN 1
                     ELSE NULL::integer
                 END) AS no_votes,
             count(
                 CASE
-                    WHEN ((vote_data.vote)::text = 'Avstår'::text) THEN 1
+                    WHEN (upper((vote_data.vote)::text) = 'AVSTÅR'::text) THEN 1
                     ELSE NULL::integer
                 END) AS abstain_votes,
             count(
                 CASE
-                    WHEN ((vote_data.vote)::text = 'Frånvarande'::text) THEN 1
+                    WHEN (upper((vote_data.vote)::text) = 'FRÅNVARANDE'::text) THEN 1
                     ELSE NULL::integer
                 END) AS absent_votes,
             ((count(
                 CASE
-                    WHEN ((vote_data.vote)::text = 'Ja'::text) THEN 1
+                    WHEN (upper((vote_data.vote)::text) = 'JA'::text) THEN 1
                     ELSE NULL::integer
                 END))::double precision / (NULLIF(count(*), 0))::double precision) AS participation_rate
            FROM public.vote_data
@@ -12014,7 +12004,6 @@ CREATE VIEW public.view_riksdagen_party_role_member AS
           GROUP BY view_riksdagen_politician_document.person_reference_id) doc_stats ON (((doc_stats.person_reference_id)::text = (p.id)::text)))
   WHERE ((a.assignment_type)::text = 'partiuppdrag'::text)
   ORDER BY a.detail, a.role_code, a.from_date DESC;
-
 
 
 --
@@ -12597,7 +12586,6 @@ CREATE VIEW public.view_riksdagen_party_summary AS
      LEFT JOIN party_documents pd ON ((vp.party = (pd.party)::text)))
   GROUP BY vp.party
   ORDER BY vp.party;
-
 
 
 --
@@ -13990,7 +13978,7 @@ CREATE VIEW public.view_riksdagen_seasonal_quarterly_activity AS
             count(DISTINCT vote_data.embedded_id_intressent_id) AS active_politicians,
             (avg(
                 CASE
-                    WHEN ((vote_data.vote)::text <> 'Frånvarande'::text) THEN 1
+                    WHEN (upper((vote_data.vote)::text) <> 'FRÅNVARANDE'::text) THEN 1
                     ELSE 0
                 END) * (100)::numeric) AS attendance_rate
            FROM (public.vote_data
@@ -14056,13 +14044,13 @@ CREATE VIEW public.view_riksdagen_seasonal_quarterly_activity AS
         END AS attendance_z_score,
         CASE
             WHEN (abs(COALESCE((((qa.total_ballots)::numeric - bc.q_baseline_ballots) / NULLIF(bc.q_stddev_ballots, (0)::numeric)), (0)::numeric)) > (2)::numeric) THEN 'ANOMALY_DETECTED'::text
-            WHEN ((qa.total_ballots)::numeric > (bc.q_baseline_ballots + bc.q_stddev_ballots)) THEN 'ELEVATED_ACTIVITY'::text
-            WHEN ((qa.total_ballots)::numeric < (bc.q_baseline_ballots - bc.q_stddev_ballots)) THEN 'REDUCED_ACTIVITY'::text
-            ELSE 'NORMAL_ACTIVITY'::text
+            WHEN (abs(COALESCE((((qa.total_ballots)::numeric - bc.q_baseline_ballots) / NULLIF(bc.q_stddev_ballots, (0)::numeric)), (0)::numeric)) > 1.5) THEN 'ELEVATED'::text
+            WHEN (abs(COALESCE((((qa.total_ballots)::numeric - bc.q_baseline_ballots) / NULLIF(bc.q_stddev_ballots, (0)::numeric)), (0)::numeric)) > (1)::numeric) THEN 'NOTABLE'::text
+            ELSE 'NORMAL'::text
         END AS activity_classification
    FROM (quarterly_activity qa
-     JOIN baseline_calculation bc ON ((qa.quarter = bc.quarter)))
-  ORDER BY qa.year, qa.quarter;
+     LEFT JOIN baseline_calculation bc ON ((qa.quarter = bc.quarter)))
+  ORDER BY qa.year DESC, qa.quarter DESC;
 
 
 --
@@ -15838,13 +15826,6 @@ CREATE UNIQUE INDEX idx_mv_annual_document_metrics_year ON public.mv_annual_docu
 
 
 --
--- Name: idx_mv_annual_voting_metrics_year; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX idx_mv_annual_voting_metrics_year ON public.mv_annual_voting_metrics USING btree (year);
-
-
---
 -- Name: idx_mv_decision_temporal_trends_day; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -16797,20 +16778,21 @@ ALTER TABLE ONLY public.jv_snapshot
 -- PostgreSQL database dump complete
 --
 
-\unrestrict DczdlaaFZCkKuuKo8us4Vs3dnUI1R24aKHSb8ADqwmuY3A4Oyexi3Shht3gEqQZ
+\unrestrict Wd6fdjbNhpUi9bVBYAyVWtFmKxFvjtayaaAIw99FmvIMlagvyZaZSyfbWZqvtqO
 
 --
 -- PostgreSQL database dump
 --
 
-\restrict wQS9CsX854GJPZl8LtP0dSQyrzJaB2C0iJqQ6ciyyVOknh8S04QxgXN2yWLXce3
+\restrict wmVqedzu5VsbmdkGPREK3uc6zWJHniTfzJt6YM642sxpU58h7EK0Vc6sHwEvuoT
 
--- Dumped from database version 16.13 (Ubuntu 16.13-1.pgdg24.04+1)
--- Dumped by pg_dump version 16.13 (Ubuntu 16.13-1.pgdg24.04+1)
+-- Dumped from database version 18.3 (Ubuntu 18.3-1.pgdg24.04+1)
+-- Dumped by pg_dump version 18.3 (Ubuntu 18.3-1.pgdg24.04+1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
+SET transaction_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
@@ -17478,10 +17460,21 @@ fix-party-effectiveness-trends-1.78-004	intelligence-operative	db-changelog-1.78
 recreate-election-cycle-comparative-1.78-005	intelligence-operative	db-changelog-1.78.xml	2026-03-20 18:58:31.023468	663	EXECUTED	9:de5eadea41de68d8b5b9c6de443229a2	sql	Recreate view_election_cycle_comparative_analysis after CASCADE from\n            party_performance_metrics fix. Uses original definition from full_schema.sql.	\N	5.0.2	\N	\N	4033107062
 recreate-party-electoral-trends-1.78-006	intelligence-operative	db-changelog-1.78.xml	2026-03-20 18:58:31.160784	664	EXECUTED	9:da841f712904d654951c27decc53be55	sql	Recreate view_riksdagen_party_electoral_trends dropped by CASCADE.\n            Original from db-changelog-1.62.xml but referencing the now-fixed\n            party_performance_metrics view for active_members data.	\N	5.0.2	\N	\N	4033107062
 recreate-party-longitudinal-perf-1.78-007	intelligence-operative	db-changelog-1.78.xml	2026-03-20 18:58:31.321177	665	EXECUTED	9:5c5badad5d44bfce9616af5018311826	sql	Recreate view_riksdagen_party_longitudinal_performance dropped by CASCADE.\n            Now references fixed party_performance_metrics (active_members populated).	\N	5.0.2	\N	\N	4033107062
-1.79-001	copilot	db-changelog-1.79.xml	2026-03-22 11:45:52.100000	666	EXECUTED	9:a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6	createView viewName=view_riksdagen_party_summary	Fix view_riksdagen_party_summary: correct document join chain, motion type classification, implement hardcoded-zero columns	\N	5.0.2	\N	\N	4066752100
-1.79-002	copilot	db-changelog-1.79.xml	2026-03-22 11:45:52.200000	667	EXECUTED	9:b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7	createView viewName=view_politician_behavioral_trends	Fix view_politician_behavioral_trends: rule_violation.status IN (MINOR,MAJOR,CRITICAL) instead of ACTIVE	\N	5.0.2	\N	\N	4066752100
-1.79-003	copilot	db-changelog-1.79.xml	2026-03-22 11:45:52.300000	668	EXECUTED	9:c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8	createView viewName=view_riksdagen_party_role_member	Fix view_riksdagen_party_role_member: use sub_type based motion classification	\N	5.0.2	\N	\N	4066752100
-1.79-004	copilot	db-changelog-1.79.xml	2026-03-22 11:45:52.400000	669	EXECUTED	9:d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9	createView viewName=view_riksdagen_committee_role_member	Fix view_riksdagen_committee_role_member: use sub_type based motion classification	\N	5.0.2	\N	\N	4066752100
+1.79-001	copilot	db-changelog-1.79.xml	2026-03-22 11:45:52.1	666	EXECUTED	9:a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6	createView viewName=view_riksdagen_party_summary	Fix view_riksdagen_party_summary: correct document join chain, motion type classification, implement hardcoded-zero columns	\N	5.0.2	\N	\N	4066752100
+1.79-002	copilot	db-changelog-1.79.xml	2026-03-22 11:45:52.2	667	EXECUTED	9:b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7	createView viewName=view_politician_behavioral_trends	Fix view_politician_behavioral_trends: rule_violation.status IN (MINOR,MAJOR,CRITICAL) instead of ACTIVE	\N	5.0.2	\N	\N	4066752100
+1.79-003	copilot	db-changelog-1.79.xml	2026-03-22 11:45:52.3	668	EXECUTED	9:c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8	createView viewName=view_riksdagen_party_role_member	Fix view_riksdagen_party_role_member: use sub_type based motion classification	\N	5.0.2	\N	\N	4066752100
+1.79-004	copilot	db-changelog-1.79.xml	2026-03-22 11:45:52.4	669	EXECUTED	9:d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9	createView viewName=view_riksdagen_committee_role_member	Fix view_riksdagen_committee_role_member: use sub_type based motion classification	\N	5.0.2	\N	\N	4066752100
+1.79-005	copilot	db-changelog-1.79.xml	2026-03-22 12:19:47.1	670	EXECUTED	9:e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0	sql	Fix mv_annual_voting_metrics: UPPER() for vote comparisons	\N	5.0.2	\N	\N	4068787369
+1.79-006	copilot	db-changelog-1.79.xml	2026-03-22 12:19:47.2	671	EXECUTED	9:f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1	sql	Recreate view_riksdagen_election_year_behavioral_patterns	\N	5.0.2	\N	\N	4068787369
+1.79-007	copilot	db-changelog-1.79.xml	2026-03-22 12:19:47.3	672	EXECUTED	9:a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2	createView viewName=view_riksdagen_seasonal_quarterly_activity	Fix seasonal quarterly activity vote case sensitivity	\N	5.0.2	\N	\N	4068787369
+1.79-008	copilot	db-changelog-1.79.xml	2026-03-22 12:19:47.4	673	EXECUTED	9:b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3	createView viewName=view_committee_productivity	Fix committee_productivity sub_type filters	\N	5.0.2	\N	\N	4068787369
+1.79-009	copilot	db-changelog-1.79.xml	2026-03-22 12:19:47.5	674	EXECUTED	9:c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4	createView viewName=view_committee_productivity_matrix	Fix committee_productivity_matrix document_type filters	\N	5.0.2	\N	\N	4068787369
+1.79-010	copilot	db-changelog-1.79.xml	2026-03-22 12:19:47.6	675	EXECUTED	9:d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5	createView viewName=view_ministry_effectiveness_trends	Fix ministry_effectiveness_trends wrong doc join and ds type	\N	5.0.2	\N	\N	4068787369
+1.79-011	copilot	db-changelog-1.79.xml	2026-03-22 12:19:47.7	676	EXECUTED	9:e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6	createView viewName=view_ministry_risk_evolution	Fix ministry_risk_evolution wrong doc join and ds type	\N	5.0.2	\N	\N	4068787369
+1.79-012	copilot	db-changelog-1.79.xml	2026-03-22 12:19:47.8	677	EXECUTED	9:f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7	createView viewName=view_ministry_productivity_matrix	Fix ministry_productivity_matrix wrong doc join and ds type	\N	5.0.2	\N	\N	4068787369
+1.79-013	copilot	db-changelog-1.79.xml	2026-03-22 12:19:47.9	678	EXECUTED	9:a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8	sql	Fix view_risk_score_evolution document join	\N	5.0.2	\N	\N	4068787369
+1.79-014	copilot	db-changelog-1.79.xml	2026-03-22 12:19:48.000000	679	EXECUTED	9:b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9	sql	Fix crisis resilience indicators vote case	\N	5.0.2	\N	\N	4068787369
+1.79-015	copilot	db-changelog-1.79.xml	2026-03-22 12:19:48.100000	680	EXECUTED	9:c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0	sql	Fix party momentum analysis vote case	\N	5.0.2	\N	\N	4068787369
 \.
 
 
@@ -17498,5 +17491,5 @@ COPY public.databasechangeloglock (id, locked, lockgranted, lockedby) FROM stdin
 -- PostgreSQL database dump complete
 --
 
-\unrestrict wQS9CsX854GJPZl8LtP0dSQyrzJaB2C0iJqQ6ciyyVOknh8S04QxgXN2yWLXce3
+\unrestrict wmVqedzu5VsbmdkGPREK3uc6zWJHniTfzJt6YM642sxpU58h7EK0Vc6sHwEvuoT
 
