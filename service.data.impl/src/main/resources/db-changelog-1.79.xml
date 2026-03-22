@@ -4439,4 +4439,126 @@ ORDER BY
 ]]></sql>
     </changeSet>
 
+    <!-- ======================================================================== -->
+    <!-- 1.79-034: Fix view_riksdagen_election_year_behavioral_patterns — add     -->
+    <!--           midterm_stddev_docs for consistent midterm document z-scores.    -->
+    <!-- ======================================================================== -->
+    <changeSet id="1.79-034" author="copilot">
+        <comment>Fix view_riksdagen_election_year_behavioral_patterns: midterm document
+        z-score used election_stddev_docs instead of midterm_stddev_docs, making midterm
+        z-scores inconsistent. Added midterm_stddev_docs to election_baseline CTE and
+        use it for non-election-year document z-score calculation. Also adds view comments
+        for DB documentation.</comment>
+        <sql><![CDATA[
+CREATE OR REPLACE VIEW view_riksdagen_election_year_behavioral_patterns AS
+WITH election_years AS (
+    SELECT unnest(ARRAY[2002, 2006, 2010, 2014, 2018, 2022, 2026]) AS election_year
+), annual_metrics AS (
+    SELECT vm.year,
+        vm.is_election_year,
+        vm.total_ballots,
+        vm.active_politicians,
+        vm.attendance_rate,
+        vm.avg_yes_rate,
+        vm.avg_no_rate,
+        vm.avg_abstain_rate,
+        COALESCE(dm.documents_produced, 0::bigint) AS documents_produced,
+        COALESCE(dm.motions_filed, 0::bigint) AS motions_filed,
+        COALESCE(dm.proposals_filed, 0::bigint) AS proposals_filed
+    FROM mv_annual_voting_metrics vm
+      LEFT JOIN mv_annual_document_metrics dm ON vm.year = dm.year
+), election_baseline AS (
+    SELECT
+        percentile_cont(0.5) WITHIN GROUP (ORDER BY total_ballots::double precision) FILTER (WHERE is_election_year) AS election_median_ballots,
+        avg(total_ballots) FILTER (WHERE is_election_year) AS election_avg_ballots,
+        stddev(total_ballots) FILTER (WHERE is_election_year) AS election_stddev_ballots,
+        avg(total_ballots) FILTER (WHERE NOT is_election_year) AS midterm_avg_ballots,
+        stddev(total_ballots) FILTER (WHERE NOT is_election_year) AS midterm_stddev_ballots,
+        percentile_cont(0.5) WITHIN GROUP (ORDER BY documents_produced::double precision) FILTER (WHERE is_election_year) AS election_median_docs,
+        avg(documents_produced) FILTER (WHERE is_election_year) AS election_avg_docs,
+        stddev(documents_produced) FILTER (WHERE is_election_year) AS election_stddev_docs,
+        avg(documents_produced) FILTER (WHERE NOT is_election_year) AS midterm_avg_docs,
+        stddev(documents_produced) FILTER (WHERE NOT is_election_year) AS midterm_stddev_docs,
+        percentile_cont(0.5) WITHIN GROUP (ORDER BY motions_filed::double precision) FILTER (WHERE is_election_year) AS election_median_motions,
+        avg(motions_filed) FILTER (WHERE is_election_year) AS election_avg_motions,
+        stddev(motions_filed) FILTER (WHERE is_election_year) AS election_stddev_motions,
+        avg(motions_filed) FILTER (WHERE NOT is_election_year) AS midterm_avg_motions,
+        avg(attendance_rate) FILTER (WHERE is_election_year) AS election_avg_attendance,
+        stddev(attendance_rate) FILTER (WHERE is_election_year) AS election_stddev_attendance,
+        avg(attendance_rate) FILTER (WHERE NOT is_election_year) AS midterm_avg_attendance
+    FROM annual_metrics
+)
+SELECT am.year,
+    am.is_election_year,
+    am.total_ballots,
+    am.active_politicians,
+    am.attendance_rate,
+    am.avg_yes_rate,
+    am.avg_no_rate,
+    am.avg_abstain_rate,
+    am.documents_produced,
+    am.motions_filed,
+    am.proposals_filed,
+    round(eb.election_median_ballots::numeric, 2) AS election_median_ballots,
+    round(eb.election_avg_ballots, 2) AS election_avg_ballots,
+    round(eb.election_stddev_ballots, 2) AS election_stddev_ballots,
+    round(eb.midterm_avg_ballots, 2) AS midterm_avg_ballots,
+    round(eb.election_median_docs::numeric, 2) AS election_median_docs,
+    round(eb.election_avg_docs, 2) AS election_avg_docs,
+    round(eb.midterm_avg_docs, 2) AS midterm_avg_docs,
+    round(eb.election_median_motions::numeric, 2) AS election_median_motions,
+    round(eb.election_avg_motions, 2) AS election_avg_motions,
+    round(eb.midterm_avg_motions, 2) AS midterm_avg_motions,
+    round(eb.election_avg_attendance, 2) AS election_avg_attendance,
+    round(eb.midterm_avg_attendance, 2) AS midterm_avg_attendance,
+    CASE
+        WHEN am.is_election_year AND eb.election_stddev_ballots > 0 THEN
+            round(((am.total_ballots::numeric - eb.election_avg_ballots) / eb.election_stddev_ballots), 2)
+        WHEN NOT am.is_election_year AND eb.midterm_stddev_ballots > 0 THEN
+            round(((am.total_ballots::numeric - eb.midterm_avg_ballots) / eb.midterm_stddev_ballots), 2)
+        ELSE 0
+    END AS ballot_z_score,
+    CASE
+        WHEN am.is_election_year AND eb.election_stddev_docs > 0 THEN
+            round(((am.documents_produced::numeric - eb.election_avg_docs) / eb.election_stddev_docs), 2)
+        WHEN NOT am.is_election_year AND eb.midterm_stddev_docs > 0 THEN
+            round(((am.documents_produced::numeric - COALESCE(eb.midterm_avg_docs, 0)) / eb.midterm_stddev_docs), 2)
+        ELSE 0
+    END AS document_z_score,
+    CASE
+        WHEN am.is_election_year AND eb.election_stddev_motions > 0 THEN
+            round(((am.motions_filed::numeric - eb.election_avg_motions) / eb.election_stddev_motions), 2)
+        ELSE 0
+    END AS motion_z_score,
+    CASE
+        WHEN am.is_election_year AND eb.election_stddev_attendance > 0 THEN
+            round(((am.attendance_rate - eb.election_avg_attendance) / eb.election_stddev_attendance), 2)
+        ELSE 0
+    END AS attendance_z_score,
+    CASE
+        WHEN am.is_election_year THEN 'ELECTION_YEAR'
+        ELSE 'MIDTERM_YEAR'
+    END AS year_classification,
+    CASE
+        WHEN am.is_election_year AND am.total_ballots > COALESCE(eb.election_avg_ballots, 0) THEN 'ABOVE_ELECTION_AVERAGE'
+        WHEN am.is_election_year THEN 'BELOW_ELECTION_AVERAGE'
+        WHEN am.total_ballots > COALESCE(eb.midterm_avg_ballots, 0) THEN 'ABOVE_MIDTERM_AVERAGE'
+        ELSE 'BELOW_MIDTERM_AVERAGE'
+    END AS ballot_assessment,
+    CASE
+        WHEN am.documents_produced > COALESCE(eb.election_avg_docs, 0) AND am.motions_filed > COALESCE(eb.election_avg_motions, 0) THEN 'HIGH_LEGISLATIVE_ACTIVITY'
+        WHEN am.documents_produced > COALESCE(eb.midterm_avg_docs, 0) THEN 'ABOVE_AVERAGE_ACTIVITY'
+        WHEN am.documents_produced < COALESCE(eb.midterm_avg_docs, 0) * 0.5 THEN 'LOW_LEGISLATIVE_ACTIVITY'
+        ELSE 'NORMAL_LEGISLATIVE_ACTIVITY'
+    END AS legislative_assessment
+FROM annual_metrics am
+  CROSS JOIN election_baseline eb
+ORDER BY am.year;
+
+COMMENT ON VIEW view_riksdagen_election_year_behavioral_patterns IS 'Election year behavioral pattern analysis comparing election vs midterm year metrics. Uses separate baselines (election_stddev/midterm_stddev) for accurate z-score anomaly detection across ballots, documents, motions, and attendance. Framework 3: Pattern Recognition.';
+
+COMMENT ON VIEW view_riksdagen_politician_career_trajectory IS 'Politician career trajectory analysis tracking voting participation, document production, committee assignments, and party roles over time. Pre-aggregates data in CTEs to avoid Cartesian products. Framework 4: Predictive Intelligence.';
+]]></sql>
+    </changeSet>
+
 </databaseChangeLog>

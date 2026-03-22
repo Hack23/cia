@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict Z2w6HyZNkcqsaklAzYr0rgK3nfhH6MITEao2WVlMownhRexCkWfN9NlVzo4novZ
+\restrict XQmSTesPfqjZYFiYLdlcU68HsCZskOhLdqeszgIDpw1JB3PYiew5CYxDt2HUPHb
 
 -- Dumped from database version 18.3 (Ubuntu 18.3-1.pgdg24.04+1)
 -- Dumped by pg_dump version 18.3 (Ubuntu 18.3-1.pgdg24.04+1)
@@ -10081,6 +10081,7 @@ CREATE VIEW public.view_riksdagen_election_year_behavioral_patterns AS
             avg(annual_metrics.documents_produced) FILTER (WHERE annual_metrics.is_election_year) AS election_avg_docs,
             stddev(annual_metrics.documents_produced) FILTER (WHERE annual_metrics.is_election_year) AS election_stddev_docs,
             avg(annual_metrics.documents_produced) FILTER (WHERE (NOT annual_metrics.is_election_year)) AS midterm_avg_docs,
+            stddev(annual_metrics.documents_produced) FILTER (WHERE (NOT annual_metrics.is_election_year)) AS midterm_stddev_docs,
             percentile_cont((0.5)::double precision) WITHIN GROUP (ORDER BY ((annual_metrics.motions_filed)::double precision)) FILTER (WHERE annual_metrics.is_election_year) AS election_median_motions,
             avg(annual_metrics.motions_filed) FILTER (WHERE annual_metrics.is_election_year) AS election_avg_motions,
             stddev(annual_metrics.motions_filed) FILTER (WHERE annual_metrics.is_election_year) AS election_stddev_motions,
@@ -10120,7 +10121,7 @@ CREATE VIEW public.view_riksdagen_election_year_behavioral_patterns AS
         END AS ballot_z_score,
         CASE
             WHEN (am.is_election_year AND (eb.election_stddev_docs > (0)::numeric)) THEN round((((am.documents_produced)::numeric - eb.election_avg_docs) / eb.election_stddev_docs), 2)
-            WHEN (NOT am.is_election_year) THEN round((((am.documents_produced)::numeric - COALESCE(eb.midterm_avg_docs, (0)::numeric)) / NULLIF(eb.election_stddev_docs, (0)::numeric)), 2)
+            WHEN ((NOT am.is_election_year) AND (eb.midterm_stddev_docs > (0)::numeric)) THEN round((((am.documents_produced)::numeric - COALESCE(eb.midterm_avg_docs, (0)::numeric)) / eb.midterm_stddev_docs), 2)
             ELSE (0)::numeric
         END AS document_z_score,
         CASE
@@ -10150,6 +10151,13 @@ CREATE VIEW public.view_riksdagen_election_year_behavioral_patterns AS
    FROM (annual_metrics am
      CROSS JOIN election_baseline eb)
   ORDER BY am.year;
+
+
+--
+-- Name: VIEW view_riksdagen_election_year_behavioral_patterns; Type: COMMENT; Schema: public; Owner: -
+--
+
+COMMENT ON VIEW public.view_riksdagen_election_year_behavioral_patterns IS 'Election year behavioral pattern analysis comparing election vs midterm year metrics. Uses separate baselines (election_stddev/midterm_stddev) for accurate z-score anomaly detection across ballots, documents, motions, and attendance. Framework 3: Pattern Recognition.';
 
 
 --
@@ -13326,6 +13334,13 @@ CREATE VIEW public.view_riksdagen_politician_career_trajectory AS
         END AS career_pattern
    FROM career_metrics
   ORDER BY person_id, election_year;
+
+
+--
+-- Name: VIEW view_riksdagen_politician_career_trajectory; Type: COMMENT; Schema: public; Owner: -
+--
+
+COMMENT ON VIEW public.view_riksdagen_politician_career_trajectory IS 'Politician career trajectory analysis tracking voting participation, document production, committee assignments, and party roles over time. Pre-aggregates data in CTEs to avoid Cartesian products. Framework 4: Predictive Intelligence.';
 
 
 --
@@ -16822,13 +16837,13 @@ ALTER TABLE ONLY public.jv_snapshot
 -- PostgreSQL database dump complete
 --
 
-\unrestrict Z2w6HyZNkcqsaklAzYr0rgK3nfhH6MITEao2WVlMownhRexCkWfN9NlVzo4novZ
+\unrestrict XQmSTesPfqjZYFiYLdlcU68HsCZskOhLdqeszgIDpw1JB3PYiew5CYxDt2HUPHb
 
 --
 -- PostgreSQL database dump
 --
 
-\restrict EoituAvaSBsAst9gGLC8fn0Vrqr7OKJoHdpNHAwznagkYKFU5LjwJ1B9I6Fpp2Z
+\restrict 7IOmlgUzkCoDd1lYeNEANbcaru7pFav0EX0fKXaCWXfoFOsCsOeRKSNOvyc4NU5
 
 -- Dumped from database version 18.3 (Ubuntu 18.3-1.pgdg24.04+1)
 -- Dumped by pg_dump version 18.3 (Ubuntu 18.3-1.pgdg24.04+1)
@@ -17537,6 +17552,7 @@ recreate-party-longitudinal-perf-1.78-007	intelligence-operative	db-changelog-1.
 1.79-031	copilot	db-changelog-1.79.xml	2026-03-22 18:50:03.975826	696	EXECUTED	9:f4371e4fdb9198e21e705516f3933d3a	sql	Fix view_riksdagen_party_longitudinal_performance: JPA type mismatches.\n        membership_change must be bigint (JPA Long), trend_position must be text (JPA String).\n        These were previously typed as integer/numeric which breaks Hibernate va...	\N	5.0.2	\N	\N	4205400493
 1.79-032	copilot	db-changelog-1.79.xml	2026-03-22 18:50:52.708815	697	EXECUTED	9:a606f671efdfddcbef1286780f440556	sql; createView viewName=view_election_cycle_comparative_analysis	Fix view_election_cycle_comparative_analysis: document_z_score used\n        election_stddev_docs even for midterm years, making midterm z-scores inconsistent.\n        Added midterm_stddev_docs to election_baseline and use it for the non-election-y...	\N	5.0.2	\N	\N	4205449145
 1.79-033	copilot	db-changelog-1.79.xml	2026-03-22 18:50:52.746711	698	EXECUTED	9:5dadb38bfa1a0889aaec70c5c620cf92	sql	Fix view_riksdagen_crisis_resilience_indicators: crisis_rebellions and\n        normal_rebellions compared vote value (JA/NEJ) to party code (S/M/SD), which\n        always evaluates to true for non-abstain votes — making the metric meaningless.\n   ...	\N	5.0.2	\N	\N	4205449145
+1.79-034	copilot	db-changelog-1.79.xml	2026-03-22 19:44:17.815899	699	EXECUTED	9:61a846f69c461e3afcf453554cb0b3cd	sql	Fix view_riksdagen_election_year_behavioral_patterns: midterm document\n        z-score used election_stddev_docs instead of midterm_stddev_docs, making midterm\n        z-scores inconsistent. Added midterm_stddev_docs to election_baseline CTE and\n ...	\N	5.0.2	\N	\N	4208654598
 \.
 
 
@@ -17553,5 +17569,5 @@ COPY public.databasechangeloglock (id, locked, lockgranted, lockedby) FROM stdin
 -- PostgreSQL database dump complete
 --
 
-\unrestrict EoituAvaSBsAst9gGLC8fn0Vrqr7OKJoHdpNHAwznagkYKFU5LjwJ1B9I6Fpp2Z
+\unrestrict 7IOmlgUzkCoDd1lYeNEANbcaru7pFav0EX0fKXaCWXfoFOsCsOeRKSNOvyc4NU5
 
