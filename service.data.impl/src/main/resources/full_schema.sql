@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict Ev1ZipVA1f7im9nRneGekn2DBt8gwzl4burUl2hIQGvGVdFykmpKE4r81PsauvI
+\restrict x3TdowlwHfe76uvMctY8MGN1l5oeOxyMkeadv7nXBSYKBdaQf2JYp0vNoWz4rSI
 
 -- Dumped from database version 18.3 (Ubuntu 18.3-1.pgdg24.04+1)
 -- Dumped by pg_dump version 18.3 (Ubuntu 18.3-1.pgdg24.04+1)
@@ -8609,7 +8609,7 @@ CREATE VIEW public.view_politician_behavioral_trends AS
             count(DISTINCT rule_violation.rule_group) AS violation_types,
             max(rule_violation.detected_date) AS latest_violation_date
            FROM public.rule_violation
-          WHERE (((rule_violation.resource_type)::text = 'POLITICIAN'::text) AND ((rule_violation.status)::text = ANY ((ARRAY['MINOR'::character varying, 'MAJOR'::character varying, 'CRITICAL'::character varying])::text[])) AND (rule_violation.detected_date >= (CURRENT_DATE - '3 years'::interval)))
+          WHERE (((rule_violation.resource_type)::text = 'POLITICIAN'::text) AND ((rule_violation.status)::text = ANY (ARRAY[('MINOR'::character varying)::text, ('MAJOR'::character varying)::text, ('CRITICAL'::character varying)::text])) AND (rule_violation.detected_date >= (CURRENT_DATE - '3 years'::interval)))
           GROUP BY rule_violation.reference_id, (date_trunc('month'::text, rule_violation.detected_date))
         ), trend_calculations AS (
          SELECT mvd.person_id,
@@ -9396,7 +9396,7 @@ CREATE VIEW public.view_riksdagen_committee_role_member AS
                 END) AS propositions,
             count(
                 CASE
-                    WHEN ((view_riksdagen_politician_document.document_type)::text = ANY ((ARRAY['mot'::character varying, 'prop'::character varying, 'frs'::character varying])::text[])) THEN 1
+                    WHEN ((view_riksdagen_politician_document.document_type)::text = ANY ((ARRAY['mot'::character varying, 'prop'::character varying, 'kammakt'::character varying])::text[])) THEN 1
                     ELSE NULL::integer
                 END) AS initiatives
            FROM public.view_riksdagen_politician_document
@@ -9413,8 +9413,9 @@ CREATE VIEW public.view_riksdagen_committee_role_member AS
             WHEN 'Ledamot'::text THEN 6
             WHEN 'Suppleant'::text THEN 7
             WHEN 'Extra suppleant'::text THEN 8
-            ELSE 9
-        END, a.from_date DESC;
+            WHEN 'Deputerad'::text THEN 9
+            ELSE 10
+        END, p.last_name;
 
 
 --
@@ -16787,13 +16788,13 @@ ALTER TABLE ONLY public.jv_snapshot
 -- PostgreSQL database dump complete
 --
 
-\unrestrict Ev1ZipVA1f7im9nRneGekn2DBt8gwzl4burUl2hIQGvGVdFykmpKE4r81PsauvI
+\unrestrict x3TdowlwHfe76uvMctY8MGN1l5oeOxyMkeadv7nXBSYKBdaQf2JYp0vNoWz4rSI
 
 --
 -- PostgreSQL database dump
 --
 
-\restrict AGqK4e6rGG5HkGZNh2QWgWdPaxrSYVordgji1uHQDs6ltM3tqpdrjkSQhmBMQer
+\restrict gbFeuevkw7cPtabnC5xNPeHOg1XLHT3OckKm2tDN7BBxbI4COoWO5W0yFvmvtWI
 
 -- Dumped from database version 18.3 (Ubuntu 18.3-1.pgdg24.04+1)
 -- Dumped by pg_dump version 18.3 (Ubuntu 18.3-1.pgdg24.04+1)
@@ -17348,6 +17349,7 @@ create-election-year-anomalies-view-1.60-003	intelligence-operative	db-changelog
 1.63-verification	performance-engineer	db-changelog-1.63.xml	2026-01-24 15:25:45.336514	577	EXECUTED	9:08bc907ca714b01b6b981cc5487f637c	sql	Verification changeset: Confirms all 28 Priority 1 FK indexes were created successfully.\n        \n        This changeset validates that the indexes exist and provides statistics about\n        the newly created indexes. It does not modify the datab...	\N	5.0.1	\N	\N	9264743943
 1.61-create-party-longitudinal	copilot	db-changelog-1.61.xml	2026-01-24 15:25:45.191602	541	EXECUTED	9:725906849e124c9f9086b64e5ab7890b	createView viewName=view_riksdagen_party_longitudinal_performance	Recreate view_riksdagen_party_longitudinal_performance (originally from v1.53)\n        \n        JPA Entity: ViewRiksdagenPartyLongitudinalPerformance\n        Primary Key: Composite (party, election_cycle_id, semester)\n        Columns: 70 total (pe...	\N	5.0.1	\N	\N	9264743943
 1.61-create-coalition-evolution	copilot	db-changelog-1.61.xml	2026-01-24 15:25:45.198829	542	EXECUTED	9:30bb0bc64268f995c4afb2a882bc9e62	createView viewName=view_riksdagen_party_coalition_evolution	Recreate view_riksdagen_party_coalition_evolution (originally from v1.53)\n        \n        JPA Entity: ViewRiksdagenPartyCoalitionEvolution\n        Primary Key: Composite (party_a, party_b, election_cycle_id)\n        Columns: 35 total (alliance KP...	\N	5.0.1	\N	\N	9264743943
+1.79-019	copilot	db-changelog-1.79.xml	2026-03-22 15:07:23.009272	684	EXECUTED	9:0172721c03687e5e7d1f0ebc32a2af17	createView viewName=view_riksdagen_committee_role_member	Fix view_riksdagen_committee_role_member: initiatives count used\n        non-existent document type 'frs' (written questions). Only mot, bet, prop,\n        kammakt exist in document_data. Replace 'frs' with 'kammakt'.	\N	5.0.2	\N	\N	4192039658
 1.61-create-electoral-trends	copilot	db-changelog-1.61.xml	2026-01-24 15:25:45.202899	543	EXECUTED	9:d8c0028f833eae2ddafce73ed49e314a	createView viewName=view_riksdagen_party_electoral_trends	Recreate view_riksdagen_party_electoral_trends (originally from v1.53)\n        \n        JPA Entity: ViewRiksdagenPartyElectoralTrends\n        Primary Key: Composite (party, election_cycle_id)\n        Columns: 49 total (electoral KPIs, growth forec...	\N	5.0.1	\N	\N	9264743943
 1.62-intro	stack-specialist	db-changelog-1.62.xml	2026-01-24 15:25:45.20726	544	EXECUTED	9:4d8fe0866af3f61908b95070058cec4e	sql	Database Changelog v1.62 - Recreate Views Dropped by Misplaced DROP Statements\n        \n        CRITICAL FIX: Recreates 3 views that were created in v1.61 but then accidentally\n        dropped when misplaced DROP changesets executed after CREATE s...	\N	5.0.1	\N	\N	9264743943
 1.62-create-coalition-evolution	stack-specialist	db-changelog-1.62.xml	2026-01-24 15:25:45.211323	545	EXECUTED	9:98ea3f29eae0317569de39961819f32f	createView viewName=view_riksdagen_party_coalition_evolution	Recreate view_riksdagen_party_coalition_evolution (originally from v1.53, recreated in v1.61)\n        \n        JPA Entity: ViewRiksdagenPartyCoalitionEvolution\n        Primary Key: Composite (party_a, party_b, election_cycle_id)\n        Columns: 3...	\N	5.0.1	\N	\N	9264743943
@@ -17486,7 +17488,7 @@ recreate-party-longitudinal-perf-1.78-007	intelligence-operative	db-changelog-1.
 1.79-015	copilot	db-changelog-1.79.xml	2026-03-22 13:24:09.773712	680	EXECUTED	9:4f108d779c8afbf96a2af69e0d2675b0	sql	Fix view_riksdagen_party_momentum_analysis: vote comparisons used\n        title-case values but data is UPPERCASE. Applied UPPER() to all vote comparisons.\n        This caused participation_rate to always be 0.	\N	5.0.2	\N	\N	4185845674
 1.79-016	copilot	db-changelog-1.79.xml	2026-03-22 13:24:09.797713	681	EXECUTED	9:8e23e26b236e2ea84e6524dbb12269ae	sql	Fix view_riksdagen_pre_election_quarterly_activity: role_tier case\n        sensitivity. Source view generates UPPERCASE (MINISTER, SPEAKER, PARTY_LEADER)\n        but this view compared with lowercase. This caused politicians_with_new_roles\n       ...	\N	5.0.2	\N	\N	4185845674
 1.79-017	copilot	db-changelog-1.79.xml	2026-03-22 13:24:09.826353	682	EXECUTED	9:6b233177f7f530eac8502792dd754c93	sql	Fix view_riksdagen_election_proximity_trends: role_tier case\n        sensitivity. Source view generates UPPERCASE values but this view compared\n        with lowercase ('minister', 'speaker', 'party_leader', 'committee_chair',\n        'committee_me...	\N	5.0.2	\N	\N	4185845674
-1.79-018	copilot	db-changelog-1.79.xml	2026-03-22 13:28:35.355575	683	EXECUTED	9:c22257a78cbb1b2331c46fbd391a7a24	sql	Fix view_election_cycle_network_analysis: replaced hardcoded\n        placeholder zeros for influential_politicians, avg_network_centrality,\n        and power_broker_count with actual calculated values derived from\n        vote participation data a...	\N	5.0.2	\N	\N	4186111354
+1.79-018	copilot	db-changelog-1.79.xml	2026-03-22 13:28:35.355575	683	EXECUTED	9:4e31348ee8dc68176df835c94c728f0c	sql	Fix view_election_cycle_network_analysis: replaced hardcoded\n        placeholder zeros for influential_politicians, avg_network_centrality,\n        and power_broker_count with actual calculated values derived from\n        vote participation data a...	\N	5.0.2	\N	\N	4186111354
 \.
 
 
@@ -17503,5 +17505,5 @@ COPY public.databasechangeloglock (id, locked, lockgranted, lockedby) FROM stdin
 -- PostgreSQL database dump complete
 --
 
-\unrestrict AGqK4e6rGG5HkGZNh2QWgWdPaxrSYVordgji1uHQDs6ltM3tqpdrjkSQhmBMQer
+\unrestrict gbFeuevkw7cPtabnC5xNPeHOg1XLHT3OckKm2tDN7BBxbI4COoWO5W0yFvmvtWI
 
