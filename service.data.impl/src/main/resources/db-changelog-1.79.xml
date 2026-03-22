@@ -2065,7 +2065,7 @@ CREATE OR REPLACE VIEW public.view_election_cycle_network_analysis AS
              COALESCE(pa1.active_politicians, 0) + COALESCE(pa2.active_politicians, 0) AS influential_politicians,
              round(COALESCE(cam.alignment_rate / 100.0, 0)::numeric, 4) AS avg_network_centrality,
              CASE WHEN cam.alignment_rate >= 60 THEN
-                 LEAST(COALESCE(pa1.active_politicians, 0), COALESCE(pa2.active_politicians, 0)) / NULLIF(GREATEST(COALESCE(pa1.active_politicians, 0), COALESCE(pa2.active_politicians, 0)), 0)::bigint
+                 LEAST(COALESCE(pa1.active_politicians, 0), COALESCE(pa2.active_politicians, 0))
              ELSE 0 END AS power_broker_count
             FROM (election_cycle_periods ecp
               CROSS JOIN public.view_riksdagen_coalition_alignment_matrix cam

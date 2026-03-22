@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict XfeUj2OTQR6dHeAFEtHUmfea15yOxC0M7FATdmWKgttDjeLoE4X7X7phCTV93Bm
+\restrict Ev1ZipVA1f7im9nRneGekn2DBt8gwzl4burUl2hIQGvGVdFykmpKE4r81PsauvI
 
 -- Dumped from database version 18.3 (Ubuntu 18.3-1.pgdg24.04+1)
 -- Dumped by pg_dump version 18.3 (Ubuntu 18.3-1.pgdg24.04+1)
@@ -8195,7 +8195,7 @@ CREATE VIEW public.view_election_cycle_network_analysis AS
             (COALESCE(pa1.active_politicians, (0)::bigint) + COALESCE(pa2.active_politicians, (0)::bigint)) AS influential_politicians,
             round(COALESCE((cam.alignment_rate / 100.0), (0)::numeric), 4) AS avg_network_centrality,
                 CASE
-                    WHEN (cam.alignment_rate >= (60)::numeric) THEN (LEAST(COALESCE(pa1.active_politicians, (0)::bigint), COALESCE(pa2.active_politicians, (0)::bigint)) / NULLIF(GREATEST(COALESCE(pa1.active_politicians, (0)::bigint), COALESCE(pa2.active_politicians, (0)::bigint)), 0))
+                    WHEN (cam.alignment_rate >= (60)::numeric) THEN LEAST(COALESCE(pa1.active_politicians, (0)::bigint), COALESCE(pa2.active_politicians, (0)::bigint))
                     ELSE (0)::bigint
                 END AS power_broker_count
            FROM (((election_cycle_periods ecp
@@ -16787,13 +16787,13 @@ ALTER TABLE ONLY public.jv_snapshot
 -- PostgreSQL database dump complete
 --
 
-\unrestrict XfeUj2OTQR6dHeAFEtHUmfea15yOxC0M7FATdmWKgttDjeLoE4X7X7phCTV93Bm
+\unrestrict Ev1ZipVA1f7im9nRneGekn2DBt8gwzl4burUl2hIQGvGVdFykmpKE4r81PsauvI
 
 --
 -- PostgreSQL database dump
 --
 
-\restrict CHuN0FmhP4xvuEPLDRYbTEhqCSlh0cPZIJylolZgROhieNfSAnSUIdWimPYPeEC
+\restrict AGqK4e6rGG5HkGZNh2QWgWdPaxrSYVordgji1uHQDs6ltM3tqpdrjkSQhmBMQer
 
 -- Dumped from database version 18.3 (Ubuntu 18.3-1.pgdg24.04+1)
 -- Dumped by pg_dump version 18.3 (Ubuntu 18.3-1.pgdg24.04+1)
@@ -17486,7 +17486,7 @@ recreate-party-longitudinal-perf-1.78-007	intelligence-operative	db-changelog-1.
 1.79-015	copilot	db-changelog-1.79.xml	2026-03-22 13:24:09.773712	680	EXECUTED	9:4f108d779c8afbf96a2af69e0d2675b0	sql	Fix view_riksdagen_party_momentum_analysis: vote comparisons used\n        title-case values but data is UPPERCASE. Applied UPPER() to all vote comparisons.\n        This caused participation_rate to always be 0.	\N	5.0.2	\N	\N	4185845674
 1.79-016	copilot	db-changelog-1.79.xml	2026-03-22 13:24:09.797713	681	EXECUTED	9:8e23e26b236e2ea84e6524dbb12269ae	sql	Fix view_riksdagen_pre_election_quarterly_activity: role_tier case\n        sensitivity. Source view generates UPPERCASE (MINISTER, SPEAKER, PARTY_LEADER)\n        but this view compared with lowercase. This caused politicians_with_new_roles\n       ...	\N	5.0.2	\N	\N	4185845674
 1.79-017	copilot	db-changelog-1.79.xml	2026-03-22 13:24:09.826353	682	EXECUTED	9:6b233177f7f530eac8502792dd754c93	sql	Fix view_riksdagen_election_proximity_trends: role_tier case\n        sensitivity. Source view generates UPPERCASE values but this view compared\n        with lowercase ('minister', 'speaker', 'party_leader', 'committee_chair',\n        'committee_me...	\N	5.0.2	\N	\N	4185845674
-1.79-018	copilot	db-changelog-1.79.xml	2026-03-22 13:24:09.838798	683	EXECUTED	9:c22257a78cbb1b2331c46fbd391a7a24	sql	Fix view_election_cycle_network_analysis: replaced hardcoded\n        placeholder zeros for influential_politicians, avg_network_centrality,\n        and power_broker_count with actual calculated values derived from\n        vote participation data a...	\N	5.0.2	\N	\N	4185845674
+1.79-018	copilot	db-changelog-1.79.xml	2026-03-22 13:28:35.355575	683	EXECUTED	9:c22257a78cbb1b2331c46fbd391a7a24	sql	Fix view_election_cycle_network_analysis: replaced hardcoded\n        placeholder zeros for influential_politicians, avg_network_centrality,\n        and power_broker_count with actual calculated values derived from\n        vote participation data a...	\N	5.0.2	\N	\N	4186111354
 \.
 
 
@@ -17503,5 +17503,5 @@ COPY public.databasechangeloglock (id, locked, lockgranted, lockedby) FROM stdin
 -- PostgreSQL database dump complete
 --
 
-\unrestrict CHuN0FmhP4xvuEPLDRYbTEhqCSlh0cPZIJylolZgROhieNfSAnSUIdWimPYPeEC
+\unrestrict AGqK4e6rGG5HkGZNh2QWgWdPaxrSYVordgji1uHQDs6ltM3tqpdrjkSQhmBMQer
 
