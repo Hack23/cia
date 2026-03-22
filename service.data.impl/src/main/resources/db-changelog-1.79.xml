@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+  ~ Copyright 2010-2025 James Pether Sörling
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~   http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~
+  ~	$Id$
+  ~	$HeadURL$
+-->
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+<!-- ============================================================================ -->
+<!-- CHANGELOG 1.79: FIX REMAINING VIEW DATA QUALITY ISSUES                       -->
+<!-- ============================================================================ -->
+<!-- Analysis of sample-data CSVs reveals additional views with zero/empty values  -->
+<!-- where valid data should exist.                                                -->
+<!--                                                                               -->
+<!-- ROOT CAUSE 5: Wrong join in view_riksdagen_party_summary party_documents CTE  -->
+<!--   Uses dsc.hjid = dprc.hjid (PK=PK coincidence match) instead of correct FK  -->
+<!--   dsc.document_person_reference_co_1 = dprc.hjid. This causes total_documents -->
+<!--   to show ~6 for M party instead of expected ~292K.                           -->
+<!--   Affects: total_documents, avg_documents_per_member, all activity_members,   -->
+<!--   total_party_motions, all motion type counts, currently_active_members.      -->
+<!--                                                                               -->
+<!-- ROOT CAUSE 6: Wrong motion type classification in party_summary               -->
+<!--   Uses label LIKE '%motion%' to distinguish party vs individual motions but   -->
+<!--   actual labels are codes like 'MJ408','A314'. Should use sub_type field:     -->
+<!--   'Partimotion', 'Enskild motion', 'Kommittémotion', 'Flerpartimotion',     -->
+<!--   'Följdmotion'.                                                             -->
+<!--   Affects: total_party_motions (always 0), total_individual_motions (wrong).  -->
+<!--                                                                               -->
+<!-- ROOT CAUSE 7: Hardcoded zeros for calculable metrics in party_summary         -->
+<!--   total_collaborative_motions, total_follow_up_motions, party_focused_members -->
+<!--   committee_focused_members, individual_focused_members,                      -->
+<!--   highly_collaborative_members, avg_collaboration_percentage are literal 0.   -->
+<!--   These can be computed from sub_type and order_number fields.                -->
+<!--                                                                               -->
+<!-- ROOT CAUSE 8: Wrong rule_violation.status filter in behavioral_trends         -->
+<!--   Uses status = 'ACTIVE' but actual Status enum values are:                   -->
+<!--   OK, MINOR, MAJOR, CRITICAL. Should use IN ('MINOR','MAJOR','CRITICAL').     -->
+<!--   Affects: violation_count (always 0), violation_types (always 0).            -->
+<!--                                                                               -->
+<!-- ROOT CAUSE 9: Document type data limitations in role_member views             -->
+<!--   view_riksdagen_committee_role_member filters for 'bet'/'yttr' but these     -->
+<!--   doc types have no person_reference linkage in the data.                     -->
+<!--   view_riksdagen_party_role_member filters for 'ip'/'frs' but these doc       -->
+<!--   types don't exist in document_data at all.                                  -->
+<!--   Fix: Use sub_type based counting for motions and remove non-existent types. -->
+<!--                                                                               -->
+<!-- DATA EVIDENCE:                                                                -->
+<!-- - document_data types: mot(94460), bet(8840), prop(5780), kammakt(336)        -->
+<!-- - Motion sub_types: Enskild(25237), Kommittémotion(15976), Partimotion(3818) -->
+<!--   Flerpartimotion(1358), Följdmotion(21), Fristående(7)                     -->
+<!-- - FK chain: dsc.document_person_reference_co_1 -> dprc.hjid                   -->
+<!--           dpr.document_person_reference_li_1 -> dprc.hjid                    -->
+<!-- - rule_violation.status values: OK, MINOR, MAJOR, CRITICAL (not ACTIVE)       -->
+<!-- ============================================================================ -->
+
+    <!-- ======================================================================== -->
+    <!-- 1.79-001: Fix view_riksdagen_party_summary — wrong CTE join + motion     -->
+    <!--           type classification + implement hardcoded-zero columns          -->
+    <!-- Uses CREATE OR REPLACE (no dependents). Fixes 3 root causes at once.     -->
+    <!-- ======================================================================== -->
+    <changeSet id="1.79-001" author="copilot">
+        <comment>Fix view_riksdagen_party_summary: correct document join chain (ROOT CAUSE 5),
+        motion type classification using sub_type (ROOT CAUSE 6), and implement
+        previously hardcoded-zero columns (ROOT CAUSE 7).
+
+        Join fix: party_documents CTE used dsc.hjid = dprc.hjid (PK coincidence match)
+        instead of correct FK: dsc.document_person_reference_co_1 → dprc.hjid.
+        This caused total_documents ≈6 for M party instead of expected ≈292K.
+
+        Motion fix: Used label LIKE '%motion%' but labels are codes like 'MJ408'.
+        Now uses sub_type: Partimotion, Enskild motion, Kommittémotion, Flerpartimotion, Följdmotion.
+
+        Hardcoded-zero fix: Implements total_collaborative_motions, total_follow_up_motions,
+        party_focused_members, committee_focused_members, individual_focused_members,
+        highly_collaborative_members, avg_collaboration_percentage using actual data.</comment>
+        <createView viewName="view_riksdagen_party_summary" replaceIfExists="true">
+WITH party_documents AS (
+    SELECT dpr.party_short_code AS party,
+        dpr.person_reference_id,
+        dd.id AS doc_id,
+        dd.document_type,
+        dd.sub_type,
+        dd.label,
+        dd.made_public_date,
+        dd.org
+    FROM document_data dd
+      JOIN document_status_container dsc ON dd.id::text = dsc.document_document_status_con_0::text
+      JOIN document_person_reference_da_0 dpr ON dpr.document_person_reference_li_1 = dsc.document_person_reference_co_1
+    WHERE dpr.party_short_code IS NOT NULL
+),
+member_doc_profiles AS (
+    SELECT pd2.party,
+        pd2.person_reference_id,
+        count(DISTINCT pd2.doc_id) AS total_docs,
+        count(DISTINCT CASE WHEN pd2.document_type = 'mot' AND pd2.sub_type = 'Partimotion' THEN pd2.doc_id END) AS party_mot_count,
+        count(DISTINCT CASE WHEN pd2.document_type = 'mot' AND pd2.sub_type = 'Kommittémotion' THEN pd2.doc_id END) AS committee_mot_count,
+        count(DISTINCT CASE WHEN pd2.document_type = 'mot' AND pd2.sub_type = 'Enskild motion' THEN pd2.doc_id END) AS individual_mot_count,
+        count(DISTINCT CASE WHEN pd2.document_type = 'mot' AND pd2.sub_type = 'Flerpartimotion' THEN pd2.doc_id END) AS collab_mot_count
+    FROM party_documents pd2
+    GROUP BY pd2.party, pd2.person_reference_id
+)
+SELECT vp.party,
+    min(vp.first_assignment_date) AS first_assignment_date,
+    max(vp.last_assignment_date) AS last_assignment_date,
+    sum(vp.total_assignments)::bigint AS total_assignments,
+    sum(vp.current_assignments)::bigint AS current_assignments,
+    sum(vp.total_days_served)::bigint AS total_days_served,
+    sum(vp.total_days_served_parliament)::bigint AS total_days_served_parliament,
+    sum(vp.total_days_served_committee)::bigint AS total_days_served_committee,
+    sum(vp.total_days_served_government)::bigint AS total_days_served_government,
+    sum(vp.total_days_served_eu)::bigint AS total_days_served_eu,
+    sum(vp.total_days_served_speaker)::bigint AS total_days_served_speaker,
+    sum(vp.total_days_served_party)::bigint AS total_days_served_party,
+    sum(vp.total_days_served_committee_substitute)::bigint AS total_days_served_committee_substitute,
+    sum(vp.total_days_served_committee_leadership)::bigint AS total_days_served_committee_leadership,
+    bool_or(vp.active) AS active,
+    bool_or(vp.active_parliament) AS active_parliament,
+    bool_or(vp.active_government) AS active_government,
+    bool_or(vp.active_committee) AS active_committee,
+    bool_or(vp.active_eu) AS active_eu,
+    bool_or(vp.active_speaker) AS active_speaker,
+    bool_or(vp.active_party) AS active_party,
+    sum(CASE WHEN vp.active THEN 1 ELSE 0 END) AS total_active,
+    sum(CASE WHEN vp.active_parliament THEN 1 ELSE 0 END) AS total_active_parliament,
+    sum(CASE WHEN vp.active_government THEN 1 ELSE 0 END) AS total_active_government,
+    sum(CASE WHEN vp.active_committee THEN 1 ELSE 0 END) AS total_active_committee,
+    sum(CASE WHEN vp.active_eu THEN 1 ELSE 0 END) AS total_active_eu,
+    sum(vp.total_party_assignments)::bigint AS total_party_assignments,
+    sum(vp.total_ministry_assignments)::bigint AS total_ministry_assignments,
+    sum(vp.total_committee_assignments)::bigint AS total_committee_assignments,
+    sum(vp.total_speaker_assignments)::bigint AS total_speaker_assignments,
+    sum(vp.total_committee_substitute_assignments)::bigint AS total_committee_substitute_assignments,
+    sum(vp.total_committee_leadership_assignments)::bigint AS total_committee_leadership_assignments,
+    sum(vp.current_party_assignments)::bigint AS current_party_assignments,
+    sum(vp.current_ministry_assignments)::bigint AS current_ministry_assignments,
+    sum(vp.current_committee_assignments)::bigint AS current_committee_assignments,
+    sum(vp.current_speaker_assignments)::bigint AS current_speaker_assignments,
+    sum(vp.current_committee_substitute_assignments)::bigint AS current_committee_substitute_assignments,
+    sum(vp.current_committee_leadership_assignments)::bigint AS current_committee_leadership_assignments,
+    COALESCE(count(DISTINCT pd.doc_id), 0::bigint) AS total_documents,
+    round(COALESCE(count(DISTINCT pd.doc_id)::numeric / NULLIF(count(DISTINCT pd.person_reference_id), 0)::numeric, 0::numeric), 2) AS avg_documents_per_member,
+    COALESCE(count(DISTINCT CASE WHEN pd.document_type = 'mot' AND pd.sub_type = 'Partimotion' THEN pd.doc_id END), 0::bigint) AS total_party_motions,
+    COALESCE(count(DISTINCT CASE WHEN pd.document_type = 'mot' AND pd.sub_type = 'Enskild motion' THEN pd.doc_id END), 0::bigint) AS total_individual_motions,
+    COALESCE(count(DISTINCT CASE WHEN pd.document_type = 'mot' AND pd.sub_type = 'Kommittémotion' THEN pd.doc_id END), 0::bigint) AS total_committee_motions,
+    COALESCE(count(DISTINCT CASE WHEN pd.document_type = 'mot' AND pd.sub_type = 'Flerpartimotion' THEN pd.doc_id END), 0::bigint) AS total_collaborative_motions,
+    COALESCE(count(DISTINCT CASE WHEN pd.document_type = 'mot' AND pd.sub_type = 'Följdmotion' THEN pd.doc_id END), 0::bigint) AS total_follow_up_motions,
+    COALESCE((SELECT count(*) FROM member_doc_profiles m WHERE m.party::text = vp.party AND m.total_docs > 100), 0::bigint) AS very_high_activity_members,
+    COALESCE((SELECT count(*) FROM member_doc_profiles m WHERE m.party::text = vp.party AND m.total_docs >= 50 AND m.total_docs &lt;= 100), 0::bigint) AS high_activity_members,
+    COALESCE((SELECT count(*) FROM member_doc_profiles m WHERE m.party::text = vp.party AND m.total_docs >= 10 AND m.total_docs &lt;= 49), 0::bigint) AS medium_activity_members,
+    COALESCE((SELECT count(*) FROM member_doc_profiles m WHERE m.party::text = vp.party AND m.total_docs &lt; 10), 0::bigint) AS low_activity_members,
+    COALESCE((SELECT count(*) FROM member_doc_profiles m WHERE m.party::text = vp.party AND m.party_mot_count > m.committee_mot_count AND m.party_mot_count > m.individual_mot_count), 0::bigint) AS party_focused_members,
+    COALESCE((SELECT count(*) FROM member_doc_profiles m WHERE m.party::text = vp.party AND m.committee_mot_count > m.party_mot_count AND m.committee_mot_count > m.individual_mot_count), 0::bigint) AS committee_focused_members,
+    COALESCE((SELECT count(*) FROM member_doc_profiles m WHERE m.party::text = vp.party AND m.individual_mot_count > m.party_mot_count AND m.individual_mot_count > m.committee_mot_count), 0::bigint) AS individual_focused_members,
+    COALESCE(count(DISTINCT CASE WHEN pd.made_public_date >= (CURRENT_DATE - interval '1 year') THEN pd.person_reference_id END), 0::bigint) AS currently_active_members,
+    COALESCE(count(DISTINCT CASE WHEN pd.made_public_date >= (CURRENT_DATE - interval '1 year') THEN pd.doc_id END), 0::bigint) AS total_documents_last_year,
+    round(COALESCE(count(DISTINCT CASE WHEN pd.made_public_date >= (CURRENT_DATE - interval '1 year') THEN pd.doc_id END)::numeric / NULLIF(count(DISTINCT CASE WHEN pd.made_public_date >= (CURRENT_DATE - interval '1 year') THEN pd.person_reference_id END), 0)::numeric, 0::numeric), 2) AS avg_documents_last_year,
+    min(pd.made_public_date) AS first_party_document,
+    max(pd.made_public_date) AS last_party_document,
+    round(COALESCE((count(DISTINCT CASE WHEN pd.document_type = 'mot' AND pd.sub_type = 'Flerpartimotion' THEN pd.doc_id END)::numeric / NULLIF(count(DISTINCT CASE WHEN pd.document_type = 'mot' THEN pd.doc_id END), 0)::numeric) * 100, 0::numeric), 2) AS avg_collaboration_percentage,
+    COALESCE((SELECT count(*) FROM member_doc_profiles m WHERE m.party::text = vp.party AND m.collab_mot_count > 0 AND m.collab_mot_count::numeric > m.total_docs::numeric * 0.20), 0::bigint) AS highly_collaborative_members
+FROM view_riksdagen_politician vp
+  LEFT JOIN party_documents pd ON vp.party = pd.party::text
+GROUP BY vp.party
+ORDER BY vp.party
+        </createView>
+    </changeSet>
+
+    <!-- ======================================================================== -->
+    <!-- 1.79-002: Fix view_politician_behavioral_trends — wrong status filter     -->
+    <!-- Uses CREATE OR REPLACE to preserve dependents (temporal_trends,           -->
+    <!-- proximity_trends, career_path, pre_election_activity).                    -->
+    <!-- ======================================================================== -->
+    <changeSet id="1.79-002" author="copilot">
+        <comment>Fix view_politician_behavioral_trends: rule_violation.status = 'ACTIVE'
+        changed to IN ('MINOR','MAJOR','CRITICAL') (ROOT CAUSE 8).
+
+        The Status enum in the Java model (Status.java) defines: OK, MINOR, MAJOR, CRITICAL.
+        'ACTIVE' does not exist, causing violation_count and violation_types to always be 0.
+        The fix filters for non-OK violation statuses to count actual violations.</comment>
+        <createView viewName="view_politician_behavioral_trends" replaceIfExists="true">
+WITH monthly_voting_data AS (
+    SELECT embedded_id_intressent_id AS person_id,
+        date_trunc('month', embedded_id_vote_date::timestamp with time zone) AS period_start,
+        max(first_name) AS first_name,
+        max(last_name) AS last_name,
+        max(party) AS party,
+        sum(number_ballots) AS total_ballots,
+        sum(total_votes) AS total_votes,
+        round(avg(avg_percentage_absent), 2) AS avg_absence_rate,
+        round(avg(avg_percentage_yes), 2) AS avg_yes_rate,
+        round(avg(avg_percentage_no), 2) AS avg_no_rate,
+        round(avg(avg_percentage_abstain), 2) AS avg_abstain_rate,
+        round(avg(won_percentage), 2) AS avg_win_rate,
+        round(avg(rebel_percentage), 2) AS avg_rebel_rate
+    FROM view_riksdagen_vote_data_ballot_politician_summary_daily
+    WHERE embedded_id_vote_date >= (CURRENT_DATE - interval '3 years')
+    GROUP BY embedded_id_intressent_id, date_trunc('month', embedded_id_vote_date::timestamp with time zone)
+), violation_counts AS (
+    SELECT reference_id AS person_id,
+        date_trunc('month', detected_date) AS period_start,
+        count(*) AS violation_count,
+        count(DISTINCT rule_group) AS violation_types,
+        max(detected_date) AS latest_violation_date
+    FROM rule_violation
+    WHERE resource_type = 'POLITICIAN'
+      AND status IN ('MINOR','MAJOR','CRITICAL')
+      AND detected_date >= (CURRENT_DATE - interval '3 years')
+    GROUP BY reference_id, date_trunc('month', detected_date)
+), trend_calculations AS (
+    SELECT mvd.person_id,
+        mvd.period_start,
+        mvd.first_name,
+        mvd.last_name,
+        mvd.party,
+        mvd.total_ballots,
+        mvd.total_votes,
+        mvd.avg_absence_rate,
+        mvd.avg_yes_rate,
+        mvd.avg_no_rate,
+        mvd.avg_abstain_rate,
+        mvd.avg_win_rate,
+        mvd.avg_rebel_rate,
+        COALESCE(vc.violation_count, 0::bigint) AS violation_count,
+        COALESCE(vc.violation_types, 0::bigint) AS violation_types,
+        lag(mvd.avg_absence_rate, 1) OVER (PARTITION BY mvd.person_id ORDER BY mvd.period_start) AS prev_absence_rate,
+        lag(mvd.avg_win_rate, 1) OVER (PARTITION BY mvd.person_id ORDER BY mvd.period_start) AS prev_win_rate,
+        lag(mvd.avg_rebel_rate, 1) OVER (PARTITION BY mvd.person_id ORDER BY mvd.period_start) AS prev_rebel_rate,
+        round(avg(mvd.avg_absence_rate) OVER (PARTITION BY mvd.person_id ORDER BY mvd.period_start ROWS BETWEEN 2 PRECEDING AND CURRENT ROW), 2) AS ma_3month_absence,
+        round(avg(mvd.avg_win_rate) OVER (PARTITION BY mvd.person_id ORDER BY mvd.period_start ROWS BETWEEN 2 PRECEDING AND CURRENT ROW), 2) AS ma_3month_win_rate,
+        round(avg(mvd.avg_rebel_rate) OVER (PARTITION BY mvd.person_id ORDER BY mvd.period_start ROWS BETWEEN 2 PRECEDING AND CURRENT ROW), 2) AS ma_3month_rebel_rate
+    FROM monthly_voting_data mvd
+      LEFT JOIN violation_counts vc ON mvd.person_id::text = vc.person_id::text AND mvd.period_start = vc.period_start
+)
+SELECT person_id,
+    period_start,
+    (period_start + interval '1 month' - interval '1 day')::date AS period_end,
+    first_name,
+    last_name,
+    party,
+    total_ballots,
+    total_votes,
+    avg_absence_rate,
+    avg_yes_rate,
+    avg_no_rate,
+    avg_abstain_rate,
+    avg_win_rate,
+    avg_rebel_rate,
+    violation_count,
+    violation_types,
+    round(avg_absence_rate - prev_absence_rate, 2) AS absence_trend,
+    round(avg_win_rate - prev_win_rate, 2) AS win_rate_trend,
+    round(avg_rebel_rate - prev_rebel_rate, 2) AS rebel_rate_trend,
+    ma_3month_absence,
+    ma_3month_win_rate,
+    ma_3month_rebel_rate,
+    CASE
+        WHEN avg_absence_rate >= 30::numeric THEN 'HIGH_ABSENTEEISM'
+        WHEN avg_absence_rate >= 15::numeric THEN 'MODERATE_ABSENTEEISM'
+        WHEN avg_absence_rate >= 5::numeric THEN 'LOW_ABSENTEEISM'
+        ELSE 'EXCELLENT_ATTENDANCE'
+    END AS attendance_status,
+    CASE
+        WHEN avg_win_rate >= 80::numeric THEN 'HIGHLY_EFFECTIVE'
+        WHEN avg_win_rate >= 60::numeric THEN 'EFFECTIVE'
+        WHEN avg_win_rate >= 40::numeric THEN 'MODERATELY_EFFECTIVE'
+        ELSE 'LOW_EFFECTIVENESS'
+    END AS effectiveness_status,
+    CASE
+        WHEN avg_rebel_rate >= 20::numeric THEN 'HIGH_INDEPENDENCE'
+        WHEN avg_rebel_rate >= 10::numeric THEN 'MODERATE_INDEPENDENCE'
+        WHEN avg_rebel_rate >= 5::numeric THEN 'LOW_INDEPENDENCE'
+        ELSE 'PARTY_LOYAL'
+    END AS discipline_status,
+    CASE
+        WHEN avg_absence_rate >= 30::numeric OR avg_rebel_rate >= 20::numeric OR violation_count >= 3 THEN 'ELEVATED_RISK'
+        WHEN avg_absence_rate >= 15::numeric OR avg_rebel_rate >= 10::numeric OR violation_count >= 1 THEN 'MODERATE_RISK'
+        WHEN avg_win_rate >= 70::numeric AND avg_absence_rate &lt; 10::numeric THEN 'HIGH_PERFORMER'
+        ELSE 'STANDARD_BEHAVIOR'
+    END AS behavioral_assessment
+FROM trend_calculations
+WHERE total_ballots >= 5::numeric
+ORDER BY person_id, period_start DESC
+        </createView>
+    </changeSet>
+
+    <!-- ======================================================================== -->
+    <!-- 1.79-003: Fix view_riksdagen_party_role_member — use sub_type for        -->
+    <!--           motion classification instead of non-existent doc types         -->
+    <!-- No dependents, uses CREATE OR REPLACE.                                    -->
+    <!-- ======================================================================== -->
+    <changeSet id="1.79-003" author="copilot">
+        <comment>Fix view_riksdagen_party_role_member: replace document_type 'ip'/'frs'
+        counts with sub_type based motion classification (ROOT CAUSE 9).
+
+        Document types 'ip' (interpellation) and 'frs' (written question) do not exist
+        in document_data. Only: mot(94460), bet(8840), prop(5780), kammakt(336).
+        Replace with useful sub_type metrics: party_motions and committee_motions.</comment>
+        <createView viewName="view_riksdagen_party_role_member" replaceIfExists="true">
+SELECT a.hjid AS role_id,
+    a.detail,
+    a.role_code,
+    p.first_name,
+    p.last_name,
+    a.from_date,
+    a.to_date,
+    p.id AS person_id,
+    p.party,
+    (CASE WHEN a.to_date > CURRENT_DATE OR a.to_date IS NULL THEN CURRENT_DATE ELSE a.to_date END
+     - CASE WHEN a.from_date > CURRENT_DATE THEN CURRENT_DATE ELSE a.from_date END) AS total_days_served,
+    CASE WHEN a.to_date IS NULL OR (a.to_date > CURRENT_DATE AND a.from_date &lt; CURRENT_DATE) THEN true ELSE false END AS active,
+    COALESCE(doc_stats.total_documents, 0::bigint) AS total_documents,
+    COALESCE(doc_stats.documents_last_year, 0::bigint) AS documents_last_year,
+    COALESCE(doc_stats.motions, 0::bigint) AS total_motions,
+    COALESCE(doc_stats.party_motions, 0::bigint) AS total_interpellations,
+    COALESCE(doc_stats.committee_motions, 0::bigint) AS total_written_questions,
+    CASE
+        WHEN COALESCE(doc_stats.documents_last_year, 0::bigint) > 50 THEN 'Very High'
+        WHEN COALESCE(doc_stats.documents_last_year, 0::bigint) > 25 THEN 'High'
+        WHEN COALESCE(doc_stats.documents_last_year, 0::bigint) > 10 THEN 'Medium'
+        WHEN COALESCE(doc_stats.documents_last_year, 0::bigint) > 0 THEN 'Low'
+        ELSE 'Inactive'
+    END AS activity_level,
+    CASE
+        WHEN a.role_code::text = 'Partiledare' THEN 'Party Leader'
+        WHEN a.role_code::text = 'Språkrör' THEN 'Party Spokesperson'
+        WHEN a.role_code::text = 'Gruppledare' THEN 'Group Leader'
+        WHEN a.role_code::text LIKE '%Förste vice gruppledare%' THEN 'First Deputy Group Leader'
+        WHEN a.role_code::text LIKE '%Andre vice gruppledare%' THEN 'Second Deputy Group Leader'
+        WHEN a.role_code::text = 'Partisekreterare' THEN 'Party Secretary'
+        WHEN a.role_code::text = 'Tillförordnad partisekreterare' THEN 'Acting Party Secretary'
+        WHEN a.role_code::text = 'Kvittningsperson' THEN 'Pairing Representative'
+        ELSE 'Other'
+    END AS role_type
+FROM assignment_data a
+  LEFT JOIN person_data p ON a.intressent_id::text = p.id::text
+  LEFT JOIN LATERAL (
+    SELECT person_reference_id,
+        count(*) AS total_documents,
+        count(CASE WHEN made_public_date >= (CURRENT_DATE - interval '1 year') THEN 1 END) AS documents_last_year,
+        count(CASE WHEN document_type = 'mot' THEN 1 END) AS motions,
+        count(CASE WHEN document_type = 'mot' AND sub_type = 'Partimotion' THEN 1 END) AS party_motions,
+        count(CASE WHEN document_type = 'mot' AND sub_type = 'Kommittémotion' THEN 1 END) AS committee_motions
+    FROM view_riksdagen_politician_document
+    WHERE made_public_date >= (CURRENT_DATE - interval '25 years')
+    GROUP BY person_reference_id
+  ) doc_stats ON doc_stats.person_reference_id::text = p.id::text
+WHERE a.assignment_type = 'partiuppdrag'
+ORDER BY a.detail, a.role_code, a.from_date DESC
+        </createView>
+    </changeSet>
+
+    <!-- ======================================================================== -->
+    <!-- 1.79-004: Fix view_riksdagen_committee_role_member — use sub_type for    -->
+    <!--           motion classification instead of unlinked doc types             -->
+    <!-- No dependents, uses CREATE OR REPLACE.                                    -->
+    <!-- ======================================================================== -->
+    <changeSet id="1.79-004" author="copilot">
+        <comment>Fix view_riksdagen_committee_role_member: replace document_type 'bet'/'yttr'
+        counts with sub_type based motion classification (ROOT CAUSE 9).
+
+        'bet' (committee reports) and 'yttr' (statements) have no person_reference linkage
+        in the data - they are org-level documents. Replace with sub_type metrics:
+        committee_motions (Kommittémotion) and propositions (prop type).</comment>
+        <createView viewName="view_riksdagen_committee_role_member" replaceIfExists="true">
+SELECT a.hjid AS role_id,
+    a.detail,
+    a.role_code,
+    p.first_name,
+    p.last_name,
+    a.from_date,
+    a.to_date,
+    p.id AS person_id,
+    p.party,
+    (CASE WHEN a.to_date > CURRENT_DATE THEN CURRENT_DATE ELSE a.to_date END
+     - CASE WHEN a.from_date > CURRENT_DATE THEN CURRENT_DATE ELSE a.from_date END) AS total_days_served,
+    CASE WHEN a.to_date > CURRENT_DATE AND a.from_date &lt; CURRENT_DATE THEN true ELSE false END AS active,
+    COALESCE(doc_stats.total_documents, 0::bigint) AS total_documents,
+    COALESCE(doc_stats.documents_last_year, 0::bigint) AS documents_last_year,
+    COALESCE(doc_stats.committee_motions, 0::bigint) AS total_committee_reports,
+    COALESCE(doc_stats.propositions, 0::bigint) AS total_statements,
+    COALESCE(doc_stats.initiatives, 0::bigint) AS total_initiatives,
+    CASE
+        WHEN COALESCE(doc_stats.documents_last_year, 0::bigint) > 40 THEN 'Very High'
+        WHEN COALESCE(doc_stats.documents_last_year, 0::bigint) > 20 THEN 'High'
+        WHEN COALESCE(doc_stats.documents_last_year, 0::bigint) > 10 THEN 'Medium'
+        WHEN COALESCE(doc_stats.documents_last_year, 0::bigint) > 0 THEN 'Low'
+        ELSE 'Inactive'
+    END AS activity_level,
+    CASE
+        WHEN a.role_code::text = 'Ordförande' THEN 'Chairman'
+        WHEN a.role_code::text = 'Förste vice ordförande' THEN 'First Vice Chairman'
+        WHEN a.role_code::text = 'Andre vice ordförande' THEN 'Second Vice Chairman'
+        WHEN a.role_code::text = 'Tredje vice ordförande' THEN 'Third Vice Chairman'
+        WHEN a.role_code::text = 'Vice ordförande' THEN 'Vice Chairman'
+        WHEN a.role_code::text = 'Ledamot' THEN 'Member'
+        WHEN a.role_code::text = 'Suppleant' THEN 'Deputy Member'
+        WHEN a.role_code::text = 'Extra suppleant' THEN 'Additional Deputy'
+        WHEN a.role_code::text = 'Deputerad' THEN 'Deputy'
+        ELSE 'Other'
+    END AS role_type,
+    CASE
+        WHEN a.detail::text = 'Arbetsmarknadsutskottet' THEN 'Labor Market'
+        WHEN a.detail::text = 'Civilutskottet' THEN 'Civil Affairs'
+        WHEN a.detail::text = 'Finansutskottet' THEN 'Finance'
+        WHEN a.detail::text = 'Försvarsutskottet' THEN 'Defense'
+        WHEN a.detail::text = 'Justitieutskottet' THEN 'Justice'
+        WHEN a.detail::text = 'Konstitutionsutskottet' THEN 'Constitution'
+        WHEN a.detail::text = 'Kulturutskottet' THEN 'Culture'
+        WHEN a.detail::text = 'Miljö- och jordbruksutskottet' THEN 'Environment and Agriculture'
+        WHEN a.detail::text = 'Näringsutskottet' THEN 'Industry and Trade'
+        WHEN a.detail::text = 'Skatteutskottet' THEN 'Taxation'
+        WHEN a.detail::text = 'Socialförsäkringsutskottet' THEN 'Social Insurance'
+        WHEN a.detail::text = 'Socialutskottet' THEN 'Social Affairs'
+        WHEN a.detail::text = 'Trafikutskottet' THEN 'Transport'
+        WHEN a.detail::text = 'Utbildningsutskottet' THEN 'Education'
+        WHEN a.detail::text = 'Utrikesutskottet' THEN 'Foreign Affairs'
+        WHEN a.detail::text LIKE 'Sammansatta%' THEN 'Joint Committee'
+        WHEN a.detail::text = 'EU-nämnden' THEN 'EU Affairs'
+        WHEN a.detail::text = 'Lagutskottet' THEN 'Law'
+        WHEN a.detail::text = 'Bostadsutskottet' THEN 'Housing'
+        ELSE 'Other'
+    END AS committee_type
+FROM assignment_data a
+  LEFT JOIN person_data p ON a.intressent_id::text = p.id::text
+  LEFT JOIN LATERAL (
+    SELECT person_reference_id,
+        count(*) AS total_documents,
+        count(CASE WHEN made_public_date >= (CURRENT_DATE - interval '1 year') THEN 1 END) AS documents_last_year,
+        count(CASE WHEN document_type = 'mot' AND sub_type = 'Kommittémotion' THEN 1 END) AS committee_motions,
+        count(CASE WHEN document_type = 'prop' THEN 1 END) AS propositions,
+        count(CASE WHEN document_type IN ('mot','prop','frs') THEN 1 END) AS initiatives
+    FROM view_riksdagen_politician_document
+    WHERE made_public_date >= (CURRENT_DATE - interval '25 years')
+    GROUP BY person_reference_id
+  ) doc_stats ON doc_stats.person_reference_id::text = p.id::text
+WHERE a.org_code IS NOT NULL AND a.assignment_type = 'uppdrag'
+ORDER BY a.detail,
+    CASE a.role_code
+        WHEN 'Ordförande' THEN 1
+        WHEN 'Förste vice ordförande' THEN 2
+        WHEN 'Andre vice ordförande' THEN 3
+        WHEN 'Tredje vice ordförande' THEN 4
+        WHEN 'Vice ordförande' THEN 5
+        WHEN 'Ledamot' THEN 6
+        WHEN 'Suppleant' THEN 7
+        WHEN 'Extra suppleant' THEN 8
+        ELSE 9
+    END, a.from_date DESC
+        </createView>
+    </changeSet>
+
+</databaseChangeLog>

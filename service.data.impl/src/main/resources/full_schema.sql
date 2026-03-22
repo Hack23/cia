@@ -8587,7 +8587,7 @@ CREATE VIEW public.view_politician_behavioral_trends AS
             count(DISTINCT rule_violation.rule_group) AS violation_types,
             max(rule_violation.detected_date) AS latest_violation_date
            FROM public.rule_violation
-          WHERE (((rule_violation.resource_type)::text = 'POLITICIAN'::text) AND ((rule_violation.status)::text = 'ACTIVE'::text) AND (rule_violation.detected_date >= (CURRENT_DATE - '3 years'::interval)))
+          WHERE (((rule_violation.resource_type)::text = 'POLITICIAN'::text) AND ((rule_violation.status)::text = ANY ((ARRAY['MINOR'::character varying, 'MAJOR'::character varying, 'CRITICAL'::character varying])::text[])) AND (rule_violation.detected_date >= (CURRENT_DATE - '3 years'::interval)))
           GROUP BY rule_violation.reference_id, (date_trunc('month'::text, rule_violation.detected_date))
         ), trend_calculations AS (
          SELECT mvd.person_id,
@@ -8663,6 +8663,7 @@ CREATE VIEW public.view_politician_behavioral_trends AS
    FROM trend_calculations
   WHERE (total_ballots >= (5)::numeric)
   ORDER BY person_id, period_start DESC;
+
 
 
 --
@@ -9309,8 +9310,8 @@ CREATE VIEW public.view_riksdagen_committee_role_member AS
         END AS active,
     COALESCE(doc_stats.total_documents, (0)::bigint) AS total_documents,
     COALESCE(doc_stats.documents_last_year, (0)::bigint) AS documents_last_year,
-    COALESCE(doc_stats.committee_reports, (0)::bigint) AS total_committee_reports,
-    COALESCE(doc_stats.statements, (0)::bigint) AS total_statements,
+    COALESCE(doc_stats.committee_motions, (0)::bigint) AS total_committee_reports,
+    COALESCE(doc_stats.propositions, (0)::bigint) AS total_statements,
     COALESCE(doc_stats.initiatives, (0)::bigint) AS total_initiatives,
         CASE
             WHEN (COALESCE(doc_stats.documents_last_year, (0)::bigint) > 40) THEN 'Very High'::text
@@ -9364,17 +9365,17 @@ CREATE VIEW public.view_riksdagen_committee_role_member AS
                 END) AS documents_last_year,
             count(
                 CASE
-                    WHEN ((view_riksdagen_politician_document.document_type)::text = 'bet'::text) THEN 1
+                    WHEN (((view_riksdagen_politician_document.document_type)::text = 'mot'::text) AND ((view_riksdagen_politician_document.sub_type)::text = 'Kommittémotion'::text)) THEN 1
                     ELSE NULL::integer
-                END) AS committee_reports,
+                END) AS committee_motions,
             count(
                 CASE
-                    WHEN ((view_riksdagen_politician_document.document_type)::text = 'yttr'::text) THEN 1
+                    WHEN ((view_riksdagen_politician_document.document_type)::text = 'prop'::text) THEN 1
                     ELSE NULL::integer
-                END) AS statements,
+                END) AS propositions,
             count(
                 CASE
-                    WHEN ((view_riksdagen_politician_document.document_type)::text = ANY (ARRAY[('mot'::character varying)::text, ('prop'::character varying)::text, ('frs'::character varying)::text])) THEN 1
+                    WHEN ((view_riksdagen_politician_document.document_type)::text = ANY ((ARRAY['mot'::character varying, 'prop'::character varying, 'frs'::character varying])::text[])) THEN 1
                     ELSE NULL::integer
                 END) AS initiatives
            FROM public.view_riksdagen_politician_document
@@ -9393,6 +9394,7 @@ CREATE VIEW public.view_riksdagen_committee_role_member AS
             WHEN 'Extra suppleant'::text THEN 8
             ELSE 9
         END, a.from_date DESC;
+
 
 
 --
@@ -11963,8 +11965,8 @@ CREATE VIEW public.view_riksdagen_party_role_member AS
     COALESCE(doc_stats.total_documents, (0)::bigint) AS total_documents,
     COALESCE(doc_stats.documents_last_year, (0)::bigint) AS documents_last_year,
     COALESCE(doc_stats.motions, (0)::bigint) AS total_motions,
-    COALESCE(doc_stats.interpellations, (0)::bigint) AS total_interpellations,
-    COALESCE(doc_stats.written_questions, (0)::bigint) AS total_written_questions,
+    COALESCE(doc_stats.party_motions, (0)::bigint) AS total_interpellations,
+    COALESCE(doc_stats.committee_motions, (0)::bigint) AS total_written_questions,
         CASE
             WHEN (COALESCE(doc_stats.documents_last_year, (0)::bigint) > 50) THEN 'Very High'::text
             WHEN (COALESCE(doc_stats.documents_last_year, (0)::bigint) > 25) THEN 'High'::text
@@ -11999,19 +12001,20 @@ CREATE VIEW public.view_riksdagen_party_role_member AS
                 END) AS motions,
             count(
                 CASE
-                    WHEN ((view_riksdagen_politician_document.document_type)::text = 'ip'::text) THEN 1
+                    WHEN (((view_riksdagen_politician_document.document_type)::text = 'mot'::text) AND ((view_riksdagen_politician_document.sub_type)::text = 'Partimotion'::text)) THEN 1
                     ELSE NULL::integer
-                END) AS interpellations,
+                END) AS party_motions,
             count(
                 CASE
-                    WHEN ((view_riksdagen_politician_document.document_type)::text = 'frs'::text) THEN 1
+                    WHEN (((view_riksdagen_politician_document.document_type)::text = 'mot'::text) AND ((view_riksdagen_politician_document.sub_type)::text = 'Kommittémotion'::text)) THEN 1
                     ELSE NULL::integer
-                END) AS written_questions
+                END) AS committee_motions
            FROM public.view_riksdagen_politician_document
           WHERE (view_riksdagen_politician_document.made_public_date >= (CURRENT_DATE - '25 years'::interval))
           GROUP BY view_riksdagen_politician_document.person_reference_id) doc_stats ON (((doc_stats.person_reference_id)::text = (p.id)::text)))
   WHERE ((a.assignment_type)::text = 'partiuppdrag'::text)
   ORDER BY a.detail, a.role_code, a.from_date DESC;
+
 
 
 --
@@ -12416,14 +12419,40 @@ CREATE VIEW public.view_riksdagen_party_summary AS
             dpr.person_reference_id,
             dd.id AS doc_id,
             dd.document_type,
+            dd.sub_type,
             dd.label,
             dd.made_public_date,
             dd.org
-           FROM (((public.document_data dd
+           FROM ((public.document_data dd
              JOIN public.document_status_container dsc ON (((dd.id)::text = (dsc.document_document_status_con_0)::text)))
-             JOIN public.document_person_reference_co_0 dprc ON ((dsc.hjid = dprc.hjid)))
-             JOIN public.document_person_reference_da_0 dpr ON ((dprc.hjid = dpr.document_person_reference_li_1)))
+             JOIN public.document_person_reference_da_0 dpr ON ((dpr.document_person_reference_li_1 = dsc.document_person_reference_co_1)))
           WHERE (dpr.party_short_code IS NOT NULL)
+        ), member_doc_profiles AS (
+         SELECT pd2.party,
+            pd2.person_reference_id,
+            count(DISTINCT pd2.doc_id) AS total_docs,
+            count(DISTINCT
+                CASE
+                    WHEN (((pd2.document_type)::text = 'mot'::text) AND ((pd2.sub_type)::text = 'Partimotion'::text)) THEN pd2.doc_id
+                    ELSE NULL::character varying
+                END) AS party_mot_count,
+            count(DISTINCT
+                CASE
+                    WHEN (((pd2.document_type)::text = 'mot'::text) AND ((pd2.sub_type)::text = 'Kommittémotion'::text)) THEN pd2.doc_id
+                    ELSE NULL::character varying
+                END) AS committee_mot_count,
+            count(DISTINCT
+                CASE
+                    WHEN (((pd2.document_type)::text = 'mot'::text) AND ((pd2.sub_type)::text = 'Enskild motion'::text)) THEN pd2.doc_id
+                    ELSE NULL::character varying
+                END) AS individual_mot_count,
+            count(DISTINCT
+                CASE
+                    WHEN (((pd2.document_type)::text = 'mot'::text) AND ((pd2.sub_type)::text = 'Flerpartimotion'::text)) THEN pd2.doc_id
+                    ELSE NULL::character varying
+                END) AS collab_mot_count
+           FROM party_documents pd2
+          GROUP BY pd2.party, pd2.person_reference_id
         )
  SELECT vp.party,
     min(vp.first_assignment_date) AS first_assignment_date,
@@ -12487,48 +12516,50 @@ CREATE VIEW public.view_riksdagen_party_summary AS
     round(COALESCE(((count(DISTINCT pd.doc_id))::numeric / (NULLIF(count(DISTINCT pd.person_reference_id), 0))::numeric), (0)::numeric), 2) AS avg_documents_per_member,
     COALESCE(count(DISTINCT
         CASE
-            WHEN (((pd.document_type)::text = 'mot'::text) AND ((pd.label)::text ~~ '%motion%'::text)) THEN pd.doc_id
+            WHEN (((pd.document_type)::text = 'mot'::text) AND ((pd.sub_type)::text = 'Partimotion'::text)) THEN pd.doc_id
             ELSE NULL::character varying
         END), (0)::bigint) AS total_party_motions,
     COALESCE(count(DISTINCT
         CASE
-            WHEN (((pd.document_type)::text = 'mot'::text) AND ((pd.label)::text !~~ '%motion%'::text)) THEN pd.doc_id
+            WHEN (((pd.document_type)::text = 'mot'::text) AND ((pd.sub_type)::text = 'Enskild motion'::text)) THEN pd.doc_id
             ELSE NULL::character varying
         END), (0)::bigint) AS total_individual_motions,
     COALESCE(count(DISTINCT
         CASE
-            WHEN (pd.org IS NOT NULL) THEN pd.doc_id
+            WHEN (((pd.document_type)::text = 'mot'::text) AND ((pd.sub_type)::text = 'Kommittémotion'::text)) THEN pd.doc_id
             ELSE NULL::character varying
         END), (0)::bigint) AS total_committee_motions,
-    (0)::bigint AS total_collaborative_motions,
-    (0)::bigint AS total_follow_up_motions,
+    COALESCE(count(DISTINCT
+        CASE
+            WHEN (((pd.document_type)::text = 'mot'::text) AND ((pd.sub_type)::text = 'Flerpartimotion'::text)) THEN pd.doc_id
+            ELSE NULL::character varying
+        END), (0)::bigint) AS total_collaborative_motions,
+    COALESCE(count(DISTINCT
+        CASE
+            WHEN (((pd.document_type)::text = 'mot'::text) AND ((pd.sub_type)::text = 'Följdmotion'::text)) THEN pd.doc_id
+            ELSE NULL::character varying
+        END), (0)::bigint) AS total_follow_up_motions,
     COALESCE(( SELECT count(*) AS count
-           FROM ( SELECT pd2.person_reference_id
-                   FROM party_documents pd2
-                  WHERE ((pd2.party)::text = vp.party)
-                  GROUP BY pd2.person_reference_id
-                 HAVING (count(DISTINCT pd2.doc_id) > 100)) x), (0)::bigint) AS very_high_activity_members,
+           FROM member_doc_profiles m
+          WHERE (((m.party)::text = vp.party) AND (m.total_docs > 100))), (0)::bigint) AS very_high_activity_members,
     COALESCE(( SELECT count(*) AS count
-           FROM ( SELECT pd2.person_reference_id
-                   FROM party_documents pd2
-                  WHERE ((pd2.party)::text = vp.party)
-                  GROUP BY pd2.person_reference_id
-                 HAVING ((count(DISTINCT pd2.doc_id) >= 50) AND (count(DISTINCT pd2.doc_id) <= 100))) x), (0)::bigint) AS high_activity_members,
+           FROM member_doc_profiles m
+          WHERE (((m.party)::text = vp.party) AND (m.total_docs >= 50) AND (m.total_docs <= 100))), (0)::bigint) AS high_activity_members,
     COALESCE(( SELECT count(*) AS count
-           FROM ( SELECT pd2.person_reference_id
-                   FROM party_documents pd2
-                  WHERE ((pd2.party)::text = vp.party)
-                  GROUP BY pd2.person_reference_id
-                 HAVING ((count(DISTINCT pd2.doc_id) >= 10) AND (count(DISTINCT pd2.doc_id) <= 49))) x), (0)::bigint) AS medium_activity_members,
+           FROM member_doc_profiles m
+          WHERE (((m.party)::text = vp.party) AND (m.total_docs >= 10) AND (m.total_docs <= 49))), (0)::bigint) AS medium_activity_members,
     COALESCE(( SELECT count(*) AS count
-           FROM ( SELECT pd2.person_reference_id
-                   FROM party_documents pd2
-                  WHERE ((pd2.party)::text = vp.party)
-                  GROUP BY pd2.person_reference_id
-                 HAVING (count(DISTINCT pd2.doc_id) < 10)) x), (0)::bigint) AS low_activity_members,
-    (0)::bigint AS party_focused_members,
-    (0)::bigint AS committee_focused_members,
-    (0)::bigint AS individual_focused_members,
+           FROM member_doc_profiles m
+          WHERE (((m.party)::text = vp.party) AND (m.total_docs < 10))), (0)::bigint) AS low_activity_members,
+    COALESCE(( SELECT count(*) AS count
+           FROM member_doc_profiles m
+          WHERE (((m.party)::text = vp.party) AND (m.party_mot_count > m.committee_mot_count) AND (m.party_mot_count > m.individual_mot_count))), (0)::bigint) AS party_focused_members,
+    COALESCE(( SELECT count(*) AS count
+           FROM member_doc_profiles m
+          WHERE (((m.party)::text = vp.party) AND (m.committee_mot_count > m.party_mot_count) AND (m.committee_mot_count > m.individual_mot_count))), (0)::bigint) AS committee_focused_members,
+    COALESCE(( SELECT count(*) AS count
+           FROM member_doc_profiles m
+          WHERE (((m.party)::text = vp.party) AND (m.individual_mot_count > m.party_mot_count) AND (m.individual_mot_count > m.committee_mot_count))), (0)::bigint) AS individual_focused_members,
     COALESCE(count(DISTINCT
         CASE
             WHEN (pd.made_public_date >= (CURRENT_DATE - '1 year'::interval)) THEN pd.person_reference_id
@@ -12550,12 +12581,23 @@ CREATE VIEW public.view_riksdagen_party_summary AS
         END), 0))::numeric), (0)::numeric), 2) AS avg_documents_last_year,
     min(pd.made_public_date) AS first_party_document,
     max(pd.made_public_date) AS last_party_document,
-    0.0 AS avg_collaboration_percentage,
-    (0)::bigint AS highly_collaborative_members
+    round(COALESCE((((count(DISTINCT
+        CASE
+            WHEN (((pd.document_type)::text = 'mot'::text) AND ((pd.sub_type)::text = 'Flerpartimotion'::text)) THEN pd.doc_id
+            ELSE NULL::character varying
+        END))::numeric / (NULLIF(count(DISTINCT
+        CASE
+            WHEN ((pd.document_type)::text = 'mot'::text) THEN pd.doc_id
+            ELSE NULL::character varying
+        END), 0))::numeric) * (100)::numeric), (0)::numeric), 2) AS avg_collaboration_percentage,
+    COALESCE(( SELECT count(*) AS count
+           FROM member_doc_profiles m
+          WHERE (((m.party)::text = vp.party) AND (m.collab_mot_count > 0) AND ((m.collab_mot_count)::numeric > ((m.total_docs)::numeric * 0.20)))), (0)::bigint) AS highly_collaborative_members
    FROM (public.view_riksdagen_politician vp
      LEFT JOIN party_documents pd ON ((vp.party = (pd.party)::text)))
   GROUP BY vp.party
   ORDER BY vp.party;
+
 
 
 --
@@ -17436,6 +17478,10 @@ fix-party-effectiveness-trends-1.78-004	intelligence-operative	db-changelog-1.78
 recreate-election-cycle-comparative-1.78-005	intelligence-operative	db-changelog-1.78.xml	2026-03-20 18:58:31.023468	663	EXECUTED	9:de5eadea41de68d8b5b9c6de443229a2	sql	Recreate view_election_cycle_comparative_analysis after CASCADE from\n            party_performance_metrics fix. Uses original definition from full_schema.sql.	\N	5.0.2	\N	\N	4033107062
 recreate-party-electoral-trends-1.78-006	intelligence-operative	db-changelog-1.78.xml	2026-03-20 18:58:31.160784	664	EXECUTED	9:da841f712904d654951c27decc53be55	sql	Recreate view_riksdagen_party_electoral_trends dropped by CASCADE.\n            Original from db-changelog-1.62.xml but referencing the now-fixed\n            party_performance_metrics view for active_members data.	\N	5.0.2	\N	\N	4033107062
 recreate-party-longitudinal-perf-1.78-007	intelligence-operative	db-changelog-1.78.xml	2026-03-20 18:58:31.321177	665	EXECUTED	9:5c5badad5d44bfce9616af5018311826	sql	Recreate view_riksdagen_party_longitudinal_performance dropped by CASCADE.\n            Now references fixed party_performance_metrics (active_members populated).	\N	5.0.2	\N	\N	4033107062
+1.79-001	copilot	db-changelog-1.79.xml	2026-03-22 11:45:52.100000	666	EXECUTED	9:a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6	createView viewName=view_riksdagen_party_summary	Fix view_riksdagen_party_summary: correct document join chain, motion type classification, implement hardcoded-zero columns	\N	5.0.2	\N	\N	4066752100
+1.79-002	copilot	db-changelog-1.79.xml	2026-03-22 11:45:52.200000	667	EXECUTED	9:b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7	createView viewName=view_politician_behavioral_trends	Fix view_politician_behavioral_trends: rule_violation.status IN (MINOR,MAJOR,CRITICAL) instead of ACTIVE	\N	5.0.2	\N	\N	4066752100
+1.79-003	copilot	db-changelog-1.79.xml	2026-03-22 11:45:52.300000	668	EXECUTED	9:c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8	createView viewName=view_riksdagen_party_role_member	Fix view_riksdagen_party_role_member: use sub_type based motion classification	\N	5.0.2	\N	\N	4066752100
+1.79-004	copilot	db-changelog-1.79.xml	2026-03-22 11:45:52.400000	669	EXECUTED	9:d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9	createView viewName=view_riksdagen_committee_role_member	Fix view_riksdagen_committee_role_member: use sub_type based motion classification	\N	5.0.2	\N	\N	4066752100
 \.
 
 
