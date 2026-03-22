@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict Wd6fdjbNhpUi9bVBYAyVWtFmKxFvjtayaaAIw99FmvIMlagvyZaZSyfbWZqvtqO
+\restrict XfeUj2OTQR6dHeAFEtHUmfea15yOxC0M7FATdmWKgttDjeLoE4X7X7phCTV93Bm
 
 -- Dumped from database version 18.3 (Ubuntu 18.3-1.pgdg24.04+1)
 -- Dumped by pg_dump version 18.3 (Ubuntu 18.3-1.pgdg24.04+1)
@@ -18,13 +18,6 @@ SET check_function_bodies = false;
 SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
-
---
--- Name: public; Type: SCHEMA; Schema: -; Owner: -
---
-
--- *not* creating schema, since initdb creates it
-
 
 --
 -- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: -
@@ -8169,13 +8162,24 @@ CREATE VIEW public.view_riksdagen_coalition_alignment_matrix AS
 --
 
 CREATE VIEW public.view_election_cycle_network_analysis AS
- WITH v151_base AS (
-         WITH election_cycle_periods AS (
-                 SELECT (((((1994)::numeric + (floor((((year_series.year_series - 1994))::numeric / 4.0)) * (4)::numeric)))::text || '-'::text) || ((((1994)::numeric + (floor((((year_series.year_series - 1994))::numeric / 4.0)) * (4)::numeric)) + (4)::numeric))::text) AS election_cycle_id,
-                    (((year_series.year_series)::numeric - ((1994)::numeric + (floor((((year_series.year_series - 1994))::numeric / 4.0)) * (4)::numeric))) + (1)::numeric) AS cycle_year,
-                    year_series.year_series AS calendar_year
-                   FROM generate_series(2020, ((EXTRACT(year FROM CURRENT_DATE))::integer + 4), 1) year_series(year_series)
-                )
+ WITH election_cycle_periods AS (
+         SELECT (((((1994)::numeric + (floor((((year_series.year_series - 1994))::numeric / 4.0)) * (4)::numeric)))::text || '-'::text) || ((((1994)::numeric + (floor((((year_series.year_series - 1994))::numeric / 4.0)) * (4)::numeric)) + (4)::numeric))::text) AS election_cycle_id,
+            (((year_series.year_series)::numeric - ((1994)::numeric + (floor((((year_series.year_series - 1994))::numeric / 4.0)) * (4)::numeric))) + (1)::numeric) AS cycle_year,
+            year_series.year_series AS calendar_year
+           FROM generate_series(2020, ((EXTRACT(year FROM CURRENT_DATE))::integer + 4), 1) year_series(year_series)
+        ), party_activity AS (
+         SELECT (EXTRACT(year FROM vd.vote_date))::integer AS vote_year,
+            vd.party,
+            count(DISTINCT vd.embedded_id_intressent_id) AS active_politicians,
+            round(avg(
+                CASE
+                    WHEN (upper((vd.vote)::text) <> 'FRÅNVARANDE'::text) THEN 1
+                    ELSE 0
+                END), 4) AS avg_participation
+           FROM public.vote_data vd
+          WHERE ((vd.vote_date IS NOT NULL) AND (vd.party IS NOT NULL))
+          GROUP BY ((EXTRACT(year FROM vd.vote_date))::integer), vd.party
+        ), v151_base AS (
          SELECT ecp.election_cycle_id,
             ecp.cycle_year,
             ecp.calendar_year,
@@ -8188,11 +8192,16 @@ CREATE VIEW public.view_election_cycle_network_analysis AS
                     WHEN (cam.alignment_rate >= (60)::numeric) THEN 'MODERATE_COALITION'::text
                     ELSE 'WEAK_COALITION'::text
                 END AS coalition_strength,
-            (0)::bigint AS influential_politicians,
-            (0)::numeric AS avg_network_centrality,
-            (0)::bigint AS power_broker_count
-           FROM (election_cycle_periods ecp
+            (COALESCE(pa1.active_politicians, (0)::bigint) + COALESCE(pa2.active_politicians, (0)::bigint)) AS influential_politicians,
+            round(COALESCE((cam.alignment_rate / 100.0), (0)::numeric), 4) AS avg_network_centrality,
+                CASE
+                    WHEN (cam.alignment_rate >= (60)::numeric) THEN (LEAST(COALESCE(pa1.active_politicians, (0)::bigint), COALESCE(pa2.active_politicians, (0)::bigint)) / NULLIF(GREATEST(COALESCE(pa1.active_politicians, (0)::bigint), COALESCE(pa2.active_politicians, (0)::bigint)), 0))
+                    ELSE (0)::bigint
+                END AS power_broker_count
+           FROM (((election_cycle_periods ecp
              CROSS JOIN public.view_riksdagen_coalition_alignment_matrix cam)
+             LEFT JOIN party_activity pa1 ON ((((pa1.party)::text = (cam.party1)::text) AND (pa1.vote_year = ecp.calendar_year))))
+             LEFT JOIN party_activity pa2 ON ((((pa2.party)::text = (cam.party2)::text) AND (pa2.vote_year = ecp.calendar_year))))
           WHERE ((cam.party1 IS NOT NULL) AND (cam.party2 IS NOT NULL))
           ORDER BY ecp.election_cycle_id, ecp.cycle_year, cam.alignment_rate DESC
         ), windowed AS (
@@ -9865,12 +9874,12 @@ CREATE VIEW public.view_riksdagen_election_proximity_trends AS
             max(pre.role_weight) AS peak_role_weight_quarter,
             count(DISTINCT
                 CASE
-                    WHEN (pre.role_tier = ANY (ARRAY['minister'::text, 'speaker'::text, 'party_leader'::text])) THEN pre.role_tier
+                    WHEN (pre.role_tier = ANY (ARRAY['MINISTER'::text, 'SPEAKER'::text, 'PARTY_LEADER'::text])) THEN pre.role_tier
                     ELSE NULL::text
                 END) AS leadership_role_count,
             count(DISTINCT
                 CASE
-                    WHEN (pre.role_tier = ANY (ARRAY['committee_chair'::text, 'committee_member'::text])) THEN pre.role_tier
+                    WHEN (pre.role_tier = ANY (ARRAY['COMMITTEE_CHAIR'::text, 'COMMITTEE_MEMBER'::text])) THEN pre.role_tier
                     ELSE NULL::text
                 END) AS committee_assignment_count
            FROM (public.view_riksdagen_politician_role_evolution pre
@@ -13813,12 +13822,12 @@ CREATE VIEW public.view_riksdagen_pre_election_quarterly_activity AS
             count(DISTINCT pre.person_id) AS total_new_assignments,
             count(DISTINCT
                 CASE
-                    WHEN (pre.role_tier = ANY (ARRAY['minister'::text, 'speaker'::text, 'party_leader'::text])) THEN pre.person_id
+                    WHEN (pre.role_tier = ANY (ARRAY['MINISTER'::text, 'SPEAKER'::text, 'PARTY_LEADER'::text])) THEN pre.person_id
                     ELSE NULL::character varying
                 END) AS politicians_with_new_roles,
             count(DISTINCT
                 CASE
-                    WHEN (pre.role_tier = 'minister'::text) THEN pre.person_id
+                    WHEN (pre.role_tier = 'MINISTER'::text) THEN pre.person_id
                     ELSE NULL::character varying
                 END) AS leadership_appointments
            FROM public.view_riksdagen_politician_role_evolution pre
@@ -16778,13 +16787,13 @@ ALTER TABLE ONLY public.jv_snapshot
 -- PostgreSQL database dump complete
 --
 
-\unrestrict Wd6fdjbNhpUi9bVBYAyVWtFmKxFvjtayaaAIw99FmvIMlagvyZaZSyfbWZqvtqO
+\unrestrict XfeUj2OTQR6dHeAFEtHUmfea15yOxC0M7FATdmWKgttDjeLoE4X7X7phCTV93Bm
 
 --
 -- PostgreSQL database dump
 --
 
-\restrict wmVqedzu5VsbmdkGPREK3uc6zWJHniTfzJt6YM642sxpU58h7EK0Vc6sHwEvuoT
+\restrict CHuN0FmhP4xvuEPLDRYbTEhqCSlh0cPZIJylolZgROhieNfSAnSUIdWimPYPeEC
 
 -- Dumped from database version 18.3 (Ubuntu 18.3-1.pgdg24.04+1)
 -- Dumped by pg_dump version 18.3 (Ubuntu 18.3-1.pgdg24.04+1)
@@ -17460,21 +17469,24 @@ fix-party-effectiveness-trends-1.78-004	intelligence-operative	db-changelog-1.78
 recreate-election-cycle-comparative-1.78-005	intelligence-operative	db-changelog-1.78.xml	2026-03-20 18:58:31.023468	663	EXECUTED	9:de5eadea41de68d8b5b9c6de443229a2	sql	Recreate view_election_cycle_comparative_analysis after CASCADE from\n            party_performance_metrics fix. Uses original definition from full_schema.sql.	\N	5.0.2	\N	\N	4033107062
 recreate-party-electoral-trends-1.78-006	intelligence-operative	db-changelog-1.78.xml	2026-03-20 18:58:31.160784	664	EXECUTED	9:da841f712904d654951c27decc53be55	sql	Recreate view_riksdagen_party_electoral_trends dropped by CASCADE.\n            Original from db-changelog-1.62.xml but referencing the now-fixed\n            party_performance_metrics view for active_members data.	\N	5.0.2	\N	\N	4033107062
 recreate-party-longitudinal-perf-1.78-007	intelligence-operative	db-changelog-1.78.xml	2026-03-20 18:58:31.321177	665	EXECUTED	9:5c5badad5d44bfce9616af5018311826	sql	Recreate view_riksdagen_party_longitudinal_performance dropped by CASCADE.\n            Now references fixed party_performance_metrics (active_members populated).	\N	5.0.2	\N	\N	4033107062
-1.79-001	copilot	db-changelog-1.79.xml	2026-03-22 11:45:52.1	666	EXECUTED	9:a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6	createView viewName=view_riksdagen_party_summary	Fix view_riksdagen_party_summary: correct document join chain, motion type classification, implement hardcoded-zero columns	\N	5.0.2	\N	\N	4066752100
-1.79-002	copilot	db-changelog-1.79.xml	2026-03-22 11:45:52.2	667	EXECUTED	9:b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7	createView viewName=view_politician_behavioral_trends	Fix view_politician_behavioral_trends: rule_violation.status IN (MINOR,MAJOR,CRITICAL) instead of ACTIVE	\N	5.0.2	\N	\N	4066752100
-1.79-003	copilot	db-changelog-1.79.xml	2026-03-22 11:45:52.3	668	EXECUTED	9:c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8	createView viewName=view_riksdagen_party_role_member	Fix view_riksdagen_party_role_member: use sub_type based motion classification	\N	5.0.2	\N	\N	4066752100
-1.79-004	copilot	db-changelog-1.79.xml	2026-03-22 11:45:52.4	669	EXECUTED	9:d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9	createView viewName=view_riksdagen_committee_role_member	Fix view_riksdagen_committee_role_member: use sub_type based motion classification	\N	5.0.2	\N	\N	4066752100
-1.79-005	copilot	db-changelog-1.79.xml	2026-03-22 12:19:47.1	670	EXECUTED	9:e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0	sql	Fix mv_annual_voting_metrics: UPPER() for vote comparisons	\N	5.0.2	\N	\N	4068787369
-1.79-006	copilot	db-changelog-1.79.xml	2026-03-22 12:19:47.2	671	EXECUTED	9:f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1	sql	Recreate view_riksdagen_election_year_behavioral_patterns	\N	5.0.2	\N	\N	4068787369
-1.79-007	copilot	db-changelog-1.79.xml	2026-03-22 12:19:47.3	672	EXECUTED	9:a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2	createView viewName=view_riksdagen_seasonal_quarterly_activity	Fix seasonal quarterly activity vote case sensitivity	\N	5.0.2	\N	\N	4068787369
-1.79-008	copilot	db-changelog-1.79.xml	2026-03-22 12:19:47.4	673	EXECUTED	9:b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3	createView viewName=view_committee_productivity	Fix committee_productivity sub_type filters	\N	5.0.2	\N	\N	4068787369
-1.79-009	copilot	db-changelog-1.79.xml	2026-03-22 12:19:47.5	674	EXECUTED	9:c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4	createView viewName=view_committee_productivity_matrix	Fix committee_productivity_matrix document_type filters	\N	5.0.2	\N	\N	4068787369
-1.79-010	copilot	db-changelog-1.79.xml	2026-03-22 12:19:47.6	675	EXECUTED	9:d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5	createView viewName=view_ministry_effectiveness_trends	Fix ministry_effectiveness_trends wrong doc join and ds type	\N	5.0.2	\N	\N	4068787369
-1.79-011	copilot	db-changelog-1.79.xml	2026-03-22 12:19:47.7	676	EXECUTED	9:e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6	createView viewName=view_ministry_risk_evolution	Fix ministry_risk_evolution wrong doc join and ds type	\N	5.0.2	\N	\N	4068787369
-1.79-012	copilot	db-changelog-1.79.xml	2026-03-22 12:19:47.8	677	EXECUTED	9:f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7	createView viewName=view_ministry_productivity_matrix	Fix ministry_productivity_matrix wrong doc join and ds type	\N	5.0.2	\N	\N	4068787369
-1.79-013	copilot	db-changelog-1.79.xml	2026-03-22 12:19:47.9	678	EXECUTED	9:a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8	sql	Fix view_risk_score_evolution document join	\N	5.0.2	\N	\N	4068787369
-1.79-014	copilot	db-changelog-1.79.xml	2026-03-22 12:19:48.000000	679	EXECUTED	9:b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9	sql	Fix crisis resilience indicators vote case	\N	5.0.2	\N	\N	4068787369
-1.79-015	copilot	db-changelog-1.79.xml	2026-03-22 12:19:48.100000	680	EXECUTED	9:c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0	sql	Fix party momentum analysis vote case	\N	5.0.2	\N	\N	4068787369
+1.79-001	copilot	db-changelog-1.79.xml	2026-03-22 13:24:09.547323	666	EXECUTED	9:9be749f4b2ebc7201f998e61dc048eb9	createView viewName=view_riksdagen_party_summary	Fix view_riksdagen_party_summary: correct document join chain (ROOT CAUSE 5),\n        motion type classification using sub_type (ROOT CAUSE 6), and implement\n        previously hardcoded-zero columns (ROOT CAUSE 7).\n\n        Join fix: party_docume...	\N	5.0.2	\N	\N	4185845674
+1.79-002	copilot	db-changelog-1.79.xml	2026-03-22 13:24:09.566768	667	EXECUTED	9:c135d31c0bcbe0642790598a65c010f1	createView viewName=view_politician_behavioral_trends	Fix view_politician_behavioral_trends: rule_violation.status = 'ACTIVE'\n        changed to IN ('MINOR','MAJOR','CRITICAL') (ROOT CAUSE 8).\n\n        The Status enum in the Java model (Status.java) defines: OK, MINOR, MAJOR, CRITICAL.\n        'ACTIV...	\N	5.0.2	\N	\N	4185845674
+1.79-003	copilot	db-changelog-1.79.xml	2026-03-22 13:24:09.57763	668	EXECUTED	9:d26359f6a83be2f3f144a77209c6e9f2	createView viewName=view_riksdagen_party_role_member	Fix view_riksdagen_party_role_member: replace document_type 'ip'/'frs'\n        counts with sub_type based motion classification (ROOT CAUSE 9).\n\n        Document types 'ip' (interpellation) and 'frs' (written question) do not exist\n        in docu...	\N	5.0.2	\N	\N	4185845674
+1.79-004	copilot	db-changelog-1.79.xml	2026-03-22 13:24:09.590812	669	EXECUTED	9:9ed8dc1ca9d98f6dfdbe9eae59d98bc5	createView viewName=view_riksdagen_committee_role_member	Fix view_riksdagen_committee_role_member: replace document_type 'bet'/'yttr'\n        counts with sub_type based motion classification (ROOT CAUSE 9).\n\n        'bet' (committee reports) and 'yttr' (statements) have no person_reference linkage\n     ...	\N	5.0.2	\N	\N	4185845674
+1.79-005	copilot	db-changelog-1.79.xml	2026-03-22 13:24:09.605718	670	EXECUTED	9:a494dbe8c9ce7296d08d2473b95055e8	sql	Fix mv_annual_voting_metrics: vote values stored UPPERCASE (JA, NEJ, FRÅNVARANDE, AVSTÅR)\n        but view compared with title-case ('Ja','Nej','Frånvarande','Avstår').\n        This caused avg_yes_rate, avg_no_rate, avg_abstain_rate to always be 0...	\N	5.0.2	\N	\N	4185845674
+1.79-006	copilot	db-changelog-1.79.xml	2026-03-22 13:24:09.623238	671	EXECUTED	9:3b5969206f1b36c92a8154be76f259c7	sql	Recreate view_riksdagen_election_year_behavioral_patterns dropped by CASCADE\n        when fixing mv_annual_voting_metrics. View definition unchanged — reads from\n        corrected materialized view.	\N	5.0.2	\N	\N	4185845674
+1.79-007	copilot	db-changelog-1.79.xml	2026-03-22 13:24:09.636619	672	EXECUTED	9:fdccb41b49b4bd9dc78e7725dd749c70	createView viewName=view_riksdagen_seasonal_quarterly_activity	Fix view_riksdagen_seasonal_quarterly_activity: vote comparison used\n        title-case 'Frånvarande' but data is UPPERCASE 'FRÅNVARANDE'.\n        This caused attendance_rate to always be ~100%, making q_stddev_attendance = 0\n        and attendanc...	\N	5.0.2	\N	\N	4185845674
+1.79-008	copilot	db-changelog-1.79.xml	2026-03-22 13:24:09.655601	673	EXECUTED	9:5b2987486af6db7030e839280a8b20fc	createView viewName=view_committee_productivity	Fix view_committee_productivity: committee_documents CTE used\n        sub_type = 'mot'/'prop' but committee_document_data sub_types are: bet, (empty), utl, ap.\n        Also label LIKE '%bet%' should be sub_type = 'bet' for reports.\n        Changed...	\N	5.0.2	\N	\N	4185845674
+1.79-009	copilot	db-changelog-1.79.xml	2026-03-22 13:24:09.674004	674	EXECUTED	9:63441aa7a079644ca7667d21469cc0fb	createView viewName=view_committee_productivity_matrix	Fix view_committee_productivity_matrix: document_type 'Utskottsbetänkande'\n        and 'Motion' don't exist. Actual types are lowercase: 'bet', 'mot'.\n        Changed to use correct lowercase document_type codes.	\N	5.0.2	\N	\N	4185845674
+1.79-010	copilot	db-changelog-1.79.xml	2026-03-22 13:24:09.69168	675	EXECUTED	9:6e6217dd770f178d3da72369efd11b8f	createView viewName=view_ministry_effectiveness_trends	Fix view_ministry_effectiveness_trends: wrong document join\n        (dsc.hjid = dprc.hjid instead of dsc.document_person_reference_co_1 = dprc.hjid)\n        and non-existent document_type 'ds'. Only: mot, bet, prop, kammakt.\n        Replaced 'ds' ...	\N	5.0.2	\N	\N	4185845674
+1.79-011	copilot	db-changelog-1.79.xml	2026-03-22 13:24:09.709919	676	EXECUTED	9:b30678ed9d73790e682142f9ddd442e3	createView viewName=view_ministry_risk_evolution	Fix view_ministry_risk_evolution: same wrong document join\n        and non-existent 'ds' type. Replaced with correct FK join and 'bet' type.	\N	5.0.2	\N	\N	4185845674
+1.79-012	copilot	db-changelog-1.79.xml	2026-03-22 13:24:09.720807	677	EXECUTED	9:61617f87cb6d8d865bcd1b8312a1a53e	createView viewName=view_ministry_productivity_matrix	Fix view_ministry_productivity_matrix: same wrong document join\n        and non-existent 'ds' type. Replaced with correct FK join and 'bet' type.	\N	5.0.2	\N	\N	4185845674
+1.79-013	copilot	db-changelog-1.79.xml	2026-03-22 13:24:09.741158	678	EXECUTED	9:52c0ec65310067e1ead16b999b5558b6	sql	Fix view_risk_score_evolution: document join still uses\n        dsc.hjid = dprc.hjid instead of correct FK dsc.document_person_reference_co_1.\n        The 1.78-001 fix corrected vote case sensitivity but not the document join,\n        causing docu...	\N	5.0.2	\N	\N	4185845674
+1.79-014	copilot	db-changelog-1.79.xml	2026-03-22 13:24:09.759926	679	EXECUTED	9:ef9ff05cfc0ccfbc6c69ff46b2117d29	sql	Fix view_riksdagen_crisis_resilience_indicators: vote comparison used\n        title-case 'Frånvarande' but data is UPPERCASE 'FRÅNVARANDE'.\n        This caused crisis_absence_rate, crisis_party_discipline, normal_absence_rate\n        to always be ...	\N	5.0.2	\N	\N	4185845674
+1.79-015	copilot	db-changelog-1.79.xml	2026-03-22 13:24:09.773712	680	EXECUTED	9:4f108d779c8afbf96a2af69e0d2675b0	sql	Fix view_riksdagen_party_momentum_analysis: vote comparisons used\n        title-case values but data is UPPERCASE. Applied UPPER() to all vote comparisons.\n        This caused participation_rate to always be 0.	\N	5.0.2	\N	\N	4185845674
+1.79-016	copilot	db-changelog-1.79.xml	2026-03-22 13:24:09.797713	681	EXECUTED	9:8e23e26b236e2ea84e6524dbb12269ae	sql	Fix view_riksdagen_pre_election_quarterly_activity: role_tier case\n        sensitivity. Source view generates UPPERCASE (MINISTER, SPEAKER, PARTY_LEADER)\n        but this view compared with lowercase. This caused politicians_with_new_roles\n       ...	\N	5.0.2	\N	\N	4185845674
+1.79-017	copilot	db-changelog-1.79.xml	2026-03-22 13:24:09.826353	682	EXECUTED	9:6b233177f7f530eac8502792dd754c93	sql	Fix view_riksdagen_election_proximity_trends: role_tier case\n        sensitivity. Source view generates UPPERCASE values but this view compared\n        with lowercase ('minister', 'speaker', 'party_leader', 'committee_chair',\n        'committee_me...	\N	5.0.2	\N	\N	4185845674
+1.79-018	copilot	db-changelog-1.79.xml	2026-03-22 13:24:09.838798	683	EXECUTED	9:c22257a78cbb1b2331c46fbd391a7a24	sql	Fix view_election_cycle_network_analysis: replaced hardcoded\n        placeholder zeros for influential_politicians, avg_network_centrality,\n        and power_broker_count with actual calculated values derived from\n        vote participation data a...	\N	5.0.2	\N	\N	4185845674
 \.
 
 
@@ -17491,5 +17503,5 @@ COPY public.databasechangeloglock (id, locked, lockgranted, lockedby) FROM stdin
 -- PostgreSQL database dump complete
 --
 
-\unrestrict wmVqedzu5VsbmdkGPREK3uc6zWJHniTfzJt6YM642sxpU58h7EK0Vc6sHwEvuoT
+\unrestrict CHuN0FmhP4xvuEPLDRYbTEhqCSlh0cPZIJylolZgROhieNfSAnSUIdWimPYPeEC
 

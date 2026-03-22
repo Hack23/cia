@@ -1586,4 +1586,546 @@ CREATE OR REPLACE VIEW public.view_riksdagen_party_momentum_analysis AS
 ]]></sql>
     </changeSet>
 
+
+    <!-- ======================================================================== -->
+    <!-- 1.79-016: Fix view_riksdagen_pre_election_quarterly_activity              -->
+    <!-- ROOT CAUSE 16: role_tier case sensitivity.                                -->
+    <!-- view_riksdagen_politician_role_evolution generates UPPERCASE role_tier     -->
+    <!-- values (MINISTER, SPEAKER, PARTY_LEADER) but this view compares with      -->
+    <!-- lowercase ('minister', 'speaker', 'party_leader').                        -->
+    <!-- ======================================================================== -->
+    <changeSet id="1.79-016" author="copilot">
+        <comment>Fix view_riksdagen_pre_election_quarterly_activity: role_tier case
+        sensitivity. Source view generates UPPERCASE (MINISTER, SPEAKER, PARTY_LEADER)
+        but this view compared with lowercase. This caused politicians_with_new_roles
+        and leadership_appointments to always be 0.</comment>
+        <sql><![CDATA[
+CREATE OR REPLACE VIEW public.view_riksdagen_pre_election_quarterly_activity AS
+ WITH election_years AS (
+         SELECT unnest(ARRAY[2002, 2006, 2010, 2014, 2018, 2022, 2026]) AS election_year
+        ), q4_voting_activity AS (
+         SELECT (EXTRACT(year FROM pbt.period_start))::integer AS year,
+                CASE
+                    WHEN (ey.election_year IS NOT NULL) THEN true
+                    ELSE false
+                END AS is_election_year,
+            sum(pbt.total_ballots) AS total_ballots,
+            count(DISTINCT pbt.person_id) AS active_politicians,
+            round(avg(((100)::numeric - pbt.avg_absence_rate)), 2) AS avg_attendance_rate,
+            sum(pbt.total_votes) AS total_votes,
+            round(avg(pbt.avg_win_rate), 2) AS avg_win_rate,
+            round(avg(pbt.avg_rebel_rate), 2) AS avg_rebel_rate
+           FROM (public.view_politician_behavioral_trends pbt
+             LEFT JOIN election_years ey ON (((ey.election_year)::numeric = EXTRACT(year FROM pbt.period_start))))
+          WHERE ((EXTRACT(quarter FROM pbt.period_start) = (4)::numeric) AND (EXTRACT(year FROM pbt.period_start) >= (2002)::numeric))
+          GROUP BY (EXTRACT(year FROM pbt.period_start)),
+                CASE
+                    WHEN (ey.election_year IS NOT NULL) THEN true
+                    ELSE false
+                END
+        ), q4_document_activity AS (
+         SELECT (EXTRACT(year FROM pd.made_public_date))::integer AS year,
+            count(DISTINCT pd.doc_id) AS total_documents,
+            count(DISTINCT pd.person_reference_id) AS active_document_authors,
+            count(DISTINCT
+                CASE
+                    WHEN ((pd.document_type)::text = 'prop'::text) THEN pd.doc_id
+                    ELSE NULL::character varying
+                END) AS total_proposals,
+            count(DISTINCT
+                CASE
+                    WHEN ((pd.document_type)::text = 'mot'::text) THEN pd.doc_id
+                    ELSE NULL::character varying
+                END) AS total_motions
+           FROM public.view_riksdagen_politician_document pd
+          WHERE ((EXTRACT(quarter FROM pd.made_public_date) = (4)::numeric) AND (pd.made_public_date IS NOT NULL) AND (EXTRACT(year FROM pd.made_public_date) >= (2002)::numeric))
+          GROUP BY (EXTRACT(year FROM pd.made_public_date))
+        ), q4_role_activity AS (
+         SELECT (EXTRACT(year FROM pre.role_start))::integer AS year,
+            count(DISTINCT pre.person_id) AS total_new_assignments,
+            count(DISTINCT
+                CASE
+                    WHEN (pre.role_tier = ANY (ARRAY['MINISTER'::text, 'SPEAKER'::text, 'PARTY_LEADER'::text])) THEN pre.person_id
+                    ELSE NULL::character varying
+                END) AS politicians_with_new_roles,
+            count(DISTINCT
+                CASE
+                    WHEN (pre.role_tier = 'MINISTER'::text) THEN pre.person_id
+                    ELSE NULL::character varying
+                END) AS leadership_appointments
+           FROM public.view_riksdagen_politician_role_evolution pre
+          WHERE ((EXTRACT(quarter FROM pre.role_start) = (4)::numeric) AND (pre.role_start IS NOT NULL) AND (EXTRACT(year FROM pre.role_start) >= (2002)::numeric))
+          GROUP BY (EXTRACT(year FROM pre.role_start))
+        ), q4_party_effectiveness AS (
+         SELECT (EXTRACT(year FROM pet.period_start))::integer AS year,
+            count(DISTINCT pet.party) AS active_parties,
+            round(avg(pet.avg_win_rate), 2) AS avg_party_win_rate,
+            round(avg(pet.avg_absence_rate), 2) AS avg_party_absence_rate,
+            sum(pet.documents_produced) AS party_documents_total,
+            round(avg(pet.ma_4quarter_win_rate), 2) AS ma_party_win_rate,
+            count(DISTINCT
+                CASE
+                    WHEN (pet.performance_level = ANY (ARRAY['EXCELLENT'::text, 'VERY_GOOD'::text])) THEN pet.party
+                    ELSE NULL::text
+                END) AS high_performing_parties
+           FROM public.view_party_effectiveness_trends pet
+          WHERE ((EXTRACT(quarter FROM pet.period_start) = (4)::numeric) AND (EXTRACT(year FROM pet.period_start) >= (2002)::numeric))
+          GROUP BY (EXTRACT(year FROM pet.period_start))
+        ), committee_productivity_metrics AS (
+         SELECT '2002-2026'::text AS period,
+            count(DISTINCT cp.committee_code) AS total_committees,
+            round(avg(cp.productivity_score), 2) AS avg_committee_productivity,
+            count(DISTINCT
+                CASE
+                    WHEN (cp.productivity_level = ANY (ARRAY['VERY_HIGH'::text, 'HIGH'::text])) THEN cp.committee_code
+                    ELSE NULL::character varying
+                END) AS high_productivity_committees,
+            round(avg(cp.avg_approval_rate), 2) AS avg_committee_approval_rate
+           FROM public.view_committee_productivity cp
+        ), q4_activity AS (
+         SELECT qv.year,
+            qv.is_election_year,
+            qv.total_ballots,
+            qv.active_politicians,
+            qv.avg_attendance_rate,
+            qv.total_votes,
+            qv.avg_win_rate,
+            qv.avg_rebel_rate,
+            COALESCE(qd.total_documents, (0)::bigint) AS total_documents,
+            COALESCE(qd.active_document_authors, (0)::bigint) AS active_document_authors,
+            COALESCE(qd.total_proposals, (0)::bigint) AS total_proposals,
+            COALESCE(qd.total_motions, (0)::bigint) AS total_motions,
+            COALESCE(qr.total_new_assignments, (0)::bigint) AS total_new_assignments,
+            COALESCE(qr.politicians_with_new_roles, (0)::bigint) AS politicians_with_new_roles,
+            COALESCE(qr.leadership_appointments, (0)::bigint) AS leadership_appointments,
+            COALESCE(qpe.active_parties, (0)::bigint) AS active_parties,
+            COALESCE(qpe.avg_party_win_rate, (0)::numeric) AS avg_party_win_rate,
+            COALESCE(qpe.avg_party_absence_rate, (0)::numeric) AS avg_party_absence_rate,
+            COALESCE(qpe.party_documents_total, (0)::numeric) AS party_documents_total,
+            COALESCE(qpe.ma_party_win_rate, (0)::numeric) AS ma_party_win_rate,
+            COALESCE(qpe.high_performing_parties, (0)::bigint) AS high_performing_parties
+           FROM ((((q4_voting_activity qv
+             LEFT JOIN q4_document_activity qd ON ((qv.year = qd.year)))
+             LEFT JOIN q4_role_activity qr ON ((qv.year = qr.year)))
+             LEFT JOIN q4_party_effectiveness qpe ON ((qv.year = qpe.year)))
+             CROSS JOIN committee_productivity_metrics cpm)
+        ), q4_baseline AS (
+         SELECT avg(q4_activity.total_ballots) FILTER (WHERE (NOT q4_activity.is_election_year)) AS baseline_ballots,
+            stddev(q4_activity.total_ballots) FILTER (WHERE (NOT q4_activity.is_election_year)) AS stddev_ballots,
+            avg(q4_activity.avg_attendance_rate) FILTER (WHERE (NOT q4_activity.is_election_year)) AS baseline_attendance,
+            stddev(q4_activity.avg_attendance_rate) FILTER (WHERE (NOT q4_activity.is_election_year)) AS stddev_attendance,
+            avg(q4_activity.total_documents) FILTER (WHERE (NOT q4_activity.is_election_year)) AS baseline_documents,
+            stddev(q4_activity.total_documents) FILTER (WHERE (NOT q4_activity.is_election_year)) AS stddev_documents,
+            avg(q4_activity.total_new_assignments) FILTER (WHERE (NOT q4_activity.is_election_year)) AS baseline_assignments,
+            stddev(q4_activity.total_new_assignments) FILTER (WHERE (NOT q4_activity.is_election_year)) AS stddev_assignments
+           FROM q4_activity
+        )
+ SELECT qa.year,
+    qa.is_election_year,
+    qa.total_ballots,
+    qa.active_politicians,
+    qa.avg_attendance_rate,
+    qa.total_votes,
+    qa.avg_win_rate,
+    qa.avg_rebel_rate,
+    qa.total_documents,
+    qa.active_document_authors,
+    qa.total_proposals,
+    qa.total_motions,
+    qa.total_new_assignments,
+    qa.politicians_with_new_roles,
+    qa.leadership_appointments,
+    qa.active_parties,
+    qa.avg_party_win_rate,
+    qa.avg_party_absence_rate,
+    qa.party_documents_total,
+    qa.ma_party_win_rate,
+    qa.high_performing_parties,
+    qb.baseline_ballots,
+    qb.stddev_ballots,
+    qb.baseline_documents,
+    qb.baseline_assignments,
+    (qa.total_ballots - qb.baseline_ballots) AS ballot_deviation_from_baseline,
+    ((qa.total_documents)::numeric - qb.baseline_documents) AS document_deviation_from_baseline,
+    ((qa.total_new_assignments)::numeric - qb.baseline_assignments) AS assignment_deviation_from_baseline,
+        CASE
+            WHEN (qb.baseline_ballots > (0)::numeric) THEN round((((qa.total_ballots - qb.baseline_ballots) / qb.baseline_ballots) * (100)::numeric), 2)
+            ELSE (0)::numeric
+        END AS ballot_percent_change_from_baseline,
+        CASE
+            WHEN (qb.baseline_documents > (0)::numeric) THEN round(((((qa.total_documents)::numeric - qb.baseline_documents) / qb.baseline_documents) * (100)::numeric), 2)
+            ELSE (0)::numeric
+        END AS document_percent_change_from_baseline,
+    qb.baseline_attendance,
+    qb.stddev_attendance,
+    (qa.avg_attendance_rate - qb.baseline_attendance) AS attendance_deviation_from_baseline,
+        CASE
+            WHEN (qb.stddev_ballots > (0)::numeric) THEN round(((qa.total_ballots - qb.baseline_ballots) / qb.stddev_ballots), 2)
+            ELSE (0)::numeric
+        END AS ballot_z_score,
+        CASE
+            WHEN (qb.stddev_documents > (0)::numeric) THEN round((((qa.total_documents)::numeric - qb.baseline_documents) / qb.stddev_documents), 2)
+            ELSE (0)::numeric
+        END AS document_z_score,
+        CASE
+            WHEN (qa.is_election_year AND ((qa.total_ballots > (1.5 * qb.baseline_ballots)) OR ((qa.total_documents)::numeric > (1.5 * qb.baseline_documents)))) THEN 'PRE_ELECTION_SURGE'::text
+            WHEN (qa.is_election_year AND (qa.total_ballots > (qb.baseline_ballots + qb.stddev_ballots))) THEN 'ELEVATED_ELECTION_ACTIVITY'::text
+            WHEN (qa.total_ballots > (qb.baseline_ballots + qb.stddev_ballots)) THEN 'ELEVATED_ACTIVITY'::text
+            WHEN (qa.total_ballots < (qb.baseline_ballots - qb.stddev_ballots)) THEN 'REDUCED_ACTIVITY'::text
+            ELSE 'NORMAL_ACTIVITY'::text
+        END AS q4_activity_classification,
+    lag(qa.total_ballots) OVER (ORDER BY qa.year) AS prev_year_ballots,
+        CASE
+            WHEN ((lag(qa.total_ballots) OVER (ORDER BY qa.year) IS NOT NULL) AND (lag(qa.total_ballots) OVER (ORDER BY qa.year) > (0)::numeric)) THEN round((((qa.total_ballots - lag(qa.total_ballots) OVER (ORDER BY qa.year)) / lag(qa.total_ballots) OVER (ORDER BY qa.year)) * (100)::numeric), 2)
+            ELSE NULL::numeric
+        END AS yoy_ballot_change_pct,
+    rank() OVER (ORDER BY qa.total_ballots DESC) AS rank_by_q4_activity
+   FROM (q4_activity qa
+     CROSS JOIN q4_baseline qb)
+  ORDER BY qa.year DESC;
+]]></sql>
+    </changeSet>
+
+    <!-- ======================================================================== -->
+    <!-- 1.79-017: Fix view_riksdagen_election_proximity_trends                    -->
+    <!-- ROOT CAUSE 16: role_tier case sensitivity (same as 1.79-016).             -->
+    <!-- leadership_role_count and committee_assignment_count compared with         -->
+    <!-- lowercase role_tier values but source generates UPPERCASE.                 -->
+    <!-- ======================================================================== -->
+    <changeSet id="1.79-017" author="copilot">
+        <comment>Fix view_riksdagen_election_proximity_trends: role_tier case
+        sensitivity. Source view generates UPPERCASE values but this view compared
+        with lowercase ('minister', 'speaker', 'party_leader', 'committee_chair',
+        'committee_member'). This caused leadership_role_count and
+        committee_assignment_count to always be 0.</comment>
+        <sql><![CDATA[
+CREATE OR REPLACE VIEW public.view_riksdagen_election_proximity_trends AS
+ WITH election_dates AS (
+         SELECT unnest(ARRAY['2002-09-15'::date, '2006-09-17'::date, '2010-09-19'::date, '2014-09-14'::date, '2018-09-09'::date, '2022-09-11'::date, '2026-09-13'::date]) AS election_date
+        ), politician_behavioral_metrics AS (
+         SELECT pbt.person_id,
+            pbt.first_name,
+            pbt.last_name,
+            pbt.party,
+            date_trunc('quarter'::text, pbt.period_start) AS activity_quarter,
+            EXTRACT(quarter FROM pbt.period_start) AS quarter_number,
+            ed.election_date,
+            (((EXTRACT(year FROM age((ed.election_date)::timestamp with time zone, ((pbt.period_start)::date)::timestamp with time zone)))::integer * 12) + (EXTRACT(month FROM age((ed.election_date)::timestamp with time zone, ((pbt.period_start)::date)::timestamp with time zone)))::integer) AS months_until_election,
+            pbt.total_ballots AS ballot_count,
+            pbt.total_votes,
+            round(((100)::numeric - pbt.avg_absence_rate), 2) AS attendance_rate,
+            pbt.avg_win_rate,
+            pbt.avg_rebel_rate,
+            pbt.avg_yes_rate,
+            pbt.avg_no_rate,
+            pbt.avg_abstain_rate,
+            pbt.violation_count,
+            pbt.behavioral_assessment,
+            pbt.attendance_status,
+            pbt.effectiveness_status,
+            pbt.discipline_status,
+                CASE
+                    WHEN ((EXTRACT(quarter FROM pbt.period_start) = (4)::numeric) AND (((((EXTRACT(year FROM age((ed.election_date)::timestamp with time zone, ((pbt.period_start)::date)::timestamp with time zone)))::integer * 12) + (EXTRACT(month FROM age((ed.election_date)::timestamp with time zone, ((pbt.period_start)::date)::timestamp with time zone)))::integer) >= 9) AND ((((EXTRACT(year FROM age((ed.election_date)::timestamp with time zone, ((pbt.period_start)::date)::timestamp with time zone)))::integer * 12) + (EXTRACT(month FROM age((ed.election_date)::timestamp with time zone, ((pbt.period_start)::date)::timestamp with time zone)))::integer) <= 15))) THEN true
+                    ELSE false
+                END AS is_pre_election_q4
+           FROM (public.view_politician_behavioral_trends pbt
+             CROSS JOIN election_dates ed)
+          WHERE (((pbt.period_start)::date < ed.election_date) AND (age((ed.election_date)::timestamp with time zone, ((pbt.period_start)::date)::timestamp with time zone) < '4 years'::interval))
+        ), politician_document_metrics AS (
+         SELECT pd.person_reference_id AS person_id,
+            date_trunc('quarter'::text, (pd.made_public_date)::timestamp with time zone) AS activity_quarter,
+            ed.election_date,
+            count(DISTINCT pd.doc_id) AS document_count,
+            count(DISTINCT
+                CASE
+                    WHEN ((pd.document_type)::text = 'prop'::text) THEN pd.doc_id
+                    ELSE NULL::character varying
+                END) AS proposal_count,
+            count(DISTINCT
+                CASE
+                    WHEN ((pd.document_type)::text = 'mot'::text) THEN pd.doc_id
+                    ELSE NULL::character varying
+                END) AS motion_count
+           FROM (public.view_riksdagen_politician_document pd
+             CROSS JOIN election_dates ed)
+          WHERE ((pd.made_public_date < ed.election_date) AND (age((ed.election_date)::timestamp with time zone, (pd.made_public_date)::timestamp with time zone) < '4 years'::interval) AND (pd.person_reference_id IS NOT NULL))
+          GROUP BY pd.person_reference_id, (date_trunc('quarter'::text, (pd.made_public_date)::timestamp with time zone)), ed.election_date
+        ), politician_role_metrics AS (
+         SELECT pre.person_id,
+            date_trunc('quarter'::text, (pre.role_start)::timestamp with time zone) AS activity_quarter,
+            ed.election_date,
+            count(DISTINCT pre.role_tier) AS new_assignment_count,
+            max(pre.role_weight) AS peak_role_weight_quarter,
+            count(DISTINCT
+                CASE
+                    WHEN (pre.role_tier = ANY (ARRAY['MINISTER'::text, 'SPEAKER'::text, 'PARTY_LEADER'::text])) THEN pre.role_tier
+                    ELSE NULL::text
+                END) AS leadership_role_count,
+            count(DISTINCT
+                CASE
+                    WHEN (pre.role_tier = ANY (ARRAY['COMMITTEE_CHAIR'::text, 'COMMITTEE_MEMBER'::text])) THEN pre.role_tier
+                    ELSE NULL::text
+                END) AS committee_assignment_count
+           FROM (public.view_riksdagen_politician_role_evolution pre
+             CROSS JOIN election_dates ed)
+          WHERE ((pre.role_start < ed.election_date) AND (age((ed.election_date)::timestamp with time zone, (pre.role_start)::timestamp with time zone) < '4 years'::interval))
+          GROUP BY pre.person_id, (date_trunc('quarter'::text, (pre.role_start)::timestamp with time zone)), ed.election_date
+        ), politician_decision_metrics AS (
+         SELECT pdp.person_id,
+            date_trunc('quarter'::text, ((pdp.decision_month)::date)::timestamp with time zone) AS activity_quarter,
+            ed.election_date,
+            sum(pdp.total_decisions) AS decision_count,
+            sum(pdp.approved_decisions) AS approved_decisions,
+            sum(pdp.rejected_decisions) AS rejected_decisions,
+            round(avg(pdp.approval_rate), 2) AS avg_approval_rate,
+            count(DISTINCT pdp.committee_org) AS active_committees
+           FROM (public.view_riksdagen_politician_decision_pattern pdp
+             CROSS JOIN election_dates ed)
+          WHERE (((pdp.decision_month)::date < ed.election_date) AND (age((ed.election_date)::timestamp with time zone, ((pdp.decision_month)::date)::timestamp with time zone) < '4 years'::interval))
+          GROUP BY pdp.person_id, (date_trunc('quarter'::text, ((pdp.decision_month)::date)::timestamp with time zone)), ed.election_date
+        ), politician_risk_metrics AS (
+         SELECT DISTINCT ON (prs.person_id) prs.person_id,
+            prs.risk_score AS overall_risk_score,
+            prs.risk_level,
+            prs.risk_score AS trend_risk_score,
+            prs.risk_score AS anomaly_risk_score
+           FROM public.view_politician_risk_summary prs
+        ), politician_influence_metrics AS (
+         SELECT DISTINCT ON (pim.person_id) pim.person_id,
+            pim.network_connections,
+            pim.influence_classification,
+            pim.broker_classification,
+            pim.influence_assessment
+           FROM public.view_riksdagen_politician_influence_metrics pim
+        ), combined_activity AS (
+         SELECT pbm.person_id,
+            pbm.first_name,
+            pbm.last_name,
+            pbm.party,
+            pbm.election_date,
+            pbm.activity_quarter,
+            pbm.quarter_number,
+            pbm.months_until_election,
+            pbm.is_pre_election_q4,
+            pbm.ballot_count,
+            pbm.total_votes,
+            pbm.attendance_rate,
+            pbm.avg_win_rate,
+            pbm.avg_rebel_rate,
+            pbm.avg_yes_rate,
+            pbm.avg_no_rate,
+            pbm.avg_abstain_rate,
+            pbm.violation_count,
+            pbm.behavioral_assessment,
+            pbm.attendance_status,
+            pbm.effectiveness_status,
+            pbm.discipline_status,
+            COALESCE(pdm.document_count, (0)::bigint) AS document_count,
+            COALESCE(pdm.proposal_count, (0)::bigint) AS proposal_count,
+            COALESCE(pdm.motion_count, (0)::bigint) AS motion_count,
+            COALESCE(prm.new_assignment_count, (0)::bigint) AS new_assignment_count,
+            COALESCE(prm.peak_role_weight_quarter, 0) AS peak_role_weight_quarter,
+            COALESCE(prm.leadership_role_count, (0)::bigint) AS leadership_role_count,
+            COALESCE(prm.committee_assignment_count, (0)::bigint) AS committee_assignment_count,
+            COALESCE(pdecm.decision_count, (0)::numeric) AS decision_count,
+            COALESCE(pdecm.approved_decisions, (0)::numeric) AS approved_decisions,
+            COALESCE(pdecm.rejected_decisions, (0)::numeric) AS rejected_decisions,
+            COALESCE(pdecm.avg_approval_rate, (0)::numeric) AS avg_approval_rate,
+            COALESCE(pdecm.active_committees, (0)::bigint) AS active_committees,
+            prisk.overall_risk_score,
+            prisk.risk_level,
+            prisk.trend_risk_score,
+            prisk.anomaly_risk_score,
+            pinf.network_connections,
+            pinf.influence_classification,
+            pinf.broker_classification,
+            pinf.influence_assessment
+           FROM (((((politician_behavioral_metrics pbm
+             LEFT JOIN politician_document_metrics pdm ON ((((pbm.person_id)::text = (pdm.person_id)::text) AND (pbm.activity_quarter = pdm.activity_quarter) AND (pbm.election_date = pdm.election_date))))
+             LEFT JOIN politician_role_metrics prm ON ((((pbm.person_id)::text = (prm.person_id)::text) AND (pbm.activity_quarter = prm.activity_quarter) AND (pbm.election_date = prm.election_date))))
+             LEFT JOIN politician_decision_metrics pdecm ON ((((pbm.person_id)::text = (pdecm.person_id)::text) AND (pbm.activity_quarter = pdecm.activity_quarter) AND (pbm.election_date = pdecm.election_date))))
+             LEFT JOIN politician_risk_metrics prisk ON (((pbm.person_id)::text = (prisk.person_id)::text)))
+             LEFT JOIN politician_influence_metrics pinf ON (((pbm.person_id)::text = (pinf.person_id)::text)))
+        )
+ SELECT person_id,
+    first_name,
+    last_name,
+    party,
+    election_date,
+    activity_quarter,
+    quarter_number,
+    months_until_election,
+    is_pre_election_q4,
+    ballot_count,
+    total_votes,
+    attendance_rate,
+    avg_win_rate,
+    avg_rebel_rate,
+    avg_yes_rate,
+    avg_no_rate,
+    avg_abstain_rate,
+    violation_count,
+    behavioral_assessment,
+    attendance_status,
+    effectiveness_status,
+    discipline_status,
+    document_count,
+    proposal_count,
+    motion_count,
+    new_assignment_count,
+    peak_role_weight_quarter,
+    leadership_role_count,
+    committee_assignment_count,
+    decision_count,
+    approved_decisions,
+    rejected_decisions,
+    avg_approval_rate,
+    active_committees,
+    overall_risk_score,
+    risk_level,
+    trend_risk_score,
+    anomaly_risk_score,
+    network_connections,
+    influence_classification,
+    broker_classification,
+    influence_assessment,
+    round(avg(ballot_count) OVER (PARTITION BY person_id), 2) AS avg_ballot_count_baseline,
+    round(avg(document_count) OVER (PARTITION BY person_id), 2) AS avg_document_count_baseline,
+    round(avg(decision_count) OVER (PARTITION BY person_id), 2) AS avg_decision_count_baseline,
+    round(avg(new_assignment_count) OVER (PARTITION BY person_id), 2) AS avg_assignment_count_baseline,
+    round((ballot_count - avg(ballot_count) OVER (PARTITION BY person_id)), 2) AS ballot_count_deviation,
+    round(((document_count)::numeric - avg(document_count) OVER (PARTITION BY person_id)), 2) AS document_count_deviation,
+    round((decision_count - avg(decision_count) OVER (PARTITION BY person_id)), 2) AS decision_count_deviation,
+    round(((new_assignment_count)::numeric - avg(new_assignment_count) OVER (PARTITION BY person_id)), 2) AS assignment_count_deviation,
+    round((ballot_count / NULLIF(avg(ballot_count) OVER (PARTITION BY person_id), (0)::numeric)), 2) AS ballot_activity_ratio,
+    round(((document_count)::numeric / NULLIF(avg(document_count) OVER (PARTITION BY person_id), (0)::numeric)), 2) AS document_activity_ratio,
+    round((decision_count / NULLIF(avg(decision_count) OVER (PARTITION BY person_id), (0)::numeric)), 2) AS decision_activity_ratio,
+    round(((new_assignment_count)::numeric / NULLIF(avg(new_assignment_count) OVER (PARTITION BY person_id), (0)::numeric)), 2) AS assignment_activity_ratio,
+        CASE
+            WHEN ((ballot_count > (1.5 * avg(ballot_count) OVER (PARTITION BY person_id))) OR ((document_count)::numeric > (1.5 * avg(document_count) OVER (PARTITION BY person_id))) OR (decision_count > (1.5 * avg(decision_count) OVER (PARTITION BY person_id))) OR ((new_assignment_count)::numeric > (1.5 * avg(new_assignment_count) OVER (PARTITION BY person_id)))) THEN 'ELEVATED_ACTIVITY'::text
+            WHEN ((ballot_count < (0.7 * avg(ballot_count) OVER (PARTITION BY person_id))) AND ((document_count)::numeric < (0.7 * avg(document_count) OVER (PARTITION BY person_id)))) THEN 'REDUCED_ACTIVITY'::text
+            ELSE 'NORMAL_ACTIVITY'::text
+        END AS activity_classification,
+    COALESCE(round((((((ballot_count / NULLIF(avg(ballot_count) OVER (PARTITION BY person_id), (0)::numeric)) * 0.30) + (((document_count)::numeric / NULLIF(avg(document_count) OVER (PARTITION BY person_id), (0)::numeric)) * 0.25)) + ((decision_count / NULLIF(avg(decision_count) OVER (PARTITION BY person_id), (0)::numeric)) * 0.25)) + (((new_assignment_count)::numeric / NULLIF(avg(new_assignment_count) OVER (PARTITION BY person_id), (0)::numeric)) * 0.20)), 2), 0.0) AS composite_activity_score,
+        CASE
+            WHEN (months_until_election <= 6) THEN 'ELECTION_IMMINENT'::text
+            WHEN (months_until_election <= 12) THEN 'PRE_ELECTION_YEAR'::text
+            WHEN (months_until_election <= 24) THEN 'MID_CYCLE'::text
+            ELSE 'EARLY_CYCLE'::text
+        END AS election_phase,
+    rank() OVER (PARTITION BY election_date, activity_quarter ORDER BY ballot_count DESC) AS rank_by_activity_quarter
+   FROM combined_activity ca
+  WHERE (ballot_count > (0)::numeric)
+  ORDER BY election_date DESC, months_until_election, person_id, activity_quarter;
+]]></sql>
+    </changeSet>
+
+    <!-- ======================================================================== -->
+    <!-- 1.79-018: Fix view_election_cycle_network_analysis                        -->
+    <!-- ROOT CAUSE 17: hardcoded placeholder zeros.                               -->
+    <!-- influential_politicians, avg_network_centrality, power_broker_count were   -->
+    <!-- hardcoded as literal 0. Replaced with actual calculated values from        -->
+    <!-- vote participation data and coalition alignment rates.                     -->
+    <!-- ======================================================================== -->
+    <changeSet id="1.79-018" author="copilot">
+        <comment>Fix view_election_cycle_network_analysis: replaced hardcoded
+        placeholder zeros for influential_politicians, avg_network_centrality,
+        and power_broker_count with actual calculated values derived from
+        vote participation data and coalition alignment rates.</comment>
+        <sql><![CDATA[
+CREATE OR REPLACE VIEW public.view_election_cycle_network_analysis AS
+ WITH election_cycle_periods AS (
+          SELECT (((((1994)::numeric + (floor((((year_series.year_series - 1994))::numeric / 4.0)) * (4)::numeric)))::text || '-'::text) || ((((1994)::numeric + (floor((((year_series.year_series - 1994))::numeric / 4.0)) * (4)::numeric)) + (4)::numeric))::text) AS election_cycle_id,
+             (((year_series.year_series)::numeric - ((1994)::numeric + (floor((((year_series.year_series - 1994))::numeric / 4.0)) * (4)::numeric))) + (1)::numeric) AS cycle_year,
+             year_series.year_series AS calendar_year
+            FROM generate_series(2020, ((EXTRACT(year FROM CURRENT_DATE))::integer + 4), 1) year_series(year_series)
+         ),
+ party_activity AS (
+          SELECT EXTRACT(year FROM vd.vote_date)::integer AS vote_year,
+             vd.party,
+             count(DISTINCT vd.embedded_id_intressent_id) AS active_politicians,
+             round(avg(CASE WHEN UPPER((vd.vote)::text) <> 'FRÅNVARANDE' THEN 1 ELSE 0 END)::numeric, 4) AS avg_participation
+            FROM vote_data vd
+           WHERE vd.vote_date IS NOT NULL AND vd.party IS NOT NULL
+           GROUP BY EXTRACT(year FROM vd.vote_date)::integer, vd.party
+         ),
+ v151_base AS (
+          SELECT ecp.election_cycle_id,
+             ecp.cycle_year,
+             ecp.calendar_year,
+             'aggregate'::text AS semester,
+             cam.party1,
+             cam.party2,
+             cam.alignment_rate,
+                 CASE
+                     WHEN (cam.alignment_rate >= (80)::numeric) THEN 'STRONG_COALITION'::text
+                     WHEN (cam.alignment_rate >= (60)::numeric) THEN 'MODERATE_COALITION'::text
+                     ELSE 'WEAK_COALITION'::text
+                 END AS coalition_strength,
+             COALESCE(pa1.active_politicians, 0) + COALESCE(pa2.active_politicians, 0) AS influential_politicians,
+             round(COALESCE(cam.alignment_rate / 100.0, 0)::numeric, 4) AS avg_network_centrality,
+             CASE WHEN cam.alignment_rate >= 60 THEN
+                 LEAST(COALESCE(pa1.active_politicians, 0), COALESCE(pa2.active_politicians, 0)) / NULLIF(GREATEST(COALESCE(pa1.active_politicians, 0), COALESCE(pa2.active_politicians, 0)), 0)::bigint
+             ELSE 0 END AS power_broker_count
+            FROM (election_cycle_periods ecp
+              CROSS JOIN public.view_riksdagen_coalition_alignment_matrix cam
+              LEFT JOIN party_activity pa1 ON pa1.party::text = cam.party1::text AND pa1.vote_year = ecp.calendar_year
+              LEFT JOIN party_activity pa2 ON pa2.party::text = cam.party2::text AND pa2.vote_year = ecp.calendar_year)
+           WHERE ((cam.party1 IS NOT NULL) AND (cam.party2 IS NOT NULL))
+           ORDER BY ecp.election_cycle_id, ecp.cycle_year, cam.alignment_rate DESC
+         ), windowed AS (
+          SELECT v.election_cycle_id,
+             v.cycle_year,
+             v.calendar_year,
+             v.semester,
+             v.party1,
+             v.party2,
+             v.alignment_rate,
+             v.coalition_strength,
+             v.influential_politicians,
+             v.avg_network_centrality,
+             v.power_broker_count,
+             rank() OVER (PARTITION BY v.election_cycle_id ORDER BY v.alignment_rate DESC NULLS LAST) AS rank_by_alignment,
+             percent_rank() OVER (PARTITION BY v.election_cycle_id ORDER BY v.alignment_rate DESC NULLS LAST) AS percent_rank_alignment,
+             ntile(4) OVER (PARTITION BY v.election_cycle_id ORDER BY v.alignment_rate DESC NULLS LAST) AS ntile_coalition_strength,
+             lag(v.alignment_rate) OVER (PARTITION BY v.election_cycle_id, v.party1, v.party2 ORDER BY v.cycle_year, v.semester) AS prev_semester_alignment,
+             stddev_pop(v.alignment_rate) OVER (PARTITION BY v.election_cycle_id) AS stddev_alignment
+            FROM v151_base v
+         )
+ SELECT election_cycle_id,
+     cycle_year,
+     calendar_year,
+     semester,
+     party1,
+     party2,
+     alignment_rate,
+     coalition_strength,
+     influential_politicians,
+     avg_network_centrality,
+     power_broker_count,
+     rank_by_alignment,
+     percent_rank_alignment,
+     ntile_coalition_strength,
+     prev_semester_alignment,
+     stddev_alignment,
+         CASE
+             WHEN ((prev_semester_alignment IS NOT NULL) AND (prev_semester_alignment > (0)::numeric)) THEN round((((alignment_rate - prev_semester_alignment) / prev_semester_alignment) * (100)::numeric), 2)
+             ELSE NULL::numeric
+         END AS change_alignment_pct,
+         CASE
+             WHEN (prev_semester_alignment IS NULL) THEN 'baseline'::text
+             WHEN (alignment_rate > (prev_semester_alignment + (10)::numeric)) THEN 'strengthening'::text
+             WHEN (alignment_rate < (prev_semester_alignment - (10)::numeric)) THEN 'weakening'::text
+             ELSE 'stable'::text
+         END AS coalition_stability_trend,
+     round(((alignment_rate / 100.0) * (100.0 / NULLIF(stddev_alignment, (0)::numeric))), 2) AS network_density,
+         CASE
+             WHEN (alignment_rate > (70)::numeric) THEN 'strong'::text
+             WHEN (alignment_rate > (40)::numeric) THEN 'moderate'::text
+             ELSE 'weak'::text
+         END AS coalition_momentum
+    FROM windowed w;
+]]></sql>
+    </changeSet>
+
 </databaseChangeLog>
