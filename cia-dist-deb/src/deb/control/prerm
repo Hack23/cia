@@ -1,0 +1,20 @@
+#!/bin/bash
+
+if [ -x /etc/init.d/cia ]; then
+  /etc/init.d/cia stop || true
+fi
+
+if [ -e /opt/cia/bin/cia.sh ]; then
+  mv -f /opt/cia/bin/cia.sh /opt/cia/bin/jetty.sh
+fi
+rm -f /etc/init.d/cia
+# Only remove cacerts if it is the symlink managed by this package
+if [ -L /opt/cia/cia-base/etc/cacerts ]; then
+  cacerts_target="$(readlink /opt/cia/cia-base/etc/cacerts 2>/dev/null || true)"
+  if [ "$cacerts_target" = "/etc/ssl/certs/java/cacerts" ]; then
+    rm -f /opt/cia/cia-base/etc/cacerts
+  fi
+fi
+
+echo prerm
+exit 0

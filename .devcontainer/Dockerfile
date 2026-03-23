@@ -69,7 +69,7 @@ RUN chmod +x /usr/local/bin/init-postgresql.sh \
     && dpkg-reconfigure -f noninteractive tzdata
 
 # Use the built-in MAVEN_VERSION argument from the base image
-ARG MAVEN_VERSION=3.9.9
+ARG MAVEN_VERSION=3.9.14
 ENV MAVEN_HOME=/usr/share/maven
 ENV PATH=${PATH}:${MAVEN_HOME}/bin
 ENV MAVEN_OPTS="-Xmx8192m -Xms2048m -XX:+UseG1GC"

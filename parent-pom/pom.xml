@@ -857,9 +857,9 @@
           </dependencies>
         </plugin>
         <plugin>
-          <groupId>com.stratio.mojo.unix</groupId>
-          <artifactId>unix-maven-plugin</artifactId>
-          <version>1.2.0</version>
+          <groupId>org.vafer</groupId>
+          <artifactId>jdeb</artifactId>
+          <version>1.14</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>

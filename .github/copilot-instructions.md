@@ -32,7 +32,7 @@ The Citizen Intelligence Agency (CIA) is a volunteer-driven, open-source intelli
 
 ### Prerequisites
 - Java 26 JDK
-- Maven 3.9.9 or later
+- Maven 3.9.14 or later
 - PostgreSQL (for full integration testing, review ../service.data.impl/README-SCHEMA-MAINTENANCE.md for task related to any database changes)
 
 ### Build Commands

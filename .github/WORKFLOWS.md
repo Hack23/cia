@@ -51,7 +51,7 @@ mvn -B test --file pom.xml -Prelease-site,all-modules \
 
 **Environment**:
 - Java 26 (Temurin)
-- Maven 3.9.9
+- Maven 3.9.14
 - PostgreSQL 18 with pgaudit, pgvector extensions
 - Google Chrome for UI testing
 - Xvfb for headless browser testing

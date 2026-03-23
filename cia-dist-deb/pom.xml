@@ -8,7 +8,7 @@
     <relativePath>../parent-web-pom/pom.xml</relativePath>
   </parent>
   <artifactId>cia-dist-deb</artifactId>
-  <packaging>deb</packaging>
+  <packaging>pom</packaging>
   <name>cia-dist-deb</name>
   <url>scm:git:ssh://git@github.com/Hack23/cia.git/cia-dist-deb</url>
   <scm>
@@ -112,145 +112,103 @@
         </executions>
       </plugin>
       <plugin>
-        <groupId>com.stratio.mojo.unix</groupId>
-        <artifactId>unix-maven-plugin</artifactId>
-        <extensions>true</extensions>
-        <configuration>
-          <contact>cia</contact>
-          <id>cia-dist-deb</id>
-          <contactEmail>cia@hack23.com</contactEmail>
-          <deb>
-            <section>devel</section>
-            <preDepends>ca-certificates-java</preDepends>
-            <suggests>postgresql, openjdk-11-jdk-headless, ca-certificates-java</suggests>
-          </deb>
-          <packages>
-            <package>
-              <id>cia-dist-deb</id>
-            </package>
-          </packages>
-          <defaults>
-            <fileAttributes>
-              <user>cia</user>
-              <group>cia</group>
-              <mode>0755</mode>
-            </fileAttributes>
-            <directoryAttributes>
-              <user>cia</user>
-              <group>cia</group>
-              <mode>0755</mode>
-            </directoryAttributes>
-          </defaults>
-          <assembly>
-            <extract-artifact>
-              <artifact>org.eclipse.jetty:jetty-home:zip</artifact>
-              <to>/opt/cia</to>
-              <pattern>jetty-home-${cia.project.versions.jetty}</pattern>
-              <replacement>.</replacement>
-              <excludes>
-                <exclude>**/bin/jetty.sh</exclude>
-              </excludes>
-            </extract-artifact>
-            <extract-artifact>
-              <artifact>com.hack23.cia:citizen-intelligence-agency:war</artifact>
-              <to>/opt/cia/cia-base/webapps/cia</to>
-            </extract-artifact>
-            <copyFile>
-              <path>src/main/config/jetty/bin-fix/jetty.sh</path>
-              <toFile>/opt/cia/bin/jetty.sh</toFile>
-            </copyFile>
-            <copyFile>
-              <path>src/main/config/jetty/cia-base/webapps/cia.xml</path>
-              <toFile>/opt/cia/cia-base/webapps/cia.xml</toFile>
-            </copyFile>
-            <copyFile>
-              <path>src/main/config/jetty/cia-base/resources/jetty-logging.properties</path>
-              <toFile>/opt/cia/cia-base/resources/jetty-logging.properties</toFile>
-            </copyFile>
-
-            <copyFile>
-              <path>src/main/config/jetty/cia-base/start.d/deploy.ini</path>
-              <toFile>/opt/cia/cia-base/start.d/deploy.ini</toFile>
-            </copyFile>
-
-            <copyFile>
-              <path>src/main/config/jetty/cia-base/start.d/gzip.ini</path>
-              <toFile>/opt/cia/cia-base/start.d/gzip.ini</toFile>
-            </copyFile>
-            <copyFile>
-              <path>src/main/config/jetty/cia-base/start.d/http2c.ini</path>
-              <toFile>/opt/cia/cia-base/start.d/http2c.ini</toFile>
-            </copyFile>
-            <copyFile>
-              <path>src/main/config/jetty/cia-base/start.d/http.ini</path>
-              <toFile>/opt/cia/cia-base/start.d/http.ini</toFile>
-            </copyFile>
-
-            <copyFile>
-              <path>src/main/config/jetty/cia-base/start.d/https.ini</path>
-              <toFile>/opt/cia/cia-base/start.d/https.ini</toFile>
-            </copyFile>
-            <copyFile>
-              <path>src/main/config/jetty/cia-base/start.d/jmx.ini</path>
-              <toFile>/opt/cia/cia-base/start.d/jmx.ini</toFile>
-            </copyFile>
-            <copyFile>
-              <path>src/main/config/jetty/cia-base/start.d/jsp.ini</path>
-              <toFile>/opt/cia/cia-base/start.d/jsp.ini</toFile>
-            </copyFile>
-
-            <copyFile>
-              <path>src/main/config/jetty/cia-base/start.d/jstl.ini</path>
-              <toFile>/opt/cia/cia-base/start.d/jstl.ini</toFile>
-            </copyFile>
-            <copyFile>
-              <path>src/main/config/jetty/cia-base/start.d/resources.ini</path>
-              <toFile>/opt/cia/cia-base/start.d/resources.ini</toFile>
-            </copyFile>
-            <copyFile>
-              <path>src/main/config/jetty/cia-base/start.d/server.ini</path>
-              <toFile>/opt/cia/cia-base/start.d/server.ini</toFile>
-            </copyFile>
-            <copyFile>
-              <path>src/main/config/jetty/cia-base/start.d/ssl.ini</path>
-              <toFile>/opt/cia/cia-base/start.d/ssl.ini</toFile>
-            </copyFile>
-            <copyFile>
-              <path>src/main/config/jetty/cia-base/start.d/threadpool.ini</path>
-              <toFile>/opt/cia/cia-base/start.d/threadpool.ini</toFile>
-            </copyFile>
-            <copyFile>
-              <path>src/main/config/jetty/cia-base/start.d/console-capture.ini</path>
-              <toFile>/opt/cia/cia-base/start.d/console-capture.ini</toFile>
-            </copyFile>
-            <copyFile>
-              <path>src/main/config/jetty/cia-base/start.d/logging-logback.ini</path>
-              <toFile>/opt/cia/cia-base/start.d/logging-logback.ini</toFile>
-            </copyFile>
-            <copyFile>
-              <path>src/main/config/jetty/cia-base/start.d/websocket.ini</path>
-              <toFile>/opt/cia/cia-base/start.d/websocket.ini</toFile>
-            </copyFile>
-
-            <copyFile>
-              <path>src/main/config/etc/default/cia</path>
-              <toFile>/etc/default/cia</toFile>
-            </copyFile>
-            <copyFile>
-              <path>${project.build.directory}/keystore.p12</path>
-              <toFile>/opt/cia/cia-base/etc/keystore.p12</toFile>
-            </copyFile>
-          </assembly>
-        </configuration>
-        <dependencies>
-          <!-- Must override this dependency, even though not declared (see MNG-6965) -->
-          <dependency>
-            <groupId>org.codehaus.plexus</groupId>
-            <artifactId>plexus-utils</artifactId>
-            <version>3.0.24</version>
-          </dependency>
-        </dependencies>
-
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>prepare-deb-staging</id>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <phase>prepare-package</phase>
+            <configuration>
+              <target>
+                <!-- Ensure a clean deb-staging directory before preparing files -->
+                <delete dir="${project.build.directory}/deb-staging" failonerror="false"></delete>
+                <!-- Unpack jetty-home zip to staging area -->
+                <unzip dest="${project.build.directory}/deb-staging/opt/cia" src="${settings.localRepository}/org/eclipse/jetty/jetty-home/${cia.project.versions.jetty}/jetty-home-${cia.project.versions.jetty}.zip">
+                  <patternset>
+                    <exclude name="**/bin/jetty.sh"></exclude>
+                  </patternset>
+                </unzip>
+                <!-- Move jetty-home contents up one level to strip version directory -->
+                <move includeEmptyDirs="true" todir="${project.build.directory}/deb-staging/opt/cia">
+                  <fileset dir="${project.build.directory}/deb-staging/opt/cia/jetty-home-${cia.project.versions.jetty}"></fileset>
+                </move>
+                <delete dir="${project.build.directory}/deb-staging/opt/cia/jetty-home-${cia.project.versions.jetty}"></delete>
+                <!-- Unpack WAR to staging area -->
+                <unzip dest="${project.build.directory}/deb-staging/opt/cia/cia-base/webapps/cia" src="${basedir}/../citizen-intelligence-agency/target/citizen-intelligence-agency-${project.version}.war"></unzip>
+                <!-- Copy config files to staging area -->
+                <copy file="${basedir}/src/main/config/jetty/bin-fix/jetty.sh" tofile="${project.build.directory}/deb-staging/opt/cia/bin/jetty.sh"></copy>
+                <copy file="${basedir}/src/main/config/jetty/cia-base/webapps/cia.xml" overwrite="true" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/webapps/cia.xml"></copy>
+                <copy file="${basedir}/src/main/config/jetty/cia-base/resources/jetty-logging.properties" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/resources/jetty-logging.properties"></copy>
+                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/deploy.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/deploy.ini"></copy>
+                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/gzip.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/gzip.ini"></copy>
+                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/http2c.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/http2c.ini"></copy>
+                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/http.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/http.ini"></copy>
+                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/https.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/https.ini"></copy>
+                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/jmx.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/jmx.ini"></copy>
+                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/jsp.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/jsp.ini"></copy>
+                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/jstl.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/jstl.ini"></copy>
+                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/resources.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/resources.ini"></copy>
+                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/server.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/server.ini"></copy>
+                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/ssl.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/ssl.ini"></copy>
+                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/threadpool.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/threadpool.ini"></copy>
+                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/console-capture.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/console-capture.ini"></copy>
+                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/logging-logback.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/logging-logback.ini"></copy>
+                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/websocket.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/websocket.ini"></copy>
+                <copy file="${basedir}/src/main/config/etc/default/cia" tofile="${project.build.directory}/deb-staging/etc/default/cia"></copy>
+                <copy file="${project.build.directory}/keystore.p12" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/etc/keystore.p12"></copy>
+              </target>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.vafer</groupId>
+        <artifactId>jdeb</artifactId>
+        <version>1.14</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>jdeb</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <deb>${project.build.directory}/${project.artifactId}-${project.version}.all.deb</deb>
+              <controlDir>${basedir}/src/deb/control</controlDir>
+              <skipPOMs>false</skipPOMs>
+              <dataSet>
+                <data>
+                  <type>directory</type>
+                  <src>${project.build.directory}/deb-staging</src>
+                  <excludes>**/keystore.p12</excludes>
+                  <mapper>
+                    <type>perm</type>
+                    <prefix>/</prefix>
+                    <user>root</user>
+                    <group>root</group>
+                    <filemode>644</filemode>
+                    <dirmode>755</dirmode>
+                  </mapper>
+                </data>
+                <data>
+                  <type>directory</type>
+                  <src>${project.build.directory}/deb-staging</src>
+                  <includes>**/keystore.p12</includes>
+                  <mapper>
+                    <type>perm</type>
+                    <prefix>/</prefix>
+                    <user>root</user>
+                    <group>root</group>
+                    <filemode>600</filemode>
+                    <dirmode>755</dirmode>
+                  </mapper>
+                </data>
+              </dataSet>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

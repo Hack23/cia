@@ -1,0 +1,18 @@
+#!/bin/bash
+
+echo preinst
+
+# Ensure the 'cia' system user exists
+if ! getent passwd cia > /dev/null 2>&1; then
+    if command -v adduser > /dev/null 2>&1; then
+        if ! adduser --system --shell /usr/sbin/nologin --gecos 'CIA' --group --disabled-password --home /opt/cia cia; then
+            echo "Failed to create system user 'cia'." >&2
+            exit 1
+        fi
+    else
+        echo "'adduser' command not found; cannot create system user 'cia'." >&2
+        exit 1
+    fi
+fi
+
+exit 0

@@ -448,7 +448,7 @@ WINDOW
 ### Prerequisites
 
 - PostgreSQL 18 with Liquibase 5.0.1
-- Maven 3.9.9+
+- Maven 3.9.14+
 - Java 26
 - Database: cia_dev (development) or cia_prod (production)
 

@@ -1,0 +1,81 @@
+#!/bin/bash
+
+
+echo postinst
+
+# Track whether critical setup steps succeed
+setup_ok=1
+
+mkdir -p /opt/cia/cia-base
+mkdir -p /opt/cia/cia-base/logs
+mkdir -p /opt/cia/cia-base/temp
+mkdir -p /opt/cia/cia-base/etc
+chown -R cia:cia /opt/cia
+
+# Ensure cia.sh exists, moving from jetty.sh if necessary
+if [ ! -f /opt/cia/bin/cia.sh ]; then
+    if [ -f /opt/cia/bin/jetty.sh ]; then
+        if ! mv /opt/cia/bin/jetty.sh /opt/cia/bin/cia.sh; then
+            echo "postinst: failed to move /opt/cia/bin/jetty.sh to /opt/cia/bin/cia.sh" >&2
+            setup_ok=0
+        fi
+    else
+        echo "postinst: neither /opt/cia/bin/jetty.sh nor /opt/cia/bin/cia.sh exists" >&2
+        setup_ok=0
+    fi
+fi
+
+chmod a+x /opt/cia/bin/*.sh 2>/dev/null || true
+
+# Create/update init.d symlink idempotently
+if [ -f /opt/cia/bin/cia.sh ]; then
+    if ! ln -sf /opt/cia/bin/cia.sh /etc/init.d/cia; then
+        echo "postinst: failed to create symlink /etc/init.d/cia -> /opt/cia/bin/cia.sh" >&2
+        setup_ok=0
+    fi
+else
+    echo "postinst: /opt/cia/bin/cia.sh missing, cannot create /etc/init.d/cia symlink" >&2
+    setup_ok=0
+fi
+
+# Ensure database search index location is configured idempotently
+PROPERTIES_FILE="/opt/cia/cia-base/webapps/cia/WEB-INF/database.properties"
+PROPERTY_KEY="database.search.index.location"
+PROPERTY_VALUE="/opt/cia/cia-base/lucene-prod/indexes"
+
+if ! touch "${PROPERTIES_FILE}"; then
+    echo "postinst: failed to create/access ${PROPERTIES_FILE}" >&2
+    setup_ok=0
+elif grep -q "^${PROPERTY_KEY}=" "${PROPERTIES_FILE}"; then
+    if ! sed -i "s|^${PROPERTY_KEY}=.*|${PROPERTY_KEY}=${PROPERTY_VALUE}|" "${PROPERTIES_FILE}"; then
+        echo "postinst: failed to update ${PROPERTY_KEY} in ${PROPERTIES_FILE}" >&2
+        setup_ok=0
+    fi
+else
+    if ! echo "${PROPERTY_KEY}=${PROPERTY_VALUE}" >> "${PROPERTIES_FILE}"; then
+        echo "postinst: failed to append ${PROPERTY_KEY} to ${PROPERTIES_FILE}" >&2
+        setup_ok=0
+    fi
+fi
+
+# Create/update cacerts symlink idempotently
+if [ -f /etc/ssl/certs/java/cacerts ]; then
+    if ! ln -sf /etc/ssl/certs/java/cacerts /opt/cia/cia-base/etc/cacerts; then
+        echo "postinst: failed to create symlink /opt/cia/cia-base/etc/cacerts" >&2
+        setup_ok=0
+    fi
+else
+    echo "postinst: /etc/ssl/certs/java/cacerts not found, skipping cacerts symlink" >&2
+fi
+
+# Only start the service if setup completed successfully
+if [ "$setup_ok" -eq 1 ]; then
+    if ! /etc/init.d/cia start; then
+        echo "postinst: failed to start cia service" >&2
+        exit 1
+    fi
+    exit 0
+else
+    echo "postinst: setup errors detected, not starting cia service" >&2
+    exit 1
+fi

@@ -338,7 +338,7 @@ For details on our technology lifecycle management, see the [End-of-Life Strateg
 |-----------|---------|---------|-----------|
 | **Java JDK** | 26 (Temurin) | Runtime environment | [Setup Java](https://adoptium.net/) |
 | **Java Source** | 21 | Source compatibility | Maven compiler configuration |
-| **Maven** | 3.9.9+ | Build automation | [Maven Install](https://maven.apache.org/install.html) |
+| **Maven** | 3.9.14+ | Build automation | [Maven Install](https://maven.apache.org/install.html) |
 | **Node.js** | 24+ | Copilot MCP servers, Playwright testing | [Node.js](https://nodejs.org/) |
 | **PostgreSQL** | 16+ | Database (optional for full integration testing) | [PostgreSQL](https://www.postgresql.org/) |
 
