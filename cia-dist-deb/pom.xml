@@ -137,7 +137,7 @@
                 </move>
                 <delete dir="${project.build.directory}/deb-staging/opt/cia/jetty-home-${cia.project.versions.jetty}"></delete>
                 <!-- Unpack WAR to staging area -->
-                <unzip dest="${project.build.directory}/deb-staging/opt/cia/cia-base/webapps/cia" src="${settings.localRepository}/com/hack23/cia/citizen-intelligence-agency/${project.version}/citizen-intelligence-agency-${project.version}.war"></unzip>
+                <unzip dest="${project.build.directory}/deb-staging/opt/cia/cia-base/webapps/cia" src="${basedir}/../citizen-intelligence-agency/target/citizen-intelligence-agency-${project.version}.war"></unzip>
                 <!-- Copy config files to staging area -->
                 <copy file="${basedir}/src/main/config/jetty/bin-fix/jetty.sh" tofile="${project.build.directory}/deb-staging/opt/cia/bin/jetty.sh"></copy>
                 <copy file="${basedir}/src/main/config/jetty/cia-base/webapps/cia.xml" overwrite="true" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/webapps/cia.xml"></copy>
