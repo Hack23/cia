@@ -124,7 +124,7 @@
             <configuration>
               <target>
                 <!-- Ensure a clean deb-staging directory before preparing files -->
-                <delete dir="${project.build.directory}/deb-staging" failonerror="false"/>
+                <delete dir="${project.build.directory}/deb-staging" failonerror="false"></delete>
                 <!-- Unpack jetty-home zip to staging area -->
                 <unzip dest="${project.build.directory}/deb-staging/opt/cia" src="${settings.localRepository}/org/eclipse/jetty/jetty-home/${cia.project.versions.jetty}/jetty-home-${cia.project.versions.jetty}.zip">
                   <patternset>
