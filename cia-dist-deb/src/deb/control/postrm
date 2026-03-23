@@ -1,0 +1,9 @@
+#! /bin/bash
+
+rm -rf /opt/cia/cia-base/logs
+rm -rf /opt/cia/javamelody
+
+#userdel cia
+
+echo postrm
+exit 0

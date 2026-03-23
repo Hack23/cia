@@ -18,10 +18,10 @@ We use GitHub Actions `actions/cache@v5` to cache Maven artifacts across workflo
       ~/.m2/repository
       ~/.m2/wrapper
       ~/.sonar/cache
-    key: ${{ runner.os }}-maven-3.9.9-${{ hashFiles('**/pom.xml', '.mvn/**') }}
+    key: ${{ runner.os }}-maven-3.9.14-${{ hashFiles('**/pom.xml', '.mvn/**') }}
     restore-keys: |
-      ${{ runner.os }}-maven-3.9.9-${{ hashFiles('**/pom.xml') }}
-      ${{ runner.os }}-maven-3.9.9-
+      ${{ runner.os }}-maven-3.9.14-${{ hashFiles('**/pom.xml') }}
+      ${{ runner.os }}-maven-3.9.14-
       ${{ runner.os }}-maven-
 ```
 
@@ -36,12 +36,12 @@ We use GitHub Actions `actions/cache@v5` to cache Maven artifacts across workflo
 ### Primary Cache Key
 
 ```
-${{ runner.os }}-maven-3.9.9-${{ hashFiles('**/pom.xml', '.mvn/**') }}
+${{ runner.os }}-maven-3.9.14-${{ hashFiles('**/pom.xml', '.mvn/**') }}
 ```
 
 **Components:**
 - `${{ runner.os }}` - Platform-specific (Linux, macOS, Windows)
-- `maven-3.9.9` - Maven version for isolation
+- `maven-3.9.14` - Maven version for isolation
 - `${{ hashFiles('**/pom.xml', '.mvn/**') }}` - Hash of all POM files and Maven config
 
 **Benefits:**
@@ -55,13 +55,13 @@ Cache restoration follows a hierarchical fallback strategy:
 
 1. **Level 1: Exact POM match**
    ```
-   ${{ runner.os }}-maven-3.9.9-${{ hashFiles('**/pom.xml') }}
+   ${{ runner.os }}-maven-3.9.14-${{ hashFiles('**/pom.xml') }}
    ```
    Restores cache when most POM files match (excludes .mvn changes)
 
 2. **Level 2: Maven version match**
    ```
-   ${{ runner.os }}-maven-3.9.9-
+   ${{ runner.os }}-maven-3.9.14-
    ```
    Restores any cache from same Maven version (allows POM differences)
 

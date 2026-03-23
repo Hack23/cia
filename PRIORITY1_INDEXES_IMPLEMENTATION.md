@@ -157,7 +157,7 @@ Each changeset includes a proper rollback statement:
 
 ### Prerequisites
 - PostgreSQL 18+ database
-- Maven 3.9.9+
+- Maven 3.9.14+
 - Java 21+
 
 ### Deployment Steps
