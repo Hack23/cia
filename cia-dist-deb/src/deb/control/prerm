@@ -1,10 +1,14 @@
 #! /bin/bash
 
-/etc/init.d/cia stop
+if [ -x /etc/init.d/cia ]; then
+  /etc/init.d/cia stop || true
+fi
 
-mv /opt/cia/bin/cia.sh /opt/cia/bin/jetty.sh
-rm /etc/init.d/cia
-rm /opt/cia/cia-base/etc/cacerts
+if [ -e /opt/cia/bin/cia.sh ]; then
+  mv -f /opt/cia/bin/cia.sh /opt/cia/bin/jetty.sh
+fi
+rm -f /etc/init.d/cia
+rm -f /opt/cia/cia-base/etc/cacerts
 
 echo prerm
 exit 0

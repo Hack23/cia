@@ -113,49 +113,6 @@
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-dependency-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>unpack-jetty</id>
-            <goals>
-              <goal>unpack</goal>
-            </goals>
-            <phase>process-classes</phase>
-            <configuration>
-              <artifactItems>
-                <artifactItem>
-                  <groupId>org.eclipse.jetty</groupId>
-                  <artifactId>jetty-home</artifactId>
-                  <version>${cia.project.versions.jetty}</version>
-                  <type>zip</type>
-                  <outputDirectory>${project.build.directory}/deb-staging/opt/cia</outputDirectory>
-                  <excludes>**/bin/jetty.sh</excludes>
-                </artifactItem>
-              </artifactItems>
-            </configuration>
-          </execution>
-          <execution>
-            <id>unpack-war</id>
-            <goals>
-              <goal>unpack</goal>
-            </goals>
-            <phase>process-classes</phase>
-            <configuration>
-              <artifactItems>
-                <artifactItem>
-                  <groupId>com.hack23.cia</groupId>
-                  <artifactId>citizen-intelligence-agency</artifactId>
-                  <version>${project.version}</version>
-                  <type>war</type>
-                  <outputDirectory>${project.build.directory}/deb-staging/opt/cia/cia-base/webapps/cia</outputDirectory>
-                </artifactItem>
-              </artifactItems>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-antrun-plugin</artifactId>
         <executions>
           <execution>
@@ -166,15 +123,22 @@
             <phase>prepare-package</phase>
             <configuration>
               <target>
+                <!-- Unpack jetty-home zip to staging area -->
+                <unzip dest="${project.build.directory}/deb-staging/opt/cia" src="${settings.localRepository}/org/eclipse/jetty/jetty-home/${cia.project.versions.jetty}/jetty-home-${cia.project.versions.jetty}.zip">
+                  <patternset>
+                    <exclude name="**/bin/jetty.sh"></exclude>
+                  </patternset>
+                </unzip>
                 <!-- Move jetty-home contents up one level to strip version directory -->
                 <move includeEmptyDirs="true" todir="${project.build.directory}/deb-staging/opt/cia">
                   <fileset dir="${project.build.directory}/deb-staging/opt/cia/jetty-home-${cia.project.versions.jetty}"></fileset>
                 </move>
                 <delete dir="${project.build.directory}/deb-staging/opt/cia/jetty-home-${cia.project.versions.jetty}"></delete>
+                <!-- Unpack WAR to staging area -->
+                <unzip dest="${project.build.directory}/deb-staging/opt/cia/cia-base/webapps/cia" src="${settings.localRepository}/com/hack23/cia/citizen-intelligence-agency/${project.version}/citizen-intelligence-agency-${project.version}.war"></unzip>
                 <!-- Copy config files to staging area -->
                 <copy file="${basedir}/src/main/config/jetty/bin-fix/jetty.sh" tofile="${project.build.directory}/deb-staging/opt/cia/bin/jetty.sh"></copy>
                 <copy file="${basedir}/src/main/config/jetty/cia-base/webapps/cia.xml" overwrite="true" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/webapps/cia.xml"></copy>
-                <!-- overwrite WAR-extracted cia.xml with custom config -->
                 <copy file="${basedir}/src/main/config/jetty/cia-base/resources/jetty-logging.properties" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/resources/jetty-logging.properties"></copy>
                 <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/deploy.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/deploy.ini"></copy>
                 <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/gzip.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/gzip.ini"></copy>
