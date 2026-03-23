@@ -4,7 +4,7 @@ Section: devel
 Priority: optional
 Architecture: all
 Pre-Depends: ca-certificates-java
-Suggests: postgresql, openjdk-21-jdk-headless, ca-certificates-java
+Suggests: postgresql, openjdk-21-jre-headless, ca-certificates-java
 Maintainer: cia <cia@hack23.com>
 Description: Citizen Intelligence Agency
  Volunteer-driven, open-source intelligence (OSINT) project providing

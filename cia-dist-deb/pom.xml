@@ -185,8 +185,8 @@
                   <mapper>
                     <type>perm</type>
                     <prefix>/</prefix>
-                    <user>cia</user>
-                    <group>cia</group>
+                    <user>root</user>
+                    <group>root</group>
                     <filemode>755</filemode>
                     <dirmode>755</dirmode>
                   </mapper>
