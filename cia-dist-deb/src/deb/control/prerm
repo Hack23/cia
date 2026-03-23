@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 if [ -x /etc/init.d/cia ]; then
   /etc/init.d/cia stop || true
