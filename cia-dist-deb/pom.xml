@@ -120,7 +120,7 @@
             <goals>
               <goal>unpack</goal>
             </goals>
-            <phase>compile</phase>
+            <phase>process-classes</phase>
             <configuration>
               <artifactItems>
                 <artifactItem>
@@ -139,7 +139,7 @@
             <goals>
               <goal>unpack</goal>
             </goals>
-            <phase>compile</phase>
+            <phase>process-classes</phase>
             <configuration>
               <artifactItems>
                 <artifactItem>
@@ -167,31 +167,32 @@
             <configuration>
               <target>
                 <!-- Move jetty-home contents up one level to strip version directory -->
-                <move todir="${project.build.directory}/deb-staging/opt/cia" includeEmptyDirs="true">
-                  <fileset dir="${project.build.directory}/deb-staging/opt/cia/jetty-home-${cia.project.versions.jetty}" />
+                <move includeEmptyDirs="true" todir="${project.build.directory}/deb-staging/opt/cia">
+                  <fileset dir="${project.build.directory}/deb-staging/opt/cia/jetty-home-${cia.project.versions.jetty}"></fileset>
                 </move>
-                <delete dir="${project.build.directory}/deb-staging/opt/cia/jetty-home-${cia.project.versions.jetty}" />
+                <delete dir="${project.build.directory}/deb-staging/opt/cia/jetty-home-${cia.project.versions.jetty}"></delete>
                 <!-- Copy config files to staging area -->
-                <copy file="${basedir}/src/main/config/jetty/bin-fix/jetty.sh" tofile="${project.build.directory}/deb-staging/opt/cia/bin/jetty.sh" />
-                <copy file="${basedir}/src/main/config/jetty/cia-base/webapps/cia.xml" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/webapps/cia.xml" overwrite="true" /><!-- overwrite WAR-extracted cia.xml with custom config -->
-                <copy file="${basedir}/src/main/config/jetty/cia-base/resources/jetty-logging.properties" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/resources/jetty-logging.properties" />
-                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/deploy.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/deploy.ini" />
-                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/gzip.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/gzip.ini" />
-                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/http2c.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/http2c.ini" />
-                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/http.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/http.ini" />
-                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/https.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/https.ini" />
-                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/jmx.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/jmx.ini" />
-                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/jsp.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/jsp.ini" />
-                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/jstl.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/jstl.ini" />
-                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/resources.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/resources.ini" />
-                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/server.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/server.ini" />
-                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/ssl.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/ssl.ini" />
-                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/threadpool.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/threadpool.ini" />
-                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/console-capture.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/console-capture.ini" />
-                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/logging-logback.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/logging-logback.ini" />
-                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/websocket.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/websocket.ini" />
-                <copy file="${basedir}/src/main/config/etc/default/cia" tofile="${project.build.directory}/deb-staging/etc/default/cia" />
-                <copy file="${project.build.directory}/keystore.p12" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/etc/keystore.p12" />
+                <copy file="${basedir}/src/main/config/jetty/bin-fix/jetty.sh" tofile="${project.build.directory}/deb-staging/opt/cia/bin/jetty.sh"></copy>
+                <copy file="${basedir}/src/main/config/jetty/cia-base/webapps/cia.xml" overwrite="true" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/webapps/cia.xml"></copy>
+                <!-- overwrite WAR-extracted cia.xml with custom config -->
+                <copy file="${basedir}/src/main/config/jetty/cia-base/resources/jetty-logging.properties" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/resources/jetty-logging.properties"></copy>
+                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/deploy.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/deploy.ini"></copy>
+                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/gzip.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/gzip.ini"></copy>
+                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/http2c.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/http2c.ini"></copy>
+                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/http.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/http.ini"></copy>
+                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/https.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/https.ini"></copy>
+                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/jmx.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/jmx.ini"></copy>
+                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/jsp.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/jsp.ini"></copy>
+                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/jstl.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/jstl.ini"></copy>
+                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/resources.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/resources.ini"></copy>
+                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/server.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/server.ini"></copy>
+                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/ssl.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/ssl.ini"></copy>
+                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/threadpool.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/threadpool.ini"></copy>
+                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/console-capture.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/console-capture.ini"></copy>
+                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/logging-logback.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/logging-logback.ini"></copy>
+                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/websocket.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/websocket.ini"></copy>
+                <copy file="${basedir}/src/main/config/etc/default/cia" tofile="${project.build.directory}/deb-staging/etc/default/cia"></copy>
+                <copy file="${project.build.directory}/keystore.p12" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/etc/keystore.p12"></copy>
               </target>
             </configuration>
           </execution>
