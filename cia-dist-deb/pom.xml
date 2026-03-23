@@ -182,12 +182,26 @@
                 <data>
                   <type>directory</type>
                   <src>${project.build.directory}/deb-staging</src>
+                  <excludes>**/keystore.p12</excludes>
                   <mapper>
                     <type>perm</type>
                     <prefix>/</prefix>
                     <user>root</user>
                     <group>root</group>
-                    <filemode>755</filemode>
+                    <filemode>644</filemode>
+                    <dirmode>755</dirmode>
+                  </mapper>
+                </data>
+                <data>
+                  <type>directory</type>
+                  <src>${project.build.directory}/deb-staging</src>
+                  <includes>**/keystore.p12</includes>
+                  <mapper>
+                    <type>perm</type>
+                    <prefix>/</prefix>
+                    <user>root</user>
+                    <group>root</group>
+                    <filemode>600</filemode>
                     <dirmode>755</dirmode>
                   </mapper>
                 </data>
