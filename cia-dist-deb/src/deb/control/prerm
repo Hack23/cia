@@ -10,7 +10,7 @@ fi
 rm -f /etc/init.d/cia
 # Only remove cacerts if it is the symlink managed by this package
 if [ -L /opt/cia/cia-base/etc/cacerts ]; then
-  cacerts_target="$(readlink -f /opt/cia/cia-base/etc/cacerts 2>/dev/null || true)"
+  cacerts_target="$(readlink /opt/cia/cia-base/etc/cacerts 2>/dev/null || true)"
   if [ "$cacerts_target" = "/etc/ssl/certs/java/cacerts" ]; then
     rm -f /opt/cia/cia-base/etc/cacerts
   fi
