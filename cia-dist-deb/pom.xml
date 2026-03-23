@@ -173,7 +173,7 @@
                 <delete dir="${project.build.directory}/deb-staging/opt/cia/jetty-home-${cia.project.versions.jetty}" />
                 <!-- Copy config files to staging area -->
                 <copy file="${basedir}/src/main/config/jetty/bin-fix/jetty.sh" tofile="${project.build.directory}/deb-staging/opt/cia/bin/jetty.sh" />
-                <copy file="${basedir}/src/main/config/jetty/cia-base/webapps/cia.xml" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/webapps/cia.xml" overwrite="true" />
+                <copy file="${basedir}/src/main/config/jetty/cia-base/webapps/cia.xml" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/webapps/cia.xml" overwrite="true" /><!-- overwrite WAR-extracted cia.xml with custom config -->
                 <copy file="${basedir}/src/main/config/jetty/cia-base/resources/jetty-logging.properties" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/resources/jetty-logging.properties" />
                 <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/deploy.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/deploy.ini" />
                 <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/gzip.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/gzip.ini" />
@@ -208,7 +208,7 @@
             </goals>
             <phase>package</phase>
             <configuration>
-              <deb>${project.build.directory}/${project.artifactId}_${project.version}_all.deb</deb>
+              <deb>${project.build.directory}/${project.artifactId}-${project.version}.all.deb</deb>
               <controlDir>${basedir}/src/deb/control</controlDir>
               <skipPOMs>false</skipPOMs>
               <dataSet>
