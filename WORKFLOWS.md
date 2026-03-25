@@ -409,22 +409,21 @@ flowchart TB
 ```yaml
 # DEB Package Attestation
 - name: Generate artifact attestation for deb package
-  uses: actions/attest-build-provenance@v3.0.0
+  uses: actions/attest-build-provenance@v4.1.0
   with:
     subject-path: 'cia-dist-deb/target/cia-dist-deb-${{ github.event.inputs.release }}.all.deb'
 
-# SBOM Attestation
+# SBOM Attestation (using renamed SPDX file aligned with artifact name)
 - name: Generate SBOM attestation for deb package
-  uses: actions/attest-sbom@v3.0.0
+  uses: actions/attest@v4.1.0
   with:
     subject-path: 'cia-dist-deb/target/cia-dist-deb-${{ github.event.inputs.release }}.all.deb'
-    sbom-path: 'cia-dist-deb/target/site/*.spdx.json'
+    sbom-path: 'cia-dist-deb/target/cia-dist-deb-${{ github.event.inputs.release }}.all.deb.spdx.json'
 ```
 
 **Artifacts with Attestations:**
-- `cia-dist-deb-{version}.all.deb` + `.intoto.jsonl`
-- `citizen-intelligence-agency-{version}.war` + `.intoto.jsonl`
-- `*.spdx.json` + `.intoto.jsonl`
+- `cia-dist-deb-{version}.all.deb` + `.intoto.jsonl` + `.spdx.json` + `.spdx.json.intoto.jsonl`
+- `citizen-intelligence-agency-{version}.war` + `.intoto.jsonl` + `.spdx.json` + `.spdx.json.intoto.jsonl`
 
 **Verification:**
 Attestations can be verified using GitHub CLI:
@@ -947,23 +946,18 @@ mvn versions:commit
 **Artifacts Published:**
 1. **DEB Package**: `cia-dist-deb-{version}.all.deb`
    - Debian/Ubuntu installation package
-   - With build provenance attestation
-   - With SBOM attestation
+   - With build provenance attestation (`.intoto.jsonl`)
+   - With SBOM (`.spdx.json`) and SBOM attestation (`.spdx.json.intoto.jsonl`)
 
 2. **WAR Application**: `citizen-intelligence-agency-{version}.war`
    - Java web application archive
-   - With build provenance attestation
-   - With SBOM attestation
+   - With build provenance attestation (`.intoto.jsonl`)
+   - With SBOM (`.spdx.json`) and SBOM attestation (`.spdx.json.intoto.jsonl`)
 
 3. **CloudFormation Template**: `cia-dist-cloudformation.json`
    - AWS infrastructure as code
    - Validated by Checkov
    - Ready for AWS deployment
-
-4. **SBOM Files**: `*.spdx.json`
-   - Software Bill of Materials
-   - SPDX format
-   - Complete dependency transparency
 
 ### Rollback Strategy
 
