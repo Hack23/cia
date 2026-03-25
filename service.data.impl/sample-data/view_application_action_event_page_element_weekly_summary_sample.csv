@@ -1,14 +1,15 @@
 embedded_id_page,embedded_id_element_id,embedded_id_created_date,hits,rank_percentage,rank,rn
-main,LOGIN,2026-01-12 00:00:00,8,0,1,1
-ministryranking,CURRENTMINISTRIESLEADERSCORECARD,2026-01-12 00:00:00,1,0,1,2
-politicianranking,DATAGRID,2026-01-19 00:00:00,3,0,1,1
-partyranking,DATAGRID,2026-01-19 00:00:00,8,0,1,2
-partyranking,DATAGRID,2026-01-26 00:00:00,1,0,1,1
-main,LOGIN,2026-01-26 00:00:00,1,0,1,2
-adminapplicationsession,3389968,2026-02-02 00:00:00,1,0,1,1
-ministry,Finansdepartementet,2026-02-02 00:00:00,10,0,1,2
+main,REGISTER,2026-01-12 00:00:00,1,1,2,1
+politician,0386912710815,2026-01-12 00:00:00,1,0,1,2
+partyranking,DATAGRID,2026-01-19 00:00:00,8,0,1,1
+politicianranking,DATAGRID,2026-01-19 00:00:00,3,0,1,2
+politicianranking,DATAGRID,2026-01-26 00:00:00,2,0,1,1
+partyranking,DATAGRID,2026-01-26 00:00:00,1,0,1,2
+userhome,USER_VISITS,2026-02-02 00:00:00,1,0.5,2,1
+parliamentranking,PARTYAGE,2026-02-02 00:00:00,1,0,1,2
 main,LOGIN,2026-02-09 00:00:00,1,0,1,1
 governmentbodyranking,HEADCOUNT,2026-02-16 00:00:00,1,0,1,1
 main,LOGIN,2026-03-09 00:00:00,1,0,1,1
 partyranking,CURRENTGOVERMENTPARTIES,2026-03-09 00:00:00,1,0,1,2
-main,LOGIN,2026-03-16 00:00:00,1,0,1,1
+committeeranking,DATAGRID,2026-03-16 00:00:00,1,0,1,1
+partyranking,DATAGRID,2026-03-16 00:00:00,1,0,1,2

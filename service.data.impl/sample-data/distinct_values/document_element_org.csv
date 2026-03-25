@@ -1,28 +1,28 @@
 value,count
-"",75767
+"",75771
 SoU,15545
 KU,13070
-TU,13062
+TU,13063
 MJU,12828
 UbU,12010
 JuU,11853
 M,10115
 SkU,10077
 NU,9756
-SfU,8489
+SfU,8490
 kamm,8164
 FiU,7921
-CU,7851
-S,7733
+CU,7852
+S,7735
 UU,7415
 AU,7317
-KrU,6948
+KrU,6949
 s,6289
-FöU,4874
+FöU,4875
 SD,4651
 L,4550
 m,4383
-EUN,3692
+EUN,3693
 kd,2405
 V,2290
 v,2066
@@ -35,14 +35,14 @@ Ju-dep,1252
 Socialdepartementet,1189
 mp,1183
 BoU,1062
-MP,987
+MP,988
 Justitiedepartementet,964
 KD,932
 FI,856
 Fi-dep,802
 Utbildningsdepartementet,756
 S-dep,662
-eun,640
+eun,642
 VPN,607
 RR,566
 N-dep,544
@@ -87,8 +87,8 @@ Ju,142
 RS,119
 Miljö- och energidepartementet,114
 Landsbygds- och infrastrukturdepartementet RSL,105
+Landsbygds- och infrastrukturdepartementet,104
 Utrikes-dep,104
-Landsbygds- och infrastrukturdepartementet,102
 Finansdepartementet S2,101
 Landsbygds- och infrastrukturdepartementet RSIB TM,101
 Klimat- och näringslivsdepartementet RSE,100
@@ -315,6 +315,7 @@ UbKrU,1
 UföU,1
 Ulf Nilsson (fp),1
 Utbildningsdepartementet),1
+Utrikesdepartementet UD,1
 "au,cu,fiu,föu,juu,kru,ku,mju,nu,sfu,sku,sou,tu,ubu,uu,ckru,uföu",1
 "au,kru,sfu,sou,ubu",1
 "ckru,eun",1

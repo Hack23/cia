@@ -1,1 +1,13 @@
 column_name,data_type,distinct_count,min_value,max_value,p1,p10,p25,median,p75,p90,p99
+election_year,integer,7,2002,2026,2002,2002,2006,2014,2022,2022,2026
+career_cycle_number,bigint,7,1,7,1,1,1,2,3,4,6
+total_cycles,bigint,7,1,7,1,2,2,3,4,5,7
+career_start_year,integer,7,2002,2026,2002,2002,2002,2006,2014,2018,2022
+career_end_year,integer,7,2002,2026,2006,2006,2014,2018,2026,2026,2026
+ballot_count,bigint,630,2,1972,18,193,367,1279.5,1571,1881.9,1972
+attendance_rate,numeric,1993,0.00,100.00,13.8925,55.815,75.5775,85.925,93,98.087,100
+win_rate,numeric,826,7.04,100.00,24.14,42.49,51.2925,70.82,96.535,99.287,100
+leadership_roles,bigint,16,0,25,0,0,0,0,1,3,9
+documents_authored,bigint,490,0,1881,0,26,97,208,371,549,980
+avg_career_attendance,numeric,1177,0.00000000000000000000,100.0000000000000000,32.466,67.63,75.73375,83.185,89.25,94.97,100
+performance_vs_baseline,numeric,2210,-61.30,59.97,-33.6305,-16.58,-3.94,0.505,6.46,12.838,25.6158

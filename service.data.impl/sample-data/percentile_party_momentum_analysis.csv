@@ -2,9 +2,9 @@ column_name,data_type,distinct_count,min_value,max_value,p1,p10,p25,median,p75,p
 year,numeric,17,2010,2026,2010,2011,2014,2018,2022,2024,2026
 quarter,numeric,4,1,4,1,1,1,2,4,4,4
 ballots_participated,bigint,47,5,428,5,36,69,129,193,255.8,428
-participation_rate,numeric,1,0.0000,0.0000,0,0,0,0,0,0,0
-prev_quarter_rate,numeric,1,0.0000,0.0000,0,0,0,0,0,0,0
-momentum,numeric,1,0.0000,0.0000,0,0,0,0,0,0,0
-moving_avg_4q,numeric,1,0.0000,0.0000,0,0,0,0,0,0,0
-volatility,numeric,1,0.0000,0.0000,0,0,0,0,0,0,0
-acceleration,numeric,1,0.0000,0.0000,0,0,0,0,0,0,0
+participation_rate,numeric,428,0.0000,0.9085,0,0.13071,0.36805,0.5303,0.8035,0.85587,0.899583
+prev_quarter_rate,numeric,405,0.0000,1.0000,0,0.1219,0.375,0.5575,0.8178,0.875,0.95932
+momentum,numeric,411,-0.7781,0.7339,-0.58778,-0.2172,-0.0639,-0.0042,0.0373,0.1446,0.58982
+moving_avg_4q,numeric,430,0.0000,0.9025,0.033855,0.21747,0.390775,0.5507,0.77785,0.85133,0.900467
+volatility,numeric,402,0.0000,0.4594,0.00574,0.0172,0.036,0.0929,0.175,0.2796,0.3744
+acceleration,numeric,428,-1.4204,1.2965,-1.117962,-0.35697,-0.12325,-0.0004,0.10305,0.32956,0.828191

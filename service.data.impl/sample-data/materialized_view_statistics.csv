@@ -1,34 +1,34 @@
 schema,view_name,estimated_rows,dead_rows,last_analyzed,last_auto_analyzed
-public,view_riksdagen_vote_data_ballot_politician_summary,3701494,0,2026-03-20 22:29:06.399453+01,2026-03-20 12:29:28.710291+01
-public,view_riksdagen_committee_ballot_decision_politician_summary,1653213,0,2026-03-20 22:29:00.721667+01,2026-03-20 12:29:37.336494+01
-public,view_riksdagen_vote_data_ballot_politician_summary_daily,454752,0,2026-03-20 22:29:09.583942+01,2026-03-20 12:29:41.05897+01
-public,view_riksdagen_politician_document,279464,0,2026-03-20 22:29:02.323614+01,2026-03-20 12:29:17.427028+01
-public,view_riksdagen_vote_data_ballot_politician_summary_weekly,236660,0,2026-03-20 22:29:14.033029+01,2026-03-20 12:29:44.777142+01
-public,view_riksdagen_org_document_daily_summary,88122,0,2026-03-20 22:29:01.21019+01,2026-03-20 12:29:16.067252+01
-public,view_riksdagen_vote_data_ballot_party_summary,87844,0,2026-03-20 22:29:03.031255+01,2026-03-20 12:29:18.437785+01
-public,view_riksdagen_vote_data_ballot_politician_summary_monthly,78019,0,2026-03-20 22:29:10.59273+01,2026-03-20 22:29:09.401341+01
-public,view_riksdagen_politician_document_daily_summary,73596,0,2026-03-20 22:29:02.393362+01,2026-03-20 12:29:17.781138+01
-public,view_riksdagen_committee_decisions,59089,0,2026-03-20 22:29:01.059727+01,2026-03-20 12:29:15.840421+01
-public,view_riksdagen_document_type_daily_summary,43010,0,2026-03-20 22:29:01.098748+01,2026-03-20 12:29:15.916555+01
-public,view_riksdagen_committee_ballot_decision_party_summary,36266,0,2026-03-20 22:28:56.916281+01,2026-03-20 12:29:18.908653+01
-public,mv_party_decision_flow,16279,0,2026-03-20 22:28:56.522844+01,2026-03-20 12:29:15.491615+01
-public,view_riksdagen_party_document_daily_summary,11106,0,2026-03-20 22:29:01.220247+01,2026-03-20 12:29:17.678551+01
-public,view_riksdagen_vote_data_ballot_summary,10606,0,2026-03-20 22:29:14.0734+01,2026-03-20 22:29:11.659825+01
-public,view_riksdagen_vote_data_ballot_party_summary_daily,10536,0,2026-03-20 22:29:03.129348+01,2026-03-20 12:29:19.016913+01
-public,view_riksdagen_vote_data_ballot_politician_summary_annual,10007,0,2026-03-20 22:29:06.536504+01,2026-03-20 12:29:41.198338+01
-public,view_riksdagen_committee_decision_type_org_summary,9618,0,2026-03-20 22:29:00.772326+01,2026-03-20 12:29:17.636592+01
-public,view_riksdagen_vote_data_ballot_party_summary_weekly,5536,0,2026-03-20 22:29:03.194143+01,2026-03-20 12:29:37.454341+01
-public,view_riksdagen_committee_ballot_decision_summary,4737,0,2026-03-20 22:29:00.761988+01,2026-03-20 12:29:17.608498+01
-public,view_riksdagen_committee_decision_type_summary,4524,0,2026-03-20 22:29:00.776081+01,2026-03-20 12:29:17.653154+01
-public,view_worldbank_indicator_data_country_summary,4102,0,2026-03-20 22:29:14.103476+01,2026-03-20 22:29:11.763571+01
-public,mv_decision_temporal_trends,2835,0,2026-03-20 22:28:56.48074+01,2026-03-20 12:29:15.409355+01
-public,view_riksdagen_vote_data_ballot_party_summary_monthly,1823,0,2026-03-20 22:29:03.147928+01,2026-03-20 12:29:37.383141+01
-public,view_riksdagen_politician_document_summary,1376,0,2026-03-20 22:29:02.402675+01,2026-03-20 12:29:17.805883+01
-public,mv_ministry_decision_impact,1327,0,2026-03-20 22:28:56.483731+01,2026-03-20 12:29:15.430297+01
-public,view_riksdagen_vote_data_ballot_summary_daily,1302,0,2026-03-20 22:29:14.08201+01,2026-03-20 22:29:11.67991+01
-public,view_riksdagen_vote_data_ballot_summary_weekly,677,0,2026-03-20 22:29:14.087649+01,2026-03-20 22:29:11.702277+01
-public,view_riksdagen_vote_data_ballot_summary_monthly,222,0,2026-03-20 22:29:14.08383+01,2026-03-20 22:29:11.685477+01
-public,view_riksdagen_vote_data_ballot_party_summary_annual,210,0,2026-03-20 22:29:03.035111+01,2026-03-20 12:29:37.348219+01
-public,view_riksdagen_vote_data_ballot_summary_annual,25,0,2026-03-20 22:29:14.074421+01,
-public,mv_annual_document_metrics,25,0,2026-03-20 22:28:56.469866+01,2026-03-20 12:29:15.389966+01
-public,mv_annual_voting_metrics,25,0,2026-03-20 22:28:56.470956+01,2026-03-20 12:29:15.393926+01
+public,view_riksdagen_vote_data_ballot_politician_summary,3701494,0,2026-03-25 11:01:46.660694+01,
+public,view_riksdagen_committee_ballot_decision_politician_summary,1653213,0,2026-03-25 11:01:40.662336+01,
+public,view_riksdagen_vote_data_ballot_politician_summary_daily,454752,0,2026-03-25 11:01:50.402011+01,2026-03-25 11:01:47.714417+01
+public,view_riksdagen_politician_document,279656,0,2026-03-25 11:01:42.088823+01,2026-03-25 11:01:39.663275+01
+public,view_riksdagen_vote_data_ballot_politician_summary_weekly,236660,0,2026-03-25 11:01:53.629231+01,2026-03-25 11:01:51.406181+01
+public,view_riksdagen_org_document_daily_summary,88128,0,2026-03-25 11:01:41.110039+01,2026-03-25 11:01:37.975014+01
+public,view_riksdagen_vote_data_ballot_party_summary,87844,0,2026-03-25 11:01:42.736621+01,2026-03-25 11:01:40.58596+01
+public,view_riksdagen_vote_data_ballot_politician_summary_monthly,78019,0,2026-03-25 11:01:51.383682+01,2026-03-25 11:01:48.758006+01
+public,view_riksdagen_politician_document_daily_summary,73704,0,2026-03-25 11:01:42.153724+01,2026-03-25 11:01:39.779179+01
+public,view_riksdagen_committee_decisions,59126,0,2026-03-25 11:01:40.973365+01,2026-03-25 11:01:37.737824+01
+public,view_riksdagen_document_type_daily_summary,43015,0,2026-03-25 11:01:41.009249+01,2026-03-25 11:01:37.809326+01
+public,view_riksdagen_committee_ballot_decision_party_summary,36266,0,2026-03-25 11:01:37.222206+01,
+public,mv_party_decision_flow,16281,0,2026-03-25 11:01:36.865259+01,2026-03-23 14:35:37.427661+01
+public,view_riksdagen_party_document_daily_summary,11124,0,2026-03-25 11:01:41.118547+01,2026-03-25 11:01:38.116345+01
+public,view_riksdagen_vote_data_ballot_summary,10606,0,2026-03-25 11:01:53.664742+01,2026-03-25 11:01:51.45952+01
+public,view_riksdagen_vote_data_ballot_party_summary_daily,10536,0,2026-03-25 11:01:42.823114+01,2026-03-25 11:01:40.720592+01
+public,view_riksdagen_vote_data_ballot_politician_summary_annual,10007,0,2026-03-25 11:01:46.795805+01,2026-03-25 11:01:44.033417+01
+public,view_riksdagen_committee_decision_type_org_summary,9619,0,2026-03-25 11:01:40.708055+01,2026-03-25 11:01:38.074347+01
+public,view_riksdagen_vote_data_ballot_party_summary_weekly,5536,0,2026-03-25 11:01:42.883052+01,2026-03-25 11:01:40.830973+01
+public,view_riksdagen_committee_ballot_decision_summary,4737,0,2026-03-25 11:01:40.699615+01,2026-03-25 11:01:38.047301+01
+public,view_riksdagen_committee_decision_type_summary,4524,0,2026-03-25 11:01:40.710492+01,2026-03-25 11:01:38.090682+01
+public,view_worldbank_indicator_data_country_summary,4102,0,2026-03-25 11:01:53.691253+01,2026-03-25 11:01:37.333977+01
+public,mv_decision_temporal_trends,2834,0,2026-03-25 11:01:36.82696+01,2026-03-23 14:35:37.364912+01
+public,view_riksdagen_vote_data_ballot_party_summary_monthly,1823,0,2026-03-25 11:01:42.838546+01,2026-03-25 11:01:40.754994+01
+public,view_riksdagen_politician_document_summary,1376,0,2026-03-25 11:01:42.160538+01,2026-03-25 11:01:39.802551+01
+public,mv_ministry_decision_impact,1327,0,2026-03-25 11:01:36.830293+01,2026-03-23 14:35:37.378493+01
+public,view_riksdagen_vote_data_ballot_summary_daily,1302,0,2026-03-25 11:01:53.671897+01,2026-03-25 11:01:51.478559+01
+public,view_riksdagen_vote_data_ballot_summary_weekly,677,0,2026-03-25 11:01:53.676143+01,2026-03-25 11:01:51.497886+01
+public,view_riksdagen_vote_data_ballot_summary_monthly,222,0,2026-03-25 11:01:53.672946+01,2026-03-25 11:01:51.4833+01
+public,view_riksdagen_vote_data_ballot_party_summary_annual,210,0,2026-03-25 11:01:42.738503+01,2026-03-25 11:01:40.599396+01
+public,mv_annual_document_metrics,25,0,2026-03-25 11:01:36.816181+01,
+public,view_riksdagen_vote_data_ballot_summary_annual,25,0,2026-03-25 11:01:53.665095+01,
+public,mv_annual_voting_metrics,25,0,2026-03-25 11:01:36.816895+01,

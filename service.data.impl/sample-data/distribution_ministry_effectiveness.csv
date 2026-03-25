@@ -1,14 +1,13 @@
 ministry_name,year,quarter,documents_produced,government_bills,active_members,effectiveness_assessment
-Kulturdepartementet,2023,1,1,0,0,Ministry performance concerns - investigation recommended
-Kulturdepartementet,2023,2,10,0,0,Ministry performance concerns - investigation recommended
-Kulturdepartementet,2023,3,47,0,0,Ministry performance concerns - investigation recommended
-Kulturdepartementet,2023,4,125,0,0,Ministry performance concerns - investigation recommended
-Kulturdepartementet,2024,1,24,0,0,Ministry performance concerns - investigation recommended
-Kulturdepartementet,2024,2,1,0,0,Ministry performance concerns - investigation recommended
-Kulturdepartementet,2024,3,93,0,0,Ministry performance concerns - investigation recommended
-Kulturdepartementet,2024,4,133,0,0,Ministry performance concerns - investigation recommended
-Kulturdepartementet,2025,1,17,0,0,Ministry performance concerns - investigation recommended
-Kulturdepartementet,2025,2,12,0,0,Ministry performance concerns - investigation recommended
-Kulturdepartementet,2025,3,76,0,0,Ministry performance concerns - investigation recommended
-Kulturdepartementet,2025,4,216,0,0,Ministry performance concerns - investigation recommended
-Kulturdepartementet,2026,1,15,0,0,Ministry performance concerns - investigation recommended
+Kulturdepartementet,2023,2,10,6,12,Ministry performance concerns - investigation recommended
+Kulturdepartementet,2023,3,47,3,50,Strong ministry effectiveness
+Kulturdepartementet,2023,4,125,3,141,Strong ministry effectiveness
+Kulturdepartementet,2024,1,24,21,17,Standard ministry operations
+Kulturdepartementet,2024,2,1,0,4,Ministry performance concerns - investigation recommended
+Kulturdepartementet,2024,3,93,1,63,Strong ministry effectiveness
+Kulturdepartementet,2024,4,133,12,138,Exceptional ministry performance - high output and capacity
+Kulturdepartementet,2025,1,17,15,11,Standard ministry operations
+Kulturdepartementet,2025,2,12,8,18,Ministry performance concerns - investigation recommended
+Kulturdepartementet,2025,3,76,7,53,Strong ministry effectiveness
+Kulturdepartementet,2025,4,216,16,170,Exceptional ministry performance - high output and capacity
+Kulturdepartementet,2026,1,17,10,29,Standard ministry operations
