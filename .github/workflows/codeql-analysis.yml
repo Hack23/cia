@@ -82,7 +82,7 @@ jobs:
           fetch-depth: 2
       - name: Run Checkov action
         id: checkov
-        uses: bridgecrewio/checkov-action@2fd3901c8feb52417f27f0d9800259a106c1ec1e # master
+        uses: bridgecrewio/checkov-action@dae50a5e9eb93ac7dc96b2aea92a185131103539 # master
         with:
           file: cia-dist-cloudformation/src/main/resources/cia-dist-cloudformation.json
           skip_check: CKV_AWS_111,CKV_AWS_109,CKV_AWS_149,CKV_AWS_364,CKV_AWS_161,CKV_AWS_118,CKV_AWS_111
