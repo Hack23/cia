@@ -82,6 +82,8 @@ jobs:
 
       - name: Autobuild
         uses: github/codeql-action/autobuild@ff0a06e83cb2de871e5a09832bc6a81e7276941f # v3.28.18
+        # Note: The actual codeql-analysis.yml uses a custom Maven build instead of autobuild.
+        # Replace this step with a manual build if autobuild fails for your project.
 
       - name: CodeQL Analysis
         uses: github/codeql-action/analyze@ff0a06e83cb2de871e5a09832bc6a81e7276941f # v3.28.18
@@ -160,6 +162,11 @@ env:
 | `javadoc-generation.yml` | JavaDoc generation | Push/scheduled |
 | `site-generation.yml` | Maven site generation | Push/scheduled |
 | `zap-scan.yml` | OWASP ZAP security scan | Scheduled |
+| `generate-intelligence-changelog.yml` | Intelligence changelog generation | Manual (`workflow_dispatch`) |
+| `labeler.yml` | Pull request auto-labeling | `pull_request_target` |
+| `validate-field-completeness.yml` | JSON export field completeness | Push (path-filtered) |
+| `validate-json-schemas.yml` | JSON schema validation | Push/PR (path-filtered) + scheduled |
+| `validate-view-documentation.yml` | View documentation validation | Scheduled (monthly) + PR (path-filtered) |
 
 ### PostgreSQL Setup Pattern
 ```yaml
