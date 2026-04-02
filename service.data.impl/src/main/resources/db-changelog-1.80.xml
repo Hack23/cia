@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+  ~ Copyright 2010-2025 James Pether Sörling
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~   http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~
+  ~	$Id$
+  ~	$HeadURL$
+-->
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+<!-- ============================================================================ -->
+<!-- CHANGELOG 1.80: FIX FAN-OUT JOIN IN PARTY VIEWS                              -->
+<!-- ============================================================================ -->
+<!--                                                                               -->
+<!-- ROOT CAUSE 10: Fan-out JOIN in view_riksdagen_party_summary                   -->
+<!--   The view joins view_riksdagen_politician (1 row per politician) with         -->
+<!--   party_documents (1 row per person-document pair) on party alone:             -->
+<!--     LEFT JOIN party_documents pd ON vp.party = pd.party::text                 -->
+<!--   This creates N×M rows (N politicians × M documents per party) before         -->
+<!--   GROUP BY. All sum(vp.*) aggregations over assignment/days-served fields      -->
+<!--   are multiplied by the number of documents per party.                         -->
+<!--   Example: Party S has ~400 politicians and ~60K documents, producing          -->
+<!--   24M intermediate rows. sum(total_assignments) inflates to ~795M instead      -->
+<!--   of the actual ~3K. sum(total_days_served) inflates to ~616B instead of       -->
+<!--   the actual ~2.5M.                                                           -->
+<!--                                                                               -->
+<!--   Fix: Pre-aggregate politician assignments in a separate CTE                  -->
+<!--   (party_assignment_summary) and document metrics in another CTE               -->
+<!--   (party_doc_summary), then join the pre-aggregated results. This              -->
+<!--   eliminates the fan-out entirely.                                             -->
+<!-- ============================================================================ -->
+
+    <!-- ======================================================================== -->
+    <!-- 1.80-001: Fix view_riksdagen_party_summary — eliminate fan-out JOIN       -->
+    <!-- ======================================================================== -->
+    <changeSet id="1.80-001" author="copilot">
+        <comment>Fix view_riksdagen_party_summary: eliminate fan-out JOIN between
+        view_riksdagen_politician and party_documents (ROOT CAUSE 10).
+
+        The previous query joined each politician row with all documents for that
+        party (LEFT JOIN party_documents pd ON vp.party = pd.party), creating a
+        massive intermediate result set. All sum(vp.*) fields (total_assignments,
+        total_days_served, etc.) were multiplied by the number of documents per
+        party, producing values in the millions/billions instead of thousands.
+
+        Fix: Pre-aggregate assignment data from view_riksdagen_politician grouped
+        by party in a CTE, then join with pre-aggregated document data. This
+        eliminates the fan-out and produces correct assignment counts.</comment>
+        <createView viewName="view_riksdagen_party_summary" replaceIfExists="true">
+WITH party_documents AS (
+    SELECT dpr.party_short_code AS party,
+        dpr.person_reference_id,
+        dd.id AS doc_id,
+        dd.document_type,
+        dd.sub_type,
+        dd.label,
+        dd.made_public_date,
+        dd.org
+    FROM document_data dd
+      JOIN document_status_container dsc ON dd.id::text = dsc.document_document_status_con_0::text
+      JOIN document_person_reference_da_0 dpr ON dpr.document_person_reference_li_1 = dsc.document_person_reference_co_1
+    WHERE dpr.party_short_code IS NOT NULL
+),
+member_doc_profiles AS (
+    SELECT pd2.party,
+        pd2.person_reference_id,
+        count(DISTINCT pd2.doc_id) AS total_docs,
+        count(DISTINCT CASE WHEN pd2.document_type = 'mot' AND pd2.sub_type = 'Partimotion' THEN pd2.doc_id END) AS party_mot_count,
+        count(DISTINCT CASE WHEN pd2.document_type = 'mot' AND pd2.sub_type = 'Kommittémotion' THEN pd2.doc_id END) AS committee_mot_count,
+        count(DISTINCT CASE WHEN pd2.document_type = 'mot' AND pd2.sub_type = 'Enskild motion' THEN pd2.doc_id END) AS individual_mot_count,
+        count(DISTINCT CASE WHEN pd2.document_type = 'mot' AND pd2.sub_type = 'Flerpartimotion' THEN pd2.doc_id END) AS collab_mot_count
+    FROM party_documents pd2
+    GROUP BY pd2.party, pd2.person_reference_id
+),
+party_assignment_summary AS (
+    SELECT vp.party,
+        min(vp.first_assignment_date) AS first_assignment_date,
+        max(vp.last_assignment_date) AS last_assignment_date,
+        sum(vp.total_assignments)::bigint AS total_assignments,
+        sum(vp.current_assignments)::bigint AS current_assignments,
+        sum(vp.total_days_served)::bigint AS total_days_served,
+        sum(vp.total_days_served_parliament)::bigint AS total_days_served_parliament,
+        sum(vp.total_days_served_committee)::bigint AS total_days_served_committee,
+        sum(vp.total_days_served_government)::bigint AS total_days_served_government,
+        sum(vp.total_days_served_eu)::bigint AS total_days_served_eu,
+        sum(vp.total_days_served_speaker)::bigint AS total_days_served_speaker,
+        sum(vp.total_days_served_party)::bigint AS total_days_served_party,
+        sum(vp.total_days_served_committee_substitute)::bigint AS total_days_served_committee_substitute,
+        sum(vp.total_days_served_committee_leadership)::bigint AS total_days_served_committee_leadership,
+        bool_or(vp.active) AS active,
+        bool_or(vp.active_parliament) AS active_parliament,
+        bool_or(vp.active_government) AS active_government,
+        bool_or(vp.active_committee) AS active_committee,
+        bool_or(vp.active_eu) AS active_eu,
+        bool_or(vp.active_speaker) AS active_speaker,
+        bool_or(vp.active_party) AS active_party,
+        sum(CASE WHEN vp.active THEN 1 ELSE 0 END) AS total_active,
+        sum(CASE WHEN vp.active_parliament THEN 1 ELSE 0 END) AS total_active_parliament,
+        sum(CASE WHEN vp.active_government THEN 1 ELSE 0 END) AS total_active_government,
+        sum(CASE WHEN vp.active_committee THEN 1 ELSE 0 END) AS total_active_committee,
+        sum(CASE WHEN vp.active_eu THEN 1 ELSE 0 END) AS total_active_eu,
+        sum(vp.total_party_assignments)::bigint AS total_party_assignments,
+        sum(vp.total_ministry_assignments)::bigint AS total_ministry_assignments,
+        sum(vp.total_committee_assignments)::bigint AS total_committee_assignments,
+        sum(vp.total_speaker_assignments)::bigint AS total_speaker_assignments,
+        sum(vp.total_committee_substitute_assignments)::bigint AS total_committee_substitute_assignments,
+        sum(vp.total_committee_leadership_assignments)::bigint AS total_committee_leadership_assignments,
+        sum(vp.current_party_assignments)::bigint AS current_party_assignments,
+        sum(vp.current_ministry_assignments)::bigint AS current_ministry_assignments,
+        sum(vp.current_committee_assignments)::bigint AS current_committee_assignments,
+        sum(vp.current_speaker_assignments)::bigint AS current_speaker_assignments,
+        sum(vp.current_committee_substitute_assignments)::bigint AS current_committee_substitute_assignments,
+        sum(vp.current_committee_leadership_assignments)::bigint AS current_committee_leadership_assignments
+    FROM view_riksdagen_politician vp
+    GROUP BY vp.party
+),
+party_doc_summary AS (
+    SELECT pd.party::text AS party,
+        count(DISTINCT pd.doc_id) AS total_documents,
+        count(DISTINCT pd.person_reference_id) AS total_contributing_members,
+        count(DISTINCT CASE WHEN pd.document_type = 'mot' AND pd.sub_type = 'Partimotion' THEN pd.doc_id END) AS total_party_motions,
+        count(DISTINCT CASE WHEN pd.document_type = 'mot' AND pd.sub_type = 'Enskild motion' THEN pd.doc_id END) AS total_individual_motions,
+        count(DISTINCT CASE WHEN pd.document_type = 'mot' AND pd.sub_type = 'Kommittémotion' THEN pd.doc_id END) AS total_committee_motions,
+        count(DISTINCT CASE WHEN pd.document_type = 'mot' AND pd.sub_type = 'Flerpartimotion' THEN pd.doc_id END) AS total_collaborative_motions,
+        count(DISTINCT CASE WHEN pd.document_type = 'mot' AND pd.sub_type = 'Följdmotion' THEN pd.doc_id END) AS total_follow_up_motions,
+        count(DISTINCT CASE WHEN pd.made_public_date >= (CURRENT_DATE - interval '1 year') THEN pd.person_reference_id END) AS currently_active_members,
+        count(DISTINCT CASE WHEN pd.made_public_date >= (CURRENT_DATE - interval '1 year') THEN pd.doc_id END) AS total_documents_last_year,
+        min(pd.made_public_date) AS first_party_document,
+        max(pd.made_public_date) AS last_party_document
+    FROM party_documents pd
+    GROUP BY pd.party
+)
+SELECT pas.party,
+    pas.first_assignment_date,
+    pas.last_assignment_date,
+    pas.total_assignments,
+    pas.current_assignments,
+    pas.total_days_served,
+    pas.total_days_served_parliament,
+    pas.total_days_served_committee,
+    pas.total_days_served_government,
+    pas.total_days_served_eu,
+    pas.total_days_served_speaker,
+    pas.total_days_served_party,
+    pas.total_days_served_committee_substitute,
+    pas.total_days_served_committee_leadership,
+    pas.active,
+    pas.active_parliament,
+    pas.active_government,
+    pas.active_committee,
+    pas.active_eu,
+    pas.active_speaker,
+    pas.active_party,
+    pas.total_active,
+    pas.total_active_parliament,
+    pas.total_active_government,
+    pas.total_active_committee,
+    pas.total_active_eu,
+    pas.total_party_assignments,
+    pas.total_ministry_assignments,
+    pas.total_committee_assignments,
+    pas.total_speaker_assignments,
+    pas.total_committee_substitute_assignments,
+    pas.total_committee_leadership_assignments,
+    pas.current_party_assignments,
+    pas.current_ministry_assignments,
+    pas.current_committee_assignments,
+    pas.current_speaker_assignments,
+    pas.current_committee_substitute_assignments,
+    pas.current_committee_leadership_assignments,
+    COALESCE(pds.total_documents, 0::bigint) AS total_documents,
+    round(COALESCE(pds.total_documents::numeric / NULLIF(pds.total_contributing_members, 0)::numeric, 0::numeric), 2) AS avg_documents_per_member,
+    COALESCE(pds.total_party_motions, 0::bigint) AS total_party_motions,
+    COALESCE(pds.total_individual_motions, 0::bigint) AS total_individual_motions,
+    COALESCE(pds.total_committee_motions, 0::bigint) AS total_committee_motions,
+    COALESCE(pds.total_collaborative_motions, 0::bigint) AS total_collaborative_motions,
+    COALESCE(pds.total_follow_up_motions, 0::bigint) AS total_follow_up_motions,
+    COALESCE((SELECT count(*) FROM member_doc_profiles m WHERE m.party::text = pas.party AND m.total_docs > 100), 0::bigint) AS very_high_activity_members,
+    COALESCE((SELECT count(*) FROM member_doc_profiles m WHERE m.party::text = pas.party AND m.total_docs >= 50 AND m.total_docs &lt;= 100), 0::bigint) AS high_activity_members,
+    COALESCE((SELECT count(*) FROM member_doc_profiles m WHERE m.party::text = pas.party AND m.total_docs >= 10 AND m.total_docs &lt;= 49), 0::bigint) AS medium_activity_members,
+    COALESCE((SELECT count(*) FROM member_doc_profiles m WHERE m.party::text = pas.party AND m.total_docs &lt; 10), 0::bigint) AS low_activity_members,
+    COALESCE((SELECT count(*) FROM member_doc_profiles m WHERE m.party::text = pas.party AND m.party_mot_count > m.committee_mot_count AND m.party_mot_count > m.individual_mot_count), 0::bigint) AS party_focused_members,
+    COALESCE((SELECT count(*) FROM member_doc_profiles m WHERE m.party::text = pas.party AND m.committee_mot_count > m.party_mot_count AND m.committee_mot_count > m.individual_mot_count), 0::bigint) AS committee_focused_members,
+    COALESCE((SELECT count(*) FROM member_doc_profiles m WHERE m.party::text = pas.party AND m.individual_mot_count > m.party_mot_count AND m.individual_mot_count > m.committee_mot_count), 0::bigint) AS individual_focused_members,
+    COALESCE(pds.currently_active_members, 0::bigint) AS currently_active_members,
+    COALESCE(pds.total_documents_last_year, 0::bigint) AS total_documents_last_year,
+    round(COALESCE(pds.total_documents_last_year::numeric / NULLIF(pds.currently_active_members, 0)::numeric, 0::numeric), 2) AS avg_documents_last_year,
+    pds.first_party_document,
+    pds.last_party_document,
+    round(COALESCE(pds.total_collaborative_motions::numeric / NULLIF((pds.total_party_motions + pds.total_individual_motions + pds.total_committee_motions + pds.total_collaborative_motions + pds.total_follow_up_motions), 0)::numeric * 100, 0::numeric), 2) AS avg_collaboration_percentage,
+    COALESCE((SELECT count(*) FROM member_doc_profiles m WHERE m.party::text = pas.party AND m.collab_mot_count > 0 AND m.collab_mot_count::numeric > m.total_docs::numeric * 0.20), 0::bigint) AS highly_collaborative_members
+FROM party_assignment_summary pas
+  LEFT JOIN party_doc_summary pds ON pas.party = pds.party
+ORDER BY pas.party
+        </createView>
+    </changeSet>
+
+</databaseChangeLog>
