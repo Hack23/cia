@@ -49,8 +49,8 @@ This directory contains 79 comprehensive agent skills for the Citizen Intelligen
 
 | Skill | Description | Use Cases |
 |-------|-------------|-----------|
-| [github-actions-workflows](github-actions-workflows/) | CI/CD patterns | Pipeline creation, automation |
-| [github-agentic-workflows](github-agentic-workflows/) | AI-driven automation with MCP tools, orchestration, OWASP Agentic security | Autonomous workflows, multi-agent orchestration, secure AI operations |
+| [github-actions-workflows](github-actions-workflows/) | CI/CD with Java 26, Maven, PostgreSQL 18, SHA-pinned actions, SLSA 3 | Pipeline creation, security scans, deployments |
+| [github-agentic-workflows](github-agentic-workflows/) | GitHub Agentic Workflows (gh-aw) — markdown-defined AI automation with 5-layer security, safe outputs, multi-engine (Copilot/Claude/Codex/Gemini) | Issue triage, code quality, docs maintenance, security scanning, metrics |
 | [maven-build-management](maven-build-management/) | Multi-module builds | Dependency management, build configuration |
 | [postgresql-operations](postgresql-operations/) | Database management | Schema migrations, performance tuning |
 
