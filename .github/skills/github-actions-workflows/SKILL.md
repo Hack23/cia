@@ -34,9 +34,9 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [main, develop]
+    branches: [master]
   pull_request:
-    branches: [main]
+    branches: [master]
 
 permissions:
   contents: read
@@ -87,7 +87,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: [build, security]
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/master'
     steps:
       - name: Deploy to AWS
         uses: aws-actions/configure-aws-credentials@ececac1a45f3b08a01d2dd070d28d111c5fe6722 # v4.1.0
@@ -144,12 +144,14 @@ env:
 ### Existing Workflows
 | Workflow | Purpose | Trigger |
 |----------|---------|---------|
-| `verify-and-release.yml` | Main CI/CD: build, test, release | Push/PR to main |
-| `codeql-analysis.yml` | Security vulnerability scanning | Push/PR + scheduled |
+| `codeql-analysis.yml` | Security vulnerability scanning | Push/PR to master + scheduled |
 | `dependency-review.yml` | Dependency security checks | PR only |
 | `scorecards.yml` | OpenSSF Scorecard assessment | Scheduled |
-| `release.yml` | Build artifacts + SLSA attestations | Tag push |
+| `release.yml` | Build artifacts + SLSA attestations | Manual (`workflow_dispatch`) |
 | `copilot-setup-steps.yml` | Copilot agent build environment | Copilot sessions |
+| `javadoc-generation.yml` | JavaDoc generation | Push/scheduled |
+| `site-generation.yml` | Maven site generation | Push/scheduled |
+| `zap-scan.yml` | OWASP ZAP security scan | Scheduled |
 
 ### PostgreSQL Setup Pattern
 ```yaml
@@ -173,7 +175,7 @@ services:
 ```yaml
 # Multi-level caching for resilience
 - name: Cache Maven repository
-  uses: actions/cache@v4
+  uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5.0.4
   with:
     path: ~/.m2/repository
     key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}

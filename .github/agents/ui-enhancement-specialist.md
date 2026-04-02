@@ -108,11 +108,11 @@ Label safeLabel = new Label(userProvidedString, ContentMode.TEXT);
 
 | Question | Answer |
 |----------|--------|
-| Layout choice? | `VerticalLayout` for forms, `HorizontalLayout` for toolbars, `FlexLayout` for complex responsive |
+| Layout choice? | `VerticalLayout` for forms, `HorizontalLayout` for toolbars, `CssLayout` for complex responsive |
 | Chart library? | Chart.js via Vaadin addon for standard charts |
 | Data table? | Vaadin `Grid` with lazy loading and virtual scroll |
 | Form validation? | Vaadin `Binder` with bean validation annotations |
-| Theming? | Custom CSS via `@CssImport`, Lumo variables |
+| Theming? | Valo theme + custom SCSS via `@Theme("cia")`, `@StyleSheet` for extra CSS |
 | Mobile support? | Responsive breakpoints, touch-friendly targets (≥44px) |
 
 ## Remember

@@ -49,16 +49,18 @@ Every issue MUST include:
 Use MCP tools for automated task delegation:
 
 ```javascript
-// Assign Copilot to work on an issue
-assign_copilot_to_issue({
+// Assign Copilot to work on an issue (using MCP tool)
+github-update_issue({
   owner: "Hack23", repo: "cia",
   issue_number: ISSUE_NUMBER,
-  base_ref: "main",
-  custom_instructions: "Follow existing patterns. Include unit tests with 80%+ coverage."
+  assignees: ["copilot-swe-agent[bot]"]
 })
 
-// Track progress
-get_copilot_job_status({ owner: "Hack23", repo: "cia", job_id: "..." })
+// Track progress: monitor PRs created by Copilot for the issue
+github-list_pull_requests({
+  owner: "Hack23", repo: "cia", state: "open"
+})
+// Filter PRs that reference the issue number in their body
 ```
 
 ### 5. Playwright UI Analysis
