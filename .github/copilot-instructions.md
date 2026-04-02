@@ -1,461 +1,99 @@
 # Copilot Instructions for Citizen Intelligence Agency
 
-## Required Context - Read First
+## Context Files — Read First
 
-**ALWAYS read these files at the start of EVERY task:**
-
-1. **[README.md](../README.md)** - Project overview, features, and documentation links
-2. **[.github/workflows/copilot-setup-steps.yml](workflows/copilot-setup-steps.yml)** - Build environment, tools, and workflow permissions
-3. **[.github/copilot-mcp-config.json](copilot-mcp-config.json)** - MCP server configuration and available tools
-4. **[.github/skills/](skills/)** - 79 strategic skills for security, testing, architecture, and compliance
-5. **[.github/agents/](agents/)** - 6 specialized agents for different domains
-
-**Never skip reading these files. They contain critical context that prevents mistakes.**
+**ALWAYS read at the start of EVERY task:**
+1. **[README.md](../README.md)** — Project overview, features, docs
+2. **[copilot-setup-steps.yml](workflows/copilot-setup-steps.yml)** — Build environment (Java 26, Maven 3.9.14, PostgreSQL 18)
+3. **[copilot-mcp-config.json](copilot-mcp-config.json)** — MCP servers (GitHub, filesystem, memory, playwright)
+4. **[skills/](skills/)** — 79 skills for security, testing, architecture, compliance
+5. **[agents/](agents/)** — 6 specialized agents (task, stack, UI, intelligence, business, marketing)
 
 ## Project Overview
 
-The Citizen Intelligence Agency (CIA) is a volunteer-driven, open-source intelligence (OSINT) project providing comprehensive analysis of Swedish political activities. The platform monitors political figures and institutions, delivering financial performance metrics, risk assessment analytics, political trend analysis, and transparency insights.
+**Citizen Intelligence Agency** — volunteer-driven OSINT platform analyzing Swedish political activities. Monitors politicians and institutions with financial metrics, risk analytics, trend analysis, and transparency insights. Strictly independent and non-partisan.
 
-**Technology Stack:**
-- Java 26 (src 21) with Maven build system
-- Spring Framework 5.x (MVC, Security, Data)
-- Vaadin for UI
-- Hibernate/JPA for data access
-- PostgreSQL database
-- Spring Integration for data processing
+| Component | Version/Detail |
+|-----------|---------------|
+| **Backend** | Java 26 (source 21), Spring Framework 5.x, Hibernate/JPA |
+| **UI** | Vaadin |
+| **Database** | PostgreSQL 18 (pgaudit, pgcrypto, pg_stat_statements) |
+| **Build** | Maven 3.9.14, 49+ modules |
+| **External APIs** | Riksdagen, Swedish Election Authority, World Bank, ESV |
+| **Security** | OpenSSF 7.2/10, SLSA 3, CII Best Practices, zero critical CVEs 5+ years |
 
-**Available Resources:**
-- **[6 Specialized Agents](agents/)** - Task management, stack expertise, UI/UX, intelligence, business, marketing
-- **[79 Skills Library](skills/)** - Security, ISMS compliance, testing, architecture, CI/CD, data protection, AI governance, MCP, and more
+## Build Commands
 
-## Build and Development
-
-### Prerequisites
-- Java 26 JDK
-- Maven 3.9.14 or later
-- PostgreSQL (for full integration testing, review ../service.data.impl/README-SCHEMA-MAINTENANCE.md for task related to any database changes)
-
-### Build Commands
 ```bash
-# Clean and install all modules
-mvn clean install
-
-# Build without tests (faster)
-mvn clean install -DskipTests
-
-# Run tests only
-mvn test
-
-# Generate site documentation
-mvn site
+mvn clean install              # Full build with tests
+mvn clean install -DskipTests  # Build without tests
+mvn test                       # Tests only (excludes *ITest*, Xml*TypeAdapterTest)
+mvn clean test jacoco:report   # Tests with coverage
+mvn dependency-check:check     # OWASP dependency scan
+mvn site                       # Generate site documentation
 ```
 
-### Project Structure
-This is a multi-module Maven project with the following key modules:
-- `parent-pom/` - Parent POM with common configurations
-- `citizen-intelligence-agency/` - Main web application
-- `service.*/` - Service layer modules
-- `model.*/` - Data model modules (internal and external)
-- `testfoundation/` - Testing utilities
-- `cia-dist-deb/` - Debian package distribution
-- `cia-dist-cloudformation/` - AWS CloudFormation templates
-
-## Code Quality and Testing
-
-### Testing Requirements
-- Write unit tests for all new functionality
-- Maintain test coverage above existing levels
-- Place tests in `src/test/java` following the same package structure as source code
-- Use JUnit for unit tests
-- Follow existing test patterns in the codebase
-
-### Code Quality Tools
-- **SonarCloud**: Used for code quality analysis
-- **OWASP Dependency Check**: Scans for vulnerable dependencies
-- **CodeQL**: Security vulnerability scanning
-- **JaCoCo**: Code coverage reporting
-
-### Running Quality Checks
-```bash
-# Run with coverage
-mvn clean test jacoco:report
-
-# Generate dependency check report
-mvn dependency-check:check
-```
+**Database changes**: Follow `service.data.impl/README-SCHEMA-MAINTENANCE.md`. Never manually edit `full_schema.sql` — always regenerate via `pg_dump`.
 
 ## Coding Standards
 
-### Java Code Style
-- Use Java 21 (src 21, runtime 26) features where appropriate
-- Follow existing code formatting in the project
-- Use meaningful variable and method names
-- Add JavaDoc for public APIs
-- Avoid adding comments unless necessary for complex logic
-- Keep methods focused and concise
+- **Java**: Source level 21, runtime 26. Constructor injection preferred. `@Service`, `@Repository`, `@Controller` annotations. `@Transactional` for DB operations.
+- **JPA**: Entities in `model.*` packages. Proper annotations. Appropriate fetch types. Avoid N+1 queries.
+- **Style**: Meaningful names. JavaDoc for public APIs. Minimal comments. Follow existing patterns.
+- **Security**: Never commit secrets. Parameterized queries. Input validation. Output encoding. Spring Security for access control. GDPR compliance.
 
-### Spring Framework Conventions
-- Use dependency injection via constructor injection where possible
-- Annotate services with `@Service`, repositories with `@Repository`, controllers with `@Controller`
-- Follow Spring best practices for transaction management
-- Use `@Transactional` appropriately for database operations
+## Quality Requirements
 
-### JPA/Hibernate Guidelines
-- Entity classes should be in `model.*` packages
-- Use proper JPA annotations (`@Entity`, `@Table`, `@Column`, etc.)
-- Define relationships clearly with appropriate fetch types
-- Avoid N+1 query problems
+| Metric | Threshold |
+|--------|-----------|
+| Line coverage | ≥ 80% |
+| Branch coverage | ≥ 70% |
+| Cyclomatic complexity | < 10 |
+| Code duplication | < 3% |
+| Critical SonarCloud issues | 0 |
+| Critical/High CVEs | 0 |
 
-## Security Guidelines
+## Mandatory Rules
 
-### Critical Security Rules
-1. **Never commit secrets, API keys, or credentials**
-   - Use environment variables or external configuration
-   - Check `.gitignore` to ensure sensitive files are excluded
+### 1. Minimal, Surgical Changes
+Change only what's needed. Don't refactor unrelated code. Review impact before committing.
 
-2. **Input Validation**
-   - Validate all user inputs
-   - Use parameterized queries to prevent SQL injection
-   - Sanitize data before rendering in UI (XSS prevention)
+### 2. Validate Before Committing
+Compile (`mvn clean compile`), test relevant areas, check `git diff`, verify no secrets.
 
-3. **Authentication and Authorization**
-   - Use Spring Security for access control
-   - Follow principle of least privilege
-   - Never bypass security checks
+### 3. Security is Non-Negotiable
+Pass CodeQL + OWASP checks. Validate all inputs. Parameterized queries. Encode outputs. Update SECURITY_ARCHITECTURE.md and THREAT_MODEL.md when relevant.
 
-4. **Dependency Management**
-   - Keep dependencies up to date
-   - Review security advisories for dependencies
-   - Use OWASP Dependency Check before adding new dependencies
+### 4. ISMS Compliance
+Align with ISO 27001:2022, NIST CSF 2.0, CIS Controls v8, GDPR. Update security documentation for security-related changes.
 
-5. **Data Protection**
-   - Handle personal data according to GDPR
-   - Use encryption for sensitive data
-   - Follow the project's [Security Policy](../SECURITY.md)
+### 5. Test Everything
+Unit tests for all new functionality. Maintain or improve coverage. JUnit 5, Mockito. Follow existing test patterns.
 
-## Pull Request Guidelines
+### 6. Use Skills and Agents
+Check relevant skills before implementing. Delegate to specialized agents when appropriate:
+- **Security**: secure-code-review, security-by-design, input-validation, compliance-frameworks
+- **Architecture**: spring-framework-patterns, jpa-hibernate-optimization, vaadin-component-design
+- **Testing**: unit-testing-patterns, testing-strategy-enforcement, playwright-ui-testing
+- **CI/CD**: github-actions-workflows, github-agentic-workflows, ci-cd-security
 
-### Before Submitting a PR
-1. Ensure all tests pass: `mvn test`
-2. Verify the build succeeds: `mvn clean install`
-3. Check for code quality issues
-4. Update relevant documentation if needed
-5. Follow the PR template at `.github/pull_request_template.md`
+### 7. Clear Commit Messages
+Format: `<type>: <description>` — Types: feat, fix, docs, style, refactor, test, chore
 
-### PR Description Requirements
-- Clearly describe what the PR changes and why
-- Reference related issues using `#issue-number`
-- Include any breaking changes
-- List any new dependencies added
-- Note any documentation updates needed
+## Architecture Documentation (Hack23 Standard)
 
-### Commit Messages
-- Use clear, descriptive commit messages
-- Follow format: `<type>: <description>`
-- Types: feat, fix, docs, style, refactor, test, chore
-- Example: `feat: add politician risk score calculation`
+Every repository maintains C4 model documentation:
 
-## Documentation
+**Current**: ARCHITECTURE.md, DATA_MODEL.md, FLOWCHART.md, STATEDIAGRAM.md, MINDMAP.md, SWOT.md
+**Future**: FUTURE_ARCHITECTURE.md, FUTURE_DATA_MODEL.md, FUTURE_FLOWCHART.md, FUTURE_STATEDIAGRAM.md, FUTURE_MINDMAP.md, FUTURE_SWOT.md
+**Security**: SECURITY_ARCHITECTURE.md, FUTURE_SECURITY_ARCHITECTURE.md, THREAT_MODEL.md
 
-### When to Update Documentation
-- New features require documentation updates in README.md
-- Architecture changes need updates in ARCHITECTURE.md
-- API changes should be reflected in JavaDoc
-- Security-related changes may require SECURITY.md updates
+## Decision Framework
 
-### Documentation Standards
-- Use clear, concise language
-- Include code examples where helpful
-- Keep technical documentation up to date with code changes
-- Use Markdown for all documentation files
-
-### Architecture Documentation Matrix (Hack23 Organization Standard)
-
-Every Hack23 repository MUST maintain comprehensive architectural documentation following the C4 model:
-
-**Current State Architecture:**
-- 🏛️ **ARCHITECTURE.md** — Complete C4 models (Context, Container, Component views)
-- 📊 **DATA_MODEL.md** — Data structures, entities, and relationships
-- 🔄 **FLOWCHART.md** — Business process and data flows
-- 📈 **STATEDIAGRAM.md** — System state transitions and lifecycles
-- 🧠 **MINDMAP.md** — System conceptual relationships
-- 💼 **SWOT.md** — Strategic analysis and positioning
-
-**Future State Planning:**
-- 🚀 **FUTURE_ARCHITECTURE.md** — Architectural evolution roadmap
-- 📊 **FUTURE_DATA_MODEL.md** — Enhanced data architecture plans
-- 🔄 **FUTURE_FLOWCHART.md** — Improved process workflows
-- 📈 **FUTURE_STATEDIAGRAM.md** — Advanced state management
-- 🧠 **FUTURE_MINDMAP.md** — Capability expansion plans
-- 💼 **FUTURE_SWOT.md** — Future strategic opportunities
-
-**Security Architecture (Mandatory):**
-- 🏛️ **SECURITY_ARCHITECTURE.md** — Current implemented security design and controls
-- 🚀 **FUTURE_SECURITY_ARCHITECTURE.md** — Planned security improvements and roadmap
-- 🛡️ **THREAT_MODEL.md** — Threat analysis and mitigation strategies
-
-**Mandatory Security Architecture Content:**
-- Authentication & Authorization patterns
-- Session & Action Tracking (audit capabilities)
-- Data Integrity & Auditing (tamper-evident logging)
-- Data Protection & Key Management (encryption, key lifecycle)
-- Network Security & Perimeter Protection
-- High Availability & Resilience
-- Threat Detection & Investigation
-- Vulnerability Management
-- Application Security Controls (input validation, output encoding)
-- Defense-in-Depth Strategy
-- Compliance Framework Mapping (ISO 27001, NIST CSF, CIS Controls, GDPR)
-
-**Reference:** [Hack23 Secure Development Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md)
-
-### Hack23 Organization Repository Portfolio
-
-| Repository | Description | Key Documentation |
-|-----------|-------------|-------------------|
-| [cia](https://github.com/Hack23/cia) | Political intelligence platform (Java/Spring/Vaadin) | [Architecture](../ARCHITECTURE.md), [Security](../SECURITY_ARCHITECTURE.md) |
-| [cia-compliance-manager](https://github.com/Hack23/cia-compliance-manager) | CIA compliance assessment (TypeScript/React) | [Architecture](https://github.com/Hack23/cia-compliance-manager/blob/main/ARCHITECTURE.md) |
-| [blacktrigram](https://github.com/Hack23/blacktrigram) | Korean martial arts combat simulator (TypeScript/React/Three.js) | [Architecture](https://github.com/Hack23/blacktrigram/blob/main/ARCHITECTURE.md) |
-| [game](https://github.com/Hack23/game) | React/Three.js game template | [Architecture](https://github.com/Hack23/game/blob/main/ARCHITECTURE.md) |
-| [homepage](https://github.com/Hack23/homepage) | Organization website (hack23.com) | [Architecture](https://github.com/Hack23/homepage/blob/master/ARCHITECTURE.md) |
-| [riksdagsmonitor](https://github.com/Hack23/riksdagsmonitor) | Swedish Parliament monitoring platform | [Architecture](https://github.com/Hack23/riksdagsmonitor/blob/main/ARCHITECTURE.md) |
-| [euparliamentmonitor](https://github.com/Hack23/euparliamentmonitor) | EU Parliament intelligence platform | [Architecture](https://github.com/Hack23/euparliamentmonitor/blob/main/ARCHITECTURE.md) |
-| [European-Parliament-MCP-Server](https://github.com/Hack23/European-Parliament-MCP-Server) | MCP Server for EU Parliament data | [Architecture](https://github.com/Hack23/European-Parliament-MCP-Server/blob/main/ARCHITECTURE.md) |
-| [lambda-in-private-vpc](https://github.com/Hack23/lambda-in-private-vpc) | Multi-region AWS Lambda architecture | [Architecture](https://github.com/Hack23/lambda-in-private-vpc/blob/main/ARCHITECTURE.md) |
-| [ISMS-PUBLIC](https://github.com/Hack23/ISMS-PUBLIC) | Public ISMS documentation | [Security Architecture](https://github.com/Hack23/ISMS-PUBLIC/blob/main/SECURITY_ARCHITECTURE.md) |
-
-## External Data Sources
-
-The project integrates with several external APIs:
-- **Swedish Parliament (Riksdagen) API**: Parliamentary data
-- **Swedish Election Authority**: Election and party data
-- **World Bank Open Data**: Economic indicators
-- **Swedish Financial Management Authority**: Government finances
-
-When working with external data integrations:
-- Handle API errors gracefully
-- Implement retry logic for transient failures
-- Cache data appropriately to reduce API calls
-- Document any new data source integrations
-
-## Common Tasks
-
-### Adding a New Feature
-1. Review existing architecture in [ARCHITECTURE.md](../ARCHITECTURE.md)
-2. Create an issue describing the feature
-3. Implement feature with appropriate tests
-4. Update documentation
-5. Submit PR with clear description
-
-### Fixing a Bug
-1. Write a failing test that reproduces the bug
-2. Fix the bug
-3. Ensure the test now passes
-4. Verify no regression in existing tests
-5. Submit PR referencing the bug issue
-
-### Adding a Dependency
-1. Check if it's really needed
-2. Verify license compatibility (Apache 2.0)
-3. Run security scan: `mvn dependency-check:check`
-4. Add to appropriate POM file
-5. Document why it's needed in PR
-
-## Continuous Integration
-
-### GitHub Actions Workflows
-- **Verify and Release**: Main CI/CD pipeline
-- **CodeQL Analysis**: Security scanning
-- **Dependency Review**: Checks for vulnerable dependencies
-- **ZAP Scan**: Security testing
-- **Scorecards**: Security posture assessment
-
-### Build Requirements
-All PRs must:
-- Pass all automated tests
-- Pass CodeQL security scan
-- Pass dependency security checks
-- Meet code coverage requirements
-- Have no critical SonarCloud issues
-
-## Resources
-
-### Project Documentation
-- [README.md](../README.md) - Project overview and setup
-- [CONTRIBUTING.md](../CONTRIBUTING.md) - Contribution guidelines
-- [ARCHITECTURE.md](../ARCHITECTURE.md) - System architecture
-- [SECURITY.md](../SECURITY.md) - Security policy and reporting
-- [CODE_OF_CONDUCT.md](../CODE_OF_CONDUCT.md) - Community standards
-
-### Development References
-- [Data Model](../DATA_MODEL.md) - Database schema
-- [Flowcharts](../FLOWCHART.md) - Data processing workflows
-- [Mindmap](../MINDMAP.md) - Component relationships
-- [SWOT Analysis](../SWOT.md) - Strategic assessment
-- [Threat Model](../THREAT_MODEL.md) - Security analysis
-
-## Mandatory Rules for All Work
-
-### Rule 1: Always Read Context First
-**BEFORE starting any task, read:**
-- README.md - project overview
-- .github/workflows/copilot-setup-steps.yml - environment setup
-- .github/copilot-mcp-config.json - available tools
-- Relevant skills from .github/skills/ directory
-- Relevant agent from .github/agents/ directory
-
-### Rule 2: Make Minimal, Surgical Changes
-- Change only what's necessary to fix the issue
-- Don't refactor unrelated code
-- Don't fix unrelated bugs or broken tests
-- Keep modifications focused and small
-- Review impact before committing
-
-### Rule 3: Never Create New Markdown Files Unless Explicitly Asked
-- **Do NOT create** planning documents, notes, tracking files, or summaries
-- **Do NOT create** new .md files in root or subdirectories without explicit request
-- Work in memory, not in new files
-- Only create .md files when user specifically asks for that exact file by name or path
-
-### Rule 4: Run Comprehensive Checks Before Committing
-**Before every commit, ALWAYS:**
-1. Validate syntax (JSON, XML, YAML, Java)
-2. Check for compilation errors: `mvn clean compile`
-3. Run relevant tests: `mvn test -Dtest=YourTest`
-4. Verify no security issues with changed files
-5. Check file permissions and paths
-6. Review git diff to ensure only intended changes
-7. Verify no secrets, credentials, or sensitive data
-
-### Rule 5: Ask Fewer Questions, Complete More Work
-**Act decisively using these frameworks:**
-
-**Security Decisions:**
-- Default: Deny access, require authentication
-- Validation: Whitelist approach, validate all inputs
-- Encryption: Always for sensitive data
-- Logging: Log security events, never sensitive data
-
-**Code Quality Decisions:**
-- Coverage: Minimum 80% line, 70% branch
-- Complexity: Cyclomatic complexity < 10
-- Duplication: < 3% code duplication
-- Dependencies: Latest stable, no critical CVEs
-
-**Architecture Decisions:**
-- Layering: Respect existing architecture
-- Patterns: Follow established project patterns
-- Dependencies: Minimize coupling, maximize cohesion
-- Performance: Measure before optimizing
-
-**Only escalate truly unique scenarios not covered by these frameworks.**
-
-### Rule 6: Use Skills and Agents
-**Before implementing, check relevant skills (79 skills available):**
-
-**Security & Compliance:**
-- [secure-code-review](skills/secure-code-review/) - OWASP Top 10, security patterns
-- [security-by-design](skills/security-by-design/) - STRIDE, defense in depth, SDLC security
-- [input-validation](skills/input-validation/) - XSS, SQL injection prevention
-- [ai-governance](skills/ai-governance/) - EU AI Act, OWASP LLM, responsible AI
-- [compliance-frameworks](skills/compliance-frameworks/) - ISO 27001, NIST CSF, CIS, GDPR, NIS2
-- [data-protection](skills/data-protection/) - Data classification, GDPR, encryption
-
-**Architecture & Development:**
-- [spring-framework-patterns](skills/spring-framework-patterns/) - DI, transactions, AOP
-- [jpa-hibernate-optimization](skills/jpa-hibernate-optimization/) - Entity design, N+1 prevention
-- [vaadin-component-design](skills/vaadin-component-design/) - Vaadin UI components
-- [api-integration](skills/api-integration/) - External API patterns, retry, caching
-- [data-pipeline-engineering](skills/data-pipeline-engineering/) - Spring Integration, ETL
-- [hack23-future-architecture-standards](skills/hack23-future-architecture-standards/) - C4 model, docs
-
-**Testing & Quality:**
-- [unit-testing-patterns](skills/unit-testing-patterns/) - JUnit 5, Mockito, 80% coverage
-- [testing-strategy-enforcement](skills/testing-strategy-enforcement/) - Coverage gates, test pyramid
-- [product-quality-analysis](skills/product-quality-analysis/) - SonarCloud, quality gates
-- [ci-cd-security](skills/ci-cd-security/) - Pipeline security, SLSA compliance
-
-**See full catalog:** [skills/README.md](skills/README.md)
-
-**Delegate to specialized agents when appropriate:**
-- [task-agent](agents/task-agent.md) - GitHub issue management, ISMS compliance
-- [stack-specialist](agents/stack-specialist.md) - Java, Spring, PostgreSQL expertise
-- [ui-enhancement-specialist](agents/ui-enhancement-specialist.md) - Vaadin, accessibility
-- See [full agent catalog](agents/README.md)
-
-### Rule 7: Security is Non-Negotiable
-**Every change MUST:**
-- Pass OWASP Dependency Check (no critical/high vulnerabilities)
-- Pass CodeQL security scanning
-- Include input validation for all user inputs
-- Use parameterized queries (no SQL injection)
-- Encode output properly (no XSS vulnerabilities)
-- Never commit secrets, API keys, or credentials
-- Update security documentation if needed
-
-**Reference:** [Hack23 Secure Development Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md)
-
-### Rule 8: Follow ISMS Compliance Requirements
-**All changes MUST align with:**
-- **ISO 27001:2022** - Annex A controls
-- **NIST CSF 2.0** - Framework functions
-- **CIS Controls v8** - Implementation groups
-- **GDPR** - Data protection requirements
-
-**Required documentation updates:**
-- Update SECURITY_ARCHITECTURE.md if security changes
-- Update THREAT_MODEL.md if new threats identified
-- Update ARCHITECTURE.md if design changes
-- Maintain 80% line coverage, 70% branch coverage
-
-**See:** [iso-27001-controls skill](skills/iso-27001-controls/) for control verification
-
-### Rule 9: Test Everything
-**Testing is mandatory:**
-- Write unit tests for all new functionality
-- Maintain or improve test coverage
-- Run tests before committing: `mvn test`
-- Follow patterns in existing tests
-- Use JUnit 5, Mockito, appropriate test frameworks
-
-**Coverage Requirements:**
-- Minimum 80% line coverage
-- Minimum 70% branch coverage
-- No critical SonarCloud issues
-
-**Reference:** [unit-testing-patterns skill](skills/unit-testing-patterns/)
-
-### Rule 10: Commit Messages Must Be Clear
-**Format:** `<type>: <description>`
-
-**Types:**
-- `feat:` New feature
-- `fix:` Bug fix
-- `docs:` Documentation only
-- `style:` Formatting (no code change)
-- `refactor:` Code restructuring
-- `test:` Adding tests
-- `chore:` Build process, dependencies
-
-**Example:** `fix: correct SQL injection vulnerability in politician search`
-
-## Working with External APIs
-
-When integrating with external data sources:
-- Handle API errors gracefully with proper exception handling
-- Implement retry logic for transient failures (3 retries with exponential backoff)
-- Cache data appropriately to reduce API calls
-- Document any new data source integrations in README.md
-- Use circuit breaker pattern for unreliable services
-
-## Decision Framework Summary
-
-**When uncertain, use this hierarchy:**
-1. Check relevant skill in `.github/skills/` directory
+When uncertain:
+1. Check relevant skill in `.github/skills/`
 2. Review similar code patterns in the repository
-3. Consult project documentation (ARCHITECTURE.md, SECURITY_ARCHITECTURE.md)
-4. Apply security-by-design principles (deny by default, validate input, encrypt data)
-5. Follow ISMS requirements (ISO 27001, NIST CSF, CIS Controls)
-6. Only then ask for clarification if truly unique scenario
-
-**This is a mature, security-conscious project. Prioritize code quality, security, and maintainability. Act decisively within established frameworks. Complete work thoroughly before committing.**
+3. Consult ARCHITECTURE.md, SECURITY_ARCHITECTURE.md
+4. Apply security-by-design (deny by default, validate input, encrypt data)
+5. Follow ISMS requirements
+6. Only then ask for clarification
