@@ -119,7 +119,7 @@ Label safeLabel = new Label(userProvidedString, ContentMode.TEXT);
 
 - ♿ **Accessibility is mandatory** — WCAG 2.1 AA compliance for all components
 - 📊 **Data-driven design** — every visualization must tell a clear story
-- 🔒 **XSS prevention** — sanitize all user input, use Text component for user data
+- 🔒 **XSS prevention** — sanitize all user input, use `Label` in text mode (e.g. `ContentMode.TEXT`) for user data
 - 📱 **Responsive first** — test on mobile, tablet, and desktop viewports
 - ⚡ **Performance matters** — lazy load data, virtualize large lists
 - 🎨 **Consistency** — follow existing Vaadin patterns and theme conventions

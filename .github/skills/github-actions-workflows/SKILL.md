@@ -80,6 +80,9 @@ jobs:
         with:
           languages: java
 
+      # Note: This template uses Autobuild for portability.
+      # In this repository, `.github/workflows/codeql-analysis.yml`
+      # uses a custom Maven build and keeps Autobuild disabled.
       - name: Autobuild
         uses: github/codeql-action/autobuild@ff0a06e83cb2de871e5a09832bc6a81e7276941f # v3.28.18
 
@@ -149,7 +152,9 @@ env:
 
 ## CIA-Specific Workflows
 
-### Existing Workflows
+### Existing Workflows (Curated Subset)
+This is a curated subset of core workflows, not a full inventory.
+
 | Workflow | Purpose | Trigger |
 |----------|---------|---------|
 | `codeql-analysis.yml` | Security vulnerability scanning | Push/PR to master + scheduled |
@@ -160,6 +165,11 @@ env:
 | `javadoc-generation.yml` | JavaDoc generation | Push/scheduled |
 | `site-generation.yml` | Maven site generation | Push/scheduled |
 | `zap-scan.yml` | OWASP ZAP security scan | Scheduled |
+| `generate-intelligence-changelog.yml` | Intelligence changelog generation | Manual/dispatch |
+| `labeler.yml` | Auto-label pull requests/issues | PR/Issue events |
+| `validate-field-completeness.yml` | Validate data field completeness | Push/PR |
+| `validate-json-schemas.yml` | Validate JSON schema files | Push/PR |
+| `validate-view-documentation.yml` | Validate SQL view documentation | Push/PR |
 
 ### PostgreSQL Setup Pattern
 ```yaml
