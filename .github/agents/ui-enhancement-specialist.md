@@ -102,7 +102,7 @@ Label safeLabel = new Label(userProvidedString, ContentMode.TEXT);
 | **Virtual scrolling** | Enable on grids with 1000+ rows |
 | **Component reuse** | Cache frequently-used view components |
 | **Image optimization** | WebP format, lazy loading, responsive `srcset` |
-| **Bundle size** | Tree-shake unused Vaadin components |
+| **Bundle size** | Keep widgetset minimal; avoid unused add-ons/client resources |
 
 ## Decision Framework
 

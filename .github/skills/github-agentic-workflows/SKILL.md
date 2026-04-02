@@ -221,7 +221,7 @@ The `.lock.yml` file is the actual GitHub Actions workflow. Never edit it direct
 ### Issue & PR Management
 - **Issue Triage Agent** — Auto-label and comment on new issues
 - **PR Triage Agent** — Categorize and assign PRs
-- **Plan Command** (`/plan`) — Decompose issues into sub-tasks (67% merge rate, 514+ merged PRs)
+- **Plan Command** (`/plan`) — Decompose issues into sub-tasks
 - **Auto-Assign Issue** — Route issues to appropriate team members
 
 ### Continuous Improvement
@@ -234,7 +234,7 @@ The `.lock.yml` file is the actual GitHub Actions workflow. Never edit it direct
 - **Daily Issues Report** — Team status summaries
 - **Documentation Healer** — Fix stale docs and broken links
 - **Architecture Diagram Generator** — Auto-generate C4/Mermaid diagrams
-- **Discussion Task Miner** — Extract actionable tasks from discussions (57% merge rate)
+- **Discussion Task Miner** — Extract actionable tasks from discussions
 
 ### Security & Quality
 - **Code Scanning Fixer** — Auto-fix CodeQL/SAST findings

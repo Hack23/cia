@@ -45,6 +45,8 @@ permissions:
 
 jobs:
   build:
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -78,6 +80,9 @@ jobs:
         with:
           languages: java
 
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@ff0a06e83cb2de871e5a09832bc6a81e7276941f # v3.28.18
+
       - name: CodeQL Analysis
         uses: github/codeql-action/analyze@ff0a06e83cb2de871e5a09832bc6a81e7276941f # v3.28.18
 
@@ -88,6 +93,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build, security]
     if: github.ref == 'refs/heads/master'
+    permissions:
+      id-token: write   # Required for OIDC
+      contents: read
     steps:
       - name: Deploy to AWS
         uses: aws-actions/configure-aws-credentials@ececac1a45f3b08a01d2dd070d28d111c5fe6722 # v4.1.0
