@@ -60,7 +60,7 @@ jobs:
         run: mvn clean install -DskipTests
 
       - name: Run Tests
-        run: mvn test -Dtest='!*ITest*,!Xml*TypeAdapterTest'
+        run: mvn test -Dtest='!**ITest*,!**/XmlDateTypeAdapterTest,!**/XmlTimeTypeAdapterTest,!**/XmlDateTimeTypeAdapterTest'
 
       - name: Upload Coverage
         uses: codecov/codecov-action@18283e04ce6e62d37312384ff67231eb8fd56d24 # v5.4.3
@@ -124,7 +124,7 @@ env:
   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
 # ✅ Use OIDC for cloud access (no long-lived keys)
-- uses: aws-actions/configure-aws-credentials@v4
+- uses: aws-actions/configure-aws-credentials@ececac1a45f3b08a01d2dd070d28d111c5fe6722 # v4.1.0
   with:
     role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
 
@@ -133,8 +133,8 @@ env:
 
 ### Supply Chain Security
 ```yaml
-# SLSA 3 build provenance
-- uses: slsa-framework/slsa-github-generator/.github/workflows/builder_maven.yml@v2
+# SLSA 3 build provenance (pin to a specific commit SHA)
+- uses: slsa-framework/slsa-github-generator/.github/workflows/builder_maven.yml@3c58c41cab36161dc53f223132d1f59f1df67cf9 # v2
   with:
     rekor-log-public: true
 ```

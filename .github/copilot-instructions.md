@@ -27,7 +27,7 @@
 ```bash
 mvn clean install              # Full build with tests
 mvn clean install -DskipTests  # Build without tests
-mvn test                       # Tests only (excludes *ITest*, Xml*TypeAdapterTest)
+mvn test -Dtest='!**ITest*,!**/XmlDateTypeAdapterTest,!**/XmlTimeTypeAdapterTest,!**/XmlDateTimeTypeAdapterTest'  # Tests only (excludes integration and Xml*TypeAdapterTest)
 mvn clean test jacoco:report   # Tests with coverage
 mvn dependency-check:check     # OWASP dependency scan
 mvn site                       # Generate site documentation
