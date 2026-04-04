@@ -589,8 +589,6 @@ Changes are categorized as follows to facilitate tracking:
 
 ### Validation & Quality
 - **Schema Maintenance**: [service.data.impl/README-SCHEMA-MAINTENANCE.md](service.data.impl/README-SCHEMA-MAINTENANCE.md) - SQL validation and health checks
-- **SQL Validation**: [DATA_ANALYSIS_SQL_VALIDATION_REPORT.md](DATA_ANALYSIS_SQL_VALIDATION_REPORT.md) - Query validation
-- **Entity Mapping**: [ENTITY_VIEW_MAPPING.md](ENTITY_VIEW_MAPPING.md) - JPA entity to view mapping
 
 ### Architecture & Design
 - **Architecture**: [ARCHITECTURE.md](ARCHITECTURE.md) - System architecture (C4 model)
@@ -601,7 +599,6 @@ Changes are categorized as follows to facilitate tracking:
 
 ### Business & Products
 - **Business Products**: [BUSINESS_PRODUCT_DOCUMENT.md](BUSINESS_PRODUCT_DOCUMENT.md) - Product specifications
-- **Product Summary**: [PRODUCT_SUMMARY.md](PRODUCT_SUMMARY.md) - Product overview
 
 ### Specialized Changelogs
 - **Database Views Changelog**: See below for dedicated view change tracking

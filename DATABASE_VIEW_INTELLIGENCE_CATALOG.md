@@ -104,7 +104,6 @@ Views are classified by intelligence value for analytical operations:
 | **JSON Export Specifications** | [json-export-specs/](json-export-specs/) | API schemas and data format specifications |
 | **Intelligence Data Flow Map** | [INTELLIGENCE_DATA_FLOW.md](INTELLIGENCE_DATA_FLOW.md) | Central cross-reference hub showing data pipeline |
 | **Intelligence Evolution Changelog** | [CHANGELOG_INTELLIGENCE.md](CHANGELOG_INTELLIGENCE.md) | Unified intelligence capability tracking |
-| **Sample Data Extraction** | [service.data.impl/SAMPLE_DATA_EXTRACTION.md](service.data.impl/SAMPLE_DATA_EXTRACTION.md) | Sample data extraction process and coverage (200 CSV files) |
 | **Sample Data Directory** | [service.data.impl/sample-data/](service.data.impl/sample-data/) | Actual sample CSV files for all 84 views and 54 tables |
 | **Intelligence Frameworks** | [DATA_ANALYSIS_INTOP_OSINT.md](DATA_ANALYSIS_INTOP_OSINT.md) | Analysis methodologies and OSINT techniques |
 | **Risk Rules** | [RISK_RULES_INTOP_OSINT.md](RISK_RULES_INTOP_OSINT.md) | 45 behavioral detection rules |
@@ -9175,7 +9174,6 @@ See [sample-data/README.md](service.data.impl/sample-data/README.md) for data qu
 
 ### Sample Data Documentation
 
-- **Extraction Process**: [SAMPLE_DATA_EXTRACTION.md](service.data.impl/SAMPLE_DATA_EXTRACTION.md)
 - **Usage Guide**: [sample-data/README.md](service.data.impl/sample-data/README.md)
 - **Extraction Statistics**: [extraction_statistics.csv](service.data.impl/sample-data/extraction_statistics.csv)
 - **Data Manifest**: [sample_data_manifest.csv](service.data.impl/sample-data/sample_data_manifest.csv)

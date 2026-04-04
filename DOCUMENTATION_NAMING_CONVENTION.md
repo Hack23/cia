@@ -98,7 +98,7 @@ Documents that are continuously maintained to reflect current state:
 | **FRAMEWORK_** | Analytical/methodological frameworks | `DATA_ANALYSIS_INTOP_OSINT.md`, `FRAMEWORK_INTELLIGENCE_DATA_FLOW.md` | Major updates |
 | **DASHBOARD_** | Monitoring and metrics dashboards | `DATA_QUALITY_MONITORING_DASHBOARD.md` | Continuous |
 | **POLICY_** | Rules, standards, and governance | `POLICY_DATA_CLASSIFICATION.md`, `POLICY_SECURITY.md` | Quarterly review |
-| **MAPPING_** | Cross-reference and relationship documents | `ENTITY_VIEW_MAPPING.md` | As schema changes |
+| **MAPPING_** | Cross-reference and relationship documents | `MAPPING_<SOURCE>_<TARGET>.md` | As schema changes |
 
 ### Historical/Versioned Documents
 
@@ -181,8 +181,6 @@ Standard repository files that follow GitHub/industry conventions:
 ✅ POLICY_DATA_CLASSIFICATION.md
    - Governance policy for data handling
 
-✅ ENTITY_VIEW_MAPPING.md
-   - Cross-reference mapping document
 ```
 
 ### Historical/Versioned Documents
@@ -375,7 +373,6 @@ graph TD
 | `service.data.impl/README-SCHEMA-MAINTENANCE.md` | Guide | Living | Yes - Workflows |
 | `INTELLIGENCE_DATA_FLOW.md` | Framework | Living | Yes - Documentation |
 | `DATA_QUALITY_MONITORING_DASHBOARD.md` | Dashboard | Living | Yes - Documentation |
-| `ENTITY_VIEW_MAPPING.md` | Mapping | Living | Yes - Documentation |
 | `LIQUIBASE_CHANGELOG_INTELLIGENCE_ANALYSIS.md` | Analysis | Living | Yes - Documentation |
 | `CHANGELOG_INTELLIGENCE.md` | Changelog | Versioned | Yes - Release notes |
 
@@ -390,7 +387,6 @@ graph TD
 | `RISK_RULES_INTOP_OSINT.md` | `CATALOG_RISK_RULES.md` | Type prefix first |
 | `INTELLIGENCE_DATA_FLOW.md` | `FRAMEWORK_INTELLIGENCE_DATA_FLOW.md` | Clear framework type |
 | `DATA_QUALITY_MONITORING_DASHBOARD.md` | `DASHBOARD_DATA_QUALITY.md` | Type prefix first |
-| `ENTITY_VIEW_MAPPING.md` | `MAPPING_ENTITY_VIEW.md` | Type prefix first |
 
 **These are examples only - existing files are preserved to maintain external link integrity.**
 
