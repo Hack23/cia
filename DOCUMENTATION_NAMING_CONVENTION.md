@@ -98,7 +98,7 @@ Documents that are continuously maintained to reflect current state:
 | **FRAMEWORK_** | Analytical/methodological frameworks | `DATA_ANALYSIS_INTOP_OSINT.md`, `FRAMEWORK_INTELLIGENCE_DATA_FLOW.md` | Major updates |
 | **DASHBOARD_** | Monitoring and metrics dashboards | `DATA_QUALITY_MONITORING_DASHBOARD.md` | Continuous |
 | **POLICY_** | Rules, standards, and governance | `POLICY_DATA_CLASSIFICATION.md`, `POLICY_SECURITY.md` | Quarterly review |
-| **MAPPING_** | Cross-reference and relationship documents | `MAPPING_ENTITY_VIEW.md` | As schema changes |
+| **MAPPING_** | Cross-reference and relationship documents | `MAPPING_<SOURCE>_<TARGET>.md` | As schema changes |
 
 ### Historical/Versioned Documents
 
@@ -181,8 +181,6 @@ Standard repository files that follow GitHub/industry conventions:
 ✅ POLICY_DATA_CLASSIFICATION.md
    - Governance policy for data handling
 
-✅ MAPPING_ENTITY_VIEW.md
-   - Cross-reference mapping document
 ```
 
 ### Historical/Versioned Documents
