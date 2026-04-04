@@ -630,8 +630,6 @@ cd service.data.impl/src/main/resources/
 
 **Output Location**: `/tmp/sample_data/` (or specified directory)
 
-**See**: [SAMPLE_DATA_EXTRACTION.md](SAMPLE_DATA_EXTRACTION.md) for detailed documentation.
-
 ---
 
 ### Stage 4: Documentation Update (Required - Final Step)
@@ -3771,8 +3769,8 @@ ORDER BY matviewname;
 | `schema-validation.sql` | Statistics and analysis | Monitoring, investigation | [Schema Validation](#schema-validation-and-statistics) |
 | `schema-health-check.sql` | Comprehensive health check | Daily, before deployments | [Stage 2](#stage-2-health-check-required---run-after-validation) |
 | `extract-sample-data.sql` | Sample data extraction (SQL) | Testing, debugging | [Stage 3](#stage-3-sample-data-extraction-optional---for-analysistesting) |
-| `extract-sample-data.sh` | Sample data extraction (Shell) | Testing, debugging | [SAMPLE_DATA_EXTRACTION.md](SAMPLE_DATA_EXTRACTION.md) |
-| `validate-sample-data-extraction.sh` | Validate extracted samples | After extraction | [SAMPLE_DATA_EXTRACTION.md](SAMPLE_DATA_EXTRACTION.md) |
+| `extract-sample-data.sh` | Sample data extraction (Shell) | Testing, debugging | [Stage 3](#stage-3-sample-data-extraction-optional---for-analysistesting) |
+| `validate-sample-data-extraction.sh` | Validate extracted samples | After extraction | [Stage 3](#stage-3-sample-data-extraction-optional---for-analysistesting) |
 | `refresh-all-views.sql` | Refresh materialized views | Daily/weekly refresh | [Refreshing Materialized Views](#refreshing-materialized-views) |
 | `analyze-view-dependencies.sql` | View dependency analysis | Understanding relationships | [Analyzing View Dependencies](#analyzing-view-dependencies) |
 | `schema-coverage-analysis.sql` | Coverage metrics | Quality assurance | Detailed analysis script |
@@ -3812,9 +3810,7 @@ psql -U postgres -d cia_dev -f analyze-view-dependencies.sql > deps.csv
 ## 🔗 Related Documentation
 
 ### Primary Documentation
-- [SAMPLE_DATA_EXTRACTION.md](SAMPLE_DATA_EXTRACTION.md) - Detailed sample data extraction guide
 - [DATABASE_VIEW_INTELLIGENCE_CATALOG.md](../../DATABASE_VIEW_INTELLIGENCE_CATALOG.md) - Complete view catalog
-- [TROUBLESHOOTING_EMPTY_VIEWS.md](../../TROUBLESHOOTING_EMPTY_VIEWS.md) - Debugging empty views
 
 ### Intelligence Analysis Documentation
 - [CHANGELOG_INTELLIGENCE_ANALYSIS.md](../../CHANGELOG_INTELLIGENCE_ANALYSIS.md) - Intelligence analysis changelog

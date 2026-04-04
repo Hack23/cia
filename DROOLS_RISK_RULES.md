@@ -83,7 +83,7 @@ Politician document productivity thresholds have been validated against actual d
 
 **Intelligence Value**: Tracks partisan behavior and identifies politicians who operate in isolation from other parties. Swedish Parliament is highly partisan (median collaboration = 0%), so thresholds calibrated to capture genuinely isolated behavior in this context.
 
-**Threshold Validation**: See [COLLABORATION_THRESHOLD_ANALYSIS.md](COLLABORATION_THRESHOLD_ANALYSIS.md) for full empirical analysis. Previous thresholds (<10%, <20%) flagged 99.2%+ of politicians and were meaningless.
+**Threshold Validation**: Previous thresholds (<10%, <20%) flagged 99.2%+ of politicians and were meaningless. Current thresholds are empirically calibrated for Swedish Parliament's partisan context.
 
 ---
 
@@ -366,7 +366,7 @@ Statistical analysis of 500 politician-years (2002-2025) revealed that original 
 
 **Intelligence Value**: Identifies parties that operate in isolation. Thresholds reflect Swedish political reality where party collaboration averages 0-3%, far lower than international baselines (10-15%). Current thresholds (0.5%, 1.0%, 1.6%) are empirically validated and working correctly.
 
-**Threshold Validation**: See [COLLABORATION_THRESHOLD_ANALYSIS.md](COLLABORATION_THRESHOLD_ANALYSIS.md) for full analysis showing:
+**Threshold Validation**: Empirical analysis showing:
 - Party thresholds (0.5-1.6%) correctly identify 2/8 parties as low-collaboration
 - 6/8 parties (75%) exceed 1.6% threshold and pass normally
 - Thresholds distinguish structural differences (opposition vs government, ideological isolation)
