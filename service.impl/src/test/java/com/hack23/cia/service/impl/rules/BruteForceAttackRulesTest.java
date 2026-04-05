@@ -66,9 +66,6 @@ public class BruteForceAttackRulesTest {
 				"com/hack23/cia/service/impl/rules/application/BruteForceAttack.drl"));
 		final KieBuilder kieBuilder = kieServices.newKieBuilder(kfs).buildAll();
 		final Results results = kieBuilder.getResults();
-		for (final Message m : results.getMessages()) {
-			System.err.println("KIE build: " + m);
-		}
 		assertFalse("DRL compilation should have no errors: " + results.getMessages(),
 				results.hasMessages(Message.Level.ERROR));
 		kieContainer = kieServices.newKieContainer(kieServices.getRepository().getDefaultReleaseId());

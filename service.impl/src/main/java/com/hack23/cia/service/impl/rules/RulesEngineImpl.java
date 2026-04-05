@@ -274,8 +274,8 @@ public final class RulesEngineImpl implements RulesEngine {
 		for (final ApplicationSession session : list) {
 			if (session != null && session.getEvents() != null) {
 				final long failedAuthAttempts = session.getEvents().stream()
-						.filter(event -> ApplicationOperationType.AUTHENTICATION == event.getApplicationOperation())
-						.filter(event -> event.getErrorMessage() != null && !event.getErrorMessage().isEmpty())
+						.filter(event -> ApplicationOperationType.AUTHENTICATION == event.getApplicationOperation()
+								&& event.getErrorMessage() != null && !event.getErrorMessage().isEmpty())
 						.count();
 
 				if (failedAuthAttempts > 0) {
