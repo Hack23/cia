@@ -66,9 +66,9 @@ The Citizen Intelligence Agency (CIA) platform employs **110 database views** (7
 | **Seasonal/Election Year Views** | 7 | v1.55/v1.59/v1.60: Temporal pattern analysis with seasonal decomposition and election year comparison |
 | **Decision Flow Views** | 4 | Party, politician, ministry, temporal trends for decision analysis |
 | **New-Style Materialized Views** | 5 | v1.76: mv_* prefix views for annual metrics, decision trends, ministry impact, party flow |
-| **Vote Summary Views** | 15 | Daily, weekly, monthly, annual ballot summaries (ballot, party, politician) |
+| **Vote Data Views** | 16 | Daily, weekly, monthly, annual ballot and voting data summaries (ballot, party, politician) |
 | **Application Event Views** | 12 | User behavior tracking (daily, weekly, monthly, annual) |
-| **Document Views** | 7 | Politician and party document productivity |
+| **Document Views** | 9 | Politician and party document productivity |
 | **Committee Views** | 12 | Committee productivity, decisions, membership |
 | **Government/Ministry Views** | 9 | Government and ministry performance tracking (includes mv_ministry_decision_impact) |
 | **Party Views** | 19 | Party performance, decision flow, effectiveness, transitions, longitudinal analysis |
@@ -124,9 +124,9 @@ Views are classified by intelligence value for analytical operations:
 
 ### Current Status
 
-**Last Validated**: 2025-11-25  
+**Last Validated**: 2026-04-05  
 **Validation Method**: Automated schema validation via validate-view-documentation.sh  
-**Schema Source**: service.data.impl/src/main/resources/full_schema.sql  
+**Schema Source**: service.data.impl/src/main/resources/full_schema.sql + db-changelog-1.80.xml  
 **Coverage**: 100% (110/110 views documented)  
 **Health Score**: 82/100 (per schema-health-check.sql)
 

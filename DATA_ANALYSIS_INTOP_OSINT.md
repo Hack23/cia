@@ -7726,7 +7726,7 @@ All SQL queries in this document have been designed to work with the actual data
 
 **View Dependencies**:
 - 110 database views available (77 regular + 33 materialized)
-- 7 intelligence-specific views (risk, anomaly, influence, crisis, momentum, dashboard, temporal trends)
+- 8 intelligence & risk views (see `DATABASE_VIEW_INTELLIGENCE_CATALOG.md` for the authoritative catalog and validation history)
 
 **Performance Characteristics**:
 - Simple queries (single view, filtered): 100-500ms
