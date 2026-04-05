@@ -1,18 +1,18 @@
 # Party Schema (Data-Validated)
 
 **Status:** ✅ Validated against actual sample data  
-**Last Updated:** 2025-12-31  
-**Fields:** 3 (only fields present in sample data)
+**Last Updated:** 2026-04-05  
+**Fields:** 4 implemented (only fields present in sample data)
 
 ## Overview
 
-This schema has been automatically updated to reflect **only fields that exist in actual sample data**. 
-Fields that were originally specified but not found in any data source have been removed.
+This schema reflects **only fields that exist in actual sample data**. 
+The 38 mismatched fields have been categorized by implementation status.
 
 **Validation Results:**
-- Original fields defined: 43
-- Fields validated in data: 3
-- Fields removed (not in data): 40
+- Original fields defined: 42
+- Fields validated in data: 4
+- Fields not in data: 38 (14 structural, 13 computable, 11 planned)
 
 ## Data Model
 
@@ -51,54 +51,41 @@ This schema is validated against the following data sources:
 
 ## Migration Notes
 
-**⚠️ Breaking Changes from Original Schema:**
+## Migration Notes
 
-This schema has been significantly reduced to match actual data availability. Fields removed include:
+**Field Classification (38 fields not in data):**
 
-- `activityRate` - Not found in any data source
-- `alignment` - Not found in any data source
-- `attributes` - Not found in any data source
-- `category` - Not found in any data source
-- `coalition` - Not found in any data source
-- `cohesionScore` - Not found in any data source
-- `color` - Not found in any data source
-- `committeeChairs` - Not found in any data source
-- `currentSupport` - Not found in any data source
-- `descriptions` - Not found in any data source
-- `disciplineRate` - Not found in any data source
-- `documents` - Not found in any data source
-- `electoral` - Not found in any data source
-- `foundedYear` - Not found in any data source
-- `fullName` - Not found in any data source
-- `ideology` - Not found in any data source
-- `intelligence` - Not found in any data source
-- `labels` - Not found in any data source
-- `legislativeSuccess` - Not found in any data source
-- `logoUrl` - Not found in any data source
-- `members` - Not found in any data source
-- `ministries` - Not found in any data source
-- `nameEn` - Not found in any data source
-- `parliamentary` - Not found in any data source
-- `policy` - Not found in any data source
-- `predictions` - Not found in any data source
-- `productivity` - Not found in any data source
-- `relationships` - Not found in any data source
-- `riskScore` - Not found in any data source
-- `seats` - Not found in any data source
-- `spectrum` - Not found in any data source
-- `stability` - Not found in any data source
-- `strengthScore` - Not found in any data source
-- `totalMembers` - Not found in any data source
-- `totalVotes` - Not found in any data source
-- `trend` - Not found in any data source
-- `votePercentage` - Not found in any data source
-- `voting` - Not found in any data source
-- `websiteUrl` - Not found in any data source
+### ❌ Structural Fields (JSON grouping objects)
+- `attributes`, `labels`, `relationships`, `intelligence`, `electoral`, `voting`
+- `documents`, `members`, `coalition`, `policy`, `parliamentary`, `predictions`
+- `descriptions`, `category`
 
+### 🔀 Computable Fields (derivable from existing DB columns)
+- `fullName` — from `party_name` column
+- `totalMembers` — from `total_active` in `view_riksdagen_party_summary`
+- `currentSupport` — from `participation_rate`
+- `seats` — from `seat_count_proxy`
+- `votePercentage` — from `win_rate`
+- `cohesionScore` — from `avg_collaboration_pct`
+- `activityRate` — from `activity_level`
+- `disciplineRate` — inverse of `avg_rebel_rate`
+- `stability` — from `stability_classification`
+- `trend` — from `trend_direction`
+- `legislativeSuccess` — from `legislative_effectiveness_score`
+- `alignment` — from `alignment_rate`
+- `productivity` — from `performance_tier`
 
-**Recommendation:** Review the original schema documentation for intended functionality and determine:
-1. Which removed fields should be implemented in the database
-2. Which removed fields were speculative and can be permanently removed
-3. Whether additional computed fields should be added to the export logic
+### 🔄 Planned Fields (require new data sources)
+- `foundedYear` — external data not in database
+- `ideology` — external political classification
+- `spectrum` — political spectrum positioning
+- `color` — party official color
+- `websiteUrl` — party website URL
+- `logoUrl` — party logo URL
+- `nameEn` — English translation
+- `strengthScore` — composite metric not yet defined
+- `riskScore` — party-level risk assessment
+- `committeeChairs` — derivable but needs specific query
+- `ministries` — government participation data
 
-See `SCHEMA_VALIDATION_REPORT.md` for detailed analysis.
+**Recommendation:** See `FIELD_MAPPING.md` for implementation priority and `SCHEMA_VALIDATION_REPORT.md` for remediation plan.

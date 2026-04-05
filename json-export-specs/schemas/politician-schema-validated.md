@@ -1,18 +1,18 @@
 # Politician Schema (Data-Validated)
 
 **Status:** ✅ Validated against actual sample data  
-**Last Updated:** 2025-12-31  
-**Fields:** 12 (only fields present in sample data)
+**Last Updated:** 2026-04-05  
+**Fields:** 12 implemented (only fields present in sample data)
 
 ## Overview
 
-This schema has been automatically updated to reflect **only fields that exist in actual sample data**. 
-Fields that were originally specified but not found in any data source have been removed.
+This schema reflects **only fields that exist in actual sample data**. 
+The 31 mismatched fields have been categorized by implementation status.
 
 **Validation Results:**
-- Original fields defined: 46
-- Fields validated in data: 12
-- Fields removed (not in data): 34
+- Original fields defined: 45
+- Fields validated in data: 14 (12 unique + 2 duplicates)
+- Fields not in data: 31 (14 structural, 12 computable, 5 planned)
 
 ## Data Model
 
@@ -65,49 +65,33 @@ This schema is validated against the following data sources:
 
 ## Migration Notes
 
-**⚠️ Breaking Changes from Original Schema:**
+## Migration Notes
 
-This schema has been significantly reduced to match actual data availability. Fields removed include:
+**Field Classification (31 fields not in data):**
 
-- `absences` - Not found in any data source
-- `activeDays` - Not found in any data source
-- `activity` - Not found in any data source
-- `amendments` - Not found in any data source
-- `attendanceRate` - Not found in any data source
-- `attributes` - Not found in any data source
-- `breakdown` - Not found in any data source
-- `byType` - Not found in any data source
-- `category` - Not found in any data source
-- `committees` - Not found in any data source
-- `descriptions` - Not found in any data source
-- `detailed` - Not found in any data source
-- `district` - Not found in any data source
-- `documents` - Not found in any data source
-- `fullName` - Not found in any data source
-- `imageUrl` - Not found in any data source
-- `influenceScore` - Not found in any data source
-- `intelligence` - Not found in any data source
-- `labels` - Not found in any data source
-- `long` - Not found in any data source
-- `ministry` - Not found in any data source
-- `motions` - Not found in any data source
-- `partyLoyalty` - Not found in any data source
-- `performance` - Not found in any data source
-- `period` - Not found in any data source
-- `questions` - Not found in any data source
-- `rankingPosition` - Not found in any data source
-- `rebellions` - Not found in any data source
-- `relationships` - Not found in any data source
-- `riskLevel` - Not found in any data source
-- `riskScore` - Not found in any data source
-- `short` - Not found in any data source
-- `trendDirection` - Not found in any data source
-- `voting` - Not found in any data source
+### ❌ Structural Fields (JSON grouping objects — not direct DB columns)
+- `attributes`, `labels`, `relationships`, `intelligence`, `activity`, `voting`, `documents`, `committees`
+- `descriptions`, `category`, `short`, `detailed`, `long`, `breakdown`, `period`, `byType`
 
+### 🔀 Computable Fields (derivable from existing DB columns)
+- `fullName` — concatenate `first_name` + `last_name`
+- `partyLoyalty` — from `loyalty_rate` column
+- `rebellions` — from `rebel_rate` column
+- `influenceScore` — from `influence_classification` + `leadership_profile`
+- `rankingPosition` — comparative ranking via ROW_NUMBER()
+- `trendDirection` — from `career_phase` + `career_score`
+- `absences` — from `attendance_rate` + `total_days_served`
+- `activeDays` — from `attendance_rate` * `total_days_served`
+- `amendments` — count documents where type = 'mot'
+- `questions` — count documents where type = 'fr' or 'ip'
+- `motions` — from document type filtering
+- `performance` — composite from `risk_score`, `attendance_rate`, `win_rate`
 
-**Recommendation:** Review the original schema documentation for intended functionality and determine:
-1. Which removed fields should be implemented in the database
-2. Which removed fields were speculative and can be permanently removed
-3. Whether additional computed fields should be added to the export logic
+### 🔄 Planned Fields (require new data sources)
+- `district` — needs electoral region mapping (available in `election_region`)
+- `imageUrl` — needs external image URL source
+- `riskScore` — available in `view_politician_risk_summary` (needs view mapping)
+- `riskLevel` — derivable from riskScore
+- `behavioralFlags` — from rule violation data
 
-See `SCHEMA_VALIDATION_REPORT.md` for detailed analysis.
+**Recommendation:** See `FIELD_MAPPING.md` for implementation priority and `SCHEMA_VALIDATION_REPORT.md` for remediation plan.

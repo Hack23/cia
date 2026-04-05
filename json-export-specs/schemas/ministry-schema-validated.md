@@ -1,18 +1,18 @@
 # Ministry Schema (Data-Validated)
 
 **Status:** ✅ Validated against actual sample data  
-**Last Updated:** 2025-12-31  
-**Fields:** 1 (only fields present in sample data)
+**Last Updated:** 2026-04-05  
+**Fields:** 1 implemented (only fields present in sample data)
 
 ## Overview
 
-This schema has been automatically updated to reflect **only fields that exist in actual sample data**. 
-Fields that were originally specified but not found in any data source have been removed.
+This schema reflects **only fields that exist in actual sample data**. 
+The 28 mismatched fields have been categorized by implementation status.
 
 **Validation Results:**
 - Original fields defined: 29
 - Fields validated in data: 1
-- Fields removed (not in data): 28
+- Fields not in data: 28 (8 structural, 11 computable, 9 planned)
 
 ## Data Model
 
@@ -38,43 +38,36 @@ This schema is validated against the following data sources:
 
 ## Migration Notes
 
-**⚠️ Breaking Changes from Original Schema:**
+## Migration Notes
 
-This schema has been significantly reduced to match actual data availability. Fields removed include:
+**Field Classification (28 fields not in data):**
 
-- `allocation` - Not found in any data source
-- `attributes` - Not found in any data source
-- `budget` - Not found in any data source
-- `civilServants` - Not found in any data source
-- `code` - Not found in any data source
-- `decisions` - Not found in any data source
-- `decisionsImplemented` - Not found in any data source
-- `effectiveness` - Not found in any data source
-- `efficiency` - Not found in any data source
-- `established` - Not found in any data source
-- `executionRate` - Not found in any data source
-- `headquarters` - Not found in any data source
-- `id` - Not found in any data source
-- `intelligence` - Not found in any data source
-- `labels` - Not found in any data source
-- `ministers` - Not found in any data source
-- `nameEn` - Not found in any data source
-- `performance` - Not found in any data source
-- `performanceScore` - Not found in any data source
-- `personnel` - Not found in any data source
-- `policy` - Not found in any data source
-- `portfolio` - Not found in any data source
-- `predictions` - Not found in any data source
-- `publicSatisfaction` - Not found in any data source
-- `relationships` - Not found in any data source
-- `spent` - Not found in any data source
-- `stateSecretaries` - Not found in any data source
-- `trend` - Not found in any data source
+### ❌ Structural Fields (JSON grouping objects)
+- `attributes`, `labels`, `relationships`, `intelligence`, `personnel`
+- `performance`, `decisions`, `policy`
 
+### 🔀 Computable Fields (derivable from existing DB columns)
+- `id` — from `name_id` or `ministry_code`
+- `code` — from `org_code` or `ministry_code`
+- `ministers` — count from `view_riksdagen_goverment_role_member` where role = minister
+- `stateSecretaries` — count where role = state secretary
+- `civilServants` — from `current_member_size`
+- `performanceScore` — from `productivity_level`
+- `effectiveness` — from `effectiveness_assessment`
+- `decisionsImplemented` — from `approved_proposals`
+- `efficiency` — from `approval_rate`
+- `executionRate` — from `approval_rate`
+- `trend` — from `document_trend` or `legislative_trend`
 
-**Recommendation:** Review the original schema documentation for intended functionality and determine:
-1. Which removed fields should be implemented in the database
-2. Which removed fields were speculative and can be permanently removed
-3. Whether additional computed fields should be added to the export logic
+### 🔄 Planned Fields (require new data sources)
+- `nameEn` — English translation not in database
+- `portfolio` — ministry portfolio classification
+- `established` — establishment date
+- `headquarters` — physical location
+- `allocation` — budget allocation data not in DB
+- `spent` — spending data not in DB
+- `budget` — budget data not available
+- `publicSatisfaction` — external survey data
+- `predictions` — predictive model not yet implemented
 
-See `SCHEMA_VALIDATION_REPORT.md` for detailed analysis.
+**Recommendation:** See `FIELD_MAPPING.md` for implementation priority and `SCHEMA_VALIDATION_REPORT.md` for remediation plan.
