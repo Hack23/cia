@@ -170,6 +170,73 @@ classDiagram
     style Coalition fill:#fff9c4,stroke:#f57f17,stroke-width:2px
 ```
 
+### 📋 Field Implementation Status
+
+> **Note:** This table shows the current implementation status of all fields defined in the schema diagram above.
+> Fields marked as STRUCTURAL are JSON grouping objects, not individual data fields.
+
+| Field | Status | Category | Notes |
+|-------|--------|----------|-------|
+| id | ✅ IMPLEMENTED | PartyProfile | Primary identifier, found in CSV data |
+| labels | ❌ STRUCTURAL | PartyProfile | JSON grouping object |
+| attributes | ❌ STRUCTURAL | PartyProfile | JSON grouping object |
+| relationships | ❌ STRUCTURAL | PartyProfile | JSON grouping object |
+| intelligence | ❌ STRUCTURAL | PartyProfile | JSON grouping object |
+| electoral | ❌ STRUCTURAL | PartyProfile | JSON grouping object |
+| parliamentary | ❌ STRUCTURAL | PartyProfile | JSON grouping object |
+| voting | ❌ STRUCTURAL | PartyProfile | JSON grouping object |
+| documents | ❌ STRUCTURAL | PartyProfile | JSON grouping object |
+| members | ❌ STRUCTURAL | PartyProfile | JSON grouping object |
+| coalition | ❌ STRUCTURAL | PartyProfile | JSON grouping object |
+| policy | ❌ STRUCTURAL | PartyProfile | JSON grouping object |
+| category | ❌ STRUCTURAL | Labels | JSON grouping element |
+| subcategories | 🔄 PLANNED | Labels | Requires new data source |
+| descriptions | ❌ STRUCTURAL | Labels | JSON grouping object |
+| intelligenceTags | 🔄 PLANNED | Labels | Requires new data source |
+| shortCode | ✅ IMPLEMENTED | Attributes | Found in CSV data |
+| fullName | 🔀 COMPUTED | Attributes | Derived from `party_name` |
+| nameEn | 🔄 PLANNED | Attributes | Requires translation data |
+| foundedYear | 🔄 PLANNED | Attributes | Requires historical data |
+| ideology | 🔄 PLANNED | Attributes | Requires classification data |
+| spectrum | 🔄 PLANNED | Attributes | Requires political spectrum data |
+| color | 🔄 PLANNED | Attributes | Requires party metadata |
+| logoUrl | 🔄 PLANNED | Attributes | Requires media assets |
+| websiteUrl | 🔄 PLANNED | Attributes | Requires party metadata |
+| currentSupport | 🔀 COMPUTED | Electoral | Derived from `participation_rate` |
+| seats | 🔀 COMPUTED | Electoral | Derived from `seat_count_proxy` |
+| votePercentage | 🔀 COMPUTED | Electoral | Derived from `win_rate` |
+| history | 🔄 PLANNED | Electoral | Requires historical election data |
+| trend | 🔀 COMPUTED | Electoral | Derived from `trend_direction` |
+| regions | 🔄 PLANNED | Electoral | Requires regional data |
+| totalMembers | 🔀 COMPUTED | Parliamentary | Derived from `total_active` |
+| activityRate | 🔀 COMPUTED | Parliamentary | Derived from `activity_level` |
+| committeeChairs | ❌ STRUCTURAL | Parliamentary | JSON grouping element |
+| legislativeSuccess | 🔀 COMPUTED | Parliamentary | Derived from `legislative_effectiveness_score` |
+| productivity | 🔀 COMPUTED | Parliamentary | Derived from `performance_tier` |
+| totalVotes | 🔄 PLANNED | Voting | Requires vote count aggregation |
+| cohesionScore | 🔀 COMPUTED | Voting | Derived from `avg_collaboration_pct` |
+| disciplineRate | 🔀 COMPUTED | Voting | Derived from `avg_rebel_rate` (inverted) |
+| alignment | 🔀 COMPUTED | Voting | Derived from `alignment_rate` |
+| keyVotes | 🔄 PLANNED | Voting | Requires vote significance data |
+| status | ✅ IMPLEMENTED | Coalition | Found in CSV data |
+| partners | 🔄 PLANNED | Coalition | Requires coalition data |
+| stability | 🔀 COMPUTED | Coalition | Derived from `stability_classification` |
+| ministries | ❌ STRUCTURAL | Coalition | JSON grouping element |
+| agreements | 🔄 PLANNED | Coalition | Requires coalition agreements |
+| strengthScore | ❌ STRUCTURAL | Intelligence | JSON grouping element |
+| riskScore | ❌ STRUCTURAL | Intelligence | JSON grouping element |
+| trend | 🔀 COMPUTED | Intelligence | Derived from `trend_direction` |
+| predictions | ❌ STRUCTURAL | Intelligence | JSON grouping object |
+| strategicFlags | 🔄 PLANNED | Intelligence | Requires strategic analysis |
+
+#### Summary
+| Status | Count | Description |
+|--------|-------|-------------|
+| ✅ IMPLEMENTED | 3 | Available in database |
+| 🔀 COMPUTED | 14 | Derivable from existing columns |
+| 🔄 PLANNED | 16 | Requires new data sources |
+| ❌ STRUCTURAL | 18 | JSON grouping objects |
+
 ---
 
 ## 📝 Complete JSON Schema
