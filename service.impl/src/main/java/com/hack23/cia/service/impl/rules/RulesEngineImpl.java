@@ -46,9 +46,9 @@ import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPa
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationActionEvent;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationOperationType;
-import com.hack23.cia.model.internal.application.system.impl.ApplicationSession;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationActionEvent_;
+import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.api.action.kpi.ComplianceCheck;
-import com.hack23.cia.service.data.api.ApplicationSessionDAO;
 import com.hack23.cia.service.data.api.DataViewer;
 
 /**
@@ -62,10 +62,6 @@ public final class RulesEngineImpl implements RulesEngine {
 	@Autowired
 	@Qualifier("DataViewer")
 	private DataViewer dataViewer;
-
-	/** The application session dao. */
-	@Autowired
-	private ApplicationSessionDAO applicationSessionDAO;
 
 	@Autowired
 	private KieContainer rulesContainer;
@@ -87,7 +83,7 @@ public final class RulesEngineImpl implements RulesEngine {
 		insertParties(ksession, dataViewer.getAll(ViewRiksdagenPartySummary.class));
 		insertCommittees(ksession, dataViewer.getAll(ViewRiksdagenCommittee.class));
 		insertMinistries(ksession, dataViewer.getAll(ViewRiksdagenMinistry.class));
-		insertApplicationSessions(ksession, applicationSessionDAO.getAll());
+		insertFailedAuthenticationSessions(ksession);
 
 		ksession.fireAllRules();
 		ksession.dispose();
@@ -263,28 +259,30 @@ public final class RulesEngineImpl implements RulesEngine {
 	}
 
 	/**
-	 * Insert application sessions for brute force detection.
-	 * Counts failed authentication attempts per session and creates
-	 * compliance check objects for sessions with failures.
+	 * Insert failed authentication sessions for brute force detection.
+	 * Uses a single query to fetch failed AUTHENTICATION events (where
+	 * applicationMessage equals FAILURE), groups by session ID, and only
+	 * inserts compliance checks for sessions with failures.
 	 *
 	 * @param ksession the ksession
-	 * @param list     the list
 	 */
-	private static void insertApplicationSessions(final KieSession ksession, final List<ApplicationSession> list) {
-		for (final ApplicationSession session : list) {
-			if (session != null && session.getEvents() != null) {
-				final long failedAuthAttempts = session.getEvents().stream()
-						.filter(event -> ApplicationOperationType.AUTHENTICATION == event.getApplicationOperation()
-								&& event.getErrorMessage() != null && !event.getErrorMessage().isEmpty())
-						.count();
+	@SuppressWarnings("unchecked")
+	private void insertFailedAuthenticationSessions(final KieSession ksession) {
+		final List<ApplicationActionEvent> failedAuthEvents = dataViewer.findListByProperty(
+				ApplicationActionEvent.class,
+				new Object[] { ApplicationOperationType.AUTHENTICATION, ServiceResult.FAILURE.toString() },
+				ApplicationActionEvent_.applicationOperation, ApplicationActionEvent_.applicationMessage);
 
-				if (failedAuthAttempts > 0) {
-					final ApplicationComplianceCheckImpl check = new ApplicationComplianceCheckImpl(
-							session.getSessionId(),
-							session.getIpInformation(),
-							failedAuthAttempts);
-					ksession.insert(check);
-				}
+		final Map<String, List<ApplicationActionEvent>> eventsBySession = failedAuthEvents.stream()
+				.filter(event -> event.getSessionId() != null)
+				.collect(Collectors.groupingBy(ApplicationActionEvent::getSessionId));
+
+		for (final Map.Entry<String, List<ApplicationActionEvent>> entry : eventsBySession.entrySet()) {
+			final long failedCount = entry.getValue().size();
+			if (failedCount > 0) {
+				final ApplicationComplianceCheckImpl check = new ApplicationComplianceCheckImpl(
+						entry.getKey(), entry.getKey(), failedCount);
+				ksession.insert(check);
 			}
 		}
 	}

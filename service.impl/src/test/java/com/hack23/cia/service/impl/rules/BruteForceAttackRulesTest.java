@@ -176,11 +176,12 @@ public class BruteForceAttackRulesTest {
 	}
 
 	/**
-	 * Test salience ordering - highest severity wins.
-	 * The AbstractComplianceCheckImpl keeps the highest severity violation.
+	 * Test only critical rule fires for 25 attempts.
+	 * With non-overlapping conditions (5-9, 10-19, 20+), exactly one
+	 * rule matches for 25 attempts, producing a single CRITICAL violation.
 	 */
 	@Test
-	public void testSalienceOrderingHighestSeverityWins() {
+	public void testOnlyCriticalRuleFires() {
 		final ApplicationComplianceCheckImpl check = new ApplicationComplianceCheckImpl(
 				"session-6", "192.168.0.100", 25);
 
@@ -189,10 +190,10 @@ public class BruteForceAttackRulesTest {
 
 		final List<RuleViolation> violations = check.getRuleViolations();
 		assertFalse("Should have violations", violations.isEmpty());
-		assertEquals("Should have exactly 1 violation (highest severity wins)", 1, violations.size());
+		assertEquals("Should have exactly 1 violation (only CRITICAL matches)", 1, violations.size());
 
 		final RuleViolation violation = violations.get(0);
-		assertEquals("Highest severity should be CRITICAL for 25 attempts", Status.CRITICAL, violation.getStatus());
+		assertEquals("Should be CRITICAL for 25 attempts", Status.CRITICAL, violation.getStatus());
 	}
 
 	/**
