@@ -38,7 +38,7 @@ This document serves as the **central navigation hub** for the CIA platform's in
 | Document | Focus | Link |
 |----------|-------|------|
 | **[Data Analysis Frameworks](DATA_ANALYSIS_INTOP_OSINT.md)** | 🎯 Analysis | 6 analytical frameworks with methodologies |
-| **[Database View Catalog](DATABASE_VIEW_INTELLIGENCE_CATALOG.md)** | 🗄️ Views | 84 database views with complete documentation |
+| **[Database View Catalog](DATABASE_VIEW_INTELLIGENCE_CATALOG.md)** | 🗄️ Views | 110 database views with complete documentation |
 | **[Risk Rules](RISK_RULES_INTOP_OSINT.md)** | 🔴 Rules | 50 behavioral detection rules |
 | **[Schema Maintenance](service.data.impl/README-SCHEMA-MAINTENANCE.md)** | 🔧 Maintenance | Database maintenance and optimization |
 
@@ -90,7 +90,7 @@ flowchart TB
         API4[🏛️ Financial Authority<br/>Government Finance]
     end
     
-    subgraph DATABASE["🗄️ Database Views - 82 Total"]
+    subgraph DATABASE["🗄️ Database Views - 110 Total"]
         direction LR
         V1["<b>Politician Views</b><br/>8 views<br/>Performance tracking"]
         V2["<b>Party Views</b><br/>12 views<br/>Party analytics"]
@@ -422,14 +422,16 @@ flowchart LR
 
 | View Category | View Count | Primary Analysis Types | Intelligence Value | Documentation |
 |---------------|------------|----------------------|-------------------|---------------|
-| **Politician Views** | 8 | Temporal, Comparative, Pattern, Predictive | ⭐⭐⭐⭐⭐ VERY HIGH | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#politician-views) |
-| **Party Views** | 12 | Comparative, Network, Temporal | ⭐⭐⭐⭐ HIGH | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#party-views) |
-| **Committee Views** | 12 | Temporal, Comparative, Network | ⭐⭐⭐ MEDIUM | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#committee-views) |
-| **Ministry Views** | 7 | Temporal, Comparative | ⭐⭐⭐ MEDIUM | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#ministrygovernment-views) |
-| **Vote Data Views** | 20 | Temporal, Pattern, Comparative | ⭐⭐⭐⭐⭐ VERY HIGH | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#vote-data-views) |
-| **Document Views** | 7 | Temporal, Comparative | ⭐⭐⭐⭐ HIGH | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#document-views) |
-| **Intelligence Views** | 6 | Pattern, Predictive, All | ⭐⭐⭐⭐⭐ VERY HIGH | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#intelligence--risk-views) |
-| **Application Views** | 10 | Temporal, Pattern | ⭐⭐ LOW | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#application--audit-views) |
+| **Politician Views** | 12 | Temporal, Comparative, Pattern, Predictive | ⭐⭐⭐⭐⭐ VERY HIGH | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#politician-views) |
+| **Party Views** | 19 | Comparative, Network, Temporal | ⭐⭐⭐⭐⭐ VERY HIGH | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#party-views) |
+| **Committee Views** | 12 | Temporal, Comparative, Network | ⭐⭐⭐⭐ HIGH | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#committee-views) |
+| **Ministry Views** | 9 | Temporal, Comparative | ⭐⭐⭐⭐ HIGH | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#ministrygovernment-views) |
+| **Vote Data Views** | 16 | Temporal, Pattern, Comparative | ⭐⭐⭐⭐⭐ VERY HIGH | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#vote-data-views) |
+| **Document Views** | 9 | Temporal, Comparative | ⭐⭐⭐⭐ HIGH | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#document-views) |
+| **Intelligence Views** | 8 | Pattern, Predictive, All | ⭐⭐⭐⭐⭐ VERY HIGH | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#intelligence--risk-views) |
+| **Election Cycle Views** | 6 | Temporal, Predictive, Network | ⭐⭐⭐⭐⭐ VERY HIGH | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#election-cycle-views) |
+| **Seasonal/Election Year Views** | 7 | Temporal, Pattern | ⭐⭐⭐⭐ HIGH | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#seasonal--election-year-views) |
+| **Application Views** | 14 | Temporal, Pattern | ⭐⭐ LOW | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#application--audit-views) |
 
 ---
 

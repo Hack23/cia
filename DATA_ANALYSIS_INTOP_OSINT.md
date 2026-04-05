@@ -59,7 +59,7 @@ This document provides comprehensive documentation of data analysis methodologie
 - Trend reports (74-87% forecasting accuracy)
 - Decision effectiveness tracking (100% operational post-fix)
 
-**Database Views**: 82 views (see DATABASE_VIEW_INTELLIGENCE_CATALOG.md for authoritative totals)
+**Database Views**: 110 views (see DATABASE_VIEW_INTELLIGENCE_CATALOG.md for authoritative totals)
 - **Regular Views**: 54 views (100% documented)
 - **Materialized Views**: 28 views (100% documented)
 - **View Health**: 91/100 (excellent - improved from 55/100 after 2025-11-28 fixes)
@@ -107,7 +107,7 @@ This document provides comprehensive documentation of data analysis methodologie
 |----------|-------|-------------|------|
 | **[Intelligence Data Flow Map](INTELLIGENCE_DATA_FLOW.md)** | 🗺️ Navigation | Central cross-reference hub | [View](https://github.com/Hack23/cia/blob/master/INTELLIGENCE_DATA_FLOW.md) |
 | **[Intelligence Evolution Changelog](CHANGELOG_INTELLIGENCE.md)** | 📜 Changelog | Unified intelligence capability tracking | [View](https://github.com/Hack23/cia/blob/master/CHANGELOG_INTELLIGENCE.md) |
-| **[Database View Catalog](DATABASE_VIEW_INTELLIGENCE_CATALOG.md)** | 🗄️ Views | 82 database views catalog | [View](https://github.com/Hack23/cia/blob/master/DATABASE_VIEW_INTELLIGENCE_CATALOG.md) |
+| **[Database View Catalog](DATABASE_VIEW_INTELLIGENCE_CATALOG.md)** | 🗄️ Views | 110 database views catalog | [View](https://github.com/Hack23/cia/blob/master/DATABASE_VIEW_INTELLIGENCE_CATALOG.md) |
 | **[Risk Rules Documentation](RISK_RULES_INTOP_OSINT.md)** | 🔴 Risk Rules | 45 behavioral detection rules | [View](https://github.com/Hack23/cia/blob/master/RISK_RULES_INTOP_OSINT.md) |
 | **[Liquibase Intelligence Analysis](LIQUIBASE_CHANGELOG_INTELLIGENCE_ANALYSIS.md)** | 🗄️ Database | Schema evolution intelligence analysis | [View](https://github.com/Hack23/cia/blob/master/LIQUIBASE_CHANGELOG_INTELLIGENCE_ANALYSIS.md) |
 | **[Drools Risk Rules](DROOLS_RISK_RULES.md)** | ⚙️ Rules Engine | Technical rule documentation | [View](https://github.com/Hack23/cia/blob/master/DROOLS_RISK_RULES.md) |
@@ -7023,7 +7023,7 @@ To further enhance this documentation:
 
 ## 📊 Framework-to-View Comprehensive Mapping
 
-This section provides a complete mapping of all 85 database views to the analytical frameworks they support. Use this reference to identify which views to query for specific analytical tasks.
+This section provides a complete mapping of all 110 database views to the analytical frameworks they support. Use this reference to identify which views to query for specific analytical tasks.
 
 ### Quick Reference Table
 
@@ -7254,7 +7254,7 @@ These views provide metadata, usage tracking, and audit trails supporting all an
 
 ### Complete View Inventory Cross-Reference
 
-For complete documentation of all 84 views, see:
+For complete documentation of all 110 views, see:
 - [DATABASE_VIEW_INTELLIGENCE_CATALOG.md - Complete View Inventory](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#complete-view-inventory)
 - [INTELLIGENCE_DATA_FLOW.md - View-to-Analysis Framework Mapping](INTELLIGENCE_DATA_FLOW.md#view--analysis-framework-mapping)
 
@@ -7725,7 +7725,7 @@ All SQL queries in this document have been designed to work with the actual data
 - `service.data.impl/README-SCHEMA-MAINTENANCE.md` - SQL validation procedures and deployment guidelines
 
 **View Dependencies**:
-- 84 database views available (56 regular + 28 materialized)
+- 110 database views available (77 regular + 33 materialized)
 - 7 intelligence-specific views (risk, anomaly, influence, crisis, momentum, dashboard, temporal trends)
 
 **Performance Characteristics**:

@@ -126,7 +126,7 @@ This section provides direct links to JSON specifications defining the data stru
 | **Election Cycle Analysis (v1.59-v1.60)** | [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) | `view_riksdagen_election_proximity_trends`, `view_riksdagen_election_year_behavioral_patterns`, `view_riksdagen_pre_election_quarterly_activity` | Weekly | 9 election views |
 | **Party Longitudinal (v1.61)** | [party-schema.md](json-export-specs/schemas/party-schema.md) | `view_riksdagen_party_longitudinal_performance`, `view_riksdagen_party_coalition_evolution`, `view_riksdagen_party_electoral_trends` | Weekly | 4 party views |
 
-#### Database View Categories (112 Total Views)
+#### Database View Categories (110 Total Views)
 
 **View Distribution by Intelligence Framework:**
 
@@ -144,7 +144,7 @@ This section provides direct links to JSON specifications defining the data stru
 | **Committee Analysis** | 12 views | ⭐⭐⭐⭐ HIGH | Frameworks 2, 6 | Committee productivity, decisions, membership, effectiveness |
 | **Application/Audit** | 14 views | ⭐⭐ LOW | N/A | User activity, session tracking, audit trails |
 
-**Total Database Views:** 112 (68 regular + 28 materialized + 16 new temporal analytics)
+**Total Database Views:** 110 (77 regular + 33 materialized)
 
 _Note: Category view counts above are not mutually exclusive; a single database view may support multiple intelligence frameworks and can therefore appear in more than one category. The total of 112 refers to distinct database views._
 
@@ -2655,13 +2655,13 @@ This appendix provides comprehensive traceability from business product features
 **Business Features:**
 - Complete platform with all data sources
 - Custom branding and domain
-- All 85 database views accessible
+- All 110 database views accessible
 - Full JSON schema customization
 
 **Feature 5.1: White-Label Data Access**
 - **User Story**: "As a government transparency agency, I want a fully branded platform with all political data for public transparency"
 - **Product Value**: €500K-2M initial + €100K-300K/year (Government segment)
-- **Data Sources**: All 85 database views ([DATABASE_VIEW_INTELLIGENCE_CATALOG.md](DATABASE_VIEW_INTELLIGENCE_CATALOG.md))
+- **Data Sources**: All 110 database views ([DATABASE_VIEW_INTELLIGENCE_CATALOG.md](DATABASE_VIEW_INTELLIGENCE_CATALOG.md))
 - **JSON Specifications**: All schemas in [json-export-specs/schemas/](json-export-specs/schemas/)
   - [politician-schema.md](json-export-specs/schemas/politician-schema.md)
   - [party-schema.md](json-export-specs/schemas/party-schema.md)
@@ -2879,7 +2879,7 @@ flowchart TB
 - [🧩 SWOT.md](SWOT.md) — Strategic strengths, weaknesses, opportunities, and threats
 - [💰 FinancialSecurityPlan.md](FinancialSecurityPlan.md) — Infrastructure costs and security investments
 - [🏛️ ARCHITECTURE.md](ARCHITECTURE.md) — System architecture and technical foundation
-- [📋 DATABASE_VIEW_INTELLIGENCE_CATALOG.md](DATABASE_VIEW_INTELLIGENCE_CATALOG.md) — Complete catalog of 85 database views
+- [📋 DATABASE_VIEW_INTELLIGENCE_CATALOG.md](DATABASE_VIEW_INTELLIGENCE_CATALOG.md) — Complete catalog of 110 database views
 - [📦 json-export-specs/README.md](json-export-specs/README.md) — JSON export specifications and CDN deployment
 - [📐 json-export-specs/schemas/](json-export-specs/schemas/) — Technical JSON data specifications for all products
 
