@@ -129,6 +129,40 @@ classDiagram
     style Intelligence fill:#ffccbc,stroke:#d84315,stroke-width:2px
 ```
 
+### Field Implementation Status
+
+| Status | Field | Source / Notes |
+|--------|-------|---------------|
+| ✅ IMPLEMENTED | `name` | Found in CSV data |
+| 🔀 COMPUTED | `id` | Derived from `name_id` or `ministry_code` |
+| 🔀 COMPUTED | `code` | Derived from `org_code` or `ministry_code` |
+| 🔀 COMPUTED | `ministers` | Count from `view_riksdagen_goverment_role_member` where `role_code = minister` |
+| 🔀 COMPUTED | `stateSecretaries` | Count where `role_code = state_secretary` |
+| 🔀 COMPUTED | `civilServants` | Derived from `current_member_size` |
+| 🔀 COMPUTED | `performanceScore` | Derived from `productivity_level` |
+| 🔀 COMPUTED | `effectiveness` | Derived from `effectiveness_assessment` |
+| 🔀 COMPUTED | `decisionsImplemented` | Derived from `approved_proposals` |
+| 🔀 COMPUTED | `efficiency` | Derived from `approval_rate` |
+| 🔀 COMPUTED | `executionRate` | Derived from `approval_rate` |
+| 🔀 COMPUTED | `trend` | Derived from `document_trend` or `legislative_trend` |
+| 🔄 PLANNED | `nameEn` | Needs new data collection |
+| 🔄 PLANNED | `portfolio` | Needs new data collection |
+| 🔄 PLANNED | `established` | Needs new data collection |
+| 🔄 PLANNED | `headquarters` | Needs new data collection |
+| 🔄 PLANNED | `allocation` | Needs new data collection |
+| 🔄 PLANNED | `spent` | Needs new data collection |
+| 🔄 PLANNED | `budget` | Needs new data collection |
+| 🔄 PLANNED | `publicSatisfaction` | Needs new data collection |
+| 🔄 PLANNED | `predictions` | Needs new data collection |
+| ❌ STRUCTURAL | `labels` | JSON grouping object |
+| ❌ STRUCTURAL | `attributes` | JSON grouping object |
+| ❌ STRUCTURAL | `relationships` | JSON grouping object |
+| ❌ STRUCTURAL | `intelligence` | JSON grouping object |
+| ❌ STRUCTURAL | `personnel` | JSON grouping object |
+| ❌ STRUCTURAL | `performance` | JSON grouping object |
+| ❌ STRUCTURAL | `decisions` | JSON grouping object |
+| ❌ STRUCTURAL | `policy` | JSON grouping object |
+
 ---
 
 ## 📝 Complete JSON Example
