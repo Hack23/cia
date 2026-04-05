@@ -2,13 +2,12 @@
 """
 JSON Schema Validation Against Sample Data
 
-This script validates the 5 JSON export schemas against 138 relevant CSV sample data files
-(filtered from 210+ total files) to ensure correctness and identify mismatches between
-schema definitions and actual data.
+This script validates the 5 JSON export schemas against CSV sample data files
+to ensure correctness and identify mismatches between schema definitions and actual data.
 
 Author: Citizen Intelligence Agency Development Team
 License: Apache-2.0
-Version: 1.0.1
+Version: 1.1.0
 """
 
 import csv
@@ -34,6 +33,26 @@ class SchemaValidator:
         "productivity", "decisions", "budget", "personnel", "performance"
     }
     
+    # Computed fields that can be derived from existing database columns
+    COMPUTED_FIELDS = {
+        # Politician computed fields
+        "fullName", "partyLoyalty", "rebellions", "influenceScore",
+        "rankingPosition", "trendDirection", "absences", "activeDays",
+        "amendments", "questions", "motions",
+        # Party computed fields
+        "totalMembers", "currentSupport", "seats", "votePercentage",
+        "cohesionScore", "activityRate", "disciplineRate", "stability",
+        "trend", "legislativeSuccess", "alignment",
+        # Committee computed fields
+        "code", "name", "regularMembers", "deputyMembers",
+        "established", "reports", "performanceScore", "attendanceRate",
+        "hearings", "totalMembers",
+        # Ministry computed fields
+        "ministers", "stateSecretaries", "civilServants",
+        "effectiveness", "decisionsImplemented", "efficiency",
+        "executionRate",
+    }
+    
     def __init__(self, schema_dir: str, sample_data_dir: str):
         self.schema_dir = Path(schema_dir)
         self.sample_data_dir = Path(sample_data_dir)
@@ -47,6 +66,7 @@ class SchemaValidator:
             "field_status_summary": {
                 "implemented": 0,
                 "structural": 0,
+                "computed": 0,
                 "planned": 0
             },
             "schemas": {}
@@ -312,12 +332,14 @@ class SchemaValidator:
         print(f"\nTotal unique columns in data: {len(all_columns)}")
         
         # Map schema fields to database columns (convert camelCase to snake_case)
-        schema_fields = set(schema_info["fields"].keys())
+        # Sort for deterministic output order
+        schema_fields = sorted(schema_info["fields"].keys())
         
         # Initialize field status tracking
         field_status = {
             "implemented": [],
             "structural": [],
+            "computed": [],
             "planned": []
         }
         
@@ -326,13 +348,13 @@ class SchemaValidator:
         unmapped_data_columns = list(all_columns)
         
         for field in schema_fields:
-            # Try various naming conventions (using set to avoid duplicates)
-            possible_names = list({
-                field,
-                self._camel_to_snake(field),
-                field.lower(),
-                field.upper()
-            })
+            # Try various naming conventions (deterministic order, deduplicated)
+            seen = set()
+            possible_names = []
+            for candidate in [field, self._camel_to_snake(field), field.lower(), field.upper()]:
+                if candidate not in seen:
+                    seen.add(candidate)
+                    possible_names.append(candidate)
             
             matched = False
             for possible_name in possible_names:
@@ -344,17 +366,22 @@ class SchemaValidator:
                     break
             
             if not matched:
-                # Classify the mismatch: structural grouping field vs planned field
+                # Classify the mismatch: structural > computed > planned
                 if field in self.STRUCTURAL_FIELDS:
+                    status = "STRUCTURAL"
                     field_status["structural"].append(field)
+                elif field in self.COMPUTED_FIELDS:
+                    status = "COMPUTED"
+                    field_status["computed"].append(field)
                 else:
+                    status = "PLANNED"
                     field_status["planned"].append(field)
                 
                 unmapped_schema_fields.append(field)
                 schema_result["field_mismatches"].append({
                     "field": field,
                     "issue": "Field defined in schema but not found in data",
-                    "status": "STRUCTURAL" if field in self.STRUCTURAL_FIELDS else "PLANNED",
+                    "status": status,
                     "suggestions": possible_names
                 })
         
@@ -369,9 +396,17 @@ class SchemaValidator:
         print(f"\n📊 Field Implementation Status:")
         print(f"  ✅ Implemented: {len(field_status['implemented'])}")
         print(f"  ❌ Structural (JSON grouping): {len(field_status['structural'])}")
+        print(f"  🔀 Computed (derivable): {len(field_status['computed'])}")
         print(f"  🔄 Planned (not yet in data): {len(field_status['planned'])}")
         
         # Report unmapped fields by category
+        if field_status["computed"]:
+            print(f"\n🔀 Computed fields (derivable from DB) ({len(field_status['computed'])}):")
+            for field in field_status["computed"][:10]:
+                print(f"  • {field}")
+            if len(field_status["computed"]) > 10:
+                print(f"  ... and {len(field_status['computed']) - 10} more")
+        
         if field_status["planned"]:
             print(f"\n🔄 Planned fields not yet in data ({len(field_status['planned'])}):")
             for field in field_status["planned"][:10]:
@@ -437,9 +472,9 @@ class SchemaValidator:
             "",
             "## Executive Summary",
             "",
-            "This report validates the 5 JSON export schemas against 138 relevant CSV sample data files ",
-            "(filtered from 210+ total files, excluding stats and distinct value tables) ",
-            "from the CIA database to ensure schema correctness and identify gaps between ",
+            f"This report validates the 5 JSON export schemas against "
+            f"{self.validation_results['files_analyzed']} relevant CSV sample data files "
+            "from the CIA database to ensure schema correctness and identify gaps between "
             "schema definitions and actual data structure.",
             "",
             "### Field Implementation Status Summary",
@@ -448,6 +483,7 @@ class SchemaValidator:
             f"|----------|-------|-------------|",
             f"| ✅ Implemented | {self.validation_results['field_status_summary']['implemented']} | Fields found in database sample data |",
             f"| ❌ Structural | {self.validation_results['field_status_summary']['structural']} | JSON grouping objects (not direct DB columns) |",
+            f"| 🔀 Computed | {self.validation_results['field_status_summary']['computed']} | Derivable from existing database columns |",
             f"| 🔄 Planned | {self.validation_results['field_status_summary']['planned']} | Fields not yet available in data |",
             "",
             "### Validation Scope",
@@ -488,6 +524,7 @@ class SchemaValidator:
                 f"|----------|-------|--------|",
                 self._format_field_status_row("✅", "Implemented", field_status.get('implemented', [])),
                 self._format_field_status_row("❌", "Structural", field_status.get('structural', [])),
+                self._format_field_status_row("🔀", "Computed", field_status.get('computed', [])),
                 self._format_field_status_row("🔄", "Planned", field_status.get('planned', [])),
                 ""
             ])
@@ -555,7 +592,7 @@ class SchemaValidator:
             "",
             "This validation compares:",
             "- Field definitions in JSON schema markdown files",
-            "- Column names and data types from 138 relevant CSV sample files",
+            f"- Column names and data types from {self.validation_results['files_analyzed']} relevant CSV sample files",
             "- Database view references in schema documentation",
             "",
             "**Validation includes:**",
@@ -641,6 +678,7 @@ def main():
     print(f"\nField Implementation Status:")
     print(f"  ✅ Implemented: {summary.get('implemented', 0)}")
     print(f"  ❌ Structural (JSON grouping): {summary.get('structural', 0)}")
+    print(f"  🔀 Computed (derivable): {summary.get('computed', 0)}")
     print(f"  🔄 Planned (not yet in data): {summary.get('planned', 0)}")
     print("="*80)
     

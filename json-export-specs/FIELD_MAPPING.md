@@ -13,23 +13,25 @@ This document provides explicit mappings between JSON schema fields and their co
 
 ### Status Legend
 
-| Icon | Status | Meaning |
-|------|--------|---------|
-| ✅ | **IMPLEMENTED** | Field exists in database sample data and is available for export |
-| 🔀 | **COMPUTED** | Field can be derived/computed from existing database columns |
-| 🔄 | **PLANNED** | Field is defined in schema but not yet available in data |
-| ❌ | **DEPRECATED** | Structural JSON grouping field — should be removed from field-level validation |
+| Icon | Status | Validator Category | Meaning |
+|------|--------|--------------------|---------|
+| ✅ | **IMPLEMENTED** | `implemented` | Field exists in database sample data and is available for export |
+| 🔀 | **COMPUTED** | `computed` | Field can be derived/computed from existing database columns |
+| 🔄 | **PLANNED** | `planned` | Field is defined in schema but not yet available in data |
+| ❌ | **STRUCTURAL** | `structural` | JSON grouping field — not a direct database column |
 
 ### Validation Summary
 
-| Schema | Total Fields | Implemented | Computed | Planned | Deprecated | Mismatches |
-|--------|-------------|-------------|----------|---------|------------|------------|
-| **Politician** | 45 | 14 | 12 | 5 | 14 | 31 |
-| **Party** | 42 | 4 | 13 | 7 | 14 | 38 |
-| **Committee** | 26 | 2 | 10 | 6 | 8 | 24 |
-| **Ministry** | 29 | 1 | 8 | 10 | 9 | 28 |
+The `validate_schemas.py` tool reports **implemented**, **structural**, **computed**, and **planned** statuses. The table below reflects the validator output.
+
+| Schema | Total Fields | Implemented | Structural | Computed | Planned | Mismatches |
+|--------|-------------|-------------|------------|----------|---------|------------|
+| **Politician** | 45 | 14 | 17 | 11 | 3 | 31 |
+| **Party** | 42 | 4 | 15 | 12 | 11 | 38 |
+| **Committee** | 26 | 2 | 8 | 11 | 5 | 24 |
+| **Ministry** | 29 | 1 | 10 | 11 | 7 | 28 |
 | **Intelligence** | All | All | — | — | — | **0** |
-| **Total** | **142** | **21** | **43** | **28** | **45** | **121** |
+| **Total** | **142** | **21** | **50** | **45** | **26** | **121** |
 
 ---
 

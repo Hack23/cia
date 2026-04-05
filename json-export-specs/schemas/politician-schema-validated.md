@@ -2,7 +2,7 @@
 
 **Status:** ✅ Validated against actual sample data  
 **Last Updated:** 2026-04-05  
-**Fields:** 12 implemented (only fields present in sample data)
+**Fields:** 14 implemented (only fields present in sample data)
 
 ## Overview
 
@@ -11,7 +11,7 @@ The 31 mismatched fields have been categorized by implementation status.
 
 **Validation Results:**
 - Original fields defined: 45
-- Fields validated in data: 14 (12 unique + 2 duplicates)
+- Fields validated in data: 14
 - Fields not in data: 31 (14 structural, 12 computable, 5 planned)
 
 ## Data Model
@@ -62,8 +62,6 @@ This schema is validated against the following data sources:
 - `view_riksdagen_politician_decision_pattern_sample.csv`
 - `view_riksdagen_politician_sample.csv`
 
-
-## Migration Notes
 
 ## Migration Notes
 

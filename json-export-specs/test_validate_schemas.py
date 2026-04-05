@@ -356,6 +356,7 @@ class TestValidationReports(unittest.TestCase):
         summary = results["field_status_summary"]
         self.assertIn("implemented", summary)
         self.assertIn("structural", summary)
+        self.assertIn("computed", summary)
         self.assertIn("planned", summary)
     
     def test_generate_markdown_report(self):
@@ -379,6 +380,7 @@ class TestValidationReports(unittest.TestCase):
         self.assertIn("Field Implementation Status Summary", content)
         self.assertIn("Implemented", content)
         self.assertIn("Structural", content)
+        self.assertIn("Computed", content)
         self.assertIn("Planned", content)
 
 
@@ -406,6 +408,14 @@ class TestFieldStatusClassification(unittest.TestCase):
         self.assertIn("relationships", SchemaValidator.STRUCTURAL_FIELDS)
         self.assertIn("intelligence", SchemaValidator.STRUCTURAL_FIELDS)
     
+    def test_computed_fields_defined(self):
+        """Test that COMPUTED_FIELDS class attribute is defined."""
+        self.assertIsInstance(SchemaValidator.COMPUTED_FIELDS, set)
+        self.assertIn("fullName", SchemaValidator.COMPUTED_FIELDS)
+        self.assertIn("partyLoyalty", SchemaValidator.COMPUTED_FIELDS)
+        self.assertIn("totalMembers", SchemaValidator.COMPUTED_FIELDS)
+        self.assertIn("performanceScore", SchemaValidator.COMPUTED_FIELDS)
+    
     def test_field_status_in_validation_results(self):
         """Test that field status summary is included in validation results."""
         validator = SchemaValidator(str(self.schema_dir), str(self.data_dir))
@@ -414,6 +424,7 @@ class TestFieldStatusClassification(unittest.TestCase):
         summary = validator.validation_results["field_status_summary"]
         self.assertEqual(summary["implemented"], 0)
         self.assertEqual(summary["structural"], 0)
+        self.assertEqual(summary["computed"], 0)
         self.assertEqual(summary["planned"], 0)
     
     def test_field_classification_with_data(self):
@@ -425,7 +436,7 @@ class TestFieldStatusClassification(unittest.TestCase):
             writer.writeheader()
             writer.writerow({"first_name": "Test", "status": "active"})
         
-        # Create test schema with implemented, structural, and planned fields
+        # Create test schema with implemented, structural, computed, and planned fields
         schema_file = self.schema_dir / "test-schema.md"
         schema_content = """# Test Schema
 ```mermaid
@@ -435,6 +446,7 @@ classDiagram
         +String status
         +Object attributes
         +Object labels
+        +String fullName
         +String missingField
     }
 ```
@@ -466,12 +478,14 @@ classDiagram
         self.assertIn("firstName", field_status["implemented"])
         self.assertIn("attributes", field_status["structural"])
         self.assertIn("labels", field_status["structural"])
+        self.assertIn("fullName", field_status["computed"])
         self.assertIn("missingField", field_status["planned"])
         
         # Verify global field_status_summary aggregation
         summary = validator.validation_results["field_status_summary"]
         self.assertEqual(summary["implemented"], 2)  # firstName, status
         self.assertEqual(summary["structural"], 2)  # attributes, labels
+        self.assertEqual(summary["computed"], 1)  # fullName
         self.assertEqual(summary["planned"], 1)  # missingField
     
     def test_mismatch_includes_status(self):
@@ -489,6 +503,7 @@ classDiagram
     class Test {
         +String id
         +Object attributes
+        +String fullName
         +String unknownField
     }
 ```
@@ -504,7 +519,7 @@ classDiagram
         ]
         schema_result = {
             "views_referenced": 0,
-            "fields_defined": 3,
+            "fields_defined": 4,
             "matched_views": [],
             "missing_views": [],
             "field_mismatches": [],
@@ -517,6 +532,8 @@ classDiagram
         mismatches = {m["field"]: m for m in schema_result["field_mismatches"]}
         self.assertIn("attributes", mismatches)
         self.assertEqual(mismatches["attributes"]["status"], "STRUCTURAL")
+        self.assertIn("fullName", mismatches)
+        self.assertEqual(mismatches["fullName"]["status"], "COMPUTED")
         self.assertIn("unknownField", mismatches)
         self.assertEqual(mismatches["unknownField"]["status"], "PLANNED")
 

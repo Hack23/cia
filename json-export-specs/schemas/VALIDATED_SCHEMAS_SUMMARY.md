@@ -5,38 +5,38 @@
 
 ## Overview
 
-The original JSON export schemas define comprehensive data models for political intelligence. Automated validation has identified 121 field mismatches across 4 schemas. These mismatches have been classified into three categories: **structural** (JSON grouping objects), **computable** (derivable from existing DB columns), and **planned** (requiring new data sources).
+The original JSON export schemas define comprehensive data models for political intelligence. Automated validation has identified 121 field mismatches across 4 schemas. These mismatches have been classified into three categories: **structural** (JSON grouping objects), **computed** (derivable from existing DB columns), and **planned** (requiring new data sources).
 
 ## Validation Results
 
-| Schema | Original Fields | Implemented | Structural | Computable | Planned | Mismatches |
-|--------|----------------|-------------|------------|------------|---------|------------|
-| **Politician** | 45 | 14 | 14 | 12 | 5 | 31 |
-| **Party** | 42 | 4 | 14 | 13 | 11 | 38 |
-| **Committee** | 26 | 2 | 6 | 13 | 5 | 24 |
-| **Ministry** | 29 | 1 | 8 | 11 | 9 | 28 |
+| Schema | Original Fields | Implemented | Structural | Computed | Planned | Mismatches |
+|--------|----------------|-------------|------------|----------|---------|------------|
+| **Politician** | 45 | 14 | 17 | 11 | 3 | 31 |
+| **Party** | 42 | 4 | 15 | 12 | 11 | 38 |
+| **Committee** | 26 | 2 | 8 | 11 | 5 | 24 |
+| **Ministry** | 29 | 1 | 10 | 11 | 7 | 28 |
 | **Intelligence** | 0* | 0 | 0 | 0 | 0 | **0** |
-| **TOTAL** | **142** | **21** | **42** | **49** | **30** | **121** |
+| **TOTAL** | **142** | **21** | **50** | **45** | **26** | **121** |
 
 *Intelligence schema uses a different structure not parsed by mermaid field extraction.
 
 ## Mismatch Classification
 
-### Not Real Mismatches (42 structural)
+### Not Real Mismatches (50 structural)
 Fields like `attributes`, `labels`, `relationships`, `intelligence`, `decisions`, `policy` are **JSON grouping objects** — they organize the schema structure but don't correspond to individual database columns. These should be excluded from field-level validation.
 
-### Implementable Now (49 computable)
+### Implementable Now (45 computed)
 Fields like `fullName`, `partyLoyalty`, `totalMembers`, `performanceScore` can be **derived from existing database columns** with SQL aggregations, concatenations, or view mappings. See `FIELD_MAPPING.md` for implementation details.
 
-### Future Work (30 planned)
+### Future Work (26 planned)
 Fields like `foundedYear`, `ideology`, `nameEn`, `budget`, `headquarters` require **external data sources** not currently in the database. These are long-term implementation goals.
 
 ## Validated Schema Files
 
 The following data-validated schema files have been created:
 
-- `politician-schema-validated.md` - 12 fields validated
-- `party-schema-validated.md` - 3 fields validated  
+- `politician-schema-validated.md` - 14 fields validated
+- `party-schema-validated.md` - 4 fields validated  
 - `committee-schema-validated.md` - 2 fields validated
 - `ministry-schema-validated.md` - 1 field validated
 
