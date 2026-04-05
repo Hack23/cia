@@ -467,6 +467,12 @@ classDiagram
         self.assertIn("attributes", field_status["structural"])
         self.assertIn("labels", field_status["structural"])
         self.assertIn("missingField", field_status["planned"])
+        
+        # Verify global field_status_summary aggregation
+        summary = validator.validation_results["field_status_summary"]
+        self.assertEqual(summary["implemented"], 2)  # firstName, status
+        self.assertEqual(summary["structural"], 2)  # attributes, labels
+        self.assertEqual(summary["planned"], 1)  # missingField
     
     def test_mismatch_includes_status(self):
         """Test that field mismatches include status classification."""

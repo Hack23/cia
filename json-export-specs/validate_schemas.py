@@ -410,6 +410,15 @@ class SchemaValidator:
         s1 = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', name)
         return re.sub('([a-z0-9])([A-Z])', r'\1_\2', s1).lower()
     
+    @staticmethod
+    def _format_field_status_row(icon: str, label: str, fields: list, max_display: int = 8) -> str:
+        """Format a field status table row for the validation report."""
+        count = len(fields)
+        field_list = ', '.join(f'`{f}`' for f in fields[:max_display])
+        if count > max_display:
+            field_list += '...'
+        return f"| {icon} {label} | {count} | {field_list} |"
+
     def generate_report(self, output_path: str = None) -> None:
         """Generate comprehensive validation report."""
         
@@ -477,9 +486,9 @@ class SchemaValidator:
                 "",
                 f"| Category | Count | Fields |",
                 f"|----------|-------|--------|",
-                f"| ✅ Implemented | {len(field_status.get('implemented', []))} | {', '.join(f'`{f}`' for f in field_status.get('implemented', [])[:8])}{'...' if len(field_status.get('implemented', [])) > 8 else ''} |",
-                f"| ❌ Structural | {len(field_status.get('structural', []))} | {', '.join(f'`{f}`' for f in field_status.get('structural', [])[:8])}{'...' if len(field_status.get('structural', [])) > 8 else ''} |",
-                f"| 🔄 Planned | {len(field_status.get('planned', []))} | {', '.join(f'`{f}`' for f in field_status.get('planned', [])[:8])}{'...' if len(field_status.get('planned', [])) > 8 else ''} |",
+                self._format_field_status_row("✅", "Implemented", field_status.get('implemented', [])),
+                self._format_field_status_row("❌", "Structural", field_status.get('structural', [])),
+                self._format_field_status_row("🔄", "Planned", field_status.get('planned', [])),
                 ""
             ])
             
