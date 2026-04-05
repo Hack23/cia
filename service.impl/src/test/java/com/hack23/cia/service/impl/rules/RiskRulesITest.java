@@ -236,7 +236,8 @@ public final class RiskRulesITest extends AbstractServiceFunctionalIntegrationTe
 						violation.getResourceType() == ResourceType.POLITICIAN ||
 						violation.getResourceType() == ResourceType.PARTY ||
 						violation.getResourceType() == ResourceType.COMMITTEE ||
-						violation.getResourceType() == ResourceType.MINISTRY);
+						violation.getResourceType() == ResourceType.MINISTRY ||
+						violation.getResourceType() == ResourceType.APPLICATION);
 			}
 		}
 	}
@@ -293,6 +294,7 @@ public final class RiskRulesITest extends AbstractServiceFunctionalIntegrationTe
 		int partyCount = 0;
 		int committeeCount = 0;
 		int ministryCount = 0;
+		int applicationCount = 0;
 
 		for (final RuleViolation violation : allViolations) {
 			switch (violation.getResourceType()) {
@@ -307,6 +309,9 @@ public final class RiskRulesITest extends AbstractServiceFunctionalIntegrationTe
 					break;
 				case MINISTRY:
 					ministryCount++;
+					break;
+				case APPLICATION:
+					applicationCount++;
 					break;
 				default:
 					break;

@@ -42,5 +42,8 @@ public enum ResourceType {
 	GOVERNMENT,
 
 	/** The minister. */
-	MINISTER;
+	MINISTER,
+
+	/** The application. */
+	APPLICATION;
 }

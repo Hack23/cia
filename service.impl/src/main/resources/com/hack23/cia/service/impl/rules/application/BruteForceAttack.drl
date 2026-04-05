@@ -1,2 +1,32 @@
 package com.hack23.cia.service.impl.rules.application
- 
+
+import com.hack23.cia.model.internal.application.data.rules.impl.Status
+import com.hack23.cia.service.impl.rules.ApplicationComplianceCheckImpl
+
+rule "Brute force attack detected - minor threshold, 5 to 9 failed login attempts in session"
+	dialect "mvel"
+	salience 10
+    when
+        $app : ApplicationComplianceCheckImpl(failedAuthenticationAttempts >= 5 && failedAuthenticationAttempts < 10)
+    then
+    	$app.addViolation( Status.MINOR, "BruteForceAttack","Security", kcontext.getRule().getName(),"login.failed.threshold.minor");
+end
+
+rule "Brute force attack detected - major threshold, 10 to 19 failed login attempts in session"
+	dialect "mvel"
+	salience 50
+    when
+        $app : ApplicationComplianceCheckImpl(failedAuthenticationAttempts >= 10 && failedAuthenticationAttempts < 20)
+    then
+    	$app.addViolation( Status.MAJOR, "BruteForceAttack","Security", kcontext.getRule().getName(),"login.failed.threshold.major");
+end
+
+rule "Brute force attack detected - critical threshold, 20 or more failed login attempts in session"
+	dialect "mvel"
+	salience 100
+    when
+        $app : ApplicationComplianceCheckImpl(failedAuthenticationAttempts >= 20)
+    then
+    	$app.addViolation( Status.CRITICAL, "BruteForceAttack","Security", kcontext.getRule().getName(),"login.failed.threshold.critical");
+end
+

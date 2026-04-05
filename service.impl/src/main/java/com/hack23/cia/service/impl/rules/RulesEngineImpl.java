@@ -44,6 +44,10 @@ import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdag
 import com.hack23.cia.model.internal.application.data.ministry.impl.ViewRiksdagenMinistry;
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartySummary;
 import com.hack23.cia.model.internal.application.data.politician.impl.ViewRiksdagenPolitician;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationActionEvent;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationOperationType;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationActionEvent_;
+import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
 import com.hack23.cia.service.api.action.kpi.ComplianceCheck;
 import com.hack23.cia.service.data.api.DataViewer;
 
@@ -79,6 +83,7 @@ public final class RulesEngineImpl implements RulesEngine {
 		insertParties(ksession, dataViewer.getAll(ViewRiksdagenPartySummary.class));
 		insertCommittees(ksession, dataViewer.getAll(ViewRiksdagenCommittee.class));
 		insertMinistries(ksession, dataViewer.getAll(ViewRiksdagenMinistry.class));
+		insertFailedAuthenticationSessions(ksession);
 
 		ksession.fireAllRules();
 		ksession.dispose();
@@ -250,6 +255,31 @@ public final class RulesEngineImpl implements RulesEngine {
 				final MinistryComplianceCheckImpl ministryComplianceCheck = new MinistryComplianceCheckImpl(ministry);
 				ksession.insert(ministryComplianceCheck);
 			}
+		}
+	}
+
+	/**
+	 * Insert failed authentication sessions for brute force detection.
+	 * Uses a single query to fetch failed AUTHENTICATION events (where
+	 * applicationMessage equals FAILURE), groups by session ID, and only
+	 * inserts compliance checks for sessions with failures.
+	 *
+	 * @param ksession the ksession
+	 */
+	private void insertFailedAuthenticationSessions(final KieSession ksession) {
+		final List<ApplicationActionEvent> failedAuthEvents = dataViewer.findListByProperty(
+				ApplicationActionEvent.class,
+				new Object[] { ApplicationOperationType.AUTHENTICATION, ServiceResult.FAILURE.toString() },
+				ApplicationActionEvent_.applicationOperation, ApplicationActionEvent_.applicationMessage);
+
+		final Map<String, Long> failedCountsBySession = failedAuthEvents.stream()
+				.filter(event -> event.getSessionId() != null)
+				.collect(Collectors.groupingBy(ApplicationActionEvent::getSessionId, Collectors.counting()));
+
+		for (final Map.Entry<String, Long> entry : failedCountsBySession.entrySet()) {
+			final ApplicationComplianceCheckImpl check = new ApplicationComplianceCheckImpl(
+					entry.getKey(), "unknown", entry.getValue());
+			ksession.insert(check);
 		}
 	}
 }
