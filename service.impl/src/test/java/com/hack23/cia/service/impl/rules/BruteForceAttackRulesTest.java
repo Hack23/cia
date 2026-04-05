@@ -186,7 +186,9 @@ public class BruteForceAttackRulesTest {
 				"session-6", "192.168.0.100", 25);
 
 		kieSession.insert(check);
-		kieSession.fireAllRules();
+		final int firedRules = kieSession.fireAllRules();
+
+		assertEquals("Should have exactly 1 fired rule (only CRITICAL matches)", 1, firedRules);
 
 		final List<RuleViolation> violations = check.getRuleViolations();
 		assertFalse("Should have violations", violations.isEmpty());

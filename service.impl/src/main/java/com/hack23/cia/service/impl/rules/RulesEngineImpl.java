@@ -273,15 +273,15 @@ public final class RulesEngineImpl implements RulesEngine {
 				new Object[] { ApplicationOperationType.AUTHENTICATION, ServiceResult.FAILURE.toString() },
 				ApplicationActionEvent_.applicationOperation, ApplicationActionEvent_.applicationMessage);
 
-		final Map<String, List<ApplicationActionEvent>> eventsBySession = failedAuthEvents.stream()
+		final Map<String, Long> failedCountsBySession = failedAuthEvents.stream()
 				.filter(event -> event.getSessionId() != null)
-				.collect(Collectors.groupingBy(ApplicationActionEvent::getSessionId));
+				.collect(Collectors.groupingBy(ApplicationActionEvent::getSessionId, Collectors.counting()));
 
-		for (final Map.Entry<String, List<ApplicationActionEvent>> entry : eventsBySession.entrySet()) {
-			final long failedCount = entry.getValue().size();
+		for (final Map.Entry<String, Long> entry : failedCountsBySession.entrySet()) {
+			final long failedCount = entry.getValue();
 			if (failedCount > 0) {
 				final ApplicationComplianceCheckImpl check = new ApplicationComplianceCheckImpl(
-						entry.getKey(), entry.getKey(), failedCount);
+						entry.getKey(), "unknown", failedCount);
 				ksession.insert(check);
 			}
 		}
