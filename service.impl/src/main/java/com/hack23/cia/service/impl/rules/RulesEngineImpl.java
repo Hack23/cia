@@ -266,7 +266,6 @@ public final class RulesEngineImpl implements RulesEngine {
 	 *
 	 * @param ksession the ksession
 	 */
-	@SuppressWarnings("unchecked")
 	private void insertFailedAuthenticationSessions(final KieSession ksession) {
 		final List<ApplicationActionEvent> failedAuthEvents = dataViewer.findListByProperty(
 				ApplicationActionEvent.class,
@@ -278,12 +277,9 @@ public final class RulesEngineImpl implements RulesEngine {
 				.collect(Collectors.groupingBy(ApplicationActionEvent::getSessionId, Collectors.counting()));
 
 		for (final Map.Entry<String, Long> entry : failedCountsBySession.entrySet()) {
-			final long failedCount = entry.getValue();
-			if (failedCount > 0) {
-				final ApplicationComplianceCheckImpl check = new ApplicationComplianceCheckImpl(
-						entry.getKey(), "unknown", failedCount);
-				ksession.insert(check);
-			}
+			final ApplicationComplianceCheckImpl check = new ApplicationComplianceCheckImpl(
+					entry.getKey(), "unknown", entry.getValue());
+			ksession.insert(check);
 		}
 	}
 }

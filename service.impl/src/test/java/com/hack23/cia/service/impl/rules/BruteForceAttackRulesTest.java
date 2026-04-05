@@ -62,6 +62,7 @@ public class BruteForceAttackRulesTest {
 	public void setUp() {
 		final KieServices kieServices = KieServices.Factory.get();
 		final KieFileSystem kfs = kieServices.newKieFileSystem();
+		kfs.write(ResourceFactory.newClassPathResource("META-INF/kmodule.xml"));
 		kfs.write(ResourceFactory.newClassPathResource(
 				"com/hack23/cia/service/impl/rules/application/BruteForceAttack.drl"));
 		final KieBuilder kieBuilder = kieServices.newKieBuilder(kfs).buildAll();
