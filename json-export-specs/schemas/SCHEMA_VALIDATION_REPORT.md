@@ -1,6 +1,6 @@
 # JSON Schema Validation Report
 
-**Generated:** 2026-04-05T21:20:44.256431+00:00
+**Generated:** 2026-04-05T21:38:31.428700+00:00
 **Schemas Validated:** 5
 **Sample Files Analyzed:** 202
 **Total Mismatches:** 121
@@ -14,15 +14,23 @@ This report validates the 5 JSON export schemas against 138 relevant CSV sample 
 from the CIA database to ensure schema correctness and identify gaps between 
 schema definitions and actual data structure.
 
+### Field Implementation Status Summary
+
+| Category | Count | Description |
+|----------|-------|-------------|
+| ✅ Implemented | 21 | Fields found in database sample data |
+| ❌ Structural | 50 | JSON grouping objects (not direct DB columns) |
+| 🔄 Planned | 71 | Fields not yet available in data |
+
 ### Validation Scope
 
-| Schema | Fields Defined | Views Matched | Missing Views | Field Mismatches | Status |
-|--------|---------------|---------------|---------------|------------------|--------|
-| Politician | 45 | 12 | 3 | 31 | ⚠️ REVIEW |
-| Party | 42 | 17 | 2 | 38 | ⚠️ REVIEW |
-| Committee | 26 | 10 | 2 | 24 | ⚠️ REVIEW |
-| Ministry | 29 | 2 | 1 | 28 | ⚠️ REVIEW |
-| Intelligence | 0 | 5 | 2 | 0 | ✅ PASS |
+| Schema | Fields Defined | Views Matched | Missing Views | Field Mismatches | Implemented | Status |
+|--------|---------------|---------------|---------------|------------------|-------------|--------|
+| Politician | 45 | 12 | 3 | 31 | 14 | ⚠️ REVIEW |
+| Party | 42 | 17 | 2 | 38 | 4 | ⚠️ REVIEW |
+| Committee | 26 | 10 | 2 | 24 | 2 | ⚠️ REVIEW |
+| Ministry | 29 | 2 | 1 | 28 | 1 | ⚠️ REVIEW |
+| Intelligence | 0 | 5 | 2 | 0 | 0 | ✅ PASS |
 
 ---
 
@@ -33,6 +41,14 @@ schema definitions and actual data structure.
 **Fields Defined:** 45  
 **Database Views Referenced:** 8  
 **Sample Files Matched:** 12
+
+#### Field Implementation Status
+
+| Category | Count | Fields |
+|----------|-------|--------|
+| ✅ Implemented | 14 | `lastName`, `attendanceRate`, `riskScore`, `id`, `gender`, `status`, `totalDocuments`, `riskLevel`... |
+| ❌ Structural | 17 | `attributes`, `performance`, `descriptions`, `short`, `intelligence`, `byType`, `labels`, `activity`... |
+| 🔄 Planned | 14 | `questions`, `motions`, `absences`, `fullName`, `rebellions`, `amendments`, `ministry`, `rankingPosition`... |
 
 #### Matched Data Files
 
@@ -52,35 +68,31 @@ schema definitions and actual data structure.
 
 The following database views are referenced in the schema but not found in sample data:
 
-- `riksdagen_politician_summary`
 - `riksdagen_politician_ranking`
+- `riksdagen_politician_summary`
 - `riksdagen_politician_vote_summary`
 
 #### Field Mismatches
 
-**Field:** `category`
+**Field:** `questions`
 - **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `CATEGORY`, `category`
+- **Suggested columns:** `QUESTIONS`, `questions`
 
-**Field:** `influenceScore`
+**Field:** `motions`
 - **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `INFLUENCESCORE`, `influencescore`, `influence_score`, `influenceScore`
+- **Suggested columns:** `motions`, `MOTIONS`
 
-**Field:** `amendments`
+**Field:** `attributes`
 - **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `AMENDMENTS`, `amendments`
+- **Suggested columns:** `attributes`, `ATTRIBUTES`
 
-**Field:** `activity`
+**Field:** `performance`
 - **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `ACTIVITY`, `activity`
+- **Suggested columns:** `PERFORMANCE`, `performance`
 
-**Field:** `relationships`
+**Field:** `absences`
 - **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `relationships`, `RELATIONSHIPS`
-
-**Field:** `trendDirection`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `trenddirection`, `TRENDDIRECTION`, `trendDirection`, `trend_direction`
+- **Suggested columns:** `ABSENCES`, `absences`
 
 **Field:** `descriptions`
 - **Issue:** Field defined in schema but not found in data
@@ -88,21 +100,25 @@ The following database views are referenced in the schema but not found in sampl
 
 **Field:** `fullName`
 - **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `fullName`, `full_name`, `fullname`, `FULLNAME`
+- **Suggested columns:** `fullname`, `FULLNAME`, `full_name`, `fullName`
 
 **Field:** `rebellions`
 - **Issue:** Field defined in schema but not found in data
 - **Suggested columns:** `REBELLIONS`, `rebellions`
 
-**Field:** `voting`
+**Field:** `short`
 - **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `voting`, `VOTING`
+- **Suggested columns:** `SHORT`, `short`
+
+**Field:** `amendments`
+- **Issue:** Field defined in schema but not found in data
+- **Suggested columns:** `amendments`, `AMENDMENTS`
 
 *... and 21 more mismatches*
 
 #### Recommendations
 
-- Consider adding 20 data columns to schema: current_committee_chair_assignments, person_id, referred_back_decisions, current_suppleant_assignments, rm
+- Consider adding 20 data columns to schema: overall_career_rank, role_start, role_sequence, active, effectiveness_violations
 
 ---
 
@@ -111,6 +127,14 @@ The following database views are referenced in the schema but not found in sampl
 **Fields Defined:** 42  
 **Database Views Referenced:** 8  
 **Sample Files Matched:** 17
+
+#### Field Implementation Status
+
+| Category | Count | Fields |
+|----------|-------|--------|
+| ✅ Implemented | 4 | `shortCode`, `id`, `status`, `totalVotes` |
+| ❌ Structural | 15 | `coalition`, `attributes`, `members`, `descriptions`, `policy`, `intelligence`, `electoral`, `labels`... |
+| 🔄 Planned | 23 | `currentSupport`, `ministries`, `spectrum`, `websiteUrl`, `activityRate`, `fullName`, `seats`, `nameEn`... |
 
 #### Matched Data Files
 
@@ -130,56 +154,56 @@ The following database views are referenced in the schema but not found in sampl
 
 The following database views are referenced in the schema but not found in sample data:
 
-- `riksdagen_party_ballot_support_summary`
 - `riksdagen_party_vote_summary`
+- `riksdagen_party_ballot_support_summary`
 
 #### Field Mismatches
 
-**Field:** `activityRate`
+**Field:** `currentSupport`
 - **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `activityRate`, `activity_rate`, `activityrate`, `ACTIVITYRATE`
+- **Suggested columns:** `currentsupport`, `currentSupport`, `CURRENTSUPPORT`, `current_support`
 
-**Field:** `foundedYear`
+**Field:** `ministries`
 - **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `foundedyear`, `FOUNDEDYEAR`, `foundedYear`, `founded_year`
+- **Suggested columns:** `ministries`, `MINISTRIES`
 
-**Field:** `ideology`
+**Field:** `coalition`
 - **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `ideology`, `IDEOLOGY`
+- **Suggested columns:** `coalition`, `COALITION`
+
+**Field:** `attributes`
+- **Issue:** Field defined in schema but not found in data
+- **Suggested columns:** `attributes`, `ATTRIBUTES`
 
 **Field:** `spectrum`
 - **Issue:** Field defined in schema but not found in data
 - **Suggested columns:** `spectrum`, `SPECTRUM`
 
-**Field:** `color`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `COLOR`, `color`
-
-**Field:** `productivity`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `productivity`, `PRODUCTIVITY`
-
-**Field:** `trend`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `trend`, `TREND`
-
-**Field:** `category`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `CATEGORY`, `category`
-
 **Field:** `websiteUrl`
 - **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `websiteUrl`, `websiteurl`, `website_url`, `WEBSITEURL`
+- **Suggested columns:** `website_url`, `websiteUrl`, `websiteurl`, `WEBSITEURL`
 
-**Field:** `logoUrl`
+**Field:** `activityRate`
 - **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `logo_url`, `logourl`, `logoUrl`, `LOGOURL`
+- **Suggested columns:** `activity_rate`, `ACTIVITYRATE`, `activityrate`, `activityRate`
+
+**Field:** `members`
+- **Issue:** Field defined in schema but not found in data
+- **Suggested columns:** `MEMBERS`, `members`
+
+**Field:** `descriptions`
+- **Issue:** Field defined in schema but not found in data
+- **Suggested columns:** `DESCRIPTIONS`, `descriptions`
+
+**Field:** `fullName`
+- **Issue:** Field defined in schema but not found in data
+- **Suggested columns:** `fullname`, `FULLNAME`, `full_name`, `fullName`
 
 *... and 28 more mismatches*
 
 #### Recommendations
 
-- Consider adding 20 data columns to schema: no_rate, coalition_strength, prev_semester_alignment, is_election_cycle_end, last_party_document
+- Consider adding 20 data columns to schema: rank_by_approval, productivity_tier, composite_performance_index, decision_year, decision_type
 
 ---
 
@@ -188,6 +212,14 @@ The following database views are referenced in the schema but not found in sampl
 **Fields Defined:** 26  
 **Database Views Referenced:** 3  
 **Sample Files Matched:** 10
+
+#### Field Implementation Status
+
+| Category | Count | Fields |
+|----------|-------|--------|
+| ✅ Implemented | 2 | `id`, `activityLevel` |
+| ❌ Structural | 8 | `attributes`, `policy`, `decisions`, `intelligence`, `labels`, `membership`, `relationships`, `productivity` |
+| 🔄 Planned | 16 | `performanceScore`, `name`, `influence`, `established`, `attendanceRate`, `policyDomain`, `nameEn`, `type`... |
 
 #### Matched Data Files
 
@@ -206,64 +238,72 @@ The following database views are referenced in the schema but not found in sampl
 
 The following database views are referenced in the schema but not found in sample data:
 
-- `riksdagen_committee_decision_summary`
 - `riksdagen_committee_summary`
+- `riksdagen_committee_decision_summary`
 
 #### Field Mismatches
+
+**Field:** `performanceScore`
+- **Issue:** Field defined in schema but not found in data
+- **Suggested columns:** `PERFORMANCESCORE`, `performanceScore`, `performancescore`, `performance_score`
+
+**Field:** `name`
+- **Issue:** Field defined in schema but not found in data
+- **Suggested columns:** `name`, `NAME`
+
+**Field:** `attributes`
+- **Issue:** Field defined in schema but not found in data
+- **Suggested columns:** `attributes`, `ATTRIBUTES`
 
 **Field:** `influence`
 - **Issue:** Field defined in schema but not found in data
 - **Suggested columns:** `influence`, `INFLUENCE`
 
+**Field:** `established`
+- **Issue:** Field defined in schema but not found in data
+- **Suggested columns:** `ESTABLISHED`, `established`
+
+**Field:** `policy`
+- **Issue:** Field defined in schema but not found in data
+- **Suggested columns:** `POLICY`, `policy`
+
 **Field:** `attendanceRate`
 - **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `attendance_rate`, `ATTENDANCERATE`, `attendanceRate`, `attendancerate`
+- **Suggested columns:** `ATTENDANCERATE`, `attendancerate`, `attendance_rate`, `attendanceRate`
 
-**Field:** `decisions`
+**Field:** `policyDomain`
 - **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `DECISIONS`, `decisions`
+- **Suggested columns:** `POLICYDOMAIN`, `policydomain`, `policy_domain`, `policyDomain`
 
-**Field:** `productivity`
+**Field:** `nameEn`
 - **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `productivity`, `PRODUCTIVITY`
+- **Suggested columns:** `NAMEEN`, `nameEn`, `name_en`, `nameen`
 
 **Field:** `type`
 - **Issue:** Field defined in schema but not found in data
 - **Suggested columns:** `type`, `TYPE`
 
-**Field:** `code`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `code`, `CODE`
-
-**Field:** `amendments`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `AMENDMENTS`, `amendments`
-
-**Field:** `relationships`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `relationships`, `RELATIONSHIPS`
-
-**Field:** `membership`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `membership`, `MEMBERSHIP`
-
-**Field:** `meetings`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `MEETINGS`, `meetings`
-
 *... and 14 more mismatches*
 
 #### Recommendations
 
-- Consider adding 20 data columns to schema: embedded_id_org_code, current_regular_members, person_id, approved, rm
+- Consider adding 20 data columns to schema: active, party_percentage_abstain, total_statements, total_leadership_positions, decision_type
 
 ---
 
 ### Ministry Schema
 
 **Fields Defined:** 29  
-**Database Views Referenced:** 2  
+**Database Views Referenced:** 3  
 **Sample Files Matched:** 2
+
+#### Field Implementation Status
+
+| Category | Count | Fields |
+|----------|-------|--------|
+| ✅ Implemented | 1 | `name` |
+| ❌ Structural | 10 | `attributes`, `personnel`, `performance`, `policy`, `decisions`, `intelligence`, `labels`, `budget`... |
+| 🔄 Planned | 18 | `performanceScore`, `headquarters`, `civilServants`, `efficiency`, `established`, `publicSatisfaction`, `nameEn`, `decisionsImplemented`... |
 
 #### Matched Data Files
 
@@ -278,51 +318,51 @@ The following database views are referenced in the schema but not found in sampl
 
 #### Field Mismatches
 
-**Field:** `ministers`
+**Field:** `performanceScore`
 - **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `MINISTERS`, `ministers`
+- **Suggested columns:** `PERFORMANCESCORE`, `performanceScore`, `performancescore`, `performance_score`
 
-**Field:** `decisions`
+**Field:** `attributes`
 - **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `DECISIONS`, `decisions`
-
-**Field:** `publicSatisfaction`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `publicsatisfaction`, `PUBLICSATISFACTION`, `public_satisfaction`, `publicSatisfaction`
+- **Suggested columns:** `attributes`, `ATTRIBUTES`
 
 **Field:** `personnel`
 - **Issue:** Field defined in schema but not found in data
 - **Suggested columns:** `personnel`, `PERSONNEL`
 
-**Field:** `decisionsImplemented`
+**Field:** `headquarters`
 - **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `decisionsimplemented`, `decisionsImplemented`, `decisions_implemented`, `DECISIONSIMPLEMENTED`
+- **Suggested columns:** `headquarters`, `HEADQUARTERS`
 
-**Field:** `trend`
+**Field:** `performance`
 - **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `trend`, `TREND`
-
-**Field:** `id`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `ID`, `id`
-
-**Field:** `code`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `code`, `CODE`
-
-**Field:** `relationships`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `relationships`, `RELATIONSHIPS`
+- **Suggested columns:** `PERFORMANCE`, `performance`
 
 **Field:** `civilServants`
 - **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `civil_servants`, `CIVILSERVANTS`, `civilServants`, `civilservants`
+- **Suggested columns:** `civilServants`, `CIVILSERVANTS`, `civilservants`, `civil_servants`
+
+**Field:** `efficiency`
+- **Issue:** Field defined in schema but not found in data
+- **Suggested columns:** `EFFICIENCY`, `efficiency`
+
+**Field:** `established`
+- **Issue:** Field defined in schema but not found in data
+- **Suggested columns:** `ESTABLISHED`, `established`
+
+**Field:** `publicSatisfaction`
+- **Issue:** Field defined in schema but not found in data
+- **Suggested columns:** `public_satisfaction`, `publicsatisfaction`, `publicSatisfaction`, `PUBLICSATISFACTION`
+
+**Field:** `policy`
+- **Issue:** Field defined in schema but not found in data
+- **Suggested columns:** `POLICY`, `policy`
 
 *... and 18 more mismatches*
 
 #### Recommendations
 
-- Consider adding 20 data columns to schema: documents_per_member, government_bills, propositions, effectiveness_assessment, rejected_proposals
+- Consider adding 20 data columns to schema: approval_rate, rejection_rate, legislative_per_member, active_members, quarter_num
 
 ---
 
@@ -331,6 +371,14 @@ The following database views are referenced in the schema but not found in sampl
 **Fields Defined:** 0  
 **Database Views Referenced:** 10  
 **Sample Files Matched:** 5
+
+#### Field Implementation Status
+
+| Category | Count | Fields |
+|----------|-------|--------|
+| ✅ Implemented | 0 |  |
+| ❌ Structural | 0 |  |
+| 🔄 Planned | 0 |  |
 
 #### Matched Data Files
 
@@ -349,7 +397,7 @@ The following database views are referenced in the schema but not found in sampl
 
 #### Recommendations
 
-- Consider adding 20 data columns to schema: person_id, referred_back_decisions, total_decisions_all_time, documents_last_year, chairs_count
+- Consider adding 20 data columns to schema: ma_30day_decisions, motions_last_year, performance_concerns, effectiveness_violations, decision_year
 
 ---
 
@@ -374,4 +422,4 @@ This validation compares:
 - Coverage analysis (schema fields vs. actual columns)
 - Missing view detection
 
-**Report Generated:** 2026-04-05 21:20:44 UTC
+**Report Generated:** 2026-04-05 21:38:31 UTC

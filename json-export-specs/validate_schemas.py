@@ -24,6 +24,16 @@ from typing import Dict, List, Tuple, Any
 class SchemaValidator:
     """Validates JSON schemas against CSV sample data files."""
     
+    # Structural JSON grouping fields that are not direct database columns
+    STRUCTURAL_FIELDS = {
+        "labels", "attributes", "relationships", "intelligence", "activity",
+        "voting", "documents", "committees", "descriptions", "category",
+        "subcategories", "intelligenceTags", "short", "detailed", "long",
+        "breakdown", "period", "byType", "electoral", "parliamentary",
+        "members", "coalition", "policy", "predictions", "membership",
+        "productivity", "decisions", "budget", "personnel", "performance"
+    }
+    
     def __init__(self, schema_dir: str, sample_data_dir: str):
         self.schema_dir = Path(schema_dir)
         self.sample_data_dir = Path(sample_data_dir)
@@ -34,6 +44,11 @@ class SchemaValidator:
             "schemas_validated": 0,
             "files_analyzed": 0,
             "total_mismatches": 0,
+            "field_status_summary": {
+                "implemented": 0,
+                "structural": 0,
+                "planned": 0
+            },
             "schemas": {}
         }
         
@@ -299,6 +314,13 @@ class SchemaValidator:
         # Map schema fields to database columns (convert camelCase to snake_case)
         schema_fields = set(schema_info["fields"].keys())
         
+        # Initialize field status tracking
+        field_status = {
+            "implemented": [],
+            "structural": [],
+            "planned": []
+        }
+        
         # Check if schema fields exist in data (with flexible matching)
         unmapped_schema_fields = []
         unmapped_data_columns = list(all_columns)
@@ -318,23 +340,51 @@ class SchemaValidator:
                     matched = True
                     if possible_name in unmapped_data_columns:
                         unmapped_data_columns.remove(possible_name)
+                    field_status["implemented"].append(field)
                     break
             
             if not matched:
+                # Classify the mismatch: structural grouping field vs planned field
+                if field in self.STRUCTURAL_FIELDS:
+                    field_status["structural"].append(field)
+                else:
+                    field_status["planned"].append(field)
+                
                 unmapped_schema_fields.append(field)
                 schema_result["field_mismatches"].append({
                     "field": field,
                     "issue": "Field defined in schema but not found in data",
+                    "status": "STRUCTURAL" if field in self.STRUCTURAL_FIELDS else "PLANNED",
                     "suggestions": possible_names
                 })
         
-        # Report unmapped fields
-        if unmapped_schema_fields:
-            print(f"\n⚠ Schema fields not found in data ({len(unmapped_schema_fields)}):")
-            for field in unmapped_schema_fields[:10]:  # Show first 10
+        # Store field status in schema result
+        schema_result["field_status"] = field_status
+        
+        # Update global status summary
+        for status_key in field_status:
+            self.validation_results["field_status_summary"][status_key] += len(field_status[status_key])
+        
+        # Report field implementation status
+        print(f"\n📊 Field Implementation Status:")
+        print(f"  ✅ Implemented: {len(field_status['implemented'])}")
+        print(f"  ❌ Structural (JSON grouping): {len(field_status['structural'])}")
+        print(f"  🔄 Planned (not yet in data): {len(field_status['planned'])}")
+        
+        # Report unmapped fields by category
+        if field_status["planned"]:
+            print(f"\n🔄 Planned fields not yet in data ({len(field_status['planned'])}):")
+            for field in field_status["planned"][:10]:
                 print(f"  • {field}")
-            if len(unmapped_schema_fields) > 10:
-                print(f"  ... and {len(unmapped_schema_fields) - 10} more")
+            if len(field_status["planned"]) > 10:
+                print(f"  ... and {len(field_status['planned']) - 10} more")
+        
+        if field_status["structural"]:
+            print(f"\n❌ Structural grouping fields ({len(field_status['structural'])}):")
+            for field in field_status["structural"][:5]:
+                print(f"  • {field}")
+            if len(field_status["structural"]) > 5:
+                print(f"  ... and {len(field_status['structural']) - 5} more")
         
         # Report key data columns not in schema
         if unmapped_data_columns:
@@ -383,18 +433,27 @@ class SchemaValidator:
             "from the CIA database to ensure schema correctness and identify gaps between ",
             "schema definitions and actual data structure.",
             "",
+            "### Field Implementation Status Summary",
+            "",
+            f"| Category | Count | Description |",
+            f"|----------|-------|-------------|",
+            f"| ✅ Implemented | {self.validation_results['field_status_summary']['implemented']} | Fields found in database sample data |",
+            f"| ❌ Structural | {self.validation_results['field_status_summary']['structural']} | JSON grouping objects (not direct DB columns) |",
+            f"| 🔄 Planned | {self.validation_results['field_status_summary']['planned']} | Fields not yet available in data |",
+            "",
             "### Validation Scope",
             "",
-            "| Schema | Fields Defined | Views Matched | Missing Views | Field Mismatches | Status |",
-            "|--------|---------------|---------------|---------------|------------------|--------|"
+            "| Schema | Fields Defined | Views Matched | Missing Views | Field Mismatches | Implemented | Status |",
+            "|--------|---------------|---------------|---------------|------------------|-------------|--------|"
         ]
         
         for schema_name, result in self.validation_results["schemas"].items():
             status = "✅ PASS" if len(result["field_mismatches"]) == 0 else "⚠️ REVIEW"
+            implemented = len(result.get("field_status", {}).get("implemented", []))
             report_lines.append(
                 f"| {schema_name.capitalize()} | {result['fields_defined']} | "
                 f"{len(result['matched_views'])} | {len(result['missing_views'])} | "
-                f"{len(result['field_mismatches'])} | {status} |"
+                f"{len(result['field_mismatches'])} | {implemented} | {status} |"
             )
         
         report_lines.extend([
@@ -406,12 +465,21 @@ class SchemaValidator:
         ])
         
         for schema_name, result in self.validation_results["schemas"].items():
+            field_status = result.get("field_status", {})
             report_lines.extend([
                 f"### {schema_name.capitalize()} Schema",
                 "",
                 f"**Fields Defined:** {result['fields_defined']}  ",
                 f"**Database Views Referenced:** {result['views_referenced']}  ",
                 f"**Sample Files Matched:** {len(result['matched_views'])}",
+                "",
+                "#### Field Implementation Status",
+                "",
+                f"| Category | Count | Fields |",
+                f"|----------|-------|--------|",
+                f"| ✅ Implemented | {len(field_status.get('implemented', []))} | {', '.join(f'`{f}`' for f in field_status.get('implemented', [])[:8])}{'...' if len(field_status.get('implemented', [])) > 8 else ''} |",
+                f"| ❌ Structural | {len(field_status.get('structural', []))} | {', '.join(f'`{f}`' for f in field_status.get('structural', [])[:8])}{'...' if len(field_status.get('structural', [])) > 8 else ''} |",
+                f"| 🔄 Planned | {len(field_status.get('planned', []))} | {', '.join(f'`{f}`' for f in field_status.get('planned', [])[:8])}{'...' if len(field_status.get('planned', [])) > 8 else ''} |",
                 ""
             ])
             
@@ -560,6 +628,11 @@ def main():
     print("\n" + "="*80)
     print("Validation Complete!")
     print(f"Total Mismatches: {validator.validation_results['total_mismatches']}")
+    summary = validator.validation_results.get('field_status_summary', {})
+    print(f"\nField Implementation Status:")
+    print(f"  ✅ Implemented: {summary.get('implemented', 0)}")
+    print(f"  ❌ Structural (JSON grouping): {summary.get('structural', 0)}")
+    print(f"  🔄 Planned (not yet in data): {summary.get('planned', 0)}")
     print("="*80)
     
     # Return exit code based on results
