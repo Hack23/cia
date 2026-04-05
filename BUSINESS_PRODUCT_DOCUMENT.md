@@ -107,7 +107,7 @@ This section provides direct links to JSON specifications defining the data stru
 
 ### Product-to-Data Mapping Table
 
-**Complete View Reference:** This platform leverages **112 database views** organized into 11 intelligence categories. For complete documentation, see [DATABASE_VIEW_INTELLIGENCE_CATALOG.md](DATABASE_VIEW_INTELLIGENCE_CATALOG.md).
+**Complete View Reference:** This platform leverages **110 database views** organized into 12 intelligence categories. For complete documentation, see [DATABASE_VIEW_INTELLIGENCE_CATALOG.md](DATABASE_VIEW_INTELLIGENCE_CATALOG.md).
 
 #### Core Product Features (Primary Views)
 
@@ -123,10 +123,10 @@ This section provides direct links to JSON specifications defining the data stru
 | **Government Performance** | [ministry-schema.md](json-export-specs/schemas/ministry-schema.md) | `view_riksdagen_goverment`, `view_ministry_decision_impact`, `view_ministry_effectiveness_trends` | As changes occur | 8 ministry views |
 | **Decision Intelligence** | [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) | `view_party_decision_flow`, `view_politician_decision_pattern`, `view_ministry_decision_flow`, `view_decision_temporal_trends` | Daily | 6 decision views |
 | **Career Path Analysis (v1.58)** | [politician-schema.md](json-export-specs/schemas/politician-schema.md) | `view_riksdagen_politician_career_path_10level`, `view_riksdagen_politician_role_evolution`, `view_riksdagen_politician_career_trajectory` | Daily | 3 career views |
-| **Election Cycle Analysis (v1.59-v1.60)** | [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) | `view_riksdagen_election_proximity_trends`, `view_riksdagen_election_year_behavioral_patterns`, `view_riksdagen_pre_election_quarterly_activity` | Weekly | 9 election views |
+| **Election Cycle Analysis (v1.59-v1.60)** | [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md) | `view_riksdagen_election_proximity_trends`, `view_riksdagen_election_year_behavioral_patterns`, `view_riksdagen_pre_election_quarterly_activity` | Weekly | 3 election views |
 | **Party Longitudinal (v1.61)** | [party-schema.md](json-export-specs/schemas/party-schema.md) | `view_riksdagen_party_longitudinal_performance`, `view_riksdagen_party_coalition_evolution`, `view_riksdagen_party_electoral_trends` | Weekly | 4 party views |
 
-#### Database View Categories (112 Total Views)
+#### Database View Categories (110 Total Views)
 
 **View Distribution by Intelligence Framework:**
 
@@ -144,9 +144,9 @@ This section provides direct links to JSON specifications defining the data stru
 | **Committee Analysis** | 12 views | ⭐⭐⭐⭐ HIGH | Frameworks 2, 6 | Committee productivity, decisions, membership, effectiveness |
 | **Application/Audit** | 14 views | ⭐⭐ LOW | N/A | User activity, session tracking, audit trails |
 
-**Total Database Views:** 112 (68 regular + 28 materialized + 16 new temporal analytics)
+**Total Database Views:** 110 (77 regular + 33 materialized)
 
-_Note: Category view counts above are not mutually exclusive; a single database view may support multiple intelligence frameworks and can therefore appear in more than one category. The total of 112 refers to distinct database views._
+_Note: Category view counts above are not mutually exclusive; a single database view may support multiple intelligence frameworks and can therefore appear in more than one category. The total of 110 refers to distinct database views._
 
 **Framework Coverage:** All 6 intelligence frameworks comprehensively supported  
 **Documentation:** 100% coverage in [DATABASE_VIEW_INTELLIGENCE_CATALOG.md](DATABASE_VIEW_INTELLIGENCE_CATALOG.md)  
@@ -192,7 +192,7 @@ Total Visualizations: 3+ Mermaid diagrams
 ### Data Model Integration
 
 For comprehensive database schema documentation:
-- **[DATABASE_VIEW_INTELLIGENCE_CATALOG.md](DATABASE_VIEW_INTELLIGENCE_CATALOG.md)** - Complete catalog of 112 database views with intelligence applications
+- **[DATABASE_VIEW_INTELLIGENCE_CATALOG.md](DATABASE_VIEW_INTELLIGENCE_CATALOG.md)** - Complete catalog of 110 database views with intelligence applications
 - **[full_schema.sql](service.data.impl/src/main/resources/full_schema.sql)** - Complete database schema with tables and views
 - **[json-export-specs/README.md](json-export-specs/README.md)** - JSON export system architecture and CDN deployment guide
 
@@ -1058,7 +1058,7 @@ flowchart TB
 }%%
 flowchart LR
     A[Riksdagen API<br/>Valmyndigheten<br/>World Bank<br/>ESV] --> B[Database Tables<br/>person_data<br/>assignment_data<br/>vote_data<br/>document_data]
-    B --> C[Database Views<br/>112 views<br/>68 regular + 28 materialized + 16 temporal analytics]
+    B --> C[Database Views<br/>110 views<br/>77 regular + 33 materialized]
     C --> D[JSON Specs<br/>5 schemas<br/>Markdown format]
     D --> E[API Endpoints<br/>REST API<br/>CDN Static Files]
     E --> F[Product Features<br/>6 Product Lines<br/>20+ Features]
@@ -1073,7 +1073,7 @@ flowchart LR
 | **Advanced Analytics Suite** | intelligence-schema.md | All schemas | 25+ analytical views |
 | **Risk Intelligence Feed** | intelligence-schema.md | politician-schema.md | 10+ risk & violation views |
 | **Predictive Analytics** | intelligence-schema.md | party-schema.md | 12+ temporal & trend views |
-| **White-Label Platform** | All schemas | - | All 112 views |
+| **White-Label Platform** | All schemas | - | All 110 views |
 | **Decision Intelligence** | intelligence-schema.md | ministry-schema.md | 8+ decision flow views |
 
 ---
@@ -1618,7 +1618,7 @@ Data Format:
 - **Committee Data**: [committee-schema.md](json-export-specs/schemas/committee-schema.md)
 - **Ministry Data**: [ministry-schema.md](json-export-specs/schemas/ministry-schema.md)
 - **Intelligence Data**: [intelligence-schema.md](json-export-specs/schemas/intelligence-schema.md)
-- **Database Access**: All 112 views documented in [DATABASE_VIEW_INTELLIGENCE_CATALOG.md](DATABASE_VIEW_INTELLIGENCE_CATALOG.md)
+- **Database Access**: All 110 views documented in [DATABASE_VIEW_INTELLIGENCE_CATALOG.md](DATABASE_VIEW_INTELLIGENCE_CATALOG.md)
 
 **White-Label Platform Components:**
 
@@ -1626,7 +1626,7 @@ Data Format:
 |-----------|-----------------|-------------------|---------------------|
 | User Interface | Vaadin (Java) | All JSON schemas | Full branding, colors, logos |
 | API Layer | Spring Boot REST | All schemas as endpoints | Custom endpoints available |
-| Database Layer | PostgreSQL + 112 views | Direct view access | Custom views supported |
+| Database Layer | PostgreSQL + 110 views | Direct view access | Custom views supported |
 | Analytics Engine | Drools (50 rules) | intelligence-schema.md | Custom rules available |
 | Export System | JSON/CSV/PDF | json-export-specs/ | Custom formats supported |
 | **Temporal Analytics (v1.55, v1.58-v1.61)** | PostgreSQL views | Seasonal patterns, career path, election cycle, party longitudinal | Full customization |
@@ -1646,7 +1646,7 @@ Data Format:
 flowchart TB
     CLIENT[Client Systems<br/>CRM, BI, Data Warehouse] <--> API[CIA REST API<br/>OAuth 2.0 + API Keys]
     API <--> PLATFORM[White-Label Platform<br/>Custom Branding + Domain]
-    PLATFORM <--> DB[(PostgreSQL Database<br/>112 Views + Custom Views)]
+    PLATFORM <--> DB[(PostgreSQL Database<br/>110 Views + Custom Views)]
     DB <--> EXPORT[JSON Export System<br/>json-export-specs/]
     EXPORT --> CDN[CDN Static Files<br/>Client-Branded]
 ```
@@ -2655,13 +2655,13 @@ This appendix provides comprehensive traceability from business product features
 **Business Features:**
 - Complete platform with all data sources
 - Custom branding and domain
-- All 85 database views accessible
+- All 110 database views accessible
 - Full JSON schema customization
 
 **Feature 5.1: White-Label Data Access**
 - **User Story**: "As a government transparency agency, I want a fully branded platform with all political data for public transparency"
 - **Product Value**: €500K-2M initial + €100K-300K/year (Government segment)
-- **Data Sources**: All 85 database views ([DATABASE_VIEW_INTELLIGENCE_CATALOG.md](DATABASE_VIEW_INTELLIGENCE_CATALOG.md))
+- **Data Sources**: All 110 database views ([DATABASE_VIEW_INTELLIGENCE_CATALOG.md](DATABASE_VIEW_INTELLIGENCE_CATALOG.md))
 - **JSON Specifications**: All schemas in [json-export-specs/schemas/](json-export-specs/schemas/)
   - [politician-schema.md](json-export-specs/schemas/politician-schema.md)
   - [party-schema.md](json-export-specs/schemas/party-schema.md)
@@ -2879,7 +2879,7 @@ flowchart TB
 - [🧩 SWOT.md](SWOT.md) — Strategic strengths, weaknesses, opportunities, and threats
 - [💰 FinancialSecurityPlan.md](FinancialSecurityPlan.md) — Infrastructure costs and security investments
 - [🏛️ ARCHITECTURE.md](ARCHITECTURE.md) — System architecture and technical foundation
-- [📋 DATABASE_VIEW_INTELLIGENCE_CATALOG.md](DATABASE_VIEW_INTELLIGENCE_CATALOG.md) — Complete catalog of 85 database views
+- [📋 DATABASE_VIEW_INTELLIGENCE_CATALOG.md](DATABASE_VIEW_INTELLIGENCE_CATALOG.md) — Complete catalog of 110 database views
 - [📦 json-export-specs/README.md](json-export-specs/README.md) — JSON export specifications and CDN deployment
 - [📐 json-export-specs/schemas/](json-export-specs/schemas/) — Technical JSON data specifications for all products
 

@@ -415,7 +415,7 @@ Comprehensive documentation of analytical capabilities and methodologies:
 |----------|-------|-------------|-------------------|
 | **[Data Analysis - INTOP OSINT](DATA_ANALYSIS_INTOP_OSINT.md)** | 🎯 Frameworks | 6 analysis frameworks (Temporal, Comparative, Pattern Recognition, Predictive, Network, Decision) | [View Source](https://github.com/Hack23/cia/blob/master/DATA_ANALYSIS_INTOP_OSINT.md) |
 | **[Risk Rules Documentation](RISK_RULES_INTOP_OSINT.md)** | 🔴 Risk Rules | 50 behavioral detection rules (24 politician, 10 party, 4 committee, 4 ministry, 5 decision, 3 other) | [View Source](https://github.com/Hack23/cia/blob/master/RISK_RULES_INTOP_OSINT.md) |
-| **[Database View Intelligence Catalog](DATABASE_VIEW_INTELLIGENCE_CATALOG.md)** | 🗄️ Views | Complete catalog of 85 database views (57 regular + 28 materialized) | [View Source](https://github.com/Hack23/cia/blob/master/DATABASE_VIEW_INTELLIGENCE_CATALOG.md) |
+| **[Database View Intelligence Catalog](DATABASE_VIEW_INTELLIGENCE_CATALOG.md)** | 🗄️ Views | Complete catalog of 110 database views (77 regular + 33 materialized) | [View Source](https://github.com/Hack23/cia/blob/master/DATABASE_VIEW_INTELLIGENCE_CATALOG.md) |
 | **[Data Quality Monitoring Dashboard](DATA_QUALITY_MONITORING_DASHBOARD.md)** | 📊 Quality | Unified data quality monitoring with OSINT, database health, and view validation metrics | [View Source](https://github.com/Hack23/cia/blob/master/DATA_QUALITY_MONITORING_DASHBOARD.md) |
 | **[Intelligence Data Flow Map](INTELLIGENCE_DATA_FLOW.md)** | 🗺️ Pipeline | Data pipeline mappings and framework-to-view relationships | [View Source](https://github.com/Hack23/cia/blob/master/INTELLIGENCE_DATA_FLOW.md) |
 | **[Liquibase Intelligence Analysis](LIQUIBASE_CHANGELOG_INTELLIGENCE_ANALYSIS.md)** | 🗄️ Schema | Database schema evolution from intelligence perspective | [View Source](https://github.com/Hack23/cia/blob/master/LIQUIBASE_CHANGELOG_INTELLIGENCE_ANALYSIS.md) |
@@ -442,7 +442,7 @@ Comprehensive documentation of analytical capabilities and methodologies:
 |----------|-------|-------------|
 | **Analysis Frameworks** | 6 | Temporal, Comparative, Pattern Recognition, Predictive, Network, Decision Intelligence |
 | **Risk Rules** | 50 | 24 politician + 10 party + 4 committee + 4 ministry + 5 decision + 3 other |
-| **Database Views** | 85 | 57 regular views + 28 materialized views |
+| **Database Views** | 110 | 77 regular views + 33 materialized views |
 | **OSINT Data Sources** | 4 | Riksdagen API, Election Authority, World Bank, Financial Authority |
 | **Intelligence Products** | 10+ | Scorecards, Coalition Analysis, Risk Assessments, Trend Reports, Decision Tracking |
 
@@ -458,7 +458,7 @@ Navigate intelligence documentation efficiently based on your role:
 **Goal:** Find views and analytical capabilities
 
 1. **Start**: [Data Analysis Frameworks](DATA_ANALYSIS_INTOP_OSINT.md) - Explore 6 analytical frameworks
-2. **Then**: [Database View Intelligence Catalog](DATABASE_VIEW_INTELLIGENCE_CATALOG.md) - Discover 84 database views
+2. **Then**: [Database View Intelligence Catalog](DATABASE_VIEW_INTELLIGENCE_CATALOG.md) - Discover 110 database views
 3. **Reference**: [Intelligence Data Flow Map](INTELLIGENCE_DATA_FLOW.md) - Understand data pipelines
 
 **Key Use Cases:**

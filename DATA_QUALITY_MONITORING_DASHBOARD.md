@@ -41,7 +41,7 @@ This ensures the integrity of political intelligence analysis performed by the C
 |-----------|--------|-------|---------|
 | **OSINT Sources** | 🟢 | 97.4% | 4/4 sources operational |
 | **Database Health** | 🟢 | 85.2/100 | Schema integrity verified |
-| **View Validation** | 🟢 | 100% | 84/84 views documented & validated |
+| **View Validation** | 🟢 | 100% | 110/110 views documented & validated |
 | **Data Freshness** | 🟢 | 98.5% | Daily updates current |
 | **Query Performance** | 🟡 | 53.1/100 | 68 missing FK indexes |
 
@@ -214,7 +214,7 @@ See: [View Intelligence Catalog](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#key-stati
 **Current Accuracy Metrics**:
 - **Schema Validation**: 99.1% pass rate
 - **Data Quality Score**: 96.43/100 (per health check)
-- **View Dependencies**: 91.00/100 (all 84 views operational)
+- **View Dependencies**: 91.00/100 (all 110 views operational)
 - **Known Issues**: 0 blocking issues (2 data quality issues fixed 2025-11-28)
 
 **Historical Validation Results**:
@@ -301,7 +301,7 @@ See: [Data Quality Analysis](service.data.impl/README-SCHEMA-MAINTENANCE.md#-dat
 
 **Key Improvements**:
 - **View Dependencies**: 55.00 → 91.00 (+36 points, +65% improvement)
-- **Documentation Coverage**: 90% → 100% (+10%, all 84 views)
+- **Documentation Coverage**: 90% → 100% (+10%, all 110 views)
 - **Database Health**: 75.00 → 85.20 (+10.2 points, +13.6% improvement)
 - **Fixed Issues**: 2 critical data quality issues (7,057 records affected)
 
@@ -810,7 +810,7 @@ This dashboard integrates with comprehensive intelligence documentation across t
 |----------|-------|-------------|------|
 | **[OSINT Data Analysis](DATA_ANALYSIS_INTOP_OSINT.md)** | 🎯 OSINT Quality | Source data quality metrics, 6 analytical frameworks | [View](DATA_ANALYSIS_INTOP_OSINT.md#core-platform-metrics-verified-2025-11-28) |
 | **[Schema Maintenance Guide](service.data.impl/README-SCHEMA-MAINTENANCE.md)** | 🔧 Health Checks | Database health check procedures, validation scripts | [View](service.data.impl/README-SCHEMA-MAINTENANCE.md#health-check-and-validation) |
-| **[View Intelligence Catalog](DATABASE_VIEW_INTELLIGENCE_CATALOG.md)** | 🗄️ View Validation | 84 database views catalog with validation status | [View](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#key-statistics-reverified-2025-11-25) |
+| **[View Intelligence Catalog](DATABASE_VIEW_INTELLIGENCE_CATALOG.md)** | 🗄️ View Validation | 110 database views catalog with validation status | [View](DATABASE_VIEW_INTELLIGENCE_CATALOG.md) |
 | **[Data Quality Analysis](service.data.impl/README-SCHEMA-MAINTENANCE.md#-data-quality-analysis)** | 📊 Analysis | Distinct values analysis, known issues, fixes | [View](service.data.impl/README-SCHEMA-MAINTENANCE.md#-data-quality-analysis) |
 
 ### Data Pipeline & Architecture
@@ -883,9 +883,9 @@ This dashboard integrates with comprehensive intelligence documentation across t
                   │
 ┌─────────────────▼───────────────────────────────────┐
 │             PostgreSQL Database                      │
-│  - 93 tables, 84 views (56 regular + 28 mat views) │
+│  - 93 tables, 110 views (77 regular + 33 mat views) │
 │  - 20 GB, 5.6M rows                                 │
-│  - Schema v1.37 with health monitoring              │
+│  - Schema v1.80 with health monitoring              │
 └──────────────────────────────────────────────────────┘
 ```
 
@@ -907,7 +907,7 @@ External OSINT APIs
     ↓
 Service.External.* Modules (Riksdagen, Val, WorldBank, ESV)
     ↓
-PostgreSQL Database (93 tables, 84 views)
+PostgreSQL Database (93 tables, 110 views)
     ↓
 Schema Health Check (SQL scripts)
     ↓

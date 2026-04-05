@@ -19,7 +19,7 @@ Comprehensive tracking of intelligence capabilities, database views, risk rules,
 | Document Type | Description | Coverage |
 |---------------|-------------|----------|
 | **Intelligence Frameworks** | Analysis methodologies (Temporal, Comparative, Pattern Recognition, Predictive, Network, Decision) | 6 frameworks |
-| **Database Views** | Data layer supporting intelligence products | 84+ views |
+| **Database Views** | Data layer supporting intelligence products | 110 views |
 | **Risk Rules** | Behavioral detection and assessment rules | 50+ rules |
 | **Related Documentation** | [Data Analysis](DATA_ANALYSIS_INTOP_OSINT.md), [Risk Rules](RISK_RULES_INTOP_OSINT.md), [View Catalog](DATABASE_VIEW_INTELLIGENCE_CATALOG.md) | Full suite |
 
@@ -1655,7 +1655,7 @@ ORDER BY success_rate_pct DESC, total_decisions DESC;
 
 ### Additional View Documentation
 
-**Complete Catalog**: For comprehensive documentation of all 84+ views, see [DATABASE_VIEW_INTELLIGENCE_CATALOG.md](DATABASE_VIEW_INTELLIGENCE_CATALOG.md)
+**Complete Catalog**: For comprehensive documentation of all 110 views, see [DATABASE_VIEW_INTELLIGENCE_CATALOG.md](DATABASE_VIEW_INTELLIGENCE_CATALOG.md)
 
 **Original Changelog**: For complete historical view schema details, see archived [CHANGELOG_DATABASE_VIEWS.md](docs/archive/CHANGELOG_DATABASE_VIEWS.md)
 
