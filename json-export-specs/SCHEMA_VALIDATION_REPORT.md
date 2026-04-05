@@ -1,10 +1,11 @@
 # JSON Schema Validation Report
 ## Database Schema Alignment Analysis
 
-**Version:** 1.0.0  
-**Date:** 2024-11-24  
-**Status:** Analysis Complete - Recommendations Provided  
-**Validated Against:** service.data.impl/src/main/resources/full_schema.sql
+**Version:** 2.0.0  
+**Date:** 2026-04-05  
+**Status:** Analysis Complete - Remediation Plan Provided  
+**Validated Against:** service.data.impl/src/main/resources/full_schema.sql  
+**Total Schema Mismatches:** 121 (across 4 entity schemas)
 
 ---
 
@@ -23,11 +24,22 @@ This document validates the JSON export specifications against the actual CIA pl
 
 | Category | Status | Coverage | Notes |
 |----------|--------|----------|-------|
-| **Core Attributes** | ✅ Aligned | 85% | Most key fields mapped correctly |
+| **Politician Schema** | ⚠️ Partial | 31% (14/45) | 31 mismatches; 251 DB columns available across views |
+| **Party Schema** | ❌ Low | 10% (4/42) | 38 mismatches; 317 DB columns available across views |
+| **Committee Schema** | ❌ Low | 8% (2/26) | 24 mismatches; 155 DB columns available across views |
+| **Ministry Schema** | ❌ Low | 3% (1/29) | 28 mismatches; 96 DB columns available across views |
+| **Intelligence Schema** | ✅ Good | N/A | Different structure (mermaid-based); no direct field mapping |
 | **Time Series Data** | ⚠️ Partial | 40% | Underrepresented in JSON specs |
 | **Sample Data Accuracy** | ⚠️ Synthetic | 30% | Examples use synthetic vs real patterns |
-| **Intelligence Views** | ✅ Good | 75% | Core intelligence views covered |
-| **Advanced Analytics** | ⚠️ Partial | 50% | Some views not exposed in JSON |
+
+### Field Status Summary
+
+| Classification | Count | Description |
+|----------------|-------|-------------|
+| ✅ Implemented | 21 | Fields found in CSV sample data and mapped to JSON |
+| ❌ Structural | 50 | JSON grouping objects (not direct DB columns) |
+| 🔄 Planned | 71 | Not yet available in data; require implementation |
+| **Total** | **142** | 121 mismatches + 21 implemented |
 
 **Legend:** ✅ Fully Aligned | ⚠️ Partial/Improvements Needed | ❌ Missing/Not Aligned
 
@@ -405,20 +417,158 @@ Add dedicated time series sections to JSON schemas:
 
 ---
 
-## 8. Validation Checklist
+## 8. Mismatch Resolution Strategy
+
+The 121 identified mismatches fall into three distinct categories, each requiring a different remediation approach:
+
+### 8.1 Structural Fields (50 mismatches) — Not Real Mismatches
+
+These are JSON grouping objects used to organize nested data (e.g., `votingActivity`, `documents`, `riskAssessment`). They are structural containers in the JSON schema and do not correspond to individual database columns. No implementation action is required.
+
+**Examples:**
+- `votingActivity` → groups `totalVotes`, `attendanceRate`, `rebellionRate`
+- `documents` → groups `totalDocuments`, `motions`, `interpellations`
+- `riskAssessment` → groups `riskScore`, `riskCategory`, `riskFactors`
+- `financialMetrics` → groups budget and expenditure sub-fields
+
+**Resolution:** Document as structural; no DB mapping needed. These exist purely for JSON schema organization.
+
+### 8.2 Computable Fields (≈40 of the 71 planned) — Implementation Needed
+
+These fields can be derived from existing database views and columns through direct mapping, aggregation, or simple joins. They represent the highest-value implementation targets.
+
+**Sources:**
+- Politician views: 251 columns across 14 views
+- Party views: 317 columns across 13 views
+- Committee views: 155 columns across 12 views
+- Ministry views: 96 columns across 8 views
+
+**Resolution:** Implement in Sprints 1–2 of the Remediation Roadmap (see below).
+
+### 8.3 Planned Fields (≈31 of the 71 planned) — Future Work
+
+These fields require new data sources, external API integration, or new database views not yet created. They include enrichment data such as ideology classifications, historical founding dates, and cross-entity network metrics.
+
+**Examples:**
+- `party.founded` — requires historical data not in Riksdagen API
+- `party.ideology` — requires editorial/classification data
+- `ministry.budget.allocated` — requires ESV (Ekonomistyrningsverket) integration
+- `ministry.personnel.total` — requires government personnel data source
+
+**Resolution:** Plan for Sprint 3 and beyond; may require new data collection pipelines.
+
+---
+
+## 9. Top 25 Priority Fields for Implementation
+
+These fields provide the highest business value and can be implemented from existing database columns:
+
+| # | Field Name | Schema | Source View/Column | Effort | Business Value |
+|---|-----------|--------|-------------------|--------|---------------|
+| 1 | `collaborationPercentage` | Politician | `view_riksdagen_politician.collaboration_percentage` | Low | High — cross-party work metric |
+| 2 | `successRate` | Party | `view_party_performance_metrics.success_rate` | Low | High — party effectiveness KPI |
+| 3 | `totalSeats` | Party | `view_riksdagen_party.total_seats` | Low | High — core representation metric |
+| 4 | `riskScore` | Politician | `view_politician_risk_summary.risk_score` | Low | High — risk assessment priority |
+| 5 | `riskCategory` | Politician | `view_politician_risk_summary.risk_category` | Low | High — risk classification |
+| 6 | `influenceScore` | Politician | `view_riksdagen_politician_influence_metrics.influence_score` | Low | High — network analysis |
+| 7 | `attendanceRate` | Party | `view_party_performance_metrics.attendance_rate` | Low | High — accountability metric |
+| 8 | `decisionWinRate` | Party | `view_party_performance_metrics.decision_win_rate` | Low | High — legislative effectiveness |
+| 9 | `totalDaysServedSpeaker` | Politician | `view_riksdagen_politician.total_days_served_speaker` | Low | Medium — role completeness |
+| 10 | `activeSpeaker` | Politician | `view_riksdagen_politician.active_speaker` | Low | Medium — current role status |
+| 11 | `committeLeadershipAssignments` | Politician | `view_riksdagen_politician.total_committee_leadership_assignments` | Low | Medium — leadership tracking |
+| 12 | `currentCommitteeLeadership` | Politician | `view_riksdagen_politician.current_committee_leadership_assignments` | Low | Medium — current leadership |
+| 13 | `committeeSubstituteAssignments` | Politician | `view_riksdagen_politician.total_committee_substitute_assignments` | Low | Medium — role depth |
+| 14 | `firstDocumentDate` | Politician | `view_riksdagen_politician.first_document_date` | Low | Medium — career timeline |
+| 15 | `lastDocumentDate` | Politician | `view_riksdagen_politician.last_document_date` | Low | Medium — recency indicator |
+| 16 | `votingTrendMonthly` | Politician | `view_riksdagen_vote_data_ballot_politician_summary_monthly` | Medium | High — temporal analysis |
+| 17 | `behavioralTrends` | Politician | `view_politician_behavioral_trends` (multiple columns) | Medium | High — pattern detection |
+| 18 | `partyEffectivenessTrend` | Party | `view_party_effectiveness_trends` (multiple columns) | Medium | High — trend analysis |
+| 19 | `momentumAnalysis` | Party | `view_party_momentum_analysis` (multiple columns) | Medium | High — political momentum |
+| 20 | `coalitionAlignment` | Party | `view_riksdagen_coalition_alignment_matrix` (multiple columns) | Medium | High — coalition intelligence |
+| 21 | `committeeProductivity` | Committee | `view_committee_productivity_matrix` (multiple columns) | Medium | Medium — productivity metrics |
+| 22 | `committeeDecisionTypes` | Committee | `view_riksdagen_committee_decision_type_summary` (aggregation) | Medium | Medium — decision classification |
+| 23 | `anomalyDetection` | Intelligence | `view_riksdagen_voting_anomaly_detection` (join) | Medium | High — anomaly monitoring |
+| 24 | `crisisResilience` | Intelligence | `view_riksdagen_crisis_resilience_indicators` (join) | High | High — crisis preparedness |
+| 25 | `ministryDecisionImpact` | Ministry | `view_ministry_decision_impact` (new view, v1.35) | High | Medium — ministry effectiveness |
+
+---
+
+## 10. Remediation Roadmap
+
+### Sprint 1: Low-Effort Computed Fields (1–2 weeks)
+
+**Goal:** Implement direct DB column mappings — fields 1–15 from the priority list.
+
+| Task | Schema(s) | Fields | Effort |
+|------|-----------|--------|--------|
+| Map politician core missing fields | Politician | `collaborationPercentage`, `totalDaysServedSpeaker`, `activeSpeaker` | 2 days |
+| Map politician leadership/substitute fields | Politician | `committeeLeadershipAssignments`, `currentCommitteeLeadership`, `committeeSubstituteAssignments` | 1 day |
+| Map politician document timeline | Politician | `firstDocumentDate`, `lastDocumentDate` | 1 day |
+| Map politician risk fields | Politician | `riskScore`, `riskCategory` | 1 day |
+| Map politician influence | Politician | `influenceScore` | 1 day |
+| Map party effectiveness fields | Party | `successRate`, `totalSeats`, `attendanceRate`, `decisionWinRate` | 2 days |
+| Update JSON example files | All | Realistic IDs, Swedish names, real party codes | 1 day |
+
+**Expected impact:** Resolves ~15 mismatches. Politician coverage rises to ~60%, Party to ~20%.
+
+### Sprint 2: Medium-Effort Computed Fields (2–3 weeks)
+
+**Goal:** Implement aggregation/join-based fields — fields 16–23 from the priority list.
+
+| Task | Schema(s) | Fields | Effort |
+|------|-----------|--------|--------|
+| Add time series sections | Politician, Party | `votingTrendMonthly`, `behavioralTrends` | 3 days |
+| Add party trend analytics | Party | `partyEffectivenessTrend`, `momentumAnalysis`, `coalitionAlignment` | 3 days |
+| Add committee analytics | Committee | `committeeProductivity`, `committeeDecisionTypes` | 2 days |
+| Add anomaly detection section | Intelligence | `anomalyDetection` | 2 days |
+| Update schemas and documentation | All | Schema definitions, examples, validation | 2 days |
+
+**Expected impact:** Resolves ~8 additional mismatches. Adds time series coverage.
+
+### Sprint 3: High-Effort Planned Fields (3–4 weeks)
+
+**Goal:** Plan and prototype new data collection for fields 24–25 and remaining planned fields.
+
+| Task | Schema(s) | Dependency | Effort |
+|------|-----------|------------|--------|
+| Integrate crisis resilience indicators | Intelligence | `view_riksdagen_crisis_resilience_indicators` data population | 1 week |
+| Integrate ministry decision impact | Ministry | v1.35 view deployment | 1 week |
+| Evaluate external data sources | Party, Ministry | ESV API, government personnel data | 1 week |
+| Design new data pipelines | All | Architecture review for new feeds | 1 week |
+
+**Expected impact:** Addresses remaining ~31 planned fields over multiple iterations.
+
+### Remediation Progress Tracker
+
+| Sprint | Planned | Completed | Mismatches Resolved | Remaining |
+|--------|---------|-----------|---------------------|-----------|
+| Sprint 1 | 15 fields | — | — | 121 |
+| Sprint 2 | 8 fields | — | — | — |
+| Sprint 3 | 31+ fields | — | — | — |
+| **Total** | **54+** | **—** | **—** | **—** |
+
+---
+
+## 11. Validation Checklist
 
 Use this checklist when implementing changes:
 
-- [ ] Person ID format matches real data (13 digits)
-- [ ] Names use realistic Swedish patterns
-- [ ] Party codes match 8 parliamentary parties (S, M, V, KD, C, L, MP, SD)
-- [ ] All database view columns are documented
-- [ ] Time series sections are added
-- [ ] Intelligence metrics align with actual views
+- [x] Person ID format matches real data (13 digits)
+- [x] Names use realistic Swedish patterns
+- [x] Party codes match 8 parliamentary parties (S, M, V, KD, C, L, MP, SD)
+- [x] All database view columns are documented
+- [ ] Time series sections are added to JSON schemas
+- [x] Intelligence metrics align with actual views
 - [ ] Example JSON files use real sample data patterns
-- [ ] Fields not in database are marked as "planned"
+- [x] Fields not in database are marked as "planned"
 - [ ] Schema validation tests pass
-- [ ] Documentation references correct view names
+- [x] Documentation references correct view names
+- [ ] Structural fields (50) documented as JSON grouping objects
+- [ ] Computable fields (40) mapped to source DB columns
+- [ ] Planned fields (31) tracked with data source requirements
+- [ ] Remediation Sprint 1 complete (15 low-effort fields)
+- [ ] Remediation Sprint 2 complete (8 medium-effort fields)
+- [ ] Remediation Sprint 3 planned (31+ high-effort fields)
 
 ---
 
@@ -508,7 +658,7 @@ Use this checklist when implementing changes:
 
 ---
 
-**Document Status:** ✅ Complete  
-**Next Review:** After implementing Priority 1 recommendations  
+**Document Status:** ✅ Complete — Remediation Plan Added  
+**Next Review:** After completing Sprint 1 remediation  
 **Owner:** Intelligence Operations Team  
-**Last Updated:** 2024-11-24
+**Last Updated:** 2026-04-05
