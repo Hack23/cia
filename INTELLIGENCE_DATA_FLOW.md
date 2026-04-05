@@ -428,10 +428,10 @@ flowchart LR
 | **Ministry Views** | 9 | Temporal, Comparative | ⭐⭐⭐⭐ HIGH | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#ministrygovernment-views) |
 | **Vote Data Views** | 16 | Temporal, Pattern, Comparative | ⭐⭐⭐⭐⭐ VERY HIGH | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#vote-data-views) |
 | **Document Views** | 9 | Temporal, Comparative | ⭐⭐⭐⭐ HIGH | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#document-views) |
-| **Intelligence Views** | 8 | Pattern, Predictive, All | ⭐⭐⭐⭐⭐ VERY HIGH | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#intelligence--risk-views) |
-| **Election Cycle Views** | 6 | Temporal, Predictive, Network | ⭐⭐⭐⭐⭐ VERY HIGH | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#election-cycle-views) |
-| **Seasonal/Election Year Views** | 7 | Temporal, Pattern | ⭐⭐⭐⭐ HIGH | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#seasonal--election-year-views) |
-| **Application Views** | 14 | Temporal, Pattern | ⭐⭐ LOW | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#application--audit-views) |
+| **Intelligence Views** | 8 | Pattern, Predictive, All | ⭐⭐⭐⭐⭐ VERY HIGH | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md) |
+| **Election Cycle Views** | 6 | Temporal, Predictive, Network | ⭐⭐⭐⭐⭐ VERY HIGH | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md) |
+| **Seasonal/Election Year Views** | 7 | Temporal, Pattern | ⭐⭐⭐⭐ HIGH | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md) |
+| **Application Views** | 14 | Temporal, Pattern | ⭐⭐ LOW | [View Docs](DATABASE_VIEW_INTELLIGENCE_CATALOG.md) |
 
 ---
 

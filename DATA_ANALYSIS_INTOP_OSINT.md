@@ -60,8 +60,8 @@ This document provides comprehensive documentation of data analysis methodologie
 - Decision effectiveness tracking (100% operational post-fix)
 
 **Database Views**: 110 views (see DATABASE_VIEW_INTELLIGENCE_CATALOG.md for authoritative totals)
-- **Regular Views**: 54 views (100% documented)
-- **Materialized Views**: 28 views (100% documented)
+- **Regular Views**: 77 views (100% documented)
+- **Materialized Views**: 33 views (100% documented)
 - **View Health**: 91/100 (excellent - improved from 55/100 after 2025-11-28 fixes)
 - **New Views (v1.55-v1.61)**: 20 views added (seasonal trends, election proximity, career paths, party longitudinal, career trajectory)
 

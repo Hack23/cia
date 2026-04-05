@@ -810,7 +810,7 @@ This dashboard integrates with comprehensive intelligence documentation across t
 |----------|-------|-------------|------|
 | **[OSINT Data Analysis](DATA_ANALYSIS_INTOP_OSINT.md)** | 🎯 OSINT Quality | Source data quality metrics, 6 analytical frameworks | [View](DATA_ANALYSIS_INTOP_OSINT.md#core-platform-metrics-verified-2025-11-28) |
 | **[Schema Maintenance Guide](service.data.impl/README-SCHEMA-MAINTENANCE.md)** | 🔧 Health Checks | Database health check procedures, validation scripts | [View](service.data.impl/README-SCHEMA-MAINTENANCE.md#health-check-and-validation) |
-| **[View Intelligence Catalog](DATABASE_VIEW_INTELLIGENCE_CATALOG.md)** | 🗄️ View Validation | 110 database views catalog with validation status | [View](DATABASE_VIEW_INTELLIGENCE_CATALOG.md#key-statistics-updated-v180) |
+| **[View Intelligence Catalog](DATABASE_VIEW_INTELLIGENCE_CATALOG.md)** | 🗄️ View Validation | 110 database views catalog with validation status | [View](DATABASE_VIEW_INTELLIGENCE_CATALOG.md) |
 | **[Data Quality Analysis](service.data.impl/README-SCHEMA-MAINTENANCE.md#-data-quality-analysis)** | 📊 Analysis | Distinct values analysis, known issues, fixes | [View](service.data.impl/README-SCHEMA-MAINTENANCE.md#-data-quality-analysis) |
 
 ### Data Pipeline & Architecture
@@ -885,7 +885,7 @@ This dashboard integrates with comprehensive intelligence documentation across t
 │             PostgreSQL Database                      │
 │  - 93 tables, 110 views (77 regular + 33 mat views) │
 │  - 20 GB, 5.6M rows                                 │
-│  - Schema v1.37 with health monitoring              │
+│  - Schema v1.80 with health monitoring              │
 └──────────────────────────────────────────────────────┘
 ```
 

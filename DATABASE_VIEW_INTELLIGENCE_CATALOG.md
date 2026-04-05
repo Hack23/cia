@@ -48,7 +48,7 @@ The Citizen Intelligence Agency (CIA) platform employs **110 database views** (7
 
 **Note**: Total view count updated from 96 to 110 after full audit against full_schema.sql (v1.80). Added 5 new-style materialized views (mv_*), 4 career/trajectory politician views, 7 seasonal/election year views, and 1 decision temporal trends view that were previously undercounted. Four views (party_summary, party_longitudinal_performance, party_coalition_evolution, party_electoral_trends) were recreated in v1.61 after being dropped in v1.53/v1.6 but never recreated, causing JPA entity mismatch.
 
-### Key Statistics (UPDATED 2026-01-19)
+### Key Statistics (UPDATED 2026-04-05)
 
 | Metric | Count | Description |
 |--------|-------|-------------|
@@ -58,7 +58,7 @@ The Citizen Intelligence Agency (CIA) platform employs **110 database views** (7
 | **Views Documented (Detailed)** | 15 | ✅ Views with comprehensive examples and performance characteristics |
 | **Views Documented (Structured)** | 95 | Purpose, metrics, queries, product mappings |
 | **Documentation Coverage** | 100% | All 110 views documented |
-| **Intelligence Views** | 7 | Advanced analytical views (risk, anomaly, influence, crisis, momentum, dashboard, temporal trends) |
+| **Intelligence Views** | 8 | Advanced analytical views (risk, anomaly, influence, crisis, momentum, dashboard, temporal trends) |
 | **Election Cycle Views** | 6 | v1.51: META/META-level election cycle analysis across 6 frameworks |
 | **Party Analysis Views (v1.61)** | 4 | Recreated views with 59-70 columns, advanced window functions, forecasting |
 | **Career Trajectory Views** | 4 | v1.56/v1.58: Politician career pattern detection, role evolution, longevity analysis, career path |
@@ -201,7 +201,7 @@ To validate documentation coverage manually:
 
 The documentation achieved 100% coverage through systematic validation and remediation:
 
-- **2025-11-20**: Initial validation revealed 10.98% coverage (9/110 views)
+- **2025-11-20**: Initial validation revealed 10.98% coverage (9/82 views)
 - **2025-11-21**: Complete documentation added for 73 missing views
 - **2025-11-25**: Reverified counts (82→84 views), maintained 100% coverage
 
@@ -517,7 +517,7 @@ This section provides a complete alphabetical inventory of all 110 database view
 **Detailed Documentation (📖):** 15  
 **Structured Documentation (📝):** 95  
 **Documentation Coverage:** 100%  
-**Materialized Views:** 28  
+**Materialized Views:** 33  
 **Views by Intelligence Value:**
 - ⭐⭐⭐⭐⭐ VERY HIGH: 30 views
 - ⭐⭐⭐⭐ HIGH: 26 views
@@ -8366,13 +8366,13 @@ All views are exported via JSON API with standardized schemas. See complete spec
 
 ## Document Metadata
 
-**Version:** 2.2  
-**Date:** 2025-12-10  
+**Version:** 3.0  
+**Date:** 2026-04-05  
 **Classification:** Public Documentation  
 **Status:** Active - Comprehensive Documentation with Business Context  
-**Last Updated:** 2025-12-10  
+**Last Updated:** 2026-04-05  
 **Last Validated Against Schema:** 2026-04-05  
-**Next Review:** 2025-12-25 (monthly review recommended)
+**Next Review:** 2026-05-05 (monthly review recommended)
 
 **Authors:** Citizen Intelligence Agency Intelligence Operations Team  
 **Reviewers:** Stack Specialist, Intelligence Operative  
