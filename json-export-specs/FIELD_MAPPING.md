@@ -393,8 +393,8 @@ Fields that exist in database views and only require column-to-JSON mapping.
 | 8 | Committee | `name` | `committee_name` | `view_riksdagen_committee` | **Low** | 🔴 High |
 | 9 | Committee | `totalMembers` | `current_member_size` | `view_riksdagen_committee` | **Low** | 🔴 High |
 | 10 | Committee | `performanceScore` | `productivity_score` | `view_riksdagen_committee` | **Low** | 🔴 High |
-| 11 | Ministry | `id` | `name_id` | `view_riksdagen_government` | **Low** | 🔴 High |
-| 12 | Ministry | `effectiveness` | `effectiveness_assessment` | `view_riksdagen_government` | **Low** | 🔴 High |
+| 11 | Ministry | `id` | `name_id` | `view_riksdagen_goverment` | **Low** | 🔴 High |
+| 12 | Ministry | `effectiveness` | `effectiveness_assessment` | `view_riksdagen_goverment` | **Low** | 🔴 High |
 
 > ¹ These fields are in the DB but not yet mapped to the JSON schema — add to schema first.
 
@@ -412,7 +412,7 @@ Fields requiring minimal computation from existing columns.
 | 18 | Committee | `regularMembers` | `current_regular_members` | `view_riksdagen_committee` | **Low** | 🟡 Medium |
 | 19 | Committee | `deputyMembers` | `current_substitute_positions` | `view_riksdagen_committee` | **Low** | 🟡 Medium |
 | 20 | Committee | `reports` | `reports_count` | `view_riksdagen_committee` | **Low** | 🟡 Medium |
-| 21 | Ministry | `executionRate` | `approval_rate / (approval_rate + rejection_rate)` | `view_riksdagen_government` | **Low** | 🟡 Medium |
+| 21 | Ministry | `executionRate` | `approval_rate / (approval_rate + rejection_rate)` | `view_riksdagen_goverment` | **Low** | 🟡 Medium |
 
 ### Tier 3 — Medium Effort, High Value (Aggregation Required)
 
