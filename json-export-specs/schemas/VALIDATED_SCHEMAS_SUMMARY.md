@@ -5,31 +5,31 @@
 
 ## Overview
 
-The original JSON export schemas define comprehensive data models for political intelligence. Automated validation has identified 120 field mismatches across 4 schemas. These mismatches have been classified into three categories: **structural** (JSON grouping objects, including non-scalar relationship/link types), **computed** (derivable from existing DB columns), and **planned** (requiring new data sources).
+The original JSON export schemas define comprehensive data models for political intelligence. Automated validation has identified 144 field mismatches across 4 schemas. These mismatches have been classified into three categories: **structural** (JSON grouping objects, including non-scalar relationship/link types and array types), **computed** (derivable from existing DB columns), and **planned** (requiring new data sources).
 
 ## Validation Results
 
 | Schema | Original Fields | Implemented | Structural | Computed | Planned | Mismatches |
 |--------|----------------|-------------|------------|----------|---------|------------|
-| **Politician** | 46 | 14 | 19 | 11 | 2 | 32 |
-| **Party** | 43 | 4 | 18 | 12 | 9 | 39 |
-| **Committee** | 26 | 4 | 8 | 9 | 5 | 22 |
-| **Ministry** | 29 | 2 | 11 | 10 | 6 | 27 |
+| **Politician** | 55 | 14 | 24 | 11 | 6 | 41 |
+| **Party** | 51 | 4 | 22 | 12 | 13 | 47 |
+| **Committee** | 29 | 4 | 9 | 9 | 7 | 25 |
+| **Ministry** | 33 | 2 | 12 | 10 | 9 | 31 |
 | **Intelligence** | 0* | 0 | 0 | 0 | 0 | **0** |
-| **TOTAL** | **144** | **24** | **56** | **42** | **22** | **120** |
+| **TOTAL** | **168** | **24** | **67** | **42** | **35** | **144** |
 
 *Intelligence schema uses a different structure not parsed by mermaid field extraction.
 
 ## Mismatch Classification
 
-### Not Real Mismatches (56 structural)
-Fields like `attributes`, `labels`, `relationships`, `intelligence`, `decisions`, `policy`, `trend`, `alignment`, `productivity` are **JSON grouping objects** — they organize the schema structure but don't correspond to individual database columns. Non-scalar relationship/link types (e.g., `PartyLink:party`, `MinistryLink:ministry`, `Trends:trend`) are also counted as structural. These should be excluded from field-level validation.
+### Not Real Mismatches (67 structural)
+Fields like `attributes`, `labels`, `relationships`, `intelligence`, `decisions`, `policy`, `trend`, `alignment`, `productivity` are **JSON grouping objects** — they organize the schema structure but don't correspond to individual database columns. Non-scalar relationship/link types (e.g., `PartyLink:party`, `MinistryLink:ministry`, `Trends:trend`) and array types (e.g., `CommitteeLink[]:committees`, `String[]:subcategories`) are also counted as structural. These should be excluded from field-level validation.
 
 ### Implementable Now (42 computed)
 Fields like `fullName`, `partyLoyalty`, `performanceScore` can be **derived from existing database columns** with SQL aggregations, concatenations, or view mappings. See `FIELD_MAPPING.md` for implementation details.
 
-### Future Work (22 planned)
-Fields like `foundedYear`, `ideology`, `nameEn`, `headquarters` require **external data sources** not currently in the database. These are long-term implementation goals.
+### Future Work (35 planned)
+Fields like `foundedYear`, `ideology`, `nameEn`, `headquarters`, `keyVotes`, `partners` require **external data sources** not currently in the database. These are long-term implementation goals.
 
 ## Validated Schema Files
 

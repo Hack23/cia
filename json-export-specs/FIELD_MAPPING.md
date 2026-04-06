@@ -3,7 +3,7 @@
 **Generated:** 2026-04-05  
 **Purpose:** Document explicit mappings between JSON schema fields and database columns with implementation status  
 **Status:** Comprehensive mapping with validated implementation status  
-**Validation Run:** 120 total mismatches across 4 schemas (Intelligence: 0 mismatches)
+**Validation Run:** 144 total mismatches across 4 schemas (Intelligence: 0 mismatches)
 
 ---
 
@@ -26,18 +26,18 @@ The `validate_schemas.py` tool reports **implemented**, **structural**, **comput
 
 | Schema | Total Fields | Implemented | Structural | Computed | Planned | Mismatches |
 |--------|-------------|-------------|------------|----------|---------|------------|
-| **Politician** | 46 | 14 | 19 | 11 | 2 | 32 |
-| **Party** | 43 | 4 | 18 | 12 | 9 | 39 |
-| **Committee** | 26 | 4 | 8 | 9 | 5 | 22 |
-| **Ministry** | 29 | 2 | 11 | 10 | 6 | 27 |
+| **Politician** | 55 | 14 | 24 | 11 | 6 | 41 |
+| **Party** | 51 | 4 | 22 | 12 | 13 | 47 |
+| **Committee** | 29 | 4 | 9 | 9 | 7 | 25 |
+| **Ministry** | 33 | 2 | 12 | 10 | 9 | 31 |
 | **Intelligence** | All | All | — | — | — | **0** |
-| **Total** | **144** | **24** | **56** | **42** | **22** | **120** |
+| **Total** | **168** | **24** | **67** | **42** | **35** | **144** |
 
 ---
 
 ## Politician Schema Field Mappings
 
-**Validation result:** 14 fields implemented, 32 mismatches  
+**Validation result:** 14 fields implemented, 41 mismatches  
 **Source views:** `view_riksdagen_politician`, `view_riksdagen_politician_ballot_summary`, `view_riksdagen_politician_document_summary`  
 **Available DB columns:** 251 total
 
@@ -125,7 +125,7 @@ These fields are structural nesting keys or non-scalar relationship/link types i
 
 ## Party Schema Field Mappings
 
-**Validation result:** 4 fields implemented, 39 mismatches  
+**Validation result:** 4 fields implemented, 47 mismatches  
 **Source views:** `view_riksdagen_party_summary`, `view_riksdagen_party_member`, `view_riksdagen_party_ballot_support_annual_summary`  
 **Available DB columns:** 317 total
 
@@ -208,7 +208,7 @@ These fields are structural nesting keys or non-scalar relationship/link types i
 
 ## Committee Schema Field Mappings
 
-**Validation result:** 4 fields implemented, 22 mismatches  
+**Validation result:** 4 fields implemented, 25 mismatches  
 **Source views:** `view_riksdagen_committee`, `view_riksdagen_committee_decisions`, `view_committee_productivity`  
 **Available DB columns:** 155 total
 
@@ -245,7 +245,7 @@ These fields are structural nesting keys or non-scalar relationship/link types i
 | `meetings` | integer | Meeting count data — requires new data source | Medium | 🔄 **PLANNED** |
 | `influence` | float | Cross-committee influence scoring — requires algorithm | High | 🔄 **PLANNED** |
 
-### Structural Fields (8 — JSON Grouping Objects)
+### Structural Fields (7 — JSON Grouping Objects)
 
 | JSON Field | Reason | Status |
 |------------|--------|--------|
@@ -256,7 +256,6 @@ These fields are structural nesting keys or non-scalar relationship/link types i
 | `decisions` | Container section for decision data | ❌ **STRUCTURAL** |
 | `intelligence` | Container section for intelligence data | ❌ **STRUCTURAL** |
 | `policy` | Container section for policy data | ❌ **STRUCTURAL** |
-| `meetings` | Container section for meeting data (when structural) | ❌ **STRUCTURAL** |
 
 ### Unmapped Database Columns (High-Value — Not Yet in Schema)
 
@@ -273,7 +272,7 @@ These fields are structural nesting keys or non-scalar relationship/link types i
 
 ## Ministry Schema Field Mappings
 
-**Validation result:** 2 fields implemented, 27 mismatches  
+**Validation result:** 2 fields implemented, 31 mismatches  
 **Source views:** `view_riksdagen_goverment`, `view_riksdagen_goverment_role_member`, `view_ministry_effectiveness_trends`, `view_ministry_productivity_matrix`, `view_ministry_risk_evolution`  
 **Available DB columns:** 96 total
 
@@ -466,28 +465,28 @@ Sprint 3 (Tier 3): Build 4 aggregation pipelines
 
 ## Mismatch Resolution Strategy
 
-### Reducing the 120 Mismatches
+### Reducing the 144 Mismatches
 
 | Action | Fields Resolved | Remaining |
 |--------|----------------|-----------|
-| **Start** | — | 120 mismatches |
-| Mark structural groupings as STRUCTURAL | 56 fields | 64 mismatches |
-| Implement Tier 1 direct mappings | 12 fields | 52 mismatches |
-| Implement Tier 2 simple derivations | 9 fields | 43 mismatches |
-| Implement Tier 3 aggregations | 4 fields | 39 mismatches |
-| Add remaining COMPUTED fields | 17 fields | 22 mismatches |
-| Add PLANNED static reference data | 14 fields | 8 mismatches |
-| Remaining (external data sources) | — | **8 true gaps** |
+| **Start** | — | 144 mismatches |
+| Mark structural groupings as STRUCTURAL | 67 fields | 77 mismatches |
+| Implement Tier 1 direct mappings | 12 fields | 65 mismatches |
+| Implement Tier 2 simple derivations | 9 fields | 56 mismatches |
+| Implement Tier 3 aggregations | 4 fields | 52 mismatches |
+| Add remaining COMPUTED fields | 17 fields | 35 mismatches |
+| Add PLANNED static reference data | 20 fields | 15 mismatches |
+| Remaining (external data sources) | — | **15 true gaps** |
 
 ### Per-Schema Mismatch Breakdown After Resolution
 
 | Schema | Current | After Structural | After All Computed | Final Gaps |
 |--------|---------|-------------------|--------------------|------------|
-| Politician | 32 | 13 | 2 | 1 (imageUrl via external) |
-| Party | 39 | 21 | 9 | 7 (static reference data) |
-| Committee | 22 | 14 | 5 | 3 (meetings, type, policyDomain) |
-| Ministry | 27 | 16 | 6 | 4 (budget data, satisfaction, etc.) |
-| **Total** | **120** | **64** | **22** | **15** |
+| Politician | 41 | 17 | 6 | 3 (imageUrl, district, keyVotes) |
+| Party | 47 | 25 | 13 | 7 (static reference data) |
+| Committee | 25 | 16 | 7 | 4 (meetings, type, policyDomain, influence) |
+| Ministry | 31 | 19 | 9 | 5 (budget data, satisfaction, etc.) |
+| **Total** | **144** | **77** | **35** | **19** |
 
 ---
 
@@ -546,10 +545,10 @@ python3 validate_schemas.py
 `validate_schemas.py` currently reports the raw mismatch total and does **not** yet exclude all non-implemented categories from its counts.
 
 The following categories are candidates for exclusion from mismatch counts in a future validator enhancement:
-- All ❌ **STRUCTURAL** JSON grouping fields (53 fields)
+- All ❌ **STRUCTURAL** JSON grouping fields (67 fields)
 - Fields marked as 🔀 **COMPUTED** that have documented computation logic (42 fields)
 
-**Aspirational adjusted target:** 120 total → **22 true gaps** (the PLANNED fields, once structural + computed exclusions are applied)
+**Aspirational adjusted target:** 144 total → **35 true gaps** (the PLANNED fields, once structural + computed exclusions are applied)
 
 ---
 

@@ -24,10 +24,10 @@ This document validates the JSON export specifications against the actual CIA pl
 
 | Category | Status | Coverage | Notes |
 |----------|--------|----------|-------|
-| **Politician Schema** | ⚠️ Partial | 30% (14/46) | 32 mismatches; 251 DB columns available across views |
-| **Party Schema** | ❌ Low | 9% (4/43) | 39 mismatches; 317 DB columns available across views |
-| **Committee Schema** | ⚠️ Partial | 15% (4/26) | 22 mismatches; 155 DB columns available across views |
-| **Ministry Schema** | ❌ Low | 7% (2/29) | 27 mismatches; 96 DB columns available across views |
+| **Politician Schema** | ⚠️ Partial | 25% (14/55) | 41 mismatches; 251 DB columns available across views |
+| **Party Schema** | ❌ Low | 8% (4/51) | 47 mismatches; 317 DB columns available across views |
+| **Committee Schema** | ⚠️ Partial | 14% (4/29) | 25 mismatches; 155 DB columns available across views |
+| **Ministry Schema** | ❌ Low | 6% (2/33) | 31 mismatches; 96 DB columns available across views |
 | **Intelligence Schema** | ✅ Good | N/A | Different structure (mermaid-based); no direct field mapping |
 | **Time Series Data** | ⚠️ Partial | 40% | Underrepresented in JSON specs |
 | **Sample Data Accuracy** | ⚠️ Synthetic | 30% | Examples use synthetic vs real patterns |
@@ -37,10 +37,10 @@ This document validates the JSON export specifications against the actual CIA pl
 | Classification | Count | Description |
 |----------------|-------|-------------|
 | ✅ Implemented | 24 | Fields found in CSV sample data and mapped to JSON |
-| ❌ Structural | 56 | JSON grouping objects and non-scalar types (not direct DB columns) |
+| ❌ Structural | 67 | JSON grouping objects, non-scalar types, and array types (not direct DB columns) |
 | 🔀 Computed | 42 | Derivable from existing database columns |
-| 🔄 Planned | 22 | Not yet available in data; require implementation |
-| **Total** | **144** | 24 implemented + 56 structural + 42 computed + 22 planned |
+| 🔄 Planned | 35 | Not yet available in data; require implementation |
+| **Total** | **168** | 24 implemented + 67 structural + 42 computed + 35 planned |
 
 **Legend:** ✅ Fully Aligned | ⚠️ Partial/Improvements Needed | ❌ Missing/Not Aligned
 
@@ -420,11 +420,11 @@ Add dedicated time series sections to JSON schemas:
 
 ## 8. Mismatch Resolution Strategy
 
-The 120 identified mismatches fall into three distinct categories, each requiring a different remediation approach:
+The 144 identified mismatches fall into three distinct categories, each requiring a different remediation approach:
 
-### 8.1 Structural Fields (56 mismatches) — Not Real Mismatches
+### 8.1 Structural Fields (67 mismatches) — Not Real Mismatches
 
-These are JSON grouping objects and non-scalar relationship/link types used to organize nested data (e.g., `votingActivity`, `documents`, `riskAssessment`, `PartyLink:party`, `Trends:trend`). They are structural containers in the JSON schema and do not correspond to individual database columns. No implementation action is required.
+These are JSON grouping objects, non-scalar relationship/link types, and array types used to organize nested data (e.g., `votingActivity`, `documents`, `riskAssessment`, `PartyLink:party`, `Trends:trend`, `CommitteeLink[]:committees`, `String[]:subcategories`). They are structural containers in the JSON schema and do not correspond to individual database columns. No implementation action is required.
 
 **Examples:**
 - `votingActivity` → groups `totalVotes`, `attendanceRate`, `rebellionRate`
@@ -446,9 +446,9 @@ These fields can be derived from existing database views and columns through dir
 
 **Resolution:** Implement in Sprints 1–2 of the Remediation Roadmap (see below).
 
-### 8.3 Planned Fields (22 mismatches) — Future Work
+### 8.3 Planned Fields (35 mismatches) — Future Work
 
-These fields require new data sources, external API integration, or new database views not yet created. They include enrichment data such as ideology classifications, historical founding dates, and cross-entity network metrics.
+These fields require new data sources, external API integration, or new database views not yet created. They include enrichment data such as ideology classifications, historical founding dates, cross-entity network metrics, and array-valued fields like key votes and coalition partners.
 
 **Examples:**
 - `party.founded` — requires historical data not in Riksdagen API
@@ -564,9 +564,9 @@ Use this checklist when implementing changes:
 - [x] Fields not in database are marked as "planned"
 - [ ] Schema validation tests pass
 - [x] Documentation references correct view names
-- [x] Structural fields (53) documented as JSON grouping objects
+- [x] Structural fields (56) documented as JSON grouping objects
 - [x] Computable fields (42) mapped to source DB columns
-- [ ] Planned fields (23) tracked with data source requirements
+- [ ] Planned fields (22) tracked with data source requirements
 - [ ] Remediation Sprint 1 complete (15 low-effort fields)
 - [ ] Remediation Sprint 2 complete (8 medium-effort fields)
 - [ ] Remediation Sprint 3 planned (31+ high-effort fields)

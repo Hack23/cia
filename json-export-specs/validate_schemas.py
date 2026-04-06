@@ -115,17 +115,19 @@ class SchemaValidator:
         schema_info["database_views"] = list(set(re.findall(view_pattern, content)))
         
         # Extract field definitions from mermaid diagrams
-        # Pattern matches: +Type fieldName
+        # Pattern matches: +Type fieldName  and  +Type[] fieldName
         # Use composite key (Type:fieldName) to avoid duplicate-name overwrites
-        mermaid_pattern = r'\+(\w+)\s+(\w+)'
+        mermaid_pattern = r'\+(\w+(?:\[\])?)\s+(\w+)'
         for match in re.finditer(mermaid_pattern, content):
             field_type = match.group(1)
             field_name = match.group(2)
             # Only add field if it starts with a letter and is not numeric-only
             if re.match(r'^[A-Za-z]\w*$', field_name):
+                # Normalize array types: String[] → String for scalar check
+                base_type = field_type.rstrip("[]")
                 # Non-scalar types (custom object/link types) are structural —
                 # only the scalar variant of a same-named field can match CSV data.
-                if field_type not in self.SCALAR_TYPES:
+                if base_type not in self.SCALAR_TYPES:
                     composite_key = f"{field_type}:{field_name}"
                     schema_info["fields"][composite_key] = {
                         "type": field_type,
@@ -327,6 +329,10 @@ class SchemaValidator:
                 
                 if not found:
                     schema_result["missing_views"].append(view_name)
+            
+            # Sort view lists for deterministic output across runs
+            schema_result["matched_views"] = sorted(schema_result["matched_views"])
+            schema_result["missing_views"] = sorted(schema_result["missing_views"])
             
             self.validation_results["schemas"][schema_name] = schema_result
             self.validation_results["schemas_validated"] += 1
