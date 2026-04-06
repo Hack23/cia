@@ -407,6 +407,8 @@ class TestFieldStatusClassification(unittest.TestCase):
         self.assertIn("labels", SchemaValidator.STRUCTURAL_FIELDS)
         self.assertIn("relationships", SchemaValidator.STRUCTURAL_FIELDS)
         self.assertIn("intelligence", SchemaValidator.STRUCTURAL_FIELDS)
+        self.assertIn("trend", SchemaValidator.STRUCTURAL_FIELDS)
+        self.assertIn("alignment", SchemaValidator.STRUCTURAL_FIELDS)
     
     def test_computed_fields_defined(self):
         """Test that COMPUTED_FIELDS class attribute is defined."""
@@ -415,6 +417,9 @@ class TestFieldStatusClassification(unittest.TestCase):
         self.assertIn("partyLoyalty", SchemaValidator.COMPUTED_FIELDS)
         self.assertIn("totalMembers", SchemaValidator.COMPUTED_FIELDS)
         self.assertIn("performanceScore", SchemaValidator.COMPUTED_FIELDS)
+        self.assertIn("id", SchemaValidator.COMPUTED_FIELDS)
+        self.assertIn("committeeChairs", SchemaValidator.COMPUTED_FIELDS)
+        self.assertIn("strengthScore", SchemaValidator.COMPUTED_FIELDS)
     
     def test_field_status_in_validation_results(self):
         """Test that field status summary is included in validation results."""

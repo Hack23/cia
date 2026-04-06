@@ -1,13 +1,13 @@
 {
-  "timestamp": "2026-04-05T23:21:17.240059+00:00",
+  "timestamp": "2026-04-06T00:15:58.297324+00:00",
   "schemas_validated": 5,
   "files_analyzed": 202,
   "total_mismatches": 121,
   "field_status_summary": {
     "implemented": 21,
-    "structural": 50,
+    "structural": 53,
     "computed": 45,
-    "planned": 26
+    "planned": 23
   },
   "schemas": {
     "politician": {
@@ -330,7 +330,7 @@
         }
       ],
       "recommendations": [
-        "Consider adding 20 data columns to schema: individual_motions_pct, made_public_date, attendance_status, score_change, career_first_year"
+        "Consider adding 20 data columns to schema: absence_rate, absenteeism_violations, active, active_committee, active_eu"
       ],
       "field_status": {
         "implemented": [
@@ -411,8 +411,8 @@
         "view_riksdagen_party_switcher_outcomes_sample.csv"
       ],
       "missing_views": [
-        "riksdagen_party_vote_summary",
-        "riksdagen_party_ballot_support_summary"
+        "riksdagen_party_ballot_support_summary",
+        "riksdagen_party_vote_summary"
       ],
       "field_mismatches": [
         {
@@ -429,7 +429,7 @@
         {
           "field": "alignment",
           "issue": "Field defined in schema but not found in data",
-          "status": "COMPUTED",
+          "status": "STRUCTURAL",
           "suggestions": [
             "alignment",
             "ALIGNMENT"
@@ -485,7 +485,7 @@
         {
           "field": "committeeChairs",
           "issue": "Field defined in schema but not found in data",
-          "status": "PLANNED",
+          "status": "COMPUTED",
           "suggestions": [
             "committeeChairs",
             "committee_chairs",
@@ -728,7 +728,7 @@
         {
           "field": "strengthScore",
           "issue": "Field defined in schema but not found in data",
-          "status": "PLANNED",
+          "status": "COMPUTED",
           "suggestions": [
             "strengthScore",
             "strength_score",
@@ -750,7 +750,7 @@
         {
           "field": "trend",
           "issue": "Field defined in schema but not found in data",
-          "status": "COMPUTED",
+          "status": "STRUCTURAL",
           "suggestions": [
             "trend",
             "TREND"
@@ -789,7 +789,7 @@
         }
       ],
       "recommendations": [
-        "Consider adding 20 data columns to schema: participation_rate, address, approved_proposals, momentum_z_score_seats, momentum_z_score_participation"
+        "Consider adding 20 data columns to schema: acceleration, active, active_committee, active_eu, active_government"
       ],
       "field_status": {
         "implemented": [
@@ -799,6 +799,7 @@
           "totalVotes"
         ],
         "structural": [
+          "alignment",
           "attributes",
           "category",
           "coalition",
@@ -813,25 +814,25 @@
           "predictions",
           "productivity",
           "relationships",
+          "trend",
           "voting"
         ],
         "computed": [
           "activityRate",
-          "alignment",
           "cohesionScore",
+          "committeeChairs",
           "currentSupport",
           "disciplineRate",
           "fullName",
           "legislativeSuccess",
           "seats",
           "stability",
+          "strengthScore",
           "totalMembers",
-          "trend",
           "votePercentage"
         ],
         "planned": [
           "color",
-          "committeeChairs",
           "foundedYear",
           "ideology",
           "logoUrl",
@@ -839,7 +840,6 @@
           "nameEn",
           "riskScore",
           "spectrum",
-          "strengthScore",
           "websiteUrl"
         ]
       }
@@ -1096,7 +1096,7 @@
         }
       ],
       "recommendations": [
-        "Consider adding 20 data columns to schema: embedded_id_issue_nummer, made_public_date, document_url_text, first_assignment_date, header"
+        "Consider adding 20 data columns to schema: absent_votes, abstain_votes, active, against_proposal_number, against_proposal_parties"
       ],
       "field_status": {
         "implemented": [
@@ -1263,7 +1263,7 @@
         {
           "field": "id",
           "issue": "Field defined in schema but not found in data",
-          "status": "PLANNED",
+          "status": "COMPUTED",
           "suggestions": [
             "id",
             "ID"
@@ -1406,7 +1406,7 @@
         {
           "field": "trend",
           "issue": "Field defined in schema but not found in data",
-          "status": "COMPUTED",
+          "status": "STRUCTURAL",
           "suggestions": [
             "trend",
             "TREND"
@@ -1414,7 +1414,7 @@
         }
       ],
       "recommendations": [
-        "Consider adding 20 data columns to schema: legislative_change, legislative_documents, propositions, year, ministry_code"
+        "Consider adding 20 data columns to schema: active_members, approval_rate, approved_proposals, committee, committee_referral_proposals"
       ],
       "field_status": {
         "implemented": [
@@ -1430,7 +1430,8 @@
           "personnel",
           "policy",
           "predictions",
-          "relationships"
+          "relationships",
+          "trend"
         ],
         "computed": [
           "civilServants",
@@ -1440,15 +1441,14 @@
           "efficiency",
           "established",
           "executionRate",
+          "id",
           "ministers",
           "performanceScore",
-          "stateSecretaries",
-          "trend"
+          "stateSecretaries"
         ],
         "planned": [
           "allocation",
           "headquarters",
-          "id",
           "nameEn",
           "portfolio",
           "publicSatisfaction",
@@ -1472,7 +1472,7 @@
       ],
       "field_mismatches": [],
       "recommendations": [
-        "Consider adding 20 data columns to schema: committee_name, motions_count, ma_30day_decisions, ma_7day_decisions, avg_approval_rate"
+        "Consider adding 20 data columns to schema: absenteeism_violations, active_members, activity_span_days, annual_absence_rate, annual_rebel_rate"
       ],
       "field_status": {
         "implemented": [],

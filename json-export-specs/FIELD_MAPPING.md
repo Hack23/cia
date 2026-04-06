@@ -27,11 +27,11 @@ The `validate_schemas.py` tool reports **implemented**, **structural**, **comput
 | Schema | Total Fields | Implemented | Structural | Computed | Planned | Mismatches |
 |--------|-------------|-------------|------------|----------|---------|------------|
 | **Politician** | 45 | 14 | 17 | 11 | 3 | 31 |
-| **Party** | 42 | 4 | 15 | 12 | 11 | 38 |
+| **Party** | 42 | 4 | 17 | 12 | 9 | 38 |
 | **Committee** | 26 | 2 | 8 | 11 | 5 | 24 |
-| **Ministry** | 29 | 1 | 10 | 11 | 7 | 28 |
+| **Ministry** | 29 | 1 | 11 | 11 | 6 | 28 |
 | **Intelligence** | All | All | — | — | — | **0** |
-| **Total** | **142** | **21** | **50** | **45** | **26** | **121** |
+| **Total** | **142** | **21** | **53** | **45** | **23** | **121** |
 
 ---
 

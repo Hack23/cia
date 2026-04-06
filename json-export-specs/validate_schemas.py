@@ -30,7 +30,8 @@ class SchemaValidator:
         "subcategories", "intelligenceTags", "short", "detailed", "long",
         "breakdown", "period", "byType", "electoral", "parliamentary",
         "members", "coalition", "policy", "predictions", "membership",
-        "productivity", "decisions", "budget", "personnel", "performance"
+        "productivity", "decisions", "budget", "personnel", "performance",
+        "trend", "alignment"
     }
     
     # Computed fields that can be derived from existing database columns
@@ -42,13 +43,13 @@ class SchemaValidator:
         # Party computed fields
         "totalMembers", "currentSupport", "seats", "votePercentage",
         "cohesionScore", "activityRate", "disciplineRate", "stability",
-        "trend", "legislativeSuccess", "alignment",
+        "legislativeSuccess", "committeeChairs", "strengthScore",
         # Committee computed fields
         "code", "name", "regularMembers", "deputyMembers",
         "established", "reports", "performanceScore", "attendanceRate",
-        "hearings", "totalMembers",
+        "hearings",
         # Ministry computed fields
-        "ministers", "stateSecretaries", "civilServants",
+        "id", "ministers", "stateSecretaries", "civilServants",
         "effectiveness", "decisionsImplemented", "efficiency",
         "executionRate",
     }
@@ -345,7 +346,7 @@ class SchemaValidator:
         
         # Check if schema fields exist in data (with flexible matching)
         unmapped_schema_fields = []
-        unmapped_data_columns = list(all_columns)
+        unmapped_data_columns = sorted(all_columns)
         
         for field in schema_fields:
             # Try various naming conventions (deterministic order, deduplicated)

@@ -37,9 +37,10 @@ This document validates the JSON export specifications against the actual CIA pl
 | Classification | Count | Description |
 |----------------|-------|-------------|
 | ✅ Implemented | 21 | Fields found in CSV sample data and mapped to JSON |
-| ❌ Structural | 50 | JSON grouping objects (not direct DB columns) |
-| 🔄 Planned | 71 | Not yet available in data; require implementation |
-| **Total** | **142** | 121 mismatches + 21 implemented |
+| ❌ Structural | 53 | JSON grouping objects (not direct DB columns) |
+| 🔀 Computed | 45 | Derivable from existing database columns |
+| 🔄 Planned | 23 | Not yet available in data; require implementation |
+| **Total** | **142** | 21 implemented + 53 structural + 45 computed + 23 planned |
 
 **Legend:** ✅ Fully Aligned | ⚠️ Partial/Improvements Needed | ❌ Missing/Not Aligned
 

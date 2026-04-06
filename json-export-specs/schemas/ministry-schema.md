@@ -147,16 +147,16 @@ classDiagram
 | `decisionsImplemented` | 🔀 COMPUTED | Performance | Derived from `approved_proposals` |
 | `efficiency` | 🔀 COMPUTED | Performance | Derived from `approval_rate` |
 | `executionRate` | 🔀 COMPUTED | Budget | Derived from `approval_rate` |
-| `trend` | 🔀 COMPUTED | Intelligence | Derived from `document_trend` or `legislative_trend` |
+| `trend` | ❌ STRUCTURAL | Intelligence | Nested grouping object |
 | `nameEn` | 🔄 PLANNED | Attributes | Needs new data collection |
 | `portfolio` | 🔄 PLANNED | Attributes | Needs new data collection |
-| `established` | 🔄 PLANNED | Attributes | Needs new data collection |
+| `established` | 🔀 COMPUTED | Attributes | Derivable from `first_assignment_date` |
 | `headquarters` | 🔄 PLANNED | Attributes | Needs new data collection |
 | `allocation` | 🔄 PLANNED | Budget | Needs new data collection |
 | `spent` | 🔄 PLANNED | Budget | Needs new data collection |
-| `budget` | 🔄 PLANNED | Budget | Needs new data collection |
+| `budget` | ❌ STRUCTURAL | Budget | JSON grouping object |
 | `publicSatisfaction` | 🔄 PLANNED | Performance | Needs new data collection |
-| `predictions` | 🔄 PLANNED | Intelligence | Needs new data collection |
+| `predictions` | ❌ STRUCTURAL | Intelligence | JSON grouping object |
 | `labels` | ❌ STRUCTURAL | Core | JSON grouping object |
 | `attributes` | ❌ STRUCTURAL | Core | JSON grouping object |
 | `relationships` | ❌ STRUCTURAL | Core | JSON grouping object |

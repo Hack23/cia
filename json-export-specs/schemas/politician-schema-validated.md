@@ -12,7 +12,7 @@ The 31 mismatched fields have been categorized by implementation status.
 **Validation Results:**
 - Original fields defined: 45
 - Fields validated in data: 14
-- Fields not in data: 31 (14 structural, 12 computable, 5 planned)
+- Fields not in data: 31 (17 structural, 11 computable, 3 planned)
 
 ## Data Model
 
@@ -20,6 +20,7 @@ The 31 mismatched fields have been categorized by implementation status.
 classDiagram
     class PoliticianExport {
         +String activityLevel
+        +Float attendanceRate
         +Integer bornYear
         +String firstName
         +String gender
@@ -27,6 +28,8 @@ classDiagram
         +String lastName
         +PartyLink party
         +String party
+        +String riskLevel
+        +Float riskScore
         +String status
         +Integer totalDays
         +Integer totalDocuments
@@ -37,6 +40,7 @@ classDiagram
 ## Field Descriptions
 
 - **activityLevel** (`String`): Field found in sample data
+- **attendanceRate** (`Float`): Field found in sample data
 - **bornYear** (`Integer`): Field found in sample data
 - **firstName** (`String`): Field found in sample data
 - **gender** (`String`): Field found in sample data
@@ -44,6 +48,8 @@ classDiagram
 - **lastName** (`String`): Field found in sample data
 - **party** (`PartyLink`): Field found in sample data
 - **party** (`String`): Field found in sample data
+- **riskLevel** (`String`): Field found in sample data
+- **riskScore** (`Float`): Field found in sample data
 - **status** (`String`): Field found in sample data
 - **totalDays** (`Integer`): Field found in sample data
 - **totalDocuments** (`Integer`): Field found in sample data
@@ -69,7 +75,7 @@ This schema is validated against the following data sources:
 
 ### ❌ Structural Fields (JSON grouping objects — not direct DB columns)
 - `attributes`, `labels`, `relationships`, `intelligence`, `activity`, `voting`, `documents`, `committees`
-- `descriptions`, `category`, `short`, `detailed`, `long`, `breakdown`, `period`, `byType`
+- `descriptions`, `category`, `short`, `detailed`, `long`, `breakdown`, `period`, `byType`, `performance`
 
 ### 🔀 Computable Fields (derivable from existing DB columns)
 - `fullName` — concatenate `first_name` + `last_name`
@@ -83,13 +89,10 @@ This schema is validated against the following data sources:
 - `amendments` — count documents where type = 'mot'
 - `questions` — count documents where type = 'fr' or 'ip'
 - `motions` — from document type filtering
-- `performance` — composite from `risk_score`, `attendance_rate`, `win_rate`
 
 ### 🔄 Planned Fields (require new data sources)
 - `district` — needs electoral region mapping (available in `election_region`)
 - `imageUrl` — needs external image URL source
-- `riskScore` — available in `view_politician_risk_summary` (needs view mapping)
-- `riskLevel` — derivable from riskScore
-- `behavioralFlags` — from rule violation data
+- `ministry` — requires ministry assignment data
 
 **Recommendation:** See `FIELD_MAPPING.md` for implementation priority and `SCHEMA_VALIDATION_REPORT.md` for remediation plan.

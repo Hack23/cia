@@ -131,8 +131,8 @@ classDiagram
 | `established` | 🔀 COMPUTED | Derivable from `first_assignment_date` |
 | `reports` | 🔀 COMPUTED | Derivable from `reports_count` or `committee_reports` |
 | `performanceScore` | 🔀 COMPUTED | Derivable from `productivity_score` |
-| `productivity` | 🔀 COMPUTED | Derivable from `productivity_level` |
-| `decisions` | 🔀 COMPUTED | Derivable from `total_decisions_all_time` or `approved` |
+| `productivity` | ❌ STRUCTURAL | Nested `Productivity` object; JSON grouping element |
+| `decisions` | ❌ STRUCTURAL | Nested `Decisions` object; JSON grouping element |
 | `attendanceRate` | 🔀 COMPUTED | Derivable from `total_days_served / expected_days` |
 | `amendments` | 🔀 COMPUTED | Count from document types |
 | `hearings` | 🔀 COMPUTED | Derivable from activity tracking |

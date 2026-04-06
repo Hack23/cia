@@ -1,6 +1,6 @@
 # JSON Schema Validation Report
 
-**Generated:** 2026-04-05T23:21:17.240059+00:00
+**Generated:** 2026-04-06T00:15:58.297324+00:00
 **Schemas Validated:** 5
 **Sample Files Analyzed:** 202
 **Total Mismatches:** 121
@@ -16,9 +16,9 @@ This report validates the 5 JSON export schemas against 202 relevant CSV sample 
 | Category | Count | Description |
 |----------|-------|-------------|
 | ✅ Implemented | 21 | Fields found in database sample data |
-| ❌ Structural | 50 | JSON grouping objects (not direct DB columns) |
+| ❌ Structural | 53 | JSON grouping objects (not direct DB columns) |
 | 🔀 Computed | 45 | Derivable from existing database columns |
-| 🔄 Planned | 26 | Fields not yet available in data |
+| 🔄 Planned | 23 | Fields not yet available in data |
 
 ### Validation Scope
 
@@ -117,7 +117,7 @@ The following database views are referenced in the schema but not found in sampl
 
 #### Recommendations
 
-- Consider adding 20 data columns to schema: individual_motions_pct, made_public_date, attendance_status, score_change, career_first_year
+- Consider adding 20 data columns to schema: absence_rate, absenteeism_violations, active, active_committee, active_eu
 
 ---
 
@@ -132,9 +132,9 @@ The following database views are referenced in the schema but not found in sampl
 | Category | Count | Fields |
 |----------|-------|--------|
 | ✅ Implemented | 4 | `id`, `shortCode`, `status`, `totalVotes` |
-| ❌ Structural | 15 | `attributes`, `category`, `coalition`, `descriptions`, `documents`, `electoral`, `intelligence`, `labels`... |
-| 🔀 Computed | 12 | `activityRate`, `alignment`, `cohesionScore`, `currentSupport`, `disciplineRate`, `fullName`, `legislativeSuccess`, `seats`... |
-| 🔄 Planned | 11 | `color`, `committeeChairs`, `foundedYear`, `ideology`, `logoUrl`, `ministries`, `nameEn`, `riskScore`... |
+| ❌ Structural | 17 | `alignment`, `attributes`, `category`, `coalition`, `descriptions`, `documents`, `electoral`, `intelligence`... |
+| 🔀 Computed | 12 | `activityRate`, `cohesionScore`, `committeeChairs`, `currentSupport`, `disciplineRate`, `fullName`, `legislativeSuccess`, `seats`... |
+| 🔄 Planned | 9 | `color`, `foundedYear`, `ideology`, `logoUrl`, `ministries`, `nameEn`, `riskScore`, `spectrum`... |
 
 #### Matched Data Files
 
@@ -154,8 +154,8 @@ The following database views are referenced in the schema but not found in sampl
 
 The following database views are referenced in the schema but not found in sample data:
 
-- `riksdagen_party_vote_summary`
 - `riksdagen_party_ballot_support_summary`
+- `riksdagen_party_vote_summary`
 
 #### Field Mismatches
 
@@ -203,7 +203,7 @@ The following database views are referenced in the schema but not found in sampl
 
 #### Recommendations
 
-- Consider adding 20 data columns to schema: participation_rate, address, approved_proposals, momentum_z_score_seats, momentum_z_score_participation
+- Consider adding 20 data columns to schema: acceleration, active, active_committee, active_eu, active_government
 
 ---
 
@@ -288,7 +288,7 @@ The following database views are referenced in the schema but not found in sampl
 
 #### Recommendations
 
-- Consider adding 20 data columns to schema: embedded_id_issue_nummer, made_public_date, document_url_text, first_assignment_date, header
+- Consider adding 20 data columns to schema: absent_votes, abstain_votes, active, against_proposal_number, against_proposal_parties
 
 ---
 
@@ -303,9 +303,9 @@ The following database views are referenced in the schema but not found in sampl
 | Category | Count | Fields |
 |----------|-------|--------|
 | ✅ Implemented | 1 | `name` |
-| ❌ Structural | 10 | `attributes`, `budget`, `decisions`, `intelligence`, `labels`, `performance`, `personnel`, `policy`... |
-| 🔀 Computed | 11 | `civilServants`, `code`, `decisionsImplemented`, `effectiveness`, `efficiency`, `established`, `executionRate`, `ministers`... |
-| 🔄 Planned | 7 | `allocation`, `headquarters`, `id`, `nameEn`, `portfolio`, `publicSatisfaction`, `spent` |
+| ❌ Structural | 11 | `attributes`, `budget`, `decisions`, `intelligence`, `labels`, `performance`, `personnel`, `policy`... |
+| 🔀 Computed | 11 | `civilServants`, `code`, `decisionsImplemented`, `effectiveness`, `efficiency`, `established`, `executionRate`, `id`... |
+| 🔄 Planned | 6 | `allocation`, `headquarters`, `nameEn`, `portfolio`, `publicSatisfaction`, `spent` |
 
 #### Matched Data Files
 
@@ -364,7 +364,7 @@ The following database views are referenced in the schema but not found in sampl
 
 #### Recommendations
 
-- Consider adding 20 data columns to schema: legislative_change, legislative_documents, propositions, year, ministry_code
+- Consider adding 20 data columns to schema: active_members, approval_rate, approved_proposals, committee, committee_referral_proposals
 
 ---
 
@@ -400,7 +400,7 @@ The following database views are referenced in the schema but not found in sampl
 
 #### Recommendations
 
-- Consider adding 20 data columns to schema: committee_name, motions_count, ma_30day_decisions, ma_7day_decisions, avg_approval_rate
+- Consider adding 20 data columns to schema: absenteeism_violations, active_members, activity_span_days, annual_absence_rate, annual_rebel_rate
 
 ---
 
@@ -425,4 +425,4 @@ This validation compares:
 - Coverage analysis (schema fields vs. actual columns)
 - Missing view detection
 
-**Report Generated:** 2026-04-05 23:21:17 UTC
+**Report Generated:** 2026-04-06 00:15:58 UTC

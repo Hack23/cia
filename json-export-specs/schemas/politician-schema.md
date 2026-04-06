@@ -219,17 +219,17 @@ classDiagram
 | `ministry` | 🔄 PLANNED | Relationships | Requires ministry assignment data |
 | `colleagues` | 🔄 PLANNED | Relationships | Requires colleague network analysis |
 | **Intelligence** | | | |
-| `riskScore` | 🔄 PLANNED | Intelligence | Requires risk engine integration |
-| `riskLevel` | 🔄 PLANNED | Intelligence | Requires risk engine integration |
+| `riskScore` | ✅ IMPLEMENTED | Intelligence | Maps to risk score in data |
+| `riskLevel` | ✅ IMPLEMENTED | Intelligence | Maps to risk level in data |
 | `influenceScore` | 🔀 COMPUTED | Intelligence | Derived from activity and voting metrics |
 | `rankingPosition` | 🔀 COMPUTED | Intelligence | Derived from ranking views |
 | `trendDirection` | 🔀 COMPUTED | Intelligence | Derived from temporal analysis |
 | `behavioralFlags` | 🔄 PLANNED | Intelligence | Requires behavioral analysis engine |
-| `performance` | 🔀 COMPUTED | Intelligence | Derived from multiple activity metrics |
+| `performance` (PerformanceMetrics) | ❌ STRUCTURAL | Intelligence | Nested grouping object containing computed performance metrics |
 | **Activity** | | | |
 | `totalDays` | ✅ IMPLEMENTED | Activity | Maps to `total_days_served` |
 | `activeDays` | 🔀 COMPUTED | Activity | Derived from attendance data |
-| `attendanceRate` | 🔀 COMPUTED | Activity | Derived from `activeDays` / `totalDays` |
+| `attendanceRate` | ✅ IMPLEMENTED | Activity | Maps to `attendance_rate` in data |
 | `absences` | 🔀 COMPUTED | Activity | Derived from voting absence records |
 | `period` | ❌ STRUCTURAL | Activity | JSON grouping object (DateRange) |
 | `activityLevel` | ✅ IMPLEMENTED | Activity | Maps to activity classification |
@@ -254,10 +254,12 @@ classDiagram
 
 | Status | Count | Description |
 |--------|-------|-------------|
-| ✅ IMPLEMENTED | 11 | Fields with data available in current CSV/database exports |
-| 🔀 COMPUTED | 13 | Fields derivable from existing data through computation |
-| 🔄 PLANNED | 11 | Fields requiring new data sources or engine integration |
-| ❌ STRUCTURAL | 20 | JSON grouping objects, not individual data fields |
+| ✅ IMPLEMENTED | 14 | Fields with data available in current CSV/database exports |
+| 🔀 COMPUTED | 11 | Fields derivable from existing data through computation |
+| 🔄 PLANNED | 9 | Fields requiring new data sources or engine integration |
+| ❌ STRUCTURAL | 21 | JSON grouping objects, not individual data fields |
+
+> **Note:** The validator tracks 45 of these fields (14+17+11+3). The table includes 10 additional nested class fields from the mermaid diagram. See `validation-results.json` for per-field status.
 
 ---
 

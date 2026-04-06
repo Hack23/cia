@@ -206,36 +206,38 @@ classDiagram
 | seats | 🔀 COMPUTED | Electoral | Derived from `seat_count_proxy` |
 | votePercentage | 🔀 COMPUTED | Electoral | Derived from `win_rate` |
 | history | 🔄 PLANNED | Electoral | Requires historical election data |
-| trend | 🔀 COMPUTED | Electoral | Derived from `trend_direction` |
+| trend | ❌ STRUCTURAL | Electoral | Nested `Trends` object; JSON grouping element |
 | regions | 🔄 PLANNED | Electoral | Requires regional data |
 | totalMembers | 🔀 COMPUTED | Parliamentary | Derived from `total_active` |
 | activityRate | 🔀 COMPUTED | Parliamentary | Derived from `activity_level` |
-| committeeChairs | ❌ STRUCTURAL | Parliamentary | JSON grouping element |
+| committeeChairs | 🔀 COMPUTED | Parliamentary | Derivable from committee chair aggregation data |
 | legislativeSuccess | 🔀 COMPUTED | Parliamentary | Derived from `legislative_effectiveness_score` |
-| productivity | 🔀 COMPUTED | Parliamentary | Derived from `performance_tier` |
-| totalVotes | 🔄 PLANNED | Voting | Requires vote count aggregation |
+| productivity | ❌ STRUCTURAL | Parliamentary | Nested `Productivity` object; JSON grouping element |
+| totalVotes | ✅ IMPLEMENTED | Voting | Found in CSV data |
 | cohesionScore | 🔀 COMPUTED | Voting | Derived from `avg_collaboration_pct` |
 | disciplineRate | 🔀 COMPUTED | Voting | Derived from `avg_rebel_rate` (inverted) |
-| alignment | 🔀 COMPUTED | Voting | Derived from `alignment_rate` |
+| alignment | ❌ STRUCTURAL | Voting | Nested `VoteAlignment` object; JSON grouping element |
 | keyVotes | 🔄 PLANNED | Voting | Requires vote significance data |
 | status | ✅ IMPLEMENTED | Coalition | Found in CSV data |
 | partners | 🔄 PLANNED | Coalition | Requires coalition data |
 | stability | 🔀 COMPUTED | Coalition | Derived from `stability_classification` |
-| ministries | ❌ STRUCTURAL | Coalition | JSON grouping element |
+| ministries | 🔄 PLANNED | Coalition | Requires ministry count data |
 | agreements | 🔄 PLANNED | Coalition | Requires coalition agreements |
-| strengthScore | ❌ STRUCTURAL | Intelligence | JSON grouping element |
-| riskScore | ❌ STRUCTURAL | Intelligence | JSON grouping element |
-| trend | 🔀 COMPUTED | Intelligence | Derived from `trend_direction` |
+| strengthScore | 🔀 COMPUTED | Intelligence | Derivable from party strength metrics |
+| riskScore | 🔄 PLANNED | Intelligence | Requires risk engine integration |
+| trend | ❌ STRUCTURAL | Intelligence | Nested `Trends` object; JSON grouping element |
 | predictions | ❌ STRUCTURAL | Intelligence | JSON grouping object |
 | strategicFlags | 🔄 PLANNED | Intelligence | Requires strategic analysis |
 
 #### Summary
 | Status | Count | Description |
 |--------|-------|-------------|
-| ✅ IMPLEMENTED | 3 | Available in database |
-| 🔀 COMPUTED | 14 | Derivable from existing columns |
-| 🔄 PLANNED | 16 | Requires new data sources |
+| ✅ IMPLEMENTED | 4 | Available in database |
+| 🔀 COMPUTED | 12 | Derivable from existing columns |
+| 🔄 PLANNED | 17 | Requires new data sources |
 | ❌ STRUCTURAL | 18 | JSON grouping objects |
+
+> **Note:** The validator tracks 42 of these fields (4+17+12+9). The table includes additional nested class fields from the mermaid diagram. See `validation-results.json` for per-field status.
 
 ---
 
