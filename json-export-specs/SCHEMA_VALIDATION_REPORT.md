@@ -5,7 +5,7 @@
 **Date:** 2026-04-05  
 **Status:** Analysis Complete - Remediation Plan Provided  
 **Validated Against:** service.data.impl/src/main/resources/full_schema.sql  
-**Total Schema Mismatches:** 120 (across 4 entity schemas)
+**Total Schema Mismatches:** 144 (across 4 entity schemas)
 
 ---
 

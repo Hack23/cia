@@ -246,8 +246,8 @@ classDiagram
 | `questions` | 🔀 COMPUTED | Documents | Derived from document type breakdown |
 | `motions` | 🔀 COMPUTED | Documents | Derived from document type breakdown |
 | **Committees** | | | |
-| `current` | 🔄 PLANNED | Committees | Requires committee membership data |
-| `historical` | 🔄 PLANNED | Committees | Requires historical committee data |
+| `current` | ❌ STRUCTURAL | Committees | Non-scalar array type (`CommitteeMembership[]`); JSON grouping container |
+| `historical` | ❌ STRUCTURAL | Committees | Non-scalar array type (`CommitteeMembership[]`); JSON grouping container |
 | `chairPositions` | 🔄 PLANNED | Committees | Requires chair position tracking |
 
 #### Status Summary
@@ -256,10 +256,10 @@ classDiagram
 |--------|-------|-------------|
 | ✅ IMPLEMENTED | 14 | Fields with data available in current CSV/database exports |
 | 🔀 COMPUTED | 11 | Fields derivable from existing data through computation |
-| 🔄 PLANNED | 8 | Fields requiring new data sources or engine integration |
-| ❌ STRUCTURAL | 22 | JSON grouping objects and non-scalar types, not individual data fields |
+| 🔄 PLANNED | 6 | Fields requiring new data sources or engine integration |
+| ❌ STRUCTURAL | 24 | JSON grouping objects and non-scalar types, not individual data fields |
 
-> **Note:** The table above documents all 55 fields from the mermaid diagram (14+11+8+22). The validator tracks 46 of these (14 impl + 19 struct + 11 comp + 2 plan); 9 nested class fields are only documented in this table. See `validation-results.json` for per-field status.
+> **Note:** The table above documents all 55 fields from the mermaid diagram (14+11+6+24). The validator scans the entire mermaid diagram and reports all 55 fields for this schema. See `validation-results.json` for per-field status.
 
 ---
 

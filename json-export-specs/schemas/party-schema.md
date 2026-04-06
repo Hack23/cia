@@ -190,9 +190,9 @@ classDiagram
 | coalition | ❌ STRUCTURAL | PartyProfile | JSON grouping object |
 | policy | ❌ STRUCTURAL | PartyProfile | JSON grouping object |
 | category | ❌ STRUCTURAL | Labels | JSON grouping element |
-| subcategories | 🔄 PLANNED | Labels | Requires new data source |
+| subcategories | ❌ STRUCTURAL | Labels | JSON grouping array (`String[]`) |
 | descriptions | ❌ STRUCTURAL | Labels | JSON grouping object |
-| intelligenceTags | 🔄 PLANNED | Labels | Requires new data source |
+| intelligenceTags | ❌ STRUCTURAL | Labels | JSON grouping array (`String[]`) |
 | shortCode | ✅ IMPLEMENTED | Attributes | Found in CSV data |
 | fullName | 🔀 COMPUTED | Attributes | Derived from `party_name` |
 | nameEn | 🔄 PLANNED | Attributes | Requires translation data |
@@ -205,9 +205,9 @@ classDiagram
 | currentSupport | 🔀 COMPUTED | Electoral | Derived from `participation_rate` |
 | seats | 🔀 COMPUTED | Electoral | Derived from `seat_count_proxy` |
 | votePercentage | 🔀 COMPUTED | Electoral | Derived from `win_rate` |
-| history | 🔄 PLANNED | Electoral | Requires historical election data |
+| history | ❌ STRUCTURAL | Electoral | Non-scalar array type (`ElectionHistory[]`); JSON grouping container |
 | trend | ❌ STRUCTURAL | Electoral | Nested `Trends` object; JSON grouping element |
-| regions | 🔄 PLANNED | Electoral | Requires regional data |
+| regions | ❌ STRUCTURAL | Electoral | Non-scalar array type (`RegionalSupport[]`); JSON grouping container |
 | totalMembers | 🔀 COMPUTED | Parliamentary | Derived from `total_active` |
 | activityRate | 🔀 COMPUTED | Parliamentary | Derived from `activity_level` |
 | committeeChairs | 🔀 COMPUTED | Parliamentary | Derivable from committee chair aggregation data |
@@ -234,10 +234,10 @@ classDiagram
 |--------|-------|-------------|
 | ✅ IMPLEMENTED | 4 | Available in database |
 | 🔀 COMPUTED | 12 | Derivable from existing columns |
-| 🔄 PLANNED | 17 | Requires new data sources |
-| ❌ STRUCTURAL | 18 | JSON grouping objects |
+| 🔄 PLANNED | 13 | Requires new data sources |
+| ❌ STRUCTURAL | 22 | JSON grouping objects |
 
-> **Note:** The table above documents all 51 fields from the mermaid diagram (4+12+17+18). The validator tracks 43 of these (4 impl + 18 struct + 12 comp + 9 plan); 8 nested class fields are only documented in this table. See `validation-results.json` for per-field status.
+> **Note:** The table above documents all 51 fields from the mermaid diagram (4+12+13+22), which matches the Party schema `fields_defined: 51` reported in `validation-results.json`. See that file for per-field status details.
 
 ---
 
