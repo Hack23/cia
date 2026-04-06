@@ -23,13 +23,14 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.UUID;
 
-import org.passay.CharacterRule;
-import org.passay.EnglishCharacterData;
-import org.passay.LengthRule;
+import org.passay.DefaultPasswordValidator;
 import org.passay.PasswordData;
 import org.passay.PasswordValidator;
-import org.passay.RuleResult;
-import org.passay.WhitespaceRule;
+import org.passay.ValidationResult;
+import org.passay.data.EnglishCharacterData;
+import org.passay.rule.CharacterRule;
+import org.passay.rule.LengthRule;
+import org.passay.rule.WhitespaceRule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,7 +79,7 @@ public final class RegisterUserService extends AbstractBusinessServiceImpl<Regis
 	private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
 	/** The password validator. */
-	private final PasswordValidator passwordValidator = new PasswordValidator(new LengthRule(8, 64),
+	private final PasswordValidator passwordValidator = new DefaultPasswordValidator(new LengthRule(8, 64),
 			new CharacterRule(EnglishCharacterData.UpperCase, 1), new CharacterRule(EnglishCharacterData.LowerCase, 1),
 			new CharacterRule(EnglishCharacterData.Digit, 1), new CharacterRule(EnglishCharacterData.Special, 1),
 			new WhitespaceRule());
@@ -106,7 +107,7 @@ public final class RegisterUserService extends AbstractBusinessServiceImpl<Regis
 				serviceRequest.getUsername());
 		final UserAccount userEmailExist = getUserDAO().findFirstByProperty(UserAccount_.email, serviceRequest.getEmail());
 
-		final RuleResult passwordRuleResults = passwordValidator
+		final ValidationResult passwordRuleResults = passwordValidator
 				.validate(new PasswordData(serviceRequest.getUserpassword()));
 
 		if (userEmailExist == null && userNameExist == null && passwordRuleResults.isValid()) {
@@ -119,7 +120,7 @@ public final class RegisterUserService extends AbstractBusinessServiceImpl<Regis
 				response.setErrorMessage(RegisterUserResponse.ErrorMessage.USER_ALREADY_EXIST.toString());
 				eventRequest.setErrorMessage(RegisterUserResponse.ErrorMessage.USER_ALREADY_EXIST.toString());
 			} else {
-				final String errorMessage = passwordValidator.getMessages(passwordRuleResults).toString();
+				final String errorMessage = passwordRuleResults.getMessages().toString();
 				response.setErrorMessage(errorMessage);
 				eventRequest.setErrorMessage(errorMessage);
 			}
