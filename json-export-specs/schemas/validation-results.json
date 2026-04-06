@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-04-06T01:52:21.859368+00:00",
+  "timestamp": "2026-04-06T12:11:30.447114+00:00",
   "schemas_validated": 5,
   "files_analyzed": 202,
   "total_mismatches": 121,
@@ -1467,8 +1467,8 @@
         "view_decision_temporal_trends_sample.csv"
       ],
       "missing_views": [
-        "riksdagen_election_year_vs_midterm",
-        "riksdagen_election_year_anomalies"
+        "riksdagen_election_year_anomalies",
+        "riksdagen_election_year_vs_midterm"
       ],
       "field_mismatches": [],
       "recommendations": [
