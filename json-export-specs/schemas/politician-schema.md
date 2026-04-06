@@ -216,7 +216,7 @@ classDiagram
 | **Relationships** | | | |
 | `party` (PartyLink) | ❌ STRUCTURAL | Relationships | Nested relationship object |
 | `committees` (CommitteeLink[]) | ❌ STRUCTURAL | Relationships | Nested relationship object |
-| `ministry` | 🔄 PLANNED | Relationships | Requires ministry assignment data |
+| `ministry` (MinistryLink) | ❌ STRUCTURAL | Relationships | Non-scalar relationship object |
 | `colleagues` | 🔄 PLANNED | Relationships | Requires colleague network analysis |
 | **Intelligence** | | | |
 | `riskScore` | ✅ IMPLEMENTED | Intelligence | Maps to risk score in data |
@@ -256,10 +256,10 @@ classDiagram
 |--------|-------|-------------|
 | ✅ IMPLEMENTED | 14 | Fields with data available in current CSV/database exports |
 | 🔀 COMPUTED | 11 | Fields derivable from existing data through computation |
-| 🔄 PLANNED | 9 | Fields requiring new data sources or engine integration |
-| ❌ STRUCTURAL | 21 | JSON grouping objects, not individual data fields |
+| 🔄 PLANNED | 8 | Fields requiring new data sources or engine integration |
+| ❌ STRUCTURAL | 22 | JSON grouping objects and non-scalar types, not individual data fields |
 
-> **Note:** The table above documents all 55 fields from the mermaid diagram (14+11+9+21). The validator tracks 45 of these (14 impl + 17 struct + 11 comp + 3 plan); 10 nested class fields are only documented in this table. See `validation-results.json` for per-field status.
+> **Note:** The table above documents all 55 fields from the mermaid diagram (14+11+8+22). The validator tracks 46 of these (14 impl + 19 struct + 11 comp + 2 plan); 9 nested class fields are only documented in this table. See `validation-results.json` for per-field status.
 
 ---
 

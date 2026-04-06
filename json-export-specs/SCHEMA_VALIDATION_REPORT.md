@@ -5,7 +5,7 @@
 **Date:** 2026-04-05  
 **Status:** Analysis Complete - Remediation Plan Provided  
 **Validated Against:** service.data.impl/src/main/resources/full_schema.sql  
-**Total Schema Mismatches:** 118 (across 4 entity schemas)
+**Total Schema Mismatches:** 120 (across 4 entity schemas)
 
 ---
 
@@ -24,8 +24,8 @@ This document validates the JSON export specifications against the actual CIA pl
 
 | Category | Status | Coverage | Notes |
 |----------|--------|----------|-------|
-| **Politician Schema** | ⚠️ Partial | 31% (14/45) | 31 mismatches; 251 DB columns available across views |
-| **Party Schema** | ❌ Low | 10% (4/42) | 38 mismatches; 317 DB columns available across views |
+| **Politician Schema** | ⚠️ Partial | 30% (14/46) | 32 mismatches; 251 DB columns available across views |
+| **Party Schema** | ❌ Low | 9% (4/43) | 39 mismatches; 317 DB columns available across views |
 | **Committee Schema** | ⚠️ Partial | 15% (4/26) | 22 mismatches; 155 DB columns available across views |
 | **Ministry Schema** | ❌ Low | 7% (2/29) | 27 mismatches; 96 DB columns available across views |
 | **Intelligence Schema** | ✅ Good | N/A | Different structure (mermaid-based); no direct field mapping |
@@ -37,10 +37,10 @@ This document validates the JSON export specifications against the actual CIA pl
 | Classification | Count | Description |
 |----------------|-------|-------------|
 | ✅ Implemented | 24 | Fields found in CSV sample data and mapped to JSON |
-| ❌ Structural | 53 | JSON grouping objects (not direct DB columns) |
+| ❌ Structural | 56 | JSON grouping objects and non-scalar types (not direct DB columns) |
 | 🔀 Computed | 42 | Derivable from existing database columns |
-| 🔄 Planned | 23 | Not yet available in data; require implementation |
-| **Total** | **142** | 24 implemented + 53 structural + 42 computed + 23 planned |
+| 🔄 Planned | 22 | Not yet available in data; require implementation |
+| **Total** | **144** | 24 implemented + 56 structural + 42 computed + 22 planned |
 
 **Legend:** ✅ Fully Aligned | ⚠️ Partial/Improvements Needed | ❌ Missing/Not Aligned
 
@@ -420,11 +420,11 @@ Add dedicated time series sections to JSON schemas:
 
 ## 8. Mismatch Resolution Strategy
 
-The 118 identified mismatches fall into three distinct categories, each requiring a different remediation approach:
+The 120 identified mismatches fall into three distinct categories, each requiring a different remediation approach:
 
-### 8.1 Structural Fields (53 mismatches) — Not Real Mismatches
+### 8.1 Structural Fields (56 mismatches) — Not Real Mismatches
 
-These are JSON grouping objects used to organize nested data (e.g., `votingActivity`, `documents`, `riskAssessment`). They are structural containers in the JSON schema and do not correspond to individual database columns. No implementation action is required.
+These are JSON grouping objects and non-scalar relationship/link types used to organize nested data (e.g., `votingActivity`, `documents`, `riskAssessment`, `PartyLink:party`, `Trends:trend`). They are structural containers in the JSON schema and do not correspond to individual database columns. No implementation action is required.
 
 **Examples:**
 - `votingActivity` → groups `totalVotes`, `attendanceRate`, `rebellionRate`
@@ -446,7 +446,7 @@ These fields can be derived from existing database views and columns through dir
 
 **Resolution:** Implement in Sprints 1–2 of the Remediation Roadmap (see below).
 
-### 8.3 Planned Fields (23 mismatches) — Future Work
+### 8.3 Planned Fields (22 mismatches) — Future Work
 
 These fields require new data sources, external API integration, or new database views not yet created. They include enrichment data such as ideology classifications, historical founding dates, and cross-entity network metrics.
 
@@ -543,7 +543,7 @@ These fields provide the highest business value and can be implemented from exis
 
 | Sprint | Planned | Completed | Mismatches Resolved | Remaining |
 |--------|---------|-----------|---------------------|-----------|
-| Sprint 1 | 15 fields | — | — | 118 |
+| Sprint 1 | 15 fields | — | — | 120 |
 | Sprint 2 | 8 fields | — | — | — |
 | Sprint 3 | 31+ fields | — | — | — |
 | **Total** | **54+** | **—** | **—** | **—** |

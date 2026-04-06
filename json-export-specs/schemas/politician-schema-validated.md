@@ -7,12 +7,12 @@
 ## Overview
 
 This schema reflects **only fields that exist in actual sample data**. 
-The 31 mismatched fields have been categorized by implementation status.
+The 32 mismatched fields have been categorized by implementation status.
 
 **Validation Results:**
-- Original fields defined: 45
+- Original fields defined: 46
 - Fields validated in data: 14
-- Fields not in data: 31 (17 structural, 11 computable, 3 planned)
+- Fields not in data: 32 (19 structural, 11 computable, 2 planned)
 
 ## Data Model
 
@@ -26,7 +26,6 @@ classDiagram
         +String gender
         +String id
         +String lastName
-        +PartyLink party
         +String party
         +String riskLevel
         +Float riskScore
@@ -46,8 +45,7 @@ classDiagram
 - **gender** (`String`): Field found in sample data
 - **id** (`String`): Field found in sample data
 - **lastName** (`String`): Field found in sample data
-- **party** (`PartyLink`): Field found in sample data
-- **party** (`String`): Field found in sample data
+- **party** (`String`): Field found in sample data (scalar value — `PartyLink party` is a structural relationship object, not validated here)
 - **riskLevel** (`String`): Field found in sample data
 - **riskScore** (`Float`): Field found in sample data
 - **status** (`String`): Field found in sample data
@@ -71,11 +69,13 @@ This schema is validated against the following data sources:
 
 ## Migration Notes
 
-**Field Classification (31 fields not in data):**
+**Field Classification (31 fields not in data + 1 non-scalar):**
 
 ### ❌ Structural Fields (JSON grouping objects — not direct DB columns)
 - `attributes`, `labels`, `relationships`, `intelligence`, `activity`, `voting`, `documents`, `committees`
 - `descriptions`, `category`, `short`, `detailed`, `long`, `breakdown`, `period`, `byType`, `performance`
+- `PartyLink:party` — nested relationship object (scalar `String party` is validated separately)
+- `MinistryLink:ministry` — nested relationship object
 
 ### 🔀 Computable Fields (derivable from existing DB columns)
 - `fullName` — concatenate `first_name` + `last_name`
@@ -93,6 +93,5 @@ This schema is validated against the following data sources:
 ### 🔄 Planned Fields (require new data sources)
 - `district` — needs electoral region mapping (available in `election_region`)
 - `imageUrl` — needs external image URL source
-- `ministry` — requires ministry assignment data
 
 **Recommendation:** See `FIELD_MAPPING.md` for implementation priority and `SCHEMA_VALIDATION_REPORT.md` for remediation plan.

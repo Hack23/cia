@@ -1,18 +1,18 @@
 {
-  "timestamp": "2026-04-06T12:23:11.132844+00:00",
+  "timestamp": "2026-04-06T13:10:16.816382+00:00",
   "schemas_validated": 5,
   "files_analyzed": 202,
-  "total_mismatches": 118,
+  "total_mismatches": 120,
   "field_status_summary": {
     "implemented": 24,
-    "structural": 53,
+    "structural": 56,
     "computed": 42,
-    "planned": 23
+    "planned": 22
   },
   "schemas": {
     "politician": {
       "views_referenced": 8,
-      "fields_defined": 45,
+      "fields_defined": 46,
       "matched_views": [
         "view_riksdagen_politician_document_summary_sample.csv",
         "view_riksdagen_politician_experience_summary_sample.csv",
@@ -29,10 +29,100 @@
       ],
       "missing_views": [
         "riksdagen_politician_vote_summary",
-        "riksdagen_politician_ranking",
-        "riksdagen_politician_summary"
+        "riksdagen_politician_summary",
+        "riksdagen_politician_ranking"
       ],
       "field_mismatches": [
+        {
+          "field": "Activity:activity",
+          "issue": "Non-scalar type (Activity) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
+          "field": "Attributes:attributes",
+          "issue": "Non-scalar type (Attributes) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
+          "field": "Committees:committees",
+          "issue": "Non-scalar type (Committees) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
+          "field": "DateRange:period",
+          "issue": "Non-scalar type (DateRange) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
+          "field": "Descriptions:descriptions",
+          "issue": "Non-scalar type (Descriptions) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
+          "field": "DocumentBreakdown:byType",
+          "issue": "Non-scalar type (DocumentBreakdown) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
+          "field": "Documents:documents",
+          "issue": "Non-scalar type (Documents) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
+          "field": "Intelligence:intelligence",
+          "issue": "Non-scalar type (Intelligence) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
+          "field": "Labels:labels",
+          "issue": "Non-scalar type (Labels) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
+          "field": "MinistryLink:ministry",
+          "issue": "Non-scalar type (MinistryLink) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
+          "field": "PartyLink:party",
+          "issue": "Non-scalar type (PartyLink) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
+          "field": "PerformanceMetrics:performance",
+          "issue": "Non-scalar type (PerformanceMetrics) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
+          "field": "Relationships:relationships",
+          "issue": "Non-scalar type (Relationships) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
+          "field": "VoteBreakdown:breakdown",
+          "issue": "Non-scalar type (VoteBreakdown) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
+          "field": "Voting:voting",
+          "issue": "Non-scalar type (Voting) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
         {
           "field": "absences",
           "issue": "Field defined in schema but not found in data",
@@ -54,15 +144,6 @@
           ]
         },
         {
-          "field": "activity",
-          "issue": "Field defined in schema but not found in data",
-          "status": "STRUCTURAL",
-          "suggestions": [
-            "activity",
-            "ACTIVITY"
-          ]
-        },
-        {
           "field": "amendments",
           "issue": "Field defined in schema but not found in data",
           "status": "COMPUTED",
@@ -72,59 +153,12 @@
           ]
         },
         {
-          "field": "attributes",
-          "issue": "Field defined in schema but not found in data",
-          "status": "STRUCTURAL",
-          "suggestions": [
-            "attributes",
-            "ATTRIBUTES"
-          ]
-        },
-        {
-          "field": "breakdown",
-          "issue": "Field defined in schema but not found in data",
-          "status": "STRUCTURAL",
-          "suggestions": [
-            "breakdown",
-            "BREAKDOWN"
-          ]
-        },
-        {
-          "field": "byType",
-          "issue": "Field defined in schema but not found in data",
-          "status": "STRUCTURAL",
-          "suggestions": [
-            "byType",
-            "by_type",
-            "bytype",
-            "BYTYPE"
-          ]
-        },
-        {
           "field": "category",
           "issue": "Field defined in schema but not found in data",
           "status": "STRUCTURAL",
           "suggestions": [
             "category",
             "CATEGORY"
-          ]
-        },
-        {
-          "field": "committees",
-          "issue": "Field defined in schema but not found in data",
-          "status": "STRUCTURAL",
-          "suggestions": [
-            "committees",
-            "COMMITTEES"
-          ]
-        },
-        {
-          "field": "descriptions",
-          "issue": "Field defined in schema but not found in data",
-          "status": "STRUCTURAL",
-          "suggestions": [
-            "descriptions",
-            "DESCRIPTIONS"
           ]
         },
         {
@@ -143,15 +177,6 @@
           "suggestions": [
             "district",
             "DISTRICT"
-          ]
-        },
-        {
-          "field": "documents",
-          "issue": "Field defined in schema but not found in data",
-          "status": "STRUCTURAL",
-          "suggestions": [
-            "documents",
-            "DOCUMENTS"
           ]
         },
         {
@@ -188,39 +213,12 @@
           ]
         },
         {
-          "field": "intelligence",
-          "issue": "Field defined in schema but not found in data",
-          "status": "STRUCTURAL",
-          "suggestions": [
-            "intelligence",
-            "INTELLIGENCE"
-          ]
-        },
-        {
-          "field": "labels",
-          "issue": "Field defined in schema but not found in data",
-          "status": "STRUCTURAL",
-          "suggestions": [
-            "labels",
-            "LABELS"
-          ]
-        },
-        {
           "field": "long",
           "issue": "Field defined in schema but not found in data",
           "status": "STRUCTURAL",
           "suggestions": [
             "long",
             "LONG"
-          ]
-        },
-        {
-          "field": "ministry",
-          "issue": "Field defined in schema but not found in data",
-          "status": "PLANNED",
-          "suggestions": [
-            "ministry",
-            "MINISTRY"
           ]
         },
         {
@@ -241,24 +239,6 @@
             "party_loyalty",
             "partyloyalty",
             "PARTYLOYALTY"
-          ]
-        },
-        {
-          "field": "performance",
-          "issue": "Field defined in schema but not found in data",
-          "status": "STRUCTURAL",
-          "suggestions": [
-            "performance",
-            "PERFORMANCE"
-          ]
-        },
-        {
-          "field": "period",
-          "issue": "Field defined in schema but not found in data",
-          "status": "STRUCTURAL",
-          "suggestions": [
-            "period",
-            "PERIOD"
           ]
         },
         {
@@ -291,15 +271,6 @@
           ]
         },
         {
-          "field": "relationships",
-          "issue": "Field defined in schema but not found in data",
-          "status": "STRUCTURAL",
-          "suggestions": [
-            "relationships",
-            "RELATIONSHIPS"
-          ]
-        },
-        {
           "field": "short",
           "issue": "Field defined in schema but not found in data",
           "status": "STRUCTURAL",
@@ -317,15 +288,6 @@
             "trend_direction",
             "trenddirection",
             "TRENDDIRECTION"
-          ]
-        },
-        {
-          "field": "voting",
-          "issue": "Field defined in schema but not found in data",
-          "status": "STRUCTURAL",
-          "suggestions": [
-            "voting",
-            "VOTING"
           ]
         }
       ],
@@ -350,23 +312,25 @@
           "totalVotes"
         ],
         "structural": [
-          "activity",
-          "attributes",
-          "breakdown",
-          "byType",
+          "Activity:activity",
+          "Attributes:attributes",
+          "Committees:committees",
+          "DateRange:period",
+          "Descriptions:descriptions",
+          "DocumentBreakdown:byType",
+          "Documents:documents",
+          "Intelligence:intelligence",
+          "Labels:labels",
+          "MinistryLink:ministry",
+          "PartyLink:party",
+          "PerformanceMetrics:performance",
+          "Relationships:relationships",
+          "VoteBreakdown:breakdown",
+          "Voting:voting",
           "category",
-          "committees",
-          "descriptions",
           "detailed",
-          "documents",
-          "intelligence",
-          "labels",
           "long",
-          "performance",
-          "period",
-          "relationships",
-          "short",
-          "voting"
+          "short"
         ],
         "computed": [
           "absences",
@@ -383,14 +347,13 @@
         ],
         "planned": [
           "district",
-          "imageUrl",
-          "ministry"
+          "imageUrl"
         ]
       }
     },
     "party": {
       "views_referenced": 8,
-      "fields_defined": 42,
+      "fields_defined": 43,
       "matched_views": [
         "view_riksdagen_party_momentum_analysis_sample.csv",
         "view_riksdagen_party_decision_flow_sample.csv",
@@ -416,6 +379,102 @@
       ],
       "field_mismatches": [
         {
+          "field": "Attributes:attributes",
+          "issue": "Non-scalar type (Attributes) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
+          "field": "Coalition:coalition",
+          "issue": "Non-scalar type (Coalition) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
+          "field": "Descriptions:descriptions",
+          "issue": "Non-scalar type (Descriptions) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
+          "field": "Documents:documents",
+          "issue": "Non-scalar type (Documents) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
+          "field": "Electoral:electoral",
+          "issue": "Non-scalar type (Electoral) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
+          "field": "Intelligence:intelligence",
+          "issue": "Non-scalar type (Intelligence) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
+          "field": "Labels:labels",
+          "issue": "Non-scalar type (Labels) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
+          "field": "Members:members",
+          "issue": "Non-scalar type (Members) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
+          "field": "Parliamentary:parliamentary",
+          "issue": "Non-scalar type (Parliamentary) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
+          "field": "Policy:policy",
+          "issue": "Non-scalar type (Policy) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
+          "field": "Predictions:predictions",
+          "issue": "Non-scalar type (Predictions) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
+          "field": "Productivity:productivity",
+          "issue": "Non-scalar type (Productivity) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
+          "field": "Relationships:relationships",
+          "issue": "Non-scalar type (Relationships) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
+          "field": "Trends:trend",
+          "issue": "Non-scalar type (Trends) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
+          "field": "VoteAlignment:alignment",
+          "issue": "Non-scalar type (VoteAlignment) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
+          "field": "Voting:voting",
+          "issue": "Non-scalar type (Voting) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
           "field": "activityRate",
           "issue": "Field defined in schema but not found in data",
           "status": "COMPUTED",
@@ -427,39 +486,12 @@
           ]
         },
         {
-          "field": "alignment",
-          "issue": "Field defined in schema but not found in data",
-          "status": "STRUCTURAL",
-          "suggestions": [
-            "alignment",
-            "ALIGNMENT"
-          ]
-        },
-        {
-          "field": "attributes",
-          "issue": "Field defined in schema but not found in data",
-          "status": "STRUCTURAL",
-          "suggestions": [
-            "attributes",
-            "ATTRIBUTES"
-          ]
-        },
-        {
           "field": "category",
           "issue": "Field defined in schema but not found in data",
           "status": "STRUCTURAL",
           "suggestions": [
             "category",
             "CATEGORY"
-          ]
-        },
-        {
-          "field": "coalition",
-          "issue": "Field defined in schema but not found in data",
-          "status": "STRUCTURAL",
-          "suggestions": [
-            "coalition",
-            "COALITION"
           ]
         },
         {
@@ -505,15 +537,6 @@
           ]
         },
         {
-          "field": "descriptions",
-          "issue": "Field defined in schema but not found in data",
-          "status": "STRUCTURAL",
-          "suggestions": [
-            "descriptions",
-            "DESCRIPTIONS"
-          ]
-        },
-        {
           "field": "disciplineRate",
           "issue": "Field defined in schema but not found in data",
           "status": "COMPUTED",
@@ -522,24 +545,6 @@
             "discipline_rate",
             "disciplinerate",
             "DISCIPLINERATE"
-          ]
-        },
-        {
-          "field": "documents",
-          "issue": "Field defined in schema but not found in data",
-          "status": "STRUCTURAL",
-          "suggestions": [
-            "documents",
-            "DOCUMENTS"
-          ]
-        },
-        {
-          "field": "electoral",
-          "issue": "Field defined in schema but not found in data",
-          "status": "STRUCTURAL",
-          "suggestions": [
-            "electoral",
-            "ELECTORAL"
           ]
         },
         {
@@ -574,24 +579,6 @@
           ]
         },
         {
-          "field": "intelligence",
-          "issue": "Field defined in schema but not found in data",
-          "status": "STRUCTURAL",
-          "suggestions": [
-            "intelligence",
-            "INTELLIGENCE"
-          ]
-        },
-        {
-          "field": "labels",
-          "issue": "Field defined in schema but not found in data",
-          "status": "STRUCTURAL",
-          "suggestions": [
-            "labels",
-            "LABELS"
-          ]
-        },
-        {
           "field": "legislativeSuccess",
           "issue": "Field defined in schema but not found in data",
           "status": "COMPUTED",
@@ -614,15 +601,6 @@
           ]
         },
         {
-          "field": "members",
-          "issue": "Field defined in schema but not found in data",
-          "status": "STRUCTURAL",
-          "suggestions": [
-            "members",
-            "MEMBERS"
-          ]
-        },
-        {
           "field": "ministries",
           "issue": "Field defined in schema but not found in data",
           "status": "PLANNED",
@@ -640,51 +618,6 @@
             "name_en",
             "nameen",
             "NAMEEN"
-          ]
-        },
-        {
-          "field": "parliamentary",
-          "issue": "Field defined in schema but not found in data",
-          "status": "STRUCTURAL",
-          "suggestions": [
-            "parliamentary",
-            "PARLIAMENTARY"
-          ]
-        },
-        {
-          "field": "policy",
-          "issue": "Field defined in schema but not found in data",
-          "status": "STRUCTURAL",
-          "suggestions": [
-            "policy",
-            "POLICY"
-          ]
-        },
-        {
-          "field": "predictions",
-          "issue": "Field defined in schema but not found in data",
-          "status": "STRUCTURAL",
-          "suggestions": [
-            "predictions",
-            "PREDICTIONS"
-          ]
-        },
-        {
-          "field": "productivity",
-          "issue": "Field defined in schema but not found in data",
-          "status": "STRUCTURAL",
-          "suggestions": [
-            "productivity",
-            "PRODUCTIVITY"
-          ]
-        },
-        {
-          "field": "relationships",
-          "issue": "Field defined in schema but not found in data",
-          "status": "STRUCTURAL",
-          "suggestions": [
-            "relationships",
-            "RELATIONSHIPS"
           ]
         },
         {
@@ -768,15 +701,6 @@
           ]
         },
         {
-          "field": "voting",
-          "issue": "Field defined in schema but not found in data",
-          "status": "STRUCTURAL",
-          "suggestions": [
-            "voting",
-            "VOTING"
-          ]
-        },
-        {
           "field": "websiteUrl",
           "issue": "Field defined in schema but not found in data",
           "status": "PLANNED",
@@ -799,23 +723,24 @@
           "totalVotes"
         ],
         "structural": [
-          "alignment",
-          "attributes",
+          "Attributes:attributes",
+          "Coalition:coalition",
+          "Descriptions:descriptions",
+          "Documents:documents",
+          "Electoral:electoral",
+          "Intelligence:intelligence",
+          "Labels:labels",
+          "Members:members",
+          "Parliamentary:parliamentary",
+          "Policy:policy",
+          "Predictions:predictions",
+          "Productivity:productivity",
+          "Relationships:relationships",
+          "Trends:trend",
+          "VoteAlignment:alignment",
+          "Voting:voting",
           "category",
-          "coalition",
-          "descriptions",
-          "documents",
-          "electoral",
-          "intelligence",
-          "labels",
-          "members",
-          "parliamentary",
-          "policy",
-          "predictions",
-          "productivity",
-          "relationships",
-          "trend",
-          "voting"
+          "trend"
         ],
         "computed": [
           "activityRate",
@@ -862,10 +787,58 @@
         "view_riksdagen_committee_ballot_decision_summary_sample.csv"
       ],
       "missing_views": [
-        "riksdagen_committee_decision_summary",
-        "riksdagen_committee_summary"
+        "riksdagen_committee_summary",
+        "riksdagen_committee_decision_summary"
       ],
       "field_mismatches": [
+        {
+          "field": "Attributes:attributes",
+          "issue": "Non-scalar type (Attributes) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
+          "field": "Decisions:decisions",
+          "issue": "Non-scalar type (Decisions) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
+          "field": "Intelligence:intelligence",
+          "issue": "Non-scalar type (Intelligence) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
+          "field": "Labels:labels",
+          "issue": "Non-scalar type (Labels) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
+          "field": "Membership:membership",
+          "issue": "Non-scalar type (Membership) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
+          "field": "Policy:policy",
+          "issue": "Non-scalar type (Policy) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
+          "field": "Productivity:productivity",
+          "issue": "Non-scalar type (Productivity) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
+          "field": "Relationships:relationships",
+          "issue": "Non-scalar type (Relationships) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
         {
           "field": "amendments",
           "issue": "Field defined in schema but not found in data",
@@ -887,30 +860,12 @@
           ]
         },
         {
-          "field": "attributes",
-          "issue": "Field defined in schema but not found in data",
-          "status": "STRUCTURAL",
-          "suggestions": [
-            "attributes",
-            "ATTRIBUTES"
-          ]
-        },
-        {
           "field": "code",
           "issue": "Field defined in schema but not found in data",
           "status": "COMPUTED",
           "suggestions": [
             "code",
             "CODE"
-          ]
-        },
-        {
-          "field": "decisions",
-          "issue": "Field defined in schema but not found in data",
-          "status": "STRUCTURAL",
-          "suggestions": [
-            "decisions",
-            "DECISIONS"
           ]
         },
         {
@@ -952,39 +907,12 @@
           ]
         },
         {
-          "field": "intelligence",
-          "issue": "Field defined in schema but not found in data",
-          "status": "STRUCTURAL",
-          "suggestions": [
-            "intelligence",
-            "INTELLIGENCE"
-          ]
-        },
-        {
-          "field": "labels",
-          "issue": "Field defined in schema but not found in data",
-          "status": "STRUCTURAL",
-          "suggestions": [
-            "labels",
-            "LABELS"
-          ]
-        },
-        {
           "field": "meetings",
           "issue": "Field defined in schema but not found in data",
           "status": "PLANNED",
           "suggestions": [
             "meetings",
             "MEETINGS"
-          ]
-        },
-        {
-          "field": "membership",
-          "issue": "Field defined in schema but not found in data",
-          "status": "STRUCTURAL",
-          "suggestions": [
-            "membership",
-            "MEMBERSHIP"
           ]
         },
         {
@@ -1019,15 +947,6 @@
           ]
         },
         {
-          "field": "policy",
-          "issue": "Field defined in schema but not found in data",
-          "status": "STRUCTURAL",
-          "suggestions": [
-            "policy",
-            "POLICY"
-          ]
-        },
-        {
           "field": "policyDomain",
           "issue": "Field defined in schema but not found in data",
           "status": "PLANNED",
@@ -1036,24 +955,6 @@
             "policy_domain",
             "policydomain",
             "POLICYDOMAIN"
-          ]
-        },
-        {
-          "field": "productivity",
-          "issue": "Field defined in schema but not found in data",
-          "status": "STRUCTURAL",
-          "suggestions": [
-            "productivity",
-            "PRODUCTIVITY"
-          ]
-        },
-        {
-          "field": "relationships",
-          "issue": "Field defined in schema but not found in data",
-          "status": "STRUCTURAL",
-          "suggestions": [
-            "relationships",
-            "RELATIONSHIPS"
           ]
         },
         {
@@ -1086,14 +987,14 @@
           "totalMembers"
         ],
         "structural": [
-          "attributes",
-          "decisions",
-          "intelligence",
-          "labels",
-          "membership",
-          "policy",
-          "productivity",
-          "relationships"
+          "Attributes:attributes",
+          "Decisions:decisions",
+          "Intelligence:intelligence",
+          "Labels:labels",
+          "Membership:membership",
+          "Policy:policy",
+          "Productivity:productivity",
+          "Relationships:relationships"
         ],
         "computed": [
           "amendments",
@@ -1133,30 +1034,72 @@
       ],
       "field_mismatches": [
         {
+          "field": "Attributes:attributes",
+          "issue": "Non-scalar type (Attributes) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
+          "field": "Budget:budget",
+          "issue": "Non-scalar type (Budget) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
+          "field": "Decisions:decisions",
+          "issue": "Non-scalar type (Decisions) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
+          "field": "Intelligence:intelligence",
+          "issue": "Non-scalar type (Intelligence) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
+          "field": "Labels:labels",
+          "issue": "Non-scalar type (Labels) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
+          "field": "Performance:performance",
+          "issue": "Non-scalar type (Performance) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
+          "field": "Personnel:personnel",
+          "issue": "Non-scalar type (Personnel) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
+          "field": "Policy:policy",
+          "issue": "Non-scalar type (Policy) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
+          "field": "Predictions:predictions",
+          "issue": "Non-scalar type (Predictions) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
+          "field": "Relationships:relationships",
+          "issue": "Non-scalar type (Relationships) \u2014 JSON grouping object, not a DB column",
+          "status": "STRUCTURAL",
+          "suggestions": []
+        },
+        {
           "field": "allocation",
           "issue": "Field defined in schema but not found in data",
           "status": "PLANNED",
           "suggestions": [
             "allocation",
             "ALLOCATION"
-          ]
-        },
-        {
-          "field": "attributes",
-          "issue": "Field defined in schema but not found in data",
-          "status": "STRUCTURAL",
-          "suggestions": [
-            "attributes",
-            "ATTRIBUTES"
-          ]
-        },
-        {
-          "field": "budget",
-          "issue": "Field defined in schema but not found in data",
-          "status": "STRUCTURAL",
-          "suggestions": [
-            "budget",
-            "BUDGET"
           ]
         },
         {
@@ -1177,15 +1120,6 @@
           "suggestions": [
             "code",
             "CODE"
-          ]
-        },
-        {
-          "field": "decisions",
-          "issue": "Field defined in schema but not found in data",
-          "status": "STRUCTURAL",
-          "suggestions": [
-            "decisions",
-            "DECISIONS"
           ]
         },
         {
@@ -1247,24 +1181,6 @@
           ]
         },
         {
-          "field": "intelligence",
-          "issue": "Field defined in schema but not found in data",
-          "status": "STRUCTURAL",
-          "suggestions": [
-            "intelligence",
-            "INTELLIGENCE"
-          ]
-        },
-        {
-          "field": "labels",
-          "issue": "Field defined in schema but not found in data",
-          "status": "STRUCTURAL",
-          "suggestions": [
-            "labels",
-            "LABELS"
-          ]
-        },
-        {
           "field": "ministers",
           "issue": "Field defined in schema but not found in data",
           "status": "COMPUTED",
@@ -1285,15 +1201,6 @@
           ]
         },
         {
-          "field": "performance",
-          "issue": "Field defined in schema but not found in data",
-          "status": "STRUCTURAL",
-          "suggestions": [
-            "performance",
-            "PERFORMANCE"
-          ]
-        },
-        {
           "field": "performanceScore",
           "issue": "Field defined in schema but not found in data",
           "status": "COMPUTED",
@@ -1302,24 +1209,6 @@
             "performance_score",
             "performancescore",
             "PERFORMANCESCORE"
-          ]
-        },
-        {
-          "field": "personnel",
-          "issue": "Field defined in schema but not found in data",
-          "status": "STRUCTURAL",
-          "suggestions": [
-            "personnel",
-            "PERSONNEL"
-          ]
-        },
-        {
-          "field": "policy",
-          "issue": "Field defined in schema but not found in data",
-          "status": "STRUCTURAL",
-          "suggestions": [
-            "policy",
-            "POLICY"
           ]
         },
         {
@@ -1332,15 +1221,6 @@
           ]
         },
         {
-          "field": "predictions",
-          "issue": "Field defined in schema but not found in data",
-          "status": "STRUCTURAL",
-          "suggestions": [
-            "predictions",
-            "PREDICTIONS"
-          ]
-        },
-        {
           "field": "publicSatisfaction",
           "issue": "Field defined in schema but not found in data",
           "status": "PLANNED",
@@ -1349,15 +1229,6 @@
             "public_satisfaction",
             "publicsatisfaction",
             "PUBLICSATISFACTION"
-          ]
-        },
-        {
-          "field": "relationships",
-          "issue": "Field defined in schema but not found in data",
-          "status": "STRUCTURAL",
-          "suggestions": [
-            "relationships",
-            "RELATIONSHIPS"
           ]
         },
         {
@@ -1399,16 +1270,16 @@
           "name"
         ],
         "structural": [
-          "attributes",
-          "budget",
-          "decisions",
-          "intelligence",
-          "labels",
-          "performance",
-          "personnel",
-          "policy",
-          "predictions",
-          "relationships",
+          "Attributes:attributes",
+          "Budget:budget",
+          "Decisions:decisions",
+          "Intelligence:intelligence",
+          "Labels:labels",
+          "Performance:performance",
+          "Personnel:personnel",
+          "Policy:policy",
+          "Predictions:predictions",
+          "Relationships:relationships",
           "trend"
         ],
         "computed": [

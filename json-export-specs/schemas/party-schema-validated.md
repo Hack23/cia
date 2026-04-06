@@ -7,12 +7,12 @@
 ## Overview
 
 This schema reflects **only fields that exist in actual sample data**. 
-The 38 mismatched fields have been categorized by implementation status.
+The 39 mismatched fields have been categorized by implementation status.
 
 **Validation Results:**
-- Original fields defined: 42
+- Original fields defined: 43
 - Fields validated in data: 4
-- Fields not in data: 38 (17 structural, 12 computed, 9 planned)
+- Fields not in data: 39 (18 structural, 12 computed, 9 planned)
 
 ## Data Model
 
@@ -55,10 +55,11 @@ This schema is validated against the following data sources:
 
 **Field Classification (38 fields not in data):**
 
-### ❌ Structural Fields (JSON grouping objects)
+### ❌ Structural Fields (JSON grouping objects and non-scalar types)
 - `attributes`, `labels`, `relationships`, `intelligence`, `electoral`, `voting`
 - `documents`, `members`, `coalition`, `policy`, `parliamentary`, `predictions`
 - `descriptions`, `category`, `trend`, `alignment`, `productivity`
+- `Trends:trend` — non-scalar `+Trends trend` type (tracked separately from scalar `+String trend`)
 
 ### 🔀 Computable Fields (derivable from existing DB columns)
 - `fullName` — from `party_name` column

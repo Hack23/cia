@@ -23,6 +23,12 @@ from typing import Dict, List, Tuple, Any
 class SchemaValidator:
     """Validates JSON schemas against CSV sample data files."""
     
+    # Known scalar (primitive) field types in mermaid diagrams
+    SCALAR_TYPES = {
+        "String", "Integer", "Float", "Double", "Long", "Short", "Byte",
+        "Boolean", "Date", "DateTime", "Timestamp", "BigDecimal",
+    }
+
     # Structural JSON grouping fields that are not direct database columns
     STRUCTURAL_FIELDS = {
         "labels", "attributes", "relationships", "intelligence", "activity",
@@ -110,16 +116,32 @@ class SchemaValidator:
         
         # Extract field definitions from mermaid diagrams
         # Pattern matches: +Type fieldName
+        # Use composite key (Type:fieldName) to avoid duplicate-name overwrites
         mermaid_pattern = r'\+(\w+)\s+(\w+)'
         for match in re.finditer(mermaid_pattern, content):
             field_type = match.group(1)
             field_name = match.group(2)
             # Only add field if it starts with a letter and is not numeric-only
             if re.match(r'^[A-Za-z]\w*$', field_name):
-                schema_info["fields"][field_name] = {
-                    "type": field_type,
-                    "required": True  # Default assumption
-                }
+                # Non-scalar types (custom object/link types) are structural —
+                # only the scalar variant of a same-named field can match CSV data.
+                if field_type not in self.SCALAR_TYPES:
+                    composite_key = f"{field_type}:{field_name}"
+                    schema_info["fields"][composite_key] = {
+                        "type": field_type,
+                        "name": field_name,
+                        "required": True,
+                        "is_scalar": False
+                    }
+                else:
+                    # Scalar fields use bare field_name as key (safe — only one
+                    # scalar type per name is expected in mermaid diagrams)
+                    schema_info["fields"][field_name] = {
+                        "type": field_type,
+                        "name": field_name,
+                        "required": True,
+                        "is_scalar": True
+                    }
         
         # Extract JSON examples to identify field paths
         json_code_pattern = r'```json\s*(.*?)\s*```'
@@ -350,11 +372,29 @@ class SchemaValidator:
         unmapped_schema_fields = []
         unmapped_data_columns = sorted(all_columns)
         
-        for field in schema_fields:
+        for field_key in schema_fields:
+            field_info = schema_info["fields"][field_key]
+            # Use the bare field name for matching (composite keys have Type:name)
+            field_name = field_info.get("name", field_key)
+            is_scalar = field_info.get("is_scalar", True)
+            
+            # Non-scalar types (custom objects/links) cannot match CSV columns —
+            # they are always classified as structural grouping fields
+            if not is_scalar:
+                field_status["structural"].append(field_key)
+                unmapped_schema_fields.append(field_key)
+                schema_result["field_mismatches"].append({
+                    "field": field_key,
+                    "issue": f"Non-scalar type ({field_info['type']}) — JSON grouping object, not a DB column",
+                    "status": "STRUCTURAL",
+                    "suggestions": []
+                })
+                continue
+            
             # Try various naming conventions (deterministic order, deduplicated)
             seen = set()
             possible_names = []
-            for candidate in [field, self._camel_to_snake(field), field.lower(), field.upper()]:
+            for candidate in [field_name, self._camel_to_snake(field_name), field_name.lower(), field_name.upper()]:
                 if candidate not in seen:
                     seen.add(candidate)
                     possible_names.append(candidate)
@@ -365,24 +405,24 @@ class SchemaValidator:
                     matched = True
                     if possible_name in unmapped_data_columns:
                         unmapped_data_columns.remove(possible_name)
-                    field_status["implemented"].append(field)
+                    field_status["implemented"].append(field_key)
                     break
             
             if not matched:
                 # Classify the mismatch: structural > computed > planned
-                if field in self.STRUCTURAL_FIELDS:
+                if field_name in self.STRUCTURAL_FIELDS:
                     status = "STRUCTURAL"
-                    field_status["structural"].append(field)
-                elif field in self.COMPUTED_FIELDS:
+                    field_status["structural"].append(field_key)
+                elif field_name in self.COMPUTED_FIELDS:
                     status = "COMPUTED"
-                    field_status["computed"].append(field)
+                    field_status["computed"].append(field_key)
                 else:
                     status = "PLANNED"
-                    field_status["planned"].append(field)
+                    field_status["planned"].append(field_key)
                 
-                unmapped_schema_fields.append(field)
+                unmapped_schema_fields.append(field_key)
                 schema_result["field_mismatches"].append({
-                    "field": field,
+                    "field": field_key,
                     "issue": "Field defined in schema but not found in data",
                     "status": status,
                     "suggestions": possible_names

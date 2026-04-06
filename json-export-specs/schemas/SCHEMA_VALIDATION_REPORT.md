@@ -1,9 +1,9 @@
 # JSON Schema Validation Report
 
-**Generated:** 2026-04-06T12:23:11.132844+00:00
+**Generated:** 2026-04-06T13:10:16.816382+00:00
 **Schemas Validated:** 5
 **Sample Files Analyzed:** 202
-**Total Mismatches:** 118
+**Total Mismatches:** 120
 
 ---
 
@@ -16,16 +16,16 @@ This report validates the 5 JSON export schemas against 202 relevant CSV sample 
 | Category | Count | Description |
 |----------|-------|-------------|
 | ✅ Implemented | 24 | Fields found in database sample data |
-| ❌ Structural | 53 | JSON grouping objects (not direct DB columns) |
+| ❌ Structural | 56 | JSON grouping objects (not direct DB columns) |
 | 🔀 Computed | 42 | Derivable from existing database columns |
-| 🔄 Planned | 23 | Fields not yet available in data |
+| 🔄 Planned | 22 | Fields not yet available in data |
 
 ### Validation Scope
 
 | Schema | Fields Defined | Views Matched | Missing Views | Field Mismatches | Implemented | Status |
 |--------|---------------|---------------|---------------|------------------|-------------|--------|
-| Politician | 45 | 12 | 3 | 31 | 14 | ⚠️ REVIEW |
-| Party | 42 | 17 | 2 | 38 | 4 | ⚠️ REVIEW |
+| Politician | 46 | 12 | 3 | 32 | 14 | ⚠️ REVIEW |
+| Party | 43 | 17 | 2 | 39 | 4 | ⚠️ REVIEW |
 | Committee | 26 | 12 | 2 | 22 | 4 | ⚠️ REVIEW |
 | Ministry | 29 | 8 | 1 | 27 | 2 | ⚠️ REVIEW |
 | Intelligence | 0 | 5 | 2 | 0 | 0 | ✅ PASS |
@@ -36,7 +36,7 @@ This report validates the 5 JSON export schemas against 202 relevant CSV sample 
 
 ### Politician Schema
 
-**Fields Defined:** 45  
+**Fields Defined:** 46  
 **Database Views Referenced:** 8  
 **Sample Files Matched:** 12
 
@@ -45,9 +45,9 @@ This report validates the 5 JSON export schemas against 202 relevant CSV sample 
 | Category | Count | Fields |
 |----------|-------|--------|
 | ✅ Implemented | 14 | `activityLevel`, `attendanceRate`, `bornYear`, `firstName`, `gender`, `id`, `lastName`, `party`... |
-| ❌ Structural | 17 | `activity`, `attributes`, `breakdown`, `byType`, `category`, `committees`, `descriptions`, `detailed`... |
+| ❌ Structural | 19 | `Activity:activity`, `Attributes:attributes`, `Committees:committees`, `DateRange:period`, `Descriptions:descriptions`, `DocumentBreakdown:byType`, `Documents:documents`, `Intelligence:intelligence`... |
 | 🔀 Computed | 11 | `absences`, `activeDays`, `amendments`, `fullName`, `influenceScore`, `motions`, `partyLoyalty`, `questions`... |
-| 🔄 Planned | 3 | `district`, `imageUrl`, `ministry` |
+| 🔄 Planned | 2 | `district`, `imageUrl` |
 
 #### Matched Data Files
 
@@ -68,52 +68,52 @@ This report validates the 5 JSON export schemas against 202 relevant CSV sample 
 The following database views are referenced in the schema but not found in sample data:
 
 - `riksdagen_politician_vote_summary`
-- `riksdagen_politician_ranking`
 - `riksdagen_politician_summary`
+- `riksdagen_politician_ranking`
 
 #### Field Mismatches
 
-**Field:** `absences`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `absences`, `ABSENCES`
+**Field:** `Activity:activity`
+- **Issue:** Non-scalar type (Activity) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `activeDays`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `activeDays`, `active_days`, `activedays`, `ACTIVEDAYS`
+**Field:** `Attributes:attributes`
+- **Issue:** Non-scalar type (Attributes) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `activity`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `activity`, `ACTIVITY`
+**Field:** `Committees:committees`
+- **Issue:** Non-scalar type (Committees) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `amendments`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `amendments`, `AMENDMENTS`
+**Field:** `DateRange:period`
+- **Issue:** Non-scalar type (DateRange) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `attributes`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `attributes`, `ATTRIBUTES`
+**Field:** `Descriptions:descriptions`
+- **Issue:** Non-scalar type (Descriptions) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `breakdown`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `breakdown`, `BREAKDOWN`
+**Field:** `DocumentBreakdown:byType`
+- **Issue:** Non-scalar type (DocumentBreakdown) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `byType`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `byType`, `by_type`, `bytype`, `BYTYPE`
+**Field:** `Documents:documents`
+- **Issue:** Non-scalar type (Documents) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `category`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `category`, `CATEGORY`
+**Field:** `Intelligence:intelligence`
+- **Issue:** Non-scalar type (Intelligence) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `committees`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `committees`, `COMMITTEES`
+**Field:** `Labels:labels`
+- **Issue:** Non-scalar type (Labels) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `descriptions`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `descriptions`, `DESCRIPTIONS`
+**Field:** `MinistryLink:ministry`
+- **Issue:** Non-scalar type (MinistryLink) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-*... and 21 more mismatches*
+*... and 22 more mismatches*
 
 #### Recommendations
 
@@ -123,7 +123,7 @@ The following database views are referenced in the schema but not found in sampl
 
 ### Party Schema
 
-**Fields Defined:** 42  
+**Fields Defined:** 43  
 **Database Views Referenced:** 8  
 **Sample Files Matched:** 17
 
@@ -132,7 +132,7 @@ The following database views are referenced in the schema but not found in sampl
 | Category | Count | Fields |
 |----------|-------|--------|
 | ✅ Implemented | 4 | `id`, `shortCode`, `status`, `totalVotes` |
-| ❌ Structural | 17 | `alignment`, `attributes`, `category`, `coalition`, `descriptions`, `documents`, `electoral`, `intelligence`... |
+| ❌ Structural | 18 | `Attributes:attributes`, `Coalition:coalition`, `Descriptions:descriptions`, `Documents:documents`, `Electoral:electoral`, `Intelligence:intelligence`, `Labels:labels`, `Members:members`... |
 | 🔀 Computed | 12 | `activityRate`, `cohesionScore`, `committeeChairs`, `currentSupport`, `disciplineRate`, `fullName`, `legislativeSuccess`, `seats`... |
 | 🔄 Planned | 9 | `color`, `foundedYear`, `ideology`, `logoUrl`, `ministries`, `nameEn`, `riskScore`, `spectrum`... |
 
@@ -159,47 +159,47 @@ The following database views are referenced in the schema but not found in sampl
 
 #### Field Mismatches
 
-**Field:** `activityRate`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `activityRate`, `activity_rate`, `activityrate`, `ACTIVITYRATE`
+**Field:** `Attributes:attributes`
+- **Issue:** Non-scalar type (Attributes) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `alignment`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `alignment`, `ALIGNMENT`
+**Field:** `Coalition:coalition`
+- **Issue:** Non-scalar type (Coalition) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `attributes`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `attributes`, `ATTRIBUTES`
+**Field:** `Descriptions:descriptions`
+- **Issue:** Non-scalar type (Descriptions) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `category`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `category`, `CATEGORY`
+**Field:** `Documents:documents`
+- **Issue:** Non-scalar type (Documents) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `coalition`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `coalition`, `COALITION`
+**Field:** `Electoral:electoral`
+- **Issue:** Non-scalar type (Electoral) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `cohesionScore`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `cohesionScore`, `cohesion_score`, `cohesionscore`, `COHESIONSCORE`
+**Field:** `Intelligence:intelligence`
+- **Issue:** Non-scalar type (Intelligence) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `color`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `color`, `COLOR`
+**Field:** `Labels:labels`
+- **Issue:** Non-scalar type (Labels) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `committeeChairs`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `committeeChairs`, `committee_chairs`, `committeechairs`, `COMMITTEECHAIRS`
+**Field:** `Members:members`
+- **Issue:** Non-scalar type (Members) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `currentSupport`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `currentSupport`, `current_support`, `currentsupport`, `CURRENTSUPPORT`
+**Field:** `Parliamentary:parliamentary`
+- **Issue:** Non-scalar type (Parliamentary) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `descriptions`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `descriptions`, `DESCRIPTIONS`
+**Field:** `Policy:policy`
+- **Issue:** Non-scalar type (Policy) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-*... and 28 more mismatches*
+*... and 29 more mismatches*
 
 #### Recommendations
 
@@ -218,7 +218,7 @@ The following database views are referenced in the schema but not found in sampl
 | Category | Count | Fields |
 |----------|-------|--------|
 | ✅ Implemented | 4 | `activityLevel`, `id`, `regularMembers`, `totalMembers` |
-| ❌ Structural | 8 | `attributes`, `decisions`, `intelligence`, `labels`, `membership`, `policy`, `productivity`, `relationships` |
+| ❌ Structural | 8 | `Attributes:attributes`, `Decisions:decisions`, `Intelligence:intelligence`, `Labels:labels`, `Membership:membership`, `Policy:policy`, `Productivity:productivity`, `Relationships:relationships` |
 | 🔀 Computed | 9 | `amendments`, `attendanceRate`, `code`, `deputyMembers`, `established`, `hearings`, `name`, `performanceScore`... |
 | 🔄 Planned | 5 | `influence`, `meetings`, `nameEn`, `policyDomain`, `type` |
 
@@ -240,10 +240,42 @@ The following database views are referenced in the schema but not found in sampl
 
 The following database views are referenced in the schema but not found in sample data:
 
-- `riksdagen_committee_decision_summary`
 - `riksdagen_committee_summary`
+- `riksdagen_committee_decision_summary`
 
 #### Field Mismatches
+
+**Field:** `Attributes:attributes`
+- **Issue:** Non-scalar type (Attributes) — JSON grouping object, not a DB column
+- **Suggested columns:** 
+
+**Field:** `Decisions:decisions`
+- **Issue:** Non-scalar type (Decisions) — JSON grouping object, not a DB column
+- **Suggested columns:** 
+
+**Field:** `Intelligence:intelligence`
+- **Issue:** Non-scalar type (Intelligence) — JSON grouping object, not a DB column
+- **Suggested columns:** 
+
+**Field:** `Labels:labels`
+- **Issue:** Non-scalar type (Labels) — JSON grouping object, not a DB column
+- **Suggested columns:** 
+
+**Field:** `Membership:membership`
+- **Issue:** Non-scalar type (Membership) — JSON grouping object, not a DB column
+- **Suggested columns:** 
+
+**Field:** `Policy:policy`
+- **Issue:** Non-scalar type (Policy) — JSON grouping object, not a DB column
+- **Suggested columns:** 
+
+**Field:** `Productivity:productivity`
+- **Issue:** Non-scalar type (Productivity) — JSON grouping object, not a DB column
+- **Suggested columns:** 
+
+**Field:** `Relationships:relationships`
+- **Issue:** Non-scalar type (Relationships) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
 **Field:** `amendments`
 - **Issue:** Field defined in schema but not found in data
@@ -252,38 +284,6 @@ The following database views are referenced in the schema but not found in sampl
 **Field:** `attendanceRate`
 - **Issue:** Field defined in schema but not found in data
 - **Suggested columns:** `attendanceRate`, `attendance_rate`, `attendancerate`, `ATTENDANCERATE`
-
-**Field:** `attributes`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `attributes`, `ATTRIBUTES`
-
-**Field:** `code`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `code`, `CODE`
-
-**Field:** `decisions`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `decisions`, `DECISIONS`
-
-**Field:** `deputyMembers`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `deputyMembers`, `deputy_members`, `deputymembers`, `DEPUTYMEMBERS`
-
-**Field:** `established`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `established`, `ESTABLISHED`
-
-**Field:** `hearings`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `hearings`, `HEARINGS`
-
-**Field:** `influence`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `influence`, `INFLUENCE`
-
-**Field:** `intelligence`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `intelligence`, `INTELLIGENCE`
 
 *... and 12 more mismatches*
 
@@ -304,7 +304,7 @@ The following database views are referenced in the schema but not found in sampl
 | Category | Count | Fields |
 |----------|-------|--------|
 | ✅ Implemented | 2 | `id`, `name` |
-| ❌ Structural | 11 | `attributes`, `budget`, `decisions`, `intelligence`, `labels`, `performance`, `personnel`, `policy`... |
+| ❌ Structural | 11 | `Attributes:attributes`, `Budget:budget`, `Decisions:decisions`, `Intelligence:intelligence`, `Labels:labels`, `Performance:performance`, `Personnel:personnel`, `Policy:policy`... |
 | 🔀 Computed | 10 | `civilServants`, `code`, `decisionsImplemented`, `effectiveness`, `efficiency`, `established`, `executionRate`, `ministers`... |
 | 🔄 Planned | 6 | `allocation`, `headquarters`, `nameEn`, `portfolio`, `publicSatisfaction`, `spent` |
 
@@ -327,45 +327,45 @@ The following database views are referenced in the schema but not found in sampl
 
 #### Field Mismatches
 
-**Field:** `allocation`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `allocation`, `ALLOCATION`
+**Field:** `Attributes:attributes`
+- **Issue:** Non-scalar type (Attributes) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `attributes`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `attributes`, `ATTRIBUTES`
+**Field:** `Budget:budget`
+- **Issue:** Non-scalar type (Budget) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `budget`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `budget`, `BUDGET`
+**Field:** `Decisions:decisions`
+- **Issue:** Non-scalar type (Decisions) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `civilServants`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `civilServants`, `civil_servants`, `civilservants`, `CIVILSERVANTS`
+**Field:** `Intelligence:intelligence`
+- **Issue:** Non-scalar type (Intelligence) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `code`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `code`, `CODE`
+**Field:** `Labels:labels`
+- **Issue:** Non-scalar type (Labels) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `decisions`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `decisions`, `DECISIONS`
+**Field:** `Performance:performance`
+- **Issue:** Non-scalar type (Performance) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `decisionsImplemented`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `decisionsImplemented`, `decisions_implemented`, `decisionsimplemented`, `DECISIONSIMPLEMENTED`
+**Field:** `Personnel:personnel`
+- **Issue:** Non-scalar type (Personnel) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `effectiveness`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `effectiveness`, `EFFECTIVENESS`
+**Field:** `Policy:policy`
+- **Issue:** Non-scalar type (Policy) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `efficiency`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `efficiency`, `EFFICIENCY`
+**Field:** `Predictions:predictions`
+- **Issue:** Non-scalar type (Predictions) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `established`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `established`, `ESTABLISHED`
+**Field:** `Relationships:relationships`
+- **Issue:** Non-scalar type (Relationships) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
 *... and 17 more mismatches*
 
@@ -432,4 +432,4 @@ This validation compares:
 - Coverage analysis (schema fields vs. actual columns)
 - Missing view detection
 
-**Report Generated:** 2026-04-06 12:23:11 UTC
+**Report Generated:** 2026-04-06 13:10:16 UTC

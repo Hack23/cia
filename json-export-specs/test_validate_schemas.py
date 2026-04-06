@@ -481,15 +481,16 @@ classDiagram
         # Check field status classification
         field_status = schema_result.get("field_status", {})
         self.assertIn("firstName", field_status["implemented"])
-        self.assertIn("attributes", field_status["structural"])
-        self.assertIn("labels", field_status["structural"])
+        # Non-scalar types use composite key Type:name
+        self.assertIn("Object:attributes", field_status["structural"])
+        self.assertIn("Object:labels", field_status["structural"])
         self.assertIn("fullName", field_status["computed"])
         self.assertIn("missingField", field_status["planned"])
         
         # Verify global field_status_summary aggregation
         summary = validator.validation_results["field_status_summary"]
         self.assertEqual(summary["implemented"], 2)  # firstName, status
-        self.assertEqual(summary["structural"], 2)  # attributes, labels
+        self.assertEqual(summary["structural"], 2)  # Object:attributes, Object:labels
         self.assertEqual(summary["computed"], 1)  # fullName
         self.assertEqual(summary["planned"], 1)  # missingField
     
@@ -535,8 +536,9 @@ classDiagram
         
         # Find the mismatch entries
         mismatches = {m["field"]: m for m in schema_result["field_mismatches"]}
-        self.assertIn("attributes", mismatches)
-        self.assertEqual(mismatches["attributes"]["status"], "STRUCTURAL")
+        # Non-scalar types use composite key Type:name
+        self.assertIn("Object:attributes", mismatches)
+        self.assertEqual(mismatches["Object:attributes"]["status"], "STRUCTURAL")
         self.assertIn("fullName", mismatches)
         self.assertEqual(mismatches["fullName"]["status"], "COMPUTED")
         self.assertIn("unknownField", mismatches)
