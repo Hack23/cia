@@ -12,7 +12,7 @@ The 38 mismatched fields have been categorized by implementation status.
 **Validation Results:**
 - Original fields defined: 42
 - Fields validated in data: 4
-- Fields not in data: 38 (14 structural, 13 computable, 11 planned)
+- Fields not in data: 38 (17 structural, 12 computed, 9 planned)
 
 ## Data Model
 
@@ -22,6 +22,7 @@ classDiagram
         +String id
         +String shortCode
         +String status
+        +Integer totalVotes
     }
 ```
 
@@ -30,6 +31,7 @@ classDiagram
 - **id** (`String`): Field found in sample data
 - **shortCode** (`String`): Field found in sample data
 - **status** (`String`): Field found in sample data
+- **totalVotes** (`Integer`): Field found in sample data
 
 
 ## Data Sources
@@ -51,14 +53,12 @@ This schema is validated against the following data sources:
 
 ## Migration Notes
 
-## Migration Notes
-
 **Field Classification (38 fields not in data):**
 
 ### ❌ Structural Fields (JSON grouping objects)
 - `attributes`, `labels`, `relationships`, `intelligence`, `electoral`, `voting`
 - `documents`, `members`, `coalition`, `policy`, `parliamentary`, `predictions`
-- `descriptions`, `category`
+- `descriptions`, `category`, `trend`, `alignment`, `productivity`
 
 ### 🔀 Computable Fields (derivable from existing DB columns)
 - `fullName` — from `party_name` column
@@ -70,10 +70,9 @@ This schema is validated against the following data sources:
 - `activityRate` — from `activity_level`
 - `disciplineRate` — inverse of `avg_rebel_rate`
 - `stability` — from `stability_classification`
-- `trend` — from `trend_direction`
 - `legislativeSuccess` — from `legislative_effectiveness_score`
-- `alignment` — from `alignment_rate`
-- `productivity` — from `performance_tier`
+- `committeeChairs` — count chairs from committee membership data
+- `strengthScore` — weighted composite of seats, votes, stability
 
 ### 🔄 Planned Fields (require new data sources)
 - `foundedYear` — external data not in database
@@ -83,9 +82,7 @@ This schema is validated against the following data sources:
 - `websiteUrl` — party website URL
 - `logoUrl` — party logo URL
 - `nameEn` — English translation
-- `strengthScore` — composite metric not yet defined
 - `riskScore` — party-level risk assessment
-- `committeeChairs` — derivable but needs specific query
 - `ministries` — government participation data
 
 **Recommendation:** See `FIELD_MAPPING.md` for implementation priority and `SCHEMA_VALIDATION_REPORT.md` for remediation plan.

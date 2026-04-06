@@ -56,11 +56,11 @@ The `validate_schemas.py` tool reports **implemented**, **structural**, **comput
 | `totalDocuments` | `total_documents` | integer | `view_riksdagen_politician_document_summary` | ✅ **IMPLEMENTED** |
 | `totalVotes` | `total_votes_cast` | integer | `view_riksdagen_politician_ballot_summary` | ✅ **IMPLEMENTED** |
 | `activityLevel` | `doc_activity_level` | string | `view_riksdagen_politician` | ✅ **IMPLEMENTED** |
-| `activityProfile` | `doc_activity_profile` | string | `view_riksdagen_politician` | ✅ **IMPLEMENTED** |
-| `collaborationPercentage` | `collaboration_percentage` | float | `view_riksdagen_politician` | ✅ **IMPLEMENTED** |
-| `partyName` | `party` (text form) | string | `view_riksdagen_politician` | ✅ **IMPLEMENTED** |
+| `attendanceRate` | `attendance_rate` | float | `view_riksdagen_politician_ballot_summary` | ✅ **IMPLEMENTED** |
+| `riskScore` | `risk_score` | float | `view_riksdagen_politician` | ✅ **IMPLEMENTED** |
+| `riskLevel` | `risk_level` | string | `view_riksdagen_politician` | ✅ **IMPLEMENTED** |
 
-### Computed Fields (12 — Derivable from Existing DB Columns)
+### Computed Fields (11 — Derivable from Existing DB Columns)
 
 | JSON Field | Source Column(s) | Computation Logic | Effort | Status |
 |------------|-----------------|-------------------|--------|--------|
@@ -75,50 +75,44 @@ The `validate_schemas.py` tool reports **implemented**, **structural**, **comput
 | `amendments` | `total_documents` (filtered) | Count documents where type = 'mot' (motions/amendments) | Medium | 🔀 **COMPUTED** |
 | `questions` | `total_documents` (filtered) | Count documents where type = 'fr' or 'ip' (questions) | Medium | 🔀 **COMPUTED** |
 | `motions` | `total_documents` (filtered) | Count documents where type = 'mot' | Medium | 🔀 **COMPUTED** |
-| `performance` | `risk_score`, `attendance_rate`, `win_rate` | Composite score from multiple performance metrics | High | 🔀 **COMPUTED** |
 
-### Planned Fields (5 — Require New Data Sources)
+### Planned Fields (3 — Require New Data Sources)
 
 | JSON Field | Data Type | What's Needed | Effort | Status |
 |------------|-----------|---------------|--------|--------|
 | `district` | string | Electoral district data from Swedish Election Authority API | Medium | 🔄 **PLANNED** |
 | `imageUrl` | string | Riksdagen image URL construction from person_id | Low | 🔄 **PLANNED** |
-| `chairPositions` | array | Extract from committee role data (partially available) | Medium | 🔄 **PLANNED** |
-| `colleagues` | array | Compute from committee/party co-membership graph | High | 🔄 **PLANNED** |
-| `keyVotes` | array | Curated list of significant parliamentary votes | High | 🔄 **PLANNED** |
+| `ministry` | string | Ministry assignment data from government role views | Medium | 🔄 **PLANNED** |
 
-### Deprecated Fields (14 — Structural JSON Groupings)
+### Structural Fields (17 — JSON Grouping Objects)
 
 These fields are structural nesting keys in the JSON schema, not data fields. They should be excluded from field-level validation.
 
 | JSON Field | Reason | Status |
 |------------|--------|--------|
-| `attributes` | Container object for profile attributes | ❌ **DEPRECATED** |
-| `labels` | Container object for classification labels | ❌ **DEPRECATED** |
-| `descriptions` | Container for short/detailed/long text | ❌ **DEPRECATED** |
-| `short` | Sub-field of descriptions | ❌ **DEPRECATED** |
-| `detailed` | Sub-field of descriptions | ❌ **DEPRECATED** |
-| `long` | Sub-field of descriptions | ❌ **DEPRECATED** |
-| `relationships` | Container for entity relationships | ❌ **DEPRECATED** |
-| `activity` | Container section for activity data | ❌ **DEPRECATED** |
-| `voting` | Container section for voting data | ❌ **DEPRECATED** |
-| `breakdown` | Sub-section of voting data | ❌ **DEPRECATED** |
-| `documents` | Container section for document data | ❌ **DEPRECATED** |
-| `byType` | Sub-section of documents | ❌ **DEPRECATED** |
-| `period` | Sub-section of activity | ❌ **DEPRECATED** |
-| `category` | Label category field | ❌ **DEPRECATED** |
-| `intelligence` | Container section for intelligence data | ❌ **DEPRECATED** |
-| `ministry` | Container section for ministry relationships | ❌ **DEPRECATED** |
-| `committees` | Container section for committee data | ❌ **DEPRECATED** |
+| `attributes` | Container object for profile attributes | ❌ **STRUCTURAL** |
+| `labels` | Container object for classification labels | ❌ **STRUCTURAL** |
+| `descriptions` | Container for short/detailed/long text | ❌ **STRUCTURAL** |
+| `short` | Sub-field of descriptions | ❌ **STRUCTURAL** |
+| `detailed` | Sub-field of descriptions | ❌ **STRUCTURAL** |
+| `long` | Sub-field of descriptions | ❌ **STRUCTURAL** |
+| `relationships` | Container for entity relationships | ❌ **STRUCTURAL** |
+| `activity` | Container section for activity data | ❌ **STRUCTURAL** |
+| `voting` | Container section for voting data | ❌ **STRUCTURAL** |
+| `breakdown` | Sub-section of voting data | ❌ **STRUCTURAL** |
+| `documents` | Container section for document data | ❌ **STRUCTURAL** |
+| `byType` | Sub-section of documents | ❌ **STRUCTURAL** |
+| `period` | Sub-section of activity | ❌ **STRUCTURAL** |
+| `category` | Label category field | ❌ **STRUCTURAL** |
+| `intelligence` | Container section for intelligence data | ❌ **STRUCTURAL** |
+| `performance` | Nested PerformanceMetrics grouping object | ❌ **STRUCTURAL** |
+| `committees` | Container section for committee data | ❌ **STRUCTURAL** |
 
 ### Unmapped Database Columns (High-Value — Not Yet in Schema)
 
 | Database Column | Data Type | Recommended JSON Field | Priority |
 |-----------------|-----------|----------------------|----------|
-| `risk_score` | float | `riskScore` | 🔴 High |
-| `risk_level` | string | `riskLevel` | 🔴 High |
-| `attendance_rate` | float | `attendanceRate` | 🔴 High |
-| `win_rate` | float | `winRate` | 🟡 Medium |
+| `win_rate` | float | `winRate` | 🔴 High |
 | `career_phase` | string | `careerPhase` | 🟡 Medium |
 | `career_score` | float | `careerScore` | 🟡 Medium |
 | `experience_level` | string | `experienceLevel` | 🟡 Medium |
@@ -141,16 +135,16 @@ These fields are structural nesting keys in the JSON schema, not data fields. Th
 | `id` | `party` | string | `view_riksdagen_party_summary` | ✅ **IMPLEMENTED** |
 | `shortCode` | `short_code` | string | `view_riksdagen_party_summary` | ✅ **IMPLEMENTED** |
 | `status` | `status` | string | `view_riksdagen_party_summary` | ✅ **IMPLEMENTED** |
-| `party` | `party` | string | `view_riksdagen_party_summary` | ✅ **IMPLEMENTED** |
+| `totalVotes` | `total_votes` | integer | `view_riksdagen_party_summary` | ✅ **IMPLEMENTED** |
 
-### Computed Fields (13 — Derivable from Existing DB Columns)
+### Computed Fields (12 — Derivable from Existing DB Columns)
 
 | JSON Field | Source Column(s) | Computation Logic | Effort | Status |
 |------------|-----------------|-------------------|--------|--------|
+| `fullName` | `party_name` | Direct mapping from party_name | Low | 🔀 **COMPUTED** |
 | `totalMembers` | `total_active` | Direct mapping from total_active | Low | 🔀 **COMPUTED** |
 | `seats` | `currently_active_members` | Direct mapping from currently_active_members | Low | 🔀 **COMPUTED** |
 | `activityRate` | `participation_rate` | Direct mapping from participation_rate | Low | 🔀 **COMPUTED** |
-| `riskScore` | Risk indicators | Aggregate from member risk_scores | Medium | 🔀 **COMPUTED** |
 | `strengthScore` | Multiple metrics | Weighted composite of seats, votes, stability | Medium | 🔀 **COMPUTED** |
 | `cohesionScore` | `avg_collaboration_pct` | Direct mapping from avg_collaboration_pct | Low | 🔀 **COMPUTED** |
 | `disciplineRate` | Voting data | Compute from member loyalty_rate averages | Medium | 🔀 **COMPUTED** |
@@ -159,13 +153,11 @@ These fields are structural nesting keys in the JSON schema, not data fields. Th
 | `stability` | `stability_classification`, `volatility` | Map stability_classification + volatility score | Low | 🔀 **COMPUTED** |
 | `currentSupport` | `electoral_trend`, `momentum` | Derive from electoral_trend and momentum | Medium | 🔀 **COMPUTED** |
 | `committeeChairs` | Committee role data | Count chairs from committee membership data | Medium | 🔀 **COMPUTED** |
-| `productivity` | `total_documents`, `performance_tier` | Documents per member weighted by performance_tier | Medium | 🔀 **COMPUTED** |
 
-### Planned Fields (7 — Require New Data Sources)
+### Planned Fields (9 — Require New Data Sources)
 
 | JSON Field | Data Type | What's Needed | Effort | Status |
 |------------|-----------|---------------|--------|--------|
-| `fullName` | string | Full party name (e.g., "Socialdemokraterna") — static reference data | Low | 🔄 **PLANNED** |
 | `nameEn` | string | English party name translation — static reference data | Low | 🔄 **PLANNED** |
 | `foundedYear` | integer | Party founding year — static reference data | Low | 🔄 **PLANNED** |
 | `ideology` | string | Political ideology classification — static reference data | Low | 🔄 **PLANNED** |
@@ -173,27 +165,30 @@ These fields are structural nesting keys in the JSON schema, not data fields. Th
 | `color` | string | Official party color hex code — static reference data | Low | 🔄 **PLANNED** |
 | `websiteUrl` | string | Party website URL — static reference data | Low | 🔄 **PLANNED** |
 | `logoUrl` | string | Party logo URL — static reference data | Low | 🔄 **PLANNED** |
+| `riskScore` | float | Party-level risk assessment not yet implemented | Medium | 🔄 **PLANNED** |
+| `ministries` | integer | Government participation data not yet tracked | Medium | 🔄 **PLANNED** |
 
-### Deprecated Fields (14 — Structural JSON Groupings)
+### Structural Fields (17 — JSON Grouping Objects)
 
 | JSON Field | Reason | Status |
 |------------|--------|--------|
-| `attributes` | Container object for party attributes | ❌ **DEPRECATED** |
-| `labels` | Container object for classification labels | ❌ **DEPRECATED** |
-| `descriptions` | Container for descriptive text | ❌ **DEPRECATED** |
-| `relationships` | Container for entity relationships | ❌ **DEPRECATED** |
-| `category` | Label category field | ❌ **DEPRECATED** |
-| `trend` | Container section for trend data | ❌ **DEPRECATED** |
-| `voting` | Container section for voting data | ❌ **DEPRECATED** |
-| `alignment` | Sub-section of voting alignment | ❌ **DEPRECATED** |
-| `members` | Container section for member data | ❌ **DEPRECATED** |
-| `electoral` | Container section for electoral data | ❌ **DEPRECATED** |
-| `parliamentary` | Container section for parliamentary data | ❌ **DEPRECATED** |
-| `coalition` | Container section for coalition data | ❌ **DEPRECATED** |
-| `ministries` | Container section for ministry data | ❌ **DEPRECATED** |
-| `intelligence` | Container section for intelligence data | ❌ **DEPRECATED** |
-| `policy` | Container section for policy data | ❌ **DEPRECATED** |
-| `predictions` | Container section for predictive analytics | ❌ **DEPRECATED** |
+| `attributes` | Container object for party attributes | ❌ **STRUCTURAL** |
+| `labels` | Container object for classification labels | ❌ **STRUCTURAL** |
+| `descriptions` | Container for descriptive text | ❌ **STRUCTURAL** |
+| `relationships` | Container for entity relationships | ❌ **STRUCTURAL** |
+| `category` | Label category field | ❌ **STRUCTURAL** |
+| `trend` | Nested `Trends` object; JSON grouping element | ❌ **STRUCTURAL** |
+| `voting` | Container section for voting data | ❌ **STRUCTURAL** |
+| `alignment` | Nested `VoteAlignment` object; JSON grouping element | ❌ **STRUCTURAL** |
+| `members` | Container section for member data | ❌ **STRUCTURAL** |
+| `electoral` | Container section for electoral data | ❌ **STRUCTURAL** |
+| `parliamentary` | Container section for parliamentary data | ❌ **STRUCTURAL** |
+| `productivity` | Nested `Productivity` object; JSON grouping element | ❌ **STRUCTURAL** |
+| `coalition` | Container section for coalition data | ❌ **STRUCTURAL** |
+| `intelligence` | Container section for intelligence data | ❌ **STRUCTURAL** |
+| `policy` | Container section for policy data | ❌ **STRUCTURAL** |
+| `predictions` | Nested `Predictions` object; JSON grouping element | ❌ **STRUCTURAL** |
+| `documents` | Container section for document data | ❌ **STRUCTURAL** |
 
 ### Unmapped Database Columns (High-Value — Not Yet in Schema)
 
@@ -547,11 +542,13 @@ python3 validate_schemas.py
 
 ### Validation Exclusions
 
-The following field categories should be excluded from mismatch counts:
-- All ❌ **DEPRECATED** structural grouping fields (45 fields)
-- Fields marked as 🔀 **COMPUTED** that have documented computation logic
+`validate_schemas.py` currently reports the raw mismatch total and does **not** yet exclude all non-implemented categories from its counts.
 
-**Adjusted mismatch target:** 121 total → **18 true gaps** (after deprecation + computation)
+The following categories are candidates for exclusion from mismatch counts in a future validator enhancement:
+- All ❌ **STRUCTURAL** JSON grouping fields (53 fields)
+- Fields marked as 🔀 **COMPUTED** that have documented computation logic (45 fields)
+
+**Aspirational adjusted target:** 121 total → **23 true gaps** (the PLANNED fields, once structural + computed exclusions are applied)
 
 ---
 

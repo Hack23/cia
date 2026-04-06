@@ -12,7 +12,7 @@ The 28 mismatched fields have been categorized by implementation status.
 **Validation Results:**
 - Original fields defined: 29
 - Fields validated in data: 1
-- Fields not in data: 28 (8 structural, 11 computable, 9 planned)
+- Fields not in data: 28 (11 structural, 11 computed, 6 planned)
 
 ## Data Model
 
@@ -38,13 +38,11 @@ This schema is validated against the following data sources:
 
 ## Migration Notes
 
-## Migration Notes
-
 **Field Classification (28 fields not in data):**
 
 ### ❌ Structural Fields (JSON grouping objects)
 - `attributes`, `labels`, `relationships`, `intelligence`, `personnel`
-- `performance`, `decisions`, `policy`
+- `performance`, `decisions`, `policy`, `budget`, `predictions`, `trend`
 
 ### 🔀 Computable Fields (derivable from existing DB columns)
 - `id` — from `name_id` or `ministry_code`
@@ -57,17 +55,14 @@ This schema is validated against the following data sources:
 - `decisionsImplemented` — from `approved_proposals`
 - `efficiency` — from `approval_rate`
 - `executionRate` — from `approval_rate`
-- `trend` — from `document_trend` or `legislative_trend`
+- `established` — from `first_assignment_date`
 
 ### 🔄 Planned Fields (require new data sources)
 - `nameEn` — English translation not in database
 - `portfolio` — ministry portfolio classification
-- `established` — establishment date
 - `headquarters` — physical location
 - `allocation` — budget allocation data not in DB
 - `spent` — spending data not in DB
-- `budget` — budget data not available
 - `publicSatisfaction` — external survey data
-- `predictions` — predictive model not yet implemented
 
 **Recommendation:** See `FIELD_MAPPING.md` for implementation priority and `SCHEMA_VALIDATION_REPORT.md` for remediation plan.

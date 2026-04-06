@@ -12,7 +12,7 @@ The 24 mismatched fields have been categorized by implementation status.
 **Validation Results:**
 - Original fields defined: 26
 - Fields validated in data: 2
-- Fields not in data: 24 (6 structural, 13 computable, 5 planned)
+- Fields not in data: 24 (8 structural, 11 computed, 5 planned)
 
 ## Data Model
 
@@ -48,12 +48,11 @@ This schema is validated against the following data sources:
 
 ## Migration Notes
 
-## Migration Notes
-
 **Field Classification (24 fields not in data):**
 
 ### ❌ Structural Fields (JSON grouping objects)
 - `attributes`, `labels`, `relationships`, `intelligence`, `membership`, `policy`
+- `productivity`, `decisions`
 
 ### 🔀 Computable Fields (derivable from existing DB columns)
 - `code` — from `embedded_id_org_code` or `committee_code`
@@ -64,8 +63,6 @@ This schema is validated against the following data sources:
 - `established` — from `first_assignment_date`
 - `reports` — from `reports_count` or `committee_reports`
 - `performanceScore` — from `productivity_score`
-- `productivity` — from `productivity_level`
-- `decisions` — from `total_decisions_all_time` or `approved`
 - `attendanceRate` — from `total_days_served` / expected days
 - `amendments` — from document type filtering
 - `hearings` — from activity tracking data

@@ -422,7 +422,7 @@ Add dedicated time series sections to JSON schemas:
 
 The 121 identified mismatches fall into three distinct categories, each requiring a different remediation approach:
 
-### 8.1 Structural Fields (50 mismatches) — Not Real Mismatches
+### 8.1 Structural Fields (53 mismatches) — Not Real Mismatches
 
 These are JSON grouping objects used to organize nested data (e.g., `votingActivity`, `documents`, `riskAssessment`). They are structural containers in the JSON schema and do not correspond to individual database columns. No implementation action is required.
 
@@ -434,7 +434,7 @@ These are JSON grouping objects used to organize nested data (e.g., `votingActiv
 
 **Resolution:** Document as structural; no DB mapping needed. These exist purely for JSON schema organization.
 
-### 8.2 Computable Fields (≈40 of the 71 planned) — Implementation Needed
+### 8.2 Computable Fields (45 mismatches) — Implementation Needed
 
 These fields can be derived from existing database views and columns through direct mapping, aggregation, or simple joins. They represent the highest-value implementation targets.
 
@@ -446,7 +446,7 @@ These fields can be derived from existing database views and columns through dir
 
 **Resolution:** Implement in Sprints 1–2 of the Remediation Roadmap (see below).
 
-### 8.3 Planned Fields (≈31 of the 71 planned) — Future Work
+### 8.3 Planned Fields (23 mismatches) — Future Work
 
 These fields require new data sources, external API integration, or new database views not yet created. They include enrichment data such as ideology classifications, historical founding dates, and cross-entity network metrics.
 
