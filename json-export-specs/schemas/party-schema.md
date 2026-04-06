@@ -237,7 +237,7 @@ classDiagram
 | 🔄 PLANNED | 17 | Requires new data sources |
 | ❌ STRUCTURAL | 18 | JSON grouping objects |
 
-> **Note:** The validator tracks 42 of these fields (4+17+12+9). The table includes additional nested class fields from the mermaid diagram. See `validation-results.json` for per-field status.
+> **Note:** The table above documents all 51 fields from the mermaid diagram (4+12+17+18). The validator tracks 42 of these (4 impl + 17 struct + 12 comp + 9 plan); 9 nested class fields are only documented in this table. See `validation-results.json` for per-field status.
 
 ---
 
