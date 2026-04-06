@@ -243,18 +243,18 @@ These fields are structural nesting keys in the JSON schema, not data fields. Th
 | `hearings` | integer | Public hearing count — requires new data source | Medium | 🔄 **PLANNED** |
 | `influence` | float | Cross-committee influence scoring — requires algorithm | High | 🔄 **PLANNED** |
 
-### Deprecated Fields (8 — Structural JSON Groupings)
+### Structural Fields (8 — JSON Grouping Objects)
 
 | JSON Field | Reason | Status |
 |------------|--------|--------|
-| `attributes` | Container object for committee attributes | ❌ **DEPRECATED** |
-| `labels` | Container object for classification labels | ❌ **DEPRECATED** |
-| `relationships` | Container for entity relationships | ❌ **DEPRECATED** |
-| `membership` | Container section for membership data | ❌ **DEPRECATED** |
-| `decisions` | Container section for decision data | ❌ **DEPRECATED** |
-| `intelligence` | Container section for intelligence data | ❌ **DEPRECATED** |
-| `policy` | Container section for policy data | ❌ **DEPRECATED** |
-| `meetings` | Container section for meeting data (when structural) | ❌ **DEPRECATED** |
+| `attributes` | Container object for committee attributes | ❌ **STRUCTURAL** |
+| `labels` | Container object for classification labels | ❌ **STRUCTURAL** |
+| `relationships` | Container for entity relationships | ❌ **STRUCTURAL** |
+| `membership` | Container section for membership data | ❌ **STRUCTURAL** |
+| `decisions` | Container section for decision data | ❌ **STRUCTURAL** |
+| `intelligence` | Container section for intelligence data | ❌ **STRUCTURAL** |
+| `policy` | Container section for policy data | ❌ **STRUCTURAL** |
+| `meetings` | Container section for meeting data (when structural) | ❌ **STRUCTURAL** |
 
 ### Unmapped Database Columns (High-Value — Not Yet in Schema)
 
@@ -272,14 +272,14 @@ These fields are structural nesting keys in the JSON schema, not data fields. Th
 ## Ministry Schema Field Mappings
 
 **Validation result:** 1 field implemented, 28 mismatches  
-**Source views:** `view_riksdagen_government`, `view_riksdagen_government_role_member`  
+**Source views:** `view_riksdagen_goverment`, `view_riksdagen_goverment_role_member`  
 **Available DB columns:** 96 total
 
 ### Implemented Fields (1 — Found in Data)
 
 | JSON Field | Database Column | Data Type | Source View | Status |
 |------------|-----------------|-----------|-------------|--------|
-| `name` | `name` | string | `view_riksdagen_government` | ✅ **IMPLEMENTED** |
+| `name` | `name` | string | `view_riksdagen_goverment` | ✅ **IMPLEMENTED** |
 
 ### Computed Fields (8 — Derivable from Existing DB Columns)
 
@@ -309,20 +309,20 @@ These fields are structural nesting keys in the JSON schema, not data fields. Th
 | `spent` | float | Actual spending — ESV data integration | Medium | 🔄 **PLANNED** |
 | `trend` | string | Performance trend direction — requires time-series computation | Medium | 🔄 **PLANNED** |
 
-### Deprecated Fields (9 — Structural JSON Groupings)
+### Structural Fields (10 — JSON Grouping Objects)
 
 | JSON Field | Reason | Status |
 |------------|--------|--------|
-| `attributes` | Container object for ministry attributes | ❌ **DEPRECATED** |
-| `labels` | Container object for classification labels | ❌ **DEPRECATED** |
-| `relationships` | Container for entity relationships | ❌ **DEPRECATED** |
-| `personnel` | Container section for personnel data | ❌ **DEPRECATED** |
-| `decisions` | Container section for decision data | ❌ **DEPRECATED** |
-| `intelligence` | Container section for intelligence data | ❌ **DEPRECATED** |
-| `policy` | Container section for policy data | ❌ **DEPRECATED** |
-| `predictions` | Container section for predictive analytics | ❌ **DEPRECATED** |
-| `performance` | Container section for performance data | ❌ **DEPRECATED** |
-| `budget` | Container section for budget data | ❌ **DEPRECATED** |
+| `attributes` | Container object for ministry attributes | ❌ **STRUCTURAL** |
+| `labels` | Container object for classification labels | ❌ **STRUCTURAL** |
+| `relationships` | Container for entity relationships | ❌ **STRUCTURAL** |
+| `personnel` | Container section for personnel data | ❌ **STRUCTURAL** |
+| `decisions` | Container section for decision data | ❌ **STRUCTURAL** |
+| `intelligence` | Container section for intelligence data | ❌ **STRUCTURAL** |
+| `policy` | Container section for policy data | ❌ **STRUCTURAL** |
+| `predictions` | Container section for predictive analytics | ❌ **STRUCTURAL** |
+| `performance` | Container section for performance data | ❌ **STRUCTURAL** |
+| `budget` | Container section for budget data | ❌ **STRUCTURAL** |
 
 ### Unmapped Database Columns (High-Value — Not Yet in Schema)
 
@@ -470,13 +470,13 @@ Sprint 3 (Tier 3): Build 4 aggregation pipelines
 | Action | Fields Resolved | Remaining |
 |--------|----------------|-----------|
 | **Start** | — | 121 mismatches |
-| Mark structural groupings as DEPRECATED | 45 fields | 76 mismatches |
-| Implement Tier 1 direct mappings | 12 fields | 64 mismatches |
-| Implement Tier 2 simple derivations | 9 fields | 55 mismatches |
-| Implement Tier 3 aggregations | 4 fields | 51 mismatches |
-| Add remaining COMPUTED fields | 18 fields | 33 mismatches |
-| Add PLANNED static reference data | 15 fields | 18 mismatches |
-| Remaining (external data sources) | — | **18 true gaps** |
+| Mark structural groupings as STRUCTURAL | 53 fields | 68 mismatches |
+| Implement Tier 1 direct mappings | 12 fields | 56 mismatches |
+| Implement Tier 2 simple derivations | 9 fields | 47 mismatches |
+| Implement Tier 3 aggregations | 4 fields | 43 mismatches |
+| Add remaining COMPUTED fields | 18 fields | 25 mismatches |
+| Add PLANNED static reference data | 15 fields | 10 mismatches |
+| Remaining (external data sources) | — | **10 true gaps** |
 
 ### Per-Schema Mismatch Breakdown After Resolution
 
@@ -514,16 +514,16 @@ When updating schemas or database structure:
    - Provide example calculation
    - Mark as 🔀 **COMPUTED** until validated
 
-4. **Deprecating Fields:**
-   - Mark as ❌ **DEPRECATED** in this document
-   - Add to validation exclusion list
-   - Maintain backward compatibility for 1 release cycle
-   - Document migration path
+4. **Structural Fields:**
+   - Mark as ❌ **STRUCTURAL** in this document
+   - These are JSON grouping objects, not direct data fields
+   - Maintain in schema for organizational structure
+   - Document contained sub-fields
 
 5. **Promoting Field Status:**
    - 🔄 PLANNED → 🔀 COMPUTED (when source columns identified)
    - 🔀 COMPUTED → ✅ IMPLEMENTED (when validated in export data)
-   - ✅ IMPLEMENTED → ❌ DEPRECATED (when field is retired)
+   - ✅ IMPLEMENTED → ❌ STRUCTURAL (when field becomes a grouping container)
 
 ---
 
