@@ -18,13 +18,14 @@
 */
 package com.hack23.cia.service.impl.action.user;
 
-import org.passay.CharacterRule;
-import org.passay.EnglishCharacterData;
-import org.passay.LengthRule;
+import org.passay.DefaultPasswordValidator;
 import org.passay.PasswordData;
 import org.passay.PasswordValidator;
-import org.passay.RuleResult;
-import org.passay.WhitespaceRule;
+import org.passay.ValidationResult;
+import org.passay.data.EnglishCharacterData;
+import org.passay.rule.CharacterRule;
+import org.passay.rule.LengthRule;
+import org.passay.rule.WhitespaceRule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,7 +71,7 @@ public final class ChangePasswordService extends
 	private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
 	/** The password validator. */
-	private final PasswordValidator passwordValidator = new PasswordValidator(new LengthRule(8, 64),
+	private final PasswordValidator passwordValidator = new DefaultPasswordValidator(new LengthRule(8, 64),
 			new CharacterRule(EnglishCharacterData.UpperCase, 1), new CharacterRule(EnglishCharacterData.LowerCase, 1),
 			new CharacterRule(EnglishCharacterData.Digit, 1), new CharacterRule(EnglishCharacterData.Special, 1),
 			new WhitespaceRule());
@@ -106,7 +107,7 @@ public final class ChangePasswordService extends
 					userAccount.getUserId() + ".uuid" + serviceRequest.getCurrentPassword(), userAccount.getUserpassword()) && serviceRequest.getNewPassword().equals(serviceRequest.getRepeatNewPassword())) {
 
 
-				final RuleResult passwordRuleResults = passwordValidator
+				final ValidationResult passwordRuleResults = passwordValidator
 						.validate(new PasswordData(serviceRequest.getNewPassword()));
 
 				if (passwordRuleResults.isValid()) {
@@ -118,7 +119,7 @@ public final class ChangePasswordService extends
 
 				} else {
 					response = new ChangePasswordResponse(ServiceResult.FAILURE);
-					final String errorMessage = passwordValidator.getMessages(passwordRuleResults).toString();
+					final String errorMessage = passwordRuleResults.getMessages().toString();
 					response.setErrorMessage(errorMessage);
 					eventRequest.setErrorMessage(errorMessage);
 				}

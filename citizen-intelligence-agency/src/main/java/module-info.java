@@ -168,7 +168,7 @@ open module com.hack23.cia.web {
 	requires org.apache.commons.lang3;
 	requires org.bouncycastle.provider;
 
-	requires passay;
+	requires org.passay;
 	requires wt.pdf.viewer;
 	requires spring.aop;
 	requires statistics.card;

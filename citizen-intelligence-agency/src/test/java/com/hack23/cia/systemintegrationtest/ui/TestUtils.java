@@ -1,11 +1,8 @@
 package com.hack23.cia.systemintegrationtest.ui;
 
-import java.util.Arrays;
-import java.util.List;
-
-import org.passay.CharacterRule;
-import org.passay.EnglishCharacterData;
-import org.passay.PasswordGenerator;
+import org.passay.data.EnglishCharacterData;
+import org.passay.generate.PasswordGenerator;
+import org.passay.rule.CharacterRule;
 
 /**
  * The Class TestUtils.
@@ -23,11 +20,11 @@ public final class TestUtils {
      * @return the string
      */
     public static String generatePassword() {
-        final List<CharacterRule> rules = Arrays.asList(
+        final CharacterRule[] rules = new CharacterRule[]{
             new CharacterRule(EnglishCharacterData.UpperCase, 1),
             new CharacterRule(EnglishCharacterData.LowerCase, 1),
             new CharacterRule(EnglishCharacterData.Digit, 1),
-            new CharacterRule(EnglishCharacterData.Special, 1));
-        return new PasswordGenerator().generatePassword(12, rules);
+            new CharacterRule(EnglishCharacterData.Special, 1)};
+        return new PasswordGenerator(12, rules).generate().toString();
     }
 }
