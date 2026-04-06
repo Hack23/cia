@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-04-06T12:11:30.447114+00:00",
+  "timestamp": "2026-04-06T12:23:11.132844+00:00",
   "schemas_validated": 5,
   "files_analyzed": 202,
-  "total_mismatches": 121,
+  "total_mismatches": 118,
   "field_status_summary": {
-    "implemented": 21,
+    "implemented": 24,
     "structural": 53,
-    "computed": 45,
+    "computed": 42,
     "planned": 23
   },
   "schemas": {
@@ -28,9 +28,9 @@
         "view_riksdagen_politician_document_daily_summary_sample.csv"
       ],
       "missing_views": [
+        "riksdagen_politician_vote_summary",
         "riksdagen_politician_ranking",
-        "riksdagen_politician_summary",
-        "riksdagen_politician_vote_summary"
+        "riksdagen_politician_summary"
       ],
       "field_mismatches": [
         {
@@ -411,8 +411,8 @@
         "view_riksdagen_party_switcher_outcomes_sample.csv"
       ],
       "missing_views": [
-        "riksdagen_party_vote_summary",
-        "riksdagen_party_ballot_support_summary"
+        "riksdagen_party_ballot_support_summary",
+        "riksdagen_party_vote_summary"
       ],
       "field_mismatches": [
         {
@@ -845,18 +845,20 @@
       }
     },
     "committee": {
-      "views_referenced": 3,
+      "views_referenced": 4,
       "fields_defined": 26,
       "matched_views": [
         "view_riksdagen_committee_decision_type_org_summary_sample.csv",
         "view_riksdagen_committee_sample.csv",
         "view_riksdagen_committee_decisions_sample.csv",
+        "view_committee_productivity_matrix_sample.csv",
         "view_riksdagen_committee_ballot_decision_politician_summary_sample.csv",
         "view_riksdagen_committee_parliament_member_proposal_sample.csv",
         "view_riksdagen_committee_ballot_decision_party_summary_sample.csv",
         "view_riksdagen_committee_role_member_sample.csv",
         "view_riksdagen_committee_roles_sample.csv",
         "view_riksdagen_committee_decision_type_summary_sample.csv",
+        "view_committee_productivity_sample.csv",
         "view_riksdagen_committee_ballot_decision_summary_sample.csv"
       ],
       "missing_views": [
@@ -1046,17 +1048,6 @@
           ]
         },
         {
-          "field": "regularMembers",
-          "issue": "Field defined in schema but not found in data",
-          "status": "COMPUTED",
-          "suggestions": [
-            "regularMembers",
-            "regular_members",
-            "regularmembers",
-            "REGULARMEMBERS"
-          ]
-        },
-        {
           "field": "relationships",
           "issue": "Field defined in schema but not found in data",
           "status": "STRUCTURAL",
@@ -1075,17 +1066,6 @@
           ]
         },
         {
-          "field": "totalMembers",
-          "issue": "Field defined in schema but not found in data",
-          "status": "COMPUTED",
-          "suggestions": [
-            "totalMembers",
-            "total_members",
-            "totalmembers",
-            "TOTALMEMBERS"
-          ]
-        },
-        {
           "field": "type",
           "issue": "Field defined in schema but not found in data",
           "status": "PLANNED",
@@ -1096,12 +1076,14 @@
         }
       ],
       "recommendations": [
-        "Consider adding 20 data columns to schema: absent_votes, abstain_votes, active, against_proposal_number, against_proposal_parties"
+        "Consider adding 20 data columns to schema: absent_votes, abstain_votes, active, active_members, activity_span_days"
       ],
       "field_status": {
         "implemented": [
           "activityLevel",
-          "id"
+          "id",
+          "regularMembers",
+          "totalMembers"
         ],
         "structural": [
           "attributes",
@@ -1122,9 +1104,7 @@
           "hearings",
           "name",
           "performanceScore",
-          "regularMembers",
-          "reports",
-          "totalMembers"
+          "reports"
         ],
         "planned": [
           "influence",
@@ -1136,10 +1116,16 @@
       }
     },
     "ministry": {
-      "views_referenced": 3,
+      "views_referenced": 4,
       "fields_defined": 29,
       "matched_views": [
+        "view_riksdagen_goverment_sample.csv",
+        "view_ministry_risk_evolution_sample.csv",
+        "view_ministry_productivity_matrix_sample.csv",
         "view_ministry_effectiveness_trends_sample.csv",
+        "view_riksdagen_goverment_role_member_sample.csv",
+        "view_riksdagen_goverment_proposals_sample.csv",
+        "view_riksdagen_goverment_roles_sample.csv",
         "view_ministry_decision_impact_sample.csv"
       ],
       "missing_views": [
@@ -1258,15 +1244,6 @@
           "suggestions": [
             "headquarters",
             "HEADQUARTERS"
-          ]
-        },
-        {
-          "field": "id",
-          "issue": "Field defined in schema but not found in data",
-          "status": "COMPUTED",
-          "suggestions": [
-            "id",
-            "ID"
           ]
         },
         {
@@ -1414,10 +1391,11 @@
         }
       ],
       "recommendations": [
-        "Consider adding 20 data columns to schema: active_members, approval_rate, approved_proposals, committee, committee_referral_proposals"
+        "Consider adding 20 data columns to schema: active, active_members, activity_level, approval_rate, approved_proposals"
       ],
       "field_status": {
         "implemented": [
+          "id",
           "name"
         ],
         "structural": [
@@ -1441,7 +1419,6 @@
           "efficiency",
           "established",
           "executionRate",
-          "id",
           "ministers",
           "performanceScore",
           "stateSecretaries"

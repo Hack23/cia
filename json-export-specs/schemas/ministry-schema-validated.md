@@ -2,29 +2,31 @@
 
 **Status:** ✅ Validated against actual sample data  
 **Last Updated:** 2026-04-05  
-**Fields:** 1 implemented (only fields present in sample data)
+**Fields:** 2 implemented (only fields present in sample data)
 
 ## Overview
 
 This schema reflects **only fields that exist in actual sample data**. 
-The 28 mismatched fields have been categorized by implementation status.
+The 27 mismatched fields have been categorized by implementation status.
 
 **Validation Results:**
 - Original fields defined: 29
-- Fields validated in data: 1
-- Fields not in data: 28 (11 structural, 11 computed, 6 planned)
+- Fields validated in data: 2
+- Fields not in data: 27 (11 structural, 10 computed, 6 planned)
 
 ## Data Model
 
 ```mermaid
 classDiagram
     class MinistryExport {
+        +String id
         +String name
     }
 ```
 
 ## Field Descriptions
 
+- **id** (`String`): Ministry identifier, found in `view_riksdagen_goverment_proposals_sample.csv`
 - **name** (`String`): Field found in sample data
 
 
@@ -32,20 +34,25 @@ classDiagram
 
 This schema is validated against the following data sources:
 
+- `view_riksdagen_goverment_sample.csv`
+- `view_riksdagen_goverment_role_member_sample.csv`
+- `view_riksdagen_goverment_proposals_sample.csv`
+- `view_riksdagen_goverment_roles_sample.csv`
 - `view_ministry_effectiveness_trends_sample.csv`
 - `view_ministry_decision_impact_sample.csv`
+- `view_ministry_productivity_matrix_sample.csv`
+- `view_ministry_risk_evolution_sample.csv`
 
 
 ## Migration Notes
 
-**Field Classification (28 fields not in data):**
+**Field Classification (27 fields not in data):**
 
 ### ❌ Structural Fields (JSON grouping objects)
 - `attributes`, `labels`, `relationships`, `intelligence`, `personnel`
 - `performance`, `decisions`, `policy`, `budget`, `predictions`, `trend`
 
 ### 🔀 Computable Fields (derivable from existing DB columns)
-- `id` — from `name_id` or `ministry_code`
 - `code` — from `org_code` or `ministry_code`
 - `ministers` — count from `view_riksdagen_goverment_role_member` where role = minister
 - `stateSecretaries` — count where role = state secretary

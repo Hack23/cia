@@ -5,7 +5,7 @@
 
 ## Overview
 
-The original JSON export schemas define comprehensive data models for political intelligence. Automated validation has identified 121 field mismatches across 4 schemas. These mismatches have been classified into three categories: **structural** (JSON grouping objects), **computed** (derivable from existing DB columns), and **planned** (requiring new data sources).
+The original JSON export schemas define comprehensive data models for political intelligence. Automated validation has identified 118 field mismatches across 4 schemas. These mismatches have been classified into three categories: **structural** (JSON grouping objects), **computed** (derivable from existing DB columns), and **planned** (requiring new data sources).
 
 ## Validation Results
 
@@ -13,10 +13,10 @@ The original JSON export schemas define comprehensive data models for political 
 |--------|----------------|-------------|------------|----------|---------|------------|
 | **Politician** | 45 | 14 | 17 | 11 | 3 | 31 |
 | **Party** | 42 | 4 | 17 | 12 | 9 | 38 |
-| **Committee** | 26 | 2 | 8 | 11 | 5 | 24 |
-| **Ministry** | 29 | 1 | 11 | 11 | 6 | 28 |
+| **Committee** | 26 | 4 | 8 | 9 | 5 | 22 |
+| **Ministry** | 29 | 2 | 11 | 10 | 6 | 27 |
 | **Intelligence** | 0* | 0 | 0 | 0 | 0 | **0** |
-| **TOTAL** | **142** | **21** | **53** | **45** | **23** | **121** |
+| **TOTAL** | **142** | **24** | **53** | **42** | **23** | **118** |
 
 *Intelligence schema uses a different structure not parsed by mermaid field extraction.
 
@@ -25,8 +25,8 @@ The original JSON export schemas define comprehensive data models for political 
 ### Not Real Mismatches (53 structural)
 Fields like `attributes`, `labels`, `relationships`, `intelligence`, `decisions`, `policy`, `trend`, `alignment`, `productivity` are **JSON grouping objects** — they organize the schema structure but don't correspond to individual database columns. These should be excluded from field-level validation.
 
-### Implementable Now (45 computed)
-Fields like `fullName`, `partyLoyalty`, `totalMembers`, `performanceScore` can be **derived from existing database columns** with SQL aggregations, concatenations, or view mappings. See `FIELD_MAPPING.md` for implementation details.
+### Implementable Now (42 computed)
+Fields like `fullName`, `partyLoyalty`, `performanceScore` can be **derived from existing database columns** with SQL aggregations, concatenations, or view mappings. See `FIELD_MAPPING.md` for implementation details.
 
 ### Future Work (23 planned)
 Fields like `foundedYear`, `ideology`, `nameEn`, `headquarters` require **external data sources** not currently in the database. These are long-term implementation goals.
@@ -37,8 +37,8 @@ The following data-validated schema files have been created:
 
 - `politician-schema-validated.md` - 14 fields validated
 - `party-schema-validated.md` - 4 fields validated  
-- `committee-schema-validated.md` - 2 fields validated
-- `ministry-schema-validated.md` - 1 field validated
+- `committee-schema-validated.md` - 4 fields validated
+- `ministry-schema-validated.md` - 2 fields validated
 
 Each file includes:
 - Updated mermaid diagram with only validated fields

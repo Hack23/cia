@@ -1,9 +1,9 @@
 # JSON Schema Validation Report
 
-**Generated:** 2026-04-06T12:11:30.447114+00:00
+**Generated:** 2026-04-06T12:23:11.132844+00:00
 **Schemas Validated:** 5
 **Sample Files Analyzed:** 202
-**Total Mismatches:** 121
+**Total Mismatches:** 118
 
 ---
 
@@ -15,9 +15,9 @@ This report validates the 5 JSON export schemas against 202 relevant CSV sample 
 
 | Category | Count | Description |
 |----------|-------|-------------|
-| ✅ Implemented | 21 | Fields found in database sample data |
+| ✅ Implemented | 24 | Fields found in database sample data |
 | ❌ Structural | 53 | JSON grouping objects (not direct DB columns) |
-| 🔀 Computed | 45 | Derivable from existing database columns |
+| 🔀 Computed | 42 | Derivable from existing database columns |
 | 🔄 Planned | 23 | Fields not yet available in data |
 
 ### Validation Scope
@@ -26,8 +26,8 @@ This report validates the 5 JSON export schemas against 202 relevant CSV sample 
 |--------|---------------|---------------|---------------|------------------|-------------|--------|
 | Politician | 45 | 12 | 3 | 31 | 14 | ⚠️ REVIEW |
 | Party | 42 | 17 | 2 | 38 | 4 | ⚠️ REVIEW |
-| Committee | 26 | 10 | 2 | 24 | 2 | ⚠️ REVIEW |
-| Ministry | 29 | 2 | 1 | 28 | 1 | ⚠️ REVIEW |
+| Committee | 26 | 12 | 2 | 22 | 4 | ⚠️ REVIEW |
+| Ministry | 29 | 8 | 1 | 27 | 2 | ⚠️ REVIEW |
 | Intelligence | 0 | 5 | 2 | 0 | 0 | ✅ PASS |
 
 ---
@@ -67,9 +67,9 @@ This report validates the 5 JSON export schemas against 202 relevant CSV sample 
 
 The following database views are referenced in the schema but not found in sample data:
 
+- `riksdagen_politician_vote_summary`
 - `riksdagen_politician_ranking`
 - `riksdagen_politician_summary`
-- `riksdagen_politician_vote_summary`
 
 #### Field Mismatches
 
@@ -154,8 +154,8 @@ The following database views are referenced in the schema but not found in sampl
 
 The following database views are referenced in the schema but not found in sample data:
 
-- `riksdagen_party_vote_summary`
 - `riksdagen_party_ballot_support_summary`
+- `riksdagen_party_vote_summary`
 
 #### Field Mismatches
 
@@ -210,16 +210,16 @@ The following database views are referenced in the schema but not found in sampl
 ### Committee Schema
 
 **Fields Defined:** 26  
-**Database Views Referenced:** 3  
-**Sample Files Matched:** 10
+**Database Views Referenced:** 4  
+**Sample Files Matched:** 12
 
 #### Field Implementation Status
 
 | Category | Count | Fields |
 |----------|-------|--------|
-| ✅ Implemented | 2 | `activityLevel`, `id` |
+| ✅ Implemented | 4 | `activityLevel`, `id`, `regularMembers`, `totalMembers` |
 | ❌ Structural | 8 | `attributes`, `decisions`, `intelligence`, `labels`, `membership`, `policy`, `productivity`, `relationships` |
-| 🔀 Computed | 11 | `amendments`, `attendanceRate`, `code`, `deputyMembers`, `established`, `hearings`, `name`, `performanceScore`... |
+| 🔀 Computed | 9 | `amendments`, `attendanceRate`, `code`, `deputyMembers`, `established`, `hearings`, `name`, `performanceScore`... |
 | 🔄 Planned | 5 | `influence`, `meetings`, `nameEn`, `policyDomain`, `type` |
 
 #### Matched Data Files
@@ -227,13 +227,14 @@ The following database views are referenced in the schema but not found in sampl
 - `view_riksdagen_committee_decision_type_org_summary_sample.csv`
 - `view_riksdagen_committee_sample.csv`
 - `view_riksdagen_committee_decisions_sample.csv`
+- `view_committee_productivity_matrix_sample.csv`
 - `view_riksdagen_committee_ballot_decision_politician_summary_sample.csv`
 - `view_riksdagen_committee_parliament_member_proposal_sample.csv`
 - `view_riksdagen_committee_ballot_decision_party_summary_sample.csv`
 - `view_riksdagen_committee_role_member_sample.csv`
 - `view_riksdagen_committee_roles_sample.csv`
 - `view_riksdagen_committee_decision_type_summary_sample.csv`
-- `view_riksdagen_committee_ballot_decision_summary_sample.csv`
+- ... and 2 more
 
 #### Missing Views
 
@@ -284,32 +285,38 @@ The following database views are referenced in the schema but not found in sampl
 - **Issue:** Field defined in schema but not found in data
 - **Suggested columns:** `intelligence`, `INTELLIGENCE`
 
-*... and 14 more mismatches*
+*... and 12 more mismatches*
 
 #### Recommendations
 
-- Consider adding 20 data columns to schema: absent_votes, abstain_votes, active, against_proposal_number, against_proposal_parties
+- Consider adding 20 data columns to schema: absent_votes, abstain_votes, active, active_members, activity_span_days
 
 ---
 
 ### Ministry Schema
 
 **Fields Defined:** 29  
-**Database Views Referenced:** 3  
-**Sample Files Matched:** 2
+**Database Views Referenced:** 4  
+**Sample Files Matched:** 8
 
 #### Field Implementation Status
 
 | Category | Count | Fields |
 |----------|-------|--------|
-| ✅ Implemented | 1 | `name` |
+| ✅ Implemented | 2 | `id`, `name` |
 | ❌ Structural | 11 | `attributes`, `budget`, `decisions`, `intelligence`, `labels`, `performance`, `personnel`, `policy`... |
-| 🔀 Computed | 11 | `civilServants`, `code`, `decisionsImplemented`, `effectiveness`, `efficiency`, `established`, `executionRate`, `id`... |
+| 🔀 Computed | 10 | `civilServants`, `code`, `decisionsImplemented`, `effectiveness`, `efficiency`, `established`, `executionRate`, `ministers`... |
 | 🔄 Planned | 6 | `allocation`, `headquarters`, `nameEn`, `portfolio`, `publicSatisfaction`, `spent` |
 
 #### Matched Data Files
 
+- `view_riksdagen_goverment_sample.csv`
+- `view_ministry_risk_evolution_sample.csv`
+- `view_ministry_productivity_matrix_sample.csv`
 - `view_ministry_effectiveness_trends_sample.csv`
+- `view_riksdagen_goverment_role_member_sample.csv`
+- `view_riksdagen_goverment_proposals_sample.csv`
+- `view_riksdagen_goverment_roles_sample.csv`
 - `view_ministry_decision_impact_sample.csv`
 
 #### Missing Views
@@ -360,11 +367,11 @@ The following database views are referenced in the schema but not found in sampl
 - **Issue:** Field defined in schema but not found in data
 - **Suggested columns:** `established`, `ESTABLISHED`
 
-*... and 18 more mismatches*
+*... and 17 more mismatches*
 
 #### Recommendations
 
-- Consider adding 20 data columns to schema: active_members, approval_rate, approved_proposals, committee, committee_referral_proposals
+- Consider adding 20 data columns to schema: active, active_members, activity_level, approval_rate, approved_proposals
 
 ---
 
@@ -425,4 +432,4 @@ This validation compares:
 - Coverage analysis (schema fields vs. actual columns)
 - Missing view detection
 
-**Report Generated:** 2026-04-06 12:11:30 UTC
+**Report Generated:** 2026-04-06 12:23:11 UTC

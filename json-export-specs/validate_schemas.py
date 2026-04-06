@@ -249,9 +249,11 @@ class SchemaValidator:
             "party": ["riksdagen_party", "riksdagen_party_summary", 
                      "riksdagen_party_document_summary", "riksdagen_party_ballot"],
             "committee": ["riksdagen_committee", "riksdagen_committee_decisions",
-                         "riksdagen_committee_roles", "riksdagen_committee_ballot_decision"],
-            "ministry": ["riksdagen_government", "riksdagen_government_roles",
-                        "ministry_decision_impact", "ministry_effectiveness_trends"],
+                         "riksdagen_committee_roles", "riksdagen_committee_ballot_decision",
+                         "committee_productivity"],
+            "ministry": ["riksdagen_goverment", "riksdagen_goverment_roles",
+                        "ministry_decision_impact", "ministry_effectiveness_trends",
+                        "ministry_productivity_matrix", "ministry_risk_evolution"],
             "intelligence": ["politician_risk_summary", "party_performance_metrics",
                            "decision_temporal_trends", "committee_productivity"]
         }

@@ -3,7 +3,7 @@
 **Generated:** 2026-04-05  
 **Purpose:** Document explicit mappings between JSON schema fields and database columns with implementation status  
 **Status:** Comprehensive mapping with validated implementation status  
-**Validation Run:** 121 total mismatches across 4 schemas (Intelligence: 0 mismatches)
+**Validation Run:** 118 total mismatches across 4 schemas (Intelligence: 0 mismatches)
 
 ---
 
@@ -28,10 +28,10 @@ The `validate_schemas.py` tool reports **implemented**, **structural**, **comput
 |--------|-------------|-------------|------------|----------|---------|------------|
 | **Politician** | 45 | 14 | 17 | 11 | 3 | 31 |
 | **Party** | 42 | 4 | 17 | 12 | 9 | 38 |
-| **Committee** | 26 | 2 | 8 | 11 | 5 | 24 |
-| **Ministry** | 29 | 1 | 11 | 11 | 6 | 28 |
+| **Committee** | 26 | 4 | 8 | 9 | 5 | 22 |
+| **Ministry** | 29 | 2 | 11 | 10 | 6 | 27 |
 | **Intelligence** | All | All | — | — | — | **0** |
-| **Total** | **142** | **21** | **53** | **45** | **23** | **121** |
+| **Total** | **142** | **24** | **53** | **42** | **23** | **118** |
 
 ---
 
@@ -205,42 +205,41 @@ These fields are structural nesting keys in the JSON schema, not data fields. Th
 
 ## Committee Schema Field Mappings
 
-**Validation result:** 2 fields implemented, 24 mismatches  
-**Source views:** `view_riksdagen_committee`, `view_riksdagen_committee_decisions`  
+**Validation result:** 4 fields implemented, 22 mismatches  
+**Source views:** `view_riksdagen_committee`, `view_riksdagen_committee_decisions`, `view_committee_productivity`  
 **Available DB columns:** 155 total
 
-### Implemented Fields (2 — Found in Data)
+### Implemented Fields (4 — Found in Data)
 
 | JSON Field | Database Column | Data Type | Source View | Status |
 |------------|-----------------|-----------|-------------|--------|
 | `id` | `embedded_id_org_code` | string | `view_riksdagen_committee` | ✅ **IMPLEMENTED** |
 | `activityLevel` | `activity_level` | string | `view_riksdagen_committee` | ✅ **IMPLEMENTED** |
+| `regularMembers` | `regular_members` | integer | `view_committee_productivity` | ✅ **IMPLEMENTED** |
+| `totalMembers` | `total_members` | integer | `view_committee_productivity` | ✅ **IMPLEMENTED** |
 
-### Computed Fields (10 — Derivable from Existing DB Columns)
+### Computed Fields (9 — Derivable from Existing DB Columns)
 
 | JSON Field | Source Column(s) | Computation Logic | Effort | Status |
 |------------|-----------------|-------------------|--------|--------|
 | `name` | `committee_name` | Direct mapping from committee_name | Low | 🔀 **COMPUTED** |
 | `code` | `committee_code` / `embedded_id_org_code` | Direct mapping from committee_code | Low | 🔀 **COMPUTED** |
-| `totalMembers` | `current_member_size` | Direct mapping from current_member_size | Low | 🔀 **COMPUTED** |
-| `regularMembers` | `current_regular_members` | Direct mapping from current_regular_members | Low | 🔀 **COMPUTED** |
 | `deputyMembers` | `current_substitute_positions` | Direct mapping from current_substitute_positions | Low | 🔀 **COMPUTED** |
 | `performanceScore` | `productivity_score` | Direct mapping from productivity_score | Low | 🔀 **COMPUTED** |
 | `reports` | `reports_count` | Direct mapping from reports_count | Low | 🔀 **COMPUTED** |
-| `productivity` | `productivity_score`, `total_documents` | Weighted productivity from score + output | Low | 🔀 **COMPUTED** |
+| `established` | `first_assignment_date` | Direct mapping from first_assignment_date | Low | 🔀 **COMPUTED** |
 | `attendanceRate` | Member attendance data | Aggregate member attendance rates per committee | Medium | 🔀 **COMPUTED** |
 | `amendments` | `total_documents` (filtered) | Count amendment-type documents for committee | Medium | 🔀 **COMPUTED** |
+| `hearings` | Activity tracking data | Count hearing-type events for committee | Medium | 🔀 **COMPUTED** |
 
-### Planned Fields (6 — Require New Data Sources)
+### Planned Fields (5 — Require New Data Sources)
 
 | JSON Field | Data Type | What's Needed | Effort | Status |
 |------------|-----------|---------------|--------|--------|
 | `type` | string | Committee type classification (standing/special) — static reference | Low | 🔄 **PLANNED** |
 | `policyDomain` | string | Policy area mapping — static reference data | Low | 🔄 **PLANNED** |
 | `nameEn` | string | English committee name — static translation | Low | 🔄 **PLANNED** |
-| `established` | date | Committee founding date — historical reference | Low | 🔄 **PLANNED** |
 | `meetings` | integer | Meeting count data — requires new data source | Medium | 🔄 **PLANNED** |
-| `hearings` | integer | Public hearing count — requires new data source | Medium | 🔄 **PLANNED** |
 | `influence` | float | Cross-committee influence scoring — requires algorithm | High | 🔄 **PLANNED** |
 
 ### Structural Fields (8 — JSON Grouping Objects)
@@ -271,43 +270,42 @@ These fields are structural nesting keys in the JSON schema, not data fields. Th
 
 ## Ministry Schema Field Mappings
 
-**Validation result:** 1 field implemented, 28 mismatches  
-**Source views:** `view_riksdagen_goverment`, `view_riksdagen_goverment_role_member`  
+**Validation result:** 2 fields implemented, 27 mismatches  
+**Source views:** `view_riksdagen_goverment`, `view_riksdagen_goverment_role_member`, `view_ministry_effectiveness_trends`, `view_ministry_productivity_matrix`, `view_ministry_risk_evolution`  
 **Available DB columns:** 96 total
 
-### Implemented Fields (1 — Found in Data)
+### Implemented Fields (2 — Found in Data)
 
 | JSON Field | Database Column | Data Type | Source View | Status |
 |------------|-----------------|-----------|-------------|--------|
-| `name` | `name` | string | `view_riksdagen_goverment` | ✅ **IMPLEMENTED** |
+| `name` | `name` | string | `view_ministry_effectiveness_trends` | ✅ **IMPLEMENTED** |
+| `id` | `id` | string | `view_riksdagen_goverment_proposals` | ✅ **IMPLEMENTED** |
 
-### Computed Fields (8 — Derivable from Existing DB Columns)
+### Computed Fields (10 — Derivable from Existing DB Columns)
 
 | JSON Field | Source Column(s) | Computation Logic | Effort | Status |
 |------------|-----------------|-------------------|--------|--------|
-| `id` | `name_id` | Direct mapping from name_id | Low | 🔀 **COMPUTED** |
-| `code` | `name_id` | Derive ministry code from name_id | Low | 🔀 **COMPUTED** |
+| `code` | `org_code` / `ministry_code` | Direct mapping from org_code | Low | 🔀 **COMPUTED** |
 | `effectiveness` | `effectiveness_assessment` | Direct mapping from effectiveness_assessment | Low | 🔀 **COMPUTED** |
 | `performanceScore` | `productivity_level`, `approval_rate` | Composite from productivity + approval metrics | Medium | 🔀 **COMPUTED** |
 | `efficiency` | `documents_per_member`, `approval_rate` | Ratio of output quality per resource | Medium | 🔀 **COMPUTED** |
 | `executionRate` | `approval_rate`, `rejection_rate` | `approval_rate / (approval_rate + rejection_rate)` | Low | 🔀 **COMPUTED** |
 | `ministers` | `current_member_size` | Direct mapping from current_member_size | Low | 🔀 **COMPUTED** |
+| `stateSecretaries` | `view_riksdagen_goverment_role_member` | Count where role = state secretary | Medium | 🔀 **COMPUTED** |
+| `civilServants` | `current_member_size` | Total member size minus political appointees | Medium | 🔀 **COMPUTED** |
 | `decisionsImplemented` | `total_government_bills`, `total_propositions` | Sum of enacted government bills and propositions | Medium | 🔀 **COMPUTED** |
+| `established` | `first_assignment_date` | Direct mapping from first_assignment_date | Low | 🔀 **COMPUTED** |
 
-### Planned Fields (10 — Require New Data Sources)
+### Planned Fields (6 — Require New Data Sources)
 
 | JSON Field | Data Type | What's Needed | Effort | Status |
 |------------|-----------|---------------|--------|--------|
 | `nameEn` | string | English ministry name — static translation | Low | 🔄 **PLANNED** |
 | `portfolio` | string | Ministry portfolio description — static reference | Low | 🔄 **PLANNED** |
-| `established` | date | Ministry founding date — historical reference | Low | 🔄 **PLANNED** |
 | `headquarters` | string | Physical address — static reference data | Low | 🔄 **PLANNED** |
-| `stateSecretaries` | array | State secretary data — requires role member filtering | Medium | 🔄 **PLANNED** |
-| `civilServants` | integer | Civil servant count — external data from government HR | High | 🔄 **PLANNED** |
 | `publicSatisfaction` | float | Public satisfaction survey data — external source | High | 🔄 **PLANNED** |
 | `allocation` | float | Budget allocation — ESV (Swedish National Financial Management Authority) | Medium | 🔄 **PLANNED** |
 | `spent` | float | Actual spending — ESV data integration | Medium | 🔄 **PLANNED** |
-| `trend` | string | Performance trend direction — requires time-series computation | Medium | 🔄 **PLANNED** |
 
 ### Structural Fields (10 — JSON Grouping Objects)
 
@@ -391,10 +389,10 @@ Fields that exist in database views and only require column-to-JSON mapping.
 | 6 | Party | `seats` | `currently_active_members` | `view_riksdagen_party_summary` | **Low** | 🔴 High |
 | 7 | Party | `stability` | `stability_classification` | `view_riksdagen_party_summary` | **Low** | 🔴 High |
 | 8 | Committee | `name` | `committee_name` | `view_riksdagen_committee` | **Low** | 🔴 High |
-| 9 | Committee | `totalMembers` | `current_member_size` | `view_riksdagen_committee` | **Low** | 🔴 High |
+| 9 | Committee | `code` | `embedded_id_org_code` | `view_riksdagen_committee` | **Low** | 🔴 High |
 | 10 | Committee | `performanceScore` | `productivity_score` | `view_riksdagen_committee` | **Low** | 🔴 High |
-| 11 | Ministry | `id` | `name_id` | `view_riksdagen_goverment` | **Low** | 🔴 High |
-| 12 | Ministry | `effectiveness` | `effectiveness_assessment` | `view_riksdagen_goverment` | **Low** | 🔴 High |
+| 11 | Ministry | `code` | `org_code` | `view_ministry_effectiveness_trends` | **Low** | 🔴 High |
+| 12 | Ministry | `effectiveness` | `effectiveness_assessment` | `view_ministry_effectiveness_trends` | **Low** | 🔴 High |
 
 > ¹ These fields are in the DB but not yet mapped to the JSON schema — add to schema first.
 
@@ -409,10 +407,10 @@ Fields requiring minimal computation from existing columns.
 | 15 | Politician | `activeDays` | `total_days * attendance_rate` | `view_riksdagen_politician` | **Low** | 🟡 Medium |
 | 16 | Party | `cohesionScore` | `avg_collaboration_pct` | `view_riksdagen_party_summary` | **Low** | 🟡 Medium |
 | 17 | Party | `votePercentage` | `win_rate` | `view_riksdagen_party_summary` | **Low** | 🟡 Medium |
-| 18 | Committee | `regularMembers` | `current_regular_members` | `view_riksdagen_committee` | **Low** | 🟡 Medium |
-| 19 | Committee | `deputyMembers` | `current_substitute_positions` | `view_riksdagen_committee` | **Low** | 🟡 Medium |
+| 18 | Committee | `deputyMembers` | `current_substitute_positions` | `view_riksdagen_committee` | **Low** | 🟡 Medium |
+| 19 | Committee | `established` | `first_assignment_date` | `view_riksdagen_committee` | **Low** | 🟡 Medium |
 | 20 | Committee | `reports` | `reports_count` | `view_riksdagen_committee` | **Low** | 🟡 Medium |
-| 21 | Ministry | `executionRate` | `approval_rate / (approval_rate + rejection_rate)` | `view_riksdagen_goverment` | **Low** | 🟡 Medium |
+| 21 | Ministry | `executionRate` | `approval_rate / (approval_rate + rejection_rate)` | `view_ministry_decision_impact` | **Low** | 🟡 Medium |
 
 ### Tier 3 — Medium Effort, High Value (Aggregation Required)
 
@@ -465,28 +463,28 @@ Sprint 3 (Tier 3): Build 4 aggregation pipelines
 
 ## Mismatch Resolution Strategy
 
-### Reducing the 121 Mismatches
+### Reducing the 118 Mismatches
 
 | Action | Fields Resolved | Remaining |
 |--------|----------------|-----------|
-| **Start** | — | 121 mismatches |
-| Mark structural groupings as STRUCTURAL | 53 fields | 68 mismatches |
-| Implement Tier 1 direct mappings | 12 fields | 56 mismatches |
-| Implement Tier 2 simple derivations | 9 fields | 47 mismatches |
-| Implement Tier 3 aggregations | 4 fields | 43 mismatches |
-| Add remaining COMPUTED fields | 18 fields | 25 mismatches |
-| Add PLANNED static reference data | 15 fields | 10 mismatches |
-| Remaining (external data sources) | — | **10 true gaps** |
+| **Start** | — | 118 mismatches |
+| Mark structural groupings as STRUCTURAL | 53 fields | 65 mismatches |
+| Implement Tier 1 direct mappings | 12 fields | 53 mismatches |
+| Implement Tier 2 simple derivations | 9 fields | 44 mismatches |
+| Implement Tier 3 aggregations | 4 fields | 40 mismatches |
+| Add remaining COMPUTED fields | 17 fields | 23 mismatches |
+| Add PLANNED static reference data | 15 fields | 8 mismatches |
+| Remaining (external data sources) | — | **8 true gaps** |
 
 ### Per-Schema Mismatch Breakdown After Resolution
 
-| Schema | Current | After Deprecation | After All Computed | Final Gaps |
+| Schema | Current | After Structural | After All Computed | Final Gaps |
 |--------|---------|-------------------|--------------------|------------|
-| Politician | 31 | 14 | 2 | 2 (district, imageUrl via external) |
-| Party | 38 | 20 | 7 | 7 (static reference data) |
-| Committee | 24 | 16 | 6 | 4 (meetings, hearings, type, policyDomain) |
-| Ministry | 28 | 18 | 10 | 5 (budget data, civil servants, etc.) |
-| **Total** | **121** | **68** | **25** | **18** |
+| Politician | 31 | 14 | 3 | 2 (district, imageUrl via external) |
+| Party | 38 | 21 | 9 | 7 (static reference data) |
+| Committee | 22 | 14 | 5 | 3 (meetings, type, policyDomain) |
+| Ministry | 27 | 16 | 6 | 4 (budget data, satisfaction, etc.) |
+| **Total** | **118** | **65** | **23** | **16** |
 
 ---
 
@@ -546,9 +544,9 @@ python3 validate_schemas.py
 
 The following categories are candidates for exclusion from mismatch counts in a future validator enhancement:
 - All ❌ **STRUCTURAL** JSON grouping fields (53 fields)
-- Fields marked as 🔀 **COMPUTED** that have documented computation logic (45 fields)
+- Fields marked as 🔀 **COMPUTED** that have documented computation logic (42 fields)
 
-**Aspirational adjusted target:** 121 total → **23 true gaps** (the PLANNED fields, once structural + computed exclusions are applied)
+**Aspirational adjusted target:** 118 total → **23 true gaps** (the PLANNED fields, once structural + computed exclusions are applied)
 
 ---
 

@@ -2,17 +2,17 @@
 
 **Status:** ✅ Validated against actual sample data  
 **Last Updated:** 2026-04-05  
-**Fields:** 2 implemented (only fields present in sample data)
+**Fields:** 4 implemented (only fields present in sample data)
 
 ## Overview
 
 This schema reflects **only fields that exist in actual sample data**. 
-The 24 mismatched fields have been categorized by implementation status.
+The 22 mismatched fields have been categorized by implementation status.
 
 **Validation Results:**
 - Original fields defined: 26
-- Fields validated in data: 2
-- Fields not in data: 24 (8 structural, 11 computed, 5 planned)
+- Fields validated in data: 4
+- Fields not in data: 22 (8 structural, 9 computed, 5 planned)
 
 ## Data Model
 
@@ -21,6 +21,8 @@ classDiagram
     class CommitteeExport {
         +String activityLevel
         +String id
+        +Integer regularMembers
+        +Integer totalMembers
     }
 ```
 
@@ -28,6 +30,8 @@ classDiagram
 
 - **activityLevel** (`String`): Field found in sample data
 - **id** (`String`): Field found in sample data
+- **regularMembers** (`Integer`): Regular committee members, found in `view_committee_productivity_sample.csv`
+- **totalMembers** (`Integer`): Total committee members, found in `view_committee_productivity_sample.csv`
 
 
 ## Data Sources
@@ -44,11 +48,13 @@ This schema is validated against the following data sources:
 - `view_riksdagen_committee_role_member_sample.csv`
 - `view_riksdagen_committee_decision_type_org_summary_sample.csv`
 - `view_riksdagen_committee_sample.csv`
+- `view_committee_productivity_sample.csv`
+- `view_committee_productivity_matrix_sample.csv`
 
 
 ## Migration Notes
 
-**Field Classification (24 fields not in data):**
+**Field Classification (22 fields not in data):**
 
 ### ❌ Structural Fields (JSON grouping objects)
 - `attributes`, `labels`, `relationships`, `intelligence`, `membership`, `policy`
@@ -57,8 +63,6 @@ This schema is validated against the following data sources:
 ### 🔀 Computable Fields (derivable from existing DB columns)
 - `code` — from `embedded_id_org_code` or `committee_code`
 - `name` — from `embedded_id_detail` or `committee_name`
-- `totalMembers` — from `current_member_size`
-- `regularMembers` — from `current_regular_members`
 - `deputyMembers` — from `current_substitute_positions`
 - `established` — from `first_assignment_date`
 - `reports` — from `reports_count` or `committee_reports`

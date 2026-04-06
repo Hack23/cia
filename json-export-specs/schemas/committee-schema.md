@@ -123,10 +123,10 @@ classDiagram
 |-------|--------|---------------|
 | `id` | ✅ IMPLEMENTED | Found in CSV data |
 | `activityLevel` | ✅ IMPLEMENTED | Found in CSV data |
+| `regularMembers` | ✅ IMPLEMENTED | Found in `view_committee_productivity` (`regular_members`) |
+| `totalMembers` | ✅ IMPLEMENTED | Found in `view_committee_productivity` (`total_members`) |
 | `code` | 🔀 COMPUTED | Derivable from `embedded_id_org_code` or `committee_code` |
 | `name` | 🔀 COMPUTED | Derivable from `embedded_id_detail` or `committee_name` |
-| `memberCount` / `totalMembers` | 🔀 COMPUTED | Derivable from `current_member_size` |
-| `regularMembers` | 🔀 COMPUTED | Derivable from `current_regular_members` |
 | `deputyMembers` | 🔀 COMPUTED | Derivable from `current_substitute_positions` |
 | `established` | 🔀 COMPUTED | Derivable from `first_assignment_date` |
 | `reports` | 🔀 COMPUTED | Derivable from `reports_count` or `committee_reports` |

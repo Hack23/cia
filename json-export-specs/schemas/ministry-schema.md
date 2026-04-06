@@ -137,7 +137,7 @@ classDiagram
 | Field | Status | Category | Notes |
 |-------|--------|----------|-------|
 | `name` | ✅ IMPLEMENTED | Core | Found in CSV data |
-| `id` | 🔀 COMPUTED | Core | Derived from `name_id` or `ministry_code` |
+| `id` | ✅ IMPLEMENTED | Core | Found in `view_riksdagen_goverment_proposals` (`id`) |
 | `code` | 🔀 COMPUTED | Core | Derived from `org_code` or `ministry_code` |
 | `ministers` | 🔀 COMPUTED | Personnel | Count from `view_riksdagen_goverment_role_member` where `role_code = minister` |
 | `stateSecretaries` | 🔀 COMPUTED | Personnel | Count where `role_code = state_secretary` |

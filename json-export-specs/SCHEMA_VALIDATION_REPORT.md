@@ -5,7 +5,7 @@
 **Date:** 2026-04-05  
 **Status:** Analysis Complete - Remediation Plan Provided  
 **Validated Against:** service.data.impl/src/main/resources/full_schema.sql  
-**Total Schema Mismatches:** 121 (across 4 entity schemas)
+**Total Schema Mismatches:** 118 (across 4 entity schemas)
 
 ---
 
@@ -26,8 +26,8 @@ This document validates the JSON export specifications against the actual CIA pl
 |----------|--------|----------|-------|
 | **Politician Schema** | ⚠️ Partial | 31% (14/45) | 31 mismatches; 251 DB columns available across views |
 | **Party Schema** | ❌ Low | 10% (4/42) | 38 mismatches; 317 DB columns available across views |
-| **Committee Schema** | ❌ Low | 8% (2/26) | 24 mismatches; 155 DB columns available across views |
-| **Ministry Schema** | ❌ Low | 3% (1/29) | 28 mismatches; 96 DB columns available across views |
+| **Committee Schema** | ⚠️ Partial | 15% (4/26) | 22 mismatches; 155 DB columns available across views |
+| **Ministry Schema** | ❌ Low | 7% (2/29) | 27 mismatches; 96 DB columns available across views |
 | **Intelligence Schema** | ✅ Good | N/A | Different structure (mermaid-based); no direct field mapping |
 | **Time Series Data** | ⚠️ Partial | 40% | Underrepresented in JSON specs |
 | **Sample Data Accuracy** | ⚠️ Synthetic | 30% | Examples use synthetic vs real patterns |
@@ -36,11 +36,11 @@ This document validates the JSON export specifications against the actual CIA pl
 
 | Classification | Count | Description |
 |----------------|-------|-------------|
-| ✅ Implemented | 21 | Fields found in CSV sample data and mapped to JSON |
+| ✅ Implemented | 24 | Fields found in CSV sample data and mapped to JSON |
 | ❌ Structural | 53 | JSON grouping objects (not direct DB columns) |
-| 🔀 Computed | 45 | Derivable from existing database columns |
+| 🔀 Computed | 42 | Derivable from existing database columns |
 | 🔄 Planned | 23 | Not yet available in data; require implementation |
-| **Total** | **142** | 21 implemented + 53 structural + 45 computed + 23 planned |
+| **Total** | **142** | 24 implemented + 53 structural + 42 computed + 23 planned |
 
 **Legend:** ✅ Fully Aligned | ⚠️ Partial/Improvements Needed | ❌ Missing/Not Aligned
 
@@ -420,7 +420,7 @@ Add dedicated time series sections to JSON schemas:
 
 ## 8. Mismatch Resolution Strategy
 
-The 121 identified mismatches fall into three distinct categories, each requiring a different remediation approach:
+The 118 identified mismatches fall into three distinct categories, each requiring a different remediation approach:
 
 ### 8.1 Structural Fields (53 mismatches) — Not Real Mismatches
 
@@ -434,7 +434,7 @@ These are JSON grouping objects used to organize nested data (e.g., `votingActiv
 
 **Resolution:** Document as structural; no DB mapping needed. These exist purely for JSON schema organization.
 
-### 8.2 Computable Fields (45 mismatches) — Implementation Needed
+### 8.2 Computable Fields (42 mismatches) — Implementation Needed
 
 These fields can be derived from existing database views and columns through direct mapping, aggregation, or simple joins. They represent the highest-value implementation targets.
 
@@ -543,7 +543,7 @@ These fields provide the highest business value and can be implemented from exis
 
 | Sprint | Planned | Completed | Mismatches Resolved | Remaining |
 |--------|---------|-----------|---------------------|-----------|
-| Sprint 1 | 15 fields | — | — | 121 |
+| Sprint 1 | 15 fields | — | — | 118 |
 | Sprint 2 | 8 fields | — | — | — |
 | Sprint 3 | 31+ fields | — | — | — |
 | **Total** | **54+** | **—** | **—** | **—** |
@@ -564,9 +564,9 @@ Use this checklist when implementing changes:
 - [x] Fields not in database are marked as "planned"
 - [ ] Schema validation tests pass
 - [x] Documentation references correct view names
-- [ ] Structural fields (50) documented as JSON grouping objects
-- [ ] Computable fields (40) mapped to source DB columns
-- [ ] Planned fields (31) tracked with data source requirements
+- [x] Structural fields (53) documented as JSON grouping objects
+- [x] Computable fields (42) mapped to source DB columns
+- [ ] Planned fields (23) tracked with data source requirements
 - [ ] Remediation Sprint 1 complete (15 low-effort fields)
 - [ ] Remediation Sprint 2 complete (8 medium-effort fields)
 - [ ] Remediation Sprint 3 planned (31+ high-effort fields)
