@@ -124,7 +124,7 @@ class SchemaValidator:
             # Only add field if it starts with a letter and is not numeric-only
             if re.match(r'^[A-Za-z]\w*$', field_name):
                 # Normalize array types: String[] → String for scalar check
-                base_type = field_type.rstrip("[]")
+                base_type = field_type.removesuffix("[]")
                 # Non-scalar types (custom object/link types) are structural —
                 # only the scalar variant of a same-named field can match CSV data.
                 if base_type not in self.SCALAR_TYPES:
