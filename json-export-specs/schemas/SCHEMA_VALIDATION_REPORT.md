@@ -1,6 +1,6 @@
 # JSON Schema Validation Report
 
-**Generated:** 2026-04-06T00:15:58.297324+00:00
+**Generated:** 2026-04-06T01:52:21.859368+00:00
 **Schemas Validated:** 5
 **Sample Files Analyzed:** 202
 **Total Mismatches:** 121
@@ -67,8 +67,8 @@ This report validates the 5 JSON export schemas against 202 relevant CSV sample 
 
 The following database views are referenced in the schema but not found in sample data:
 
-- `riksdagen_politician_summary`
 - `riksdagen_politician_ranking`
+- `riksdagen_politician_summary`
 - `riksdagen_politician_vote_summary`
 
 #### Field Mismatches
@@ -154,8 +154,8 @@ The following database views are referenced in the schema but not found in sampl
 
 The following database views are referenced in the schema but not found in sample data:
 
-- `riksdagen_party_ballot_support_summary`
 - `riksdagen_party_vote_summary`
+- `riksdagen_party_ballot_support_summary`
 
 #### Field Mismatches
 
@@ -239,8 +239,8 @@ The following database views are referenced in the schema but not found in sampl
 
 The following database views are referenced in the schema but not found in sample data:
 
-- `riksdagen_committee_summary`
 - `riksdagen_committee_decision_summary`
+- `riksdagen_committee_summary`
 
 #### Field Mismatches
 
@@ -395,8 +395,8 @@ The following database views are referenced in the schema but not found in sampl
 
 The following database views are referenced in the schema but not found in sample data:
 
-- `riksdagen_election_year_anomalies`
 - `riksdagen_election_year_vs_midterm`
+- `riksdagen_election_year_anomalies`
 
 #### Recommendations
 
@@ -425,4 +425,4 @@ This validation compares:
 - Coverage analysis (schema fields vs. actual columns)
 - Missing view detection
 
-**Report Generated:** 2026-04-06 00:15:58 UTC
+**Report Generated:** 2026-04-06 01:52:21 UTC
