@@ -47,7 +47,7 @@ open module com.hack23.cia.service.impl {
 	requires org.apache.commons.lang3;
 	requires transitive org.hibernate.orm.jpamodelgen;
 
-	requires passay;
+	requires org.passay;
 
 	requires org.joda.time;
 
