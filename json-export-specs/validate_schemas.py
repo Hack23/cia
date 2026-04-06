@@ -2,13 +2,12 @@
 """
 JSON Schema Validation Against Sample Data
 
-This script validates the 5 JSON export schemas against 138 relevant CSV sample data files
-(filtered from 210+ total files) to ensure correctness and identify mismatches between
-schema definitions and actual data.
+This script validates the 5 JSON export schemas against CSV sample data files
+to ensure correctness and identify mismatches between schema definitions and actual data.
 
 Author: Citizen Intelligence Agency Development Team
 License: Apache-2.0
-Version: 1.0.1
+Version: 1.1.0
 """
 
 import csv
@@ -24,6 +23,43 @@ from typing import Dict, List, Tuple, Any
 class SchemaValidator:
     """Validates JSON schemas against CSV sample data files."""
     
+    # Known scalar (primitive) field types in mermaid diagrams
+    SCALAR_TYPES = {
+        "String", "Integer", "Float", "Double", "Long", "Short", "Byte",
+        "Boolean", "Date", "DateTime", "Timestamp", "BigDecimal",
+    }
+
+    # Structural JSON grouping fields that are not direct database columns
+    STRUCTURAL_FIELDS = {
+        "labels", "attributes", "relationships", "intelligence", "activity",
+        "voting", "documents", "committees", "descriptions", "category",
+        "subcategories", "intelligenceTags", "short", "detailed", "long",
+        "breakdown", "period", "byType", "electoral", "parliamentary",
+        "members", "coalition", "policy", "predictions", "membership",
+        "productivity", "decisions", "budget", "personnel", "performance",
+        "trend", "alignment"
+    }
+    
+    # Computed fields that can be derived from existing database columns
+    COMPUTED_FIELDS = {
+        # Politician computed fields
+        "fullName", "partyLoyalty", "rebellions", "influenceScore",
+        "rankingPosition", "trendDirection", "absences", "activeDays",
+        "amendments", "questions", "motions",
+        # Party computed fields
+        "totalMembers", "currentSupport", "seats", "votePercentage",
+        "cohesionScore", "activityRate", "disciplineRate", "stability",
+        "legislativeSuccess", "committeeChairs", "strengthScore",
+        # Committee computed fields
+        "code", "name", "regularMembers", "deputyMembers",
+        "established", "reports", "performanceScore", "attendanceRate",
+        "hearings",
+        # Ministry computed fields
+        "id", "ministers", "stateSecretaries", "civilServants",
+        "effectiveness", "decisionsImplemented", "efficiency",
+        "executionRate",
+    }
+    
     def __init__(self, schema_dir: str, sample_data_dir: str):
         self.schema_dir = Path(schema_dir)
         self.sample_data_dir = Path(sample_data_dir)
@@ -34,6 +70,12 @@ class SchemaValidator:
             "schemas_validated": 0,
             "files_analyzed": 0,
             "total_mismatches": 0,
+            "field_status_summary": {
+                "implemented": 0,
+                "structural": 0,
+                "computed": 0,
+                "planned": 0
+            },
             "schemas": {}
         }
         
@@ -73,17 +115,35 @@ class SchemaValidator:
         schema_info["database_views"] = list(set(re.findall(view_pattern, content)))
         
         # Extract field definitions from mermaid diagrams
-        # Pattern matches: +Type fieldName
-        mermaid_pattern = r'\+(\w+)\s+(\w+)'
+        # Pattern matches: +Type fieldName  and  +Type[] fieldName
+        # Use composite key (Type:fieldName) to avoid duplicate-name overwrites
+        mermaid_pattern = r'\+(\w+(?:\[\])?)\s+(\w+)'
         for match in re.finditer(mermaid_pattern, content):
             field_type = match.group(1)
             field_name = match.group(2)
             # Only add field if it starts with a letter and is not numeric-only
             if re.match(r'^[A-Za-z]\w*$', field_name):
-                schema_info["fields"][field_name] = {
-                    "type": field_type,
-                    "required": True  # Default assumption
-                }
+                # Normalize array types: String[] → String for scalar check
+                base_type = field_type.removesuffix("[]")
+                # Non-scalar types (custom object/link types) are structural —
+                # only the scalar variant of a same-named field can match CSV data.
+                if base_type not in self.SCALAR_TYPES:
+                    composite_key = f"{field_type}:{field_name}"
+                    schema_info["fields"][composite_key] = {
+                        "type": field_type,
+                        "name": field_name,
+                        "required": True,
+                        "is_scalar": False
+                    }
+                else:
+                    # Scalar fields use bare field_name as key (safe — only one
+                    # scalar type per name is expected in mermaid diagrams)
+                    schema_info["fields"][field_name] = {
+                        "type": field_type,
+                        "name": field_name,
+                        "required": True,
+                        "is_scalar": True
+                    }
         
         # Extract JSON examples to identify field paths
         json_code_pattern = r'```json\s*(.*?)\s*```'
@@ -213,9 +273,11 @@ class SchemaValidator:
             "party": ["riksdagen_party", "riksdagen_party_summary", 
                      "riksdagen_party_document_summary", "riksdagen_party_ballot"],
             "committee": ["riksdagen_committee", "riksdagen_committee_decisions",
-                         "riksdagen_committee_roles", "riksdagen_committee_ballot_decision"],
-            "ministry": ["riksdagen_government", "riksdagen_government_roles",
-                        "ministry_decision_impact", "ministry_effectiveness_trends"],
+                         "riksdagen_committee_roles", "riksdagen_committee_ballot_decision",
+                         "committee_productivity"],
+            "ministry": ["riksdagen_goverment", "riksdagen_goverment_roles",
+                        "ministry_decision_impact", "ministry_effectiveness_trends",
+                        "ministry_productivity_matrix", "ministry_risk_evolution"],
             "intelligence": ["politician_risk_summary", "party_performance_metrics",
                            "decision_temporal_trends", "committee_productivity"]
         }
@@ -268,6 +330,10 @@ class SchemaValidator:
                 if not found:
                     schema_result["missing_views"].append(view_name)
             
+            # Sort view lists for deterministic output across runs
+            schema_result["matched_views"] = sorted(schema_result["matched_views"])
+            schema_result["missing_views"] = sorted(schema_result["missing_views"])
+            
             self.validation_results["schemas"][schema_name] = schema_result
             self.validation_results["schemas_validated"] += 1
             
@@ -297,20 +363,47 @@ class SchemaValidator:
         print(f"\nTotal unique columns in data: {len(all_columns)}")
         
         # Map schema fields to database columns (convert camelCase to snake_case)
-        schema_fields = set(schema_info["fields"].keys())
+        # Sort for deterministic output order
+        schema_fields = sorted(schema_info["fields"].keys())
+        
+        # Initialize field status tracking
+        field_status = {
+            "implemented": [],
+            "structural": [],
+            "computed": [],
+            "planned": []
+        }
         
         # Check if schema fields exist in data (with flexible matching)
         unmapped_schema_fields = []
-        unmapped_data_columns = list(all_columns)
+        unmapped_data_columns = sorted(all_columns)
         
-        for field in schema_fields:
-            # Try various naming conventions (using set to avoid duplicates)
-            possible_names = list({
-                field,
-                self._camel_to_snake(field),
-                field.lower(),
-                field.upper()
-            })
+        for field_key in schema_fields:
+            field_info = schema_info["fields"][field_key]
+            # Use the bare field name for matching (composite keys have Type:name)
+            field_name = field_info.get("name", field_key)
+            is_scalar = field_info.get("is_scalar", True)
+            
+            # Non-scalar types (custom objects/links) cannot match CSV columns —
+            # they are always classified as structural grouping fields
+            if not is_scalar:
+                field_status["structural"].append(field_key)
+                unmapped_schema_fields.append(field_key)
+                schema_result["field_mismatches"].append({
+                    "field": field_key,
+                    "issue": f"Non-scalar type ({field_info['type']}) — JSON grouping object, not a DB column",
+                    "status": "STRUCTURAL",
+                    "suggestions": []
+                })
+                continue
+            
+            # Try various naming conventions (deterministic order, deduplicated)
+            seen = set()
+            possible_names = []
+            for candidate in [field_name, self._camel_to_snake(field_name), field_name.lower(), field_name.upper()]:
+                if candidate not in seen:
+                    seen.add(candidate)
+                    possible_names.append(candidate)
             
             matched = False
             for possible_name in possible_names:
@@ -318,23 +411,64 @@ class SchemaValidator:
                     matched = True
                     if possible_name in unmapped_data_columns:
                         unmapped_data_columns.remove(possible_name)
+                    field_status["implemented"].append(field_key)
                     break
             
             if not matched:
-                unmapped_schema_fields.append(field)
+                # Classify the mismatch: structural > computed > planned
+                if field_name in self.STRUCTURAL_FIELDS:
+                    status = "STRUCTURAL"
+                    field_status["structural"].append(field_key)
+                elif field_name in self.COMPUTED_FIELDS:
+                    status = "COMPUTED"
+                    field_status["computed"].append(field_key)
+                else:
+                    status = "PLANNED"
+                    field_status["planned"].append(field_key)
+                
+                unmapped_schema_fields.append(field_key)
                 schema_result["field_mismatches"].append({
-                    "field": field,
+                    "field": field_key,
                     "issue": "Field defined in schema but not found in data",
+                    "status": status,
                     "suggestions": possible_names
                 })
         
-        # Report unmapped fields
-        if unmapped_schema_fields:
-            print(f"\n⚠ Schema fields not found in data ({len(unmapped_schema_fields)}):")
-            for field in unmapped_schema_fields[:10]:  # Show first 10
+        # Store field status in schema result
+        schema_result["field_status"] = field_status
+        
+        # Update global status summary
+        for status_key in field_status:
+            self.validation_results["field_status_summary"][status_key] += len(field_status[status_key])
+        
+        # Report field implementation status
+        print(f"\n📊 Field Implementation Status:")
+        print(f"  ✅ Implemented: {len(field_status['implemented'])}")
+        print(f"  ❌ Structural (JSON grouping): {len(field_status['structural'])}")
+        print(f"  🔀 Computed (derivable): {len(field_status['computed'])}")
+        print(f"  🔄 Planned (not yet in data): {len(field_status['planned'])}")
+        
+        # Report unmapped fields by category
+        if field_status["computed"]:
+            print(f"\n🔀 Computed fields (derivable from DB) ({len(field_status['computed'])}):")
+            for field in field_status["computed"][:10]:
                 print(f"  • {field}")
-            if len(unmapped_schema_fields) > 10:
-                print(f"  ... and {len(unmapped_schema_fields) - 10} more")
+            if len(field_status["computed"]) > 10:
+                print(f"  ... and {len(field_status['computed']) - 10} more")
+        
+        if field_status["planned"]:
+            print(f"\n🔄 Planned fields not yet in data ({len(field_status['planned'])}):")
+            for field in field_status["planned"][:10]:
+                print(f"  • {field}")
+            if len(field_status["planned"]) > 10:
+                print(f"  ... and {len(field_status['planned']) - 10} more")
+        
+        if field_status["structural"]:
+            print(f"\n❌ Structural grouping fields ({len(field_status['structural'])}):")
+            for field in field_status["structural"][:5]:
+                print(f"  • {field}")
+            if len(field_status["structural"]) > 5:
+                print(f"  ... and {len(field_status['structural']) - 5} more")
         
         # Report key data columns not in schema
         if unmapped_data_columns:
@@ -360,6 +494,15 @@ class SchemaValidator:
         s1 = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', name)
         return re.sub('([a-z0-9])([A-Z])', r'\1_\2', s1).lower()
     
+    @staticmethod
+    def _format_field_status_row(icon: str, label: str, fields: list, max_display: int = 8) -> str:
+        """Format a field status table row for the validation report."""
+        count = len(fields)
+        field_list = ', '.join(f'`{f}`' for f in fields[:max_display])
+        if count > max_display:
+            field_list += '...'
+        return f"| {icon} {label} | {count} | {field_list} |"
+
     def generate_report(self, output_path: str = None) -> None:
         """Generate comprehensive validation report."""
         
@@ -378,23 +521,33 @@ class SchemaValidator:
             "",
             "## Executive Summary",
             "",
-            "This report validates the 5 JSON export schemas against 138 relevant CSV sample data files ",
-            "(filtered from 210+ total files, excluding stats and distinct value tables) ",
-            "from the CIA database to ensure schema correctness and identify gaps between ",
+            f"This report validates the 5 JSON export schemas against "
+            f"{self.validation_results['files_analyzed']} relevant CSV sample data files "
+            "from the CIA database to ensure schema correctness and identify gaps between "
             "schema definitions and actual data structure.",
+            "",
+            "### Field Implementation Status Summary",
+            "",
+            f"| Category | Count | Description |",
+            f"|----------|-------|-------------|",
+            f"| ✅ Implemented | {self.validation_results['field_status_summary']['implemented']} | Fields found in database sample data |",
+            f"| ❌ Structural | {self.validation_results['field_status_summary']['structural']} | JSON grouping objects (not direct DB columns) |",
+            f"| 🔀 Computed | {self.validation_results['field_status_summary']['computed']} | Derivable from existing database columns |",
+            f"| 🔄 Planned | {self.validation_results['field_status_summary']['planned']} | Fields not yet available in data |",
             "",
             "### Validation Scope",
             "",
-            "| Schema | Fields Defined | Views Matched | Missing Views | Field Mismatches | Status |",
-            "|--------|---------------|---------------|---------------|------------------|--------|"
+            "| Schema | Fields Defined | Views Matched | Missing Views | Field Mismatches | Implemented | Status |",
+            "|--------|---------------|---------------|---------------|------------------|-------------|--------|"
         ]
         
         for schema_name, result in self.validation_results["schemas"].items():
             status = "✅ PASS" if len(result["field_mismatches"]) == 0 else "⚠️ REVIEW"
+            implemented = len(result.get("field_status", {}).get("implemented", []))
             report_lines.append(
                 f"| {schema_name.capitalize()} | {result['fields_defined']} | "
                 f"{len(result['matched_views'])} | {len(result['missing_views'])} | "
-                f"{len(result['field_mismatches'])} | {status} |"
+                f"{len(result['field_mismatches'])} | {implemented} | {status} |"
             )
         
         report_lines.extend([
@@ -406,12 +559,22 @@ class SchemaValidator:
         ])
         
         for schema_name, result in self.validation_results["schemas"].items():
+            field_status = result.get("field_status", {})
             report_lines.extend([
                 f"### {schema_name.capitalize()} Schema",
                 "",
                 f"**Fields Defined:** {result['fields_defined']}  ",
                 f"**Database Views Referenced:** {result['views_referenced']}  ",
                 f"**Sample Files Matched:** {len(result['matched_views'])}",
+                "",
+                "#### Field Implementation Status",
+                "",
+                f"| Category | Count | Fields |",
+                f"|----------|-------|--------|",
+                self._format_field_status_row("✅", "Implemented", field_status.get('implemented', [])),
+                self._format_field_status_row("❌", "Structural", field_status.get('structural', [])),
+                self._format_field_status_row("🔀", "Computed", field_status.get('computed', [])),
+                self._format_field_status_row("🔄", "Planned", field_status.get('planned', [])),
                 ""
             ])
             
@@ -478,7 +641,7 @@ class SchemaValidator:
             "",
             "This validation compares:",
             "- Field definitions in JSON schema markdown files",
-            "- Column names and data types from 138 relevant CSV sample files",
+            f"- Column names and data types from {self.validation_results['files_analyzed']} relevant CSV sample files",
             "- Database view references in schema documentation",
             "",
             "**Validation includes:**",
@@ -560,6 +723,12 @@ def main():
     print("\n" + "="*80)
     print("Validation Complete!")
     print(f"Total Mismatches: {validator.validation_results['total_mismatches']}")
+    summary = validator.validation_results.get('field_status_summary', {})
+    print(f"\nField Implementation Status:")
+    print(f"  ✅ Implemented: {summary.get('implemented', 0)}")
+    print(f"  ❌ Structural (JSON grouping): {summary.get('structural', 0)}")
+    print(f"  🔀 Computed (derivable): {summary.get('computed', 0)}")
+    print(f"  🔄 Planned (not yet in data): {summary.get('planned', 0)}")
     print("="*80)
     
     # Return exit code based on results

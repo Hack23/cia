@@ -1,18 +1,18 @@
 # Committee Schema (Data-Validated)
 
 **Status:** ✅ Validated against actual sample data  
-**Last Updated:** 2025-12-31  
-**Fields:** 2 (only fields present in sample data)
+**Last Updated:** 2026-04-05  
+**Fields:** 4 implemented (only fields present in sample data)
 
 ## Overview
 
-This schema has been automatically updated to reflect **only fields that exist in actual sample data**. 
-Fields that were originally specified but not found in any data source have been removed.
+This schema reflects **only fields that exist in actual sample data**. 
+The 22 mismatched fields have been categorized by implementation status.
 
 **Validation Results:**
 - Original fields defined: 26
-- Fields validated in data: 2
-- Fields removed (not in data): 24
+- Fields validated in data: 4
+- Fields not in data: 22 (8 structural, 9 computed, 5 planned)
 
 ## Data Model
 
@@ -21,6 +21,8 @@ classDiagram
     class CommitteeExport {
         +String activityLevel
         +String id
+        +Integer regularMembers
+        +Integer totalMembers
     }
 ```
 
@@ -28,6 +30,8 @@ classDiagram
 
 - **activityLevel** (`String`): Field found in sample data
 - **id** (`String`): Field found in sample data
+- **regularMembers** (`Integer`): Regular committee members, found in `view_committee_productivity_sample.csv`
+- **totalMembers** (`Integer`): Total committee members, found in `view_committee_productivity_sample.csv`
 
 
 ## Data Sources
@@ -44,43 +48,34 @@ This schema is validated against the following data sources:
 - `view_riksdagen_committee_role_member_sample.csv`
 - `view_riksdagen_committee_decision_type_org_summary_sample.csv`
 - `view_riksdagen_committee_sample.csv`
+- `view_committee_productivity_sample.csv`
+- `view_committee_productivity_matrix_sample.csv`
 
 
 ## Migration Notes
 
-**⚠️ Breaking Changes from Original Schema:**
+**Field Classification (22 fields not in data):**
 
-This schema has been significantly reduced to match actual data availability. Fields removed include:
+### ❌ Structural Fields (JSON grouping objects)
+- `attributes`, `labels`, `relationships`, `intelligence`, `membership`, `policy`
+- `productivity`, `decisions`
 
-- `amendments` - Not found in any data source
-- `attendanceRate` - Not found in any data source
-- `attributes` - Not found in any data source
-- `code` - Not found in any data source
-- `decisions` - Not found in any data source
-- `deputyMembers` - Not found in any data source
-- `established` - Not found in any data source
-- `hearings` - Not found in any data source
-- `influence` - Not found in any data source
-- `intelligence` - Not found in any data source
-- `labels` - Not found in any data source
-- `meetings` - Not found in any data source
-- `membership` - Not found in any data source
-- `name` - Not found in any data source
-- `nameEn` - Not found in any data source
-- `performanceScore` - Not found in any data source
-- `policy` - Not found in any data source
-- `policyDomain` - Not found in any data source
-- `productivity` - Not found in any data source
-- `regularMembers` - Not found in any data source
-- `relationships` - Not found in any data source
-- `reports` - Not found in any data source
-- `totalMembers` - Not found in any data source
-- `type` - Not found in any data source
+### 🔀 Computable Fields (derivable from existing DB columns)
+- `code` — from `embedded_id_org_code` or `committee_code`
+- `name` — from `embedded_id_detail` or `committee_name`
+- `deputyMembers` — from `current_substitute_positions`
+- `established` — from `first_assignment_date`
+- `reports` — from `reports_count` or `committee_reports`
+- `performanceScore` — from `productivity_score`
+- `attendanceRate` — from `total_days_served` / expected days
+- `amendments` — from document type filtering
+- `hearings` — from activity tracking data
 
+### 🔄 Planned Fields (require new data sources)
+- `nameEn` — English translation not in database
+- `type` — committee type classification
+- `policyDomain` — policy area classification
+- `meetings` — meeting count data not tracked
+- `influence` — influence metric not yet defined
 
-**Recommendation:** Review the original schema documentation for intended functionality and determine:
-1. Which removed fields should be implemented in the database
-2. Which removed fields were speculative and can be permanently removed
-3. Whether additional computed fields should be added to the export logic
-
-See `SCHEMA_VALIDATION_REPORT.md` for detailed analysis.
+**Recommendation:** See `FIELD_MAPPING.md` for implementation priority and `SCHEMA_VALIDATION_REPORT.md` for remediation plan.

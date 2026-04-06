@@ -177,6 +177,90 @@ classDiagram
     style Labels fill:#c8e6c9,stroke:#388e3c,stroke-width:2px
 ```
 
+### 📋 Field Implementation Status
+
+> **Note:** This table shows the current implementation status of all fields defined in the schema diagram above.
+> Fields marked as STRUCTURAL are JSON grouping objects, not individual data fields.
+
+| Field | Status | Category | Notes |
+|-------|--------|----------|-------|
+| **PoliticianProfile** | | | |
+| `id` | ✅ IMPLEMENTED | Core | Maps to `person_id` in database |
+| `labels` | ❌ STRUCTURAL | Core | JSON grouping object |
+| `attributes` | ❌ STRUCTURAL | Core | JSON grouping object |
+| `relationships` | ❌ STRUCTURAL | Core | JSON grouping object |
+| `intelligence` | ❌ STRUCTURAL | Core | JSON grouping object |
+| `activity` | ❌ STRUCTURAL | Core | JSON grouping object |
+| `voting` | ❌ STRUCTURAL | Core | JSON grouping object |
+| `documents` | ❌ STRUCTURAL | Core | JSON grouping object |
+| `committees` | ❌ STRUCTURAL | Core | JSON grouping object |
+| **Labels** | | | |
+| `category` | ❌ STRUCTURAL | Labels | Classification grouping |
+| `subcategories` | ❌ STRUCTURAL | Labels | Classification grouping |
+| `descriptions` | ❌ STRUCTURAL | Labels | JSON grouping object |
+| `intelligenceTags` | ❌ STRUCTURAL | Labels | Classification grouping |
+| **Descriptions** | | | |
+| `short` | ❌ STRUCTURAL | Descriptions | JSON grouping field |
+| `long` | ❌ STRUCTURAL | Descriptions | JSON grouping field |
+| `detailed` | ❌ STRUCTURAL | Descriptions | JSON grouping field |
+| **Attributes** | | | |
+| `firstName` | ✅ IMPLEMENTED | Attributes | Maps to `first_name` |
+| `lastName` | ✅ IMPLEMENTED | Attributes | Maps to `last_name` |
+| `fullName` | 🔀 COMPUTED | Attributes | Derived from `firstName` + `lastName` |
+| `bornYear` | ✅ IMPLEMENTED | Attributes | Maps to `born_year` |
+| `gender` | ✅ IMPLEMENTED | Attributes | Maps to `gender` |
+| `party` | ✅ IMPLEMENTED | Attributes | Maps to `party` |
+| `status` | ✅ IMPLEMENTED | Attributes | Maps to `status` |
+| `district` | 🔄 PLANNED | Attributes | Requires electoral district data |
+| `imageUrl` | 🔄 PLANNED | Attributes | Requires Riksdagen image URLs |
+| **Relationships** | | | |
+| `party` (PartyLink) | ❌ STRUCTURAL | Relationships | Nested relationship object |
+| `committees` (CommitteeLink[]) | ❌ STRUCTURAL | Relationships | Nested relationship object |
+| `ministry` (MinistryLink) | ❌ STRUCTURAL | Relationships | Non-scalar relationship object |
+| `colleagues` | 🔄 PLANNED | Relationships | Requires colleague network analysis |
+| **Intelligence** | | | |
+| `riskScore` | ✅ IMPLEMENTED | Intelligence | Maps to risk score in data |
+| `riskLevel` | ✅ IMPLEMENTED | Intelligence | Maps to risk level in data |
+| `influenceScore` | 🔀 COMPUTED | Intelligence | Derived from activity and voting metrics |
+| `rankingPosition` | 🔀 COMPUTED | Intelligence | Derived from ranking views |
+| `trendDirection` | 🔀 COMPUTED | Intelligence | Derived from temporal analysis |
+| `behavioralFlags` | 🔄 PLANNED | Intelligence | Requires behavioral analysis engine |
+| `performance` (PerformanceMetrics) | ❌ STRUCTURAL | Intelligence | Nested grouping object containing computed performance metrics |
+| **Activity** | | | |
+| `totalDays` | ✅ IMPLEMENTED | Activity | Maps to `total_days_served` |
+| `activeDays` | 🔀 COMPUTED | Activity | Derived from attendance data |
+| `attendanceRate` | ✅ IMPLEMENTED | Activity | Maps to `attendance_rate` in data |
+| `absences` | 🔀 COMPUTED | Activity | Derived from voting absence records |
+| `period` | ❌ STRUCTURAL | Activity | JSON grouping object (DateRange) |
+| `activityLevel` | ✅ IMPLEMENTED | Activity | Maps to activity classification |
+| **Voting** | | | |
+| `totalVotes` | ✅ IMPLEMENTED | Voting | Maps to total vote count |
+| `breakdown` | ❌ STRUCTURAL | Voting | JSON grouping object (VoteBreakdown) |
+| `partyLoyalty` | 🔀 COMPUTED | Voting | Derived from voting pattern analysis |
+| `rebellions` | 🔀 COMPUTED | Voting | Derived from party-line deviation |
+| `keyVotes` | 🔄 PLANNED | Voting | Requires key vote identification |
+| **Documents** | | | |
+| `totalDocuments` | ✅ IMPLEMENTED | Documents | Maps to document count |
+| `byType` | ❌ STRUCTURAL | Documents | JSON grouping object (DocumentBreakdown) |
+| `amendments` | 🔀 COMPUTED | Documents | Derived from document type breakdown |
+| `questions` | 🔀 COMPUTED | Documents | Derived from document type breakdown |
+| `motions` | 🔀 COMPUTED | Documents | Derived from document type breakdown |
+| **Committees** | | | |
+| `current` | ❌ STRUCTURAL | Committees | Non-scalar array type (`CommitteeMembership[]`); JSON grouping container |
+| `historical` | ❌ STRUCTURAL | Committees | Non-scalar array type (`CommitteeMembership[]`); JSON grouping container |
+| `chairPositions` | 🔄 PLANNED | Committees | Requires chair position tracking |
+
+#### Status Summary
+
+| Status | Count | Description |
+|--------|-------|-------------|
+| ✅ IMPLEMENTED | 14 | Fields with data available in current CSV/database exports |
+| 🔀 COMPUTED | 11 | Fields derivable from existing data through computation |
+| 🔄 PLANNED | 6 | Fields requiring new data sources or engine integration |
+| ❌ STRUCTURAL | 24 | JSON grouping objects and non-scalar types, not individual data fields |
+
+> **Note:** The table above documents all 55 fields from the mermaid diagram (14+11+6+24). The validator scans the entire mermaid diagram and reports all 55 fields for this schema. See `validation-results.json` for per-field status.
+
 ---
 
 ## 📝 Complete JSON Schema

@@ -1,28 +1,34 @@
 # JSON Schema Validation Report
 
-**Generated:** 2026-01-29T03:06:05.885853+00:00
+**Generated:** 2026-04-06T16:15:10.370110+00:00
 **Schemas Validated:** 5
-**Sample Files Analyzed:** 138
-**Total Mismatches:** 125
+**Sample Files Analyzed:** 202
+**Total Mismatches:** 144
 
 ---
 
 ## Executive Summary
 
-This report validates the 5 JSON export schemas against 138 relevant CSV sample data files 
-(filtered from 210+ total files, excluding stats and distinct value tables) 
-from the CIA database to ensure schema correctness and identify gaps between 
-schema definitions and actual data structure.
+This report validates the 5 JSON export schemas against 202 relevant CSV sample data files from the CIA database to ensure schema correctness and identify gaps between schema definitions and actual data structure.
+
+### Field Implementation Status Summary
+
+| Category | Count | Description |
+|----------|-------|-------------|
+| ✅ Implemented | 24 | Fields found in database sample data |
+| ❌ Structural | 67 | JSON grouping objects (not direct DB columns) |
+| 🔀 Computed | 42 | Derivable from existing database columns |
+| 🔄 Planned | 35 | Fields not yet available in data |
 
 ### Validation Scope
 
-| Schema | Fields Defined | Views Matched | Missing Views | Field Mismatches | Status |
-|--------|---------------|---------------|---------------|------------------|--------|
-| Politician | 45 | 8 | 6 | 34 | ⚠️ REVIEW |
-| Party | 42 | 11 | 5 | 39 | ⚠️ REVIEW |
-| Committee | 26 | 10 | 2 | 24 | ⚠️ REVIEW |
-| Ministry | 29 | 2 | 1 | 28 | ⚠️ REVIEW |
-| Intelligence | 0 | 5 | 10 | 0 | ✅ PASS |
+| Schema | Fields Defined | Views Matched | Missing Views | Field Mismatches | Implemented | Status |
+|--------|---------------|---------------|---------------|------------------|-------------|--------|
+| Politician | 55 | 12 | 3 | 41 | 14 | ⚠️ REVIEW |
+| Party | 51 | 17 | 2 | 47 | 4 | ⚠️ REVIEW |
+| Committee | 29 | 12 | 2 | 25 | 4 | ⚠️ REVIEW |
+| Ministry | 33 | 8 | 1 | 31 | 2 | ⚠️ REVIEW |
+| Intelligence | 0 | 5 | 2 | 0 | 0 | ✅ PASS |
 
 ---
 
@@ -30,248 +36,288 @@ schema definitions and actual data structure.
 
 ### Politician Schema
 
-**Fields Defined:** 45  
+**Fields Defined:** 55  
 **Database Views Referenced:** 8  
-**Sample Files Matched:** 8
+**Sample Files Matched:** 12
+
+#### Field Implementation Status
+
+| Category | Count | Fields |
+|----------|-------|--------|
+| ✅ Implemented | 14 | `activityLevel`, `attendanceRate`, `bornYear`, `firstName`, `gender`, `id`, `lastName`, `party`... |
+| ❌ Structural | 24 | `Activity:activity`, `Attributes:attributes`, `CommitteeLink[]:committees`, `CommitteeMembership[]:current`, `CommitteeMembership[]:historical`, `Committees:committees`, `DateRange:period`, `Descriptions:descriptions`... |
+| 🔀 Computed | 11 | `absences`, `activeDays`, `amendments`, `fullName`, `influenceScore`, `motions`, `partyLoyalty`, `questions`... |
+| 🔄 Planned | 6 | `behavioralFlags`, `chairPositions`, `colleagues`, `district`, `imageUrl`, `keyVotes` |
 
 #### Matched Data Files
 
-- `view_riksdagen_politician_document_sample.csv`
-- `view_riksdagen_politician_document_daily_summary_sample.csv`
-- `view_riksdagen_politician_document_summary_sample.csv`
 - `view_riksdagen_politician_ballot_summary_sample.csv`
+- `view_riksdagen_politician_career_path_10level_sample.csv`
+- `view_riksdagen_politician_career_trajectory_sample.csv`
+- `view_riksdagen_politician_decision_pattern_sample.csv`
+- `view_riksdagen_politician_document_daily_summary_sample.csv`
+- `view_riksdagen_politician_document_sample.csv`
+- `view_riksdagen_politician_document_summary_sample.csv`
 - `view_riksdagen_politician_experience_summary_sample.csv`
 - `view_riksdagen_politician_influence_metrics_sample.csv`
-- `view_riksdagen_politician_decision_pattern_sample.csv`
-- `view_riksdagen_politician_sample.csv`
+- `view_riksdagen_politician_longevity_analysis_sample.csv`
+- ... and 2 more
 
 #### Missing Views
 
 The following database views are referenced in the schema but not found in sample data:
 
-- `riksdagen_politician_role_evolution`
-- `riksdagen_politician_vote_summary`
-- `riksdagen_politician_career_path_10level`
-- `riksdagen_politician_summary`
-- `riksdagen_politician_career_trajectory`
 - `riksdagen_politician_ranking`
+- `riksdagen_politician_summary`
+- `riksdagen_politician_vote_summary`
 
 #### Field Mismatches
 
-**Field:** `riskLevel`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `RISKLEVEL`, `risklevel`, `riskLevel`, `risk_level`
+**Field:** `Activity:activity`
+- **Issue:** Non-scalar type (Activity) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `descriptions`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `DESCRIPTIONS`, `descriptions`
+**Field:** `Attributes:attributes`
+- **Issue:** Non-scalar type (Attributes) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `fullName`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `full_name`, `FULLNAME`, `fullname`, `fullName`
+**Field:** `CommitteeLink[]:committees`
+- **Issue:** Non-scalar type (CommitteeLink[]) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `period`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `period`, `PERIOD`
+**Field:** `CommitteeMembership[]:current`
+- **Issue:** Non-scalar type (CommitteeMembership[]) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `questions`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `questions`, `QUESTIONS`
+**Field:** `CommitteeMembership[]:historical`
+- **Issue:** Non-scalar type (CommitteeMembership[]) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `performance`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `performance`, `PERFORMANCE`
+**Field:** `Committees:committees`
+- **Issue:** Non-scalar type (Committees) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `activeDays`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `activedays`, `activeDays`, `active_days`, `ACTIVEDAYS`
+**Field:** `DateRange:period`
+- **Issue:** Non-scalar type (DateRange) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `documents`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `DOCUMENTS`, `documents`
+**Field:** `Descriptions:descriptions`
+- **Issue:** Non-scalar type (Descriptions) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `labels`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `labels`, `LABELS`
+**Field:** `DocumentBreakdown:byType`
+- **Issue:** Non-scalar type (DocumentBreakdown) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `category`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `CATEGORY`, `category`
+**Field:** `Documents:documents`
+- **Issue:** Non-scalar type (Documents) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-*... and 24 more mismatches*
+*... and 31 more mismatches*
 
 #### Recommendations
 
-- Consider adding 20 data columns to schema: party_short_code, decision_month, current_party_leader_assignments, total_leadership_days, temp_label
+- Consider adding 20 data columns to schema: absence_rate, absenteeism_violations, active, active_committee, active_eu
 
 ---
 
 ### Party Schema
 
-**Fields Defined:** 42  
+**Fields Defined:** 51  
 **Database Views Referenced:** 8  
-**Sample Files Matched:** 11
+**Sample Files Matched:** 17
+
+#### Field Implementation Status
+
+| Category | Count | Fields |
+|----------|-------|--------|
+| ✅ Implemented | 4 | `id`, `shortCode`, `status`, `totalVotes` |
+| ❌ Structural | 22 | `Attributes:attributes`, `Coalition:coalition`, `Descriptions:descriptions`, `Documents:documents`, `ElectionHistory[]:history`, `Electoral:electoral`, `Intelligence:intelligence`, `Labels:labels`... |
+| 🔀 Computed | 12 | `activityRate`, `cohesionScore`, `committeeChairs`, `currentSupport`, `disciplineRate`, `fullName`, `legislativeSuccess`, `seats`... |
+| 🔄 Planned | 13 | `agreements`, `color`, `foundedYear`, `ideology`, `keyVotes`, `logoUrl`, `ministries`, `nameEn`... |
 
 #### Matched Data Files
 
 - `view_riksdagen_party_ballot_support_annual_summary_sample.csv`
-- `view_riksdagen_party_sample.csv`
-- `view_riksdagen_party_decision_flow_sample.csv`
-- `view_riksdagen_party_member_sample.csv`
-- `view_riksdagen_party_document_daily_summary_sample.csv`
-- `view_riksdagen_party_summary_sample.csv`
-- `view_riksdagen_party_role_member_sample.csv`
-- `view_riksdagen_party_momentum_analysis_sample.csv`
 - `view_riksdagen_party_coalation_against_annual_summary_sample.csv`
-- `view_riksdagen_party_signatures_document_summary_sample.csv`
-- ... and 1 more
+- `view_riksdagen_party_coalition_evolution_sample.csv`
+- `view_riksdagen_party_decision_flow_sample.csv`
+- `view_riksdagen_party_defector_analysis_sample.csv`
+- `view_riksdagen_party_document_daily_summary_sample.csv`
+- `view_riksdagen_party_document_summary_sample.csv`
+- `view_riksdagen_party_electoral_trends_sample.csv`
+- `view_riksdagen_party_longitudinal_performance_sample.csv`
+- `view_riksdagen_party_member_sample.csv`
+- ... and 7 more
 
 #### Missing Views
 
 The following database views are referenced in the schema but not found in sample data:
 
-- `riksdagen_party_longitudinal_performance`
-- `riksdagen_party_vote_summary`
-- `riksdagen_party_electoral_trends`
-- `riksdagen_party_coalition_evolution`
 - `riksdagen_party_ballot_support_summary`
+- `riksdagen_party_vote_summary`
 
 #### Field Mismatches
 
-**Field:** `spectrum`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `spectrum`, `SPECTRUM`
+**Field:** `Attributes:attributes`
+- **Issue:** Non-scalar type (Attributes) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `stability`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `stability`, `STABILITY`
+**Field:** `Coalition:coalition`
+- **Issue:** Non-scalar type (Coalition) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `descriptions`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `DESCRIPTIONS`, `descriptions`
+**Field:** `Descriptions:descriptions`
+- **Issue:** Non-scalar type (Descriptions) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `fullName`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `full_name`, `FULLNAME`, `fullname`, `fullName`
+**Field:** `Documents:documents`
+- **Issue:** Non-scalar type (Documents) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `currentSupport`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `currentSupport`, `current_support`, `CURRENTSUPPORT`, `currentsupport`
+**Field:** `ElectionHistory[]:history`
+- **Issue:** Non-scalar type (ElectionHistory[]) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `members`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `members`, `MEMBERS`
+**Field:** `Electoral:electoral`
+- **Issue:** Non-scalar type (Electoral) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `votePercentage`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `vote_percentage`, `VOTEPERCENTAGE`, `votePercentage`, `votepercentage`
+**Field:** `Intelligence:intelligence`
+- **Issue:** Non-scalar type (Intelligence) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `activityRate`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `activityrate`, `activityRate`, `activity_rate`, `ACTIVITYRATE`
+**Field:** `Labels:labels`
+- **Issue:** Non-scalar type (Labels) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `nameEn`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `nameen`, `name_en`, `nameEn`, `NAMEEN`
+**Field:** `Members:members`
+- **Issue:** Non-scalar type (Members) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `parliamentary`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `PARLIAMENTARY`, `parliamentary`
+**Field:** `Parliamentary:parliamentary`
+- **Issue:** Non-scalar type (Parliamentary) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-*... and 29 more mismatches*
+*... and 37 more mismatches*
 
 #### Recommendations
 
-- Consider adding 20 data columns to schema: avg_collaboration_pct, decision_month, avg_documents_per_member, distinct_documents, year
+- Consider adding 20 data columns to schema: acceleration, active, active_committee, active_eu, active_government
 
 ---
 
 ### Committee Schema
 
-**Fields Defined:** 26  
-**Database Views Referenced:** 3  
-**Sample Files Matched:** 10
+**Fields Defined:** 29  
+**Database Views Referenced:** 4  
+**Sample Files Matched:** 12
+
+#### Field Implementation Status
+
+| Category | Count | Fields |
+|----------|-------|--------|
+| ✅ Implemented | 4 | `activityLevel`, `id`, `regularMembers`, `totalMembers` |
+| ❌ Structural | 9 | `Attributes:attributes`, `Decisions:decisions`, `Intelligence:intelligence`, `Labels:labels`, `Membership:membership`, `PartyDistribution[]:parties`, `Policy:policy`, `Productivity:productivity`... |
+| 🔀 Computed | 9 | `amendments`, `attendanceRate`, `code`, `deputyMembers`, `established`, `hearings`, `name`, `performanceScore`... |
+| 🔄 Planned | 7 | `influence`, `leadership`, `meetings`, `nameEn`, `policyDomain`, `trends`, `type` |
 
 #### Matched Data Files
 
-- `view_riksdagen_committee_roles_sample.csv`
-- `view_riksdagen_committee_ballot_decision_politician_summary_sample.csv`
-- `view_riksdagen_committee_decisions_sample.csv`
-- `view_riksdagen_committee_ballot_decision_summary_sample.csv`
-- `view_riksdagen_committee_decision_type_summary_sample.csv`
-- `view_riksdagen_committee_parliament_member_proposal_sample.csv`
+- `view_committee_productivity_matrix_sample.csv`
+- `view_committee_productivity_sample.csv`
 - `view_riksdagen_committee_ballot_decision_party_summary_sample.csv`
-- `view_riksdagen_committee_role_member_sample.csv`
+- `view_riksdagen_committee_ballot_decision_politician_summary_sample.csv`
+- `view_riksdagen_committee_ballot_decision_summary_sample.csv`
 - `view_riksdagen_committee_decision_type_org_summary_sample.csv`
-- `view_riksdagen_committee_sample.csv`
+- `view_riksdagen_committee_decision_type_summary_sample.csv`
+- `view_riksdagen_committee_decisions_sample.csv`
+- `view_riksdagen_committee_parliament_member_proposal_sample.csv`
+- `view_riksdagen_committee_role_member_sample.csv`
+- ... and 2 more
 
 #### Missing Views
 
 The following database views are referenced in the schema but not found in sample data:
 
-- `riksdagen_committee_summary`
 - `riksdagen_committee_decision_summary`
+- `riksdagen_committee_summary`
 
 #### Field Mismatches
 
-**Field:** `reports`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `reports`, `REPORTS`
+**Field:** `Attributes:attributes`
+- **Issue:** Non-scalar type (Attributes) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `attributes`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `ATTRIBUTES`, `attributes`
+**Field:** `Decisions:decisions`
+- **Issue:** Non-scalar type (Decisions) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `performanceScore`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `performanceScore`, `performance_score`, `PERFORMANCESCORE`, `performancescore`
+**Field:** `Intelligence:intelligence`
+- **Issue:** Non-scalar type (Intelligence) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `membership`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `MEMBERSHIP`, `membership`
+**Field:** `Labels:labels`
+- **Issue:** Non-scalar type (Labels) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `nameEn`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `nameen`, `name_en`, `nameEn`, `NAMEEN`
+**Field:** `Membership:membership`
+- **Issue:** Non-scalar type (Membership) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `type`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `TYPE`, `type`
+**Field:** `PartyDistribution[]:parties`
+- **Issue:** Non-scalar type (PartyDistribution[]) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `labels`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `labels`, `LABELS`
+**Field:** `Policy:policy`
+- **Issue:** Non-scalar type (Policy) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `name`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `NAME`, `name`
+**Field:** `Productivity:productivity`
+- **Issue:** Non-scalar type (Productivity) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `decisions`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `decisions`, `DECISIONS`
+**Field:** `Relationships:relationships`
+- **Issue:** Non-scalar type (Relationships) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `regularMembers`
+**Field:** `amendments`
 - **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `regularMembers`, `regularmembers`, `REGULARMEMBERS`, `regular_members`
+- **Suggested columns:** `amendments`, `AMENDMENTS`
 
-*... and 14 more mismatches*
+*... and 15 more mismatches*
 
 #### Recommendations
 
-- Consider adding 20 data columns to schema: end_number, approved, party_percentage_abstain, temp_label, avg_documents_per_member
+- Consider adding 20 data columns to schema: absent_votes, abstain_votes, active, active_members, activity_span_days
 
 ---
 
 ### Ministry Schema
 
-**Fields Defined:** 29  
-**Database Views Referenced:** 2  
-**Sample Files Matched:** 2
+**Fields Defined:** 33  
+**Database Views Referenced:** 4  
+**Sample Files Matched:** 8
+
+#### Field Implementation Status
+
+| Category | Count | Fields |
+|----------|-------|--------|
+| ✅ Implemented | 2 | `id`, `name` |
+| ❌ Structural | 12 | `Attributes:attributes`, `Budget:budget`, `BudgetHistory[]:history`, `Decisions:decisions`, `Intelligence:intelligence`, `Labels:labels`, `Performance:performance`, `Personnel:personnel`... |
+| 🔀 Computed | 10 | `civilServants`, `code`, `decisionsImplemented`, `effectiveness`, `efficiency`, `established`, `executionRate`, `ministers`... |
+| 🔄 Planned | 9 | `allocation`, `headquarters`, `leadership`, `nameEn`, `portfolio`, `programs`, `publicSatisfaction`, `riskFactors`... |
 
 #### Matched Data Files
 
-- `view_ministry_effectiveness_trends_sample.csv`
 - `view_ministry_decision_impact_sample.csv`
+- `view_ministry_effectiveness_trends_sample.csv`
+- `view_ministry_productivity_matrix_sample.csv`
+- `view_ministry_risk_evolution_sample.csv`
+- `view_riksdagen_goverment_proposals_sample.csv`
+- `view_riksdagen_goverment_role_member_sample.csv`
+- `view_riksdagen_goverment_roles_sample.csv`
+- `view_riksdagen_goverment_sample.csv`
 
 #### Missing Views
 
@@ -281,51 +327,51 @@ The following database views are referenced in the schema but not found in sampl
 
 #### Field Mismatches
 
-**Field:** `effectiveness`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `effectiveness`, `EFFECTIVENESS`
+**Field:** `Attributes:attributes`
+- **Issue:** Non-scalar type (Attributes) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `attributes`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `ATTRIBUTES`, `attributes`
+**Field:** `Budget:budget`
+- **Issue:** Non-scalar type (Budget) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `performance`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `performance`, `PERFORMANCE`
+**Field:** `BudgetHistory[]:history`
+- **Issue:** Non-scalar type (BudgetHistory[]) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `performanceScore`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `performanceScore`, `performance_score`, `PERFORMANCESCORE`, `performancescore`
+**Field:** `Decisions:decisions`
+- **Issue:** Non-scalar type (Decisions) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `nameEn`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `nameen`, `name_en`, `nameEn`, `NAMEEN`
+**Field:** `Intelligence:intelligence`
+- **Issue:** Non-scalar type (Intelligence) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `executionRate`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `executionRate`, `executionrate`, `execution_rate`, `EXECUTIONRATE`
+**Field:** `Labels:labels`
+- **Issue:** Non-scalar type (Labels) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `headquarters`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `HEADQUARTERS`, `headquarters`
+**Field:** `Performance:performance`
+- **Issue:** Non-scalar type (Performance) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `labels`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `labels`, `LABELS`
+**Field:** `Personnel:personnel`
+- **Issue:** Non-scalar type (Personnel) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `id`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `id`, `ID`
+**Field:** `Policy:policy`
+- **Issue:** Non-scalar type (Policy) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-**Field:** `decisions`
-- **Issue:** Field defined in schema but not found in data
-- **Suggested columns:** `decisions`, `DECISIONS`
+**Field:** `Predictions:predictions`
+- **Issue:** Non-scalar type (Predictions) — JSON grouping object, not a DB column
+- **Suggested columns:** 
 
-*... and 18 more mismatches*
+*... and 21 more mismatches*
 
 #### Recommendations
 
-- Consider adding 20 data columns to schema: org_code, earliest_proposal_date, ministry_code, other_decisions, documents_produced
+- Consider adding 20 data columns to schema: active, active_members, activity_level, approval_rate, approved_proposals
 
 ---
 
@@ -335,32 +381,33 @@ The following database views are referenced in the schema but not found in sampl
 **Database Views Referenced:** 10  
 **Sample Files Matched:** 5
 
+#### Field Implementation Status
+
+| Category | Count | Fields |
+|----------|-------|--------|
+| ✅ Implemented | 0 |  |
+| ❌ Structural | 0 |  |
+| 🔀 Computed | 0 |  |
+| 🔄 Planned | 0 |  |
+
 #### Matched Data Files
 
-- `view_party_performance_metrics_sample.csv`
-- `view_committee_productivity_sample.csv`
-- `view_politician_risk_summary_sample.csv`
 - `view_committee_productivity_matrix_sample.csv`
+- `view_committee_productivity_sample.csv`
 - `view_decision_temporal_trends_sample.csv`
+- `view_party_performance_metrics_sample.csv`
+- `view_politician_risk_summary_sample.csv`
 
 #### Missing Views
 
 The following database views are referenced in the schema but not found in sample data:
 
-- `election_cycle_comparative_analysis`
-- `riksdagen_election_year_behavioral_patterns`
-- `riksdagen_election_proximity_trends`
-- `riksdagen_election_year_vs_midterm`
-- `election_cycle_network_analysis`
 - `riksdagen_election_year_anomalies`
-- `riksdagen_q4_election_year_comparison`
-- `riksdagen_pre_election_quarterly_activity`
-- `election_cycle_temporal_trends`
-- `election_cycle_predictive_intelligence`
+- `riksdagen_election_year_vs_midterm`
 
 #### Recommendations
 
-- Consider adding 20 data columns to schema: chairs_count, vs_average, decision_month, latest_violation_date, period_start
+- Consider adding 20 data columns to schema: absenteeism_violations, active_members, activity_span_days, annual_absence_rate, annual_rebel_rate
 
 ---
 
@@ -376,7 +423,7 @@ The following database views are referenced in the schema but not found in sampl
 
 This validation compares:
 - Field definitions in JSON schema markdown files
-- Column names and data types from 138 relevant CSV sample files
+- Column names and data types from 202 relevant CSV sample files
 - Database view references in schema documentation
 
 **Validation includes:**
@@ -385,4 +432,4 @@ This validation compares:
 - Coverage analysis (schema fields vs. actual columns)
 - Missing view detection
 
-**Report Generated:** 2026-01-29 03:06:05 UTC
+**Report Generated:** 2026-04-06 16:15:10 UTC

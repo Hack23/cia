@@ -170,6 +170,75 @@ classDiagram
     style Coalition fill:#fff9c4,stroke:#f57f17,stroke-width:2px
 ```
 
+### 📋 Field Implementation Status
+
+> **Note:** This table shows the current implementation status of all fields defined in the schema diagram above.
+> Fields marked as STRUCTURAL are JSON grouping objects, not individual data fields.
+
+| Field | Status | Category | Notes |
+|-------|--------|----------|-------|
+| id | ✅ IMPLEMENTED | PartyProfile | Primary identifier, found in CSV data |
+| labels | ❌ STRUCTURAL | PartyProfile | JSON grouping object |
+| attributes | ❌ STRUCTURAL | PartyProfile | JSON grouping object |
+| relationships | ❌ STRUCTURAL | PartyProfile | JSON grouping object |
+| intelligence | ❌ STRUCTURAL | PartyProfile | JSON grouping object |
+| electoral | ❌ STRUCTURAL | PartyProfile | JSON grouping object |
+| parliamentary | ❌ STRUCTURAL | PartyProfile | JSON grouping object |
+| voting | ❌ STRUCTURAL | PartyProfile | JSON grouping object |
+| documents | ❌ STRUCTURAL | PartyProfile | JSON grouping object |
+| members | ❌ STRUCTURAL | PartyProfile | JSON grouping object |
+| coalition | ❌ STRUCTURAL | PartyProfile | JSON grouping object |
+| policy | ❌ STRUCTURAL | PartyProfile | JSON grouping object |
+| category | ❌ STRUCTURAL | Labels | JSON grouping element |
+| subcategories | ❌ STRUCTURAL | Labels | JSON grouping array (`String[]`) |
+| descriptions | ❌ STRUCTURAL | Labels | JSON grouping object |
+| intelligenceTags | ❌ STRUCTURAL | Labels | JSON grouping array (`String[]`) |
+| shortCode | ✅ IMPLEMENTED | Attributes | Found in CSV data |
+| fullName | 🔀 COMPUTED | Attributes | Derived from `party_name` |
+| nameEn | 🔄 PLANNED | Attributes | Requires translation data |
+| foundedYear | 🔄 PLANNED | Attributes | Requires historical data |
+| ideology | 🔄 PLANNED | Attributes | Requires classification data |
+| spectrum | 🔄 PLANNED | Attributes | Requires political spectrum data |
+| color | 🔄 PLANNED | Attributes | Requires party metadata |
+| logoUrl | 🔄 PLANNED | Attributes | Requires media assets |
+| websiteUrl | 🔄 PLANNED | Attributes | Requires party metadata |
+| currentSupport | 🔀 COMPUTED | Electoral | Derived from `participation_rate` |
+| seats | 🔀 COMPUTED | Electoral | Derived from `seat_count_proxy` |
+| votePercentage | 🔀 COMPUTED | Electoral | Derived from `win_rate` |
+| history | ❌ STRUCTURAL | Electoral | Non-scalar array type (`ElectionHistory[]`); JSON grouping container |
+| trend | ❌ STRUCTURAL | Electoral | Nested `Trends` object; JSON grouping element |
+| regions | ❌ STRUCTURAL | Electoral | Non-scalar array type (`RegionalSupport[]`); JSON grouping container |
+| totalMembers | 🔀 COMPUTED | Parliamentary | Derived from `total_active` |
+| activityRate | 🔀 COMPUTED | Parliamentary | Derived from `activity_level` |
+| committeeChairs | 🔀 COMPUTED | Parliamentary | Derivable from committee chair aggregation data |
+| legislativeSuccess | 🔀 COMPUTED | Parliamentary | Derived from `legislative_effectiveness_score` |
+| productivity | ❌ STRUCTURAL | Parliamentary | Nested `Productivity` object; JSON grouping element |
+| totalVotes | ✅ IMPLEMENTED | Voting | Found in CSV data |
+| cohesionScore | 🔀 COMPUTED | Voting | Derived from `avg_collaboration_pct` |
+| disciplineRate | 🔀 COMPUTED | Voting | Derived from `avg_rebel_rate` (inverted) |
+| alignment | ❌ STRUCTURAL | Voting | Nested `VoteAlignment` object; JSON grouping element |
+| keyVotes | 🔄 PLANNED | Voting | Requires vote significance data |
+| status | ✅ IMPLEMENTED | Coalition | Found in CSV data |
+| partners | 🔄 PLANNED | Coalition | Requires coalition data |
+| stability | 🔀 COMPUTED | Coalition | Derived from `stability_classification` |
+| ministries | 🔄 PLANNED | Coalition | Requires ministry count data |
+| agreements | 🔄 PLANNED | Coalition | Requires coalition agreements |
+| strengthScore | 🔀 COMPUTED | Intelligence | Derivable from party strength metrics |
+| riskScore | 🔄 PLANNED | Intelligence | Requires risk engine integration |
+| trend | ❌ STRUCTURAL | Intelligence | Nested `Trends` object; JSON grouping element |
+| predictions | ❌ STRUCTURAL | Intelligence | JSON grouping object |
+| strategicFlags | 🔄 PLANNED | Intelligence | Requires strategic analysis |
+
+#### Summary
+| Status | Count | Description |
+|--------|-------|-------------|
+| ✅ IMPLEMENTED | 4 | Available in database |
+| 🔀 COMPUTED | 12 | Derivable from existing columns |
+| 🔄 PLANNED | 13 | Requires new data sources |
+| ❌ STRUCTURAL | 22 | JSON grouping objects |
+
+> **Note:** The table above documents all 51 fields from the mermaid diagram (4+12+13+22), which matches the Party schema `fields_defined: 51` reported in `validation-results.json`. See that file for per-field status details.
+
 ---
 
 ## 📝 Complete JSON Schema

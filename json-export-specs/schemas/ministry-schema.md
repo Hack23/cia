@@ -129,6 +129,43 @@ classDiagram
     style Intelligence fill:#ffccbc,stroke:#d84315,stroke-width:2px
 ```
 
+### 📋 Field Implementation Status
+
+> **Note:** This table shows the current implementation status of all fields defined in the schema diagram above.
+> Fields marked as STRUCTURAL are JSON grouping objects, not individual data fields.
+
+| Field | Status | Category | Notes |
+|-------|--------|----------|-------|
+| `name` | ✅ IMPLEMENTED | Core | Found in CSV data |
+| `id` | ✅ IMPLEMENTED | Core | Found in `view_riksdagen_goverment_proposals` (`id`) |
+| `code` | 🔀 COMPUTED | Core | Derived from `org_code` or `ministry_code` |
+| `ministers` | 🔀 COMPUTED | Personnel | Count from `view_riksdagen_goverment_role_member` where `role_code = minister` |
+| `stateSecretaries` | 🔀 COMPUTED | Personnel | Count where `role_code = state_secretary` |
+| `civilServants` | 🔀 COMPUTED | Personnel | Derived from `current_member_size` |
+| `performanceScore` | 🔀 COMPUTED | Intelligence | Derived from `productivity_level` |
+| `effectiveness` | 🔀 COMPUTED | Performance | Derived from `effectiveness_assessment` |
+| `decisionsImplemented` | 🔀 COMPUTED | Performance | Derived from `approved_proposals` |
+| `efficiency` | 🔀 COMPUTED | Performance | Derived from `approval_rate` |
+| `executionRate` | 🔀 COMPUTED | Budget | Derived from `approval_rate` |
+| `trend` | ❌ STRUCTURAL | Intelligence | Nested grouping object |
+| `nameEn` | 🔄 PLANNED | Attributes | Needs new data collection |
+| `portfolio` | 🔄 PLANNED | Attributes | Needs new data collection |
+| `established` | 🔀 COMPUTED | Attributes | Derivable from `first_assignment_date` |
+| `headquarters` | 🔄 PLANNED | Attributes | Needs new data collection |
+| `allocation` | 🔄 PLANNED | Budget | Needs new data collection |
+| `spent` | 🔄 PLANNED | Budget | Needs new data collection |
+| `budget` | ❌ STRUCTURAL | Budget | JSON grouping object |
+| `publicSatisfaction` | 🔄 PLANNED | Performance | Needs new data collection |
+| `predictions` | ❌ STRUCTURAL | Intelligence | JSON grouping object |
+| `labels` | ❌ STRUCTURAL | Core | JSON grouping object |
+| `attributes` | ❌ STRUCTURAL | Core | JSON grouping object |
+| `relationships` | ❌ STRUCTURAL | Core | JSON grouping object |
+| `intelligence` | ❌ STRUCTURAL | Core | JSON grouping object |
+| `personnel` | ❌ STRUCTURAL | Core | JSON grouping object |
+| `performance` | ❌ STRUCTURAL | Core | JSON grouping object |
+| `decisions` | ❌ STRUCTURAL | Core | JSON grouping object |
+| `policy` | ❌ STRUCTURAL | Core | JSON grouping object |
+
 ---
 
 ## 📝 Complete JSON Example

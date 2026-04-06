@@ -117,6 +117,37 @@ classDiagram
     style Intelligence fill:#fff9c4,stroke:#f57f17,stroke-width:2px
 ```
 
+### Field Implementation Status
+
+| Field | Status | Source / Notes |
+|-------|--------|---------------|
+| `id` | ✅ IMPLEMENTED | Found in CSV data |
+| `activityLevel` | ✅ IMPLEMENTED | Found in CSV data |
+| `regularMembers` | ✅ IMPLEMENTED | Found in `view_committee_productivity` (`regular_members`) |
+| `totalMembers` | ✅ IMPLEMENTED | Found in `view_committee_productivity` (`total_members`) |
+| `code` | 🔀 COMPUTED | Derivable from `embedded_id_org_code` or `committee_code` |
+| `name` | 🔀 COMPUTED | Derivable from `embedded_id_detail` or `committee_name` |
+| `deputyMembers` | 🔀 COMPUTED | Derivable from `current_substitute_positions` |
+| `established` | 🔀 COMPUTED | Derivable from `first_assignment_date` |
+| `reports` | 🔀 COMPUTED | Derivable from `reports_count` or `committee_reports` |
+| `performanceScore` | 🔀 COMPUTED | Derivable from `productivity_score` |
+| `productivity` | ❌ STRUCTURAL | Nested `Productivity` object; JSON grouping element |
+| `decisions` | ❌ STRUCTURAL | Nested `Decisions` object; JSON grouping element |
+| `attendanceRate` | 🔀 COMPUTED | Derivable from `total_days_served / expected_days` |
+| `amendments` | 🔀 COMPUTED | Count from document types |
+| `hearings` | 🔀 COMPUTED | Derivable from activity tracking |
+| `nameEn` | 🔄 PLANNED | Needs new data / collection |
+| `type` | 🔄 PLANNED | Needs new data / collection |
+| `policyDomain` | 🔄 PLANNED | Needs new data / collection |
+| `meetings` | 🔄 PLANNED | Needs new data / collection |
+| `influence` | 🔄 PLANNED | Needs new data / collection |
+| `labels` | ❌ STRUCTURAL | JSON grouping object |
+| `attributes` | ❌ STRUCTURAL | JSON grouping object |
+| `relationships` | ❌ STRUCTURAL | JSON grouping object |
+| `intelligence` | ❌ STRUCTURAL | JSON grouping object |
+| `membership` | ❌ STRUCTURAL | JSON grouping object |
+| `policy` | ❌ STRUCTURAL | JSON grouping object |
+
 ---
 
 ## 📝 Complete JSON Example

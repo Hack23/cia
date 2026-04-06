@@ -350,6 +350,14 @@ class TestValidationReports(unittest.TestCase):
         self.assertIn("files_analyzed", results)
         self.assertIn("total_mismatches", results)
         self.assertIn("schemas", results)
+        self.assertIn("field_status_summary", results)
+        
+        # Verify field_status_summary structure
+        summary = results["field_status_summary"]
+        self.assertIn("implemented", summary)
+        self.assertIn("structural", summary)
+        self.assertIn("computed", summary)
+        self.assertIn("planned", summary)
     
     def test_generate_markdown_report(self):
         """Test Markdown report generation."""
@@ -368,6 +376,173 @@ class TestValidationReports(unittest.TestCase):
         self.assertIn("## Detailed Findings", content)
         self.assertIn("**Schemas Validated:**", content)
         self.assertIn("**Sample Files Analyzed:**", content)
+        # Check for field status summary in report
+        self.assertIn("Field Implementation Status Summary", content)
+        self.assertIn("Implemented", content)
+        self.assertIn("Structural", content)
+        self.assertIn("Computed", content)
+        self.assertIn("Planned", content)
+
+
+class TestFieldStatusClassification(unittest.TestCase):
+    """Test cases for field implementation status classification."""
+    
+    def setUp(self):
+        """Set up test fixtures."""
+        self.temp_dir = tempfile.mkdtemp()
+        self.schema_dir = Path(self.temp_dir) / "schemas"
+        self.data_dir = Path(self.temp_dir) / "data"
+        self.schema_dir.mkdir()
+        self.data_dir.mkdir()
+    
+    def tearDown(self):
+        """Clean up test fixtures."""
+        import shutil
+        shutil.rmtree(self.temp_dir)
+    
+    def test_structural_fields_defined(self):
+        """Test that STRUCTURAL_FIELDS class attribute is defined."""
+        self.assertIsInstance(SchemaValidator.STRUCTURAL_FIELDS, set)
+        self.assertIn("attributes", SchemaValidator.STRUCTURAL_FIELDS)
+        self.assertIn("labels", SchemaValidator.STRUCTURAL_FIELDS)
+        self.assertIn("relationships", SchemaValidator.STRUCTURAL_FIELDS)
+        self.assertIn("intelligence", SchemaValidator.STRUCTURAL_FIELDS)
+        self.assertIn("trend", SchemaValidator.STRUCTURAL_FIELDS)
+        self.assertIn("alignment", SchemaValidator.STRUCTURAL_FIELDS)
+    
+    def test_computed_fields_defined(self):
+        """Test that COMPUTED_FIELDS class attribute is defined."""
+        self.assertIsInstance(SchemaValidator.COMPUTED_FIELDS, set)
+        self.assertIn("fullName", SchemaValidator.COMPUTED_FIELDS)
+        self.assertIn("partyLoyalty", SchemaValidator.COMPUTED_FIELDS)
+        self.assertIn("totalMembers", SchemaValidator.COMPUTED_FIELDS)
+        self.assertIn("performanceScore", SchemaValidator.COMPUTED_FIELDS)
+        self.assertIn("id", SchemaValidator.COMPUTED_FIELDS)
+        self.assertIn("committeeChairs", SchemaValidator.COMPUTED_FIELDS)
+        self.assertIn("strengthScore", SchemaValidator.COMPUTED_FIELDS)
+    
+    def test_field_status_in_validation_results(self):
+        """Test that field status summary is included in validation results."""
+        validator = SchemaValidator(str(self.schema_dir), str(self.data_dir))
+        
+        self.assertIn("field_status_summary", validator.validation_results)
+        summary = validator.validation_results["field_status_summary"]
+        self.assertEqual(summary["implemented"], 0)
+        self.assertEqual(summary["structural"], 0)
+        self.assertEqual(summary["computed"], 0)
+        self.assertEqual(summary["planned"], 0)
+    
+    def test_field_classification_with_data(self):
+        """Test field classification when validating against sample data."""
+        # Create test data with only some fields
+        csv_file = self.data_dir / "view_riksdagen_test_sample.csv"
+        with open(csv_file, 'w', newline='') as f:
+            writer = csv.DictWriter(f, fieldnames=["first_name", "status"])
+            writer.writeheader()
+            writer.writerow({"first_name": "Test", "status": "active"})
+        
+        # Create test schema with implemented, structural, computed, and planned fields
+        schema_file = self.schema_dir / "test-schema.md"
+        schema_content = """# Test Schema
+```mermaid
+classDiagram
+    class Test {
+        +String firstName
+        +String status
+        +Object attributes
+        +Object labels
+        +String fullName
+        +String missingField
+    }
+```
+"""
+        schema_file.write_text(schema_content)
+        
+        validator = SchemaValidator(str(self.schema_dir), str(self.data_dir))
+        validator.load_sample_data()
+        
+        schema_info = validator._parse_schema_markdown(schema_file)
+        
+        # Simulate validation
+        matched_files = [
+            ("view_riksdagen_test_sample", validator.sample_data["view_riksdagen_test_sample"])
+        ]
+        schema_result = {
+            "views_referenced": 0,
+            "fields_defined": len(schema_info["fields"]),
+            "matched_views": [],
+            "missing_views": [],
+            "field_mismatches": [],
+            "recommendations": []
+        }
+        
+        validator._validate_fields("test", schema_info, matched_files, schema_result)
+        
+        # Check field status classification
+        field_status = schema_result.get("field_status", {})
+        self.assertIn("firstName", field_status["implemented"])
+        # Non-scalar types use composite key Type:name
+        self.assertIn("Object:attributes", field_status["structural"])
+        self.assertIn("Object:labels", field_status["structural"])
+        self.assertIn("fullName", field_status["computed"])
+        self.assertIn("missingField", field_status["planned"])
+        
+        # Verify global field_status_summary aggregation
+        summary = validator.validation_results["field_status_summary"]
+        self.assertEqual(summary["implemented"], 2)  # firstName, status
+        self.assertEqual(summary["structural"], 2)  # Object:attributes, Object:labels
+        self.assertEqual(summary["computed"], 1)  # fullName
+        self.assertEqual(summary["planned"], 1)  # missingField
+    
+    def test_mismatch_includes_status(self):
+        """Test that field mismatches include status classification."""
+        csv_file = self.data_dir / "view_riksdagen_test_sample.csv"
+        with open(csv_file, 'w', newline='') as f:
+            writer = csv.DictWriter(f, fieldnames=["id"])
+            writer.writeheader()
+            writer.writerow({"id": "1"})
+        
+        schema_file = self.schema_dir / "test-schema.md"
+        schema_content = """# Test
+```mermaid
+classDiagram
+    class Test {
+        +String id
+        +Object attributes
+        +String fullName
+        +String unknownField
+    }
+```
+"""
+        schema_file.write_text(schema_content)
+        
+        validator = SchemaValidator(str(self.schema_dir), str(self.data_dir))
+        validator.load_sample_data()
+        
+        schema_info = validator._parse_schema_markdown(schema_file)
+        matched_files = [
+            ("view_riksdagen_test_sample", validator.sample_data["view_riksdagen_test_sample"])
+        ]
+        schema_result = {
+            "views_referenced": 0,
+            "fields_defined": 4,
+            "matched_views": [],
+            "missing_views": [],
+            "field_mismatches": [],
+            "recommendations": []
+        }
+        
+        validator._validate_fields("test", schema_info, matched_files, schema_result)
+        
+        # Find the mismatch entries
+        mismatches = {m["field"]: m for m in schema_result["field_mismatches"]}
+        # Non-scalar types use composite key Type:name
+        self.assertIn("Object:attributes", mismatches)
+        self.assertEqual(mismatches["Object:attributes"]["status"], "STRUCTURAL")
+        self.assertIn("fullName", mismatches)
+        self.assertEqual(mismatches["fullName"]["status"], "COMPUTED")
+        self.assertIn("unknownField", mismatches)
+        self.assertEqual(mismatches["unknownField"]["status"], "PLANNED")
 
 
 if __name__ == '__main__':
