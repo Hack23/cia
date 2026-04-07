@@ -27,19 +27,17 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
+
 import org.eclipse.jetty.http2.server.HTTP2CServerConnectionFactory;
 import org.eclipse.jetty.jmx.MBeanContainer;
-import org.eclipse.jetty.server.Handler;
+import org.eclipse.jetty.ee8.webapp.WebAppContext;
 import org.eclipse.jetty.server.HttpConfiguration;
 import org.eclipse.jetty.server.HttpConnectionFactory;
 import org.eclipse.jetty.server.SecureRequestCustomizer;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.server.SslConnectionFactory;
-import org.eclipse.jetty.server.handler.DefaultHandler;
-import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.util.ssl.SslContextFactory;
-import org.eclipse.jetty.webapp.WebAppContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.bridge.SLF4JBridgeHandler;
@@ -194,16 +192,15 @@ public final class CitizenIntelligenceAgencyServer {
 		sslConnector.setPort(PORT);
 
 		server.setConnectors(new ServerConnector[] { sslConnector });
-		final WebAppContext handler = new WebAppContext("src/main/webapp", "/");
-		handler.setExtraClasspath("target/classes");
-		handler.setParentLoaderPriority(true);
-		handler.setConfigurationDiscovered(true);
-		handler.setClassLoader(Thread.currentThread().getContextClassLoader());
-		final HandlerList handlers = new HandlerList();
+		final WebAppContext webapp = new WebAppContext();
+		webapp.setContextPath("/");
+		webapp.setWar("src/main/webapp");
+		webapp.setExtraClasspath("target/classes");
+		webapp.setParentLoaderPriority(true);
+		webapp.setConfigurationDiscovered(true);
+		webapp.setClassLoader(Thread.currentThread().getContextClassLoader());
 
-		handlers.setHandlers(new Handler[] { handler, new DefaultHandler() });
-
-		server.setHandler(handlers);
+		server.setHandler(webapp);
 	}
 
 	/**

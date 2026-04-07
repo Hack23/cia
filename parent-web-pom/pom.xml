@@ -203,8 +203,8 @@
         </exclusions>
       </dependency>
       <dependency>
-        <groupId>org.eclipse.jetty</groupId>
-        <artifactId>jetty-webapp</artifactId>
+        <groupId>org.eclipse.jetty.ee8</groupId>
+        <artifactId>jetty-ee8-webapp</artifactId>
         <version>${cia.project.versions.jetty}</version>
       </dependency>
       <dependency>
@@ -218,8 +218,8 @@
     <pluginManagement>
       <plugins>
         <plugin>
-          <groupId>org.eclipse.jetty</groupId>
-          <artifactId>jetty-maven-plugin</artifactId>
+          <groupId>org.eclipse.jetty.ee8</groupId>
+          <artifactId>jetty-ee8-maven-plugin</artifactId>
           <version>${cia.project.versions.jetty}</version>
         </plugin>
         <plugin>
