@@ -35,11 +35,11 @@ This strategy should be considered alongside the [Financial Security Plan](Finan
 
 For the current feature set that will be maintained under this strategy, see the [CIA Features page](https://hack23.com/cia-features.html).
 
-## Jetty 10 to Jetty 12 Transition Plan
+## Jetty 12 EE8 Web Server
 
-- **Current Web Server**: The project currently uses **Jetty 10**.
-- **EOL for Jetty 10**: Scheduled for **2026** ([endoflife.date](https://endoflife.date/eclipse-jetty)).
-- **Potential Move to Jetty 12**: Jetty 12 supports both `javax.servlet` and Jakarta namespaces and has an EOL of **2028**. Migrating to Jetty 12 would allow the CIA project to remain compatible with future JVMs while avoiding an architectural transition to Jakarta.
+- **Current Web Server**: The project uses **Jetty 12** with **EE8 environment** (Servlet 4.0, `javax.servlet` namespace).
+- **EOL for Jetty 12**: Scheduled for **2028** ([endoflife.date](https://endoflife.date/eclipse-jetty)).
+- **Migration Completed**: Jetty 10 → Jetty 12 EE8 migration was completed in 2026, allowing the project to remain on `javax.servlet` without moving to Jakarta namespaces while benefiting from Jetty 12's actively maintained codebase.
 
 See [README.md - Deployment Options](README.md#deployment-options) for deployment considerations.
 
@@ -95,7 +95,7 @@ The ongoing maintenance strategy aligns with Hack23 AB's [ISMS-PUBLIC framework]
 
 | 🛡️ ISMS Policy | 🔧 Maintenance Activity | 📋 Implementation |
 |---------------|------------------------|------------------|
-| [**Change Management**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Change_Management.md) | Jetty 10 → Jetty 12 migration planning<br>Jakarta namespace evaluation | Risk-assessed transition with testing<br>Documented migration path |
+| [**Change Management**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Change_Management.md) | Jetty 12 EE8 maintenance<br>Jakarta namespace evaluation | Risk-assessed updates with testing<br>Documented migration path |
 | [**Vulnerability Management**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Vulnerability_Management.md) | Automated security patching<br>Dependency updates via Dependabot | Weekly vulnerability scans<br>30-day patch SLA for critical issues |
 | [**Asset Register**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Asset_Register.md) | EOL tracking for dependencies<br>Technology stack monitoring | Documented component lifecycle<br>Replacement planning for EOL tech |
 | [**Business Continuity Plan**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Business_Continuity_Plan.md) | Platform availability during transitions<br>Rollback procedures | Multi-AZ deployment maintenance<br>Tested recovery procedures |
@@ -142,7 +142,7 @@ For a conceptual overview of how these components interact, see the [System Mind
 | **Business Rules Engine**   | [Drools](https://www.drools.org/)                                                                  | Active                      |
 | **Messaging**               | [ActiveMQ Artemis](https://activemq.apache.org/components/artemis/), [Spring JMS](https://spring.io/projects/spring-jms) | Active                      |
 | **Web/UI Layer**            | [Vaadin 8](https://vaadin.com/docs/latest/guide/vaadin-8/overview), Vaadin Sass Compiler           | Reached EOL; commercial support available |
-| **Web Server**              | [Jetty 10.x](https://www.eclipse.org/jetty/) (Potential future move to Jetty 12)                   | Jetty 10 EOL: **2026**; Jetty 12 EOL: **2028** |
+| **Web Server**              | [Jetty 12.x](https://www.eclipse.org/jetty/) (EE8 — Servlet 4.0, `javax.servlet`)                  | Jetty 12 EOL: **2028** |
 | **Monitoring**              | [JavaMelody](https://github.com/javamelody/javamelody), [AWS SDK for CloudWatch](https://aws.amazon.com/cloudwatch/) | Active                      |
 | **Testing**                 | [JUnit](https://junit.org/junit5/), [Mockito](https://site.mockito.org/), [Spring Test](https://spring.io/projects/spring-framework), [Selenium WebDriver](https://www.selenium.dev/documentation/) | JUnit 4: Legacy; JUnit 5 & Mockito Active |
 | **Utilities**               | [Apache Commons](https://commons.apache.org/), [Google Guava](https://github.com/google/guava), [SLF4J](http://www.slf4j.org/), [Logback](http://logback.qos.ch/), [Jackson](https://github.com/FasterXML/jackson) | Active                      |

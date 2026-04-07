@@ -141,7 +141,7 @@ open module com.hack23.cia.web {
 	requires transitive responsive.layout;
 	requires transitive org.hibernate.orm.jpamodelgen;
 	requires transitive vaadin.shared;
-	requires transitive org.eclipse.jetty.servlet;
+	requires transitive org.eclipse.jetty.ee8.servlet;
 	requires transitive jetty.servlet.api;
 	requires transitive vaadin.server;
 
