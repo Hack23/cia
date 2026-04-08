@@ -81,15 +81,15 @@ EARLY_TERM: 24+ months before election
 ```mermaid
 %%{
   init: {
-    'theme': 'base',
-    'themeVariables': {
-      'primaryColor': '#fff9c4',
-      'primaryTextColor': '#f57f17',
-      'lineColor': '#f9a825',
-      'secondaryColor': '#e1f5ff',
-      'tertiaryColor': '#c8e6c9',
-      'primaryBorderColor': '#f57f17',
-      'fontSize': '14px'
+    "theme": "base",
+    "themeVariables": {
+      "primaryColor": "#fff9c4",
+      "primaryTextColor": "#f57f17",
+      "lineColor": "#f9a825",
+      "secondaryColor": "#e1f5ff",
+      "tertiaryColor": "#c8e6c9",
+      "primaryBorderColor": "#f57f17",
+      "fontSize": "14px"
     }
   }
 }%%

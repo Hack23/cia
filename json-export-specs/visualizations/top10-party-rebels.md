@@ -9,7 +9,7 @@ Politicians with lowest party loyalty scores, frequently voting against party li
 ## Rebel Rankings
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 xychart-beta
     title "Top 10 Party Rebels (Rebellion Score 0-100)"
     x-axis ["Pol A", "Pol B", "Pol C", "Pol D", "Pol E", "Pol F", "Pol G", "Pol H", "Pol I", "Pol J"]
@@ -67,7 +67,7 @@ graph LR
 ## Rebellion by Party
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 pie title "Top Rebels by Party"
     "Moderates (M)" : 3
     "Social Democrats (S)" : 2
@@ -79,7 +79,7 @@ pie title "Top Rebels by Party"
 ## Vote Defection Patterns
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 xychart-beta
     title "Defection Rate by Vote Type"
     x-axis ["Budget Votes", "Policy Bills", "Committee Reports", "Symbolic Votes", "Procedural"]
@@ -134,7 +134,29 @@ gantt
 ## Party Response Matrix
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "quadrant1Fill": "#1565C0",
+    "quadrant2Fill": "#2E7D32",
+    "quadrant3Fill": "#FF9800",
+    "quadrant4Fill": "#D32F2F",
+    "quadrantTitleFill": "#ffffff",
+    "quadrantPointFill": "#ffffff",
+    "quadrantPointTextFill": "#000000",
+    "quadrantXAxisTextFill": "#000000",
+    "quadrantYAxisTextFill": "#000000"
+  },
+  "quadrantChart": {
+    "chartWidth": 700,
+    "chartHeight": 700,
+    "pointLabelFontSize": 12,
+    "titleFontSize": 20,
+    "quadrantLabelFontSize": 16,
+    "xAxisLabelFontSize": 14,
+    "yAxisLabelFontSize": 14
+  }
+}}%%
 quadrantChart
     title Party Discipline Actions
     x-axis Mild Rebellion --> Severe Rebellion
@@ -144,10 +166,11 @@ quadrantChart
     quadrant-3 Lenient
     quadrant-4 Underreaction
     
-    Politician A: [0.8, 0.6]
-    Politician B: [0.7, 0.7]
-    Politician C: [0.6, 0.5]
-    Politician D: [0.5, 0.4]
+    "Politician A": [0.8, 0.6]
+    "Politician B": [0.7, 0.7]
+    "Politician C": [0.6, 0.5]
+    "Politician D": [0.5, 0.4]
+
 ```
 
 ## Electoral Consequences
@@ -176,7 +199,7 @@ graph TB
 ## Voter Perception
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 xychart-beta
     title "Voter Views on Party Rebels (% agree)"
     x-axis ["Independent Thinker", "Represents District", "Principled", "Unreliable", "Disloyal"]
@@ -207,7 +230,7 @@ graph LR
 ## Rebellion Frequency Over Time
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 xychart-beta
     title "Defection Rate Trends (12 Months)"
     x-axis ["Dec 23", "Feb 24", "Apr 24", "Jun 24", "Aug 24", "Oct 24"]

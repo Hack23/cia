@@ -65,7 +65,7 @@ graph TD
 ## Cabinet Party Distribution
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 pie title "Cabinet Ministerial Positions by Party"
     "Moderates (M)" : 11
     "Christian Democrats (KD)" : 5
@@ -109,7 +109,7 @@ graph TB
 ## Coalition Stability Index
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 xychart-beta
     title "Coalition Stability Metrics (0-100 scale)"
     x-axis ["Budget Agreement", "Policy Alignment", "Public Support", "Internal Cohesion", "Media Relations", "Overall"]
@@ -146,7 +146,29 @@ graph TB
 ## Policy Priority Matrix
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "quadrant1Fill": "#1565C0",
+    "quadrant2Fill": "#2E7D32",
+    "quadrant3Fill": "#FF9800",
+    "quadrant4Fill": "#D32F2F",
+    "quadrantTitleFill": "#ffffff",
+    "quadrantPointFill": "#ffffff",
+    "quadrantPointTextFill": "#000000",
+    "quadrantXAxisTextFill": "#000000",
+    "quadrantYAxisTextFill": "#000000"
+  },
+  "quadrantChart": {
+    "chartWidth": 700,
+    "chartHeight": 700,
+    "pointLabelFontSize": 12,
+    "titleFontSize": 20,
+    "quadrantLabelFontSize": 16,
+    "xAxisLabelFontSize": 14,
+    "yAxisLabelFontSize": 14
+  }
+}}%%
 quadrantChart
     title Government Policy Priorities (Impact vs Progress)
     x-axis Low Progress --> High Progress
@@ -156,14 +178,15 @@ quadrantChart
     quadrant-3 Low Priority
     quadrant-4 Quick Wins
     
-    Crime Reduction: [0.6, 0.9]
-    Energy Security: [0.7, 0.95]
-    School Reform: [0.5, 0.85]
-    Healthcare Efficiency: [0.45, 0.8]
-    Climate Goals: [0.4, 0.7]
-    Integration Policy: [0.55, 0.75]
-    Defense Spending: [0.8, 0.85]
-    Tax Reform: [0.65, 0.6]
+    "Crime Reduction": [0.6, 0.9]
+    "Energy Security": [0.7, 0.95]
+    "School Reform": [0.5, 0.85]
+    "Healthcare Efficiency": [0.45, 0.8]
+    "Climate Goals": [0.4, 0.7]
+    "Integration Policy": [0.55, 0.75]
+    "Defense Spending": [0.8, 0.85]
+    "Tax Reform": [0.65, 0.6]
+
 ```
 
 ## Cabinet Timeline
@@ -266,7 +289,7 @@ graph TD
 ## Cabinet Approval Trends
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 xychart-beta
     title "Government Approval Rating (% approve)"
     x-axis ["Nov 2022", "Jan 2023", "Apr 2023", "Jul 2023", "Oct 2023", "Jan 2024", "Apr 2024", "Jul 2024", "Oct 2024"]

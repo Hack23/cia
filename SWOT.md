@@ -63,6 +63,29 @@ This document provides a strategic analysis of the Citizen Intelligence Agency's
 **Strategic Focus:** This quadrant chart provides a visual representation of the Citizen Intelligence Agency's strengths, weaknesses, opportunities, and threats arranged by their internal/external nature and positive/negative impact.
 
 ```mermaid
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "quadrant1Fill": "#1565C0",
+    "quadrant2Fill": "#2E7D32",
+    "quadrant3Fill": "#D32F2F",
+    "quadrant4Fill": "#FF9800",
+    "quadrantTitleFill": "#ffffff",
+    "quadrantPointFill": "#ffffff",
+    "quadrantPointTextFill": "#000000",
+    "quadrantXAxisTextFill": "#000000",
+    "quadrantYAxisTextFill": "#000000"
+  },
+  "quadrantChart": {
+    "chartWidth": 700,
+    "chartHeight": 700,
+    "pointLabelFontSize": 12,
+    "titleFontSize": 20,
+    "quadrantLabelFontSize": 16,
+    "xAxisLabelFontSize": 14,
+    "yAxisLabelFontSize": 14
+  }
+}}%%
 quadrantChart
     title Citizen Intelligence Agency SWOT Analysis
     x-axis Internal --> External
@@ -95,6 +118,7 @@ quadrantChart
     "Technical Debt Growth": [0.75, 0.25]
     "Political API Limitations": [0.9, 0.3]
     "Volunteer Resource Challenges": [0.85, 0.15]
+
 ```
 
 ### Alternative Network Visualization

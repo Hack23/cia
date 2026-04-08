@@ -88,15 +88,15 @@ Level 1:  Entry Level (<100 weight)
 ```mermaid
 %%{
   init: {
-    'theme': 'base',
-    'themeVariables': {
-      'primaryColor': '#e1f5ff',
-      'primaryTextColor': '#0277bd',
-      'lineColor': '#01579b',
-      'secondaryColor': '#c8e6c9',
-      'tertiaryColor': '#fff9c4',
-      'primaryBorderColor': '#0277bd',
-      'fontSize': '14px'
+    "theme": "base",
+    "themeVariables": {
+      "primaryColor": "#e1f5ff",
+      "primaryTextColor": "#0277bd",
+      "lineColor": "#01579b",
+      "secondaryColor": "#c8e6c9",
+      "tertiaryColor": "#fff9c4",
+      "primaryBorderColor": "#0277bd",
+      "fontSize": "14px"
     }
   }
 }%%

@@ -128,13 +128,13 @@ Integrated with:
 ```mermaid
 %%{
   init: {
-    'theme': 'base',
-    'themeVariables': {
-      'primaryColor': '#e3f2fd',
-      'primaryTextColor': '#01579b',
-      'lineColor': '#0288d1',
-      'secondaryColor': '#fff3e0',
-      'tertiaryColor': '#fce4ec'
+    "theme": "base",
+    "themeVariables": {
+      "primaryColor": "#e3f2fd",
+      "primaryTextColor": "#01579b",
+      "lineColor": "#0288d1",
+      "secondaryColor": "#fff3e0",
+      "tertiaryColor": "#fce4ec"
     }
   }
 }%%
@@ -191,13 +191,13 @@ flowchart TD
 ```mermaid
 %%{
   init: {
-    'theme': 'base',
-    'themeVariables': {
-      'primaryColor': '#e8f5e9',
-      'primaryTextColor': '#1b5e20',
-      'lineColor': '#4caf50',
-      'secondaryColor': '#fff3e0',
-      'tertiaryColor': '#fce4ec'
+    "theme": "base",
+    "themeVariables": {
+      "primaryColor": "#e8f5e9",
+      "primaryTextColor": "#1b5e20",
+      "lineColor": "#4caf50",
+      "secondaryColor": "#fff3e0",
+      "tertiaryColor": "#fce4ec"
     }
   }
 }%%
@@ -344,12 +344,35 @@ Following [Hack23 AB Threat Agent Classification](https://github.com/Hack23/ISMS
 ### **📊 Threat Agent Capability Evolution**
 
 ```mermaid
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "quadrant1Fill": "#1565C0",
+    "quadrant2Fill": "#2E7D32",
+    "quadrant3Fill": "#FF9800",
+    "quadrant4Fill": "#D32F2F",
+    "quadrantTitleFill": "#ffffff",
+    "quadrantPointFill": "#ffffff",
+    "quadrantPointTextFill": "#000000",
+    "quadrantXAxisTextFill": "#000000",
+    "quadrantYAxisTextFill": "#000000"
+  },
+  "quadrantChart": {
+    "chartWidth": 700,
+    "chartHeight": 700,
+    "pointLabelFontSize": 12,
+    "titleFontSize": 20,
+    "quadrantLabelFontSize": 16,
+    "xAxisLabelFontSize": 14,
+    "yAxisLabelFontSize": 14
+  }
+}}%%
 %%{
   init: {
-    'theme': 'base',
-    'themeVariables': {
-      'primaryColor': '#e3f2fd',
-      'primaryTextColor': '#01579b'
+    "theme": "base",
+    "themeVariables": {
+      "primaryColor": "#e3f2fd",
+      "primaryTextColor": "#01579b"
     }
   }
 }%%
@@ -361,12 +384,13 @@ quadrantChart
     quadrant-2 Monitor Closely
     quadrant-3 Low Priority
     quadrant-4 Watch Capability Growth
-    Nation-State Actors: [0.92, 0.95]
-    AI-Powered Adversaries: [0.85, 0.80]
-    Political Manipulation Groups: [0.60, 0.90]
-    Cybercriminals: [0.75, 0.70]
-    Malicious Insiders: [0.55, 0.65]
-    AI Service Providers: [0.50, 0.30]
+    "Nation-State Actors": [0.92, 0.95]
+    "AI-Powered Adversaries": [0.85, 0.80]
+    "Political Manipulation Groups": [0.60, 0.90]
+    "Cybercriminals": [0.75, 0.70]
+    "Malicious Insiders": [0.55, 0.65]
+    "AI Service Providers": [0.50, 0.30]
+
 ```
 
 ---
@@ -492,12 +516,35 @@ Following [Hack23 AB Scenario-Centric Modeling](https://github.com/Hack23/ISMS-P
 ### **📈 Risk Heat Matrix — Future State**
 
 ```mermaid
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "quadrant1Fill": "#FF9800",
+    "quadrant2Fill": "#D32F2F",
+    "quadrant3Fill": "#4CAF50",
+    "quadrant4Fill": "#FFC107",
+    "quadrantTitleFill": "#ffffff",
+    "quadrantPointFill": "#ffffff",
+    "quadrantPointTextFill": "#000000",
+    "quadrantXAxisTextFill": "#000000",
+    "quadrantYAxisTextFill": "#000000"
+  },
+  "quadrantChart": {
+    "chartWidth": 700,
+    "chartHeight": 700,
+    "pointLabelFontSize": 12,
+    "titleFontSize": 20,
+    "quadrantLabelFontSize": 16,
+    "xAxisLabelFontSize": 14,
+    "yAxisLabelFontSize": 14
+  }
+}}%%
 %%{
   init: {
-    'theme': 'base',
-    'themeVariables': {
-      'primaryColor': '#e3f2fd',
-      'primaryTextColor': '#01579b'
+    "theme": "base",
+    "themeVariables": {
+      "primaryColor": "#e3f2fd",
+      "primaryTextColor": "#01579b"
     }
   }
 }%%
@@ -509,18 +556,19 @@ quadrantChart
     quadrant-2 High Impact/Low Likelihood
     quadrant-3 Low Risk
     quadrant-4 Monitor
-    FT-001 AI Model Poisoning: [0.55, 0.95]
-    FT-002 Prompt Injection: [0.78, 0.80]
-    FT-003 Quantum Threat: [0.75, 0.82]
-    FT-004 AI Agent Escalation: [0.35, 0.95]
-    FT-005 Deepfake Injection: [0.55, 0.92]
-    FT-006 AI-DDoS Elections: [0.60, 0.78]
-    FT-007 AI Supply Chain: [0.55, 0.78]
-    FT-008 Score Manipulation: [0.40, 0.92]
-    FT-009 AI Phishing: [0.78, 0.58]
-    FT-010 EU AI Act: [0.60, 0.58]
-    FT-011 Adversarial ML: [0.55, 0.58]
-    FT-012 AI Overreliance: [0.78, 0.55]
+    "FT-001 AI Model Poisoning": [0.55, 0.95]
+    "FT-002 Prompt Injection": [0.78, 0.80]
+    "FT-003 Quantum Threat": [0.75, 0.82]
+    "FT-004 AI Agent Escalation": [0.35, 0.95]
+    "FT-005 Deepfake Injection": [0.55, 0.92]
+    "FT-006 AI-DDoS Elections": [0.60, 0.78]
+    "FT-007 AI Supply Chain": [0.55, 0.78]
+    "FT-008 Score Manipulation": [0.40, 0.92]
+    "FT-009 AI Phishing": [0.78, 0.58]
+    "FT-010 EU AI Act": [0.60, 0.58]
+    "FT-011 Adversarial ML": [0.55, 0.58]
+    "FT-012 AI Overreliance": [0.78, 0.55]
+
 ```
 
 ---
@@ -532,11 +580,11 @@ quadrantChart
 ```mermaid
 %%{
   init: {
-    'theme': 'base',
-    'themeVariables': {
-      'primaryColor': '#e8f5e9',
-      'primaryTextColor': '#1b5e20',
-      'lineColor': '#4caf50'
+    "theme": "base",
+    "themeVariables": {
+      "primaryColor": "#e8f5e9",
+      "primaryTextColor": "#1b5e20",
+      "lineColor": "#4caf50"
     }
   }
 }%%
@@ -616,13 +664,13 @@ Following [Hack23 AB Comprehensive Threat Modeling Strategies](https://github.co
 ```mermaid
 %%{
   init: {
-    'theme': 'base',
-    'themeVariables': {
-      'primaryColor': '#e8f5e9',
-      'primaryTextColor': '#2e7d32',
-      'lineColor': '#4caf50',
-      'secondaryColor': '#ffcdd2',
-      'tertiaryColor': '#e1bee7'
+    "theme": "base",
+    "themeVariables": {
+      "primaryColor": "#e8f5e9",
+      "primaryTextColor": "#2e7d32",
+      "lineColor": "#4caf50",
+      "secondaryColor": "#ffcdd2",
+      "tertiaryColor": "#e1bee7"
     }
   }
 }%%
@@ -671,11 +719,11 @@ Following [Hack23 AB Workshop Framework](https://github.com/Hack23/ISMS-PUBLIC/b
 ```mermaid
 %%{
   init: {
-    'theme': 'base',
-    'themeVariables': {
-      'primaryColor': '#e3f2fd',
-      'primaryTextColor': '#01579b',
-      'lineColor': '#0288d1'
+    "theme": "base",
+    "themeVariables": {
+      "primaryColor": "#e3f2fd",
+      "primaryTextColor": "#01579b",
+      "lineColor": "#0288d1"
     }
   }
 }%%

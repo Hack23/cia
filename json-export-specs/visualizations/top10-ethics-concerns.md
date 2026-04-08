@@ -9,7 +9,7 @@ Politicians with highest ethics concern scores based on investigations, violatio
 ## Ethics Concern Rankings
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 xychart-beta
     title "Top 10 Ethics Concerns (Severity Score 0-100)"
     x-axis ["Pol A", "Pol B", "Pol C", "Pol D", "Pol E", "Pol F", "Pol G", "Pol H", "Pol I", "Pol J"]
@@ -20,7 +20,7 @@ xychart-beta
 ## Violation Type Distribution
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 pie title "Ethics Violations by Category"
     "Conflict of Interest" : 28
     "Financial Disclosure" : 22
@@ -119,7 +119,29 @@ gantt
 ## Party Response Matrix
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "quadrant1Fill": "#1565C0",
+    "quadrant2Fill": "#2E7D32",
+    "quadrant3Fill": "#FF9800",
+    "quadrant4Fill": "#D32F2F",
+    "quadrantTitleFill": "#ffffff",
+    "quadrantPointFill": "#ffffff",
+    "quadrantPointTextFill": "#000000",
+    "quadrantXAxisTextFill": "#000000",
+    "quadrantYAxisTextFill": "#000000"
+  },
+  "quadrantChart": {
+    "chartWidth": 700,
+    "chartHeight": 700,
+    "pointLabelFontSize": 12,
+    "titleFontSize": 20,
+    "quadrantLabelFontSize": 16,
+    "xAxisLabelFontSize": 14,
+    "yAxisLabelFontSize": 14
+  }
+}}%%
 quadrantChart
     title Party Action vs Severity
     x-axis Weak Response --> Strong Response
@@ -129,17 +151,18 @@ quadrantChart
     quadrant-3 Appropriate Action
     quadrant-4 Overreaction
     
-    Politician A: [0.7, 0.9]
-    Politician B: [0.4, 0.85]
-    Politician C: [0.6, 0.75]
-    Politician D: [0.5, 0.7]
-    Politician E: [0.65, 0.6]
+    "Politician A": [0.7, 0.9]
+    "Politician B": [0.4, 0.85]
+    "Politician C": [0.6, 0.75]
+    "Politician D": [0.5, 0.7]
+    "Politician E": [0.65, 0.6]
+
 ```
 
 ## Impact on Public Trust
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 xychart-beta
     title "Public Trust in Politicians (% trust)"
     x-axis ["No violations", "Minor", "Moderate", "High", "Critical"]
@@ -216,7 +239,7 @@ graph TD
 ## Whistleblower Sources
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 pie title "How Violations Were Discovered"
     "Media Investigation" : 35
     "Internal Complaint" : 28

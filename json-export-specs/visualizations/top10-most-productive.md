@@ -9,7 +9,7 @@ Politicians with highest legislative productivity based on bills sponsored, amen
 ## Productivity Rankings
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 xychart-beta
     title "Top 10 Most Productive (Productivity Score 0-100)"
     x-axis ["Pol A", "Pol B", "Pol C", "Pol D", "Pol E", "Pol F", "Pol G", "Pol H", "Pol I", "Pol J"]
@@ -20,7 +20,7 @@ xychart-beta
 ## Activity Breakdown
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 pie title "Legislative Activity Distribution"
     "Bills Sponsored" : 28
     "Amendments Proposed" : 24
@@ -32,7 +32,7 @@ pie title "Legislative Activity Distribution"
 ## Bills Sponsored
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 xychart-beta
     title "Bills Sponsored (2024 Year-to-Date)"
     x-axis ["Pol A", "Pol B", "Pol C", "Pol D", "Pol E", "Pol F", "Pol G", "Pol H", "Pol I", "Pol J"]
@@ -66,7 +66,7 @@ graph TB
 ## Committee Contributions
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 xychart-beta
     title "Committee Meeting Attendance & Contributions"
     x-axis ["Attendance %", "Statements", "Reports", "Hearings Led"]
@@ -115,7 +115,29 @@ gantt
 ## Quality vs Quantity
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "quadrant1Fill": "#1565C0",
+    "quadrant2Fill": "#2E7D32",
+    "quadrant3Fill": "#FF9800",
+    "quadrant4Fill": "#D32F2F",
+    "quadrantTitleFill": "#ffffff",
+    "quadrantPointFill": "#ffffff",
+    "quadrantPointTextFill": "#000000",
+    "quadrantXAxisTextFill": "#000000",
+    "quadrantYAxisTextFill": "#000000"
+  },
+  "quadrantChart": {
+    "chartWidth": 700,
+    "chartHeight": 700,
+    "pointLabelFontSize": 12,
+    "titleFontSize": 20,
+    "quadrantLabelFontSize": 16,
+    "xAxisLabelFontSize": 14,
+    "yAxisLabelFontSize": 14
+  }
+}}%%
 quadrantChart
     title Productivity Matrix (Volume vs Success Rate)
     x-axis Low Volume --> High Volume
@@ -125,17 +147,18 @@ quadrantChart
     quadrant-3 Low Productivity
     quadrant-4 High Efficiency
     
-    Politician A: [0.9, 0.65]
-    Politician B: [0.85, 0.7]
-    Politician C: [0.8, 0.75]
-    Politician D: [0.75, 0.8]
-    Politician E: [0.7, 0.85]
+    "Politician A": [0.9, 0.65]
+    "Politician B": [0.85, 0.7]
+    "Politician C": [0.8, 0.75]
+    "Politician D": [0.75, 0.8]
+    "Politician E": [0.7, 0.85]
+
 ```
 
 ## Parliamentary Questions
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 xychart-beta
     title "Parliamentary Questions Asked (Monthly Average)"
     x-axis ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov"]
@@ -189,7 +212,7 @@ graph LR
 ## Time Investment
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 pie title "Weekly Time Allocation (Hours)"
     "Committee Work" : 15
     "Bill Drafting" : 12

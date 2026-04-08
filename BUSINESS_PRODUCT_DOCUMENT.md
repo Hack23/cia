@@ -55,13 +55,13 @@ The Citizen Intelligence Agency (CIA) platform has developed comprehensive intel
 ```mermaid
 %%{
   init: {
-    'theme': 'base',
-    'themeVariables': {
-      'primaryColor': '#e8f5e9',
-      'primaryTextColor': '#2e7d32',
-      'lineColor': '#4caf50',
-      'secondaryColor': '#e3f2fd',
-      'tertiaryColor': '#fff3e0'
+    "theme": "base",
+    "themeVariables": {
+      "primaryColor": "#e8f5e9",
+      "primaryTextColor": "#2e7d32",
+      "lineColor": "#4caf50",
+      "secondaryColor": "#e3f2fd",
+      "tertiaryColor": "#fff3e0"
     }
   }
 }%%
@@ -964,12 +964,12 @@ ORDER BY approval_change ASC;
 ```mermaid
 %%{
   init: {
-    'theme': 'base',
-    'themeVariables': {
-      'primaryColor': '#e3f2fd',
-      'primaryTextColor': '#01579b',
-      'lineColor': '#2196f3',
-      'fontSize': '13px'
+    "theme": "base",
+    "themeVariables": {
+      "primaryColor": "#e3f2fd",
+      "primaryTextColor": "#01579b",
+      "lineColor": "#2196f3",
+      "fontSize": "13px"
     }
   }
 }%%
@@ -1047,12 +1047,12 @@ flowchart TB
 ```mermaid
 %%{
   init: {
-    'theme': 'base',
-    'themeVariables': {
-      'primaryColor': '#e8f5e9',
-      'primaryTextColor': '#2e7d32',
-      'lineColor': '#4caf50',
-      'fontSize': '14px'
+    "theme": "base",
+    "themeVariables": {
+      "primaryColor": "#e8f5e9",
+      "primaryTextColor": "#2e7d32",
+      "lineColor": "#4caf50",
+      "fontSize": "14px"
     }
   }
 }%%
@@ -1635,11 +1635,11 @@ Data Format:
 ```mermaid
 %%{
   init: {
-    'theme': 'base',
-    'themeVariables': {
-      'primaryColor': '#e8f5e9',
-      'primaryTextColor': '#2e7d32',
-      'lineColor': '#4caf50'
+    "theme": "base",
+    "themeVariables": {
+      "primaryColor": "#e8f5e9",
+      "primaryTextColor": "#2e7d32",
+      "lineColor": "#4caf50"
     }
   }
 }%%
@@ -2213,10 +2213,10 @@ flowchart TB
 ```mermaid
 %%{
   init: {
-    'theme': 'base',
-    'themeVariables': {
-      'primaryColor': '#e3f2fd',
-      'primaryTextColor': '#01579b'
+    "theme": "base",
+    "themeVariables": {
+      "primaryColor": "#e3f2fd",
+      "primaryTextColor": "#01579b"
     }
   }
 }%%
@@ -2718,12 +2718,12 @@ This appendix provides comprehensive traceability from business product features
 ```mermaid
 %%{
   init: {
-    'theme': 'base',
-    'themeVariables': {
-      'primaryColor': '#e8f5e9',
-      'primaryTextColor': '#2e7d32',
-      'lineColor': '#4caf50',
-      'fontSize': '14px'
+    "theme": "base",
+    "themeVariables": {
+      "primaryColor": "#e8f5e9",
+      "primaryTextColor": "#2e7d32",
+      "lineColor": "#4caf50",
+      "fontSize": "14px"
     }
   }
 }%%

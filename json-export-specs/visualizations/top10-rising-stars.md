@@ -9,7 +9,7 @@ Young politicians and newcomers showing highest potential for future leadership 
 ## Rising Star Rankings
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 xychart-beta
     title "Top 10 Rising Stars (Potential Score 0-100)"
     x-axis ["Pol A", "Pol B", "Pol C", "Pol D", "Pol E", "Pol F", "Pol G", "Pol H", "Pol I", "Pol J"]
@@ -48,7 +48,7 @@ graph TB
 ## Age & Experience Distribution
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 pie title "Rising Stars by Age Group"
     "Under 30" : 2
     "30-35" : 4
@@ -59,7 +59,7 @@ pie title "Rising Stars by Age Group"
 ## Career Trajectory
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 xychart-beta
     title "Influence Growth (Since First Election)"
     x-axis ["Entry", "Year 1", "Year 2", "Year 3", "Year 4", "Current"]
@@ -96,7 +96,29 @@ graph LR
 ## Star Quality Assessment
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "quadrant1Fill": "#1565C0",
+    "quadrant2Fill": "#2E7D32",
+    "quadrant3Fill": "#FF9800",
+    "quadrant4Fill": "#D32F2F",
+    "quadrantTitleFill": "#ffffff",
+    "quadrantPointFill": "#ffffff",
+    "quadrantPointTextFill": "#000000",
+    "quadrantXAxisTextFill": "#000000",
+    "quadrantYAxisTextFill": "#000000"
+  },
+  "quadrantChart": {
+    "chartWidth": 700,
+    "chartHeight": 700,
+    "pointLabelFontSize": 12,
+    "titleFontSize": 20,
+    "quadrantLabelFontSize": 16,
+    "xAxisLabelFontSize": 14,
+    "yAxisLabelFontSize": 14
+  }
+}}%%
 quadrantChart
     title Star Potential (Performance vs Charisma)
     x-axis Low Performance --> High Performance
@@ -106,11 +128,12 @@ quadrantChart
     quadrant-3 Back-benchers
     quadrant-4 Technocrats
     
-    Politician A: [0.9, 0.85]
-    Politician B: [0.85, 0.9]
-    Politician C: [0.8, 0.8]
-    Politician D: [0.75, 0.85]
-    Politician E: [0.85, 0.75]
+    "Politician A": [0.9, 0.85]
+    "Politician B": [0.85, 0.9]
+    "Politician C": [0.8, 0.8]
+    "Politician D": [0.75, 0.85]
+    "Politician E": [0.85, 0.75]
+
 ```
 
 ## Party Investment
@@ -143,7 +166,7 @@ graph TD
 ## Policy Specializations
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 pie title "Rising Stars by Policy Focus"
     "Climate & Energy" : 3
     "Tech & Innovation" : 3
@@ -179,7 +202,7 @@ graph LR
 ## Media Trajectory
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 xychart-beta
     title "Media Mentions Growth (Last 18 Months)"
     x-axis ["Jun 23", "Sep 23", "Dec 23", "Mar 24", "Jun 24", "Sep 24", "Nov 24"]
@@ -218,7 +241,7 @@ graph TB
 ## Party Distribution
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 pie title "Rising Stars by Party"
     "Moderates (M)" : 3
     "Social Democrats (S)" : 2
@@ -272,7 +295,7 @@ graph TD
 ## Peer Competition
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 xychart-beta
     title "Competitive Landscape (Rising Stars Comparison)"
     x-axis ["Performance", "Visibility", "Party Support", "Trajectory", "Potential"]

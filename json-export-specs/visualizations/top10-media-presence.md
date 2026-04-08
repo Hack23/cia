@@ -9,7 +9,7 @@ Politicians with highest media visibility and public profile, tracking news cove
 ## Media Visibility Rankings
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 xychart-beta
     title "Top 10 Media Presence (Visibility Score 0-100)"
     x-axis ["Pol A", "Pol B", "Pol C", "Pol D", "Pol E", "Pol F", "Pol G", "Pol H", "Pol I", "Pol J"]
@@ -20,7 +20,7 @@ xychart-beta
 ## Media Channel Distribution
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 pie title "Media Appearances by Type"
     "Television" : 35
     "Print/Online News" : 30
@@ -52,7 +52,7 @@ graph LR
 ## Visibility Trend Timeline
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 xychart-beta
     title "Media Mentions (Last 6 Months)"
     x-axis ["Jun", "Jul", "Aug", "Sep", "Oct", "Nov"]
@@ -88,7 +88,7 @@ graph TD
 ## Social Media Engagement
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 xychart-beta
     title "Social Media Followers (thousands)"
     x-axis ["Twitter/X", "Facebook", "Instagram", "LinkedIn", "TikTok"]
@@ -122,7 +122,29 @@ graph TB
 ## Party Leadership Correlation
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "quadrant1Fill": "#1565C0",
+    "quadrant2Fill": "#2E7D32",
+    "quadrant3Fill": "#FF9800",
+    "quadrant4Fill": "#D32F2F",
+    "quadrantTitleFill": "#ffffff",
+    "quadrantPointFill": "#ffffff",
+    "quadrantPointTextFill": "#000000",
+    "quadrantXAxisTextFill": "#000000",
+    "quadrantYAxisTextFill": "#000000"
+  },
+  "quadrantChart": {
+    "chartWidth": 700,
+    "chartHeight": 700,
+    "pointLabelFontSize": 12,
+    "titleFontSize": 20,
+    "quadrantLabelFontSize": 16,
+    "xAxisLabelFontSize": 14,
+    "yAxisLabelFontSize": 14
+  }
+}}%%
 quadrantChart
     title Media Presence vs Political Position
     x-axis Backbencher --> Leadership
@@ -132,12 +154,13 @@ quadrantChart
     quadrant-3 Under-utilized
     quadrant-4 Position-Appropriate
     
-    Party Leader: [0.95, 0.95]
-    Minister A: [0.9, 0.9]
-    Minister B: [0.85, 0.85]
-    Committee Chair: [0.7, 0.75]
-    Rising Star: [0.5, 0.8]
-    Backbencher A: [0.3, 0.65]
+    "Party Leader": [0.95, 0.95]
+    "Minister A": [0.9, 0.9]
+    "Minister B": [0.85, 0.85]
+    "Committee Chair": [0.7, 0.75]
+    "Rising Star": [0.5, 0.8]
+    "Backbencher A": [0.3, 0.65]
+
 ```
 
 ## News Cycle Presence
@@ -159,7 +182,7 @@ gantt
 ## Visibility by Policy Area
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 pie title "Media Coverage by Topic"
     "Economy & Finance" : 25
     "Healthcare & Social" : 20
@@ -192,7 +215,7 @@ graph LR
 ## Message Discipline Analysis
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 xychart-beta
     title "On-Message Percentage (Top 5 Politicians)"
     x-axis ["Pol A", "Pol B", "Pol C", "Pol D", "Pol E"]

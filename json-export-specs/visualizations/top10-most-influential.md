@@ -9,7 +9,7 @@ Politicians wielding greatest political influence based on network centrality, l
 ## Influence Rankings
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 xychart-beta
     title "Top 10 Most Influential (Influence Score 0-100)"
     x-axis ["Pol A", "Pol B", "Pol C", "Pol D", "Pol E", "Pol F", "Pol G", "Pol H", "Pol I", "Pol J"]
@@ -43,7 +43,7 @@ graph TB
 ## Power Base Analysis
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 pie title "Sources of Influence"
     "Government Position" : 30
     "Party Leadership" : 25
@@ -55,7 +55,29 @@ pie title "Sources of Influence"
 ## Network Centrality
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "quadrant1Fill": "#1565C0",
+    "quadrant2Fill": "#2E7D32",
+    "quadrant3Fill": "#FF9800",
+    "quadrant4Fill": "#D32F2F",
+    "quadrantTitleFill": "#ffffff",
+    "quadrantPointFill": "#ffffff",
+    "quadrantPointTextFill": "#000000",
+    "quadrantXAxisTextFill": "#000000",
+    "quadrantYAxisTextFill": "#000000"
+  },
+  "quadrantChart": {
+    "chartWidth": 700,
+    "chartHeight": 700,
+    "pointLabelFontSize": 12,
+    "titleFontSize": 20,
+    "quadrantLabelFontSize": 16,
+    "xAxisLabelFontSize": 14,
+    "yAxisLabelFontSize": 14
+  }
+}}%%
 quadrantChart
     title Influence Map (Formal vs Informal Power)
     x-axis Low Formal --> High Formal
@@ -65,17 +87,18 @@ quadrantChart
     quadrant-3 Marginal
     quadrant-4 Formal Authority
     
-    Prime Minister: [0.95, 0.9]
-    Finance Minister: [0.9, 0.85]
-    Opposition Leader: [0.75, 0.9]
-    Committee Chair A: [0.7, 0.8]
-    Coalition Broker: [0.6, 0.85]
+    "Prime Minister": [0.95, 0.9]
+    "Finance Minister": [0.9, 0.85]
+    "Opposition Leader": [0.75, 0.9]
+    "Committee Chair A": [0.7, 0.8]
+    "Coalition Broker": [0.6, 0.85]
+
 ```
 
 ## Legislative Success Rate
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 xychart-beta
     title "Bill Passage Rate (% of sponsored bills passed)"
     x-axis ["Pol A", "Pol B", "Pol C", "Pol D", "Pol E"]
@@ -171,7 +194,7 @@ graph TB
 ## Policy Impact Areas
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 pie title "Influence by Policy Domain"
     "Economic Policy" : 28
     "Security & Defense" : 22
@@ -204,7 +227,7 @@ graph LR
 ## Institutional Influence
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 xychart-beta
     title "Influence Across Institutions"
     x-axis ["Parliament", "Government", "Party", "Media", "Civil Society", "International"]

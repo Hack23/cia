@@ -23,6 +23,29 @@ This document presents the strategic SWOT (Strengths, Weaknesses, Opportunities,
 ### SWOT Overview Diagram (2026)
 
 ```mermaid
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "quadrant1Fill": "#1565C0",
+    "quadrant2Fill": "#FF9800",
+    "quadrant3Fill": "#D32F2F",
+    "quadrant4Fill": "#2E7D32",
+    "quadrantTitleFill": "#ffffff",
+    "quadrantPointFill": "#ffffff",
+    "quadrantPointTextFill": "#000000",
+    "quadrantXAxisTextFill": "#000000",
+    "quadrantYAxisTextFill": "#000000"
+  },
+  "quadrantChart": {
+    "chartWidth": 700,
+    "chartHeight": 700,
+    "pointLabelFontSize": 12,
+    "titleFontSize": 20,
+    "quadrantLabelFontSize": 16,
+    "xAxisLabelFontSize": 14,
+    "yAxisLabelFontSize": 14
+  }
+}}%%
 quadrantChart
     title CIA 2026 Strategic Position
     x-axis Low Internal Impact --> High Internal Impact
@@ -31,18 +54,19 @@ quadrantChart
     quadrant-2 Threats
     quadrant-3 Weaknesses
     quadrant-4 Strengths
-    LLM-Powered Analysis: [0.75, 0.70]
-    Open Source Trust: [0.80, 0.55]
-    Proven Data Foundation: [0.85, 0.45]
-    ISMS Compliance: [0.70, 0.40]
-    Nordic Expansion: [0.55, 0.80]
-    AI-Enhanced Insights: [0.65, 0.75]
-    API Ecosystem: [0.60, 0.65]
-    Small Team Scale: [0.30, 0.35]
-    LLM Cost Dependencies: [0.35, 0.55]
-    Competitor Platforms: [0.25, 0.70]
-    AI Regulation Risk: [0.20, 0.75]
-    Data Source Dependency: [0.40, 0.60]
+    "LLM-Powered Analysis": [0.75, 0.70]
+    "Open Source Trust": [0.80, 0.55]
+    "Proven Data Foundation": [0.85, 0.45]
+    "ISMS Compliance": [0.70, 0.40]
+    "Nordic Expansion": [0.55, 0.80]
+    "AI-Enhanced Insights": [0.65, 0.75]
+    "API Ecosystem": [0.60, 0.65]
+    "Small Team Scale": [0.30, 0.35]
+    "LLM Cost Dependencies": [0.35, 0.55]
+    "Competitor Platforms": [0.25, 0.70]
+    "AI Regulation Risk": [0.20, 0.75]
+    "Data Source Dependency": [0.40, 0.60]
+
 ```
 
 ### 💪 Strengths (2026)
@@ -119,6 +143,29 @@ quadrantChart
 ### Strategic Position Shift
 
 ```mermaid
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "quadrant1Fill": "#1565C0",
+    "quadrant2Fill": "#FF9800",
+    "quadrant3Fill": "#D32F2F",
+    "quadrant4Fill": "#2E7D32",
+    "quadrantTitleFill": "#ffffff",
+    "quadrantPointFill": "#ffffff",
+    "quadrantPointTextFill": "#000000",
+    "quadrantXAxisTextFill": "#000000",
+    "quadrantYAxisTextFill": "#000000"
+  },
+  "quadrantChart": {
+    "chartWidth": 700,
+    "chartHeight": 700,
+    "pointLabelFontSize": 12,
+    "titleFontSize": 20,
+    "quadrantLabelFontSize": 16,
+    "xAxisLabelFontSize": 14,
+    "yAxisLabelFontSize": 14
+  }
+}}%%
 quadrantChart
     title CIA 2030–2033 Strategic Position
     x-axis Low Internal Impact --> High Internal Impact
@@ -127,16 +174,17 @@ quadrantChart
     quadrant-2 Threats
     quadrant-3 Weaknesses
     quadrant-4 Strengths
-    Global Democratic Network: [0.70, 0.85]
-    Proto-AGI Analysis: [0.75, 0.80]
-    Autonomous Intelligence: [0.80, 0.70]
-    Proven Track Record: [0.85, 0.55]
-    AGI Disruption Risk: [0.25, 0.90]
-    AI Regulation Complexity: [0.20, 0.80]
-    Resource Scaling: [0.30, 0.45]
-    Global Expansion: [0.55, 0.85]
-    Policy Simulation: [0.65, 0.75]
-    Citizen Empowerment: [0.60, 0.70]
+    "Global Democratic Network": [0.70, 0.85]
+    "Proto-AGI Analysis": [0.75, 0.80]
+    "Autonomous Intelligence": [0.80, 0.70]
+    "Proven Track Record": [0.85, 0.55]
+    "AGI Disruption Risk": [0.25, 0.90]
+    "AI Regulation Complexity": [0.20, 0.80]
+    "Resource Scaling": [0.30, 0.45]
+    "Global Expansion": [0.55, 0.85]
+    "Policy Simulation": [0.65, 0.75]
+    "Citizen Empowerment": [0.60, 0.70]
+
 ```
 
 ### 2030–2033 Key SWOT Shifts
