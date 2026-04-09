@@ -367,15 +367,7 @@ Following [Hack23 AB Threat Agent Classification](https://github.com/Hack23/ISMS
     "yAxisLabelFontSize": 14
   }
 }}%%
-%%{
-  init: {
-    "theme": "base",
-    "themeVariables": {
-      "primaryColor": "#e3f2fd",
-      "primaryTextColor": "#01579b"
-    }
-  }
-}%%
+
 quadrantChart
     title Threat Agent Capability vs Motivation (Future State)
     x-axis Low Capability --> High Capability
@@ -539,15 +531,7 @@ Following [Hack23 AB Scenario-Centric Modeling](https://github.com/Hack23/ISMS-P
     "yAxisLabelFontSize": 14
   }
 }}%%
-%%{
-  init: {
-    "theme": "base",
-    "themeVariables": {
-      "primaryColor": "#e3f2fd",
-      "primaryTextColor": "#01579b"
-    }
-  }
-}%%
+
 quadrantChart
     title Future Risk Heat Matrix (Likelihood × Impact)
     x-axis Low Likelihood --> High Likelihood

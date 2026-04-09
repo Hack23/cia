@@ -429,16 +429,7 @@ Following [Risk-Centric Threat Modeling](https://github.com/Hack23/ISMS-PUBLIC/b
     "yAxisLabelFontSize": 14
   }
 }}%%
-%%{
-  init: {
-    "theme": "base",
-    "themeVariables": {
-      "primaryColor": "#fff",
-      "primaryTextColor": "#000",
-      "lineColor": "#333"
-    }
-  }
-}%%
+
 quadrantChart
     title 🎯 CIA Platform Risk Heat Matrix
     x-axis Low Likelihood --> High Likelihood
