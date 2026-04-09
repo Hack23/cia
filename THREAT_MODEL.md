@@ -409,8 +409,8 @@ Following [Risk-Centric Threat Modeling](https://github.com/Hack23/ISMS-PUBLIC/b
 %%{init: {
   "theme": "base",
   "themeVariables": {
-    "quadrant1Fill": "#FF9800",
-    "quadrant2Fill": "#D32F2F",
+    "quadrant1Fill": "#D32F2F",
+    "quadrant2Fill": "#FF9800",
     "quadrant3Fill": "#4CAF50",
     "quadrant4Fill": "#FFC107",
     "quadrantTitleFill": "#ffffff",
@@ -434,8 +434,8 @@ quadrantChart
     title 🎯 CIA Platform Risk Heat Matrix
     x-axis Low Likelihood --> High Likelihood
     y-axis Low Impact --> High Impact
-    quadrant-1 Monitor & Prepare
-    quadrant-2 Immediate Action Required
+    quadrant-1 Immediate Action Required
+    quadrant-2 Monitor & Prepare
     quadrant-3 Accept Risk
     quadrant-4 Mitigate & Control
     
