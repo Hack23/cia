@@ -426,7 +426,7 @@ graph TD
 gantt
     title Strategic Development Timeline
     dateFormat YYYY-MM-DD
-    axisFormat %Y-Q%q
+    axisFormat %Y-%m
     
     section Platform Stability
     Dependency Security Updates           :a1, 2025-07-01, 365d
