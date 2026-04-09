@@ -46,8 +46,8 @@ xychart-beta
 %%{init: {
   "theme": "base",
   "themeVariables": {
-    "quadrant1Fill": "#FF9800",
-    "quadrant2Fill": "#D32F2F",
+    "quadrant1Fill": "#D32F2F",
+    "quadrant2Fill": "#FF9800",
     "quadrant3Fill": "#4CAF50",
     "quadrant4Fill": "#FFC107",
     "quadrantTitleFill": "#ffffff",

@@ -160,10 +160,10 @@ graph TD
     end
 
     %% Style
-    classDef strengths fill:#c8e6c9,stroke:#333,stroke-width:1px,color:black
-    classDef weaknesses fill:#fff2cc,stroke:#333,stroke-width:1px,color:black
-    classDef opportunities fill:#d1c4e9,stroke:#333,stroke-width:1px,color:black
-    classDef threats fill:#f8cecc,stroke:#333,stroke-width:1px,color:black
+    classDef strengths fill:#c8e6c9,stroke:#2E7D32,stroke-width:1px,color:black
+    classDef weaknesses fill:#ffcdd2,stroke:#D32F2F,stroke-width:1px,color:black
+    classDef opportunities fill:#bbdefb,stroke:#1565C0,stroke-width:1px,color:black
+    classDef threats fill:#ffe0b2,stroke:#FF9800,stroke-width:1px,color:black
 
     class S1,S2,S3,S4,S5 strengths
     class W1,W2,W3,W4,W5 weaknesses
@@ -461,10 +461,10 @@ The ultimate goal remains enhancing political transparency and citizen engagemen
 <div class="chart-legend">
 The color scheme used in these diagrams follows the consistent palette used throughout the architecture documentation:
 
-- **Strengths** (Green - #c8e6c9): Represents positive internal factors
-- **Weaknesses** (Yellow - #fff2cc): Represents negative internal factors
-- **Opportunities** (Purple - #d1c4e9): Represents positive external factors
-- **Threats** (Red - #f8cecc): Represents negative external factors
+- **Strengths** (Green - #2E7D32): Represents positive internal factors
+- **Weaknesses** (Red - #D32F2F): Represents negative internal factors
+- **Opportunities** (Blue - #1565C0): Represents positive external factors
+- **Threats** (Orange - #FF9800): Represents negative external factors
 </div>
 
 ---
