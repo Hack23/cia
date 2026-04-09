@@ -513,7 +513,7 @@ Following [Hack23 AB Scenario-Centric Modeling](https://github.com/Hack23/ISMS-P
   "themeVariables": {
     "quadrant1Fill": "#D32F2F",
     "quadrant2Fill": "#FF9800",
-    "quadrant3Fill": "#4CAF50",
+    "quadrant3Fill": "#2E7D32",
     "quadrant4Fill": "#FFC107",
     "quadrantTitleFill": "#ffffff",
     "quadrantPointFill": "#ffffff",
