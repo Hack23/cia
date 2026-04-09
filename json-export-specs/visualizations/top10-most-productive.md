@@ -143,9 +143,9 @@ quadrantChart
     x-axis Low Volume --> High Volume
     y-axis Low Success --> High Success
     quadrant-1 High Impact
-    quadrant-2 Low Efficiency
+    quadrant-2 High Efficiency
     quadrant-3 Low Productivity
-    quadrant-4 High Efficiency
+    quadrant-4 Low Efficiency
     
     "Politician A": [0.9, 0.65]
     "Politician B": [0.85, 0.7]

@@ -347,10 +347,10 @@ Following [Hack23 AB Threat Agent Classification](https://github.com/Hack23/ISMS
 %%{init: {
   "theme": "base",
   "themeVariables": {
-    "quadrant1Fill": "#1565C0",
-    "quadrant2Fill": "#2E7D32",
-    "quadrant3Fill": "#FF9800",
-    "quadrant4Fill": "#D32F2F",
+    "quadrant1Fill": "#D32F2F",
+    "quadrant2Fill": "#FF9800",
+    "quadrant3Fill": "#2E7D32",
+    "quadrant4Fill": "#1565C0",
     "quadrantTitleFill": "#ffffff",
     "quadrantPointFill": "#ffffff",
     "quadrantPointTextFill": "#000000",
