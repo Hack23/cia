@@ -2759,10 +2759,10 @@ flowchart TB
     end
     
     subgraph APIS["🌐 API Endpoints"]
-        POL_API[/api/v1/politicians]
-        PARTY_API[/api/v1/parties]
-        RISK_API[/api/v1/risk-assessments]
-        DECISION_API[/api/v1/decision-analytics]
+        POL_API["`/api/v1/politicians`"]
+        PARTY_API["`/api/v1/parties`"]
+        RISK_API["`/api/v1/risk-assessments`"]
+        DECISION_API["`/api/v1/decision-analytics`"]
     end
     
     subgraph PRODUCTS["📦 Product Features"]

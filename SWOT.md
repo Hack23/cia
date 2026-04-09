@@ -425,29 +425,29 @@ graph TD
 ```mermaid
 gantt
     title Strategic Development Timeline
-    dateFormat YYYY-Q1
-    axisFormat %Y-%q
+    dateFormat YYYY-MM-DD
+    axisFormat %Y-Q%q
     
     section Platform Stability
-    Dependency Security Updates           :a1, 2025-Q3, 4quarters
-    Documentation Enhancement             :a2, 2025-Q3, 3quarters
-    ISMS Compliance Alignment             :a3, 2025-Q4, 2quarters
+    Dependency Security Updates           :a1, 2025-07-01, 365d
+    Documentation Enhancement             :a2, 2025-07-01, 270d
+    ISMS Compliance Alignment             :a3, 2025-10-01, 180d
     
     section Data Processing
-    Automated Data Pipeline Improvement   :b1, 2025-Q4, 2quarters
-    Data Validation Enhancement           :b2, 2026-Q1, 2quarters
-    AI-Enhanced Data Quality Monitoring   :b3, 2026-Q2, 2quarters
+    Automated Data Pipeline Improvement   :b1, 2025-10-01, 180d
+    Data Validation Enhancement           :b2, 2026-01-01, 180d
+    AI-Enhanced Data Quality Monitoring   :b3, 2026-04-01, 180d
     
     section User Experience
-    Accessibility WCAG 2.1 AA            :c1, 2026-Q1, 2quarters
-    UI Dashboard Modernization            :c2, 2026-Q1, 3quarters
-    Performance Optimization              :c3, 2026-Q2, 2quarters
+    Accessibility WCAG 2.1 AA            :c1, 2026-01-01, 180d
+    UI Dashboard Modernization            :c2, 2026-01-01, 270d
+    Performance Optimization              :c3, 2026-04-01, 180d
     
     section AI & Analytics
-    LLM Document Summarization            :d1, 2026-Q1, 2quarters
-    Semantic Search via pgvector          :d2, 2026-Q2, 2quarters
-    API Ecosystem Development             :d3, 2026-Q2, 3quarters
-    AI-Enhanced Risk Analytics            :d4, 2026-Q3, 3quarters
+    LLM Document Summarization            :d1, 2026-01-01, 180d
+    Semantic Search via pgvector          :d2, 2026-04-01, 180d
+    API Ecosystem Development             :d3, 2026-04-01, 270d
+    AI-Enhanced Risk Analytics            :d4, 2026-07-01, 270d
 ```
 
 ## Conclusion
