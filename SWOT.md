@@ -160,10 +160,10 @@ graph TD
     end
 
     %% Style
-    classDef strengths fill:#c8e6c9,stroke:#2E7D32,stroke-width:1px,color:black
-    classDef weaknesses fill:#ffcdd2,stroke:#D32F2F,stroke-width:1px,color:black
-    classDef opportunities fill:#bbdefb,stroke:#1565C0,stroke-width:1px,color:black
-    classDef threats fill:#ffe0b2,stroke:#FF9800,stroke-width:1px,color:black
+    classDef strengths fill:#2E7D32,stroke:#1B5E20,stroke-width:1px,color:white
+    classDef weaknesses fill:#D32F2F,stroke:#B71C1C,stroke-width:1px,color:white
+    classDef opportunities fill:#1565C0,stroke:#0D47A1,stroke-width:1px,color:white
+    classDef threats fill:#FF9800,stroke:#E65100,stroke-width:1px,color:white
 
     class S1,S2,S3,S4,S5 strengths
     class W1,W2,W3,W4,W5 weaknesses
