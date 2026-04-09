@@ -63,15 +63,15 @@ See [Politician Career Analysis Visualization](../visualizations/politician-care
 ```mermaid
 %%{
   init: {
-    'theme': 'base',
-    'themeVariables': {
-      'primaryColor': '#bbdefb',
-      'primaryTextColor': '#1565c0',
-      'lineColor': '#1976d2',
-      'secondaryColor': '#c8e6c9',
-      'tertiaryColor': '#fff9c4',
-      'primaryBorderColor': '#1565c0',
-      'fontSize': '14px'
+    "theme": "base",
+    "themeVariables": {
+      "primaryColor": "#bbdefb",
+      "primaryTextColor": "#1565c0",
+      "lineColor": "#1976d2",
+      "secondaryColor": "#c8e6c9",
+      "tertiaryColor": "#fff9c4",
+      "primaryBorderColor": "#1565c0",
+      "fontSize": "14px"
     }
   }
 }%%

@@ -81,7 +81,7 @@ This document serves as the **central navigation hub** for the CIA platform's in
 This diagram shows the complete intelligence pipeline from OSINT collection through database views to analytical frameworks and intelligence products.
 
 ```mermaid
-%%{init: {'theme':'base', 'themeVariables': { 'fontSize':'12px'}}}%%
+%%{init: {"theme":"base", "themeVariables": { "fontSize":"12px"}}}%%
 flowchart TB
     subgraph COLLECTION["🔍 OSINT Collection Layer"]
         API1[📡 Riksdagen API<br/>Parliamentary Data]

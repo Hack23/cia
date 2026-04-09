@@ -14,15 +14,15 @@ This guide provides detailed steps to implement the JSON export system that tran
 ```mermaid
 %%{
   init: {
-    'theme': 'base',
-    'themeVariables': {
-      'primaryColor': '#e3f2fd',
-      'primaryTextColor': '#1565c0',
-      'lineColor': '#42a5f5',
-      'secondaryColor': '#f3e5f5',
-      'tertiaryColor': '#e8f5e9',
-      'primaryBorderColor': '#1565c0',
-      'fontSize': '14px'
+    "theme": "base",
+    "themeVariables": {
+      "primaryColor": "#e3f2fd",
+      "primaryTextColor": "#1565c0",
+      "lineColor": "#42a5f5",
+      "secondaryColor": "#f3e5f5",
+      "tertiaryColor": "#e8f5e9",
+      "primaryBorderColor": "#1565c0",
+      "fontSize": "14px"
     }
   }
 }%%

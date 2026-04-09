@@ -111,13 +111,13 @@ Following [Hack23 AB Asset-Centric Threat Modeling](https://github.com/Hack23/IS
 ```mermaid
 %%{
   init: {
-    'theme': 'base',
-    'themeVariables': {
-      'primaryColor': '#e8f5e9',
-      'primaryTextColor': '#2e7d32',
-      'lineColor': '#4caf50',
-      'secondaryColor': '#ffcdd2',
-      'tertiaryColor': '#fff3e0'
+    "theme": "base",
+    "themeVariables": {
+      "primaryColor": "#e8f5e9",
+      "primaryTextColor": "#2e7d32",
+      "lineColor": "#4caf50",
+      "secondaryColor": "#ffcdd2",
+      "tertiaryColor": "#fff3e0"
     }
   }
 }%%
@@ -168,13 +168,13 @@ Following [Architecture-Centric Threat Modeling](https://github.com/Hack23/ISMS-
 ```mermaid
 %%{
   init: {
-    'theme': 'base',
-    'themeVariables': {
-      'primaryColor': '#e3f2fd',
-      'primaryTextColor': '#01579b',
-      'lineColor': '#0288d1',
-      'secondaryColor': '#f1f8e9',
-      'tertiaryColor': '#fff8e1'
+    "theme": "base",
+    "themeVariables": {
+      "primaryColor": "#e3f2fd",
+      "primaryTextColor": "#01579b",
+      "lineColor": "#0288d1",
+      "secondaryColor": "#f1f8e9",
+      "tertiaryColor": "#fff8e1"
     }
   }
 }%%
@@ -337,13 +337,13 @@ The MITRE ATT&CK Navigator provides interactive visualization of threat coverage
 ```mermaid
 %%{
   init: {
-    'theme': 'base',
-    'themeVariables': {
-      'primaryColor': '#ffebee',
-      'primaryTextColor': '#c62828',
-      'lineColor': '#f44336',
-      'secondaryColor': '#e8f5e9',
-      'tertiaryColor': '#fff3e0'
+    "theme": "base",
+    "themeVariables": {
+      "primaryColor": "#ffebee",
+      "primaryTextColor": "#c62828",
+      "lineColor": "#f44336",
+      "secondaryColor": "#e8f5e9",
+      "tertiaryColor": "#fff3e0"
     }
   }
 }%%
@@ -406,22 +406,36 @@ Following [Risk-Centric Threat Modeling](https://github.com/Hack23/ISMS-PUBLIC/b
 ### **⚖️ Risk Heat Matrix**
 
 ```mermaid
-%%{
-  init: {
-    'theme': 'base',
-    'themeVariables': {
-      'primaryColor': '#fff',
-      'primaryTextColor': '#000',
-      'lineColor': '#333'
-    }
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "quadrant1Fill": "#D32F2F",
+    "quadrant2Fill": "#FF9800",
+    "quadrant3Fill": "#4CAF50",
+    "quadrant4Fill": "#FFC107",
+    "quadrantTitleFill": "#ffffff",
+    "quadrantPointFill": "#ffffff",
+    "quadrantPointTextFill": "#000000",
+    "quadrantXAxisTextFill": "#000000",
+    "quadrantYAxisTextFill": "#000000"
+  },
+  "quadrantChart": {
+    "chartWidth": 700,
+    "chartHeight": 700,
+    "pointLabelFontSize": 12,
+    "titleFontSize": 20,
+    "quadrantLabelFontSize": 16,
+    "xAxisLabelFontSize": 14,
+    "yAxisLabelFontSize": 14
   }
-}%%
+}}%%
+
 quadrantChart
     title 🎯 CIA Platform Risk Heat Matrix
     x-axis Low Likelihood --> High Likelihood
     y-axis Low Impact --> High Impact
-    quadrant-1 Monitor & Prepare
-    quadrant-2 Immediate Action Required
+    quadrant-1 Immediate Action Required
+    quadrant-2 Monitor & Prepare
     quadrant-3 Accept Risk
     quadrant-4 Mitigate & Control
     
@@ -435,6 +449,7 @@ quadrantChart
     "💾 Backup Theft": [0.2, 0.7]
     "🔍 Information Disclosure": [0.4, 0.3]
     "🚨 Insider Threat": [0.25, 0.85]
+
 ```
 
 ---
@@ -448,13 +463,13 @@ Aligned with [Security Architecture](SECURITY_ARCHITECTURE.md) implementation:
 ```mermaid
 %%{
   init: {
-    'theme': 'base',
-    'themeVariables': {
-      'primaryColor': '#e8f5e9',
-      'primaryTextColor': '#2e7d32',
-      'lineColor': '#4caf50',
-      'secondaryColor': '#e3f2fd',
-      'tertiaryColor': '#fff3e0'
+    "theme": "base",
+    "themeVariables": {
+      "primaryColor": "#e8f5e9",
+      "primaryTextColor": "#2e7d32",
+      "lineColor": "#4caf50",
+      "secondaryColor": "#e3f2fd",
+      "tertiaryColor": "#fff3e0"
     }
   }
 }%%
@@ -535,13 +550,13 @@ Following [Hack23 AB Workshop Framework](https://github.com/Hack23/ISMS-PUBLIC/b
 ```mermaid
 %%{
   init: {
-    'theme': 'base',
-    'themeVariables': {
-      'primaryColor': '#e3f2fd',
-      'primaryTextColor': '#01579b',
-      'lineColor': '#0288d1',
-      'secondaryColor': '#f1f8e9',
-      'tertiaryColor': '#fff8e1'
+    "theme": "base",
+    "themeVariables": {
+      "primaryColor": "#e3f2fd",
+      "primaryTextColor": "#01579b",
+      "lineColor": "#0288d1",
+      "secondaryColor": "#f1f8e9",
+      "tertiaryColor": "#fff8e1"
     }
   }
 }%%
@@ -611,13 +626,13 @@ Following [Hack23 AB Comprehensive Threat Modeling Strategies](https://github.co
 ```mermaid
 %%{
   init: {
-    'theme': 'base',
-    'themeVariables': {
-      'primaryColor': '#e8f5e9',
-      'primaryTextColor': '#2e7d32',
-      'lineColor': '#4caf50',
-      'secondaryColor': '#ffcdd2',
-      'tertiaryColor': '#e1bee7'
+    "theme": "base",
+    "themeVariables": {
+      "primaryColor": "#e8f5e9",
+      "primaryTextColor": "#2e7d32",
+      "lineColor": "#4caf50",
+      "secondaryColor": "#ffcdd2",
+      "tertiaryColor": "#e1bee7"
     }
   }
 }%%
@@ -678,13 +693,13 @@ Following [Hack23 AB Scenario-Centric Modeling](https://github.com/Hack23/ISMS-P
 ```mermaid
 %%{
   init: {
-    'theme': 'base',
-    'themeVariables': {
-      'primaryColor': '#f3e5f5',
-      'primaryTextColor': '#6a1b9a',
-      'lineColor': '#9c27b0',
-      'secondaryColor': '#e8f5e9',
-      'tertiaryColor': '#fff3e0'
+    "theme": "base",
+    "themeVariables": {
+      "primaryColor": "#f3e5f5",
+      "primaryTextColor": "#6a1b9a",
+      "lineColor": "#9c27b0",
+      "secondaryColor": "#e8f5e9",
+      "tertiaryColor": "#fff3e0"
     }
   }
 }%%

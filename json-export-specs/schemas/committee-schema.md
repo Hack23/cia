@@ -50,15 +50,15 @@ This schema aggregates data from multiple database views:
 ```mermaid
 %%{
   init: {
-    'theme': 'base',
-    'themeVariables': {
-      'primaryColor': '#ffccbc',
-      'primaryTextColor': '#d84315',
-      'lineColor': '#ff5722',
-      'secondaryColor': '#bbdefb',
-      'tertiaryColor': '#c8e6c9',
-      'primaryBorderColor': '#d84315',
-      'fontSize': '14px'
+    "theme": "base",
+    "themeVariables": {
+      "primaryColor": "#ffccbc",
+      "primaryTextColor": "#d84315",
+      "lineColor": "#ff5722",
+      "secondaryColor": "#bbdefb",
+      "tertiaryColor": "#c8e6c9",
+      "primaryBorderColor": "#d84315",
+      "fontSize": "14px"
     }
   }
 }%%

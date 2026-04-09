@@ -74,7 +74,7 @@ graph TB
 ## Collaboration Intensity Matrix
 
 ```mermaid
-%%{init: {'theme':'base', 'themeVariables': { 'fontSize':'14px'}}}%%
+%%{init: {"theme":"base", "themeVariables": { "fontSize":"14px"}}}%%
 graph LR
     A[Committee Collaboration] --> B[High Intensity]
     A --> C[Medium Intensity]
@@ -101,7 +101,7 @@ graph LR
 ## Committee Member Distribution by Party
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 pie title "Committee Membership Distribution (349 total seats)"
     "Social Democrats (S)" : 107
     "Sweden Democrats (SD)" : 73
@@ -140,7 +140,7 @@ graph TD
 ## Committee Productivity Rankings
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 xychart-beta
     title "Committee Legislative Output (Documents per year)"
     x-axis ["Finance", "Justice", "Social", "Defense", "Education", "Environment", "Foreign", "Transport", "Culture", "Labour"]
@@ -213,7 +213,29 @@ graph TB
 ## Committee Expertise Areas
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "quadrant1Fill": "#1565C0",
+    "quadrant2Fill": "#2E7D32",
+    "quadrant3Fill": "#FF9800",
+    "quadrant4Fill": "#D32F2F",
+    "quadrantTitleFill": "#ffffff",
+    "quadrantPointFill": "#ffffff",
+    "quadrantPointTextFill": "#000000",
+    "quadrantXAxisTextFill": "#000000",
+    "quadrantYAxisTextFill": "#000000"
+  },
+  "quadrantChart": {
+    "chartWidth": 700,
+    "chartHeight": 700,
+    "pointLabelFontSize": 12,
+    "titleFontSize": 20,
+    "quadrantLabelFontSize": 16,
+    "xAxisLabelFontSize": 14,
+    "yAxisLabelFontSize": 14
+  }
+}}%%
 quadrantChart
     title Committee Specialization vs Collaboration
     x-axis Low Specialization --> High Specialization
@@ -223,14 +245,15 @@ quadrantChart
     quadrant-3 Generalist Teams
     quadrant-4 Connected Generalists
     
-    Finance Committee: [0.8, 0.9]
-    Defense Committee: [0.9, 0.6]
-    Justice Committee: [0.85, 0.75]
-    Social Insurance: [0.7, 0.8]
-    Environment Committee: [0.75, 0.85]
-    Education Committee: [0.6, 0.7]
-    Culture Committee: [0.8, 0.4]
-    Foreign Affairs: [0.95, 0.5]
+    "Finance Committee": [0.8, 0.9]
+    "Defense Committee": [0.9, 0.6]
+    "Justice Committee": [0.85, 0.75]
+    "Social Insurance": [0.7, 0.8]
+    "Environment Committee": [0.75, 0.85]
+    "Education Committee": [0.6, 0.7]
+    "Culture Committee": [0.8, 0.4]
+    "Foreign Affairs": [0.95, 0.5]
+
 ```
 
 ## Cross-Committee Working Groups

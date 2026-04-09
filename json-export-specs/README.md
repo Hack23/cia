@@ -128,15 +128,15 @@ The CIA JSON Export System transforms the comprehensive political intelligence d
 ```mermaid
 %%{
   init: {
-    'theme': 'base',
-    'themeVariables': {
-      'primaryColor': '#e8f5e9',
-      'primaryTextColor': '#2e7d32',
-      'lineColor': '#4caf50',
-      'secondaryColor': '#e3f2fd',
-      'tertiaryColor': '#fff3e0',
-      'primaryBorderColor': '#2e7d32',
-      'fontSize': '16px'
+    "theme": "base",
+    "themeVariables": {
+      "primaryColor": "#e8f5e9",
+      "primaryTextColor": "#2e7d32",
+      "lineColor": "#4caf50",
+      "secondaryColor": "#e3f2fd",
+      "tertiaryColor": "#fff3e0",
+      "primaryBorderColor": "#2e7d32",
+      "fontSize": "16px"
     }
   }
 }%%
@@ -268,15 +268,15 @@ Each JSON schema directly supports specific product features and customer use ca
 ```mermaid
 %%{
   init: {
-    'theme': 'base',
-    'themeVariables': {
-      'primaryColor': '#e1f5ff',
-      'primaryTextColor': '#0277bd',
-      'lineColor': '#0288d1',
-      'secondaryColor': '#c8e6c9',
-      'tertiaryColor': '#fff9c4',
-      'primaryBorderColor': '#0277bd',
-      'fontSize': '14px'
+    "theme": "base",
+    "themeVariables": {
+      "primaryColor": "#e1f5ff",
+      "primaryTextColor": "#0277bd",
+      "lineColor": "#0288d1",
+      "secondaryColor": "#c8e6c9",
+      "tertiaryColor": "#fff9c4",
+      "primaryBorderColor": "#0277bd",
+      "fontSize": "14px"
     }
   }
 }%%
@@ -537,15 +537,15 @@ Uses bash script validation following repository patterns with harden-runner sec
 ```mermaid
 %%{
   init: {
-    'theme': 'base',
-    'themeVariables': {
-      'primaryColor': '#e3f2fd',
-      'primaryTextColor': '#1565c0',
-      'lineColor': '#42a5f5',
-      'secondaryColor': '#f3e5f5',
-      'tertiaryColor': '#fff3e0',
-      'primaryBorderColor': '#1565c0',
-      'fontSize': '14px'
+    "theme": "base",
+    "themeVariables": {
+      "primaryColor": "#e3f2fd",
+      "primaryTextColor": "#1565c0",
+      "lineColor": "#42a5f5",
+      "secondaryColor": "#f3e5f5",
+      "tertiaryColor": "#fff3e0",
+      "primaryBorderColor": "#1565c0",
+      "fontSize": "14px"
     }
   }
 }%%
@@ -908,15 +908,15 @@ async function visualizePartyVoting() {
 ```mermaid
 %%{
   init: {
-    'theme': 'base',
-    'themeVariables': {
-      'primaryColor': '#fff9c4',
-      'primaryTextColor': '#f57f17',
-      'lineColor': '#fbc02d',
-      'secondaryColor': '#e1bee7',
-      'tertiaryColor': '#e8f5e9',
-      'primaryBorderColor': '#f57f17',
-      'fontSize': '14px'
+    "theme": "base",
+    "themeVariables": {
+      "primaryColor": "#fff9c4",
+      "primaryTextColor": "#f57f17",
+      "lineColor": "#fbc02d",
+      "secondaryColor": "#e1bee7",
+      "tertiaryColor": "#e8f5e9",
+      "primaryBorderColor": "#f57f17",
+      "fontSize": "14px"
     }
   }
 }%%

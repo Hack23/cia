@@ -9,7 +9,7 @@ Politicians generating highest controversy levels based on divisive votes, publi
 ## Controversy Rankings
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 xychart-beta
     title "Top 10 Most Controversial (Controversy Score 0-100)"
     x-axis ["Pol A", "Pol B", "Pol C", "Pol D", "Pol E", "Pol F", "Pol G", "Pol H", "Pol I", "Pol J"]
@@ -20,7 +20,7 @@ xychart-beta
 ## Controversy Source Breakdown
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 pie title "Controversy Sources"
     "Divisive Votes" : 35
     "Media Scandals" : 25
@@ -99,7 +99,7 @@ gantt
 ## Public Opinion Polarization
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 xychart-beta
     title "Opinion Distribution (Top 3 Controversial Politicians)"
     x-axis ["Strongly Support", "Support", "Neutral", "Oppose", "Strongly Oppose"]
@@ -133,7 +133,7 @@ graph TD
 ## Party Positioning
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 pie title "Most Controversial by Party"
     "Sweden Democrats (SD)" : 4
     "Left Party (V)" : 2
@@ -145,7 +145,29 @@ pie title "Most Controversial by Party"
 ## Electoral Consequences
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "quadrant1Fill": "#1565C0",
+    "quadrant2Fill": "#2E7D32",
+    "quadrant3Fill": "#FF9800",
+    "quadrant4Fill": "#D32F2F",
+    "quadrantTitleFill": "#ffffff",
+    "quadrantPointFill": "#ffffff",
+    "quadrantPointTextFill": "#000000",
+    "quadrantXAxisTextFill": "#000000",
+    "quadrantYAxisTextFill": "#000000"
+  },
+  "quadrantChart": {
+    "chartWidth": 700,
+    "chartHeight": 700,
+    "pointLabelFontSize": 12,
+    "titleFontSize": 20,
+    "quadrantLabelFontSize": 16,
+    "xAxisLabelFontSize": 14,
+    "yAxisLabelFontSize": 14
+  }
+}}%%
 quadrantChart
     title Controversy Impact (Base Mobilization vs Opposition Energy)
     x-axis Weak Opposition --> Strong Opposition
@@ -155,16 +177,17 @@ quadrantChart
     quadrant-3 Irrelevant
     quadrant-4 Mixed
     
-    Politician A: [0.8, 0.9]
-    Politician B: [0.9, 0.65]
-    Politician C: [0.7, 0.85]
-    Politician D: [0.85, 0.7]
+    "Politician A": [0.8, 0.9]
+    "Politician B": [0.9, 0.65]
+    "Politician C": [0.7, 0.85]
+    "Politician D": [0.85, 0.7]
+
 ```
 
 ## Controversy Trend Analysis
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 xychart-beta
     title "Controversy Score Evolution (12 Months)"
     x-axis ["Dec 23", "Feb 24", "Apr 24", "Jun 24", "Aug 24", "Oct 24"]
@@ -223,7 +246,7 @@ graph TB
 ## Historical Comparison
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 xychart-beta
     title "Controversy Levels: 2024 vs 2020"
     x-axis ["Top 10 Avg", "Riksdag Avg", "Government Avg", "Opposition Avg"]

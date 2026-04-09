@@ -557,7 +557,7 @@ ORDER BY month ASC;
 **Interactive Visualization** - Attendance Trend Timeline:
 
 ```mermaid
-%%{init: {'theme':'base', 'themeVariables': {'primaryColor':'#e1f5ff','primaryTextColor':'#000','primaryBorderColor':'#333','lineColor':'#f66','secondaryColor':'#fff9cc','tertiaryColor':'#ccffcc'}}}%%
+%%{init: {"theme":"base", "themeVariables": {"primaryColor":"#e1f5ff","primaryTextColor":"#000","primaryBorderColor":"#333","lineColor":"#f66","secondaryColor":"#fff9cc","tertiaryColor":"#ccffcc"}}}%%
 xychart-beta
     title "Politician Attendance Trend - Lars Andersson (S) - 2024"
     x-axis ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
@@ -586,7 +586,7 @@ xychart-beta
 
 **Predictive Intelligence Assessment**:
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 pie title "Resignation Probability - Lars Andersson"
     "High Probability (Resign in 30 days)" : 87
     "Alternative Outcome" : 13
@@ -1176,7 +1176,7 @@ ORDER BY alignment_percentage DESC;
 **Interactive Visualization - Coalition Alignment Heatmap**:
 
 ```mermaid
-%%{init: {'theme':'base', 'themeVariables': {'primaryColor':'#ccffcc','secondaryColor':'#ffe6cc','tertiaryColor':'#ffcccc'}}}%%
+%%{init: {"theme":"base", "themeVariables": {"primaryColor":"#ccffcc","secondaryColor":"#ffe6cc","tertiaryColor":"#ffcccc"}}}%%
 graph TB
     subgraph "Government Coalition - Center-Right Bloc"
         M[M - Moderates<br/>94.2% alignment]
@@ -1235,7 +1235,7 @@ graph TB
 **Coalition Stability Trend - 12-Month Analysis**:
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 xychart-beta
     title "Coalition Alignment Trend - Centre Party vs Core Coalition"
     x-axis ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
@@ -1247,7 +1247,7 @@ xychart-beta
 **Predictive Intelligence - Coalition Survival Analysis**:
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 pie title "Coalition Stability Forecast - Next 6 Months"
     "Stable Coalition (No major changes)" : 68
     "Minor Cabinet Reshuffle" : 22
@@ -2415,7 +2415,7 @@ for date, z_score in anomalies.items():
 ```mermaid
 xychart-beta
     title "Attendance Rate Decomposition"
-    x-axis [W1, W20, W40, W60, W75, W80, W100]
+    x-axis ["W1", "W20", "W40", "W60", "W75", "W80", "W100"]
     y-axis "Attendance %" 40 --> 90
     line [85, 84, 83, 82, 45, 52, 83]
 ```
@@ -2616,7 +2616,7 @@ LIMIT 20;
 **Interactive Visualization - Coalition Formation Timeline**:
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 gantt
     title Coalition Formation Pattern - M-KD-L Alliance (2023-2024)
     dateFormat YYYY-MM
@@ -2637,7 +2637,7 @@ gantt
 **Historical Pattern Analysis - Previous Coalition Formations**:
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 xychart-beta
     title "Historical Coalition Formation Pattern - Alignment Trajectory"
     x-axis ["T-12 mo", "T-10", "T-8", "T-6", "T-4", "T-2", "Formation", "T+2", "T+4", "T+6"]
@@ -2660,7 +2660,7 @@ xychart-beta
 **Behavioral Clustering - Party Coalition Profiles**:
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 graph TB
     subgraph "Coalition Cluster 1: Government Bloc (Center-Right)"
         M[M - Moderates<br/>Core Coalition<br/>Alignment: 92%]
@@ -3325,7 +3325,7 @@ prediction = forecast[['ds', 'yhat', 'yhat_lower', 'yhat_upper']]
 ```mermaid
 xychart-beta
     title "Parliamentary Attendance Forecast (Prophet Model)"
-    x-axis [W1, W8, W16, W24, W32, W40, W48, W52]
+    x-axis ["W1", "W8", "W16", "W24", "W32", "W40", "W48", "W52"]
     y-axis "Attendance %" 75 --> 95
     line [85, 84, 83, 82, 81, 80, 78, 76]
     line [84, 83, 82, 81, 80, 79, 78, 77]
@@ -3794,7 +3794,7 @@ CROSS JOIN support_party sp;
 **Predictive Model - Vote Passage Analysis**:
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 xychart-beta
     title "Budget Vote Outcome Scenarios - Probability Distribution"
     x-axis ["Strong Opposition", "Weak Opposition", "Partial SD Support", "Full SD Support", "Opposition Defections"]
@@ -3814,7 +3814,7 @@ xychart-beta
 **Interactive Visualization - Probability Tree**:
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 graph TB
     A[Budget Vote<br/>Outcome] --> B{SD Support Level}
     
@@ -3866,7 +3866,7 @@ graph TB
 **Sensitivity Analysis**:
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 xychart-beta
     title "Passage Probability - Sensitivity to SD Discipline"
     x-axis ["60%", "65%", "70%", "75%", "80%", "85%", "90%", "95%", "100%"]
@@ -5039,7 +5039,7 @@ ORDER BY influence_rank;
 **Interactive Visualization - Committee-Party Network (Sankey Diagram)**:
 
 ```mermaid
-%%{init: {'theme':'base', 'themeVariables': {'primaryColor':'#e1f5ff'}}}%%
+%%{init: {"theme":"base", "themeVariables": {"primaryColor":"#e1f5ff"}}}%%
 sankey-beta
 
 %% Cross-party power brokers and their connections
@@ -5082,7 +5082,7 @@ Defense Committee,C (Centre),1
 
 **1. Annie Lööf (C - Centre Party)** - The Ultimate Coalition Bridge
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 graph TB
     subgraph "Annie Lööf Network Position"
         AL[Annie Lööf<br/>Centre Party<br/>⭐⭐⭐⭐⭐ Power Broker]
@@ -5159,7 +5159,7 @@ graph TB
 **Risk Assessment - Coalition Formation Scenarios**:
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 pie title "Coalition Formation Dependency on Key Bridge Politicians"
     "Annie Lööf (Centre) Essential" : 45
     "Johan Pehrson (Liberals) Essential" : 30
@@ -8563,7 +8563,7 @@ graph LR
 ```mermaid
 xychart-beta
     title "Coalition Support Percentage Over Time"
-    x-axis [Oct22, Jan23, Apr23, Jul23, Oct23, Jan24, Apr24, Jul24]
+    x-axis ["Oct22", "Jan23", "Apr23", "Jul23", "Oct23", "Jan24", "Apr24", "Jul24"]
     y-axis "Government Support %" 70 --> 100
     line [95, 94, 92, 89, 87, 82, 78, 75]
 ```
@@ -8682,7 +8682,7 @@ xychart-beta
 ```mermaid
 xychart-beta
     title "Behavioral Indicators Leading to Scandal"
-    x-axis [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug]
+    x-axis ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"]
     y-axis "Percentage / Count" 0 --> 100
     line [95, 93, 88, 85, 78, 65, 52, 41]
     line [25, 23, 28, 35, 42, 51, 58, 67]
@@ -9724,7 +9724,7 @@ F1-Score = 2 × (Precision × Recall) / (Precision + Recall) = 75.9%
 ```mermaid
 xychart-beta
     title "Analyst Confidence Calibration"
-    x-axis [10, 30, 50, 70, 90]
+    x-axis ["10", "30", "50", "70", "90"]
     y-axis "Actual Accuracy %" 0 --> 100
     line [10, 31, 58, 76, 86]
 ```

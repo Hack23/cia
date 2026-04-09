@@ -67,15 +67,15 @@ See [Party Longitudinal Analysis Visualization](../visualizations/party-longitud
 ```mermaid
 %%{
   init: {
-    'theme': 'base',
-    'themeVariables': {
-      'primaryColor': '#c8e6c9',
-      'primaryTextColor': '#2e7d32',
-      'lineColor': '#388e3c',
-      'secondaryColor': '#bbdefb',
-      'tertiaryColor': '#fff9c4',
-      'primaryBorderColor': '#2e7d32',
-      'fontSize': '14px'
+    "theme": "base",
+    "themeVariables": {
+      "primaryColor": "#c8e6c9",
+      "primaryTextColor": "#2e7d32",
+      "lineColor": "#388e3c",
+      "secondaryColor": "#bbdefb",
+      "tertiaryColor": "#fff9c4",
+      "primaryBorderColor": "#2e7d32",
+      "fontSize": "14px"
     }
   }
 }%%

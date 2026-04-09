@@ -9,7 +9,7 @@ Politicians with highest cross-party influence and coalition-building capacity, 
 ## Coalition Broker Rankings
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 xychart-beta
     title "Top 10 Coalition Brokers (Influence Score 0-100)"
     x-axis ["Pol A", "Pol B", "Pol C", "Pol D", "Pol E", "Pol F", "Pol G", "Pol H", "Pol I", "Pol J"]
@@ -70,7 +70,7 @@ graph LR
 ## Co-Sponsorship Network
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 xychart-beta
     title "Cross-Party Bill Co-Sponsorships (2024)"
     x-axis ["M-KD", "M-L", "KD-L", "S-V", "S-MP", "M-S", "C-MP", "SD-M"]
@@ -104,7 +104,7 @@ graph TB
 ## Party Distribution
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 pie title "Top Brokers by Party"
     "Moderates (M)" : 3
     "Center Party (C)" : 2
@@ -180,7 +180,7 @@ graph LR
 ## Coalition Stability Contribution
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 xychart-beta
     title "Broker Impact on Coalition Stability"
     x-axis ["High Brokers", "Medium Brokers", "Low Brokers", "No Key Brokers"]
@@ -191,7 +191,29 @@ xychart-beta
 ## Centrality Metrics
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "quadrant1Fill": "#1565C0",
+    "quadrant2Fill": "#2E7D32",
+    "quadrant3Fill": "#FF9800",
+    "quadrant4Fill": "#D32F2F",
+    "quadrantTitleFill": "#ffffff",
+    "quadrantPointFill": "#ffffff",
+    "quadrantPointTextFill": "#000000",
+    "quadrantXAxisTextFill": "#000000",
+    "quadrantYAxisTextFill": "#000000"
+  },
+  "quadrantChart": {
+    "chartWidth": 700,
+    "chartHeight": 700,
+    "pointLabelFontSize": 12,
+    "titleFontSize": 20,
+    "quadrantLabelFontSize": 16,
+    "xAxisLabelFontSize": 14,
+    "yAxisLabelFontSize": 14
+  }
+}}%%
 quadrantChart
     title Network Position (Betweenness vs Closeness)
     x-axis Low Betweenness --> High Betweenness
@@ -201,11 +223,12 @@ quadrantChart
     quadrant-3 Isolated
     quadrant-4 Party Hubs
     
-    Politician A: [0.9, 0.85]
-    Politician B: [0.85, 0.8]
-    Politician C: [0.8, 0.75]
-    Politician D: [0.75, 0.7]
-    Politician E: [0.7, 0.65]
+    "Politician A": [0.9, 0.85]
+    "Politician B": [0.85, 0.8]
+    "Politician C": [0.8, 0.75]
+    "Politician D": [0.75, 0.7]
+    "Politician E": [0.7, 0.65]
+
 ```
 
 ## Historical Impact

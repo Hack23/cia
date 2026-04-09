@@ -9,7 +9,7 @@ Politicians facing highest electoral risk in the 2026 election based on multi-fa
 ## Electoral Risk Rankings
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 xychart-beta
     title "Top 10 Politicians at Electoral Risk (Risk Score 0-100)"
     x-axis ["Pol A", "Pol B", "Pol C", "Pol D", "Pol E", "Pol F", "Pol G", "Pol H", "Pol I", "Pol J"]
@@ -48,7 +48,7 @@ graph TB
 ## Risk by Party
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 pie title "High-Risk Seats (>60) by Party"
     "Social Democrats (S)" : 3
     "Moderates (M)" : 2
@@ -81,7 +81,29 @@ graph LR
 ## District Vulnerability Map
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "quadrant1Fill": "#D32F2F",
+    "quadrant2Fill": "#FF9800",
+    "quadrant3Fill": "#2E7D32",
+    "quadrant4Fill": "#FFC107",
+    "quadrantTitleFill": "#ffffff",
+    "quadrantPointFill": "#ffffff",
+    "quadrantPointTextFill": "#000000",
+    "quadrantXAxisTextFill": "#000000",
+    "quadrantYAxisTextFill": "#000000"
+  },
+  "quadrantChart": {
+    "chartWidth": 700,
+    "chartHeight": 700,
+    "pointLabelFontSize": 12,
+    "titleFontSize": 20,
+    "quadrantLabelFontSize": 16,
+    "xAxisLabelFontSize": 14,
+    "yAxisLabelFontSize": 14
+  }
+}}%%
 quadrantChart
     title Electoral Vulnerability (Margin vs Opposition Strength)
     x-axis Weak Opposition --> Strong Opposition
@@ -91,19 +113,20 @@ quadrantChart
     quadrant-3 Low Risk
     quadrant-4 Moderate Risk
     
-    Politician A: [0.8, 0.9]
-    Politician B: [0.75, 0.85]
-    Politician C: [0.7, 0.8]
-    Politician D: [0.65, 0.75]
-    Politician E: [0.6, 0.7]
-    Politician F: [0.55, 0.65]
-    Politician G: [0.5, 0.6]
+    "Politician A": [0.8, 0.9]
+    "Politician B": [0.75, 0.85]
+    "Politician C": [0.7, 0.8]
+    "Politician D": [0.65, 0.75]
+    "Politician E": [0.6, 0.7]
+    "Politician F": [0.55, 0.65]
+    "Politician G": [0.5, 0.6]
+
 ```
 
 ## Trend Analysis
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 xychart-beta
     title "Risk Score Evolution (6 Months)"
     x-axis ["Jun", "Jul", "Aug", "Sep", "Oct", "Nov"]
@@ -139,7 +162,7 @@ graph TD
 ## Campaign Strength Comparison
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 xychart-beta
     title "Incumbent vs Challenger Strength"
     x-axis ["Pol A", "Pol B", "Pol C", "Pol D", "Pol E"]

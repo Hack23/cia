@@ -9,7 +9,7 @@ Ranking of Swedish politicians with highest absence rates in parliamentary sessi
 ## Absence Rankings
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 xychart-beta
     title "Top 10 Absent Politicians (% Sessions Missed 2024)"
     x-axis ["Pol A", "Pol B", "Pol C", "Pol D", "Pol E", "Pol F", "Pol G", "Pol H", "Pol I", "Pol J"]
@@ -43,7 +43,7 @@ graph TD
 ## Absence by Party
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 pie title "High Absence (>20%) by Party"
     "Social Democrats (S)" : 3
     "Sweden Democrats (SD)" : 2
@@ -56,7 +56,7 @@ pie title "High Absence (>20%) by Party"
 ## Absence Trend Timeline
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 xychart-beta
     title "Absence Rate Trends (6 Month Average)"
     x-axis ["Jun", "Jul", "Aug", "Sep", "Oct", "Nov"]
@@ -116,7 +116,7 @@ graph TB
 ## Comparative Context
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 xychart-beta
     title "Absence Rate Comparison"
     x-axis ["Top 10 Absent", "Riksdag Average", "Top 10 Present"]

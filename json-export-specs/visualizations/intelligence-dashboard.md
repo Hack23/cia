@@ -30,7 +30,7 @@ graph LR
 ## Key Performance Indicators
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 xychart-beta
     title "Riksdag Activity Metrics (Last 30 Days)"
     x-axis ["Week 1", "Week 2", "Week 3", "Week 4"]
@@ -43,7 +43,29 @@ xychart-beta
 ## Political Risk Heat Map
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "quadrant1Fill": "#D32F2F",
+    "quadrant2Fill": "#FF9800",
+    "quadrant3Fill": "#4CAF50",
+    "quadrant4Fill": "#FFC107",
+    "quadrantTitleFill": "#ffffff",
+    "quadrantPointFill": "#ffffff",
+    "quadrantPointTextFill": "#000000",
+    "quadrantXAxisTextFill": "#000000",
+    "quadrantYAxisTextFill": "#000000"
+  },
+  "quadrantChart": {
+    "chartWidth": 700,
+    "chartHeight": 700,
+    "pointLabelFontSize": 12,
+    "titleFontSize": 20,
+    "quadrantLabelFontSize": 16,
+    "xAxisLabelFontSize": 14,
+    "yAxisLabelFontSize": 14
+  }
+}}%%
 quadrantChart
     title Political Risk Matrix (Impact vs Likelihood)
     x-axis Low Likelihood --> High Likelihood
@@ -53,20 +75,21 @@ quadrantChart
     quadrant-3 Monitor
     quadrant-4 Active Management
     
-    Coalition Instability: [0.55, 0.75]
-    Corruption Scandal: [0.3, 0.9]
-    Policy Deadlock: [0.65, 0.6]
-    Minister Resignation: [0.4, 0.7]
-    Electoral Shift: [0.7, 0.8]
-    Public Unrest: [0.35, 0.65]
-    International Crisis: [0.5, 0.85]
-    Economic Downturn: [0.6, 0.75]
+    "Coalition Instability": [0.55, 0.75]
+    "Corruption Scandal": [0.3, 0.9]
+    "Policy Deadlock": [0.65, 0.6]
+    "Minister Resignation": [0.4, 0.7]
+    "Electoral Shift": [0.7, 0.8]
+    "Public Unrest": [0.35, 0.65]
+    "International Crisis": [0.5, 0.85]
+    "Economic Downturn": [0.6, 0.75]
+
 ```
 
 ## Data Source Health
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 pie title "Data Collection Status (85 Sources)"
     "Operational" : 75
     "Degraded" : 7
@@ -169,7 +192,7 @@ graph TB
 ## Coverage Metrics
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 xychart-beta
     title "Platform Coverage"
     x-axis ["Politicians", "Parties", "Committees", "Ministries", "Documents", "Votes"]
@@ -203,7 +226,7 @@ graph TB
 ## Top Risk Categories
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 pie title "Risk Alerts by Category (Last 30 Days)"
     "Attendance Issues" : 28
     "Ethics Concerns" : 15
@@ -216,7 +239,7 @@ pie title "Risk Alerts by Category (Last 30 Days)"
 ## User Engagement Trends
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 xychart-beta
     title "Platform Usage (Daily Active Users)"
     x-axis ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
@@ -287,7 +310,7 @@ gantt
 ## API Performance
 
 ```mermaid
-%%{init: {'theme':'base'}}%%
+%%{init: {"theme":"base"}}%%
 xychart-beta
     title "API Response Times (milliseconds)"
     x-axis ["Politicians", "Parties", "Committees", "Government", "Intelligence", "Top10"]

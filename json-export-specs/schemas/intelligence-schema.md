@@ -94,15 +94,15 @@ See [Election Cycle Analysis Visualization](../visualizations/election-cycle-ana
 ```mermaid
 %%{
   init: {
-    'theme': 'base',
-    'themeVariables': {
-      'primaryColor': '#e1bee7',
-      'primaryTextColor': '#7b1fa2',
-      'lineColor': '#9c27b0',
-      'secondaryColor': '#ffccbc',
-      'tertiaryColor': '#c8e6c9',
-      'primaryBorderColor': '#7b1fa2',
-      'fontSize': '14px'
+    "theme": "base",
+    "themeVariables": {
+      "primaryColor": "#e1bee7",
+      "primaryTextColor": "#7b1fa2",
+      "lineColor": "#9c27b0",
+      "secondaryColor": "#ffccbc",
+      "tertiaryColor": "#c8e6c9",
+      "primaryBorderColor": "#7b1fa2",
+      "fontSize": "14px"
     }
   }
 }%%

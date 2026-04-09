@@ -63,6 +63,29 @@ This document provides a strategic analysis of the Citizen Intelligence Agency's
 **Strategic Focus:** This quadrant chart provides a visual representation of the Citizen Intelligence Agency's strengths, weaknesses, opportunities, and threats arranged by their internal/external nature and positive/negative impact.
 
 ```mermaid
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "quadrant1Fill": "#1565C0",
+    "quadrant2Fill": "#2E7D32",
+    "quadrant3Fill": "#D32F2F",
+    "quadrant4Fill": "#FF9800",
+    "quadrantTitleFill": "#ffffff",
+    "quadrantPointFill": "#ffffff",
+    "quadrantPointTextFill": "#000000",
+    "quadrantXAxisTextFill": "#000000",
+    "quadrantYAxisTextFill": "#000000"
+  },
+  "quadrantChart": {
+    "chartWidth": 700,
+    "chartHeight": 700,
+    "pointLabelFontSize": 12,
+    "titleFontSize": 20,
+    "quadrantLabelFontSize": 16,
+    "xAxisLabelFontSize": 14,
+    "yAxisLabelFontSize": 14
+  }
+}}%%
 quadrantChart
     title Citizen Intelligence Agency SWOT Analysis
     x-axis Internal --> External
@@ -95,6 +118,7 @@ quadrantChart
     "Technical Debt Growth": [0.75, 0.25]
     "Political API Limitations": [0.9, 0.3]
     "Volunteer Resource Challenges": [0.85, 0.15]
+
 ```
 
 ### Alternative Network Visualization
@@ -136,10 +160,10 @@ graph TD
     end
 
     %% Style
-    classDef strengths fill:#c8e6c9,stroke:#333,stroke-width:1px,color:black
-    classDef weaknesses fill:#fff2cc,stroke:#333,stroke-width:1px,color:black
-    classDef opportunities fill:#d1c4e9,stroke:#333,stroke-width:1px,color:black
-    classDef threats fill:#f8cecc,stroke:#333,stroke-width:1px,color:black
+    classDef strengths fill:#2E7D32,stroke:#1B5E20,stroke-width:1px,color:white
+    classDef weaknesses fill:#D32F2F,stroke:#B71C1C,stroke-width:1px,color:white
+    classDef opportunities fill:#1565C0,stroke:#0D47A1,stroke-width:1px,color:white
+    classDef threats fill:#FF9800,stroke:#E65100,stroke-width:1px,color:white
 
     class S1,S2,S3,S4,S5 strengths
     class W1,W2,W3,W4,W5 weaknesses
@@ -401,29 +425,29 @@ graph TD
 ```mermaid
 gantt
     title Strategic Development Timeline
-    dateFormat YYYY-Q1
-    axisFormat %Y-%q
+    dateFormat YYYY-MM-DD
+    axisFormat %Y-%m
     
     section Platform Stability
-    Dependency Security Updates           :a1, 2025-Q3, 4quarters
-    Documentation Enhancement             :a2, 2025-Q3, 3quarters
-    ISMS Compliance Alignment             :a3, 2025-Q4, 2quarters
+    Dependency Security Updates           :a1, 2025-07-01, 365d
+    Documentation Enhancement             :a2, 2025-07-01, 270d
+    ISMS Compliance Alignment             :a3, 2025-10-01, 180d
     
     section Data Processing
-    Automated Data Pipeline Improvement   :b1, 2025-Q4, 2quarters
-    Data Validation Enhancement           :b2, 2026-Q1, 2quarters
-    AI-Enhanced Data Quality Monitoring   :b3, 2026-Q2, 2quarters
+    Automated Data Pipeline Improvement   :b1, 2025-10-01, 180d
+    Data Validation Enhancement           :b2, 2026-01-01, 180d
+    AI-Enhanced Data Quality Monitoring   :b3, 2026-04-01, 180d
     
     section User Experience
-    Accessibility WCAG 2.1 AA            :c1, 2026-Q1, 2quarters
-    UI Dashboard Modernization            :c2, 2026-Q1, 3quarters
-    Performance Optimization              :c3, 2026-Q2, 2quarters
+    Accessibility WCAG 2.1 AA            :c1, 2026-01-01, 180d
+    UI Dashboard Modernization            :c2, 2026-01-01, 270d
+    Performance Optimization              :c3, 2026-04-01, 180d
     
     section AI & Analytics
-    LLM Document Summarization            :d1, 2026-Q1, 2quarters
-    Semantic Search via pgvector          :d2, 2026-Q2, 2quarters
-    API Ecosystem Development             :d3, 2026-Q2, 3quarters
-    AI-Enhanced Risk Analytics            :d4, 2026-Q3, 3quarters
+    LLM Document Summarization            :d1, 2026-01-01, 180d
+    Semantic Search via pgvector          :d2, 2026-04-01, 180d
+    API Ecosystem Development             :d3, 2026-04-01, 270d
+    AI-Enhanced Risk Analytics            :d4, 2026-07-01, 270d
 ```
 
 ## Conclusion
@@ -437,10 +461,10 @@ The ultimate goal remains enhancing political transparency and citizen engagemen
 <div class="chart-legend">
 The color scheme used in these diagrams follows the consistent palette used throughout the architecture documentation:
 
-- **Strengths** (Green - #c8e6c9): Represents positive internal factors
-- **Weaknesses** (Yellow - #fff2cc): Represents negative internal factors
-- **Opportunities** (Purple - #d1c4e9): Represents positive external factors
-- **Threats** (Red - #f8cecc): Represents negative external factors
+- **Strengths** (Green - #2E7D32): Represents positive internal factors
+- **Weaknesses** (Red - #D32F2F): Represents negative internal factors
+- **Opportunities** (Blue - #1565C0): Represents positive external factors
+- **Threats** (Orange - #FF9800): Represents negative external factors
 </div>
 
 ---
