@@ -1,45 +1,52 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <project xmlns="http://maven.apache.org/DECORATION/1.7.0"
-xsi:schemaLocation="http://maven.apache.org/DECORATION/1.7.0 http://maven.apache.org/xsd/decoration-1.7.0.xsd"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="${project.name}">
-<skin>
-.skins</groupId>
--fluido-skin</artifactId>
->1.11.0</version>
-</skin>
+	xsi:schemaLocation="http://maven.apache.org/DECORATION/1.7.0 http://maven.apache.org/xsd/decoration-1.7.0.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="${project.name}">
+	<skin>
+		<groupId>org.apache.maven.skins</groupId>
+		<artifactId>maven-fluido-skin</artifactId>
+		<version>1.11.0</version>
+	</skin>
 
-<custom>
->
-abled>true</sideBarEnabled>
-abled>true</topBarEnabled>
->
-ame>Citizen Intelligence Agency</name>
- Intelligence Agency</alt>
--intelligence-agency/cia-logo.png</src>
->
+	<custom>
+		<fluidoSkin>
+			<sideBarEnabled>true</sideBarEnabled>
+			<topBarEnabled>true</topBarEnabled>
+			<topBarIcon>
+				<name>Citizen Intelligence Agency</name>
+				<alt>Citizen Intelligence Agency</alt>
+				<src>https://hack23.github.io/cia/citizen-intelligence-agency/cia-logo.png</src>
+				<href>https://hack23.github.io/cia/</href>
+			</topBarIcon>
 
-Orientation>right</ribbonOrientation>
-Color>gray</ribbonColor>
->
-</custom>
+			<gitHub>
+				<projectId>Hack23/cia</projectId>
+				<ribbonOrientation>right</ribbonOrientation>
+				<ribbonColor>gray</ribbonColor>
+			</gitHub>
+		</fluidoSkin>
+	</custom>
 
-<bannerRight>
-ame>GitHub</name>
-le=social
-nerRight>
-<body>
-ks>
-name="GitHub" href="https://github.com/Hack23/cia" />
-name="PostgreSQL" href="https://www.postgresql.org/" />
-name="Maven" href="https://maven.apache.org/" />
-name="Hibernate" href="https://hibernate.org/orm/" />
-name="Spring Framework" href="https://spring.io/projects/spring-framework" />
-name="Vaadin" href="https://vaadin.com/" />
-name="Jetty Web Server" href="https://eclipse.dev/jetty/" />
-ks>
+	<bannerRight>
+		<name>GitHub</name>
+		<src>
+			https://img.shields.io/github/stars/Hack23/cia?style=social
+		</src>
+		<href>https://github.com/Hack23/cia</href>
+	</bannerRight>
+	<body>
+		<links>
+			<item name="GitHub" href="https://github.com/Hack23/cia" />
+			<item name="PostgreSQL" href="https://www.postgresql.org/" />
+			<item name="Maven" href="https://maven.apache.org/" />
+			<item name="Hibernate" href="https://hibernate.org/orm/" />
+			<item name="Spring Framework" href="https://spring.io/projects/spring-framework" />
+			<item name="Vaadin" href="https://vaadin.com/" />
+			<item name="Jetty Web Server" href="https://eclipse.dev/jetty/" />
+		</links>
 
-u ref="reports" />
-u ref="parent" />
-u ref="modules" />
-</body>
+		<menu ref="reports" />
+		<menu ref="parent" />
+		<menu ref="modules" />
+	</body>
 </project>

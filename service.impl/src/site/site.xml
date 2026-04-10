@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <project xmlns="http://maven.apache.org/DECORATION/1.7.0" xsi:schemaLocation="http://maven.apache.org/DECORATION/1.7.0 http://maven.apache.org/xsd/decoration-1.7.0.xsd"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  name="${project.name}" >
-<skin>
-.skins</groupId>
--fluido-skin</artifactId>
->1.11.0</version>
-</skin>
+	<skin>
+		<groupId>org.apache.maven.skins</groupId>
+		<artifactId>maven-fluido-skin</artifactId>
+		<version>1.11.0</version>
+	</skin>
 
   <custom>
     <fluidoSkin>
@@ -26,12 +26,16 @@
    </fluidoSkin>
    </custom>
 
-<bannerRight>
-ame>GitHub</name>
-nerRight>
+	<bannerRight>
+		<name>GitHub</name>
+		<src>
+			https://img.shields.io/github/stars/Hack23/cia?style=social
+        </src>
+		<href>https://github.com/Hack23/cia</href>
+	</bannerRight>
     <body>
         <links>
-ame="GitHub" href="https://github.com/Hack23/cia" />
+			<item name="GitHub" href="https://github.com/Hack23/cia" />
         </links>
 
         <menu ref="reports" /> <menu ref="parent" /><menu ref="modules" />        

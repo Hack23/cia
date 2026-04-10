@@ -15,9 +15,9 @@ The Citizen Intelligence Agency is a volunteer-driven, open-source intelligence 
 
 The project relies on open data from various sources, including:
 
-- [Swedish Parliament Open Data](http://data.riksdagen.se/): Offers a wide range of data related to the Swedish Parliament, including members, committees, and documents.
-- [Swedish Election Authority](http://www.val.se/): Provides information on election processes, results, and political parties in Sweden.
-- [World Bank Open Data](http://data.worldbank.org/): Contains global development data, including economic indicators and demographic information.
+- [Swedish Parliament Open Data](https://data.riksdagen.se/): Offers a wide range of data related to the Swedish Parliament, including members, committees, and documents.
+- [Swedish Election Authority](https://www.val.se/): Provides information on election processes, results, and political parties in Sweden.
+- [World Bank Open Data](https://data.worldbank.org/): Contains global development data, including economic indicators and demographic information.
 - [Swedish National Financial Management Authority (ESV) Public Sector Information (PSI) Data](https://www.esv.se/): Offers data on government finances, economic trends, and public sector operations in Sweden.
 
 ## Badges
@@ -72,7 +72,7 @@ This document provides a high-level overview of the key technologies used within
 | **Data Auditing**                | [Javers](https://javers.org/)                                                                                                                                                                                                                                                              |
 | **Business Rules Engine**        | [Drools](https://www.drools.org/)                                                                                                                                                                                                                                                          |
 | **Messaging**                    | [ActiveMQ Artemis](https://activemq.apache.org/components/artemis/), [Spring JMS](https://spring.io/projects/spring-framework)                                                                                                                                                              |
-| **Web/UI Layer**                 | [Vaadin](https://vaadin.com/), [Vaadin Sass Compiler](http://vaadin.com/), [Vaadin Themes](https://vaadin.com/)                                                                                                                                                                            |
+| **Web/UI Layer**                 | [Vaadin](https://vaadin.com/), [Vaadin Sass Compiler](https://vaadin.com/), [Vaadin Themes](https://vaadin.com/)                                                                                                                                                                            |
 | **Monitoring**                   | [JavaMelody](https://github.com/javamelody/javamelody), [AWS SDK for CloudWatch](https://aws.amazon.com/cloudwatch/)                                                                                                                                                                       |
 | **Testing**                      | [JUnit](https://junit.org/), [Mockito](https://site.mockito.org/), [Spring Test](https://docs.spring.io/spring-framework/docs/current/reference/html/testing.html), [Selenium WebDriver](https://www.selenium.dev/documentation/en/webdriver/)                                                |
 | **Utilities**                    | [Apache Commons](https://commons.apache.org/), [Google Guava](https://guava.dev/), [SLF4J](https://www.slf4j.org/), [Logback](https://logback.qos.ch/), [Jackson](https://github.com/FasterXML/jackson)                                                                                       |
