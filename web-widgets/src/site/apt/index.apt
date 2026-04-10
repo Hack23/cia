@@ -1,14 +1,17 @@
-~~
-~~  Citizen Intelligence Agency version 1.0-SNAPSHOT Copyright (c) 2008 Pether Sorling
-~~
-Citizen Intelligence Agency
-
 Project Documentation
 
- * Changelog {{{./changelog.html}Changelog}}.
- 
- * Source Code {{{./xref/index.html}Cross-reference Java source code}}.
+ * GitHub CI: {{{https://github.com/Hack23/cia/actions}GitHub Actions CI/CD}}.
 
- * Javadoc & UML {{{./apidocs/index.html}Generated javadoc with UML diagrams}}.
+ * Code Quality: {{{https://sonarcloud.io/summary/new_code?id=Hack23_cia}SonarCloud Quality Dashboard}}.
 
- * Project Dependencies {{{./dependencies.html}Dependency Information}}.
+ * Test Result: {{{./surefire-report.html}Surefire test report}}.
+
+ * Javadoc: {{{./apidocs/index.html}Generated Javadoc}}.
+
+ * Source Code: {{{./xref/index.html}Cross-reference Java source code}}.
+
+ * Changelog: {{{./changelog.html}Changelog}}.
+
+ * Project Home: {{{https://hack23.github.io/cia/}Maven Site Documentation}}.
+
+ * GitHub: {{{https://github.com/Hack23/cia}GitHub Repository}}.

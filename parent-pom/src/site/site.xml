@@ -1,56 +1,45 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <project xmlns="http://maven.apache.org/DECORATION/1.7.0"
-	xsi:schemaLocation="http://maven.apache.org/DECORATION/1.7.0 http://maven.apache.org/xsd/decoration-1.7.0.xsd"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="${project.name}">
-	<skin>
-		<groupId>org.apache.maven.skins</groupId>
-		<artifactId>maven-fluido-skin</artifactId>
-		<version>1.11.0</version>
-	</skin>
+xsi:schemaLocation="http://maven.apache.org/DECORATION/1.7.0 http://maven.apache.org/xsd/decoration-1.7.0.xsd"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="${project.name}">
+<skin>
+.skins</groupId>
+-fluido-skin</artifactId>
+>1.11.0</version>
+</skin>
 
-	<custom>
-		<fluidoSkin>
-			<sideBarEnabled>true</sideBarEnabled>
-			<topBarEnabled>true</topBarEnabled>
-			<topBarIcon>
-				<name>Citizen Intelligence Agency</name>
-				<src>https://cia.sourceforge.io/cia-logo.png</src>
-				<href>https://cia.sourceforge.io/</href>
-			</topBarIcon>
+<custom>
+>
+abled>true</sideBarEnabled>
+abled>true</topBarEnabled>
+>
+ame>Citizen Intelligence Agency</name>
+ Intelligence Agency</alt>
+-intelligence-agency/cia-logo.png</src>
+>
 
-			<googleSearch>
-				<sitesearch />
-			</googleSearch>
+Orientation>right</ribbonOrientation>
+Color>gray</ribbonColor>
+>
+</custom>
 
-			<ohloh>
-				<projectId>citizenIntelligenceagency</projectId>
-				<widget>stats</widget>
-			</ohloh>
-		</fluidoSkin>
-	</custom>
+<bannerRight>
+ame>GitHub</name>
+le=social
+nerRight>
+<body>
+ks>
+name="GitHub" href="https://github.com/Hack23/cia" />
+name="PostgreSQL" href="https://www.postgresql.org/" />
+name="Maven" href="https://maven.apache.org/" />
+name="Hibernate" href="https://hibernate.org/orm/" />
+name="Spring Framework" href="https://spring.io/projects/spring-framework" />
+name="Vaadin" href="https://vaadin.com/" />
+name="Jetty Web Server" href="https://eclipse.dev/jetty/" />
+ks>
 
-
-	<bannerRight>
-		<name>SourceForge</name>
-		<src>
-            https://sourceforge.net/sflogo.php?group_id=115046&amp;type=2
-        </src>
-		<href>https://sourceforge.net</href>
-	</bannerRight>
-	<body>
-		<links>
-			<item name="Ubuntu Linux" href="http://www.ubuntu.com/download" />
-			<item name="PostgreSQL" href="http://www.postgresql.org/" />
-			<item name="Eclipse" href="http://www.eclipse.org/" />
-			<item name="Maven" href="http://maven.apache.org/" />
-			<item name="Hibernate" href="http://hibernate.org/orm/" />
-			<item name="Spring Framework" href="http://projects.spring.io/spring-framework/" />
-			<item name="Vaadin RIA Ajax" href="https://vaadin.com/download" />
-			<item name="Jetty Web Server" href="http://eclipse.org/jetty/" />
-		</links>
-
-		<menu ref="reports" />
-		<menu ref="parent" />
-		<menu ref="modules" />
-	</body>
+u ref="reports" />
+u ref="parent" />
+u ref="modules" />
+</body>
 </project>

@@ -1,65 +1,83 @@
 Developer Guide
 
- This developer's guide provides documentation on how to build,deploy & test the application.
- But also to encourage {{{http://en.wikipedia.org/wiki/Hacktivism}Hacktivism}} and give people enough knowledge
- on how to develop their own web applications using Maven, Hibernate, Spring & Vaadin.
+ This developer's guide provides documentation on how to build, deploy & test the application.
 
 Requirements
 
  To build and run the Citizen Intelligence Agency you need to install the following software.
 
- * Compiler & Runtime : JDK 16  {{{https://adoptopenjdk.net/}https://adoptopenjdk.net/}}.
+ * Compiler & Runtime : JDK 21+ {{{https://adoptium.net/}Eclipse Temurin}}.
 
- * Database : PostgreSQL 13.x {{{http://www.postgresql.org/}download}}
+ * Database : PostgreSQL 18 {{{https://www.postgresql.org/}download}}
 
- * Build System : Maven 3.8.1 {{{http://maven.apache.org/download.html}download}}
+ * Build System : Maven 3.9+ {{{https://maven.apache.org/download.html}download}}
 
- * Build tool : Ant 1.10.10 {{{http://ant.apache.org/bindownload.cgi}download}}
-
- * Documentation generation : Graphviz {{{http://www.graphviz.org/}homepage}}
+ * Documentation generation : Graphviz {{{https://www.graphviz.org/}homepage}}
 
 
 Getting the Source Code
 
- The source can be checked out anonymously from SVN with this command:
+ The source can be cloned from GitHub with this command:
 
  $ git clone https://github.com/Hack23/cia.git
 
 
-Setting up the postgresql database user
+Setting up the PostgreSQL database user
 
- The command below describes how you setup an database user that will be used by the application.
+ The command below describes how you setup a database user that will be used by the application.
 
- Use the commandline to access postgresql or through pgAdmin3.
+ Use the commandline to access PostgreSQL or through pgAdmin.
  > sudo su - postgres
  > psql
 
- postgres=# CREATE USER eris WITH password  'discord';
+ postgres=# CREATE USER eris WITH password 'discord';
 
  postgres=# CREATE DATABASE cia_dev;
 
  postgres=# GRANT ALL PRIVILEGES ON DATABASE cia_dev to eris;
 
-Build the application & run test
+Build the application & run tests
 
  Now everything should be ready for you to build the application,
- execute the following commands to build & run
+ execute the following commands to build & run:
 
 
- $ cd cia/citizen-intelligence-agency
+ $ cd cia
 
- $ ant clean-install-notest
+ $ mvn clean install
 
- $ ant run
-
-
-Test Citizen Intelligence Agency
-
- Now if everything has started successfully you should be able to view Citizen Intelligence Agency
- at http://localhost:8080/cia/
+ $ mvn clean install -DskipTests  (to skip tests)
 
 
-Eclipse development
+Run the application
 
- Install the latest version of Eclipse http://www.eclipse.org/downloads/packages/eclipse-ide-java-ee-developers/mars1 .
+ After building, deploy using the Debian package or run with an embedded server.
+ See the {{{https://github.com/Hack23/cia/blob/master/README.md}README}} for installation instructions.
 
+
+IDE development
+
+ Import the Maven project into your preferred IDE (IntelliJ IDEA, Eclipse, VS Code).
+ The project uses standard Maven conventions and should import cleanly.
+
+ Useful Maven commands for development:
+
+ $ mvn clean compile         (compile only)
+
+ $ mvn test                  (run unit tests)
+
+ $ mvn clean test jacoco:report  (tests with coverage)
+
+ $ mvn site                  (generate site documentation)
+
+Links
+
+ * {{{https://github.com/Hack23/cia}GitHub Repository}}
+
+ * {{{https://sonarcloud.io/summary/new_code?id=Hack23_cia}SonarCloud Quality Dashboard}}
+
+ * {{{https://hack23.github.io/cia/}Project Documentation}}
+
+ * {{{https://hack23.github.io/cia/apidocs/index.html}API Documentation (Javadoc)}}
+
+ * {{{https://hack23.github.io/cia/service.data.impl/hbm2doc/entities/index.html}Entity Model}}

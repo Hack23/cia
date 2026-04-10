@@ -1,13 +1,17 @@
 Project Documentation
 
- * Entity model {{{./hbm2doc/entities/index.html}Hbm2Doc}}.
+ * GitHub CI: {{{https://github.com/Hack23/cia/actions}GitHub Actions CI/CD}}.
 
- * Javadoc & UML {{{./apidocs/index.html}Generated javadoc with UML diagrams}}.
+ * Code Quality: {{{https://sonarcloud.io/summary/new_code?id=Hack23_cia}SonarCloud Quality Dashboard}}.
 
- * Changelog {{{./changelog.html}Changelog}}.
+ * Test Result: {{{./surefire-report.html}Surefire test report}}.
 
- * Source Code {{{./xref/index.html}Cross-reference Java source code}}.
+ * Javadoc: {{{./apidocs/index.html}Generated Javadoc}}.
 
- * Project Dependency Graph {{{./images/Project-Dependencies.png}Graph Image}}.
+ * Source Code: {{{./xref/index.html}Cross-reference Java source code}}.
 
- * Test Result {{{./surefire-report.html}Surefire test report}}.
+ * Changelog: {{{./changelog.html}Changelog}}.
+
+ * Project Home: {{{https://hack23.github.io/cia/}Maven Site Documentation}}.
+
+ * GitHub: {{{https://github.com/Hack23/cia}GitHub Repository}}.
