@@ -1,6 +1,12 @@
 DBA Guide
 
- This dba guide provides documentation on how to backup/restore the database.
+ This DBA guide provides documentation on how to manage the database.
+ See also {{{https://github.com/Hack23/cia/blob/master/service.data.impl/README-SCHEMA-MAINTENANCE.md}Schema Maintenance Guide}}.
+
+Database Setup
+
+ Follow the README installation instructions for database setup:
+ {{{https://github.com/Hack23/cia/blob/master/README.md}README}}
 
 Backup the database
 
@@ -14,3 +20,22 @@ Restore the database
  Restore the database with this command:
 
  $ psql -f cia_dev.sql -d cia_dev
+
+
+Schema Documentation
+
+ * Entity Model: {{{https://hack23.github.io/cia/service.data.impl/hbm2doc/entities/index.html}Hibernate Entity Model}}
+
+ * Database Docs: {{{https://hack23.github.io/cia/service.data.impl/dbDoc/index.html}Liquibase Database Documentation}}
+
+ * Data Model: {{{https://github.com/Hack23/cia/blob/master/DATA_MODEL.md}Data Model Documentation}}
+
+PostgreSQL Extensions
+
+ The application requires the following PostgreSQL extensions:
+
+ * pg_stat_statements - Query statistics
+
+ * pgaudit - Audit logging
+
+ * pgcrypto - Cryptographic functions

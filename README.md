@@ -942,6 +942,34 @@ For our future vision incorporating more advanced AI capabilities, see our [Futu
 [![Rivalry](https://img.shields.io/badge/Rivalry-Dominant_Advantage-darkblue?style=flat-square&logo=trophy&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#porters-five-forces)
 
 
+## 📖 Maven Site Documentation
+
+The complete Maven-generated project documentation is published at **[hack23.github.io/cia](https://hack23.github.io/cia/)** and includes:
+
+| Documentation | Description | Link |
+|---|---|---|
+| 📋 **Project Reports** | Maven site with all module reports, dependencies, and plugins | [Maven Site Home](https://hack23.github.io/cia/) |
+| 🗄️ **Entity Model (hbm2doc)** | Hibernate entity model documentation with entity relationships | [Entity Model](https://hack23.github.io/cia/service.data.impl/hbm2doc/entities/index.html) |
+| 📋 **API Documentation (Javadoc)** | Complete API reference for all modules | [Javadoc](https://hack23.github.io/cia/apidocs/index.html) |
+| 📦 **Package Dependencies** | Visual package dependency structure | [Package Dependencies](https://hack23.github.io/cia/apidocs/package-dependencies.svg) |
+| 🧪 **Test Reports** | Surefire test results and JaCoCo coverage | [JaCoCo Coverage](https://hack23.github.io/cia/jacoco/) |
+| 🏗️ **Architecture Overview** | System architecture diagrams and documentation | [Architecture](https://hack23.github.io/cia/architecture.html) |
+| 💾 **Database Documentation** | Liquibase database changelog documentation | [Database Docs](https://hack23.github.io/cia/service.data.impl/dbDoc/index.html) |
+
+### Key Module Documentation
+
+| Module | Description | Link |
+|---|---|---|
+| **citizen-intelligence-agency** | Main web application module | [Module Site](https://hack23.github.io/cia/citizen-intelligence-agency/) |
+| **service.data.impl** | Data access layer with entity model | [Module Site](https://hack23.github.io/cia/service.data.impl/) |
+| **service.impl** | Core service implementation | [Module Site](https://hack23.github.io/cia/service.impl/) |
+| **service.api** | Service API definitions | [Module Site](https://hack23.github.io/cia/service.api/) |
+| **service.external.riksdagen** | Swedish Parliament data integration | [Module Site](https://hack23.github.io/cia/service.external.riksdagen/) |
+| **service.external.worldbank** | World Bank data integration | [Module Site](https://hack23.github.io/cia/service.external.worldbank/) |
+| **service.external.val** | Swedish Election Authority integration | [Module Site](https://hack23.github.io/cia/service.external.val/) |
+| **service.external.esv** | ESV financial data integration | [Module Site](https://hack23.github.io/cia/service.external.esv/) |
+| **web-widgets** | UI widget components | [Module Site](https://hack23.github.io/cia/web-widgets/) |
+
 ## 📚 Related Documents
 
 ### 🏛️ Architecture & Design
@@ -950,8 +978,9 @@ For our future vision incorporating more advanced AI capabilities, see our [Futu
 - [🚀 Future Architecture Vision](FUTURE_MINDMAP.md) - AI-enhanced capabilities roadmap
 - [📊 Data Model](DATA_MODEL.md) - Database schema and entity relationships
 - [🗄️ Entity Model Documentation](https://hack23.github.io/cia/service.data.impl/hbm2doc/entities/index.html) - Detailed database entity reference
-- [📋 API Documentation](https://hack23.github.io/cia/apidocs/index.html) - Complete API reference
+- [📋 API Documentation (Javadoc)](https://hack23.github.io/cia/apidocs/index.html) - Complete API reference
 - [📦 Package Dependencies](https://hack23.github.io/cia/apidocs/package-dependencies.svg) - Visual code package structure
+- [📖 Full Maven Site](https://hack23.github.io/cia/) - Complete project documentation portal
 
 ### 🛡️ Security & Compliance
 - [🔐 Security Architecture](SECURITY_ARCHITECTURE.md) - Defense-in-depth security implementation

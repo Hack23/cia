@@ -12,40 +12,33 @@
       <sideBarEnabled>true</sideBarEnabled>    
       <topBarEnabled>true</topBarEnabled>
       <topBarIcon>
-        <name>cia sourceforge</name>
-        <alt>cia sourceforge</alt>
-        <src>https://cia.sourceforge.io/cia-logo.png</src>
-        <href>/index.html</href>
+        <name>Citizen Intelligence Agency</name>
+        <alt>Citizen Intelligence Agency</alt>
+        <src>https://hack23.github.io/cia/citizen-intelligence-agency/cia-logo.png</src>
+        <href>../index.html</href>
       </topBarIcon>
       
-      <googleSearch>
-        <sitesearch/>
-      </googleSearch>
-            
-      <ohloh>
-        <projectId>citizenIntelligenceagency</projectId>
-        <widget>stats</widget>
-      </ohloh>      
+      <gitHub>
+        <projectId>Hack23/cia</projectId>
+        <ribbonOrientation>right</ribbonOrientation>
+        <ribbonColor>gray</ribbonColor>
+      </gitHub>
    </fluidoSkin>
    </custom>
 
 	<bannerRight>
-		<name>SourceForge</name>
+		<name>GitHub</name>
 		<src>
-			https://sourceforge.net/sflogo.php?group_id=115046&amp;type=2
+			https://img.shields.io/github/stars/Hack23/cia?style=social
         </src>
-		<href>https://sourceforge.net</href>
+		<href>https://github.com/Hack23/cia</href>
 	</bannerRight>
     <body>
         <links>
+			<item name="GitHub" href="https://github.com/Hack23/cia" />
         </links>
 
         <menu ref="reports" /> <menu ref="parent" /><menu ref="modules" />        
-
-        <menu name="Data provided by">
-            <item name="http://data.riksdagen.se/"
-                href="http://data.riksdagen.se/" />        
-        </menu>                
     </body>
         
 </project>

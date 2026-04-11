@@ -12,141 +12,132 @@
       <sideBarEnabled>true</sideBarEnabled>    
       <topBarEnabled>true</topBarEnabled>
       <topBarIcon>
-        <name>cia sourceforge</name>
-        <alt>cia sourceforge</alt>
-        <src>https://cia.sourceforge.io/cia-logo.png</src>
-        <href>/index.html</href>
+        <name>Citizen Intelligence Agency</name>
+        <alt>Citizen Intelligence Agency</alt>
+        <src>cia-logo.png</src>
+        <href>index.html</href>
       </topBarIcon>
       
-      <googleSearch>
-        <sitesearch/>
-      </googleSearch>
-            
-      <ohloh>
-        <projectId>citizenIntelligenceagency</projectId>
-        <widget>stats</widget>
-      </ohloh>      
+      <gitHub>
+        <projectId>Hack23/cia</projectId>
+        <ribbonOrientation>right</ribbonOrientation>
+        <ribbonColor>gray</ribbonColor>
+      </gitHub>
    </fluidoSkin>
    </custom>
 
 	<bannerRight>
-		<name>SourceForge</name>
+		<name>GitHub</name>
 		<src>
-			https://sourceforge.net/sflogo.php?group_id=115046&amp;type=2
+			https://img.shields.io/github/stars/Hack23/cia?style=social
         </src>
-		<href>https://sourceforge.net</href>
+		<href>https://github.com/Hack23/cia</href>
 	</bannerRight>
 	<body>
 		<links>
-			<item name="Ubuntu Linux" href="http://www.ubuntu.com/download" />
-			<item name="PostgreSQL" href="http://www.postgresql.org/" />
-			<item name="Eclipse" href="http://www.eclipse.org/" />
-			<item name="Maven" href="http://maven.apache.org/" />
-			<item name="Hibernate" href="http://hibernate.org/orm/" />
-			<item name="Spring Framework" href="http://projects.spring.io/spring-framework/" />
-			<item name="Vaadin RIA Ajax" href="https://vaadin.com/download" />
-			<item name="Jetty Web Server" href="http://eclipse.org/jetty/" />
+			<item name="GitHub" href="https://github.com/Hack23/cia" />
+			<item name="PostgreSQL" href="https://www.postgresql.org/" />
+			<item name="Maven" href="https://maven.apache.org/" />
+			<item name="Hibernate" href="https://hibernate.org/orm/" />
+			<item name="Spring Framework" href="https://spring.io/projects/spring-framework" />
+			<item name="Vaadin" href="https://vaadin.com/" />
+			<item name="Jetty Web Server" href="https://eclipse.dev/jetty/" />
 		</links>
 
 		<menu ref="reports" />
 
+		<menu name="Project Documentation">
+			<item name="Architecture Overview" href="architecture.html" />
+			<item name="Developer Guide" href="developer.html" />
+			<item name="DBA Guide" href="dba.html" />
+			<item name="Entity Model (hbm2doc)" href="https://hack23.github.io/cia/service.data.impl/hbm2doc/entities/index.html" />
+			<item name="Database Docs (Liquibase)" href="https://hack23.github.io/cia/service.data.impl/dbDoc/index.html" />
+			<item name="API Documentation (Javadoc)" href="https://hack23.github.io/cia/apidocs/index.html" />
+		</menu>
+
 		<menu name="Project Modules">
 			<item name="cia-dist-deb" href="https://hack23.github.io/cia/cia-dist-deb/" />
-			<item name="cia-dist-cloudformation" href="https://hack23.github.io/cia/cia-dist-cloudformation/" />					
+			<item name="cia-dist-cloudformation" href="https://hack23.github.io/cia/cia-dist-cloudformation/" />
 			<item name="Parent Pom" href="https://hack23.github.io/cia/parent-pom/" />
 			<item name="Parent Model Pom" href="https://hack23.github.io/cia/parent-model-pom/" />
 			<item name="Parent Model JPA2 Pom" href="https://hack23.github.io/cia/parent-model-jpa2-pom/" />
-			<item name="Parent Model Internal Pom"
-				href="https://hack23.github.io/cia/parent-model-internal-pom/" />
-			<item name="Parent Model External Pom"
-				href="https://hack23.github.io/cia/parent-model-external-pom/" />
+			<item name="Parent Model Internal Pom" href="https://hack23.github.io/cia/parent-model-internal-pom/" />
+			<item name="Parent Model External Pom" href="https://hack23.github.io/cia/parent-model-external-pom/" />
 			<item name="Parent Service Pom" href="https://hack23.github.io/cia/parent-service-pom/" />
 			<item name="Parent Web Pom" href="https://hack23.github.io/cia/parent-web-pom/" />
-
 			<item name="Web Widgets" href="https://hack23.github.io/cia/web-widgets/" />
-
 			<item name="Service.Api" href="https://hack23.github.io/cia/service.api/" />
-
 			<item name="Service.Impl" href="https://hack23.github.io/cia/service.impl/" />
 			<item name="jms-broker" href="https://hack23.github.io/cia/jms-broker/" />
-
-			<item name="Service.Component.Agent.Api"
-				href="https://hack23.github.io/cia/service.component.agent.api/" />
-			<item name="Service.Component.Agent.Impl"
-				href="https://hack23.github.io/cia/service.component.agent.impl/" />
-
+			<item name="Service.Component.Agent.Api" href="https://hack23.github.io/cia/service.component.agent.api/" />
+			<item name="Service.Component.Agent.Impl" href="https://hack23.github.io/cia/service.component.agent.impl/" />
 			<item name="service.external.common" href="https://hack23.github.io/cia/service.external.common/" />
-			<item name="service.external.worldbank"
-				href="https://hack23.github.io/cia/service.external.worldbank/" />
-			<item name="service.external.riksdagen"
-				href="https://hack23.github.io/cia/service.external.riksdagen/" />
+			<item name="service.external.worldbank" href="https://hack23.github.io/cia/service.external.worldbank/" />
+			<item name="service.external.riksdagen" href="https://hack23.github.io/cia/service.external.riksdagen/" />
 			<item name="service.external.val" href="https://hack23.github.io/cia/service.external.val/" />
-			<item name="service.external.esv" href="https://hack23.github.io/cia/service.external.esv/" />			
-			<item name="service.external.vdem(deprecated)" href="https://hack23.github.io/cia/service.external.vdem/" />
-
+			<item name="service.external.esv" href="https://hack23.github.io/cia/service.external.esv/" />
 			<item name="Service.Data.Api" href="https://hack23.github.io/cia/service.data.api/" />
 			<item name="Service.Data.Impl" href="https://hack23.github.io/cia/service.data.impl/" />
-
 			<item name="model.common.api" href="https://hack23.github.io/cia/model.common.api/" />
 			<item name="model.common.impl" href="https://hack23.github.io/cia/model.common.impl/" />
-
 			<item name="model.internal.application.user.impl" href="https://hack23.github.io/cia/model.internal.application.user.impl/" />
-			<item name="model.internal.application" href="https://hack23.github.io/cia/model.internal.application" />
-
-			<item name="model.external.worldbank"
-				href="https://hack23.github.io/cia/model.external.worldbank/" />
-			<item name="worldbank.countries.impl"
-				href="https://hack23.github.io/cia/model.external.worldbank.countries.impl/" />
-			<item name="worldbank.indicators.impl"
-				href="https://hack23.github.io/cia/model.external.worldbank.indicators.impl/" />
-			<item name="worldbank.data.impl"
-				href="https://hack23.github.io/cia/model.external.worldbank.data.impl/" />
-
-			<item name="vdem.indicators.impl"
-				href="https://hack23.github.io/cia/model.external.vdem.indicators.impl/" />
-
-
+			<item name="model.internal.application" href="https://hack23.github.io/cia/model.internal.application/" />
+			<item name="model.external.worldbank" href="https://hack23.github.io/cia/model.external.worldbank/" />
+			<item name="worldbank.countries.impl" href="https://hack23.github.io/cia/model.external.worldbank.countries.impl/" />
+			<item name="worldbank.indicators.impl" href="https://hack23.github.io/cia/model.external.worldbank.indicators.impl/" />
+			<item name="worldbank.data.impl" href="https://hack23.github.io/cia/model.external.worldbank.data.impl/" />
+			<item name="worldbank.topic.impl" href="https://hack23.github.io/cia/model.external.worldbank.topic.impl/" />
 			<item name="model.external.val" href="https://hack23.github.io/cia/model.external.val/" />
-			<item name="val.partier.impl"
-				href="https://hack23.github.io/cia/model.external.val.partier.impl/" />
-			<item name="val.riksdagsvalkrets.impl"
-				href="https://hack23.github.io/cia/model.external.val.riksdagsvalkrets.impl/" />
-			<item name="val.landstingvalkrets.impl"
-				href="https://hack23.github.io/cia/model.external.val.landstingvalkrets.impl/" />
-			<item name="val.kommunvalkrets.impl"
-				href="https://hack23.github.io/cia/model.external.val.kommunvalkrets.impl/" />
-
-			<item name="model.external.riksdagen"
-				href="https://hack23.github.io/cia/model.external.riksdagen/" />
-			<item name="riksdagen.dokumentstatus.impl"
-				href="https://hack23.github.io/cia/model.external.riksdagen.dokumentstatus.impl/" />
-			<item name="riksdagen.dokumentlista.impl"
-				href="https://hack23.github.io/cia/model.external.riksdagen.dokumentlista.impl/" />
-			<item name="riksdagen.documentcontent.impl"
-				href="https://hack23.github.io/cia/model.external.riksdagen.documentcontent.impl/" />
-
-			<item name="riksdagen.personlista.impl"
-				href="https://hack23.github.io/cia/model.external.riksdagen.personlista.impl/" />
-			<item name="riksdagen.person.impl"
-				href="https://hack23.github.io/cia/model.external.riksdagen.person.impl/" />
-			<item name="riksdagen.utskottsforslag.impl"
-				href="https://hack23.github.io/cia/model.external.riksdagen.utskottsforslag.impl/" />
-			<item name="riksdagen.voteringlista.impl"
-				href="https://hack23.github.io/cia/model.external.riksdagen.voteringlista.impl/" />
-			<item name="riksdagen.votering.impl"
-				href="https://hack23.github.io/cia/model.external.riksdagen.votering.impl/" />
-
-
+			<item name="val.partier.impl" href="https://hack23.github.io/cia/model.external.val.partier.impl/" />
+			<item name="val.riksdagsvalkrets.impl" href="https://hack23.github.io/cia/model.external.val.riksdagsvalkrets.impl/" />
+			<item name="val.landstingvalkrets.impl" href="https://hack23.github.io/cia/model.external.val.landstingvalkrets.impl/" />
+			<item name="val.kommunvalkrets.impl" href="https://hack23.github.io/cia/model.external.val.kommunvalkrets.impl/" />
+			<item name="model.external.riksdagen" href="https://hack23.github.io/cia/model.external.riksdagen/" />
+			<item name="riksdagen.dokumentstatus.impl" href="https://hack23.github.io/cia/model.external.riksdagen.dokumentstatus.impl/" />
+			<item name="riksdagen.dokumentlista.impl" href="https://hack23.github.io/cia/model.external.riksdagen.dokumentlista.impl/" />
+			<item name="riksdagen.documentcontent.impl" href="https://hack23.github.io/cia/model.external.riksdagen.documentcontent.impl/" />
+			<item name="riksdagen.personlista.impl" href="https://hack23.github.io/cia/model.external.riksdagen.personlista.impl/" />
+			<item name="riksdagen.person.impl" href="https://hack23.github.io/cia/model.external.riksdagen.person.impl/" />
+			<item name="riksdagen.utskottsforslag.impl" href="https://hack23.github.io/cia/model.external.riksdagen.utskottsforslag.impl/" />
+			<item name="riksdagen.voteringlista.impl" href="https://hack23.github.io/cia/model.external.riksdagen.voteringlista.impl/" />
+			<item name="riksdagen.votering.impl" href="https://hack23.github.io/cia/model.external.riksdagen.votering.impl/" />
 			<item name="testfoundation" href="https://hack23.github.io/cia/testfoundation/" />
 		</menu>
-		<menu name="Legacy Demo Documentation">
-			<item name="Legacy-1.0-demo branch" href="https://cia.sourceforge.io/legacy/" />
+
+		<menu name="Quality and Security">
+			<item name="SonarCloud Dashboard" href="https://sonarcloud.io/summary/new_code?id=Hack23_cia" />
+			<item name="OpenSSF Scorecard" href="https://scorecard.dev/viewer/?uri=github.com/Hack23/cia" />
+			<item name="GitHub Security" href="https://github.com/Hack23/cia/security" />
+			<item name="ISMS-PUBLIC" href="https://github.com/Hack23/ISMS-PUBLIC" />
 		</menu>
 
-		<menu name="Documentation [Development]">
-			<item name="Developer Guide" href="developer.html" />
-			<item name="DBA Guide" href="dba.html" />
-			<item name="Architecture Overview" href="architecture.html" />						
+		<menu name="Hack23 Live Services">
+			<item name="🌐 hack23.com" href="https://hack23.com/" />
+			<item name="🗳️ riksdagsmonitor.com" href="https://riksdagsmonitor.com/" />
+			<item name="🇪🇺 euparliamentmonitor.com" href="https://euparliamentmonitor.com/" />
+			<item name="🔐 ciacompliancemanager.com" href="https://ciacompliancemanager.com/" />
+			<item name="🔥 blacktrigram.com" href="https://blacktrigram.com/" />
+			<item name="📖 Discordian Cybersecurity Blog" href="https://hack23.com/blog.html" />
+		</menu>
+
+		<menu name="Hack23 Projects">
+			<item name="🔐 ISMS-PUBLIC" href="https://github.com/Hack23/ISMS-PUBLIC" />
+			<item name="🗳️ Riksdagsmonitor" href="https://github.com/Hack23/riksdagsmonitor" />
+			<item name="🇪🇺 EU Parliament Monitor" href="https://github.com/Hack23/euparliamentmonitor" />
+			<item name="🔌 EU Parliament MCP Server" href="https://github.com/Hack23/European-Parliament-MCP-Server" />
+			<item name="🔍 Citizen Intelligence Agency" href="https://github.com/Hack23/cia" />
+			<item name="🔐 CIA Compliance Manager" href="https://github.com/Hack23/cia-compliance-manager" />
+			<item name="🔥 Black Trigram" href="https://github.com/Hack23/blacktrigram" />
+			<item name="🎮 Game Template" href="https://github.com/Hack23/game" />
+			<item name="☁️ Lambda in Private VPC" href="https://github.com/Hack23/lambda-in-private-vpc" />
+			<item name="🧪 Sonar CloudFormation Plugin" href="https://github.com/Hack23/sonar-cloudformation-plugin" />
+		</menu>
+
+		<menu name="Project Links">
+			<item name="GitHub Repository" href="https://github.com/Hack23/cia" />
+			<item name="GitHub Releases" href="https://github.com/Hack23/cia/releases" />
+			<item name="GitHub Issues" href="https://github.com/Hack23/cia/issues" />
+			<item name="Hack23 Website" href="https://www.hack23.com/" />
 		</menu>
 	</body>
 

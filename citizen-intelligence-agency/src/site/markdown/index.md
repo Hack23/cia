@@ -15,9 +15,9 @@ The Citizen Intelligence Agency is a volunteer-driven, open-source intelligence 
 
 The project relies on open data from various sources, including:
 
-- [Swedish Parliament Open Data](http://data.riksdagen.se/): Offers a wide range of data related to the Swedish Parliament, including members, committees, and documents.
-- [Swedish Election Authority](http://www.val.se/): Provides information on election processes, results, and political parties in Sweden.
-- [World Bank Open Data](http://data.worldbank.org/): Contains global development data, including economic indicators and demographic information.
+- [Swedish Parliament Open Data](https://data.riksdagen.se/): Offers a wide range of data related to the Swedish Parliament, including members, committees, and documents.
+- [Swedish Election Authority](https://www.val.se/): Provides information on election processes, results, and political parties in Sweden.
+- [World Bank Open Data](https://data.worldbank.org/): Contains global development data, including economic indicators and demographic information.
 - [Swedish National Financial Management Authority (ESV) Public Sector Information (PSI) Data](https://www.esv.se/): Offers data on government finances, economic trends, and public sector operations in Sweden.
 
 ## Badges
@@ -47,13 +47,63 @@ The project relies on open data from various sources, including:
 
 ## Resources
 
-- [Project Documentation](http://hack23.github.io/cia/)
+- [Project Documentation (Maven Site)](https://hack23.github.io/cia/) - Complete Maven-generated project documentation
 - [Features of the CIA Project](https://hack23.com/#features) This document showcases the extensive features, providing detailed screenshots of dashboards, scoreboards, and critical analytics. The focus is on transparency, accountability, and data-driven decision-making in Sweden’s political ecosystem.
-- [Project Architecture](http://hack23.github.io/cia/architecture.html) - Delve into the architecture of the Citizen Intelligence Agency. This overview provides a look at the enterprise context, system context, system containers, web application components, deployment strategy, and AWS account structure of the project.
+- [Project Architecture](https://hack23.github.io/cia/architecture.html) - Delve into the architecture of the Citizen Intelligence Agency. This overview provides a look at the enterprise context, system context, system containers, web application components, deployment strategy, and AWS account structure of the project.
 - [Entity Model](https://hack23.github.io/cia/service.data.impl/hbm2doc/entities/index.html) - Explore our Entity Model which provides a detailed look at the entities in our system and their relationships. This page is particularly useful for understanding the data structure of our project.
 - [Api docs](https://hack23.github.io/cia/apidocs/index.html) - Access the API documentation for the Citizen Intelligence Agency project. This documentation provides a detailed view of the various packages within the system, helping developers understand and work with the project's API.
 - [FinancialSecurityPlan.md](https://github.com/Hack23/cia/blob/master/FinancialSecurityPlan.md) - This financial plan provides a structured and cost-efficient deployment for your application infrastructure in the AWS eu-west-1 (Ireland) region. It integrates key components of scalability, security, and resilience to support critical workloads while maintaining budgetary control
 - [End-of-Life-Strategy.md](https://github.com/Hack23/cia/blob/master/End-of-Life-Strategy.md) Project End-of-Life (EOL) Strategy
+
+---
+
+## Hack23 Live Services
+
+| Service | Domain | Description |
+|---------|--------|-------------|
+| 🌐 **Hack23** | **[hack23.com](https://hack23.com/)** | Main website — cybersecurity consulting, project portfolio, and security blog |
+| 🗳️ **Riksdagsmonitor** | **[riksdagsmonitor.com](https://riksdagsmonitor.com/)** | Swedish Parliament Intelligence Platform — real-time analysis and 50+ years of historical data (1971-2024) |
+| 🇪🇺 **EU Parliament Monitor** | **[euparliamentmonitor.com](https://euparliamentmonitor.com/)** | European Parliament Intelligence Platform — automated multi-language news with 14-language support |
+| 🔐 **CIA Compliance Manager** | **[ciacompliancemanager.com](https://ciacompliancemanager.com/)** | Live demo — CIA triad security assessment with business impact analysis and compliance mapping (NIST, ISO, GDPR, HIPAA, SOC2) |
+| 🔥 **Black Trigram** | **[blacktrigram.com](https://blacktrigram.com/)** | Realistic 2D precision combat simulator inspired by traditional Korean martial arts |
+| 📖 **Security Blog** | **[hack23.com/blog.html](https://hack23.com/blog.html)** | 30+ Discordian Cybersecurity posts — ISMS policies and cybersecurity best practices |
+
+---
+
+## Hack23 Projects
+
+### 🔐 Commitment to Transparency and Security
+
+At Hack23 AB, we believe that true security comes through transparency and demonstrable practices. Our Information Security Management System (ISMS) is publicly available, showcasing our commitment to security excellence and organizational transparency.
+
+- **[ISMS-PUBLIC](https://github.com/Hack23/ISMS-PUBLIC)** — Complete ISMS framework available for review
+- **[Discordian Cybersecurity](https://hack23.com/discordian-cybersecurity.html)** — Explore information security through the unique Discordian lens
+
+### 🗳️ Political Intelligence Platforms
+
+| Project | Description | Live Service | Links |
+|---------|-------------|-------------|-------|
+| **[Riksdagsmonitor](https://github.com/Hack23/riksdagsmonitor)** | Swedish Parliament Intelligence Platform monitoring political activity with real-time analysis and 50+ years of historical data | [riksdagsmonitor.com](https://riksdagsmonitor.com/) | [![OpenSSF](https://api.securityscorecards.dev/projects/github.com/Hack23/riksdagsmonitor/badge)](https://scorecard.dev/viewer/?uri=github.com/Hack23/riksdagsmonitor) |
+| **[EU Parliament Monitor](https://github.com/Hack23/euparliamentmonitor)** | Automated multi-language news platform monitoring EU Parliament activities with 14-language support | [euparliamentmonitor.com](https://euparliamentmonitor.com/) | [![OpenSSF](https://api.securityscorecards.dev/projects/github.com/Hack23/euparliamentmonitor/badge)](https://scorecard.dev/viewer/?uri=github.com/Hack23/euparliamentmonitor) |
+| **[EU Parliament MCP Server](https://github.com/Hack23/European-Parliament-MCP-Server)** | Model Context Protocol Server providing AI assistants with structured access to European Parliament Open Data | [npm](https://www.npmjs.com/package/european-parliament-mcp-server) | [![OpenSSF](https://api.securityscorecards.dev/projects/github.com/Hack23/European-Parliament-MCP-Server/badge)](https://scorecard.dev/viewer/?uri=github.com/Hack23/European-Parliament-MCP-Server) |
+| **[Citizen Intelligence Agency](https://github.com/Hack23/cia)** | Political transparency platform monitoring Swedish political activity with data-driven insights and analytics | — | [![OpenSSF](https://api.securityscorecards.dev/projects/github.com/Hack23/cia/badge)](https://scorecard.dev/viewer/?uri=github.com/Hack23/cia) |
+
+### 🔒 Security and Compliance Tools
+
+| Project | Description | Live Service | Links |
+|---------|-------------|-------------|-------|
+| **[CIA Compliance Manager](https://github.com/Hack23/cia-compliance-manager)** | Security assessment platform for the CIA triad with business impact analysis and compliance mapping to NIST, ISO, GDPR, HIPAA, SOC2 | [ciacompliancemanager.com](https://ciacompliancemanager.com/) | [![OpenSSF](https://api.securityscorecards.dev/projects/github.com/Hack23/cia-compliance-manager/badge)](https://scorecard.dev/viewer/?uri=github.com/Hack23/cia-compliance-manager) |
+| **[Sonar CloudFormation Plugin](https://github.com/Hack23/sonar-cloudformation-plugin)** | SonarQube plugin for analyzing AWS CloudFormation templates with security best practices based on NIST, CWE, and ISO standards | [Maven Central](https://mvnrepository.com/artifact/com.hack23.sonar/sonar-cloudformation-plugin) | [![OpenSSF](https://api.securityscorecards.dev/projects/github.com/Hack23/sonar-cloudformation-plugin/badge)](https://scorecard.dev/viewer/?uri=github.com/Hack23/sonar-cloudformation-plugin) |
+
+### 🛠️ Infrastructure and Development Tools
+
+| Project | Description | Live Service | Links |
+|---------|-------------|-------------|-------|
+| **[Lambda in Private VPC](https://github.com/Hack23/lambda-in-private-vpc)** | Enterprise-grade multi-region active/active architecture with near-zero recovery time and AWS Resilience Hub compliance | — | [![OpenSSF](https://api.securityscorecards.dev/projects/github.com/Hack23/lambda-in-private-vpc/badge)](https://scorecard.dev/viewer/?uri=github.com/Hack23/lambda-in-private-vpc) |
+| **[Game Template](https://github.com/Hack23/game)** | Secure game development template with React, TypeScript, Three.js, and Vite — built with security-first principles | — | [![OpenSSF](https://api.securityscorecards.dev/projects/github.com/Hack23/game/badge)](https://scorecard.dev/viewer/?uri=github.com/Hack23/game) |
+| **[Black Trigram](https://github.com/Hack23/blacktrigram)** | Realistic 2D precision combat simulator inspired by traditional Korean martial arts | [blacktrigram.com](https://blacktrigram.com/) | [![OpenSSF](https://api.securityscorecards.dev/projects/github.com/Hack23/blacktrigram/badge)](https://scorecard.dev/viewer/?uri=github.com/Hack23/blacktrigram) |
+
+---
 
 ## Reporting Security Issues
 
@@ -72,10 +122,10 @@ This document provides a high-level overview of the key technologies used within
 | **Data Auditing**                | [Javers](https://javers.org/)                                                                                                                                                                                                                                                              |
 | **Business Rules Engine**        | [Drools](https://www.drools.org/)                                                                                                                                                                                                                                                          |
 | **Messaging**                    | [ActiveMQ Artemis](https://activemq.apache.org/components/artemis/), [Spring JMS](https://spring.io/projects/spring-framework)                                                                                                                                                              |
-| **Web/UI Layer**                 | [Vaadin](https://vaadin.com/), [Vaadin Sass Compiler](http://vaadin.com/), [Vaadin Themes](https://vaadin.com/)                                                                                                                                                                            |
+| **Web/UI Layer**                 | [Vaadin](https://vaadin.com/), [Vaadin Sass Compiler](https://vaadin.com/), [Vaadin Themes](https://vaadin.com/)                                                                                                                                                                            |
 | **Monitoring**                   | [JavaMelody](https://github.com/javamelody/javamelody), [AWS SDK for CloudWatch](https://aws.amazon.com/cloudwatch/)                                                                                                                                                                       |
 | **Testing**                      | [JUnit](https://junit.org/), [Mockito](https://site.mockito.org/), [Spring Test](https://docs.spring.io/spring-framework/docs/current/reference/html/testing.html), [Selenium WebDriver](https://www.selenium.dev/documentation/en/webdriver/)                                                |
-| **Utilities**                    | [Apache Commons](https://commons.apache.org/), [Google Guava](https://guava.dev/), [SLF4J](http://www.slf4j.org/), [Logback](https://logback.qos.ch/), [Jackson](https://github.com/FasterXML/jackson)                                                                                       |
+| **Utilities**                    | [Apache Commons](https://commons.apache.org/), [Google Guava](https://guava.dev/), [SLF4J](https://www.slf4j.org/), [Logback](https://logback.qos.ch/), [Jackson](https://github.com/FasterXML/jackson)                                                                                       |
 | **Build & Dependency Management**| [Maven](https://maven.apache.org/)                                                                                                                                                                                                                                                         |
 
 ### Stack Summary
