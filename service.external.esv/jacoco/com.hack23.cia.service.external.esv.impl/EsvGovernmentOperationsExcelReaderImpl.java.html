@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EsvGovernmentOperationsExcelReaderImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.external.esv</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.external.esv.impl</a> &gt; <span class="el_source">EsvGovernmentOperationsExcelReaderImpl.java</span></div><h1>EsvGovernmentOperationsExcelReaderImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010 James Pether Sörling
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EsvGovernmentOperationsExcelReaderImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.external.esv</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.external.esv.impl</a> &gt; <span class="el_source">EsvGovernmentOperationsExcelReaderImpl.java</span></div><h1>EsvGovernmentOperationsExcelReaderImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2025 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -39,22 +39,22 @@ final class EsvGovernmentOperationsExcelReaderImpl implements EsvGovernmentOpera
 
 	/** The Constant STATUS_CELL. */
 	private static final int STATUS_CELL = 5;
-	
+
 	/** The Constant PERCENTAGE_CHANGE_PREVIOUS_CELL. */
 	private static final int PERCENTAGE_CHANGE_PREVIOUS_CELL = 3;
-	
+
 	/** The Constant PERCENTAGE_CHANGE_SAME_CELL. */
 	private static final int PERCENTAGE_CHANGE_SAME_CELL = 4;
-	
+
 	/** The Constant PERIOD_CELL. */
 	private static final int PERIOD_CELL = 1;
-	
+
 	/** The Constant VARIABLE_CELL. */
 	private static final int VARIABLE_CELL = 0;
-	
+
 	/** The Constant VALUE_CELL. */
 	private static final int VALUE_CELL = 2;
-	
+
 	/** The Constant ROW_LENGTH. */
 	private static final int ROW_LENGTH = 6;
 
@@ -67,41 +67,42 @@ final class EsvGovernmentOperationsExcelReaderImpl implements EsvGovernmentOpera
 
 	private static XSSFWorkbook createGovermentOperationsWorkBook() throws IOException {
 <span class="fc" id="L69">		return new XSSFWorkbook(EsvGovernmentOperationsExcelReaderImpl.class</span>
-<span class="fc" id="L70">				.getResourceAsStream(&quot;/central-government-operations-sddsplus-february-2018.xlsx&quot;));</span>
+<span class="fc" id="L70">				.getResourceAsStream(&quot;/sdds-plus-august-20202.xlsx&quot;));</span>
 	}
 
+	@SuppressWarnings(&quot;rawtypes&quot;)
 	@Override
 	public List&lt;GovernmentOperationPeriodOutcome&gt; getReport() throws IOException {
-<span class="fc" id="L75">		final List&lt;GovernmentOperationPeriodOutcome&gt; result = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L76">		final XSSFWorkbook wb = createGovermentOperationsWorkBook();</span>
+<span class="fc" id="L76">		final List&lt;GovernmentOperationPeriodOutcome&gt; result = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L77">		final XSSFWorkbook wb = createGovermentOperationsWorkBook();</span>
 
-<span class="fc" id="L78">		final XSSFSheet sheet = wb.getSheetAt(0);</span>
+<span class="fc" id="L79">		final XSSFSheet sheet = wb.getSheetAt(0);</span>
 		XSSFRow row;
 
-<span class="fc" id="L81">		final Iterator rows = sheet.rowIterator();</span>
+<span class="fc" id="L82">		final Iterator rows = sheet.rowIterator();</span>
 
-<span class="fc bfc" id="L83" title="All 2 branches covered.">		while (rows.hasNext()) {</span>
-<span class="fc" id="L84">			row = (XSSFRow) rows.next();</span>
+<span class="fc bfc" id="L84" title="All 2 branches covered.">		while (rows.hasNext()) {</span>
+<span class="fc" id="L85">			row = (XSSFRow) rows.next();</span>
 
-<span class="fc bfc" id="L86" title="All 4 branches covered.">			if (row.getLastCellNum() == ROW_LENGTH &amp;&amp; row.getCell(VALUE_CELL).getCellType() == CellType.NUMERIC) {</span>
-<span class="fc" id="L87">				final GovernmentOperationPeriodOutcome governmentOperationPeriodOutcome = new GovernmentOperationPeriodOutcome();</span>
+<span class="fc bfc" id="L87" title="All 4 branches covered.">			if (row.getLastCellNum() == ROW_LENGTH &amp;&amp; row.getCell(VALUE_CELL).getCellType() == CellType.NUMERIC) {</span>
+<span class="fc" id="L88">				final GovernmentOperationPeriodOutcome governmentOperationPeriodOutcome = new GovernmentOperationPeriodOutcome();</span>
 
-<span class="fc" id="L89">				governmentOperationPeriodOutcome.setVariableName(row.getCell(VARIABLE_CELL).getStringCellValue());</span>
-<span class="fc" id="L90">				governmentOperationPeriodOutcome.setPeriod(row.getCell(PERIOD_CELL).getStringCellValue());</span>
+<span class="fc" id="L90">				governmentOperationPeriodOutcome.setVariableName(row.getCell(VARIABLE_CELL).getStringCellValue());</span>
+<span class="fc" id="L91">				governmentOperationPeriodOutcome.setPeriod(row.getCell(PERIOD_CELL).getStringCellValue());</span>
 
-<span class="fc" id="L92">				governmentOperationPeriodOutcome.setValue(row.getCell(VALUE_CELL).getNumericCellValue());</span>
-<span class="fc" id="L93">				governmentOperationPeriodOutcome</span>
-<span class="fc" id="L94">						.setPercentageChangeFromPreviousToLatest(row.getCell(PERCENTAGE_CHANGE_PREVIOUS_CELL).getNumericCellValue());</span>
-<span class="fc" id="L95">				governmentOperationPeriodOutcome</span>
-<span class="fc" id="L96">						.setPercentageChangeFromSamePeriodLastYearToLatest(row.getCell(PERCENTAGE_CHANGE_SAME_CELL).getNumericCellValue());</span>
+<span class="fc" id="L93">				governmentOperationPeriodOutcome.setValue(row.getCell(VALUE_CELL).getNumericCellValue());</span>
+<span class="fc" id="L94">				governmentOperationPeriodOutcome</span>
+<span class="fc" id="L95">						.setPercentageChangeFromPreviousToLatest(row.getCell(PERCENTAGE_CHANGE_PREVIOUS_CELL).getNumericCellValue());</span>
+<span class="fc" id="L96">				governmentOperationPeriodOutcome</span>
+<span class="fc" id="L97">						.setPercentageChangeFromSamePeriodLastYearToLatest(row.getCell(PERCENTAGE_CHANGE_SAME_CELL).getNumericCellValue());</span>
 
-<span class="fc" id="L98">				governmentOperationPeriodOutcome.setObservationStatus(row.getCell(STATUS_CELL).getStringCellValue());</span>
+<span class="fc" id="L99">				governmentOperationPeriodOutcome.setObservationStatus(row.getCell(STATUS_CELL).getStringCellValue());</span>
 
-<span class="fc" id="L100">				result.add(governmentOperationPeriodOutcome);</span>
-<span class="fc" id="L101">			}</span>
+<span class="fc" id="L101">				result.add(governmentOperationPeriodOutcome);</span>
+<span class="fc" id="L102">			}</span>
 		}
-<span class="fc" id="L103">		return result;</span>
+<span class="fc" id="L104">		return result;</span>
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

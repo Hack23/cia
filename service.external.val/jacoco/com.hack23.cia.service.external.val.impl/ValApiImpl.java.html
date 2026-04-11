@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ValApiImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.external.val</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.external.val.impl</a> &gt; <span class="el_source">ValApiImpl.java</span></div><h1>ValApiImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010 James Pether Sörling
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ValApiImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.external.val</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.external.val.impl</a> &gt; <span class="el_source">ValApiImpl.java</span></div><h1>ValApiImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2025 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -23,8 +23,6 @@ import java.util.List;
 
 import javax.xml.bind.JAXBElement;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.oxm.Unmarshaller;
@@ -50,9 +48,6 @@ import com.hack23.cia.service.external.val.api.ValApiException;
  */
 @Component
 final class ValApiImpl implements ValApi {
-
-	/** The Constant LOGGER. */
-<span class="fc" id="L55">	private static final Logger LOGGER = LoggerFactory.getLogger(ValApiImpl.class);</span>
 
 	/** The xml agent. */
 	@Autowired
@@ -86,87 +81,87 @@ final class ValApiImpl implements ValApi {
 	 */
 	@Autowired
 	public ValApiImpl(final XmlAgent xmlAgent) {
-<span class="fc" id="L89">		super();</span>
-<span class="fc" id="L90">		this.xmlAgent = xmlAgent;</span>
-<span class="fc" id="L91">	}</span>
+<span class="fc" id="L84">		super();</span>
+<span class="fc" id="L85">		this.xmlAgent = xmlAgent;</span>
+<span class="fc" id="L86">	}</span>
 
+	@SuppressWarnings(&quot;unchecked&quot;)
 	@Override
 	public List&lt;SwedenElectionType&gt; getElectionTypes() throws ValApiException {
 
 		try {
-<span class="fc" id="L97">			final URL resource = ValApiImpl.class.getResource(&quot;/partier20151217.xml&quot;);</span>
-<span class="fc" id="L98">			return ((JAXBElement&lt;SwedenElectionTypeContainerElement&gt;) xmlAgent.unmarshallXml(valPartierMarshaller,</span>
-<span class="fc" id="L99">					resource.toString(), &quot;http://partier.val.external.model.cia.hack23.com/impl&quot;, null, null))</span>
-<span class="fc" id="L100">							.getValue().getElectionTypes();</span>
-<span class="fc" id="L101">		} catch (final XmlAgentException e) {</span>
-<span class="fc" id="L102">			LOGGER.warn(&quot;Problem getElectionTypes&quot;, e);</span>
-<span class="fc" id="L103">			throw new ValApiException(e);</span>
+<span class="fc" id="L93">			final URL resource = ValApiImpl.class.getResource(&quot;/partier20151217.xml&quot;);</span>
+<span class="fc" id="L94">			return ((JAXBElement&lt;SwedenElectionTypeContainerElement&gt;) xmlAgent.unmarshallXml(valPartierMarshaller,</span>
+<span class="fc" id="L95">					resource.toString(), &quot;http://partier.val.external.model.cia.hack23.com/impl&quot;, null, null))</span>
+<span class="fc" id="L96">							.getValue().getElectionTypes();</span>
+<span class="fc" id="L97">		} catch (final XmlAgentException e) {</span>
+<span class="fc" id="L98">			throw new ValApiException(&quot;Problem getElectionTypes&quot;,e);</span>
 		}
 	}
 
+	@SuppressWarnings(&quot;unchecked&quot;)
 	@Override
 	public List&lt;SwedenParliamentElectoralRegion&gt; getParliamentElectoralRegions() throws ValApiException {
 		try {
-<span class="fc" id="L110">			final URL resource = ValApiImpl.class.getResource(&quot;/riksdagsvalkrets.xml&quot;);</span>
+<span class="fc" id="L106">			final URL resource = ValApiImpl.class.getResource(&quot;/riksdagsvalkrets.xml&quot;);</span>
 
-<span class="fc" id="L112">			return ((JAXBElement&lt;SwedenParliamentElectoralRegionContainer&gt;) xmlAgent.unmarshallXml(valRiksdagMarshaller,</span>
-<span class="fc" id="L113">					resource.toString(), &quot;http://riksdagsvalkrets.val.external.model.cia.hack23.com/impl&quot;, null, null))</span>
-<span class="fc" id="L114">							.getValue().getParliamentElectoralRegions();</span>
-<span class="fc" id="L115">		} catch (final XmlAgentException e) {</span>
-<span class="fc" id="L116">			LOGGER.warn(&quot;Problem getParliamentElectoralRegions&quot;, e);</span>
-<span class="fc" id="L117">			throw new ValApiException(e);</span>
+<span class="fc" id="L108">			return ((JAXBElement&lt;SwedenParliamentElectoralRegionContainer&gt;) xmlAgent.unmarshallXml(valRiksdagMarshaller,</span>
+<span class="fc" id="L109">					resource.toString(), &quot;http://riksdagsvalkrets.val.external.model.cia.hack23.com/impl&quot;, null, null))</span>
+<span class="fc" id="L110">							.getValue().getParliamentElectoralRegions();</span>
+<span class="fc" id="L111">		} catch (final XmlAgentException e) {</span>
+<span class="fc" id="L112">			throw new ValApiException(&quot;Problem getParliamentElectoralRegions&quot;,e);</span>
 		}
 
 	}
 
+	@SuppressWarnings(&quot;unchecked&quot;)
 	@Override
 	public List&lt;SwedenCountyElectoralRegion&gt; getCountyElectoralRegions() throws ValApiException {
 		try {
-<span class="fc" id="L125">			final URL resource = ValApiImpl.class.getResource(&quot;/landstingvalkrets.xml&quot;);</span>
+<span class="fc" id="L121">			final URL resource = ValApiImpl.class.getResource(&quot;/landstingvalkrets.xml&quot;);</span>
 
-<span class="fc" id="L127">			return ((JAXBElement&lt;SwedenCountyElectoralRegionContainer&gt;) xmlAgent.unmarshallXml(valLandstingMarshaller,</span>
-<span class="fc" id="L128">					resource.toString(), &quot;http://landstingvalkrets.val.external.model.cia.hack23.com/impl&quot;, null, null))</span>
-<span class="fc" id="L129">							.getValue().getCountyElectoralRegions();</span>
-<span class="fc" id="L130">		} catch (final XmlAgentException e) {</span>
-<span class="fc" id="L131">			LOGGER.warn(&quot;Problem getCountyElectoralRegions&quot;, e);</span>
-<span class="fc" id="L132">			throw new ValApiException(e);</span>
+<span class="fc" id="L123">			return ((JAXBElement&lt;SwedenCountyElectoralRegionContainer&gt;) xmlAgent.unmarshallXml(valLandstingMarshaller,</span>
+<span class="fc" id="L124">					resource.toString(), &quot;http://landstingvalkrets.val.external.model.cia.hack23.com/impl&quot;, null, null))</span>
+<span class="fc" id="L125">							.getValue().getCountyElectoralRegions();</span>
+<span class="fc" id="L126">		} catch (final XmlAgentException e) {</span>
+<span class="fc" id="L127">			throw new ValApiException(&quot;Problem getCountyElectoralRegions&quot;,e);</span>
 		}
 
 	}
 
-	@Override
+	@SuppressWarnings(&quot;unchecked&quot;)
+    @Override
 	public List&lt;SwedenCountyData&gt; getCountyRegions() throws ValApiException {
 		try {
-<span class="fc" id="L140">			final URL resource = ValApiImpl.class.getResource(&quot;/kommunvalkrets.xml&quot;);</span>
+<span class="fc" id="L136">			final URL resource = ValApiImpl.class.getResource(&quot;/kommunvalkrets.xml&quot;);</span>
 
-<span class="fc" id="L142">			return ((JAXBElement&lt;SwedenCountyDataContainer&gt;) xmlAgent.unmarshallXml(valKommunMarshaller,</span>
-<span class="fc" id="L143">					resource.toString(), &quot;http://kommunvalkrets.val.external.model.cia.hack23.com/impl&quot;, null, null))</span>
-<span class="fc" id="L144">							.getValue().getCountyRegions();</span>
-<span class="fc" id="L145">		} catch (final XmlAgentException e) {</span>
-<span class="fc" id="L146">			LOGGER.warn(&quot;Problem getCountyRegions&quot;, e);</span>
-<span class="fc" id="L147">			throw new ValApiException(e);</span>
+<span class="fc" id="L138">			return ((JAXBElement&lt;SwedenCountyDataContainer&gt;) xmlAgent.unmarshallXml(valKommunMarshaller,</span>
+<span class="fc" id="L139">					resource.toString(), &quot;http://kommunvalkrets.val.external.model.cia.hack23.com/impl&quot;, null, null))</span>
+<span class="fc" id="L140">							.getValue().getCountyRegions();</span>
+<span class="fc" id="L141">		} catch (final XmlAgentException e) {</span>
+<span class="fc" id="L142">			throw new ValApiException(&quot;Problem getCountyRegions&quot;,e);</span>
 		}
 	}
 
+	@SuppressWarnings(&quot;unchecked&quot;)
 	@Override
 	public SwedenElectionRegion getSwedenElectionRegion() throws ValApiException {
-<span class="fc" id="L153">		final URL resource = ValApiImpl.class.getResource(&quot;/partier20151217.xml&quot;);</span>
+<span class="fc" id="L149">		final URL resource = ValApiImpl.class.getResource(&quot;/partier20151217.xml&quot;);</span>
 
 		try {
-<span class="fc" id="L156">			return ((JAXBElement&lt;SwedenElectionTypeContainerElement&gt;) xmlAgent.unmarshallXml(valPartierMarshaller,</span>
-<span class="fc" id="L157">					resource.toString(), &quot;http://partier.val.external.model.cia.hack23.com/impl&quot;, null, null))</span>
-<span class="fc" id="L158">							.getValue().getElectionTypes().get(0).getRegion();</span>
-<span class="fc" id="L159">		} catch (final XmlAgentException e) {</span>
-<span class="fc" id="L160">			LOGGER.warn(&quot;Problem getSwedenElectionRegion&quot;, e);</span>
-<span class="fc" id="L161">			throw new ValApiException(e);</span>
+<span class="fc" id="L152">			return ((JAXBElement&lt;SwedenElectionTypeContainerElement&gt;) xmlAgent.unmarshallXml(valPartierMarshaller,</span>
+<span class="fc" id="L153">					resource.toString(), &quot;http://partier.val.external.model.cia.hack23.com/impl&quot;, null, null))</span>
+<span class="fc" id="L154">							.getValue().getElectionTypes().get(0).getRegion();</span>
+<span class="fc" id="L155">		} catch (final XmlAgentException e) {</span>
+<span class="fc" id="L156">			throw new ValApiException(&quot;Problem getSwedenElectionRegion&quot;,e);</span>
 		}
 
 	}
 
 	@Override
 	public List&lt;SwedenPoliticalParty&gt; getSwedenPoliticalParties() throws ValApiException {
-<span class="fc" id="L168">		return getSwedenElectionRegion().getParties();</span>
+<span class="fc" id="L163">		return getSwedenElectionRegion().getParties();</span>
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

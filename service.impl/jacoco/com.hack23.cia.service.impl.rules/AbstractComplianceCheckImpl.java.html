@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AbstractComplianceCheckImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.impl.rules</a> &gt; <span class="el_source">AbstractComplianceCheckImpl.java</span></div><h1>AbstractComplianceCheckImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2024 James Pether Sörling
+ * Copyright 2010-2025 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -66,7 +66,7 @@ public abstract class AbstractComplianceCheckImpl implements ComplianceCheck {
 	 */
 	@Override
 	public ResourceType getResourceType() {
-<span class="nc" id="L69">		return resourceType;</span>
+<span class="fc" id="L69">		return resourceType;</span>
 	}
 
 	/**
@@ -76,7 +76,7 @@ public abstract class AbstractComplianceCheckImpl implements ComplianceCheck {
 	 */
 	@Override
 	public final List&lt;RuleViolation&gt; getRuleViolations() {
-<span class="nc" id="L79">		return new ArrayList&lt;&gt;(ruleViolationMap.values());</span>
+<span class="fc" id="L79">		return new ArrayList&lt;&gt;(ruleViolationMap.values());</span>
 	}
 
 	/**
@@ -95,7 +95,7 @@ public abstract class AbstractComplianceCheckImpl implements ComplianceCheck {
 	 */
 	public final void addViolation(final Status status,final String ruleName,final String ruleGroup,final String ruleDescription,final String positive) {
 <span class="fc" id="L97">		final RuleViolation currentRuleViolation = ruleViolationMap.get(ruleName);</span>
-<span class="fc bfc" id="L98" title="All 4 branches covered.">		if (currentRuleViolation == null || status.ordinal() &gt; currentRuleViolation.getStatus().ordinal()) {</span>
+<span class="pc bpc" id="L98" title="3 of 4 branches missed.">		if (currentRuleViolation == null || status.ordinal() &gt; currentRuleViolation.getStatus().ordinal()) {</span>
 <span class="fc" id="L99">			ruleViolationMap.put(ruleName, new RuleViolation(getId(),getName(),resourceType,ruleName,ruleDescription,ruleGroup,status,positive));</span>
 		}
 <span class="fc" id="L101">	}</span>
@@ -107,13 +107,13 @@ public abstract class AbstractComplianceCheckImpl implements ComplianceCheck {
 
 	@Override
 	public final String toString() {
-<span class="fc" id="L110">		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);</span>
+<span class="nc" id="L110">		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);</span>
 	}
 
 	@Override
 	public final int hashCode() {
-<span class="fc" id="L115">		return HashCodeBuilder.reflectionHashCode(this);</span>
+<span class="nc" id="L115">		return HashCodeBuilder.reflectionHashCode(this);</span>
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

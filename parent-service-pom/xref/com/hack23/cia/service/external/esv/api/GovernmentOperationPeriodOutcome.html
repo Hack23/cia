@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang="">
 <head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <title>GovernmentOperationPeriodOutcome xref</title>
 <link type="text/css" rel="stylesheet" href="../../../../../../../stylesheet.css" />
@@ -7,8 +7,8 @@
 <body>
 <div id="overview"><a href="../../../../../../../../apidocs/com/hack23/cia/service/external/esv/api/GovernmentOperationPeriodOutcome.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2019 James Pether Sörling</em>
-<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> * </em>
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2025 James Pether Sörling</em>
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> *</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> * Licensed under the Apache License, Version 2.0 (the "License");</em>
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_comment"> * you may not use this file except in compliance with the License.</em>
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_comment"> * You may obtain a copy of the License at</em>
@@ -37,28 +37,28 @@
 <a class="jxr_linenumber" name="L29" href="#L29">29</a>  <em class="jxr_javadoccomment"> * The Class GovernmentOperationPeriodOutcome.</em>
 <a class="jxr_linenumber" name="L30" href="#L30">30</a>  <em class="jxr_javadoccomment"> */</em>
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a name="GovernmentOperationPeriodOutcome" href="../../../../../../../com/hack23/cia/service/external/esv/api/GovernmentOperationPeriodOutcome.html#GovernmentOperationPeriodOutcome">GovernmentOperationPeriodOutcome</a> <strong class="jxr_keyword">implements</strong> Comparable&lt;GovernmentOperationPeriodOutcome&gt;, Serializable {
-<a class="jxr_linenumber" name="L32" href="#L32">32</a>  	
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>  
 <a class="jxr_linenumber" name="L33" href="#L33">33</a>  	<em class="jxr_javadoccomment">/** The Constant serialVersionUID. */</em>
 <a class="jxr_linenumber" name="L34" href="#L34">34</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">long</strong> serialVersionUID = 1L;
 <a class="jxr_linenumber" name="L35" href="#L35">35</a>  
 <a class="jxr_linenumber" name="L36" href="#L36">36</a>  	<em class="jxr_javadoccomment">/** The variable name. */</em>
 <a class="jxr_linenumber" name="L37" href="#L37">37</a>  	<strong class="jxr_keyword">private</strong> String variableName;
-<a class="jxr_linenumber" name="L38" href="#L38">38</a>  	
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>  
 <a class="jxr_linenumber" name="L39" href="#L39">39</a>  	<em class="jxr_javadoccomment">/** The period. */</em>
 <a class="jxr_linenumber" name="L40" href="#L40">40</a>  	<strong class="jxr_keyword">private</strong> String period;
-<a class="jxr_linenumber" name="L41" href="#L41">41</a>  	
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>  
 <a class="jxr_linenumber" name="L42" href="#L42">42</a>  	<em class="jxr_javadoccomment">/** The value. */</em>
 <a class="jxr_linenumber" name="L43" href="#L43">43</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">double</strong> value;
-<a class="jxr_linenumber" name="L44" href="#L44">44</a>  	
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>  
 <a class="jxr_linenumber" name="L45" href="#L45">45</a>  	<em class="jxr_javadoccomment">/** The percentage change from previous to latest. */</em>
 <a class="jxr_linenumber" name="L46" href="#L46">46</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">double</strong> percentageChangeFromPreviousToLatest;
-<a class="jxr_linenumber" name="L47" href="#L47">47</a>  	
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>  
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>  	<em class="jxr_javadoccomment">/** The Percentage change from same period last year to latest. */</em>
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">double</strong> percentageChangeFromSamePeriodLastYearToLatest;
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>  	
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>  
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>  	<em class="jxr_javadoccomment">/** The observation status. */</em>
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>  	<strong class="jxr_keyword">private</strong> String observationStatus;
-<a class="jxr_linenumber" name="L53" href="#L53">53</a>  	
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>  
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>  	<em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L55" href="#L55">55</a>  <em class="jxr_javadoccomment">	 * Instantiates a new government operation period outcome.</em>
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>  <em class="jxr_javadoccomment">	 */</em>
@@ -194,40 +194,40 @@
 <a class="jxr_linenumber" name="L186" href="#L186">186</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> equals(<strong class="jxr_keyword">final</strong> Object o) {
 <a class="jxr_linenumber" name="L187" href="#L187">187</a> 		<strong class="jxr_keyword">return</strong> EqualsBuilder.reflectionEquals(<strong class="jxr_keyword">this</strong>, o, false);
 <a class="jxr_linenumber" name="L188" href="#L188">188</a> 	}
-<a class="jxr_linenumber" name="L189" href="#L189">189</a> 	
+<a class="jxr_linenumber" name="L189" href="#L189">189</a> 
 <a class="jxr_linenumber" name="L190" href="#L190">190</a> 	@Override
 <a class="jxr_linenumber" name="L191" href="#L191">191</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">int</strong> compareTo(<strong class="jxr_keyword">final</strong> <a name="GovernmentOperationPeriodOutcome" href="../../../../../../../com/hack23/cia/service/external/esv/api/GovernmentOperationPeriodOutcome.html#GovernmentOperationPeriodOutcome">GovernmentOperationPeriodOutcome</a> o) {
 <a class="jxr_linenumber" name="L192" href="#L192">192</a> 		<strong class="jxr_keyword">return</strong> period.compareTo(o.getPeriod());
 <a class="jxr_linenumber" name="L193" href="#L193">193</a> 	}
-<a class="jxr_linenumber" name="L194" href="#L194">194</a> 	
+<a class="jxr_linenumber" name="L194" href="#L194">194</a> 
 <a class="jxr_linenumber" name="L195" href="#L195">195</a> 	<em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L196" href="#L196">196</a> <em class="jxr_javadoccomment">	 * The Enum Variables.</em>
 <a class="jxr_linenumber" name="L197" href="#L197">197</a> <em class="jxr_javadoccomment">	 */</em>
 <a class="jxr_linenumber" name="L198" href="#L198">198</a> 	<strong class="jxr_keyword">public</strong> enum Variables {
-<a class="jxr_linenumber" name="L199" href="#L199">199</a> 	    
+<a class="jxr_linenumber" name="L199" href="#L199">199</a> 
 <a class="jxr_linenumber" name="L200" href="#L200">200</a>     	<em class="jxr_javadoccomment">/** The total expenditures. */</em>
 <a class="jxr_linenumber" name="L201" href="#L201">201</a>     	TOTAL_EXPENDITURES (<span class="jxr_string">"Total expenditures"</span>),
-<a class="jxr_linenumber" name="L202" href="#L202">202</a> 	    
+<a class="jxr_linenumber" name="L202" href="#L202">202</a> 
 <a class="jxr_linenumber" name="L203" href="#L203">203</a>     	<em class="jxr_javadoccomment">/** The expenditure excl interest gov debt. */</em>
 <a class="jxr_linenumber" name="L204" href="#L204">204</a>     	EXPENDITURE_EXCL_INTEREST_GOV_DEBT (<span class="jxr_string">"Expenditure, excl. interest on central government debt, etc."</span>),
-<a class="jxr_linenumber" name="L205" href="#L205">205</a> 	    
+<a class="jxr_linenumber" name="L205" href="#L205">205</a> 
 <a class="jxr_linenumber" name="L206" href="#L206">206</a>     	<em class="jxr_javadoccomment">/** The interest on gov debt. */</em>
 <a class="jxr_linenumber" name="L207" href="#L207">207</a>     	INTEREST_ON_GOV_DEBT (<span class="jxr_string">"Interest on central government debt, etc."</span>),
-<a class="jxr_linenumber" name="L208" href="#L208">208</a> 	    
+<a class="jxr_linenumber" name="L208" href="#L208">208</a> 
 <a class="jxr_linenumber" name="L209" href="#L209">209</a>     	<em class="jxr_javadoccomment">/** The net lending borrowing. */</em>
 <a class="jxr_linenumber" name="L210" href="#L210">210</a>     	NET_LENDING_BORROWING (<span class="jxr_string">"Net lending/borrowing by the National Debt Office"</span>),
-<a class="jxr_linenumber" name="L211" href="#L211">211</a> 	    
+<a class="jxr_linenumber" name="L211" href="#L211">211</a> 
 <a class="jxr_linenumber" name="L212" href="#L212">212</a>     	<em class="jxr_javadoccomment">/** The adjustment to cash basis. */</em>
 <a class="jxr_linenumber" name="L213" href="#L213">213</a>     	ADJUSTMENT_TO_CASH_BASIS (<span class="jxr_string">"Adjustment to cash basis"</span>),
-<a class="jxr_linenumber" name="L214" href="#L214">214</a> 	    
+<a class="jxr_linenumber" name="L214" href="#L214">214</a> 
 <a class="jxr_linenumber" name="L215" href="#L215">215</a>     	<em class="jxr_javadoccomment">/** The total revenue. */</em>
 <a class="jxr_linenumber" name="L216" href="#L216">216</a>     	TOTAL_REVENUE (<span class="jxr_string">"Total revenue"</span>),
-<a class="jxr_linenumber" name="L217" href="#L217">217</a> 	    
+<a class="jxr_linenumber" name="L217" href="#L217">217</a> 
 <a class="jxr_linenumber" name="L218" href="#L218">218</a>     	<em class="jxr_javadoccomment">/** The budget balance. */</em>
 <a class="jxr_linenumber" name="L219" href="#L219">219</a>     	BUDGET_BALANCE (<span class="jxr_string">"Budget balance"</span>);
 <a class="jxr_linenumber" name="L220" href="#L220">220</a> 
 <a class="jxr_linenumber" name="L221" href="#L221">221</a> 	    <em class="jxr_javadoccomment">/** The name. */</em>
-<a class="jxr_linenumber" name="L222" href="#L222">222</a>     	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> String name;       
+<a class="jxr_linenumber" name="L222" href="#L222">222</a>     	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> String name;
 <a class="jxr_linenumber" name="L223" href="#L223">223</a> 
 <a class="jxr_linenumber" name="L224" href="#L224">224</a> 	    <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L225" href="#L225">225</a> <em class="jxr_javadoccomment">		 * Instantiates a new variables.</em>
@@ -247,6 +247,6 @@
 <a class="jxr_linenumber" name="L239" href="#L239">239</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2008&#x2013;2019 <a href="http://www.hack23.com">www.hack23.com</a>. All rights reserved.</div>
+<div id="footer">© 2008–2026 <a href="http://www.hack23.com">www.hack23.com</a></div>
 </body>
 </html>

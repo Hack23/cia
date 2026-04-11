@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang="">
 <head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <title>EsvApiImpl xref</title>
 <link type="text/css" rel="stylesheet" href="../../../../../../../stylesheet.css" />
@@ -7,7 +7,7 @@
 <body>
 <div id="overview"><a href="../../../../../../../../apidocs/com/hack23/cia/service/external/esv/impl/EsvApiImpl.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010 James Pether Sörling</em>
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2025 James Pether Sörling</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> *</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> * Licensed under the Apache License, Version 2.0 (the "License");</em>
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_comment"> * you may not use this file except in compliance with the License.</em>
@@ -66,10 +66,10 @@
 <a class="jxr_linenumber" name="L58" href="#L58">58</a>  
 <a class="jxr_linenumber" name="L59" href="#L59">59</a>  	<em class="jxr_javadoccomment">/** The esv excel reader. */</em>
 <a class="jxr_linenumber" name="L60" href="#L60">60</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <a name="EsvExcelReader" href="../../../../../../../com/hack23/cia/service/external/esv/impl/EsvExcelReader.html#EsvExcelReader">EsvExcelReader</a> esvExcelReader;
-<a class="jxr_linenumber" name="L61" href="#L61">61</a>  	
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>  
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>  	<em class="jxr_javadoccomment">/** The esv government operations excel reader. */</em>
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <a name="EsvGovernmentOperationsExcelReader" href="../../../../../../../com/hack23/cia/service/external/esv/impl/EsvGovernmentOperationsExcelReader.html#EsvGovernmentOperationsExcelReader">EsvGovernmentOperationsExcelReader</a> esvGovernmentOperationsExcelReader;
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>  	
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>  
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>  	<em class="jxr_javadoccomment">/** The esv government body operation outcome reader. */</em>
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <a name="EsvGovernmentBodyOperationOutcomeReader" href="../../../../../../../com/hack23/cia/service/external/esv/impl/EsvGovernmentBodyOperationOutcomeReader.html#EsvGovernmentBodyOperationOutcomeReader">EsvGovernmentBodyOperationOutcomeReader</a> esvGovernmentBodyOperationOutcomeReader;
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>  
@@ -97,7 +97,7 @@
 <a class="jxr_linenumber" name="L89" href="#L89">89</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">synchronized</strong> Map&lt;Integer, List&lt;GovernmentBodyAnnualSummary&gt;&gt; getData() {
 <a class="jxr_linenumber" name="L90" href="#L90">90</a>  	  <strong class="jxr_keyword">if</strong> (allData == <strong class="jxr_keyword">null</strong>) {
 <a class="jxr_linenumber" name="L91" href="#L91">91</a>  		allData = esvExcelReader.getDataPerMinistry(<strong class="jxr_keyword">null</strong>);
-<a class="jxr_linenumber" name="L92" href="#L92">92</a>  	  }		
+<a class="jxr_linenumber" name="L92" href="#L92">92</a>  	  }
 <a class="jxr_linenumber" name="L93" href="#L93">93</a>  	  <strong class="jxr_keyword">return</strong> allData;
 <a class="jxr_linenumber" name="L94" href="#L94">94</a>  	}
 <a class="jxr_linenumber" name="L95" href="#L95">95</a>  
@@ -186,19 +186,19 @@
 <a class="jxr_linenumber" name="L178" href="#L178">178</a> 		} <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> IOException e) {
 <a class="jxr_linenumber" name="L179" href="#L179">179</a> 			LOGGER.error(GET_REPORT,e);
 <a class="jxr_linenumber" name="L180" href="#L180">180</a> 			<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> HashMap&lt;&gt;();
-<a class="jxr_linenumber" name="L181" href="#L181">181</a> 		}		
+<a class="jxr_linenumber" name="L181" href="#L181">181</a> 		}
 <a class="jxr_linenumber" name="L182" href="#L182">182</a> 	}
 <a class="jxr_linenumber" name="L183" href="#L183">183</a> 
 <a class="jxr_linenumber" name="L184" href="#L184">184</a> 	@Override
 <a class="jxr_linenumber" name="L185" href="#L185">185</a> 	<strong class="jxr_keyword">public</strong> Map&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; getGovernmentBodyReport() {
-<a class="jxr_linenumber" name="L186" href="#L186">186</a> 		<strong class="jxr_keyword">final</strong> List&lt;GovernmentBodyAnnualOutcomeSummary&gt; result = getGovernmentBodyList();		
+<a class="jxr_linenumber" name="L186" href="#L186">186</a> 		<strong class="jxr_keyword">final</strong> List&lt;GovernmentBodyAnnualOutcomeSummary&gt; result = getGovernmentBodyList();
 <a class="jxr_linenumber" name="L187" href="#L187">187</a> 		<strong class="jxr_keyword">return</strong> result.stream().collect(Collectors.groupingBy(GovernmentBodyAnnualOutcomeSummary::getGovermentBody));
 <a class="jxr_linenumber" name="L188" href="#L188">188</a> 	}
 <a class="jxr_linenumber" name="L189" href="#L189">189</a> 
-<a class="jxr_linenumber" name="L190" href="#L190">190</a> 	
+<a class="jxr_linenumber" name="L190" href="#L190">190</a> 
 <a class="jxr_linenumber" name="L191" href="#L191">191</a> 	@Override
 <a class="jxr_linenumber" name="L192" href="#L192">192</a> 	<strong class="jxr_keyword">public</strong> Map&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; getGovernmentBodyReportByMinistry() {
-<a class="jxr_linenumber" name="L193" href="#L193">193</a> 		<strong class="jxr_keyword">final</strong> List&lt;GovernmentBodyAnnualOutcomeSummary&gt; result = getGovernmentBodyList();		
+<a class="jxr_linenumber" name="L193" href="#L193">193</a> 		<strong class="jxr_keyword">final</strong> List&lt;GovernmentBodyAnnualOutcomeSummary&gt; result = getGovernmentBodyList();
 <a class="jxr_linenumber" name="L194" href="#L194">194</a> 		<strong class="jxr_keyword">return</strong> result.stream().filter(p -&gt; p.getMinistry() != <strong class="jxr_keyword">null</strong>).collect(Collectors.groupingBy(GovernmentBodyAnnualOutcomeSummary::getMinistry));
 <a class="jxr_linenumber" name="L195" href="#L195">195</a> 	}
 <a class="jxr_linenumber" name="L196" href="#L196">196</a> 
@@ -221,19 +221,19 @@
 <a class="jxr_linenumber" name="L213" href="#L213">213</a> 
 <a class="jxr_linenumber" name="L214" href="#L214">214</a> 	@Override
 <a class="jxr_linenumber" name="L215" href="#L215">215</a> 	<strong class="jxr_keyword">public</strong> Map&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; getGovernmentBodyReportByField(<strong class="jxr_keyword">final</strong> String string) {
-<a class="jxr_linenumber" name="L216" href="#L216">216</a> 		<strong class="jxr_keyword">final</strong> List&lt;GovernmentBodyAnnualOutcomeSummary&gt; result = getGovernmentBodyList();		
+<a class="jxr_linenumber" name="L216" href="#L216">216</a> 		<strong class="jxr_keyword">final</strong> List&lt;GovernmentBodyAnnualOutcomeSummary&gt; result = getGovernmentBodyList();
 <a class="jxr_linenumber" name="L217" href="#L217">217</a> 		<strong class="jxr_keyword">return</strong> result.stream().filter(p -&gt; p.getDescriptionFields().get(string) != <strong class="jxr_keyword">null</strong>) .collect(Collectors.groupingBy(t -&gt; t.getDescriptionFields().get(string)));
 <a class="jxr_linenumber" name="L218" href="#L218">218</a> 	}
 <a class="jxr_linenumber" name="L219" href="#L219">219</a> 
 <a class="jxr_linenumber" name="L220" href="#L220">220</a> 	@Override
 <a class="jxr_linenumber" name="L221" href="#L221">221</a> 	<strong class="jxr_keyword">public</strong> Map&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; getGovernmentBodyReportByFieldAndMinistry(<strong class="jxr_keyword">final</strong> String string,<strong class="jxr_keyword">final</strong> String ministry) {
-<a class="jxr_linenumber" name="L222" href="#L222">222</a> 		<strong class="jxr_keyword">final</strong> List&lt;GovernmentBodyAnnualOutcomeSummary&gt; result = getGovernmentBodyList();		
+<a class="jxr_linenumber" name="L222" href="#L222">222</a> 		<strong class="jxr_keyword">final</strong> List&lt;GovernmentBodyAnnualOutcomeSummary&gt; result = getGovernmentBodyList();
 <a class="jxr_linenumber" name="L223" href="#L223">223</a> 		<strong class="jxr_keyword">return</strong> result.stream().filter(p -&gt; p.getDescriptionFields().get(string) != <strong class="jxr_keyword">null</strong> &amp;&amp; ministry.equalsIgnoreCase(p.getMinistry())) .collect(Collectors.groupingBy(t -&gt; t.getDescriptionFields().get(string)));
 <a class="jxr_linenumber" name="L224" href="#L224">224</a> 	}
 <a class="jxr_linenumber" name="L225" href="#L225">225</a> 
 <a class="jxr_linenumber" name="L226" href="#L226">226</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2010&#x2013;2018 <a href="http://www.hack23.com">www.hack23.com</a>. All rights reserved.</div>
+<div id="footer">© 2010–2026 <a href="http://www.hack23.com">www.hack23.com</a></div>
 </body>
 </html>

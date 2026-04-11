@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"com.hack23.cia.service.external.riksdagen","l":"com.hack23.cia.service.external.riksdagen.api"},{"m":"com.hack23.cia.service.external.riksdagen","l":"com.hack23.cia.service.external.riksdagen.impl"}];updateSearchResults();

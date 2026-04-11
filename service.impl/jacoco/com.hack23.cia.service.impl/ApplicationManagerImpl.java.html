@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ApplicationManagerImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.impl</a> &gt; <span class="el_source">ApplicationManagerImpl.java</span></div><h1>ApplicationManagerImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2024 James Pether Sörling
+ * Copyright 2010-2025 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -83,9 +83,10 @@ final class ApplicationManagerImpl implements ApplicationManager, ApplicationCon
 	@Secured({&quot;ROLE_ADMIN&quot;})
 	@Override
 	public AgentContainer getAgentContainer() {
-<span class="fc" id="L86">		return dataAgentContainer;</span>
+<span class="nc" id="L86">		return dataAgentContainer;</span>
 	}
 
+	@SuppressWarnings(&quot;unchecked&quot;)
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;,&quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public &lt;T extends Serializable, V extends Serializable&gt; DataContainer&lt;T, V&gt; getDataContainer(
@@ -93,45 +94,47 @@ final class ApplicationManagerImpl implements ApplicationManager, ApplicationCon
 
 		DataContainer&lt;T, V&gt; result;
 
-<span class="fc bfc" id="L96" title="All 2 branches covered.">		if (dataObject.equals(ViewRiksdagenCommittee.class)) {</span>
-<span class="fc" id="L97">			result= (DataContainer&lt;T, V&gt;) viewRiksdagenCommitteeDataContainer;</span>
+<span class="nc bnc" id="L97" title="All 2 branches missed.">		if (dataObject.equals(ViewRiksdagenCommittee.class)) {</span>
+<span class="nc" id="L98">			result= (DataContainer&lt;T, V&gt;) viewRiksdagenCommitteeDataContainer;</span>
 		} else {
-<span class="fc" id="L99">			result= viewDataDataContainerFactory.createDataContainer(dataObject);</span>
+<span class="nc" id="L100">			result= viewDataDataContainerFactory.createDataContainer(dataObject);</span>
 		}
 
-<span class="fc" id="L102">		return result;</span>
+<span class="nc" id="L103">		return result;</span>
 	}
 
+	@SuppressWarnings({ &quot;unchecked&quot;, &quot;rawtypes&quot; })
 	@Secured({&quot;ROLE_ANONYMOUS&quot;,&quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public ServiceResponse service(final ServiceRequest serviceRequest) {
-<span class="fc" id="L108">		final BusinessService businessService= serviceRequestBusinessServiceMap.get(serviceRequest.getClass());</span>
+<span class="nc" id="L110">		final BusinessService businessService= serviceRequestBusinessServiceMap.get(serviceRequest.getClass());</span>
 
-<span class="fc" id="L110">		ServiceResponse serviceResponse = null;</span>
+<span class="nc" id="L112">		ServiceResponse serviceResponse = null;</span>
 
-<span class="pc bpc" id="L112" title="1 of 2 branches missed.">		if (businessService != null) {</span>
-<span class="fc" id="L113">			serviceResponse = businessService.processService(serviceRequest);</span>
+<span class="nc bnc" id="L114" title="All 2 branches missed.">		if (businessService != null) {</span>
+<span class="nc" id="L115">			serviceResponse = businessService.processService(serviceRequest);</span>
 		}
 
-<span class="fc" id="L116">		return serviceResponse;</span>
+<span class="nc" id="L118">		return serviceResponse;</span>
 	}
 
     @Async(&quot;SecureTaskExecutor&quot;)
     @Secured({&quot;ROLE_ANONYMOUS&quot;,&quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
     @Override
 	public Future&lt;ServiceResponse&gt; asyncService(final ServiceRequest serviceRequest) {
-<span class="nc" id="L123">		return new AsyncResult&lt;&gt;(service(serviceRequest));</span>
+<span class="nc" id="L125">		return new AsyncResult&lt;&gt;(service(serviceRequest));</span>
 	}
 
 
+	@SuppressWarnings({ &quot;unchecked&quot;, &quot;rawtypes&quot; })
 	@Override
 	public void setApplicationContext(final ApplicationContext applicationContext) {
-<span class="fc" id="L129">		final Map&lt;String, BusinessService&gt; beansOfType = applicationContext.getBeansOfType(BusinessService.class);</span>
+<span class="fc" id="L132">		final Map&lt;String, BusinessService&gt; beansOfType = applicationContext.getBeansOfType(BusinessService.class);</span>
 
-<span class="fc bfc" id="L131" title="All 2 branches covered.">		for (final Entry&lt;String, BusinessService&gt; entry : beansOfType.entrySet()) {</span>
-<span class="fc" id="L132">			serviceRequestBusinessServiceMap.put(entry.getValue().getSupportedService(), entry.getValue());</span>
-<span class="fc" id="L133">		}</span>
-<span class="fc" id="L134">	}</span>
+<span class="fc bfc" id="L134" title="All 2 branches covered.">		for (final Entry&lt;String, BusinessService&gt; entry : beansOfType.entrySet()) {</span>
+<span class="fc" id="L135">			serviceRequestBusinessServiceMap.put(entry.getValue().getSupportedService(), entry.getValue());</span>
+<span class="fc" id="L136">		}</span>
+<span class="fc" id="L137">	}</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

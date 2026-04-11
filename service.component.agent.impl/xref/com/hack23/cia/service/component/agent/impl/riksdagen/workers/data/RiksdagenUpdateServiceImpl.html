@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang="">
 <head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <title>RiksdagenUpdateServiceImpl xref</title>
 <link type="text/css" rel="stylesheet" href="../../../../../../../../../../stylesheet.css" />
@@ -7,7 +7,7 @@
 <body>
 <div id="overview"><a href="../../../../../../../../../../../apidocs/com/hack23/cia/service/component/agent/impl/riksdagen/workers/data/RiksdagenUpdateServiceImpl.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2019 James Pether Sörling</em>
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2025 James Pether Sörling</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> *</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> * Licensed under the Apache License, Version 2.0 (the "License");</em>
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_comment"> * you may not use this file except in compliance with the License.</em>
@@ -148,7 +148,7 @@
 <a class="jxr_linenumber" name="L140" href="#L140">140</a> 
 <a class="jxr_linenumber" name="L141" href="#L141">141</a> 	@Override
 <a class="jxr_linenumber" name="L142" href="#L142">142</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> updateCommitteeProposalComponentData(<strong class="jxr_keyword">final</strong> CommitteeProposalComponentData committeeProposal) {
-<a class="jxr_linenumber" name="L143" href="#L143">143</a> 		CommitteeProposalComponentData exist = committeeProposalComponentDataDAO.findFirstByProperty(CommitteeProposalComponentData_.document,
+<a class="jxr_linenumber" name="L143" href="#L143">143</a> 		<strong class="jxr_keyword">final</strong> CommitteeProposalComponentData exist = committeeProposalComponentDataDAO.findFirstByProperty(CommitteeProposalComponentData_.document,
 <a class="jxr_linenumber" name="L144" href="#L144">144</a> 				committeeProposal.getDocument());
 <a class="jxr_linenumber" name="L145" href="#L145">145</a> 		<strong class="jxr_keyword">if</strong> (exist == <strong class="jxr_keyword">null</strong>) {
 <a class="jxr_linenumber" name="L146" href="#L146">146</a> 			committeeProposalComponentDataDAO.persist(committeeProposal);
@@ -165,23 +165,23 @@
 <a class="jxr_linenumber" name="L157" href="#L157">157</a> <em class="jxr_javadoccomment">	 * @param committeeProposal the committee proposal</em>
 <a class="jxr_linenumber" name="L158" href="#L158">158</a> <em class="jxr_javadoccomment">	 */</em>
 <a class="jxr_linenumber" name="L159" href="#L159">159</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">void</strong> mergeCommitteeProposalComponentData(<strong class="jxr_keyword">final</strong> CommitteeProposalComponentData exist,
-<a class="jxr_linenumber" name="L160" href="#L160">160</a> 			<strong class="jxr_keyword">final</strong> CommitteeProposalComponentData committeeProposal) {		
+<a class="jxr_linenumber" name="L160" href="#L160">160</a> 			<strong class="jxr_keyword">final</strong> CommitteeProposalComponentData committeeProposal) {
 <a class="jxr_linenumber" name="L161" href="#L161">161</a> 		exist.getDocument().setStatus(committeeProposal.getDocument().getStatus());
 <a class="jxr_linenumber" name="L162" href="#L162">162</a> 		exist.getDocument().setPublicDate(committeeProposal.getDocument().getPublicDate());
-<a class="jxr_linenumber" name="L163" href="#L163">163</a> 	
+<a class="jxr_linenumber" name="L163" href="#L163">163</a> 
 <a class="jxr_linenumber" name="L164" href="#L164">164</a> 		exist.getDocument().setDocumentUrlText(committeeProposal.getDocument().getDocumentUrlText());
 <a class="jxr_linenumber" name="L165" href="#L165">165</a> 		exist.getDocument().setDocumentUrlHtml(committeeProposal.getDocument().getDocumentUrlHtml());
 <a class="jxr_linenumber" name="L166" href="#L166">166</a> 		exist.getDocument().setDocumentStatusUrlXml(committeeProposal.getDocument().getDocumentStatusUrlXml());
-<a class="jxr_linenumber" name="L167" href="#L167">167</a> 		
+<a class="jxr_linenumber" name="L167" href="#L167">167</a> 
 <a class="jxr_linenumber" name="L168" href="#L168">168</a> 		exist.getDocument().setDocumentStatusUrlWww(committeeProposal.getDocument().getDocumentStatusUrlWww());
 <a class="jxr_linenumber" name="L169" href="#L169">169</a> 		exist.getDocument().setCommitteeProposalUrlXml(committeeProposal.getDocument().getCommitteeProposalUrlXml());
-<a class="jxr_linenumber" name="L170" href="#L170">170</a> 		
+<a class="jxr_linenumber" name="L170" href="#L170">170</a> 
 <a class="jxr_linenumber" name="L171" href="#L171">171</a> 		<strong class="jxr_keyword">if</strong> (exist.getAgainstProposalContainer() == <strong class="jxr_keyword">null</strong>) {
 <a class="jxr_linenumber" name="L172" href="#L172">172</a> 			exist.setAgainstProposalContainer(committeeProposal.getAgainstProposalContainer());
 <a class="jxr_linenumber" name="L173" href="#L173">173</a> 		} <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (exist.getAgainstProposalContainer().getAgainstProposalList().isEmpty())  {
 <a class="jxr_linenumber" name="L174" href="#L174">174</a> 			exist.getAgainstProposalContainer().setAgainstProposalList(committeeProposal.getAgainstProposalContainer().getAgainstProposalList());
 <a class="jxr_linenumber" name="L175" href="#L175">175</a> 		}
-<a class="jxr_linenumber" name="L176" href="#L176">176</a> 		
+<a class="jxr_linenumber" name="L176" href="#L176">176</a> 
 <a class="jxr_linenumber" name="L177" href="#L177">177</a> 		<strong class="jxr_keyword">if</strong> (exist.getCommitteeProposalContainer() == <strong class="jxr_keyword">null</strong> ) {
 <a class="jxr_linenumber" name="L178" href="#L178">178</a> 			exist.setCommitteeProposalContainer(committeeProposal.getCommitteeProposalContainer());
 <a class="jxr_linenumber" name="L179" href="#L179">179</a> 		} <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (exist.getCommitteeProposalContainer().getCommitteeProposalList().isEmpty()) {
@@ -200,20 +200,20 @@
 <a class="jxr_linenumber" name="L192" href="#L192">192</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> updateDocumentData(<strong class="jxr_keyword">final</strong> DocumentStatusContainer documentData) {
 <a class="jxr_linenumber" name="L193" href="#L193">193</a> 		<strong class="jxr_keyword">final</strong> List&lt;DocumentStatusContainer&gt; exist = documentStatusContainerDAO.findListByEmbeddedProperty(DocumentStatusContainer_.document, DocumentData.<strong class="jxr_keyword">class</strong>,
 <a class="jxr_linenumber" name="L194" href="#L194">194</a> 				DocumentData_.id, documentData.getDocument().getId());
-<a class="jxr_linenumber" name="L195" href="#L195">195</a> 		<strong class="jxr_keyword">if</strong> (exist.isEmpty()) {		
+<a class="jxr_linenumber" name="L195" href="#L195">195</a> 		<strong class="jxr_keyword">if</strong> (exist.isEmpty()) {
 <a class="jxr_linenumber" name="L196" href="#L196">196</a> 			documentStatusContainerDAO.persist(documentData);
 <a class="jxr_linenumber" name="L197" href="#L197">197</a> 		} <strong class="jxr_keyword">else</strong> {
 <a class="jxr_linenumber" name="L198" href="#L198">198</a> 			<strong class="jxr_keyword">final</strong> DocumentStatusContainer existData = exist.get(0);
-<a class="jxr_linenumber" name="L199" href="#L199">199</a> 						
+<a class="jxr_linenumber" name="L199" href="#L199">199</a> 
 <a class="jxr_linenumber" name="L200" href="#L200">200</a> 			mergeDocumentStatusContainer(existData,documentData);
-<a class="jxr_linenumber" name="L201" href="#L201">201</a> 			
+<a class="jxr_linenumber" name="L201" href="#L201">201</a> 
 <a class="jxr_linenumber" name="L202" href="#L202">202</a> 			documentStatusContainerDAO.persist(existData);
 <a class="jxr_linenumber" name="L203" href="#L203">203</a> 		}
 <a class="jxr_linenumber" name="L204" href="#L204">204</a> 	}
 <a class="jxr_linenumber" name="L205" href="#L205">205</a> 
-<a class="jxr_linenumber" name="L206" href="#L206">206</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">void</strong> mergeDocumentStatusContainer(<strong class="jxr_keyword">final</strong> DocumentStatusContainer existData, <strong class="jxr_keyword">final</strong> DocumentStatusContainer documentData) {		
+<a class="jxr_linenumber" name="L206" href="#L206">206</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">void</strong> mergeDocumentStatusContainer(<strong class="jxr_keyword">final</strong> DocumentStatusContainer existData, <strong class="jxr_keyword">final</strong> DocumentStatusContainer documentData) {
 <a class="jxr_linenumber" name="L207" href="#L207">207</a> 			existData.getDocument().setStatus(documentData.getDocument().getStatus());
-<a class="jxr_linenumber" name="L208" href="#L208">208</a> 			existData.getDocument().setCommitteeReportUrlXml(documentData.getDocument().getCommitteeReportUrlXml());			
+<a class="jxr_linenumber" name="L208" href="#L208">208</a> 			existData.getDocument().setCommitteeReportUrlXml(documentData.getDocument().getCommitteeReportUrlXml());
 <a class="jxr_linenumber" name="L209" href="#L209">209</a> 	}
 <a class="jxr_linenumber" name="L210" href="#L210">210</a> 
 <a class="jxr_linenumber" name="L211" href="#L211">211</a> 	@Override
@@ -221,13 +221,13 @@
 <a class="jxr_linenumber" name="L213" href="#L213">213</a> 		<strong class="jxr_keyword">final</strong> DocumentElement existDocumentElement = documentElementDAO.load(documentData.getId());
 <a class="jxr_linenumber" name="L214" href="#L214">214</a> 		<strong class="jxr_keyword">if</strong> (existDocumentElement == <strong class="jxr_keyword">null</strong>) {
 <a class="jxr_linenumber" name="L215" href="#L215">215</a> 			documentElementDAO.persist(documentData);
-<a class="jxr_linenumber" name="L216" href="#L216">216</a> 		} <strong class="jxr_keyword">else</strong> {			
+<a class="jxr_linenumber" name="L216" href="#L216">216</a> 		} <strong class="jxr_keyword">else</strong> {
 <a class="jxr_linenumber" name="L217" href="#L217">217</a> 			existDocumentElement.setCommitteeReportUrlXml(documentData.getCommitteeReportUrlXml());
 <a class="jxr_linenumber" name="L218" href="#L218">218</a> 			existDocumentElement.setStatus(documentData.getStatus());
 <a class="jxr_linenumber" name="L219" href="#L219">219</a> 			existDocumentElement.setDebateName(documentData.getDebateName());
 <a class="jxr_linenumber" name="L220" href="#L220">220</a> 			existDocumentElement.setRelatedId(documentData.getRelatedId());
 <a class="jxr_linenumber" name="L221" href="#L221">221</a> 			existDocumentElement.setSystemDate(documentData.getSystemDate());
-<a class="jxr_linenumber" name="L222" href="#L222">222</a> 			existDocumentElement.setMadePublicDate(documentData.getMadePublicDate());			
+<a class="jxr_linenumber" name="L222" href="#L222">222</a> 			existDocumentElement.setMadePublicDate(documentData.getMadePublicDate());
 <a class="jxr_linenumber" name="L223" href="#L223">223</a> 			existDocumentElement.setLabel(documentData.getLabel());
 <a class="jxr_linenumber" name="L224" href="#L224">224</a> 			existDocumentElement.setNote(documentData.getNote());
 <a class="jxr_linenumber" name="L225" href="#L225">225</a> 			existDocumentElement.setNoteTitle(documentData.getNoteTitle());
@@ -249,6 +249,6 @@
 <a class="jxr_linenumber" name="L241" href="#L241">241</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2010&#x2013;2019 <a href="http://www.hack23.com">www.hack23.com</a>. All rights reserved.</div>
+<div id="footer">© 2010–2026 <a href="http://www.hack23.com">www.hack23.com</a></div>
 </body>
 </html>

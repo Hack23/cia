@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GovernmentOperationPeriodOutcome.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.external.esv</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.external.esv.api</a> &gt; <span class="el_source">GovernmentOperationPeriodOutcome.java</span></div><h1>GovernmentOperationPeriodOutcome.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010 James Pether Sörling
- * 
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GovernmentOperationPeriodOutcome.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.external.esv</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.external.esv.api</a> &gt; <span class="el_source">GovernmentOperationPeriodOutcome.java</span></div><h1>GovernmentOperationPeriodOutcome.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2025 James Pether Sörling
+ *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -29,28 +29,28 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * The Class GovernmentOperationPeriodOutcome.
  */
 public final class GovernmentOperationPeriodOutcome implements Comparable&lt;GovernmentOperationPeriodOutcome&gt;, Serializable {
-	
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	/** The variable name. */
 	private String variableName;
-	
+
 	/** The period. */
 	private String period;
-	
+
 	/** The value. */
 	private double value;
-	
+
 	/** The percentage change from previous to latest. */
 	private double percentageChangeFromPreviousToLatest;
-	
+
 	/** The Percentage change from same period last year to latest. */
 	private double percentageChangeFromSamePeriodLastYearToLatest;
-	
+
 	/** The observation status. */
 	private String observationStatus;
-	
+
 	/**
 	 * Instantiates a new government operation period outcome.
 	 */
@@ -186,40 +186,40 @@ public final class GovernmentOperationPeriodOutcome implements Comparable&lt;Gov
 	public boolean equals(final Object o) {
 <span class="fc" id="L187">		return EqualsBuilder.reflectionEquals(this, o, false);</span>
 	}
-	
+
 	@Override
 	public int compareTo(final GovernmentOperationPeriodOutcome o) {
 <span class="fc" id="L192">		return period.compareTo(o.getPeriod());</span>
 	}
-	
+
 	/**
 	 * The Enum Variables.
 	 */
 <span class="fc" id="L198">	public enum Variables {</span>
-	    
+
     	/** The total expenditures. */
 <span class="fc" id="L201">    	TOTAL_EXPENDITURES (&quot;Total expenditures&quot;),</span>
-	    
+
     	/** The expenditure excl interest gov debt. */
 <span class="fc" id="L204">    	EXPENDITURE_EXCL_INTEREST_GOV_DEBT (&quot;Expenditure, excl. interest on central government debt, etc.&quot;),</span>
-	    
+
     	/** The interest on gov debt. */
 <span class="fc" id="L207">    	INTEREST_ON_GOV_DEBT (&quot;Interest on central government debt, etc.&quot;),</span>
-	    
+
     	/** The net lending borrowing. */
 <span class="fc" id="L210">    	NET_LENDING_BORROWING (&quot;Net lending/borrowing by the National Debt Office&quot;),</span>
-	    
+
     	/** The adjustment to cash basis. */
 <span class="fc" id="L213">    	ADJUSTMENT_TO_CASH_BASIS (&quot;Adjustment to cash basis&quot;),</span>
-	    
+
     	/** The total revenue. */
 <span class="fc" id="L216">    	TOTAL_REVENUE (&quot;Total revenue&quot;),</span>
-	    
+
     	/** The budget balance. */
 <span class="fc" id="L219">    	BUDGET_BALANCE (&quot;Budget balance&quot;);</span>
 
 	    /** The name. */
-    	private final String name;       
+    	private final String name;
 
 	    /**
 		 * Instantiates a new variables.
@@ -237,4 +237,4 @@ public final class GovernmentOperationPeriodOutcome implements Comparable&lt;Gov
 	    }
 	}
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

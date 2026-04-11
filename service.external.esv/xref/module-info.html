@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang="">
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>module-info xref</title>
+<link type="text/css" rel="stylesheet" href="../stylesheet.css" />
+</head>
+<body>
+<div id="overview"><a href="../apidocs/module-info.html">View Javadoc</a></div><pre>
+<a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_javadoccomment"> * CIA (Citizen Intelligence Agency) ESV (Swedish National Financial Management Authority) Service Module.</em>
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_javadoccomment"> *</em>
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_javadoccomment"> * &lt;p&gt;This module integrates with ESV’s data services to provide financial statistics,</em>
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> * budget data, and government spending information.&lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_javadoccomment"> *</em>
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <em class="jxr_javadoccomment"> * &lt;p&gt;Key Features:&lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <em class="jxr_javadoccomment"> * &lt;ul&gt;</em>
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <em class="jxr_javadoccomment"> *   &lt;li&gt;Excel and CSV file parsing for financial data&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <em class="jxr_javadoccomment"> *   &lt;li&gt;Statistics for budget execution and economic indicators&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>  <em class="jxr_javadoccomment"> *   &lt;li&gt;Comprehensive logging and Spring-based configuration&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L12" href="#L12">12</a>  <em class="jxr_javadoccomment"> * &lt;/ul&gt;</em>
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>  <em class="jxr_javadoccomment"> *</em>
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>  <em class="jxr_javadoccomment"> * &lt;p&gt;Technologies / Integrations:&lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L15" href="#L15">15</a>  <em class="jxr_javadoccomment"> * &lt;ul&gt;</em>
+<a class="jxr_linenumber" name="L16" href="#L16">16</a>  <em class="jxr_javadoccomment"> *   &lt;li&gt;Apache POI for Excel processing&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L17" href="#L17">17</a>  <em class="jxr_javadoccomment"> *   &lt;li&gt;Commons CSV for data import&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <em class="jxr_javadoccomment"> *   &lt;li&gt;Spring Framework for dependency injection&lt;/li&gt;</em>
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>  <em class="jxr_javadoccomment"> * &lt;/ul&gt;</em>
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>  <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>  open module com.hack23.cia.service.external.esv {
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>  	exports com.hack23.cia.service.external.esv.api;
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>  	exports com.hack23.cia.service.external.esv.impl;
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>  	
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>  	requires org.slf4j;
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>  	requires java.xml.bind;
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>  	requires spring.context;
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>  	requires spring.beans;
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>  	requires org.apache.poi.poi;
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>  	requires org.apache.poi.ooxml;
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>  	
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>  
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>  	requires org.apache.commons.lang3;
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>  	requires org.apache.commons.codec;
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>  	requires org.apache.commons.csv;
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>  	
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>  	requires com.hack23.cia.service.external.common;
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>  	requires transitive org.apache.httpcomponents.httpclient.fluent;
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>  
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>  }
+</pre>
+<hr/>
+<div id="footer">© 2010–2026 <a href="http://www.hack23.com">www.hack23.com</a></div>
+</body>
+</html>

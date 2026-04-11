@@ -1,3 +1,4 @@
+module:com.hack23.cia.service.api
 com.hack23.cia.service.api
 com.hack23.cia.service.api.action.admin
 com.hack23.cia.service.api.action.application

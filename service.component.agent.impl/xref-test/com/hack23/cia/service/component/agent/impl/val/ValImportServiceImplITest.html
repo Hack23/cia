@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang="">
 <head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <title>ValImportServiceImplITest xref</title>
 <link type="text/css" rel="stylesheet" href="../../../../../../../../stylesheet.css" />
@@ -7,7 +7,7 @@
 <body>
 <div id="overview"><a href="../../../../../../../../../testapidocs/com/hack23/cia/service/component/agent/impl/val/ValImportServiceImplITest.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2019 James Pether Sörling</em>
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2025 James Pether Sörling</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> *</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> * Licensed under the Apache License, Version 2.0 (the "License");</em>
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_comment"> * you may not use this file except in compliance with the License.</em>
@@ -56,7 +56,7 @@
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>  
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>  	@Autowired
 <a class="jxr_linenumber" name="L50" href="#L50">50</a>  	<strong class="jxr_keyword">private</strong> ValImportService valImportService;
-<a class="jxr_linenumber" name="L51" href="#L51">51</a>  	
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>  
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>  	<em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>  <em class="jxr_javadoccomment">	 * Load political parties success test.</em>
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>  <em class="jxr_javadoccomment">	 *</em>
@@ -65,10 +65,10 @@
 <a class="jxr_linenumber" name="L57" href="#L57">57</a>  <em class="jxr_javadoccomment">	 */</em>
 <a class="jxr_linenumber" name="L58" href="#L58">58</a>  	@Test
 <a class="jxr_linenumber" name="L59" href="#L59">59</a>  	@Transactional
-<a class="jxr_linenumber" name="L60" href="#L60">60</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> loadPoliticalPartiesSuccessTest() <strong class="jxr_keyword">throws</strong> JMSException {		
-<a class="jxr_linenumber" name="L61" href="#L61">61</a>  		<strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> SwedenPoliticalParty swedenPoliticalParty : swedenPoliticalPartyDAO.getAll()) {			
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> loadPoliticalPartiesSuccessTest() <strong class="jxr_keyword">throws</strong> JMSException {
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>  		<strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> SwedenPoliticalParty swedenPoliticalParty : swedenPoliticalPartyDAO.getAll()) {
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>  			swedenPoliticalPartyDAO.delete(swedenPoliticalParty);
-<a class="jxr_linenumber" name="L63" href="#L63">63</a>  		}		
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>  		}
 <a class="jxr_linenumber" name="L64" href="#L64">64</a>  		assertTrue(0 == swedenPoliticalPartyDAO.getSize());
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>  		valImportService.loadPoliticalParties();
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>  	}
@@ -81,11 +81,11 @@
 <a class="jxr_linenumber" name="L73" href="#L73">73</a>  <em class="jxr_javadoccomment">	 */</em>
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>  	@Test
 <a class="jxr_linenumber" name="L75" href="#L75">75</a>  	@Transactional
-<a class="jxr_linenumber" name="L76" href="#L76">76</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> loadPoliticalPartiesFinalSuccessTest() <strong class="jxr_keyword">throws</strong> JMSException {				
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> loadPoliticalPartiesFinalSuccessTest() <strong class="jxr_keyword">throws</strong> JMSException {
 <a class="jxr_linenumber" name="L77" href="#L77">77</a>  		valImportService.loadPoliticalParties();
 <a class="jxr_linenumber" name="L78" href="#L78">78</a>  		assertTrue(swedenPoliticalPartyDAO.getSize() &gt; 0);
 <a class="jxr_linenumber" name="L79" href="#L79">79</a>  	}
-<a class="jxr_linenumber" name="L80" href="#L80">80</a>  	
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>  
 <a class="jxr_linenumber" name="L81" href="#L81">81</a>  	<em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L82" href="#L82">82</a>  <em class="jxr_javadoccomment">	 * Load political parties val api failure test.</em>
 <a class="jxr_linenumber" name="L83" href="#L83">83</a>  <em class="jxr_javadoccomment">	 *</em>
@@ -95,22 +95,22 @@
 <a class="jxr_linenumber" name="L87" href="#L87">87</a>  	@Test
 <a class="jxr_linenumber" name="L88" href="#L88">88</a>  	@Transactional
 <a class="jxr_linenumber" name="L89" href="#L89">89</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> loadPoliticalPartiesFailureTest() <strong class="jxr_keyword">throws</strong> ValApiException {
-<a class="jxr_linenumber" name="L90" href="#L90">90</a>  		<strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> SwedenPoliticalParty swedenPoliticalParty : swedenPoliticalPartyDAO.getAll()) {			
+<a class="jxr_linenumber" name="L90" href="#L90">90</a>  		<strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> SwedenPoliticalParty swedenPoliticalParty : swedenPoliticalPartyDAO.getAll()) {
 <a class="jxr_linenumber" name="L91" href="#L91">91</a>  			swedenPoliticalPartyDAO.delete(swedenPoliticalParty);
-<a class="jxr_linenumber" name="L92" href="#L92">92</a>  		}		
+<a class="jxr_linenumber" name="L92" href="#L92">92</a>  		}
 <a class="jxr_linenumber" name="L93" href="#L93">93</a>  
 <a class="jxr_linenumber" name="L94" href="#L94">94</a>  		<strong class="jxr_keyword">final</strong> ValApi valApi = mock(ValApi.<strong class="jxr_keyword">class</strong>);
 <a class="jxr_linenumber" name="L95" href="#L95">95</a>  		<strong class="jxr_keyword">final</strong> ValImportServiceImpl valImportService = <strong class="jxr_keyword">new</strong> ValImportServiceImpl(valApi,swedenPoliticalPartyDAO);
 <a class="jxr_linenumber" name="L96" href="#L96">96</a>  
-<a class="jxr_linenumber" name="L97" href="#L97">97</a>  		when(valApi.getSwedenPoliticalParties()).thenThrow(<strong class="jxr_keyword">new</strong> ValApiException(<span class="jxr_string">""</span>,<strong class="jxr_keyword">new</strong> RuntimeException()));		
+<a class="jxr_linenumber" name="L97" href="#L97">97</a>  		when(valApi.getSwedenPoliticalParties()).thenThrow(<strong class="jxr_keyword">new</strong> ValApiException(<span class="jxr_string">""</span>,<strong class="jxr_keyword">new</strong> RuntimeException()));
 <a class="jxr_linenumber" name="L98" href="#L98">98</a>  		valImportService.loadPoliticalParties();
 <a class="jxr_linenumber" name="L99" href="#L99">99</a>  		verify(valApi, atLeastOnce()).getSwedenPoliticalParties();
 <a class="jxr_linenumber" name="L100" href="#L100">100</a> 
-<a class="jxr_linenumber" name="L101" href="#L101">101</a> 	}	
+<a class="jxr_linenumber" name="L101" href="#L101">101</a> 	}
 <a class="jxr_linenumber" name="L102" href="#L102">102</a> 
 <a class="jxr_linenumber" name="L103" href="#L103">103</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2010&#x2013;2019 <a href="http://www.hack23.com">www.hack23.com</a>. All rights reserved.</div>
+<div id="footer">© 2010–2026 <a href="http://www.hack23.com">www.hack23.com</a></div>
 </body>
 </html>

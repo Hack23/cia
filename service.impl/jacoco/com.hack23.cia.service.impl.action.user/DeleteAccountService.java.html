@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DeleteAccountService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.impl.action.user</a> &gt; <span class="el_source">DeleteAccountService.java</span></div><h1>DeleteAccountService.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2025 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.service.impl.action.user;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.hack23.cia.model.internal.application.system.impl.ApplicationActionEvent;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationOperationType;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationSession;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationSessionType;
+import com.hack23.cia.model.internal.application.system.impl.ApplicationSession_;
+import com.hack23.cia.model.internal.application.user.impl.UserAccount;
+import com.hack23.cia.service.api.action.application.CreateApplicationEventRequest;
+import com.hack23.cia.service.api.action.common.ServiceResponse.ServiceResult;
+import com.hack23.cia.service.api.action.user.DeleteAccountRequest;
+import com.hack23.cia.service.api.action.user.DeleteAccountResponse;
+import com.hack23.cia.service.data.api.ApplicationSessionDAO;
+import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
+
+/**
+ * The Class DeleteAccountService.
+ */
+@Service
+@Transactional(propagation = Propagation.REQUIRED,timeout=600)
+public final class DeleteAccountService extends
+		AbstractBusinessServiceImpl&lt;DeleteAccountRequest, DeleteAccountResponse&gt; {
+
+	/** The Constant LOGGER. */
+<span class="fc" id="L63">	private static final Logger LOGGER = LoggerFactory</span>
+<span class="fc" id="L64">			.getLogger(DeleteAccountService.class);</span>
+
+	/** The application session dao. */
+	@Autowired
+	private ApplicationSessionDAO applicationSessionDAO;
+
+	/** The password encoder. */
+<span class="fc" id="L71">	private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();</span>
+
+	/**
+	 * Instantiates a new delete account service.
+	 */
+	public DeleteAccountService() {
+<span class="fc" id="L77">		super(DeleteAccountRequest.class);</span>
+<span class="fc" id="L78">	}</span>
+
+
+	/**
+	 * Process service.
+	 *
+	 * @param serviceRequest the service request
+	 * @return the sets the google authenticator credential response
+	 */
+	@Override
+	@Secured({ &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot;})
+	public DeleteAccountResponse processService(
+			final DeleteAccountRequest serviceRequest) {
+
+<span class="nc" id="L92">		final DeleteAccountResponse inputValidation = inputValidation(serviceRequest);</span>
+<span class="nc bnc" id="L93" title="All 2 branches missed.">		if (inputValidation != null) {</span>
+<span class="nc" id="L94">			return inputValidation;</span>
+		}
+
+<span class="nc" id="L97">		LOGGER.info(&quot;{}:{}&quot;,serviceRequest.getClass().getSimpleName(),serviceRequest.getSessionId());</span>
+<span class="nc" id="L98">		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);</span>
+
+<span class="nc" id="L100">		final UserAccount userAccount = getUserAccountFromSecurityContext();</span>
+
+<span class="nc" id="L102">		DeleteAccountResponse response = new DeleteAccountResponse(ServiceResult.SUCCESS);</span>
+<span class="nc bnc" id="L103" title="All 2 branches missed.">		if (userAccount != null) {</span>
+
+<span class="nc bnc" id="L105" title="All 2 branches missed.">			if (passwordEncoder.matches(</span>
+<span class="nc" id="L106">					userAccount.getUserId() + &quot;.uuid&quot; + serviceRequest.getUserpassword(), userAccount.getUserpassword())) {</span>
+
+<span class="nc" id="L108">				final List&lt;ApplicationSession&gt; applicationSessionsByUser = applicationSessionDAO.findListByProperty(ApplicationSession_.userId, userAccount.getUserId());</span>
+<span class="nc bnc" id="L109" title="All 2 branches missed.">				for (final ApplicationSession applicationSession : applicationSessionsByUser) {</span>
+<span class="nc bnc" id="L110" title="All 2 branches missed.">					if (!serviceRequest.getSessionId().equals(applicationSession.getSessionId())) {</span>
+<span class="nc" id="L111">						applicationSessionDAO.delete(applicationSession);</span>
+					} else {
+<span class="nc" id="L113">						applicationSession.setUserId(null);</span>
+<span class="nc" id="L114">						applicationSession.setSessionType(ApplicationSessionType.ANONYMOUS);</span>
+<span class="nc" id="L115">						applicationSession.setDestroyedDate(new Date());</span>
+<span class="nc" id="L116">						applicationSession.setScreenSize(&quot;1280x1024&quot;);</span>
+<span class="nc" id="L117">						applicationSession.setLocale(Locale.ENGLISH.toString());</span>
+<span class="nc" id="L118">						applicationSession.setUserAgentInformation(&quot;Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36\n&quot;);</span>
+<span class="nc" id="L119">						final List&lt;ApplicationActionEvent&gt; events = applicationSession.getEvents();</span>
+<span class="nc bnc" id="L120" title="All 2 branches missed.">						for (final ApplicationActionEvent event : events) {</span>
+<span class="nc" id="L121">							event.setUserId(null);</span>
+<span class="nc" id="L122">						}</span>
+<span class="nc" id="L123">						applicationSessionDAO.persist(applicationSession);</span>
+					}
+<span class="nc" id="L125">				}</span>
+
+<span class="nc" id="L127">				getUserDAO().delete(userAccount);</span>
+
+<span class="nc" id="L129">				final Collection&lt;SimpleGrantedAuthority&gt; authorities = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L130">				authorities.add(new SimpleGrantedAuthority(&quot;ROLE_ANONYMOUS&quot;));</span>
+<span class="nc" id="L131">				final AnonymousAuthenticationToken anonymousAuthenticationToken = new AnonymousAuthenticationToken(</span>
+<span class="nc" id="L132">						serviceRequest.getSessionId(), &quot;ROLE_ANONYMOUS&quot;, authorities);</span>
+<span class="nc" id="L133">				SecurityContextHolder.getContext().setAuthentication(anonymousAuthenticationToken);</span>
+
+<span class="nc" id="L135">			} else {</span>
+<span class="nc" id="L136">				response = new DeleteAccountResponse(ServiceResult.FAILURE);</span>
+			}
+		}
+
+<span class="nc" id="L140">		eventRequest.setApplicationMessage(response.getResult().toString());</span>
+<span class="nc" id="L141">		createApplicationEventService.processService(eventRequest);</span>
+
+<span class="nc" id="L143">		return response;</span>
+	}
+
+
+	/**
+	 * Creates the application event for service.
+	 *
+	 * @param serviceRequest the service request
+	 * @return the creates the application event request
+	 */
+	@Override
+	protected CreateApplicationEventRequest createApplicationEventForService(
+			final DeleteAccountRequest serviceRequest) {
+<span class="nc" id="L156">		final CreateApplicationEventRequest eventRequest = createBaseApplicationEventRequest();</span>
+<span class="nc" id="L157">		eventRequest.setEventGroup(ApplicationEventGroup.USER);</span>
+<span class="nc" id="L158">		eventRequest.setApplicationOperation(ApplicationOperationType.DELETE);</span>
+<span class="nc" id="L159">		eventRequest.setActionName(DeleteAccountRequest.class.getSimpleName());</span>
+<span class="nc" id="L160">		eventRequest.setSessionId(serviceRequest.getSessionId());</span>
+<span class="nc" id="L161">		return eventRequest;</span>
+	}
+
+
+	/**
+	 * Creates the error response.
+	 *
+	 * @return the sets the google authenticator credential response
+	 */
+	@Override
+	protected DeleteAccountResponse createErrorResponse() {
+<span class="nc" id="L172">		return new DeleteAccountResponse(ServiceResult.FAILURE);</span>
+	}
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

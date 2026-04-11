@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>EsvGovernmentBodyOperationOutcomeReaderImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">service.impl</a> &gt; <a href="../index.html" class="el_bundle">service.external.esv</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.external.esv.impl</a> &gt; <span class="el_source">EsvGovernmentBodyOperationOutcomeReaderImpl.java</span></div><h1>EsvGovernmentBodyOperationOutcomeReaderImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2025 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+ */
+package com.hack23.cia.service.external.esv.impl;
+
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.time.Month;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.zip.ZipInputStream;
+
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
+import org.apache.http.client.fluent.Request;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualOutcomeSummary;
+import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
+
+/**
+ * The Class EsvGovernmentBodyOperationOutcomeReaderImpl.
+ */
+@Component
+final class EsvGovernmentBodyOperationOutcomeReaderImpl implements EsvGovernmentBodyOperationOutcomeReader {
+
+    /** The Constant ESV_BASE_URL. */
+    private static final String ESV_BASE_URL = &quot;https://www.esv.se/OpenDataManadsUtfallPage/GetFile&quot;;
+    
+    /** The Constant CSV_DELIMITER. */
+    private static final String CSV_DELIMITER = &quot;;&quot;;
+
+    /** The Constant CONNECT_TIMEOUT. */
+    private static final int CONNECT_TIMEOUT = 30_000;
+    
+    /** The Constant CHARSET. */
+<span class="fc" id="L64">    private static final String CHARSET = StandardCharsets.UTF_8.name();</span>
+
+    /** The Constant SWEDISH_MONTH_NAMES. */
+<span class="fc" id="L67">    private static final Map&lt;Month, String&gt; SWEDISH_MONTH_NAMES = Map.ofEntries(</span>
+<span class="fc" id="L68">    	    Map.entry(Month.JANUARY, &quot;januari&quot;),</span>
+<span class="fc" id="L69">    	    Map.entry(Month.FEBRUARY, &quot;februari&quot;),</span>
+<span class="fc" id="L70">    	    Map.entry(Month.MARCH, &quot;mars&quot;),</span>
+<span class="fc" id="L71">    	    Map.entry(Month.APRIL, &quot;april&quot;),</span>
+<span class="fc" id="L72">    	    Map.entry(Month.MAY, &quot;maj&quot;),</span>
+<span class="fc" id="L73">    	    Map.entry(Month.JUNE, &quot;juni&quot;),</span>
+<span class="fc" id="L74">    	    Map.entry(Month.JULY, &quot;juli&quot;),</span>
+<span class="fc" id="L75">    	    Map.entry(Month.AUGUST, &quot;augusti&quot;),</span>
+<span class="fc" id="L76">    	    Map.entry(Month.SEPTEMBER, &quot;september&quot;),</span>
+<span class="fc" id="L77">    	    Map.entry(Month.OCTOBER, &quot;oktober&quot;),</span>
+<span class="fc" id="L78">    	    Map.entry(Month.NOVEMBER, &quot;november&quot;),</span>
+<span class="fc" id="L79">    	    Map.entry(Month.DECEMBER, &quot;december&quot;)</span>
+    	);
+
+    /**
+     * The Record MonthColumn.
+     *
+     * @param month the month
+     * @param columnName the column name
+     */
+<span class="fc" id="L88">    private record MonthColumn(Month month, String columnName) {}</span>
+
+    /** The Constant MONTH_COLUMNS. */
+<span class="fc" id="L91">    private static final List&lt;MonthColumn&gt; MONTH_COLUMNS = Arrays.stream(Month.values())</span>
+<span class="fc" id="L92">    	    .map(month -&gt; new MonthColumn(month,</span>
+<span class="fc" id="L93">    	        String.format(Locale.ENGLISH,&quot;Utfall %s&quot;, SWEDISH_MONTH_NAMES.get(month))))</span>
+<span class="fc" id="L94">    	    .collect(Collectors.toUnmodifiableList());</span>
+
+    /** The Constant SPECIFIC_FIELDS. */
+<span class="fc" id="L97">    private static final Map&lt;DataType, String[]&gt; SPECIFIC_FIELDS = Map.of(</span>
+        DataType.INCOME, new String[] {
+            &quot;Inkomsttyp&quot;, &quot;Inkomsttypsnamn&quot;, &quot;Inkomsthuvudgrupp&quot;,
+            &quot;Inkomsthuvudgruppsnamn&quot;, &quot;Inkomsttitelgrupp&quot;, &quot;Inkomsttitelgruppsnamn&quot;,
+            &quot;Inkomsttitel&quot;, &quot;Inkomsttitelsnamn&quot;, &quot;Inkomstundertitel&quot;, &quot;Inkomstundertitelsnamn&quot;
+        },
+        DataType.OUTGOING, new String[] {
+            &quot;Utgiftsområde&quot;, &quot;Utgiftsområdesnamn&quot;, &quot;Anslag&quot;, &quot;Anslagsnamn&quot;,
+            &quot;Anslagspost&quot;, &quot;Anslagspostsnamn&quot;, &quot;Anslagsdelpost&quot;, &quot;Anslagsdelpostsnamn&quot;
+        }
+    );
+
+    /** The esv excel reader. */
+    private final EsvExcelReader esvExcelReader;
+
+    /**
+     * Instantiates a new esv government body operation outcome reader impl.
+     *
+     * @param esvExcelReader the esv excel reader
+     */
+    @Autowired
+<span class="fc" id="L118">    public EsvGovernmentBodyOperationOutcomeReaderImpl(EsvExcelReader esvExcelReader) {</span>
+<span class="fc" id="L119">        this.esvExcelReader = esvExcelReader;</span>
+<span class="fc" id="L120">    }</span>
+
+    /**
+     * Read income csv.
+     *
+     * @return the list
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
+    @Override
+    public List&lt;GovernmentBodyAnnualOutcomeSummary&gt; readIncomeCsv() throws IOException {
+<span class="fc" id="L130">        return fetchData(DataType.INCOME);</span>
+    }
+
+    /**
+     * Read outgoing csv.
+     *
+     * @return the list
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
+    @Override
+    public List&lt;GovernmentBodyAnnualOutcomeSummary&gt; readOutgoingCsv() throws IOException {
+<span class="fc" id="L141">        return fetchData(DataType.OUTGOING);</span>
+    }
+
+    /**
+     * Fetch data.
+     *
+     * @param type the type
+     * @return the list
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
+    private List&lt;GovernmentBodyAnnualOutcomeSummary&gt; fetchData(DataType type) throws IOException {
+<span class="fc" id="L152">        final String url = buildUrl(type);</span>
+<span class="fc" id="L153">        try (InputStream is = executeRequest(url)) {</span>
+<span class="fc" id="L154">            return processZipStream(is, type);</span>
+        }
+    }
+
+    /**
+     * Builds the url.
+     *
+     * @param type the type
+     * @return the string
+     */
+    private String buildUrl(DataType type) {
+<span class="fc" id="L165">        return String.format(Locale.ENGLISH,&quot;%s?documentType=%s&amp;fileType=Zip&amp;fileName=M%%C3%%A5nadsutfall%%20%s%%20januari%%202006%%20-%%20september%%202025,%%20definitivt.zip&amp;Year=2025&amp;month=9&amp;status=Definitiv&quot;,</span>
+            ESV_BASE_URL,
+<span class="fc" id="L167">            type.getDocumentType(),</span>
+<span class="fc" id="L168">            type.getUrlName());</span>
+    }
+
+    /**
+     * Execute request.
+     *
+     * @param url the url
+     * @return the input stream
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
+    private InputStream executeRequest(String url) throws IOException {
+<span class="fc" id="L179">        return Request.Get(url)</span>
+<span class="fc" id="L180">            .connectTimeout(CONNECT_TIMEOUT)</span>
+<span class="fc" id="L181">            .socketTimeout(CONNECT_TIMEOUT)</span>
+<span class="fc" id="L182">            .execute()</span>
+<span class="fc" id="L183">            .returnContent()</span>
+<span class="fc" id="L184">            .asStream();</span>
+    }
+
+    /**
+     * Process zip stream.
+     *
+     * @param input the input
+     * @param type the type
+     * @return the list
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
+    private List&lt;GovernmentBodyAnnualOutcomeSummary&gt; processZipStream(InputStream input, DataType type)
+            throws IOException {
+<span class="fc" id="L197">        try (BufferedInputStream bis = new BufferedInputStream(input);</span>
+<span class="fc" id="L198">             ZipInputStream zis = new ZipInputStream(bis)) {</span>
+
+<span class="fc" id="L200">            final List&lt;GovernmentBodyAnnualOutcomeSummary&gt; results = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L201" title="All 2 branches covered.">            while ((zis.getNextEntry()) != null) {</span>
+<span class="fc" id="L202">                results.addAll(processCsvContent(zis, type));</span>
+            }
+<span class="fc" id="L204">            return Collections.unmodifiableList(results);</span>
+        }
+    }
+
+    /**
+     * Process csv content.
+     *
+     * @param is the is
+     * @param type the type
+     * @return the list
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
+    private List&lt;GovernmentBodyAnnualOutcomeSummary&gt; processCsvContent(InputStream is, DataType type)
+            throws IOException {
+<span class="fc" id="L218">        final CSVParser parser = CSVParser.parse(</span>
+            new InputStreamReader(is, CHARSET),
+<span class="fc" id="L220">            CSVFormat.EXCEL.builder()</span>
+<span class="fc" id="L221">                .setHeader()</span>
+<span class="fc" id="L222">                .setDelimiter(CSV_DELIMITER)</span>
+<span class="fc" id="L223">                .get()</span>
+        );
+
+<span class="fc" id="L226">        final Map&lt;Integer, Map&lt;String, String&gt;&gt; ministryMap = createOrgMinistryMap(</span>
+<span class="fc" id="L227">            esvExcelReader.getDataPerMinistry(null)</span>
+        );
+
+<span class="fc" id="L230">        return parser.getRecords().stream()</span>
+<span class="fc" id="L231">            .skip(1) // Skip header</span>
+<span class="pc bpc" id="L232" title="1 of 2 branches missed.">            .filter(csvRecord -&gt; csvRecord.get(&quot;Organisationsnummer&quot;) != null)</span>
+<span class="fc" id="L233">            .map(csvRecord -&gt; createSummary(csvRecord, type, ministryMap))</span>
+<span class="fc" id="L234">            .filter(Objects::nonNull)</span>
+<span class="fc" id="L235">            .collect(Collectors.toUnmodifiableList());</span>
+    }
+
+    /**
+     * Creates the summary.
+     *
+     * @param csvRecord the csvRecord
+     * @param type the type
+     * @param ministryMap the ministry map
+     * @return the government body annual outcome summary
+     */
+    private GovernmentBodyAnnualOutcomeSummary createSummary(
+            CSVRecord csvRecord,
+            DataType type,
+            Map&lt;Integer, Map&lt;String, String&gt;&gt; ministryMap) {
+        try {
+<span class="fc" id="L251">            final String orgNumber = csvRecord.get(&quot;Organisationsnummer&quot;);</span>
+<span class="fc" id="L252">            final int year = Integer.parseInt(csvRecord.get(&quot;År&quot;));</span>
+
+<span class="fc" id="L254">            final GovernmentBodyAnnualOutcomeSummary summary = new GovernmentBodyAnnualOutcomeSummary(</span>
+<span class="fc" id="L255">                csvRecord.get(&quot;Myndighet&quot;),</span>
+                orgNumber,
+<span class="fc" id="L257">                getMinistry(ministryMap, year, orgNumber),</span>
+                year
+            );
+
+<span class="fc" id="L261">            addFields(summary, csvRecord, type);</span>
+<span class="fc" id="L262">            addMonthlyData(summary, csvRecord);</span>
+
+<span class="fc" id="L264">            return summary;</span>
+<span class="nc" id="L265">        } catch (final Exception e) {</span>
+<span class="nc" id="L266">            return null;</span>
+        }
+    }
+
+    /**
+     * Adds the fields.
+     *
+     * @param summary the summary
+     * @param csvRecord the csvRecord
+     * @param type the type
+     */
+    private void addFields(
+            GovernmentBodyAnnualOutcomeSummary summary,
+            CSVRecord csvRecord,
+            DataType type) {
+<span class="fc bfc" id="L281" title="All 2 branches covered.">        for (final String field : SPECIFIC_FIELDS.get(type)) {</span>
+<span class="fc" id="L282">            final String value = csvRecord.get(field);</span>
+<span class="pc bpc" id="L283" title="1 of 2 branches missed.">            if (value != null) {</span>
+<span class="fc" id="L284">                summary.addDescriptionField(field, value);</span>
+            }
+        }
+<span class="fc" id="L287">    }</span>
+
+    /**
+     * Adds the monthly data.
+     *
+     * @param summary the summary
+     * @param csvRecord the csvRecord
+     */
+    private void addMonthlyData(
+            GovernmentBodyAnnualOutcomeSummary summary,
+            CSVRecord csvRecord) {
+<span class="fc" id="L298">        MONTH_COLUMNS.forEach(monthData -&gt; {</span>
+<span class="fc" id="L299">            final String value = csvRecord.get(monthData.columnName());</span>
+<span class="pc bpc" id="L300" title="1 of 4 branches missed.">            if (value != null &amp;&amp; !value.isEmpty()) {</span>
+                try {
+<span class="fc" id="L302">                    summary.addData(</span>
+<span class="fc" id="L303">                        monthData.month().getValue(),</span>
+<span class="fc" id="L304">                        Double.valueOf(value.replace(&quot;,&quot;, &quot;.&quot;))</span>
+                    );
+<span class="pc" id="L306">                } catch (final NumberFormatException ignored) {}</span>
+            }
+<span class="fc" id="L308">        });</span>
+<span class="fc" id="L309">    }</span>
+
+    /**
+     * Gets the ministry.
+     *
+     * @param ministryMap the ministry map
+     * @param year the year
+     * @param orgNumber the org number
+     * @return the ministry
+     */
+    private String getMinistry(Map&lt;Integer, Map&lt;String, String&gt;&gt; ministryMap,
+                              int year,
+                              String orgNumber) {
+<span class="fc" id="L322">        final Map&lt;String, String&gt; yearMap = ministryMap.get(year);</span>
+<span class="pc bpc" id="L323" title="1 of 2 branches missed.">        return yearMap != null ? yearMap.get(orgNumber.replace(&quot;-&quot;, &quot;&quot;)) : null;</span>
+    }
+
+    /**
+     * The Enum DataType.
+     */
+<span class="fc" id="L329">    private enum DataType {</span>
+        
+        /** The income. */
+<span class="fc" id="L332">        INCOME(&quot;Inkomst&quot;, &quot;inkomster&quot;),</span>
+        
+        /** The outgoing. */
+<span class="fc" id="L335">        OUTGOING(&quot;Utgift&quot;, &quot;utgifter&quot;);</span>
+
+        /** The document type. */
+        private final String documentType;
+        
+        /** The url name. */
+        private final String urlName;
+
+        /**
+         * Instantiates a new data type.
+         *
+         * @param documentType the document type
+         * @param urlName the url name
+         */
+<span class="fc" id="L349">        DataType(String documentType, String urlName) {</span>
+<span class="fc" id="L350">            this.documentType = documentType;</span>
+<span class="fc" id="L351">            this.urlName = urlName;</span>
+<span class="fc" id="L352">        }</span>
+
+        /**
+         * Gets the document type.
+         *
+         * @return the document type
+         */
+        public String getDocumentType() {
+<span class="fc" id="L360">            return documentType;</span>
+        }
+
+        /**
+         * Gets the url name.
+         *
+         * @return the url name
+         */
+        public String getUrlName() {
+<span class="fc" id="L369">            return urlName;</span>
+        }
+    }
+
+    /**
+     * Creates the org ministry map.
+     *
+     * @param data the data
+     * @return the map
+     */
+    private static Map&lt;Integer, Map&lt;String, String&gt;&gt; createOrgMinistryMap(
+            Map&lt;Integer, List&lt;GovernmentBodyAnnualSummary&gt;&gt; data) {
+<span class="fc" id="L381">        return data.entrySet().stream()</span>
+<span class="fc" id="L382">            .collect(Collectors.toMap(</span>
+                Entry::getKey,
+<span class="fc" id="L384">                e -&gt; e.getValue().stream()</span>
+<span class="fc" id="L385">                    .collect(Collectors.toMap(</span>
+<span class="fc" id="L386">                        t -&gt; t.getOrgNumber().replace(&quot;-&quot;, &quot;&quot;),</span>
+                        GovernmentBodyAnnualSummary::getMinistry,
+<span class="fc" id="L388">                        (v1, v2) -&gt; v1</span>
+                    ))
+            ));
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

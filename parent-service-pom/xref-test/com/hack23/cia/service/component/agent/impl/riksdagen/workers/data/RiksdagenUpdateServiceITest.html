@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang="">
 <head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <title>RiksdagenUpdateServiceITest xref</title>
 <link type="text/css" rel="stylesheet" href="../../../../../../../../../../stylesheet.css" />
@@ -7,7 +7,7 @@
 <body>
 <div id="overview"><a href="../../../../../../../../../../../testapidocs/com/hack23/cia/service/component/agent/impl/riksdagen/workers/data/RiksdagenUpdateServiceITest.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2019 James Pether Sörling</em>
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2025 James Pether Sörling</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> *</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> * Licensed under the Apache License, Version 2.0 (the "License");</em>
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_comment"> * you may not use this file except in compliance with the License.</em>
@@ -92,14 +92,14 @@
 <a class="jxr_linenumber" name="L84" href="#L84">84</a>  		ReflectionTestUtils.setField(riksdagenUpdateService, <span class="jxr_string">"personDataDAO"</span>, personDataDAOMock);
 <a class="jxr_linenumber" name="L85" href="#L85">85</a>  
 <a class="jxr_linenumber" name="L86" href="#L86">86</a>  		<strong class="jxr_keyword">final</strong> String personId = <span class="jxr_string">"0542160909628"</span>;
-<a class="jxr_linenumber" name="L87" href="#L87">87</a>  		
+<a class="jxr_linenumber" name="L87" href="#L87">87</a>  
 <a class="jxr_linenumber" name="L88" href="#L88">88</a>  		<strong class="jxr_keyword">final</strong> PersonData existPersonData = <strong class="jxr_keyword">new</strong> PersonData();
 <a class="jxr_linenumber" name="L89" href="#L89">89</a>  		<strong class="jxr_keyword">final</strong> List&lt;AssignmentData&gt; assignmentList = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;();
 <a class="jxr_linenumber" name="L90" href="#L90">90</a>  		assignmentList.add(<strong class="jxr_keyword">new</strong> AssignmentData().withOrgCode(<span class="jxr_string">"OrgCode"</span>).withRoleCode(<span class="jxr_string">"RoleCode"</span>).withFromDate(<strong class="jxr_keyword">new</strong> Date())
 <a class="jxr_linenumber" name="L91" href="#L91">91</a>  				.withToDate(<strong class="jxr_keyword">new</strong> Date()).withIntressentId(personId));
 <a class="jxr_linenumber" name="L92" href="#L92">92</a>  		existPersonData.withPersonAssignmentData(<strong class="jxr_keyword">new</strong> PersonAssignmentData().withAssignmentList(assignmentList));
 <a class="jxr_linenumber" name="L93" href="#L93">93</a>  		existPersonData.setId(personId);
-<a class="jxr_linenumber" name="L94" href="#L94">94</a>  		
+<a class="jxr_linenumber" name="L94" href="#L94">94</a>  
 <a class="jxr_linenumber" name="L95" href="#L95">95</a>  
 <a class="jxr_linenumber" name="L96" href="#L96">96</a>  		<strong class="jxr_keyword">final</strong> PersonData personData = <strong class="jxr_keyword">new</strong> PersonData();
 <a class="jxr_linenumber" name="L97" href="#L97">97</a>  		<strong class="jxr_keyword">final</strong> List&lt;AssignmentData&gt; assignmentListNew = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;();
@@ -107,7 +107,7 @@
 <a class="jxr_linenumber" name="L99" href="#L99">99</a>  				.withToDate(<strong class="jxr_keyword">new</strong> Date()).withIntressentId(personId));
 <a class="jxr_linenumber" name="L100" href="#L100">100</a> 		assignmentListNew.add(<strong class="jxr_keyword">new</strong> AssignmentData().withOrgCode(<span class="jxr_string">"OrgCodeNew"</span>).withRoleCode(<span class="jxr_string">"RoleCodeNew"</span>).withFromDate(<strong class="jxr_keyword">new</strong> Date())
 <a class="jxr_linenumber" name="L101" href="#L101">101</a> 				.withToDate(<strong class="jxr_keyword">new</strong> Date()).withIntressentId(personId));
-<a class="jxr_linenumber" name="L102" href="#L102">102</a> 		
+<a class="jxr_linenumber" name="L102" href="#L102">102</a> 
 <a class="jxr_linenumber" name="L103" href="#L103">103</a> 		personData.withPersonAssignmentData(<strong class="jxr_keyword">new</strong> PersonAssignmentData().withAssignmentList(assignmentListNew));
 <a class="jxr_linenumber" name="L104" href="#L104">104</a> 		personData.setId(personId);
 <a class="jxr_linenumber" name="L105" href="#L105">105</a> 
@@ -201,7 +201,7 @@
 <a class="jxr_linenumber" name="L193" href="#L193">193</a> 				committeeProposalComponentDataDAO);
 <a class="jxr_linenumber" name="L194" href="#L194">194</a> 		<strong class="jxr_keyword">final</strong> CommitteeProposalComponentData documentProposal = <strong class="jxr_keyword">new</strong> CommitteeProposalComponentData()
 <a class="jxr_linenumber" name="L195" href="#L195">195</a> 				.withDocument(<strong class="jxr_keyword">new</strong> CommitteeDocumentData()).withCommitteeProposalContainer(<strong class="jxr_keyword">new</strong> CommitteeProposalContainer()).withAgainstProposalContainer(<strong class="jxr_keyword">new</strong> AgainstProposalContainer());
-<a class="jxr_linenumber" name="L196" href="#L196">196</a> 				
+<a class="jxr_linenumber" name="L196" href="#L196">196</a> 
 <a class="jxr_linenumber" name="L197" href="#L197">197</a> 		when(committeeProposalComponentDataDAO.findFirstByProperty(CommitteeProposalComponentData_.document,
 <a class="jxr_linenumber" name="L198" href="#L198">198</a> 				documentProposal.getDocument())).thenReturn(documentProposal);
 <a class="jxr_linenumber" name="L199" href="#L199">199</a> 		riksdagenUpdateService.updateCommitteeProposalComponentData(documentProposal);
@@ -223,10 +223,10 @@
 <a class="jxr_linenumber" name="L215" href="#L215">215</a> 		committeeProposalContainer.getCommitteeProposalList().add(<strong class="jxr_keyword">new</strong> CommitteeProposalData());
 <a class="jxr_linenumber" name="L216" href="#L216">216</a> 		<strong class="jxr_keyword">final</strong> AgainstProposalContainer againstProposalContainer = <strong class="jxr_keyword">new</strong> AgainstProposalContainer();
 <a class="jxr_linenumber" name="L217" href="#L217">217</a> 		againstProposalContainer.getAgainstProposalList().add(<strong class="jxr_keyword">new</strong> AgainstProposalData());
-<a class="jxr_linenumber" name="L218" href="#L218">218</a> 		
+<a class="jxr_linenumber" name="L218" href="#L218">218</a> 
 <a class="jxr_linenumber" name="L219" href="#L219">219</a> 		<strong class="jxr_keyword">final</strong> CommitteeProposalComponentData documentProposal = <strong class="jxr_keyword">new</strong> CommitteeProposalComponentData()
 <a class="jxr_linenumber" name="L220" href="#L220">220</a> 				.withDocument(<strong class="jxr_keyword">new</strong> CommitteeDocumentData()).withCommitteeProposalContainer(committeeProposalContainer).withAgainstProposalContainer(againstProposalContainer);
-<a class="jxr_linenumber" name="L221" href="#L221">221</a> 				
+<a class="jxr_linenumber" name="L221" href="#L221">221</a> 
 <a class="jxr_linenumber" name="L222" href="#L222">222</a> 		when(committeeProposalComponentDataDAO.findFirstByProperty(CommitteeProposalComponentData_.document,
 <a class="jxr_linenumber" name="L223" href="#L223">223</a> 				documentProposal.getDocument())).thenReturn(documentProposal);
 <a class="jxr_linenumber" name="L224" href="#L224">224</a> 		riksdagenUpdateService.updateCommitteeProposalComponentData(documentProposal);
@@ -244,17 +244,17 @@
 <a class="jxr_linenumber" name="L236" href="#L236">236</a> 				CommitteeProposalComponentDataDAO.<strong class="jxr_keyword">class</strong>);
 <a class="jxr_linenumber" name="L237" href="#L237">237</a> 		ReflectionTestUtils.setField(riksdagenUpdateService, <span class="jxr_string">"committeeProposalComponentDataDAO"</span>,
 <a class="jxr_linenumber" name="L238" href="#L238">238</a> 				committeeProposalComponentDataDAO);
-<a class="jxr_linenumber" name="L239" href="#L239">239</a> 		
+<a class="jxr_linenumber" name="L239" href="#L239">239</a> 
 <a class="jxr_linenumber" name="L240" href="#L240">240</a> 		<strong class="jxr_keyword">final</strong> CommitteeProposalComponentData documentProposal = <strong class="jxr_keyword">new</strong> CommitteeProposalComponentData()
 <a class="jxr_linenumber" name="L241" href="#L241">241</a> 				.withDocument(<strong class="jxr_keyword">new</strong> CommitteeDocumentData()).withCommitteeProposalContainer(<strong class="jxr_keyword">null</strong>).withAgainstProposalContainer(<strong class="jxr_keyword">null</strong>);
-<a class="jxr_linenumber" name="L242" href="#L242">242</a> 				
+<a class="jxr_linenumber" name="L242" href="#L242">242</a> 
 <a class="jxr_linenumber" name="L243" href="#L243">243</a> 		when(committeeProposalComponentDataDAO.findFirstByProperty(CommitteeProposalComponentData_.document,
 <a class="jxr_linenumber" name="L244" href="#L244">244</a> 				documentProposal.getDocument())).thenReturn(documentProposal);
 <a class="jxr_linenumber" name="L245" href="#L245">245</a> 		riksdagenUpdateService.updateCommitteeProposalComponentData(documentProposal);
 <a class="jxr_linenumber" name="L246" href="#L246">246</a> 		verify(committeeProposalComponentDataDAO, times(1)).persist(documentProposal);
 <a class="jxr_linenumber" name="L247" href="#L247">247</a> 	}
 <a class="jxr_linenumber" name="L248" href="#L248">248</a> 
-<a class="jxr_linenumber" name="L249" href="#L249">249</a> 	
+<a class="jxr_linenumber" name="L249" href="#L249">249</a> 
 <a class="jxr_linenumber" name="L250" href="#L250">250</a> 	<em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L251" href="#L251">251</a> <em class="jxr_javadoccomment">	 * Update document element success test.</em>
 <a class="jxr_linenumber" name="L252" href="#L252">252</a> <em class="jxr_javadoccomment">	 *</em>
@@ -330,53 +330,55 @@
 <a class="jxr_linenumber" name="L322" href="#L322">322</a> <em class="jxr_javadoccomment">	 *</em>
 <a class="jxr_linenumber" name="L323" href="#L323">323</a> <em class="jxr_javadoccomment">	 * @throws Exception the exception</em>
 <a class="jxr_linenumber" name="L324" href="#L324">324</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L325" href="#L325">325</a> 	@Test
-<a class="jxr_linenumber" name="L326" href="#L326">326</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> updateVoteDataDataIgnoreEmptySuccessTest() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L327" href="#L327">327</a> 		<strong class="jxr_keyword">final</strong> VoteDataDAO voteDataDAO = mock(VoteDataDAO.<strong class="jxr_keyword">class</strong>);
-<a class="jxr_linenumber" name="L328" href="#L328">328</a> 		ReflectionTestUtils.setField(riksdagenUpdateService, <span class="jxr_string">"voteDataDAO"</span>, voteDataDAO);
-<a class="jxr_linenumber" name="L329" href="#L329">329</a> 		riksdagenUpdateService.updateVoteDataData(<strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;());
-<a class="jxr_linenumber" name="L330" href="#L330">330</a> 		verify(voteDataDAO, never()).persist(any(List.<strong class="jxr_keyword">class</strong>));
-<a class="jxr_linenumber" name="L331" href="#L331">331</a> 	}
-<a class="jxr_linenumber" name="L332" href="#L332">332</a> 
-<a class="jxr_linenumber" name="L333" href="#L333">333</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L334" href="#L334">334</a> <em class="jxr_javadoccomment">	 * Update vote data data success test.</em>
-<a class="jxr_linenumber" name="L335" href="#L335">335</a> <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="L336" href="#L336">336</a> <em class="jxr_javadoccomment">	 * @throws Exception the exception</em>
-<a class="jxr_linenumber" name="L337" href="#L337">337</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L338" href="#L338">338</a> 	@Test
-<a class="jxr_linenumber" name="L339" href="#L339">339</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> updateVoteDataDataSuccessTest() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L340" href="#L340">340</a> 		<strong class="jxr_keyword">final</strong> VoteDataDAO voteDataDAO = mock(VoteDataDAO.<strong class="jxr_keyword">class</strong>);
-<a class="jxr_linenumber" name="L341" href="#L341">341</a> 		ReflectionTestUtils.setField(riksdagenUpdateService, <span class="jxr_string">"voteDataDAO"</span>, voteDataDAO);
-<a class="jxr_linenumber" name="L342" href="#L342">342</a> 		<strong class="jxr_keyword">final</strong> String ballotId = <span class="jxr_string">"notExist"</span>;
-<a class="jxr_linenumber" name="L343" href="#L343">343</a> 		<strong class="jxr_keyword">final</strong> List&lt;VoteData&gt; ballotList = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;();
-<a class="jxr_linenumber" name="L344" href="#L344">344</a> 		ballotList.add(<strong class="jxr_keyword">new</strong> VoteData().withEmbeddedId(<strong class="jxr_keyword">new</strong> VoteDataEmbeddedId().withBallotId(ballotId)));
-<a class="jxr_linenumber" name="L345" href="#L345">345</a> 		when(voteDataDAO.findListByEmbeddedProperty(VoteData_.embeddedId, VoteDataEmbeddedId.<strong class="jxr_keyword">class</strong>,
-<a class="jxr_linenumber" name="L346" href="#L346">346</a> 				VoteDataEmbeddedId_.ballotId, ballotId)).thenReturn(<strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;());
-<a class="jxr_linenumber" name="L347" href="#L347">347</a> 		riksdagenUpdateService.updateVoteDataData(ballotList);
-<a class="jxr_linenumber" name="L348" href="#L348">348</a> 		verify(voteDataDAO, times(1)).persist(ballotList);
-<a class="jxr_linenumber" name="L349" href="#L349">349</a> 	}
-<a class="jxr_linenumber" name="L350" href="#L350">350</a> 
-<a class="jxr_linenumber" name="L351" href="#L351">351</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L352" href="#L352">352</a> <em class="jxr_javadoccomment">	 * Update vote data data already exist success test.</em>
-<a class="jxr_linenumber" name="L353" href="#L353">353</a> <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="L354" href="#L354">354</a> <em class="jxr_javadoccomment">	 * @throws Exception the exception</em>
-<a class="jxr_linenumber" name="L355" href="#L355">355</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L356" href="#L356">356</a> 	@Test
-<a class="jxr_linenumber" name="L357" href="#L357">357</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> updateVoteDataDataAlreadyExistSuccessTest() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L358" href="#L358">358</a> 		<strong class="jxr_keyword">final</strong> VoteDataDAO voteDataDAO = mock(VoteDataDAO.<strong class="jxr_keyword">class</strong>);
-<a class="jxr_linenumber" name="L359" href="#L359">359</a> 		ReflectionTestUtils.setField(riksdagenUpdateService, <span class="jxr_string">"voteDataDAO"</span>, voteDataDAO);
-<a class="jxr_linenumber" name="L360" href="#L360">360</a> 		<strong class="jxr_keyword">final</strong> String ballotId = <span class="jxr_string">"exist"</span>;
-<a class="jxr_linenumber" name="L361" href="#L361">361</a> 		<strong class="jxr_keyword">final</strong> List&lt;VoteData&gt; ballotList = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;();
-<a class="jxr_linenumber" name="L362" href="#L362">362</a> 		ballotList.add(<strong class="jxr_keyword">new</strong> VoteData().withEmbeddedId(<strong class="jxr_keyword">new</strong> VoteDataEmbeddedId().withBallotId(ballotId)));
-<a class="jxr_linenumber" name="L363" href="#L363">363</a> 		when(voteDataDAO.findListByEmbeddedProperty(VoteData_.embeddedId, VoteDataEmbeddedId.<strong class="jxr_keyword">class</strong>,
-<a class="jxr_linenumber" name="L364" href="#L364">364</a> 				VoteDataEmbeddedId_.ballotId, ballotId)).thenReturn(ballotList);
-<a class="jxr_linenumber" name="L365" href="#L365">365</a> 		riksdagenUpdateService.updateVoteDataData(ballotList);
-<a class="jxr_linenumber" name="L366" href="#L366">366</a> 		verify(voteDataDAO, never()).persist(any(List.<strong class="jxr_keyword">class</strong>));
-<a class="jxr_linenumber" name="L367" href="#L367">367</a> 	}
-<a class="jxr_linenumber" name="L368" href="#L368">368</a> 
-<a class="jxr_linenumber" name="L369" href="#L369">369</a> }
+<a class="jxr_linenumber" name="L325" href="#L325">325</a> 	@SuppressWarnings(<span class="jxr_string">"unchecked"</span>)
+<a class="jxr_linenumber" name="L326" href="#L326">326</a> 	@Test
+<a class="jxr_linenumber" name="L327" href="#L327">327</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> updateVoteDataDataIgnoreEmptySuccessTest() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L328" href="#L328">328</a> 		<strong class="jxr_keyword">final</strong> VoteDataDAO voteDataDAO = mock(VoteDataDAO.<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="L329" href="#L329">329</a> 		ReflectionTestUtils.setField(riksdagenUpdateService, <span class="jxr_string">"voteDataDAO"</span>, voteDataDAO);
+<a class="jxr_linenumber" name="L330" href="#L330">330</a> 		riksdagenUpdateService.updateVoteDataData(<strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;());
+<a class="jxr_linenumber" name="L331" href="#L331">331</a> 		verify(voteDataDAO, never()).persist(any(List.<strong class="jxr_keyword">class</strong>));
+<a class="jxr_linenumber" name="L332" href="#L332">332</a> 	}
+<a class="jxr_linenumber" name="L333" href="#L333">333</a> 
+<a class="jxr_linenumber" name="L334" href="#L334">334</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L335" href="#L335">335</a> <em class="jxr_javadoccomment">	 * Update vote data data success test.</em>
+<a class="jxr_linenumber" name="L336" href="#L336">336</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L337" href="#L337">337</a> <em class="jxr_javadoccomment">	 * @throws Exception the exception</em>
+<a class="jxr_linenumber" name="L338" href="#L338">338</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L339" href="#L339">339</a> 	@Test
+<a class="jxr_linenumber" name="L340" href="#L340">340</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> updateVoteDataDataSuccessTest() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L341" href="#L341">341</a> 		<strong class="jxr_keyword">final</strong> VoteDataDAO voteDataDAO = mock(VoteDataDAO.<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="L342" href="#L342">342</a> 		ReflectionTestUtils.setField(riksdagenUpdateService, <span class="jxr_string">"voteDataDAO"</span>, voteDataDAO);
+<a class="jxr_linenumber" name="L343" href="#L343">343</a> 		<strong class="jxr_keyword">final</strong> String ballotId = <span class="jxr_string">"notExist"</span>;
+<a class="jxr_linenumber" name="L344" href="#L344">344</a> 		<strong class="jxr_keyword">final</strong> List&lt;VoteData&gt; ballotList = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;();
+<a class="jxr_linenumber" name="L345" href="#L345">345</a> 		ballotList.add(<strong class="jxr_keyword">new</strong> VoteData().withEmbeddedId(<strong class="jxr_keyword">new</strong> VoteDataEmbeddedId().withBallotId(ballotId)));
+<a class="jxr_linenumber" name="L346" href="#L346">346</a> 		when(voteDataDAO.findListByEmbeddedProperty(VoteData_.embeddedId, VoteDataEmbeddedId.<strong class="jxr_keyword">class</strong>,
+<a class="jxr_linenumber" name="L347" href="#L347">347</a> 				VoteDataEmbeddedId_.ballotId, ballotId)).thenReturn(<strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;());
+<a class="jxr_linenumber" name="L348" href="#L348">348</a> 		riksdagenUpdateService.updateVoteDataData(ballotList);
+<a class="jxr_linenumber" name="L349" href="#L349">349</a> 		verify(voteDataDAO, times(1)).persist(ballotList);
+<a class="jxr_linenumber" name="L350" href="#L350">350</a> 	}
+<a class="jxr_linenumber" name="L351" href="#L351">351</a> 
+<a class="jxr_linenumber" name="L352" href="#L352">352</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L353" href="#L353">353</a> <em class="jxr_javadoccomment">	 * Update vote data data already exist success test.</em>
+<a class="jxr_linenumber" name="L354" href="#L354">354</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L355" href="#L355">355</a> <em class="jxr_javadoccomment">	 * @throws Exception the exception</em>
+<a class="jxr_linenumber" name="L356" href="#L356">356</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L357" href="#L357">357</a> 	@SuppressWarnings(<span class="jxr_string">"unchecked"</span>)
+<a class="jxr_linenumber" name="L358" href="#L358">358</a> 	@Test
+<a class="jxr_linenumber" name="L359" href="#L359">359</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> updateVoteDataDataAlreadyExistSuccessTest() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L360" href="#L360">360</a> 		<strong class="jxr_keyword">final</strong> VoteDataDAO voteDataDAO = mock(VoteDataDAO.<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="L361" href="#L361">361</a> 		ReflectionTestUtils.setField(riksdagenUpdateService, <span class="jxr_string">"voteDataDAO"</span>, voteDataDAO);
+<a class="jxr_linenumber" name="L362" href="#L362">362</a> 		<strong class="jxr_keyword">final</strong> String ballotId = <span class="jxr_string">"exist"</span>;
+<a class="jxr_linenumber" name="L363" href="#L363">363</a> 		<strong class="jxr_keyword">final</strong> List&lt;VoteData&gt; ballotList = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;();
+<a class="jxr_linenumber" name="L364" href="#L364">364</a> 		ballotList.add(<strong class="jxr_keyword">new</strong> VoteData().withEmbeddedId(<strong class="jxr_keyword">new</strong> VoteDataEmbeddedId().withBallotId(ballotId)));
+<a class="jxr_linenumber" name="L365" href="#L365">365</a> 		when(voteDataDAO.findListByEmbeddedProperty(VoteData_.embeddedId, VoteDataEmbeddedId.<strong class="jxr_keyword">class</strong>,
+<a class="jxr_linenumber" name="L366" href="#L366">366</a> 				VoteDataEmbeddedId_.ballotId, ballotId)).thenReturn(ballotList);
+<a class="jxr_linenumber" name="L367" href="#L367">367</a> 		riksdagenUpdateService.updateVoteDataData(ballotList);
+<a class="jxr_linenumber" name="L368" href="#L368">368</a> 		verify(voteDataDAO, never()).persist(any(List.<strong class="jxr_keyword">class</strong>));
+<a class="jxr_linenumber" name="L369" href="#L369">369</a> 	}
+<a class="jxr_linenumber" name="L370" href="#L370">370</a> 
+<a class="jxr_linenumber" name="L371" href="#L371">371</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2008&#x2013;2019 <a href="http://www.hack23.com">www.hack23.com</a>. All rights reserved.</div>
+<div id="footer">© 2008–2026 <a href="http://www.hack23.com">www.hack23.com</a></div>
 </body>
 </html>

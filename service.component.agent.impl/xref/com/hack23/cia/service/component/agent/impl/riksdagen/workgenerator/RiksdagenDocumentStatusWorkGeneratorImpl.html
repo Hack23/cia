@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang="">
 <head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <title>RiksdagenDocumentStatusWorkGeneratorImpl xref</title>
 <link type="text/css" rel="stylesheet" href="../../../../../../../../../stylesheet.css" />
@@ -7,7 +7,7 @@
 <body>
 <div id="overview"><a href="../../../../../../../../../../apidocs/com/hack23/cia/service/component/agent/impl/riksdagen/workgenerator/RiksdagenDocumentStatusWorkGeneratorImpl.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2019 James Pether Sörling</em>
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2025 James Pether Sörling</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> *</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> * Licensed under the Apache License, Version 2.0 (the "License");</em>
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_comment"> * you may not use this file except in compliance with the License.</em>
@@ -100,13 +100,13 @@
 <a class="jxr_linenumber" name="L92" href="#L92">92</a>  							id);
 <a class="jxr_linenumber" name="L93" href="#L93">93</a>  				}
 <a class="jxr_linenumber" name="L94" href="#L94">94</a>  			}
-<a class="jxr_linenumber" name="L95" href="#L95">95</a>  			
+<a class="jxr_linenumber" name="L95" href="#L95">95</a>  
 <a class="jxr_linenumber" name="L96" href="#L96">96</a>  			<strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> DocumentStatusContainer container : getImportService().getNoneCompletedDocumentStatusCommitteeReports()) {
 <a class="jxr_linenumber" name="L97" href="#L97">97</a>  				 <strong class="jxr_keyword">if</strong> (<span class="jxr_string">"planerat"</span>.equals(container.getDocument().getStatus())) {
 <a class="jxr_linenumber" name="L98" href="#L98">98</a>  					 getJmsSender().send(documentStatusContainerWorkdestination,
 <a class="jxr_linenumber" name="L99" href="#L99">99</a>  							 container.getDocument().getId());
 <a class="jxr_linenumber" name="L100" href="#L100">100</a> 				 }
-<a class="jxr_linenumber" name="L101" href="#L101">101</a> 			}		
+<a class="jxr_linenumber" name="L101" href="#L101">101</a> 			}
 <a class="jxr_linenumber" name="L102" href="#L102">102</a> 
 <a class="jxr_linenumber" name="L103" href="#L103">103</a> 		} <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> ParseException e) {
 <a class="jxr_linenumber" name="L104" href="#L104">104</a> 			LOGGER.warn(<span class="jxr_string">"Loading document status "</span>, e);
@@ -116,6 +116,6 @@
 <a class="jxr_linenumber" name="L108" href="#L108">108</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2010&#x2013;2019 <a href="http://www.hack23.com">www.hack23.com</a>. All rights reserved.</div>
+<div id="footer">© 2010–2026 <a href="http://www.hack23.com">www.hack23.com</a></div>
 </body>
 </html>

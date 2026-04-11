@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>TemporalTrendsExportDTO.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">service.impl</a> &gt; <a href="../index.html" class="el_bundle">service.data.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.data.impl.export</a> &gt; <span class="el_source">TemporalTrendsExportDTO.java</span></div><h1>TemporalTrendsExportDTO.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2025 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+ */
+package com.hack23.cia.service.data.impl.export;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+/**
+ * DTO for temporal trends JSON export.
+ * 
+ * @author intelligence-operative
+ * @since v1.36
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class TemporalTrendsExportDTO implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	@JsonProperty(&quot;metadata&quot;)
+	private ExportMetadata metadata;
+
+	@JsonProperty(&quot;trends&quot;)
+	private List&lt;TrendDataPoint&gt; trends;
+
+<span class="fc" id="L49">	public TemporalTrendsExportDTO() {</span>
+<span class="fc" id="L50">		this.trends = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L51">	}</span>
+
+	public ExportMetadata getMetadata() {
+<span class="fc" id="L54">		return metadata;</span>
+	}
+
+	public void setMetadata(final ExportMetadata metadata) {
+<span class="fc" id="L58">		this.metadata = metadata;</span>
+<span class="fc" id="L59">	}</span>
+
+	public List&lt;TrendDataPoint&gt; getTrends() {
+<span class="fc" id="L62">		return Collections.unmodifiableList(trends);</span>
+	}
+
+	public void setTrends(final List&lt;TrendDataPoint&gt; trends) {
+<span class="fc" id="L66">		this.trends = trends;</span>
+<span class="fc" id="L67">	}</span>
+
+	/**
+	 * Trend data point.
+	 */
+	@JsonInclude(JsonInclude.Include.NON_NULL)
+<span class="fc" id="L73">	public static class TrendDataPoint implements Serializable {</span>
+		private static final long serialVersionUID = 1L;
+
+		@JsonProperty(&quot;decisionDay&quot;)
+		@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = &quot;yyyy-MM-dd&quot;, timezone = &quot;UTC&quot;)
+		private Date decisionDay;
+
+		@JsonProperty(&quot;dailyDecisions&quot;)
+		private Long dailyDecisions;
+
+		@JsonProperty(&quot;dailyApprovalRate&quot;)
+		private BigDecimal dailyApprovalRate;
+
+		@JsonProperty(&quot;approvedDecisions&quot;)
+		private Long approvedDecisions;
+
+		@JsonProperty(&quot;rejectedDecisions&quot;)
+		private Long rejectedDecisions;
+
+		@JsonProperty(&quot;referredBackDecisions&quot;)
+		private Long referredBackDecisions;
+
+		@JsonProperty(&quot;committeeReferralDecisions&quot;)
+		private Long committeeReferralDecisions;
+
+		@JsonProperty(&quot;ma7dayDecisions&quot;)
+		private BigDecimal ma7dayDecisions;
+
+		@JsonProperty(&quot;ma30dayDecisions&quot;)
+		private BigDecimal ma30dayDecisions;
+
+		@JsonProperty(&quot;ma90dayDecisions&quot;)
+		private BigDecimal ma90dayDecisions;
+
+		@JsonProperty(&quot;ma30dayApprovalRate&quot;)
+		private BigDecimal ma30dayApprovalRate;
+
+		@JsonProperty(&quot;decisionsLastYear&quot;)
+		private Long decisionsLastYear;
+
+		@JsonProperty(&quot;yoyDecisionsChange&quot;)
+		private Long yoyDecisionsChange;
+
+		@JsonProperty(&quot;yoyDecisionsChangePct&quot;)
+		private BigDecimal yoyDecisionsChangePct;
+
+		@JsonProperty(&quot;decisionYear&quot;)
+		private Integer decisionYear;
+
+		@JsonProperty(&quot;decisionMonth&quot;)
+		private Integer decisionMonth;
+
+		@JsonProperty(&quot;decisionWeek&quot;)
+		private Integer decisionWeek;
+
+		@JsonProperty(&quot;dayOfWeek&quot;)
+		private Integer dayOfWeek;
+
+		// Getters and setters
+		public Date getDecisionDay() {
+<span class="pc bpc" id="L133" title="1 of 2 branches missed.">			return decisionDay != null ? new Date(decisionDay.getTime()) : null;</span>
+		}
+
+		public void setDecisionDay(final Date decisionDay) {
+<span class="pc bpc" id="L137" title="1 of 2 branches missed.">			this.decisionDay = decisionDay != null ? new Date(decisionDay.getTime()) : null;</span>
+<span class="fc" id="L138">		}</span>
+
+		public Long getDailyDecisions() {
+<span class="fc" id="L141">			return dailyDecisions;</span>
+		}
+
+		public void setDailyDecisions(final Long dailyDecisions) {
+<span class="fc" id="L145">			this.dailyDecisions = dailyDecisions;</span>
+<span class="fc" id="L146">		}</span>
+
+		public BigDecimal getDailyApprovalRate() {
+<span class="fc" id="L149">			return dailyApprovalRate;</span>
+		}
+
+		public void setDailyApprovalRate(final BigDecimal dailyApprovalRate) {
+<span class="fc" id="L153">			this.dailyApprovalRate = dailyApprovalRate;</span>
+<span class="fc" id="L154">		}</span>
+
+		public Long getApprovedDecisions() {
+<span class="fc" id="L157">			return approvedDecisions;</span>
+		}
+
+		public void setApprovedDecisions(final Long approvedDecisions) {
+<span class="fc" id="L161">			this.approvedDecisions = approvedDecisions;</span>
+<span class="fc" id="L162">		}</span>
+
+		public Long getRejectedDecisions() {
+<span class="fc" id="L165">			return rejectedDecisions;</span>
+		}
+
+		public void setRejectedDecisions(final Long rejectedDecisions) {
+<span class="fc" id="L169">			this.rejectedDecisions = rejectedDecisions;</span>
+<span class="fc" id="L170">		}</span>
+
+		public Long getReferredBackDecisions() {
+<span class="fc" id="L173">			return referredBackDecisions;</span>
+		}
+
+		public void setReferredBackDecisions(final Long referredBackDecisions) {
+<span class="fc" id="L177">			this.referredBackDecisions = referredBackDecisions;</span>
+<span class="fc" id="L178">		}</span>
+
+		public Long getCommitteeReferralDecisions() {
+<span class="fc" id="L181">			return committeeReferralDecisions;</span>
+		}
+
+		public void setCommitteeReferralDecisions(final Long committeeReferralDecisions) {
+<span class="fc" id="L185">			this.committeeReferralDecisions = committeeReferralDecisions;</span>
+<span class="fc" id="L186">		}</span>
+
+		public BigDecimal getMa7dayDecisions() {
+<span class="fc" id="L189">			return ma7dayDecisions;</span>
+		}
+
+		public void setMa7dayDecisions(final BigDecimal ma7dayDecisions) {
+<span class="fc" id="L193">			this.ma7dayDecisions = ma7dayDecisions;</span>
+<span class="fc" id="L194">		}</span>
+
+		public BigDecimal getMa30dayDecisions() {
+<span class="fc" id="L197">			return ma30dayDecisions;</span>
+		}
+
+		public void setMa30dayDecisions(final BigDecimal ma30dayDecisions) {
+<span class="fc" id="L201">			this.ma30dayDecisions = ma30dayDecisions;</span>
+<span class="fc" id="L202">		}</span>
+
+		public BigDecimal getMa90dayDecisions() {
+<span class="fc" id="L205">			return ma90dayDecisions;</span>
+		}
+
+		public void setMa90dayDecisions(final BigDecimal ma90dayDecisions) {
+<span class="fc" id="L209">			this.ma90dayDecisions = ma90dayDecisions;</span>
+<span class="fc" id="L210">		}</span>
+
+		public BigDecimal getMa30dayApprovalRate() {
+<span class="fc" id="L213">			return ma30dayApprovalRate;</span>
+		}
+
+		public void setMa30dayApprovalRate(final BigDecimal ma30dayApprovalRate) {
+<span class="fc" id="L217">			this.ma30dayApprovalRate = ma30dayApprovalRate;</span>
+<span class="fc" id="L218">		}</span>
+
+		public Long getDecisionsLastYear() {
+<span class="fc" id="L221">			return decisionsLastYear;</span>
+		}
+
+		public void setDecisionsLastYear(final Long decisionsLastYear) {
+<span class="fc" id="L225">			this.decisionsLastYear = decisionsLastYear;</span>
+<span class="fc" id="L226">		}</span>
+
+		public Long getYoyDecisionsChange() {
+<span class="fc" id="L229">			return yoyDecisionsChange;</span>
+		}
+
+		public void setYoyDecisionsChange(final Long yoyDecisionsChange) {
+<span class="fc" id="L233">			this.yoyDecisionsChange = yoyDecisionsChange;</span>
+<span class="fc" id="L234">		}</span>
+
+		public BigDecimal getYoyDecisionsChangePct() {
+<span class="fc" id="L237">			return yoyDecisionsChangePct;</span>
+		}
+
+		public void setYoyDecisionsChangePct(final BigDecimal yoyDecisionsChangePct) {
+<span class="fc" id="L241">			this.yoyDecisionsChangePct = yoyDecisionsChangePct;</span>
+<span class="fc" id="L242">		}</span>
+
+		public Integer getDecisionYear() {
+<span class="fc" id="L245">			return decisionYear;</span>
+		}
+
+		public void setDecisionYear(final Integer decisionYear) {
+<span class="fc" id="L249">			this.decisionYear = decisionYear;</span>
+<span class="fc" id="L250">		}</span>
+
+		public Integer getDecisionMonth() {
+<span class="fc" id="L253">			return decisionMonth;</span>
+		}
+
+		public void setDecisionMonth(final Integer decisionMonth) {
+<span class="fc" id="L257">			this.decisionMonth = decisionMonth;</span>
+<span class="fc" id="L258">		}</span>
+
+		public Integer getDecisionWeek() {
+<span class="fc" id="L261">			return decisionWeek;</span>
+		}
+
+		public void setDecisionWeek(final Integer decisionWeek) {
+<span class="fc" id="L265">			this.decisionWeek = decisionWeek;</span>
+<span class="fc" id="L266">		}</span>
+
+		public Integer getDayOfWeek() {
+<span class="fc" id="L269">			return dayOfWeek;</span>
+		}
+
+		public void setDayOfWeek(final Integer dayOfWeek) {
+<span class="fc" id="L273">			this.dayOfWeek = dayOfWeek;</span>
+<span class="fc" id="L274">		}</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

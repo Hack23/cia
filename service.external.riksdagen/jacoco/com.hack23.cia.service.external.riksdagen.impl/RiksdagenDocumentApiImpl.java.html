@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RiksdagenDocumentApiImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.external.riksdagen</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.external.riksdagen.impl</a> &gt; <span class="el_source">RiksdagenDocumentApiImpl.java</span></div><h1>RiksdagenDocumentApiImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010 James Pether Sörling
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RiksdagenDocumentApiImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.external.riksdagen</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.external.riksdagen.impl</a> &gt; <span class="el_source">RiksdagenDocumentApiImpl.java</span></div><h1>RiksdagenDocumentApiImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2025 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@
 package com.hack23.cia.service.external.riksdagen.impl;
 
 import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,7 +59,7 @@ final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 	private static final String DOC_ID_KEY = &quot;${DOC_ID}&quot;;
 
 	/** The Constant DOCUMENT_CONTENT. */
-	private static final String DOCUMENT_CONTENT = &quot;https://data.riksdagen.se/dokument/${DOC_ID}/text&quot;;
+	private static final String DOCUMENT_CONTENT = &quot;https://data.riksdagen.se/dokument/${DOC_ID}/xml&quot;;
 
 	/** The Constant DOCUMENT_LIST_CHANGED_DATE. */
 	private static final String DOCUMENT_LIST_CHANGED_DATE = &quot;https://data.riksdagen.se/dokumentlista/?sok=&amp;doktyp=&amp;rm=&amp;from=${CHANGED_SINCE}&amp;tom=${CHANGED_TO}&amp;ts=&amp;bet=&amp;tempbet=&amp;nr=&amp;org=&amp;iid=&amp;webbtv=&amp;talare=&amp;exakt=&amp;planering=&amp;sort=datum&amp;sortorder=asc&amp;rapport=&amp;utformat=xml&amp;a=&quot;;
@@ -93,7 +94,7 @@ final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 	private static final String LOADING_DOCUMENTS = &quot;Loading documents:{}/{}&quot;;
 
 	/** The Constant LOGGER. */
-<span class="fc" id="L96">	private static final Logger LOGGER = LoggerFactory.getLogger(RiksdagenDocumentApiImpl.class);</span>
+<span class="fc" id="L97">	private static final Logger LOGGER = LoggerFactory.getLogger(RiksdagenDocumentApiImpl.class);</span>
 
 	/** The Constant PAGE_PROPERTY. */
 	private static final String PAGE_PROPERTY = &quot;&amp;p=&quot;;
@@ -157,9 +158,9 @@ final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 	 */
 	@Autowired
 	public RiksdagenDocumentApiImpl(final XmlAgent xmlAgent) {
-<span class="fc" id="L160">		super();</span>
-<span class="fc" id="L161">		this.xmlAgent = xmlAgent;</span>
-<span class="fc" id="L162">	}</span>
+<span class="fc" id="L161">		super();</span>
+<span class="fc" id="L162">		this.xmlAgent = xmlAgent;</span>
+<span class="fc" id="L163">	}</span>
 
 	/**
 	 * Fix broken url.
@@ -169,10 +170,10 @@ final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 	 * @return the string
 	 */
 	private static String fixBrokenUrl(final String nextPage) {
-<span class="pc bpc" id="L172" title="1 of 2 branches missed.">		if (nextPage.startsWith(&quot;//&quot;)) {</span>
-<span class="nc" id="L173">			return &quot;http:&quot; + nextPage;</span>
+<span class="pc bpc" id="L173" title="1 of 2 branches missed.">		if (nextPage.startsWith(&quot;//&quot;)) {</span>
+<span class="nc" id="L174">			return &quot;http:&quot; + nextPage;</span>
 		} else {
-<span class="fc" id="L175">			return nextPage;</span>
+<span class="fc" id="L176">			return nextPage;</span>
 		}
 	}
 
@@ -186,15 +187,15 @@ final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 	 */
 	private static void processAll(final List&lt;DocumentElement&gt; dokument,
 			final ProcessDataStrategy&lt;DocumentElement&gt; processStrategy) {
-<span class="fc bfc" id="L189" title="All 2 branches covered.">		for (final DocumentElement documentElement : dokument) {</span>
+<span class="fc bfc" id="L190" title="All 2 branches covered.">		for (final DocumentElement documentElement : dokument) {</span>
 
 			try {
-<span class="fc" id="L192">				processStrategy.process(documentElement);</span>
-<span class="nc" id="L193">			} catch (final RuntimeException e) {</span>
-<span class="nc" id="L194">				LOGGER.warn(ERROR_PROCESSING_DOCUMENT, documentElement.getId(), e);</span>
-<span class="fc" id="L195">			}</span>
-<span class="fc" id="L196">		}</span>
-<span class="fc" id="L197">	}</span>
+<span class="fc" id="L193">				processStrategy.process(documentElement);</span>
+<span class="nc" id="L194">			} catch (final RuntimeException e) {</span>
+<span class="nc" id="L195">				LOGGER.warn(ERROR_PROCESSING_DOCUMENT, documentElement.getId(), e);</span>
+<span class="fc" id="L196">			}</span>
+<span class="fc" id="L197">		}</span>
+<span class="fc" id="L198">	}</span>
 
 	/* (non-Javadoc)
 	 * @see com.hack23.cia.service.external.riksdagen.api.RiksdagenDocumentApi#getDocumentContent(java.lang.String)
@@ -202,11 +203,12 @@ final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 	@Override
 	public DocumentContentData getDocumentContent(final String id) throws DataFailureException {
 		try {
-<span class="fc" id="L205">			return new DocumentContentData().withId(id)</span>
-<span class="fc" id="L206">					.withContent(xmlAgent.retriveContent(DOCUMENT_CONTENT.replace(DOC_ID_KEY, id)));</span>
-<span class="fc" id="L207">		} catch (final XmlAgentException e) {</span>
-<span class="fc" id="L208">			LOGGER.warn(PROBLEM_GETTING_DOCUMENT_CONTENT_FOR_ID_S_FROM_DATA_RIKSDAGEN_SE, id);</span>
-<span class="fc" id="L209">			throw new DataFailureException(e);</span>
+<span class="fc" id="L206">			final String encodedId = UrlHelper.urlEncode(id, StandardCharsets.UTF_8.toString());</span>
+<span class="fc" id="L207">			return new DocumentContentData().withId(encodedId)</span>
+<span class="fc" id="L208">					.withContent(xmlAgent.retriveContent(DOCUMENT_CONTENT.replace(DOC_ID_KEY, encodedId)));</span>
+<span class="fc" id="L209">		} catch (final XmlAgentException e) {</span>
+<span class="fc" id="L210">			LOGGER.warn(PROBLEM_GETTING_DOCUMENT_CONTENT_FOR_ID_S_FROM_DATA_RIKSDAGEN_SE, id);</span>
+<span class="fc" id="L211">			throw new DataFailureException(e);</span>
 		}
 	}
 
@@ -217,11 +219,11 @@ final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 	public List&lt;DocumentElement&gt; getDocumentList(final DocumentType documentType, final int maxNumberPages)
 			throws DataFailureException {
 		try {
-<span class="fc" id="L220">			return loadDocumentList(DOCUMENT_LIST_TYPE.replace(TYPE_KEY, documentType.value()), maxNumberPages);</span>
-<span class="fc" id="L221">		} catch (final XmlAgentException e) {</span>
-<span class="fc" id="L222">			LOGGER.warn(PROBLEM_GETTING_DOCUMENT_LIST_FOR_DOCUMENT_TYPE_S_MAX_NUMBER_PAGES_S_FROM_DATA_RIKSDAGEN_SE,</span>
-<span class="fc" id="L223">					documentType, Integer.toString(maxNumberPages));</span>
-<span class="fc" id="L224">			throw new DataFailureException(e);</span>
+<span class="fc" id="L222">			return loadDocumentList(DOCUMENT_LIST_TYPE.replace(TYPE_KEY, documentType.value()), maxNumberPages);</span>
+<span class="fc" id="L223">		} catch (final XmlAgentException e) {</span>
+<span class="fc" id="L224">			LOGGER.warn(PROBLEM_GETTING_DOCUMENT_LIST_FOR_DOCUMENT_TYPE_S_MAX_NUMBER_PAGES_S_FROM_DATA_RIKSDAGEN_SE,</span>
+<span class="fc" id="L225">					documentType, Integer.toString(maxNumberPages));</span>
+<span class="fc" id="L226">			throw new DataFailureException(e);</span>
 		}
 	}
 
@@ -232,10 +234,10 @@ final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 	public List&lt;DocumentElement&gt; getDocumentList(final Integer year, final int maxNumberPages)
 			throws DataFailureException {
 		try {
-<span class="fc" id="L235">			return loadDocumentList(DOCUMENT_LIST_YEAR.replace(YEAR_KEY, year.toString()), maxNumberPages);</span>
-<span class="fc" id="L236">		} catch (final XmlAgentException e) {	</span>
-<span class="fc" id="L237">			LOGGER.warn(PROBLEM_GETTING_DOCUMENT_LIST_FOR_YEAR_S_FROM_DATA_RIKSDAGEN_SE, year);</span>
-<span class="fc" id="L238">			throw new DataFailureException(e);</span>
+<span class="fc" id="L237">			return loadDocumentList(DOCUMENT_LIST_YEAR.replace(YEAR_KEY, year.toString()), maxNumberPages);</span>
+<span class="fc" id="L238">		} catch (final XmlAgentException e) {</span>
+<span class="fc" id="L239">			LOGGER.warn(PROBLEM_GETTING_DOCUMENT_LIST_FOR_YEAR_S_FROM_DATA_RIKSDAGEN_SE, year);</span>
+<span class="fc" id="L240">			throw new DataFailureException(e);</span>
 		}
 	}
 
@@ -246,29 +248,31 @@ final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 	public List&lt;DocumentElement&gt; getDocumentList(final String changedSinceDate, final String changedToDate,
 			final int maxNumberPages) throws DataFailureException {
 		try {
-<span class="fc" id="L249">			return loadDocumentList(DOCUMENT_LIST_CHANGED_DATE.replace(CHANGED_SINCE_KEY, changedSinceDate)</span>
-<span class="fc" id="L250">					.replace(CHANGED_TO_KEY, changedToDate), maxNumberPages);</span>
-<span class="fc" id="L251">		} catch (final XmlAgentException e) {</span>
-<span class="fc" id="L252">			LOGGER.warn(PROBLEM_GETTING_DOCUMENT_LIST_CHANGED_SINCE_DATE_S_CHANGED_TO_DATE_S_FROM_DATA_RIKSDAGEN_SE,</span>
+<span class="fc" id="L251">			return loadDocumentList(DOCUMENT_LIST_CHANGED_DATE.replace(CHANGED_SINCE_KEY, changedSinceDate)</span>
+<span class="fc" id="L252">					.replace(CHANGED_TO_KEY, changedToDate), maxNumberPages);</span>
+<span class="fc" id="L253">		} catch (final XmlAgentException e) {</span>
+<span class="fc" id="L254">			LOGGER.warn(PROBLEM_GETTING_DOCUMENT_LIST_CHANGED_SINCE_DATE_S_CHANGED_TO_DATE_S_FROM_DATA_RIKSDAGEN_SE,</span>
 					changedSinceDate, changedToDate);
-<span class="fc" id="L254">			throw new DataFailureException(e);</span>
+<span class="fc" id="L256">			throw new DataFailureException(e);</span>
 		}
 	}
 
 	/* (non-Javadoc)
 	 * @see com.hack23.cia.service.external.riksdagen.api.RiksdagenDocumentApi#getDocumentStatus(java.lang.String)
 	 */
+	@SuppressWarnings(&quot;unchecked&quot;)
 	@Override
 	public DocumentStatusContainer getDocumentStatus(final String id) throws DataFailureException {
 		try {
-<span class="fc" id="L264">			final String url = DOCUMENT_STATUS.replace(ID_KEY, id);</span>
-<span class="fc" id="L265">			return ((JAXBElement&lt;DocumentStatusContainer&gt;) xmlAgent.unmarshallXml(riksdagenDocumentStatusMarshaller,</span>
-<span class="fc" id="L266">					url, HTTP_DOKUMENTSTATUS_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL, null, null)).getValue();</span>
-<span class="fc" id="L267">		} catch (final XmlAgentException e) {</span>
-<span class="fc" id="L268">			LOGGER.warn(PROBLEM_GETTING_DOCUMENT_STATUS_ID_S_FROM_DATA_RIKSDAGEN_SE, id);</span>
-<span class="fc" id="L269">			throw new DataFailureException(e);</span>
+<span class="fc" id="L267">			final String url = DOCUMENT_STATUS.replace(ID_KEY, UrlHelper.urlEncode(id, StandardCharsets.UTF_8.toString()));</span>
+<span class="fc" id="L268">			return ((JAXBElement&lt;DocumentStatusContainer&gt;) xmlAgent.unmarshallXml(riksdagenDocumentStatusMarshaller,</span>
+<span class="fc" id="L269">					url, HTTP_DOKUMENTSTATUS_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL, null, null)).getValue();</span>
+<span class="fc" id="L270">		} catch (final XmlAgentException e) {</span>
+<span class="fc" id="L271">			LOGGER.warn(PROBLEM_GETTING_DOCUMENT_STATUS_ID_S_FROM_DATA_RIKSDAGEN_SE, id);</span>
+<span class="fc" id="L272">			throw new DataFailureException(e);</span>
 		}
 	}
+
 
 	/**
 	 * Load and process document list.
@@ -280,24 +284,25 @@ final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 	 * @throws XmlAgentException
 	 *             the xml agent exception
 	 */
+	@SuppressWarnings(&quot;unchecked&quot;)
 	private void loadAndProcessDocumentList(final String url,
 			final ProcessDataStrategy&lt;DocumentElement&gt; processStrategy) throws XmlAgentException {
-<span class="fc" id="L285">		final DocumentContainerElement dokumentLista = ((JAXBElement&lt;DocumentContainerElement&gt;) xmlAgent.unmarshallXml(</span>
+<span class="fc" id="L290">		final DocumentContainerElement dokumentLista = ((JAXBElement&lt;DocumentContainerElement&gt;) xmlAgent.unmarshallXml(</span>
 				riksdagenDocumentListMarshaller, url, HTTP_DOKUMENTLISTA_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL,
-<span class="fc" id="L287">				null, null)).getValue();</span>
+<span class="fc" id="L292">				null, null)).getValue();</span>
 
-<span class="fc" id="L289">		int resultSize = dokumentLista.getDokument().size();</span>
-<span class="fc" id="L290">		processAll(dokumentLista.getDokument(), processStrategy);</span>
-<span class="fc" id="L291">		final BigInteger pages = dokumentLista.getTotalPages();</span>
-<span class="fc bfc" id="L292" title="All 2 branches covered.">		for (int i = 1; i &lt; pages.intValue(); i++) {</span>
-<span class="fc" id="L293">			final DocumentContainerElement otherPagesdokumentLista = ((JAXBElement&lt;DocumentContainerElement&gt;) xmlAgent</span>
-<span class="fc" id="L294">					.unmarshallXml(riksdagenDocumentListMarshaller, url + PAGE_PROPERTY + i,</span>
-<span class="fc" id="L295">							HTTP_DOKUMENTLISTA_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL, null, null)).getValue();</span>
-<span class="fc" id="L296">			resultSize = resultSize + otherPagesdokumentLista.getDokument().size();</span>
-<span class="fc" id="L297">			processAll(otherPagesdokumentLista.getDokument(), processStrategy);</span>
-<span class="fc" id="L298">			LOGGER.info(LOADING_DOCUMENTS, resultSize, dokumentLista.getHits());</span>
+<span class="fc" id="L294">		int resultSize = dokumentLista.getDokument().size();</span>
+<span class="fc" id="L295">		processAll(dokumentLista.getDokument(), processStrategy);</span>
+<span class="fc" id="L296">		final BigInteger pages = dokumentLista.getTotalPages();</span>
+<span class="fc bfc" id="L297" title="All 2 branches covered.">		for (int i = 1; i &lt; pages.intValue(); i++) {</span>
+<span class="fc" id="L298">			final DocumentContainerElement otherPagesdokumentLista = ((JAXBElement&lt;DocumentContainerElement&gt;) xmlAgent</span>
+<span class="fc" id="L299">					.unmarshallXml(riksdagenDocumentListMarshaller, url + PAGE_PROPERTY + i,</span>
+<span class="fc" id="L300">							HTTP_DOKUMENTLISTA_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL, null, null)).getValue();</span>
+<span class="fc" id="L301">			resultSize = resultSize + otherPagesdokumentLista.getDokument().size();</span>
+<span class="fc" id="L302">			processAll(otherPagesdokumentLista.getDokument(), processStrategy);</span>
+<span class="fc" id="L303">			LOGGER.info(LOADING_DOCUMENTS, resultSize, dokumentLista.getHits());</span>
 		}
-<span class="fc" id="L300">	}</span>
+<span class="fc" id="L305">	}</span>
 
 	/**
 	 * Load document list.
@@ -310,23 +315,24 @@ final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 	 * @throws XmlAgentException
 	 *             the xml agent exception
 	 */
+	@SuppressWarnings(&quot;unchecked&quot;)
 	private List&lt;DocumentElement&gt; loadDocumentList(final String url, final int maxNumberPages) throws XmlAgentException {
-<span class="fc" id="L314">		final List&lt;DocumentElement&gt; result = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L320">		final List&lt;DocumentElement&gt; result = new ArrayList&lt;&gt;();</span>
 
-<span class="fc" id="L316">		DocumentContainerElement dokumentLista = ((JAXBElement&lt;DocumentContainerElement&gt;) xmlAgent.unmarshallXml(</span>
+<span class="fc" id="L322">		DocumentContainerElement dokumentLista = ((JAXBElement&lt;DocumentContainerElement&gt;) xmlAgent.unmarshallXml(</span>
 				riksdagenDocumentListMarshaller, url, HTTP_DOKUMENTLISTA_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL,
-<span class="fc" id="L318">				null, null)).getValue();</span>
-<span class="fc" id="L319">		result.addAll(dokumentLista.getDokument());</span>
-<span class="fc" id="L320">		final BigInteger pages = dokumentLista.getTotalPages();</span>
-<span class="fc bfc" id="L321" title="All 4 branches covered.">		for (int i = 1; i &lt; pages.intValue() &amp;&amp; i &lt; maxNumberPages; i++) {</span>
-<span class="fc" id="L322">			dokumentLista = ((JAXBElement&lt;DocumentContainerElement&gt;) xmlAgent.unmarshallXml(</span>
-<span class="fc" id="L323">					riksdagenDocumentListMarshaller, fixBrokenUrl(dokumentLista.getNextPage()),</span>
-<span class="fc" id="L324">					HTTP_DOKUMENTLISTA_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL, null, null)).getValue();</span>
-<span class="fc" id="L325">			result.addAll(dokumentLista.getDokument());</span>
-<span class="fc" id="L326">			LOGGER.info(LOADING_DOCUMENTS, result.size(), dokumentLista.getHits());</span>
+<span class="fc" id="L324">				null, null)).getValue();</span>
+<span class="fc" id="L325">		result.addAll(dokumentLista.getDokument());</span>
+<span class="fc" id="L326">		final BigInteger pages = dokumentLista.getTotalPages();</span>
+<span class="fc bfc" id="L327" title="All 4 branches covered.">		for (int i = 1; i &lt; pages.intValue() &amp;&amp; i &lt; maxNumberPages; i++) {</span>
+<span class="fc" id="L328">			dokumentLista = ((JAXBElement&lt;DocumentContainerElement&gt;) xmlAgent.unmarshallXml(</span>
+<span class="fc" id="L329">					riksdagenDocumentListMarshaller, fixBrokenUrl(dokumentLista.getNextPage()),</span>
+<span class="fc" id="L330">					HTTP_DOKUMENTLISTA_RIKSDAGEN_EXTERNAL_MODEL_CIA_HACK23_COM_IMPL, null, null)).getValue();</span>
+<span class="fc" id="L331">			result.addAll(dokumentLista.getDokument());</span>
+<span class="fc" id="L332">			LOGGER.info(LOADING_DOCUMENTS, result.size(), dokumentLista.getHits());</span>
 		}
 
-<span class="fc" id="L329">		return result;</span>
+<span class="fc" id="L335">		return result;</span>
 	}
 
 	/* (non-Javadoc)
@@ -336,14 +342,14 @@ final class RiksdagenDocumentApiImpl implements RiksdagenDocumentApi {
 	public void processDocumentList(final String changedSinceDate, final String changedToDate,
 			final ProcessDataStrategy&lt;DocumentElement&gt; processStrategy) throws DataFailureException {
 		try {
-<span class="fc" id="L339">			loadAndProcessDocumentList(DOCUMENT_LIST_CHANGED_DATE.replace(CHANGED_SINCE_KEY, changedSinceDate)</span>
-<span class="fc" id="L340">					.replace(CHANGED_TO_KEY, changedToDate), processStrategy);</span>
-<span class="fc" id="L341">		} catch (final XmlAgentException e) {</span>
-<span class="fc" id="L342">			LOGGER.warn(PROBLEM_PROCCESSING_DOCUMENT_BETWEEN_CHANGED_SINCE_DATE_S_AND_CHANGE_TO_DATE, changedSinceDate,</span>
+<span class="fc" id="L345">			loadAndProcessDocumentList(DOCUMENT_LIST_CHANGED_DATE.replace(CHANGED_SINCE_KEY, changedSinceDate)</span>
+<span class="fc" id="L346">					.replace(CHANGED_TO_KEY, changedToDate), processStrategy);</span>
+<span class="fc" id="L347">		} catch (final XmlAgentException e) {</span>
+<span class="fc" id="L348">			LOGGER.warn(PROBLEM_PROCCESSING_DOCUMENT_BETWEEN_CHANGED_SINCE_DATE_S_AND_CHANGE_TO_DATE, changedSinceDate,</span>
 					changedToDate);
-<span class="fc" id="L344">			throw new DataFailureException(e);</span>
-<span class="fc" id="L345">		}</span>
-<span class="fc" id="L346">	}</span>
+<span class="fc" id="L350">			throw new DataFailureException(e);</span>
+<span class="fc" id="L351">		}</span>
+<span class="fc" id="L352">	}</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

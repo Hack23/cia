@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>EsvExcelReaderImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">service.impl</a> &gt; <a href="../index.html" class="el_bundle">service.external.esv</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.external.esv.impl</a> &gt; <span class="el_source">EsvExcelReaderImpl.java</span></div><h1>EsvExcelReaderImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2025 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.service.external.esv.impl;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.TreeMap;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.springframework.stereotype.Component;
+
+import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
+
+/**
+ * The Class EsvExcelReaderImpl.
+ */
+@Component
+<span class="fc" id="L42">final class EsvExcelReaderImpl implements EsvExcelReader {</span>
+
+    /** The Constant GOVERNMENT_BODY_EXCEL. */
+    private static final String GOVERNMENT_BODY_EXCEL = &quot;/Myndighetsinformation.xls&quot;;
+    
+    /** The Constant EXPECTED_COLUMN_LENGTH. */
+    private static final int EXPECTED_COLUMN_LENGTH = 14;
+
+    /**
+     * The Record ExcelColumn.
+     *
+     * @param name the name
+     * @param index the index
+     */
+<span class="fc" id="L56">    private record ExcelColumn(String name, int index) {</span>
+        
+        /**
+         * Gets the value.
+         *
+         * @param row the row
+         * @return the value
+         */
+        public String getValue(Row row) {
+<span class="fc" id="L65">            final Cell cell = row.getCell(index);</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">            return cell != null ? cell.toString() : &quot;&quot;;</span>
+        }
+
+        /**
+         * Gets the int value.
+         *
+         * @param row the row
+         * @return the int value
+         */
+        public int getIntValue(Row row) {
+<span class="fc" id="L76">            final String value = getValue(row);</span>
+<span class="fc bfc" id="L77" title="All 2 branches covered.">            return value.trim().isEmpty() ? 0 : Integer.parseInt(value);</span>
+        }
+    }
+
+    /** The Constant COLUMNS. */
+<span class="fc" id="L82">    private static final ExcelColumn[] COLUMNS = {</span>
+        new ExcelColumn(&quot;NAME&quot;, 0),
+        new ExcelColumn(&quot;CONSECUTIVE_NUMBER&quot;, 2),
+        new ExcelColumn(&quot;GOVERNMENT_BODY_ID&quot;, 3),
+        new ExcelColumn(&quot;MCODE&quot;, 3),
+        new ExcelColumn(&quot;MINISTRY&quot;, 4),
+        new ExcelColumn(&quot;ORG_NUMBER&quot;, 5),
+        new ExcelColumn(&quot;HEADCOUNT&quot;, 6),
+        new ExcelColumn(&quot;ANNUAL_HEADCOUNT&quot;, 7),
+        new ExcelColumn(&quot;VAT&quot;, 8),
+        new ExcelColumn(&quot;COMMENT&quot;, 14)
+    };
+
+    /**
+     * Gets the data per ministry.
+     *
+     * @param name the name
+     * @return the data per ministry
+     */
+    @Override
+    public Map&lt;Integer, List&lt;GovernmentBodyAnnualSummary&gt;&gt; getDataPerMinistry(final String name) {
+<span class="fc" id="L103">        final Map&lt;Integer, List&lt;GovernmentBodyAnnualSummary&gt;&gt; result = new TreeMap&lt;&gt;();</span>
+
+<span class="fc" id="L105">        try (HSSFWorkbook workbook = loadWorkbook()) {</span>
+<span class="fc" id="L106">            processSheets(workbook, (sheet, year) -&gt;</span>
+<span class="fc" id="L107">                result.put(year, processMinistrySheet(sheet, name)));</span>
+<span class="nc" id="L108">        } catch (final IOException e) {</span>
+<span class="nc" id="L109">            throw new EsvExcelReaderException(&quot;Failed to read ministry data&quot;, e);</span>
+<span class="fc" id="L110">        }</span>
+
+<span class="fc" id="L112">        return result;</span>
+    }
+
+    /**
+     * Gets the data per government body.
+     *
+     * @param name the name
+     * @return the data per government body
+     */
+    @Override
+    public Map&lt;Integer, GovernmentBodyAnnualSummary&gt; getDataPerGovernmentBody(final String name) {
+<span class="fc" id="L123">        final Map&lt;Integer, GovernmentBodyAnnualSummary&gt; result = new TreeMap&lt;&gt;();</span>
+
+<span class="fc" id="L125">        try (HSSFWorkbook workbook = loadWorkbook()) {</span>
+<span class="fc" id="L126">            processSheets(workbook, (sheet, year) -&gt; {</span>
+<span class="fc" id="L127">                final Optional&lt;GovernmentBodyAnnualSummary&gt; summary = processGovernmentBodySheet(sheet, year, name);</span>
+<span class="fc" id="L128">                summary.ifPresent(s -&gt; result.put(year, s));</span>
+<span class="fc" id="L129">            });</span>
+<span class="nc" id="L130">        } catch (final IOException e) {</span>
+<span class="nc" id="L131">            throw new EsvExcelReaderException(&quot;Failed to read government body data&quot;, e);</span>
+<span class="fc" id="L132">        }</span>
+
+<span class="fc" id="L134">        return result;</span>
+    }
+
+    /**
+     * Load workbook.
+     *
+     * @return the HSSF workbook
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
+    private HSSFWorkbook loadWorkbook() throws IOException {
+<span class="fc" id="L144">        try (InputStream is = EsvExcelReaderImpl.class.getResourceAsStream(GOVERNMENT_BODY_EXCEL)) {</span>
+<span class="pc bpc" id="L145" title="1 of 2 branches missed.">            if (is == null) {</span>
+<span class="nc" id="L146">                throw new IOException(&quot;Failed to load resource: &quot; + GOVERNMENT_BODY_EXCEL);</span>
+            }
+<span class="fc" id="L148">            return new HSSFWorkbook(is);</span>
+        }
+    }
+
+    /**
+     * The Interface SheetProcessor.
+     */
+    @FunctionalInterface
+    private interface SheetProcessor {
+        
+        /**
+         * Process.
+         *
+         * @param sheet the sheet
+         * @param year the year
+         */
+        void process(HSSFSheet sheet, int year);
+    }
+
+    /**
+     * Process sheets.
+     *
+     * @param workbook the workbook
+     * @param processor the processor
+     */
+    private void processSheets(HSSFWorkbook workbook, SheetProcessor processor) {
+<span class="fc bfc" id="L174" title="All 2 branches covered.">        for (int i = 0; i &lt; workbook.getNumberOfSheets(); i++) {</span>
+<span class="fc" id="L175">            final HSSFSheet sheet = workbook.getSheetAt(i);</span>
+<span class="fc" id="L176">            final String sheetName = sheet.getSheetName();</span>
+
+<span class="fc bfc" id="L178" title="All 2 branches covered.">            if (sheetName.chars().allMatch(Character::isDigit)) {</span>
+<span class="fc" id="L179">                processor.process(sheet, Integer.parseInt(sheetName));</span>
+            }
+        }
+<span class="fc" id="L182">    }</span>
+
+    /**
+     * Process ministry sheet.
+     *
+     * @param sheet the sheet
+     * @param ministryName the ministry name
+     * @return the list
+     */
+    private List&lt;GovernmentBodyAnnualSummary&gt; processMinistrySheet(HSSFSheet sheet, String ministryName) {
+<span class="fc" id="L192">        return StreamSupport.stream(sheet.spliterator(), false)</span>
+<span class="fc" id="L193">            .skip(1) // Skip header row</span>
+<span class="fc" id="L194">            .filter(r -&gt; r instanceof Row)</span>
+<span class="fc" id="L195">            .map(r -&gt; r)</span>
+<span class="fc" id="L196">            .filter(row -&gt; isValidRow(row))</span>
+<span class="fc" id="L197">            .map(row -&gt; createSummary(row, Integer.parseInt(sheet.getSheetName())))</span>
+<span class="fc bfc" id="L198" title="All 2 branches covered.">            .filter(summary -&gt; ministryName == null ||</span>
+<span class="fc bfc" id="L199" title="All 2 branches covered.">                             ministryName.equalsIgnoreCase(summary.getMinistry()))</span>
+<span class="fc" id="L200">            .collect(Collectors.toList());</span>
+    }
+
+    /**
+     * Process government body sheet.
+     *
+     * @param sheet the sheet
+     * @param year the year
+     * @param bodyName the body name
+     * @return the optional
+     */
+    private Optional&lt;GovernmentBodyAnnualSummary&gt; processGovernmentBodySheet(
+            HSSFSheet sheet, int year, String bodyName) {
+<span class="fc" id="L213">        return StreamSupport.stream(sheet.spliterator(), false)</span>
+<span class="fc" id="L214">            .skip(1) // Skip header row</span>
+<span class="fc" id="L215">            .filter(row -&gt; isValidRow(row))</span>
+<span class="fc" id="L216">            .map(row -&gt; createSummary(row, year))</span>
+<span class="pc bpc" id="L217" title="1 of 2 branches missed.">            .filter(summary -&gt; bodyName == null ||</span>
+<span class="fc bfc" id="L218" title="All 2 branches covered.">                             bodyName.equalsIgnoreCase(summary.getName()))</span>
+<span class="fc" id="L219">            .findFirst();</span>
+    }
+
+    /**
+     * Checks if is valid row.
+     *
+     * @param row the row
+     * @return true, if is valid row
+     */
+    private boolean isValidRow(Row row) {
+<span class="pc bpc" id="L229" title="2 of 4 branches missed.">        return row != null &amp;&amp; row.getLastCellNum() &gt;= EXPECTED_COLUMN_LENGTH;</span>
+    }
+
+    /**
+     * Creates the summary.
+     *
+     * @param row the row
+     * @param year the year
+     * @return the government body annual summary
+     */
+    private GovernmentBodyAnnualSummary createSummary(Row row, int year) {
+<span class="fc" id="L240">        return new GovernmentBodyAnnualSummary(</span>
+            year,
+<span class="fc" id="L242">            COLUMNS[0].getValue(row),    // NAME</span>
+<span class="fc" id="L243">            COLUMNS[1].getIntValue(row), // CONSECUTIVE_NUMBER</span>
+<span class="fc" id="L244">            COLUMNS[2].getValue(row),    // GOVERNMENT_BODY_ID</span>
+<span class="fc" id="L245">            COLUMNS[3].getValue(row),    // MCODE</span>
+<span class="fc" id="L246">            COLUMNS[4].getValue(row),    // MINISTRY</span>
+<span class="fc" id="L247">            COLUMNS[5].getValue(row),    // ORG_NUMBER</span>
+<span class="fc" id="L248">            COLUMNS[6].getIntValue(row), // HEADCOUNT</span>
+<span class="fc" id="L249">            COLUMNS[7].getIntValue(row), // ANNUAL_HEADCOUNT</span>
+<span class="fc" id="L250">            COLUMNS[8].getValue(row),    // VAT</span>
+<span class="fc" id="L251">            COLUMNS[9].getValue(row)     // COMMENT</span>
+        );
+    }
+
+    /**
+     * The Class EsvExcelReaderException.
+     */
+    public static class EsvExcelReaderException extends RuntimeException {
+        
+        /**
+         * Instantiates a new esv excel reader exception.
+         *
+         * @param message the message
+         * @param cause the cause
+         */
+        public EsvExcelReaderException(String message, Throwable cause) {
+<span class="nc" id="L267">            super(message, cause);</span>
+<span class="nc" id="L268">        }</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

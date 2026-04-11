@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang="">
 <head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <title>RiksdagenImportServiceImpl xref</title>
 <link type="text/css" rel="stylesheet" href="../../../../../../../../../../stylesheet.css" />
@@ -7,7 +7,7 @@
 <body>
 <div id="overview"><a href="../../../../../../../../../../../apidocs/com/hack23/cia/service/component/agent/impl/riksdagen/workgenerator/data/RiksdagenImportServiceImpl.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2019 James Pether Sörling</em>
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2025 James Pether Sörling</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> *</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> * Licensed under the Apache License, Version 2.0 (the "License");</em>
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_comment"> * you may not use this file except in compliance with the License.</em>
@@ -161,7 +161,7 @@
 <a class="jxr_linenumber" name="L153" href="#L153">153</a> 	<strong class="jxr_keyword">public</strong> Map&lt;String, String&gt; getCommitteeProposalComponentDataMap() {
 <a class="jxr_linenumber" name="L154" href="#L154">154</a> 		<strong class="jxr_keyword">return</strong> createMapFromList(committeeProposalComponentDataDAO.getIdList());
 <a class="jxr_linenumber" name="L155" href="#L155">155</a> 	}
-<a class="jxr_linenumber" name="L156" href="#L156">156</a> 	
+<a class="jxr_linenumber" name="L156" href="#L156">156</a> 
 <a class="jxr_linenumber" name="L157" href="#L157">157</a> 	@Override
 <a class="jxr_linenumber" name="L158" href="#L158">158</a> 	<strong class="jxr_keyword">public</strong> List&lt;CommitteeProposalComponentData&gt; getNoneCompletedCommitteeProposal() {
 <a class="jxr_linenumber" name="L159" href="#L159">159</a> 		<strong class="jxr_keyword">return</strong> committeeProposalComponentDataDAO.findListByEmbeddedProperty(CommitteeProposalComponentData_.document,CommitteeDocumentData.<strong class="jxr_keyword">class</strong>,CommitteeDocumentData_.status,<span class="jxr_string">"planerat"</span>);
@@ -226,8 +226,8 @@
 <a class="jxr_linenumber" name="L218" href="#L218">218</a> 						&amp;&amp; documentTypeValues.contains(documentElement.getDocumentType());
 <a class="jxr_linenumber" name="L219" href="#L219">219</a> 			} <strong class="jxr_keyword">else</strong> {
 <a class="jxr_linenumber" name="L220" href="#L220">220</a> 				<strong class="jxr_keyword">return</strong> getDate(documentElement.getCreatedDate()).after(after)
-<a class="jxr_linenumber" name="L221" href="#L221">221</a> 						&amp;&amp; documentTypeValues.contains(documentElement.getDocumentType());				
-<a class="jxr_linenumber" name="L222" href="#L222">222</a> 			}			
+<a class="jxr_linenumber" name="L221" href="#L221">221</a> 						&amp;&amp; documentTypeValues.contains(documentElement.getDocumentType());
+<a class="jxr_linenumber" name="L222" href="#L222">222</a> 			}
 <a class="jxr_linenumber" name="L223" href="#L223">223</a> 		} <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> ParseException e) {
 <a class="jxr_linenumber" name="L224" href="#L224">224</a> 			LOGGER.warn(<span class="jxr_string">"Problem getting date from{} : exception:{}"</span>, documentElement, e);
 <a class="jxr_linenumber" name="L225" href="#L225">225</a> 			<strong class="jxr_keyword">return</strong> false;
@@ -276,6 +276,6 @@
 <a class="jxr_linenumber" name="L268" href="#L268">268</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2008&#x2013;2019 <a href="http://www.hack23.com">www.hack23.com</a>. All rights reserved.</div>
+<div id="footer">© 2008–2026 <a href="http://www.hack23.com">www.hack23.com</a></div>
 </body>
 </html>

@@ -1,3 +1,4 @@
+module:com.hack23.cia.service.component.agent.impl
 com.hack23.cia.service.component.agent.impl.common.jms
 com.hack23.cia.service.component.agent.impl.riksdagen.workers
 com.hack23.cia.service.component.agent.impl.riksdagen.workers.data

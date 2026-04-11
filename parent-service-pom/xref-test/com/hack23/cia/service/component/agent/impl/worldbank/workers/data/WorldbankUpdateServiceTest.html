@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang="">
 <head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <title>WorldbankUpdateServiceTest xref</title>
 <link type="text/css" rel="stylesheet" href="../../../../../../../../../../stylesheet.css" />
@@ -7,7 +7,7 @@
 <body>
 <div id="overview"><a href="../../../../../../../../../../../testapidocs/com/hack23/cia/service/component/agent/impl/worldbank/workers/data/WorldbankUpdateServiceTest.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2019 James Pether Sörling</em>
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2025 James Pether Sörling</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> *</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> * Licensed under the Apache License, Version 2.0 (the "License");</em>
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_comment"> * you may not use this file except in compliance with the License.</em>
@@ -112,33 +112,34 @@
 <a class="jxr_linenumber" name="L104" href="#L104">104</a> <em class="jxr_javadoccomment">	 * @throws Exception</em>
 <a class="jxr_linenumber" name="L105" href="#L105">105</a> <em class="jxr_javadoccomment">	 *             the exception</em>
 <a class="jxr_linenumber" name="L106" href="#L106">106</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L107" href="#L107">107</a> 	@Test
-<a class="jxr_linenumber" name="L108" href="#L108">108</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> updateDataNullOrEmptyTest() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L109" href="#L109">109</a> 		<strong class="jxr_keyword">final</strong> DataDAO dataDAO = mock(DataDAO.<strong class="jxr_keyword">class</strong>);
-<a class="jxr_linenumber" name="L110" href="#L110">110</a> 		<strong class="jxr_keyword">final</strong> WorldbankUpdateService worldbankUpdateService = <strong class="jxr_keyword">new</strong> WorldbankUpdateServiceImpl(<strong class="jxr_keyword">null</strong>, dataDAO, <strong class="jxr_keyword">null</strong>);
-<a class="jxr_linenumber" name="L111" href="#L111">111</a> 		worldbankUpdateService.updateData(<strong class="jxr_keyword">null</strong>);
-<a class="jxr_linenumber" name="L112" href="#L112">112</a> 		worldbankUpdateService.updateData(<strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;());
-<a class="jxr_linenumber" name="L113" href="#L113">113</a> 		verify(dataDAO, never()).persist(any(List.<strong class="jxr_keyword">class</strong>));
-<a class="jxr_linenumber" name="L114" href="#L114">114</a> 	}
-<a class="jxr_linenumber" name="L115" href="#L115">115</a> 
-<a class="jxr_linenumber" name="L116" href="#L116">116</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L117" href="#L117">117</a> <em class="jxr_javadoccomment">	 * Update data success test.</em>
-<a class="jxr_linenumber" name="L118" href="#L118">118</a> <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="L119" href="#L119">119</a> <em class="jxr_javadoccomment">	 * @throws Exception the exception</em>
-<a class="jxr_linenumber" name="L120" href="#L120">120</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L121" href="#L121">121</a> 	@Test
-<a class="jxr_linenumber" name="L122" href="#L122">122</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> updateDataSuccessTest() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L123" href="#L123">123</a> 		<strong class="jxr_keyword">final</strong> DataDAO dataDAO = mock(DataDAO.<strong class="jxr_keyword">class</strong>);
-<a class="jxr_linenumber" name="L124" href="#L124">124</a> 		<strong class="jxr_keyword">final</strong> WorldbankUpdateService worldbankUpdateService = <strong class="jxr_keyword">new</strong> WorldbankUpdateServiceImpl(<strong class="jxr_keyword">null</strong>, dataDAO, <strong class="jxr_keyword">null</strong>);
-<a class="jxr_linenumber" name="L125" href="#L125">125</a> 		<strong class="jxr_keyword">final</strong> ArrayList&lt;WorldBankData&gt; data = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;();
-<a class="jxr_linenumber" name="L126" href="#L126">126</a> 		data.add(<strong class="jxr_keyword">new</strong> WorldBankData());
-<a class="jxr_linenumber" name="L127" href="#L127">127</a> 		worldbankUpdateService.updateData(data);
-<a class="jxr_linenumber" name="L128" href="#L128">128</a> 		verify(dataDAO, times(1)).persist(data);
-<a class="jxr_linenumber" name="L129" href="#L129">129</a> 	}
-<a class="jxr_linenumber" name="L130" href="#L130">130</a> 
-<a class="jxr_linenumber" name="L131" href="#L131">131</a> }
+<a class="jxr_linenumber" name="L107" href="#L107">107</a> 	@SuppressWarnings(<span class="jxr_string">"unchecked"</span>)
+<a class="jxr_linenumber" name="L108" href="#L108">108</a> 	@Test
+<a class="jxr_linenumber" name="L109" href="#L109">109</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> updateDataNullOrEmptyTest() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L110" href="#L110">110</a> 		<strong class="jxr_keyword">final</strong> DataDAO dataDAO = mock(DataDAO.<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="L111" href="#L111">111</a> 		<strong class="jxr_keyword">final</strong> WorldbankUpdateService worldbankUpdateService = <strong class="jxr_keyword">new</strong> WorldbankUpdateServiceImpl(<strong class="jxr_keyword">null</strong>, dataDAO, <strong class="jxr_keyword">null</strong>);
+<a class="jxr_linenumber" name="L112" href="#L112">112</a> 		worldbankUpdateService.updateData(<strong class="jxr_keyword">null</strong>);
+<a class="jxr_linenumber" name="L113" href="#L113">113</a> 		worldbankUpdateService.updateData(<strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;());
+<a class="jxr_linenumber" name="L114" href="#L114">114</a> 		verify(dataDAO, never()).persist(any(List.<strong class="jxr_keyword">class</strong>));
+<a class="jxr_linenumber" name="L115" href="#L115">115</a> 	}
+<a class="jxr_linenumber" name="L116" href="#L116">116</a> 
+<a class="jxr_linenumber" name="L117" href="#L117">117</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L118" href="#L118">118</a> <em class="jxr_javadoccomment">	 * Update data success test.</em>
+<a class="jxr_linenumber" name="L119" href="#L119">119</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L120" href="#L120">120</a> <em class="jxr_javadoccomment">	 * @throws Exception the exception</em>
+<a class="jxr_linenumber" name="L121" href="#L121">121</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L122" href="#L122">122</a> 	@Test
+<a class="jxr_linenumber" name="L123" href="#L123">123</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> updateDataSuccessTest() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L124" href="#L124">124</a> 		<strong class="jxr_keyword">final</strong> DataDAO dataDAO = mock(DataDAO.<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="L125" href="#L125">125</a> 		<strong class="jxr_keyword">final</strong> WorldbankUpdateService worldbankUpdateService = <strong class="jxr_keyword">new</strong> WorldbankUpdateServiceImpl(<strong class="jxr_keyword">null</strong>, dataDAO, <strong class="jxr_keyword">null</strong>);
+<a class="jxr_linenumber" name="L126" href="#L126">126</a> 		<strong class="jxr_keyword">final</strong> ArrayList&lt;WorldBankData&gt; data = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;();
+<a class="jxr_linenumber" name="L127" href="#L127">127</a> 		data.add(<strong class="jxr_keyword">new</strong> WorldBankData());
+<a class="jxr_linenumber" name="L128" href="#L128">128</a> 		worldbankUpdateService.updateData(data);
+<a class="jxr_linenumber" name="L129" href="#L129">129</a> 		verify(dataDAO, times(1)).persist(data);
+<a class="jxr_linenumber" name="L130" href="#L130">130</a> 	}
+<a class="jxr_linenumber" name="L131" href="#L131">131</a> 
+<a class="jxr_linenumber" name="L132" href="#L132">132</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2008&#x2013;2019 <a href="http://www.hack23.com">www.hack23.com</a>. All rights reserved.</div>
+<div id="footer">© 2008–2026 <a href="http://www.hack23.com">www.hack23.com</a></div>
 </body>
 </html>

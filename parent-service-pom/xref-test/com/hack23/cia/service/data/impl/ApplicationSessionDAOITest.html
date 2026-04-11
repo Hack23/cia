@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang="">
 <head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <title>ApplicationSessionDAOITest xref</title>
 <link type="text/css" rel="stylesheet" href="../../../../../../stylesheet.css" />
@@ -7,7 +7,7 @@
 <body>
 <div id="overview"><a href="../../../../../../../testapidocs/com/hack23/cia/service/data/impl/ApplicationSessionDAOITest.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2019 James Pether Sörling</em>
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2025 James Pether Sörling</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> *</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> * Licensed under the Apache License, Version 2.0 (the "License");</em>
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_comment"> * you may not use this file except in compliance with the License.</em>
@@ -23,7 +23,7 @@
 <a class="jxr_linenumber" name="L15" href="#L15">15</a>  <em class="jxr_comment"> *</em>
 <a class="jxr_linenumber" name="L16" href="#L16">16</a>  <em class="jxr_comment"> *	$Id$</em>
 <a class="jxr_linenumber" name="L17" href="#L17">17</a>  <em class="jxr_comment"> *  $HeadURL$</em>
-<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <em class="jxr_comment">*/</em>
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <em class="jxr_comment"> */</em>
 <a class="jxr_linenumber" name="L19" href="#L19">19</a>  <strong class="jxr_keyword">package</strong> com.hack23.cia.service.data.impl;
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>  
 <a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> java.util.Date;
@@ -56,7 +56,7 @@
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>  <em class="jxr_javadoccomment">	 */</em>
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>  	@Test
 <a class="jxr_linenumber" name="L50" href="#L50">50</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> loadTest() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L51" href="#L51">51</a>  		<strong class="jxr_keyword">final</strong> ApplicationSession applicationSession = createApplicationSession();
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>  		createApplicationSession();
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>  		<strong class="jxr_keyword">final</strong> List&lt;ApplicationSession&gt; all = applicationSessionDAO.getAll();
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>  		<strong class="jxr_keyword">final</strong> ApplicationSession firstValue = all.iterator().next();
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>  		<strong class="jxr_keyword">final</strong> ApplicationSession load = applicationSessionDAO.load(firstValue.getHjid());
@@ -72,7 +72,7 @@
 <a class="jxr_linenumber" name="L64" href="#L64">64</a>  	@Test
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> persistTest() <strong class="jxr_keyword">throws</strong> Exception {
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>  		<strong class="jxr_keyword">final</strong> ApplicationSession applicationSession = createApplicationSession();
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>  		
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>  
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>  		<strong class="jxr_keyword">final</strong> ApplicationSession loaddedApplicationSession = applicationSessionDAO.load(applicationSession.getHjid());
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>  		assertNotNull(loaddedApplicationSession);
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>  		assertEquals(applicationSession,loaddedApplicationSession);
@@ -87,11 +87,11 @@
 <a class="jxr_linenumber" name="L79" href="#L79">79</a>  	@Test
 <a class="jxr_linenumber" name="L80" href="#L80">80</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> mergeTest() <strong class="jxr_keyword">throws</strong> Exception {
 <a class="jxr_linenumber" name="L81" href="#L81">81</a>  		<strong class="jxr_keyword">final</strong> ApplicationSession applicationSession = createApplicationSession();
-<a class="jxr_linenumber" name="L82" href="#L82">82</a>  				
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>  
 <a class="jxr_linenumber" name="L83" href="#L83">83</a>  		<strong class="jxr_keyword">final</strong> ApplicationSession mergedApplicationSession = applicationSessionDAO.merge(applicationSession);
-<a class="jxr_linenumber" name="L84" href="#L84">84</a>  		mergedApplicationSession.setOperatingSystem(<span class="jxr_string">"Merged"</span>);		
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>  		mergedApplicationSession.setOperatingSystem(<span class="jxr_string">"Merged"</span>);
 <a class="jxr_linenumber" name="L85" href="#L85">85</a>  		applicationSessionDAO.merge(mergedApplicationSession);
-<a class="jxr_linenumber" name="L86" href="#L86">86</a>  		
+<a class="jxr_linenumber" name="L86" href="#L86">86</a>  
 <a class="jxr_linenumber" name="L87" href="#L87">87</a>  		<strong class="jxr_keyword">final</strong> ApplicationSession loaddedApplicationSession = applicationSessionDAO.load(applicationSession.getHjid());
 <a class="jxr_linenumber" name="L88" href="#L88">88</a>  		assertNotNull(loaddedApplicationSession);
 <a class="jxr_linenumber" name="L89" href="#L89">89</a>  		assertEquals(applicationSession,loaddedApplicationSession);
@@ -129,7 +129,7 @@
 <a class="jxr_linenumber" name="L121" href="#L121">121</a> <em class="jxr_javadoccomment">	 */</em>
 <a class="jxr_linenumber" name="L122" href="#L122">122</a> 	@Test
 <a class="jxr_linenumber" name="L123" href="#L123">123</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> findFirstByPropertyTest() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L124" href="#L124">124</a> 		<strong class="jxr_keyword">final</strong> ApplicationSession applicationSession = createApplicationSession();
+<a class="jxr_linenumber" name="L124" href="#L124">124</a> 		createApplicationSession();
 <a class="jxr_linenumber" name="L125" href="#L125">125</a> 		<strong class="jxr_keyword">final</strong> List&lt;ApplicationSession&gt; all = applicationSessionDAO.getAll();
 <a class="jxr_linenumber" name="L126" href="#L126">126</a> 		<strong class="jxr_keyword">final</strong> ApplicationSession findFirstByProperty = applicationSessionDAO.findFirstByProperty(ApplicationSession_.ipInformation, all.iterator().next().getIpInformation());
 <a class="jxr_linenumber" name="L127" href="#L127">127</a> 		assertNotNull(findFirstByProperty);
@@ -143,7 +143,7 @@
 <a class="jxr_linenumber" name="L135" href="#L135">135</a> <em class="jxr_javadoccomment">	 */</em>
 <a class="jxr_linenumber" name="L136" href="#L136">136</a> 	@Test
 <a class="jxr_linenumber" name="L137" href="#L137">137</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> findListByPropertyTest() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L138" href="#L138">138</a> 		<strong class="jxr_keyword">final</strong> ApplicationSession applicationSession = createApplicationSession();
+<a class="jxr_linenumber" name="L138" href="#L138">138</a> 		createApplicationSession();
 <a class="jxr_linenumber" name="L139" href="#L139">139</a> 		<strong class="jxr_keyword">final</strong> List&lt;ApplicationSession&gt; all = applicationSessionDAO.getAll();
 <a class="jxr_linenumber" name="L140" href="#L140">140</a> 
 <a class="jxr_linenumber" name="L141" href="#L141">141</a> 		<strong class="jxr_keyword">final</strong> List&lt;ApplicationSession&gt; findListByProperty = applicationSessionDAO.findListByProperty(ApplicationSession_.ipInformation, all.iterator().next().getIpInformation());
@@ -160,7 +160,7 @@
 <a class="jxr_linenumber" name="L152" href="#L152">152</a> 	@Test
 <a class="jxr_linenumber" name="L153" href="#L153">153</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> findListByPropertyInListTest() <strong class="jxr_keyword">throws</strong> Exception {
 <a class="jxr_linenumber" name="L154" href="#L154">154</a> 		<strong class="jxr_keyword">final</strong> ApplicationSession applicationSession = createApplicationSession();
-<a class="jxr_linenumber" name="L155" href="#L155">155</a> 		
+<a class="jxr_linenumber" name="L155" href="#L155">155</a> 
 <a class="jxr_linenumber" name="L156" href="#L156">156</a> 		<strong class="jxr_keyword">final</strong> List&lt;ApplicationSession&gt; list = applicationSessionDAO.findListByPropertyInList(ApplicationSession_.sessionId,
 <a class="jxr_linenumber" name="L157" href="#L157">157</a> 				<strong class="jxr_keyword">new</strong> Object[] {applicationSession.getSessionId()});
 <a class="jxr_linenumber" name="L158" href="#L158">158</a> 		assertNotNull(list);
@@ -176,7 +176,7 @@
 <a class="jxr_linenumber" name="L168" href="#L168">168</a> <em class="jxr_javadoccomment">	 */</em>
 <a class="jxr_linenumber" name="L169" href="#L169">169</a> 	@Test
 <a class="jxr_linenumber" name="L170" href="#L170">170</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> getAllTest() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L171" href="#L171">171</a> 		<strong class="jxr_keyword">final</strong> ApplicationSession applicationSession = createApplicationSession();
+<a class="jxr_linenumber" name="L171" href="#L171">171</a> 		createApplicationSession();
 <a class="jxr_linenumber" name="L172" href="#L172">172</a> 		<strong class="jxr_keyword">final</strong> List&lt;ApplicationSession&gt; all = applicationSessionDAO.getAll();
 <a class="jxr_linenumber" name="L173" href="#L173">173</a> 		assertNotNull(all);
 <a class="jxr_linenumber" name="L174" href="#L174">174</a> 		assertFalse(all.isEmpty());
@@ -191,7 +191,7 @@
 <a class="jxr_linenumber" name="L183" href="#L183">183</a> <em class="jxr_javadoccomment">	 */</em>
 <a class="jxr_linenumber" name="L184" href="#L184">184</a> 	@Test
 <a class="jxr_linenumber" name="L185" href="#L185">185</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> getPageTest() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L186" href="#L186">186</a> 		<strong class="jxr_keyword">final</strong> ApplicationSession applicationSession = createApplicationSession();
+<a class="jxr_linenumber" name="L186" href="#L186">186</a> 		createApplicationSession();
 <a class="jxr_linenumber" name="L187" href="#L187">187</a> 		<strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> resultPerPage=1;
 <a class="jxr_linenumber" name="L188" href="#L188">188</a> 		<strong class="jxr_keyword">final</strong> List&lt;ApplicationSession&gt; pageList = applicationSessionDAO.getPage(1, resultPerPage);
 <a class="jxr_linenumber" name="L189" href="#L189">189</a> 		assertNotNull(pageList);
@@ -208,7 +208,7 @@
 <a class="jxr_linenumber" name="L200" href="#L200">200</a> <em class="jxr_javadoccomment">	 */</em>
 <a class="jxr_linenumber" name="L201" href="#L201">201</a> 	@Test
 <a class="jxr_linenumber" name="L202" href="#L202">202</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> getPageOrderByTest() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L203" href="#L203">203</a> 		<strong class="jxr_keyword">final</strong> ApplicationSession applicationSession = createApplicationSession();
+<a class="jxr_linenumber" name="L203" href="#L203">203</a> 		createApplicationSession();
 <a class="jxr_linenumber" name="L204" href="#L204">204</a> 		<strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> resultPerPage=1;
 <a class="jxr_linenumber" name="L205" href="#L205">205</a> 		<strong class="jxr_keyword">final</strong> List&lt;ApplicationSession&gt; pageList = applicationSessionDAO.getPageOrderBy(1, resultPerPage,ApplicationSession_.createdDate);
 <a class="jxr_linenumber" name="L206" href="#L206">206</a> 		assertNotNull(pageList);
@@ -219,6 +219,6 @@
 <a class="jxr_linenumber" name="L211" href="#L211">211</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2008&#x2013;2019 <a href="http://www.hack23.com">www.hack23.com</a>. All rights reserved.</div>
+<div id="footer">© 2008–2026 <a href="http://www.hack23.com">www.hack23.com</a></div>
 </body>
 </html>

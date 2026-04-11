@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RegisterUserService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.impl.action.application</a> &gt; <span class="el_source">RegisterUserService.java</span></div><h1>RegisterUserService.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2024 James Pether Sörling
+ * Copyright 2010-2025 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -23,13 +23,14 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.UUID;
 
-import org.passay.CharacterRule;
-import org.passay.EnglishCharacterData;
-import org.passay.LengthRule;
+import org.passay.DefaultPasswordValidator;
 import org.passay.PasswordData;
 import org.passay.PasswordValidator;
-import org.passay.RuleResult;
-import org.passay.WhitespaceRule;
+import org.passay.ValidationResult;
+import org.passay.data.EnglishCharacterData;
+import org.passay.rule.CharacterRule;
+import org.passay.rule.LengthRule;
+import org.passay.rule.WhitespaceRule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,17 +69,17 @@ import com.hack23.cia.service.impl.action.common.AbstractBusinessServiceImpl;
 public final class RegisterUserService extends AbstractBusinessServiceImpl&lt;RegisterUserRequest, RegisterUserResponse&gt; {
 
 	/** The Constant LOGGER. */
-<span class="fc" id="L71">	private static final Logger LOGGER = LoggerFactory.getLogger(RegisterUserService.class);</span>
+<span class="fc" id="L72">	private static final Logger LOGGER = LoggerFactory.getLogger(RegisterUserService.class);</span>
 
 	/** The application configuration service. */
 	@Autowired
 	private ApplicationConfigurationService applicationConfigurationService;
 
 	/** The password encoder. */
-<span class="fc" id="L78">	private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();</span>
+<span class="fc" id="L79">	private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();</span>
 
 	/** The password validator. */
-<span class="fc" id="L81">	private final PasswordValidator passwordValidator = new PasswordValidator(new LengthRule(8, 64),</span>
+<span class="fc" id="L82">	private final PasswordValidator passwordValidator = new DefaultPasswordValidator(new LengthRule(8, 64),</span>
 			new CharacterRule(EnglishCharacterData.UpperCase, 1), new CharacterRule(EnglishCharacterData.LowerCase, 1),
 			new CharacterRule(EnglishCharacterData.Digit, 1), new CharacterRule(EnglishCharacterData.Special, 1),
 			new WhitespaceRule());
@@ -87,48 +88,48 @@ public final class RegisterUserService extends AbstractBusinessServiceImpl&lt;Re
 	 * Instantiates a new register user service.
 	 */
 	public RegisterUserService() {
-<span class="fc" id="L90">		super(RegisterUserRequest.class);</span>
-<span class="fc" id="L91">	}</span>
+<span class="fc" id="L91">		super(RegisterUserRequest.class);</span>
+<span class="fc" id="L92">	}</span>
 
 	@Override
 	@Secured({ &quot;ROLE_ANONYMOUS&quot; })
 	public RegisterUserResponse processService(final RegisterUserRequest serviceRequest) {
-<span class="fc" id="L96">		final RegisterUserResponse inputValidation = inputValidation(serviceRequest);</span>
-<span class="fc bfc" id="L97" title="All 2 branches covered.">		if (inputValidation != null) {</span>
-<span class="fc" id="L98">			return inputValidation;</span>
+<span class="nc" id="L97">		final RegisterUserResponse inputValidation = inputValidation(serviceRequest);</span>
+<span class="nc bnc" id="L98" title="All 2 branches missed.">		if (inputValidation != null) {</span>
+<span class="nc" id="L99">			return inputValidation;</span>
 		}
 
-<span class="fc" id="L101">		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);</span>
+<span class="nc" id="L102">		final CreateApplicationEventRequest eventRequest = createApplicationEventForService(serviceRequest);</span>
 
 		RegisterUserResponse response;
 
-<span class="fc" id="L105">		final UserAccount userNameExist = getUserDAO().findFirstByProperty(UserAccount_.username,</span>
-<span class="fc" id="L106">				serviceRequest.getUsername());</span>
-<span class="fc" id="L107">		final UserAccount userEmailExist = getUserDAO().findFirstByProperty(UserAccount_.email, serviceRequest.getEmail());</span>
+<span class="nc" id="L106">		final UserAccount userNameExist = getUserDAO().findFirstByProperty(UserAccount_.username,</span>
+<span class="nc" id="L107">				serviceRequest.getUsername());</span>
+<span class="nc" id="L108">		final UserAccount userEmailExist = getUserDAO().findFirstByProperty(UserAccount_.email, serviceRequest.getEmail());</span>
 
-<span class="fc" id="L109">		final RuleResult passwordRuleResults = passwordValidator</span>
-<span class="fc" id="L110">				.validate(new PasswordData(serviceRequest.getUserpassword()));</span>
+<span class="nc" id="L110">		final ValidationResult passwordRuleResults = passwordValidator</span>
+<span class="nc" id="L111">				.validate(new PasswordData(serviceRequest.getUserpassword()));</span>
 
-<span class="pc bpc" id="L112" title="1 of 6 branches missed.">		if (userEmailExist == null &amp;&amp; userNameExist == null &amp;&amp; passwordRuleResults.isValid()) {</span>
-<span class="fc" id="L113">			final UserAccount userAccount = createUserAccount(serviceRequest);</span>
-<span class="fc" id="L114">			eventRequest.setUserId(userAccount.getUserId());</span>
-<span class="fc" id="L115">			response = new RegisterUserResponse(ServiceResult.SUCCESS);</span>
-<span class="fc" id="L116">		} else {</span>
-<span class="fc" id="L117">			response = new RegisterUserResponse(ServiceResult.FAILURE);</span>
-<span class="fc bfc" id="L118" title="All 2 branches covered.">			if (passwordRuleResults.isValid()) {</span>
-<span class="fc" id="L119">				response.setErrorMessage(RegisterUserResponse.ErrorMessage.USER_ALREADY_EXIST.toString());</span>
-<span class="fc" id="L120">				eventRequest.setErrorMessage(RegisterUserResponse.ErrorMessage.USER_ALREADY_EXIST.toString());</span>
+<span class="nc bnc" id="L113" title="All 6 branches missed.">		if (userEmailExist == null &amp;&amp; userNameExist == null &amp;&amp; passwordRuleResults.isValid()) {</span>
+<span class="nc" id="L114">			final UserAccount userAccount = createUserAccount(serviceRequest);</span>
+<span class="nc" id="L115">			eventRequest.setUserId(userAccount.getUserId());</span>
+<span class="nc" id="L116">			response = new RegisterUserResponse(ServiceResult.SUCCESS);</span>
+<span class="nc" id="L117">		} else {</span>
+<span class="nc" id="L118">			response = new RegisterUserResponse(ServiceResult.FAILURE);</span>
+<span class="nc bnc" id="L119" title="All 2 branches missed.">			if (passwordRuleResults.isValid()) {</span>
+<span class="nc" id="L120">				response.setErrorMessage(RegisterUserResponse.ErrorMessage.USER_ALREADY_EXIST.toString());</span>
+<span class="nc" id="L121">				eventRequest.setErrorMessage(RegisterUserResponse.ErrorMessage.USER_ALREADY_EXIST.toString());</span>
 			} else {
-<span class="fc" id="L122">				final String errorMessage = passwordValidator.getMessages(passwordRuleResults).toString();</span>
-<span class="fc" id="L123">				response.setErrorMessage(errorMessage);</span>
-<span class="fc" id="L124">				eventRequest.setErrorMessage(errorMessage);</span>
+<span class="nc" id="L123">				final String errorMessage = passwordRuleResults.getMessages().toString();</span>
+<span class="nc" id="L124">				response.setErrorMessage(errorMessage);</span>
+<span class="nc" id="L125">				eventRequest.setErrorMessage(errorMessage);</span>
 			}
 		}
 
-<span class="fc" id="L128">		eventRequest.setApplicationMessage(response.getResult().toString());</span>
-<span class="fc" id="L129">		createApplicationEventService.processService(eventRequest);</span>
-<span class="fc" id="L130">		LOGGER.info(&quot;Event: {}&quot;, eventRequest);</span>
-<span class="fc" id="L131">		return response;</span>
+<span class="nc" id="L129">		eventRequest.setApplicationMessage(response.getResult().toString());</span>
+<span class="nc" id="L130">		createApplicationEventService.processService(eventRequest);</span>
+<span class="nc" id="L131">		LOGGER.info(&quot;Event: {}&quot;, eventRequest);</span>
+<span class="nc" id="L132">		return response;</span>
 	}
 
 	/**
@@ -139,62 +140,62 @@ public final class RegisterUserService extends AbstractBusinessServiceImpl&lt;Re
 	 */
 	private UserAccount createUserAccount(final RegisterUserRequest serviceRequest) {
 
-<span class="fc" id="L142">		final ApplicationConfiguration registeredUsersGetAdminConfig = applicationConfigurationService</span>
-<span class="fc" id="L143">				.checkValueOrLoadDefault(&quot;Registered User All get Role Admin&quot;, &quot;Registered User All get Role Admin&quot;,</span>
-<span class="fc" id="L144">						ConfigurationGroup.AUTHORIZATION, RegisterUserService.class.getSimpleName(),</span>
+<span class="nc" id="L143">		final ApplicationConfiguration registeredUsersGetAdminConfig = applicationConfigurationService</span>
+<span class="nc" id="L144">				.checkValueOrLoadDefault(&quot;Registered User All get Role Admin&quot;, &quot;Registered User All get Role Admin&quot;,</span>
+<span class="nc" id="L145">						ConfigurationGroup.AUTHORIZATION, RegisterUserService.class.getSimpleName(),</span>
 						&quot;Register User Service&quot;, &quot;Responsible for create of useraccounts&quot;, &quot;registered.users.get.admin&quot;,
 						&quot;true&quot;);
 
-<span class="fc" id="L148">		final UserAccount userAccount = new UserAccount();</span>
-<span class="fc" id="L149">		userAccount.setCountry(serviceRequest.getCountry());</span>
-<span class="fc" id="L150">		userAccount.setEmail(serviceRequest.getEmail());</span>
-<span class="fc" id="L151">		userAccount.setUsername(serviceRequest.getUsername());</span>
-<span class="fc" id="L152">		userAccount.setUserId(UUID.randomUUID().toString());</span>
-<span class="fc" id="L153">		userAccount.setUserpassword(</span>
-<span class="fc" id="L154">				passwordEncoder.encode(userAccount.getUserId() + &quot;.uuid&quot; + serviceRequest.getUserpassword()));</span>
-<span class="fc" id="L155">		userAccount.setNumberOfVisits(1);</span>
+<span class="nc" id="L149">		final UserAccount userAccount = new UserAccount();</span>
+<span class="nc" id="L150">		userAccount.setCountry(serviceRequest.getCountry());</span>
+<span class="nc" id="L151">		userAccount.setEmail(serviceRequest.getEmail());</span>
+<span class="nc" id="L152">		userAccount.setUsername(serviceRequest.getUsername());</span>
+<span class="nc" id="L153">		userAccount.setUserId(UUID.randomUUID().toString());</span>
+<span class="nc" id="L154">		userAccount.setUserpassword(</span>
+<span class="nc" id="L155">				passwordEncoder.encode(userAccount.getUserId() + &quot;.uuid&quot; + serviceRequest.getUserpassword()));</span>
+<span class="nc" id="L156">		userAccount.setNumberOfVisits(1);</span>
 
-<span class="pc bpc" id="L157" title="1 of 2 branches missed.">		if ( serviceRequest.getUserType() == null) {</span>
-<span class="nc" id="L158">			userAccount.setUserType(UserType.PRIVATE);</span>
+<span class="nc bnc" id="L158" title="All 2 branches missed.">		if ( serviceRequest.getUserType() == null) {</span>
+<span class="nc" id="L159">			userAccount.setUserType(UserType.PRIVATE);</span>
 		} else {
-<span class="fc" id="L160">			userAccount.setUserType(serviceRequest.getUserType());</span>
+<span class="nc" id="L161">			userAccount.setUserType(serviceRequest.getUserType());</span>
 		}
 
-<span class="fc" id="L163">		userAccount.setUserEmailStatus(UserEmailStatus.UNKNOWN);</span>
-<span class="fc" id="L164">		userAccount.setUserLockStatus(UserLockStatus.UNLOCKED);</span>
-<span class="fc" id="L165">		userAccount.setCreatedDate(new Date());</span>
-<span class="fc" id="L166">		getUserDAO().persist(userAccount);</span>
+<span class="nc" id="L164">		userAccount.setUserEmailStatus(UserEmailStatus.UNKNOWN);</span>
+<span class="nc" id="L165">		userAccount.setUserLockStatus(UserLockStatus.UNLOCKED);</span>
+<span class="nc" id="L166">		userAccount.setCreatedDate(new Date());</span>
+<span class="nc" id="L167">		getUserDAO().persist(userAccount);</span>
 
-<span class="fc" id="L168">		final Collection&lt;SimpleGrantedAuthority&gt; authorities = new ArrayList&lt;&gt;();</span>
-<span class="pc bpc" id="L169" title="1 of 2 branches missed.">		if (&quot;true&quot;.equals(registeredUsersGetAdminConfig.getPropertyValue())) {</span>
-<span class="nc" id="L170">			userAccount.setUserRole(UserRole.ADMIN);</span>
-<span class="nc" id="L171">			authorities.add(new SimpleGrantedAuthority(&quot;ROLE_ADMIN&quot;));</span>
+<span class="nc" id="L169">		final Collection&lt;SimpleGrantedAuthority&gt; authorities = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L170" title="All 2 branches missed.">		if (&quot;true&quot;.equals(registeredUsersGetAdminConfig.getPropertyValue())) {</span>
+<span class="nc" id="L171">			userAccount.setUserRole(UserRole.ADMIN);</span>
+<span class="nc" id="L172">			authorities.add(new SimpleGrantedAuthority(&quot;ROLE_ADMIN&quot;));</span>
 		} else {
-<span class="fc" id="L173">			userAccount.setUserRole(UserRole.USER);</span>
-<span class="fc" id="L174">			authorities.add(new SimpleGrantedAuthority(&quot;ROLE_USER&quot;));</span>
+<span class="nc" id="L174">			userAccount.setUserRole(UserRole.USER);</span>
+<span class="nc" id="L175">			authorities.add(new SimpleGrantedAuthority(&quot;ROLE_USER&quot;));</span>
 		}
 
-<span class="fc" id="L177">		SecurityContextHolder.getContext().setAuthentication(</span>
-<span class="fc" id="L178">				new UsernamePasswordAuthenticationToken(userAccount.getUserId(), &quot;n/a&quot;, authorities));</span>
-<span class="fc" id="L179">		return userAccount;</span>
+<span class="nc" id="L178">		SecurityContextHolder.getContext().setAuthentication(</span>
+<span class="nc" id="L179">				new UsernamePasswordAuthenticationToken(userAccount.getUserId(), &quot;n/a&quot;, authorities));</span>
+<span class="nc" id="L180">		return userAccount;</span>
 	}
 
 	@Override
 	protected CreateApplicationEventRequest createApplicationEventForService(
 			final RegisterUserRequest serviceRequest) {
-<span class="fc" id="L185">		final CreateApplicationEventRequest eventRequest = createBaseApplicationEventRequest();</span>
-<span class="fc" id="L186">		eventRequest.setEventGroup(ApplicationEventGroup.USER);</span>
-<span class="fc" id="L187">		eventRequest.setApplicationOperation(ApplicationOperationType.CREATE);</span>
-<span class="fc" id="L188">		eventRequest.setActionName(RegisterUserRequest.class.getSimpleName());</span>
-<span class="fc" id="L189">		eventRequest.setSessionId(serviceRequest.getSessionId());</span>
-<span class="fc" id="L190">		eventRequest.setElementId(serviceRequest.getEmail());</span>
-<span class="fc" id="L191">		return eventRequest;</span>
+<span class="nc" id="L186">		final CreateApplicationEventRequest eventRequest = createBaseApplicationEventRequest();</span>
+<span class="nc" id="L187">		eventRequest.setEventGroup(ApplicationEventGroup.USER);</span>
+<span class="nc" id="L188">		eventRequest.setApplicationOperation(ApplicationOperationType.CREATE);</span>
+<span class="nc" id="L189">		eventRequest.setActionName(RegisterUserRequest.class.getSimpleName());</span>
+<span class="nc" id="L190">		eventRequest.setSessionId(serviceRequest.getSessionId());</span>
+<span class="nc" id="L191">		eventRequest.setElementId(serviceRequest.getEmail());</span>
+<span class="nc" id="L192">		return eventRequest;</span>
 	}
 
 	@Override
 	protected RegisterUserResponse createErrorResponse() {
-<span class="fc" id="L196">		return new RegisterUserResponse(ServiceResult.FAILURE);</span>
+<span class="nc" id="L197">		return new RegisterUserResponse(ServiceResult.FAILURE);</span>
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

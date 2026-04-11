@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang="">
 <head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <title>EsvApImplTest xref</title>
 <link type="text/css" rel="stylesheet" href="../../../../../../../stylesheet.css" />
@@ -7,8 +7,8 @@
 <body>
 <div id="overview"><a href="../../../../../../../../testapidocs/com/hack23/cia/service/external/esv/impl/EsvApImplTest.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010 James Pether Sörling</em>
-<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> * </em>
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2010-2025 James Pether Sörling</em>
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> *</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> * Licensed under the Apache License, Version 2.0 (the "License");</em>
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_comment"> * you may not use this file except in compliance with the License.</em>
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_comment"> * You may obtain a copy of the License at</em>
@@ -53,10 +53,10 @@
 <a class="jxr_linenumber" name="L45" href="#L45">45</a>  <em class="jxr_javadoccomment">	 */</em>
 <a class="jxr_linenumber" name="L46" href="#L46">46</a>  	@Test
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> getReportFailureTest() <strong class="jxr_keyword">throws</strong> IOException {
-<a class="jxr_linenumber" name="L48" href="#L48">48</a>  		EsvGovernmentOperationsExcelReader mock = Mockito.mock(EsvGovernmentOperationsExcelReader.<strong class="jxr_keyword">class</strong>);
-<a class="jxr_linenumber" name="L49" href="#L49">49</a>  		EsvApi esvApi = <strong class="jxr_keyword">new</strong> EsvApiImpl(<strong class="jxr_keyword">null</strong>, mock,<strong class="jxr_keyword">null</strong>);
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>  		<strong class="jxr_keyword">final</strong> EsvGovernmentOperationsExcelReader mock = Mockito.mock(EsvGovernmentOperationsExcelReader.<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>  		<strong class="jxr_keyword">final</strong> EsvApi esvApi = <strong class="jxr_keyword">new</strong> EsvApiImpl(<strong class="jxr_keyword">null</strong>, mock,<strong class="jxr_keyword">null</strong>);
 <a class="jxr_linenumber" name="L50" href="#L50">50</a>  		Mockito.when(mock.getReport()).thenThrow(<strong class="jxr_keyword">new</strong> IOException());
-<a class="jxr_linenumber" name="L51" href="#L51">51</a>  		Map&lt;String, List&lt;GovernmentOperationPeriodOutcome&gt;&gt; report = esvApi.getReport();		
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>  		<strong class="jxr_keyword">final</strong> Map&lt;String, List&lt;GovernmentOperationPeriodOutcome&gt;&gt; report = esvApi.getReport();
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>  		assertTrue(report.isEmpty());
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>  		Mockito.verify(mock,times(1)).getReport();
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>  	}
@@ -69,19 +69,19 @@
 <a class="jxr_linenumber" name="L61" href="#L61">61</a>  <em class="jxr_javadoccomment">	 */</em>
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>  	@Test
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> getGovernmentBodyReportFailureTest() <strong class="jxr_keyword">throws</strong> IOException {
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>  		EsvGovernmentBodyOperationOutcomeReader mock = Mockito.mock(EsvGovernmentBodyOperationOutcomeReader.<strong class="jxr_keyword">class</strong>);
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>  		EsvApi esvApi = <strong class="jxr_keyword">new</strong> EsvApiImpl(<strong class="jxr_keyword">null</strong>, <strong class="jxr_keyword">null</strong>, mock);
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>  		<strong class="jxr_keyword">final</strong> EsvGovernmentBodyOperationOutcomeReader mock = Mockito.mock(EsvGovernmentBodyOperationOutcomeReader.<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>  		<strong class="jxr_keyword">final</strong> EsvApi esvApi = <strong class="jxr_keyword">new</strong> EsvApiImpl(<strong class="jxr_keyword">null</strong>, <strong class="jxr_keyword">null</strong>, mock);
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>  		Mockito.when(mock.readIncomeCsv()).thenThrow(<strong class="jxr_keyword">new</strong> IOException());
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>  		Map&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; report = esvApi.getGovernmentBodyReport();		
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>  		<strong class="jxr_keyword">final</strong> Map&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; report = esvApi.getGovernmentBodyReport();
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>  		assertTrue(report.isEmpty());
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>  		Mockito.verify(mock,times(1)).readIncomeCsv();
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>  	}
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>  	
-<a class="jxr_linenumber" name="L72" href="#L72">72</a>  	
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>  	
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>  
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>  
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>  
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>  }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2010&#x2013;2018 <a href="http://www.hack23.com">www.hack23.com</a>. All rights reserved.</div>
+<div id="footer">© 2010–2026 <a href="http://www.hack23.com">www.hack23.com</a></div>
 </body>
 </html>

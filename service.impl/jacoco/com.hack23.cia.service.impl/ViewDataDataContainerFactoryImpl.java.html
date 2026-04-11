@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewDataDataContainerFactoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.impl</a> &gt; <span class="el_source">ViewDataDataContainerFactoryImpl.java</span></div><h1>ViewDataDataContainerFactoryImpl.java</h1><pre class="source lang-java linenums">/*
- * Copyright 2010-2024 James Pether Sörling
+ * Copyright 2010-2025 James Pether Sörling
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
  * you may not use this file except in compliance with the License.
@@ -57,7 +57,7 @@ final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDataDataC
 
 	@Override
 	public &lt;T extends Serializable,I extends Serializable&gt; DataContainer&lt;T,I&gt; createDataContainer(final Class&lt;T&gt; clazz) {
-<span class="fc" id="L60">		return new GenericDataContainer&lt;&gt;(clazz,this);</span>
+<span class="nc" id="L60">		return new GenericDataContainer&lt;&gt;(clazz,this);</span>
 	}
 
 
@@ -72,7 +72,7 @@ final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDataDataC
 	@Override
 	public &lt;T&gt; T findFirstByProperty(final Class&lt;T&gt; clazz,
 			final SingularAttribute&lt;T, ? extends Object&gt; property, final Object value) {
-<span class="fc" id="L75">		return dataViewer.findFirstByProperty(clazz, property, value);</span>
+<span class="nc" id="L75">		return dataViewer.findFirstByProperty(clazz, property, value);</span>
 	}
 
 
@@ -85,10 +85,11 @@ final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDataDataC
 
 
 
+	@SuppressWarnings(&quot;unchecked&quot;)
 	@Override
 	public &lt;T&gt; List&lt;T&gt; findListByProperty(final Class&lt;T&gt; clazz, final Object[] values,
 			final SingularAttribute&lt;T, ? extends Object&gt;... properties) {
-<span class="nc" id="L91">		return dataViewer.findListByProperty(clazz, values, properties);</span>
+<span class="nc" id="L92">		return dataViewer.findListByProperty(clazz, values, properties);</span>
 	}
 
 
@@ -96,7 +97,7 @@ final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDataDataC
 	@Override
 	public &lt;T&gt; List&lt;T&gt; findListByProperty(final Class&lt;T&gt; clazz,
 			final SingularAttribute&lt;T, ? extends Object&gt; property, final Object value) {
-<span class="fc" id="L99">		return dataViewer.findListByProperty(clazz, property, value);</span>
+<span class="nc" id="L100">		return dataViewer.findListByProperty(clazz, property, value);</span>
 	}
 
 
@@ -105,7 +106,7 @@ final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDataDataC
 	public &lt;T, V&gt; List&lt;T&gt; findOrderedByPropertyListByEmbeddedProperty(final Class&lt;T&gt; clazz, final SingularAttribute&lt;T, V&gt; property,
 			final Class&lt;V&gt; clazz2, final SingularAttribute&lt;V, ? extends Object&gt; property2, final Object value,
 			final SingularAttribute&lt;T, ? extends Object&gt; orderByProperty) {
-<span class="nc" id="L108">		return dataViewer.findOrderedByPropertyListByEmbeddedProperty(clazz,property,clazz2,property2,value,orderByProperty);</span>
+<span class="nc" id="L109">		return dataViewer.findOrderedByPropertyListByEmbeddedProperty(clazz,property,clazz2,property2,value,orderByProperty);</span>
 	}
 
 
@@ -114,7 +115,7 @@ final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDataDataC
 	public &lt;T, V&gt; List&lt;T&gt; findOrderedListByEmbeddedProperty(final Class&lt;T&gt; clazz, final SingularAttribute&lt;T, V&gt; property,
 			final Class&lt;V&gt; clazz2, final SingularAttribute&lt;V, ? extends Object&gt; property2, final Object value,
 			final SingularAttribute&lt;V, ? extends Object&gt; orderByProperty) {
-<span class="nc" id="L117">		return dataViewer.findOrderedListByEmbeddedProperty(clazz,property,clazz2,property2,value,orderByProperty);</span>
+<span class="nc" id="L118">		return dataViewer.findOrderedListByEmbeddedProperty(clazz,property,clazz2,property2,value,orderByProperty);</span>
 	}
 
 
@@ -122,53 +123,54 @@ final class ViewDataDataContainerFactoryImpl implements DataViewer,ViewDataDataC
 	@Override
 	public &lt;T&gt; List&lt;T&gt; findOrderedListByProperty(final Class&lt;T&gt; clazz, final SingularAttribute&lt;T, ? extends Object&gt; property,
 			final Object value, final SingularAttribute&lt;T, ? extends Object&gt; orderByProperty) {
-<span class="fc" id="L125">		return dataViewer.findOrderedListByProperty(clazz,property,value,orderByProperty);</span>
+<span class="nc" id="L126">		return dataViewer.findOrderedListByProperty(clazz,property,value,orderByProperty);</span>
 	}
 
 
 
+	@SuppressWarnings(&quot;unchecked&quot;)
 	@Override
 	public &lt;T&gt; List&lt;T&gt; findOrderedListByProperty(final Class&lt;T&gt; clazz, final SingularAttribute&lt;T, ? extends Object&gt; orderByProperty,
 			final Object[] values, final SingularAttribute&lt;T, ? extends Object&gt;... properties) {
-<span class="nc" id="L133">		return dataViewer.findOrderedListByProperty(clazz,orderByProperty,values,properties);</span>
+<span class="nc" id="L135">		return dataViewer.findOrderedListByProperty(clazz,orderByProperty,values,properties);</span>
 	}
 
 
 	@Override
 	public &lt;T&gt; List&lt;T&gt; getAll(final Class&lt;T&gt; clazz) {
-<span class="nc" id="L139">		return dataViewer.getAll(clazz);</span>
+<span class="nc" id="L141">		return dataViewer.getAll(clazz);</span>
 	}
 
 
 	@Override
 	public &lt;T&gt; List&lt;T&gt; getAllOrderBy(final Class&lt;T&gt; clazz, final SingularAttribute&lt;T, ? extends Object&gt; property) {
-<span class="nc" id="L145">		return dataViewer.getAllOrderBy(clazz, property);</span>
+<span class="nc" id="L147">		return dataViewer.getAllOrderBy(clazz, property);</span>
 	}
 
 
 	@Override
 	public &lt;T&gt; T load(final Class&lt;T&gt; clazz, final Object id) {
-<span class="nc" id="L151">		return dataViewer.load(clazz, id);</span>
+<span class="nc" id="L153">		return dataViewer.load(clazz, id);</span>
 	}
 
 
 	@Override
 	public &lt;T&gt; List&lt;T&gt; getPage(final Class&lt;T&gt; clazz, final int pageNr, final int resultPerPage) {
-<span class="fc" id="L157">		return dataViewer.getPage(clazz, pageNr, resultPerPage);</span>
+<span class="nc" id="L159">		return dataViewer.getPage(clazz, pageNr, resultPerPage);</span>
 	}
 
 
 	@Override
 	public &lt;T&gt; List&lt;T&gt; getPageOrderBy(final Class&lt;T&gt; clazz, final int pageNr, final int resultPerPage,
 			final SingularAttribute&lt;T, ? extends Object&gt; property) {
-<span class="nc" id="L164">		return dataViewer.getPageOrderBy(clazz, pageNr, resultPerPage, property);</span>
+<span class="nc" id="L166">		return dataViewer.getPageOrderBy(clazz, pageNr, resultPerPage, property);</span>
 	}
 
 
 	@Override
 	public &lt;T&gt; Long getSize(final Class&lt;T&gt; clazz) {
-<span class="nc" id="L170">		return dataViewer.getSize(clazz);</span>
+<span class="nc" id="L172">		return dataViewer.getSize(clazz);</span>
 	}
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>
