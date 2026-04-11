@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hack23.github.io/cia/sitemap.xml
