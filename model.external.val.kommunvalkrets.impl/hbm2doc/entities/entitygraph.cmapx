@@ -1,0 +1,7 @@
+<map id="EntityGraph" name="EntityGraph">
+<area shape="rect" id="node1" href="com/hack23/cia/model/external/val/kommunvalkrets/impl/SwedenMunicipalityElectionRegionData.html" title="{ com\.hack23\.cia\.model\.external\.val\.kommunvalkrets\.impl\.SwedenMunicipalityElectionRegionData| code\l electionRegionName\l firstRound\l numberOfSeats\l numberOfVoters\l rest\l secondRound\l }" alt="" coords="5,592,593,743"/>
+<area shape="rect" id="node2" href="com/hack23/cia/model/external/val/kommunvalkrets/impl/SwedenMunicipalityData.html" title="{ com\.hack23\.cia\.model\.external\.val\.kommunvalkrets\.impl\.SwedenMunicipalityData| code\l municipalName\l }" alt="" coords="49,421,549,491"/>
+<area shape="rect" id="node3" href="com/hack23/cia/model/external/val/kommunvalkrets/impl/SwedenCountyData.html" title="{ com\.hack23\.cia\.model\.external\.val\.kommunvalkrets\.impl\.SwedenCountyData| code\l countyName\l }" alt="" coords="63,209,535,280"/>
+<area shape="rect" id="node4" href="com/hack23/cia/model/external/val/kommunvalkrets/impl/SwedenCountyDataContainer.html" title="{ com\.hack23\.cia\.model\.external\.val\.kommunvalkrets\.impl\.SwedenCountyDataContainer| }" alt="" coords="35,5,563,60"/>
+<area shape="rect" id="graph0" href="http://tools.hibernate.org" title="Entity Graph" alt="" coords="0,-0,598,775"/>
+</map>

@@ -1,0 +1,1 @@
+moduleSearchIndex = [{"l":"com.hack23.cia.model.external.riksdagen.utskottsforslag.impl"}];updateSearchResults();

@@ -3,4 +3,4 @@ model.external.val.riksdagsvalkrets.impl,com.hack23.cia.model.external.val.riksd
 model.external.val.riksdagsvalkrets.impl,com.hack23.cia.model.external.val.riksdagsvalkrets.impl,SwedenParliamentElectoralRegion_,3,0,0,0,1,0,1,0,1,0
 model.external.val.riksdagsvalkrets.impl,com.hack23.cia.model.external.val.riksdagsvalkrets.impl,SwedenParliamentElectoralRegionContainer_,3,0,0,0,1,0,1,0,1,0
 model.external.val.riksdagsvalkrets.impl,com.hack23.cia.model.external.val.riksdagsvalkrets.impl,ObjectFactory,0,26,0,0,0,6,0,5,0,5
-model.external.val.riksdagsvalkrets.impl,com.hack23.cia.model.external.val.riksdagsvalkrets.impl,SwedenParliamentElectoralRegionContainer,0,53,0,6,0,15,0,9,0,6
+model.external.val.riksdagsvalkrets.impl,com.hack23.cia.model.external.val.riksdagsvalkrets.impl,SwedenParliamentElectoralRegionContainer,2,51,1,5,1,14,1,8,0,6

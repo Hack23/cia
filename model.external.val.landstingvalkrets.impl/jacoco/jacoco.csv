@@ -1,8 +1,8 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
 model.external.val.landstingvalkrets.impl,com.hack23.cia.model.external.val.landstingvalkrets.impl,SwedenCountyElectoralArea,0,75,0,0,0,27,0,19,0,19
 model.external.val.landstingvalkrets.impl,com.hack23.cia.model.external.val.landstingvalkrets.impl,SwedenCountyElectoralRegion,0,59,0,0,0,19,0,13,0,13
-model.external.val.landstingvalkrets.impl,com.hack23.cia.model.external.val.landstingvalkrets.impl,SwedenCountyElectoralRegionContainer,0,53,0,6,0,15,0,9,0,6
+model.external.val.landstingvalkrets.impl,com.hack23.cia.model.external.val.landstingvalkrets.impl,SwedenCountyElectoralRegionContainer,2,51,1,5,1,14,1,8,0,6
 model.external.val.landstingvalkrets.impl,com.hack23.cia.model.external.val.landstingvalkrets.impl,SwedenCountyElectoralRegionContainer_,3,0,0,0,1,0,1,0,1,0
-model.external.val.landstingvalkrets.impl,com.hack23.cia.model.external.val.landstingvalkrets.impl,SwedenCountyElectoralArea_,3,0,0,0,1,0,1,0,1,0
 model.external.val.landstingvalkrets.impl,com.hack23.cia.model.external.val.landstingvalkrets.impl,ObjectFactory,0,30,0,0,0,7,0,6,0,6
+model.external.val.landstingvalkrets.impl,com.hack23.cia.model.external.val.landstingvalkrets.impl,SwedenCountyElectoralArea_,3,0,0,0,1,0,1,0,1,0
 model.external.val.landstingvalkrets.impl,com.hack23.cia.model.external.val.landstingvalkrets.impl,SwedenCountyElectoralRegion_,3,0,0,0,1,0,1,0,1,0

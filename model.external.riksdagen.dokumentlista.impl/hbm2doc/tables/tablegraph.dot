@@ -25,7 +25,7 @@ digraph TableGraph {
 
 /* TODO: multi schema tables */
   /* Node DOCUMENT_CONTAINER_ELEMENT */
-  DOCUMENT_CONTAINER_ELEMENT [ label = "{ DOCUMENT_CONTAINER_ELEMENT| <HJID>HJID\l | <CREATED>CREATED\l | <DATUM>DATUM\l | <DEBUG>DEBUG\l | <DOCUMENT_VERSION>DOCUMENT_VERSION\l | <HITS>HITS\l | <HITS_FROM>HITS_FROM\l | <HITS_TO>HITS_TO\l | <NEXT_PAGE>NEXT_PAGE\l | <PAGE>PAGE\l | <TOTAL_PAGES>TOTAL_PAGES\l | <WARNING>WARNING\l }" ]  
+  DOCUMENT_CONTAINER_ELEMENT [ label = "{ DOCUMENT_CONTAINER_ELEMENT| <HJID>HJID\l | <created>created\l | <datum>datum\l | <debug>debug\l | <documentVersion>documentVersion\l | <hits>hits\l | <hitsFrom>hitsFrom\l | <hitsTo>hitsTo\l | <nextPage>nextPage\l | <page>page\l | <totalPages>totalPages\l | <warning>warning\l }" ]  
   
   /* edges/nodes for DOCUMENT_CONTAINER_ELEMENT */
   /* Node DOCUMENT_ELEMENT */

@@ -1,0 +1,5 @@
+<map id="EntityGraph" name="EntityGraph">
+<area shape="rect" id="node1" href="com/hack23/cia/model/external/worldbank/data/impl/WorldBankData.html" title="{ com\.hack23\.cia\.model\.external\.worldbank\.data\.impl\.WorldBankData| country\l dataValue\l indicator\l yearDate\l }" alt="" coords="182,169,599,272"/>
+<area shape="rect" id="node4" href="com/hack23/cia/model/external/worldbank/data/impl/DataElement.html" title="{ com\.hack23\.cia\.model\.external\.worldbank\.data\.impl\.DataElement| page\l pages\l perPage\l total\l }" alt="" coords="189,5,591,108"/>
+<area shape="rect" id="graph0" href="http://tools.hibernate.org" title="Entity Graph" alt="" coords="0,-0,784,451"/>
+</map>

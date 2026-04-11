@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"com.hack23.cia.model.external.val.riksdagsvalkrets.impl"}]
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"com.hack23.cia.model.external.val.riksdagsvalkrets.impl","l":"com.hack23.cia.model.external.val.riksdagsvalkrets.impl"}];updateSearchResults();

@@ -1,8 +1,8 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
 model.external.riksdagen.utskottsforslag.impl,com.hack23.cia.model.external.riksdagen.utskottsforslag.impl,AgainstProposalData_,3,0,0,0,1,0,1,0,1,0
 model.external.riksdagen.utskottsforslag.impl,com.hack23.cia.model.external.riksdagen.utskottsforslag.impl,ObjectFactory,0,42,0,0,0,10,0,9,0,9
-model.external.riksdagen.utskottsforslag.impl,com.hack23.cia.model.external.riksdagen.utskottsforslag.impl,CommitteeDocumentData,0,234,0,0,0,94,0,58,0,58
 model.external.riksdagen.utskottsforslag.impl,com.hack23.cia.model.external.riksdagen.utskottsforslag.impl,CommitteeProposalData,13,170,0,0,3,66,2,41,2,41
+model.external.riksdagen.utskottsforslag.impl,com.hack23.cia.model.external.riksdagen.utskottsforslag.impl,CommitteeDocumentData,0,234,0,0,0,94,0,58,0,58
 model.external.riksdagen.utskottsforslag.impl,com.hack23.cia.model.external.riksdagen.utskottsforslag.impl,CommitteeDocumentData_,3,0,0,0,1,0,1,0,1,0
 model.external.riksdagen.utskottsforslag.impl,com.hack23.cia.model.external.riksdagen.utskottsforslag.impl,CommitteeProposalComponentData_,3,0,0,0,1,0,1,0,1,0
 model.external.riksdagen.utskottsforslag.impl,com.hack23.cia.model.external.riksdagen.utskottsforslag.impl,AgainstProposalContainer_,3,0,0,0,1,0,1,0,1,0
