@@ -111,9 +111,17 @@
 			<item name="ISMS-PUBLIC" href="https://github.com/Hack23/ISMS-PUBLIC" />
 		</menu>
 
+		<menu name="Hack23 Live Services">
+			<item name="🌐 hack23.com" href="https://hack23.com/" />
+			<item name="🗳️ riksdagsmonitor.com" href="https://riksdagsmonitor.com/" />
+			<item name="🇪🇺 euparliamentmonitor.com" href="https://euparliamentmonitor.com/" />
+			<item name="🔐 ciacompliancemanager.com" href="https://ciacompliancemanager.com/" />
+			<item name="🔥 blacktrigram.com" href="https://blacktrigram.com/" />
+			<item name="📖 Discordian Cybersecurity Blog" href="https://hack23.com/blog.html" />
+		</menu>
+
 		<menu name="Hack23 Projects">
 			<item name="🔐 ISMS-PUBLIC" href="https://github.com/Hack23/ISMS-PUBLIC" />
-			<item name="🍎 Discordian Cybersecurity" href="https://hack23.com/discordian-cybersecurity.html" />
 			<item name="🗳️ Riksdagsmonitor" href="https://github.com/Hack23/riksdagsmonitor" />
 			<item name="🇪🇺 EU Parliament Monitor" href="https://github.com/Hack23/euparliamentmonitor" />
 			<item name="🔌 EU Parliament MCP Server" href="https://github.com/Hack23/European-Parliament-MCP-Server" />
