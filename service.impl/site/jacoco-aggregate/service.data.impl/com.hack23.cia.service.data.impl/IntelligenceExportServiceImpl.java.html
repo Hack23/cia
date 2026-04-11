@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>IntelligenceExportServiceImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">service.impl</a> &gt; <a href="../index.html" class="el_bundle">service.data.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.data.impl</a> &gt; <span class="el_source">IntelligenceExportServiceImpl.java</span></div><h1>IntelligenceExportServiceImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2025 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+ */
+package com.hack23.cia.service.data.impl;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.hack23.cia.model.internal.application.data.impl.ViewDecisionTemporalTrends;
+import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenCoalitionAlignmentMatrix;
+import com.hack23.cia.model.internal.application.data.rules.impl.RuleViolation;
+import com.hack23.cia.service.data.api.IntelligenceExportService;
+import com.hack23.cia.service.data.api.RuleViolationDAO;
+import com.hack23.cia.service.data.api.ViewDecisionTemporalTrendsDAO;
+import com.hack23.cia.service.data.api.ViewRiksdagenCoalitionAlignmentMatrixDAO;
+import com.hack23.cia.service.data.impl.export.CoalitionAlignmentExportDTO;
+import com.hack23.cia.service.data.impl.export.CoalitionAlignmentExportDTO.PartyAlignment;
+import com.hack23.cia.service.data.impl.export.ExportMetadata;
+import com.hack23.cia.service.data.impl.export.RiskAssessmentExportDTO;
+import com.hack23.cia.service.data.impl.export.RiskAssessmentExportDTO.RiskViolation;
+import com.hack23.cia.service.data.impl.export.TemporalTrendsExportDTO;
+import com.hack23.cia.service.data.impl.export.TemporalTrendsExportDTO.TrendDataPoint;
+
+/**
+ * Implementation of IntelligenceExportService.
+ * 
+ * @author intelligence-operative
+ * @since v1.36
+ */
+@Service
+@Transactional(readOnly = true)
+final class IntelligenceExportServiceImpl implements IntelligenceExportService {
+
+	@Autowired
+	private RuleViolationDAO ruleViolationDAO;
+
+	@Autowired
+	private ViewRiksdagenCoalitionAlignmentMatrixDAO coalitionAlignmentDAO;
+
+	@Autowired
+	private ViewDecisionTemporalTrendsDAO temporalTrendsDAO;
+
+	private final ObjectMapper objectMapper;
+
+<span class="fc" id="L73">	public IntelligenceExportServiceImpl() {</span>
+<span class="fc" id="L74">		this.objectMapper = new ObjectMapper();</span>
+<span class="fc" id="L75">		this.objectMapper.enable(SerializationFeature.INDENT_OUTPUT);</span>
+<span class="fc" id="L76">		this.objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);</span>
+<span class="fc" id="L77">		this.objectMapper.setDateFormat(new com.fasterxml.jackson.databind.util.StdDateFormat().withColonInTimeZone(true));</span>
+<span class="fc" id="L78">	}</span>
+
+	@Override
+	public String exportRiskAssessments() throws IOException {
+<span class="fc" id="L82">		final List&lt;RuleViolation&gt; violations = ruleViolationDAO.getAll();</span>
+
+<span class="fc" id="L84">		final RiskAssessmentExportDTO dto = new RiskAssessmentExportDTO();</span>
+
+<span class="fc" id="L86">		final ExportMetadata metadata = new ExportMetadata();</span>
+<span class="fc" id="L87">		metadata.setSchema(&quot;intelligence-schema&quot;);</span>
+<span class="fc" id="L88">		metadata.setRecordCount(violations.size());</span>
+<span class="fc" id="L89">		metadata.setDataDate(new Date());</span>
+<span class="fc" id="L90">		dto.setMetadata(metadata);</span>
+
+<span class="fc" id="L92">		final List&lt;RiskViolation&gt; riskViolations = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L93" title="All 2 branches covered.">		for (final RuleViolation violation : violations) {</span>
+<span class="fc" id="L94">			final RiskViolation riskViolation = new RiskViolation();</span>
+<span class="fc" id="L95">			riskViolation.setId(violation.getId());</span>
+<span class="fc" id="L96">			riskViolation.setDetectedDate(violation.getDetectedDate());</span>
+<span class="fc" id="L97">			riskViolation.setReferenceId(violation.getReferenceId());</span>
+<span class="fc" id="L98">			riskViolation.setName(violation.getName());</span>
+<span class="pc bpc" id="L99" title="1 of 2 branches missed.">			riskViolation.setResourceType(violation.getResourceType() != null ? violation.getResourceType().toString() : null);</span>
+<span class="fc" id="L100">			riskViolation.setRuleName(violation.getRuleName());</span>
+<span class="fc" id="L101">			riskViolation.setRuleDescription(violation.getRuleDescription());</span>
+<span class="fc" id="L102">			riskViolation.setRuleGroup(violation.getRuleGroup());</span>
+<span class="pc bpc" id="L103" title="1 of 2 branches missed.">			riskViolation.setStatus(violation.getStatus() != null ? violation.getStatus().toString() : null);</span>
+<span class="fc" id="L104">			riskViolation.setPositive(violation.getPositive());</span>
+<span class="fc" id="L105">			riskViolations.add(riskViolation);</span>
+<span class="fc" id="L106">		}</span>
+<span class="fc" id="L107">		dto.setViolations(riskViolations);</span>
+
+<span class="fc" id="L109">		return objectMapper.writeValueAsString(dto);</span>
+	}
+
+	@Override
+	public String exportCoalitionAlignment() throws IOException {
+<span class="fc" id="L114">		final List&lt;ViewRiksdagenCoalitionAlignmentMatrix&gt; alignments = coalitionAlignmentDAO.getAll();</span>
+
+<span class="fc" id="L116">		final CoalitionAlignmentExportDTO dto = new CoalitionAlignmentExportDTO();</span>
+
+<span class="fc" id="L118">		final ExportMetadata metadata = new ExportMetadata();</span>
+<span class="fc" id="L119">		metadata.setSchema(&quot;intelligence-schema&quot;);</span>
+<span class="fc" id="L120">		metadata.setRecordCount(alignments.size());</span>
+<span class="fc" id="L121">		metadata.setDataDate(new Date());</span>
+<span class="fc" id="L122">		dto.setMetadata(metadata);</span>
+
+<span class="fc" id="L124">		final List&lt;PartyAlignment&gt; partyAlignments = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L125" title="All 2 branches covered.">		for (final ViewRiksdagenCoalitionAlignmentMatrix alignment : alignments) {</span>
+<span class="fc" id="L126">			final PartyAlignment partyAlignment = new PartyAlignment();</span>
+<span class="pc bpc" id="L127" title="1 of 2 branches missed.">			if (alignment.getEmbeddedId() != null) {</span>
+<span class="fc" id="L128">				partyAlignment.setParty1(alignment.getEmbeddedId().getParty1());</span>
+<span class="fc" id="L129">				partyAlignment.setParty2(alignment.getEmbeddedId().getParty2());</span>
+			}
+<span class="fc" id="L131">			partyAlignment.setAlignmentRate(alignment.getAlignmentRate());</span>
+<span class="fc" id="L132">			partyAlignment.setSharedVotes(alignment.getSharedVotes());</span>
+<span class="fc" id="L133">			partyAlignment.setAlignedVotes(alignment.getAlignedVotes());</span>
+<span class="fc" id="L134">			partyAlignments.add(partyAlignment);</span>
+<span class="fc" id="L135">		}</span>
+<span class="fc" id="L136">		dto.setAlignments(partyAlignments);</span>
+
+<span class="fc" id="L138">		return objectMapper.writeValueAsString(dto);</span>
+	}
+
+	@Override
+	public String exportTemporalTrends() throws IOException {
+<span class="fc" id="L143">		final List&lt;ViewDecisionTemporalTrends&gt; trends = temporalTrendsDAO.getAll();</span>
+
+<span class="fc" id="L145">		final TemporalTrendsExportDTO dto = new TemporalTrendsExportDTO();</span>
+
+<span class="fc" id="L147">		final ExportMetadata metadata = new ExportMetadata();</span>
+<span class="fc" id="L148">		metadata.setSchema(&quot;intelligence-schema&quot;);</span>
+<span class="fc" id="L149">		metadata.setRecordCount(trends.size());</span>
+<span class="fc" id="L150">		metadata.setDataDate(new Date());</span>
+<span class="fc" id="L151">		dto.setMetadata(metadata);</span>
+
+<span class="fc" id="L153">		final List&lt;TrendDataPoint&gt; dataPoints = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L154" title="All 2 branches covered.">		for (final ViewDecisionTemporalTrends trend : trends) {</span>
+<span class="fc" id="L155">			final TrendDataPoint dataPoint = new TrendDataPoint();</span>
+<span class="fc" id="L156">			dataPoint.setDecisionDay(trend.getDecisionDay());</span>
+<span class="fc" id="L157">			dataPoint.setDailyDecisions(trend.getDailyDecisions());</span>
+<span class="fc" id="L158">			dataPoint.setDailyApprovalRate(trend.getDailyApprovalRate());</span>
+<span class="fc" id="L159">			dataPoint.setApprovedDecisions(trend.getApprovedDecisions());</span>
+<span class="fc" id="L160">			dataPoint.setRejectedDecisions(trend.getRejectedDecisions());</span>
+<span class="fc" id="L161">			dataPoint.setReferredBackDecisions(trend.getReferredBackDecisions());</span>
+<span class="fc" id="L162">			dataPoint.setCommitteeReferralDecisions(trend.getCommitteeReferralDecisions());</span>
+<span class="fc" id="L163">			dataPoint.setMa7dayDecisions(trend.getMa7dayDecisions());</span>
+<span class="fc" id="L164">			dataPoint.setMa30dayDecisions(trend.getMa30dayDecisions());</span>
+<span class="fc" id="L165">			dataPoint.setMa90dayDecisions(trend.getMa90dayDecisions());</span>
+<span class="fc" id="L166">			dataPoint.setMa30dayApprovalRate(trend.getMa30dayApprovalRate());</span>
+<span class="fc" id="L167">			dataPoint.setDecisionsLastYear(trend.getDecisionsLastYear());</span>
+<span class="fc" id="L168">			dataPoint.setYoyDecisionsChange(trend.getYoyDecisionsChange());</span>
+<span class="fc" id="L169">			dataPoint.setYoyDecisionsChangePct(trend.getYoyDecisionsChangePct());</span>
+<span class="fc" id="L170">			dataPoint.setDecisionYear(trend.getDecisionYear());</span>
+<span class="fc" id="L171">			dataPoint.setDecisionMonth(trend.getDecisionMonth());</span>
+<span class="fc" id="L172">			dataPoint.setDecisionWeek(trend.getDecisionWeek());</span>
+<span class="fc" id="L173">			dataPoint.setDayOfWeek(trend.getDayOfWeek());</span>
+<span class="fc" id="L174">			dataPoints.add(dataPoint);</span>
+<span class="fc" id="L175">		}</span>
+<span class="fc" id="L176">		dto.setTrends(dataPoints);</span>
+
+<span class="fc" id="L178">		return objectMapper.writeValueAsString(dto);</span>
+	}
+
+	@Override
+	public void writeJsonToFile(final String jsonContent, final String fileName, final String outputDirectory)
+			throws IOException {
+		// Validate fileName doesn't contain path separators (subdirectories not supported)
+<span class="fc bfc" id="L185" title="All 4 branches covered.">		if (fileName.contains(&quot;/&quot;) || fileName.contains(&quot;\\&quot;)) {</span>
+<span class="fc" id="L186">			throw new IllegalArgumentException(&quot;Invalid file name: subdirectories not supported, must be a flat file name&quot;);</span>
+		}
+
+		// Validate against path traversal by ensuring resolved path stays within target directory
+<span class="fc" id="L190">		final Path targetDir = Paths.get(outputDirectory).toAbsolutePath().normalize();</span>
+<span class="fc" id="L191">		final Path resolvedPath = targetDir.resolve(fileName).normalize();</span>
+<span class="pc bpc" id="L192" title="1 of 2 branches missed.">		if (!resolvedPath.startsWith(targetDir)) {</span>
+<span class="nc" id="L193">			throw new IllegalArgumentException(&quot;Invalid file name: path traversal detected&quot;);</span>
+		}
+
+<span class="fc" id="L196">		final File directory = new File(outputDirectory);</span>
+<span class="pc bpc" id="L197" title="1 of 4 branches missed.">		if (!directory.exists() &amp;&amp; !directory.mkdirs()) {</span>
+<span class="nc" id="L198">			throw new IOException(&quot;Failed to create directory: &quot; + outputDirectory);</span>
+		}
+
+<span class="fc" id="L201">		Files.write(resolvedPath, jsonContent.getBytes(StandardCharsets.UTF_8));</span>
+<span class="fc" id="L202">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

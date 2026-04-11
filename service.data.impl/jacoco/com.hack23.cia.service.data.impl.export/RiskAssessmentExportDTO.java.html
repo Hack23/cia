@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RiskAssessmentExportDTO.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.data.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.data.impl.export</a> &gt; <span class="el_source">RiskAssessmentExportDTO.java</span></div><h1>RiskAssessmentExportDTO.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2025 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+ */
+package com.hack23.cia.service.data.impl.export;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+/**
+ * DTO for risk assessment JSON export.
+ * 
+ * @author intelligence-operative
+ * @since v1.36
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class RiskAssessmentExportDTO implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	@JsonProperty(&quot;metadata&quot;)
+	private ExportMetadata metadata;
+
+	@JsonProperty(&quot;violations&quot;)
+	private List&lt;RiskViolation&gt; violations;
+
+<span class="fc" id="L47">	public RiskAssessmentExportDTO() {</span>
+<span class="fc" id="L48">		this.violations = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L49">	}</span>
+
+	public ExportMetadata getMetadata() {
+<span class="fc" id="L52">		return metadata;</span>
+	}
+
+	public void setMetadata(final ExportMetadata metadata) {
+<span class="fc" id="L56">		this.metadata = metadata;</span>
+<span class="fc" id="L57">	}</span>
+
+	public List&lt;RiskViolation&gt; getViolations() {
+<span class="fc" id="L60">		return Collections.unmodifiableList(violations);</span>
+	}
+
+	public void setViolations(final List&lt;RiskViolation&gt; violations) {
+<span class="fc" id="L64">		this.violations = violations;</span>
+<span class="fc" id="L65">	}</span>
+
+	/**
+	 * Risk violation entry.
+	 */
+	@JsonInclude(JsonInclude.Include.NON_NULL)
+<span class="fc" id="L71">	public static class RiskViolation implements Serializable {</span>
+		private static final long serialVersionUID = 1L;
+
+		@JsonProperty(&quot;id&quot;)
+		private Long id;
+
+		@JsonProperty(&quot;detectedDate&quot;)
+		private Date detectedDate;
+
+		@JsonProperty(&quot;referenceId&quot;)
+		private String referenceId;
+
+		@JsonProperty(&quot;name&quot;)
+		private String name;
+
+		@JsonProperty(&quot;resourceType&quot;)
+		private String resourceType;
+
+		@JsonProperty(&quot;ruleName&quot;)
+		private String ruleName;
+
+		@JsonProperty(&quot;ruleDescription&quot;)
+		private String ruleDescription;
+
+		@JsonProperty(&quot;ruleGroup&quot;)
+		private String ruleGroup;
+
+		@JsonProperty(&quot;status&quot;)
+		private String status;
+
+		@JsonProperty(&quot;positive&quot;)
+		private String positive;
+
+		// Getters and setters
+		public Long getId() {
+<span class="fc" id="L106">			return id;</span>
+		}
+
+		public void setId(final Long id) {
+<span class="fc" id="L110">			this.id = id;</span>
+<span class="fc" id="L111">		}</span>
+
+		public Date getDetectedDate() {
+<span class="pc bpc" id="L114" title="1 of 2 branches missed.">			return detectedDate != null ? new Date(detectedDate.getTime()) : null;</span>
+		}
+
+		public void setDetectedDate(final Date detectedDate) {
+<span class="pc bpc" id="L118" title="1 of 2 branches missed.">			this.detectedDate = detectedDate != null ? new Date(detectedDate.getTime()) : null;</span>
+<span class="fc" id="L119">		}</span>
+
+		public String getReferenceId() {
+<span class="fc" id="L122">			return referenceId;</span>
+		}
+
+		public void setReferenceId(final String referenceId) {
+<span class="fc" id="L126">			this.referenceId = referenceId;</span>
+<span class="fc" id="L127">		}</span>
+
+		public String getName() {
+<span class="fc" id="L130">			return name;</span>
+		}
+
+		public void setName(final String name) {
+<span class="fc" id="L134">			this.name = name;</span>
+<span class="fc" id="L135">		}</span>
+
+		public String getResourceType() {
+<span class="fc" id="L138">			return resourceType;</span>
+		}
+
+		public void setResourceType(final String resourceType) {
+<span class="fc" id="L142">			this.resourceType = resourceType;</span>
+<span class="fc" id="L143">		}</span>
+
+		public String getRuleName() {
+<span class="fc" id="L146">			return ruleName;</span>
+		}
+
+		public void setRuleName(final String ruleName) {
+<span class="fc" id="L150">			this.ruleName = ruleName;</span>
+<span class="fc" id="L151">		}</span>
+
+		public String getRuleDescription() {
+<span class="fc" id="L154">			return ruleDescription;</span>
+		}
+
+		public void setRuleDescription(final String ruleDescription) {
+<span class="fc" id="L158">			this.ruleDescription = ruleDescription;</span>
+<span class="fc" id="L159">		}</span>
+
+		public String getRuleGroup() {
+<span class="fc" id="L162">			return ruleGroup;</span>
+		}
+
+		public void setRuleGroup(final String ruleGroup) {
+<span class="fc" id="L166">			this.ruleGroup = ruleGroup;</span>
+<span class="fc" id="L167">		}</span>
+
+		public String getStatus() {
+<span class="fc" id="L170">			return status;</span>
+		}
+
+		public void setStatus(final String status) {
+<span class="fc" id="L174">			this.status = status;</span>
+<span class="fc" id="L175">		}</span>
+
+		public String getPositive() {
+<span class="fc" id="L178">			return positive;</span>
+		}
+
+		public void setPositive(final String positive) {
+<span class="fc" id="L182">			this.positive = positive;</span>
+<span class="fc" id="L183">		}</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

@@ -6,169 +6,763 @@
 </TR>
 <TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
 <TD VALIGN="top">
-<a href='../changelogs/db-changelog-1.27.xml.html'>db-changelog-1.27.xml</a></TD>
+<a href='../changelogs/db-changelog-1.80.xml.html'>db-changelog-1.80.xml</a></TD>
 <TD VALIGN="top">
-312321-view_riksdagen_politician_ballot_summary</TD>
+1.80-001</TD>
 <TD VALIGN="top">
-<a href='../authors/pethers.html'>pethers</a></TD>
+<a href='../authors/copilot.html'>copilot</a></TD>
 <TD VALIGN="top">
-Executed 12/27/24, 5:02 PM</TD>
-</TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_politician_ballot_summary created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+Executed 4/11/26, 2:04 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_party_summary: eliminate fan-out JOIN between
+        view_riksdagen_politician and party_documents (ROOT CAUSE 10).
+
+        The previous query joined each politician row with all documents for that
+        party (LEFT JOIN party_documents pd ON vp.party = pd.party), creating a
+        massive intermediate result set. All sum(vp.*) fields (total_assignments,
+        total_days_served, etc.) were multiplied by the number of documents per
+        party, producing values in the millions/billions instead of thousands.
+
+        Fix: Pre-aggregate assignment data from view_riksdagen_politician grouped
+        by party in a CTE, then join with pre-aggregated document data. This
+        eliminates the fan-out and produces correct assignment counts.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_party_summary created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
 <TD VALIGN="top">
-<a href='../changelogs/db-changelog-1.26.xml.html'>db-changelog-1.26.xml</a></TD>
+<a href='../changelogs/db-changelog-1.79.xml.html'>db-changelog-1.79.xml</a></TD>
 <TD VALIGN="top">
-25353872417007-324</TD>
+1.79-034</TD>
 <TD VALIGN="top">
-<a href='../authors/party_trends-fix.html'>party_trends-fix</a></TD>
+<a href='../authors/copilot.html'>copilot</a></TD>
 <TD VALIGN="top">
-Executed 12/27/24, 1:15 PM</TD>
-</TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_party_ballot_support_annual_summary created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
-<TD VALIGN="top">
-<a href='../changelogs/db-changelog-1.26.xml.html'>db-changelog-1.26.xml</a></TD>
-<TD VALIGN="top">
-revert-jpa-model-update</TD>
-<TD VALIGN="top">
-<a href='../authors/pethers.html'>pethers</a></TD>
-<TD VALIGN="top">
-Executed 12/27/24, 1:04 PM</TD>
-</TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_committee_role_member created</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_committee_role_member dropped</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_party_role_member created</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_party_role_member dropped</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_goverment_role_member created</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_goverment_role_member dropped</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_goverment created</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_goverment dropped</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_committee_parliament_member_proposal created</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_committee created</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_committee dropped</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_committee_parliament_member_proposal dropped</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_party_summary created</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_politician created</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_party created</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_party_member created</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_party_member dropped</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_politician dropped</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_party_document_summary dropped</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_party dropped</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
-<TD VALIGN="top">
-<a href='../changelogs/db-changelog-1.25.xml.html'>db-changelog-1.25.xml</a></TD>
-<TD VALIGN="top">
-8774122723-enhance-party</TD>
-<TD VALIGN="top">
-<a href='../authors/pethers.html'>pethers</a></TD>
-<TD VALIGN="top">
-Executed 12/27/24, 3:40 AM</TD>
-</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Add indexes to improve party view</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_party created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
-<TD VALIGN="top">
-<a href='../changelogs/db-changelog-1.25.xml.html'>db-changelog-1.25.xml</a></TD>
-<TD VALIGN="top">
-2024122723-enhance-party-summary-performance</TD>
-<TD VALIGN="top">
-<a href='../authors/pethers.html'>pethers</a></TD>
-<TD VALIGN="top">
-Executed 12/27/24, 3:04 AM</TD>
-</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Add indexes to improve party summary view performance</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+Executed 3/22/26, 10:10 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_election_year_behavioral_patterns: midterm document
+        z-score used election_stddev_docs instead of midterm_stddev_docs, making midterm
+        z-scores inconsistent. Added midterm_stddev_docs to election_baseline CTE and
+        use it for non-election-year document z-score calculation. Also adds view comments
+        for DB documentation.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
 <td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
 <TD VALIGN="top">
-<a href='../changelogs/db-changelog-1.25.xml.html'>db-changelog-1.25.xml</a></TD>
+<a href='../changelogs/db-changelog-1.79.xml.html'>db-changelog-1.79.xml</a></TD>
 <TD VALIGN="top">
-20241227-enhance-party-summary-performance</TD>
+1.79-033</TD>
 <TD VALIGN="top">
-<a href='../authors/pethers.html'>pethers</a></TD>
+<a href='../authors/copilot.html'>copilot</a></TD>
 <TD VALIGN="top">
-Executed 12/27/24, 2:39 AM</TD>
-</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Add indexes to improve party summary view performance</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_assignment_data_type_dates created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
-<TD VALIGN="top">
-<a href='../changelogs/db-changelog-1.25.xml.html'>db-changelog-1.25.xml</a></TD>
-<TD VALIGN="top">
-20241227-enhance-party-document-summary</TD>
-<TD VALIGN="top">
-<a href='../authors/pethers.html'>pethers</a></TD>
-<TD VALIGN="top">
-Executed 12/27/24, 1:52 AM</TD>
-</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Enhance party document summary with comprehensive metrics while preserving existing functionality</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_party_document_summary created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
-<TD VALIGN="top">
-<a href='../changelogs/db-changelog-1.25.xml.html'>db-changelog-1.25.xml</a></TD>
-<TD VALIGN="top">
-20241226-improve-politician-view</TD>
-<TD VALIGN="top">
-<a href='../authors/pethers.html'>pethers</a></TD>
-<TD VALIGN="top">
-Executed 12/27/24, 1:31 AM</TD>
-</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Enhance politician view with comprehensive metrics and committee effectiveness</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_politician created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
-<TD VALIGN="top">
-<a href='../changelogs/db-changelog-1.25.xml.html'>db-changelog-1.25.xml</a></TD>
-<TD VALIGN="top">
-2024122623-extend-party-view</TD>
-<TD VALIGN="top">
-<a href='../authors/pethers.html'>pethers</a></TD>
-<TD VALIGN="top">
-Executed 12/27/24, 1:16 AM</TD>
-</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Extend party view with additional political analysis metrics using existing data</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_party_member created</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_party_member dropped</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_politician dropped</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_party_document_summary dropped</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_party_summary dropped</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_party dropped</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
-<TD VALIGN="top">
-<a href='../changelogs/db-changelog-1.25.xml.html'>db-changelog-1.25.xml</a></TD>
-<TD VALIGN="top">
-20241224-ballot-summary-view</TD>
-<TD VALIGN="top">
-<a href='../authors/pethers.html'>pethers</a></TD>
-<TD VALIGN="top">
-Executed 12/24/24, 11:58 PM</TD>
-</TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+Executed 3/22/26, 10:10 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_crisis_resilience_indicators: crisis_rebellions and
+        normal_rebellions compared vote value (JA/NEJ) to party code (S/M/SD), which
+        always evaluates to true for non-abstain votes — making the metric meaningless.
+        Fixed to use the proper rebel flag from view_riksdagen_vote_data_ballot_politician_summary
+        which correctly determines rebellion by comparing individual vote against party majority.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
 <td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
 <TD VALIGN="top">
-<a href='../changelogs/db-changelog-1.25.xml.html'>db-changelog-1.25.xml</a></TD>
+<a href='../changelogs/db-changelog-1.79.xml.html'>db-changelog-1.79.xml</a></TD>
 <TD VALIGN="top">
-vote-data-324</TD>
+1.79-032</TD>
 <TD VALIGN="top">
-<a href='../authors/pether.html'>pether</a></TD>
+<a href='../authors/copilot.html'>copilot</a></TD>
 <TD VALIGN="top">
-Executed 12/24/24, 9:51 PM</TD>
-</TR><TR BGCOLOR="white" CLASS="TableRowColor">
+Executed 3/22/26, 10:10 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_election_cycle_comparative_analysis: document_z_score used
+        election_stddev_docs even for midterm years, making midterm z-scores inconsistent.
+        Added midterm_stddev_docs to election_baseline and use it for the non-election-year
+        branch. When midterm_stddev_docs is 0 or NULL, return 0 instead of incorrect values.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_election_cycle_comparative_analysis created</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
 <td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
 <TD VALIGN="top">
-<a href='../changelogs/db-changelog-1.24.xml.html'>db-changelog-1.24.xml</a></TD>
+<a href='../changelogs/db-changelog-1.79.xml.html'>db-changelog-1.79.xml</a></TD>
 <TD VALIGN="top">
-committee-role-member-1414872417007-228</TD>
+1.79-031</TD>
 <TD VALIGN="top">
-<a href='../authors/pether.html'>pether</a></TD>
+<a href='../authors/copilot.html'>copilot</a></TD>
 <TD VALIGN="top">
-Executed 12/24/24, 1:39 PM</TD>
-</TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_committee_role_member created</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_committee_role_member dropped</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+Executed 3/22/26, 10:10 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_party_longitudinal_performance: JPA type mismatches.
+        membership_change must be bigint (JPA Long), trend_position must be text (JPA String).
+        These were previously typed as integer/numeric which breaks Hibernate validation.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
 <TD VALIGN="top">
-<a href='../changelogs/db-changelog-1.24.xml.html'>db-changelog-1.24.xml</a></TD>
+<a href='../changelogs/db-changelog-1.79.xml.html'>db-changelog-1.79.xml</a></TD>
 <TD VALIGN="top">
-party-role-member-1414872417007-227</TD>
+1.79-030</TD>
 <TD VALIGN="top">
-<a href='../authors/pether.html'>pether</a></TD>
+<a href='../authors/copilot.html'>copilot</a></TD>
 <TD VALIGN="top">
-Executed 12/24/24, 1:39 PM</TD>
-</TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_party_role_member created</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
-<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_party_role_member dropped</td></TR></TABLE>&nbsp;</P><hr>Generated: 12/28/24, 4:22 PM<BR>Against: eris @ jdbc:postgresql://localhost:5432/cia_dev (Default Schema: public)<BR>Change Log: db-changelog-1.0.xml<BR><BR>Generated By: <a href='https://www.liquibase.com' target='_TOP'>Liquibase 4.30.0</a></body></html>
+Executed 3/22/26, 10:10 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_party_electoral_trends: JPA type mismatches
+        identified in second review round. seat_change_absolute must be bigint (JPA Long),
+        seat_forecast must be text (JPA String), performance_forecast must be text (JPA String),
+        trend_position_seats must be text (JPA String), projected_seat_change must be numeric
+        (JPA BigDecimal). These were previously typed as integer/numeric which breaks
+        Hibernate schema validation.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.79.xml.html'>db-changelog-1.79.xml</a></TD>
+<TD VALIGN="top">
+1.79-029</TD>
+<TD VALIGN="top">
+<a href='../authors/copilot.html'>copilot</a></TD>
+<TD VALIGN="top">
+Executed 3/22/26, 10:10 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Recreate missing unique index on mv_annual_voting_metrics.year
+        that was lost during view recreation in prior changesets.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.79.xml.html'>db-changelog-1.79.xml</a></TD>
+<TD VALIGN="top">
+1.79-028</TD>
+<TD VALIGN="top">
+<a href='../authors/copilot.html'>copilot</a></TD>
+<TD VALIGN="top">
+Executed 3/22/26, 10:10 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_party_longitudinal_performance: add missing
+        columns that the JPA entity expects: rank_by_win_rate, rank_by_participation,
+        percentile_win_rate, percentile_participation, percentile_approval,
+        quartile_by_win_rate, quartile_by_overall_performance, next_semester_win_rate,
+        next_semester_participation, stddev_* fields, trajectory/classification columns,
+        momentum z-scores, and election period flags.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.79.xml.html'>db-changelog-1.79.xml</a></TD>
+<TD VALIGN="top">
+1.79-027</TD>
+<TD VALIGN="top">
+<a href='../authors/copilot.html'>copilot</a></TD>
+<TD VALIGN="top">
+Executed 3/22/26, 10:10 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_party_electoral_trends: add missing columns
+        that the JPA entity ViewRiksdagenPartyElectoralTrends expects:
+        rank_by_engagement, rank_by_effectiveness, quartile_by_performance,
+        electoral_trend, party_size_category, seat_forecast, performance_forecast,
+        election_readiness_score, is_pre_election_period, is_election_period,
+        is_post_election_period, trend_position_seats, electoral_tier.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.79.xml.html'>db-changelog-1.79.xml</a></TD>
+<TD VALIGN="top">
+1.79-026</TD>
+<TD VALIGN="top">
+<a href='../authors/copilot.html'>copilot</a></TD>
+<TD VALIGN="top">
+Executed 3/22/26, 10:10 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_committee_role_member: total_committee_reports
+        actually contains committee_motions count and total_statements contains
+        propositions count. Keep JPA column names but document actual data.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_committee_role_member created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.79.xml.html'>db-changelog-1.79.xml</a></TD>
+<TD VALIGN="top">
+1.79-025</TD>
+<TD VALIGN="top">
+<a href='../authors/copilot.html'>copilot</a></TD>
+<TD VALIGN="top">
+Executed 3/22/26, 10:10 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_party_role_member: total_interpellations actually
+        contains party_motions and total_written_questions contains committee_motions.
+        Since interpellations/written questions don't exist in document_data, keep the
+        JPA column names but populate with the existing motion-based data (unchanged
+        since these columns were always party_motions/committee_motions).</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_party_role_member created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.79.xml.html'>db-changelog-1.79.xml</a></TD>
+<TD VALIGN="top">
+1.79-024</TD>
+<TD VALIGN="top">
+<a href='../authors/copilot.html'>copilot</a></TD>
+<TD VALIGN="top">
+Executed 3/22/26, 10:10 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_committee_productivity: column alias mismatch where
+        committee_document_data sub_type='bet' reports were aliased as motions_count,
+        'utl' statements as propositions_count, and other_documents as reports_count.
+        The JPA entity ViewCommitteeProductivity expects motions_count/propositions_count/
+        reports_count to match their semantic meaning. Since the underlying data source
+        (committee_document_data) has sub_type bet=reports, utl=statements, other=other,
+        we rename to match the JPA column names correctly.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_committee_productivity created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.79.xml.html'>db-changelog-1.79.xml</a></TD>
+<TD VALIGN="top">
+1.79-023</TD>
+<TD VALIGN="top">
+<a href='../authors/copilot.html'>copilot</a></TD>
+<TD VALIGN="top">
+Executed 3/22/26, 10:10 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_election_cycle_comparative_analysis: used CROSS JOIN to
+        non-temporal view_party_performance_metrics making active_members and
+        documents_last_year constant per party, so LAG-based change_performance_pct
+        and change_documents_pct were always 0. Fix: derive temporal data from
+        ballot_party_summary_annual, politician_document, and politician_summary.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.79.xml.html'>db-changelog-1.79.xml</a></TD>
+<TD VALIGN="top">
+1.79-022</TD>
+<TD VALIGN="top">
+<a href='../authors/copilot.html'>copilot</a></TD>
+<TD VALIGN="top">
+Executed 3/22/26, 10:10 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_politician_career_trajectory: was empty (0 rows)
+        because LEFT JOINs to assignment_data and document_person_reference_da_0
+        without time constraints created massive fan-out with vote_data (3.7M rows).
+        Fix: pre-aggregate leadership_roles and documents_authored in separate
+        subqueries, then join by person_id only, avoiding the Cartesian product.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.79.xml.html'>db-changelog-1.79.xml</a></TD>
+<TD VALIGN="top">
+1.79-021</TD>
+<TD VALIGN="top">
+<a href='../authors/copilot.html'>copilot</a></TD>
+<TD VALIGN="top">
+Executed 3/22/26, 10:10 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_party_longitudinal_performance: active_members
+        and documents_last_year came from non-temporal view_party_performance_metrics,
+        making LAG-based change columns (membership_change, documents_change,
+        discipline_change) always 0. Fix: derive active_members from
+        party_total_votes/number_ballots, documents_last_year from politician_document
+        matview per year, avg_rebel_rate from politician_summary_annual.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.79.xml.html'>db-changelog-1.79.xml</a></TD>
+<TD VALIGN="top">
+1.79-020</TD>
+<TD VALIGN="top">
+<a href='../authors/copilot.html'>copilot</a></TD>
+<TD VALIGN="top">
+Executed 3/22/26, 10:10 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_party_electoral_trends: seat_count_proxy and
+        documents_produced came from non-temporal view_party_performance_metrics,
+        making them constant per party. All LAG-based change columns were 0.
+        Fix: derive seat_count_proxy from party_total_votes/number_ballots (varies
+        by year), documents_produced from politician_document matview per year,
+        avg_rebel_rate from politician_summary_annual per party per year.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.79.xml.html'>db-changelog-1.79.xml</a></TD>
+<TD VALIGN="top">
+1.79-019</TD>
+<TD VALIGN="top">
+<a href='../authors/copilot.html'>copilot</a></TD>
+<TD VALIGN="top">
+Executed 3/22/26, 10:10 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_committee_role_member: initiatives count used
+        non-existent document type 'frs' (written questions). Only mot, bet, prop,
+        kammakt exist in document_data. Replace 'frs' with 'kammakt'.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_committee_role_member created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.79.xml.html'>db-changelog-1.79.xml</a></TD>
+<TD VALIGN="top">
+1.79-018</TD>
+<TD VALIGN="top">
+<a href='../authors/copilot.html'>copilot</a></TD>
+<TD VALIGN="top">
+Executed 3/22/26, 10:10 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_election_cycle_network_analysis: replaced hardcoded
+        placeholder zeros for influential_politicians, avg_network_centrality,
+        and power_broker_count with actual calculated values derived from
+        vote participation data and coalition alignment rates.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.79.xml.html'>db-changelog-1.79.xml</a></TD>
+<TD VALIGN="top">
+1.79-017</TD>
+<TD VALIGN="top">
+<a href='../authors/copilot.html'>copilot</a></TD>
+<TD VALIGN="top">
+Executed 3/22/26, 10:10 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_election_proximity_trends: role_tier case
+        sensitivity. Source view generates UPPERCASE values but this view compared
+        with lowercase ('minister', 'speaker', 'party_leader', 'committee_chair',
+        'committee_member'). This caused leadership_role_count and
+        committee_assignment_count to always be 0.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.79.xml.html'>db-changelog-1.79.xml</a></TD>
+<TD VALIGN="top">
+1.79-016</TD>
+<TD VALIGN="top">
+<a href='../authors/copilot.html'>copilot</a></TD>
+<TD VALIGN="top">
+Executed 3/22/26, 10:10 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_pre_election_quarterly_activity: role_tier case
+        sensitivity. Source view generates UPPERCASE (MINISTER, SPEAKER, PARTY_LEADER)
+        but this view compared with lowercase. This caused politicians_with_new_roles
+        and leadership_appointments to always be 0.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.79.xml.html'>db-changelog-1.79.xml</a></TD>
+<TD VALIGN="top">
+1.79-015</TD>
+<TD VALIGN="top">
+<a href='../authors/copilot.html'>copilot</a></TD>
+<TD VALIGN="top">
+Executed 3/22/26, 10:10 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_party_momentum_analysis: vote comparisons used
+        title-case values but data is UPPERCASE. Applied UPPER() to all vote comparisons.
+        This caused participation_rate to always be 0.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.79.xml.html'>db-changelog-1.79.xml</a></TD>
+<TD VALIGN="top">
+1.79-014</TD>
+<TD VALIGN="top">
+<a href='../authors/copilot.html'>copilot</a></TD>
+<TD VALIGN="top">
+Executed 3/22/26, 10:10 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_crisis_resilience_indicators: vote comparison used
+        title-case 'Frånvarande' but data is UPPERCASE 'FRÅNVARANDE'.
+        This caused crisis_absence_rate, crisis_party_discipline, normal_absence_rate
+        to always be 0. Applied UPPER() to all vote comparisons.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.79.xml.html'>db-changelog-1.79.xml</a></TD>
+<TD VALIGN="top">
+1.79-013</TD>
+<TD VALIGN="top">
+<a href='../authors/copilot.html'>copilot</a></TD>
+<TD VALIGN="top">
+Executed 3/22/26, 10:10 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_risk_score_evolution: document join still uses
+        dsc.hjid = dprc.hjid instead of correct FK dsc.document_person_reference_co_1.
+        The 1.78-001 fix corrected vote case sensitivity but not the document join,
+        causing document_count to always be 0.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.79.xml.html'>db-changelog-1.79.xml</a></TD>
+<TD VALIGN="top">
+1.79-012</TD>
+<TD VALIGN="top">
+<a href='../authors/copilot.html'>copilot</a></TD>
+<TD VALIGN="top">
+Executed 3/22/26, 10:10 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_ministry_productivity_matrix: same wrong document join
+        and non-existent 'ds' type. Replaced with correct FK join and 'bet' type.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_ministry_productivity_matrix created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.79.xml.html'>db-changelog-1.79.xml</a></TD>
+<TD VALIGN="top">
+1.79-011</TD>
+<TD VALIGN="top">
+<a href='../authors/copilot.html'>copilot</a></TD>
+<TD VALIGN="top">
+Executed 3/22/26, 10:10 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_ministry_risk_evolution: same wrong document join
+        and non-existent 'ds' type. Replaced with correct FK join and 'bet' type.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_ministry_risk_evolution created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.79.xml.html'>db-changelog-1.79.xml</a></TD>
+<TD VALIGN="top">
+1.79-010</TD>
+<TD VALIGN="top">
+<a href='../authors/copilot.html'>copilot</a></TD>
+<TD VALIGN="top">
+Executed 3/22/26, 10:10 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_ministry_effectiveness_trends: wrong document join
+        (dsc.hjid = dprc.hjid instead of dsc.document_person_reference_co_1 = dprc.hjid)
+        and non-existent document_type 'ds'. Only: mot, bet, prop, kammakt.
+        Replaced 'ds' with 'bet' for legislative documents (committee reports).</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_ministry_effectiveness_trends created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.79.xml.html'>db-changelog-1.79.xml</a></TD>
+<TD VALIGN="top">
+1.79-009</TD>
+<TD VALIGN="top">
+<a href='../authors/copilot.html'>copilot</a></TD>
+<TD VALIGN="top">
+Executed 3/22/26, 10:10 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_committee_productivity_matrix: document_type 'Utskottsbetänkande'
+        and 'Motion' don't exist. Actual types are lowercase: 'bet', 'mot'.
+        Changed to use correct lowercase document_type codes.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_committee_productivity_matrix created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.79.xml.html'>db-changelog-1.79.xml</a></TD>
+<TD VALIGN="top">
+1.79-008</TD>
+<TD VALIGN="top">
+<a href='../authors/copilot.html'>copilot</a></TD>
+<TD VALIGN="top">
+Executed 3/22/26, 10:10 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_committee_productivity: committee_documents CTE used
+        sub_type = 'mot'/'prop' but committee_document_data sub_types are: bet, (empty), utl, ap.
+        Also label LIKE '%bet%' should be sub_type = 'bet' for reports.
+        Changed to use sub_type = 'bet' for reports and count total committee docs properly.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_committee_productivity created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.79.xml.html'>db-changelog-1.79.xml</a></TD>
+<TD VALIGN="top">
+1.79-007</TD>
+<TD VALIGN="top">
+<a href='../authors/copilot.html'>copilot</a></TD>
+<TD VALIGN="top">
+Executed 3/22/26, 10:10 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_seasonal_quarterly_activity: vote comparison used
+        title-case 'Frånvarande' but data is UPPERCASE 'FRÅNVARANDE'.
+        This caused attendance_rate to always be ~100%, making q_stddev_attendance = 0
+        and attendance_z_score = 0 in all seasonal views.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_seasonal_quarterly_activity created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.79.xml.html'>db-changelog-1.79.xml</a></TD>
+<TD VALIGN="top">
+1.79-006</TD>
+<TD VALIGN="top">
+<a href='../authors/copilot.html'>copilot</a></TD>
+<TD VALIGN="top">
+Executed 3/22/26, 10:10 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Recreate view_riksdagen_election_year_behavioral_patterns dropped by CASCADE
+        when fixing mv_annual_voting_metrics. View definition unchanged — reads from
+        corrected materialized view.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.79.xml.html'>db-changelog-1.79.xml</a></TD>
+<TD VALIGN="top">
+1.79-005</TD>
+<TD VALIGN="top">
+<a href='../authors/copilot.html'>copilot</a></TD>
+<TD VALIGN="top">
+Executed 3/22/26, 10:10 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix mv_annual_voting_metrics: vote values stored UPPERCASE (JA, NEJ, FRÅNVARANDE, AVSTÅR)
+        but view compared with title-case ('Ja','Nej','Frånvarande','Avstår').
+        This caused avg_yes_rate, avg_no_rate, avg_abstain_rate to always be 0.
+        Must use DROP + CREATE for materialized views (no CREATE OR REPLACE support).
+        Also drops/recreates dependent view_riksdagen_election_year_behavioral_patterns.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.79.xml.html'>db-changelog-1.79.xml</a></TD>
+<TD VALIGN="top">
+1.79-004</TD>
+<TD VALIGN="top">
+<a href='../authors/copilot.html'>copilot</a></TD>
+<TD VALIGN="top">
+Executed 3/22/26, 10:10 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_committee_role_member: replace document_type 'bet'/'yttr'
+        counts with sub_type based motion classification (ROOT CAUSE 9).
+
+        'bet' (committee reports) and 'yttr' (statements) have no person_reference linkage
+        in the data - they are org-level documents. Replace with sub_type metrics:
+        committee_motions (Kommittémotion) and propositions (prop type).</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_committee_role_member created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.79.xml.html'>db-changelog-1.79.xml</a></TD>
+<TD VALIGN="top">
+1.79-003</TD>
+<TD VALIGN="top">
+<a href='../authors/copilot.html'>copilot</a></TD>
+<TD VALIGN="top">
+Executed 3/22/26, 10:10 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_party_role_member: replace document_type 'ip'/'frs'
+        counts with sub_type based motion classification (ROOT CAUSE 9).
+
+        Document types 'ip' (interpellation) and 'frs' (written question) do not exist
+        in document_data. Only: mot(94460), bet(8840), prop(5780), kammakt(336).
+        Replace with useful sub_type metrics: party_motions and committee_motions.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_party_role_member created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.79.xml.html'>db-changelog-1.79.xml</a></TD>
+<TD VALIGN="top">
+1.79-002</TD>
+<TD VALIGN="top">
+<a href='../authors/copilot.html'>copilot</a></TD>
+<TD VALIGN="top">
+Executed 3/22/26, 10:10 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_politician_behavioral_trends: rule_violation.status = 'ACTIVE'
+        changed to IN ('MINOR','MAJOR','CRITICAL') (ROOT CAUSE 8).
+
+        The Status enum in the Java model (Status.java) defines: OK, MINOR, MAJOR, CRITICAL.
+        'ACTIVE' does not exist, causing violation_count and violation_types to always be 0.
+        The fix filters for non-OK violation statuses to count actual violations.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_politician_behavioral_trends created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.79.xml.html'>db-changelog-1.79.xml</a></TD>
+<TD VALIGN="top">
+1.79-001</TD>
+<TD VALIGN="top">
+<a href='../authors/copilot.html'>copilot</a></TD>
+<TD VALIGN="top">
+Executed 3/22/26, 10:10 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_party_summary: correct document join chain (ROOT CAUSE 5),
+        motion type classification using sub_type (ROOT CAUSE 6), and implement
+        previously hardcoded-zero columns (ROOT CAUSE 7).
+
+        Join fix: party_documents CTE used dsc.hjid = dprc.hjid (PK coincidence match)
+        instead of correct FK: dsc.document_person_reference_co_1 → dprc.hjid.
+        This caused total_documents ≈6 for M party instead of expected ≈292K.
+
+        Motion fix: Used label LIKE '%motion%' but labels are codes like 'MJ408'.
+        Now uses sub_type: Partimotion, Enskild motion, Kommittémotion, Flerpartimotion, Följdmotion.
+
+        Hardcoded-zero fix: Implements total_collaborative_motions, total_follow_up_motions,
+        party_focused_members, committee_focused_members, individual_focused_members,
+        highly_collaborative_members, avg_collaboration_percentage using actual data.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_party_summary created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.78.xml.html'>db-changelog-1.78.xml</a></TD>
+<TD VALIGN="top">
+recreate-party-longitudinal-perf-1.78-007</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 3/20/26, 10:26 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Recreate view_riksdagen_party_longitudinal_performance dropped by CASCADE.
+            Now references fixed party_performance_metrics (active_members populated).</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.78.xml.html'>db-changelog-1.78.xml</a></TD>
+<TD VALIGN="top">
+recreate-party-electoral-trends-1.78-006</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 3/20/26, 10:26 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Recreate view_riksdagen_party_electoral_trends dropped by CASCADE.
+            Original from db-changelog-1.62.xml but referencing the now-fixed
+            party_performance_metrics view for active_members data.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.78.xml.html'>db-changelog-1.78.xml</a></TD>
+<TD VALIGN="top">
+recreate-election-cycle-comparative-1.78-005</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 3/20/26, 10:26 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Recreate view_election_cycle_comparative_analysis after CASCADE from
+            party_performance_metrics fix. Uses original definition from full_schema.sql.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.78.xml.html'>db-changelog-1.78.xml</a></TD>
+<TD VALIGN="top">
+fix-party-effectiveness-trends-1.78-004</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 3/20/26, 10:26 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_party_effectiveness_trends:
+            1. rv.status = 'ACTIVE' → IN ('MINOR','MAJOR','CRITICAL')
+            2. document_type = 'Motion' → 'mot'
+            
+            Uses CREATE OR REPLACE since output columns unchanged.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.78.xml.html'>db-changelog-1.78.xml</a></TD>
+<TD VALIGN="top">
+fix-party-performance-metrics-1.78-003</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 3/20/26, 10:26 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_party_performance_metrics: wrong status and document type filters.
+            
+            BUGS:
+            1. party_member_counts: status = 'active'/'inactive' — actual values are
+               Swedish strings like 'Tjänstgörande riksdagsledamot'
+            2. party_violations: rv.status = 'ACTIVE' — actual values are MINOR/MAJOR/CRITICAL
+            3. party_documents: document_type = 'Motion'/'Proposition' — actual: 'mot'/'prop'
+            
+            This view is a CROSS JOIN source for several other views.
+            DROP CASCADE will also drop:
+            - view_election_cycle_comparative_analysis
+            - view_riksdagen_party_electoral_trends
+            - view_riksdagen_party_longitudinal_performance
+            These are recreated in subsequent changesets.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.78.xml.html'>db-changelog-1.78.xml</a></TD>
+<TD VALIGN="top">
+fix-politician-risk-summary-reapply-1.78-002</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 3/20/26, 10:26 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Re-apply 1.76-011 fix for view_politician_risk_summary (stale schema issue)
+            AND fix rule_group categories to match actual DRL rule_group values.
+            
+            STALE SCHEMA: full_schema.sql has pre-1.76 definition that compares
+            vote to party code for rebel detection. 1.76-011 fixed this with
+            consensus-based rebel detection + UPPER(), but the fix was never applied
+            because the changeset was already marked EXECUTED in databasechangelog.
+            
+            RULE_GROUP FIX: Views filter by non-existent categories
+            ('ABSENTEEISM','EFFECTIVENESS','DISCIPLINE','PRODUCTIVITY','COLLABORATION').
+            Actual DRL rule_group values (from PoliticianBalancedRules.drl etc.):
+            - 'Behavior' (PoliticianLazy, PoliticianHighRebelRate, etc.)
+            - 'Assignments' (PoliticianBalancedRules: multiple assignments)
+            - 'Experience' (PoliticianMinisterWithoutParliamentExperience)
+            - 'Party' (PoliticianLeftPartyStillHoldingPositions)
+            - 'Role' (PoliticianSpeaker, PoliticianLeadershipRole)
+            - 'Attribute' (PoliticianTimeToRetire, PoliticianYoungMember)
+            
+            Uses CREATE OR REPLACE to preserve dependents:
+            - view_election_cycle_anomaly_pattern
+            - view_riksdagen_election_proximity_trends
+            - view_riksdagen_politician_career_path_10level</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.78.xml.html'>db-changelog-1.78.xml</a></TD>
+<TD VALIGN="top">
+fix-risk-score-evolution-upper-1.78-001</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 3/20/26, 10:26 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_risk_score_evolution: use UPPER() for all vote comparisons.
+            
+            ROOT CAUSE: vote_data.vote is stored as 'JA','NEJ','FRÅNVARANDE','AVSTÅR'
+            (uppercase) but the view compares to title-case 'Ja','Nej','Frånvarande'.
+            Result: absence_rate=0.00 (ALL rows), rebel_rate=NULL (ALL rows).
+            
+            This cascades to ALL downstream views that use risk_score_evolution:
+            - view_election_cycle_anomaly_pattern (avg_risk_score mostly NULL)
+            - view_election_cycle_predictive_intelligence (avg_risk_score_change NULL)
+            
+            FIX: Apply UPPER() to all vote value comparisons.
+            Uses CREATE OR REPLACE VIEW to preserve dependent views.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.77.xml.html'>db-changelog-1.77.xml</a></TD>
+<TD VALIGN="top">
+fix-election-cycle-anomaly-pattern-timeout-1.77-004</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 3/20/26, 10:26 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_election_cycle_anomaly_pattern timeout caused by Cartesian joins.
+
+            ROOT CAUSE: full_schema.sql contains the pre-1.65 view definition with
+            ON (1=1) Cartesian joins, but databasechangelog marks 1.65-010 as EXECUTED.
+            When Liquibase runs on CI, it skips the fix (already marked done), leaving
+            the broken view.
+
+            The Cartesian product is:
+            - election_cycle_periods (~37 rows)
+            - × view_risk_score_evolution (8,599 rows) [properly joined on year]
+            - × view_riksdagen_voting_anomaly_detection (1,064 rows) [ON 1=1 !!]
+            - × view_politician_risk_summary (403 rows) [ON 1=1 !!]
+            = ~129 BILLION intermediate rows before aggregation → TIMEOUT
+
+            FIX: Pre-aggregate anomaly and risk statistics into scalar subqueries,
+            eliminating the Cartesian product while preserving all output columns.
+
+            PERCENTILE BALANCING:
+            - voting_anomaly: total_rebellions median=12, p75=27
+            - risk_score_evolution: ballot_count median=42
+            - politician_risk_summary: total_violations median=5, p75=7</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.77.xml.html'>db-changelog-1.77.xml</a></TD>
+<TD VALIGN="top">
+recreate-party-switcher-outcomes-1.77-003</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 3/20/26, 10:26 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Recreate view_riksdagen_party_switcher_outcomes after transition_history
+            was rebuilt. Tracks career outcomes for politicians who switched parties.
+
+            Matches all subsequent assignments after transition date and evaluates:
+            - Whether politician continued as active MP
+            - Whether they served in the next election cycle
+            - Whether they attained leadership positions post-switch</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.77.xml.html'>db-changelog-1.77.xml</a></TD>
+<TD VALIGN="top">
+fix-party-defector-analysis-1.77-002</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 3/20/26, 10:26 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Recreate view_riksdagen_party_defector_analysis after transition_history
+            was rebuilt. Analyzes performance changes around party transitions using
+            vote_data for attendance metrics.
+
+            Includes all transition types (SWITCHED_WHILE_SERVING, REJOINED_RIKSDAGEN,
+            PARTY_RENAMED) to provide comprehensive defector analysis.
+
+            Uses 12-month pre/post windows for attendance comparison.
+            Uses UPPER() normalization for vote comparison per codebase convention.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.77.xml.html'>db-changelog-1.77.xml</a></TD>
+<TD VALIGN="top">
+fix-party-transition-history-1.77-001</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 3/20/26, 10:26 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_party_transition_history: detect party transitions using
+            assignment_data with party org_codes instead of vote_data.
+
+            ROOT CAUSE ANALYSIS:
+            Previous approach (1.76-007) used vote_data.party LAG detection, but the
+            Riksdagen API retroactively normalizes party codes to modern names:
+            - FP (Folkpartiet) votes recorded as L (Liberalerna)
+            - VPK votes recorded as V (Vänsterpartiet)
+            - H - M votes recorded as M (Moderaterna)
+            Result: 0 detectable transitions in 3.6M vote records.
+
+            NEW APPROACH: Use assignment_data where org_code matches known party codes
+            (from sweden_political_party). Assignment records preserve historical party
+            codes (FP, NYD, VPK, etc.) and track when politicians held party roles.
+
+            Detection methods (UNION):
+            1. assignment_data: Records where same person has different party org_codes
+               over time (partiuppdrag, uppdrag with party org_code)
+            2. person_data cross-reference: Detect historical party names vs modern
+               party codes using party name mapping
+
+            PARTY CODE MAPPING (historical → modern):
+            - FP → L (Folkpartiet renamed Liberalerna, 2015)
+            - VPK → V (Vänsterpartiet kommunisterna → Vänsterpartiet)
+            - K - VPK → V (Kommunisterna)
+            - BF - C → C (Bondeförbundet → Centerpartiet)
+            - H - M → M (Högerpartiet → Moderaterna)
+            - NYD → (defunct, Ny Demokrati dissolved ~2000)
+
+            DISTRIBUTION BALANCING:
+            - assignment_data org_code party counts: KD(619),S(93),MP(69),M(44),C(41)
+            - person_data.party: S(854),M(472),C(256),FP(191),MP(143)
+            - Expected transitions: ~20-50 (party renames + genuine switches)</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.76.xml.html'>db-changelog-1.76.xml</a></TD>
+<TD VALIGN="top">
+fix-politician-risk-summary-1.76-011</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 3/11/26, 11:00 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_politician_risk_summary: rebel_votes compared vote value (JA/NEJ/etc.)
+            to party code (S/M/etc.), inflating rebel rates for every non-absent vote.
+            
+            FIX: Compute rebel votes by comparing member's vote to the party's majority
+            consensus vote for the same ballot. Also normalize vote comparisons with
+            UPPER() for case-insensitive matching (data may be 'Ja' or 'JA').</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.76.xml.html'>db-changelog-1.76.xml</a></TD>
+<TD VALIGN="top">
+refresh-materialized-views-1.76-010</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 3/11/26, 11:00 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Refresh all new materialized views to populate them with data.
+            Uses CONCURRENTLY where possible to avoid blocking reads.
+            
+            Note: IF NOT EXISTS on CREATE MATERIALIZED VIEW means these may already
+            contain data if refreshed by the application. This ensures they are populated
+            after schema migration regardless.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.76.xml.html'>db-changelog-1.76.xml</a></TD>
+<TD VALIGN="top">
+recreate-party-switcher-outcomes-1.76-009</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 3/11/26, 11:00 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Recreate view_riksdagen_party_switcher_outcomes after transition_history was
+            replaced. This view tracks outcomes for politicians who switched parties,
+            including subsequent assignments, leadership positions, and election cycle
+            participation. Updated to use 'Tjänstgörande' status (actual value) instead
+            of 'Tjänstgörande riksdagsledamot' (combined value that doesn't exist).</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR></TABLE>&nbsp;</P><hr>Generated: 4/11/26, 2:59 PM<BR>Against: eris @ jdbc:postgresql://localhost:5432/cia_prod (Default Schema: public)<BR>Change Log: db-changelog-1.0.xml<BR><BR>Generated By: <a href='https://www.liquibase.com' target='_TOP'>Liquibase 5.0.2</a></body></html>

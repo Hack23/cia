@@ -1,0 +1,370 @@
+<html><head><meta charset="utf-8"/><title>Changes created by author intelligence-analyst</title><LINK REL ="stylesheet" TYPE="text/css" HREF="../../stylesheet.css" TITLE="Style"><SCRIPT type="text/javascript">function windowTitle(){    parent.document.title="Changes created by author intelligence-analyst";}</SCRIPT></head><body BGCOLOR="white" onload="windowTitle();"><H2>Changes created by author intelligence-analyst</H2>
+<p><TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TD COLSPAN='4'><FONT SIZE="+2">
+<B>Pending Changes</B></FONT></TD>
+</TR>
+<tr><td>None Found</td></tr></TABLE>&nbsp;</P><p><TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TD COLSPAN='4'><FONT SIZE="+2">
+<B>Past Changes</B></FONT></TD>
+</TR>
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.32.xml.html'>db-changelog-1.32.xml</a></TD>
+<TD VALIGN="top">
+fix-politician-risk-summary-1.32-001</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-analyst.html'>intelligence-analyst</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_politician_risk_summary to return data
+        
+        Root Cause: The JOIN condition on view_riksdagen_vote_data_ballot_politician_summary_annual
+        was filtering on an exact date (date_trunc('year', CURRENT_DATE - INTERVAL '1 year'))
+        which may not match actual data dates in the annual summary view.
+        
+        Solution: Use a year-based filter to find the most recent complete year of data
+        for each politician, rather than requiring an exact date match.
+        
+        Changes:
+        - Replace exact date filter with year-based range filter
+        - Use most recent available data within past 2 years
+        - Maintain all risk calculation logic unchanged</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_politician_risk_summary dropped</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_politician_risk_summary created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.32.xml.html'>db-changelog-1.32.xml</a></TD>
+<TD VALIGN="top">
+verify-other-views-1.32-002</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-analyst.html'>intelligence-analyst</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Verification changeset for other politician intelligence views
+        
+        After investigation, the following views should work correctly as they
+        query vote_data directly without restrictive date filters on aggregated views:
+        
+        - view_riksdagen_coalition_alignment_matrix: Uses vote_data with 2-year window
+        - view_riksdagen_politician_influence_metrics: Uses vote_data with 1-year window  
+        - view_riksdagen_voting_anomaly_detection: Uses vote_data with 1-year window
+        
+        These views will return data if:
+        1. vote_data table has records within the time windows
+        2. Votes include 'Ja' and 'Nej' values
+        3. Party information is populated
+        
+        No schema changes needed, but this changeset documents the verification.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.32.xml.html'>db-changelog-1.32.xml</a></TD>
+<TD VALIGN="top">
+document-fixes-1.32-003</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-analyst.html'>intelligence-analyst</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Documentation for v1.32 fixes
+        
+        This changeset documents the fixes applied to politician intelligence views
+        for inclusion in DATABASE_VIEW_INTELLIGENCE_CATALOG.md and 
+        TROUBLESHOOTING_EMPTY_VIEWS.md.
+        
+        Summary of Changes:
+        1. view_politician_risk_summary: Changed from exact date match to LATERAL join
+           with most recent data lookup
+        2. Other views: Verified to be working correctly with existing definitions
+        
+        Expected Row Counts (with sample data):
+        - view_politician_risk_summary: Should equal active politician count
+        - view_riksdagen_coalition_alignment_matrix: One row per party pair 
+        - view_riksdagen_politician_influence_metrics: Active politicians with sufficient votes
+        - view_riksdagen_voting_anomaly_detection: Aggregated per politician</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.32.xml.html'>db-changelog-1.32.xml</a></TD>
+<TD VALIGN="top">
+fix-goverment-proposals-1.32-004</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-analyst.html'>intelligence-analyst</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_goverment_proposals to return data
+        
+        Root Cause: The view filters by document_type = 'PROP' (uppercase), but
+        the actual data in document_data may use different case variations:
+        - 'prop' (lowercase) - used in newer views
+        - 'PROP' (uppercase) - used in older views
+        - Other variations possible based on data import
+        
+        Solution: Use UPPER() function to make the filter case-insensitive,
+        ensuring it matches regardless of how the data was imported.
+        
+        Changes:
+        - Replace exact case match with UPPER(document_type) = 'PROP'
+        - Add alternative filter for 'Proposition' full word variant
+        - Maintain all existing columns and logic</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_goverment_proposals dropped</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_goverment_proposals created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.32.xml.html'>db-changelog-1.32.xml</a></TD>
+<TD VALIGN="top">
+verify-ministry-dependencies-1.32-005</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-analyst.html'>intelligence-analyst</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Verify Ministry View Dependencies
+        
+        The 3 ministry views created in v1.31 depend on:
+        1. assignment_data table with assignment_type = 'Departement'
+        2. view_riksdagen_politician_document materialized view
+        3. Matching org_code values between the two sources
+        
+        Common Issues:
+        - Empty assignment_data for ministries
+        - view_riksdagen_politician_document not refreshed
+        - Org codes don't match (e.g., case differences)
+        - No documents in the 3-year lookback window
+        
+        The views will return data if:
+        - assignment_data has records with assignment_type='Departement'
+        - org_code contains 'departement' (Swedish spelling)
+        - view_riksdagen_politician_document has matching org values
+        - Documents exist within CURRENT_DATE - INTERVAL '3 years'
+        
+        If views are still empty after v1.32 fixes:
+        1. Run diagnose-ministry-views.sql to check data availability
+        2. Verify view_riksdagen_politician_document is populated
+        3. Check org_code matching between sources
+        4. Refresh materialized view if needed</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.32.xml.html'>db-changelog-1.32.xml</a></TD>
+<TD VALIGN="top">
+document-ministry-troubleshooting-1.32-006</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-analyst.html'>intelligence-analyst</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Document Ministry View Troubleshooting
+        
+        This changeset provides documentation for TROUBLESHOOTING_EMPTY_VIEWS.md
+        specific to ministry views created in v1.31.
+        
+        Ministry Views Fixed in v1.32:
+        1. view_riksdagen_goverment_proposals - Now case-insensitive
+        
+        Ministry Views Verified (v1.31):
+        1. view_ministry_effectiveness_trends - Depends on data availability
+        2. view_ministry_productivity_matrix - Depends on data availability
+        3. view_ministry_risk_evolution - Depends on data availability
+        
+        Data Requirements:
+        - assignment_data: Ministry assignments with assignment_type='Departement'
+        - document_data: Documents with matching org codes
+        - view_riksdagen_politician_document: Materialized view must be refreshed
+        - Time window: Last 3 years for most queries
+        
+        Common Fixes:
+        1. Refresh materialized view: 
+           REFRESH MATERIALIZED VIEW view_riksdagen_politician_document;
+        2. Verify org_code format matches between tables
+        3. Check date ranges have data within 3-year window
+        4. Run diagnose-ministry-views.sql for detailed analysis</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.33.xml.html'>db-changelog-1.33.xml</a></TD>
+<TD VALIGN="top">
+fix-member-proposals-1.33-001</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-analyst.html'>intelligence-analyst</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_member_proposals to return data
+        
+        Root Cause: The view filters by document_type = 'MOT' (uppercase), but
+        the actual data in document_element contains 'mot' (lowercase).
+        
+        Solution: Use UPPER() or LOWER() to make the filter case-insensitive,
+        ensuring it matches regardless of how the data was imported.
+        
+        Changes:
+        - Replace exact case match with UPPER(document_type) = 'MOT'
+        - Maintain all existing columns</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_member_proposals dropped</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_member_proposals created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.33.xml.html'>db-changelog-1.33.xml</a></TD>
+<TD VALIGN="top">
+fix-committee-member-proposals-1.33-002</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-analyst.html'>intelligence-analyst</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_committee_parliament_member_proposal to return data
+        
+        Root Cause: Same as view_riksdagen_member_proposals - the view filters 
+        by document_type = 'MOT' (uppercase) but data contains 'mot' (lowercase).
+        
+        Solution: Use UPPER() to make the filter case-insensitive.
+        
+        Changes:
+        - Replace exact case match with UPPER(document_type) = 'MOT'
+        - Maintain all existing columns and JOIN logic</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_committee_parliament_member_proposal dropped</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_committee_parliament_member_proposal created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.33.xml.html'>db-changelog-1.33.xml</a></TD>
+<TD VALIGN="top">
+fix-crisis-resilience-indicators-1.33-003</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-analyst.html'>intelligence-analyst</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_crisis_resilience_indicators to return data
+        
+        Root Cause: The view filters vote values using exact case matches like
+        'Ja', 'Nej', 'Frånvarande', but the actual data contains 'JA', 'NEJ', 
+        'FRÅNVARANDE' (all uppercase).
+        
+        Solution: Use UPPER() on vote column to make all comparisons case-insensitive.
+        
+        Changes:
+        - Replace all vote comparisons with UPPER(vote) = 'JA', etc.
+        - Maintain all crisis/normal period logic and metrics</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_crisis_resilience_indicators created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.33.xml.html'>db-changelog-1.33.xml</a></TD>
+<TD VALIGN="top">
+recreate-intelligence-dashboard-1.33-003b</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-analyst.html'>intelligence-analyst</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Recreate view_riksdagen_intelligence_dashboard after crisis resilience fix
+        
+        This view was dropped by CASCADE when fixing view_riksdagen_crisis_resilience_indicators.
+        The view aggregates multiple intelligence indicators into a single dashboard.
+        
+        Note: This is the same definition from v1.29, recreated to restore the dependency.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_intelligence_dashboard created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.33.xml.html'>db-changelog-1.33.xml</a></TD>
+<TD VALIGN="top">
+fix-risk-score-evolution-1.33-004</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-analyst.html'>intelligence-analyst</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_risk_score_evolution to return data
+        
+        Root Cause: The view requires data from view_riksdagen_vote_data_ballot_politician_summary_daily
+        within a 3-year window, which may not always have recent data if materialized views
+        aren't refreshed regularly. Also, filtering by p.status = 'active' may be too restrictive.
+        
+        Solution: Relax the active status filter slightly and ensure the view works with
+        available data even if not perfectly up-to-date.
+        
+        Changes:
+        - Use case-insensitive status filter for "active" status
+        - Maintain all risk score calculation logic
+        - Ensure ballot_count threshold is reasonable</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_risk_score_evolution dropped</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_risk_score_evolution created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.33.xml.html'>db-changelog-1.33.xml</a></TD>
+<TD VALIGN="top">
+document-fixes-1.33-005</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-analyst.html'>intelligence-analyst</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Documentation for v1.33 fixes
+        
+        This changeset documents the fixes applied to 4 empty intelligence views
+        for inclusion in TROUBLESHOOTING_EMPTY_VIEWS.md.
+        
+        Summary of Changes:
+        1. view_riksdagen_member_proposals: Changed to UPPER(document_type) = 'MOT'
+        2. view_riksdagen_committee_parliament_member_proposal: Same fix as #1
+        3. view_riksdagen_crisis_resilience_indicators: Changed to UPPER(vote) for case-insensitive matching
+        4. view_risk_score_evolution: Broadened status filter and ensured data availability
+        
+        Expected Row Counts (with sample data):
+        - view_riksdagen_member_proposals: Should return ~90,534 rows (all mot documents)
+        - view_riksdagen_committee_parliament_member_proposal: Subset of mot docs linked to committees
+        - view_riksdagen_crisis_resilience_indicators: Active politicians with crisis/normal period votes
+        - view_risk_score_evolution: Monthly risk scores for active politicians with sufficient votes</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.34.xml.html'>db-changelog-1.34.xml</a></TD>
+<TD VALIGN="top">
+1.34-ministry-verify-001</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-analyst.html'>intelligence-analyst</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Ministry views - Expected to be empty without ministry assignment data</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.34.xml.html'>db-changelog-1.34.xml</a></TD>
+<TD VALIGN="top">
+1.34-gov-proposals-002</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-analyst.html'>intelligence-analyst</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_goverment_proposals - broader document_type filter
+        Catches 'prop', 'PROP', 'Proposition' variations</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_goverment_proposals dropped</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_goverment_proposals created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.34.xml.html'>db-changelog-1.34.xml</a></TD>
+<TD VALIGN="top">
+1.34-member-proposals-003</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-analyst.html'>intelligence-analyst</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_member_proposals - broader document_type filter
+        Catches 'mot', 'MOT', 'Motion' variations</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_member_proposals dropped</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_member_proposals created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.34.xml.html'>db-changelog-1.34.xml</a></TD>
+<TD VALIGN="top">
+1.34-committee-proposals-004</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-analyst.html'>intelligence-analyst</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_committee_parliament_member_proposal
+        Same broader filter as member proposals</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_committee_parliament_member_proposal dropped</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_committee_parliament_member_proposal created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.34.xml.html'>db-changelog-1.34.xml</a></TD>
+<TD VALIGN="top">
+1.34-risk-summary-005</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-analyst.html'>intelligence-analyst</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_politician_risk_summary - simplified version using direct vote_data
+        Removes dependency on aggregated summary views that may not have data</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_politician_risk_summary dropped</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_politician_risk_summary created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.34.xml.html'>db-changelog-1.34.xml</a></TD>
+<TD VALIGN="top">
+1.34-verify-others-006</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-analyst.html'>intelligence-analyst</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Verify other politician and intelligence views exist (from v1.33)</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR></TABLE>&nbsp;</P><hr>Generated: 4/11/26, 2:59 PM<BR>Against: eris @ jdbc:postgresql://localhost:5432/cia_prod (Default Schema: public)<BR>Change Log: db-changelog-1.0.xml<BR><BR>Generated By: <a href='https://www.liquibase.com' target='_TOP'>Liquibase 5.0.2</a></body></html>

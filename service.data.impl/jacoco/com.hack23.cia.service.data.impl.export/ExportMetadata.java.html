@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ExportMetadata.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.data.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.data.impl.export</a> &gt; <span class="el_source">ExportMetadata.java</span></div><h1>ExportMetadata.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2025 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+ */
+package com.hack23.cia.service.data.impl.export;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+/**
+ * Common metadata for JSON exports.
+ * 
+ * @author intelligence-operative
+ * @since v1.36
+ */
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class ExportMetadata implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+<span class="fc" id="L39">	@JsonProperty(&quot;version&quot;)</span>
+	private String version = &quot;1.0.0&quot;;
+
+	@JsonProperty(&quot;generated&quot;)
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = &quot;yyyy-MM-dd'T'HH:mm:ss'Z'&quot;, timezone = &quot;UTC&quot;)
+	private Date generated;
+
+<span class="fc" id="L46">	@JsonProperty(&quot;source&quot;)</span>
+	private String source = &quot;Citizen Intelligence Agency&quot;;
+
+	@JsonProperty(&quot;schema&quot;)
+	private String schema;
+
+	@JsonProperty(&quot;recordCount&quot;)
+	private Integer recordCount;
+
+	@JsonProperty(&quot;dataDate&quot;)
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = &quot;yyyy-MM-dd&quot;, timezone = &quot;UTC&quot;)
+	private Date dataDate;
+
+<span class="fc" id="L59">	public ExportMetadata() {</span>
+<span class="fc" id="L60">		this.generated = new Date();</span>
+<span class="fc" id="L61">	}</span>
+
+	public String getVersion() {
+<span class="fc" id="L64">		return version;</span>
+	}
+
+	public void setVersion(final String version) {
+<span class="nc" id="L68">		this.version = version;</span>
+<span class="nc" id="L69">	}</span>
+
+	public Date getGenerated() {
+<span class="pc bpc" id="L72" title="1 of 2 branches missed.">		return generated != null ? new Date(generated.getTime()) : null;</span>
+	}
+
+	public void setGenerated(final Date generated) {
+<span class="nc bnc" id="L76" title="All 2 branches missed.">		this.generated = generated != null ? new Date(generated.getTime()) : null;</span>
+<span class="nc" id="L77">	}</span>
+
+	public String getSource() {
+<span class="fc" id="L80">		return source;</span>
+	}
+
+	public void setSource(final String source) {
+<span class="nc" id="L84">		this.source = source;</span>
+<span class="nc" id="L85">	}</span>
+
+	public String getSchema() {
+<span class="fc" id="L88">		return schema;</span>
+	}
+
+	public void setSchema(final String schema) {
+<span class="fc" id="L92">		this.schema = schema;</span>
+<span class="fc" id="L93">	}</span>
+
+	public Integer getRecordCount() {
+<span class="fc" id="L96">		return recordCount;</span>
+	}
+
+	public void setRecordCount(final Integer recordCount) {
+<span class="fc" id="L100">		this.recordCount = recordCount;</span>
+<span class="fc" id="L101">	}</span>
+
+	public Date getDataDate() {
+<span class="pc bpc" id="L104" title="1 of 2 branches missed.">		return dataDate != null ? new Date(dataDate.getTime()) : null;</span>
+	}
+
+	public void setDataDate(final Date dataDate) {
+<span class="pc bpc" id="L108" title="1 of 2 branches missed.">		this.dataDate = dataDate != null ? new Date(dataDate.getTime()) : null;</span>
+<span class="fc" id="L109">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

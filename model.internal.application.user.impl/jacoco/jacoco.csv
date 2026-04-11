@@ -43,7 +43,7 @@ model.internal.application.user.impl,com.hack23.cia.model.internal.application.u
 model.internal.application.user.impl,com.hack23.cia.model.internal.application.user.impl,UserAccount,5,193,1,1,1,77,1,47,0,47
 model.internal.application.user.impl,com.hack23.cia.model.internal.application.data.rules.impl,Status,0,33,0,0,0,6,0,1,0,1
 model.internal.application.user.impl,com.hack23.cia.model.internal.application.data.rules.impl,RuleViolation_,3,0,0,0,1,0,1,0,1,0
-model.internal.application.user.impl,com.hack23.cia.model.internal.application.data.rules.impl,ResourceType,0,45,0,0,0,8,0,1,0,1
+model.internal.application.user.impl,com.hack23.cia.model.internal.application.data.rules.impl,ResourceType,0,51,0,0,0,9,0,1,0,1
 model.internal.application.user.impl,com.hack23.cia.model.internal.application.data.rules.impl,ViewRiskScoreEvolution_,3,0,0,0,1,0,1,0,1,0
 model.internal.application.user.impl,com.hack23.cia.model.internal.application.data.rules.impl,ViewRiskScoreEvolution,0,165,0,0,0,68,0,46,0,46
 model.internal.application.user.impl,com.hack23.cia.model.internal.application.data.rules.impl,RuleViolation,32,93,0,0,11,34,1,23,1,23

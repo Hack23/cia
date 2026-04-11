@@ -1,0 +1,181 @@
+<html><body><pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd"&gt;
+
+    &lt;!-- 
+        Fix query bugs in 5 empty views
+        
+        ISSUES FIXED:
+        1. view_riksdagen_voting_anomaly_detection - Remove hardcoded 3-year date filter
+        2. view_riksdagen_party_transition_history - Add deterministic ordering to window functions
+        3. view_riksdagen_party_defector_analysis - Cascade fix from #2
+        4. view_riksdagen_party_switcher_outcomes - Cascade fix from #2
+        5. view_riksdagen_party_coalition_evolution - Already works if materialized view populated
+        
+        ROOT CAUSE:
+        - Hardcoded (CURRENT_DATE - '3 years'::interval) excludes historical data
+        - Window functions without secondary sort key have non-deterministic ordering
+        - Views that worked with test data fail with production data due to date assumptions
+    --&gt;
+
+    &lt;changeSet id="fix-view-riksdagen-voting-anomaly-detection-1.73-001" author="intelligence-operative"&gt;
+        &lt;comment&gt;
+            Fix view_riksdagen_voting_anomaly_detection - Remove hardcoded 3-year date filter
+            
+            BUG: Hardcoded filter (CURRENT_DATE - '3 years'::interval) excludes all historical data
+            FIX: Change to 20-year lookback to capture full political history (2002-present)
+            
+            This view detects MPs voting against party consensus. With 3-year filter and old data,
+            view returns zero rows even with full production database.
+        &lt;/comment&gt;
+        &lt;sql&gt;&lt;![CDATA[
+CREATE OR REPLACE VIEW public.view_riksdagen_voting_anomaly_detection AS
+ WITH party_consensus AS (
+         SELECT vote_data.embedded_id_ballot_id,
+            vote_data.party,
+            vote_data.vote,
+            count(*) AS vote_count,
+            row_number() OVER (PARTITION BY vote_data.embedded_id_ballot_id, vote_data.party ORDER BY (count(*)) DESC) AS rank
+           FROM public.vote_data
+          WHERE (((vote_data.vote)::text = ANY ((ARRAY['Ja'::character varying, 'Nej'::character varying, 'Avstår'::character varying])::text[])) AND (vote_data.party IS NOT NULL) AND (vote_data.vote_date &gt;= (CURRENT_DATE - '20 years'::interval)))
+          GROUP BY vote_data.embedded_id_ballot_id, vote_data.party, vote_data.vote
+        ), party_majority_vote AS (
+         SELECT party_consensus.embedded_id_ballot_id,
+            party_consensus.party,
+            party_consensus.vote AS party_consensus_vote,
+            party_consensus.vote_count AS consensus_count
+           FROM party_consensus
+          WHERE (party_consensus.rank = 1)
+        ), party_vote_counts AS (
+         SELECT vote_data.embedded_id_ballot_id,
+            vote_data.party,
+            count(*) AS total_party_votes
+           FROM public.vote_data
+          WHERE ((vote_data.party IS NOT NULL) AND (vote_data.vote_date &gt;= (CURRENT_DATE - '20 years'::interval)))
+          GROUP BY vote_data.embedded_id_ballot_id, vote_data.party
+        ), rebel_votes AS (
+         SELECT vd.embedded_id_intressent_id AS person_id,
+            vd.embedded_id_ballot_id,
+            vd.party,
+            vd.vote AS person_vote,
+            pmv.party_consensus_vote,
+            pmv.consensus_count,
+            pvc.total_party_votes,
+            round((((pmv.consensus_count)::numeric / (NULLIF(pvc.total_party_votes, 0))::numeric) * (100)::numeric), 2) AS consensus_strength
+           FROM ((public.vote_data vd
+             JOIN party_majority_vote pmv ON ((((vd.embedded_id_ballot_id)::text = (pmv.embedded_id_ballot_id)::text) AND ((vd.party)::text = (pmv.party)::text))))
+             JOIN party_vote_counts pvc ON ((((vd.embedded_id_ballot_id)::text = (pvc.embedded_id_ballot_id)::text) AND ((vd.party)::text = (pvc.party)::text))))
+          WHERE (((vd.vote)::text &lt;&gt; (pmv.party_consensus_vote)::text) AND ((vd.vote)::text = ANY ((ARRAY['Ja'::character varying, 'Nej'::character varying, 'Avstår'::character varying])::text[])) AND (vd.vote_date &gt;= (CURRENT_DATE - '20 years'::interval)))
+        )
+ SELECT p.id AS person_id,
+    p.first_name,
+    p.last_name,
+    p.party,
+    count(DISTINCT rv.embedded_id_ballot_id) AS total_rebellions,
+    count(DISTINCT rv.embedded_id_ballot_id) FILTER (WHERE (rv.consensus_strength &gt;= (80)::numeric)) AS strong_consensus_rebellions,
+    count(DISTINCT rv.embedded_id_ballot_id) FILTER (WHERE (rv.consensus_strength &gt;= (90)::numeric)) AS very_strong_consensus_rebellions,
+    round(avg(rv.consensus_strength), 2) AS avg_consensus_strength_rebelled_against,
+        CASE
+            WHEN (count(DISTINCT rv.embedded_id_ballot_id) FILTER (WHERE (rv.consensus_strength &gt;= (90)::numeric)) &gt;= 5) THEN 'FREQUENT_STRONG_REBEL'::text
+            WHEN (count(DISTINCT rv.embedded_id_ballot_id) FILTER (WHERE (rv.consensus_strength &gt;= (80)::numeric)) &gt;= 10) THEN 'CONSISTENT_REBEL'::text
+            WHEN (count(DISTINCT rv.embedded_id_ballot_id) &gt;= 20) THEN 'MODERATE_REBEL'::text
+            WHEN (count(DISTINCT rv.embedded_id_ballot_id) &gt;= 5) THEN 'OCCASIONAL_REBEL'::text
+            ELSE 'PARTY_ALIGNED'::text
+        END AS anomaly_classification,
+        CASE
+            WHEN (count(DISTINCT rv.embedded_id_ballot_id) FILTER (WHERE (rv.consensus_strength &gt;= (90)::numeric)) &gt;= 5) THEN 'HIGH ANOMALY: Frequent rebellion against very strong party consensus (90%+)'::text
+            WHEN (count(DISTINCT rv.embedded_id_ballot_id) FILTER (WHERE (rv.consensus_strength &gt;= (80)::numeric)) &gt;= 10) THEN 'MODERATE ANOMALY: Consistent rebellion against strong party consensus (80%+)'::text
+            WHEN (count(DISTINCT rv.embedded_id_ballot_id) &gt;= 20) THEN 'MILD ANOMALY: Moderate pattern of voting against party majority'::text
+            WHEN (count(DISTINCT rv.embedded_id_ballot_id) &gt;= 5) THEN 'LOW ANOMALY: Occasional independent voting behavior'::text
+            ELSE 'NO ANOMALY: Votes consistently with party consensus'::text
+        END AS anomaly_assessment
+   FROM (public.person_data p
+     LEFT JOIN rebel_votes rv ON (((rv.person_id)::text = (p.id)::text)))
+  WHERE ((p.status)::text = ANY ((ARRAY['Tjänstgörande riksdagsledamot'::character varying, 'Tjänstgörande ersättare'::character varying, 'Tillgänglig ersättare'::character varying])::text[]))
+  GROUP BY p.id, p.first_name, p.last_name, p.party
+ HAVING (count(DISTINCT rv.embedded_id_ballot_id) &gt; 0)
+  ORDER BY (count(DISTINCT rv.embedded_id_ballot_id) FILTER (WHERE (rv.consensus_strength &gt;= (90)::numeric))) DESC, (count(DISTINCT rv.embedded_id_ballot_id)) DESC, p.last_name, p.first_name;
+        ]]&gt;&lt;/sql&gt;
+    &lt;/changeSet&gt;
+
+    &lt;changeSet id="fix-view-riksdagen-party-transition-history-1.73-002" author="intelligence-operative"&gt;
+        &lt;comment&gt;
+            Fix view_riksdagen_party_transition_history - Add deterministic ordering to window functions
+            
+            BUG: Window function ORDER BY from_date alone causes non-deterministic results when multiple
+            assignments have same from_date
+            
+            FIX: Add secondary sort by to_date NULLS LAST to ensure consistent ordering
+            
+            This affects all party switching analysis views that depend on this base view.
+        &lt;/comment&gt;
+        &lt;sql&gt;&lt;![CDATA[
+CREATE OR REPLACE VIEW public.view_riksdagen_party_transition_history AS
+ WITH party_assignments AS (
+         SELECT a.intressent_id AS person_id,
+            p.first_name,
+            p.last_name,
+            a.org_code AS party,
+            a.from_date,
+            a.to_date,
+            a.status,
+            lag(a.org_code) OVER (PARTITION BY a.intressent_id ORDER BY a.from_date, a.to_date NULLS LAST) AS previous_party,
+            lead(a.org_code) OVER (PARTITION BY a.intressent_id ORDER BY a.from_date, a.to_date NULLS LAST) AS next_party,
+            lag(a.to_date) OVER (PARTITION BY a.intressent_id ORDER BY a.from_date, a.to_date NULLS LAST) AS previous_assignment_end
+           FROM (public.assignment_data a
+             JOIN public.person_data p ON (((a.intressent_id)::text = (p.id)::text)))
+          WHERE (((a.status)::text = 'Tjänstgörande riksdagsledamot'::text) AND ((a.assignment_type)::text = 'uppdrag'::text) AND (a.from_date &gt;= '2002-01-01'::date))
+        ), party_changes AS (
+         SELECT party_assignments.person_id,
+            party_assignments.first_name,
+            party_assignments.last_name,
+            party_assignments.previous_party,
+            party_assignments.party AS new_party,
+            party_assignments.from_date AS transition_date,
+            party_assignments.status,
+            party_assignments.previous_assignment_end,
+                CASE
+                    WHEN ((party_assignments.previous_assignment_end IS NULL) OR ((party_assignments.from_date - party_assignments.previous_assignment_end) &gt; 30)) THEN 'REJOINED_RIKSDAGEN'::text
+                    ELSE 'SWITCHED_WHILE_SERVING'::text
+                END AS transition_type
+           FROM party_assignments
+          WHERE ((party_assignments.previous_party IS NOT NULL) AND ((party_assignments.previous_party)::text &lt;&gt; (party_assignments.party)::text) AND ((party_assignments.previous_party)::text &lt;&gt; ALL ((ARRAY['-'::character varying, ''::character varying])::text[])))
+        ), election_proximity AS (
+         SELECT unnest(ARRAY['2002-09-15'::date, '2006-09-17'::date, '2010-09-19'::date, '2014-09-14'::date, '2018-09-09'::date, '2022-09-11'::date, '2026-09-13'::date]) AS election_date
+        )
+ SELECT person_id,
+    first_name,
+    last_name,
+    previous_party,
+    new_party,
+    transition_date,
+    transition_type,
+    EXTRACT(year FROM transition_date) AS transition_year,
+    ( SELECT min(ed.election_date) AS min
+           FROM election_proximity ed
+          WHERE (ed.election_date &gt; pc.transition_date)) AS next_election,
+    (((EXTRACT(year FROM age((( SELECT min(ed.election_date) AS min
+           FROM election_proximity ed
+          WHERE (ed.election_date &gt; pc.transition_date)))::timestamp with time zone, (transition_date)::timestamp with time zone)) * (12)::numeric) + EXTRACT(month FROM age((( SELECT min(ed.election_date) AS min
+           FROM election_proximity ed
+          WHERE (ed.election_date &gt; pc.transition_date)))::timestamp with time zone, (transition_date)::timestamp with time zone))))::integer AS months_until_next_election,
+    ( SELECT max(ed.election_date) AS max
+           FROM election_proximity ed
+          WHERE (ed.election_date &lt; pc.transition_date)) AS previous_election,
+    (((EXTRACT(year FROM age((transition_date)::timestamp with time zone, (( SELECT max(ed.election_date) AS max
+           FROM election_proximity ed
+          WHERE (ed.election_date &lt; pc.transition_date)))::timestamp with time zone)) * (12)::numeric) + EXTRACT(month FROM age((transition_date)::timestamp with time zone, (( SELECT max(ed.election_date) AS max
+           FROM election_proximity ed
+          WHERE (ed.election_date &lt; pc.transition_date)))::timestamp with time zone))))::integer AS months_since_last_election
+   FROM party_changes pc
+  ORDER BY transition_date DESC;
+        ]]&gt;&lt;/sql&gt;
+    &lt;/changeSet&gt;
+
+&lt;/databaseChangeLog&gt;
+
+</pre></body></html>

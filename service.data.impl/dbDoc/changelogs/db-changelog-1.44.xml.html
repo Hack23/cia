@@ -1,0 +1,40 @@
+<html><body><pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd"&gt;
+
+&lt;!-- 
+  Fix: Missing 'Förste vice talman' in talmansuppdrag role scoring v1.44
+  Author: Intelligence Operative
+  Date: 2025-12-03
+  
+  Documentation References:
+  - Analysis: service.data.impl/sample-data/distinct_values/DISTINCT_VALUES_ANALYSIS.md
+  - Schema Maintenance: service.data.impl/README-SCHEMA-MAINTENANCE.md
+  
+  Fix: Add Förste vice talman to role_code IN clause at area_weight 750.0
+--&gt;
+
+&lt;changeSet author="intelligence-operative" id="fix-forste-vice-talman-1.44-001" failOnError="true"&gt;
+    &lt;comment&gt;
+        Fix view_riksdagen_politician_experience_summary to include Förste vice talman
+        in the talmansuppdrag role scoring alongside Andre and Tredje vice talman.
+        All three Deputy Speaker roles now weighted equally at 750.0.
+    &lt;/comment&gt;
+    
+    &lt;sqlFile path="view_riksdagen_politician_experience_summary_v1.44.sql" 
+             relativeToChangelogFile="true"
+             splitStatements="false"
+             encoding="UTF-8"/&gt;
+    
+    &lt;rollback&gt;
+        &lt;sql&gt;DROP VIEW IF EXISTS view_riksdagen_politician_experience_summary CASCADE;&lt;/sql&gt;
+    &lt;/rollback&gt;
+&lt;/changeSet&gt;
+
+&lt;/databaseChangeLog&gt;
+
+</pre></body></html>

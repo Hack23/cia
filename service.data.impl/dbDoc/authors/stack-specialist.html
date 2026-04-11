@@ -1,0 +1,162 @@
+<html><head><meta charset="utf-8"/><title>Changes created by author stack-specialist</title><LINK REL ="stylesheet" TYPE="text/css" HREF="../../stylesheet.css" TITLE="Style"><SCRIPT type="text/javascript">function windowTitle(){    parent.document.title="Changes created by author stack-specialist";}</SCRIPT></head><body BGCOLOR="white" onload="windowTitle();"><H2>Changes created by author stack-specialist</H2>
+<p><TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TD COLSPAN='4'><FONT SIZE="+2">
+<B>Pending Changes</B></FONT></TD>
+</TR>
+<tr><td>None Found</td></tr></TABLE>&nbsp;</P><p><TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TD COLSPAN='4'><FONT SIZE="+2">
+<B>Past Changes</B></FONT></TD>
+</TR>
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.62.xml.html'>db-changelog-1.62.xml</a></TD>
+<TD VALIGN="top">
+1.62-intro</TD>
+<TD VALIGN="top">
+<a href='../authors/stack-specialist.html'>stack-specialist</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Database Changelog v1.62 - Recreate Views Dropped by Misplaced DROP Statements
+        
+        CRITICAL FIX: Recreates 3 views that were created in v1.61 but then accidentally
+        dropped when misplaced DROP changesets executed after CREATE statements.
+        
+        Timeline of Issue:
+        - 2026-01-19: Views created successfully in deployment 8821051427
+        - 2026-01-22: DROP changesets executed in deployment 9086142400, deleting views
+        - Root Cause: DROP statements were positioned AFTER CREATE in v1.61 XML file
+        
+        Views Recreated:
+        1. view_riksdagen_party_coalition_evolution - Party-pair alliance tracking (35 metrics)
+        2. view_riksdagen_party_electoral_trends - Electoral performance analysis (49 indicators)
+        3. view_riksdagen_intelligence_dashboard - Unified intelligence dashboard
+        
+        All three views are documented as 5-star priority in DATABASE_VIEW_INTELLIGENCE_CATALOG.md
+        
+        Dependencies:
+        - view_riksdagen_politician (must exist)
+        - view_riksdagen_party_member (must exist)
+        - view_riksdagen_vote_data_ballot_party_summary_annual (must exist)
+        - view_riksdagen_party_momentum_analysis (must exist)
+        - view_riksdagen_coalition_alignment_matrix (must exist)
+        - view_riksdagen_voting_anomaly_detection (must exist)
+        - view_riksdagen_politician_influence_metrics (must exist)
+        - view_riksdagen_crisis_resilience_indicators (must exist)</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.62.xml.html'>db-changelog-1.62.xml</a></TD>
+<TD VALIGN="top">
+1.62-create-coalition-evolution</TD>
+<TD VALIGN="top">
+<a href='../authors/stack-specialist.html'>stack-specialist</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Recreate view_riksdagen_party_coalition_evolution (originally from v1.53, recreated in v1.61)
+        
+        JPA Entity: ViewRiksdagenPartyCoalitionEvolution
+        Primary Key: Composite (party_a, party_b, election_cycle_id)
+        Columns: 35 total (alliance KPIs, strategic shift detection, stability forecasts)
+        
+        This view was created in v1.61 (2026-01-19) but dropped by misplaced DROP statement (2026-01-22).</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_party_coalition_evolution created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.62.xml.html'>db-changelog-1.62.xml</a></TD>
+<TD VALIGN="top">
+1.62-create-electoral-trends</TD>
+<TD VALIGN="top">
+<a href='../authors/stack-specialist.html'>stack-specialist</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Recreate view_riksdagen_party_electoral_trends (originally from v1.53, recreated in v1.61)
+        
+        JPA Entity: ViewRiksdagenPartyElectoralTrends
+        Primary Key: Composite (party, election_cycle_id, semester)
+        Columns: 49 total (electoral performance, seat projections, risk indicators)
+        
+        This view was created in v1.61 (2026-01-19) but dropped by misplaced DROP statement (2026-01-22).</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_party_electoral_trends created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.62.xml.html'>db-changelog-1.62.xml</a></TD>
+<TD VALIGN="top">
+1.62-create-intelligence-dashboard</TD>
+<TD VALIGN="top">
+<a href='../authors/stack-specialist.html'>stack-specialist</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Recreate view_riksdagen_intelligence_dashboard (originally from v1.29)
+        
+        This view aggregates multiple intelligence indicators into a single dashboard.
+        It was recreated in v1.40 after being dropped by CASCADE but may be missing
+        due to missing dependencies or execution order issues.
+        
+        Dependencies: All 5 core intelligence views must exist</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.68.xml.html'>db-changelog-1.68.xml</a></TD>
+<TD VALIGN="top">
+1.68-001-create-ministry-view</TD>
+<TD VALIGN="top">
+<a href='../authors/stack-specialist.html'>stack-specialist</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create view_riksdagen_ministry for ministry-level comparative analysis.
+        
+        Purpose: Provides aggregated ministry data for comparative analysis framework
+        Pattern: Based on view_riksdagen_party structure (aggregation with statistics)
+        Data Source: assignment_data table filtered for ministry roles
+        
+        Columns:
+        - ministry_id: org_code from assignment_data (ministry identifier)
+        - ministry_name: detail field (ministry department name)
+        - role_code: government role code filter
+        - total_assignments: count of role assignments
+        - total_members: distinct count of persons assigned
+        - first_assignment_date: earliest assignment date
+        - last_assignment_date: most recent assignment date  
+        - is_active: whether ministry has current assignments
+        
+        Usage: Enables 4 ministry-related comparative analysis views:
+        - Ministry effectiveness analysis
+        - Ministry performance trends
+        - Ministry decision impact
+        - Ministry temporal analysis</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_ministry created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.68.xml.html'>db-changelog-1.68.xml</a></TD>
+<TD VALIGN="top">
+1.68-002-document-materialized-view-population</TD>
+<TD VALIGN="top">
+<a href='../authors/stack-specialist.html'>stack-specialist</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Document materialized view population requirements.
+        
+        This changeset serves as documentation for the operational task of populating
+        materialized views. The actual REFRESH commands must be executed outside of
+        Liquibase as they are operational (data population) not schema changes.
+        
+        Materialized Views to Populate:
+        1. view_riksdagen_committee_decisions (created by db-changelog-1.5.xml)
+           - Status: UNPOPULATED (causing "view not populated" errors)
+           - Command: REFRESH MATERIALIZED VIEW view_riksdagen_committee_decisions;
+           - Schedule: Daily at 02:00 UTC
+        
+        2. view_riksdagen_committee_ballot_decision_summary (created by db-changelog-1.5.xml)
+           - Status: UNPOPULATED (causing query failures)
+           - Dependency: Requires view_riksdagen_committee_decisions populated first
+           - Command: REFRESH MATERIALIZED VIEW view_riksdagen_committee_ballot_decision_summary;
+           - Schedule: Daily at 02:30 UTC (after committee_decisions)
+        
+        Population Script (execute after Liquibase update):
+        psql -d ${DATABASE_NAME} << EOF
+        REFRESH MATERIALIZED VIEW view_riksdagen_committee_decisions;
+        REFRESH MATERIALIZED VIEW view_riksdagen_committee_ballot_decision_summary;
+        EOF
+        
+        Note: Performance indexes for materialized views should be created via
+        separate Liquibase changesets when needed for optimization. Consider adding
+        indexes on org columns if query performance analysis indicates they would
+        provide meaningful improvements (typically after population with real data).</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR></TABLE>&nbsp;</P><hr>Generated: 4/11/26, 2:59 PM<BR>Against: eris @ jdbc:postgresql://localhost:5432/cia_prod (Default Schema: public)<BR>Change Log: db-changelog-1.0.xml<BR><BR>Generated By: <a href='https://www.liquibase.com' target='_TOP'>Liquibase 5.0.2</a></body></html>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GovernmentBodyDataLoaderServiceImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.impl</a> &gt; <span class="el_source">GovernmentBodyDataLoaderServiceImpl.java</span></div><h1>GovernmentBodyDataLoaderServiceImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2025 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+ */
+package com.hack23.cia.service.impl;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.context.event.EventListener;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.hack23.cia.model.internal.application.data.ministry.impl.GovernmentBodyData;
+import com.hack23.cia.service.data.api.GovernmentBodyDataDAO;
+import com.hack23.cia.service.external.esv.api.EsvApi;
+import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
+
+/**
+ * The Class GovernmentBodyDataLoaderServiceImpl.
+ * Loads government body data from ESV at application startup if not already loaded.
+ */
+@Component
+public final class GovernmentBodyDataLoaderServiceImpl implements GovernmentBodyDataLoaderService {
+
+<span class="fc" id="L51">	private static final Logger LOGGER = LoggerFactory.getLogger(GovernmentBodyDataLoaderServiceImpl.class);</span>
+
+	@Autowired
+	private GovernmentBodyDataDAO governmentBodyDataDAO;
+
+	@Autowired
+	private EsvApi esvApi;
+
+	/**
+	 * Instantiates a new government body data loader service impl.
+	 */
+	public GovernmentBodyDataLoaderServiceImpl() {
+<span class="fc" id="L63">		super();</span>
+<span class="fc" id="L64">	}</span>
+
+	/**
+	 * Load government body data at startup if table is empty.
+	 * Uses EventListener with ContextRefreshedEvent to ensure transaction manager is fully initialized.
+	 *
+	 * @param event the context refreshed event
+	 */
+	@Override
+	@EventListener
+	@Transactional
+	public void loadGovernmentBodyDataIfEmpty(final ContextRefreshedEvent event) {
+		try {
+<span class="nc" id="L77">			configureAuthentication(&quot;ROLE_ADMIN&quot;);</span>
+			
+<span class="nc" id="L79">			final List&lt;GovernmentBodyData&gt; existingData = governmentBodyDataDAO.getAll();</span>
+			
+<span class="nc bnc" id="L81" title="All 4 branches missed.">			if (existingData == null || existingData.isEmpty()) {</span>
+<span class="nc" id="L82">				LOGGER.info(&quot;Government body data table is empty, loading data from ESV...&quot;);</span>
+<span class="nc" id="L83">				loadDataFromEsv();</span>
+<span class="nc" id="L84">				LOGGER.info(&quot;Government body data loaded successfully&quot;);</span>
+			} else {
+<span class="nc" id="L86">				LOGGER.info(&quot;Government body data already exists ({} records), skipping load&quot;, existingData.size());</span>
+			}
+<span class="nc" id="L88">		} catch (final Exception e) {</span>
+<span class="nc" id="L89">			LOGGER.error(&quot;Failed to load government body data - application startup aborted&quot;, e);</span>
+<span class="nc" id="L90">			throw new RuntimeException(&quot;Failed to initialize government body data&quot;, e);</span>
+		} finally {
+<span class="nc" id="L92">			clearAuthentication();</span>
+		}
+<span class="nc" id="L94">	}</span>
+
+	/**
+	 * Load data from ESV API using batch processing for efficiency.
+	 */
+	private void loadDataFromEsv() {
+<span class="nc" id="L100">		final Map&lt;Integer, List&lt;GovernmentBodyAnnualSummary&gt;&gt; data = esvApi.getData();</span>
+		
+<span class="nc" id="L102">		final List&lt;GovernmentBodyData&gt; entitiesToPersist = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L103">		int recordCount = 0;</span>
+		
+<span class="nc bnc" id="L105" title="All 2 branches missed.">		for (final Map.Entry&lt;Integer, List&lt;GovernmentBodyAnnualSummary&gt;&gt; entry : data.entrySet()) {</span>
+<span class="nc" id="L106">			final Integer year = entry.getKey();</span>
+<span class="nc" id="L107">			final List&lt;GovernmentBodyAnnualSummary&gt; summaries = entry.getValue();</span>
+			
+<span class="nc bnc" id="L109" title="All 2 branches missed.">			for (final GovernmentBodyAnnualSummary summary : summaries) {</span>
+<span class="nc" id="L110">				final GovernmentBodyData entity = new GovernmentBodyData(</span>
+					year,
+<span class="nc" id="L112">					summary.getName(),</span>
+<span class="nc" id="L113">					summary.getConsecutiveNumber(),</span>
+<span class="nc" id="L114">					summary.getGovermentBodyId(),</span>
+<span class="nc" id="L115">					summary.getmCode(),</span>
+<span class="nc" id="L116">					summary.getMinistry(),</span>
+<span class="nc" id="L117">					summary.getOrgNumber(),</span>
+<span class="nc" id="L118">					summary.getHeadCount(),</span>
+<span class="nc" id="L119">					summary.getAnnualWorkHeadCount(),</span>
+<span class="nc" id="L120">					summary.getVat(),</span>
+<span class="nc" id="L121">					summary.getComment()</span>
+				);
+				
+<span class="nc" id="L124">				entitiesToPersist.add(entity);</span>
+<span class="nc" id="L125">				recordCount++;</span>
+<span class="nc" id="L126">			}</span>
+<span class="nc" id="L127">		}</span>
+		
+		// Use batch persist for better performance
+<span class="nc bnc" id="L130" title="All 2 branches missed.">		if (!entitiesToPersist.isEmpty()) {</span>
+<span class="nc" id="L131">			governmentBodyDataDAO.persist(entitiesToPersist);</span>
+<span class="nc" id="L132">			LOGGER.info(&quot;Loaded {} government body records from ESV&quot;, recordCount);</span>
+		} else {
+<span class="nc" id="L134">			LOGGER.warn(&quot;No government body records found in ESV data&quot;);</span>
+		}
+<span class="nc" id="L136">	}</span>
+
+	/**
+	 * Clear authentication.
+	 */
+	private static void clearAuthentication() {
+<span class="nc" id="L142">		SecurityContextHolder.getContext().setAuthentication(null);</span>
+<span class="nc" id="L143">	}</span>
+
+	/**
+	 * Configure authentication.
+	 *
+	 * @param role the role
+	 */
+	private static void configureAuthentication(final String role) {
+<span class="nc" id="L151">		final Collection&lt;GrantedAuthority&gt; authorities = AuthorityUtils.createAuthorityList(role);</span>
+<span class="nc" id="L152">		final Authentication authentication = new UsernamePasswordAuthenticationToken(&quot;service.impl.GovernmentBodyDataLoaderService&quot;, &quot;n/a&quot;, authorities);</span>
+<span class="nc" id="L153">		SecurityContextHolder.getContext().setAuthentication(authentication);</span>
+<span class="nc" id="L154">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

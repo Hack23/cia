@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>AbstractGenericDAOImpl.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">service.impl</a> &gt; <a href="../index.html" class="el_bundle">service.data.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.data.impl</a> &gt; <span class="el_source">AbstractGenericDAOImpl.java</span></div><h1>AbstractGenericDAOImpl.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2025 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+*/
+package com.hack23.cia.service.data.impl;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.Path;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import javax.persistence.metamodel.Metamodel;
+import javax.persistence.metamodel.SingularAttribute;
+
+import org.hibernate.CacheMode;
+import org.hibernate.search.mapper.orm.Search;
+import org.hibernate.search.mapper.orm.session.SearchSession;
+import org.javers.spring.annotation.JaversAuditable;
+
+import com.google.common.collect.Lists;
+import com.hack23.cia.service.data.api.AbstractGenericDAO;
+import com.hack23.cia.service.data.impl.util.LoadHelper;
+
+/**
+ * The Class AbstractGenericDAOImpl.
+ *
+ * @param &lt;T&gt;
+ *            the generic type
+ * @param &lt;I&gt;
+ *            the generic type
+ */
+
+abstract class AbstractGenericDAOImpl&lt;T extends Serializable, I extends Serializable&gt;
+		implements AbstractGenericDAO&lt;T, I&gt; {
+
+	private static final int MAX_IN_VARIABLES = 30000;
+
+	/** The entity manager. */
+	@PersistenceContext(name = &quot;ciaPersistenceUnit&quot;)
+	private EntityManager entityManager;
+
+	/** The criteria builder. */
+	private CriteriaBuilder criteriaBuilder;
+
+	/** The metamodel. */
+	private Metamodel metamodel;
+
+	/** The persistent class. */
+	private final Class&lt;T&gt; persistentClass;
+
+	/**
+	 * Instantiates a new abstract generic dao impl.
+	 *
+	 * @param persistentClass
+	 *            the persistent class
+	 */
+<span class="fc" id="L82">	protected AbstractGenericDAOImpl(final Class&lt;T&gt; persistentClass) {</span>
+<span class="fc" id="L83">		this.persistentClass = persistentClass;</span>
+<span class="fc" id="L84">	}</span>
+
+	/**
+	 * Adds the cache hints.
+	 *
+	 * @param typedQuery
+	 *            the typed query
+	 * @param comment
+	 *            the comment
+	 */
+	protected static final void addCacheHints(final TypedQuery&lt;?&gt; typedQuery, final String comment) {
+<span class="fc" id="L95">		typedQuery.setHint(&quot;org.hibernate.cacheMode&quot;, CacheMode.NORMAL);</span>
+<span class="fc" id="L96">		typedQuery.setHint(&quot;org.hibernate.cacheable&quot;, Boolean.TRUE);</span>
+<span class="fc" id="L97">		typedQuery.setHint(&quot;org.hibernate.comment&quot;, comment);</span>
+<span class="fc" id="L98">	}</span>
+
+	/**
+	 * Gets the string id list.
+	 *
+	 * @param property
+	 *            the property
+	 * @return the string id list
+	 */
+	protected final List&lt;String&gt; getStringIdList(final SingularAttribute&lt;T, String&gt; property) {
+<span class="fc" id="L108">		final CriteriaQuery&lt;String&gt; criteria = getCriteriaBuilder().createQuery(String.class);</span>
+<span class="fc" id="L109">		final Root&lt;T&gt; root = criteria.from(persistentClass);</span>
+<span class="fc" id="L110">		criteria.select(getCriteriaBuilder().construct(String.class,root.get(property)));</span>
+<span class="fc" id="L111">		return getEntityManager().createQuery(criteria).getResultList();</span>
+	}
+
+	@Override
+	@JaversAuditable
+	public final void delete(final T entity) {
+<span class="fc" id="L117">		getEntityManager().remove(entity);</span>
+
+<span class="fc" id="L119">	}</span>
+
+	@Override
+	public final T findFirstByProperty(final SingularAttribute&lt;T, ? extends Object&gt; property, final Object value) {
+<span class="fc" id="L123">		final CriteriaQuery&lt;T&gt; criteriaQuery = criteriaBuilder.createQuery(getPersistentClass());</span>
+<span class="fc" id="L124">		final Root&lt;T&gt; root = criteriaQuery.from(getPersistentClass());</span>
+<span class="fc" id="L125">		criteriaQuery.select(root);</span>
+<span class="fc" id="L126">		final Predicate condition = criteriaBuilder.equal(root.get(property), value);</span>
+<span class="fc" id="L127">		criteriaQuery.where(condition);</span>
+<span class="fc" id="L128">		final TypedQuery&lt;T&gt; typedQuery = getEntityManager().createQuery(criteriaQuery);</span>
+<span class="fc" id="L129">		addCacheHints(typedQuery, &quot;findFirstByProperty&quot;);</span>
+
+<span class="fc" id="L131">		final List&lt;T&gt; resultList = typedQuery.getResultList();</span>
+
+<span class="pc bpc" id="L133" title="1 of 2 branches missed.">		if (resultList.isEmpty()) {</span>
+<span class="nc" id="L134">			return null;</span>
+		} else {
+<span class="fc" id="L136">			return LoadHelper.recursiveInitialize(resultList.get(0));</span>
+		}
+	}
+
+	@SuppressWarnings(&quot;unchecked&quot;)
+	@Override
+	public final List&lt;T&gt; findListByProperty(final Object[] values,
+			final SingularAttribute&lt;T, ? extends Object&gt;... properties) {
+<span class="fc" id="L144">		final CriteriaQuery&lt;T&gt; criteriaQuery = criteriaBuilder.createQuery(persistentClass);</span>
+<span class="fc" id="L145">		final Root&lt;T&gt; root = criteriaQuery.from(persistentClass);</span>
+<span class="fc" id="L146">		criteriaQuery.select(root);</span>
+
+<span class="fc" id="L148">		final Object value = values[0];</span>
+<span class="fc" id="L149">		final SingularAttribute&lt;T, ? extends Object&gt; property = properties[0];</span>
+		Predicate condition;
+
+<span class="fc" id="L152">		condition = QueryHelper.equalsIgnoreCaseIfStringPredicate(criteriaBuilder, root, value, property);</span>
+
+<span class="pc bpc" id="L154" title="1 of 2 branches missed.">		if (values.length &gt; 1) {</span>
+<span class="fc bfc" id="L155" title="All 2 branches covered.">			for (int i = 1; i &lt; properties.length; i++) {</span>
+<span class="fc" id="L156">				final SingularAttribute&lt;T, ? extends Object&gt; property2 = properties[i];</span>
+<span class="fc" id="L157">				final Object value2 = values[i];</span>
+<span class="fc" id="L158">				final Predicate condition2 = QueryHelper.equalsIgnoreCaseIfStringPredicate(criteriaBuilder, root,</span>
+						value2, property2);
+
+<span class="fc" id="L161">				condition = criteriaBuilder.and(condition, condition2);</span>
+			}
+		}
+
+<span class="fc" id="L165">		criteriaQuery.where(condition);</span>
+
+<span class="fc" id="L167">		final TypedQuery&lt;T&gt; typedQuery = getEntityManager().createQuery(criteriaQuery);</span>
+<span class="fc" id="L168">		addCacheHints(typedQuery, &quot;findListByProperty&quot;);</span>
+
+<span class="fc" id="L170">		return typedQuery.getResultList();</span>
+	}
+
+	@SuppressWarnings(&quot;unchecked&quot;)
+	@Override
+	public final List&lt;T&gt; findListByPropertyBeforeDate(final Date beforeDate, final SingularAttribute&lt;T, Date&gt; dateField, final Object[] values,
+			final SingularAttribute&lt;T, ? extends Object&gt;... properties) {
+<span class="nc" id="L177">		final CriteriaQuery&lt;T&gt; criteriaQuery = criteriaBuilder.createQuery(persistentClass);</span>
+<span class="nc" id="L178">		final Root&lt;T&gt; root = criteriaQuery.from(persistentClass);</span>
+<span class="nc" id="L179">		criteriaQuery.select(root);</span>
+
+<span class="nc" id="L181">		final Object value = values[0];</span>
+<span class="nc" id="L182">		final SingularAttribute&lt;T, ? extends Object&gt; property = properties[0];</span>
+		Predicate condition;
+
+<span class="nc" id="L185">		condition = QueryHelper.equalsIgnoreCaseIfStringPredicate(criteriaBuilder, root, value, property);</span>
+
+<span class="nc bnc" id="L187" title="All 2 branches missed.">		if (values.length &gt; 1) {</span>
+<span class="nc bnc" id="L188" title="All 2 branches missed.">			for (int i = 1; i &lt; properties.length; i++) {</span>
+<span class="nc" id="L189">				final SingularAttribute&lt;T, ? extends Object&gt; property2 = properties[i];</span>
+<span class="nc" id="L190">				final Object value2 = values[i];</span>
+<span class="nc" id="L191">				final Predicate condition2 = QueryHelper.equalsIgnoreCaseIfStringPredicate(criteriaBuilder, root,</span>
+						value2, property2);
+
+<span class="nc" id="L194">				condition = criteriaBuilder.and(condition, condition2);</span>
+			}
+		}
+
+<span class="nc" id="L198">		final Predicate beforeDateCondition = criteriaBuilder.greaterThan(root.get(dateField),beforeDate);</span>
+<span class="nc" id="L199">		condition = criteriaBuilder.and(condition, beforeDateCondition);</span>
+
+<span class="nc" id="L201">		criteriaQuery.where(condition);</span>
+
+<span class="nc" id="L203">		final TypedQuery&lt;T&gt; typedQuery = getEntityManager().createQuery(criteriaQuery);</span>
+<span class="nc" id="L204">		addCacheHints(typedQuery, &quot;findListByProperty&quot;);</span>
+
+<span class="nc" id="L206">		return typedQuery.getResultList();</span>
+	}
+
+
+	@Override
+	public final List&lt;T&gt; findListByProperty(final SingularAttribute&lt;T, ? extends Object&gt; property, final Object value) {
+<span class="fc" id="L212">		final CriteriaQuery&lt;T&gt; criteriaQuery = criteriaBuilder.createQuery(getPersistentClass());</span>
+<span class="fc" id="L213">		final Root&lt;T&gt; root = criteriaQuery.from(getPersistentClass());</span>
+<span class="fc" id="L214">		criteriaQuery.select(root);</span>
+<span class="fc" id="L215">		final Predicate condition = criteriaBuilder.equal(root.get(property), value);</span>
+<span class="fc" id="L216">		criteriaQuery.where(condition);</span>
+<span class="fc" id="L217">		final TypedQuery&lt;T&gt; typedQuery = getEntityManager().createQuery(criteriaQuery);</span>
+<span class="fc" id="L218">		addCacheHints(typedQuery, &quot;findListByProperty&quot;);</span>
+<span class="fc" id="L219">		return typedQuery.getResultList();</span>
+	}
+
+	@Override
+	public final List&lt;T&gt; findListByPropertyInList(final SingularAttribute&lt;T, ? extends Object&gt; property, final Object[] values) {
+<span class="fc" id="L224">		final List&lt;T&gt; result = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L225">		final List&lt;List&lt;Object&gt;&gt; partitionedValues = Lists.partition(Arrays.asList(values), MAX_IN_VARIABLES);</span>
+
+<span class="fc bfc" id="L227" title="All 2 branches covered.">		for (final List&lt;Object&gt; partitionQuoteIds: partitionedValues) {</span>
+<span class="fc" id="L228">		  result.addAll(findListByPropertyInListInternal(property,partitionQuoteIds.toArray(new Object[0])));</span>
+<span class="fc" id="L229">		}</span>
+<span class="fc" id="L230">		return result;</span>
+	}
+
+	private final List&lt;T&gt; findListByPropertyInListInternal(final SingularAttribute&lt;T, ? extends Object&gt; property, final Object[] values) {
+<span class="fc" id="L234">		final CriteriaQuery&lt;T&gt; criteriaQuery = criteriaBuilder.createQuery(getPersistentClass());</span>
+<span class="fc" id="L235">		final Root&lt;T&gt; root = criteriaQuery.from(getPersistentClass());</span>
+<span class="fc" id="L236">		criteriaQuery.select(root).where(root.get(property).in(values));</span>
+
+<span class="fc" id="L238">		final TypedQuery&lt;T&gt; typedQuery = getEntityManager().createQuery(criteriaQuery);</span>
+<span class="fc" id="L239">		addCacheHints(typedQuery, &quot;findListByPropertyInList&quot;);</span>
+<span class="fc" id="L240">		return typedQuery.getResultList();</span>
+	}
+
+
+	@Override
+	public &lt;V&gt; List&lt;T&gt; findListByEmbeddedProperty(final SingularAttribute&lt;T, V&gt; property, final Class&lt;V&gt; clazz2,
+			final SingularAttribute&lt;V, ? extends Object&gt; property2, final Object value) {
+<span class="fc" id="L247">		return findOrderedByPropertyListByEmbeddedProperty(property,clazz2,property2,value,null);</span>
+
+	}
+
+	@Override
+	public &lt;V&gt; List&lt;T&gt; findOrderedByPropertyListByEmbeddedProperty(final SingularAttribute&lt;T, V&gt; property,
+			final Class&lt;V&gt; clazz2, final SingularAttribute&lt;V, ? extends Object&gt; property2, final Object value,
+			final SingularAttribute&lt;T, ? extends Object&gt; orderByProperty) {
+<span class="fc" id="L255">		final CriteriaQuery&lt;T&gt; criteriaQuery = criteriaBuilder</span>
+<span class="fc" id="L256">				.createQuery(persistentClass);</span>
+<span class="fc" id="L257">		final Root&lt;T&gt; root = criteriaQuery.from(persistentClass);</span>
+<span class="fc" id="L258">		criteriaQuery.select(root);</span>
+
+<span class="pc bpc" id="L260" title="1 of 2 branches missed.">		if (orderByProperty != null) {</span>
+<span class="nc" id="L261">			criteriaQuery.orderBy(criteriaBuilder.desc(root.get(orderByProperty)));</span>
+		}
+
+
+<span class="fc" id="L265">		final Join&lt;T, V&gt; join = root.join(property);</span>
+
+<span class="fc" id="L267">		final Path&lt;? extends Object&gt; path = join.get(property2);</span>
+
+<span class="fc" id="L269">		final Predicate condition = criteriaBuilder.equal(path, value);</span>
+
+<span class="fc" id="L271">		criteriaQuery.where(condition);</span>
+
+<span class="fc" id="L273">		final TypedQuery&lt;T&gt; typedQuery = entityManager</span>
+<span class="fc" id="L274">				.createQuery(criteriaQuery);</span>
+
+<span class="fc" id="L276">		addCacheHints(typedQuery, &quot;findListByEmbeddedProperty.&quot; + persistentClass.getSimpleName());</span>
+
+
+<span class="fc" id="L279">		return typedQuery.getResultList();</span>
+	}
+
+
+	@Override
+	public final List&lt;T&gt; getAll() {
+<span class="fc" id="L285">		return getAllOrderBy(null);</span>
+	}
+
+	@Override
+	public final List&lt;T&gt; getAllOrderBy(final SingularAttribute&lt;T, ? extends Object&gt; orderBy) {
+<span class="fc" id="L290">		return getPageOrderBy(null, null, orderBy);</span>
+	}
+
+	/**
+	 * Gets the criteria builder.
+	 *
+	 * @return the criteria builder
+	 */
+	public final CriteriaBuilder getCriteriaBuilder() {
+<span class="fc" id="L299">		return criteriaBuilder;</span>
+	}
+
+	/**
+	 * Gets the entity manager.
+	 *
+	 * @return the entity manager
+	 */
+	protected final EntityManager getEntityManager() {
+<span class="fc" id="L308">		return entityManager;</span>
+	}
+
+	/**
+	 * Gets the full text entity manager.
+	 *
+	 * @return the full text entity manager
+	 */
+	protected final SearchSession getFullTextEntityManager() {
+<span class="nc" id="L317">		return Search.session(getEntityManager());</span>
+	}
+
+	/**
+	 * Gets the metamodel.
+	 *
+	 * @return the metamodel
+	 */
+	protected final Metamodel getMetamodel() {
+<span class="nc" id="L326">		return metamodel;</span>
+	}
+
+	@Override
+	public final List&lt;T&gt; getPage(final int pageNr, final int resultPerPage) {
+<span class="fc" id="L331">		return getPageOrderBy(pageNr, resultPerPage, null);</span>
+	}
+
+	@Override
+	public final List&lt;T&gt; getPageOrderBy(final int pageNr, final int resultPerPage, final SingularAttribute&lt;T, ? extends Object&gt; orderBy) {
+<span class="fc" id="L336">		return getPageOrderBy(Integer.valueOf(pageNr), Integer.valueOf(resultPerPage), orderBy);</span>
+	}
+
+	private List&lt;T&gt; getPageOrderBy(final Integer pageNr, final Integer resultPerPage,
+			final SingularAttribute&lt;T, ? extends Object&gt; orderBy) {
+<span class="fc" id="L341">		final CriteriaQuery&lt;T&gt; criteriaQuery = criteriaBuilder.createQuery(getPersistentClass());</span>
+<span class="fc" id="L342">		final Root&lt;T&gt; root = criteriaQuery.from(getPersistentClass());</span>
+
+<span class="fc" id="L344">		criteriaQuery.select(root);</span>
+
+<span class="fc bfc" id="L346" title="All 2 branches covered.">		if (orderBy != null) {</span>
+<span class="fc" id="L347">			criteriaQuery.orderBy(criteriaBuilder.desc(root.get(orderBy)));</span>
+		}
+
+<span class="fc" id="L350">		final TypedQuery&lt;T&gt; typedQuery = getEntityManager().createQuery(criteriaQuery);</span>
+<span class="fc" id="L351">		addCacheHints(typedQuery, &quot;getAll&quot;);</span>
+
+<span class="pc bpc" id="L353" title="1 of 4 branches missed.">		if (pageNr != null &amp;&amp; resultPerPage != null) {</span>
+<span class="fc" id="L354">			typedQuery.setFirstResult((pageNr - 1) * resultPerPage);</span>
+<span class="fc" id="L355">			typedQuery.setMaxResults(resultPerPage);</span>
+
+		}
+
+<span class="fc" id="L359">		return typedQuery.getResultList();</span>
+
+	}
+
+	/**
+	 * Gets the persistent class.
+	 *
+	 * @return the persistent class
+	 */
+	public final Class&lt;T&gt; getPersistentClass() {
+<span class="fc" id="L369">		return this.persistentClass;</span>
+	}
+
+	@Override
+	public final Long getSize() {
+<span class="fc" id="L374">		final CriteriaQuery&lt;Long&gt; countQuery = criteriaBuilder.createQuery(Long.class);</span>
+<span class="fc" id="L375">		countQuery.select(criteriaBuilder.count(countQuery.from(persistentClass)));</span>
+<span class="fc" id="L376">		return getEntityManager().createQuery(countQuery).getSingleResult();</span>
+	}
+
+	/**
+	 * Inits the.
+	 */
+	@PostConstruct
+	private void init() {
+<span class="fc" id="L384">		this.criteriaBuilder = getEntityManager().getCriteriaBuilder();</span>
+<span class="fc" id="L385">		this.metamodel = getEntityManager().getMetamodel();</span>
+<span class="fc" id="L386">	}</span>
+
+	@Override
+	public final T load(final I id) {
+<span class="fc" id="L390">		return LoadHelper.recursiveInitialize(getEntityManager().find(getPersistentClass(), id));</span>
+	}
+
+	@Override
+	@JaversAuditable
+	public final T merge(final T entity) {
+<span class="fc" id="L396">		return getEntityManager().merge(entity);</span>
+	}
+
+	@Override
+	@JaversAuditable
+	public final void persist(final List&lt;T&gt; list) {
+<span class="fc bfc" id="L402" title="All 2 branches covered.">		for (final T t : list) {</span>
+<span class="fc" id="L403">			getEntityManager().persist(t);</span>
+<span class="fc" id="L404">		}</span>
+<span class="fc" id="L405">	}</span>
+
+	@Override
+	@JaversAuditable
+	public final void persist(final T entity) {
+<span class="fc" id="L410">		getEntityManager().persist(entity);</span>
+<span class="fc" id="L411">	}</span>
+
+	@Override
+	public final List&lt;T&gt; search(final String searchExpression, final Integer maxResults, final String... fields) {
+<span class="nc" id="L415">		return getFullTextEntityManager().search(persistentClass).selectEntity().where(t -&gt; t.match().fields(fields).matching(searchExpression)).fetchHits(maxResults);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

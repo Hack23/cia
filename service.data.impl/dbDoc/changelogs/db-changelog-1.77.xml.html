@@ -1,0 +1,600 @@
+<html><body><pre>
+&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;!--
+  ~ Copyright 2010-2025 James Pether Sörling
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~   http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~
+  ~	$Id$
+  ~	$HeadURL$
+--&gt;
+
+&lt;databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd"&gt;
+
+&lt;!-- ============================================================================ --&gt;
+&lt;!-- CHANGELOG 1.77: FIX EMPTY PARTY VIEWS AND ANOMALY PATTERN TIMEOUT           --&gt;
+&lt;!-- ============================================================================ --&gt;
+&lt;!-- AFFECTED VIEWS:                                                               --&gt;
+&lt;!-- 1. view_riksdagen_party_transition_history - EMPTY (0 rows)                   --&gt;
+&lt;!--    ROOT CAUSE: vote_data uses modern party codes retroactively (L not FP),    --&gt;
+&lt;!--    so LAG-based party switch detection finds no transitions. Need to use       --&gt;
+&lt;!--    assignment_data with party org_codes for historical party membership.       --&gt;
+&lt;!-- 2. view_riksdagen_party_defector_analysis - EMPTY (cascade from #1)           --&gt;
+&lt;!-- 3. view_riksdagen_party_switcher_outcomes - EMPTY (cascade from #1)           --&gt;
+&lt;!-- 4. view_election_cycle_anomaly_pattern - TIMEOUT                              --&gt;
+&lt;!--    ROOT CAUSE: full_schema.sql contains old view definition with ON (1=1)     --&gt;
+&lt;!--    Cartesian joins despite 1.65-010 fix being marked EXECUTED in changelog.   --&gt;
+&lt;!--    Need to re-apply the pre-aggregation fix.                                  --&gt;
+&lt;!-- ============================================================================ --&gt;
+&lt;!-- DATA ANALYSIS (from extraction_summary_report.csv 2026-03-20):                --&gt;
+&lt;!-- - assignment_data: 31,411 rows (org_code includes party codes S,M,C,KD etc.)  --&gt;
+&lt;!-- - person_data: 2,494 rows (party includes historical FP,NYD,VPK,H - M,BF - C)--&gt;
+&lt;!-- - vote_data: 3,652,285 rows (party uses modern codes only: S,M,SD,L,C,V,KD,MP)--&gt;
+&lt;!-- - sweden_political_party: 40 rows (authoritative party short_code list)        --&gt;
+&lt;!-- - view_risk_score_evolution: 8,599 rows                                        --&gt;
+&lt;!-- - view_riksdagen_voting_anomaly_detection: 1,064 rows                         --&gt;
+&lt;!-- - view_politician_risk_summary: 403 rows                                       --&gt;
+&lt;!-- ============================================================================ --&gt;
+&lt;!-- PERCENTILE/DISTRIBUTION DATA USED FOR BALANCING:                              --&gt;
+&lt;!-- - percentile_voting_anomaly_detection: p25=3, median=12, p75=27 rebellions    --&gt;
+&lt;!-- - percentile_risk_score_evolution: ballot_count p25=18, median=42, p75=87     --&gt;
+&lt;!-- - percentile_politician_risk_summary: total_violations p25=3, median=5, p75=7 --&gt;
+&lt;!-- - distribution_annual_party_members: FP present 1990-2015, L from 1991+       --&gt;
+&lt;!-- - distribution_party_members: S(854),M(472),C(256),FP(191),MP(143)...         --&gt;
+&lt;!-- ============================================================================ --&gt;
+
+    &lt;!-- ======================================================================== --&gt;
+    &lt;!-- Changeset 1.77-001: Fix view_riksdagen_party_transition_history           --&gt;
+    &lt;!-- EMPTY: vote_data party codes are retroactively normalized (L not FP)      --&gt;
+    &lt;!-- ======================================================================== --&gt;
+    &lt;changeSet id="fix-party-transition-history-1.77-001" author="intelligence-operative"&gt;
+        &lt;comment&gt;
+            Fix view_riksdagen_party_transition_history: detect party transitions using
+            assignment_data with party org_codes instead of vote_data.
+
+            ROOT CAUSE ANALYSIS:
+            Previous approach (1.76-007) used vote_data.party LAG detection, but the
+            Riksdagen API retroactively normalizes party codes to modern names:
+            - FP (Folkpartiet) votes recorded as L (Liberalerna)
+            - VPK votes recorded as V (Vänsterpartiet)
+            - H - M votes recorded as M (Moderaterna)
+            Result: 0 detectable transitions in 3.6M vote records.
+
+            NEW APPROACH: Use assignment_data where org_code matches known party codes
+            (from sweden_political_party). Assignment records preserve historical party
+            codes (FP, NYD, VPK, etc.) and track when politicians held party roles.
+
+            Detection methods (UNION):
+            1. assignment_data: Records where same person has different party org_codes
+               over time (partiuppdrag, uppdrag with party org_code)
+            2. person_data cross-reference: Detect historical party names vs modern
+               party codes using party name mapping
+
+            PARTY CODE MAPPING (historical → modern):
+            - FP → L (Folkpartiet renamed Liberalerna, 2015)
+            - VPK → V (Vänsterpartiet kommunisterna → Vänsterpartiet)
+            - K - VPK → V (Kommunisterna)
+            - BF - C → C (Bondeförbundet → Centerpartiet)
+            - H - M → M (Högerpartiet → Moderaterna)
+            - NYD → (defunct, Ny Demokrati dissolved ~2000)
+
+            DISTRIBUTION BALANCING:
+            - assignment_data org_code party counts: KD(619),S(93),MP(69),M(44),C(41)
+            - person_data.party: S(854),M(472),C(256),FP(191),MP(143)
+            - Expected transitions: ~20-50 (party renames + genuine switches)
+        &lt;/comment&gt;
+        &lt;sql&gt;&lt;![CDATA[
+DROP VIEW IF EXISTS public.view_riksdagen_party_transition_history CASCADE;
+
+CREATE VIEW public.view_riksdagen_party_transition_history AS
+ WITH known_parties AS (
+     -- Authoritative party codes from sweden_political_party table
+     SELECT short_code FROM public.sweden_political_party
+     WHERE short_code IS NOT NULL AND short_code &lt;&gt; '' AND short_code &lt;&gt; '-'
+     UNION
+     -- Historical party codes found in person_data.party but not in
+     -- sweden_political_party (source: Riksdagen open data API person records)
+     SELECT unnest(ARRAY['FP','NYD','VPK','K','H','BF','KrVP']) AS short_code
+ ),
+ party_name_map AS (
+     -- Official Swedish party name changes (source: Swedish Parliament records)
+     -- Maps historical codes to their modern equivalents to distinguish
+     -- party RENAMES from genuine political SWITCHES
+     -- Note: Historical codes kept in SQL rather than sweden_political_party
+     -- table to avoid side effects on other views that use that table
+     SELECT * FROM (VALUES
+         ('FP', 'L'),       -- Folkpartiet → Liberalerna (renamed 2015)
+         ('VPK', 'V'),      -- Vänsterpartiet kommunisterna → Vänsterpartiet (1990)
+         ('K - VPK', 'V'),  -- Kommunisterna → VPK → Vänsterpartiet
+         ('K', 'V'),        -- Kommunisterna (historical)
+         ('BF - C', 'C'),   -- Bondeförbundet → Centerpartiet (renamed 1957)
+         ('H - M', 'M')     -- Högerpartiet → Moderaterna (renamed 1969)
+     ) AS t(old_code, new_code)
+ ),
+ assignment_party_periods AS (
+     SELECT a.intressent_id AS person_id,
+            a.org_code AS party,
+            a.from_date,
+            COALESCE(a.to_date, CURRENT_DATE) AS to_date,
+            a.assignment_type,
+            a.role_code,
+            a.status
+       FROM public.assignment_data a
+      WHERE a.org_code IN (SELECT short_code FROM known_parties)
+        AND a.from_date IS NOT NULL
+        AND a.from_date &gt;= '1990-01-01'::date
+ ),
+ person_party_timeline AS (
+     SELECT person_id,
+            party,
+            min(from_date) AS first_date,
+            max(to_date) AS last_date
+       FROM assignment_party_periods
+      GROUP BY person_id, party
+ ),
+ transitions_raw AS (
+     SELECT t1.person_id,
+            t1.party AS previous_party,
+            t2.party AS new_party,
+            t2.first_date AS transition_date
+       FROM person_party_timeline t1
+       JOIN person_party_timeline t2
+         ON t1.person_id = t2.person_id
+        AND t1.party &lt;&gt; t2.party
+        AND t2.first_date &gt; t1.first_date
+        AND NOT EXISTS (
+            SELECT 1 FROM person_party_timeline t3
+             WHERE t3.person_id = t1.person_id
+               AND t3.party = t2.party
+               AND t3.first_date &gt; t1.first_date
+               AND t3.first_date &lt; t2.first_date
+        )
+     WHERE COALESCE((SELECT pm.new_code FROM party_name_map pm WHERE pm.old_code = t1.party), t1.party)
+        &lt;&gt; COALESCE((SELECT pm.new_code FROM party_name_map pm WHERE pm.old_code = t2.party), t2.party)
+ ),
+ vote_party_periods AS (
+     SELECT vd.embedded_id_intressent_id AS person_id,
+            vd.party,
+            min(vd.vote_date) AS first_vote_date,
+            max(vd.vote_date) AS last_vote_date
+       FROM public.vote_data vd
+      WHERE vd.party IS NOT NULL
+        AND vd.party &lt;&gt; '-'
+        AND vd.party &lt;&gt; ''
+        AND vd.vote_date IS NOT NULL
+        AND vd.vote_date &gt;= '2002-01-01'::date
+      GROUP BY vd.embedded_id_intressent_id, vd.party
+     HAVING count(*) &gt;= 3
+ ),
+ vote_transitions AS (
+     SELECT v1.person_id,
+            v1.party AS previous_party,
+            v2.party AS new_party,
+            v2.first_vote_date AS transition_date
+       FROM vote_party_periods v1
+       JOIN vote_party_periods v2
+         ON v1.person_id = v2.person_id
+        AND v1.party &lt;&gt; v2.party
+        AND v2.first_vote_date &gt; v1.last_vote_date
+        AND NOT EXISTS (
+            SELECT 1 FROM vote_party_periods v3
+             WHERE v3.person_id = v1.person_id
+               AND v3.first_vote_date &gt; v1.last_vote_date
+               AND v3.first_vote_date &lt; v2.first_vote_date
+               AND v3.party &lt;&gt; v1.party
+               AND v3.party &lt;&gt; v2.party
+        )
+ ),
+ all_transitions AS (
+     SELECT person_id, previous_party, new_party, transition_date FROM transitions_raw
+     UNION
+     SELECT person_id, previous_party, new_party, transition_date FROM vote_transitions
+ ),
+ deduplicated AS (
+     SELECT person_id, previous_party, new_party, min(transition_date) AS transition_date
+       FROM all_transitions
+      GROUP BY person_id, previous_party, new_party
+ ),
+ election_proximity AS (
+     SELECT unnest(ARRAY[
+         '2002-09-15'::date, '2006-09-17'::date, '2010-09-19'::date,
+         '2014-09-14'::date, '2018-09-09'::date, '2022-09-11'::date,
+         '2026-09-13'::date
+     ]) AS election_date
+ )
+ SELECT dt.person_id,
+    p.first_name,
+    p.last_name,
+    dt.previous_party,
+    dt.new_party,
+    dt.transition_date,
+    CASE
+        WHEN (SELECT pm.new_code FROM party_name_map pm WHERE pm.old_code = dt.previous_party) =
+             COALESCE((SELECT pm.new_code FROM party_name_map pm WHERE pm.old_code = dt.new_party), dt.new_party)
+        THEN 'PARTY_RENAMED'::text
+        WHEN EXISTS (
+            SELECT 1 FROM public.vote_data vd
+             WHERE (vd.embedded_id_intressent_id)::text = (dt.person_id)::text
+               AND vd.vote_date &gt;= (dt.transition_date - '60 days'::interval)
+               AND vd.vote_date &lt; dt.transition_date
+        ) THEN 'SWITCHED_WHILE_SERVING'::text
+        ELSE 'REJOINED_RIKSDAGEN'::text
+    END AS transition_type,
+    EXTRACT(year FROM dt.transition_date)::integer AS transition_year,
+    ( SELECT min(ed.election_date)
+           FROM election_proximity ed
+          WHERE ed.election_date &gt; dt.transition_date) AS next_election,
+    (EXTRACT(year FROM age(
+        (( SELECT min(ed.election_date) FROM election_proximity ed
+           WHERE ed.election_date &gt; dt.transition_date))::timestamp with time zone,
+        dt.transition_date::timestamp with time zone)) * 12 +
+     EXTRACT(month FROM age(
+        (( SELECT min(ed.election_date) FROM election_proximity ed
+           WHERE ed.election_date &gt; dt.transition_date))::timestamp with time zone,
+        dt.transition_date::timestamp with time zone)))::integer AS months_until_next_election,
+    ( SELECT max(ed.election_date)
+           FROM election_proximity ed
+          WHERE ed.election_date &lt; dt.transition_date) AS previous_election,
+    (EXTRACT(year FROM age(
+        dt.transition_date::timestamp with time zone,
+        (( SELECT max(ed.election_date) FROM election_proximity ed
+           WHERE ed.election_date &lt; dt.transition_date))::timestamp with time zone)) * 12 +
+     EXTRACT(month FROM age(
+        dt.transition_date::timestamp with time zone,
+        (( SELECT max(ed.election_date) FROM election_proximity ed
+           WHERE ed.election_date &lt; dt.transition_date))::timestamp with time zone)))::integer AS months_since_last_election
+   FROM deduplicated dt
+   JOIN public.person_data p ON (dt.person_id)::text = (p.id)::text
+  ORDER BY dt.transition_date DESC;
+        ]]&gt;&lt;/sql&gt;
+    &lt;/changeSet&gt;
+
+    &lt;!-- ======================================================================== --&gt;
+    &lt;!-- Changeset 1.77-002: Recreate view_riksdagen_party_defector_analysis       --&gt;
+    &lt;!-- CASCADE dependency from transition_history DROP/RECREATE                   --&gt;
+    &lt;!-- ======================================================================== --&gt;
+    &lt;changeSet id="fix-party-defector-analysis-1.77-002" author="intelligence-operative"&gt;
+        &lt;comment&gt;
+            Recreate view_riksdagen_party_defector_analysis after transition_history
+            was rebuilt. Analyzes performance changes around party transitions using
+            vote_data for attendance metrics.
+
+            Includes all transition types (SWITCHED_WHILE_SERVING, REJOINED_RIKSDAGEN,
+            PARTY_RENAMED) to provide comprehensive defector analysis.
+
+            Uses 12-month pre/post windows for attendance comparison.
+            Uses UPPER() normalization for vote comparison per codebase convention.
+        &lt;/comment&gt;
+        &lt;sql&gt;&lt;![CDATA[
+DROP VIEW IF EXISTS public.view_riksdagen_party_defector_analysis CASCADE;
+
+CREATE VIEW public.view_riksdagen_party_defector_analysis AS
+ WITH defector_performance AS (
+         SELECT pt.person_id,
+            pt.first_name,
+            pt.last_name,
+            pt.previous_party,
+            pt.new_party,
+            pt.transition_date,
+            pt.transition_type,
+            pt.months_until_next_election,
+            round((avg(
+                CASE
+                    WHEN vd.vote_date &gt;= (pt.transition_date - '12 mons'::interval)
+                         AND vd.vote_date &lt; pt.transition_date THEN
+                    CASE
+                        WHEN UPPER((vd.vote)::text) &lt;&gt; 'FRÅNVARANDE' THEN 1
+                        ELSE 0
+                    END
+                    ELSE NULL::integer
+                END) * (100)::numeric), 2) AS pre_transition_attendance,
+            round((avg(
+                CASE
+                    WHEN vd.vote_date &gt;= pt.transition_date
+                         AND vd.vote_date &lt;= (pt.transition_date + '12 mons'::interval) THEN
+                    CASE
+                        WHEN UPPER((vd.vote)::text) &lt;&gt; 'FRÅNVARANDE' THEN 1
+                        ELSE 0
+                    END
+                    ELSE NULL::integer
+                END) * (100)::numeric), 2) AS post_transition_attendance,
+            count(DISTINCT CASE
+                WHEN vd.vote_date &lt; pt.transition_date
+                     AND vd.vote_date &gt;= (pt.transition_date - '12 mons'::interval)
+                THEN vd.embedded_id_ballot_id END) AS docs_before,
+            count(DISTINCT CASE
+                WHEN vd.vote_date &gt;= pt.transition_date
+                     AND vd.vote_date &lt;= (pt.transition_date + '12 mons'::interval)
+                THEN vd.embedded_id_ballot_id END) AS docs_after
+           FROM public.view_riksdagen_party_transition_history pt
+             LEFT JOIN public.vote_data vd
+               ON (pt.person_id)::text = (vd.embedded_id_intressent_id)::text
+          GROUP BY pt.person_id, pt.first_name, pt.last_name, pt.previous_party,
+                   pt.new_party, pt.transition_date, pt.transition_type,
+                   pt.months_until_next_election
+        )
+ SELECT person_id,
+    first_name,
+    last_name,
+    previous_party,
+    new_party,
+    transition_date,
+    months_until_next_election,
+    pre_transition_attendance,
+    post_transition_attendance,
+    round(COALESCE(post_transition_attendance, 0) - COALESCE(pre_transition_attendance, 0), 2) AS attendance_change,
+    docs_before,
+    docs_after,
+        CASE
+            WHEN months_until_next_election IS NULL THEN 'UNKNOWN_TIMING'::text
+            WHEN months_until_next_election &lt;= 12 THEN 'PRE_ELECTION_DEFECTION'::text
+            WHEN months_until_next_election &gt;= 36 THEN 'MID_TERM_DEFECTION'::text
+            ELSE 'NORMAL_DEFECTION'::text
+        END AS defection_timing
+   FROM defector_performance
+  ORDER BY transition_date DESC;
+        ]]&gt;&lt;/sql&gt;
+    &lt;/changeSet&gt;
+
+    &lt;!-- ======================================================================== --&gt;
+    &lt;!-- Changeset 1.77-003: Recreate view_riksdagen_party_switcher_outcomes       --&gt;
+    &lt;!-- CASCADE dependency from transition_history DROP/RECREATE                   --&gt;
+    &lt;!-- ======================================================================== --&gt;
+    &lt;changeSet id="recreate-party-switcher-outcomes-1.77-003" author="intelligence-operative"&gt;
+        &lt;comment&gt;
+            Recreate view_riksdagen_party_switcher_outcomes after transition_history
+            was rebuilt. Tracks career outcomes for politicians who switched parties.
+
+            Matches all subsequent assignments after transition date and evaluates:
+            - Whether politician continued as active MP
+            - Whether they served in the next election cycle
+            - Whether they attained leadership positions post-switch
+        &lt;/comment&gt;
+        &lt;sql&gt;&lt;![CDATA[
+DROP VIEW IF EXISTS public.view_riksdagen_party_switcher_outcomes CASCADE;
+
+CREATE VIEW public.view_riksdagen_party_switcher_outcomes AS
+ WITH switcher_subsequent_assignments AS (
+         SELECT pt.person_id,
+            pt.first_name AS pt_first_name,
+            pt.last_name AS pt_last_name,
+            pt.previous_party,
+            pt.new_party,
+            pt.transition_date,
+            pt.next_election,
+            pt.months_until_next_election,
+            a.from_date AS subsequent_from_date,
+            a.to_date AS subsequent_to_date,
+            a.status AS subsequent_status,
+            a.role_code AS subsequent_role,
+            a.assignment_type AS subsequent_assignment_type,
+                CASE
+                    WHEN a.to_date IS NULL THEN CURRENT_DATE - a.from_date
+                    ELSE a.to_date - a.from_date
+                END AS days_in_subsequent_role,
+                CASE
+                    WHEN pt.next_election IS NOT NULL
+                         AND a.from_date &lt;= pt.next_election
+                         AND (a.to_date IS NULL OR a.to_date &gt;= pt.next_election)
+                    THEN true
+                    ELSE false
+                END AS served_in_next_election_cycle
+           FROM public.view_riksdagen_party_transition_history pt
+             LEFT JOIN public.assignment_data a
+               ON (pt.person_id)::text = (a.intressent_id)::text
+              AND a.from_date &gt;= pt.transition_date
+        )
+ SELECT ssa.person_id,
+    ssa.pt_first_name AS first_name,
+    ssa.pt_last_name AS last_name,
+    ssa.previous_party,
+    ssa.new_party,
+    ssa.transition_date,
+    ssa.next_election,
+    ssa.months_until_next_election,
+    count(DISTINCT ssa.subsequent_from_date) AS total_subsequent_assignments,
+    sum(ssa.days_in_subsequent_role) AS total_days_served_after_switch,
+    max(CASE
+        WHEN (ssa.subsequent_status)::text = 'Tjänstgörande'::text THEN 1
+        ELSE 0
+    END) AS continued_as_active_mp,
+    max(CASE
+        WHEN ssa.served_in_next_election_cycle = true THEN 1
+        ELSE 0
+    END) AS served_in_next_election,
+    max(CASE
+        WHEN (ssa.subsequent_role)::text = ANY (ARRAY[
+            'Partiledare'::text, 'Gruppledare'::text, 'Partisekreterare'::text,
+            'Ordförande'::text, 'Vice ordförande'::text
+        ]) THEN 1
+        ELSE 0
+    END) AS attained_leadership_post_switch,
+    string_agg(DISTINCT (ssa.subsequent_role)::text, ', '::text)
+        FILTER (WHERE ssa.subsequent_role IS NOT NULL) AS post_switch_roles,
+    max((p.status)::text) AS current_status
+   FROM switcher_subsequent_assignments ssa
+     LEFT JOIN public.person_data p ON (ssa.person_id)::text = (p.id)::text
+  GROUP BY ssa.person_id, ssa.pt_first_name, ssa.pt_last_name,
+           ssa.previous_party, ssa.new_party, ssa.transition_date,
+           ssa.next_election, ssa.months_until_next_election
+  ORDER BY ssa.transition_date DESC;
+        ]]&gt;&lt;/sql&gt;
+    &lt;/changeSet&gt;
+
+    &lt;!-- ======================================================================== --&gt;
+    &lt;!-- Changeset 1.77-004: Fix view_election_cycle_anomaly_pattern TIMEOUT       --&gt;
+    &lt;!-- full_schema.sql has old ON (1=1) Cartesian joins despite 1.65 fix         --&gt;
+    &lt;!-- ======================================================================== --&gt;
+    &lt;changeSet id="fix-election-cycle-anomaly-pattern-timeout-1.77-004" author="intelligence-operative"&gt;
+        &lt;comment&gt;
+            Fix view_election_cycle_anomaly_pattern timeout caused by Cartesian joins.
+
+            ROOT CAUSE: full_schema.sql contains the pre-1.65 view definition with
+            ON (1=1) Cartesian joins, but databasechangelog marks 1.65-010 as EXECUTED.
+            When Liquibase runs on CI, it skips the fix (already marked done), leaving
+            the broken view.
+
+            The Cartesian product is:
+            - election_cycle_periods (~37 rows)
+            - × view_risk_score_evolution (8,599 rows) [properly joined on year]
+            - × view_riksdagen_voting_anomaly_detection (1,064 rows) [ON 1=1 !!]
+            - × view_politician_risk_summary (403 rows) [ON 1=1 !!]
+            = ~129 BILLION intermediate rows before aggregation → TIMEOUT
+
+            FIX: Pre-aggregate anomaly and risk statistics into scalar subqueries,
+            eliminating the Cartesian product while preserving all output columns.
+
+            PERCENTILE BALANCING:
+            - voting_anomaly: total_rebellions median=12, p75=27
+            - risk_score_evolution: ballot_count median=42
+            - politician_risk_summary: total_violations median=5, p75=7
+        &lt;/comment&gt;
+        &lt;sql&gt;&lt;![CDATA[
+DROP VIEW IF EXISTS public.view_election_cycle_anomaly_pattern CASCADE;
+
+CREATE VIEW public.view_election_cycle_anomaly_pattern AS
+ WITH election_cycle_periods AS (
+     SELECT
+         ((1994::numeric + FLOOR(((year_series - 1994)::numeric / 4.0)) * 4::numeric) || '-' ||
+          (1994::numeric + FLOOR(((year_series - 1994)::numeric / 4.0)) * 4::numeric + 4::numeric)) AS election_cycle_id,
+         ((year_series::numeric - (1994::numeric + FLOOR(((year_series - 1994)::numeric / 4.0)) * 4::numeric)) + 1::numeric) AS cycle_year,
+         year_series AS calendar_year
+     FROM generate_series(1994, EXTRACT(year FROM CURRENT_DATE)::integer + 4, 1) AS year_series
+ ),
+ anomaly_stats AS (
+     SELECT
+         COUNT(DISTINCT person_id) FILTER (WHERE anomaly_classification IN ('FREQUENT_STRONG_REBEL', 'CONSISTENT_REBEL')) AS high_anomaly_count,
+         ROUND(AVG(total_rebellions), 2) AS avg_total_rebellions,
+         COUNT(DISTINCT person_id) FILTER (WHERE strong_consensus_rebellions &gt;= 5) AS strong_consensus_rebels
+     FROM public.view_riksdagen_voting_anomaly_detection
+ ),
+ risk_stats AS (
+     SELECT
+         ROUND(AVG(risk_score), 2) AS avg_risk_score_prs,
+         COUNT(DISTINCT person_id) FILTER (WHERE risk_level IN ('HIGH', 'CRITICAL')) AS high_risk_politicians
+     FROM public.view_politician_risk_summary
+ ),
+ v_base AS (
+     SELECT
+         ecp.election_cycle_id,
+         ecp.cycle_year,
+         ecp.calendar_year,
+         CASE
+             WHEN EXTRACT(month FROM rse.assessment_period) &gt;= 9 OR EXTRACT(month FROM rse.assessment_period) &lt;= 1
+             THEN 'autumn'::text
+             ELSE 'spring'::text
+         END AS semester,
+         'MULTI_SOURCE_PATTERN'::text AS anomaly_type,
+         COUNT(DISTINCT rse.person_id) FILTER (WHERE rse.risk_severity IN ('HIGH', 'CRITICAL')) AS politician_count_with_risk,
+         ROUND(AVG(rse.risk_score), 2) AS avg_risk_score,
+         COUNT(*) FILTER (WHERE rse.severity_transition LIKE 'ESCALATION%') AS risk_escalations,
+         (SELECT high_anomaly_count FROM anomaly_stats) AS high_anomaly_count,
+         (SELECT avg_total_rebellions FROM anomaly_stats) AS avg_total_rebellions,
+         (SELECT strong_consensus_rebels FROM anomaly_stats) AS strong_consensus_rebels,
+         (SELECT avg_risk_score_prs FROM risk_stats) AS avg_risk_score_prs,
+         (SELECT high_risk_politicians FROM risk_stats) AS high_risk_politicians
+     FROM election_cycle_periods ecp
+     LEFT JOIN public.view_risk_score_evolution rse
+         ON EXTRACT(year FROM rse.assessment_period) = ecp.calendar_year::numeric
+     GROUP BY
+         ecp.election_cycle_id,
+         ecp.cycle_year,
+         ecp.calendar_year,
+         CASE
+             WHEN EXTRACT(month FROM rse.assessment_period) &gt;= 9 OR EXTRACT(month FROM rse.assessment_period) &lt;= 1
+             THEN 'autumn'::text
+             ELSE 'spring'::text
+         END
+     ORDER BY
+         ecp.election_cycle_id,
+         ecp.cycle_year,
+         CASE
+             WHEN EXTRACT(month FROM rse.assessment_period) &gt;= 9 OR EXTRACT(month FROM rse.assessment_period) &lt;= 1
+             THEN 'autumn'::text
+             ELSE 'spring'::text
+         END
+ ),
+ windowed AS (
+     SELECT
+         v.election_cycle_id,
+         v.cycle_year,
+         v.calendar_year,
+         v.semester,
+         v.anomaly_type,
+         v.politician_count_with_risk,
+         v.avg_risk_score,
+         v.risk_escalations,
+         v.high_anomaly_count,
+         v.avg_total_rebellions,
+         v.strong_consensus_rebels,
+         v.avg_risk_score_prs,
+         v.high_risk_politicians,
+         RANK() OVER (PARTITION BY v.election_cycle_id ORDER BY v.avg_risk_score DESC NULLS LAST) AS rank_by_risk,
+         RANK() OVER (PARTITION BY v.election_cycle_id ORDER BY v.high_anomaly_count DESC NULLS LAST) AS rank_by_anomalies,
+         PERCENT_RANK() OVER (PARTITION BY v.election_cycle_id ORDER BY v.avg_risk_score DESC NULLS LAST) AS percent_rank_risk,
+         NTILE(4) OVER (PARTITION BY v.election_cycle_id ORDER BY v.avg_risk_score DESC NULLS LAST) AS ntile_risk_level,
+         LAG(v.avg_risk_score) OVER (PARTITION BY v.election_cycle_id ORDER BY v.cycle_year, v.semester) AS prev_semester_risk,
+         LAG(v.high_anomaly_count) OVER (PARTITION BY v.election_cycle_id ORDER BY v.cycle_year, v.semester) AS prev_semester_anomalies
+     FROM v_base v
+ )
+ SELECT
+    election_cycle_id,
+    cycle_year,
+    calendar_year,
+    semester,
+    anomaly_type,
+    politician_count_with_risk,
+    avg_risk_score,
+    risk_escalations,
+    high_anomaly_count,
+    avg_total_rebellions,
+    strong_consensus_rebels,
+    avg_risk_score_prs,
+    high_risk_politicians,
+    rank_by_risk,
+    rank_by_anomalies,
+    percent_rank_risk,
+    ntile_risk_level,
+    prev_semester_risk,
+    prev_semester_anomalies,
+    CASE
+        WHEN prev_semester_risk IS NOT NULL AND prev_semester_risk &gt; 0::numeric
+        THEN ROUND(((avg_risk_score - prev_semester_risk) / prev_semester_risk) * 100::numeric, 2)
+        ELSE NULL::numeric
+    END AS change_risk_pct,
+    CASE
+        WHEN prev_semester_anomalies IS NOT NULL AND prev_semester_anomalies &gt; 0
+        THEN ROUND(((high_anomaly_count - prev_semester_anomalies)::numeric / prev_semester_anomalies::numeric) * 100::numeric, 2)
+        ELSE NULL::numeric
+    END AS change_anomalies_pct,
+    CASE
+        WHEN prev_semester_risk IS NULL THEN 'baseline'::text
+        WHEN avg_risk_score &gt; prev_semester_risk + 10::numeric THEN 'escalating'::text
+        WHEN avg_risk_score &lt; prev_semester_risk - 10::numeric THEN 'improving'::text
+        ELSE 'stable'::text
+    END AS risk_trend,
+    CASE
+        WHEN prev_semester_anomalies IS NOT NULL
+        THEN high_anomaly_count - prev_semester_anomalies
+        ELSE 0::bigint
+    END AS anomaly_acceleration
+ FROM windowed w;
+        ]]&gt;&lt;/sql&gt;
+    &lt;/changeSet&gt;
+
+&lt;/databaseChangeLog&gt;
+
+</pre></body></html>

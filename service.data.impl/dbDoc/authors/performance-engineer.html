@@ -1,0 +1,1210 @@
+<html><head><meta charset="utf-8"/><title>Changes created by author performance-engineer</title><LINK REL ="stylesheet" TYPE="text/css" HREF="../../stylesheet.css" TITLE="Style"><SCRIPT type="text/javascript">function windowTitle(){    parent.document.title="Changes created by author performance-engineer";}</SCRIPT></head><body BGCOLOR="white" onload="windowTitle();"><H2>Changes created by author performance-engineer</H2>
+<p><TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TD COLSPAN='4'><FONT SIZE="+2">
+<B>Pending Changes</B></FONT></TD>
+</TR>
+<tr><td>None Found</td></tr></TABLE>&nbsp;</P><p><TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TD COLSPAN='4'><FONT SIZE="+2">
+<B>Past Changes</B></FONT></TD>
+</TR>
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.63.xml.html'>db-changelog-1.63.xml</a></TD>
+<TD VALIGN="top">
+1.63-intro</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Database Changelog v1.63 - Priority 1 Foreign Key Indexes (28 Critical Indexes)
+        
+        CRITICAL PERFORMANCE FIX: Creates 28 missing foreign key indexes that are the
+        #1 performance bottleneck causing 5-300 second query times.
+        
+        Expected Performance Improvement: 10-100x faster JOIN operations
+        
+        Affected Views: 109 views across all 6 analysis frameworks
+        - Comparative Analysis: 26 views
+        - Pattern Recognition: 23 views  
+        - Temporal Analysis: 35 views
+        - Network Analysis: 11 views
+        - Predictive Intelligence: 14 views
+        - Decision Intelligence: 5 views
+        
+        Implementation Reference: priority1_indexes.sql (reference only)
+        Analysis Report: COMPARATIVE_ANALYSIS_PERFORMANCE_REPORT.md
+        GitHub Issue: Hack23/cia#8276</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.63.xml.html'>db-changelog-1.63.xml</a></TD>
+<TD VALIGN="top">
+1.63-001-idx-person-assignment-fk</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create index on person_data.person_assignment_data_perso_0 foreign key column.
+        Improves JOIN performance with person_assignment_data table.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_person_data_assignment_fk created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.63.xml.html'>db-changelog-1.63.xml</a></TD>
+<TD VALIGN="top">
+1.63-002-idx-person-detail-fk</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create index on person_data.person_detail_data_person_da_0 foreign key column.
+        Improves JOIN performance with person_detail_data table.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_person_data_detail_fk created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.63.xml.html'>db-changelog-1.63.xml</a></TD>
+<TD VALIGN="top">
+1.63-003-idx-doc-status-document-fk</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create index on document_status_container.document_document_status_con_0 foreign key.
+        Improves JOIN performance with document_data table.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_doc_status_document_fk created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.63.xml.html'>db-changelog-1.63.xml</a></TD>
+<TD VALIGN="top">
+1.63-004-idx-doc-status-activity-fk</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create index on document_status_container.document_activity_container__0 foreign key.
+        Improves JOIN performance with document_activity_container table.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_doc_status_activity_fk created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.63.xml.html'>db-changelog-1.63.xml</a></TD>
+<TD VALIGN="top">
+1.63-005-idx-doc-status-attachment-fk</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create index on document_status_container.document_attachment_containe_0 foreign key.
+        Improves JOIN performance with document_attachment_container table.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_doc_status_attachment_fk created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.63.xml.html'>db-changelog-1.63.xml</a></TD>
+<TD VALIGN="top">
+1.63-006-idx-doc-status-detail-fk</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create index on document_status_container.document_detail_container_do_0 foreign key.
+        Improves JOIN performance with document_detail_container table.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_doc_status_detail_fk created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.63.xml.html'>db-changelog-1.63.xml</a></TD>
+<TD VALIGN="top">
+1.63-007-idx-doc-status-person-ref-fk</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create index on document_status_container.document_person_reference_co_1 foreign key.
+        Improves JOIN performance with document_person_reference table.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_doc_status_person_ref_fk created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.63.xml.html'>db-changelog-1.63.xml</a></TD>
+<TD VALIGN="top">
+1.63-008-idx-doc-status-proposal-fk</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create index on document_status_container.document_proposal_document_s_0 foreign key.
+        Improves JOIN performance with document_proposal_data table.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_doc_status_proposal_fk created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.63.xml.html'>db-changelog-1.63.xml</a></TD>
+<TD VALIGN="top">
+1.63-009-idx-doc-status-reference-fk</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create index on document_status_container.document_reference_container_0 foreign key.
+        Improves JOIN performance with document_reference_container table.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_doc_status_reference_fk created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.63.xml.html'>db-changelog-1.63.xml</a></TD>
+<TD VALIGN="top">
+1.63-010-idx-person-container-person-fk</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create index on person_container_data.person_person_container_data_0 foreign key.
+        Improves JOIN performance with person_data table.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_person_container_person_fk created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.63.xml.html'>db-changelog-1.63.xml</a></TD>
+<TD VALIGN="top">
+1.63-011-idx-committee-proposal-against-fk</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create index on committee_proposal_component_0.against_proposal_container_c_0 foreign key.
+        Improves JOIN performance with proposal_container table.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_committee_proposal_against_fk created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.63.xml.html'>db-changelog-1.63.xml</a></TD>
+<TD VALIGN="top">
+1.63-012-idx-committee-proposal-container-fk</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create index on committee_proposal_component_0.committee_proposal_container_0 foreign key.
+        Improves JOIN performance with committee_proposal_container table.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_committee_proposal_container_fk created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.63.xml.html'>db-changelog-1.63.xml</a></TD>
+<TD VALIGN="top">
+1.63-013-idx-committee-proposal-document-fk</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create index on committee_proposal_component_0.document_committee_proposal__0 foreign key.
+        Improves JOIN performance with document table.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_committee_proposal_document_fk created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.63.xml.html'>db-changelog-1.63.xml</a></TD>
+<TD VALIGN="top">
+1.63-014-idx-committee-proposal-list-fk</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create index on committee_proposal_data.committee_proposal_list_comm_0 foreign key.
+        Improves JOIN performance with committee_proposal_list table.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_committee_proposal_list_fk created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.63.xml.html'>db-changelog-1.63.xml</a></TD>
+<TD VALIGN="top">
+1.63-015-idx-assignment-data-list-fk</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create index on assignment_data.assignment_list_person_assig_0 foreign key.
+        Improves JOIN performance with assignment_list table.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_assignment_data_list_fk created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.63.xml.html'>db-changelog-1.63.xml</a></TD>
+<TD VALIGN="top">
+1.63-016-idx-assignment-element-uppdrag-fk</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create index on assignment_element.uppdrag_person_assignment_el_0 foreign key.
+        Improves JOIN performance with uppdrag table.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_assignment_element_uppdrag_fk created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.63.xml.html'>db-changelog-1.63.xml</a></TD>
+<TD VALIGN="top">
+1.63-017-idx-doc-activity-list-fk</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create index on document_activity_data.document_activities_document_0 foreign key.
+        Improves JOIN performance with document_activities table.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_doc_activity_list_fk created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.63.xml.html'>db-changelog-1.63.xml</a></TD>
+<TD VALIGN="top">
+1.63-018-idx-doc-attachment-list-fk</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create index on document_attachment.document_attachment_list_doc_0 foreign key.
+        Improves JOIN performance with document_attachment_list table.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_doc_attachment_list_fk created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.63.xml.html'>db-changelog-1.63.xml</a></TD>
+<TD VALIGN="top">
+1.63-019-idx-doc-detail-list-fk</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create index on document_detail_data.document_detail_list_documen_0 foreign key.
+        Improves JOIN performance with document_detail_list table.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_doc_detail_list_fk created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.63.xml.html'>db-changelog-1.63.xml</a></TD>
+<TD VALIGN="top">
+1.63-020-idx-doc-element-container-fk</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create index on document_element.dokument_document_container__0 foreign key.
+        Improves JOIN performance with document_container table.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_doc_element_container_fk created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.63.xml.html'>db-changelog-1.63.xml</a></TD>
+<TD VALIGN="top">
+1.63-021-idx-doc-person-ref-list-fk</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create index on document_person_reference_da_0.document_person_reference_li_1 foreign key.
+        Improves JOIN performance with document_person_reference_list table.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_doc_person_ref_list_fk created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.63.xml.html'>db-changelog-1.63.xml</a></TD>
+<TD VALIGN="top">
+1.63-022-idx-doc-proposal-container-fk</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create index on document_proposal_container.proposal_document_proposal_c_0 foreign key.
+        Improves JOIN performance with proposal table.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_doc_proposal_container_fk created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.63.xml.html'>db-changelog-1.63.xml</a></TD>
+<TD VALIGN="top">
+1.63-023-idx-doc-reference-list-fk</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create index on document_reference_data.document_reference_list_docu_0 foreign key.
+        Improves JOIN performance with document_reference_list table.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_doc_reference_list_fk created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.63.xml.html'>db-changelog-1.63.xml</a></TD>
+<TD VALIGN="top">
+1.63-024-idx-person-detail-element-fk</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create index on person_detail_element.detail_list_person_detail_el_0 foreign key.
+        Improves JOIN performance with detail_list table.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_person_detail_element_fk created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.63.xml.html'>db-changelog-1.63.xml</a></TD>
+<TD VALIGN="top">
+1.63-025-idx-person-element-assignment-fk</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create index on person_element.person_assignment_element_pe_0 foreign key.
+        Improves JOIN performance with person_assignment_element table.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_person_element_assignment_fk created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.63.xml.html'>db-changelog-1.63.xml</a></TD>
+<TD VALIGN="top">
+1.63-026-idx-person-element-detail-fk</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create index on person_element.person_detail_element_person_0 foreign key.
+        Improves JOIN performance with person_detail_element table.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_person_element_detail_fk created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.63.xml.html'>db-changelog-1.63.xml</a></TD>
+<TD VALIGN="top">
+1.63-027-idx-person-element-container-fk</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create index on person_element.person_person_container_elem_0 foreign key.
+        Improves JOIN performance with person_container table.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_person_element_container_fk created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.63.xml.html'>db-changelog-1.63.xml</a></TD>
+<TD VALIGN="top">
+1.63-028-idx-sweden-party-region-fk</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create index on sweden_political_party.parties_sweden_election_regi_0 foreign key.
+        Improves JOIN performance with sweden_election_region table.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_sweden_party_region_fk created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.63.xml.html'>db-changelog-1.63.xml</a></TD>
+<TD VALIGN="top">
+1.63-verification</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Verification changeset: Confirms all 28 Priority 1 FK indexes were created successfully.
+        
+        This changeset validates that the indexes exist and provides statistics about
+        the newly created indexes. It does not modify the database.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.63.xml.html'>db-changelog-1.63.xml</a></TD>
+<TD VALIGN="top">
+1.63-completion</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Completion changeset: Updates table statistics after index creation.
+        
+        Running ANALYZE ensures PostgreSQL's query planner is aware of the new indexes
+        and can use them effectively in query plans. This is critical for achieving
+        the expected 10-100x performance improvements.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.64.xml.html'>db-changelog-1.64.xml</a></TD>
+<TD VALIGN="top">
+1.64-intro</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Database Changelog v1.64 - Temporal Analysis Performance Indexes (4 Indexes)
+        
+        PERFORMANCE OPTIMIZATION: Creates 4 missing composite temporal indexes for
+        vote_data table to optimize 35 temporal analysis views.
+        
+        Expected Performance Improvement: 20-40% reduction in temporal aggregation queries
+        
+        Affected Views: 35 temporal analysis views across 4 aggregation levels
+        - Daily Aggregations: 8 views (ballot politician/party/summary daily)
+        - Weekly Aggregations: 6 views (ballot politician/party/summary weekly)
+        - Monthly Aggregations: 4 views (ballot politician/party/summary monthly)
+        - Annual Aggregations: 8 views (ballot politician/party/summary annual)
+        - Temporal Trends: 9 views (decision trends, election cycle trends, etc.)
+        
+        New Composite Indexes:
+        1. idx_vote_data_ballot_date - Ballot ID + vote date composite
+        2. idx_vote_data_party_date - Party + vote date composite
+        3. idx_vote_data_politician_date - Politician ID + vote date composite
+        4. idx_vote_data_aggregation_cover - Covering index for common aggregations
+        
+        Analysis Report: TEMPORAL_ANALYSIS_PERFORMANCE_REPORT.md
+        GitHub Issue: Hack23/cia#8277</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.64.xml.html'>db-changelog-1.64.xml</a></TD>
+<TD VALIGN="top">
+1.64-001-idx-vote-data-ballot-date</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create composite index on vote_data (ballot_id, vote_date) for temporal ballot queries.
+        
+        Benefits:
+        - Optimizes ballot summary views with date filtering
+        - Supports ORDER BY vote_date with ballot_id filtering
+        - Enables efficient date range queries per ballot
+        
+        Used By:
+        - view_riksdagen_vote_data_ballot_summary_daily
+        - view_riksdagen_vote_data_ballot_summary_weekly
+        - view_riksdagen_vote_data_ballot_summary_monthly
+        - view_riksdagen_vote_data_ballot_summary_annual
+        
+        Note: Uses CONCURRENTLY for zero-downtime index creation in production.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.64.xml.html'>db-changelog-1.64.xml</a></TD>
+<TD VALIGN="top">
+1.64-002-idx-vote-data-party-date</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create composite index on vote_data (party, vote_date) for temporal party analysis.
+        
+        Benefits:
+        - Optimizes party summary views with temporal filtering
+        - Supports party voting trend analysis over time
+        - Enables efficient party comparison across time periods
+        
+        Used By:
+        - view_riksdagen_vote_data_ballot_party_summary_daily
+        - view_riksdagen_vote_data_ballot_party_summary_weekly
+        - view_riksdagen_vote_data_ballot_party_summary_monthly
+        - view_riksdagen_vote_data_ballot_party_summary_annual
+        - view_riksdagen_party_ballot_support_annual_summary
+        - view_decision_temporal_trends
+        - view_election_cycle_temporal_trends
+        
+        Note: Uses CONCURRENTLY for zero-downtime index creation in production.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.64.xml.html'>db-changelog-1.64.xml</a></TD>
+<TD VALIGN="top">
+1.64-003-idx-vote-data-politician-date</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create composite index on vote_data (intressent_id, vote_date) for temporal politician analysis.
+        
+        Benefits:
+        - Optimizes politician voting history queries with date filters
+        - Supports politician performance tracking over time
+        - Enables efficient politician comparison within time periods
+        
+        Used By:
+        - view_riksdagen_vote_data_ballot_politician_summary_daily
+        - view_riksdagen_vote_data_ballot_politician_summary_weekly
+        - view_riksdagen_vote_data_ballot_politician_summary_monthly
+        - view_riksdagen_vote_data_ballot_politician_summary_annual
+        
+        Note: Uses CONCURRENTLY for zero-downtime index creation in production.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.64.xml.html'>db-changelog-1.64.xml</a></TD>
+<TD VALIGN="top">
+1.64-004-idx-vote-data-aggregation-cover</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create covering index on vote_data for common temporal aggregation queries.
+        
+        This is a covering index that includes frequently accessed columns to enable
+        index-only scans without touching the table heap.
+        
+        Benefits:
+        - Enables index-only scans for aggregation queries
+        - Reduces I/O by avoiding heap access
+        - Optimizes COUNT, SUM, AVG aggregations by date and party
+        
+        Columns:
+        - Index Keys: vote_date, party, vote (for filtering/grouping)
+        - INCLUDE: ballot_id, intressent_id (for avoiding heap access)
+        
+        Used By: All temporal aggregation views that group by date/party/vote
+        
+        Note: PostgreSQL 11+ supports INCLUDE clause for covering indexes.
+        Liquibase limitation: createIndex doesn't support INCLUDE clause natively.
+        Alternative: Using sql changeset for PostgreSQL-specific syntax.
+        Uses CONCURRENTLY for zero-downtime index creation in production.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.64.xml.html'>db-changelog-1.64.xml</a></TD>
+<TD VALIGN="top">
+1.64-999-verification</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Verification queries for temporal analysis performance indexes.
+        
+        This changeset documents verification steps but doesn't execute them.
+        Run these queries manually to verify index effectiveness:
+        
+        1. Verify all indexes created:
+           SELECT indexname, tablename, indexdef 
+           FROM pg_indexes 
+           WHERE schemaname = 'public' 
+             AND indexname LIKE 'idx_vote_data_%'
+           ORDER BY indexname;
+        
+        2. Test index usage on temporal queries:
+           EXPLAIN (ANALYZE, BUFFERS) 
+           SELECT COUNT(*), party, DATE_TRUNC('month', vote_date) AS month
+           FROM vote_data 
+           WHERE vote_date >= CURRENT_DATE - INTERVAL '12 months'
+           GROUP BY party, month;
+        
+        3. Verify covering index effectiveness:
+           EXPLAIN (ANALYZE, BUFFERS)
+           SELECT vote_date, party, COUNT(*) 
+           FROM vote_data 
+           WHERE vote_date >= '2024-01-01' AND party = 'S'
+           GROUP BY vote_date, party;
+        
+        Expected: All queries should use new composite indexes.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.65.xml.html'>db-changelog-1.65.xml</a></TD>
+<TD VALIGN="top">
+1.65-intro</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Database Changelog v1.65 - Pattern Recognition Performance Optimization
+        
+        PERFORMANCE OPTIMIZATION: Creates 5 missing critical indexes and resolves
+        5 high-impact performance bottlenecks in Pattern Recognition framework.
+        
+        Expected Performance Improvement: 60% faster on complex pattern detection queries
+        
+        Affected Views: 23 pattern recognition views
+        - Voting Anomaly Detection: 7 views
+        - Behavioral Pattern Analysis: 8 views
+        - Trend Analysis: 8 views
+        
+        Critical Indexes Created:
+        1. idx_vote_network_ballot_person - Network analysis self-join optimization
+        2. idx_document_made_public_date - Decision temporal trends optimization
+        3. idx_vote_person_party_date - Behavioral patterns optimization
+        4. idx_violation_party_date - Party effectiveness trends optimization
+        5. idx_assignment_ministry_person_dates - Ministry assignment optimization
+        
+        View Optimizations:
+        1. view_election_cycle_anomaly_pattern - Fixed Cartesian join ON (1=1)
+        
+        Analysis Report: PATTERN_RECOGNITION_PERFORMANCE_REPORT.md
+        GitHub Issue: Hack23/cia#8278</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.65.xml.html'>db-changelog-1.65.xml</a></TD>
+<TD VALIGN="top">
+1.65-001-idx-vote-network-ballot-person</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create composite index for network analysis self-join optimization.
+        
+        Critical for view_riksdagen_politician_influence_metrics which performs
+        O(n²) self-join on vote_data table. With 3.5M votes and 350 politicians,
+        this creates 122K pair combinations.
+        
+        Benefits:
+        - Optimizes self-join on ballot_id and intressent_id
+        - Includes vote column for filtering (JA/NEJ votes only)
+        - Filters to votes since 2020 to reduce index size
+        - Expected: Reduce query time from 5-15s to 1-3s (80% improvement)
+        
+        Used By:
+        - view_riksdagen_politician_influence_metrics (co-voting analysis)
+        
+        Note: Uses CONCURRENTLY for zero-downtime index creation in production.
+        Partial index with WHERE clause reduces index size by 66%.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.65.xml.html'>db-changelog-1.65.xml</a></TD>
+<TD VALIGN="top">
+1.65-002-idx-document-made-public-date</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create index on document_data.made_public_date for temporal trend queries.
+        
+        Critical for view_decision_temporal_trends which uses 8 window functions
+        with overlapping frames (7/30/90-day moving averages) over 5 years of data.
+        
+        Benefits:
+        - Optimizes ORDER BY made_public_date DESC
+        - Enables efficient date range filtering
+        - Supports window function computations
+        - Expected: Reduce query time from 3s to 1.8s (40% improvement)
+        
+        Used By:
+        - view_decision_temporal_trends (daily decision analysis)
+        - view_ministry_decision_impact (ministry effectiveness)
+        
+        Note: Uses DESC for reverse chronological queries (most common pattern).
+        Partial index filters out NULL dates to reduce index size.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.65.xml.html'>db-changelog-1.65.xml</a></TD>
+<TD VALIGN="top">
+1.65-003-idx-vote-person-party-date</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create composite index for politician behavioral pattern analysis.
+        
+        Critical for view_politician_behavioral_trends which uses 7 window functions
+        with LAG and 3-month moving averages. Performs 90,000 window computations
+        (2,500 politicians × 36 months).
+        
+        Benefits:
+        - Optimizes politician voting history queries
+        - Supports PARTITION BY intressent_id in window functions
+        - Enables efficient party-based filtering
+        - Expected: Reduce query time from 4s to 2.6s (35% improvement)
+        
+        Used By:
+        - view_politician_behavioral_trends (behavioral pattern detection)
+        - view_riksdagen_voting_anomaly_detection (anomaly detection)
+        - view_politician_risk_summary (risk assessment)
+        
+        Note: Partial index filters to last 3 years to reduce index size.
+        Column order: person → party → date optimizes common query patterns.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.65.xml.html'>db-changelog-1.65.xml</a></TD>
+<TD VALIGN="top">
+1.65-004-idx-violation-party-date</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create composite index for party effectiveness trend analysis.
+        
+        Critical for view_party_effectiveness_trends which performs multi-source
+        aggregation (voting + documents + violations) with complex JOINs.
+        Query time: 800ms-1.5s, target: < 800ms.
+        
+        Benefits:
+        - Optimizes party violation lookups
+        - Supports date-ordered violation retrieval
+        - Enables efficient active violation filtering
+        - Expected: Reduce query time from 1.5s to < 800ms
+        
+        Used By:
+        - view_party_effectiveness_trends (party performance tracking)
+        - view_party_risk_summary (party risk assessment)
+        
+        Note: Partial index filters to PARTY resource type and ACTIVE status.
+        Reduces index size by 75% while maintaining performance.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.65.xml.html'>db-changelog-1.65.xml</a></TD>
+<TD VALIGN="top">
+1.65-005-idx-assignment-ministry-person-dates</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create composite index for ministry assignment lookups.
+        
+        Optimizes queries that join assignment_data for ministry-related analysis.
+        Used in multiple pattern recognition views that track politician roles
+        and ministry effectiveness.
+        
+        Benefits:
+        - Optimizes ministry assignment lookups by org_code
+        - Supports person-based assignment queries
+        - Enables efficient date range filtering (from_date, to_date)
+        - Expected: 30-40% improvement on ministry-related queries
+        
+        Used By:
+        - view_ministry_effectiveness_trends (ministry performance)
+        - view_riksdagen_politician_career_trajectory (career tracking)
+        - view_riksdagen_politician_role_evolution (role changes)
+        
+        Note: Partial index filters to Departement assignments only.
+        Column order optimizes common query patterns: ministry → person → dates.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.65.xml.html'>db-changelog-1.65.xml</a></TD>
+<TD VALIGN="top">
+1.65-010-fix-election-cycle-cartesian-join</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix CRITICAL Cartesian join in view_election_cycle_anomaly_pattern.
+        
+        Issue: Two LEFT JOINs use ON (1 = 1) causing Cartesian product explosion.
+        - LEFT JOIN view_riksdagen_voting_anomaly_detection vad ON (1 = 1)
+        - LEFT JOIN view_politician_risk_summary prs ON (1 = 1)
+        
+        Impact: With 1,000 rows in vad and 350 rows in prs across 37 election_cycle_periods, generates ~12.95M rows (37 × 1,000 × 350)!
+        Current query time: 8 seconds, Target: 0.8 seconds (90% improvement)
+        
+        Fix: Remove ON (1 = 1) joins entirely since these views don't have proper
+        join keys with election_cycle_periods. Instead, aggregate these views
+        separately and include summary statistics in the main query.
+        
+        Strategy: Use subqueries to compute aggregates from vad and prs at the
+        appropriate scope, eliminating the Cartesian join while preserving metrics.
+        
+        Reference: PATTERN_RECOGNITION_PERFORMANCE_REPORT.md Section 5 (Top 5 Concerns)</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.65.xml.html'>db-changelog-1.65.xml</a></TD>
+<TD VALIGN="top">
+1.65-999-verification</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Verification queries for pattern recognition performance optimization.
+        
+        This changeset documents verification steps but doesn't execute them.
+        Run these queries manually to verify optimization effectiveness:
+        
+        1. Verify all indexes created:
+           SELECT indexname, tablename, indexdef 
+           FROM pg_indexes 
+           WHERE schemaname = 'public' 
+             AND (indexname LIKE 'idx_vote_network%' 
+                  OR indexname LIKE 'idx_document_made%'
+                  OR indexname LIKE 'idx_vote_person%'
+                  OR indexname LIKE 'idx_violation_party%'
+                  OR indexname LIKE 'idx_assignment_ministry%')
+           ORDER BY indexname;
+        
+        2. Test network analysis index effectiveness:
+           EXPLAIN (ANALYZE, BUFFERS) 
+           SELECT * FROM view_riksdagen_politician_influence_metrics 
+           LIMIT 100;
+           -- Look for "Index Scan using idx_vote_network_ballot_person"
+        
+        3. Test Cartesian join fix:
+           EXPLAIN (ANALYZE, BUFFERS) 
+           SELECT * FROM view_election_cycle_anomaly_pattern 
+           LIMIT 10;
+           -- Verify NO "Nested Loop" with "Join Filter: (1 = 1)"
+           -- Should see proper subqueries instead
+        
+        4. Test decision temporal trends:
+           EXPLAIN (ANALYZE, BUFFERS)
+           SELECT * FROM view_decision_temporal_trends 
+           WHERE decision_day >= CURRENT_DATE - INTERVAL '1 year'
+           LIMIT 100;
+           -- Look for "Index Scan using idx_document_made_public_date"
+        
+        Expected Results:
+        - All 5 indexes created successfully
+        - Network analysis: 80% faster (5-15s → 1-3s)
+        - Cartesian join: 90% faster (8s → 0.8s)
+        - Decision trends: 40% faster (3s → 1.8s)
+        - Overall: 60% improvement on complex pattern detection queries</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.66.xml.html'>db-changelog-1.66.xml</a></TD>
+<TD VALIGN="top">
+1.66-idx-vote-data-covoting</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Composite index for co-voting analysis in view_riksdagen_politician_influence_metrics.
+        
+        Supports: Politician influence network analysis, co-voting pair detection
+        Expected Impact: 10-20% improvement with larger datasets
+        
+        Current Status: Excellent performance (0.389ms) maintained, index supports future scale</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_vote_data_covoting created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.66.xml.html'>db-changelog-1.66.xml</a></TD>
+<TD VALIGN="top">
+1.66-idx-vote-data-coalition</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Composite index for coalition matrix in view_riksdagen_coalition_alignment_matrix.
+        
+        Supports: Party coalition alignment analysis, voting pattern heatmaps
+        Expected Impact: 5-10% improvement with larger datasets
+        
+        Current Status: Excellent performance (0.070ms) maintained, index supports future scale</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_vote_data_coalition created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.66.xml.html'>db-changelog-1.66.xml</a></TD>
+<TD VALIGN="top">
+1.66-idx-politician-doc-summary</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Index on materialized view for party member queries (after population).
+        
+        Supports: view_riksdagen_party_member queries
+        Expected Impact: 50-80% improvement in party member queries
+        
+        Prerequisite: Materialized view must be populated first (Issue #8282)
+        Current Status: Awaiting materialized view population</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_politician_doc_summary_person_id created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.66.xml.html'>db-changelog-1.66.xml</a></TD>
+<TD VALIGN="top">
+1.66-idx-ballot-party-summary</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Index on materialized view for party support queries (after population).
+        
+        Supports: Coalition evolution analysis
+        Expected Impact: 50-80% improvement in party support queries
+        
+        Prerequisite: Materialized view must be populated first (Issue #8282)
+        Current Status: Awaiting materialized view population</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_ballot_party_summary_party created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.67.xml.html'>db-changelog-1.67.xml</a></TD>
+<TD VALIGN="top">
+1.67-idx-vote-data-temporal</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Temporal composite index for electoral forecasting and voting trend analysis.
+        
+        Supports: Electoral forecasting views (5 views), voting trend predictions
+        Query Optimization: Time-series queries with date ranges and person filtering
+        Expected Impact: 70%+ improvement in electoral forecasting (10-20s to under 3s)
+        
+        Used by views:
+        - view_election_cycle_predictive_intelligence
+        - view_riksdagen_election_proximity_trends
+        - view_riksdagen_politician_career_trajectory
+        - view_riksdagen_politician_longevity_analysis</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_vote_data_temporal created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.67.xml.html'>db-changelog-1.67.xml</a></TD>
+<TD VALIGN="top">
+1.67-idx-vote-data-party-temporal</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Party-centric temporal index for trend prediction and coalition evolution analysis.
+        
+        Supports: Trend prediction views (4 views), party coalition evolution
+        Query Optimization: Party-level aggregations over time
+        Expected Impact: 60%+ improvement in trend prediction (5-12s  to  under 2s)
+        
+        Used by views:
+        - view_riksdagen_party_coalition_evolution
+        - view_riksdagen_party_longitudinal_performance
+        - view_riksdagen_party_electoral_trends
+        - view_party_effectiveness_trends</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_vote_data_party_temporal created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.67.xml.html'>db-changelog-1.67.xml</a></TD>
+<TD VALIGN="top">
+1.67-idx-assignment-data-temporal</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Temporal index for role evolution tracking and influence prediction.
+        
+        Supports: Influence prediction views (2 views), role evolution analysis
+        Query Optimization: Time-series role assignments and career progression
+        Expected Impact: 40%+ improvement in influence prediction (3-5s  to  under 2s)
+        
+        Used by views:
+        - view_riksdagen_politician_role_evolution
+        - view_riksdagen_politician_career_trajectory</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_assignment_data_temporal created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.67.xml.html'>db-changelog-1.67.xml</a></TD>
+<TD VALIGN="top">
+1.67-idx-assignment-data-person-roles</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Person-centric role index for career trajectory and behavioral prediction.
+        
+        Supports: Behavioral prediction views, career analysis
+        Query Optimization: Per-person role filtering and aggregations
+        Expected Impact: 30%+ improvement in career trajectory queries
+        
+        Used by views:
+        - view_riksdagen_politician_career_trajectory
+        - view_riksdagen_politician_longevity_analysis</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_assignment_data_person_roles created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.67.xml.html'>db-changelog-1.67.xml</a></TD>
+<TD VALIGN="top">
+1.67-idx-document-data-temporal</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Temporal index for document activity trends and scenario analysis.
+        
+        Supports: Scenario analysis views (3 views), policy impact forecasting
+        Query Optimization: Time-series document activity and policy trends
+        Expected Impact: 60%+ improvement in scenario analysis (8-15s  to  under 3s)
+        
+        Used by views:
+        - view_decision_temporal_trends
+        - view_ministry_effectiveness_trends
+        - view_riksdagen_election_proximity_trends</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_document_data_temporal created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.67.xml.html'>db-changelog-1.67.xml</a></TD>
+<TD VALIGN="top">
+1.67-idx-person-data-party</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Party membership index for coalition scenario analysis.
+        
+        Supports: Coalition scenario analysis, party member queries
+        Query Optimization: Party-based filtering and member counts
+        Expected Impact: 20%+ improvement in coalition queries
+        
+        Used by views:
+        - view_riksdagen_party_coalition_evolution
+        - view_election_cycle_comparative_analysis</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_person_data_party created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.67.xml.html'>db-changelog-1.67.xml</a></TD>
+<TD VALIGN="top">
+1.67-idx-vote-data-window-partition</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Window function optimization index for PARTITION BY operations.
+        
+        Supports: All predictive views using window functions (14 views)
+        Query Optimization: RANK, LAG, LEAD, NTILE, moving averages
+        Expected Impact: 30-50% improvement in window function queries
+        
+        Window functions optimized:
+        - RANK/PERCENT_RANK/NTILE: 45+ instances across views
+        - LAG/LEAD: 38+ instances for trend analysis
+        - Moving averages: 7-day, 30-day, 90-day windows</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_vote_data_window_partition created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.67.xml.html'>db-changelog-1.67.xml</a></TD>
+<TD VALIGN="top">
+1.67-idx-assignment-window-partition</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Window function optimization for career trajectory analysis.
+        
+        Supports: Career trajectory and role evolution views
+        Query Optimization: LAG/LEAD operations on role transitions
+        Expected Impact: 25%+ improvement in career analysis queries
+        
+        Used by views:
+        - view_riksdagen_politician_role_evolution (5 window functions)
+        - view_riksdagen_politician_career_trajectory (7 window functions)</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_assignment_window_partition created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.67.xml.html'>db-changelog-1.67.xml</a></TD>
+<TD VALIGN="top">
+1.67-idx-document-data-org-temporal</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Organization-temporal index for ministry effectiveness trend analysis.
+        
+        Supports: Ministry effectiveness views, organizational trend analysis
+        Query Optimization: Per-ministry temporal aggregations
+        Expected Impact: 40%+ improvement in ministry trend queries
+        
+        Used by views:
+        - view_ministry_effectiveness_trends
+        - view_riksdagen_election_proximity_trends</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_document_data_org_temporal_full created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.67.xml.html'>db-changelog-1.67.xml</a></TD>
+<TD VALIGN="top">
+1.67-idx-vote-data-ballot-temporal</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Ballot-centric temporal index for detailed electoral forecasting.
+        
+        Supports: Ballot-level analysis and detailed voting patterns
+        Query Optimization: Per-ballot temporal analysis
+        Expected Impact: 35%+ improvement in ballot-level queries
+        
+        Used by views:
+        - view_election_cycle_comparative_analysis
+        - view_riksdagen_pre_election_quarterly_activity</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_vote_data_ballot_temporal created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.69.xml.html'>db-changelog-1.69.xml</a></TD>
+<TD VALIGN="top">
+1.69-001-materialize-decision_temporal_trends</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Convert view_decision_temporal_trends to MATERIALIZED VIEW for 40% performance improvement.
+        
+        Issue: 8 window functions with overlapping frames (7/30/90-day moving averages)
+        Current: 3 seconds
+        Target: 1.8 seconds
+        Refresh: Daily at 02:00 UTC</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.69.xml.html'>db-changelog-1.69.xml</a></TD>
+<TD VALIGN="top">
+1.69-001-01-index-decision_temporal_day</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create index idx_decision_temporal_day on view_decision_temporal_trends for query optimization</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_decision_temporal_day created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.69.xml.html'>db-changelog-1.69.xml</a></TD>
+<TD VALIGN="top">
+1.69-001-02-index-decision_temporal_quarter</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create index idx_decision_temporal_quarter on view_decision_temporal_trends for query optimization</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_decision_temporal_quarter created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.69.xml.html'>db-changelog-1.69.xml</a></TD>
+<TD VALIGN="top">
+1.69-002-materialize-riksdagen_politician_influence_metrics</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Convert view_riksdagen_politician_influence_metrics to MATERIALIZED VIEW for 80% performance improvement.
+        
+        Issue: Network analysis with self-join on vote_data (O(n²) complexity)
+        Current: 5-15 seconds
+        Target: 1-3 seconds
+        Refresh: Weekly on Sunday at 03:00 UTC</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.69.xml.html'>db-changelog-1.69.xml</a></TD>
+<TD VALIGN="top">
+1.69-002-01-index-influence_person</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create index idx_influence_person on view_riksdagen_politician_influence_metrics for query optimization</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_influence_person created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.69.xml.html'>db-changelog-1.69.xml</a></TD>
+<TD VALIGN="top">
+1.69-002-02-index-influence_score</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create index idx_influence_score on view_riksdagen_politician_influence_metrics for query optimization</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_influence_score created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.69.xml.html'>db-changelog-1.69.xml</a></TD>
+<TD VALIGN="top">
+1.69-003-materialize-party_effectiveness_trends</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Convert view_party_effectiveness_trends to MATERIALIZED VIEW for 50% performance improvement.
+        
+        Issue: Multi-source aggregation (voting + documents + violations) with 5 windows
+        Current: 800ms-1.5s
+        Target: <800ms
+        Refresh: Quarterly on 1st at 05:00 UTC</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.69.xml.html'>db-changelog-1.69.xml</a></TD>
+<TD VALIGN="top">
+1.69-003-01-index-effectiveness_party_period</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create index idx_effectiveness_party_period on view_party_effectiveness_trends for query optimization</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_effectiveness_party_period created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.69.xml.html'>db-changelog-1.69.xml</a></TD>
+<TD VALIGN="top">
+1.69-003-02-index-effectiveness_score</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create index idx_effectiveness_score on view_party_effectiveness_trends for query optimization</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_effectiveness_score created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.69.xml.html'>db-changelog-1.69.xml</a></TD>
+<TD VALIGN="top">
+1.69-004-materialize-politician_behavioral_trends</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Convert view_politician_behavioral_trends to MATERIALIZED VIEW for 35% performance improvement.
+        
+        Issue: 7 window functions with LAG and 3-month moving averages
+        Current: 4 seconds
+        Target: 2.6 seconds
+        Refresh: Monthly on 1st at 04:00 UTC</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.69.xml.html'>db-changelog-1.69.xml</a></TD>
+<TD VALIGN="top">
+1.69-004-01-index-behavioral_person_period</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create index idx_behavioral_person_period on view_politician_behavioral_trends for query optimization</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_behavioral_person_period created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.69.xml.html'>db-changelog-1.69.xml</a></TD>
+<TD VALIGN="top">
+1.69-004-02-index-behavioral_trend_score</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create index idx_behavioral_trend_score on view_politician_behavioral_trends for query optimization</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_behavioral_trend_score created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.69.xml.html'>db-changelog-1.69.xml</a></TD>
+<TD VALIGN="top">
+1.69-005-materialize-election_cycle_temporal_trends</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Convert view_election_cycle_temporal_trends to MATERIALIZED VIEW for 70% performance improvement.
+        
+        Issue: 6 CTEs with 5 JOINs, complex temporal aggregation
+        Current: 5-10 seconds
+        Target: <3 seconds
+        Refresh: Post-election (manual trigger)</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.69.xml.html'>db-changelog-1.69.xml</a></TD>
+<TD VALIGN="top">
+1.69-005-01-index-election_temporal_cycle</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create index idx_election_temporal_cycle on view_election_cycle_temporal_trends for query optimization</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_election_temporal_cycle created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.69.xml.html'>db-changelog-1.69.xml</a></TD>
+<TD VALIGN="top">
+1.69-005-02-index-election_temporal_year</TD>
+<TD VALIGN="top">
+<a href='../authors/performance-engineer.html'>performance-engineer</a></TD>
+<TD VALIGN="top">
+Executed 1/24/26, 3:25 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create index idx_election_temporal_year on view_election_cycle_temporal_trends for query optimization</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Index idx_election_temporal_year created</td></TR></TABLE>&nbsp;</P><hr>Generated: 4/11/26, 2:59 PM<BR>Against: eris @ jdbc:postgresql://localhost:5432/cia_prod (Default Schema: public)<BR>Change Log: db-changelog-1.0.xml<BR><BR>Generated By: <a href='https://www.liquibase.com' target='_TOP'>Liquibase 5.0.2</a></body></html>

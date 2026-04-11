@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CoalitionPredictionService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">service.impl</a> &gt; <a href="index.source.html" class="el_package">com.hack23.cia.service.impl</a> &gt; <span class="el_source">CoalitionPredictionService.java</span></div><h1>CoalitionPredictionService.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2010-2025 James Pether Sörling
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ *	$Id$
+ *  $HeadURL$
+ */
+package com.hack23.cia.service.impl;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.security.access.annotation.Secured;
+
+/**
+ * Service for coalition prediction and analysis.
+ * 
+ * Provides intelligence products for:
+ * - Coalition formation likelihood
+ * - Coalition stability assessment
+ * - Party alignment analysis
+ * - Government formation scenarios
+ */
+public interface CoalitionPredictionService {
+
+	/**
+	 * Get coalition scenarios ranked by probability.
+	 * 
+	 * @param year the year or electoral period (e.g., &quot;2023/24&quot;)
+	 * @return list of coalition scenarios ordered by probability
+	 */
+	List&lt;CoalitionScenario&gt; predictCoalitions(String year);
+
+	/**
+	 * Get party alignment matrix showing voting pattern compatibility.
+	 * 
+	 * @param year the year or electoral period
+	 * @return map of party-to-party alignment scores (0.0-1.0)
+	 */
+	Map&lt;String, Map&lt;String, Double&gt;&gt; getAlignmentMatrix(String year);
+
+	/**
+	 * Calculate coalition stability index.
+	 * 
+	 * @param parties list of party short codes
+	 * @param year the year or electoral period
+	 * @return stability index (0-100)
+	 */
+	int calculateStabilityIndex(List&lt;String&gt; parties, String year);
+
+	/**
+	 * Coalition scenario data class representing a potential government formation.
+	 * This immutable class encapsulates all relevant information about a coalition scenario
+	 * including participating parties, parliamentary strength, formation probability, and stability metrics.
+	 */
+	static class CoalitionScenario {
+		private final List&lt;String&gt; parties;
+		private final int totalSeats;
+		private final double probability;
+		private final int stabilityIndex;
+		private final String coalitionType;
+		private final String blocRelationship;
+
+		/**
+		 * Constructs a new coalition scenario with defensive copying for immutability.
+		 *
+		 * @param parties the list of party IDs participating in the coalition (e.g., [&quot;S&quot;, &quot;M&quot;, &quot;C&quot;])
+		 * @param totalSeats the total number of parliamentary seats held by the coalition
+		 * @param probability the formation probability (0.0-1.0, where 1.0 = 100% likely)
+		 * @param stabilityIndex the coalition stability score (0-100, where 100 = most stable)
+		 * @param coalitionType the type of coalition (TWO_PARTY, THREE_PARTY, or FOUR_PARTY)
+		 * @param blocRelationship the political bloc relationship (e.g., LEFT_BLOC, CROSS_BLOC)
+		 */
+		public CoalitionScenario(List&lt;String&gt; parties, int totalSeats, double probability, 
+<span class="nc" id="L88">				int stabilityIndex, String coalitionType, String blocRelationship) {</span>
+			// Defensive copy to ensure immutability
+<span class="nc bnc" id="L90" title="All 2 branches missed.">			this.parties = parties != null ? new ArrayList&lt;&gt;(parties) : new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L91">			this.totalSeats = totalSeats;</span>
+<span class="nc" id="L92">			this.probability = probability;</span>
+<span class="nc" id="L93">			this.stabilityIndex = stabilityIndex;</span>
+<span class="nc" id="L94">			this.coalitionType = coalitionType;</span>
+<span class="nc" id="L95">			this.blocRelationship = blocRelationship;</span>
+<span class="nc" id="L96">		}</span>
+
+		/**
+		 * Gets the list of party IDs in this coalition.
+		 *
+		 * @return unmodifiable list of party IDs to preserve immutability
+		 */
+		public List&lt;String&gt; getParties() {
+			// Return unmodifiable view to preserve immutability
+<span class="nc" id="L105">			return Collections.unmodifiableList(parties);</span>
+		}
+
+		/**
+		 * Gets the total number of parliamentary seats.
+		 *
+		 * @return total seats held by all parties in the coalition
+		 */
+		public int getTotalSeats() {
+<span class="nc" id="L114">			return totalSeats;</span>
+		}
+
+		/**
+		 * Gets the formation probability.
+		 *
+		 * @return probability value between 0.0 and 1.0 (multiply by 100 for percentage)
+		 */
+		public double getProbability() {
+<span class="nc" id="L123">			return probability;</span>
+		}
+
+		/**
+		 * Gets the coalition stability index.
+		 *
+		 * @return stability score from 0 to 100, where higher values indicate more stable coalitions
+		 */
+		public int getStabilityIndex() {
+<span class="nc" id="L132">			return stabilityIndex;</span>
+		}
+
+		/**
+		 * Gets the coalition type.
+		 *
+		 * @return coalition type string (TWO_PARTY, THREE_PARTY, or FOUR_PARTY)
+		 */
+		public String getCoalitionType() {
+<span class="nc" id="L141">			return coalitionType;</span>
+		}
+
+		/**
+		 * Gets the political bloc relationship.
+		 *
+		 * @return bloc relationship string (e.g., LEFT_BLOC, RIGHT_BLOC, CROSS_BLOC)
+		 */
+		public String getBlocRelationship() {
+<span class="nc" id="L150">			return blocRelationship;</span>
+		}
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

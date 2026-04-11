@@ -1,0 +1,3087 @@
+<html><head><meta charset="utf-8"/><title>Changes created by author intelligence-operative</title><LINK REL ="stylesheet" TYPE="text/css" HREF="../../stylesheet.css" TITLE="Style"><SCRIPT type="text/javascript">function windowTitle(){    parent.document.title="Changes created by author intelligence-operative";}</SCRIPT></head><body BGCOLOR="white" onload="windowTitle();"><H2>Changes created by author intelligence-operative</H2>
+<p><TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TD COLSPAN='4'><FONT SIZE="+2">
+<B>Pending Changes</B></FONT></TD>
+</TR>
+<tr><td>None Found</td></tr></TABLE>&nbsp;</P><p><TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TD COLSPAN='4'><FONT SIZE="+2">
+<B>Past Changes</B></FONT></TD>
+</TR>
+<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.29.xml.html'>db-changelog-1.29.xml</a></TD>
+<TD VALIGN="top">
+intops-2025111107-politician-risk-summary</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Politician Risk Summary View
+        
+        Intelligence Purpose:
+        - Aggregate all risk indicators for each politician
+        - Provide comprehensive risk score based on rule violations, attendance (absence rates), voting effectiveness (win rates), rebel rates, and document productivity
+        - Enable rapid risk assessment and prioritization
+        - Support Drools rules integration with risk metrics
+        
+        Use Cases:
+        - Risk-based monitoring and alerting
+        - Accountability dashboard displays
+        - Investigative journalism targeting
+        - Electoral candidate vetting</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_politician_risk_summary created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.29.xml.html'>db-changelog-1.29.xml</a></TD>
+<TD VALIGN="top">
+intops-2025111107-politician-risk-idx</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Performance Indexes for Politician Risk Queries
+        
+        Indexes on frequently queried columns to support rapid risk assessment
+        and dashboard queries.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.29.xml.html'>db-changelog-1.29.xml</a></TD>
+<TD VALIGN="top">
+intops-2025111108-party-performance-metrics</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Party Performance Metrics View
+        
+        Intelligence Purpose:
+        - Aggregate party-wide performance indicators
+        - Enable comparative party analysis
+        - Track organizational effectiveness
+        - Support coalition formation assessment
+        
+        Use Cases:
+        - Electoral forecasting
+        - Government effectiveness assessment
+        - Opposition strategy analysis
+        - Coalition viability prediction</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_party_performance_metrics created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.29.xml.html'>db-changelog-1.29.xml</a></TD>
+<TD VALIGN="top">
+intops-2025111109-committee-productivity</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Committee Productivity View
+        
+        Intelligence Purpose:
+        - Track committee legislative output
+        - Measure committee effectiveness
+        - Identify underperforming committees
+        - Support resource allocation decisions
+        
+        Use Cases:
+        - Parliamentary efficiency monitoring
+        - Committee reform prioritization
+        - Policy area capacity assessment
+        - Legislative bottleneck identification</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_committee_productivity created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.30.xml.html'>db-changelog-1.30.xml</a></TD>
+<TD VALIGN="top">
+osint-2025111500-refresh-materialized-views</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Refresh Materialized Views for v1.30 Dependencies
+        
+        Purpose:
+        - Populate materialized views required by v1.30 OSINT views
+        - Ensure data availability for temporal analysis queries
+        - Execute in dependency order to handle view chains
+        
+        Note: failOnError=false because views may not exist in fresh installations
+        or may already be populated. This is safe to run multiple times.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.30.xml.html'>db-changelog-1.30.xml</a></TD>
+<TD VALIGN="top">
+osint-2025111501-politician-behavioral-trends</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Politician Behavioral Trends View
+        
+        Intelligence Purpose:
+        - Track time-series behavioral patterns for each politician
+        - Monitor absence rates, voting effectiveness, party discipline
+        - Identify behavioral changes and anomalies over time
+        - Support predictive analysis of future behavior
+        
+        Use Cases:
+        - Individual politician risk assessment
+        - Behavioral trend forecasting
+        - Anomaly detection in voting patterns
+        - Performance tracking over electoral cycles
+        
+        RISK_RULES_INTOP_OSINT.md Support:
+        - Rule P-01 to P-24: Individual politician behavior monitoring
+        - Temporal Analysis: Monthly granularity for trend detection
+        - Pattern Recognition: Behavioral cluster identification</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_politician_behavioral_trends created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.30.xml.html'>db-changelog-1.30.xml</a></TD>
+<TD VALIGN="top">
+osint-2025111502-party-effectiveness-trends</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Party Effectiveness Trends View
+        
+        Intelligence Purpose:
+        - Monitor party-level performance metrics over time
+        - Track win rates, productivity, and collaboration patterns
+        - Identify organizational strengths and weaknesses
+        - Support coalition formation analysis
+        
+        Use Cases:
+        - Party performance benchmarking
+        - Coalition viability assessment
+        - Electoral strategy analysis
+        - Organizational health monitoring
+        
+        RISK_RULES_INTOP_OSINT.md Support:
+        - Rule Pa-01 to Pa-10: Party-level behavior monitoring
+        - Temporal Analysis: Quarterly trends for strategic assessment
+        - Comparative Analysis: Cross-party benchmarking</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_party_effectiveness_trends created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.30.xml.html'>db-changelog-1.30.xml</a></TD>
+<TD VALIGN="top">
+osint-2025111503-risk-score-evolution</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Risk Score Evolution View
+        
+        Intelligence Purpose:
+        - Track historical changes in politician risk scores
+        - Monitor severity transitions (escalation/de-escalation)
+        - Identify risk patterns and triggers
+        - Support predictive risk modeling
+        
+        Use Cases:
+        - Early warning of risk escalation
+        - Risk mitigation effectiveness tracking
+        - Intervention timing optimization
+        - Risk trajectory forecasting
+        
+        RISK_RULES_INTOP_OSINT.md Support:
+        - All 45 risk rules: Comprehensive risk monitoring
+        - Temporal Analysis: Risk score time-series
+        - Predictive Intelligence: Trend extrapolation for forecasting</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_risk_score_evolution created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.30.xml.html'>db-changelog-1.30.xml</a></TD>
+<TD VALIGN="top">
+osint-2025111504-committee-productivity-matrix</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Committee Productivity Matrix View
+        
+        Intelligence Purpose:
+        - Monitor committee output and effectiveness by period
+        - Benchmark committee performance against historical data
+        - Identify productive vs. underperforming committees
+        - Track legislative workflow efficiency
+        
+        Use Cases:
+        - Committee effectiveness assessment
+        - Resource allocation optimization
+        - Legislative process monitoring
+        - Institutional performance tracking
+        
+        RISK_RULES_INTOP_OSINT.md Support:
+        - Rule C-01 to C-04: Committee performance monitoring
+        - Comparative Analysis: Cross-committee benchmarking
+        - Temporal Analysis: Productivity trends over time</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_committee_productivity_matrix created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.30.xml.html'>db-changelog-1.30.xml</a></TD>
+<TD VALIGN="top">
+osint-2025111505-performance-indexes</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Performance Indexes for OSINT Intelligence Queries
+        
+        These indexes optimize the most common temporal queries used in
+        intelligence analysis and dashboard operations.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.31.xml.html'>db-changelog-1.31.xml</a></TD>
+<TD VALIGN="top">
+ministry-2025111701-effectiveness-trends</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Ministry Effectiveness Trends View
+        
+        Intelligence Purpose:
+        - Track ministry-level performance metrics over time
+        - Monitor document production, legislative output, and staffing
+        - Identify productive vs. underperforming ministries
+        - Support government effectiveness assessment
+        
+        Use Cases:
+        - Ministry performance benchmarking
+        - Government capacity assessment
+        - Executive accountability monitoring
+        - Cabinet effectiveness tracking
+        
+        RISK_RULES_INTOP_OSINT.md Support:
+        - Rule M-01 (MinistryLowProductivity): documents_produced metric
+        - Rule M-02 (MinistryInactiveLegislation): propositions + government_bills
+        - Rule M-03 (MinistryUnderstaffed): active_members tracking
+        - Rule M-04 (MinistryStagnation): Moving averages for trend detection</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_ministry_effectiveness_trends created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.31.xml.html'>db-changelog-1.31.xml</a></TD>
+<TD VALIGN="top">
+ministry-2025111702-productivity-matrix</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Ministry Productivity Matrix View
+        
+        Intelligence Purpose:
+        - Benchmark ministry performance against peers
+        - Identify most and least productive ministries
+        - Normalize metrics for fair comparison
+        - Support resource allocation decisions
+        
+        Use Cases:
+        - Cross-ministry performance comparison
+        - Government effectiveness assessment
+        - Budget justification analysis
+        - Coalition cabinet evaluation
+        
+        Supports comparative analysis required by ministry risk rules</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_ministry_productivity_matrix created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.31.xml.html'>db-changelog-1.31.xml</a></TD>
+<TD VALIGN="top">
+ministry-2025111703-risk-evolution</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Ministry Risk Evolution View
+        
+        Intelligence Purpose:
+        - Track historical changes in ministry risk scores
+        - Monitor risk severity transitions for ministries
+        - Identify risk patterns and triggers at ministry level
+        - Support predictive risk modeling for government effectiveness
+        
+        Use Cases:
+        - Early warning of ministry dysfunction
+        - Cabinet reshuffle prediction
+        - Government effectiveness forecasting
+        - Electoral risk assessment for governing parties
+        
+        RISK_RULES_INTOP_OSINT.md Support:
+        - Rule M-04 (MinistryStagnation): Comprehensive decline detection
+        - All ministry rules: Integrated risk scoring
+        - Temporal Analysis: Ministry risk time-series
+        - Predictive Intelligence: Government stability forecasting</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_ministry_risk_evolution created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.31.xml.html'>db-changelog-1.31.xml</a></TD>
+<TD VALIGN="top">
+ministry-2025111704-performance-indexes</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Performance Indexes for Ministry Intelligence Queries
+        
+        These indexes optimize the most common temporal queries used in
+        ministry intelligence analysis and government effectiveness dashboards.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.35.xml.html'>db-changelog-1.35.xml</a></TD>
+<TD VALIGN="top">
+1.35-intro</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Database Changelog v1.35 - Party Decision Flow View
+        
+        Creates view_riksdagen_party_decision_flow for aggregating proposal
+        decision data by party, enabling party-level legislative effectiveness
+        and coalition analysis.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.35.xml.html'>db-changelog-1.35.xml</a></TD>
+<TD VALIGN="top">
+1.35-preflight</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Pre-flight: Verify source data exists before creating view</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.35.xml.html'>db-changelog-1.35.xml</a></TD>
+<TD VALIGN="top">
+1.35-party-decision-flow-001</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create view_riksdagen_party_decision_flow
+        
+        Aggregates proposal decision data by party, committee, decision type, and time period.
+        Provides comprehensive party-level decision intelligence including:
+        - Total proposals processed
+        - Approved proposals (bifall, etc.)
+        - Rejected proposals (avslag)
+        - Approval rates
+        - Temporal trends (monthly, yearly)
+        
+        Join Path:
+        document_proposal_data → document_proposal_container → document_status_container
+        → document_data (for dates)
+        → document_person_reference_co_0/da_0 (for party info)
+        
+        Swedish Decision Terms:
+        - "bifall" = approval
+        - "avslag" = rejection
+        - "återförvisning" = referral back
+        - Other variations captured via LIKE patterns</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_party_decision_flow created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.35.xml.html'>db-changelog-1.35.xml</a></TD>
+<TD VALIGN="top">
+1.35-party-decision-flow-index-002</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create indexes on base tables for performance optimization of party decision flow queries
+        
+        Indexes on frequently joined and filtered columns:
+        - document_proposal_data.committee (for committee-specific queries)
+        - document_data.made_public_date (for temporal queries)
+        - document_person_reference_da_0.party_short_code (for party filtering)
+        
+        Note: These indexes support the view queries but are also beneficial for other queries.
+        Functional indexes on views with complex subqueries are not supported in PostgreSQL.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.35.xml.html'>db-changelog-1.35.xml</a></TD>
+<TD VALIGN="top">
+1.35-postflight</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Post-flight: Verify view creation and check initial data</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.35.xml.html'>db-changelog-1.35.xml</a></TD>
+<TD VALIGN="top">
+1.35-documentation</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Documentation for v1.35 party decision flow view
+        
+        Summary:
+        - Creates view_riksdagen_party_decision_flow for party-level decision aggregation
+        - Enables party scorecards, coalition analysis, committee effectiveness tracking
+        - Supports temporal trend analysis by year/month
+        - Includes approval rates, rejection rates, and decision type breakdowns
+        - Performance optimized with base table indexes
+        
+        Intelligence Applications:
+        - Party Legislative Effectiveness: Success rates by party
+        - Coalition Dynamics: Party alignment on proposal outcomes  
+        - Committee Influence: Party performance in different committees
+        - Temporal Trends: How party effectiveness changes over time
+        - Comparative Analysis: Party-to-party decision pattern comparison
+        
+        See DATABASE_VIEW_INTELLIGENCE_CATALOG.md for usage examples and queries.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.35.xml.html'>db-changelog-1.35.xml</a></TD>
+<TD VALIGN="top">
+1.35-politician-decision-pattern-001</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create view_riksdagen_politician_decision_pattern
+        
+        Tracks individual politician decision patterns from document_proposal_data,
+        enabling analysis of politician-level proposal success rates, committee work
+        effectiveness, and legislative productivity.
+        
+        Complements view_riksdagen_party_decision_flow by providing individual
+        politician-level decision analytics for:
+        - Politician scorecard: proposal success rate
+        - Committee specialist identification
+        - Ministry proposal support patterns
+        - Cross-party collaboration on decisions
+        
+        Join Path: Same as party decision flow view but aggregated by person_id
+        document_proposal_data → document_proposal_container → document_status_container
+        → document_data (for dates) → document_person_reference_co_0/da_0 (for person info)</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_politician_decision_pattern created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.35.xml.html'>db-changelog-1.35.xml</a></TD>
+<TD VALIGN="top">
+1.35-politician-decision-pattern-index-002</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create indexes for performance optimization of politician decision pattern queries
+        
+        Index on person_id for efficient politician-specific queries.
+        These complement the existing base table indexes created in changeSet 002.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.35.xml.html'>db-changelog-1.35.xml</a></TD>
+<TD VALIGN="top">
+1.35-politician-decision-pattern-postflight</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Post-flight: Verify politician decision pattern view creation</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.35.xml.html'>db-changelog-1.35.xml</a></TD>
+<TD VALIGN="top">
+1.35-decision-temporal-trends-001</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create view_decision_temporal_trends
+        
+        Temporal trends view for decision flow analysis from DOCUMENT_PROPOSAL_DATA,
+        enabling time-series analysis of decision patterns, seasonal variations,
+        and predictive forecasting of legislative activity.
+        
+        Features:
+        - Time-series metrics: daily/weekly/monthly/annual aggregations
+        - Moving averages (7-day, 30-day, 90-day)
+        - Year-over-year comparisons
+        - Seasonal indices (parliamentary session vs. recess)
+        - Anomaly detection support (z-score calculation)
+        
+        Intelligence Applications:
+        - Forecast legislative activity for upcoming months
+        - Detect anomalous decision volumes (bottlenecks or unusual activity)
+        - Compare current session to historical baselines
+        - Identify seasonal patterns for resource planning
+        
+        Related: Issue Hack23/cia#7922
+        Builds on: Issues Hack23/cia#7918-7921 (decision views foundation)
+        Framework: DATA_ANALYSIS_INTOP_OSINT.md - Temporal Analysis Framework</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_decision_temporal_trends created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.35.xml.html'>db-changelog-1.35.xml</a></TD>
+<TD VALIGN="top">
+1.35-decision-temporal-trends-postflight</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Post-flight: Verify temporal decision trends view creation and validate data</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.35.xml.html'>db-changelog-1.35.xml</a></TD>
+<TD VALIGN="top">
+1.35-ministry-decision-impact-001</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create view_ministry_decision_impact
+        
+        Tracks ministry-initiated proposal outcomes from DOCUMENT_PROPOSAL_DATA,
+        enabling analysis of which government ministries have the highest/lowest
+        success rates for their legislative proposals.
+        
+        Purpose:
+        - Government policy effectiveness tracking
+        - Ministry-parliament relations analysis
+        - Coalition stability indicators
+        - Policy domain success patterns
+        
+        Complements:
+        - Issue Hack23/cia#7918 (party-level decision flow)
+        - Issue Hack23/cia#7919 (politician-level decision patterns)
+        
+        Intelligence Applications:
+        - Identify ministries with low approval rates (policy effectiveness issues)
+        - Track coalition stability via ministry success patterns
+        - Committee-ministry relationship analysis
+        - Temporal trends in government legislative success
+        
+        Related: Issue Hack23/cia#7920</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_ministry_decision_impact created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.35.xml.html'>db-changelog-1.35.xml</a></TD>
+<TD VALIGN="top">
+1.35-ministry-decision-impact-index-002</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create indexes for performance optimization of ministry decision impact queries
+        
+        Index on document_data.org (ministry_code) and document_type for efficient
+        ministry-specific and government proposal queries.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.35.xml.html'>db-changelog-1.35.xml</a></TD>
+<TD VALIGN="top">
+1.35-ministry-decision-impact-postflight</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Post-flight: Verify ministry decision impact view creation and validate data</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.35.xml.html'>db-changelog-1.35.xml</a></TD>
+<TD VALIGN="top">
+1.35-final-summary</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Final documentation summary for v1.35 database changelog
+        
+        Summary of v1.35 views created:
+        1. view_riksdagen_party_decision_flow - Party-level decision aggregation
+        2. view_riksdagen_politician_decision_pattern - Individual politician decision patterns
+        3. view_decision_temporal_trends - Temporal trends and predictive analytics
+        4. view_ministry_decision_impact - Ministry proposal success rates and effectiveness
+        
+        Intelligence Value:
+        - Enables party and politician legislative effectiveness tracking
+        - Provides temporal trend analysis with moving averages
+        - Supports seasonal pattern identification
+        - Enables predictive forecasting of legislative activity
+        - Facilitates anomaly detection in decision patterns
+        - Tracks government ministry policy effectiveness and coalition stability
+        
+        See DATABASE_VIEW_INTELLIGENCE_CATALOG.md for complete documentation and usage examples.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.37.xml.html'>db-changelog-1.37.xml</a></TD>
+<TD VALIGN="top">
+fix-ministry-effectiveness-1.37-001</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_ministry_effectiveness_trends with case-insensitive org_code matching
+        
+        Root Cause: org_code values in assignment_data and view_riksdagen_politician_document
+        have inconsistent casing (e.g., "Departement" vs "departement"), causing JOIN mismatches.
+        
+        Solution: Use LOWER() on both sides of JOIN for case-insensitive matching while
+        maintaining performance with functional indexes on lowercase org_code.
+        
+        Changes:
+        - Add LOWER(org_code) in ministry_base CTE
+        - Use LOWER(doc.org) in JOIN condition
+        - Keep all other logic unchanged</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_ministry_effectiveness_trends dropped</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_ministry_effectiveness_trends created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.37.xml.html'>db-changelog-1.37.xml</a></TD>
+<TD VALIGN="top">
+fix-ministry-productivity-1.37-002</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_ministry_productivity_matrix with case-insensitive org_code matching
+        
+        Same root cause and solution as effectiveness trends view.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_ministry_productivity_matrix dropped</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_ministry_productivity_matrix created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.37.xml.html'>db-changelog-1.37.xml</a></TD>
+<TD VALIGN="top">
+fix-ministry-risk-evolution-1.37-003</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_ministry_risk_evolution with case-insensitive org_code matching
+        
+        Same root cause and solution as other ministry views.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_ministry_risk_evolution dropped</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_ministry_risk_evolution created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.37.xml.html'>db-changelog-1.37.xml</a></TD>
+<TD VALIGN="top">
+fix-coalition-alignment-1.37-004</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_coalition_alignment_matrix with expanded date range
+        
+        Root Cause: 2-year date filter too restrictive - many parties only have older vote data.
+        
+        Solution: Expand from 2 years to 5 years to capture more party interactions and
+        coalition patterns. This aligns with full electoral cycle (4 years) plus buffer.
+        
+        Changes:
+        - Change date filter from INTERVAL '2 years' to INTERVAL '5 years'
+        - Keep all other logic unchanged</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_coalition_alignment_matrix created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.37.xml.html'>db-changelog-1.37.xml</a></TD>
+<TD VALIGN="top">
+fix-politician-risk-summary-1.37-005</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_politician_risk_summary using direct vote_data aggregation
+        
+        Root Cause: Dependency on materialized view annual summary creates timing issues
+        where data may not exist for specific year calculations.
+        
+        Solution: Calculate metrics directly from vote_data table instead of using
+        pre-aggregated annual summary. This ensures view always works with available data.
+        
+        Changes:
+        - Replace annual summary LATERAL join with direct vote_data aggregation
+        - Calculate absence, win rate, and rebel rate on-the-fly
+        - Maintain all risk calculation logic</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_politician_risk_summary dropped</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_politician_risk_summary created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.38.xml.html'>db-changelog-1.38.xml</a></TD>
+<TD VALIGN="top">
+fix-risk-score-evolution-1.38-001</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_risk_score_evolution by removing materialized view dependency
+        
+        Root Cause: The view depends on view_riksdagen_vote_data_ballot_politician_summary_daily
+        (materialized) which is not populated in schema-only databases.
+        
+        Solution: Calculate metrics directly from vote_data table with monthly aggregation,
+        similar to the fix applied to view_politician_risk_summary in changelog 1.37.
+        
+        Changes:
+        - Replace materialized view JOIN with direct vote_data aggregation
+        - Calculate absence_rate, win_rate, rebel_rate on-the-fly from vote_data
+        - Maintain all risk score calculation and trending logic
+        - Keep monthly grouping for time-series analysis</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_risk_score_evolution dropped</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_risk_score_evolution created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.38.xml.html'>db-changelog-1.38.xml</a></TD>
+<TD VALIGN="top">
+fix-crisis-resilience-1.38-002</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_crisis_resilience_indicators with expanded date range
+        
+        Root Cause: 2-year date filter is too restrictive for detecting crisis patterns.
+        Similar to coalition alignment view issue (fixed in 1.37).
+        
+        Solution: Expand from 2 years to 5 years to capture more legislative activity
+        patterns and crisis response behaviors over multiple electoral cycles.
+        
+        Rationale for 5-year window:
+        - Swedish electoral cycle is 4 years, so 5 years captures >1 cycle
+        - Crisis patterns may span multiple years and require longer historical context
+        - Matches coalition alignment view (also 5 years) for consistency in cross-party analysis
+        - 3-year window (used for individual politician metrics) too short for systemic crisis detection
+        
+        Changes:
+        - Change date filter from INTERVAL '2 years' to INTERVAL '5 years'
+        - Keep all crisis detection logic unchanged</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_crisis_resilience_indicators dropped</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_crisis_resilience_indicators created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.38.xml.html'>db-changelog-1.38.xml</a></TD>
+<TD VALIGN="top">
+fix-politician-influence-1.38-003</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_politician_influence_metrics with expanded parameters
+        
+        Root Cause: 1-year date filter with 20-vote minimum threshold is too restrictive,
+        filtering out meaningful network connections and influence patterns.
+        
+        Solution: Expand date range to 3 years and lower minimum votes to 10 to capture
+        more network connections while still maintaining statistical significance.
+        
+        Changes:
+        - Change date filter from INTERVAL '1 year' to INTERVAL '3 years'
+        - Lower co-voting threshold from 20 to 10 votes
+        - Keep all influence calculation logic unchanged</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_politician_influence_metrics dropped</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_politician_influence_metrics created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.38.xml.html'>db-changelog-1.38.xml</a></TD>
+<TD VALIGN="top">
+fix-voting-anomaly-1.38-004</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_voting_anomaly_detection with expanded date range
+        
+        Root Cause: 1-year date filter provides insufficient historical context for
+        reliable anomaly detection. Pattern recognition benefits from longer periods.
+        
+        Solution: Expand from 1 year to 3 years to capture more voting patterns and
+        improve statistical significance of anomaly detection.
+        
+        Changes:
+        - Change date filter from INTERVAL '1 year' to INTERVAL '3 years'
+        - Keep all anomaly detection logic unchanged</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_voting_anomaly_detection dropped</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_voting_anomaly_detection created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.38.xml.html'>db-changelog-1.38.xml</a></TD>
+<TD VALIGN="top">
+fix-coalition-alignment-1.38-0022</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Transformed coalition alignment view to match existing Java entity structure.
+        Maps new analytical logic to legacy column names for backwards compatibility.
+        
+        Mapping:
+        - total_votes -> shared_votes
+        - aligned_votes -> aligned_votes (unchanged)
+        - total_votes - aligned_votes -> opposed_votes
+        - alignment_percentage / 100 -> alignment_rate
+        - coalition_strength -> coalition_likelihood
+        - 'N/A' -> bloc_relationship (deprecated field)
+        - coalition_assessment -> intelligence_comment
+        - EXTRACT(YEAR FROM earliest_vote) -> first_year
+        - EXTRACT(YEAR FROM latest_vote) -> last_year
+        - last_year - first_year + 1 -> years_observed</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_coalition_alignment_matrix created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.39.xml.html'>db-changelog-1.39.xml</a></TD>
+<TD VALIGN="top">
+fix-politician-risk-summary-matview-1.39-001</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_politician_risk_summary by removing materialized view dependency
+        
+        Root Cause: The view uses LEFT JOIN on view_riksdagen_politician_document
+        (materialized view). Even with LEFT JOIN, PostgreSQL cannot execute the
+        query if the materialized view hasn't been populated with REFRESH MATERIALIZED VIEW.
+        
+        Solution: Replace the materialized view reference with a direct query to
+        the underlying base tables (document_person_reference_da_0, document_data,
+        document_status_container) to calculate document counts inline.
+        
+        Changes:
+        - Remove view_riksdagen_politician_document reference
+        - Add direct base table joins for document counting
+        - Maintain all risk calculation logic unchanged
+        - Keep LEFT JOIN semantics to handle missing documents gracefully
+        
+        Performance Note: This adds JOINs to 3-4 base tables instead of 1 materialized
+        view, which may be slightly slower but ensures the view always works regardless
+        of materialized view population status.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_politician_risk_summary dropped</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_politician_risk_summary created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.39.xml.html'>db-changelog-1.39.xml</a></TD>
+<TD VALIGN="top">
+fix-ministry-effectiveness-1.39-001</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_ministry_effectiveness_trends to return actual ministry data
+        
+        Root Cause: View filtered by LOWER(org_code) LIKE '%departement%' but actual
+        ministry org_codes are short codes ("KN", "N", etc.) that don't contain "departement".
+        The text "departement" appears in the detail field, not org_code.
+        
+        Solution: Remove the LIKE '%departement%' filter. The assignment_type = 'Departement'
+        filter is sufficient to identify ministry assignments.
+        
+        Changes:
+        - Keep: assignment_type = 'Departement' (correctly identifies ministries)
+        - Remove: LOWER(org_code) LIKE '%departement%' (incorrectly filters out all data)
+        - Keep: org_code IS NOT NULL (valid constraint)
+        - Update: short_code extraction to handle actual short org_codes
+        - Keep: All other logic unchanged (quarterly metrics, trends, assessments)</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_ministry_effectiveness_trends dropped</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_ministry_effectiveness_trends created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.39.xml.html'>db-changelog-1.39.xml</a></TD>
+<TD VALIGN="top">
+fix-ministry-productivity-1.39-002</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_ministry_productivity_matrix to return actual ministry data
+        
+        Root Cause: Same as view_ministry_effectiveness_trends - view filtered by 
+        LOWER(org_code) LIKE '%departement%' but actual ministry org_codes are short 
+        codes ("KN", "N", etc.) that don't contain "departement".
+        
+        Solution: Remove the LIKE '%departement%' filter. The assignment_type = 'Departement'
+        filter is sufficient to identify ministry assignments.
+        
+        Changes:
+        - Keep: assignment_type = 'Departement' (correctly identifies ministries)
+        - Remove: LOWER(org_code) LIKE '%departement%' (incorrectly filters out all data)
+        - Keep: org_code IS NOT NULL (valid constraint)
+        - Update: short_code extraction to use org_code directly (already short form)
+        - Keep: All other logic unchanged (annual metrics, productivity benchmarks)</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_ministry_productivity_matrix dropped</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_ministry_productivity_matrix created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.39.xml.html'>db-changelog-1.39.xml</a></TD>
+<TD VALIGN="top">
+fix-ministry-risk-evolution-1.39-003</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_ministry_risk_evolution to return actual ministry data
+        
+        Root Cause: Same as view_ministry_effectiveness_trends - view filtered by 
+        LOWER(org_code) LIKE '%departement%' but actual ministry org_codes are short 
+        codes ("KN", "N", etc.) that don't contain "departement".
+        
+        Solution: Remove the LIKE '%departement%' filter. The assignment_type = 'Departement'
+        filter is sufficient to identify ministry assignments.
+        
+        Changes:
+        - Keep: assignment_type = 'Departement' (correctly identifies ministries)
+        - Remove: LOWER(org_code) LIKE '%departement%' (incorrectly filters out all data)
+        - Keep: org_code IS NOT NULL (valid constraint)
+        - Keep: All other logic unchanged (quarterly performance, risk calculations)</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_ministry_risk_evolution dropped</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_ministry_risk_evolution created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.39.xml.html'>db-changelog-1.39.xml</a></TD>
+<TD VALIGN="top">
+verify-ministry-views-1.39-004</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Post-flight verification for all three ministry views
+        
+        Checks:
+        1. All three views exist and can be queried
+        2. Views return data when ministry assignments are present
+        3. Row counts are reasonable (>0 when data exists)</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.39.xml.html'>db-changelog-1.39.xml</a></TD>
+<TD VALIGN="top">
+document-ministry-fix-1.39-005</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Documentation for v1.39 ministry views fix
+        
+        Summary:
+        - Root cause: Incorrect filter on org_code LIKE '%departement%'
+        - Actual data: org_code has short codes like 'KN', 'N', not full names
+        - Solution: Remove LIKE filter, rely on assignment_type = 'Departement' only
+        - Impact: Unblocks ministry intelligence tracking and 4 ministry risk rules
+        
+        Views Fixed:
+        1. view_ministry_effectiveness_trends - Ministry effectiveness over time (quarterly)
+        2. view_ministry_productivity_matrix - Ministry productivity benchmarking (annual)
+        3. view_ministry_risk_evolution - Ministry risk tracking over time (quarterly)
+        
+        For CHANGELOG_DATABASE_VIEWS.md:
+        - v1.39: Fixed three ministry views filter condition
+        - Removed LOWER(org_code) LIKE '%departement%' constraint from all
+        - Uses assignment_type = 'Departement' to identify ministries
+        - Now returns data for actual ministry assignments</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.40.xml.html'>db-changelog-1.40.xml</a></TD>
+<TD VALIGN="top">
+fix-crisis-resilience-1.40-001</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_crisis_resilience_indicators to return data
+        
+        Root Cause: The crisis period detection algorithm had gaps - months between
+        1x and 1.5x average were not classified as either crisis or normal periods.
+        Combined with INNER JOINs in CTEs, this caused empty results.
+        
+        Solution: Use percentile-based three-tier classification that covers ALL periods:
+        - CRISIS: months with ballots >= P75 (top 25% of activity - high-pressure periods)
+        - ELEVATED: months with ballots >= median but < P75 (above average but not crisis)
+        - NORMAL: months with ballots < median (bottom 50% of activity)
+        
+        This ensures no classification gaps and robust detection even without
+        dramatic crisis periods. The CASE statement evaluates top-to-bottom so
+        P75 is checked first, ensuring correct classification when values overlap.
+        
+        Changes:
+        - Use PERCENTILE_CONT(0.75) for crisis threshold (P75)
+        - Use PERCENTILE_CONT(0.5) for elevated threshold (median)
+        - Classify ALL months as CRISIS, ELEVATED, or NORMAL (no gaps)
+        - Keep all resilience calculation logic and metrics unchanged
+        - Keep all column names unchanged for backwards compatibility</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_crisis_resilience_indicators dropped</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_crisis_resilience_indicators created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.40.xml.html'>db-changelog-1.40.xml</a></TD>
+<TD VALIGN="top">
+verify-crisis-resilience-1.40-002</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Post-flight verification for view_riksdagen_crisis_resilience_indicators
+        
+        Checks:
+        1. View exists and can be queried
+        2. View returns data when vote_data and person_data are populated
+        3. Reports row count for monitoring</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.40.xml.html'>db-changelog-1.40.xml</a></TD>
+<TD VALIGN="top">
+recreate-intelligence-dashboard-1.40-003</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Recreate view_riksdagen_intelligence_dashboard after crisis resilience fix
+        
+        This view was dropped by CASCADE when fixing view_riksdagen_crisis_resilience_indicators
+        in changeSet fix-crisis-resilience-1.40-001 (cascadeConstraints="true").
+        
+        The view aggregates multiple intelligence indicators into a single dashboard:
+        - Momentum analysis from party trends
+        - Coalition alignment patterns
+        - Voting anomaly detection
+        - Politician influence metrics
+        - Crisis resilience indicators
+        
+        All dependent views must exist before this view can be created.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_intelligence_dashboard created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.41.xml.html'>db-changelog-1.41.xml</a></TD>
+<TD VALIGN="top">
+fix-risk-score-evolution-1.41-001</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_risk_score_evolution to return data with correct rebel rate calculation
+        
+        Root Cause: The v1.38 fix used incorrect logic comparing vote type to party name:
+        `vd.vote != vd.party` (e.g., 'Ja' != 'S') which is always true.
+        
+        Correct Logic: A rebel vote occurs when a politician votes against their
+        party's majority on a specific ballot. Party majority is determined by
+        counting 'Ja' vs 'Nej' votes from all party members on each ballot.
+        
+        Solution:
+        1. Calculate party majority vote (party_approved) for each ballot
+        2. Identify rebel votes: 'NEJ' when party_approved OR 'JA' when NOT party_approved
+        3. Aggregate monthly metrics with correct rebel_rate
+        
+        Changes:
+        - Add party_majority CTE to calculate party voting patterns per ballot
+        - Fix rebel detection logic in monthly_risk_base CTE
+        - Keep all risk score calculation and output columns unchanged</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_risk_score_evolution dropped</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_risk_score_evolution created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.41.xml.html'>db-changelog-1.41.xml</a></TD>
+<TD VALIGN="top">
+verify-risk-score-evolution-1.41-002</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Post-flight verification for view_risk_score_evolution
+        
+        Checks:
+        1. View exists and can be queried
+        2. View returns data when vote_data and person_data are populated
+        3. Reports row count for monitoring</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.42.xml.html'>db-changelog-1.42.xml</a></TD>
+<TD VALIGN="top">
+fix-ministry-productivity-matrix-matview-1.42-001</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_ministry_productivity_matrix by removing materialized view dependency
+        
+        Root Cause: The view uses LEFT JOIN on view_riksdagen_politician_document
+        (materialized view). Even with LEFT JOIN, PostgreSQL cannot execute the
+        query if the materialized view hasn't been populated with REFRESH MATERIALIZED VIEW.
+        
+        Solution: Replace the materialized view reference with a direct query to
+        the underlying base tables (document_status_container, document_data,
+        document_person_reference_da_0, document_person_reference_co_0) to calculate
+        document counts inline.
+        
+        The ministry_document_data CTE mirrors the structure of the materialized view
+        but queries the base tables directly, ensuring the view always works regardless
+        of materialized view population status.
+        
+        Changes:
+        - Add ministry_document_data CTE that directly queries base tables
+        - Replace view_riksdagen_politician_document reference with CTE
+        - Maintain all productivity calculation logic unchanged
+        - Keep LEFT JOIN semantics to handle missing documents gracefully</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_ministry_productivity_matrix dropped</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_ministry_productivity_matrix created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.42.xml.html'>db-changelog-1.42.xml</a></TD>
+<TD VALIGN="top">
+fix-ministry-effectiveness-trends-matview-1.42-002</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_ministry_effectiveness_trends by removing materialized view dependency
+        
+        Root Cause: The view uses LEFT JOIN on view_riksdagen_politician_document
+        (materialized view). Even with LEFT JOIN, PostgreSQL cannot execute the
+        query if the materialized view hasn't been populated.
+        
+        Solution: Replace the materialized view reference with a direct query to
+        the underlying base tables using ministry_document_data CTE.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_ministry_effectiveness_trends dropped</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_ministry_effectiveness_trends created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.42.xml.html'>db-changelog-1.42.xml</a></TD>
+<TD VALIGN="top">
+fix-ministry-risk-evolution-matview-1.42-003</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_ministry_risk_evolution by removing materialized view dependency
+        
+        Root Cause: The view uses LEFT JOIN on view_riksdagen_politician_document
+        (materialized view). Even with LEFT JOIN, PostgreSQL cannot execute the
+        query if the materialized view hasn't been populated.
+        
+        Solution: Replace the materialized view reference with a direct query to
+        the underlying base tables using ministry_document_data CTE.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_ministry_risk_evolution dropped</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_ministry_risk_evolution created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.42.xml.html'>db-changelog-1.42.xml</a></TD>
+<TD VALIGN="top">
+verify-ministry-views-1.42-004</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Post-flight verification for all three ministry views
+        
+        Checks:
+        1. Views exist and can be queried (no materialized view error)
+        2. Views return data when ministry assignments exist
+        3. Reports row counts for monitoring</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.42.xml.html'>db-changelog-1.42.xml</a></TD>
+<TD VALIGN="top">
+fix-risk-score-evolution-matview-1.42-005</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_risk_score_evolution by removing materialized view dependency
+        
+        Root Cause: The view was re-introduced in db-changelog-1.41.xml (for rebel rate fix)
+        but still referenced view_riksdagen_politician_document (materialized view).
+        
+        Solution: Replace the materialized view reference with a direct query to
+        the underlying base tables using politician_document_data CTE.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_risk_score_evolution dropped</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_risk_score_evolution created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.42.xml.html'>db-changelog-1.42.xml</a></TD>
+<TD VALIGN="top">
+document-ministry-views-fix-1.42-006</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Documentation for v1.42 views fix
+        
+        Summary:
+        - Root cause: Dependency on unpopulated materialized view view_riksdagen_politician_document
+        - Solution: Replace materialized view with direct base table queries in all views
+        - Impact: Views now work in fresh database installations without materialized view refresh
+        
+        Views Fixed:
+        1. view_ministry_productivity_matrix - Annual productivity benchmarking
+        2. view_ministry_effectiveness_trends - Quarterly effectiveness trends
+        3. view_ministry_risk_evolution - Quarterly risk assessment
+        4. view_risk_score_evolution - Monthly risk score tracking (re-introduced in 1.41, now fixed)
+        
+        For CHANGELOG_DATABASE_VIEWS.md:
+        - v1.42: Fixed all views materialized view dependency
+        - Replaced view_riksdagen_politician_document reference with direct base table CTEs
+        - CTEs query document_status_container, document_data, document_person_reference_* tables
+        - No change to output columns or calculations</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.43.xml.html'>db-changelog-1.43.xml</a></TD>
+<TD VALIGN="top">
+fix-ministry-risk-evolution-periods-1.43-001</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_ministry_risk_evolution to return data for all ministries
+        
+        Root Cause: The view was filtering out rows where assessment_period IS NULL.
+        When ministries have no document data, the DATE_TRUNC from LEFT JOIN results
+        in NULL, causing all ministry rows to be excluded.
+        
+        Solution: Generate quarterly periods independently and cross-join with
+        ministries, ensuring every ministry has entries for each quarter regardless
+        of document activity.
+        
+        This is the definitive fix that ensures:
+        1. Ministries with no documents appear with risk_level='CRITICAL'
+        2. All quarters in the 2-year window are represented
+        3. Risk assessments reflect actual ministry activity (or lack thereof)</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_ministry_risk_evolution dropped</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_ministry_risk_evolution created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.43.xml.html'>db-changelog-1.43.xml</a></TD>
+<TD VALIGN="top">
+verify-ministry-risk-evolution-1.43-002</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Post-flight verification for view_ministry_risk_evolution
+        
+        Checks:
+        1. View exists and can be queried
+        2. View returns rows when ministry assignments exist
+        3. Reports row count for validation</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.43.xml.html'>db-changelog-1.43.xml</a></TD>
+<TD VALIGN="top">
+document-ministry-risk-evolution-fix-1.43-003</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Documentation for v1.43 view_ministry_risk_evolution fix
+        
+        Summary:
+        - Root cause: View filtered out ministries with no documents due to NULL assessment_period
+        - Solution: Generate quarterly periods independently and cross-join with ministries
+        - Impact: All ministries now appear for all quarters with appropriate risk assessments
+        
+        GitHub Issue: #8077
+        
+        For CHANGELOG_DATABASE_VIEWS.md:
+        - v1.43: Fixed view_ministry_risk_evolution time period generation
+        - Added quarterly_periods CTE to generate last 8 quarters
+        - Used CROSS JOIN to ensure all ministries have entries for each quarter
+        - Removed WHERE assessment_period IS NOT NULL filter
+        - Ministries with no documents now show risk_level='CRITICAL' appropriately</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.44.xml.html'>db-changelog-1.44.xml</a></TD>
+<TD VALIGN="top">
+fix-forste-vice-talman-1.44-001</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_politician_experience_summary to include Förste vice talman
+        in the talmansuppdrag role scoring alongside Andre and Tredje vice talman.
+        All three Deputy Speaker roles now weighted equally at 750.0.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SQL in file view_riksdagen_politician_experience_summary_v1.44.sql executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.45.xml.html'>db-changelog-1.45.xml</a></TD>
+<TD VALIGN="top">
+fix-committee-referral-1.45-001</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_decision_temporal_trends to include committee_referral_decisions column.
+        Pattern: UPPER(chamber) ~~ '%UTSKOTT%' catches 7,049 records previously uncategorized.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SQL in file view_decision_temporal_trends_v1.45.sql executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.45.xml.html'>db-changelog-1.45.xml</a></TD>
+<TD VALIGN="top">
+fix-committee-referral-1.45-002</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_ministry_decision_impact to include committee_referral_proposals column
+        and committee_referral_rate. Also updates other_decisions to exclude committee referrals.
+        Pattern: UPPER(chamber) ~~ '%UTSKOTT%' catches 7,049 records previously in other_decisions.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SQL in file view_ministry_decision_impact_v1.45.sql executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.46.xml.html'>db-changelog-1.46.xml</a></TD>
+<TD VALIGN="top">
+add-grouped-role-tracking-1.46-001</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Add grouped committee leadership role tracking to view_riksdagen_politician.
+        Adds 12 new columns organized into 6 role categories (total + current for each):
+        - Committee Chair (Ordförande only, committee context)
+        - Committee Vice Chairs (all levels grouped: Vice, Förste, Andre, Tredje, committee context)
+        - Suppleant (committee context with pattern matching for all variants: Suppleant, Extra suppleant, Personlig suppleant)
+        - Statsminister (10 assignments - Prime Minister tracking)
+        - Party Leader (24 assignments - Partiledare + Tillförordnad)
+        - Party Secretary (30 assignments - Partisekreterare + Tillförordnad)
+        
+        Database best practice: Grouped approach reduces column proliferation from 34+ 
+        individual role columns to 12 strategic columns covering key leadership positions.
+        
+        Implementation consistency:
+        - Committee Chair/Vice Chair: Scoped to committee assignments (org_code IS NOT NULL, assignment_type = 'uppdrag')
+        - Suppleant: Uses pattern matching (~~* '%suppleant%') with same committee context filters
+          (org_code IS NOT NULL, assignment_type = 'uppdrag'), fully consistent with existing 
+          total_committee_substitute_assignments pattern</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SQL in file view_riksdagen_politician_v1.46.sql executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.47.xml.html'>db-changelog-1.47.xml</a></TD>
+<TD VALIGN="top">
+fix-swedish-status-politician-risk-summary-1.47-001</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_politician_risk_summary to use Swedish status values
+        
+        Root Cause: View filtered on status = 'active' but actual data uses Swedish values
+        Solution: Filter on Swedish status values for active politicians:
+          - 'Tjänstgörande riksdagsledamot' (Active MP)
+          - 'Tjänstgörande ersättare' (Active substitute)
+          - 'Tillgänglig ersättare' (Available substitute)</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_politician_risk_summary created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.47.xml.html'>db-changelog-1.47.xml</a></TD>
+<TD VALIGN="top">
+fix-swedish-status-crisis-resilience-1.47-002</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_crisis_resilience_indicators to use Swedish status values
+        
+        Root Cause: View filtered on status IN ('active', 'Active', 'ACTIVE') 
+        but actual data uses Swedish values
+        
+        Solution: Filter on Swedish status values for active politicians</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_crisis_resilience_indicators created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.47.xml.html'>db-changelog-1.47.xml</a></TD>
+<TD VALIGN="top">
+fix-swedish-status-influence-metrics-1.47-003</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_politician_influence_metrics to use Swedish status values
+        
+        Root Cause: View filtered on status IN ('active', 'Active', 'ACTIVE')
+        but actual data uses Swedish values
+        
+        Solution: Filter on Swedish status values for active politicians</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_politician_influence_metrics created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.47.xml.html'>db-changelog-1.47.xml</a></TD>
+<TD VALIGN="top">
+fix-swedish-status-voting-anomaly-1.47-004</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_voting_anomaly_detection to use Swedish status values
+        
+        Root Cause: View filtered on status IN ('active', 'Active', 'ACTIVE')
+        but actual data uses Swedish values
+        
+        Solution: Filter on Swedish status values for active politicians</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_voting_anomaly_detection created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.47.xml.html'>db-changelog-1.47.xml</a></TD>
+<TD VALIGN="top">
+fix-swedish-status-risk-evolution-1.47-005</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_risk_score_evolution to use Swedish status values
+        
+        Root Cause: View filtered on status IN ('active', 'Active', 'ACTIVE')
+        but actual data uses Swedish values
+        
+        Solution: Filter on Swedish status values for active politicians
+        
+        Note: This view uses politician_document_data table which may need
+        to be verified it exists. If not, the view will still work but
+        document_count will always be 0.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_risk_score_evolution created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.47.xml.html'>db-changelog-1.47.xml</a></TD>
+<TD VALIGN="top">
+verify-swedish-status-fixes-1.47-006</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Post-flight verification for all 5 fixed views - simple count query</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.47.xml.html'>db-changelog-1.47.xml</a></TD>
+<TD VALIGN="top">
+fix-vote-case-influence-metrics-1.47-007</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_politician_influence_metrics vote case sensitivity and thresholds
+        
+        Root Cause #1: View filtered on vote IN ('Ja', 'Nej') but actual data uses
+        uppercase 'JA', 'NEJ'. This resulted in 0 co-voting pairs being found,
+        causing all 400 politicians to be classified as MINIMAL_INFLUENCE.
+        
+        Root Cause #2: Original thresholds used median*2 for HIGHLY_INFLUENTIAL but
+        max connections was only 277 with median 151, making the threshold (302)
+        impossible to reach.
+        
+        Solution: 
+        1. Use UPPER() function for vote filtering
+        2. Use percentile-based thresholds (P90, P75, P50) for better distribution
+        
+        Expected Distribution:
+        - HIGHLY_INFLUENTIAL: ~10% (P90+)
+        - INFLUENTIAL: ~15% (P75-P90)
+        - MODERATELY_INFLUENTIAL: ~25% (P50-P75)
+        - LIMITED_INFLUENCE: ~40% (below P50 but > 0)
+        - MINIMAL_INFLUENCE: ~10% (no connections)</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_politician_influence_metrics created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.47.xml.html'>db-changelog-1.47.xml</a></TD>
+<TD VALIGN="top">
+fix-ministry-productivity-join-1.47-008</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_ministry_productivity_matrix incorrect join condition
+        
+        Root Cause: View joined on LOWER(doc.org) = m.org_code_lower, but:
+        - Ministry org_codes are short codes like 'Ku', 'Fi', 'S'
+        - Document org values use full ministry names like 'Kulturdepartementet'
+        - The only accidental match was 'Ku' = 'KU' (committee, not ministry!)
+        
+        Result: Only 3 rows for "Kulturdepartementet" - actually KU committee data
+        
+        Solution: Join on full ministry name (detail field) instead of org_code
+        to properly match documents to ministries.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_ministry_productivity_matrix created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.48.xml.html'>db-changelog-1.48.xml</a></TD>
+<TD VALIGN="top">
+rebalance-thresholds-only-politician-risk-1.48-001</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Rebalance politician risk score thresholds ONLY - formula unchanged from v1.47
+        
+        Changes:
+        - CRITICAL: ≥65 (down from ≥70)
+        - HIGH: ≥45 (down from ≥50) 
+        - MEDIUM: ≥25 (down from ≥30)
+        - LOW: <25 (down from <30)
+        
+        Risk calculation formula unchanged from v1.47:
+        violations×2 (max 40) + absence×0.30 (max 30) + rebel×0.20 (max 20) + productivity(0 or 10)
+        
+        Data sources unchanged: Uses v1.47 CTEs and direct table queries
+        Filters unchanged: Uses v1.47 Swedish status values and violation status filters</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_politician_risk_summary created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.49.xml.html'>db-changelog-1.49.xml</a></TD>
+<TD VALIGN="top">
+rebalance-thresholds-risk-score-evolution-1.49-001</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Rebalance view_risk_score_evolution thresholds to match v1.48 changes
+        
+        Changes:
+        - CRITICAL: ≥65 (down from ≥70)
+        - HIGH: ≥45 (down from ≥50) 
+        - MODERATE: ≥25 (down from ≥30)
+        - LOW: <25 (down from <30)
+        
+        Risk calculation formula unchanged from v1.47.
+        Data sources and filters unchanged.
+        
+        This ensures consistent threshold classification between:
+        - view_politician_risk_summary (updated in v1.48)
+        - view_risk_score_evolution (updated in v1.49)</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_risk_score_evolution created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.50.xml.html'>db-changelog-1.50.xml</a></TD>
+<TD VALIGN="top">
+fix-rebel-calculation-risk-score-evolution-1.50-001</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_risk_score_evolution rebel vote calculation from v1.49
+        
+        Root Cause: v1.49 used incorrect logic comparing vote type to party name:
+        `vd.vote != vd.party` (e.g., 'Ja' != 'S') which is always true.
+        
+        Correct Logic: A rebel vote occurs when a politician votes against their
+        party's majority on a specific ballot. Party majority is determined by
+        counting 'Ja' vs 'Nej' votes from all party members on each ballot.
+        
+        Solution:
+        1. Restore party_ballot_majority CTE from v1.41 (calculates party consensus)
+        2. Fix rebel detection: 'Nej' when party_approved OR 'Ja' when NOT party_approved
+        3. Maintain updated thresholds from v1.49: 65/45/25 (no regression)
+        
+        Changes:
+        - Add party_ballot_majority CTE
+        - Fix politician_votes_with_rebel CTE logic
+        - Keep threshold updates from v1.49 (CRITICAL≥65, HIGH≥45, MODERATE≥25)
+        - Keep all other risk score calculation unchanged</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_risk_score_evolution created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.51.xml.html'>db-changelog-1.51.xml</a></TD>
+<TD VALIGN="top">
+1.51-intro</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Database Changelog v1.51 - Historical Election Cycle Trend Views (REVISED)
+        
+        Creates 6 META/META-level views aggregating existing advanced analytics
+        with Swedish parliamentary election cycle temporal dimensions.
+        
+        REVISION: Now properly integrates ALL relevant advanced views for each framework
+        to provide comprehensive, multi-source intelligence aggregation.
+        
+        Enables institutional-grade, election-season-aware intelligence across
+        all 6 analytical frameworks (Temporal, Comparative, Pattern Recognition,
+        Predictive, Network, Decision Intelligence).</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.51.xml.html'>db-changelog-1.51.xml</a></TD>
+<TD VALIGN="top">
+1.51-election-cycle-temporal-001</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>REVISED: Enhanced with view_decision_temporal_trends and view_committee_productivity
+        
+        Framework: Temporal Analysis (35 supporting views, 20+ risk rules)
+        
+        Source Views (COMPREHENSIVE META level):
+        - view_politician_behavioral_trends: Behavioral metrics, moving averages
+        - view_riksdagen_vote_data_ballot_politician_summary_monthly: Voting patterns
+        - view_decision_temporal_trends: Decision outcomes, approval rates (NEW)
+        - view_committee_productivity: Committee activity metrics (NEW)</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_election_cycle_temporal_trends created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.51.xml.html'>db-changelog-1.51.xml</a></TD>
+<TD VALIGN="top">
+1.51-election-cycle-comparative-002</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>REVISED: Enhanced with view_party_performance_metrics and view_committee_productivity_matrix
+        
+        Framework: Comparative Analysis (26 supporting views, 15+ risk rules)
+        
+        Source Views (COMPREHENSIVE):
+        - view_riksdagen_vote_data_ballot_party_summary_monthly: Party voting patterns
+        - view_party_performance_metrics: Performance scores, discipline, effectiveness (NEW)
+        - view_committee_productivity_matrix: Multi-committee comparisons (NEW)</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_election_cycle_comparative_analysis created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.51.xml.html'>db-changelog-1.51.xml</a></TD>
+<TD VALIGN="top">
+1.51-election-cycle-pattern-003</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>REVISED: Enhanced with view_riksdagen_voting_anomaly_detection and view_politician_risk_summary
+        
+        Framework: Pattern Recognition (23 supporting views, 12/13 risk rules)
+        
+        Source Views (COMPREHENSIVE):
+        - view_risk_score_evolution: Risk trajectories and escalations
+        - view_riksdagen_voting_anomaly_detection: Defection risk, discipline issues (NEW)
+        - view_politician_risk_summary: Aggregated risk profiles (NEW)</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_election_cycle_anomaly_pattern created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.51.xml.html'>db-changelog-1.51.xml</a></TD>
+<TD VALIGN="top">
+1.51-election-cycle-predictive-004</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>REVISED: Enhanced with view_ministry_risk_evolution and view_party_effectiveness_trends
+        
+        Framework: Predictive Intelligence (14 supporting views, 8/8 risk rules)
+        
+        Source Views (COMPREHENSIVE):
+        - view_risk_score_evolution: Risk forecasting and trajectories
+        - view_ministry_risk_evolution: Ministry-level risk trends (NEW)
+        - view_party_effectiveness_trends: Party performance trajectories (NEW)</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_election_cycle_predictive_intelligence created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.51.xml.html'>db-changelog-1.51.xml</a></TD>
+<TD VALIGN="top">
+1.51-election-cycle-network-005</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>REVISED: Enhanced with view_riksdagen_politician_influence_metrics
+        
+        Framework: Network Analysis (11 supporting views, 3/4 risk rules)
+        
+        Source Views (COMPREHENSIVE):
+        - view_riksdagen_coalition_alignment_matrix: Coalition structure
+        - view_riksdagen_politician_influence_metrics: Network centrality, power brokers (NEW)</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_election_cycle_network_analysis created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.51.xml.html'>db-changelog-1.51.xml</a></TD>
+<TD VALIGN="top">
+1.51-election-cycle-decision-006</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>REVISED: Enhanced with view_decision_temporal_trends and view_ministry_decision_impact
+        
+        Framework: Decision Intelligence (5 supporting views, 5/5 risk rules)
+        
+        Source Views (COMPREHENSIVE):
+        - view_riksdagen_party_decision_flow: Party proposal outcomes
+        - view_decision_temporal_trends: Temporal decision patterns (NEW)
+        - view_ministry_decision_impact: Government decision effectiveness (NEW)</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_election_cycle_decision_intelligence created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.51.xml.html'>db-changelog-1.51.xml</a></TD>
+<TD VALIGN="top">
+1.51-validation</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/15/26, 4:00 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Validate that all 6 election cycle views were created successfully
+        with enhanced comprehensive META/META-level integration.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.53.xml.html'>db-changelog-1.53.xml</a></TD>
+<TD VALIGN="top">
+1.53-intro</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/21/26, 12:44 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Database Changelog v1.53 (OPTIMIZED & ENHANCED) - Party Longitudinal Analysis
+        
+        Creates 3 views tracking party performance using Swedish parliament cycles,
+        building on existing optimized views (view_riksdagen_vote_data_ballot_party_summary_annual,
+        view_party_performance_metrics), with advanced statistical functions and comprehensive
+        KPIs for trends, monitoring, and predictions.
+        
+        OPTIMIZATIONS:
+        - Leverages existing materialized views for performance
+        - Uses view_party_performance_metrics, view_party_effectiveness_trends as base
+        - Adds 25+ KPI columns per view for comprehensive analysis
+        - Includes predictive indicators and forecast scores</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.53.xml.html'>db-changelog-1.53.xml</a></TD>
+<TD VALIGN="top">
+1.53-drop-party-performance</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/21/26, 12:44 AM</TD>
+</TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.53.xml.html'>db-changelog-1.53.xml</a></TD>
+<TD VALIGN="top">
+1.53-party-longitudinal-001</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/21/26, 12:44 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Party Longitudinal Performance View (2002-2026) - OPTIMIZED & ENHANCED
+        
+        Framework: Comparative Analysis (26 supporting views, 15+ risk rules)
+        
+        OPTIMIZATIONS:
+        - Builds on view_party_performance_metrics (current snapshot)
+        - Uses view_riksdagen_vote_data_ballot_party_summary_annual (historical data)
+        - Leverages existing party effectiveness trends
+        
+        COMPREHENSIVE KPIs (30+ metrics):
+        1. Core Performance: win_rate, participation_rate, discipline_score
+        2. Comparative Metrics: RANK, PERCENT_RANK, NTILE by multiple dimensions
+        3. Trend Indicators: LAG/LEAD changes, trajectory classification
+        4. Volatility Metrics: STDDEV_POP, stability scores
+        5. Predictive KPIs: forecast_score, momentum_index, early_warning_flag
+        6. Composite Scores: overall_performance_index, leadership_effectiveness
+        7. Change Metrics: Period-over-period changes in all core dimensions
+        
+        ENHANCEMENTS:
+        - Swedish parliament semester structure (autumn: Sep-Jan, spring: Jan-Aug)
+        - Advanced statistical functions for all metrics
+        - Multi-dimensional trend detection with volatility assessment
+        - Predictive indicators and forecast trends using LEAD analysis
+        - Early warning system for party performance degradation</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_party_longitudinal_performance created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.53.xml.html'>db-changelog-1.53.xml</a></TD>
+<TD VALIGN="top">
+1.53-drop-coalition-evolution</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/21/26, 12:44 AM</TD>
+</TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.53.xml.html'>db-changelog-1.53.xml</a></TD>
+<TD VALIGN="top">
+1.53-party-coalition-002</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/21/26, 12:44 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Party Coalition Evolution View (2002-2026) - OPTIMIZED & ENHANCED
+        
+        Framework: Comparative Analysis, Network Analysis
+        
+        OPTIMIZATIONS:
+        - Builds on view_riksdagen_vote_data_ballot_party_summary_annual
+        - Leverages existing party pair voting patterns
+        
+        COMPREHENSIVE KPIs (25+ metrics):
+        1. Core Alliance Metrics: alignment_rate, joint_votes, aligned_votes
+        2. Comparative Metrics: RANK, PERCENT_RANK, NTILE by alignment strength
+        3. Trend Indicators: LAG/LEAD changes, coalition trajectory
+        4. Volatility Metrics: STDDEV_POP for alliance stability
+        5. Predictive KPIs: coalition_forecast, stability_score, breakup_risk
+        6. Strategic Indicators: shift_detection, realignment_probability
+        7. Network Metrics: coalition_density, bridge_strength
+        
+        ENHANCEMENTS:
+        - Swedish parliament semester structure
+        - Advanced statistical functions for coalition analysis
+        - Strategic shift detection with statistical significance
+        - Predictive indicators for coalition stability/breakup
+        - Network analysis metrics for coalition structure</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_party_coalition_evolution created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.53.xml.html'>db-changelog-1.53.xml</a></TD>
+<TD VALIGN="top">
+1.53-drop-electoral-trends</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/21/26, 12:44 AM</TD>
+</TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.53.xml.html'>db-changelog-1.53.xml</a></TD>
+<TD VALIGN="top">
+1.53-party-electoral-003</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/21/26, 12:44 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Party Electoral Trends View (2002-2026) - OPTIMIZED & ENHANCED
+        
+        Framework: Comparative Analysis, Predictive Intelligence
+        
+        OPTIMIZATIONS:
+        - Builds on view_party_performance_metrics (active members, documents)
+        - Uses view_riksdagen_vote_data_ballot_party_summary_annual (win rates)
+        
+        COMPREHENSIVE KPIs (28+ metrics):
+        1. Core Electoral Metrics: seat_count, win_rate, vote_share_proxy
+        2. Comparative Metrics: RANK, PERCENT_RANK, NTILE by multiple dimensions
+        3. Trend Indicators: LAG/LEAD changes, growth trajectory
+        4. Volatility Metrics: STDDEV_POP for electoral stability
+        5. Predictive KPIs: seat_forecast, growth_projection, election_readiness_score
+        6. Demographics: Gender representation, age distribution
+        7. Productivity: Documents, motions, legislative success rate
+        
+        ENHANCEMENTS:
+        - Swedish parliament semester structure
+        - Advanced statistical functions for electoral analysis
+        - Seat count projections using trend analysis
+        - Electoral readiness scores for election cycles
+        - Multi-dimensional growth forecasting</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_party_electoral_trends created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.53.xml.html'>db-changelog-1.53.xml</a></TD>
+<TD VALIGN="top">
+1.53-validation</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/21/26, 12:44 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Validate that all 3 optimized party longitudinal views were created successfully
+        with comprehensive KPIs, advanced statistical functions, and building on existing views.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.55.xml.html'>db-changelog-1.55.xml</a></TD>
+<TD VALIGN="top">
+1.55-intro</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/21/26, 12:44 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>v1.55 Seasonal Trend Analysis - Q4 Pre-Election Activity Patterns</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.55.xml.html'>db-changelog-1.55.xml</a></TD>
+<TD VALIGN="top">
+1.55-create-seasonal-quarterly-activity-view</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/21/26, 12:44 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create view_riksdagen_seasonal_quarterly_activity for quarterly pattern analysis.
+            Aggregates Q1-Q4 activity patterns across 24 years (2002-2026) for election cycle analysis.
+            Includes baseline calculation for non-election years and z-score anomaly detection.
+            Supports Framework 3: Pattern Recognition - Seasonal clustering and election-driven behavioral shifts.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_seasonal_quarterly_activity created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.55.xml.html'>db-changelog-1.55.xml</a></TD>
+<TD VALIGN="top">
+1.55-document-seasonal-quarterly-activity-view</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/21/26, 12:44 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Add documentation for view_riksdagen_seasonal_quarterly_activity</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.55.xml.html'>db-changelog-1.55.xml</a></TD>
+<TD VALIGN="top">
+1.55-create-q4-election-comparison-view</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/21/26, 12:44 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create view_riksdagen_q4_election_year_comparison for Q4 pre-election activity analysis.
+            Compares Q4 activity in election years vs non-election years to detect pre-election surge patterns.
+            Supports predictive modeling of future electoral behavior.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_q4_election_year_comparison created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.55.xml.html'>db-changelog-1.55.xml</a></TD>
+<TD VALIGN="top">
+1.55-document-q4-election-comparison-view</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/21/26, 12:44 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Add documentation for view_riksdagen_q4_election_year_comparison</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.55.xml.html'>db-changelog-1.55.xml</a></TD>
+<TD VALIGN="top">
+1.55-create-seasonal-anomaly-detection-view</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/21/26, 12:44 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create view_riksdagen_seasonal_anomaly_detection for identifying activity anomalies.
+            Flags quarters with activity significantly above or below baseline using z-score thresholds (moderate >1.5, high >2, critical >3 standard deviations) for further investigation.
+            Supports operational intelligence and crisis detection workflows.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_seasonal_anomaly_detection created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.55.xml.html'>db-changelog-1.55.xml</a></TD>
+<TD VALIGN="top">
+1.55-document-seasonal-anomaly-detection-view</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/21/26, 12:44 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Add documentation for view_riksdagen_seasonal_anomaly_detection</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.56.xml.html'>db-changelog-1.56.xml</a></TD>
+<TD VALIGN="top">
+career-trajectory-1.56-001</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/21/26, 12:44 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create view_riksdagen_politician_career_trajectory to track politician performance 
+        across election cycles (2002-2026). Provides attendance rates, win rates, leadership roles,
+        and documents authored per cycle. Classifies career stages (early/mid/late), 
+        performance trends (improving/declining/stable), and career patterns (peak/decline/rising star).
+        
+        Key Metrics:
+        - Election cycle performance (2002, 2006, 2010, 2014, 2018, 2022, 2026)
+        - Attendance rate per cycle
+        - Win rate per cycle
+        - Leadership roles per cycle
+        - Documents authored per cycle
+        - Performance vs career baseline
+        - Career stage classification
+        - Performance trend detection
+        - Career pattern identification (peak/decline/rising star/consistent)
+        
+        Intelligence Value: ⭐⭐⭐⭐⭐ VERY HIGH
+        Used for: Career trajectory forecasting, resignation risk prediction, talent retention analysis</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SQL in file view_riksdagen_politician_career_trajectory_v1.56.sql executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.56.xml.html'>db-changelog-1.56.xml</a></TD>
+<TD VALIGN="top">
+role-evolution-1.56-002</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/21/26, 12:44 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create view_riksdagen_politician_role_evolution to track politician career progression
+        through different positions. Classifies roles into tiers (minister/speaker/party leader/
+        committee chair/member/substitute), assigns role weights for progression analysis, 
+        and identifies career patterns (ascending/descending/lateral).
+        
+        Key Metrics:
+        - Role tier classification (minister/speaker/party leader/committee chair/member/substitute)
+        - Role weight (1000 for PM down to 50 for other roles)
+        - Role start and end dates
+        - Years in each role
+        - Role sequence number
+        - Peak role weight achieved
+        - Progression pattern (ascending/descending/lateral/career peak)
+        - Career level (top leadership/senior/mid-level/junior/entry)
+        - Advancement velocity (role weight increase per year)
+        
+        Intelligence Value: ⭐⭐⭐⭐⭐ VERY HIGH
+        Used for: Career advancement prediction, role transition forecasting, leadership pipeline analysis</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SQL in file view_riksdagen_politician_role_evolution_v1.56.sql executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.56.xml.html'>db-changelog-1.56.xml</a></TD>
+<TD VALIGN="top">
+longevity-analysis-1.56-003</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/21/26, 12:44 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create view_riksdagen_politician_longevity_analysis to measure politician career
+        duration and engagement levels. Calculates total career years, election cycles active,
+        activity intensity (votes/assignments per year), and career continuity scores.
+        Classifies politicians by longevity, activity level, and identifies retention risks.
+        
+        Key Metrics:
+        - Career start and end dates
+        - Total career years and days
+        - Age at career start and end
+        - Election cycles active (2002-2026)
+        - Total votes cast and assignments held
+        - Average votes per year (activity intensity)
+        - Average assignments per year
+        - Career continuity score (% of possible cycles active)
+        - Longevity category (veteran/established/mid-career/junior/newcomer)
+        - Activity level (very active/active/moderate/low/minimal)
+        - Continuity pattern (continuous/mostly continuous/intermittent/sporadic)
+        - Career life stage (senior active/mature active/mid-career/early career/retired)
+        - Retention risk (high retirement/moderate attrition/early exit/engagement/low risk)
+        
+        Intelligence Value: ⭐⭐⭐⭐⭐ VERY HIGH
+        Used for: Career longevity forecasting, resignation risk prediction, retention risk assessment</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SQL in file view_riksdagen_politician_longevity_analysis_v1.56.sql executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.57.xml.html'>db-changelog-1.57.xml</a></TD>
+<TD VALIGN="top">
+1.57-intro</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/21/26, 12:44 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>v1.57 Historical Politician Party Transitions - Track MPs leaving their party while serving in Riksdagen</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.57.xml.html'>db-changelog-1.57.xml</a></TD>
+<TD VALIGN="top">
+create-party-transition-history-view-1.57-001</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/21/26, 12:44 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create view_riksdagen_party_transition_history to track all party changes since 2002.
+        
+        Purpose: Identify politicians who switched parties while serving as active MPs 
+        (status = 'Tjänstgörande riksdagsledamot'). This tracks both mid-term defections 
+        and returns to Riksdagen with new party affiliation.
+        
+        Key Features:
+        - Uses LAG/LEAD window functions to detect party changes in assignment history
+        - Calculates election proximity (months until next election, months since last election)
+        - Distinguishes between "SWITCHED_WHILE_SERVING" vs "REJOINED_RIKSDAGEN" with new party
+        - Filters out initial party assignments (where previous_party is NULL or '-')
+        - Covers Swedish election cycles from 2002-2026
+        
+        Intelligence Value: VERY HIGH (5/5)
+        - Tracks rare but significant political events
+        - Enables party stability analysis  
+        - Predicts future defection risk patterns
+        - Measures timing relative to electoral cycle
+        
+        GitHub Issue: #8208 Historical Politician Transitions - Leaving Party While in Riksdagen</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_party_transition_history created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.57.xml.html'>db-changelog-1.57.xml</a></TD>
+<TD VALIGN="top">
+create-party-defector-analysis-view-1.57-002</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/21/26, 12:44 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create view_riksdagen_party_defector_analysis to analyze defector characteristics.
+        
+        Purpose: Analyze behavioral patterns before/after party transitions - attendance, 
+        document production, voting patterns. Classify defection timing as pre-election, 
+        mid-term, or normal based on months until next election.
+        
+        Key Metrics:
+        - Pre/post transition attendance rates (6 months window)
+        - Document production before/after transition (6 months window)
+        - Defection timing classification (PRE_ELECTION <=12mo, MID_TERM >=36mo, NORMAL 12-36mo)
+        - Attendance change delta
+        
+        Intelligence Value: VERY HIGH (5/5)
+        - Identifies early warning signals of defection (declining participation)
+        - Measures impact of transition on politician activity
+        - Classifies defection strategic timing
+        - Enables predictive modeling of defection risk
+        
+        GitHub Issue: #8208 Historical Politician Transitions - Leaving Party While in Riksdagen</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_party_defector_analysis created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.57.xml.html'>db-changelog-1.57.xml</a></TD>
+<TD VALIGN="top">
+create-party-switcher-outcomes-view-1.57-003</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/21/26, 12:44 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create view_riksdagen_party_switcher_outcomes to measure post-transition career success.
+        
+        Purpose: Track political career trajectory after party switch - did they continue 
+        serving, get re-elected, attain leadership positions? Measures success rate and 
+        career longevity.
+        
+        Key Metrics:
+        - Continued serving after switch (active MP post-transition)
+        - Total days served after transition
+        - Re-election success (served in next election cycle)
+        - Leadership positions attained post-switch
+        - Current political status
+        
+        Intelligence Value: ⭐⭐⭐⭐ HIGH
+        - Assesses political viability of party switching
+        - Measures electoral consequences of defection
+        - Tracks career survival rates
+        - Informs strategic defection timing analysis
+        
+        GitHub Issue: #8208 Historical Politician Transitions - Leaving Party While in Riksdagen</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_party_switcher_outcomes created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.58.xml.html'>db-changelog-1.58.xml</a></TD>
+<TD VALIGN="top">
+1.58-intro</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/21/26, 12:44 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Database Changelog v1.58 - 10-Level Career Path Classification & Trajectory Analysis
+        
+        Enhancement of #8211 career tracking views with comprehensive 10-level hierarchical
+        role classification, party leader/speaker tracking, typical career path detection,
+        and downward spiral indicators. Includes advanced statistical functions (RANK, 
+        PERCENT_RANK, NTILE, LAG, LEAD, STDDEV_POP) for career pattern analysis.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.58.xml.html'>db-changelog-1.58.xml</a></TD>
+<TD VALIGN="top">
+drop-career-path-10level-1.58-001</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/21/26, 12:44 AM</TD>
+</TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.58.xml.html'>db-changelog-1.58.xml</a></TD>
+<TD VALIGN="top">
+career-path-10level-1.58-001</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/21/26, 12:44 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create view_riksdagen_politician_career_path_10level with comprehensive 10-level 
+        hierarchical role classification system.
+        
+        Framework: Predictive Intelligence (Framework 4) + Temporal Analysis (Framework 1)
+        
+        OPTIMIZATIONS:
+        - Builds on view_riksdagen_politician_role_evolution (existing role classification and weights from v1.56)
+        - Leverages existing role_tier and role_weight logic (no duplication of role classification)
+        - Uses pre-aggregated role summaries for better performance
+        - PREDICTIVE INTELLIGENCE: Integrates advanced analytical views (META/META-level)
+          * view_politician_behavioral_trends (voting patterns, behavioral assessment)
+          * view_politician_risk_summary (risk scores, violation tracking, anomaly detection)
+          * view_riksdagen_politician_influence_metrics (network centrality, influence classification)
+        - Follows pattern from v1.51/v1.52 and election proximity analysis (#8236)
+        
+        KEY ENHANCEMENTS OVER v1.56:
+        - 10-level granular classification derived from existing role_weight ranges
+        - Party leader and speaker roles prominently tracked
+        - Non-linear career scoring (L02=50, L01=10 to prevent accumulation artifacts)
+        - Typical career path patterns (fast track, steady, stagnant, declining)
+        - Downward spiral detection (demotion velocity, consecutive drops, exit risk)
+        - Time-in-level analysis for career pacing assessment
+        - Peak sustainability metrics (how long at highest level)
+        - Cross-level transition matrices for progression analysis
+        - PREDICTIVE INTELLIGENCE: Behavioral trends, risk assessment, network influence
+        - COMPOSITE SCORING: Predictive success score combining career + risk + behavior + influence
+        - LEADERSHIP POTENTIAL: Succession planning score based on trajectory + influence + risk
+        - COMPREHENSIVE RISK: Multi-dimensional risk combining career decline + violations + behavior
+        
+        COMPREHENSIVE KPIs (60+ metrics with predictive intelligence):
+        1. Career Level Classification: 10 hierarchical levels (from existing role_weight)
+        2. Career Scores: Non-linear scoring to prevent accumulation
+        3. Progression Metrics: advancement velocity, promotion count, demotion count
+        4. Peak Analysis: peak level, time at peak, peak sustainability
+        5. Trajectory Patterns: career pattern classification (8 types)
+        6. Downward Indicators: spiral detection, exit risk scoring
+        7. Time Analysis: time-in-level, years per promotion, career span
+        8. Comparative Metrics: RANK, PERCENT_RANK, NTILE by career score
+        9. Trend Detection: LAG/LEAD for progression direction
+        10. Volatility Metrics: STDDEV_POP for career stability
+        11. Behavioral Intelligence: win rates, rebel rates, absence rates, behavioral assessment
+        12. Risk Intelligence: risk levels, violation counts
+        13. Network Influence: influence classification, broker classification, connection counts
+        14. Predictive Scores: success prediction, leadership potential, comprehensive risk
+        15. Retention Risk: high retention risk flag combining multiple factors
+        
+        Intelligence Value: ⭐⭐⭐⭐⭐ VERY HIGH (ENHANCED WITH PREDICTIVE INTELLIGENCE)
+        Used for: Leadership succession planning, talent retention, career forecasting,
+        party leader transitions, speaker succession, resignation risk</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_politician_career_path_10level created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.58.xml.html'>db-changelog-1.58.xml</a></TD>
+<TD VALIGN="top">
+1.58-validation</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/21/26, 12:44 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Validate that the 10-level career path view was created successfully with
+        comprehensive career classification, trajectory analysis, and KPI metrics.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.59.xml.html'>db-changelog-1.59.xml</a></TD>
+<TD VALIGN="top">
+1.59-intro</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/21/26, 12:44 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>v1.59 Election Proximity Trend Analysis - Quarterly Q4 Pre-Election Focus</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.59.xml.html'>db-changelog-1.59.xml</a></TD>
+<TD VALIGN="top">
+create-election-proximity-trends-view-1.59-001</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/21/26, 12:44 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create view_riksdagen_election_proximity_trends to track politician activity 
+        by months until election, with Q4 pre-election focus.
+        
+        Purpose: Analyze behavioral changes in the 12 months before Swedish elections 
+        (typically September). Track Q4 (October-December) activity patterns when 
+        politicians are 9-15 months from election day.
+        
+        Key Features:
+        - Tracks activity by months_until_election dimension (0-48 months)
+        - Q4 pre-election flag (9-15 months before election, Q4 period)
+        - Multi-dimensional activity metrics: voting, documents, assignments
+        - Activity classification (ELEVATED_ACTIVITY vs NORMAL_ACTIVITY)
+        - Multi-dimensional metrics: voting, documents, decisions, roles, risk, influence
+        - Compares against politician's baseline activity
+        - Covers Swedish election cycles 2002-2026
+        
+        Data Sources (Enhanced - META/META level):
+        - view_politician_behavioral_trends: Voting patterns, behavioral assessment, status classifications
+        - view_riksdagen_politician_document: Document authorship, proposals, motions
+        - view_riksdagen_politician_role_evolution: Role progression, leadership positions, role weights
+        - view_riksdagen_politician_decision_pattern: Decision patterns, approval rates, committee activity
+        - view_politician_risk_summary: Risk scores, trend analysis, anomaly detection
+        - view_riksdagen_politician_influence_metrics: Network influence, centrality, broker analysis
+        
+        Advanced Statistics:
+        - AVG window function for baseline calculation
+        - Deviation analysis (ballot_count - baseline)
+        - Activity classification (>1.5x baseline = ELEVATED)
+        - Quarterly aggregation with election proximity
+        - CROSS JOIN with election_dates creates multiple records per politician/quarter 
+          when activity spans multiple election cycles (within 48 months)
+        - This enables analysis of same activity period relative to different elections
+        
+        Intelligence Value: VERY HIGH (5/5)
+        - Detects pre-election activity surges across multiple dimensions
+        - Identifies behavioral shifts before campaigns
+        - Enables prediction of election-driven behavior
+        - Supports electoral strategy analysis
+        - Tracks role ambitions and document productivity patterns
+        
+        GitHub Issue: Hack23/cia#8208 Election Proximity Trend Analysis - Quarterly Q4 Pre-Election Focus</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_election_proximity_trends created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.59.xml.html'>db-changelog-1.59.xml</a></TD>
+<TD VALIGN="top">
+1.59-document-election-proximity-trends-view</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/21/26, 12:44 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Add documentation for view_riksdagen_election_proximity_trends</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.59.xml.html'>db-changelog-1.59.xml</a></TD>
+<TD VALIGN="top">
+create-pre-election-quarterly-activity-view-1.59-002</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/21/26, 12:44 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create view_riksdagen_pre_election_quarterly_activity to aggregate Q4 activity 
+        vs baseline across all politicians.
+        
+        Purpose: Aggregate-level view showing Q4 activity patterns in pre-election periods 
+        compared to baseline (non-election years). Includes multi-dimensional metrics:
+        voting, documents, and role assignments.
+        
+        Key Features:
+        - Aggregates politician activity in Q4 pre-election quarters
+        - Compares election year Q4 vs non-election year Q4
+        - Detects statistical anomalies (>1.5x baseline)
+        - Tracks ballots, documents, and assignment changes
+        - Year-over-year comparisons across all activity dimensions
+        
+        Data Sources (Enhanced - META/META level):
+        - view_politician_behavioral_trends: Aggregated voting activity
+        - view_riksdagen_politician_document: Document productivity (proposals, motions)
+        - view_riksdagen_politician_role_evolution: Role changes and promotions
+        - view_party_effectiveness_trends: Party-level performance, win rates, trends (NEW)
+        - view_committee_productivity: Committee performance and decision-making (NEW)
+        
+        Advanced Statistics:
+        - LAG window function for year-over-year comparison
+        - Aggregate functions (COUNT DISTINCT, AVG, SUM)
+        - Baseline calculation from non-election years
+        - Statistical deviation analysis
+        
+        Intelligence Value: VERY HIGH (5/5)
+        - System-wide pre-election activity detection
+        - Validates individual politician patterns
+        - Cross-election cycle comparisons
+        - Early warning for unusual activity patterns
+        - Multi-dimensional surge detection
+        
+        GitHub Issue: Hack23/cia#8208 Election Proximity Trend Analysis - Quarterly Q4 Pre-Election Focus</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_pre_election_quarterly_activity created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.59.xml.html'>db-changelog-1.59.xml</a></TD>
+<TD VALIGN="top">
+1.59-document-pre-election-quarterly-activity-view</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/21/26, 12:44 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Add documentation for view_riksdagen_pre_election_quarterly_activity</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.59.xml.html'>db-changelog-1.59.xml</a></TD>
+<TD VALIGN="top">
+create-seasonal-activity-patterns-view-1.59-003</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/21/26, 12:44 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create view_riksdagen_seasonal_activity_patterns to identify Q1-Q4 behavior 
+        shifts across election cycles.
+        
+        Purpose: Comprehensive seasonal pattern analysis identifying behavioral shifts 
+        across Q1-Q4 for all election cycles (2002-2026). Integrates with Pattern 
+        Recognition Framework (Framework 3) for seasonal clustering.
+        
+        Key Features:
+        - Q1-Q4 activity aggregation by election cycle
+        - Election year vs non-election year comparison
+        - Seasonal pattern identification (Q4 surge, summer lull, etc.)
+        - Multi-year trend detection
+        - Statistical clustering by activity pattern
+        
+        Advanced Statistics:
+        - NTILE for quartile-based clustering
+        - LAG/LEAD for trend detection across quarters
+        - STDDEV_POP for volatility measurement
+        - Seasonal deviation from annual baseline
+        
+        Intelligence Value: VERY HIGH (5/5)
+        - Seasonal behavior clustering
+        - Electoral cycle pattern recognition
+        - Predictive modeling input
+        - Long-term trend analysis (24 years)
+        
+        GitHub Issue: Hack23/cia#8208 Election Proximity Trend Analysis - Quarterly Q4 Pre-Election Focus</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_seasonal_activity_patterns created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.59.xml.html'>db-changelog-1.59.xml</a></TD>
+<TD VALIGN="top">
+1.59-document-seasonal-activity-patterns-view</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/21/26, 12:44 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Add documentation for view_riksdagen_seasonal_activity_patterns</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.59.xml.html'>db-changelog-1.59.xml</a></TD>
+<TD VALIGN="top">
+1.59-validation</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/21/26, 12:44 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Validate that all 3 election proximity views were created successfully
+        with comprehensive temporal analysis and seasonal pattern detection.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.60.xml.html'>db-changelog-1.60.xml</a></TD>
+<TD VALIGN="top">
+1.60-intro</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/21/26, 12:44 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>v1.60 Election Year Behavioral Pattern Analysis - Annual Comparison Across 7 Election Cycles</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.60.xml.html'>db-changelog-1.60.xml</a></TD>
+<TD VALIGN="top">
+create-election-year-behavioral-patterns-view-1.60-001</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/21/26, 12:44 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create view_riksdagen_election_year_behavioral_patterns for comparing 
+        behavioral metrics across all 7 election years (2002-2026) vs midterm years.
+        
+        Purpose: Systematic comparison of election year behavioral patterns vs 
+        non-election years to identify election-specific trends and anomalies.
+        
+        Key Features:
+        - Annual aggregation for all years 2002-2026
+        - Election year classification (2002, 2006, 2010, 2014, 2018, 2022, 2026)
+        - Multi-dimensional metrics: voting, documents, attendance, party discipline
+        - Election year baseline calculation (median across 7 election years)
+        - Activity ratios comparing each year to baselines
+        - Year classification based on statistical deviation
+        
+        Data Sources:
+        - vote_data: Voting records, attendance, party discipline
+        - document_data: Document production (proposals, motions)
+        
+        Advanced Statistics:
+        - Median baseline calculation for election years
+        - Standard deviation for anomaly detection
+        - Activity ratios (year value / baseline)
+        - Year classification (HIGH/NORMAL/LOW election activity, MIDTERM)
+        
+        Intelligence Value: VERY HIGH (5/5)
+        - Identifies systematic election year behavioral shifts
+        - Enables cross-election cycle comparison
+        - Detects unusual election year patterns
+        - Supports predictive modeling for future elections
+        
+        GitHub Issue: Hack23/cia#8209 Election Year Behavioral Pattern Analysis</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_election_year_behavioral_patterns created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.60.xml.html'>db-changelog-1.60.xml</a></TD>
+<TD VALIGN="top">
+1.60-document-election-year-behavioral-patterns-view</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/21/26, 12:44 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Add documentation for view_riksdagen_election_year_behavioral_patterns</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.60.xml.html'>db-changelog-1.60.xml</a></TD>
+<TD VALIGN="top">
+create-election-year-vs-midterm-view-1.60-002</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/21/26, 12:44 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create view_riksdagen_election_year_vs_midterm for aggregate comparison 
+        of election years vs midterm years.
+        
+        Purpose: Provide high-level comparison showing aggregate behavioral 
+        differences between election years and non-election years.
+        
+        Key Features:
+        - Two-row summary: ELECTION_YEARS vs MIDTERM_YEARS
+        - Aggregate metrics: ballots, documents, motions, attendance
+        - Year count for each period type
+        - Direct comparison enabling ratio calculations
+        
+        Intelligence Value: HIGH (4/5)
+        - Simple, clear comparison for reporting
+        - Enables quick assessment of election year effects
+        - Supports hypothesis testing about election year behavior
+        
+        GitHub Issue: Hack23/cia#8209 Election Year Behavioral Pattern Analysis</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_election_year_vs_midterm created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.60.xml.html'>db-changelog-1.60.xml</a></TD>
+<TD VALIGN="top">
+1.60-document-election-year-vs-midterm-view</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/21/26, 12:44 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Add documentation for view_riksdagen_election_year_vs_midterm</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.60.xml.html'>db-changelog-1.60.xml</a></TD>
+<TD VALIGN="top">
+create-election-year-anomalies-view-1.60-003</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/21/26, 12:44 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create view_riksdagen_election_year_anomalies to identify statistically 
+        unusual patterns in election years.
+        
+        Purpose: Identify election years with statistically unusual behavioral 
+        patterns compared to typical election year baselines.
+        
+        Key Features:
+        - Focus on election years only (filters out midterm years)
+        - Multi-dimensional anomaly detection (ballots, documents, motions)
+        - Z-score threshold |z| > 1.5 for significance
+        - Anomaly classification by dimension and direction
+        - Severity levels based on z-score magnitude
+        
+        Advanced Statistics:
+        - Z-score calculation vs election year baseline
+        - Multiple dimension analysis
+        - Severity classification: CRITICAL (|z| > 2.5), HIGH (|z| > 2.0), MODERATE (|z| > 1.5)
+        
+        Intelligence Value: VERY HIGH (5/5)
+        - Identifies unusual election year patterns
+        - Detects outlier elections requiring investigation
+        - Supports comparative electoral analysis
+        - Early warning for unusual election dynamics
+        
+        GitHub Issue: Hack23/cia#8209 Election Year Behavioral Pattern Analysis</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View view_riksdagen_election_year_anomalies created</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.60.xml.html'>db-changelog-1.60.xml</a></TD>
+<TD VALIGN="top">
+1.60-document-election-year-anomalies-view</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/21/26, 12:44 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Add documentation for view_riksdagen_election_year_anomalies</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.60.xml.html'>db-changelog-1.60.xml</a></TD>
+<TD VALIGN="top">
+1.60-validation</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 1/21/26, 12:44 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Validate that all 3 election year analysis views were created successfully
+        with comprehensive annual comparison and anomaly detection capabilities.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.70.xml.html'>db-changelog-1.70.xml</a></TD>
+<TD VALIGN="top">
+create-mv-annual-voting-metrics-1.70-001</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 2/9/26, 2:52 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create materialized view for annual voting metrics (pre-aggregated from vote_data).
+            
+            Purpose: Eliminate cartesian product by aggregating vote_data by year FIRST,
+            before joining with document metrics.
+            
+            Impact: Reduces annual_metrics CTE from 3.5M * 109K row join to 24 pre-aggregated rows.
+            
+            Refresh: Daily via cron job (see MATERIALIZED_VIEW_REFRESH_SCHEDULE.md)</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.70.xml.html'>db-changelog-1.70.xml</a></TD>
+<TD VALIGN="top">
+create-mv-annual-document-metrics-1.70-002</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 2/9/26, 2:52 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create materialized view for annual document metrics (pre-aggregated from document_data).
+            
+            Purpose: Separate document aggregation from voting aggregation to eliminate 
+            cartesian product when joining on year.
+            
+            Impact: Reduces document_data contribution to annual_metrics from 109K rows to 24 rows.
+            
+            Refresh: Daily via cron job (see MATERIALIZED_VIEW_REFRESH_SCHEDULE.md)</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.70.xml.html'>db-changelog-1.70.xml</a></TD>
+<TD VALIGN="top">
+recreate-view-riksdagen-election-year-behavioral-patterns-1.70-003</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 2/9/26, 2:52 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Recreate view_riksdagen_election_year_behavioral_patterns using materialized views.
+            
+            Problem: Original view had cartesian product:
+            - vote_data (3.5M rows) LEFT JOIN document_data (109K rows) ON year
+            - For a single year (e.g., 2020): 150K votes * 5K documents = 750M intermediate rows
+            - Total temp file usage: 50GB+ (exceeds limit)
+            
+            Solution: Join pre-aggregated materialized views instead:
+            - mv_annual_voting_metrics (24 rows) JOIN mv_annual_document_metrics (24 rows)
+            - Total intermediate rows: 24 (one per year)
+            - Temp file usage: less than 1MB
+            
+            Performance improvement: 99.99% reduction in intermediate result size.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.71.xml.html'>db-changelog-1.71.xml</a></TD>
+<TD VALIGN="top">
+fix-view-election-cycle-network-analysis-timeout-1.71-001</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 2/9/26, 2:52 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_election_cycle_network_analysis timeout by correcting JOIN logic.
+            
+            Problem: LEFT JOIN pim ON (1 = 1) is always-true, creating cartesian product
+            where every cycle/coalition combination joins with EVERY politician (212K rows).
+            
+            Solution: Remove the politician influence metrics aggregation from the base query.
+            The view doesn't actually need per-politician data in v151_base - it only needs
+            aggregate counts of influential politicians and power brokers per coalition.
+            
+            Since view_riksdagen_politician_influence_metrics doesn't have party/year info
+            that can reliably link to specific coalitions and years, and the aggregation
+            is across ALL politicians regardless of party affiliation, we simplify by removing
+            the problematic join entirely. The influential_politicians and power_broker_count
+            become aggregate metrics across the entire dataset rather than per-coalition.
+            
+            Alternative approach: If per-coalition politician metrics are needed, would require
+            enhancing view_riksdagen_politician_influence_metrics to include party and year
+            dimensions for proper joining.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.72.xml.html'>db-changelog-1.72.xml</a></TD>
+<TD VALIGN="top">
+insert-minimal-test-data-party-transitions-1.72-001</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 2/9/26, 2:52 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Insert minimal test data for party transition views.
+            
+            Test Scenario: 2 politicians who switched parties while serving
+            - Person 1: Social Democrats (S) → Moderates (M) in 2011
+            - Person 2: Left Party (V) → Green Party (MP) in 2015
+            
+            This creates 2 party switchers that will populate:
+            - view_riksdagen_party_transition_history (2 rows)
+            - view_riksdagen_party_defector_analysis (2 rows)
+            - view_riksdagen_party_switcher_outcomes (2 rows)</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.73.xml.html'>db-changelog-1.73.xml</a></TD>
+<TD VALIGN="top">
+fix-view-riksdagen-voting-anomaly-detection-1.73-001</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 2/9/26, 2:52 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_voting_anomaly_detection - Remove hardcoded 3-year date filter
+            
+            BUG: Hardcoded filter (CURRENT_DATE - '3 years'::interval) excludes all historical data
+            FIX: Change to 20-year lookback to capture full political history (2002-present)
+            
+            This view detects MPs voting against party consensus. With 3-year filter and old data,
+            view returns zero rows even with full production database.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.73.xml.html'>db-changelog-1.73.xml</a></TD>
+<TD VALIGN="top">
+fix-view-riksdagen-party-transition-history-1.73-002</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 2/9/26, 2:52 AM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_party_transition_history - Add deterministic ordering to window functions
+            
+            BUG: Window function ORDER BY from_date alone causes non-deterministic results when multiple
+            assignments have same from_date
+            
+            FIX: Add secondary sort by to_date NULLS LAST to ensure consistent ordering
+            
+            This affects all party switching analysis views that depend on this base view.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.74.xml.html'>db-changelog-1.74.xml</a></TD>
+<TD VALIGN="top">
+fix-coalition-alignment-date-filter-1.74-001</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 2/11/26, 11:36 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_coalition_alignment_matrix - Extend date filter from 5 to 25 years
+            
+            ISSUE: View empty with full production database (2002-2026 data)
+            CAUSE: Filter (CURRENT_DATE - '5 years'::interval) excludes data before 2021
+            FIX: Change to 25-year filter to capture all historical data
+            
+            PERFORMANCE IMPROVEMENTS:
+            - Uses ROW_NUMBER() to select majority vote per party-ballot (single row per party-ballot)
+            - Added party_list CTE to generate distinct parties (8-10 rows)
+            - CROSS JOIN on party_list instead of vote-level rows (avoids million-row expansion)
+            - Reduces intermediate result set from millions to thousands of rows
+            
+            IMPACT: Enables coalition analysis with 24 years of historical voting data
+            BLOCKS: view_election_cycle_network_analysis and other dependent views
+            
+            Performance: Indexed on (party, embedded_id_ballot_id, vote, vote_date) via idx_vote_data_coalition</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.76.xml.html'>db-changelog-1.76.xml</a></TD>
+<TD VALIGN="top">
+create-mv-party-decision-flow-1.76-001</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 3/11/26, 11:00 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create materialized view mv_party_decision_flow from view_riksdagen_party_decision_flow.
+            
+            This precomputes the expensive document proposal joins that cause timeout in
+            view_election_cycle_decision_intelligence. The materialized view should be
+            refreshed when document data is updated.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.76.xml.html'>db-changelog-1.76.xml</a></TD>
+<TD VALIGN="top">
+create-mv-decision-temporal-trends-1.76-002</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 3/11/26, 11:00 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create materialized view mv_decision_temporal_trends from view_decision_temporal_trends.
+            
+            Precomputes daily decision statistics with moving averages to avoid expensive
+            recomputation in view_election_cycle_decision_intelligence.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.76.xml.html'>db-changelog-1.76.xml</a></TD>
+<TD VALIGN="top">
+create-mv-ministry-decision-impact-1.76-003</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 3/11/26, 11:00 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Create materialized view mv_ministry_decision_impact from view_ministry_decision_impact.
+            
+            Precomputes ministry-level decision impact metrics to avoid expensive
+            recomputation in view_election_cycle_decision_intelligence.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.76.xml.html'>db-changelog-1.76.xml</a></TD>
+<TD VALIGN="top">
+fix-election-cycle-decision-intelligence-1.76-004</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 3/11/26, 11:00 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Rewrite view_election_cycle_decision_intelligence to use materialized sub-views.
+            
+            BUG: View joins 3 complex regular views causing query timeout with production data.
+            FIX: Use precomputed materialized views (mv_party_decision_flow,
+                 mv_decision_temporal_trends, mv_ministry_decision_impact) instead.
+            
+            The materialized views are populated during application startup and refreshed
+            when underlying data changes.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.76.xml.html'>db-changelog-1.76.xml</a></TD>
+<TD VALIGN="top">
+fix-coalition-evolution-1.76-005</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 3/11/26, 11:00 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_party_coalition_evolution: use _monthly matview instead of _annual.
+            
+            BUG: The _annual materialized view truncates all dates to January 1 of each year.
+                 This causes two failures:
+                 1. HAVING count(DISTINCT embedded_id_vote_date) >= 5 always returns 0
+                    (only 1 distinct date per year)
+                 2. EXTRACT(month FROM embedded_id_vote_date) always returns 1, making
+                    semester detection incorrect (always 'autumn')
+            
+            FIX: Use view_riksdagen_vote_data_ballot_party_summary_monthly which preserves
+                 monthly granularity (12 dates per year), enabling proper semester detection
+                 and satisfying the HAVING threshold.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.76.xml.html'>db-changelog-1.76.xml</a></TD>
+<TD VALIGN="top">
+fix-voting-anomaly-detection-1.76-006</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 3/11/26, 11:00 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_voting_anomaly_detection: remove wrong person_data.status filter.
+            
+            BUG: The WHERE clause filters person_data.status with values like
+                 'Tjänstgörande riksdagsledamot' which are assignment_data.status values,
+                 not person_data.status values. Actual person_data.status values are things
+                 like 'Inga uppdrag', 'Avliden', 'Tidigare ersättare'.
+            
+            FIX: Remove the person_data.status filter entirely. The HAVING clause already
+                 filters for people with actual rebel votes, and the 20-year lookback window
+                 from vote_data provides sufficient scoping. Include all persons who have
+                 voting records, regardless of current status.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.76.xml.html'>db-changelog-1.76.xml</a></TD>
+<TD VALIGN="top">
+fix-party-transition-history-1.76-007</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 3/11/26, 11:00 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_party_transition_history: use vote_data for party detection.
+            
+            BUG: Previous approach filtered assignment_data with:
+                 - assignment_type='uppdrag' (committee assignments, not chamber membership)
+                 - status='Tjänstgörande riksdagsledamot' (combined role+status, actual
+                   values are status='Tjänstgörande' + role_code='Riksdagsledamot')
+                 - org_code treated as party code, but uppdrag org_code is committee code
+                 Result: Only 2 transitions found in entire production dataset.
+            
+            FIX: Detect party switches from vote_data which reliably records each person's
+                 party at the time of voting. Group consecutive votes by party to identify
+                 when a person switched parties, with the transition date being the first
+                 vote under the new party.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.76.xml.html'>db-changelog-1.76.xml</a></TD>
+<TD VALIGN="top">
+fix-party-defector-analysis-1.76-008</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 3/11/26, 11:00 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_party_defector_analysis: include all transition types.
+            
+            BUG: Previous version only included transition_type='SWITCHED_WHILE_SERVING'
+                 which required gap <= 30 days between assignments. With the new
+                 vote_data approach in transition_history, the gap threshold is 365 days.
+                 All genuine party switches should be included regardless of timing.
+            
+            FIX: Include both SWITCHED_WHILE_SERVING and REJOINED_RIKSDAGEN transitions.
+                 Use vote_data for attendance calculation instead of relying on vote_date
+                 window matching which may miss votes.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.76.xml.html'>db-changelog-1.76.xml</a></TD>
+<TD VALIGN="top">
+recreate-party-switcher-outcomes-1.76-009</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 3/11/26, 11:00 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Recreate view_riksdagen_party_switcher_outcomes after transition_history was
+            replaced. This view tracks outcomes for politicians who switched parties,
+            including subsequent assignments, leadership positions, and election cycle
+            participation. Updated to use 'Tjänstgörande' status (actual value) instead
+            of 'Tjänstgörande riksdagsledamot' (combined value that doesn't exist).</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.76.xml.html'>db-changelog-1.76.xml</a></TD>
+<TD VALIGN="top">
+refresh-materialized-views-1.76-010</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 3/11/26, 11:00 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Refresh all new materialized views to populate them with data.
+            Uses CONCURRENTLY where possible to avoid blocking reads.
+            
+            Note: IF NOT EXISTS on CREATE MATERIALIZED VIEW means these may already
+            contain data if refreshed by the application. This ensures they are populated
+            after schema migration regardless.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.76.xml.html'>db-changelog-1.76.xml</a></TD>
+<TD VALIGN="top">
+fix-politician-risk-summary-1.76-011</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 3/11/26, 11:00 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_politician_risk_summary: rebel_votes compared vote value (JA/NEJ/etc.)
+            to party code (S/M/etc.), inflating rebel rates for every non-absent vote.
+            
+            FIX: Compute rebel votes by comparing member's vote to the party's majority
+            consensus vote for the same ballot. Also normalize vote comparisons with
+            UPPER() for case-insensitive matching (data may be 'Ja' or 'JA').</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.77.xml.html'>db-changelog-1.77.xml</a></TD>
+<TD VALIGN="top">
+fix-party-transition-history-1.77-001</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 3/20/26, 10:26 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_riksdagen_party_transition_history: detect party transitions using
+            assignment_data with party org_codes instead of vote_data.
+
+            ROOT CAUSE ANALYSIS:
+            Previous approach (1.76-007) used vote_data.party LAG detection, but the
+            Riksdagen API retroactively normalizes party codes to modern names:
+            - FP (Folkpartiet) votes recorded as L (Liberalerna)
+            - VPK votes recorded as V (Vänsterpartiet)
+            - H - M votes recorded as M (Moderaterna)
+            Result: 0 detectable transitions in 3.6M vote records.
+
+            NEW APPROACH: Use assignment_data where org_code matches known party codes
+            (from sweden_political_party). Assignment records preserve historical party
+            codes (FP, NYD, VPK, etc.) and track when politicians held party roles.
+
+            Detection methods (UNION):
+            1. assignment_data: Records where same person has different party org_codes
+               over time (partiuppdrag, uppdrag with party org_code)
+            2. person_data cross-reference: Detect historical party names vs modern
+               party codes using party name mapping
+
+            PARTY CODE MAPPING (historical → modern):
+            - FP → L (Folkpartiet renamed Liberalerna, 2015)
+            - VPK → V (Vänsterpartiet kommunisterna → Vänsterpartiet)
+            - K - VPK → V (Kommunisterna)
+            - BF - C → C (Bondeförbundet → Centerpartiet)
+            - H - M → M (Högerpartiet → Moderaterna)
+            - NYD → (defunct, Ny Demokrati dissolved ~2000)
+
+            DISTRIBUTION BALANCING:
+            - assignment_data org_code party counts: KD(619),S(93),MP(69),M(44),C(41)
+            - person_data.party: S(854),M(472),C(256),FP(191),MP(143)
+            - Expected transitions: ~20-50 (party renames + genuine switches)</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.77.xml.html'>db-changelog-1.77.xml</a></TD>
+<TD VALIGN="top">
+fix-party-defector-analysis-1.77-002</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 3/20/26, 10:26 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Recreate view_riksdagen_party_defector_analysis after transition_history
+            was rebuilt. Analyzes performance changes around party transitions using
+            vote_data for attendance metrics.
+
+            Includes all transition types (SWITCHED_WHILE_SERVING, REJOINED_RIKSDAGEN,
+            PARTY_RENAMED) to provide comprehensive defector analysis.
+
+            Uses 12-month pre/post windows for attendance comparison.
+            Uses UPPER() normalization for vote comparison per codebase convention.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.77.xml.html'>db-changelog-1.77.xml</a></TD>
+<TD VALIGN="top">
+recreate-party-switcher-outcomes-1.77-003</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 3/20/26, 10:26 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Recreate view_riksdagen_party_switcher_outcomes after transition_history
+            was rebuilt. Tracks career outcomes for politicians who switched parties.
+
+            Matches all subsequent assignments after transition date and evaluates:
+            - Whether politician continued as active MP
+            - Whether they served in the next election cycle
+            - Whether they attained leadership positions post-switch</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.77.xml.html'>db-changelog-1.77.xml</a></TD>
+<TD VALIGN="top">
+fix-election-cycle-anomaly-pattern-timeout-1.77-004</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 3/20/26, 10:26 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_election_cycle_anomaly_pattern timeout caused by Cartesian joins.
+
+            ROOT CAUSE: full_schema.sql contains the pre-1.65 view definition with
+            ON (1=1) Cartesian joins, but databasechangelog marks 1.65-010 as EXECUTED.
+            When Liquibase runs on CI, it skips the fix (already marked done), leaving
+            the broken view.
+
+            The Cartesian product is:
+            - election_cycle_periods (~37 rows)
+            - × view_risk_score_evolution (8,599 rows) [properly joined on year]
+            - × view_riksdagen_voting_anomaly_detection (1,064 rows) [ON 1=1 !!]
+            - × view_politician_risk_summary (403 rows) [ON 1=1 !!]
+            = ~129 BILLION intermediate rows before aggregation → TIMEOUT
+
+            FIX: Pre-aggregate anomaly and risk statistics into scalar subqueries,
+            eliminating the Cartesian product while preserving all output columns.
+
+            PERCENTILE BALANCING:
+            - voting_anomaly: total_rebellions median=12, p75=27
+            - risk_score_evolution: ballot_count median=42
+            - politician_risk_summary: total_violations median=5, p75=7</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.78.xml.html'>db-changelog-1.78.xml</a></TD>
+<TD VALIGN="top">
+fix-risk-score-evolution-upper-1.78-001</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 3/20/26, 10:26 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_risk_score_evolution: use UPPER() for all vote comparisons.
+            
+            ROOT CAUSE: vote_data.vote is stored as 'JA','NEJ','FRÅNVARANDE','AVSTÅR'
+            (uppercase) but the view compares to title-case 'Ja','Nej','Frånvarande'.
+            Result: absence_rate=0.00 (ALL rows), rebel_rate=NULL (ALL rows).
+            
+            This cascades to ALL downstream views that use risk_score_evolution:
+            - view_election_cycle_anomaly_pattern (avg_risk_score mostly NULL)
+            - view_election_cycle_predictive_intelligence (avg_risk_score_change NULL)
+            
+            FIX: Apply UPPER() to all vote value comparisons.
+            Uses CREATE OR REPLACE VIEW to preserve dependent views.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.78.xml.html'>db-changelog-1.78.xml</a></TD>
+<TD VALIGN="top">
+fix-politician-risk-summary-reapply-1.78-002</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 3/20/26, 10:26 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Re-apply 1.76-011 fix for view_politician_risk_summary (stale schema issue)
+            AND fix rule_group categories to match actual DRL rule_group values.
+            
+            STALE SCHEMA: full_schema.sql has pre-1.76 definition that compares
+            vote to party code for rebel detection. 1.76-011 fixed this with
+            consensus-based rebel detection + UPPER(), but the fix was never applied
+            because the changeset was already marked EXECUTED in databasechangelog.
+            
+            RULE_GROUP FIX: Views filter by non-existent categories
+            ('ABSENTEEISM','EFFECTIVENESS','DISCIPLINE','PRODUCTIVITY','COLLABORATION').
+            Actual DRL rule_group values (from PoliticianBalancedRules.drl etc.):
+            - 'Behavior' (PoliticianLazy, PoliticianHighRebelRate, etc.)
+            - 'Assignments' (PoliticianBalancedRules: multiple assignments)
+            - 'Experience' (PoliticianMinisterWithoutParliamentExperience)
+            - 'Party' (PoliticianLeftPartyStillHoldingPositions)
+            - 'Role' (PoliticianSpeaker, PoliticianLeadershipRole)
+            - 'Attribute' (PoliticianTimeToRetire, PoliticianYoungMember)
+            
+            Uses CREATE OR REPLACE to preserve dependents:
+            - view_election_cycle_anomaly_pattern
+            - view_riksdagen_election_proximity_trends
+            - view_riksdagen_politician_career_path_10level</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.78.xml.html'>db-changelog-1.78.xml</a></TD>
+<TD VALIGN="top">
+fix-party-performance-metrics-1.78-003</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 3/20/26, 10:26 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_party_performance_metrics: wrong status and document type filters.
+            
+            BUGS:
+            1. party_member_counts: status = 'active'/'inactive' — actual values are
+               Swedish strings like 'Tjänstgörande riksdagsledamot'
+            2. party_violations: rv.status = 'ACTIVE' — actual values are MINOR/MAJOR/CRITICAL
+            3. party_documents: document_type = 'Motion'/'Proposition' — actual: 'mot'/'prop'
+            
+            This view is a CROSS JOIN source for several other views.
+            DROP CASCADE will also drop:
+            - view_election_cycle_comparative_analysis
+            - view_riksdagen_party_electoral_trends
+            - view_riksdagen_party_longitudinal_performance
+            These are recreated in subsequent changesets.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.78.xml.html'>db-changelog-1.78.xml</a></TD>
+<TD VALIGN="top">
+fix-party-effectiveness-trends-1.78-004</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 3/20/26, 10:26 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Fix view_party_effectiveness_trends:
+            1. rv.status = 'ACTIVE' → IN ('MINOR','MAJOR','CRITICAL')
+            2. document_type = 'Motion' → 'mot'
+            
+            Uses CREATE OR REPLACE since output columns unchanged.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.78.xml.html'>db-changelog-1.78.xml</a></TD>
+<TD VALIGN="top">
+recreate-election-cycle-comparative-1.78-005</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 3/20/26, 10:26 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Recreate view_election_cycle_comparative_analysis after CASCADE from
+            party_performance_metrics fix. Uses original definition from full_schema.sql.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.78.xml.html'>db-changelog-1.78.xml</a></TD>
+<TD VALIGN="top">
+recreate-party-electoral-trends-1.78-006</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 3/20/26, 10:26 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Recreate view_riksdagen_party_electoral_trends dropped by CASCADE.
+            Original from db-changelog-1.62.xml but referencing the now-fixed
+            party_performance_metrics view for active_members data.</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR><TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+<TD VALIGN="top">
+<a href='../changelogs/db-changelog-1.78.xml.html'>db-changelog-1.78.xml</a></TD>
+<TD VALIGN="top">
+recreate-party-longitudinal-perf-1.78-007</TD>
+<TD VALIGN="top">
+<a href='../authors/intelligence-operative.html'>intelligence-operative</a></TD>
+<TD VALIGN="top">
+Executed 3/20/26, 10:26 PM</TD>
+</TR><TR><TD BGCOLOR='#EEEEFF' CLASS='TableSubHeadingColor' colspan='4'>Recreate view_riksdagen_party_longitudinal_performance dropped by CASCADE.
+            Now references fixed party_performance_metrics (active_members populated).</TD></TR><TR BGCOLOR="white" CLASS="TableRowColor">
+<td colspan='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Custom SQL executed</td></TR></TABLE>&nbsp;</P><hr>Generated: 4/11/26, 2:59 PM<BR>Against: eris @ jdbc:postgresql://localhost:5432/cia_prod (Default Schema: public)<BR>Change Log: db-changelog-1.0.xml<BR><BR>Generated By: <a href='https://www.liquibase.com' target='_TOP'>Liquibase 5.0.2</a></body></html>
