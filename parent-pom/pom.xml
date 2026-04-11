@@ -70,6 +70,7 @@
     <cyclonedx.skipAttach>true</cyclonedx.skipAttach>
     <cyclonedx.skip>true</cyclonedx.skip>
     <sonar.organization>hack23</sonar.organization>
+    <graphviz.dot.executable>/usr/bin/dot</graphviz.dot.executable>
     <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     <sonar.libraries>target</sonar.libraries>
     <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
