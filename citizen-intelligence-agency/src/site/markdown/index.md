@@ -55,6 +55,43 @@ The project relies on open data from various sources, including:
 - [FinancialSecurityPlan.md](https://github.com/Hack23/cia/blob/master/FinancialSecurityPlan.md) - This financial plan provides a structured and cost-efficient deployment for your application infrastructure in the AWS eu-west-1 (Ireland) region. It integrates key components of scalability, security, and resilience to support critical workloads while maintaining budgetary control
 - [End-of-Life-Strategy.md](https://github.com/Hack23/cia/blob/master/End-of-Life-Strategy.md) Project End-of-Life (EOL) Strategy
 
+---
+
+## Hack23 Projects
+
+### 🔐 Commitment to Transparency and Security
+
+At Hack23 AB, we believe that true security comes through transparency and demonstrable practices. Our Information Security Management System (ISMS) is publicly available, showcasing our commitment to security excellence and organizational transparency.
+
+- **[ISMS-PUBLIC](https://github.com/Hack23/ISMS-PUBLIC)** — Complete ISMS framework available for review
+- **[Discordian Cybersecurity](https://hack23.com/discordian-cybersecurity.html)** — Explore information security through the unique Discordian lens
+
+### 🗳️ Political Intelligence Platforms
+
+| Project | Description | Links |
+|---------|-------------|-------|
+| **[Riksdagsmonitor](https://github.com/Hack23/riksdagsmonitor)** | Swedish Parliament Intelligence Platform monitoring political activity with real-time analysis and 50+ years of historical data (1971-2024) | [![OpenSSF](https://api.securityscorecards.dev/projects/github.com/Hack23/riksdagsmonitor/badge)](https://scorecard.dev/viewer/?uri=github.com/Hack23/riksdagsmonitor) |
+| **[EU Parliament Monitor](https://github.com/Hack23/euparliamentmonitor)** | Automated multi-language news platform monitoring EU Parliament activities with 14-language support | [![OpenSSF](https://api.securityscorecards.dev/projects/github.com/Hack23/euparliamentmonitor/badge)](https://scorecard.dev/viewer/?uri=github.com/Hack23/euparliamentmonitor) |
+| **[EU Parliament MCP Server](https://github.com/Hack23/European-Parliament-MCP-Server)** | Model Context Protocol Server providing AI assistants with structured access to European Parliament Open Data | [![OpenSSF](https://api.securityscorecards.dev/projects/github.com/Hack23/European-Parliament-MCP-Server/badge)](https://scorecard.dev/viewer/?uri=github.com/Hack23/European-Parliament-MCP-Server) |
+| **[Citizen Intelligence Agency](https://github.com/Hack23/cia)** | Political transparency platform monitoring Swedish political activity with data-driven insights and analytics | [![OpenSSF](https://api.securityscorecards.dev/projects/github.com/Hack23/cia/badge)](https://scorecard.dev/viewer/?uri=github.com/Hack23/cia) |
+
+### 🔒 Security and Compliance Tools
+
+| Project | Description | Links |
+|---------|-------------|-------|
+| **[CIA Compliance Manager](https://github.com/Hack23/cia-compliance-manager)** | Security assessment platform for the CIA triad with business impact analysis and compliance mapping to NIST, ISO, GDPR, HIPAA, SOC2 | [![OpenSSF](https://api.securityscorecards.dev/projects/github.com/Hack23/cia-compliance-manager/badge)](https://scorecard.dev/viewer/?uri=github.com/Hack23/cia-compliance-manager) |
+| **[Sonar CloudFormation Plugin](https://github.com/Hack23/sonar-cloudformation-plugin)** | SonarQube plugin for analyzing AWS CloudFormation templates with security best practices based on NIST, CWE, and ISO standards | [![OpenSSF](https://api.securityscorecards.dev/projects/github.com/Hack23/sonar-cloudformation-plugin/badge)](https://scorecard.dev/viewer/?uri=github.com/Hack23/sonar-cloudformation-plugin) |
+
+### 🛠️ Infrastructure and Development Tools
+
+| Project | Description | Links |
+|---------|-------------|-------|
+| **[Lambda in Private VPC](https://github.com/Hack23/lambda-in-private-vpc)** | Enterprise-grade multi-region active/active architecture with near-zero recovery time and AWS Resilience Hub compliance | [![OpenSSF](https://api.securityscorecards.dev/projects/github.com/Hack23/lambda-in-private-vpc/badge)](https://scorecard.dev/viewer/?uri=github.com/Hack23/lambda-in-private-vpc) |
+| **[Game Template](https://github.com/Hack23/game)** | Secure game development template with React, TypeScript, Three.js, and Vite — built with security-first principles | [![OpenSSF](https://api.securityscorecards.dev/projects/github.com/Hack23/game/badge)](https://scorecard.dev/viewer/?uri=github.com/Hack23/game) |
+| **[Black Trigram](https://github.com/Hack23/blacktrigram)** | Realistic 2D precision combat simulator inspired by traditional Korean martial arts | [![OpenSSF](https://api.securityscorecards.dev/projects/github.com/Hack23/blacktrigram/badge)](https://scorecard.dev/viewer/?uri=github.com/Hack23/blacktrigram) |
+
+---
+
 ## Reporting Security Issues
 
 Please follow the instructions in our [SECURITY.md](https://github.com/Hack23/cia/blob/master/SECURITY.md) file for reporting security issues.
