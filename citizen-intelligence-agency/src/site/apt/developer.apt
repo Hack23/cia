@@ -6,7 +6,7 @@ Requirements
 
  To build and run the Citizen Intelligence Agency you need to install the following software.
 
- * Compiler & Runtime : JDK 21+ {{{https://adoptium.net/}Eclipse Temurin}}.
+ * Compiler & Runtime : JDK 26 (source level 21) {{{https://adoptium.net/}Eclipse Temurin}}.
 
  * Database : PostgreSQL 18 {{{https://www.postgresql.org/}download}}
 
@@ -31,7 +31,7 @@ Setting up the PostgreSQL database user
  > sudo su - postgres
  > psql
 
- postgres=# CREATE USER eris WITH password '<YOUR_STRONG_PASSWORD>';
+ postgres=# CREATE USER eris WITH password 'YOUR_STRONG_PASSWORD_HERE';
 
  postgres=# CREATE DATABASE cia_dev;
 
