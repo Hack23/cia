@@ -15,7 +15,7 @@
         <name>Citizen Intelligence Agency</name>
         <alt>Citizen Intelligence Agency</alt>
         <src>cia-logo.png</src>
-        <href>/index.html</href>
+        <href>index.html</href>
       </topBarIcon>
       
       <gitHub>

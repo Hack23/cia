@@ -24,13 +24,14 @@ Getting the Source Code
 
 Setting up the PostgreSQL database user
 
- The command below describes how you setup a database user that will be used by the application.
+ The command below describes how you set up a database user that will be used by the application.
+ <<Use a strong, unique password>> and consider using environment-based configuration for credentials.
 
- Use the commandline to access PostgreSQL or through pgAdmin.
+ Use the command line to access PostgreSQL or through pgAdmin.
  > sudo su - postgres
  > psql
 
- postgres=# CREATE USER eris WITH password 'discord';
+ postgres=# CREATE USER eris WITH password '<YOUR_STRONG_PASSWORD>';
 
  postgres=# CREATE DATABASE cia_dev;
 
