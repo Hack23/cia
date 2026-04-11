@@ -32,7 +32,7 @@ import com.vaadin.ui.Notification;
 /**
  * The Class SearchDocumentClickListener.
  *
- * @see SearchDocumentClickEvent
+ * @see com.vaadin.ui.Button.ClickEvent
  */
 public class SearchDocumentClickListener extends AbstractClickListener implements ClickListener {
 

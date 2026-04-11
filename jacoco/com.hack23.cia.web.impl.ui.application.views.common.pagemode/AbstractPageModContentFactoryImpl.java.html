@@ -21,7 +21,7 @@ package com.hack23.cia.web.impl.ui.application.views.common.pagemode;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hack23.cia.service.api.ApplicationManager;
-import com.hack23.cia.web.impl.ui.application.action.PageActionEventHelper;
+import com.hack23.cia.web.impl.ui.application.views.common.action.PageActionEventHelper;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.AdminChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.formfactory.api.FormFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.gridfactory.api.GridFactory;

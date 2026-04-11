@@ -32,9 +32,17 @@ import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class UserHomeMenuItemFactoryImpl.
+ * Factory for creating user home menu items.
  */
 @Service
-<span class="fc" id="L37">public final class UserHomeMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements UserHomeMenuItemFactory {</span>
+public final class UserHomeMenuItemFactoryImpl extends AbstractMenuItemFactoryImpl implements UserHomeMenuItemFactory {
+
+	/**
+	 * Instantiates a new user home menu item factory impl.
+	 */
+	public UserHomeMenuItemFactoryImpl() {
+<span class="fc" id="L44">		super();</span>
+<span class="fc" id="L45">	}</span>
 
 	/** The application menu item factory. */
 	@Autowired
@@ -42,39 +50,39 @@ import com.vaadin.ui.VerticalLayout;
 
     @Override
     public void createOverviewPage(final VerticalLayout overviewLayout) {
-<span class="fc" id="L45">        final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);</span>
+<span class="fc" id="L53">        final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);</span>
 
-<span class="fc" id="L47">        createButtonLink(grid, SECURITY_SETTING_TEXT, VaadinIcons.SHIELD,</span>
+<span class="fc" id="L55">        createButtonLink(grid, SECURITY_SETTING_TEXT, VaadinIcons.SHIELD,</span>
                 COMMAND_USERHOME_SECURITY_SETTINGS,
                 SECURITY_SETTINGS_DESCRIPTION);
 
-<span class="fc" id="L51">        createButtonLink(grid, USER_VISITS, VaadinIcons.EYE,</span>
+<span class="fc" id="L59">        createButtonLink(grid, USER_VISITS, VaadinIcons.EYE,</span>
                 COMMAND_USERHOME_USER_VISITS,
                 USER_VISITS_DESCRIPTION);
 
-<span class="fc" id="L55">        createButtonLink(grid, USER_EVENTS, VaadinIcons.CALENDAR,</span>
+<span class="fc" id="L63">        createButtonLink(grid, USER_EVENTS, VaadinIcons.CALENDAR,</span>
                 COMMAND_USERHOME_USER_EVENTS,
                 USER_EVENTS_DESCRIPTION);
-<span class="fc" id="L58">    }</span>
+<span class="fc" id="L66">    }</span>
 
     @Override
     public void createUserHomeMenuBar(final MenuBar menuBar, final String pageId) {
-<span class="fc" id="L62">        initApplicationMenuBar(menuBar);</span>
+<span class="fc" id="L70">        initApplicationMenuBar(menuBar);</span>
 
-<span class="fc" id="L64">        applicationMenuItemFactory.addRankingMenu(menuBar);</span>
-<span class="fc" id="L65">        final MenuItem accountItem = menuBar.addItem(USERACCOUNT, VaadinIcons.USER, null);</span>
+<span class="fc" id="L72">        applicationMenuItemFactory.addRankingMenu(menuBar);</span>
+<span class="fc" id="L73">        final MenuItem accountItem = menuBar.addItem(USERACCOUNT, VaadinIcons.USER, null);</span>
 
-<span class="fc" id="L67">        accountItem.addItem(USER_HOME_OVERVIEW_TEXT, VaadinIcons.USER,</span>
+<span class="fc" id="L75">        accountItem.addItem(USER_HOME_OVERVIEW_TEXT, VaadinIcons.USER,</span>
                 COMMAND_USERHOME_OVERVIEW);
 
-<span class="fc" id="L70">        accountItem.addItem(SECURITY_SETTING_TEXT, VaadinIcons.SHIELD,</span>
+<span class="fc" id="L78">        accountItem.addItem(SECURITY_SETTING_TEXT, VaadinIcons.SHIELD,</span>
                 COMMAND_USERHOME_SECURITY_SETTINGS);
 
-<span class="fc" id="L73">        accountItem.addItem(USER_VISITS, VaadinIcons.EYE,</span>
+<span class="fc" id="L81">        accountItem.addItem(USER_VISITS, VaadinIcons.EYE,</span>
                 COMMAND_USERHOME_USER_VISITS);
 
-<span class="fc" id="L76">        accountItem.addItem(USER_EVENTS, VaadinIcons.CALENDAR,</span>
+<span class="fc" id="L84">        accountItem.addItem(USER_EVENTS, VaadinIcons.CALENDAR,</span>
                 COMMAND_USERHOME_USER_EVENTS);
-<span class="fc" id="L78">    }</span>
+<span class="fc" id="L86">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

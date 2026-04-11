@@ -17,6 +17,11 @@
  *  $HeadURL$
 */
 package com.hack23.cia.web.impl.ui.application.views.user.govermentbody.pagemode;
+import com.hack23.cia.web.impl.ui.application.views.common.constants.GovernmentBodyViewConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.constants.GovernmentBodyLayoutConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.constants.GovernmentBodyHeaderConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.constants.GovernmentBodyIconConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.constants.GovernmentBodyDescriptionConstants;
 
 import java.util.List;
 
@@ -25,7 +30,7 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.external.esv.api.GovernmentBodyAnnualSummary;
-import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandGovernmentBodyConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
@@ -48,31 +53,31 @@ public final class GovernmentBodyOverviewPageModContentFactoryImpl
 	 * Instantiates a new government body overview page mod content factory impl.
 	 */
 	public GovernmentBodyOverviewPageModContentFactoryImpl() {
-<span class="fc" id="L51">		super();</span>
-<span class="fc" id="L52">	}</span>
+<span class="fc" id="L56">		super();</span>
+<span class="fc" id="L57">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L57">		final VerticalLayout panelContent = createPanelContent();</span>
-<span class="fc" id="L58">		panel.setContent(panelContent);</span>
+<span class="fc" id="L62">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L63">		panel.setContent(panelContent);</span>
 
-<span class="fc" id="L60">		final String pageId = getPageId(parameters);</span>
-<span class="fc" id="L61">		final List&lt;GovernmentBodyAnnualSummary&gt; item = getItem(parameters);</span>
+<span class="fc" id="L65">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L66">		final List&lt;GovernmentBodyAnnualSummary&gt; item = getItem(parameters);</span>
 
-<span class="pc bpc" id="L63" title="2 of 4 branches missed.">		if (item != null &amp;&amp; !item.isEmpty()) {</span>
-<span class="fc" id="L64">			final GovernmentBodyAnnualSummary governmentBodyAnnualSummary = item.get(0);</span>
+<span class="pc bpc" id="L68" title="2 of 4 branches missed.">		if (item != null &amp;&amp; !item.isEmpty()) {</span>
+<span class="fc" id="L69">			final GovernmentBodyAnnualSummary governmentBodyAnnualSummary = item.get(0);</span>
 
-<span class="fc" id="L66">			getGovernmentBodyMenuItemFactory().createGovernmentBodyMenuBar(menuBar, pageId, governmentBodyAnnualSummary.getName());</span>
+<span class="fc" id="L71">			getGovernmentBodyMenuItemFactory().createGovernmentBodyMenuBar(menuBar, pageId, governmentBodyAnnualSummary.getName());</span>
 
-<span class="fc" id="L68">			createPageHeader(panel, panelContent, governmentBodyAnnualSummary);</span>
-<span class="fc" id="L69">			createMainCard(panelContent, governmentBodyAnnualSummary, pageId);</span>
+<span class="fc" id="L73">			createPageHeader(panel, panelContent, governmentBodyAnnualSummary);</span>
+<span class="fc" id="L74">			createMainCard(panelContent, governmentBodyAnnualSummary, pageId);</span>
 
-<span class="fc" id="L71">			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_GOVERNMENT_BODY_VIEW,</span>
+<span class="fc" id="L76">			getPageActionEventHelper().createPageEvent(ViewAction.VISIT_GOVERNMENT_BODY_VIEW,</span>
 					ApplicationEventGroup.USER, NAME, parameters, pageId);
 		}
 
-<span class="fc" id="L75">		return panelContent;</span>
+<span class="fc" id="L80">		return panelContent;</span>
 	}
 
 	/**
@@ -83,11 +88,11 @@ public final class GovernmentBodyOverviewPageModContentFactoryImpl
 	 * @param govBody the gov body
 	 */
 	private void createPageHeader(final Panel panel, final VerticalLayout panelContent, final GovernmentBodyAnnualSummary govBody) {
-<span class="fc" id="L86">		CardInfoRowUtil.createPageHeader(panel, panelContent,</span>
-<span class="fc" id="L87">			formatTitle(govBody, GovernmentBodyDescriptionConstants.OVERVIEW_HEADER),</span>
+<span class="fc" id="L91">		CardInfoRowUtil.createPageHeader(panel, panelContent,</span>
+<span class="fc" id="L92">			formatTitle(govBody, GovernmentBodyDescriptionConstants.OVERVIEW_HEADER),</span>
 			GovernmentBodyDescriptionConstants.OVERVIEW_SUBTITLE,
 			GovernmentBodyDescriptionConstants.OVERVIEW_DESC);
-<span class="fc" id="L90">	}</span>
+<span class="fc" id="L95">	}</span>
 
 	/**
 	 * Creates the main card.
@@ -97,19 +102,19 @@ public final class GovernmentBodyOverviewPageModContentFactoryImpl
 	 * @param pageId the page id
 	 */
 	private void createMainCard(final VerticalLayout panelContent, final GovernmentBodyAnnualSummary govBody, final String pageId) {
-<span class="fc" id="L100">		final Panel cardPanel = createCardPanel();</span>
-<span class="fc" id="L101">		final VerticalLayout cardContent = createCardContent(cardPanel);</span>
-<span class="fc" id="L102">		panelContent.addComponent(cardPanel);</span>
-<span class="fc" id="L103">		panelContent.setExpandRatio(cardPanel, ContentRatio.SMALL_GRID);</span>
+<span class="fc" id="L105">		final Panel cardPanel = createCardPanel();</span>
+<span class="fc" id="L106">		final VerticalLayout cardContent = createCardContent(cardPanel);</span>
+<span class="fc" id="L107">		panelContent.addComponent(cardPanel);</span>
+<span class="fc" id="L108">		panelContent.setExpandRatio(cardPanel, ContentRatio.SMALL_GRID);</span>
 
-<span class="fc" id="L105">		CardInfoRowUtil.createCardHeader(cardContent, GovernmentBodyViewConstants.BODY_INFO);</span>
+<span class="fc" id="L110">		CardInfoRowUtil.createCardHeader(cardContent, GovernmentBodyViewConstants.BODY_INFO);</span>
 
-<span class="fc" id="L107">		final HorizontalLayout attributesLayout = createAttributesLayout();</span>
-<span class="fc" id="L108">		cardContent.addComponent(attributesLayout);</span>
+<span class="fc" id="L112">		final HorizontalLayout attributesLayout = createAttributesLayout();</span>
+<span class="fc" id="L113">		cardContent.addComponent(attributesLayout);</span>
 
-<span class="fc" id="L110">		addProfileAndStatsColumns(attributesLayout, govBody);</span>
-<span class="fc" id="L111">		addOverviewLayout(panelContent, pageId);</span>
-<span class="fc" id="L112">	}</span>
+<span class="fc" id="L115">		addProfileAndStatsColumns(attributesLayout, govBody);</span>
+<span class="fc" id="L116">		addOverviewLayout(panelContent, pageId);</span>
+<span class="fc" id="L117">	}</span>
 
 	/**
 	 * Creates the card panel.
@@ -117,12 +122,12 @@ public final class GovernmentBodyOverviewPageModContentFactoryImpl
 	 * @return the panel
 	 */
 	private Panel createCardPanel() {
-<span class="fc" id="L120">		final Panel cardPanel = new Panel();</span>
-<span class="fc" id="L121">		cardPanel.addStyleName(GovernmentBodyViewConstants.STYLE_GOVERNMENT_BODY_CARD);</span>
-<span class="fc" id="L122">		cardPanel.setWidth(GovernmentBodyViewConstants.WIDTH_100_PERCENT);</span>
-<span class="fc" id="L123">		cardPanel.setHeightUndefined();</span>
-<span class="fc" id="L124">		Responsive.makeResponsive(cardPanel);</span>
-<span class="fc" id="L125">		return cardPanel;</span>
+<span class="fc" id="L125">		final Panel cardPanel = new Panel();</span>
+<span class="fc" id="L126">		cardPanel.addStyleName(GovernmentBodyViewConstants.STYLE_GOVERNMENT_BODY_CARD);</span>
+<span class="fc" id="L127">		cardPanel.setWidth(GovernmentBodyViewConstants.WIDTH_100_PERCENT);</span>
+<span class="fc" id="L128">		cardPanel.setHeightUndefined();</span>
+<span class="fc" id="L129">		Responsive.makeResponsive(cardPanel);</span>
+<span class="fc" id="L130">		return cardPanel;</span>
 	}
 
 	/**
@@ -132,12 +137,12 @@ public final class GovernmentBodyOverviewPageModContentFactoryImpl
 	 * @return the vertical layout
 	 */
 	private VerticalLayout createCardContent(final Panel cardPanel) {
-<span class="fc" id="L135">		final VerticalLayout cardContent = new VerticalLayout();</span>
-<span class="fc" id="L136">		cardContent.setMargin(GovernmentBodyLayoutConstants.USE_MARGIN);</span>
-<span class="fc" id="L137">		cardContent.setSpacing(GovernmentBodyLayoutConstants.USE_SPACING);</span>
-<span class="fc" id="L138">		cardContent.setWidth(GovernmentBodyLayoutConstants.WIDTH_100_PERCENT);</span>
-<span class="fc" id="L139">		cardPanel.setContent(cardContent);</span>
-<span class="fc" id="L140">		return cardContent;</span>
+<span class="fc" id="L140">		final VerticalLayout cardContent = new VerticalLayout();</span>
+<span class="fc" id="L141">		cardContent.setMargin(GovernmentBodyLayoutConstants.USE_MARGIN);</span>
+<span class="fc" id="L142">		cardContent.setSpacing(GovernmentBodyLayoutConstants.USE_SPACING);</span>
+<span class="fc" id="L143">		cardContent.setWidth(GovernmentBodyLayoutConstants.WIDTH_100_PERCENT);</span>
+<span class="fc" id="L144">		cardPanel.setContent(cardContent);</span>
+<span class="fc" id="L145">		return cardContent;</span>
 	}
 
 	/**
@@ -146,10 +151,10 @@ public final class GovernmentBodyOverviewPageModContentFactoryImpl
 	 * @return the horizontal layout
 	 */
 	private HorizontalLayout createAttributesLayout() {
-<span class="fc" id="L149">		final HorizontalLayout attributesLayout = new HorizontalLayout();</span>
-<span class="fc" id="L150">		attributesLayout.setSpacing(GovernmentBodyLayoutConstants.USE_SPACING);</span>
-<span class="fc" id="L151">		attributesLayout.setWidth(GovernmentBodyLayoutConstants.WIDTH_100_PERCENT);</span>
-<span class="fc" id="L152">		return attributesLayout;</span>
+<span class="fc" id="L154">		final HorizontalLayout attributesLayout = new HorizontalLayout();</span>
+<span class="fc" id="L155">		attributesLayout.setSpacing(GovernmentBodyLayoutConstants.USE_SPACING);</span>
+<span class="fc" id="L156">		attributesLayout.setWidth(GovernmentBodyLayoutConstants.WIDTH_100_PERCENT);</span>
+<span class="fc" id="L157">		return attributesLayout;</span>
 	}
 
 	/**
@@ -159,11 +164,11 @@ public final class GovernmentBodyOverviewPageModContentFactoryImpl
 	 * @param govBody the gov body
 	 */
 	private void addProfileAndStatsColumns(final HorizontalLayout attributesLayout, final GovernmentBodyAnnualSummary govBody) {
-<span class="fc" id="L162">		final VerticalLayout profileLayout = createProfileColumn(govBody);</span>
-<span class="fc" id="L163">		final VerticalLayout statsLayout = createStatsColumn(govBody);</span>
+<span class="fc" id="L167">		final VerticalLayout profileLayout = createProfileColumn(govBody);</span>
+<span class="fc" id="L168">		final VerticalLayout statsLayout = createStatsColumn(govBody);</span>
 
-<span class="fc" id="L165">		attributesLayout.addComponents(profileLayout, statsLayout);</span>
-<span class="fc" id="L166">	}</span>
+<span class="fc" id="L170">		attributesLayout.addComponents(profileLayout, statsLayout);</span>
+<span class="fc" id="L171">	}</span>
 
 	/**
 	 * Creates the profile column.
@@ -172,11 +177,11 @@ public final class GovernmentBodyOverviewPageModContentFactoryImpl
 	 * @return the vertical layout
 	 */
 	private VerticalLayout createProfileColumn(final GovernmentBodyAnnualSummary govBody) {
-<span class="fc" id="L175">		final VerticalLayout profileLayout = CardInfoRowUtil.createSectionLayout(</span>
+<span class="fc" id="L180">		final VerticalLayout profileLayout = CardInfoRowUtil.createSectionLayout(</span>
 			GovernmentBodyViewConstants.ORG_PROFILE);
 
-<span class="fc" id="L178">		addProfileDetails(profileLayout, govBody);</span>
-<span class="fc" id="L179">		return profileLayout;</span>
+<span class="fc" id="L183">		addProfileDetails(profileLayout, govBody);</span>
+<span class="fc" id="L184">		return profileLayout;</span>
 	}
 
 	/**
@@ -186,22 +191,22 @@ public final class GovernmentBodyOverviewPageModContentFactoryImpl
 	 * @param govBody the gov body
 	 */
 	private void addProfileDetails(final VerticalLayout profileLayout, final GovernmentBodyAnnualSummary govBody) {
-<span class="fc" id="L189">		profileLayout.addComponents(</span>
-<span class="fc" id="L190">			createProfileInfoRow(GovernmentBodyHeaderConstants.NAME_FIELD,</span>
-<span class="fc" id="L191">				govBody.getName(),</span>
+<span class="fc" id="L194">		profileLayout.addComponents(</span>
+<span class="fc" id="L195">			createProfileInfoRow(GovernmentBodyHeaderConstants.NAME_FIELD,</span>
+<span class="fc" id="L196">				govBody.getName(),</span>
 				GovernmentBodyIconConstants.INFO_ICON,
 				GovernmentBodyHeaderConstants.NAME_DESC),
-<span class="fc" id="L194">			createProfileInfoRow(GovernmentBodyHeaderConstants.ID_FIELD,</span>
-<span class="fc" id="L195">				govBody.getGovermentBodyId(),</span>
+<span class="fc" id="L199">			createProfileInfoRow(GovernmentBodyHeaderConstants.ID_FIELD,</span>
+<span class="fc" id="L200">				govBody.getGovermentBodyId(),</span>
 				GovernmentBodyIconConstants.USER_ICON,
 				GovernmentBodyHeaderConstants.ID_DESC),
 			// ...add other profile fields...
-<span class="fc" id="L199">			createProfileInfoRow(GovernmentBodyHeaderConstants.VAT_FIELD,</span>
-<span class="fc" id="L200">				govBody.getVat(),</span>
+<span class="fc" id="L204">			createProfileInfoRow(GovernmentBodyHeaderConstants.VAT_FIELD,</span>
+<span class="fc" id="L205">				govBody.getVat(),</span>
 				GovernmentBodyIconConstants.MONEY_ICON,
 				GovernmentBodyHeaderConstants.VAT_DESC)
 		);
-<span class="fc" id="L204">	}</span>
+<span class="fc" id="L209">	}</span>
 
 	/**
 	 * Creates the profile info row.
@@ -213,7 +218,7 @@ public final class GovernmentBodyOverviewPageModContentFactoryImpl
 	 * @return the com.vaadin.ui. component
 	 */
 	private com.vaadin.ui.Component createProfileInfoRow(final String label, final String value, final VaadinIcons icon, final String description) {
-<span class="fc" id="L216">		return CardInfoRowUtil.createInfoRow(label, value, icon, description);</span>
+<span class="fc" id="L221">		return CardInfoRowUtil.createInfoRow(label, value, icon, description);</span>
 	}
 
 	/**
@@ -223,11 +228,11 @@ public final class GovernmentBodyOverviewPageModContentFactoryImpl
 	 * @return the vertical layout
 	 */
 	private VerticalLayout createStatsColumn(final GovernmentBodyAnnualSummary govBody) {
-<span class="fc" id="L226">		final VerticalLayout statsLayout = CardInfoRowUtil.createSectionLayout(</span>
+<span class="fc" id="L231">		final VerticalLayout statsLayout = CardInfoRowUtil.createSectionLayout(</span>
 			GovernmentBodyViewConstants.ANNUAL_STATS);
 
-<span class="fc" id="L229">		addStatsDetails(statsLayout, govBody);</span>
-<span class="fc" id="L230">		return statsLayout;</span>
+<span class="fc" id="L234">		addStatsDetails(statsLayout, govBody);</span>
+<span class="fc" id="L235">		return statsLayout;</span>
 	}
 
 	/**
@@ -237,29 +242,29 @@ public final class GovernmentBodyOverviewPageModContentFactoryImpl
 	 * @param govBody the gov body
 	 */
 	private void addStatsDetails(final VerticalLayout statsLayout, final GovernmentBodyAnnualSummary govBody) {
-<span class="fc" id="L240">        statsLayout.addComponents(</span>
-<span class="fc" id="L241">            createStatsInfoRow(GovernmentBodyHeaderConstants.YEAR_FIELD,</span>
-<span class="fc" id="L242">                formatYear(govBody.getYear()),</span>
+<span class="fc" id="L245">        statsLayout.addComponents(</span>
+<span class="fc" id="L246">            createStatsInfoRow(GovernmentBodyHeaderConstants.YEAR_FIELD,</span>
+<span class="fc" id="L247">                formatYear(govBody.getYear()),</span>
                 GovernmentBodyIconConstants.CALENDAR_ICON,
                 GovernmentBodyHeaderConstants.YEAR_DESC),
-<span class="fc" id="L245">            createStatsInfoRow(GovernmentBodyHeaderConstants.HEAD_COUNT_FIELD,</span>
-<span class="fc" id="L246">                formatCount(govBody.getHeadCount()),</span>
+<span class="fc" id="L250">            createStatsInfoRow(GovernmentBodyHeaderConstants.HEAD_COUNT_FIELD,</span>
+<span class="fc" id="L251">                formatCount(govBody.getHeadCount()),</span>
                 GovernmentBodyIconConstants.GROUP_ICON,
                 GovernmentBodyHeaderConstants.HEAD_COUNT_DESC),
-<span class="fc" id="L249">            createStatsInfoRow(GovernmentBodyHeaderConstants.ANNUAL_HEADCOUNT_FIELD,</span>
-<span class="fc" id="L250">                formatCount(govBody.getAnnualWorkHeadCount()),</span>
+<span class="fc" id="L254">            createStatsInfoRow(GovernmentBodyHeaderConstants.ANNUAL_HEADCOUNT_FIELD,</span>
+<span class="fc" id="L255">                formatCount(govBody.getAnnualWorkHeadCount()),</span>
                 GovernmentBodyIconConstants.USER_CHECK_ICON,
                 GovernmentBodyHeaderConstants.ANNUAL_HEAD_DESC)
         );
 
-<span class="pc bpc" id="L255" title="2 of 4 branches missed.">        if (govBody.getComment() != null &amp;&amp; !govBody.getComment().isEmpty()) {</span>
-<span class="nc" id="L256">            statsLayout.addComponent(createStatsInfoRow(</span>
+<span class="pc bpc" id="L260" title="2 of 4 branches missed.">        if (govBody.getComment() != null &amp;&amp; !govBody.getComment().isEmpty()) {</span>
+<span class="nc" id="L261">            statsLayout.addComponent(createStatsInfoRow(</span>
                 GovernmentBodyHeaderConstants.COMMENT_FIELD,
-<span class="nc" id="L258">                govBody.getComment(),</span>
+<span class="nc" id="L263">                govBody.getComment(),</span>
                 GovernmentBodyIconConstants.COMMENT_ICON,
                 GovernmentBodyHeaderConstants.COMMENT_DESC));
         }
-<span class="fc" id="L262">    }</span>
+<span class="fc" id="L267">    }</span>
 
     /**
      * Creates the stats info row.
@@ -271,7 +276,7 @@ public final class GovernmentBodyOverviewPageModContentFactoryImpl
      * @return the com.vaadin.ui. component
      */
     private com.vaadin.ui.Component createStatsInfoRow(final String label, final String value, final VaadinIcons icon, final String description) {
-<span class="fc" id="L274">        return CardInfoRowUtil.createInfoRow(label, value, icon, description);</span>
+<span class="fc" id="L279">        return CardInfoRowUtil.createInfoRow(label, value, icon, description);</span>
     }
 
     /**
@@ -281,16 +286,16 @@ public final class GovernmentBodyOverviewPageModContentFactoryImpl
      * @param pageId the page id
      */
     private void addOverviewLayout(final VerticalLayout panelContent, final String pageId) {
-<span class="fc" id="L284">        final VerticalLayout overviewLayout = new VerticalLayout();</span>
-<span class="fc" id="L285">        overviewLayout.setSizeFull();</span>
-<span class="fc" id="L286">        panelContent.addComponent(overviewLayout);</span>
-<span class="fc" id="L287">        panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);</span>
-<span class="fc" id="L288">        getGovernmentBodyMenuItemFactory().createOverviewPage(overviewLayout, pageId);</span>
-<span class="fc" id="L289">    }</span>
+<span class="fc" id="L289">        final VerticalLayout overviewLayout = new VerticalLayout();</span>
+<span class="fc" id="L290">        overviewLayout.setSizeFull();</span>
+<span class="fc" id="L291">        panelContent.addComponent(overviewLayout);</span>
+<span class="fc" id="L292">        panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);</span>
+<span class="fc" id="L293">        getGovernmentBodyMenuItemFactory().createOverviewPage(overviewLayout, pageId);</span>
+<span class="fc" id="L294">    }</span>
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc" id="L293">		return  PageCommandGovernmentBodyConstants.COMMAND_GOVERNMENT_BODY_OVERVIEW.matches(page, parameters);</span>
+<span class="fc" id="L298">		return  PageCommandGovernmentBodyConstants.COMMAND_GOVERNMENT_BODY_OVERVIEW.matches(page, parameters);</span>
 	}
 
 }

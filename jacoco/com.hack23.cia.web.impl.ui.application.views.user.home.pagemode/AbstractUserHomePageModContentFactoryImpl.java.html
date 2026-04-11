@@ -23,7 +23,7 @@ import java.util.Optional;
 import com.hack23.cia.model.internal.application.user.impl.UserAccount;
 import com.hack23.cia.model.internal.application.user.impl.UserAccount_;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.web.impl.ui.application.util.UserContextUtil;
+import com.hack23.cia.web.impl.ui.application.views.common.util.UserContextUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractBasicPageModContentFactoryImpl;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 

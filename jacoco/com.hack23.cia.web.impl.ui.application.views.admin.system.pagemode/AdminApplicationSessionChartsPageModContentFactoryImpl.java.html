@@ -18,12 +18,14 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode;
 
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractAdminSystemPageModContentFactoryImpl;
+
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
-import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.admin.AdminViewConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViewConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandAdminConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
@@ -46,32 +48,32 @@ public final class AdminApplicationSessionChartsPageModContentFactoryImpl
 	 * Instantiates a new admin application session charts page mod content factory impl.
 	 */
 	public AdminApplicationSessionChartsPageModContentFactoryImpl() {
-<span class="fc" id="L49">		super(NAME);</span>
-<span class="fc" id="L50">	}</span>
+<span class="fc" id="L51">		super(NAME);</span>
+<span class="fc" id="L52">	}</span>
 
 	@Secured({ &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L55">		final VerticalLayout content = createPanelContent();</span>
+<span class="fc" id="L57">		final VerticalLayout content = createPanelContent();</span>
 
-<span class="fc" id="L57">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L59">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L59">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
+<span class="fc" id="L61">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
 
-<span class="fc" id="L61">		CardInfoRowUtil.createPageHeader(panel, content, AdminViewConstants.ADMIN_APPLICATION_SESSION_CHARTS, &quot;Session Analysis&quot;, AdminViewConstants.SESSION_ANALYSIS);</span>
+<span class="fc" id="L63">		CardInfoRowUtil.createPageHeader(panel, content, AdminViewConstants.ADMIN_APPLICATION_SESSION_CHARTS, &quot;Session Analysis&quot;, AdminViewConstants.SESSION_ANALYSIS);</span>
 
-<span class="fc" id="L63">		getAdminChartDataManager().createApplicationSessionPageDailySummaryChart(content);</span>
+<span class="fc" id="L65">		getAdminChartDataManager().createApplicationSessionPageDailySummaryChart(content);</span>
 
-<span class="fc" id="L65">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_APPLICATION_SESSION_VIEW,</span>
+<span class="fc" id="L67">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_APPLICATION_SESSION_VIEW,</span>
 				ApplicationEventGroup.ADMIN, NAME, null, pageId);
 
-<span class="fc" id="L68">		return content;</span>
+<span class="fc" id="L70">		return content;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc" id="L74">		return PageCommandAdminConstants.COMMAND_APPLICATION_SESSION_CHARTS.matches(page, parameters);</span>
+<span class="fc" id="L76">		return PageCommandAdminConstants.COMMAND_APPLICATION_SESSION_CHARTS.matches(page, parameters);</span>
 	}
 
 }

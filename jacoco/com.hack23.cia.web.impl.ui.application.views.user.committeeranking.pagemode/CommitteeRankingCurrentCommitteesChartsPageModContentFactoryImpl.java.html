@@ -23,7 +23,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
-import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.ChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api.CommitteeDataSeriesFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandCommitteeRankingConstants;
@@ -31,7 +31,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowU
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CommonViewConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
-import com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode.CommitteeViewConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.constants.CommitteeViewConstants;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.MenuBar;

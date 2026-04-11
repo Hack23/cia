@@ -18,12 +18,14 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode;
 
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractAdminSystemPageModContentFactoryImpl;
+
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
-import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.admin.AdminViewConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViewConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.vaadin.server.ExternalResource;
@@ -47,29 +49,29 @@ public final class AdminMonitoringPageModContentFactoryImpl extends AbstractAdmi
 	 * Instantiates a new admin agency page mod content factory impl.
 	 */
 	public AdminMonitoringPageModContentFactoryImpl() {
-<span class="fc" id="L50">		super(NAME);</span>
-<span class="fc" id="L51">	}</span>
+<span class="fc" id="L52">		super(NAME);</span>
+<span class="fc" id="L53">	}</span>
 
 	@Secured({ &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L56">		final VerticalLayout content = createPanelContent();</span>
-<span class="fc" id="L57">		content.addStyleName(&quot;v-layout-content-overview-panel-level1&quot;);</span>
+<span class="fc" id="L58">		final VerticalLayout content = createPanelContent();</span>
+<span class="fc" id="L59">		content.addStyleName(&quot;v-layout-content-overview-panel-level1&quot;);</span>
 
-<span class="fc" id="L59">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L61">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L61">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
+<span class="fc" id="L63">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
 
-<span class="fc" id="L63">		final BrowserFrame browser = new BrowserFrame(AdminViewConstants.ADMIN_MONITORING, new ExternalResource(AdminViewConstants.MONITORING_CONTEXT_PATH));</span>
-<span class="fc" id="L64">		browser.setSizeFull();</span>
+<span class="fc" id="L65">		final BrowserFrame browser = new BrowserFrame(AdminViewConstants.ADMIN_MONITORING, new ExternalResource(AdminViewConstants.MONITORING_CONTEXT_PATH));</span>
+<span class="fc" id="L66">		browser.setSizeFull();</span>
 
-<span class="fc" id="L66">		content.addComponent(browser);</span>
-<span class="fc" id="L67">		content.setExpandRatio(browser, ContentRatio.FULL_SIZE);</span>
+<span class="fc" id="L68">		content.addComponent(browser);</span>
+<span class="fc" id="L69">		content.setExpandRatio(browser, ContentRatio.FULL_SIZE);</span>
 
-<span class="fc" id="L69">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_MONITORING_VIEW, ApplicationEventGroup.ADMIN,</span>
+<span class="fc" id="L71">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_MONITORING_VIEW, ApplicationEventGroup.ADMIN,</span>
 				NAME, null, pageId);
 
-<span class="fc" id="L72">		return content;</span>
+<span class="fc" id="L74">		return content;</span>
 
 	}
 

@@ -17,6 +17,7 @@
  *  $HeadURL$
 */
 package com.hack23.cia.web.impl.ui.application.views.user.document.pagemode;
+import com.hack23.cia.web.impl.ui.application.views.common.constants.DocumentViewConstants;
 
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
@@ -28,7 +29,7 @@ import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatu
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer_;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandDocumentConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
@@ -45,67 +46,67 @@ import com.vaadin.ui.VerticalLayout;
 public final class DocumentPersonReferencesPageModContentFactoryImpl extends AbstractDocumentPageModContentFactoryImpl {
 
 	/** The Constant COLUMN_ORDER. */
-<span class="fc" id="L48">	private static final String[] COLUMN_ORDER = { &quot;personReferenceId&quot;, &quot;referenceName&quot;, &quot;partyShortCode&quot;,</span>
+<span class="fc" id="L49">	private static final String[] COLUMN_ORDER = { &quot;personReferenceId&quot;, &quot;referenceName&quot;, &quot;partyShortCode&quot;,</span>
 			&quot;orderNumber&quot;, &quot;roleDescription&quot; };
 
 	/** The Constant DOCUMENT_PERSON_REFERENCES. */
 	private static final String DOCUMENT_PERSON_REFERENCES = &quot;Document person references&quot;;
 
 	/** The Constant HIDE_COLUMNS. */
-<span class="fc" id="L55">	private static final String[] HIDE_COLUMNS = { &quot;personReferenceId&quot;, &quot;hjid&quot; };</span>
+<span class="fc" id="L56">	private static final String[] HIDE_COLUMNS = { &quot;personReferenceId&quot;, &quot;hjid&quot; };</span>
 
 	/** The Constant LISTENER. */
-<span class="fc" id="L58">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
+<span class="fc" id="L59">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
 			UserViews.POLITICIAN_VIEW_NAME, &quot;personReferenceId&quot;);
 	/**
 	 * Instantiates a new document person references page mod content factory
 	 * impl.
 	 */
 	public DocumentPersonReferencesPageModContentFactoryImpl() {
-<span class="fc" id="L65">		super();</span>
-<span class="fc" id="L66">	}</span>
+<span class="fc" id="L66">		super();</span>
+<span class="fc" id="L67">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L71">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L72">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L73">		final String pageId = getPageId(parameters);</span>
-<span class="fc" id="L74">		getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L74">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L75">		getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L76">		final DataContainer&lt;DocumentStatusContainer, String&gt; documentStatusContainerDataContainer = getApplicationManager()</span>
-<span class="fc" id="L77">				.getDataContainer(DocumentStatusContainer.class);</span>
+<span class="fc" id="L77">		final DataContainer&lt;DocumentStatusContainer, String&gt; documentStatusContainerDataContainer = getApplicationManager()</span>
+<span class="fc" id="L78">				.getDataContainer(DocumentStatusContainer.class);</span>
 
-<span class="fc" id="L79">		final DocumentStatusContainer documentStatusContainer = documentStatusContainerDataContainer</span>
-<span class="fc" id="L80">				.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,</span>
+<span class="fc" id="L80">		final DocumentStatusContainer documentStatusContainer = documentStatusContainerDataContainer</span>
+<span class="fc" id="L81">				.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,</span>
 						DocumentData.class, DocumentData_.id, pageId);
 
-<span class="fc" id="L83">		CardInfoRowUtil.createPageHeader(panel, panelContent,</span>
+<span class="fc" id="L84">		CardInfoRowUtil.createPageHeader(panel, panelContent,</span>
             DocumentViewConstants.PERSON_REFERENCES_TITLE,
             DocumentViewConstants.PERSON_REFERENCES_SUBTITLE,
             DocumentViewConstants.PERSON_REFERENCES_DESC);
 
-<span class="pc bpc" id="L88" title="2 of 4 branches missed.">		if (documentStatusContainer != null &amp;&amp; documentStatusContainer.getDocumentPersonReferenceContainer() != null</span>
-<span class="fc" id="L89">				&amp;&amp; documentStatusContainer.getDocumentPersonReferenceContainer()</span>
-<span class="pc bpc" id="L90" title="1 of 2 branches missed.">						.getDocumentPersonReferenceList() != null) {</span>
+<span class="pc bpc" id="L89" title="2 of 4 branches missed.">		if (documentStatusContainer != null &amp;&amp; documentStatusContainer.getDocumentPersonReferenceContainer() != null</span>
+<span class="fc" id="L90">				&amp;&amp; documentStatusContainer.getDocumentPersonReferenceContainer()</span>
+<span class="pc bpc" id="L91" title="1 of 2 branches missed.">						.getDocumentPersonReferenceList() != null) {</span>
 
-<span class="fc" id="L92">			getGridFactory().createBasicBeanItemGrid(panelContent, DocumentPersonReferenceData.class,</span>
-<span class="fc" id="L93">					documentStatusContainer.getDocumentPersonReferenceContainer().getDocumentPersonReferenceList(),</span>
+<span class="fc" id="L93">			getGridFactory().createBasicBeanItemGrid(panelContent, DocumentPersonReferenceData.class,</span>
+<span class="fc" id="L94">					documentStatusContainer.getDocumentPersonReferenceContainer().getDocumentPersonReferenceList(),</span>
 					DOCUMENT_PERSON_REFERENCES, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
 		}
 
-<span class="fc" id="L98">		panel.setContent(panelContent);</span>
-<span class="fc" id="L99">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="fc" id="L99">		panel.setContent(panelContent);</span>
+<span class="fc" id="L100">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,</span>
 				parameters, pageId);
 
-<span class="fc" id="L102">		return panelContent;</span>
+<span class="fc" id="L103">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc" id="L108">		return PageCommandDocumentConstants.COMMAND_DOCUMENT_PERSON_REFERENCES.matches(page, parameters);</span>
+<span class="fc" id="L109">		return PageCommandDocumentConstants.COMMAND_DOCUMENT_PERSON_REFERENCES.matches(page, parameters);</span>
 	}
 
 }

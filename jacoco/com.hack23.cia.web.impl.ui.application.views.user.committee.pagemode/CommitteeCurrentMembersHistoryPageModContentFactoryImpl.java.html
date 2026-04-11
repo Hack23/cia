@@ -17,6 +17,8 @@
  *  $HeadURL$
 */
 package com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode;
+import com.hack23.cia.web.impl.ui.application.views.common.constants.CommitteeGridConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.constants.CommitteeViewConstants;
 
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
@@ -26,7 +28,7 @@ import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdag
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeRoleMember_;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandCommitteeConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
@@ -44,7 +46,7 @@ public final class CommitteeCurrentMembersHistoryPageModContentFactoryImpl
 		extends AbstractCommitteePageModContentFactoryImpl {
 
 	/** The Constant LISTENER. */
-<span class="fc" id="L47">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
+<span class="fc" id="L49">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
 			UserViews.POLITICIAN_VIEW_NAME, &quot;personId&quot;);
 
 	/**
@@ -52,46 +54,46 @@ public final class CommitteeCurrentMembersHistoryPageModContentFactoryImpl
 	 * factory impl.
 	 */
 	public CommitteeCurrentMembersHistoryPageModContentFactoryImpl() {
-<span class="fc" id="L55">		super();</span>
-<span class="fc" id="L56">	}</span>
+<span class="fc" id="L57">		super();</span>
+<span class="fc" id="L58">	}</span>
 
 	@SuppressWarnings(&quot;unchecked&quot;)
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L62">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L64">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L64">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L66">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L66">		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);</span>
-<span class="fc" id="L67">		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L68">		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);</span>
+<span class="fc" id="L69">		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L69">		CardInfoRowUtil.createPageHeader(panel, panelContent,</span>
-<span class="fc" id="L70">		    CommitteeViewConstants.CM_TITLE_HEADER + viewRiksdagenCommittee.getEmbeddedId().getDetail(),</span>
+<span class="fc" id="L71">		CardInfoRowUtil.createPageHeader(panel, panelContent,</span>
+<span class="fc" id="L72">		    CommitteeViewConstants.CM_TITLE_HEADER + viewRiksdagenCommittee.getEmbeddedId().getDetail(),</span>
 		    CommitteeViewConstants.CM_TITLE,
 		    CommitteeViewConstants.CM_DESCRIPTION);
 
-<span class="fc" id="L74">		final DataContainer&lt;ViewRiksdagenCommitteeRoleMember, String&gt; committeeRoleMemberDataContainer = getApplicationManager()</span>
-<span class="fc" id="L75">				.getDataContainer(ViewRiksdagenCommitteeRoleMember.class);</span>
+<span class="fc" id="L76">		final DataContainer&lt;ViewRiksdagenCommitteeRoleMember, String&gt; committeeRoleMemberDataContainer = getApplicationManager()</span>
+<span class="fc" id="L77">				.getDataContainer(ViewRiksdagenCommitteeRoleMember.class);</span>
 
-<span class="fc" id="L77">		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenCommitteeRoleMember.class,</span>
-<span class="fc" id="L78">				committeeRoleMemberDataContainer.findListByProperty(</span>
-<span class="fc" id="L79">						new Object[] { viewRiksdagenCommittee.getEmbeddedId().getDetail(), Boolean.TRUE },</span>
+<span class="fc" id="L79">		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenCommitteeRoleMember.class,</span>
+<span class="fc" id="L80">				committeeRoleMemberDataContainer.findListByProperty(</span>
+<span class="fc" id="L81">						new Object[] { viewRiksdagenCommittee.getEmbeddedId().getDetail(), Boolean.TRUE },</span>
 						ViewRiksdagenCommitteeRoleMember_.detail, ViewRiksdagenCommitteeRoleMember_.active),
 				CommitteeGridConstants.CURRENT_MEMBERS_GRID_NAME,
 				CommitteeGridConstants.MEMBER_HISTORY_COLUMN_ORDER,
 				CommitteeGridConstants.CURRENT_MEMBERS_HIDDEN_COLUMNS,
 				LISTENER, null, null);
 
-<span class="fc" id="L86">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="fc" id="L88">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,</span>
 				parameters, pageId);
-<span class="fc" id="L88">		return panelContent;</span>
+<span class="fc" id="L90">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc" id="L94">		return PageCommandCommitteeConstants.COMMAND_COMMITTEE_CURRENT_MEMBERS.matches(page, parameters);</span>
+<span class="fc" id="L96">		return PageCommandCommitteeConstants.COMMAND_COMMITTEE_CURRENT_MEMBERS.matches(page, parameters);</span>
 	}
 
 }

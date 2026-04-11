@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode;
 
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractAdminSystemPageModContentFactoryImpl;
+
 import java.util.List;
 
 import org.springframework.security.access.annotation.Secured;
@@ -28,8 +30,8 @@ import com.hack23.cia.model.internal.application.system.impl.Agency_;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.model.internal.application.system.impl.Portal;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.admin.AdminViewConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViewConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.converters.ListPropertyConverter;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
@@ -54,18 +56,18 @@ public final class AdminAgencyPageModContentFactoryImpl extends AbstractAdminSys
     private static final String AGENCY = &quot;Agency&quot;;
 
     /** The Constant AGENCY_GRID_COLLECTION_PROPERTY_CONVERTERS. */
-<span class="fc" id="L57">    private static final ListPropertyConverter[] AGENCY_GRID_COLLECTION_PROPERTY_CONVERTERS = {</span>
+<span class="fc" id="L59">    private static final ListPropertyConverter[] AGENCY_GRID_COLLECTION_PROPERTY_CONVERTERS = {</span>
             new ListPropertyConverter(&quot;portalName&quot;, &quot;portals&quot;) };
 
     /** The Constant AGENCY_GRID_COLUMN_ORDER. */
-<span class="fc" id="L61">    private static final String[] AGENCY_GRID_COLUMN_ORDER = { &quot;hjid&quot;, &quot;agencyName&quot;, &quot;description&quot;, &quot;portals&quot;,</span>
+<span class="fc" id="L63">    private static final String[] AGENCY_GRID_COLUMN_ORDER = { &quot;hjid&quot;, &quot;agencyName&quot;, &quot;description&quot;, &quot;portals&quot;,</span>
             &quot;modelObjectVersion&quot; };
 
     /** The Constant AGENCY_GRID_HIDE_COLUMNS. */
-<span class="fc" id="L65">    private static final String[] AGENCY_GRID_HIDE_COLUMNS = { &quot;hjid&quot;, &quot;modelObjectId&quot;, &quot;modelObjectVersion&quot; };</span>
+<span class="fc" id="L67">    private static final String[] AGENCY_GRID_HIDE_COLUMNS = { &quot;hjid&quot;, &quot;modelObjectId&quot;, &quot;modelObjectVersion&quot; };</span>
 
     /** The Constant AGENCY_GRID_LISTENER. */
-<span class="fc" id="L68">    private static final PageItemPropertyClickListener AGENCY_GRID_LISTENER = new PageItemPropertyClickListener(</span>
+<span class="fc" id="L70">    private static final PageItemPropertyClickListener AGENCY_GRID_LISTENER = new PageItemPropertyClickListener(</span>
             AdminViews.ADMIN_AGENCY_VIEW_NAME, &quot;hjid&quot;);
 
     /** The Constant NAME. */
@@ -75,104 +77,104 @@ public final class AdminAgencyPageModContentFactoryImpl extends AbstractAdminSys
     private static final String PORTAL = &quot;Portal&quot;;
 
     /** The Constant PORTAL_GRID_COLUMN_ORDER. */
-<span class="fc" id="L78">    private static final String[] PORTAL_GRID_COLUMN_ORDER = { &quot;hjid&quot;, &quot;portalName&quot;, &quot;description&quot;, &quot;portalType&quot;,</span>
+<span class="fc" id="L80">    private static final String[] PORTAL_GRID_COLUMN_ORDER = { &quot;hjid&quot;, &quot;portalName&quot;, &quot;description&quot;, &quot;portalType&quot;,</span>
             &quot;googleMapApiKey&quot;, &quot;modelObjectVersion&quot; };
 
     /** The Constant PORTAL_GRID_HIDE_COLUMNS. */
-<span class="fc" id="L82">    private static final String[] PORTAL_GRID_HIDE_COLUMNS = { &quot;hjid&quot;, &quot;modelObjectId&quot;, &quot;modelObjectVersion&quot;,</span>
+<span class="fc" id="L84">    private static final String[] PORTAL_GRID_HIDE_COLUMNS = { &quot;hjid&quot;, &quot;modelObjectId&quot;, &quot;modelObjectVersion&quot;,</span>
             &quot;googleMapApiKey&quot; };
 
     /** The Constant PORTAL_GRID_LISTENER. */
-<span class="fc" id="L86">    private static final PageItemPropertyClickListener PORTAL_GRID_LISTENER = new PageItemPropertyClickListener(</span>
+<span class="fc" id="L88">    private static final PageItemPropertyClickListener PORTAL_GRID_LISTENER = new PageItemPropertyClickListener(</span>
             AdminViews.ADMIN_PORTAL_VIEW_NAME, &quot;hjid&quot;);
 
     /**
      * Instantiates a new admin agency page mod content factory impl.
      */
     public AdminAgencyPageModContentFactoryImpl() {
-<span class="fc" id="L93">        super(NAME);</span>
-<span class="fc" id="L94">    }</span>
+<span class="fc" id="L95">        super(NAME);</span>
+<span class="fc" id="L96">    }</span>
 
     @Secured({ &quot;ROLE_ADMIN&quot; })
     @Override
     public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L99">        final VerticalLayout content = createPanelContent();</span>
+<span class="fc" id="L101">        final VerticalLayout content = createPanelContent();</span>
 
-<span class="fc" id="L101">        final String pageId = getPageId(parameters);</span>
-<span class="fc" id="L102">        final int pageNr = getPageNr(parameters);</span>
+<span class="fc" id="L103">        final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L104">        final int pageNr = getPageNr(parameters);</span>
 
-<span class="fc" id="L104">        getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
+<span class="fc" id="L106">        getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
 
-<span class="fc" id="L106">        CardInfoRowUtil.createPageHeader(panel, content, AdminViewConstants.ADMIN_AGENCY_MANAGEMENT, &quot;Agency Overview&quot;,</span>
+<span class="fc" id="L108">        CardInfoRowUtil.createPageHeader(panel, content, AdminViewConstants.ADMIN_AGENCY_MANAGEMENT, &quot;Agency Overview&quot;,</span>
                 AdminViewConstants.AGENCY_OVERVIEW);
 
-<span class="fc" id="L109">        final DataContainer&lt;Agency, Long&gt; dataContainer = getApplicationManager().getDataContainer(Agency.class);</span>
-<span class="fc" id="L110">        final List&lt;Agency&gt; pageOrderBy = dataContainer.getPageOrderBy(pageNr, DEFAULT_RESULTS_PER_PAGE,</span>
+<span class="fc" id="L111">        final DataContainer&lt;Agency, Long&gt; dataContainer = getApplicationManager().getDataContainer(Agency.class);</span>
+<span class="fc" id="L112">        final List&lt;Agency&gt; pageOrderBy = dataContainer.getPageOrderBy(pageNr, DEFAULT_RESULTS_PER_PAGE,</span>
                 Agency_.agencyName);
 
-<span class="fc" id="L113">        getPagingUtil().createPagingControls(content, NAME, pageId, dataContainer.getSize(), pageNr,</span>
+<span class="fc" id="L115">        getPagingUtil().createPagingControls(content, NAME, pageId, dataContainer.getSize(), pageNr,</span>
                 DEFAULT_RESULTS_PER_PAGE);
 
-<span class="fc" id="L116">        getGridFactory().createBasicBeanItemGrid(content, Agency.class, pageOrderBy, AGENCY,</span>
+<span class="fc" id="L118">        getGridFactory().createBasicBeanItemGrid(content, Agency.class, pageOrderBy, AGENCY,</span>
                 AGENCY_GRID_COLUMN_ORDER, AGENCY_GRID_HIDE_COLUMNS, AGENCY_GRID_LISTENER, null,
                 AGENCY_GRID_COLLECTION_PROPERTY_CONVERTERS);
 
-<span class="pc bpc" id="L120" title="1 of 4 branches missed.">        if (pageId != null &amp;&amp; !pageId.isEmpty()) {</span>
-<span class="fc" id="L121">            final HorizontalLayout horizontalLayout = new HorizontalLayout();</span>
-<span class="fc" id="L122">            horizontalLayout.setWidth(ContentSize.FULL_SIZE);</span>
-<span class="fc" id="L123">            content.addComponent(horizontalLayout);</span>
-<span class="fc" id="L124">            content.setExpandRatio(horizontalLayout, ContentRatio.LARGE_FORM);</span>
+<span class="pc bpc" id="L122" title="1 of 4 branches missed.">        if (pageId != null &amp;&amp; !pageId.isEmpty()) {</span>
+<span class="fc" id="L123">            final HorizontalLayout horizontalLayout = new HorizontalLayout();</span>
+<span class="fc" id="L124">            horizontalLayout.setWidth(ContentSize.FULL_SIZE);</span>
+<span class="fc" id="L125">            content.addComponent(horizontalLayout);</span>
+<span class="fc" id="L126">            content.setExpandRatio(horizontalLayout, ContentRatio.LARGE_FORM);</span>
 
-<span class="fc" id="L126">            final VerticalLayout leftLayout = new VerticalLayout();</span>
-<span class="fc" id="L127">            leftLayout.setSizeFull();</span>
-<span class="fc" id="L128">            leftLayout.addStyleName(&quot;v-layout-content-overview-panel-level1&quot;);</span>
+<span class="fc" id="L128">            final VerticalLayout leftLayout = new VerticalLayout();</span>
+<span class="fc" id="L129">            leftLayout.setSizeFull();</span>
+<span class="fc" id="L130">            leftLayout.addStyleName(&quot;v-layout-content-overview-panel-level1&quot;);</span>
 
-<span class="fc" id="L130">            final VerticalLayout rightLayout = new VerticalLayout();</span>
-<span class="fc" id="L131">            rightLayout.setSizeFull();</span>
-<span class="fc" id="L132">            rightLayout.addStyleName(&quot;v-layout-content-overview-panel-level2&quot;);</span>
+<span class="fc" id="L132">            final VerticalLayout rightLayout = new VerticalLayout();</span>
+<span class="fc" id="L133">            rightLayout.setSizeFull();</span>
+<span class="fc" id="L134">            rightLayout.addStyleName(&quot;v-layout-content-overview-panel-level2&quot;);</span>
 
-<span class="fc" id="L134">            horizontalLayout.addComponents(leftLayout, rightLayout);</span>
+<span class="fc" id="L136">            horizontalLayout.addComponents(leftLayout, rightLayout);</span>
 
-<span class="fc" id="L136">            final Agency agency = dataContainer.load(Long.valueOf(pageId));</span>
-<span class="pc bpc" id="L137" title="1 of 2 branches missed.">            if (agency != null) {</span>
+<span class="fc" id="L138">            final Agency agency = dataContainer.load(Long.valueOf(pageId));</span>
+<span class="pc bpc" id="L139" title="1 of 2 branches missed.">            if (agency != null) {</span>
                 // Card panel for Agency details
-<span class="fc" id="L139">                final Panel cardPanel = new Panel();</span>
-<span class="fc" id="L140">                cardPanel.addStyleName(&quot;politician-overview-card&quot;); // Reuse existing card style</span>
-<span class="fc" id="L141">                cardPanel.setWidth(&quot;100%&quot;);</span>
-<span class="fc" id="L142">                cardPanel.setHeightUndefined();</span>
-<span class="fc" id="L143">                Responsive.makeResponsive(cardPanel);</span>
+<span class="fc" id="L141">                final Panel cardPanel = new Panel();</span>
+<span class="fc" id="L142">                cardPanel.addStyleName(&quot;politician-overview-card&quot;); // Reuse existing card style</span>
+<span class="fc" id="L143">                cardPanel.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L144">                cardPanel.setHeightUndefined();</span>
+<span class="fc" id="L145">                Responsive.makeResponsive(cardPanel);</span>
 
-<span class="fc" id="L145">                final VerticalLayout cardContent = new VerticalLayout();</span>
-<span class="fc" id="L146">                cardContent.setMargin(true);</span>
-<span class="fc" id="L147">                cardContent.setSpacing(true);</span>
-<span class="fc" id="L148">                cardContent.setWidth(&quot;100%&quot;);</span>
-<span class="fc" id="L149">                cardPanel.setContent(cardContent);</span>
+<span class="fc" id="L147">                final VerticalLayout cardContent = new VerticalLayout();</span>
+<span class="fc" id="L148">                cardContent.setMargin(true);</span>
+<span class="fc" id="L149">                cardContent.setSpacing(true);</span>
+<span class="fc" id="L150">                cardContent.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L151">                cardPanel.setContent(cardContent);</span>
 
-<span class="fc" id="L151">                leftLayout.addComponent(cardPanel);</span>
+<span class="fc" id="L153">                leftLayout.addComponent(cardPanel);</span>
 
-<span class="fc" id="L153">                CardInfoRowUtil.createCardHeader(cardContent, &quot;Agency Details&quot;);</span>
+<span class="fc" id="L155">                CardInfoRowUtil.createCardHeader(cardContent, &quot;Agency Details&quot;);</span>
 
                 // Attributes layout
-<span class="fc" id="L156">                final VerticalLayout attributesLayout = new VerticalLayout();</span>
-<span class="fc" id="L157">                attributesLayout.setSpacing(true);</span>
-<span class="fc" id="L158">                attributesLayout.setWidth(&quot;100%&quot;);</span>
-<span class="fc" id="L159">                cardContent.addComponent(attributesLayout);</span>
+<span class="fc" id="L158">                final VerticalLayout attributesLayout = new VerticalLayout();</span>
+<span class="fc" id="L159">                attributesLayout.setSpacing(true);</span>
+<span class="fc" id="L160">                attributesLayout.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L161">                cardContent.addComponent(attributesLayout);</span>
 
                 // Display fields in a card layout (skipping null or empty ones)
-<span class="fc" id="L162">                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, &quot;Agency Name:&quot;, agency.getAgencyName(), VaadinIcons.FLAG);</span>
-<span class="fc" id="L163">                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, &quot;Description:&quot;, agency.getDescription(), VaadinIcons.FILE_TEXT);</span>
+<span class="fc" id="L164">                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, &quot;Agency Name:&quot;, agency.getAgencyName(), VaadinIcons.FLAG);</span>
+<span class="fc" id="L165">                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, &quot;Description:&quot;, agency.getDescription(), VaadinIcons.FILE_TEXT);</span>
 
                 // Right layout: portals grid
-<span class="fc" id="L166">                getGridFactory().createBasicBeanItemGrid(rightLayout, Portal.class, agency.getPortals(),</span>
+<span class="fc" id="L168">                getGridFactory().createBasicBeanItemGrid(rightLayout, Portal.class, agency.getPortals(),</span>
                         PORTAL, PORTAL_GRID_COLUMN_ORDER, PORTAL_GRID_HIDE_COLUMNS,
                         PORTAL_GRID_LISTENER, null, null);
             }
         }
 
-<span class="fc" id="L172">        getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_AGENCY_VIEW, ApplicationEventGroup.ADMIN,</span>
+<span class="fc" id="L174">        getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_AGENCY_VIEW, ApplicationEventGroup.ADMIN,</span>
                 NAME, null, pageId);
 
-<span class="fc" id="L175">        return content;</span>
+<span class="fc" id="L177">        return content;</span>
     }
 
 }

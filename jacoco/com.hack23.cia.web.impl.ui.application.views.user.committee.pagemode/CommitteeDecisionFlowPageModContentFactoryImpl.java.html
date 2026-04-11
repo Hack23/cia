@@ -17,6 +17,7 @@
  *  $HeadURL$
 */
 package com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode;
+import com.hack23.cia.web.impl.ui.application.views.common.constants.CommitteeViewConstants;
 
 import java.time.LocalDate;
 import java.time.ZoneOffset;
@@ -34,7 +35,7 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
-import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.DecisionFlowChartManager;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandCommitteeConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
@@ -49,10 +50,18 @@ import com.vaadin.ui.TextArea;
 import com.vaadin.ui.VerticalLayout;
 
 /**
- * The Class ParliamentDecisionFlowPageModContentFactoryImpl.
+ * The Class CommitteeDecisionFlowPageModContentFactoryImpl.
+ * Factory for creating committee decision flow page content.
  */
 @Component
-<span class="fc" id="L55">public final class CommitteeDecisionFlowPageModContentFactoryImpl extends AbstractCommitteePageModContentFactoryImpl {</span>
+public final class CommitteeDecisionFlowPageModContentFactoryImpl extends AbstractCommitteePageModContentFactoryImpl {
+
+	/**
+	 * Instantiates a new committee decision flow page mod content factory impl.
+	 */
+	public CommitteeDecisionFlowPageModContentFactoryImpl() {
+<span class="fc" id="L63">		super();</span>
+<span class="fc" id="L64">	}</span>
 
     /** The Constant DEFAULT_YEAR. */
     private static final String DEFAULT_YEAR = &quot;2023/24&quot;;
@@ -72,21 +81,21 @@ import com.vaadin.ui.VerticalLayout;
     @Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
     @Override
     public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L75">        final VerticalLayout panelContent = createPanelContent();</span>
-<span class="fc" id="L76">        final String pageId = getPageId(parameters);</span>
-<span class="fc" id="L77">        final ViewRiksdagenCommittee committee = getItem(parameters);</span>
+<span class="fc" id="L84">        final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L85">        final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L86">        final ViewRiksdagenCommittee committee = getItem(parameters);</span>
 
-<span class="fc" id="L79">        setupMenuAndHeader(menuBar, panel, panelContent, pageId, committee);</span>
-<span class="fc" id="L80">        final String selectedYear = extractSelectedYear(parameters);</span>
-<span class="fc" id="L81">        final Map&lt;String, List&lt;ViewRiksdagenCommittee&gt;&gt; committeeMap = loadCommitteeMap();</span>
+<span class="fc" id="L88">        setupMenuAndHeader(menuBar, panel, panelContent, pageId, committee);</span>
+<span class="fc" id="L89">        final String selectedYear = extractSelectedYear(parameters);</span>
+<span class="fc" id="L90">        final Map&lt;String, List&lt;ViewRiksdagenCommittee&gt;&gt; committeeMap = loadCommitteeMap();</span>
 
-<span class="fc" id="L83">        addYearSelector(panelContent, selectedYear, pageId);</span>
-<span class="fc" id="L84">        addDecisionFlowChart(panelContent, committee, committeeMap, selectedYear);</span>
-<span class="fc" id="L85">        addDecisionSummary(panelContent, committee, selectedYear);</span>
+<span class="fc" id="L92">        addYearSelector(panelContent, selectedYear, pageId);</span>
+<span class="fc" id="L93">        addDecisionFlowChart(panelContent, committee, committeeMap, selectedYear);</span>
+<span class="fc" id="L94">        addDecisionSummary(panelContent, committee, selectedYear);</span>
 
-<span class="fc" id="L87">        recordPageVisit(parameters, pageId);</span>
+<span class="fc" id="L96">        recordPageVisit(parameters, pageId);</span>
 
-<span class="fc" id="L89">        return panelContent;</span>
+<span class="fc" id="L98">        return panelContent;</span>
     }
 
     /**
@@ -96,12 +105,12 @@ import com.vaadin.ui.VerticalLayout;
      * @return Unmodifiable list of year strings in format &quot;YYYY/YY&quot;
      */
     private static List&lt;String&gt; createAvailableYears() {
-<span class="fc" id="L99">        final int currentYear = LocalDate.now((ZoneOffset.UTC)).getYear();</span>
-<span class="fc" id="L100">        return IntStream.rangeClosed(2010, currentYear + 1)</span>
-<span class="fc" id="L101">            .mapToObj(year -&gt; String.format(Locale.ENGLISH,&quot;%d/%02d&quot;, year, (year + 1) % 100))</span>
-<span class="fc" id="L102">            .sorted(Comparator.reverseOrder()) // Most recent years first</span>
-<span class="fc" id="L103">            .collect(Collectors.collectingAndThen(</span>
-<span class="fc" id="L104">                Collectors.toList(),</span>
+<span class="fc" id="L108">        final int currentYear = LocalDate.now((ZoneOffset.UTC)).getYear();</span>
+<span class="fc" id="L109">        return IntStream.rangeClosed(2010, currentYear + 1)</span>
+<span class="fc" id="L110">            .mapToObj(year -&gt; String.format(Locale.ENGLISH,&quot;%d/%02d&quot;, year, (year + 1) % 100))</span>
+<span class="fc" id="L111">            .sorted(Comparator.reverseOrder()) // Most recent years first</span>
+<span class="fc" id="L112">            .collect(Collectors.collectingAndThen(</span>
+<span class="fc" id="L113">                Collectors.toList(),</span>
                 Collections::unmodifiableList
             ));
     }
@@ -117,13 +126,13 @@ import com.vaadin.ui.VerticalLayout;
      */
     private void setupMenuAndHeader(final MenuBar menuBar, final Panel panel, final VerticalLayout panelContent,
             final String pageId, final ViewRiksdagenCommittee committee) {
-<span class="fc" id="L120">        getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);</span>
-<span class="fc" id="L121">        CardInfoRowUtil.createPageHeader(panel, panelContent,</span>
-<span class="fc" id="L122">            CommitteeViewConstants.DF_TITLE_HEADER + committee.getEmbeddedId().getDetail(),</span>
+<span class="fc" id="L129">        getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L130">        CardInfoRowUtil.createPageHeader(panel, panelContent,</span>
+<span class="fc" id="L131">            CommitteeViewConstants.DF_TITLE_HEADER + committee.getEmbeddedId().getDetail(),</span>
             CommitteeViewConstants.DF_TITLE,
             CommitteeViewConstants.DF_DESCRIPTION
         );
-<span class="fc" id="L126">    }</span>
+<span class="fc" id="L135">    }</span>
 
     /**
      * Extract selected year.
@@ -132,13 +141,13 @@ import com.vaadin.ui.VerticalLayout;
      * @return the string
      */
     private String extractSelectedYear(final String parameters) {
-<span class="pc bpc" id="L135" title="4 of 6 branches missed.">        if (parameters != null &amp;&amp; parameters.contains(&quot;[&quot;) &amp;&amp; parameters.contains(&quot;]&quot;)) {</span>
-<span class="nc" id="L136">            return parameters.substring(</span>
-<span class="nc" id="L137">                parameters.indexOf('[') + 1,</span>
-<span class="nc" id="L138">                parameters.lastIndexOf(']')</span>
+<span class="pc bpc" id="L144" title="4 of 6 branches missed.">        if (parameters != null &amp;&amp; parameters.contains(&quot;[&quot;) &amp;&amp; parameters.contains(&quot;]&quot;)) {</span>
+<span class="nc" id="L145">            return parameters.substring(</span>
+<span class="nc" id="L146">                parameters.indexOf('[') + 1,</span>
+<span class="nc" id="L147">                parameters.lastIndexOf(']')</span>
             );
         }
-<span class="fc" id="L141">        return DEFAULT_YEAR;</span>
+<span class="fc" id="L150">        return DEFAULT_YEAR;</span>
     }
 
     /**
@@ -147,12 +156,12 @@ import com.vaadin.ui.VerticalLayout;
      * @return the map
      */
     private Map&lt;String, List&lt;ViewRiksdagenCommittee&gt;&gt; loadCommitteeMap() {
-<span class="fc" id="L150">        return getApplicationManager()</span>
-<span class="fc" id="L151">            .getDataContainer(ViewRiksdagenCommittee.class)</span>
-<span class="fc" id="L152">            .getAll()</span>
-<span class="fc" id="L153">            .stream()</span>
-<span class="fc" id="L154">            .collect(Collectors.groupingBy(</span>
-<span class="fc" id="L155">                committee -&gt; committee.getEmbeddedId().getOrgCode().toUpperCase(Locale.ENGLISH)</span>
+<span class="fc" id="L159">        return getApplicationManager()</span>
+<span class="fc" id="L160">            .getDataContainer(ViewRiksdagenCommittee.class)</span>
+<span class="fc" id="L161">            .getAll()</span>
+<span class="fc" id="L162">            .stream()</span>
+<span class="fc" id="L163">            .collect(Collectors.groupingBy(</span>
+<span class="fc" id="L164">                committee -&gt; committee.getEmbeddedId().getOrgCode().toUpperCase(Locale.ENGLISH)</span>
             ));
     }
 
@@ -164,15 +173,15 @@ import com.vaadin.ui.VerticalLayout;
      * @param pageId the page id
      */
     private void addYearSelector(final VerticalLayout panelContent, final String selectedYear, final String pageId) {
-<span class="fc" id="L167">        final ComboBox&lt;String&gt; yearSelector = new ComboBox&lt;&gt;(CommitteeViewConstants.DF_YEAR_SELECTOR, createAvailableYears());</span>
-<span class="fc" id="L168">        yearSelector.setWidth(&quot;200px&quot;);</span>
-<span class="fc" id="L169">        yearSelector.setEmptySelectionAllowed(false);</span>
-<span class="fc" id="L170">        yearSelector.setSelectedItem(selectedYear);</span>
-<span class="fc" id="L171">        yearSelector.addValueChangeListener(new DecisionFlowValueChangeListener(NAME, pageId));</span>
+<span class="fc" id="L176">        final ComboBox&lt;String&gt; yearSelector = new ComboBox&lt;&gt;(CommitteeViewConstants.DF_YEAR_SELECTOR, createAvailableYears());</span>
+<span class="fc" id="L177">        yearSelector.setWidth(&quot;200px&quot;);</span>
+<span class="fc" id="L178">        yearSelector.setEmptySelectionAllowed(false);</span>
+<span class="fc" id="L179">        yearSelector.setSelectedItem(selectedYear);</span>
+<span class="fc" id="L180">        yearSelector.addValueChangeListener(new DecisionFlowValueChangeListener(NAME, pageId));</span>
 
-<span class="fc" id="L173">        panelContent.addComponent(yearSelector);</span>
-<span class="fc" id="L174">        panelContent.setExpandRatio(yearSelector, ContentRatio.SMALL2);</span>
-<span class="fc" id="L175">    }</span>
+<span class="fc" id="L182">        panelContent.addComponent(yearSelector);</span>
+<span class="fc" id="L183">        panelContent.setExpandRatio(yearSelector, ContentRatio.SMALL2);</span>
+<span class="fc" id="L184">    }</span>
 
     /**
      * Adds the decision flow chart.
@@ -184,14 +193,14 @@ import com.vaadin.ui.VerticalLayout;
      */
     private void addDecisionFlowChart(final VerticalLayout panelContent, final ViewRiksdagenCommittee committee,
             final Map&lt;String, List&lt;ViewRiksdagenCommittee&gt;&gt; committeeMap, final String selectedYear) {
-<span class="fc" id="L187">        final SankeyChart chart = decisionFlowChartManager.createCommitteeDecisionFlow(</span>
+<span class="fc" id="L196">        final SankeyChart chart = decisionFlowChartManager.createCommitteeDecisionFlow(</span>
             committee, committeeMap, selectedYear
         );
-<span class="fc" id="L190">        chart.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L199">        chart.setWidth(&quot;100%&quot;);</span>
 
-<span class="fc" id="L192">        panelContent.addComponent(chart);</span>
-<span class="fc" id="L193">        panelContent.setExpandRatio(chart, ContentRatio.LARGE);</span>
-<span class="fc" id="L194">    }</span>
+<span class="fc" id="L201">        panelContent.addComponent(chart);</span>
+<span class="fc" id="L202">        panelContent.setExpandRatio(chart, ContentRatio.LARGE);</span>
+<span class="fc" id="L203">    }</span>
 
     /**
      * Adds the decision summary.
@@ -202,15 +211,15 @@ import com.vaadin.ui.VerticalLayout;
      */
     private void addDecisionSummary(final VerticalLayout panelContent,
             final ViewRiksdagenCommittee committee, final String selectedYear) {
-<span class="fc" id="L205">        final TextArea summaryArea = decisionFlowChartManager.createCommitteeeDecisionSummary(</span>
+<span class="fc" id="L214">        final TextArea summaryArea = decisionFlowChartManager.createCommitteeeDecisionSummary(</span>
             committee, selectedYear
         );
-<span class="fc" id="L208">        summaryArea.setSizeFull();</span>
-<span class="fc" id="L209">        summaryArea.setReadOnly(true);</span>
+<span class="fc" id="L217">        summaryArea.setSizeFull();</span>
+<span class="fc" id="L218">        summaryArea.setReadOnly(true);</span>
 
-<span class="fc" id="L211">        panelContent.addComponent(summaryArea);</span>
-<span class="fc" id="L212">        panelContent.setExpandRatio(summaryArea, ContentRatio.SMALL_GRID);</span>
-<span class="fc" id="L213">    }</span>
+<span class="fc" id="L220">        panelContent.addComponent(summaryArea);</span>
+<span class="fc" id="L221">        panelContent.setExpandRatio(summaryArea, ContentRatio.SMALL_GRID);</span>
+<span class="fc" id="L222">    }</span>
 
     /**
      * Record page visit.
@@ -219,14 +228,14 @@ import com.vaadin.ui.VerticalLayout;
      * @param pageId the page id
      */
     private void recordPageVisit(final String parameters, final String pageId) {
-<span class="fc" id="L222">        getPageActionEventHelper().createPageEvent(</span>
+<span class="fc" id="L231">        getPageActionEventHelper().createPageEvent(</span>
             ViewAction.VISIT_COMMITTEE_VIEW,
             ApplicationEventGroup.USER,
             NAME,
             parameters,
             pageId
         );
-<span class="fc" id="L229">    }</span>
+<span class="fc" id="L238">    }</span>
 
     /**
      * Matches.
@@ -237,7 +246,7 @@ import com.vaadin.ui.VerticalLayout;
      */
     @Override
     public boolean matches(final String page, final String parameters) {
-<span class="fc" id="L240">    	return PageCommandCommitteeConstants.COMMAND_CHARTS_DECISION_FLOW.matches(page, parameters);</span>
+<span class="fc" id="L249">    	return PageCommandCommitteeConstants.COMMAND_CHARTS_DECISION_FLOW.matches(page, parameters);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

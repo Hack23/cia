@@ -26,7 +26,7 @@ import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPa
 import com.hack23.cia.model.internal.application.data.party.impl.ViewRiksdagenPartyMember_;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandPartyConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
@@ -92,13 +92,13 @@ public final class PartyMemberHistoryPageModContentFactoryImpl extends AbstractP
 <span class="fc" id="L92">		final DataContainer&lt;ViewRiksdagenPartyMember, String&gt; partyMembernDataContainer = getApplicationManager()</span>
 <span class="fc" id="L93">				.getDataContainer(ViewRiksdagenPartyMember.class);</span>
 
-<span class="fc" id="L95">		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenPartyMember.class,</span>
-<span class="fc" id="L96">				partyMembernDataContainer.getAllBy(ViewRiksdagenPartyMember_.party, viewRiksdagenParty.getPartyId()),</span>
+<span class="pc" id="L95">		getGridFactory().createBasicBeanItemGrid(panelContent, ViewRiksdagenPartyMember.class,</span>
+<span class="nc" id="L96">				partyMembernDataContainer.getAllBy(ViewRiksdagenPartyMember_.party, viewRiksdagenParty.getPartyId()),</span>
 				POLITICIANS, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
-<span class="fc" id="L99">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_VIEW, ApplicationEventGroup.USER, NAME, parameters,</span>
+<span class="nc" id="L99">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARTY_VIEW, ApplicationEventGroup.USER, NAME, parameters,</span>
 		pageId);
-<span class="fc" id="L101">		return panelContent;</span>
+<span class="nc" id="L101">		return panelContent;</span>
 
 	}
 

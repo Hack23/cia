@@ -34,7 +34,7 @@ import com.vaadin.ui.UI;
 /**
  * The Class ApplicationLoginListener.
  *
- * @see ApplicationLoginEvent
+ * @see com.vaadin.ui.Button.ClickEvent
  */
 public final class ApplicationLoginListener extends AbstractClickListener implements ClickListener {
 

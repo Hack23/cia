@@ -18,12 +18,16 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode;
 
+import static com.hack23.cia.web.impl.ui.application.views.common.constants.ParliamentPageTitleConstants.*;
+
+import com.hack23.cia.web.impl.ui.application.views.common.constants.ParliamentPageTitleConstants;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
-import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PartyChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandParliamentRankingConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
@@ -47,33 +51,33 @@ public final class ParliamentChartsPartyGenderPageModContentFactoryImpl extends 
 	 * impl.
 	 */
 	public ParliamentChartsPartyGenderPageModContentFactoryImpl() {
-<span class="fc" id="L50">		super();</span>
-<span class="fc" id="L51">	}</span>
+<span class="fc" id="L54">		super();</span>
+<span class="fc" id="L55">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L56">		final VerticalLayout panelContent = createPanelContent();</span>
-<span class="fc" id="L57">		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);</span>
-<span class="fc" id="L58">		CardInfoRowUtil.createPageHeader(panel, panelContent,</span>
+<span class="fc" id="L60">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L61">		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);</span>
+<span class="fc" id="L62">		CardInfoRowUtil.createPageHeader(panel, panelContent,</span>
 		    ParliamentPageTitleConstants.PARTY_GENDER_TITLE,
 		    ParliamentPageTitleConstants.PARTY_GENDER_SUBTITLE,
 		    ParliamentPageTitleConstants.PARTY_GENDER_DESC);
 
-<span class="fc" id="L63">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L67">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L65">		partyChartDataManager.createPartyGenderChart(panelContent);</span>
+<span class="fc" id="L69">		partyChartDataManager.createPartyGenderChart(panelContent);</span>
 
-<span class="fc" id="L67">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="fc" id="L71">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER, NAME,</span>
 				parameters, pageId);
 
-<span class="fc" id="L70">		return panelContent;</span>
+<span class="fc" id="L74">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc" id="L76">		return PageCommandParliamentRankingConstants.COMMAND_CHARTS_PARTY_GENDER.matches(page, parameters);</span>
+<span class="fc" id="L80">		return PageCommandParliamentRankingConstants.COMMAND_CHARTS_PARTY_GENDER.matches(page, parameters);</span>
 	}
 
 }

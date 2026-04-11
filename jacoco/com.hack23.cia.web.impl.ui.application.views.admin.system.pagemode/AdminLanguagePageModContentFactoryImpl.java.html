@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode;
 
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractAdminSystemPageModContentFactoryImpl;
+
 import java.util.List;
 
 import org.springframework.security.access.annotation.Secured;
@@ -27,8 +29,8 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGro
 import com.hack23.cia.model.internal.application.system.impl.LanguageData;
 import com.hack23.cia.model.internal.application.system.impl.LanguageData_;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.admin.AdminViewConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViewConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
@@ -48,14 +50,14 @@ import com.vaadin.ui.VerticalLayout;
 public final class AdminLanguagePageModContentFactoryImpl extends AbstractAdminSystemPageModContentFactoryImpl {
 
     /** The Constant COLUMN_ORDER. */
-<span class="fc" id="L51">    private static final String[] COLUMN_ORDER = {</span>
+<span class="fc" id="L53">    private static final String[] COLUMN_ORDER = {</span>
         &quot;hjid&quot;,
         &quot;languageName&quot;,
         &quot;modelObjectVersion&quot;
     };
 
     /** The Constant HIDE_COLUMNS. */
-<span class="fc" id="L58">    private static final String[] HIDE_COLUMNS = {</span>
+<span class="fc" id="L60">    private static final String[] HIDE_COLUMNS = {</span>
         &quot;hjid&quot;,
         &quot;modelObjectId&quot;,
         &quot;modelObjectVersion&quot;,
@@ -67,7 +69,7 @@ public final class AdminLanguagePageModContentFactoryImpl extends AbstractAdminS
     private static final String LANGUAGE_DATA = &quot;LanguageData&quot;;
 
     /** The Constant LISTENER. */
-<span class="fc" id="L70">    private static final PageItemPropertyClickListener LISTENER =</span>
+<span class="fc" id="L72">    private static final PageItemPropertyClickListener LISTENER =</span>
             new PageItemPropertyClickListener(AdminViews.ADMIN_LANGUAGE_VIEW_NAME, &quot;hjid&quot;);
 
     /** The Constant NAME. */
@@ -77,47 +79,47 @@ public final class AdminLanguagePageModContentFactoryImpl extends AbstractAdminS
      * Instantiates a new admin language page mod content factory impl.
      */
     public AdminLanguagePageModContentFactoryImpl() {
-<span class="fc" id="L80">        super(NAME);</span>
-<span class="fc" id="L81">    }</span>
+<span class="fc" id="L82">        super(NAME);</span>
+<span class="fc" id="L83">    }</span>
 
     @Secured({ &quot;ROLE_ADMIN&quot; })
     @Override
     public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L86">        final VerticalLayout content = new VerticalLayout();</span>
-<span class="fc" id="L87">        content.setSizeFull();</span>
-<span class="fc" id="L88">        content.setMargin(true);</span>
-<span class="fc" id="L89">        content.setSpacing(true);</span>
+<span class="fc" id="L88">        final VerticalLayout content = new VerticalLayout();</span>
+<span class="fc" id="L89">        content.setSizeFull();</span>
+<span class="fc" id="L90">        content.setMargin(true);</span>
+<span class="fc" id="L91">        content.setSpacing(true);</span>
 
-<span class="fc" id="L91">        getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
+<span class="fc" id="L93">        getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
 
-<span class="fc" id="L93">        CardInfoRowUtil.createPageHeader(panel, content,</span>
+<span class="fc" id="L95">        CardInfoRowUtil.createPageHeader(panel, content,</span>
             AdminViewConstants.ADMIN_LANGUAGE_MANAGEMENT,
             AdminViewConstants.LANGUAGE_OVERVIEW,
             AdminViewConstants.LANGUAGE_ADMINISTRATION);
 
-<span class="fc" id="L98">        final HorizontalLayout horizontalLayout = createHorizontalLayout();</span>
-<span class="fc" id="L99">        content.addComponent(horizontalLayout);</span>
-<span class="fc" id="L100">        content.setExpandRatio(horizontalLayout, ContentRatio.LARGE);</span>
+<span class="fc" id="L100">        final HorizontalLayout horizontalLayout = createHorizontalLayout();</span>
+<span class="fc" id="L101">        content.addComponent(horizontalLayout);</span>
+<span class="fc" id="L102">        content.setExpandRatio(horizontalLayout, ContentRatio.LARGE);</span>
 
-<span class="fc" id="L102">        final DataContainer&lt;LanguageData, Long&gt; dataContainer =</span>
-<span class="fc" id="L103">                getApplicationManager().getDataContainer(LanguageData.class);</span>
+<span class="fc" id="L104">        final DataContainer&lt;LanguageData, Long&gt; dataContainer =</span>
+<span class="fc" id="L105">                getApplicationManager().getDataContainer(LanguageData.class);</span>
 
-<span class="fc" id="L105">        final List&lt;LanguageData&gt; pageOrderBy = dataContainer.getPageOrderBy(</span>
-<span class="fc" id="L106">                getPageNr(parameters),</span>
+<span class="fc" id="L107">        final List&lt;LanguageData&gt; pageOrderBy = dataContainer.getPageOrderBy(</span>
+<span class="fc" id="L108">                getPageNr(parameters),</span>
                 DEFAULT_RESULTS_PER_PAGE,
                 LanguageData_.languageName
         );
 
-<span class="fc" id="L111">        getPagingUtil().createPagingControls(</span>
+<span class="fc" id="L113">        getPagingUtil().createPagingControls(</span>
                 content,
                 NAME,
-<span class="fc" id="L114">                getPageId(parameters),</span>
-<span class="fc" id="L115">                dataContainer.getSize(),</span>
-<span class="fc" id="L116">                getPageNr(parameters),</span>
+<span class="fc" id="L116">                getPageId(parameters),</span>
+<span class="fc" id="L117">                dataContainer.getSize(),</span>
+<span class="fc" id="L118">                getPageNr(parameters),</span>
                 DEFAULT_RESULTS_PER_PAGE
         );
 
-<span class="fc" id="L120">        getGridFactory().createBasicBeanItemGrid(</span>
+<span class="fc" id="L122">        getGridFactory().createBasicBeanItemGrid(</span>
                 horizontalLayout,
                 LanguageData.class,
                 pageOrderBy,
@@ -129,50 +131,50 @@ public final class AdminLanguagePageModContentFactoryImpl extends AbstractAdminS
                 null
         );
 
-<span class="pc bpc" id="L132" title="1 of 4 branches missed.">        if (getPageId(parameters) != null &amp;&amp; !getPageId(parameters).isEmpty()) {</span>
-<span class="fc" id="L133">            final LanguageData languageData = dataContainer.load(Long.valueOf(getPageId(parameters)));</span>
-<span class="pc bpc" id="L134" title="1 of 2 branches missed.">            if (languageData != null) {</span>
+<span class="pc bpc" id="L134" title="1 of 4 branches missed.">        if (getPageId(parameters) != null &amp;&amp; !getPageId(parameters).isEmpty()) {</span>
+<span class="fc" id="L135">            final LanguageData languageData = dataContainer.load(Long.valueOf(getPageId(parameters)));</span>
+<span class="pc bpc" id="L136" title="1 of 2 branches missed.">            if (languageData != null) {</span>
                 // Create a card-style panel to display LanguageData details
-<span class="fc" id="L136">                final Panel cardPanel = new Panel();</span>
-<span class="fc" id="L137">                cardPanel.addStyleName(&quot;politician-overview-card&quot;); // Reuse existing style</span>
-<span class="fc" id="L138">                cardPanel.setWidth(&quot;100%&quot;);</span>
-<span class="fc" id="L139">                cardPanel.setHeightUndefined();</span>
-<span class="fc" id="L140">                Responsive.makeResponsive(cardPanel);</span>
+<span class="fc" id="L138">                final Panel cardPanel = new Panel();</span>
+<span class="fc" id="L139">                cardPanel.addStyleName(&quot;politician-overview-card&quot;); // Reuse existing style</span>
+<span class="fc" id="L140">                cardPanel.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L141">                cardPanel.setHeightUndefined();</span>
+<span class="fc" id="L142">                Responsive.makeResponsive(cardPanel);</span>
 
-<span class="fc" id="L142">                final VerticalLayout cardContent = new VerticalLayout();</span>
-<span class="fc" id="L143">                cardContent.setMargin(true);</span>
-<span class="fc" id="L144">                cardContent.setSpacing(true);</span>
-<span class="fc" id="L145">                cardContent.setWidth(&quot;100%&quot;);</span>
-<span class="fc" id="L146">                cardPanel.setContent(cardContent);</span>
+<span class="fc" id="L144">                final VerticalLayout cardContent = new VerticalLayout();</span>
+<span class="fc" id="L145">                cardContent.setMargin(true);</span>
+<span class="fc" id="L146">                cardContent.setSpacing(true);</span>
+<span class="fc" id="L147">                cardContent.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L148">                cardPanel.setContent(cardContent);</span>
 
-<span class="fc" id="L148">                horizontalLayout.addComponent(cardPanel);</span>
-<span class="fc" id="L149">                horizontalLayout.setExpandRatio(cardPanel, ContentRatio.LARGE_FORM);</span>
+<span class="fc" id="L150">                horizontalLayout.addComponent(cardPanel);</span>
+<span class="fc" id="L151">                horizontalLayout.setExpandRatio(cardPanel, ContentRatio.LARGE_FORM);</span>
 
-<span class="fc" id="L151">                CardInfoRowUtil.createCardHeader(cardContent, AdminViewConstants.LANGUAGE_DETAILS);</span>
+<span class="fc" id="L153">                CardInfoRowUtil.createCardHeader(cardContent, AdminViewConstants.LANGUAGE_DETAILS);</span>
 
                 // Attributes layout
-<span class="fc" id="L154">                final VerticalLayout attributesLayout = new VerticalLayout();</span>
-<span class="fc" id="L155">                attributesLayout.setSpacing(true);</span>
-<span class="fc" id="L156">                attributesLayout.setWidth(&quot;100%&quot;);</span>
-<span class="fc" id="L157">                cardContent.addComponent(attributesLayout);</span>
+<span class="fc" id="L156">                final VerticalLayout attributesLayout = new VerticalLayout();</span>
+<span class="fc" id="L157">                attributesLayout.setSpacing(true);</span>
+<span class="fc" id="L158">                attributesLayout.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L159">                cardContent.addComponent(attributesLayout);</span>
 
                 // Display each field if not null or empty
-<span class="fc" id="L160">                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.LANGUAGE_NAME, languageData.getLanguageName(), VaadinIcons.GLOBE);</span>
-<span class="fc" id="L161">                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.CREATED_DATE, String.valueOf(languageData.getCreatedDate()), VaadinIcons.CALENDAR);</span>
-<span class="fc" id="L162">                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.LAST_MODIFIED_DATE, String.valueOf(languageData.getLastModifiedDate()), VaadinIcons.CALENDAR_CLOCK);</span>
-<span class="fc" id="L163">                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.LANGUAGE_ENABLED, String.valueOf(languageData.isLanguageEnabled()), VaadinIcons.CHECK);</span>
+<span class="fc" id="L162">                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.LANGUAGE_NAME, languageData.getLanguageName(), VaadinIcons.GLOBE);</span>
+<span class="fc" id="L163">                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.CREATED_DATE, String.valueOf(languageData.getCreatedDate()), VaadinIcons.CALENDAR);</span>
+<span class="fc" id="L164">                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.LAST_MODIFIED_DATE, String.valueOf(languageData.getLastModifiedDate()), VaadinIcons.CALENDAR_CLOCK);</span>
+<span class="fc" id="L165">                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.LANGUAGE_ENABLED, String.valueOf(languageData.isLanguageEnabled()), VaadinIcons.CHECK);</span>
             }
         }
 
-<span class="fc" id="L167">        getPageActionEventHelper().createPageEvent(</span>
+<span class="fc" id="L169">        getPageActionEventHelper().createPageEvent(</span>
                 ViewAction.VISIT_ADMIN_LANGUAGE_VIEW,
                 ApplicationEventGroup.ADMIN,
                 NAME,
                 null,
-<span class="fc" id="L172">                getPageId(parameters)</span>
+<span class="fc" id="L174">                getPageId(parameters)</span>
         );
 
-<span class="fc" id="L175">        return content;</span>
+<span class="fc" id="L177">        return content;</span>
     }
 
 }

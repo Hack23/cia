@@ -17,6 +17,7 @@
  *  $HeadURL$
 */
 package com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode;
+import com.hack23.cia.web.impl.ui.application.views.common.constants.CommitteeViewConstants;
 
 import java.util.Locale;
 
@@ -25,7 +26,7 @@ import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommittee;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
-import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandCommitteeConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.sizing.ContentRatio;
@@ -48,8 +49,8 @@ public final class CommitteeOverviewPageModContentFactoryImpl extends AbstractCo
 	 * Instantiates a new committee overview page mod content factory impl.
 	 */
 	public CommitteeOverviewPageModContentFactoryImpl() {
-<span class="fc" id="L51">		super();</span>
-<span class="fc" id="L52">	}</span>
+<span class="fc" id="L52">		super();</span>
+<span class="fc" id="L53">	}</span>
 
 	/**
 	 * Creates the content.
@@ -62,114 +63,114 @@ public final class CommitteeOverviewPageModContentFactoryImpl extends AbstractCo
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L65">		final VerticalLayout panelContent = createPanelContent();</span>
-<span class="fc" id="L66">		panel.setContent(panelContent);</span>
+<span class="fc" id="L66">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L67">		panel.setContent(panelContent);</span>
 
-<span class="fc" id="L68">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L69">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L70">		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);</span>
-<span class="fc" id="L71">		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L71">		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);</span>
+<span class="fc" id="L72">		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L73">		CardInfoRowUtil.createPageHeader(panel, panelContent,</span>
-<span class="fc" id="L74">				CommitteeViewConstants.OV_TITLE_HEADER + viewRiksdagenCommittee.getEmbeddedId().getDetail(),</span>
+<span class="fc" id="L74">		CardInfoRowUtil.createPageHeader(panel, panelContent,</span>
+<span class="fc" id="L75">				CommitteeViewConstants.OV_TITLE_HEADER + viewRiksdagenCommittee.getEmbeddedId().getDetail(),</span>
 				CommitteeViewConstants.OV_TITLE,
 				CommitteeViewConstants.OV_DESCRIPTION);
 
-<span class="fc" id="L78">		final Link addCommitteePageLink = getPageLinkFactory().addCommitteePageLink(viewRiksdagenCommittee);</span>
-<span class="fc" id="L79">		panelContent.addComponent(addCommitteePageLink);</span>
-<span class="fc" id="L80">		panelContent.setExpandRatio(addCommitteePageLink, ContentRatio.SMALL);</span>
+<span class="fc" id="L79">		final Link addCommitteePageLink = getPageLinkFactory().addCommitteePageLink(viewRiksdagenCommittee);</span>
+<span class="fc" id="L80">		panelContent.addComponent(addCommitteePageLink);</span>
+<span class="fc" id="L81">		panelContent.setExpandRatio(addCommitteePageLink, ContentRatio.SMALL);</span>
 
 		// Create a card panel for the committee overview
-<span class="fc" id="L83">		final Panel cardPanel = new Panel();</span>
-<span class="fc" id="L84">		cardPanel.addStyleName(&quot;politician-overview-card&quot;);</span>
-<span class="fc" id="L85">		cardPanel.setWidth(&quot;100%&quot;);</span>
-<span class="fc" id="L86">		cardPanel.setHeightUndefined();</span>
-<span class="fc" id="L87">		Responsive.makeResponsive(cardPanel);</span>
+<span class="fc" id="L84">		final Panel cardPanel = new Panel();</span>
+<span class="fc" id="L85">		cardPanel.addStyleName(&quot;politician-overview-card&quot;);</span>
+<span class="fc" id="L86">		cardPanel.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L87">		cardPanel.setHeightUndefined();</span>
+<span class="fc" id="L88">		Responsive.makeResponsive(cardPanel);</span>
 
-<span class="fc" id="L89">		final VerticalLayout cardContent = new VerticalLayout();</span>
-<span class="fc" id="L90">		cardContent.setMargin(true);</span>
-<span class="fc" id="L91">		cardContent.setSpacing(true);</span>
-<span class="fc" id="L92">		cardContent.setWidth(&quot;100%&quot;);</span>
-<span class="fc" id="L93">		cardPanel.setContent(cardContent);</span>
+<span class="fc" id="L90">		final VerticalLayout cardContent = new VerticalLayout();</span>
+<span class="fc" id="L91">		cardContent.setMargin(true);</span>
+<span class="fc" id="L92">		cardContent.setSpacing(true);</span>
+<span class="fc" id="L93">		cardContent.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L94">		cardPanel.setContent(cardContent);</span>
 
-<span class="fc" id="L95">		panelContent.addComponent(cardPanel);</span>
-<span class="fc" id="L96">		panelContent.setExpandRatio(cardPanel, ContentRatio.SMALL_GRID);</span>
+<span class="fc" id="L96">		panelContent.addComponent(cardPanel);</span>
+<span class="fc" id="L97">		panelContent.setExpandRatio(cardPanel, ContentRatio.SMALL_GRID);</span>
 
-<span class="fc" id="L98">		CardInfoRowUtil.createCardHeader(cardContent,&quot;Committee: &quot; + viewRiksdagenCommittee.getEmbeddedId().getDetail());</span>
+<span class="fc" id="L99">		CardInfoRowUtil.createCardHeader(cardContent,&quot;Committee: &quot; + viewRiksdagenCommittee.getEmbeddedId().getDetail());</span>
 
 		// Two-column layout for committee attributes
-<span class="fc" id="L101">		final HorizontalLayout attributesLayout = new HorizontalLayout();</span>
-<span class="fc" id="L102">		attributesLayout.setSpacing(true);</span>
-<span class="fc" id="L103">		attributesLayout.setWidth(&quot;100%&quot;);</span>
-<span class="fc" id="L104">		cardContent.addComponent(attributesLayout);</span>
+<span class="fc" id="L102">		final HorizontalLayout attributesLayout = new HorizontalLayout();</span>
+<span class="fc" id="L103">		attributesLayout.setSpacing(true);</span>
+<span class="fc" id="L104">		attributesLayout.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L105">		cardContent.addComponent(attributesLayout);</span>
 
 		// First column: Committee Profile (keep existing, but add activity level)
-<span class="fc" id="L107">		final VerticalLayout profileDetailsLayout = CardInfoRowUtil.createSectionLayout(CommitteeViewConstants.OV_SECTION_PROFILE);</span>
+<span class="fc" id="L108">		final VerticalLayout profileDetailsLayout = CardInfoRowUtil.createSectionLayout(CommitteeViewConstants.OV_SECTION_PROFILE);</span>
 
-<span class="fc" id="L109">		profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow(&quot;Detail:&quot;, viewRiksdagenCommittee.getEmbeddedId().getDetail(),</span>
+<span class="fc" id="L110">		profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow(&quot;Detail:&quot;, viewRiksdagenCommittee.getEmbeddedId().getDetail(),</span>
 		        VaadinIcons.INFO_CIRCLE, &quot;Internal identifier detail for the committee&quot;));
-<span class="pc bpc" id="L111" title="1 of 2 branches missed.">		profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow(&quot;Status:&quot;, viewRiksdagenCommittee.isActive() ? &quot;Active&quot; : &quot;Inactive&quot;,</span>
+<span class="pc bpc" id="L112" title="1 of 2 branches missed.">		profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow(&quot;Status:&quot;, viewRiksdagenCommittee.isActive() ? &quot;Active&quot; : &quot;Inactive&quot;,</span>
 		        VaadinIcons.FLAG, &quot;Current committee status&quot;));
-<span class="fc" id="L113">		profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow(&quot;Activity Level:&quot;, viewRiksdagenCommittee.getActivityLevel(),</span>
+<span class="fc" id="L114">		profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow(&quot;Activity Level:&quot;, viewRiksdagenCommittee.getActivityLevel(),</span>
 		        VaadinIcons.CHART, &quot;Committee's current activity level&quot;));
-<span class="fc" id="L115">		profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow(&quot;First Assignment:&quot;, String.valueOf(viewRiksdagenCommittee.getFirstAssignmentDate()),</span>
+<span class="fc" id="L116">		profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow(&quot;First Assignment:&quot;, String.valueOf(viewRiksdagenCommittee.getFirstAssignmentDate()),</span>
 		        VaadinIcons.CALENDAR, &quot;Date the committee's first assignment started&quot;));
-<span class="fc" id="L117">		profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow(&quot;Last Assignment:&quot;, String.valueOf(viewRiksdagenCommittee.getLastAssignmentDate()),</span>
+<span class="fc" id="L118">		profileDetailsLayout.addComponent(CardInfoRowUtil.createInfoRow(&quot;Last Assignment:&quot;, String.valueOf(viewRiksdagenCommittee.getLastAssignmentDate()),</span>
 		        VaadinIcons.CALENDAR_CLOCK, &quot;Date of the committee's most recent assignment&quot;));
 
 		// Second column: Membership Statistics
-<span class="fc" id="L121">		final VerticalLayout membershipStatsLayout = CardInfoRowUtil.createSectionLayout(CommitteeViewConstants.OV_SECTION_MEMBERSHIP);</span>
+<span class="fc" id="L122">		final VerticalLayout membershipStatsLayout = CardInfoRowUtil.createSectionLayout(CommitteeViewConstants.OV_SECTION_MEMBERSHIP);</span>
 
-<span class="fc" id="L123">		membershipStatsLayout.addComponent(CardInfoRowUtil.createInfoRow(&quot;Current Members:&quot;, String.valueOf(viewRiksdagenCommittee.getCurrentMemberSize()),</span>
+<span class="fc" id="L124">		membershipStatsLayout.addComponent(CardInfoRowUtil.createInfoRow(&quot;Current Members:&quot;, String.valueOf(viewRiksdagenCommittee.getCurrentMemberSize()),</span>
 		        VaadinIcons.GROUP, &quot;Total current committee members&quot;));
-<span class="fc" id="L125">		membershipStatsLayout.addComponent(CardInfoRowUtil.createInfoRow(&quot;Regular Members:&quot;, String.valueOf(viewRiksdagenCommittee.getCurrentRegularMembers()),</span>
+<span class="fc" id="L126">		membershipStatsLayout.addComponent(CardInfoRowUtil.createInfoRow(&quot;Regular Members:&quot;, String.valueOf(viewRiksdagenCommittee.getCurrentRegularMembers()),</span>
 		        VaadinIcons.USER, &quot;Number of current regular members&quot;));
-<span class="fc" id="L127">		membershipStatsLayout.addComponent(CardInfoRowUtil.createInfoRow(&quot;Leadership Positions:&quot;, String.valueOf(viewRiksdagenCommittee.getCurrentLeadershipPositions()),</span>
+<span class="fc" id="L128">		membershipStatsLayout.addComponent(CardInfoRowUtil.createInfoRow(&quot;Leadership Positions:&quot;, String.valueOf(viewRiksdagenCommittee.getCurrentLeadershipPositions()),</span>
 		        VaadinIcons.STAR, &quot;Current number of leadership positions&quot;));
-<span class="fc" id="L129">		membershipStatsLayout.addComponent(CardInfoRowUtil.createInfoRow(&quot;Substitute Positions:&quot;, String.valueOf(viewRiksdagenCommittee.getCurrentSubstitutePositions()),</span>
+<span class="fc" id="L130">		membershipStatsLayout.addComponent(CardInfoRowUtil.createInfoRow(&quot;Substitute Positions:&quot;, String.valueOf(viewRiksdagenCommittee.getCurrentSubstitutePositions()),</span>
 		        VaadinIcons.USER_CLOCK, &quot;Current number of substitute positions&quot;));
-<span class="fc" id="L131">		membershipStatsLayout.addComponent(CardInfoRowUtil.createInfoRow(&quot;Total Leadership Roles:&quot;, String.valueOf(viewRiksdagenCommittee.getTotalLeadershipPositions()),</span>
+<span class="fc" id="L132">		membershipStatsLayout.addComponent(CardInfoRowUtil.createInfoRow(&quot;Total Leadership Roles:&quot;, String.valueOf(viewRiksdagenCommittee.getTotalLeadershipPositions()),</span>
 		        VaadinIcons.USERS, &quot;Historical total of leadership positions&quot;));
-<span class="fc" id="L133">		membershipStatsLayout.addComponent(CardInfoRowUtil.createInfoRow(&quot;Total Substitute Roles:&quot;, String.valueOf(viewRiksdagenCommittee.getTotalSubstitutePositions()),</span>
+<span class="fc" id="L134">		membershipStatsLayout.addComponent(CardInfoRowUtil.createInfoRow(&quot;Total Substitute Roles:&quot;, String.valueOf(viewRiksdagenCommittee.getTotalSubstitutePositions()),</span>
 		        VaadinIcons.USERS, &quot;Historical total of substitute positions&quot;));
 
 		// Third column: Document Statistics
-<span class="fc" id="L137">		final VerticalLayout documentStatsLayout = CardInfoRowUtil.createSectionLayout(CommitteeViewConstants.OV_SECTION_DOCUMENT);</span>
+<span class="fc" id="L138">		final VerticalLayout documentStatsLayout = CardInfoRowUtil.createSectionLayout(CommitteeViewConstants.OV_SECTION_DOCUMENT);</span>
 
-<span class="fc" id="L139">		documentStatsLayout.addComponent(CardInfoRowUtil.createInfoRow(&quot;Total Documents:&quot;, String.valueOf(viewRiksdagenCommittee.getTotalDocuments()),</span>
+<span class="fc" id="L140">		documentStatsLayout.addComponent(CardInfoRowUtil.createInfoRow(&quot;Total Documents:&quot;, String.valueOf(viewRiksdagenCommittee.getTotalDocuments()),</span>
 		        VaadinIcons.FILE_TEXT, &quot;Total number of documents produced&quot;));
-<span class="fc" id="L141">		documentStatsLayout.addComponent(CardInfoRowUtil.createInfoRow(&quot;Documents Last Year:&quot;, String.valueOf(viewRiksdagenCommittee.getDocumentsLastYear()),</span>
+<span class="fc" id="L142">		documentStatsLayout.addComponent(CardInfoRowUtil.createInfoRow(&quot;Documents Last Year:&quot;, String.valueOf(viewRiksdagenCommittee.getDocumentsLastYear()),</span>
 		        VaadinIcons.FILE_O, &quot;Documents produced in the last year&quot;));
-<span class="fc" id="L143">		documentStatsLayout.addComponent(CardInfoRowUtil.createInfoRow(&quot;Avg Documents/Member:&quot;, String.format(Locale.ENGLISH,&quot;%.1f&quot;, viewRiksdagenCommittee.getAvgDocumentsPerMember()),</span>
+<span class="fc" id="L144">		documentStatsLayout.addComponent(CardInfoRowUtil.createInfoRow(&quot;Avg Documents/Member:&quot;, String.format(Locale.ENGLISH,&quot;%.1f&quot;, viewRiksdagenCommittee.getAvgDocumentsPerMember()),</span>
 		        VaadinIcons.CHART_LINE, &quot;Average documents per committee member&quot;));
-<span class="fc" id="L145">		documentStatsLayout.addComponent(CardInfoRowUtil.createInfoRow(&quot;Committee Motions:&quot;, String.valueOf(viewRiksdagenCommittee.getTotalCommitteeMotions()),</span>
+<span class="fc" id="L146">		documentStatsLayout.addComponent(CardInfoRowUtil.createInfoRow(&quot;Committee Motions:&quot;, String.valueOf(viewRiksdagenCommittee.getTotalCommitteeMotions()),</span>
 		        VaadinIcons.FILE_PRESENTATION, &quot;Total number of committee motions&quot;));
-<span class="fc" id="L147">		documentStatsLayout.addComponent(CardInfoRowUtil.createInfoRow(&quot;Total Assignments:&quot;, String.valueOf(viewRiksdagenCommittee.getTotalAssignments()),</span>
+<span class="fc" id="L148">		documentStatsLayout.addComponent(CardInfoRowUtil.createInfoRow(&quot;Total Assignments:&quot;, String.valueOf(viewRiksdagenCommittee.getTotalAssignments()),</span>
 		        VaadinIcons.TASKS, &quot;Total number of assignments&quot;));
-<span class="fc" id="L149">		documentStatsLayout.addComponent(CardInfoRowUtil.createInfoRow(&quot;Days Served:&quot;, String.valueOf(viewRiksdagenCommittee.getTotalDaysServed()),</span>
+<span class="fc" id="L150">		documentStatsLayout.addComponent(CardInfoRowUtil.createInfoRow(&quot;Days Served:&quot;, String.valueOf(viewRiksdagenCommittee.getTotalDaysServed()),</span>
 		        VaadinIcons.CLOCK, &quot;Total days of committee service&quot;));
 
 		// Clear existing components and add all three columns
-<span class="fc" id="L153">		attributesLayout.removeAllComponents();</span>
-<span class="fc" id="L154">		attributesLayout.addComponents(profileDetailsLayout, membershipStatsLayout, documentStatsLayout);</span>
+<span class="fc" id="L154">		attributesLayout.removeAllComponents();</span>
+<span class="fc" id="L155">		attributesLayout.addComponents(profileDetailsLayout, membershipStatsLayout, documentStatsLayout);</span>
 
 		// Optional: Add some styling to make the columns more responsive
-<span class="fc" id="L157">		attributesLayout.setWidth(&quot;100%&quot;);</span>
-<span class="fc" id="L158">		attributesLayout.setSpacing(true);</span>
+<span class="fc" id="L158">		attributesLayout.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L159">		attributesLayout.setSpacing(true);</span>
 
 
 		// After the card, add the overview layout
-<span class="fc" id="L162">		final VerticalLayout overviewLayout = new VerticalLayout();</span>
-<span class="fc" id="L163">		overviewLayout.setSizeFull();</span>
-<span class="fc" id="L164">		panelContent.addComponent(overviewLayout);</span>
-<span class="fc" id="L165">		panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);</span>
+<span class="fc" id="L163">		final VerticalLayout overviewLayout = new VerticalLayout();</span>
+<span class="fc" id="L164">		overviewLayout.setSizeFull();</span>
+<span class="fc" id="L165">		panelContent.addComponent(overviewLayout);</span>
+<span class="fc" id="L166">		panelContent.setExpandRatio(overviewLayout, ContentRatio.LARGE_FORM);</span>
 
-<span class="fc" id="L167">		getCommitteeMenuItemFactory().createOverviewPage(overviewLayout, pageId);</span>
+<span class="fc" id="L168">		getCommitteeMenuItemFactory().createOverviewPage(overviewLayout, pageId);</span>
 
-<span class="fc" id="L169">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="fc" id="L170">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,</span>
 				parameters, pageId);
 
-<span class="fc" id="L172">		return panelContent;</span>
+<span class="fc" id="L173">		return panelContent;</span>
 	}
 
 	/**
@@ -181,7 +182,7 @@ public final class CommitteeOverviewPageModContentFactoryImpl extends AbstractCo
 	 */
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc" id="L184">		return PageCommandCommitteeConstants.COMMAND_COMMITTEE_OVERVIEW.matches(page, parameters);</span>
+<span class="fc" id="L185">		return PageCommandCommitteeConstants.COMMAND_COMMITTEE_OVERVIEW.matches(page, parameters);</span>
 	}
 
 }

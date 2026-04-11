@@ -26,10 +26,11 @@ import com.vaadin.ui.Notification;
 /**
  * The Class RefreshDataViewsClickListener.
  *
- * @see RefreshDataViewsClickEvent
+ * @see com.vaadin.ui.Button.ClickEvent
  */
 public final class RefreshDataViewsClickListener extends AbstractClickListener implements ClickListener {
 
+	/** The Constant REFRESH_DESC. */
 	public static final String REFRESH_DESC = &quot;refresh desc&quot;;
 
 	/** The Constant REFRESH_VIEWS_STARTED. */
@@ -47,14 +48,14 @@ public final class RefreshDataViewsClickListener extends AbstractClickListener i
 	 * @param serviceRequest the service request
 	 */
 	public RefreshDataViewsClickListener(final RefreshDataViewsRequest serviceRequest) {
-<span class="fc" id="L50">		super();</span>
-<span class="fc" id="L51">		this.serviceRequest = serviceRequest;</span>
-<span class="fc" id="L52">	}</span>
+<span class="fc" id="L51">		super();</span>
+<span class="fc" id="L52">		this.serviceRequest = serviceRequest;</span>
+<span class="fc" id="L53">	}</span>
 
 	@Override
 	public void buttonClick(final ClickEvent event) {
-<span class="fc" id="L56">		getApplicationManager().asyncService(serviceRequest);</span>
-<span class="fc" id="L57">		showNotification(REFRESH_VIEWS_STARTED, REFRESH_DESC, Notification.Type.HUMANIZED_MESSAGE);</span>
-<span class="fc" id="L58">	}</span>
+<span class="fc" id="L57">		getApplicationManager().asyncService(serviceRequest);</span>
+<span class="fc" id="L58">		showNotification(REFRESH_VIEWS_STARTED, REFRESH_DESC, Notification.Type.HUMANIZED_MESSAGE);</span>
+<span class="fc" id="L59">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

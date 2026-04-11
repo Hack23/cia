@@ -42,7 +42,14 @@ import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api
  */
 @Service
 @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-<span class="fc" id="L45">public final class DecisionDataFactoryImpl implements DecisionDataFactory {</span>
+public final class DecisionDataFactoryImpl implements DecisionDataFactory {
+
+	/**
+	 * Instantiates a new decision data factory impl.
+	 */
+	public DecisionDataFactoryImpl() {
+<span class="fc" id="L51">		super();</span>
+<span class="fc" id="L52">	}</span>
 
     /**  Document type constants. */
     private static final String PROPOSITION = &quot;Proposition&quot;;
@@ -54,10 +61,10 @@ import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api
     private static final String PROP_TYPE = &quot;prop&quot;;
 
     /**  Chamber text length constraints for valid proposals. */
-<span class="fc" id="L57">    private static final int CHAMBER_MIN_LENGTH = &quot;avslag&quot;.length(); // 6</span>
+<span class="fc" id="L64">    private static final int CHAMBER_MIN_LENGTH = &quot;avslag&quot;.length(); // 6</span>
 
     /** The Constant CHAMBER_MAX_LENGTH. */
-<span class="fc" id="L60">    private static final int CHAMBER_MAX_LENGTH = &quot;återförvisning till utskottet&quot;.length(); // 29</span>
+<span class="fc" id="L67">    private static final int CHAMBER_MAX_LENGTH = &quot;återförvisning till utskottet&quot;.length(); // 29</span>
 
     /**
      * Pattern for standardizing committee decision text.
@@ -66,7 +73,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api
      * - Parentheses
      * - Various committee spelling variants
      */
-<span class="fc" id="L69">    private static final Pattern COMMITTEE_TEXT_CLEANUP_PATTERN = Pattern.compile(</span>
+<span class="fc" id="L76">    private static final Pattern COMMITTEE_TEXT_CLEANUP_PATTERN = Pattern.compile(</span>
         &quot;(\\(UTSKOTTET\\))|(\\()|(\\))|(UTBSKOTTET)|(UBTSKOTTET)|(UTKOTTET)&quot;,
         Pattern.CASE_INSENSITIVE
     );
@@ -84,15 +91,15 @@ import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api
      */
     @Override
     public List&lt;ProposalCommitteeeSummary&gt; createCommitteeSummary(final String processedIn) {
-<span class="fc" id="L87">        validateProcessedIn(processedIn);</span>
+<span class="fc" id="L94">        validateProcessedIn(processedIn);</span>
 
-<span class="fc" id="L89">        return applicationManager.getDataContainer(DocumentStatusContainer.class)</span>
-<span class="fc" id="L90">                .getAll()</span>
-<span class="fc" id="L91">                .parallelStream()</span>
-<span class="fc" id="L92">                .filter(doc -&gt; isValidDocument(doc, processedIn))</span>
-<span class="fc" id="L93">                .map(doc -&gt; createProposalSummary(doc))</span>
-<span class="fc" id="L94">                .filter(Objects::nonNull)</span>
-<span class="fc" id="L95">                .collect(Collectors.toList());</span>
+<span class="fc" id="L96">        return applicationManager.getDataContainer(DocumentStatusContainer.class)</span>
+<span class="fc" id="L97">                .getAll()</span>
+<span class="fc" id="L98">                .parallelStream()</span>
+<span class="fc" id="L99">                .filter(doc -&gt; isValidDocument(doc, processedIn))</span>
+<span class="fc" id="L100">                .map(doc -&gt; createProposalSummary(doc))</span>
+<span class="fc" id="L101">                .filter(Objects::nonNull)</span>
+<span class="fc" id="L102">                .collect(Collectors.toList());</span>
     }
 
     /**
@@ -102,10 +109,10 @@ import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api
      * @throws IllegalArgumentException if validation fails
      */
     private void validateProcessedIn(final String processedIn) {
-<span class="pc bpc" id="L105" title="1 of 2 branches missed.">        if (StringUtils.isBlank(processedIn)) {</span>
-<span class="nc" id="L106">            throw new IllegalArgumentException(&quot;ProcessedIn parameter cannot be blank&quot;);</span>
+<span class="pc bpc" id="L112" title="1 of 2 branches missed.">        if (StringUtils.isBlank(processedIn)) {</span>
+<span class="nc" id="L113">            throw new IllegalArgumentException(&quot;ProcessedIn parameter cannot be blank&quot;);</span>
         }
-<span class="fc" id="L108">    }</span>
+<span class="fc" id="L115">    }</span>
 
     /**
      * Validates if a document meets the criteria for processing.
@@ -115,13 +122,13 @@ import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api
      * @return true if document is valid for processing
      */
     private boolean isValidDocument(final DocumentStatusContainer document, final String processedIn) {
-<span class="pc bpc" id="L118" title="1 of 4 branches missed.">        if (document == null || document.getDocumentProposal() == null ||</span>
-<span class="pc bpc" id="L119" title="1 of 2 branches missed.">            document.getDocumentProposal().getProposal() == null) {</span>
-<span class="fc" id="L120">            return false;</span>
+<span class="pc bpc" id="L125" title="1 of 4 branches missed.">        if (document == null || document.getDocumentProposal() == null ||</span>
+<span class="pc bpc" id="L126" title="1 of 2 branches missed.">            document.getDocumentProposal().getProposal() == null) {</span>
+<span class="fc" id="L127">            return false;</span>
         }
 
-<span class="fc" id="L123">        final DocumentProposalData proposal = document.getDocumentProposal().getProposal();</span>
-<span class="fc" id="L124">        return isValidProposal(proposal, processedIn);</span>
+<span class="fc" id="L130">        final DocumentProposalData proposal = document.getDocumentProposal().getProposal();</span>
+<span class="fc" id="L131">        return isValidProposal(proposal, processedIn);</span>
     }
 
     /**
@@ -132,16 +139,16 @@ import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api
      * @return true if proposal meets requirements
      */
     private boolean isValidProposal(final DocumentProposalData proposal, final String processedIn) {
-<span class="pc bpc" id="L135" title="1 of 4 branches missed.">        if (proposal == null || StringUtils.isBlank(proposal.getChamber()) ||</span>
-<span class="fc bfc" id="L136" title="All 2 branches covered.">            StringUtils.isBlank(proposal.getProcessedIn()) ||</span>
-<span class="fc bfc" id="L137" title="All 2 branches covered.">            StringUtils.isBlank(proposal.getCommittee())) {</span>
-<span class="fc" id="L138">            return false;</span>
+<span class="pc bpc" id="L142" title="1 of 4 branches missed.">        if (proposal == null || StringUtils.isBlank(proposal.getChamber()) ||</span>
+<span class="fc bfc" id="L143" title="All 2 branches covered.">            StringUtils.isBlank(proposal.getProcessedIn()) ||</span>
+<span class="fc bfc" id="L144" title="All 2 branches covered.">            StringUtils.isBlank(proposal.getCommittee())) {</span>
+<span class="fc" id="L145">            return false;</span>
         }
 
-<span class="fc" id="L141">        final int chamberLength = proposal.getChamber().length();</span>
-<span class="fc bfc" id="L142" title="All 4 branches covered.">        return chamberLength &gt;= CHAMBER_MIN_LENGTH &amp;&amp;</span>
+<span class="fc" id="L148">        final int chamberLength = proposal.getChamber().length();</span>
+<span class="fc bfc" id="L149" title="All 4 branches covered.">        return chamberLength &gt;= CHAMBER_MIN_LENGTH &amp;&amp;</span>
                chamberLength &lt;= CHAMBER_MAX_LENGTH &amp;&amp;
-<span class="fc bfc" id="L144" title="All 2 branches covered.">               proposal.getProcessedIn().contains(processedIn);</span>
+<span class="fc bfc" id="L151" title="All 2 branches covered.">               proposal.getProcessedIn().contains(processedIn);</span>
     }
 
     /**
@@ -152,19 +159,19 @@ import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api
      */
     private ProposalCommitteeeSummary createProposalSummary(final DocumentStatusContainer document) {
         try {
-<span class="fc" id="L155">            final DocumentProposalData proposal = document.getDocumentProposal().getProposal();</span>
-<span class="fc" id="L156">            return new ProposalCommitteeeSummary(</span>
-<span class="fc" id="L157">                extractCommitteeShortName(proposal),</span>
-<span class="fc" id="L158">                determineDocumentType(document),</span>
-<span class="fc" id="L159">                standardizeDecisionText(proposal.getChamber()),</span>
-<span class="fc" id="L160">                document.getDocument().getHangarId(),</span>
-<span class="fc" id="L161">                proposal.getWording(),</span>
-<span class="fc" id="L162">                proposal.getWording2(),</span>
-<span class="fc" id="L163">                proposal.getDecisionType()</span>
+<span class="fc" id="L162">            final DocumentProposalData proposal = document.getDocumentProposal().getProposal();</span>
+<span class="fc" id="L163">            return new ProposalCommitteeeSummary(</span>
+<span class="fc" id="L164">                extractCommitteeShortName(proposal),</span>
+<span class="fc" id="L165">                determineDocumentType(document),</span>
+<span class="fc" id="L166">                standardizeDecisionText(proposal.getChamber()),</span>
+<span class="fc" id="L167">                document.getDocument().getHangarId(),</span>
+<span class="fc" id="L168">                proposal.getWording(),</span>
+<span class="fc" id="L169">                proposal.getWording2(),</span>
+<span class="fc" id="L170">                proposal.getDecisionType()</span>
             );
-<span class="nc" id="L165">        } catch (final Exception e) {</span>
+<span class="nc" id="L172">        } catch (final Exception e) {</span>
             // Log error if needed
-<span class="nc" id="L167">            return null;</span>
+<span class="nc" id="L174">            return null;</span>
         }
     }
 
@@ -175,19 +182,19 @@ import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api
      * @return standardized decision text
      */
     private static String standardizeDecisionText(final String chamber) {
-<span class="pc bpc" id="L178" title="1 of 2 branches missed.">        if (StringUtils.isBlank(chamber)) {</span>
-<span class="nc" id="L179">            return &quot;&quot;;</span>
+<span class="pc bpc" id="L185" title="1 of 2 branches missed.">        if (StringUtils.isBlank(chamber)) {</span>
+<span class="nc" id="L186">            return &quot;&quot;;</span>
         }
 
-<span class="fc" id="L182">        String standardized = chamber.toUpperCase(Locale.ENGLISH);</span>
-<span class="fc" id="L183">        standardized = COMMITTEE_TEXT_CLEANUP_PATTERN.matcher(standardized).replaceAll(&quot;&quot;);</span>
+<span class="fc" id="L189">        String standardized = chamber.toUpperCase(Locale.ENGLISH);</span>
+<span class="fc" id="L190">        standardized = COMMITTEE_TEXT_CLEANUP_PATTERN.matcher(standardized).replaceAll(&quot;&quot;);</span>
 
         // Normalize committee spelling
-<span class="pc bpc" id="L186" title="1 of 2 branches missed.">        if (standardized.contains(&quot;UTKOTTET&quot;)) {</span>
-<span class="nc" id="L187">            standardized = standardized.replace(&quot;UTKOTTET&quot;, &quot;UTSKOTTET&quot;);</span>
+<span class="pc bpc" id="L193" title="1 of 2 branches missed.">        if (standardized.contains(&quot;UTKOTTET&quot;)) {</span>
+<span class="nc" id="L194">            standardized = standardized.replace(&quot;UTKOTTET&quot;, &quot;UTSKOTTET&quot;);</span>
         }
 
-<span class="fc" id="L190">        return standardized.trim();</span>
+<span class="fc" id="L197">        return standardized.trim();</span>
     }
 
     /**
@@ -197,18 +204,18 @@ import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api
      * @return committee short name
      */
     private static String extractCommitteeShortName(final DocumentProposalData proposal) {
-<span class="fc" id="L200">        final String processedIn = proposal.getProcessedIn();</span>
-<span class="pc bpc" id="L201" title="1 of 2 branches missed.">        if (StringUtils.isBlank(processedIn)) {</span>
-<span class="nc" id="L202">            return &quot;&quot;;</span>
+<span class="fc" id="L207">        final String processedIn = proposal.getProcessedIn();</span>
+<span class="pc bpc" id="L208" title="1 of 2 branches missed.">        if (StringUtils.isBlank(processedIn)) {</span>
+<span class="nc" id="L209">            return &quot;&quot;;</span>
         }
 
-<span class="fc" id="L205">        final String shortName = processedIn</span>
-<span class="fc" id="L206">            .replaceAll(&quot;\\d&quot;, &quot;&quot;)</span>
-<span class="fc" id="L207">            .replace(&quot;/:&quot;, &quot;&quot;)</span>
-<span class="fc" id="L208">            .toUpperCase(Locale.ENGLISH);</span>
+<span class="fc" id="L212">        final String shortName = processedIn</span>
+<span class="fc" id="L213">            .replaceAll(&quot;\\d&quot;, &quot;&quot;)</span>
+<span class="fc" id="L214">            .replace(&quot;/:&quot;, &quot;&quot;)</span>
+<span class="fc" id="L215">            .toUpperCase(Locale.ENGLISH);</span>
 
-<span class="fc" id="L210">        final int commaIndex = shortName.indexOf(',');</span>
-<span class="fc bfc" id="L211" title="All 2 branches covered.">        return (commaIndex &gt;= 0) ? shortName.substring(0, commaIndex) : shortName;</span>
+<span class="fc" id="L217">        final int commaIndex = shortName.indexOf(',');</span>
+<span class="fc bfc" id="L218" title="All 2 branches covered.">        return (commaIndex &gt;= 0) ? shortName.substring(0, commaIndex) : shortName;</span>
     }
 
     /**
@@ -218,14 +225,14 @@ import com.hack23.cia.web.impl.ui.application.views.common.dataseriesfactory.api
      * @return document type string
      */
     private static String determineDocumentType(final DocumentStatusContainer document) {
-<span class="fc bfc" id="L221" title="All 2 branches covered.">        if (PROP_TYPE.equalsIgnoreCase(document.getDocument().getDocumentType())) {</span>
-<span class="fc" id="L222">            return PROPOSITION;</span>
+<span class="fc bfc" id="L228" title="All 2 branches covered.">        if (PROP_TYPE.equalsIgnoreCase(document.getDocument().getDocumentType())) {</span>
+<span class="fc" id="L229">            return PROPOSITION;</span>
         }
 
-<span class="fc" id="L225">        final String subType = document.getDocument().getSubType();</span>
-<span class="pc bpc" id="L226" title="2 of 4 branches missed.">        return (subType != null &amp;&amp; subType.length() &gt; MOTION.length())</span>
-<span class="fc" id="L227">               ? subType</span>
-<span class="nc" id="L228">               : MOTION;</span>
+<span class="fc" id="L232">        final String subType = document.getDocument().getSubType();</span>
+<span class="pc bpc" id="L233" title="2 of 4 branches missed.">        return (subType != null &amp;&amp; subType.length() &gt; MOTION.length())</span>
+<span class="fc" id="L234">               ? subType</span>
+<span class="nc" id="L235">               : MOTION;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

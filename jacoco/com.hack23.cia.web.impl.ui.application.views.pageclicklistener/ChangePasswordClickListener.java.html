@@ -31,7 +31,7 @@ import com.vaadin.ui.Notification;
 /**
  * The Class ChangePasswordClickListener.
  *
- * @see ChangePasswordClickEvent
+ * @see com.vaadin.ui.Button.ClickEvent
  */
 public class ChangePasswordClickListener extends AbstractClickListener implements ClickListener {
 

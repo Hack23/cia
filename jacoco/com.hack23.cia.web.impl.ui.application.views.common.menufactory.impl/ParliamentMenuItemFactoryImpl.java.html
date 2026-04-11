@@ -25,7 +25,7 @@ import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.Appli
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ParliamentMenuItemFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandParliamentRankingConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
-import com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode.ParliamentPageTitleConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.constants.ParliamentPageTitleConstants;
 import com.jarektoro.responsivelayout.ResponsiveRow;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.MenuBar;

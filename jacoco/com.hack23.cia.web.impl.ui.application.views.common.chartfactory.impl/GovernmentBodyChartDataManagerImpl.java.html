@@ -43,10 +43,18 @@ import com.vaadin.ui.VerticalLayout;
 
 /**
  * The Class GovernmentBodyChartDataManagerImpl.
+ * Manager for government body chart data operations.
  */
 @Service
-<span class="fc" id="L48">public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataManagerImpl</span>
+public final class GovernmentBodyChartDataManagerImpl extends AbstractChartDataManagerImpl
         implements GovernmentBodyChartDataManager {
+
+	/**
+	 * Instantiates a new government body chart data manager impl.
+	 */
+	public GovernmentBodyChartDataManagerImpl() {
+<span class="fc" id="L56">		super();</span>
+<span class="fc" id="L57">	}</span>
 
     /** The Constant ALL_GOVERNMENT_BODIES. */
     private static final String ALL_GOVERNMENT_BODIES = &quot;All government bodies&quot;;
@@ -96,16 +104,16 @@ import com.vaadin.ui.VerticalLayout;
      * @param value the value
      */
     private static void addDataPoint(final DataSeries dataSeries, final Integer year, final Number value) {
-<span class="pc bpc" id="L99" title="3 of 6 branches missed.">        if (dataSeries == null || year == null || value == null) {</span>
-<span class="nc" id="L100">            return;</span>
+<span class="pc bpc" id="L107" title="3 of 6 branches missed.">        if (dataSeries == null || year == null || value == null) {</span>
+<span class="nc" id="L108">            return;</span>
         }
-<span class="fc" id="L102">        final double doubleValue = value.doubleValue();</span>
-<span class="fc bfc" id="L103" title="All 2 branches covered.">        if (doubleValue &gt; 0) {</span>
+<span class="fc" id="L110">        final double doubleValue = value.doubleValue();</span>
+<span class="fc bfc" id="L111" title="All 2 branches covered.">        if (doubleValue &gt; 0) {</span>
             // Ensure consistent date format: &quot; 01-JAN-YYYY&quot;
-<span class="fc" id="L105">            final String formattedDate = String.format(Locale.ENGLISH,&quot; 01-JAN-%d&quot;, year);</span>
-<span class="fc" id="L106">            dataSeries.add(formattedDate, doubleValue);</span>
+<span class="fc" id="L113">            final String formattedDate = String.format(Locale.ENGLISH,&quot; 01-JAN-%d&quot;, year);</span>
+<span class="fc" id="L114">            dataSeries.add(formattedDate, doubleValue);</span>
         }
-<span class="fc" id="L108">    }</span>
+<span class="fc" id="L116">    }</span>
 
     /**
      * Creates a chart using the provided data/series objects, then appends it to the given layout.
@@ -117,16 +125,16 @@ import com.vaadin.ui.VerticalLayout;
      */
     private void addChartToLayout(final AbstractOrderedLayout layout, final String label,
                                   final DataSeries dataSeries, final Series series) {
-<span class="fc" id="L120">        Objects.requireNonNull(layout, &quot;Layout cannot be null&quot;);</span>
-<span class="fc" id="L121">        Objects.requireNonNull(label, &quot;Label cannot be null&quot;);</span>
+<span class="fc" id="L128">        Objects.requireNonNull(layout, &quot;Layout cannot be null&quot;);</span>
+<span class="fc" id="L129">        Objects.requireNonNull(label, &quot;Label cannot be null&quot;);</span>
 
-<span class="fc" id="L123">        final DCharts chart = new DCharts()</span>
-<span class="fc" id="L124">                .setDataSeries(dataSeries)</span>
-<span class="fc" id="L125">                .setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series))</span>
-<span class="fc" id="L126">                .show();</span>
+<span class="fc" id="L131">        final DCharts chart = new DCharts()</span>
+<span class="fc" id="L132">                .setDataSeries(dataSeries)</span>
+<span class="fc" id="L133">                .setOptions(getChartOptions().createOptionsXYDateFloatLogYAxisLegendOutside(series))</span>
+<span class="fc" id="L134">                .show();</span>
 
-<span class="fc" id="L128">        ChartUtils.addChart(layout, label, chart, true);</span>
-<span class="fc" id="L129">    }</span>
+<span class="fc" id="L136">        ChartUtils.addChart(layout, label, chart, true);</span>
+<span class="fc" id="L137">    }</span>
 
     /**
      * Consolidates logic to retrieve, group, and process data by a descriptive field
@@ -138,35 +146,35 @@ import com.vaadin.ui.VerticalLayout;
      */
     private void buildAnnualOutcomeDataSeriesByField(final DataSeries dataSeries, final Series series,
             final Map&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; groupedData) {
-<span class="fc" id="L141">        Optional.ofNullable(groupedData)</span>
-<span class="fc" id="L142">            .ifPresent(data -&gt; data.entrySet().stream()</span>
-<span class="pc bpc" id="L143" title="2 of 4 branches missed.">                .filter(entry -&gt; entry.getValue() != null &amp;&amp; !entry.getValue().isEmpty())</span>
-<span class="fc" id="L144">                .forEach(entry -&gt; {</span>
-<span class="fc" id="L145">                    series.addSeries(new XYseries().setLabel(entry.getKey()));</span>
-<span class="fc" id="L146">                    dataSeries.newSeries();</span>
+<span class="fc" id="L149">        Optional.ofNullable(groupedData)</span>
+<span class="fc" id="L150">            .ifPresent(data -&gt; data.entrySet().stream()</span>
+<span class="pc bpc" id="L151" title="2 of 4 branches missed.">                .filter(entry -&gt; entry.getValue() != null &amp;&amp; !entry.getValue().isEmpty())</span>
+<span class="fc" id="L152">                .forEach(entry -&gt; {</span>
+<span class="fc" id="L153">                    series.addSeries(new XYseries().setLabel(entry.getKey()));</span>
+<span class="fc" id="L154">                    dataSeries.newSeries();</span>
 
-<span class="fc" id="L148">                    entry.getValue().stream()</span>
-<span class="fc" id="L149">                        .filter(Objects::nonNull)</span>
-<span class="fc" id="L150">                        .forEach(summary -&gt; {</span>
+<span class="fc" id="L156">                    entry.getValue().stream()</span>
+<span class="fc" id="L157">                        .filter(Objects::nonNull)</span>
+<span class="fc" id="L158">                        .forEach(summary -&gt; {</span>
                             // Only process if we have a valid year and value map
-<span class="fc" id="L152">                            Optional.ofNullable(summary.getValueMap())</span>
-<span class="fc" id="L153">                                .ifPresent(valueMap -&gt; {</span>
+<span class="fc" id="L160">                            Optional.ofNullable(summary.getValueMap())</span>
+<span class="fc" id="L161">                                .ifPresent(valueMap -&gt; {</span>
                                     // Get the year directly from the summary
-<span class="fc" id="L155">                                    final Integer year = summary.getYear();</span>
+<span class="fc" id="L163">                                    final Integer year = summary.getYear();</span>
                                     // Get the total value for this year
-<span class="fc" id="L157">                                    final Double totalValue = valueMap.values().stream()</span>
-<span class="fc" id="L158">                                        .filter(Objects::nonNull)</span>
-<span class="fc" id="L159">                                        .mapToDouble(Number::doubleValue)</span>
-<span class="fc" id="L160">                                        .sum();</span>
+<span class="fc" id="L165">                                    final Double totalValue = valueMap.values().stream()</span>
+<span class="fc" id="L166">                                        .filter(Objects::nonNull)</span>
+<span class="fc" id="L167">                                        .mapToDouble(Number::doubleValue)</span>
+<span class="fc" id="L168">                                        .sum();</span>
 
                                     // Only add if we have valid year and value
-<span class="pc bpc" id="L163" title="1 of 4 branches missed.">                                    if (year != null &amp;&amp; totalValue &gt; 0) {</span>
-<span class="fc" id="L164">                                        addDataPoint(dataSeries, year, totalValue);</span>
+<span class="pc bpc" id="L171" title="1 of 4 branches missed.">                                    if (year != null &amp;&amp; totalValue &gt; 0) {</span>
+<span class="fc" id="L172">                                        addDataPoint(dataSeries, year, totalValue);</span>
                                     }
-<span class="fc" id="L166">                                });</span>
-<span class="fc" id="L167">                        });</span>
-<span class="fc" id="L168">                }));</span>
-<span class="fc" id="L169">    }</span>
+<span class="fc" id="L174">                                });</span>
+<span class="fc" id="L175">                        });</span>
+<span class="fc" id="L176">                }));</span>
+<span class="fc" id="L177">    }</span>
 
     /**
      * Helper method to generate a headcount data series given a map of year -&gt; list of summaries.
@@ -179,22 +187,22 @@ import com.vaadin.ui.VerticalLayout;
     private void buildHeadcountDataSeries(final DataSeries dataSeries, final Series series,
                                           final Map&lt;Integer, List&lt;GovernmentBodyAnnualSummary&gt;&gt; yearlyData,
                                           final String label) {
-<span class="fc" id="L182">    	Optional.ofNullable(yearlyData)</span>
-<span class="fc" id="L183">        .ifPresent(data -&gt; {</span>
-<span class="fc" id="L184">            series.addSeries(new XYseries().setLabel(label));</span>
-<span class="fc" id="L185">            dataSeries.newSeries();</span>
+<span class="fc" id="L190">    	Optional.ofNullable(yearlyData)</span>
+<span class="fc" id="L191">        .ifPresent(data -&gt; {</span>
+<span class="fc" id="L192">            series.addSeries(new XYseries().setLabel(label));</span>
+<span class="fc" id="L193">            dataSeries.newSeries();</span>
 
-<span class="fc" id="L187">            data.entrySet().stream()</span>
-<span class="pc bpc" id="L188" title="2 of 4 branches missed.">                .filter(entry -&gt; Objects.nonNull(entry.getValue()) &amp;&amp; !entry.getValue().isEmpty())</span>
-<span class="fc" id="L189">                .forEach(entry -&gt; {</span>
-<span class="fc" id="L190">                    final int totalHeadcount = entry.getValue().stream()</span>
-<span class="fc" id="L191">                        .filter(Objects::nonNull)</span>
-<span class="fc" id="L192">                        .mapToInt(GovernmentBodyAnnualSummary::getHeadCount)</span>
-<span class="fc" id="L193">                        .sum();</span>
-<span class="fc" id="L194">                    addDataPoint(dataSeries, entry.getKey(), totalHeadcount);</span>
-<span class="fc" id="L195">                });</span>
-<span class="fc" id="L196">        });</span>
-<span class="fc" id="L197">    }</span>
+<span class="fc" id="L195">            data.entrySet().stream()</span>
+<span class="pc bpc" id="L196" title="2 of 4 branches missed.">                .filter(entry -&gt; Objects.nonNull(entry.getValue()) &amp;&amp; !entry.getValue().isEmpty())</span>
+<span class="fc" id="L197">                .forEach(entry -&gt; {</span>
+<span class="fc" id="L198">                    final int totalHeadcount = entry.getValue().stream()</span>
+<span class="fc" id="L199">                        .filter(Objects::nonNull)</span>
+<span class="fc" id="L200">                        .mapToInt(GovernmentBodyAnnualSummary::getHeadCount)</span>
+<span class="fc" id="L201">                        .sum();</span>
+<span class="fc" id="L202">                    addDataPoint(dataSeries, entry.getKey(), totalHeadcount);</span>
+<span class="fc" id="L203">                });</span>
+<span class="fc" id="L204">        });</span>
+<span class="fc" id="L205">    }</span>
 
     /**
      * Consolidates logic for creating a chart that is grouped by some string field in descriptionFields.
@@ -204,271 +212,271 @@ import com.vaadin.ui.VerticalLayout;
      * @param chartLabel the chart label
      */
     private void createMinistryFieldSummary(final AbstractOrderedLayout layout, final String field, final String chartLabel) {
-<span class="fc" id="L207">        Objects.requireNonNull(layout, &quot;Layout cannot be null&quot;);</span>
-<span class="fc" id="L208">        Objects.requireNonNull(field, &quot;Field cannot be null&quot;);</span>
-<span class="fc" id="L209">        Objects.requireNonNull(chartLabel, &quot;Chart label cannot be null&quot;);</span>
+<span class="fc" id="L215">        Objects.requireNonNull(layout, &quot;Layout cannot be null&quot;);</span>
+<span class="fc" id="L216">        Objects.requireNonNull(field, &quot;Field cannot be null&quot;);</span>
+<span class="fc" id="L217">        Objects.requireNonNull(chartLabel, &quot;Chart label cannot be null&quot;);</span>
 
-<span class="fc" id="L211">        final DataSeries dataSeries = new DataSeries();</span>
-<span class="fc" id="L212">        final Series series = new Series();</span>
+<span class="fc" id="L219">        final DataSeries dataSeries = new DataSeries();</span>
+<span class="fc" id="L220">        final Series series = new Series();</span>
 
-<span class="fc" id="L214">        Optional.ofNullable(esvApi.getGovernmentBodyReportByMinistry())</span>
-<span class="fc" id="L215">            .ifPresent(reportByMinistry -&gt;</span>
-<span class="fc" id="L216">                reportByMinistry.entrySet().stream()</span>
-<span class="pc bpc" id="L217" title="2 of 4 branches missed.">                    .filter(entry -&gt; entry.getValue() != null &amp;&amp; !entry.getValue().isEmpty())</span>
-<span class="fc" id="L218">                    .forEach(entry -&gt; {</span>
-<span class="fc" id="L219">                        final Map&lt;Integer, Double&gt; annualTotals = entry.getValue().stream()</span>
-<span class="fc" id="L220">                            .filter(Objects::nonNull)</span>
-<span class="fc" id="L221">                            .filter(summary -&gt; Optional.ofNullable(summary.getDescriptionFields())</span>
-<span class="fc" id="L222">                                .map(fields -&gt; fields.get(field))</span>
-<span class="fc" id="L223">                                .isPresent())</span>
-<span class="fc" id="L224">                            .collect(Collectors.groupingBy(</span>
+<span class="fc" id="L222">        Optional.ofNullable(esvApi.getGovernmentBodyReportByMinistry())</span>
+<span class="fc" id="L223">            .ifPresent(reportByMinistry -&gt;</span>
+<span class="fc" id="L224">                reportByMinistry.entrySet().stream()</span>
+<span class="pc bpc" id="L225" title="2 of 4 branches missed.">                    .filter(entry -&gt; entry.getValue() != null &amp;&amp; !entry.getValue().isEmpty())</span>
+<span class="fc" id="L226">                    .forEach(entry -&gt; {</span>
+<span class="fc" id="L227">                        final Map&lt;Integer, Double&gt; annualTotals = entry.getValue().stream()</span>
+<span class="fc" id="L228">                            .filter(Objects::nonNull)</span>
+<span class="fc" id="L229">                            .filter(summary -&gt; Optional.ofNullable(summary.getDescriptionFields())</span>
+<span class="fc" id="L230">                                .map(fields -&gt; fields.get(field))</span>
+<span class="fc" id="L231">                                .isPresent())</span>
+<span class="fc" id="L232">                            .collect(Collectors.groupingBy(</span>
                                 GovernmentBodyAnnualOutcomeSummary::getYear,
-<span class="fc" id="L226">                                Collectors.summingDouble(GovernmentBodyAnnualOutcomeSummary::getYearTotal)</span>
+<span class="fc" id="L234">                                Collectors.summingDouble(GovernmentBodyAnnualOutcomeSummary::getYearTotal)</span>
                             ));
 
-<span class="pc bpc" id="L229" title="1 of 2 branches missed.">                        if (!annualTotals.isEmpty()) {</span>
-<span class="fc" id="L230">                            series.addSeries(new XYseries().setLabel(entry.getKey()));</span>
-<span class="fc" id="L231">                            dataSeries.newSeries();</span>
-<span class="fc" id="L232">                            annualTotals.forEach((year, total) -&gt;</span>
-<span class="fc" id="L233">                                addDataPoint(dataSeries, year + 1, total));</span>
+<span class="pc bpc" id="L237" title="1 of 2 branches missed.">                        if (!annualTotals.isEmpty()) {</span>
+<span class="fc" id="L238">                            series.addSeries(new XYseries().setLabel(entry.getKey()));</span>
+<span class="fc" id="L239">                            dataSeries.newSeries();</span>
+<span class="fc" id="L240">                            annualTotals.forEach((year, total) -&gt;</span>
+<span class="fc" id="L241">                                addDataPoint(dataSeries, year + 1, total));</span>
                         }
-<span class="fc" id="L235">                    }));</span>
+<span class="fc" id="L243">                    }));</span>
 
-<span class="fc" id="L237">        addChartToLayout(layout, chartLabel, dataSeries, series);</span>
-<span class="fc" id="L238">    }</span>
+<span class="fc" id="L245">        addChartToLayout(layout, chartLabel, dataSeries, series);</span>
+<span class="fc" id="L246">    }</span>
 
     // ==================== Public Chart Methods ====================
 
     @Override
     public void createGovernmentBodyExpenditureSummaryChart(final VerticalLayout layout) {
-<span class="fc" id="L244">        Objects.requireNonNull(layout, &quot;Layout cannot be null&quot;);</span>
-<span class="fc" id="L245">        final Map&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; report =</span>
-<span class="fc" id="L246">                esvApi.getGovernmentBodyReportByField(EXPENDITURE_GROUP_NAME);</span>
+<span class="fc" id="L252">        Objects.requireNonNull(layout, &quot;Layout cannot be null&quot;);</span>
+<span class="fc" id="L253">        final Map&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; report =</span>
+<span class="fc" id="L254">                esvApi.getGovernmentBodyReportByField(EXPENDITURE_GROUP_NAME);</span>
 
-<span class="fc" id="L248">        final DataSeries dataSeries = new DataSeries();</span>
-<span class="fc" id="L249">        final Series series = new Series();</span>
-<span class="fc" id="L250">        buildAnnualOutcomeDataSeriesByField(dataSeries, series, report);</span>
+<span class="fc" id="L256">        final DataSeries dataSeries = new DataSeries();</span>
+<span class="fc" id="L257">        final Series series = new Series();</span>
+<span class="fc" id="L258">        buildAnnualOutcomeDataSeriesByField(dataSeries, series, report);</span>
 
-<span class="fc" id="L252">        addChartToLayout(layout, ANNUAL_EXPENDITURE, dataSeries, series);</span>
-<span class="fc" id="L253">    }</span>
+<span class="fc" id="L260">        addChartToLayout(layout, ANNUAL_EXPENDITURE, dataSeries, series);</span>
+<span class="fc" id="L261">    }</span>
 
     @Override
     public void createGovernmentBodyExpenditureSummaryChart(final VerticalLayout layout,
                                                             final String governmentBodyName) {
-<span class="fc" id="L258">        Objects.requireNonNull(layout, &quot;Layout cannot be null&quot;);</span>
-<span class="fc" id="L259">        Objects.requireNonNull(governmentBodyName, &quot;Government body name cannot be null&quot;);</span>
+<span class="fc" id="L266">        Objects.requireNonNull(layout, &quot;Layout cannot be null&quot;);</span>
+<span class="fc" id="L267">        Objects.requireNonNull(governmentBodyName, &quot;Government body name cannot be null&quot;);</span>
 
-<span class="fc" id="L261">        final Map&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; allSummaries = esvApi.getGovernmentBodyReport();</span>
+<span class="fc" id="L269">        final Map&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; allSummaries = esvApi.getGovernmentBodyReport();</span>
 
-<span class="fc" id="L263">        final List&lt;GovernmentBodyAnnualOutcomeSummary&gt; summariesForBody = Optional.ofNullable(allSummaries)</span>
-<span class="fc" id="L264">                .map(summaries -&gt; summaries.get(governmentBodyName))</span>
-<span class="fc" id="L265">                .orElse(Collections.emptyList());</span>
+<span class="fc" id="L271">        final List&lt;GovernmentBodyAnnualOutcomeSummary&gt; summariesForBody = Optional.ofNullable(allSummaries)</span>
+<span class="fc" id="L272">                .map(summaries -&gt; summaries.get(governmentBodyName))</span>
+<span class="fc" id="L273">                .orElse(Collections.emptyList());</span>
 
-<span class="fc" id="L267">        final Map&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; grouped = summariesForBody.stream()</span>
-<span class="fc" id="L268">                .filter(Objects::nonNull)</span>
-<span class="fc" id="L269">                .filter(summary -&gt; Optional.ofNullable(summary.getDescriptionFields())</span>
-<span class="fc" id="L270">                    .map(fields -&gt; fields.get(ANSLAGSPOSTSNAMN))</span>
-<span class="fc" id="L271">                    .isPresent())</span>
-<span class="fc" id="L272">                .sorted(Comparator.comparing(GovernmentBodyAnnualOutcomeSummary::getYear))</span>
-<span class="fc" id="L273">                .collect(Collectors.groupingBy(</span>
-<span class="fc" id="L274">                    summary -&gt; summary.getDescriptionFields().get(ANSLAGSPOSTSNAMN)));</span>
+<span class="fc" id="L275">        final Map&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; grouped = summariesForBody.stream()</span>
+<span class="fc" id="L276">                .filter(Objects::nonNull)</span>
+<span class="fc" id="L277">                .filter(summary -&gt; Optional.ofNullable(summary.getDescriptionFields())</span>
+<span class="fc" id="L278">                    .map(fields -&gt; fields.get(ANSLAGSPOSTSNAMN))</span>
+<span class="fc" id="L279">                    .isPresent())</span>
+<span class="fc" id="L280">                .sorted(Comparator.comparing(GovernmentBodyAnnualOutcomeSummary::getYear))</span>
+<span class="fc" id="L281">                .collect(Collectors.groupingBy(</span>
+<span class="fc" id="L282">                    summary -&gt; summary.getDescriptionFields().get(ANSLAGSPOSTSNAMN)));</span>
 
-<span class="fc" id="L276">        final DataSeries dataSeries = new DataSeries();</span>
-<span class="fc" id="L277">        final Series series = new Series();</span>
-<span class="fc" id="L278">        buildAnnualOutcomeDataSeriesByField(dataSeries, series, grouped);</span>
+<span class="fc" id="L284">        final DataSeries dataSeries = new DataSeries();</span>
+<span class="fc" id="L285">        final Series series = new Series();</span>
+<span class="fc" id="L286">        buildAnnualOutcomeDataSeriesByField(dataSeries, series, grouped);</span>
 
-<span class="fc" id="L280">        addChartToLayout(layout, governmentBodyName + &quot; &quot; + ANNUAL_EXPENDITURE, dataSeries, series);</span>
-<span class="fc" id="L281">    }</span>
+<span class="fc" id="L288">        addChartToLayout(layout, governmentBodyName + &quot; &quot; + ANNUAL_EXPENDITURE, dataSeries, series);</span>
+<span class="fc" id="L289">    }</span>
 
     @Override
     public void createGovernmentBodyHeadcountSummaryChart(final VerticalLayout layout) {
-<span class="fc" id="L285">        Objects.requireNonNull(layout, &quot;Layout cannot be null&quot;);</span>
+<span class="fc" id="L293">        Objects.requireNonNull(layout, &quot;Layout cannot be null&quot;);</span>
 
-<span class="fc" id="L287">        final Map&lt;Integer, List&lt;GovernmentBodyAnnualSummary&gt;&gt; map = esvApi.getData();</span>
-<span class="fc" id="L288">        final DataSeries dataSeries = new DataSeries();</span>
-<span class="fc" id="L289">        final Series series = new Series();</span>
+<span class="fc" id="L295">        final Map&lt;Integer, List&lt;GovernmentBodyAnnualSummary&gt;&gt; map = esvApi.getData();</span>
+<span class="fc" id="L296">        final DataSeries dataSeries = new DataSeries();</span>
+<span class="fc" id="L297">        final Series series = new Series();</span>
 
-<span class="fc" id="L291">        buildHeadcountDataSeries(dataSeries, series, map, ALL_GOVERNMENT_BODIES);</span>
-<span class="fc" id="L292">        addChartToLayout(layout, ANNUAL_HEADCOUNT_TOTAL_ALL_GOVERNMENT_BODIES, dataSeries, series);</span>
-<span class="fc" id="L293">    }</span>
+<span class="fc" id="L299">        buildHeadcountDataSeries(dataSeries, series, map, ALL_GOVERNMENT_BODIES);</span>
+<span class="fc" id="L300">        addChartToLayout(layout, ANNUAL_HEADCOUNT_TOTAL_ALL_GOVERNMENT_BODIES, dataSeries, series);</span>
+<span class="fc" id="L301">    }</span>
 
     @Override
     public void createGovernmentBodyHeadcountSummaryChart(final VerticalLayout layout,
                                                           final String governmentBodyName) {
-<span class="fc" id="L298">        Objects.requireNonNull(layout, &quot;Layout cannot be null&quot;);</span>
-<span class="fc" id="L299">        Objects.requireNonNull(governmentBodyName, &quot;Government body name cannot be null&quot;);</span>
+<span class="fc" id="L306">        Objects.requireNonNull(layout, &quot;Layout cannot be null&quot;);</span>
+<span class="fc" id="L307">        Objects.requireNonNull(governmentBodyName, &quot;Government body name cannot be null&quot;);</span>
 
-<span class="fc" id="L301">        final Map&lt;Integer, GovernmentBodyAnnualSummary&gt; map = esvApi.getDataPerGovernmentBody(governmentBodyName);</span>
+<span class="fc" id="L309">        final Map&lt;Integer, GovernmentBodyAnnualSummary&gt; map = esvApi.getDataPerGovernmentBody(governmentBodyName);</span>
 
-<span class="fc" id="L303">        final DataSeries dataSeries = new DataSeries();</span>
-<span class="fc" id="L304">        final Series series = new Series();</span>
-<span class="fc" id="L305">        series.addSeries(new XYseries().setLabel(governmentBodyName));</span>
-<span class="fc" id="L306">        dataSeries.newSeries();</span>
+<span class="fc" id="L311">        final DataSeries dataSeries = new DataSeries();</span>
+<span class="fc" id="L312">        final Series series = new Series();</span>
+<span class="fc" id="L313">        series.addSeries(new XYseries().setLabel(governmentBodyName));</span>
+<span class="fc" id="L314">        dataSeries.newSeries();</span>
 
-<span class="fc" id="L308">        Optional.ofNullable(map)</span>
-<span class="fc" id="L309">        .ifPresent(yearSummaryMap -&gt; yearSummaryMap.entrySet().stream()</span>
-<span class="fc" id="L310">            .filter(entry -&gt; Objects.nonNull(entry.getValue()))</span>
-<span class="fc" id="L311">            .forEach(entry -&gt; addDataPoint(dataSeries, entry.getKey(), entry.getValue().getHeadCount())));</span>
+<span class="fc" id="L316">        Optional.ofNullable(map)</span>
+<span class="fc" id="L317">        .ifPresent(yearSummaryMap -&gt; yearSummaryMap.entrySet().stream()</span>
+<span class="fc" id="L318">            .filter(entry -&gt; Objects.nonNull(entry.getValue()))</span>
+<span class="fc" id="L319">            .forEach(entry -&gt; addDataPoint(dataSeries, entry.getKey(), entry.getValue().getHeadCount())));</span>
 
-<span class="fc" id="L313">        addChartToLayout(layout, governmentBodyName + &quot; &quot; + ANNUAL_HEADCOUNT, dataSeries, series);</span>
-<span class="fc" id="L314">    }</span>
+<span class="fc" id="L321">        addChartToLayout(layout, governmentBodyName + &quot; &quot; + ANNUAL_HEADCOUNT, dataSeries, series);</span>
+<span class="fc" id="L322">    }</span>
 
     @Override
     public void createGovernmentBodyIncomeSummaryChart(final VerticalLayout layout) {
-<span class="fc" id="L318">        Objects.requireNonNull(layout, &quot;Layout cannot be null&quot;);</span>
+<span class="fc" id="L326">        Objects.requireNonNull(layout, &quot;Layout cannot be null&quot;);</span>
 
-<span class="fc" id="L320">        final Map&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; report =</span>
-<span class="fc" id="L321">                esvApi.getGovernmentBodyReportByField(INKOMSTTITELGRUPPSNAMN);</span>
+<span class="fc" id="L328">        final Map&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; report =</span>
+<span class="fc" id="L329">                esvApi.getGovernmentBodyReportByField(INKOMSTTITELGRUPPSNAMN);</span>
 
-<span class="fc" id="L323">        final DataSeries dataSeries = new DataSeries();</span>
-<span class="fc" id="L324">        final Series series = new Series();</span>
-<span class="fc" id="L325">        buildAnnualOutcomeDataSeriesByField(dataSeries, series, report);</span>
+<span class="fc" id="L331">        final DataSeries dataSeries = new DataSeries();</span>
+<span class="fc" id="L332">        final Series series = new Series();</span>
+<span class="fc" id="L333">        buildAnnualOutcomeDataSeriesByField(dataSeries, series, report);</span>
 
-<span class="fc" id="L327">        addChartToLayout(layout, ANNUAL_INCOME, dataSeries, series);</span>
-<span class="fc" id="L328">    }</span>
+<span class="fc" id="L335">        addChartToLayout(layout, ANNUAL_INCOME, dataSeries, series);</span>
+<span class="fc" id="L336">    }</span>
 
     @Override
     public void createGovernmentBodyIncomeSummaryChart(final VerticalLayout layout,
                                                        final String governmentBodyName) {
-<span class="fc" id="L333">        Objects.requireNonNull(layout, &quot;Layout cannot be null&quot;);</span>
-<span class="fc" id="L334">        Objects.requireNonNull(governmentBodyName, &quot;Government body name cannot be null&quot;);</span>
+<span class="fc" id="L341">        Objects.requireNonNull(layout, &quot;Layout cannot be null&quot;);</span>
+<span class="fc" id="L342">        Objects.requireNonNull(governmentBodyName, &quot;Government body name cannot be null&quot;);</span>
 
-<span class="fc" id="L336">        final Map&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; allSummaries = esvApi.getGovernmentBodyReport();</span>
+<span class="fc" id="L344">        final Map&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; allSummaries = esvApi.getGovernmentBodyReport();</span>
 
-<span class="fc" id="L338">        final List&lt;GovernmentBodyAnnualOutcomeSummary&gt; summariesForBody = Optional.ofNullable(allSummaries)</span>
-<span class="fc" id="L339">                .map(summaries -&gt; summaries.get(governmentBodyName))</span>
-<span class="fc" id="L340">                .orElse(Collections.emptyList());</span>
+<span class="fc" id="L346">        final List&lt;GovernmentBodyAnnualOutcomeSummary&gt; summariesForBody = Optional.ofNullable(allSummaries)</span>
+<span class="fc" id="L347">                .map(summaries -&gt; summaries.get(governmentBodyName))</span>
+<span class="fc" id="L348">                .orElse(Collections.emptyList());</span>
 
-<span class="fc" id="L342">        final Map&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; grouped = summariesForBody.stream()</span>
-<span class="fc" id="L343">                .filter(Objects::nonNull)</span>
-<span class="fc" id="L344">                .filter(summary -&gt; Optional.ofNullable(summary.getDescriptionFields())</span>
-<span class="fc" id="L345">                    .map(fields -&gt; fields.get(INKOMSTTITELSNAMN))</span>
-<span class="fc" id="L346">                    .isPresent())</span>
-<span class="fc" id="L347">                .sorted(Comparator.comparing(GovernmentBodyAnnualOutcomeSummary::getYear))</span>
-<span class="fc" id="L348">                .collect(Collectors.groupingBy(</span>
-<span class="fc" id="L349">                    summary -&gt; summary.getDescriptionFields().get(INKOMSTTITELSNAMN)));</span>
+<span class="fc" id="L350">        final Map&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; grouped = summariesForBody.stream()</span>
+<span class="fc" id="L351">                .filter(Objects::nonNull)</span>
+<span class="fc" id="L352">                .filter(summary -&gt; Optional.ofNullable(summary.getDescriptionFields())</span>
+<span class="fc" id="L353">                    .map(fields -&gt; fields.get(INKOMSTTITELSNAMN))</span>
+<span class="fc" id="L354">                    .isPresent())</span>
+<span class="fc" id="L355">                .sorted(Comparator.comparing(GovernmentBodyAnnualOutcomeSummary::getYear))</span>
+<span class="fc" id="L356">                .collect(Collectors.groupingBy(</span>
+<span class="fc" id="L357">                    summary -&gt; summary.getDescriptionFields().get(INKOMSTTITELSNAMN)));</span>
 
-<span class="fc" id="L351">        final DataSeries dataSeries = new DataSeries();</span>
-<span class="fc" id="L352">        final Series series = new Series();</span>
-<span class="fc" id="L353">        buildAnnualOutcomeDataSeriesByField(dataSeries, series, grouped);</span>
+<span class="fc" id="L359">        final DataSeries dataSeries = new DataSeries();</span>
+<span class="fc" id="L360">        final Series series = new Series();</span>
+<span class="fc" id="L361">        buildAnnualOutcomeDataSeriesByField(dataSeries, series, grouped);</span>
 
-<span class="fc" id="L355">        addChartToLayout(layout, governmentBodyName + &quot; &quot; + ANNUAL_INCOME, dataSeries, series);</span>
-<span class="fc" id="L356">    }</span>
+<span class="fc" id="L363">        addChartToLayout(layout, governmentBodyName + &quot; &quot; + ANNUAL_INCOME, dataSeries, series);</span>
+<span class="fc" id="L364">    }</span>
 
     @Override
     public void createMinistryGovernmentBodyExpenditureSummaryChart(final AbstractOrderedLayout layout) {
-<span class="fc" id="L360">        Objects.requireNonNull(layout, &quot;Layout cannot be null&quot;);</span>
-<span class="fc" id="L361">        createMinistryFieldSummary(layout, EXPENDITURE_GROUP_NAME, &quot;MinistryGovernmentBodySpendingSummaryChart&quot;);</span>
-<span class="fc" id="L362">    }</span>
+<span class="fc" id="L368">        Objects.requireNonNull(layout, &quot;Layout cannot be null&quot;);</span>
+<span class="fc" id="L369">        createMinistryFieldSummary(layout, EXPENDITURE_GROUP_NAME, &quot;MinistryGovernmentBodySpendingSummaryChart&quot;);</span>
+<span class="fc" id="L370">    }</span>
 
     @Override
     public void createMinistryGovernmentBodyExpenditureSummaryChart(final VerticalLayout layout,
                                                                     final String governmentBodyName) {
-<span class="fc" id="L367">        Objects.requireNonNull(layout, &quot;Layout cannot be null&quot;);</span>
-<span class="fc" id="L368">        Objects.requireNonNull(governmentBodyName, &quot;Government body name cannot be null&quot;);</span>
+<span class="fc" id="L375">        Objects.requireNonNull(layout, &quot;Layout cannot be null&quot;);</span>
+<span class="fc" id="L376">        Objects.requireNonNull(governmentBodyName, &quot;Government body name cannot be null&quot;);</span>
 
-<span class="fc" id="L370">        final Map&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; report =</span>
-<span class="fc" id="L371">                esvApi.getGovernmentBodyReportByFieldAndMinistry(EXPENDITURE_GROUP_NAME, governmentBodyName);</span>
+<span class="fc" id="L378">        final Map&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; report =</span>
+<span class="fc" id="L379">                esvApi.getGovernmentBodyReportByFieldAndMinistry(EXPENDITURE_GROUP_NAME, governmentBodyName);</span>
 
-<span class="fc" id="L373">        final DataSeries dataSeries = new DataSeries();</span>
-<span class="fc" id="L374">        final Series series = new Series();</span>
-<span class="fc" id="L375">        buildAnnualOutcomeDataSeriesByField(dataSeries, series, report);</span>
+<span class="fc" id="L381">        final DataSeries dataSeries = new DataSeries();</span>
+<span class="fc" id="L382">        final Series series = new Series();</span>
+<span class="fc" id="L383">        buildAnnualOutcomeDataSeriesByField(dataSeries, series, report);</span>
 
-<span class="fc" id="L377">        addChartToLayout(layout, governmentBodyName + &quot; &quot; + ANNUAL_EXPENDITURE, dataSeries, series);</span>
-<span class="fc" id="L378">    }</span>
+<span class="fc" id="L385">        addChartToLayout(layout, governmentBodyName + &quot; &quot; + ANNUAL_EXPENDITURE, dataSeries, series);</span>
+<span class="fc" id="L386">    }</span>
 
     @Override
     public void createMinistryGovernmentBodyHeadcountSummaryChart(final AbstractOrderedLayout layout) {
-<span class="fc" id="L382">        Objects.requireNonNull(layout, &quot;Layout cannot be null&quot;);</span>
+<span class="fc" id="L390">        Objects.requireNonNull(layout, &quot;Layout cannot be null&quot;);</span>
 
-<span class="fc" id="L384">        final Map&lt;Integer, List&lt;GovernmentBodyAnnualSummary&gt;&gt; map = esvApi.getData();</span>
-<span class="fc" id="L385">        final List&lt;String&gt; ministryNames = esvApi.getMinistryNames();</span>
+<span class="fc" id="L392">        final Map&lt;Integer, List&lt;GovernmentBodyAnnualSummary&gt;&gt; map = esvApi.getData();</span>
+<span class="fc" id="L393">        final List&lt;String&gt; ministryNames = esvApi.getMinistryNames();</span>
 
-<span class="fc" id="L387">        final DataSeries dataSeries = new DataSeries();</span>
-<span class="fc" id="L388">        final Series series = new Series();</span>
+<span class="fc" id="L395">        final DataSeries dataSeries = new DataSeries();</span>
+<span class="fc" id="L396">        final Series series = new Series();</span>
 
-<span class="fc" id="L390">        Optional.ofNullable(ministryNames)</span>
-<span class="pc bpc" id="L391" title="1 of 2 branches missed.">            .filter(names -&gt; map != null)</span>
-<span class="fc" id="L392">            .ifPresent(names -&gt; names.stream()</span>
-<span class="fc" id="L393">                .forEach(ministryName -&gt; {</span>
-<span class="fc" id="L394">                    series.addSeries(new XYseries().setLabel(ministryName));</span>
-<span class="fc" id="L395">                    dataSeries.newSeries();</span>
+<span class="fc" id="L398">        Optional.ofNullable(ministryNames)</span>
+<span class="pc bpc" id="L399" title="1 of 2 branches missed.">            .filter(names -&gt; map != null)</span>
+<span class="fc" id="L400">            .ifPresent(names -&gt; names.stream()</span>
+<span class="fc" id="L401">                .forEach(ministryName -&gt; {</span>
+<span class="fc" id="L402">                    series.addSeries(new XYseries().setLabel(ministryName));</span>
+<span class="fc" id="L403">                    dataSeries.newSeries();</span>
 
-<span class="fc" id="L397">                    map.entrySet().stream()</span>
-<span class="pc bpc" id="L398" title="1 of 2 branches missed.">                        .filter(entry -&gt; entry.getValue() != null)</span>
-<span class="fc" id="L399">                        .forEach(entry -&gt; {</span>
-<span class="fc" id="L400">                            final int headcount = entry.getValue().stream()</span>
-<span class="fc" id="L401">                                .filter(Objects::nonNull)</span>
-<span class="pc bpc" id="L402" title="1 of 2 branches missed.">                                .filter(summary -&gt; summary.getMinistry() != null)</span>
-<span class="fc" id="L403">                                .filter(summary -&gt; summary.getMinistry().equalsIgnoreCase(ministryName))</span>
-<span class="fc" id="L404">                                .mapToInt(GovernmentBodyAnnualSummary::getHeadCount)</span>
-<span class="fc" id="L405">                                .sum();</span>
-<span class="fc" id="L406">                            addDataPoint(dataSeries, entry.getKey(), headcount);</span>
-<span class="fc" id="L407">                        });</span>
-<span class="fc" id="L408">                }));</span>
+<span class="fc" id="L405">                    map.entrySet().stream()</span>
+<span class="pc bpc" id="L406" title="1 of 2 branches missed.">                        .filter(entry -&gt; entry.getValue() != null)</span>
+<span class="fc" id="L407">                        .forEach(entry -&gt; {</span>
+<span class="fc" id="L408">                            final int headcount = entry.getValue().stream()</span>
+<span class="fc" id="L409">                                .filter(Objects::nonNull)</span>
+<span class="pc bpc" id="L410" title="1 of 2 branches missed.">                                .filter(summary -&gt; summary.getMinistry() != null)</span>
+<span class="fc" id="L411">                                .filter(summary -&gt; summary.getMinistry().equalsIgnoreCase(ministryName))</span>
+<span class="fc" id="L412">                                .mapToInt(GovernmentBodyAnnualSummary::getHeadCount)</span>
+<span class="fc" id="L413">                                .sum();</span>
+<span class="fc" id="L414">                            addDataPoint(dataSeries, entry.getKey(), headcount);</span>
+<span class="fc" id="L415">                        });</span>
+<span class="fc" id="L416">                }));</span>
 
-<span class="fc" id="L410">        addChartToLayout(layout, ANNUAL_HEADCOUNT_ALL_MINISTRIES, dataSeries, series);</span>
-<span class="fc" id="L411">    }</span>
+<span class="fc" id="L418">        addChartToLayout(layout, ANNUAL_HEADCOUNT_ALL_MINISTRIES, dataSeries, series);</span>
+<span class="fc" id="L419">    }</span>
 
     @Override
     public void createMinistryGovernmentBodyHeadcountSummaryChart(final AbstractOrderedLayout layout,
                                                                   final String governmentBodyName) {
-<span class="fc" id="L416">        Objects.requireNonNull(layout, &quot;Layout cannot be null&quot;);</span>
-<span class="fc" id="L417">        Objects.requireNonNull(governmentBodyName, &quot;Government body name cannot be null&quot;);</span>
+<span class="fc" id="L424">        Objects.requireNonNull(layout, &quot;Layout cannot be null&quot;);</span>
+<span class="fc" id="L425">        Objects.requireNonNull(governmentBodyName, &quot;Government body name cannot be null&quot;);</span>
 
-<span class="fc" id="L419">        final Map&lt;Integer, List&lt;GovernmentBodyAnnualSummary&gt;&gt; map = esvApi.getDataPerMinistry(governmentBodyName);</span>
-<span class="fc" id="L420">        final List&lt;String&gt; governmentBodyNames = esvApi.getGovernmentBodyNames(governmentBodyName);</span>
+<span class="fc" id="L427">        final Map&lt;Integer, List&lt;GovernmentBodyAnnualSummary&gt;&gt; map = esvApi.getDataPerMinistry(governmentBodyName);</span>
+<span class="fc" id="L428">        final List&lt;String&gt; governmentBodyNames = esvApi.getGovernmentBodyNames(governmentBodyName);</span>
 
-<span class="fc" id="L422">        final DataSeries dataSeries = new DataSeries();</span>
-<span class="fc" id="L423">        final Series series = new Series();</span>
+<span class="fc" id="L430">        final DataSeries dataSeries = new DataSeries();</span>
+<span class="fc" id="L431">        final Series series = new Series();</span>
 
-<span class="fc" id="L425">        Optional.ofNullable(governmentBodyNames)</span>
-<span class="pc bpc" id="L426" title="1 of 2 branches missed.">            .filter(names -&gt; map != null)</span>
-<span class="fc" id="L427">            .ifPresent(names -&gt; names.stream()</span>
-<span class="fc" id="L428">                .forEach(govBodyName -&gt; {</span>
-<span class="fc" id="L429">                    series.addSeries(new XYseries().setLabel(govBodyName));</span>
-<span class="fc" id="L430">                    dataSeries.newSeries();</span>
+<span class="fc" id="L433">        Optional.ofNullable(governmentBodyNames)</span>
+<span class="pc bpc" id="L434" title="1 of 2 branches missed.">            .filter(names -&gt; map != null)</span>
+<span class="fc" id="L435">            .ifPresent(names -&gt; names.stream()</span>
+<span class="fc" id="L436">                .forEach(govBodyName -&gt; {</span>
+<span class="fc" id="L437">                    series.addSeries(new XYseries().setLabel(govBodyName));</span>
+<span class="fc" id="L438">                    dataSeries.newSeries();</span>
 
-<span class="fc" id="L432">                    map.entrySet().stream()</span>
-<span class="pc bpc" id="L433" title="1 of 2 branches missed.">                        .filter(entry -&gt; entry.getValue() != null)</span>
-<span class="fc" id="L434">                        .forEach(entry -&gt; {</span>
-<span class="fc" id="L435">                            final int headcount = entry.getValue().stream()</span>
-<span class="fc" id="L436">                                .filter(Objects::nonNull)</span>
-<span class="fc" id="L437">                                .filter(summary -&gt; govBodyName.equalsIgnoreCase(summary.getName()))</span>
-<span class="fc" id="L438">                                .mapToInt(GovernmentBodyAnnualSummary::getHeadCount)</span>
-<span class="fc" id="L439">                                .sum();</span>
-<span class="fc" id="L440">                            addDataPoint(dataSeries, entry.getKey(), headcount);</span>
-<span class="fc" id="L441">                        });</span>
-<span class="fc" id="L442">                }));</span>
+<span class="fc" id="L440">                    map.entrySet().stream()</span>
+<span class="pc bpc" id="L441" title="1 of 2 branches missed.">                        .filter(entry -&gt; entry.getValue() != null)</span>
+<span class="fc" id="L442">                        .forEach(entry -&gt; {</span>
+<span class="fc" id="L443">                            final int headcount = entry.getValue().stream()</span>
+<span class="fc" id="L444">                                .filter(Objects::nonNull)</span>
+<span class="fc" id="L445">                                .filter(summary -&gt; govBodyName.equalsIgnoreCase(summary.getName()))</span>
+<span class="fc" id="L446">                                .mapToInt(GovernmentBodyAnnualSummary::getHeadCount)</span>
+<span class="fc" id="L447">                                .sum();</span>
+<span class="fc" id="L448">                            addDataPoint(dataSeries, entry.getKey(), headcount);</span>
+<span class="fc" id="L449">                        });</span>
+<span class="fc" id="L450">                }));</span>
 
-<span class="pc bpc" id="L444" title="2 of 4 branches missed.">        if (map != null &amp;&amp; governmentBodyNames != null) {</span>
-<span class="fc" id="L445">            addChartToLayout(layout,</span>
+<span class="pc bpc" id="L452" title="2 of 4 branches missed.">        if (map != null &amp;&amp; governmentBodyNames != null) {</span>
+<span class="fc" id="L453">            addChartToLayout(layout,</span>
                     governmentBodyName + &quot; &quot; + ANNUAL_HEADCOUNT_SUMMARY_ALL_GOVERNMENT_BODIES,
                     dataSeries,
                     series);
         }
-<span class="fc" id="L450">    }</span>
+<span class="fc" id="L458">    }</span>
 
     @Override
     public void createMinistryGovernmentBodyIncomeSummaryChart(final AbstractOrderedLayout layout) {
-<span class="fc" id="L454">        Objects.requireNonNull(layout, &quot;Layout cannot be null&quot;);</span>
-<span class="fc" id="L455">        createMinistryFieldSummary(layout, INKOMSTTITELGRUPPSNAMN, &quot;MinistryGovernmentBodyIncomeSummaryChart&quot;);</span>
-<span class="fc" id="L456">    }</span>
+<span class="fc" id="L462">        Objects.requireNonNull(layout, &quot;Layout cannot be null&quot;);</span>
+<span class="fc" id="L463">        createMinistryFieldSummary(layout, INKOMSTTITELGRUPPSNAMN, &quot;MinistryGovernmentBodyIncomeSummaryChart&quot;);</span>
+<span class="fc" id="L464">    }</span>
 
     @Override
     public void createMinistryGovernmentBodyIncomeSummaryChart(final VerticalLayout layout,
                                                                final String governmentBodyName) {
-<span class="fc" id="L461">        Objects.requireNonNull(layout, &quot;Layout cannot be null&quot;);</span>
-<span class="fc" id="L462">        Objects.requireNonNull(governmentBodyName, &quot;Government body name cannot be null&quot;);</span>
+<span class="fc" id="L469">        Objects.requireNonNull(layout, &quot;Layout cannot be null&quot;);</span>
+<span class="fc" id="L470">        Objects.requireNonNull(governmentBodyName, &quot;Government body name cannot be null&quot;);</span>
 
-<span class="fc" id="L464">        final Map&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; report =</span>
-<span class="fc" id="L465">                esvApi.getGovernmentBodyReportByFieldAndMinistry(INKOMSTTITELGRUPPSNAMN, governmentBodyName);</span>
+<span class="fc" id="L472">        final Map&lt;String, List&lt;GovernmentBodyAnnualOutcomeSummary&gt;&gt; report =</span>
+<span class="fc" id="L473">                esvApi.getGovernmentBodyReportByFieldAndMinistry(INKOMSTTITELGRUPPSNAMN, governmentBodyName);</span>
 
-<span class="fc" id="L467">        final DataSeries dataSeries = new DataSeries();</span>
-<span class="fc" id="L468">        final Series series = new Series();</span>
-<span class="fc" id="L469">        buildAnnualOutcomeDataSeriesByField(dataSeries, series, report);</span>
+<span class="fc" id="L475">        final DataSeries dataSeries = new DataSeries();</span>
+<span class="fc" id="L476">        final Series series = new Series();</span>
+<span class="fc" id="L477">        buildAnnualOutcomeDataSeriesByField(dataSeries, series, report);</span>
 
-<span class="fc" id="L471">        addChartToLayout(layout, governmentBodyName + &quot; &quot; + ANNUAL_INCOME, dataSeries, series);</span>
-<span class="fc" id="L472">    }</span>
+<span class="fc" id="L479">        addChartToLayout(layout, governmentBodyName + &quot; &quot; + ANNUAL_INCOME, dataSeries, series);</span>
+<span class="fc" id="L480">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

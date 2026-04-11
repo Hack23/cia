@@ -18,12 +18,16 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode;
 
+import static com.hack23.cia.web.impl.ui.application.views.common.constants.ParliamentPageTitleConstants.*;
+
+import com.hack23.cia.web.impl.ui.application.views.common.constants.ParliamentPageTitleConstants;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
-import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.PartyChartDataManager;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandParliamentRankingConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
@@ -46,33 +50,33 @@ public final class ParliamentChartsPartyAgePageModContentFactoryImpl extends Abs
 	 * Instantiates a new test charts party age page mod content factory impl.
 	 */
 	public ParliamentChartsPartyAgePageModContentFactoryImpl() {
-<span class="fc" id="L49">		super();</span>
-<span class="fc" id="L50">	}</span>
+<span class="fc" id="L53">		super();</span>
+<span class="fc" id="L54">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L55">		final VerticalLayout panelContent = createPanelContent();</span>
-<span class="fc" id="L56">		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);</span>
-<span class="fc" id="L57">		CardInfoRowUtil.createPageHeader(panel, panelContent,</span>
+<span class="fc" id="L59">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L60">		getParliamentMenuItemFactory().createParliamentTopicMenu(menuBar);</span>
+<span class="fc" id="L61">		CardInfoRowUtil.createPageHeader(panel, panelContent,</span>
             ParliamentPageTitleConstants.PARTY_AGE_TITLE,
             ParliamentPageTitleConstants.PARTY_AGE_SUBTITLE,
             ParliamentPageTitleConstants.PARTY_AGE_DESC);
 
-<span class="fc" id="L62">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L66">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L64">		partyChartDataManager.createPartyAgeChart(panelContent);</span>
+<span class="fc" id="L68">		partyChartDataManager.createPartyAgeChart(panelContent);</span>
 
-<span class="fc" id="L66">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="fc" id="L70">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_PARLIAMENT_RANKING_VIEW, ApplicationEventGroup.USER, NAME,</span>
 				parameters, pageId);
 
-<span class="fc" id="L69">		return panelContent;</span>
+<span class="fc" id="L73">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc" id="L75">		return PageCommandParliamentRankingConstants.COMMAND_CHARTS_PARTY_AGE.matches(page, parameters);</span>
+<span class="fc" id="L79">		return PageCommandParliamentRankingConstants.COMMAND_CHARTS_PARTY_AGE.matches(page, parameters);</span>
 	}
 
 }

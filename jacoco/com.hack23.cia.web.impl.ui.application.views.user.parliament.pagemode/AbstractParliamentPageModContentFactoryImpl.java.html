@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.user.parliament.pagemode;
 
+import static com.hack23.cia.web.impl.ui.application.views.common.constants.ParliamentPageTitleConstants.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.ParliamentMenuItemFactory;
@@ -27,7 +29,8 @@ import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
 /**
  * The Class AbstractPoliticianPageModContentFactoryImpl.
  */
-abstract class AbstractParliamentPageModContentFactoryImpl extends AbstractBasicPageModContentFactoryImpl {
+abstract class AbstractParliamentPageModContentFactoryImpl extends AbstractBasicPageModContentFactoryImpl 
+		implements ParliamentViewConstants {
 
 	/** The Constant NAME. */
 	public static final String NAME = UserViews.PARLIAMENT_RANKING_VIEW_NAME;
@@ -40,8 +43,8 @@ abstract class AbstractParliamentPageModContentFactoryImpl extends AbstractBasic
 	 * Instantiates a new abstract parliament page mod content factory impl.
 	 */
 	AbstractParliamentPageModContentFactoryImpl() {
-<span class="fc" id="L43">		super();</span>
-<span class="fc" id="L44">	}</span>
+<span class="fc" id="L46">		super();</span>
+<span class="fc" id="L47">	}</span>
 
 	/**
 	 * Gets the test menu item factory.
@@ -49,7 +52,7 @@ abstract class AbstractParliamentPageModContentFactoryImpl extends AbstractBasic
 	 * @return the test menu item factory
 	 */
 	protected final ParliamentMenuItemFactory getParliamentMenuItemFactory() {
-<span class="fc" id="L52">		return parliamentMenuItemFactory;</span>
+<span class="fc" id="L55">		return parliamentMenuItemFactory;</span>
 	}
 
 	/**
@@ -61,13 +64,13 @@ abstract class AbstractParliamentPageModContentFactoryImpl extends AbstractBasic
 	 * @return the extracted year string or default year
 	 */
 	protected final String extractSelectedYear(final String parameters, final String defaultYear) {
-<span class="pc bpc" id="L64" title="4 of 6 branches missed.">		if (parameters != null &amp;&amp; parameters.contains(&quot;[&quot;) &amp;&amp; parameters.contains(&quot;]&quot;)) {</span>
-<span class="nc" id="L65">			return parameters.substring(</span>
-<span class="nc" id="L66">				parameters.indexOf('[') + 1,</span>
-<span class="nc" id="L67">				parameters.lastIndexOf(']')</span>
+<span class="pc bpc" id="L67" title="4 of 6 branches missed.">		if (parameters != null &amp;&amp; parameters.contains(&quot;[&quot;) &amp;&amp; parameters.contains(&quot;]&quot;)) {</span>
+<span class="nc" id="L68">			return parameters.substring(</span>
+<span class="nc" id="L69">				parameters.indexOf('[') + 1,</span>
+<span class="nc" id="L70">				parameters.lastIndexOf(']')</span>
 			);
 		}
-<span class="fc" id="L70">		return defaultYear;</span>
+<span class="fc" id="L73">		return defaultYear;</span>
 	}
 
 }

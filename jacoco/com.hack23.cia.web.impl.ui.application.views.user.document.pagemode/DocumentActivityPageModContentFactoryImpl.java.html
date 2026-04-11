@@ -17,6 +17,7 @@
  *  $HeadURL$
 */
 package com.hack23.cia.web.impl.ui.application.views.user.document.pagemode;
+import com.hack23.cia.web.impl.ui.application.views.common.constants.DocumentViewConstants;
 
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
@@ -28,7 +29,7 @@ import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatu
 import com.hack23.cia.model.external.riksdagen.dokumentstatus.impl.DocumentStatusContainer_;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandDocumentConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.vaadin.ui.Layout;
@@ -43,62 +44,62 @@ import com.vaadin.ui.VerticalLayout;
 public final class DocumentActivityPageModContentFactoryImpl extends AbstractDocumentPageModContentFactoryImpl {
 
 	/** The Constant COLUMN_ORDER. */
-<span class="fc" id="L46">	private static final String[] COLUMN_ORDER = { &quot;createdDate&quot;, &quot;code&quot;, &quot;activityName&quot;, &quot;orderNumber&quot;,</span>
+<span class="fc" id="L47">	private static final String[] COLUMN_ORDER = { &quot;createdDate&quot;, &quot;code&quot;, &quot;activityName&quot;, &quot;orderNumber&quot;,</span>
 			&quot;process&quot;, &quot;status&quot; };
 
 	/** The Constant DOCUMENT_ACTIVITIES. */
 	private static final String DOCUMENT_ACTIVITIES = &quot;Document activities&quot;;
 
 	/** The Constant HIDE_COLUMNS. */
-<span class="fc" id="L53">	private static final String[] HIDE_COLUMNS = { &quot;hjid&quot; };</span>
+<span class="fc" id="L54">	private static final String[] HIDE_COLUMNS = { &quot;hjid&quot; };</span>
 
 	/**
 	 * Instantiates a new document activity page mod content factory impl.
 	 */
 	public DocumentActivityPageModContentFactoryImpl() {
-<span class="fc" id="L59">		super();</span>
-<span class="fc" id="L60">	}</span>
+<span class="fc" id="L60">		super();</span>
+<span class="fc" id="L61">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L65">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L66">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L67">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L68">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L69">		getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L70">		getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L71">		CardInfoRowUtil.createPageHeader(panel, panelContent,</span>
+<span class="fc" id="L72">		CardInfoRowUtil.createPageHeader(panel, panelContent,</span>
 			DocumentViewConstants.ACTIVITY_TITLE,
 			DocumentViewConstants.ACTIVITY_SUBTITLE,
 			DocumentViewConstants.ACTIVITY_DESC);
 
-<span class="fc" id="L76">		final DataContainer&lt;DocumentStatusContainer, String&gt; documentStatusContainerDataContainer = getApplicationManager()</span>
-<span class="fc" id="L77">				.getDataContainer(DocumentStatusContainer.class);</span>
+<span class="fc" id="L77">		final DataContainer&lt;DocumentStatusContainer, String&gt; documentStatusContainerDataContainer = getApplicationManager()</span>
+<span class="fc" id="L78">				.getDataContainer(DocumentStatusContainer.class);</span>
 
-<span class="fc" id="L79">		final DocumentStatusContainer documentStatusContainer = documentStatusContainerDataContainer</span>
-<span class="fc" id="L80">				.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,</span>
+<span class="fc" id="L80">		final DocumentStatusContainer documentStatusContainer = documentStatusContainerDataContainer</span>
+<span class="fc" id="L81">				.findByQueryProperty(DocumentStatusContainer.class, DocumentStatusContainer_.document,</span>
 						DocumentData.class, DocumentData_.id, pageId);
 
-<span class="pc bpc" id="L83" title="2 of 4 branches missed.">		if (documentStatusContainer != null &amp;&amp; documentStatusContainer.getDocumentActivityContainer() != null</span>
-<span class="pc bpc" id="L84" title="1 of 2 branches missed.">				&amp;&amp; documentStatusContainer.getDocumentActivityContainer().getDocumentActivities() != null) {</span>
+<span class="pc bpc" id="L84" title="2 of 4 branches missed.">		if (documentStatusContainer != null &amp;&amp; documentStatusContainer.getDocumentActivityContainer() != null</span>
+<span class="pc bpc" id="L85" title="1 of 2 branches missed.">				&amp;&amp; documentStatusContainer.getDocumentActivityContainer().getDocumentActivities() != null) {</span>
 
-<span class="fc" id="L86">			getGridFactory().createBasicBeanItemGrid(panelContent, DocumentActivityData.class,</span>
-<span class="fc" id="L87">					documentStatusContainer.getDocumentActivityContainer().getDocumentActivities(), DOCUMENT_ACTIVITIES,</span>
+<span class="fc" id="L87">			getGridFactory().createBasicBeanItemGrid(panelContent, DocumentActivityData.class,</span>
+<span class="fc" id="L88">					documentStatusContainer.getDocumentActivityContainer().getDocumentActivities(), DOCUMENT_ACTIVITIES,</span>
 					COLUMN_ORDER, HIDE_COLUMNS, null, null, null);
 
 		}
 
-<span class="fc" id="L92">		panel.setContent(panelContent);</span>
-<span class="fc" id="L93">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="fc" id="L93">		panel.setContent(panelContent);</span>
+<span class="fc" id="L94">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,</span>
 				parameters, pageId);
-<span class="fc" id="L95">		return panelContent;</span>
+<span class="fc" id="L96">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc" id="L101">		return PageCommandDocumentConstants.COMMAND_DOCUMENT_ACTIVITY.matches(page, parameters);</span>
+<span class="fc" id="L102">		return PageCommandDocumentConstants.COMMAND_DOCUMENT_ACTIVITY.matches(page, parameters);</span>
 	}
 
 }

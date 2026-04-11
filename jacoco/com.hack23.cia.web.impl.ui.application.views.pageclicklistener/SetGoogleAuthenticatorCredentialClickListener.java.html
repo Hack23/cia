@@ -39,7 +39,7 @@ import fi.jasoft.qrcode.QRCode;
 /**
  * The Class SetGoogleAuthenticatorCredentialClickListener.
  *
- * @see SetGoogleAuthenticatorCredentialClickEvent
+ * @see com.vaadin.ui.Button.ClickEvent
  */
 public final class SetGoogleAuthenticatorCredentialClickListener extends AbstractClickListener implements ClickListener {
 

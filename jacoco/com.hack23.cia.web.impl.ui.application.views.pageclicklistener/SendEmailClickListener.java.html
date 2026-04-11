@@ -31,10 +31,11 @@ import com.vaadin.ui.Notification;
 /**
  * The Class SendEmailClickListener.
  *
- * @see SendEmailClickEvent
+ * @see com.vaadin.ui.Button.ClickEvent
  */
 public class SendEmailClickListener extends AbstractClickListener implements ClickListener {
 
+	/** The Constant EMAIL_DESC. */
 	public static final String EMAIL_DESC = &quot;email desc&quot;;
 
 	/** The Constant EMAIL_SENT. */
@@ -44,7 +45,7 @@ public class SendEmailClickListener extends AbstractClickListener implements Cli
 	public static final String LOG_MSG_SEND_EMAIL = &quot;SendEmail {}&quot;;
 
 	/** The Constant LOGGER. */
-<span class="fc" id="L47">	private static final Logger LOGGER = LoggerFactory.getLogger(SendEmailClickListener.class);</span>
+<span class="fc" id="L48">	private static final Logger LOGGER = LoggerFactory.getLogger(SendEmailClickListener.class);</span>
 
 	/** The Constant SEND_EMAIL_FAILEDFAILED. */
 	public static final String SEND_EMAIL_FAILEDFAILED = &quot;Send email failed&quot;;
@@ -64,22 +65,22 @@ public class SendEmailClickListener extends AbstractClickListener implements Cli
 	 * @param sendEmailRequest
 	 *            the reqister request
 	 */
-<span class="fc" id="L67">	public SendEmailClickListener(final SendEmailRequest sendEmailRequest) {</span>
-<span class="fc" id="L68">		this.sendEmailRequest = sendEmailRequest;</span>
-<span class="fc" id="L69">	}</span>
+<span class="fc" id="L68">	public SendEmailClickListener(final SendEmailRequest sendEmailRequest) {</span>
+<span class="fc" id="L69">		this.sendEmailRequest = sendEmailRequest;</span>
+<span class="fc" id="L70">	}</span>
 
 	@Override
 	public final void buttonClick(final ClickEvent event) {
-<span class="fc" id="L73">		final ServiceResponse response = getApplicationManager().service(sendEmailRequest);</span>
-<span class="fc bfc" id="L74" title="All 2 branches covered.">		if (ServiceResult.SUCCESS == response.getResult()) {</span>
-<span class="fc" id="L75">			LOGGER.info(LOG_MSG_SEND_EMAIL,sendEmailRequest.getEmail());</span>
-<span class="fc" id="L76">			showNotification(EMAIL_SENT, EMAIL_DESC, Notification.Type.HUMANIZED_MESSAGE);</span>
+<span class="fc" id="L74">		final ServiceResponse response = getApplicationManager().service(sendEmailRequest);</span>
+<span class="fc bfc" id="L75" title="All 2 branches covered.">		if (ServiceResult.SUCCESS == response.getResult()) {</span>
+<span class="fc" id="L76">			LOGGER.info(LOG_MSG_SEND_EMAIL,sendEmailRequest.getEmail());</span>
+<span class="fc" id="L77">			showNotification(EMAIL_SENT, EMAIL_DESC, Notification.Type.HUMANIZED_MESSAGE);</span>
 		} else {
-<span class="fc" id="L78">			showNotification(SEND_EMAIL_FAILEDFAILED,</span>
-<span class="fc" id="L79">	                  response.getErrorMessage(),</span>
+<span class="fc" id="L79">			showNotification(SEND_EMAIL_FAILEDFAILED,</span>
+<span class="fc" id="L80">	                  response.getErrorMessage(),</span>
 	                  Notification.Type.WARNING_MESSAGE);
-<span class="fc" id="L81">			LOGGER.info(SEND_EMAIL_FAILURE,sendEmailRequest.getEmail());</span>
+<span class="fc" id="L82">			LOGGER.info(SEND_EMAIL_FAILURE,sendEmailRequest.getEmail());</span>
 		}
-<span class="fc" id="L83">	}</span>
+<span class="fc" id="L84">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

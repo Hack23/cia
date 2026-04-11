@@ -17,12 +17,13 @@
  *  $HeadURL$
 */
 package com.hack23.cia.web.impl.ui.application.views.user.govermentbody.pagemode;
+import com.hack23.cia.web.impl.ui.application.views.common.constants.GovernmentBodyDescriptionConstants;
 
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
-import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandGovernmentBodyConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
@@ -46,35 +47,35 @@ public final class GovernmentBodyPageVisitHistoryPageModContentFactoryImpl
 	 * factory impl.
 	 */
 	public GovernmentBodyPageVisitHistoryPageModContentFactoryImpl() {
-<span class="fc" id="L49">		super();</span>
-<span class="fc" id="L50">	}</span>
+<span class="fc" id="L50">		super();</span>
+<span class="fc" id="L51">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L55">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L56">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L57">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L58">		final String pageId = getPageId(parameters);</span>
 
-<span class="fc" id="L59">		getGovernmentBodyMenuItemFactory().createGovernmentBodyMenuBar(menuBar, pageId,pageId);</span>
+<span class="fc" id="L60">		getGovernmentBodyMenuItemFactory().createGovernmentBodyMenuBar(menuBar, pageId,pageId);</span>
 
-<span class="fc" id="L61">		CardInfoRowUtil.createPageHeader(panel, panelContent,</span>
+<span class="fc" id="L62">		CardInfoRowUtil.createPageHeader(panel, panelContent,</span>
             GovernmentBodyDescriptionConstants.VISIT_HISTORY_HEADER,
             GovernmentBodyDescriptionConstants.VISIT_HISTORY_SUBTITLE,
             GovernmentBodyDescriptionConstants.VISIT_HISTORY_DESC);
 
-<span class="fc" id="L66">		getAdminChartDataManager().createApplicationActionEventPageModeDailySummaryChart(panelContent,NAME);</span>
+<span class="fc" id="L67">		getAdminChartDataManager().createApplicationActionEventPageModeDailySummaryChart(panelContent,NAME);</span>
 
-<span class="fc" id="L68">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_GOVERNMENT_BODY_VIEW, ApplicationEventGroup.USER,</span>
+<span class="fc" id="L69">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_GOVERNMENT_BODY_VIEW, ApplicationEventGroup.USER,</span>
 				NAME, parameters, pageId);
 
-<span class="fc" id="L71">		return panelContent;</span>
+<span class="fc" id="L72">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc" id="L77">		return  PageCommandGovernmentBodyConstants.COMMAND_GOVERNMENT_BODY_PAGEVISIT.matches(page, parameters);</span>
+<span class="fc" id="L78">		return  PageCommandGovernmentBodyConstants.COMMAND_GOVERNMENT_BODY_PAGEVISIT.matches(page, parameters);</span>
 	}
 
 }

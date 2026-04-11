@@ -17,6 +17,7 @@
  *  $HeadURL$
 */
 package com.hack23.cia.web.impl.ui.application.views.user.committee.pagemode;
+import com.hack23.cia.web.impl.ui.application.views.common.constants.CommitteeViewConstants;
 
 import java.util.List;
 
@@ -29,7 +30,7 @@ import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdag
 import com.hack23.cia.model.internal.application.data.committee.impl.ViewRiksdagenCommitteeRoleMember_;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.chartfactory.api.CommitteeGhantChartManager;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandCommitteeConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
@@ -52,40 +53,40 @@ public final class CommitteeRoleGhantPageModContentFactoryImpl extends AbstractC
 	 * Instantiates a new committee role ghant page mod content factory impl.
 	 */
 	public CommitteeRoleGhantPageModContentFactoryImpl() {
-<span class="fc" id="L55">		super();</span>
-<span class="fc" id="L56">	}</span>
+<span class="fc" id="L56">		super();</span>
+<span class="fc" id="L57">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L61">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L62">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L63">		final String pageId = getPageId(parameters);</span>
-<span class="fc" id="L64">		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);</span>
-<span class="fc" id="L65">		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L64">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L65">		final ViewRiksdagenCommittee viewRiksdagenCommittee = getItem(parameters);</span>
+<span class="fc" id="L66">		getCommitteeMenuItemFactory().createCommitteeeMenuBar(menuBar, pageId);</span>
 
-<span class="fc" id="L67">		CardInfoRowUtil.createPageHeader(panel, panelContent,</span>
-<span class="fc" id="L68">		    CommitteeViewConstants.RG_TITLE_HEADER + viewRiksdagenCommittee.getEmbeddedId().getDetail(),</span>
+<span class="fc" id="L68">		CardInfoRowUtil.createPageHeader(panel, panelContent,</span>
+<span class="fc" id="L69">		    CommitteeViewConstants.RG_TITLE_HEADER + viewRiksdagenCommittee.getEmbeddedId().getDetail(),</span>
 		    CommitteeViewConstants.RG_TITLE,
 		    CommitteeViewConstants.RG_DESCRIPTION);
 
-<span class="fc" id="L72">		final DataContainer&lt;ViewRiksdagenCommitteeRoleMember, String&gt; committeeRoleMemberDataContainer = getApplicationManager()</span>
-<span class="fc" id="L73">				.getDataContainer(ViewRiksdagenCommitteeRoleMember.class);</span>
+<span class="fc" id="L73">		final DataContainer&lt;ViewRiksdagenCommitteeRoleMember, String&gt; committeeRoleMemberDataContainer = getApplicationManager()</span>
+<span class="fc" id="L74">				.getDataContainer(ViewRiksdagenCommitteeRoleMember.class);</span>
 
-<span class="fc" id="L75">		final List&lt;ViewRiksdagenCommitteeRoleMember&gt; allMembers = committeeRoleMemberDataContainer</span>
-<span class="fc" id="L76">				.getAllBy(ViewRiksdagenCommitteeRoleMember_.detail, viewRiksdagenCommittee.getEmbeddedId().getDetail());</span>
+<span class="fc" id="L76">		final List&lt;ViewRiksdagenCommitteeRoleMember&gt; allMembers = committeeRoleMemberDataContainer</span>
+<span class="fc" id="L77">				.getAllBy(ViewRiksdagenCommitteeRoleMember_.detail, viewRiksdagenCommittee.getEmbeddedId().getDetail());</span>
 
-<span class="fc" id="L78">		committeeGhantChartManager.createRoleGhant(panelContent, allMembers);</span>
+<span class="fc" id="L79">		committeeGhantChartManager.createRoleGhant(panelContent, allMembers);</span>
 
-<span class="fc" id="L80">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="fc" id="L81">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_COMMITTEE_VIEW, ApplicationEventGroup.USER, NAME,</span>
 				parameters, pageId);
-<span class="fc" id="L82">		return panelContent;</span>
+<span class="fc" id="L83">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc" id="L88">		return PageCommandCommitteeConstants.COMMAND_COMMITTEE_ROLE_GHANT.matches(page, parameters);</span>
+<span class="fc" id="L89">		return PageCommandCommitteeConstants.COMMAND_COMMITTEE_ROLE_GHANT.matches(page, parameters);</span>
 	}
 
 }

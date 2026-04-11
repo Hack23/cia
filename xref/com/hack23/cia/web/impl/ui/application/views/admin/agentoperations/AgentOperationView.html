@@ -31,7 +31,7 @@
 <a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">import</strong> org.springframework.context.annotation.Scope;
 <a class="jxr_linenumber" name="L24" href="#L24">24</a>  <strong class="jxr_keyword">import</strong> org.springframework.stereotype.Service;
 <a class="jxr_linenumber" name="L25" href="#L25">25</a>  
-<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <strong class="jxr_keyword">import</strong> com.hack23.cia.web.impl.ui.application.views.admin.common.AbstractAdminView;
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <strong class="jxr_keyword">import</strong> com.hack23.cia.web.impl.ui.application.views.common.abstracts.AbstractAdminView;
 <a class="jxr_linenumber" name="L27" href="#L27">27</a>  <strong class="jxr_keyword">import</strong> com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeContentFactory;
 <a class="jxr_linenumber" name="L28" href="#L28">28</a>  <strong class="jxr_keyword">import</strong> com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 <a class="jxr_linenumber" name="L29" href="#L29">29</a>  <strong class="jxr_keyword">import</strong> com.vaadin.spring.annotation.SpringView;
@@ -42,7 +42,7 @@
 <a class="jxr_linenumber" name="L34" href="#L34">34</a>  @Service
 <a class="jxr_linenumber" name="L35" href="#L35">35</a>  @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 <a class="jxr_linenumber" name="L36" href="#L36">36</a>  @SpringView(name = AgentOperationView.NAME)
-<a class="jxr_linenumber" name="L37" href="#L37">37</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a name="AgentOperationView" href="../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/admin/agentoperations/AgentOperationView.html#AgentOperationView">AgentOperationView</a> <strong class="jxr_keyword">extends</strong> <a name="AbstractAdminView" href="../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/admin/common/AbstractAdminView.html#AbstractAdminView">AbstractAdminView</a> {
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a name="AgentOperationView" href="../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/admin/agentoperations/AgentOperationView.html#AgentOperationView">AgentOperationView</a> <strong class="jxr_keyword">extends</strong> <a name="AbstractAdminView" href="../../../../../../../../../../com/hack23/cia/web/impl/ui/application/views/common/abstracts/AbstractAdminView.html#AbstractAdminView">AbstractAdminView</a> {
 <a class="jxr_linenumber" name="L38" href="#L38">38</a>  
 <a class="jxr_linenumber" name="L39" href="#L39">39</a>  	<em class="jxr_javadoccomment">/** The Constant NAME. */</em>
 <a class="jxr_linenumber" name="L40" href="#L40">40</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String NAME = AdminViews.ADMIN_AGENT_OPERATIONVIEW_NAME;

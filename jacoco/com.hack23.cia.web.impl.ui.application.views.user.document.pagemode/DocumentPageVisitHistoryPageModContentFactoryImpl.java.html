@@ -17,12 +17,13 @@
  *  $HeadURL$
 */
 package com.hack23.cia.web.impl.ui.application.views.user.document.pagemode;
+import com.hack23.cia.web.impl.ui.application.views.common.constants.DocumentViewConstants;
 
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
-import com.hack23.cia.web.impl.ui.application.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.action.ViewAction;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandDocumentConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.vaadin.ui.Layout;
@@ -41,35 +42,35 @@ public final class DocumentPageVisitHistoryPageModContentFactoryImpl extends Abs
 	 * impl.
 	 */
 	public DocumentPageVisitHistoryPageModContentFactoryImpl() {
-<span class="fc" id="L44">		super();</span>
-<span class="fc" id="L45">	}</span>
+<span class="fc" id="L45">		super();</span>
+<span class="fc" id="L46">	}</span>
 
 	@Secured({ &quot;ROLE_ANONYMOUS&quot;, &quot;ROLE_USER&quot;, &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L50">		final VerticalLayout panelContent = createPanelContent();</span>
+<span class="fc" id="L51">		final VerticalLayout panelContent = createPanelContent();</span>
 
-<span class="fc" id="L52">		final String pageId = getPageId(parameters);</span>
-<span class="fc" id="L53">		getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);</span>
-<span class="fc" id="L54">		CardInfoRowUtil.createPageHeader(panel, panelContent,</span>
+<span class="fc" id="L53">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L54">		getDocumentMenuItemFactory().createDocumentMenuBar(menuBar, pageId);</span>
+<span class="fc" id="L55">		CardInfoRowUtil.createPageHeader(panel, panelContent,</span>
             DocumentViewConstants.VISIT_HISTORY_TITLE,
             DocumentViewConstants.VISIT_HISTORY_SUBTITLE,
             DocumentViewConstants.VISIT_HISTORY_DESC);
 
 
-<span class="fc" id="L60">		createPageVisitHistory(NAME, pageId, panelContent);</span>
+<span class="fc" id="L61">		createPageVisitHistory(NAME, pageId, panelContent);</span>
 
-<span class="fc" id="L62">		panel.setContent(panelContent);</span>
-<span class="fc" id="L63">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,</span>
+<span class="fc" id="L63">		panel.setContent(panelContent);</span>
+<span class="fc" id="L64">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_DOCUMENT_VIEW, ApplicationEventGroup.USER, NAME,</span>
 				parameters, pageId);
 
-<span class="fc" id="L66">		return panelContent;</span>
+<span class="fc" id="L67">		return panelContent;</span>
 
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc" id="L72">		return PageCommandDocumentConstants.COMMAND_DOCUMENT_PAGEVISIT_HISTORY.matches(page, parameters);</span>
+<span class="fc" id="L73">		return PageCommandDocumentConstants.COMMAND_DOCUMENT_PAGEVISIT_HISTORY.matches(page, parameters);</span>
 	}
 
 }

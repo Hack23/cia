@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode;
 
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractAdminSystemPageModContentFactoryImpl;
+
 import java.text.MessageFormat;
 import java.util.List;
 
@@ -31,8 +33,8 @@ import com.hack23.cia.model.internal.application.user.impl.UserAccount_;
 import com.hack23.cia.service.api.DataContainer;
 import com.hack23.cia.service.api.action.admin.ManageUserAccountRequest;
 import com.hack23.cia.service.api.action.admin.ManageUserAccountRequest.AccountOperation;
-import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.admin.AdminViewConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViewConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandAdminConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.rows.RowUtil;
@@ -63,15 +65,15 @@ public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdm
     private static final String BUTTON_PATTERN = &quot;Perform {0}&quot;;
 
     /** The Constant COLUMN_ORDER. */
-<span class="fc" id="L66">    private static final String[] COLUMN_ORDER = { &quot;hjid&quot;, &quot;modelObjectId&quot;, &quot;modelObjectVersion&quot;, &quot;createdDate&quot;,</span>
+<span class="fc" id="L68">    private static final String[] COLUMN_ORDER = { &quot;hjid&quot;, &quot;modelObjectId&quot;, &quot;modelObjectVersion&quot;, &quot;createdDate&quot;,</span>
             &quot;userId&quot;, &quot;username&quot;, &quot;userType&quot;, &quot;userRole&quot;, &quot;userpassword&quot;, &quot;email&quot;, &quot;country&quot;, &quot;numberOfVisits&quot; };
 
     /** The Constant HIDE_COLUMNS. */
-<span class="fc" id="L70">    private static final String[] HIDE_COLUMNS = { &quot;hjid&quot;, &quot;modelObjectId&quot;, &quot;modelObjectVersion&quot;, &quot;userId&quot;,</span>
+<span class="fc" id="L72">    private static final String[] HIDE_COLUMNS = { &quot;hjid&quot;, &quot;modelObjectId&quot;, &quot;modelObjectVersion&quot;, &quot;userId&quot;,</span>
             &quot;userpassword&quot;, &quot;address&quot; };
 
     /** The Constant LISTENER. */
-<span class="fc" id="L74">    private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
+<span class="fc" id="L76">    private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
             AdminViews.ADMIN_USERACCOUNT_VIEW_NAME, &quot;hjid&quot;);
 
     /** The Constant NAME. */
@@ -84,101 +86,101 @@ public final class AdminUserAccountPageModContentFactoryImpl extends AbstractAdm
      * Instantiates a new admin user account page mod content factory impl.
      */
     public AdminUserAccountPageModContentFactoryImpl() {
-<span class="fc" id="L87">        super(NAME);</span>
-<span class="fc" id="L88">    }</span>
+<span class="fc" id="L89">        super(NAME);</span>
+<span class="fc" id="L90">    }</span>
 
     @Secured({ &quot;ROLE_ADMIN&quot; })
     @Override
     public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L93">        final VerticalLayout content = createPanelContent();</span>
+<span class="fc" id="L95">        final VerticalLayout content = createPanelContent();</span>
 
-<span class="fc" id="L95">        final String pageId = getPageId(parameters);</span>
-<span class="fc" id="L96">        final int pageNr = getPageNr(parameters);</span>
+<span class="fc" id="L97">        final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L98">        final int pageNr = getPageNr(parameters);</span>
 
-<span class="fc" id="L98">        getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
+<span class="fc" id="L100">        getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
 
-<span class="fc" id="L100">        CardInfoRowUtil.createPageHeader(panel, content, AdminViewConstants.ADMIN_USER_ACCOUNT_MANAGEMENT, AdminViewConstants.USER_ACCOUNT_OVERVIEW,</span>
+<span class="fc" id="L102">        CardInfoRowUtil.createPageHeader(panel, content, AdminViewConstants.ADMIN_USER_ACCOUNT_MANAGEMENT, AdminViewConstants.USER_ACCOUNT_OVERVIEW,</span>
                 AdminViewConstants.USER_ACCOUNT_MANAGEMENT_DESCRIPTION);
 
-<span class="fc" id="L103">        final DataContainer&lt;UserAccount, Long&gt; dataContainer = getApplicationManager()</span>
-<span class="fc" id="L104">                .getDataContainer(UserAccount.class);</span>
+<span class="fc" id="L105">        final DataContainer&lt;UserAccount, Long&gt; dataContainer = getApplicationManager()</span>
+<span class="fc" id="L106">                .getDataContainer(UserAccount.class);</span>
 
-<span class="fc" id="L106">        final List&lt;UserAccount&gt; pageOrderBy = dataContainer.getPageOrderBy(pageNr, DEFAULT_RESULTS_PER_PAGE,</span>
+<span class="fc" id="L108">        final List&lt;UserAccount&gt; pageOrderBy = dataContainer.getPageOrderBy(pageNr, DEFAULT_RESULTS_PER_PAGE,</span>
                 UserAccount_.createdDate);
 
-<span class="fc" id="L109">        getPagingUtil().createPagingControls(content, NAME, pageId, dataContainer.getSize(), pageNr,</span>
+<span class="fc" id="L111">        getPagingUtil().createPagingControls(content, NAME, pageId, dataContainer.getSize(), pageNr,</span>
                 DEFAULT_RESULTS_PER_PAGE);
 
-<span class="fc" id="L112">        getGridFactory().createBasicBeanItemGrid(content, UserAccount.class, pageOrderBy, USER_ACCOUNT,</span>
+<span class="fc" id="L114">        getGridFactory().createBasicBeanItemGrid(content, UserAccount.class, pageOrderBy, USER_ACCOUNT,</span>
                 COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
-<span class="pc bpc" id="L115" title="1 of 4 branches missed.">        if (pageId != null &amp;&amp; !pageId.isEmpty()) {</span>
-<span class="fc" id="L116">            final UserAccount userAccount = dataContainer.load(Long.valueOf(pageId));</span>
-<span class="pc bpc" id="L117" title="1 of 2 branches missed.">            if (userAccount != null) {</span>
+<span class="pc bpc" id="L117" title="1 of 4 branches missed.">        if (pageId != null &amp;&amp; !pageId.isEmpty()) {</span>
+<span class="fc" id="L118">            final UserAccount userAccount = dataContainer.load(Long.valueOf(pageId));</span>
+<span class="pc bpc" id="L119" title="1 of 2 branches missed.">            if (userAccount != null) {</span>
                 // Instead of form fields, use a card layout similar to other views.
-<span class="fc" id="L119">                final Panel cardPanel = new Panel();</span>
-<span class="fc" id="L120">                cardPanel.addStyleName(&quot;politician-overview-card&quot;); // Reuse existing card style</span>
-<span class="fc" id="L121">                cardPanel.setWidth(&quot;100%&quot;);</span>
-<span class="fc" id="L122">                cardPanel.setHeightUndefined();</span>
-<span class="fc" id="L123">                Responsive.makeResponsive(cardPanel);</span>
+<span class="fc" id="L121">                final Panel cardPanel = new Panel();</span>
+<span class="fc" id="L122">                cardPanel.addStyleName(&quot;politician-overview-card&quot;); // Reuse existing card style</span>
+<span class="fc" id="L123">                cardPanel.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L124">                cardPanel.setHeightUndefined();</span>
+<span class="fc" id="L125">                Responsive.makeResponsive(cardPanel);</span>
 
-<span class="fc" id="L125">                final VerticalLayout cardContent = new VerticalLayout();</span>
-<span class="fc" id="L126">                cardContent.setMargin(true);</span>
-<span class="fc" id="L127">                cardContent.setSpacing(true);</span>
-<span class="fc" id="L128">                cardContent.setWidth(&quot;100%&quot;);</span>
-<span class="fc" id="L129">                cardPanel.setContent(cardContent);</span>
+<span class="fc" id="L127">                final VerticalLayout cardContent = new VerticalLayout();</span>
+<span class="fc" id="L128">                cardContent.setMargin(true);</span>
+<span class="fc" id="L129">                cardContent.setSpacing(true);</span>
+<span class="fc" id="L130">                cardContent.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L131">                cardPanel.setContent(cardContent);</span>
 
-<span class="fc" id="L131">                content.addComponent(cardPanel);</span>
+<span class="fc" id="L133">                content.addComponent(cardPanel);</span>
 
-<span class="fc" id="L133">                CardInfoRowUtil.createCardHeader(cardContent,&quot;User Account Details&quot;);</span>
+<span class="fc" id="L135">                CardInfoRowUtil.createCardHeader(cardContent,&quot;User Account Details&quot;);</span>
 
                 // Attributes layout
-<span class="fc" id="L136">                final VerticalLayout attributesLayout = new VerticalLayout();</span>
-<span class="fc" id="L137">                attributesLayout.setSpacing(true);</span>
-<span class="fc" id="L138">                attributesLayout.setWidth(&quot;100%&quot;);</span>
-<span class="fc" id="L139">                cardContent.addComponent(attributesLayout);</span>
+<span class="fc" id="L138">                final VerticalLayout attributesLayout = new VerticalLayout();</span>
+<span class="fc" id="L139">                attributesLayout.setSpacing(true);</span>
+<span class="fc" id="L140">                attributesLayout.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L141">                cardContent.addComponent(attributesLayout);</span>
 
                 // Display fields using a card layout approach with null-check
-<span class="fc" id="L142">                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, &quot;Username:&quot;, userAccount.getUsername(), VaadinIcons.USER);</span>
-<span class="fc" id="L143">                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, &quot;Created Date:&quot;, String.valueOf(userAccount.getCreatedDate()),</span>
+<span class="fc" id="L144">                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, &quot;Username:&quot;, userAccount.getUsername(), VaadinIcons.USER);</span>
+<span class="fc" id="L145">                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, &quot;Created Date:&quot;, String.valueOf(userAccount.getCreatedDate()),</span>
                         VaadinIcons.CALENDAR);
-<span class="fc" id="L145">                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, &quot;Email:&quot;, userAccount.getEmail(), VaadinIcons.ENVELOPE);</span>
-<span class="fc" id="L146">                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, &quot;Country:&quot;, userAccount.getCountry(), VaadinIcons.GLOBE);</span>
-<span class="fc" id="L147">                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, &quot;Number Of Visits:&quot;, String.valueOf(userAccount.getNumberOfVisits()),</span>
+<span class="fc" id="L147">                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, &quot;Email:&quot;, userAccount.getEmail(), VaadinIcons.ENVELOPE);</span>
+<span class="fc" id="L148">                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, &quot;Country:&quot;, userAccount.getCountry(), VaadinIcons.GLOBE);</span>
+<span class="fc" id="L149">                CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, &quot;Number Of Visits:&quot;, String.valueOf(userAccount.getNumberOfVisits()),</span>
                         VaadinIcons.EYE);
 
-<span class="fc" id="L150">                final VerticalLayout overviewLayout = new VerticalLayout();</span>
-<span class="fc" id="L151">                overviewLayout.setSizeFull();</span>
-<span class="fc" id="L152">                overviewLayout.addStyleName(&quot;v-layout-content-overview-panel-level2&quot;);</span>
-<span class="fc" id="L153">                content.addComponent(overviewLayout);</span>
-<span class="fc" id="L154">                content.setExpandRatio(overviewLayout, ContentRatio.LARGE);</span>
+<span class="fc" id="L152">                final VerticalLayout overviewLayout = new VerticalLayout();</span>
+<span class="fc" id="L153">                overviewLayout.setSizeFull();</span>
+<span class="fc" id="L154">                overviewLayout.addStyleName(&quot;v-layout-content-overview-panel-level2&quot;);</span>
+<span class="fc" id="L155">                content.addComponent(overviewLayout);</span>
+<span class="fc" id="L156">                content.setExpandRatio(overviewLayout, ContentRatio.LARGE);</span>
 
-<span class="fc" id="L156">                final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);</span>
+<span class="fc" id="L158">                final ResponsiveRow grid = RowUtil.createGridLayout(overviewLayout);</span>
 
-<span class="fc bfc" id="L158" title="All 2 branches covered.">                for (final AccountOperation accountOperation : ManageUserAccountRequest.AccountOperation.values()) {</span>
-<span class="fc" id="L159">                    final ManageUserAccountRequest request = new ManageUserAccountRequest();</span>
-<span class="fc" id="L160">                    request.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
-<span class="fc" id="L161">                    request.setAccountOperation(accountOperation);</span>
-<span class="fc" id="L162">                    request.setUserAcountId(userAccount.getUserId());</span>
-<span class="fc" id="L163">                    final Button accountOperationButton = new Button(</span>
-<span class="fc" id="L164">                            MessageFormat.format(BUTTON_PATTERN, accountOperation), VaadinIcons.BULLSEYE);</span>
-<span class="fc" id="L165">                    accountOperationButton.addClickListener(new ManageUserAccountClickListener(request));</span>
-<span class="fc" id="L166">                    accountOperationButton.setId(</span>
-<span class="fc" id="L167">                            MessageFormat.format(BUTTON_ID_PATTERN, ViewAction.START_AGENT_BUTTON, accountOperation));</span>
-<span class="fc" id="L168">                    RowUtil.createRowItem(grid, accountOperationButton, &quot;Will perform useraccount action&quot;);</span>
+<span class="fc bfc" id="L160" title="All 2 branches covered.">                for (final AccountOperation accountOperation : ManageUserAccountRequest.AccountOperation.values()) {</span>
+<span class="fc" id="L161">                    final ManageUserAccountRequest request = new ManageUserAccountRequest();</span>
+<span class="fc" id="L162">                    request.setSessionId(RequestContextHolder.currentRequestAttributes().getSessionId());</span>
+<span class="fc" id="L163">                    request.setAccountOperation(accountOperation);</span>
+<span class="fc" id="L164">                    request.setUserAcountId(userAccount.getUserId());</span>
+<span class="fc" id="L165">                    final Button accountOperationButton = new Button(</span>
+<span class="fc" id="L166">                            MessageFormat.format(BUTTON_PATTERN, accountOperation), VaadinIcons.BULLSEYE);</span>
+<span class="fc" id="L167">                    accountOperationButton.addClickListener(new ManageUserAccountClickListener(request));</span>
+<span class="fc" id="L168">                    accountOperationButton.setId(</span>
+<span class="fc" id="L169">                            MessageFormat.format(BUTTON_ID_PATTERN, ViewAction.START_AGENT_BUTTON, accountOperation));</span>
+<span class="fc" id="L170">                    RowUtil.createRowItem(grid, accountOperationButton, &quot;Will perform useraccount action&quot;);</span>
                 }
             }
         }
 
-<span class="fc" id="L173">        getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_USERACCOUNT_VIEW, ApplicationEventGroup.ADMIN,</span>
+<span class="fc" id="L175">        getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_USERACCOUNT_VIEW, ApplicationEventGroup.ADMIN,</span>
                 NAME, null, pageId);
 
-<span class="fc" id="L176">        return content;</span>
+<span class="fc" id="L178">        return content;</span>
     }
 
     @Override
     public boolean matches(final String page, final String parameters) {
-<span class="fc" id="L181">    	return PageCommandAdminConstants.COMMAND_USERACCOUNT.matches(page, parameters);</span>
+<span class="fc" id="L183">    	return PageCommandAdminConstants.COMMAND_USERACCOUNT.matches(page, parameters);</span>
     }
 
 }

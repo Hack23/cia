@@ -23,7 +23,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
-import com.hack23.cia.web.impl.ui.application.views.admin.common.AbstractAdminView;
+import com.hack23.cia.web.impl.ui.application.views.common.abstracts.AbstractAdminView;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeContentFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
 import com.vaadin.spring.annotation.SpringView;

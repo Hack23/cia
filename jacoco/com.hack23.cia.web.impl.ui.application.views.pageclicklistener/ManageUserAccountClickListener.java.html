@@ -31,17 +31,18 @@ import com.vaadin.ui.Notification;
 /**
  * The Class ManageUserAccountClickListener.
  *
- * @see ManageUserAccountClickEvent
+ * @see com.vaadin.ui.Button.ClickEvent
  */
 public class ManageUserAccountClickListener extends AbstractClickListener implements ClickListener {
 
+	/** The Constant MANAGE_USER_ACCOUNT_DESC. */
 	public static final String MANAGE_USER_ACCOUNT_DESC = &quot;manage user account desc&quot;;
 
 	/** The Constant LOG_MSG_SEND_EMAIL. */
 	public static final String LOG_MSG = &quot;Operation {}&quot;;
 
 	/** The Constant LOGGER. */
-<span class="fc" id="L44">	private static final Logger LOGGER = LoggerFactory.getLogger(ManageUserAccountClickListener.class);</span>
+<span class="fc" id="L45">	private static final Logger LOGGER = LoggerFactory.getLogger(ManageUserAccountClickListener.class);</span>
 
 	/** The Constant EMAIL_SENT. */
 	public static final String OPERATION_COMPLETED = &quot;Operation completed&quot;;
@@ -64,22 +65,22 @@ public class ManageUserAccountClickListener extends AbstractClickListener implem
 	 * @param manageUserAccountRequest
 	 *            the manage user account request
 	 */
-<span class="fc" id="L67">	public ManageUserAccountClickListener(final ManageUserAccountRequest manageUserAccountRequest) {</span>
-<span class="fc" id="L68">		this.manageUserAccountRequest = manageUserAccountRequest;</span>
-<span class="fc" id="L69">	}</span>
+<span class="fc" id="L68">	public ManageUserAccountClickListener(final ManageUserAccountRequest manageUserAccountRequest) {</span>
+<span class="fc" id="L69">		this.manageUserAccountRequest = manageUserAccountRequest;</span>
+<span class="fc" id="L70">	}</span>
 
 	@Override
 	public final void buttonClick(final ClickEvent event) {
-<span class="fc" id="L73">		final ServiceResponse response = getApplicationManager().service(manageUserAccountRequest);</span>
-<span class="pc bpc" id="L74" title="1 of 2 branches missed.">		if (ServiceResult.SUCCESS == response.getResult()) {</span>
-<span class="nc" id="L75">			LOGGER.info(LOG_MSG,manageUserAccountRequest.getUserAcountId());</span>
-<span class="nc" id="L76">			showNotification(OPERATION_COMPLETED, MANAGE_USER_ACCOUNT_DESC, Notification.Type.HUMANIZED_MESSAGE);</span>
+<span class="fc" id="L74">		final ServiceResponse response = getApplicationManager().service(manageUserAccountRequest);</span>
+<span class="pc bpc" id="L75" title="1 of 2 branches missed.">		if (ServiceResult.SUCCESS == response.getResult()) {</span>
+<span class="nc" id="L76">			LOGGER.info(LOG_MSG,manageUserAccountRequest.getUserAcountId());</span>
+<span class="nc" id="L77">			showNotification(OPERATION_COMPLETED, MANAGE_USER_ACCOUNT_DESC, Notification.Type.HUMANIZED_MESSAGE);</span>
 		} else {
-<span class="fc" id="L78">			showNotification(OPERATION_FAILED,</span>
-<span class="fc" id="L79">	                  response.getErrorMessage(),</span>
+<span class="fc" id="L79">			showNotification(OPERATION_FAILED,</span>
+<span class="fc" id="L80">	                  response.getErrorMessage(),</span>
 	                  Notification.Type.WARNING_MESSAGE);
-<span class="fc" id="L81">			LOGGER.info(OPERATION_FAILURE,manageUserAccountRequest.getUserAcountId());</span>
+<span class="fc" id="L82">			LOGGER.info(OPERATION_FAILURE,manageUserAccountRequest.getUserAcountId());</span>
 		}
-<span class="fc" id="L83">	}</span>
+<span class="fc" id="L84">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

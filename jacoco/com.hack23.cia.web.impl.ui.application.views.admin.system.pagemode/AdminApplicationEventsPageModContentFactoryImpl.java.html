@@ -18,6 +18,8 @@
 */
 package com.hack23.cia.web.impl.ui.application.views.admin.system.pagemode;
 
+import com.hack23.cia.web.impl.ui.application.views.common.pagemode.AbstractAdminSystemPageModContentFactoryImpl;
+
 import java.util.List;
 
 import org.springframework.security.access.annotation.Secured;
@@ -27,8 +29,8 @@ import com.hack23.cia.model.internal.application.system.impl.ApplicationActionEv
 import com.hack23.cia.model.internal.application.system.impl.ApplicationActionEvent_;
 import com.hack23.cia.model.internal.application.system.impl.ApplicationEventGroup;
 import com.hack23.cia.service.api.DataContainer;
-import com.hack23.cia.web.impl.ui.application.action.ViewAction;
-import com.hack23.cia.web.impl.ui.application.views.admin.AdminViewConstants;
+import com.hack23.cia.web.impl.ui.application.views.common.action.ViewAction;
+import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViewConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.menufactory.api.pagecommands.PageCommandAdminConstants;
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.CardInfoRowUtil;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.AdminViews;
@@ -50,15 +52,15 @@ public final class AdminApplicationEventsPageModContentFactoryImpl extends Abstr
 	private static final String APPLICATION_ACTION_EVENT = &quot;ApplicationActionEvent&quot;;
 
 	/** The Constant COLUMN_ORDER. */
-<span class="fc" id="L53">	private static final String[] COLUMN_ORDER = { &quot;hjid&quot;, &quot;createdDate&quot;, &quot;userId&quot;, &quot;actionName&quot;, &quot;errorMessage&quot;,</span>
+<span class="fc" id="L55">	private static final String[] COLUMN_ORDER = { &quot;hjid&quot;, &quot;createdDate&quot;, &quot;userId&quot;, &quot;actionName&quot;, &quot;errorMessage&quot;,</span>
 			&quot;applicationMessage&quot;, &quot;page&quot;, &quot;pageMode&quot;, &quot;elementId&quot;, &quot;modelObjectVersion&quot; };
 
 	/** The Constant HIDE_COLUMNS. */
-<span class="fc" id="L57">	private static final String[] HIDE_COLUMNS = { &quot;hjid&quot;, &quot;modelObjectId&quot;, &quot;modelObjectVersion&quot;, &quot;sessionId&quot;,</span>
+<span class="fc" id="L59">	private static final String[] HIDE_COLUMNS = { &quot;hjid&quot;, &quot;modelObjectId&quot;, &quot;modelObjectVersion&quot;, &quot;sessionId&quot;,</span>
 			&quot;eventGroup&quot;, &quot;applicationOperation&quot; };
 
 	/** The Constant LISTENER. */
-<span class="fc" id="L61">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
+<span class="fc" id="L63">	private static final PageItemPropertyClickListener LISTENER = new PageItemPropertyClickListener(</span>
 			AdminViews.ADMIN_APPLICATIONS_EVENTS_VIEW_NAME, &quot;hjid&quot;);
 
 	/** The Constant NAME. */
@@ -68,94 +70,94 @@ public final class AdminApplicationEventsPageModContentFactoryImpl extends Abstr
 	 * Instantiates a new admin application events page mod content factory impl.
 	 */
 	public AdminApplicationEventsPageModContentFactoryImpl() {
-<span class="fc" id="L71">		super(NAME);</span>
-<span class="fc" id="L72">	}</span>
+<span class="fc" id="L73">		super(NAME);</span>
+<span class="fc" id="L74">	}</span>
 
 	@Secured({ &quot;ROLE_ADMIN&quot; })
 	@Override
 	public Layout createContent(final String parameters, final MenuBar menuBar, final Panel panel) {
-<span class="fc" id="L77">		final VerticalLayout content = createPanelContent();</span>
+<span class="fc" id="L79">		final VerticalLayout content = createPanelContent();</span>
 
-<span class="fc" id="L79">		final String pageId = getPageId(parameters);</span>
-<span class="fc" id="L80">		final int pageNr = getPageNr(parameters);</span>
+<span class="fc" id="L81">		final String pageId = getPageId(parameters);</span>
+<span class="fc" id="L82">		final int pageNr = getPageNr(parameters);</span>
 
-<span class="fc" id="L82">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
+<span class="fc" id="L84">		getMenuItemFactory().createMainPageMenuBar(menuBar);</span>
 
-<span class="fc" id="L84">		CardInfoRowUtil.createPageHeader(panel, content, AdminViewConstants.ADMIN_APPLICATION_EVENTS, AdminViewConstants.EVENT_DETAILS,</span>
+<span class="fc" id="L86">		CardInfoRowUtil.createPageHeader(panel, content, AdminViewConstants.ADMIN_APPLICATION_EVENTS, AdminViewConstants.EVENT_DETAILS,</span>
 				AdminViewConstants.EVENT_REVIEW);
 
-<span class="fc" id="L87">		final DataContainer&lt;ApplicationActionEvent, Long&gt; dataContainer = getApplicationManager()</span>
-<span class="fc" id="L88">				.getDataContainer(ApplicationActionEvent.class);</span>
+<span class="fc" id="L89">		final DataContainer&lt;ApplicationActionEvent, Long&gt; dataContainer = getApplicationManager()</span>
+<span class="fc" id="L90">				.getDataContainer(ApplicationActionEvent.class);</span>
 
-<span class="fc" id="L90">		final List&lt;ApplicationActionEvent&gt; pageOrderBy = dataContainer.getPageOrderBy(pageNr, DEFAULT_RESULTS_PER_PAGE,</span>
+<span class="fc" id="L92">		final List&lt;ApplicationActionEvent&gt; pageOrderBy = dataContainer.getPageOrderBy(pageNr, DEFAULT_RESULTS_PER_PAGE,</span>
 				ApplicationActionEvent_.createdDate);
 
-<span class="fc" id="L93">		getPagingUtil().createPagingControls(content, NAME, pageId, dataContainer.getSize(), pageNr,</span>
+<span class="fc" id="L95">		getPagingUtil().createPagingControls(content, NAME, pageId, dataContainer.getSize(), pageNr,</span>
 				DEFAULT_RESULTS_PER_PAGE);
 
-<span class="fc" id="L96">		getGridFactory().createBasicBeanItemGrid(content, ApplicationActionEvent.class, pageOrderBy,</span>
+<span class="fc" id="L98">		getGridFactory().createBasicBeanItemGrid(content, ApplicationActionEvent.class, pageOrderBy,</span>
 				APPLICATION_ACTION_EVENT, COLUMN_ORDER, HIDE_COLUMNS, LISTENER, null, null);
 
-<span class="pc bpc" id="L99" title="1 of 4 branches missed.">		if (pageId != null &amp;&amp; !pageId.isEmpty()) {</span>
-<span class="fc" id="L100">			final ApplicationActionEvent applicationActionEvent = dataContainer.load(Long.valueOf(pageId));</span>
-<span class="pc bpc" id="L101" title="1 of 2 branches missed.">			if (applicationActionEvent != null) {</span>
+<span class="pc bpc" id="L101" title="1 of 4 branches missed.">		if (pageId != null &amp;&amp; !pageId.isEmpty()) {</span>
+<span class="fc" id="L102">			final ApplicationActionEvent applicationActionEvent = dataContainer.load(Long.valueOf(pageId));</span>
+<span class="pc bpc" id="L103" title="1 of 2 branches missed.">			if (applicationActionEvent != null) {</span>
 				// Instead of form fields, use a card layout similar to the party overview.
-<span class="fc" id="L103">				final Panel cardPanel = new Panel();</span>
-<span class="fc" id="L104">				cardPanel.addStyleName(&quot;politician-overview-card&quot;); // Reuse existing style</span>
-<span class="fc" id="L105">				cardPanel.setWidth(&quot;100%&quot;);</span>
-<span class="fc" id="L106">				cardPanel.setHeightUndefined();</span>
-<span class="fc" id="L107">				Responsive.makeResponsive(cardPanel);</span>
+<span class="fc" id="L105">				final Panel cardPanel = new Panel();</span>
+<span class="fc" id="L106">				cardPanel.addStyleName(&quot;politician-overview-card&quot;); // Reuse existing style</span>
+<span class="fc" id="L107">				cardPanel.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L108">				cardPanel.setHeightUndefined();</span>
+<span class="fc" id="L109">				Responsive.makeResponsive(cardPanel);</span>
 
-<span class="fc" id="L109">				final VerticalLayout cardContent = new VerticalLayout();</span>
-<span class="fc" id="L110">				cardContent.setMargin(true);</span>
-<span class="fc" id="L111">				cardContent.setSpacing(true);</span>
-<span class="fc" id="L112">				cardContent.setWidth(&quot;100%&quot;);</span>
-<span class="fc" id="L113">				cardPanel.setContent(cardContent);</span>
+<span class="fc" id="L111">				final VerticalLayout cardContent = new VerticalLayout();</span>
+<span class="fc" id="L112">				cardContent.setMargin(true);</span>
+<span class="fc" id="L113">				cardContent.setSpacing(true);</span>
+<span class="fc" id="L114">				cardContent.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L115">				cardPanel.setContent(cardContent);</span>
 
-<span class="fc" id="L115">				content.addComponent(cardPanel);</span>
+<span class="fc" id="L117">				content.addComponent(cardPanel);</span>
 
-<span class="fc" id="L117">				CardInfoRowUtil.createCardHeader(cardContent, AdminViewConstants.EVENT_DETAILS);</span>
+<span class="fc" id="L119">				CardInfoRowUtil.createCardHeader(cardContent, AdminViewConstants.EVENT_DETAILS);</span>
 
 				// Attributes layout
-<span class="fc" id="L120">				final VerticalLayout attributesLayout = new VerticalLayout();</span>
-<span class="fc" id="L121">				attributesLayout.setSpacing(true);</span>
-<span class="fc" id="L122">				attributesLayout.setWidth(&quot;100%&quot;);</span>
-<span class="fc" id="L123">				cardContent.addComponent(attributesLayout);</span>
+<span class="fc" id="L122">				final VerticalLayout attributesLayout = new VerticalLayout();</span>
+<span class="fc" id="L123">				attributesLayout.setSpacing(true);</span>
+<span class="fc" id="L124">				attributesLayout.setWidth(&quot;100%&quot;);</span>
+<span class="fc" id="L125">				cardContent.addComponent(attributesLayout);</span>
 
-<span class="fc" id="L125">				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.CREATED_DATE,</span>
-<span class="fc" id="L126">						String.valueOf(applicationActionEvent.getCreatedDate()), VaadinIcons.CALENDAR);</span>
-<span class="fc" id="L127">				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.EVENT_GROUP,</span>
-<span class="fc" id="L128">						String.valueOf(applicationActionEvent.getEventGroup()), VaadinIcons.INFO);</span>
-<span class="fc" id="L129">				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.APPLICATION_OPERATION,</span>
-<span class="fc" id="L130">						String.valueOf(applicationActionEvent.getApplicationOperation()), VaadinIcons.TOOLS);</span>
-<span class="fc" id="L131">				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.PAGE,</span>
-<span class="fc" id="L132">						String.valueOf(applicationActionEvent.getPage()), VaadinIcons.FILE_TEXT);</span>
-<span class="fc" id="L133">				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.PAGE_MODE,</span>
-<span class="fc" id="L134">						String.valueOf(applicationActionEvent.getPageMode()), VaadinIcons.LIST);</span>
-<span class="fc" id="L135">				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.ELEMENT_ID,</span>
-<span class="fc" id="L136">						String.valueOf(applicationActionEvent.getElementId()), VaadinIcons.POINTER);</span>
-<span class="fc" id="L137">				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.ACTION_NAME,</span>
-<span class="fc" id="L138">						String.valueOf(applicationActionEvent.getActionName()), VaadinIcons.PLAY_CIRCLE);</span>
-<span class="fc" id="L139">				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.USER_ID,</span>
-<span class="fc" id="L140">						String.valueOf(applicationActionEvent.getUserId()), VaadinIcons.USER);</span>
-<span class="fc" id="L141">				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.SESSION_ID,</span>
-<span class="fc" id="L142">						String.valueOf(applicationActionEvent.getSessionId()), VaadinIcons.KEY);</span>
-<span class="fc" id="L143">				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.ERROR_MESSAGE,</span>
-<span class="fc" id="L144">						String.valueOf(applicationActionEvent.getErrorMessage()), VaadinIcons.WARNING);</span>
-<span class="fc" id="L145">				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.APPLICATION_MESSAGE,</span>
-<span class="fc" id="L146">						String.valueOf(applicationActionEvent.getApplicationMessage()), VaadinIcons.INFO_CIRCLE);</span>
+<span class="fc" id="L127">				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.CREATED_DATE,</span>
+<span class="fc" id="L128">						String.valueOf(applicationActionEvent.getCreatedDate()), VaadinIcons.CALENDAR);</span>
+<span class="fc" id="L129">				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.EVENT_GROUP,</span>
+<span class="fc" id="L130">						String.valueOf(applicationActionEvent.getEventGroup()), VaadinIcons.INFO);</span>
+<span class="fc" id="L131">				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.APPLICATION_OPERATION,</span>
+<span class="fc" id="L132">						String.valueOf(applicationActionEvent.getApplicationOperation()), VaadinIcons.TOOLS);</span>
+<span class="fc" id="L133">				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.PAGE,</span>
+<span class="fc" id="L134">						String.valueOf(applicationActionEvent.getPage()), VaadinIcons.FILE_TEXT);</span>
+<span class="fc" id="L135">				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.PAGE_MODE,</span>
+<span class="fc" id="L136">						String.valueOf(applicationActionEvent.getPageMode()), VaadinIcons.LIST);</span>
+<span class="fc" id="L137">				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.ELEMENT_ID,</span>
+<span class="fc" id="L138">						String.valueOf(applicationActionEvent.getElementId()), VaadinIcons.POINTER);</span>
+<span class="fc" id="L139">				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.ACTION_NAME,</span>
+<span class="fc" id="L140">						String.valueOf(applicationActionEvent.getActionName()), VaadinIcons.PLAY_CIRCLE);</span>
+<span class="fc" id="L141">				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.USER_ID,</span>
+<span class="fc" id="L142">						String.valueOf(applicationActionEvent.getUserId()), VaadinIcons.USER);</span>
+<span class="fc" id="L143">				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.SESSION_ID,</span>
+<span class="fc" id="L144">						String.valueOf(applicationActionEvent.getSessionId()), VaadinIcons.KEY);</span>
+<span class="fc" id="L145">				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.ERROR_MESSAGE,</span>
+<span class="fc" id="L146">						String.valueOf(applicationActionEvent.getErrorMessage()), VaadinIcons.WARNING);</span>
+<span class="fc" id="L147">				CardInfoRowUtil.addInfoRowIfNotNull(attributesLayout, AdminViewConstants.APPLICATION_MESSAGE,</span>
+<span class="fc" id="L148">						String.valueOf(applicationActionEvent.getApplicationMessage()), VaadinIcons.INFO_CIRCLE);</span>
 			}
 		}
 
-<span class="fc" id="L150">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_APPLICATION_EVENTS_VIEW,</span>
+<span class="fc" id="L152">		getPageActionEventHelper().createPageEvent(ViewAction.VISIT_ADMIN_APPLICATION_EVENTS_VIEW,</span>
 				ApplicationEventGroup.ADMIN, NAME, null, pageId);
 
-<span class="fc" id="L153">		return content;</span>
+<span class="fc" id="L155">		return content;</span>
 	}
 
 	@Override
 	public boolean matches(final String page, final String parameters) {
-<span class="fc" id="L158">		return PageCommandAdminConstants.COMMAND_APPLICATION_EVENTS.matches(page, parameters);</span>
+<span class="fc" id="L160">		return PageCommandAdminConstants.COMMAND_APPLICATION_EVENTS.matches(page, parameters);</span>
 	}
 
 }

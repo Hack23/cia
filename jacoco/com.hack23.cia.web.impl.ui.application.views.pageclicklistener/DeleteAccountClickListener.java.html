@@ -31,7 +31,7 @@ import com.vaadin.ui.Notification;
 /**
  * The Class DeleteAccountClickListener.
  *
- * @see DeleteAccountClickEvent
+ * @see com.vaadin.ui.Button.ClickEvent
  */
 public class DeleteAccountClickListener extends AbstractClickListener implements ClickListener {
 

@@ -25,7 +25,7 @@ import org.springframework.stereotype.Service;
 
 import com.hack23.cia.web.impl.ui.application.views.common.pagemode.PageModeContentFactory;
 import com.hack23.cia.web.impl.ui.application.views.common.viewnames.UserViews;
-import com.hack23.cia.web.impl.ui.application.views.user.common.AbstractUserView;
+import com.hack23.cia.web.impl.ui.application.views.common.abstracts.AbstractUserView;
 import com.vaadin.spring.annotation.SpringView;
 
 /**

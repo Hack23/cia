@@ -31,7 +31,7 @@ import com.vaadin.ui.Notification;
 /**
  * The Class DisableGoogleAuthenticatorCredentialClickListener.
  *
- * @see DisableGoogleAuthenticatorCredentialClickEvent
+ * @see com.vaadin.ui.Button.ClickEvent
  */
 public class DisableGoogleAuthenticatorCredentialClickListener extends AbstractClickListener implements ClickListener {
 

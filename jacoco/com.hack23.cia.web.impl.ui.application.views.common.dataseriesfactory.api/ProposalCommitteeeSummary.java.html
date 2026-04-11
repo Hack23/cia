@@ -22,6 +22,14 @@ import java.util.Locale;
 
 /**
  * The Class ProposalCommitteeeSummary.
+ * 
+ * @param org the organization identifier
+ * @param docType the document type
+ * @param decision the decision value
+ * @param hangarId the hangar identifier
+ * @param wording the primary wording text
+ * @param wording2 the secondary wording text
+ * @param decisionType the type of decision
  */
 public record ProposalCommitteeeSummary(
         String org,
@@ -36,11 +44,11 @@ public record ProposalCommitteeeSummary(
      * Compact constructor for ProposalCommitteeeSummary.
      * Validates and normalizes the input data.
      */
-<span class="fc" id="L39">    public ProposalCommitteeeSummary {</span>
-<span class="fc" id="L40">        org = org.trim().toUpperCase(Locale.ENGLISH);</span>
-<span class="fc" id="L41">        docType = docType.toUpperCase(Locale.ENGLISH);</span>
-<span class="fc" id="L42">        decision = decision.replace(&quot;=&quot;, &quot;&quot;).replace(&quot;,&quot;, &quot;&quot;).trim().toUpperCase(Locale.ENGLISH);</span>
-<span class="fc" id="L43">    }</span>
+<span class="fc" id="L47">    public ProposalCommitteeeSummary {</span>
+<span class="fc" id="L48">        org = org.trim().toUpperCase(Locale.ENGLISH);</span>
+<span class="fc" id="L49">        docType = docType.toUpperCase(Locale.ENGLISH);</span>
+<span class="fc" id="L50">        decision = decision.replace(&quot;=&quot;, &quot;&quot;).replace(&quot;,&quot;, &quot;&quot;).trim().toUpperCase(Locale.ENGLISH);</span>
+<span class="fc" id="L51">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>
