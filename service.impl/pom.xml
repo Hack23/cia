@@ -57,22 +57,12 @@
           <groupId>org.eclipse.jdt</groupId>
           <artifactId>ecj</artifactId>
         </exclusion>
-        <exclusion>
-          <groupId>org.drools</groupId>
-          <artifactId>drools-ecj</artifactId>
-        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
       <groupId>org.drools</groupId>
       <artifactId>drools-engine</artifactId>
       <version>${cia.project.versions.drools}</version>
-      <exclusions>
-        <exclusion>
-          <groupId>org.drools</groupId>
-          <artifactId>drools-ecj</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.drools</groupId>
@@ -387,7 +377,7 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
-          <argLine>${surefireArgLine} ${testAdditionalRuntimeArgLine} --add-modules java.compiler</argLine>
+          <argLine>${surefireArgLine} ${testAdditionalRuntimeArgLine} -Ddrools.dialect.java.compiler.lnglevel=21</argLine>
         </configuration>
       </plugin>
     </plugins>

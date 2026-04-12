@@ -55,7 +55,6 @@ open module com.hack23.cia.service.impl {
 	requires java.mail;
 	requires org.kie.api;
 	requires org.drools.core;
-	requires org.drools.model.codegen;
 	requires org.bouncycastle.pkix;
 	requires org.bouncycastle.provider;
 
