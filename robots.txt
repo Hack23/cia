@@ -1,17 +1,4 @@
 User-agent: *
 Allow: /
 
-# Exclude auto-generated technical documentation from crawling
-Disallow: /*/apidocs/
-Disallow: /*/testapidocs/
-Disallow: /*/xref/
-Disallow: /*/xref-test/
-Disallow: /*/jacoco/
-Disallow: /*/jacoco-it/
-Disallow: /*/jacoco-ut/
-Disallow: /*/jacoco-aggregate/
-Disallow: /*/tattleTaleReport/
-Disallow: /*/dbDoc/
-Disallow: /*/hbm2doc/
-
 Sitemap: https://hack23.github.io/cia/sitemap.xml
