@@ -57,12 +57,22 @@
           <groupId>org.eclipse.jdt</groupId>
           <artifactId>ecj</artifactId>
         </exclusion>
+        <exclusion>
+          <groupId>org.drools</groupId>
+          <artifactId>drools-ecj</artifactId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
       <groupId>org.drools</groupId>
       <artifactId>drools-engine</artifactId>
       <version>${cia.project.versions.drools}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.drools</groupId>
+          <artifactId>drools-ecj</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.drools</groupId>
@@ -103,11 +113,6 @@
       <groupId>com.google.protobuf</groupId>
       <artifactId>protobuf-java</artifactId>
       <version>4.34.1</version>
-    </dependency>
-    <dependency>
-      <groupId>org.eclipse.jdt</groupId>
-      <artifactId>ecj</artifactId>
-      <version>3.45.0</version>
     </dependency>
     <dependency>
       <groupId>org.quartz-scheduler</groupId>
@@ -377,7 +382,15 @@
     </dependency>
   </dependencies>
   <build>
-    <plugins></plugins>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <argLine>${surefireArgLine} ${testAdditionalRuntimeArgLine} --add-modules java.compiler</argLine>
+        </configuration>
+      </plugin>
+    </plugins>
     <extensions></extensions>
   </build>
 </project>

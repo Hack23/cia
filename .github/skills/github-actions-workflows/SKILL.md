@@ -21,7 +21,7 @@ Create and maintain secure, efficient CI/CD pipelines using GitHub Actions for t
 
 | Component | Version | Notes |
 |-----------|---------|-------|
-| **Java JDK** | 26-ea (Temurin) | Source level 21 |
+| **Java JDK** | 26 (Temurin) | Source level 21 |
 | **Maven** | 3.9.14 | Multi-module reactor build |
 | **PostgreSQL** | 18 | Extensions: pgaudit, pgcrypto, pg_stat_statements |
 | **Node.js** | 24 | MCP servers, Playwright |
@@ -54,7 +54,7 @@ jobs:
       - name: Set up JDK 26
         uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00 # v4.7.1
         with:
-          java-version: '26-ea'
+          java-version: '26'
           distribution: 'temurin'
           cache: 'maven'
 
