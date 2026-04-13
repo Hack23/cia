@@ -49,7 +49,8 @@ public class RulesConfiguration {
 		final KieServices kieServices = KieServices.Factory.get();
 		final KieContainer kContainer = kieServices.getKieClasspathContainer();
 
-		LOGGER.info("Using classloader {}, parent {}",kContainer.getClassLoader(),kContainer.getClassLoader().getParent());
+		LOGGER.info("Using classloader {}, parent {}", kContainer.getClassLoader(),
+				kContainer.getClassLoader().getParent());
 
 		final Results verifyResults = kContainer.verify();
 		for (final Message m : verifyResults.getMessages()) {
@@ -58,13 +59,11 @@ public class RulesConfiguration {
 
 		final KieBase kieBase = kContainer.getKieBase();
 
-
 		for (final KiePackage kp : kieBase.getKiePackages()) {
 			for (final Rule rule : kp.getRules()) {
-				LOGGER.info("Loadded Rule: {} {}", kp, rule.getName());
+				LOGGER.info("Loaded Rule: {} {}", kp, rule.getName());
 			}
 		}
-
 
 		return kContainer;
 	}
