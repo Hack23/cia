@@ -133,6 +133,11 @@
                   <fileset dir="${project.build.directory}/deb-staging/opt/cia/jetty-home-${cia.project.versions.jetty}"></fileset>
                 </move>
                 <delete dir="${project.build.directory}/deb-staging/opt/cia/jetty-home-${cia.project.versions.jetty}"></delete>
+                <!-- Preserve executable bit on shell scripts shipped by jetty-home;
+                     Ant <unzip> strips Unix permission bits so restore 0755 explicitly. -->
+                <chmod perm="755">
+                  <fileset dir="${project.build.directory}/deb-staging/opt/cia/bin" includes="**/*.sh"></fileset>
+                </chmod>
                 <!-- Unpack WAR to staging area -->
                 <unzip dest="${project.build.directory}/deb-staging/opt/cia/cia-base/webapps/cia" src="${basedir}/../citizen-intelligence-agency/target/citizen-intelligence-agency-${project.version}.war"></unzip>
                 <!-- Copy config files to staging area -->
@@ -181,13 +186,26 @@
                 <data>
                   <type>directory</type>
                   <src>${project.build.directory}/deb-staging</src>
-                  <excludes>**/keystore.p12</excludes>
+                  <excludes>**/keystore.p12,opt/cia/bin/**</excludes>
                   <mapper>
                     <type>perm</type>
                     <prefix>/</prefix>
                     <user>root</user>
                     <group>root</group>
                     <filemode>644</filemode>
+                    <dirmode>755</dirmode>
+                  </mapper>
+                </data>
+                <data>
+                  <type>directory</type>
+                  <src>${project.build.directory}/deb-staging</src>
+                  <includes>opt/cia/bin/**</includes>
+                  <mapper>
+                    <type>perm</type>
+                    <prefix>/</prefix>
+                    <user>root</user>
+                    <group>root</group>
+                    <filemode>755</filemode>
                     <dirmode>755</dirmode>
                   </mapper>
                 </data>
