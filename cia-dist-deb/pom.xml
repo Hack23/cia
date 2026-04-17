@@ -141,12 +141,15 @@
                 <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/deploy.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/deploy.ini"></copy>
                 <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/gzip.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/gzip.ini"></copy>
                 <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/http2c.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/http2c.ini"></copy>
+                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/http2.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/http2.ini"></copy>
                 <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/http.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/http.ini"></copy>
                 <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/https.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/https.ini"></copy>
                 <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/jmx.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/jmx.ini"></copy>
                 <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/jsp.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/jsp.ini"></copy>
                 <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/jstl.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/jstl.ini"></copy>
                 <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/resources.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/resources.ini"></copy>
+                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/requestlog.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/requestlog.ini"></copy>
+                <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/accept-rate-limit.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/accept-rate-limit.ini"></copy>
                 <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/server.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/server.ini"></copy>
                 <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/ssl.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/ssl.ini"></copy>
                 <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/threadpool.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/threadpool.ini"></copy>
