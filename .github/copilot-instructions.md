@@ -4,7 +4,7 @@
 
 **ALWAYS read at the start of EVERY task:**
 1. **[README.md](../README.md)** — Project overview, features, docs
-2. **[copilot-setup-steps.yml](workflows/copilot-setup-steps.yml)** — Build environment (Java 26, Maven 3.9.14, PostgreSQL 18)
+2. **[copilot-setup-steps.yml](workflows/copilot-setup-steps.yml)** — Build environment (Java 26, Maven 3.9.15, PostgreSQL 18)
 3. **[copilot-mcp-config.json](copilot-mcp-config.json)** — MCP servers (GitHub, filesystem, memory, sequential-thinking, playwright)
 4. **[skills/](skills/)** — 79 skills for security, testing, architecture, compliance
 5. **[agents/](agents/)** — 6 specialized agents (task, stack, UI, intelligence, business, marketing)
@@ -18,7 +18,7 @@
 | **Backend** | Java 26 (source 21), Spring Framework 5.x, Hibernate/JPA |
 | **UI** | Vaadin |
 | **Database** | PostgreSQL 18 (pgaudit, pgcrypto, pg_stat_statements) |
-| **Build** | Maven 3.9.14, 49+ modules |
+| **Build** | Maven 3.9.15, 49+ modules |
 | **External APIs** | Riksdagen, Swedish Election Authority, World Bank, ESV |
 | **Security** | OpenSSF 7.2/10, SLSA 3, CII Best Practices, zero critical CVEs 5+ years |
 
