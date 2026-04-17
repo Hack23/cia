@@ -6,8 +6,9 @@
 1. **[README.md](../README.md)** — Project overview, features, docs
 2. **[copilot-setup-steps.yml](workflows/copilot-setup-steps.yml)** — Build environment (Java 26, Maven 3.9.15, PostgreSQL 18)
 3. **[copilot-mcp-config.json](copilot-mcp-config.json)** — MCP servers (GitHub, filesystem, memory, sequential-thinking, playwright)
-4. **[skills/](skills/)** — 79 skills for security, testing, architecture, compliance
-5. **[agents/](agents/)** — 6 specialized agents (task, stack, UI, intelligence, business, marketing)
+4. **[skills/](skills/)** — 80 skills for security, testing, architecture, compliance (see [skills/README.md](skills/README.md))
+5. **[agents/](agents/)** — 6 specialized agents (see [agents/README.md](agents/README.md))
+6. **[Hack23 Information Security Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Information_Security_Policy.md)** — apex ISMS policy (via `hack23-information-security-policy` skill)
 
 ## Project Overview
 
@@ -67,15 +68,38 @@ Pass CodeQL + OWASP checks. Validate all inputs. Parameterized queries. Encode o
 ### 4. ISMS Compliance
 Align with ISO 27001:2022, NIST CSF 2.0, CIS Controls v8, GDPR. Update security documentation for security-related changes.
 
+The **[Hack23 Information Security Policy (ISP)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Information_Security_Policy.md) is the apex** policy — every change must defer to it. It is implemented through the supporting policies below; consult the ones relevant to your task. See the [`hack23-information-security-policy`](skills/hack23-information-security-policy/SKILL.md) skill for a developer-facing mapping.
+
+| Concern | Policy | Primary Skill |
+|---------|--------|---------------|
+| Apex (everything) | [Information Security Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Information_Security_Policy.md) | `hack23-information-security-policy` |
+| SDLC / code / build | [Secure Development Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md) | `secure-development-policy` |
+| Open-source posture | [Open Source Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Open_Source_Policy.md) | `open-source-policy` |
+| Secrets / tokens | [Secrets Management](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secrets_Management_Policy.md) | `secrets-management` |
+| TLS / crypto / hashing | [Cryptography Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Cryptography_Policy.md) | `cryptography-policy` / `crypto-best-practices` |
+| AuthN / AuthZ | [Access Control](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Access_Control_Policy.md) | `access-control-policy` |
+| Data labelling | [CLASSIFICATION](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) | `classification-framework-enforcement` |
+| Personal data | [Data Protection](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Data_Protection_Policy.md), [Privacy Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Privacy_Policy.md) | `data-protection`, `gdpr-compliance` |
+| CVE triage | [Vulnerability Management](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Vulnerability_Management.md) | `vulnerability-management` |
+| Releases / migrations | [Change Management](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Change_Management.md) | `change-management` |
+| Backup / DR | [Backup Recovery](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Backup_Recovery_Policy.md) | `backup-recovery-policy` |
+| Incidents | [Incident Response Plan](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Incident_Response_Plan.md) | `incident-response` |
+| Threat modelling | [Threat Modeling](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Threat_Modeling.md) | `threat-modeling` |
+| Third-party / deps | [Third Party Management](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Third_Party_Management.md) | `open-source-policy` |
+| AI / Copilot agents | [AI Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/AI_Policy.md) | `ai-governance` |
+| Strategy | [Information Security Strategy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Information_Security_Strategy.md) | `information-security-strategy` |
+
 ### 5. Test Everything
 Unit tests for all new functionality. Maintain or improve coverage. JUnit 5, Mockito. Follow existing test patterns.
 
 ### 6. Use Skills and Agents
 Check relevant skills before implementing. Delegate to specialized agents when appropriate:
-- **Security**: secure-code-review, security-by-design, input-validation, compliance-frameworks
+- **ISMS / policy**: hack23-information-security-policy (apex), hack23-isms-compliance, compliance-frameworks
+- **Security**: secure-code-review, security-by-design, input-validation, threat-modeling, vulnerability-management
 - **Architecture**: spring-framework-patterns, jpa-hibernate-optimization, vaadin-component-design
 - **Testing**: unit-testing-patterns, testing-strategy-enforcement, playwright-ui-testing
 - **CI/CD**: github-actions-workflows, github-agentic-workflows, ci-cd-security
+- **AI governance**: ai-governance (AI Policy + OWASP LLM + EU AI Act)
 
 ### 7. Clear Commit Messages
 Format: `<type>: <description>` — Types: feat, fix, docs, style, refactor, test, chore

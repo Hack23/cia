@@ -1,6 +1,6 @@
 # CIA GitHub Copilot Skills Library
 
-This directory contains 79 comprehensive agent skills for the Citizen Intelligence Agency platform, following GitHub Copilot's December 2025 Agent Skills feature best practices.
+This directory contains 80 comprehensive agent skills for the Citizen Intelligence Agency platform, following GitHub Copilot's December 2025 Agent Skills feature best practices.
 
 ## Skills Overview
 
@@ -17,10 +17,11 @@ This directory contains 79 comprehensive agent skills for the Citizen Intelligen
 | [incident-response](incident-response/) | Security incident detection, containment, recovery per NIST SP 800-61r2 | Security breaches, GDPR notifications, incident handling |
 | [cryptography-policy](cryptography-policy/) | TLS 1.3, AES-256-GCM, bcrypt, RSA-4096, key management per NIST FIPS 140-2 | Encryption implementation, TLS configuration, key rotation |
 
-### 📋 ISMS Compliance (5 skills)
+### 📋 ISMS Compliance (6 skills)
 
 | Skill | Description | Use Cases |
 |-------|-------------|-----------|
+| [hack23-information-security-policy](hack23-information-security-policy/) | **Apex ISP integration** — developer-facing mapping of Information Security Policy to SDLC activities, AI agent guardrails, PR checklist | Policy-driven PR reviews, agent guardrails, evidence & audit trail |
 | [iso-27001-controls](iso-27001-controls/) | Control implementation verification | Compliance audits, ISMS reviews |
 | [nist-csf-mapping](nist-csf-mapping/) | Framework alignment | Risk management, security assessments |
 | [cis-controls](cis-controls/) | Benchmark compliance | Security hardening, baseline establishment |
