@@ -125,12 +125,9 @@
               <target>
                 <!-- Ensure a clean deb-staging directory before preparing files -->
                 <delete dir="${project.build.directory}/deb-staging" failonerror="false"></delete>
-                <!-- Unpack jetty-home zip to staging area -->
-                <unzip dest="${project.build.directory}/deb-staging/opt/cia" src="${settings.localRepository}/org/eclipse/jetty/jetty-home/${cia.project.versions.jetty}/jetty-home-${cia.project.versions.jetty}.zip">
-                  <patternset>
-                    <exclude name="**/bin/jetty.sh"></exclude>
-                  </patternset>
-                </unzip>
+                <!-- Unpack jetty-home zip to staging area (use the bundled bin/jetty.sh
+                     shipped with Jetty 12.1; the legacy bin-fix override is no longer needed). -->
+                <unzip dest="${project.build.directory}/deb-staging/opt/cia" src="${settings.localRepository}/org/eclipse/jetty/jetty-home/${cia.project.versions.jetty}/jetty-home-${cia.project.versions.jetty}.zip"></unzip>
                 <!-- Move jetty-home contents up one level to strip version directory -->
                 <move includeEmptyDirs="true" todir="${project.build.directory}/deb-staging/opt/cia">
                   <fileset dir="${project.build.directory}/deb-staging/opt/cia/jetty-home-${cia.project.versions.jetty}"></fileset>
@@ -139,7 +136,6 @@
                 <!-- Unpack WAR to staging area -->
                 <unzip dest="${project.build.directory}/deb-staging/opt/cia/cia-base/webapps/cia" src="${basedir}/../citizen-intelligence-agency/target/citizen-intelligence-agency-${project.version}.war"></unzip>
                 <!-- Copy config files to staging area -->
-                <copy file="${basedir}/src/main/config/jetty/bin-fix/jetty.sh" tofile="${project.build.directory}/deb-staging/opt/cia/bin/jetty.sh"></copy>
                 <copy file="${basedir}/src/main/config/jetty/cia-base/webapps/cia.xml" overwrite="true" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/webapps/cia.xml"></copy>
                 <copy file="${basedir}/src/main/config/jetty/cia-base/resources/jetty-logging.properties" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/resources/jetty-logging.properties"></copy>
                 <copy file="${basedir}/src/main/config/jetty/cia-base/start.d/deploy.ini" tofile="${project.build.directory}/deb-staging/opt/cia/cia-base/start.d/deploy.ini"></copy>
