@@ -29,7 +29,7 @@ Our E2E testing infrastructure leverages enterprise-grade Java testing framework
 | **Test Framework** | JUnit 5 | Latest | Test execution and assertions |
 | **Spring Test** | Spring Framework 5.x | Latest | Integration test support and context management |
 | **UI Automation** | Selenium WebDriver | 4.38.0 | Browser automation and UI interaction |
-| **Build Tool** | Maven | 3.9.14+ | Test compilation and execution |
+| **Build Tool** | Maven | 3.9.15+ | Test compilation and execution |
 | **CI/CD** | GitHub Actions | Latest | Automated test execution on commits |
 | **Database** | PostgreSQL | Latest | Test data persistence |
 | **Application Server** | Embedded Jetty | Latest | Test application deployment |

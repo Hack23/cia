@@ -22,7 +22,7 @@ Create and maintain secure, efficient CI/CD pipelines using GitHub Actions for t
 | Component | Version | Notes |
 |-----------|---------|-------|
 | **Java JDK** | 26 (Temurin) | Source level 21 |
-| **Maven** | 3.9.14 | Multi-module reactor build |
+| **Maven** | 3.9.15 | Multi-module reactor build |
 | **PostgreSQL** | 18 | Extensions: pgaudit, pgcrypto, pg_stat_statements |
 | **Node.js** | 24 | MCP servers, Playwright |
 | **Runner** | ubuntu-latest | GitHub Actions hosted |
