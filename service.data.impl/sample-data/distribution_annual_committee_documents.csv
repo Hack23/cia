@@ -23,15 +23,15 @@ year,committee,doc_count
 2000,UD,6
 2000,Utbildningsdepartementet,5
 2000,FI,4
-2000,Kulturdepartementet,3
-2000,Jordbruksdepartementet,3
-2000,N,3
-2000,Miljödepartementet,3
 2000,JU,3
-2000,M t.o.m. -04,2
+2000,Jordbruksdepartementet,3
+2000,Kulturdepartementet,3
+2000,Miljödepartementet,3
+2000,N,3
 2000,S,2
-2000,U t.o.m. -04,1
+2000,M t.o.m. -04,2
 2000,Utbildningsdepartementet),1
+2000,U t.o.m. -04,1
 2001,SoU,495
 2001,UbU,405
 2001,MJU,396
@@ -51,24 +51,24 @@ year,committee,doc_count
 2001,Finansdepartementet,56
 2001,Justitiedepartementet,40
 2001,FI,20
-2001,N,16
 2001,Socialdepartementet,16
+2001,N,16
 2001,JU,11
 2001,Utrikesdepartementet,10
 2001,S,9
 2001,Näringsdepartementet,7
-2001,Miljödepartementet,6
 2001,Utbildningsdepartementet,6
-2001,Försvarsdepartementet,5
+2001,Miljödepartementet,6
+2001,UD,5
 2001,U t.o.m. -04,5
 2001,M t.o.m. -04,5
-2001,UD,5
+2001,Försvarsdepartementet,5
 2001,Fö,2
 2001,JO,2
-2001,Kulturdepartementet,1
+2001,Jordbruksdepartementet,1
 2001,KUU,1
 2001,KUD t.o.m. -04,1
-2001,Jordbruksdepartementet,1
+2001,Kulturdepartementet,1
 2002,UbU,369
 2002,SoU,363
 2002,TU,342
@@ -94,14 +94,14 @@ year,committee,doc_count
 2002,Näringsdepartementet,7
 2002,Finansdepartementet,4
 2002,M t.o.m. -04,4
-2002,Fö,3
-2002,JO,3
 2002,KUD t.o.m. -04,3
+2002,JO,3
+2002,Fö,3
 2002,U t.o.m. -04,2
-2002,Miljödepartementet,1
 2002,Socialdepartementet,1
 2002,Kulturdepartementet,1
 2002,SB,1
+2002,Miljödepartementet,1
 2003,SoU,480
 2003,TU,381
 2003,UbU,323
@@ -193,8 +193,8 @@ year,committee,doc_count
 2005,Utrikesdepartementet,1
 2005,JUU,1
 2005,Justitiedepartementet,1
-2005,Fö,1
 2005,SB,1
+2005,Fö,1
 2005,Miljö- och samhällsbyggnadsdepartementet,1
 2006,KU,360
 2006,MJU,357
@@ -218,12 +218,12 @@ year,committee,doc_count
 2006,UBU,68
 2006,SFU,63
 2006,FöU,63
-2006,BOU,47
 2006,JU,47
+2006,BOU,47
 2006,KRU,47
 2006,FÖU,27
-2006,FI,27
 2006,S,27
+2006,FI,27
 2006,BoU,19
 2006,N,18
 2006,M  t.o.m. 1 jan-07,17
@@ -332,8 +332,8 @@ year,committee,doc_count
 2009,A,6
 2009,JO,6
 2009,UFöU,3
-2009,Fö,3
 2009,SB,3
+2009,Fö,3
 2010,SoU,440
 2010,TU,357
 2010,UbU,322
@@ -387,8 +387,8 @@ year,committee,doc_count
 2011,U,11
 2011,M,10
 2011,L,6
-2011,A,5
 2011,Fö,5
+2011,A,5
 2011,UFöU,4
 2011,SB,3
 2011,Ku,1
@@ -422,8 +422,8 @@ year,committee,doc_count
 2012,SKU,3
 2012,JUU,2
 2012,Ku,1
-2012,SFU,1
 2012,BOU,1
+2012,SFU,1
 2012,UFöU,1
 2012,Kru,1
 2012,KRU,1
@@ -452,11 +452,11 @@ year,committee,doc_count
 2013,kamm,8
 2013,A,5
 2013,L,5
-2013,M,4
 2013,UFöU,4
 2013,SB,4
-2013,Ku,3
+2013,M,4
 2013,Fö,3
+2013,Ku,3
 2013,Justitiedepartementet,1
 2014,SoU,605
 2014,TU,532
@@ -485,18 +485,18 @@ year,committee,doc_count
 2014,Socialdepartementet,8
 2014,Utrikesdepartementet,7
 2014,kamm,7
-2014,Arbetsmarknadsdepartementet,6
 2014,A,6
+2014,Arbetsmarknadsdepartementet,6
 2014,L,5
 2014,Utbildningsdepartementet,4
-2014,Näringsdepartementet,3
 2014,UFöU,3
 2014,Ku,3
-2014,Försvarsdepartementet,2
-2014,Fö,2
+2014,Näringsdepartementet,3
 2014,SB,2
-2014,So,1
+2014,Fö,2
+2014,Försvarsdepartementet,2
 2014,Landsbygdsdepartementet,1
+2014,So,1
 2015,SoU,392
 2015,TU,382
 2015,UbU,336
@@ -632,8 +632,8 @@ year,committee,doc_count
 2019,Miljödepartementet,6
 2019,Kulturdepartementet,4
 2019,UFöU,4
-2019,Försvarsdepartementet,3
 2019,Statsrådsberedningen,3
+2019,Försvarsdepartementet,3
 2019,Miljö- och energidepartementet,1
 2020,SoU,483
 2020,TU,452
@@ -654,11 +654,11 @@ year,committee,doc_count
 2020,Justitiedepartementet,50
 2020,Socialdepartementet,21
 2020,Infrastrukturdepartementet,12
-2020,Näringsdepartementet,10
 2020,Utrikesdepartementet,10
+2020,Näringsdepartementet,10
 2020,Utbildningsdepartementet,8
-2020,Arbetsmarknadsdepartementet,7
 2020,Miljödepartementet,7
+2020,Arbetsmarknadsdepartementet,7
 2020,UFöU,6
 2020,Försvarsdepartementet,4
 2020,Kulturdepartementet,3
@@ -738,10 +738,10 @@ year,committee,doc_count
 2023,Justitiedepartementet,35
 2023,Socialdepartementet,16
 2023,Klimat- och näringslivsdepartementet,14
-2023,Landsbygds- och infrastrukturdepartementet,9
 2023,Utbildningsdepartementet,9
-2023,Utrikesdepartementet,5
+2023,Landsbygds- och infrastrukturdepartementet,9
 2023,Försvarsdepartementet,5
+2023,Utrikesdepartementet,5
 2023,Statsrådsberedningen,4
 2023,Arbetsmarknadsdepartementet,3
 2023,Kulturdepartementet,2
@@ -767,8 +767,8 @@ year,committee,doc_count
 2024,Landsbygds- och infrastrukturdepartementet,16
 2024,Klimat- och näringslivsdepartementet,16
 2024,Utrikesdepartementet,9
-2024,Försvarsdepartementet,7
 2024,Utbildningsdepartementet,7
+2024,Försvarsdepartementet,7
 2024,Arbetsmarknadsdepartementet,5
 2024,Statsrådsberedningen,4
 2024,Kulturdepartementet,4
@@ -798,30 +798,31 @@ year,committee,doc_count
 2025,Utrikesdepartementet,8
 2025,Kulturdepartementet,5
 2025,Arbetsmarknadsdepartementet,4
-2025,UFöU,3
 2025,Statsrådsberedningen,3
-2026,JuU,32
-2026,CU,26
-2026,Justitiedepartementet,25
-2026,SfU,25
-2026,FiU,24
+2025,UFöU,3
+2026,CU,54
+2026,SfU,46
+2026,UbU,41
+2026,JuU,41
+2026,Justitiedepartementet,39
+2026,Finansdepartementet,33
+2026,FiU,31
+2026,UU,30
+2026,NU,30
+2026,MJU,26
+2026,SoU,25
+2026,FöU,23
 2026,SkU,22
-2026,FöU,21
-2026,MJU,20
-2026,KU,17
-2026,Finansdepartementet,16
-2026,UU,16
-2026,NU,15
-2026,TU,15
-2026,UbU,15
-2026,SoU,14
-2026,AU,10
-2026,Socialdepartementet,10
-2026,Klimat- och näringslivsdepartementet,9
-2026,Utbildningsdepartementet,9
-2026,Landsbygds- och infrastrukturdepartementet,9
-2026,Försvarsdepartementet,4
-2026,Utrikesdepartementet,3
+2026,KU,21
+2026,TU,16
+2026,Landsbygds- och infrastrukturdepartementet,15
+2026,Klimat- och näringslivsdepartementet,15
+2026,AU,13
+2026,Socialdepartementet,13
+2026,Utbildningsdepartementet,12
+2026,Utrikesdepartementet,10
+2026,Försvarsdepartementet,6
+2026,Arbetsmarknadsdepartementet,4
 2026,Statsrådsberedningen,3
-2026,Arbetsmarknadsdepartementet,2
-2026,KrU,2
+2026,KrU,3
+2026,Kulturdepartementet,1

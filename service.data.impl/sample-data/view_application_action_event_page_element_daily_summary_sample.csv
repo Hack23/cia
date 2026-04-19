@@ -1,6 +1,7 @@
 embedded_id_page,embedded_id_element_id,embedded_id_created_date,hits,rank_percentage,rank,rn
-partyranking,CURRENTGOVERMENTPARTIES,2026-03-11 00:00:00,1,0,1,1
-main,LOGIN,2026-03-11 00:00:00,1,0,1,2
-politicianranking,DATAGRID,2026-03-20 00:00:00,1,0,1,1
-partyranking,DATAGRID,2026-03-20 00:00:00,1,0,1,2
 main,LOGIN,2026-03-21 00:00:00,2,0,1,1
+parliamentranking,PARTYAGE,2026-04-11 00:00:00,1,0,1,1
+politicianranking,PAGEVISITHISTORY,2026-04-11 00:00:00,1,0,1,2
+main,LOGIN,2026-04-17 00:00:00,1,0,1,1
+main,LOGIN,2026-04-18 00:00:00,1,0,1,1
+main,LOGIN,2026-04-19 00:00:00,1,0,1,1

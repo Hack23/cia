@@ -1,21 +1,21 @@
 name_id,total_assignments,first_assignment_date,last_assignment_date,total_days_served,active,current_member_size,total_documents,documents_last_year,avg_documents_per_member,total_propositions,total_government_bills,activity_level
-Näringsdepartementet,49,1991-10-04,2022-12-31,23291,f,0,311,0,16.4,311,86,Inactive
-Infrastrukturdepartementet,19,2019-04-01,2022-12-31,2662,f,0,114,0,16.3,114,24,Inactive
-Miljö- och energidepartementet,6,2015-01-01,2019-03-31,2060,f,0,129,0,16.1,129,24,Inactive
-Utrikesdepartementet,62,1991-10-04,2026-09-28,30482,t,2,283,10,9.8,283,142,Low
-Landsbygdsdepartementet,2,2011-01-01,2014-12-31,1460,f,0,2,0,1.0,2,2,Inactive
-Miljö- och samhällsbyggnadsdepartementet,6,2002-09-30,2006-12-31,3019,f,0,2,0,0,2,1,Inactive
-Miljödepartementet,10,2007-01-01,2022-12-31,4378,f,0,58,0,4.1,58,10,Inactive
-Finansdepartementet,52,1991-10-04,2026-09-28,25328,t,3,1552,132,51.7,1552,304,High
-Landsbygds- och infrastrukturdepartementet,12,2022-10-18,2026-09-28,2354,t,2,112,46,16.0,112,16,Low
-Justitiedepartementet,38,1991-10-04,2026-09-28,25985,t,2,1142,120,39.4,1142,165,High
-Statsrådsberedningen,37,1991-10-04,2026-09-28,26492,t,2,73,6,5.2,73,73,Low
-Klimat- och näringslivsdepartementet,9,2022-10-18,2026-09-28,2355,t,2,112,44,10.2,112,26,Low
-Jordbruksdepartementet,4,2002-09-30,2010-12-31,3013,f,0,4,0,0,4,0,Inactive
-Utbildnings- och kulturdepartementet,10,2002-09-30,2006-12-31,3888,f,0,0,0,0,0,0,Inactive
-Utbildningsdepartementet,44,1994-10-07,2026-09-28,18410,t,2,280,30,13.3,280,68,Low
-Försvarsdepartementet,27,1991-10-04,2026-09-28,13832,t,2,122,26,8.1,122,47,Low
+Justitiedepartementet,38,1991-10-04,2026-09-28,26037,t,2,1170,144,40.3,1170,167,High
+Utrikesdepartementet,62,1991-10-04,2026-09-28,30534,t,2,297,22,10.2,297,148,Low
+Klimat- och näringslivsdepartementet,9,2022-10-18,2026-09-28,2407,t,2,124,54,10.3,124,26,Medium
+Landsbygds- och infrastrukturdepartementet,12,2022-10-18,2026-09-28,2406,t,2,124,54,17.7,124,16,Medium
 Integrations- och jämställdhetsdepartementet,2,2007-01-01,2010-12-31,1459,f,0,1,0,0,1,0,Inactive
-Arbetsmarknadsdepartementet,39,1987-10-20,2026-09-28,13013,t,2,150,10,7.5,150,72,Low
-Socialdepartementet,55,1990-02-27,2026-09-28,31271,t,4,566,58,23.6,566,160,Medium
-Kulturdepartementet,18,2007-01-01,2026-09-28,7018,t,1,115,10,6.4,115,40,Low
+Miljö- och energidepartementet,6,2015-01-01,2019-03-31,2060,f,0,129,0,16.1,129,24,Inactive
+Landsbygdsdepartementet,2,2011-01-01,2014-12-31,1460,f,0,2,0,1.0,2,2,Inactive
+Försvarsdepartementet,27,1991-10-04,2026-09-28,13884,t,2,126,30,8.4,126,47,Low
+Utbildnings- och kulturdepartementet,10,2002-09-30,2006-12-31,3888,f,0,0,0,0,0,0,Inactive
+Utbildningsdepartementet,44,1994-10-07,2026-09-28,18462,t,2,286,34,13.6,286,68,Low
+Infrastrukturdepartementet,19,2019-04-01,2022-12-31,2662,f,0,114,0,16.3,114,24,Inactive
+Statsrådsberedningen,37,1991-10-04,2026-09-28,26544,t,2,73,6,5.2,73,73,Low
+Näringsdepartementet,49,1991-10-04,2022-12-31,23291,f,0,311,0,16.4,311,86,Inactive
+Arbetsmarknadsdepartementet,39,1987-10-20,2026-09-28,13065,t,2,154,14,7.3,154,74,Low
+Miljö- och samhällsbyggnadsdepartementet,6,2002-09-30,2006-12-31,3019,f,0,2,0,0,2,1,Inactive
+Finansdepartementet,52,1991-10-04,2026-09-28,25406,t,3,1586,148,52.9,1586,310,High
+Miljödepartementet,10,2007-01-01,2022-12-31,4378,f,0,58,0,4.1,58,10,Inactive
+Jordbruksdepartementet,4,2002-09-30,2010-12-31,3013,f,0,4,0,0,4,0,Inactive
+Socialdepartementet,55,1990-02-27,2026-09-28,31375,t,4,572,54,23.8,572,162,Medium
+Kulturdepartementet,18,2007-01-01,2026-09-28,7044,t,1,117,12,6.2,117,42,Low

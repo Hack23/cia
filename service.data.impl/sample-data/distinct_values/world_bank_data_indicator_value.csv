@@ -1,4 +1,7 @@
 value,count
+"Cause of death, by other COVID-19 pandemic-related outcomes (% of total)",396
+"Households and NPISHs Final consumption expenditure per capita, PPP (constant 2021 international $)",396
+"Households and NPISHs Final consumption expenditure per capita, PPP (current international $)",396
 "Human capital index plus (HCI+): overall score, male (scale 0–325)",396
 "Human capital index plus (HCI+): overall score, total (scale 0–325)",396
 "Human capital index plus (HCI+): education pillar score, female (scale 0–188)",396
@@ -11,6 +14,11 @@ value,count
 "Human capital index plus (HCI+): on-the-job learning pillar score, male (scale -30–87)",396
 "Human capital index plus (HCI+): on-the-job learning pillar score, total (scale -30–87)",396
 "Human capital index plus (HCI+): overall score, female (scale 0–325)",396
+Price level index (GDP),396
+Price level index (Households and NPISHs Final consumption expenditure),396
+WBL: Enforcement Perceptions Index (scale 0-100),396
+WBL: Legal Framework Index (scale 0-100),396
+WBL: Supportive Framework Index (scale 0-100),396
 ARI treatment (% of children under 5 taken to a health provider),390
 Access to clean fuels and technologies for cooking (% of population),390
 "Access to clean fuels and technologies for cooking, rural (% of rural population)",390
@@ -991,11 +999,3 @@ Nitrous oxide (N2O) emissions from Industrial Combustion (Energy) (Mt CO2e),390
 Nitrous oxide (N2O) emissions from Industrial Processes (Mt CO2e),390
 Nitrous oxide (N2O) emissions from Power Industry (Energy) (Mt CO2e),390
 Nitrous oxide (N2O) emissions from Transport (Energy) (Mt CO2e),390
-Nitrous oxide (N2O) emissions from Waste (Mt CO2e),390
-Number of deaths ages 10-14 years,390
-Number of deaths ages 15-19 years,390
-Number of deaths ages 20-24 years,390
-Number of deaths ages 5-9 years,390
-Number of infant deaths,390
-Number of maternal deaths,390
-Number of neonatal deaths,390

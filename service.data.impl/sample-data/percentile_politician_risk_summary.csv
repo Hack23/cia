@@ -5,8 +5,8 @@ effectiveness_violations,bigint,3,0,2,0,0,1,1,1,1,1
 discipline_violations,bigint,2,0,1,0,0,0,1,1,1,1
 productivity_violations,bigint,2,0,1,0,0,0,0,0,1,1
 collaboration_violations,bigint,2,0,1,0,0,0,0,0,0,1
-annual_absence_rate,numeric,233,0.00,97.51,0,0,4.615,11.31,17.475,24.67,40.1022
-annual_rebel_rate,numeric,36,0.00,27.70,0,0,0,0,0.1,0.31,6.06900000000005
-annual_vote_count,bigint,56,0,964,0,0,709,964,964,964,964
+annual_absence_rate,numeric,230,0,94.62,0,0,4.605,11.49,18.55,25.198,40.7878
+annual_rebel_rate,numeric,36,0.00,29.30,0,0,0,0,0.1,0.31,11.4296000000001
+annual_vote_count,bigint,56,0,966,0,0,787,966,966,966,966
 documents_last_year,bigint,2,0,1,0,0,0,0,0,0,1
-risk_score,numeric,324,10.00,51.27,10,10,19.44,24.48,28.49,33.362,40.6206
+risk_score,numeric,331,10.00,50.41,10,10,19.505,24.44,28.655,33.07,40.5708
