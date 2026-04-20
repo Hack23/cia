@@ -11,13 +11,13 @@
 
 <p align="center">
   <a><img src="https://img.shields.io/badge/Owner-CEO-0A66C2?style=for-the-badge" alt="Owner"/></a>
-  <a><img src="https://img.shields.io/badge/Version-1.0-555?style=for-the-badge" alt="Version"/></a>
-  <a><img src="https://img.shields.io/badge/Effective-2025--09--18-success?style=for-the-badge" alt="Effective Date"/></a>
+  <a><img src="https://img.shields.io/badge/Version-1.1-555?style=for-the-badge" alt="Version"/></a>
+  <a><img src="https://img.shields.io/badge/Effective-2026--04--20-success?style=for-the-badge" alt="Effective Date"/></a>
   <a><img src="https://img.shields.io/badge/Review-Annual-orange?style=for-the-badge" alt="Review Cycle"/></a>
 </p>
 
-**📋 Document Owner:** CEO | **📄 Version:** 1.0 | **📅 Last Updated:** 2025-09-18 (UTC)  
-**🔄 Review Cycle:** Annual | **⏰ Next Review:** 2026-09-18  
+**📋 Document Owner:** CEO | **📄 Version:** 1.1 | **📅 Last Updated:** 2026-04-20 (UTC)  
+**🔄 Review Cycle:** Annual | **⏰ Next Review:** 2027-04-20  
 **🏷️ Classification:** Public (Open Civic Transparency Platform)
 
 ---
@@ -40,10 +40,10 @@ This threat model demonstrates **🛡️ cybersecurity consulting expertise** th
 
 ### **🔍 Scope Definition**
 **Included Systems:**
-- 🌐 Web application (Vaadin/Spring framework)
+- 🌐 Web application (Vaadin 8.14.4 / Spring 5.3.39 / Jetty 12.1.8 EE8)
 - 🔄 Data ingestion/import services
-- 💾 PostgreSQL persistence + analytical views
-- 🔐 Authentication / session / audit subsystems
+- 💾 PostgreSQL 18 persistence (pgaudit, pgcrypto, pgvector) + analytical views
+- 🔐 Authentication / session / audit subsystems (Spring Security 5.8.16, Passay 2.0.0, Bouncy Castle 1.84)
 - ☁️ AWS infrastructure (WAF, ALB, EC2, RDS, KMS, GuardDuty, Security Hub)
 
 **Out of Scope:**
@@ -197,7 +197,7 @@ flowchart TB
     end
     
     subgraph TRUST_BOUNDARY_4["🗄️ Data Trust Boundary"]
-        DB[(💾 PostgreSQL Core + Views)]
+        DB[(💾 PostgreSQL 18<br/>pgaudit/pgcrypto/pgvector)]
         SESS[🔑 Session Store/Audit]
         LOGS[(📋 Audit & Metrics)]
     end
@@ -255,7 +255,7 @@ Following [MITRE ATT&CK-Driven Analysis](https://github.com/Hack23/ISMS-PUBLIC/b
 | **🔍 Initial Access** | Exploit Public-Facing App | [T1190](https://attack.mitre.org/techniques/T1190/) | Web endpoints, API services | WAF, patch cadence, input validation | WAF logs, application monitoring |
 | **🔍 Initial Access** | Phishing for Credentials | [T1566](https://attack.mitre.org/techniques/T1566/) | Admin/user login targeting | Password policy, lockouts, awareness | Failed login monitoring, email security |
 | **⚡ Execution** | Command/Script Interpreter | [T1059](https://attack.mitre.org/techniques/T1059/) | Limited server scripts | Hardened AMI, no interactive shells | Process monitoring, endpoint detection |
-| **🔄 Persistence** | Valid Accounts | [T1078](https://attack.mitre.org/techniques/T1078/) | Compromised user accounts | Login attempt throttling, MFA | Account monitoring, behavioral analysis |
+| **🔄 Persistence** | Valid Accounts | [T1078](https://attack.mitre.org/techniques/T1078/) | Compromised user accounts | Login attempt throttling, MFA (implemented, optional enrollment), Drools 10.1.0 BruteForceAttack rules | Account monitoring, behavioral analysis |
 | **⬆️ Priv Esc** | Exploit for Priv Esc | [T1068](https://attack.mitre.org/techniques/T1068/) | JVM/OS vulnerabilities | Patch mgmt, Inspector scanning | Vulnerability scanning, system monitoring |
 | **🎭 Defense Evasion** | Obfuscated Files | [T1027](https://attack.mitre.org/techniques/T1027/) | Malicious libraries | SCA + SBOM diff, code review | Static analysis, artifact scanning |
 | **🔑 Credential Access** | Brute Force | [T1110](https://attack.mitre.org/techniques/T1110/) | Login form attacks | Throttling, IP/session caps | Login attempt monitoring, rate limiting |
@@ -299,7 +299,7 @@ Comprehensive security controls are mapped to specific ATT&CK mitigations and te
 | **Multi-Factor Authentication** | [M1032: Multi-factor Authentication](https://attack.mitre.org/mitigations/M1032/) | [T1078](https://attack.mitre.org/techniques/T1078/), [T1110](https://attack.mitre.org/techniques/T1110/) | [![Implemented](https://img.shields.io/badge/Status-Implemented-success?style=flat-square)](SECURITY_ARCHITECTURE.md#-authentication-architecture) |
 | **AWS CloudTrail** | [M1047: Audit](https://attack.mitre.org/mitigations/M1047/) | [T1098](https://attack.mitre.org/techniques/T1098/) | [![Implemented](https://img.shields.io/badge/Status-Implemented-success?style=flat-square)](SECURITY_ARCHITECTURE.md#audit-logging) |
 | **VPC Security Groups** | [M1030: Network Segmentation](https://attack.mitre.org/mitigations/M1030/) | [T1041](https://attack.mitre.org/techniques/T1041/) | [![Implemented](https://img.shields.io/badge/Status-Implemented-success?style=flat-square)](SECURITY_ARCHITECTURE.md#network-security) |
-| **Spring Security** | [M1035: Limit Access](https://attack.mitre.org/mitigations/M1035/) | [T1068](https://attack.mitre.org/techniques/T1068/), [T1078](https://attack.mitre.org/techniques/T1078/) | [![Implemented](https://img.shields.io/badge/Status-Implemented-success?style=flat-square)](SECURITY_ARCHITECTURE.md#-authentication-architecture) |
+| **Spring Security 5.8.16** | [M1035: Limit Access](https://attack.mitre.org/mitigations/M1035/) | [T1068](https://attack.mitre.org/techniques/T1068/), [T1078](https://attack.mitre.org/techniques/T1078/) | [![Implemented](https://img.shields.io/badge/Status-Implemented-success?style=flat-square)](SECURITY_ARCHITECTURE.md#-authentication-architecture) |
 | **AWS GuardDuty** | [M1047: Audit](https://attack.mitre.org/mitigations/M1047/) | [T1190](https://attack.mitre.org/techniques/T1190/), [T1078](https://attack.mitre.org/techniques/T1078/) | [![Implemented](https://img.shields.io/badge/Status-Implemented-success?style=flat-square)](SECURITY_ARCHITECTURE.md#threat-detection) |
 | **Input Validation** | [M1021: Restrict Web Content](https://attack.mitre.org/mitigations/M1021/) | [T1190](https://attack.mitre.org/techniques/T1190/), [T1059](https://attack.mitre.org/techniques/T1059/), [T1565](https://attack.mitre.org/techniques/T1565/) | [![Implemented](https://img.shields.io/badge/Status-Implemented-success?style=flat-square)](SECURITY_ARCHITECTURE.md#input-validation) |
 | **AWS KMS Encryption** | [M1041: Encrypt Sensitive Information](https://attack.mitre.org/mitigations/M1041/) | [T1041](https://attack.mitre.org/techniques/T1041/) | [![Implemented](https://img.shields.io/badge/Status-Implemented-success?style=flat-square)](SECURITY_ARCHITECTURE.md#data-encryption) |
@@ -398,7 +398,7 @@ Following [Risk-Centric Threat Modeling](https://github.com/Hack23/ISMS-PUBLIC/b
 |---|----------|--------------|--------------|------------|------|-----------------|-----------------|
 | **1** | **🌐 Web Application Compromise** | [Initial Access](https://attack.mitre.org/tactics/TA0001/) | Data integrity manipulation | Medium | [![Critical](https://img.shields.io/badge/Risk-Critical-red?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) | WAF, validation, ORM parameterization | Add periodic data hash verification |
 | **2** | **🔗 Supply Chain Dependency Attack** | [Initial Access](https://attack.mitre.org/tactics/TA0001/) | Code integrity & confidentiality | Medium | [![Critical](https://img.shields.io/badge/Risk-Critical-red?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) | SBOM, pin SHAs, attestations | Add provenance verification policy gate |
-| **3** | **🔑 Administrative Credential Compromise** | [Credential Access](https://attack.mitre.org/tactics/TA0006/) | System-wide access | Low-Med | [![High](https://img.shields.io/badge/Risk-High-orange?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) | Lockouts, strong policy, IP rate limiting, [optional MFA enrollment support implemented](service.impl/src/main/java/com/hack23/cia/service/impl/action/user/SetGoogleAuthenticatorCredentialService.java) | Enforce mandatory MFA enrollment for all admin accounts |
+| **3** | **🔑 Administrative Credential Compromise** | [Credential Access](https://attack.mitre.org/tactics/TA0006/) | System-wide access | Low-Med | [![High](https://img.shields.io/badge/Risk-High-orange?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) | Lockouts, strong policy (Passay 2.0.0), IP rate limiting, [MFA implemented with optional enrollment](service.impl/src/main/java/com/hack23/cia/service/impl/action/user/SetGoogleAuthenticatorCredentialService.java), Drools 10.1.0 BruteForceAttack detection | Enforce mandatory MFA enrollment for all admin accounts |
 | **4** | **🗄️ Database Exfiltration** | [Exfiltration](https://attack.mitre.org/tactics/TA0010/) | Political data confidentiality | Low | [![High](https://img.shields.io/badge/Risk-High-orange?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) | Network isolation, least privilege | Implement query anomaly detection |
 | **5** | **🔄 Import Pipeline Data Poisoning** | [Impact](https://attack.mitre.org/tactics/TA0040/) | Analytical integrity | Medium | [![Medium](https://img.shields.io/badge/Risk-Medium-yellow?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) | Schema validation, duplicate detection | Add source signature/etag validation |
 | **6** | **⚡ Distributed Denial of Service** | [Impact](https://attack.mitre.org/tactics/TA0040/) | Service availability | Medium | [![Medium](https://img.shields.io/badge/Risk-Medium-yellow?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) | WAF rate limits, autoscaling planned | Load test + capacity model update |
@@ -488,7 +488,7 @@ flowchart TB
     end
     
     subgraph APPLICATION["📱 Application Security"]
-        AUTH[🔑 Spring Security]
+        AUTH[🔑 Spring Security 5.8.16<br/>MFA + Drools BruteForce]
         RBAC[👥 Role-Based Access]
         INPUT[✅ Input Validation]
         HEADERS[📋 Security Headers]
@@ -532,7 +532,7 @@ flowchart TB
 
 | STRIDE Category | Example Threat | Primary Control | Secondary Control | Monitoring |
 |----------------|----------------|-----------------|-------------------|------------|
-| **🎭 Spoofing** | Credential stuffing | Throttling + password policy | [Optional/enrollment-based MFA via Google Authenticator](service.impl/src/main/java/com/hack23/cia/service/impl/action/user/SetGoogleAuthenticatorCredentialService.java), account lockout | Failed login attempts, IP tracking |
+| **🎭 Spoofing** | Credential stuffing | Throttling + Passay 2.0.0 password policy | [MFA implemented with optional enrollment via Google Authenticator](service.impl/src/main/java/com/hack23/cia/service/impl/action/user/SetGoogleAuthenticatorCredentialService.java), account lockout, Drools 10.1.0 BruteForceAttack.drl rules | Failed login attempts, IP tracking |
 | **🔧 Tampering** | SQL/logic manipulation | Parameterized queries, ORM | WAF rules, input validation | Database activity monitoring |
 | **❌ Repudiation** | Action denial | Immutable audit logs (Javers) | Correlated session IDs | Comprehensive audit trail |
 | **📤 Information Disclosure** | Data exfiltration | Network isolation, encryption | Row-level access control | Unusual query pattern detection |
@@ -611,7 +611,7 @@ Implementing [ENISA Threat Landscape 2024](https://www.enisa.europa.eu/publicati
 | **2️⃣** | **🔐 Ransomware** | Parliamentary data encryption | Critical voting period disruption | [![Business Continuity](https://img.shields.io/badge/Value-Business_Continuity-darkred?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) Immutable backups + isolation |
 | **3️⃣** | **📊 Data Threats** | Political data manipulation/theft | Ranking algorithm tampering, voter influence | [![Risk Reduction](https://img.shields.io/badge/Value-Risk_Reduction-green?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) Integrity validation + audit |
 | **4️⃣** | **🦠 Malware** | System infiltration for data access | Persistent political espionage | [![Operational Excellence](https://img.shields.io/badge/Value-Operational_Excellence-blue?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) Endpoint protection + monitoring |
-| **5️⃣** | **🎭 Social Engineering** | Admin credential theft for access | Targeted phishing against civic platform staff | [![Trust Enhancement](https://img.shields.io/badge/Value-Trust_Enhancement-darkgreen?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) Security awareness + MFA |
+| **5️⃣** | **🎭 Social Engineering** | Admin credential theft for access | Targeted phishing against civic platform staff | [![Trust Enhancement](https://img.shields.io/badge/Value-Trust_Enhancement-darkgreen?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) Security awareness + MFA (implemented, optional enrollment) + Drools brute-force detection |
 | **6️⃣** | **📰 Information Manipulation** | False political data injection | Disinformation campaigns via platform | [![Competitive Advantage](https://img.shields.io/badge/Value-Competitive_Advantage-gold?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) Source validation + verification |
 | **7️⃣** | **🔗 Supply Chain** | Dependency compromise for backdoor access | Third-party library infiltration | [![Partnership Value](https://img.shields.io/badge/Value-Partnership_Value-purple?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) SBOM + provenance verification |
 

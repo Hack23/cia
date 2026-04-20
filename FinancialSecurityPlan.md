@@ -11,13 +11,14 @@
 
 <p align="center">
   <a href="#"><img src="https://img.shields.io/badge/Owner-CEO-0A66C2?style=for-the-badge" alt="Owner"/></a>
-  <a href="#"><img src="https://img.shields.io/badge/Version-1.0-555?style=for-the-badge" alt="Version"/></a>
-  <a href="#"><img src="https://img.shields.io/badge/Effective-2025--09--18-success?style=for-the-badge" alt="Effective Date"/></a>
+  <a href="#"><img src="https://img.shields.io/badge/Version-1.1-555?style=for-the-badge" alt="Version"/></a>
+  <a href="#"><img src="https://img.shields.io/badge/Effective-2026--04--20-success?style=for-the-badge" alt="Effective Date"/></a>
   <a href="#"><img src="https://img.shields.io/badge/Review-Annual-orange?style=for-the-badge" alt="Review Cycle"/></a>
 </p>
 
-**📋 Document Owner:** CEO | **📄 Version:** 1.0 | **📅 Last Updated:** 2025-09-18 (UTC)  
-**🔄 Review Cycle:** Annual | **⏰ Next Review:** 2026-09-18
+**📋 Document Owner:** CEO | **📄 Version:** 1.1 | **📅 Last Updated:** 2026-04-20 (UTC)  
+**🔄 Review Cycle:** Annual | **⏰ Next Review:** 2027-04-20  
+**🏷️ Classification:** Public (Open Civic Transparency Platform)
 
 ---
 
@@ -67,6 +68,14 @@ For detailed deployment architecture, see [README.md - AWS Services Stack](READM
 | **Security Services (Combined)** | $5.95           | $178.56           | $2,142.72         |
 | **Total**               | **$24.70**      | **$750.80**       | **$9,009.60**    |
 
+#### Technology Stack
+- **Application Runtime:** Java 26 (Temurin), source/target level 21
+- **Application Server:** Jetty 12.1.8 EE8 (upgraded from Jetty 11)
+- **Spring Framework:** 5.3.39.hack23java25 (fork for Java 25/26 compatibility)
+- **Spring Security:** 5.8.16 with MFA (optional enrollment)
+- **Database:** PostgreSQL 18 with pgaudit, pgcrypto, pgvector, auto_explain
+- **UI Framework:** Vaadin 8.14.4
+
 #### Links to Core Components:
 - [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/) | [Amazon EC2 Documentation](https://docs.aws.amazon.com/ec2/)
 - [Amazon RDS Pricing](https://aws.amazon.com/rds/pricing/) | [Amazon RDS Documentation](https://docs.aws.amazon.com/rds/)
@@ -110,7 +119,7 @@ The security services implement controls aligned with Hack23 AB's [ISMS-PUBLIC f
 |---------------|---------------------|----------------|------------------|
 | [**Incident Response Plan**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Incident_Response_Plan.md) | $1,319.28 | GuardDuty ($346.80)<br>Detective ($363.12)<br>Security Hub ($609.36) | Real-time threat detection<br>Forensic investigation<br>Centralized security |
 | [**Vulnerability Management**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Vulnerability_Management.md) | $312.48 | Inspector | Continuous vulnerability scanning<br>Compliance validation |
-| [**Data Classification Policy**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Data_Classification_Policy.md) | $275.88 | KMS | Encryption key management<br>Data protection at rest/transit |
+| [**Cryptography Policy**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Cryptography_Policy.md) | $275.88 | KMS | Encryption key management (4096-bit RSA)<br>Data protection at rest/transit |
 | [**Information Security Policy**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Information_Security_Policy.md) | $235.08 | AWS Config | Configuration compliance<br>Change tracking<br>Policy enforcement |
 | **Total Security Investment** | **$2,142.72** | Combined | Comprehensive security posture |
 
@@ -124,6 +133,8 @@ The security services implement controls aligned with Hack23 AB's [ISMS-PUBLIC f
 - 🔐 [ISMS Compliance Mapping](ISMS_COMPLIANCE_MAPPING.md) - Complete security control framework
 - 🛡️ [Security Architecture](SECURITY_ARCHITECTURE.md) - Implementation details for all services
 - 🎯 [Threat Model](THREAT_MODEL.md) - Risk scenarios addressed by security investment
+- 📋 [Business Continuity Plan](BCPPlan.md) - Recovery planning and resilience
+- 🛡️ [CRA Assessment](CRA-ASSESSMENT.md) - EU Cyber Resilience Act compliance
 
 ---
 
@@ -258,6 +269,9 @@ For more details on AWS deployment, see [README.md - AWS Services Stack](README.
 - [🔍 Vulnerability Management](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Vulnerability_Management.md) - Security testing and remediation
 - [🚨 Incident Response Plan](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Incident_Response_Plan.md) - Security incident management
 - [🏷️ Classification Framework](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) - Business impact and risk assessment
+- [🔐 Cryptography Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Cryptography_Policy.md) - Encryption and key management standards
+- [🌐 Network Security Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Network_Security_Policy.md) - Network protection requirements
+- [🔑 Access Control Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Access_Control_Policy.md) - Authentication and authorization controls
 
 ---
 
@@ -265,6 +279,6 @@ For more details on AWS deployment, see [README.md - AWS Services Stack](README.
 **✅ Approved by:** James Pether Sörling, CEO  
 **📤 Distribution:** Public  
 **🏷️ Classification:** [![Confidentiality: Public](https://img.shields.io/badge/C-Public-lightgrey?style=flat-square&logo=shield&logoColor=black)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#confidentiality-levels) [![Integrity: Moderate](https://img.shields.io/badge/I-Moderate-yellow?style=flat-square&logo=check-circle&logoColor=black)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#integrity-levels) [![Availability: Standard](https://img.shields.io/badge/A-Standard-lightgreen?style=flat-square&logo=server&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#availability-levels)  
-**📅 Effective Date:** 2025-09-18  
-**⏰ Next Review:** 2026-09-18  
+**📅 Effective Date:** 2026-04-20  
+**⏰ Next Review:** 2027-04-20  
 **🎯 Framework Compliance:** [![ISO 27001](https://img.shields.io/badge/ISO_27001-2022_Aligned-blue?style=flat-square&logo=iso&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) [![NIST CSF 2.0](https://img.shields.io/badge/NIST_CSF-2.0_Aligned-green?style=flat-square&logo=nist&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) [![CIS Controls](https://img.shields.io/badge/CIS_Controls-v8.1_Aligned-orange?style=flat-square&logo=cisecurity&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) [![AWS Well-Architected](https://img.shields.io/badge/AWS-Well_Architected-orange?style=flat-square&logo=amazon-aws&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md)
