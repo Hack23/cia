@@ -11,13 +11,14 @@
 
 <p align="center">
   <a href="#"><img src="https://img.shields.io/badge/Owner-CEO-0A66C2?style=for-the-badge" alt="Owner"/></a>
-  <a href="#"><img src="https://img.shields.io/badge/Version-1.0-555?style=for-the-badge" alt="Version"/></a>
-  <a href="#"><img src="https://img.shields.io/badge/Effective-2025--09--18-success?style=for-the-badge" alt="Effective Date"/></a>
-  <a href="#"><img src="https://img.shields.io/badge/Review-Annual-orange?style=for-the-badge" alt="Review Cycle"/></a>
+  <a href="#"><img src="https://img.shields.io/badge/Version-1.1-555?style=for-the-badge" alt="Version"/></a>
+  <a href="#"><img src="https://img.shields.io/badge/Effective-2026--04--20-success?style=for-the-badge" alt="Effective Date"/></a>
+  <parameter name="old_str">  <a href="#"><img src="https://img.shields.io/badge/Review-Annual-orange?style=for-the-badge" alt="Review Cycle"/></a>
 </p>
 
-**📋 Document Owner:** CEO | **📄 Version:** 1.0 | **📅 Last Updated:** 2025-09-18 (UTC)  
-**🔄 Review Cycle:** Annual | **⏰ Next Review:** 2026-09-18
+**📋 Document Owner:** CEO | **📄 Version:** 1.1 | **📅 Last Updated:** 2026-04-20 (UTC)  
+**🔄 Review Cycle:** Annual | **⏰ Next Review:** 2027-04-20
+**🏷️ Classification:** Public (Open Civic Transparency Platform)
 
 ---
 
@@ -679,15 +680,31 @@ sequenceDiagram
 
 ## 💾 PostgreSQL Implementation
 
-The CIA platform uses a PostgreSQL database with:
+The CIA platform uses a **PostgreSQL 18** database with the following extensions and capabilities:
 
-- 60+ base tables for entity storage
-- 30+ materialized views for analytical queries
+### Extensions
+- **pgaudit** — Audit logging for database operations
+- **pgcrypto** — Cryptographic functions
+- **pg_stat_statements** — Query performance monitoring
+- **pgvector** — Vector similarity search (for future AI embeddings)
+
+### Schema Statistics
+- **60+ base tables** for entity storage
+- **110 database views** (materialized and standard) for analytical queries (see [DATABASE_VIEW_INTELLIGENCE_CATALOG.md](DATABASE_VIEW_INTELLIGENCE_CATALOG.md))
 - Complex relationships modeled through foreign keys
 - Composite primary keys for many-to-many relationships
-- Audit and tracking capabilities through timestamp fields
+- Audit and tracking capabilities through timestamp fields (enhanced by **Javers 7.11.0** entity change tracking)
 - Large text fields for document content (up to 10MB)
 - Enumerated types for categorization
+
+### ORM & Data Access
+- **Hibernate 5.6.15.Final** with **JPA 2.x** for object-relational mapping
+- **Hibernate Search 6.2.4.Final** with **Lucene 8.11.4** for full-text search
+- **Liquibase** for schema version control (see [LIQUIBASE_CHANGELOG_INTELLIGENCE_ANALYSIS.md](LIQUIBASE_CHANGELOG_INTELLIGENCE_ANALYSIS.md))
+- **Javers 7.11.0** for entity auditing and temporal queries
+
+### Schema Maintenance
+Schema updates are managed via Liquibase changesets. The `full_schema.sql` file in `service.data.impl/src/main/resources/` is regenerated from PostgreSQL 18 via `pg_dump` — **never manually edited**. See `service.data.impl/README-SCHEMA-MAINTENANCE.md` for procedures.
 
 ### Schema Highlights
 
@@ -798,6 +815,6 @@ For more detailed information on specific entities, please refer to the [Entity 
 **✅ Approved by:** James Pether Sörling, CEO - Hack23 AB  
 **📤 Distribution:** Public  
 **🏷️ Classification:** [![Confidentiality: Public](https://img.shields.io/badge/C-Public-lightgrey?style=flat-square&logo=shield&logoColor=black)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#confidentiality-levels) [![Integrity: High](https://img.shields.io/badge/I-High-orange?style=flat-square&logo=check-circle&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#integrity-levels) [![Availability: Moderate](https://img.shields.io/badge/A-Moderate-yellow?style=flat-square&logo=server&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#availability-levels)  
-**📅 Effective Date:** 2025-09-18  
-**⏰ Next Review:** 2026-09-18  
+**📅 Effective Date:** 2026-04-20  
+**⏰ Next Review:** 2027-04-20  
 **🎯 Framework Compliance:** [![ISO 27001](https://img.shields.io/badge/ISO_27001-2022_Aligned-blue?style=flat-square&logo=iso&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) [![NIST CSF 2.0](https://img.shields.io/badge/NIST_CSF-2.0_Aligned-green?style=flat-square&logo=nist&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) [![CIS Controls](https://img.shields.io/badge/CIS_Controls-v8.1_Aligned-orange?style=flat-square&logo=cisecurity&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md)
