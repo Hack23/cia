@@ -1255,10 +1255,10 @@ This configuration ensures regular, automated security maintenance:
 The platform implements comprehensive security controls across its 13 active GitHub Actions workflows:
 
 **🛡️ Static & Dynamic Analysis:**
-- **CodeQL Analysis** (`codeql-analysis.yml`): SAST for Java and JavaScript/TypeScript
+- **CodeQL Analysis** (`codeql-analysis.yml`): SAST for Java
 - **OWASP ZAP DAST** (`zap-scan.yml`): Dynamic application security testing
-- **OWASP Dependency-Check**: Automated CVE scanning in build pipeline
-- **SonarCloud**: Code quality gates with zero critical issues enforcement
+- **OWASP Dependency-Check**: Manual/on-demand CVE scanning via Maven (`mvn dependency-check:check`)
+- **SonarCloud**: Quality metrics are tracked externally/manual; not currently enforced by the active GitHub Actions workflows in this repository
 
 **📦 Supply Chain Security:**
 - **Dependency Review** (`dependency-review.yml`): PR-time dependency vulnerability scanning
@@ -1386,7 +1386,7 @@ The defense-in-depth approach manifests through several implemented layers of pr
 
 2. **Application Security Layer**: Our implemented Spring Security 5.8.16 framework with method-level `@Secured` annotations, Passay 2.0.0 password validation, and Bouncy Castle 1.84 cryptographic services provides protection at the code level.
 
-3. **Data Security Layer**: The Javers 7.11.0 auditing system, combined with KMS encryption (4096-bit RSA certificates) and end-to-end TLS create a comprehensive data protection layer.
+3. **Data Security Layer**: The Javers 7.11.0 auditing system, combined with AWS KMS-backed encryption at rest and TLS for data in transit, creates a comprehensive data protection layer.
 
 4. **Network Security Layer**: Our AWS WAF implementation, three-zone network segmentation, and VPC Endpoints establish network boundaries and traffic filtering.
 
@@ -1526,7 +1526,7 @@ Our security architecture most directly addresses the AWS Security pillar throug
    - Security Groups and NACLs for traffic filtering
 
 4. **📊 Data Protection**
-   - End-to-end encryption with TLS (4096-bit RSA certificates)
+   - Encryption in transit using TLS
    - KMS encryption for data at rest
    - Secrets Manager with automated rotation
    - Javers 7.11.0 auditing for data integrity
@@ -1576,7 +1576,7 @@ The implemented security architecture includes:
 
 3. **Network Protection**: Multi-layer network security with AWS WAF (OWASP Top 10) and segmentation
 
-4. **Data Security**: End-to-end encryption (4096-bit RSA), Bouncy Castle 1.84, and secure data storage
+4. **Data Security**: TLS-protected data in transit, KMS-backed encryption for data at rest, Bouncy Castle 1.84, and secure data storage
 
 5. **Threat Detection**: GuardDuty implementation with extended protection capabilities across EKS, Lambda, RDS, S3, and EC2
 

@@ -122,13 +122,13 @@ The CIA project uses GitHub Actions for automation with 13 distinct workflows or
 
 ### Core CI/CD Workflows (6 workflows)
 1. **🚀 Verify & Release** (`release.yml`): Builds, tests, and releases new versions with comprehensive security checks, SLSA 3 attestations, and CycloneDX SBOM
-2. **🔍 CodeQL Analysis** (`codeql-analysis.yml`): Performs advanced code security scanning (Java + JavaScript/TypeScript) to detect vulnerabilities
+2. **🔍 CodeQL Analysis** (`codeql-analysis.yml`): Performs advanced code security scanning (Java) to detect vulnerabilities
 3. **📦 Dependency Review** (`dependency-review.yml`): Analyzes dependency changes in PRs for security vulnerabilities against GitHub Advisory DB
 4. **⭐ Scorecard Analysis** (`scorecards.yml`): Evaluates the project against OpenSSF security best practices (current score: **7.2/10**)
 5. **🔒 ZAP Scan** (`zap-scan.yml`): OWASP ZAP dynamic application security testing (DAST)
 6. **🏷️ PR Labeler** (`labeler.yml`): Applies automated labels to pull requests based on paths
 
-### Data Quality & Validation Workflows (3 workflows)
+### Data Quality & Validation Workflows (4 workflows)
 7. **📊 Generate Intelligence Changelog** (`generate-intelligence-changelog.yml`): Auto-generates `CHANGELOG_INTELLIGENCE.md` from commits
 8. **✅ Validate Field Completeness** (`validate-field-completeness.yml`): Validates JSON export field completeness against schemas
 9. **🔍 Validate JSON Schemas** (`validate-json-schemas.yml`): Validates JSON export schema files

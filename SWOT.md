@@ -205,7 +205,7 @@ The Citizen Intelligence Agency has established several key strengths that provi
 
 1. **Comprehensive Political Data**: The platform successfully integrates multiple sources of political data including Riksdagen Open Data API, Swedish Election Authority data, and government body financial information, providing a holistic view of the Swedish political landscape.
 
-2. **Robust Security Posture**: OpenSSF Scorecard **7.2/10**, SLSA Build Level **3**, CII Best Practices passing (project **770**), **zero critical CVEs in 5+ years**, 13 active CI/CD workflows with CodeQL, ZAP DAST, and OWASP Dependency-Check.
+2. **Robust Security Posture**: OpenSSF Scorecard **7.2/10**, SLSA Build Level **3**, CII Best Practices passing (project **770**), **zero critical CVEs in 5+ years**, and 13 active CI/CD workflows including CodeQL and ZAP DAST; OWASP Dependency-Check is available as an on-demand Maven security scan rather than a workflow-enforced control.
 
 3. **Modular Component Architecture**: The application employs a consistent Spring 5.3.39/Vaadin 8.14.4 architecture with **49 Maven modules**, ~1,509 Java files, 110+ database views, clear separation of concerns, and reusable UI patterns that enhance maintainability.
 

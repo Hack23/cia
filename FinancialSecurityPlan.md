@@ -119,7 +119,7 @@ The security services implement controls aligned with Hack23 AB's [ISMS-PUBLIC f
 |---------------|---------------------|----------------|------------------|
 | [**Incident Response Plan**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Incident_Response_Plan.md) | $1,319.28 | GuardDuty ($346.80)<br>Detective ($363.12)<br>Security Hub ($609.36) | Real-time threat detection<br>Forensic investigation<br>Centralized security |
 | [**Vulnerability Management**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Vulnerability_Management.md) | $312.48 | Inspector | Continuous vulnerability scanning<br>Compliance validation |
-| [**Cryptography Policy**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Cryptography_Policy.md) | $275.88 | KMS | Encryption key management (4096-bit RSA)<br>Data protection at rest/transit |
+| [**Cryptography Policy**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Cryptography_Policy.md) | $275.88 | KMS | Encryption key management<br>Data protection at rest/transit |
 | [**Information Security Policy**](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Information_Security_Policy.md) | $235.08 | AWS Config | Configuration compliance<br>Change tracking<br>Policy enforcement |
 | **Total Security Investment** | **$2,142.72** | Combined | Comprehensive security posture |
 
