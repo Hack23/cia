@@ -11,13 +11,13 @@
 
 <p align="center">
   <a href="#"><img src="https://img.shields.io/badge/Owner-CEO-0A66C2?style=for-the-badge" alt="Owner"/></a>
-  <a href="#"><img src="https://img.shields.io/badge/Version-1.0-555?style=for-the-badge" alt="Version"/></a>
-  <a href="#"><img src="https://img.shields.io/badge/Effective-2026--03--19-success?style=for-the-badge" alt="Effective Date"/></a>
+  <a href="#"><img src="https://img.shields.io/badge/Version-1.1-555?style=for-the-badge" alt="Version"/></a>
+  <a href="#"><img src="https://img.shields.io/badge/Effective-2026--04--20-success?style=for-the-badge" alt="Effective Date"/></a>
   <a href="#"><img src="https://img.shields.io/badge/Review-Annual-orange?style=for-the-badge" alt="Review Cycle"/></a>
 </p>
 
-**📋 Document Owner:** CEO | **📄 Version:** 1.0 | **📅 Last Updated:** 2026-03-19 (UTC)  
-**🔄 Review Cycle:** Annual | **⏰ Next Review:** 2027-03-19  
+**📋 Document Owner:** CEO | **📄 Version:** 1.1 | **📅 Last Updated:** 2026-04-20 (UTC)  
+**🔄 Review Cycle:** Annual | **⏰ Next Review:** 2027-04-20  
 **🏷️ Classification:** Public (Open Civic Transparency Platform)
 
 ---
@@ -67,10 +67,10 @@ This Business Continuity Plan (BCP) establishes the framework for maintaining cr
 
 | Component | RTO | RPO | Priority | Justification |
 |-----------|-----|-----|----------|---------------|
-| **Web Application (Vaadin/Spring)** | 4 hours | 1 hour | P1 | Primary public-facing interface for civic transparency |
-| **PostgreSQL Database** | 2 hours | 15 minutes | P1 | Core data store with analytical views; point-in-time recovery |
+| **Web Application (Vaadin 8.14.4/Spring 5.3.39/Jetty 12.1.8)** | 4 hours | 1 hour | P1 | Primary public-facing interface for civic transparency |
+| **PostgreSQL 18 Database** | 2 hours | 15 minutes | P1 | Core data store with analytical views; point-in-time recovery |
 | **Data Import Services** | 8 hours | 24 hours | P2 | Batch processing; data is re-importable from external APIs |
-| **Authentication & Session** | 4 hours | 1 hour | P1 | Required for registered user and admin access |
+| **Authentication & Session (Spring Security 5.8.16 + MFA)** | 4 hours | 1 hour | P1 | Required for registered user and admin access; includes optional MFA enrollment |
 | **AWS Infrastructure (WAF/ALB)** | 1 hour | N/A | P0 | CloudFormation automated re-provisioning |
 | **Monitoring (GuardDuty/Security Hub)** | 4 hours | N/A | P2 | Security monitoring can tolerate brief gaps |
 | **CI/CD Pipeline (GitHub Actions)** | 24 hours | N/A | P3 | Development workflow; not user-facing |
@@ -84,9 +84,9 @@ graph TD
     end
     
     subgraph "P1 — Critical (< 4 hours)"
-        B[PostgreSQL Database<br/>RDS Multi-AZ Failover]
-        C[Web Application<br/>EC2 Auto Scaling]
-        D[Authentication<br/>Spring Security / Sessions]
+        B[PostgreSQL 18 Database<br/>RDS Multi-AZ Failover]
+        C[Web Application<br/>Jetty 12.1.8 / Spring 5.3.39]
+        D[Authentication<br/>Spring Security 5.8.16 / MFA]
     end
     
     subgraph "P2 — Important (< 8 hours)"
@@ -127,13 +127,13 @@ graph TD
 graph TB
     subgraph "AWS Region: eu-north-1 (Stockholm)"
         subgraph "Availability Zone A"
-            EC2_A[EC2 Instance<br/>CIA Application]
-            RDS_P[RDS Primary<br/>PostgreSQL]
+            EC2_A[EC2 Instance<br/>CIA Application<br/>Jetty 12.1.8 / Java 26]
+            RDS_P[RDS Primary<br/>PostgreSQL 18<br/>pgaudit/pgcrypto/pgvector]
         end
         
         subgraph "Availability Zone B"
-            EC2_B[EC2 Instance<br/>CIA Application]
-            RDS_S[RDS Standby<br/>PostgreSQL]
+            EC2_B[EC2 Instance<br/>CIA Application<br/>Jetty 12.1.8 / Java 26]
+            RDS_S[RDS Standby<br/>PostgreSQL 18<br/>Synchronous Replica]
         end
         
         subgraph "Shared Services"
@@ -164,7 +164,7 @@ graph TB
 
 | Component | Failover Type | Mechanism | Expected Recovery |
 |-----------|--------------|-----------|-------------------|
-| **RDS PostgreSQL** | Automatic | Multi-AZ with synchronous standby | 60–120 seconds |
+| **RDS PostgreSQL 18** | Automatic | Multi-AZ with synchronous standby | 60–120 seconds |
 | **EC2 Instances** | Automatic | Auto Scaling Group health checks | 2–5 minutes |
 | **Load Balancer** | Automatic | ALB health check routing | Immediate (unhealthy target removal) |
 | **WAF** | Automatic | AWS-managed, regional service | N/A (always available) |
@@ -210,8 +210,8 @@ graph TB
 
 | Phase | Action | Owner | Duration |
 |-------|--------|-------|----------|
-| **Detection** | GuardDuty alert; Security Hub finding | Automated | < 5 minutes |
-| **Containment** | Isolate affected resources; revoke compromised credentials | Security / Operations | < 1 hour |
+| **Detection** | GuardDuty alert; Security Hub finding; Drools BruteForceAttack rules | Automated | < 5 minutes |
+| **Containment** | Isolate affected resources; revoke compromised credentials; MFA enforcement | Security / Operations | < 1 hour |
 | **Assessment** | Forensic analysis via CloudTrail, VPC Flow Logs | Security | 2–4 hours |
 | **Recovery** | Re-provision from CloudFormation; restore clean data | Operations | 2–4 hours |
 | **Communication** | Follow [Incident Response Plan](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Incident_Response_Plan.md) | CEO | Per IRP |
@@ -224,7 +224,7 @@ graph TB
 
 | Data Type | Backup Method | Frequency | Retention | Storage |
 |-----------|--------------|-----------|-----------|---------|
-| **PostgreSQL Database** | RDS Automated Snapshots | Daily + continuous WAL | 35 days | Same-region S3 |
+| **PostgreSQL 18 Database** | RDS Automated Snapshots | Daily + continuous WAL | 35 days | Same-region S3 |
 | **Database (Point-in-Time)** | RDS PITR | Continuous (5-min granularity) | 35 days | Same-region |
 | **Application Configuration** | CloudFormation templates | On every change (Git) | Indefinite | GitHub + S3 |
 | **Encryption Keys** | AWS KMS automatic rotation | Annual rotation | Indefinite | AWS KMS (multi-AZ) |
@@ -366,6 +366,6 @@ graph TB
 **✅ Approved by:** James Pether Sörling, CEO - Hack23 AB  
 **📤 Distribution:** Public  
 **🏷️ Classification:** [![Confidentiality: Public](https://img.shields.io/badge/C-Public-lightgrey?style=flat-square&logo=shield&logoColor=black)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#confidentiality-levels) [![Integrity: High](https://img.shields.io/badge/I-High-orange?style=flat-square&logo=check-circle&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#integrity-levels) [![Availability: Moderate](https://img.shields.io/badge/A-Moderate-yellow?style=flat-square&logo=server&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#availability-levels)  
-**📅 Effective Date:** 2026-03-19  
-**⏰ Next Review:** 2027-03-19  
+**📅 Effective Date:** 2026-04-20  
+**⏰ Next Review:** 2027-04-20  
 **🎯 Framework Compliance:** [![ISO 27001](https://img.shields.io/badge/ISO_27001-2022_Aligned-blue?style=flat-square&logo=iso&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) [![NIST CSF 2.0](https://img.shields.io/badge/NIST_CSF-2.0_Aligned-green?style=flat-square&logo=nist&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) [![CIS Controls](https://img.shields.io/badge/CIS_Controls-v8.1_Aligned-orange?style=flat-square&logo=cisecurity&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) [![AWS Well-Architected](https://img.shields.io/badge/AWS-Well_Architected-orange?style=flat-square&logo=amazon-aws&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md)

@@ -11,13 +11,14 @@
 
 <p align="center">
   <a href="#"><img src="https://img.shields.io/badge/Owner-CEO-0A66C2?style=for-the-badge" alt="Owner"/></a>
-  <a href="#"><img src="https://img.shields.io/badge/Version-1.0-555?style=for-the-badge" alt="Version"/></a>
-  <a href="#"><img src="https://img.shields.io/badge/Effective-2025--09--18-success?style=for-the-badge" alt="Effective Date"/></a>
+  <a href="#"><img src="https://img.shields.io/badge/Version-1.1-555?style=for-the-badge" alt="Version"/></a>
+  <a href="#"><img src="https://img.shields.io/badge/Effective-2026--04--20-success?style=for-the-badge" alt="Effective Date"/></a>
   <a href="#"><img src="https://img.shields.io/badge/Review-Annual-orange?style=for-the-badge" alt="Review Cycle"/></a>
 </p>
 
-**📋 Document Owner:** CEO | **📄 Version:** 1.0 | **📅 Last Updated:** 2025-09-18 (UTC)  
-**🔄 Review Cycle:** Annual | **⏰ Next Review:** 2026-09-18
+**📋 Document Owner:** CEO | **📄 Version:** 1.1 | **📅 Last Updated:** 2026-04-20 (UTC)  
+**🔄 Review Cycle:** Annual | **⏰ Next Review:** 2027-04-20  
+**🏷️ Classification:** Public (Open Civic Transparency Platform)
 
 ---
 
@@ -69,7 +70,7 @@ This document outlines the comprehensive security architecture of the Citizen In
 
 ## 🔑 Authentication Architecture
 
-Our multi-layered authentication and authorization process includes MFA, login blocking, and role-based access control.
+Our multi-layered authentication and authorization process includes MFA (implemented with optional enrollment), login blocking, and role-based access control powered by Spring Security 5.8.16.
 
 ```mermaid
 flowchart TD
@@ -1249,6 +1250,42 @@ This configuration ensures regular, automated security maintenance:
 - **📊 Inventory Tracking**: Software and configuration monitoring
 - **🔍 Compliance Verification**: Automated checks against security baselines
 
+### 🔄 CI/CD Security Controls
+
+The platform implements comprehensive security controls across its 13 active GitHub Actions workflows:
+
+**🛡️ Static & Dynamic Analysis:**
+- **CodeQL Analysis** (`codeql-analysis.yml`): SAST for Java
+- **OWASP ZAP DAST** (`zap-scan.yml`): Dynamic application security testing
+- **OWASP Dependency-Check**: Manual/on-demand CVE scanning via Maven (`mvn dependency-check:check`)
+- **SonarCloud**: Quality metrics are tracked externally/manual; not currently enforced by the active GitHub Actions workflows in this repository
+
+**📦 Supply Chain Security:**
+- **Dependency Review** (`dependency-review.yml`): PR-time dependency vulnerability scanning
+- **SLSA Build Level 3** (`release.yml`): Provenance generation for all releases
+- **CycloneDX SBOM** (`release.yml`): Software Bill of Materials on every release
+- **OpenSSF Scorecard** (`scorecards.yml`): Continuous supply chain health monitoring (current: **7.2/10**)
+
+**✅ Quality & Compliance Gates:**
+- **Field Completeness Validation** (`validate-field-completeness.yml`): Data model integrity checks
+- **JSON Schema Validation** (`validate-json-schemas.yml`): Configuration file validation
+- **View Documentation Validation** (`validate-view-documentation.yml`): Database view documentation checks
+
+**📚 Documentation & Release:**
+- **JavaDoc Generation** (`javadoc-generation.yml`): Automated API documentation
+- **Site Generation** (`site-generation.yml`): Maven site reports
+- **Intelligence Changelog** (`generate-intelligence-changelog.yml`): Automated change documentation
+
+**🔐 Security Posture Metrics (Current):**
+- **OpenSSF Scorecard**: 7.2/10 ([scorecard.dev/viewer](https://scorecard.dev/viewer/?uri=github.com/Hack23/cia))
+- **SLSA Build Level**: 3 (provenance + SBOM)
+- **CII Best Practices**: Passing (project 770)
+- **Critical CVEs**: Zero in last 5+ years
+- **Dependabot**: Active with automated PRs
+- **FOSSA License Compliance**: Passing (Apache License 2.0)
+
+All workflows enforce security-by-default principles aligned with the [Hack23 Secure Development Policy](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md) and [CI/CD Security](https://github.com/Hack23/ISMS-PUBLIC/blob/main/Secure_Development_Policy.md#cicd-security) requirements.
+
 ## 🔒 Application Security
 
 Our application implements robust security controls at the code level.
@@ -1345,17 +1382,17 @@ Our defense-in-depth strategy coordinates the multiple security layers already i
 
 The defense-in-depth approach manifests through several implemented layers of protection:
 
-1. **Identity Security Layer**: The documented MFA with Google Authenticator, login blocking protection, and role-based access control create the first line of defense.
+1. **Identity Security Layer**: The implemented MFA with Google Authenticator (optional enrollment), Drools 10.1.0 brute-force attack detection rules, login blocking protection, and role-based access control create the first line of defense.
 
-2. **Application Security Layer**: Our implemented Spring Security framework with method-level `@Secured` annotations provides protection at the code level.
+2. **Application Security Layer**: Our implemented Spring Security 5.8.16 framework with method-level `@Secured` annotations, Passay 2.0.0 password validation, and Bouncy Castle 1.84 cryptographic services provides protection at the code level.
 
-3. **Data Security Layer**: The Javers auditing system, combined with encryption via KMS and end-to-end TLS create a comprehensive data protection layer.
+3. **Data Security Layer**: The Javers 7.11.0 auditing system, combined with AWS KMS-backed encryption at rest and TLS for data in transit, creates a comprehensive data protection layer.
 
 4. **Network Security Layer**: Our AWS WAF implementation, three-zone network segmentation, and VPC Endpoints establish network boundaries and traffic filtering.
 
-5. **Infrastructure Security Layer**: Multi-AZ architecture, AWS security services, and automated security maintenance via AWS Systems Manager provide foundational protection.
+5. **Infrastructure Security Layer**: Multi-AZ architecture, AWS security services (GuardDuty, Security Hub, Inspector), and automated security maintenance via AWS Systems Manager provide foundational protection.
 
-6. **Monitoring & Detection Layer**: The implemented ApplicationSession tracking, security event listeners, GuardDuty, and Inspector provide visibility across all layers.
+6. **Monitoring & Detection Layer**: The implemented ApplicationSession tracking, security event listeners, GuardDuty, and Inspector combined with PostgreSQL 18 (pgaudit, pg_stat_statements, auto_explain) provide visibility across all layers.
 
 This integration of multiple security controls means that a compromise of any single layer will not lead to a complete security failure, as additional protective measures exist at each level of the technology stack.
 
@@ -1469,9 +1506,11 @@ flowchart TD
 Our security architecture most directly addresses the AWS Security pillar through:
 
 1. **🔐 Identity & Access Management**
-   - Multi-factor authentication with Google Authenticator
+   - Multi-factor authentication (MFA) with Google Authenticator (implemented, optional enrollment)
+   - Brute-force attack detection via Drools 10.1.0 BruteForceAttack.drl rules
    - Role-based access control with three security tiers
-   - Method-level security with `@Secured` annotations
+   - Method-level security with `@Secured` annotations (Spring Security 5.8.16)
+   - Password policy enforcement via Passay 2.0.0
    - IAM best practices (IAM.1-8) as documented in AWS Foundational Security Best Practices
 
 2. **🔍 Detection Controls**
@@ -1487,10 +1526,12 @@ Our security architecture most directly addresses the AWS Security pillar throug
    - Security Groups and NACLs for traffic filtering
 
 4. **📊 Data Protection**
-   - End-to-end encryption with TLS
+   - Encryption in transit using TLS
    - KMS encryption for data at rest
    - Secrets Manager with automated rotation
-   - Javers auditing for data integrity
+   - Javers 7.11.0 auditing for data integrity
+   - PostgreSQL 18 with pgaudit, pgcrypto, pgvector extensions
+   - Bouncy Castle 1.84 cryptographic provider
 
 5. **⚡ Incident Response**
    - Amazon Detective for investigation capabilities
@@ -1529,21 +1570,23 @@ The Citizen Intelligence Agency security architecture establishes a comprehensiv
 
 The implemented security architecture includes:
 
-1. **Strong Authentication**: Multi-factor authentication and sophisticated login blocking mechanisms
+1. **Strong Authentication**: Multi-factor authentication (implemented, optional enrollment), Drools 10.1.0 brute-force attack detection, and sophisticated login blocking mechanisms
 
-2. **Detailed Auditing**: Comprehensive data change tracking via Javers and user activity monitoring
+2. **Detailed Auditing**: Comprehensive data change tracking via Javers 7.11.0, PostgreSQL 18 pgaudit, and user activity monitoring
 
-3. **Network Protection**: Multi-layer network security with AWS WAF and segmentation
+3. **Network Protection**: Multi-layer network security with AWS WAF (OWASP Top 10) and segmentation
 
-4. **Data Security**: End-to-end encryption and secure data storage
+4. **Data Security**: TLS-protected data in transit, KMS-backed encryption for data at rest, Bouncy Castle 1.84, and secure data storage
 
-5. **Threat Detection**: GuardDuty implementation with extended protection capabilities
+5. **Threat Detection**: GuardDuty implementation with extended protection capabilities across EKS, Lambda, RDS, S3, and EC2
 
 6. **Vulnerability Management**: Amazon Inspector scanning across multiple resource types
 
 7. **Automated Operations**: Systems Manager maintenance windows for consistent security
 
 8. **Resilient Design**: Multi-AZ architecture for security and availability
+
+9. **Technology Stack**: Java 26 runtime (source 21), Jetty 12.1.8 EE8, Spring 5.3.39.hack23java25, Spring Security 5.8.16, Vaadin 8.14.4
 
 This implemented security foundation positions the Citizen Intelligence Agency platform to fulfill its mission of providing transparency and political data analysis while maintaining appropriate protection for sensitive information.
 
@@ -1555,6 +1598,6 @@ For information on future security enhancements, refer to the [🚀 Future Secur
 **✅ Approved by:** James Pether Sörling, CEO - Hack23 AB  
 **📤 Distribution:** Public  
 **🏷️ Classification:** [![Confidentiality: Public](https://img.shields.io/badge/C-Public-lightgrey?style=flat-square&logo=shield&logoColor=black)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#confidentiality-levels) [![Integrity: High](https://img.shields.io/badge/I-High-orange?style=flat-square&logo=check-circle&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#integrity-levels) [![Availability: Moderate](https://img.shields.io/badge/A-Moderate-yellow?style=flat-square&logo=server&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#availability-levels)  
-**📅 Effective Date:** 2025-09-18  
-**⏰ Next Review:** 2026-09-18  
+**📅 Effective Date:** 2026-04-20  
+**⏰ Next Review:** 2027-04-20  
 **🎯 Framework Compliance:** [![ISO 27001](https://img.shields.io/badge/ISO_27001-2022_Aligned-blue?style=flat-square&logo=iso&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) [![NIST CSF 2.0](https://img.shields.io/badge/NIST_CSF-2.0_Aligned-green?style=flat-square&logo=nist&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) [![CIS Controls](https://img.shields.io/badge/CIS_Controls-v8.1_Aligned-orange?style=flat-square&logo=cisecurity&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) [![AWS Well-Architected](https://img.shields.io/badge/AWS-Well_Architected-orange?style=flat-square&logo=amazon-aws&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md)

@@ -11,13 +11,14 @@
 
 <p align="center">
   <a href="#"><img src="https://img.shields.io/badge/Owner-CEO-0A66C2?style=for-the-badge" alt="Owner"/></a>
-  <a href="#"><img src="https://img.shields.io/badge/Version-1.0-555?style=for-the-badge" alt="Version"/></a>
-  <a href="#"><img src="https://img.shields.io/badge/Effective-2025--09--18-success?style=for-the-badge" alt="Effective Date"/></a>
+  <a href="#"><img src="https://img.shields.io/badge/Version-1.1-555?style=for-the-badge" alt="Version"/></a>
+  <a href="#"><img src="https://img.shields.io/badge/Effective-2026--04--20-success?style=for-the-badge" alt="Effective Date"/></a>
   <a href="#"><img src="https://img.shields.io/badge/Review-Annual-orange?style=for-the-badge" alt="Review Cycle"/></a>
 </p>
 
-**📋 Document Owner:** CEO | **📄 Version:** 1.0 | **📅 Last Updated:** 2025-09-18 (UTC)  
-**🔄 Review Cycle:** Annual | **⏰ Next Review:** 2026-09-18
+**📋 Document Owner:** CEO | **📄 Version:** 1.1 | **📅 Last Updated:** 2026-04-20 (UTC)  
+**🔄 Review Cycle:** Annual | **⏰ Next Review:** 2027-04-20
+**🏷️ Classification:** Public (Open Civic Transparency Platform)
 
 ---
 
@@ -55,6 +56,7 @@ This document serves as the primary entry point for the Citizen Intelligence Age
 | **[CRA Assessment](CRA-ASSESSMENT.md)**             | 🛡️ Compliance   | EU Cyber Resilience Act conformity        | [View Source](https://github.com/Hack23/cia/blob/master/CRA-ASSESSMENT.md)      |
 | **[Business Continuity Plan](BCPPlan.md)**           | 📋 Resilience   | RTO/RPO targets and recovery procedures   | [View Source](https://github.com/Hack23/cia/blob/master/BCPPlan.md)             |
 | **[Business Product Document](BUSINESS_PRODUCT_DOCUMENT.md)** | 💼 Business | Data analytics and risk intelligence products | [View Source](https://github.com/Hack23/cia/blob/master/BUSINESS_PRODUCT_DOCUMENT.md) |
+| **[Database View Catalog](DATABASE_VIEW_INTELLIGENCE_CATALOG.md)** | 📊 Data | Catalog of 110 database views for analytics | [View Source](https://github.com/Hack23/cia/blob/master/DATABASE_VIEW_INTELLIGENCE_CATALOG.md) |
 
 </div>
 
@@ -112,15 +114,15 @@ C4Container
   Person(adminUser, "System Administrator", "Manages system configuration and user accounts")
   
   System_Boundary(cia, "Citizen Intelligence Agency") {
-    Container(webApplication, "Web Application", "Java, Spring MVC, Vaadin", "Provides interactive UI for political data visualization and analysis")
+    Container(webApplication, "Web Application", "Java 26/21, Spring 5.3.39, Vaadin 8.14.4, Jetty 12.1.8 EE8", "Provides interactive UI for political data visualization and analysis")
     
-    Container(serviceLayer, "Service Layer", "Java, Spring", "Implements business logic and manages application services")
+    Container(serviceLayer, "Service Layer", "Java 26/21, Spring 5.3.39", "Implements business logic and manages application services")
     
-    Container(dataAccess, "Data Access Layer", "Java, Hibernate, JPA", "Handles database interactions and entity management")
+    Container(dataAccess, "Data Access Layer", "Java 26/21, Hibernate 5.6.15, JPA 2.x", "Handles database interactions and entity management")
     
-    Container(dataIntegration, "Data Integration Services", "Java, Spring Integration", "Fetches and processes data from external sources")
+    Container(dataIntegration, "Data Integration Services", "Java 26/21, Spring Integration", "Fetches and processes data from external sources")
     
-    ContainerDb(database, "Database", "PostgreSQL", "Stores political data, user information, and system configuration")
+    ContainerDb(database, "Database", "PostgreSQL 18 (pgaudit, pgcrypto, pg_stat_statements, pgvector)", "Stores political data, user information, and system configuration")
     
     Container(securityModule, "Security Module", "Spring Security", "Manages authentication, authorization, and security controls")
     
@@ -483,10 +485,10 @@ The CIA data model is comprehensive, capturing various aspects of the Swedish po
 For details on the technology lifecycle and maintenance strategy, see the [End-of-Life Strategy](End-of-Life-Strategy.md).
 
 ### Core Framework:
-- Spring Framework (MVC, Security, etc.)
-- Vaadin (UI Framework)
-- Hibernate/JPA (Data Access)
-- PostgreSQL (Database)
+- Spring Framework 5.3.39 (hack23java25 fork) — MVC, Security, Data, Integration
+- Vaadin 8.14.4 — UI Framework
+- Hibernate 5.6.15.Final / JPA 2.x — Data Access & ORM
+- PostgreSQL 18 — Database (with pgaudit, pgcrypto, pg_stat_statements, pgvector)
 
 ### UI Components:
 - Vaadin UI Components
@@ -556,6 +558,6 @@ The CIA architecture demonstrates a well-structured, modular design that effecti
 **✅ Approved by:** James Pether Sörling, CEO - Hack23 AB  
 **📤 Distribution:** Public  
 **🏷️ Classification:** [![Confidentiality: Public](https://img.shields.io/badge/C-Public-lightgrey?style=flat-square&logo=shield&logoColor=black)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#confidentiality-levels) [![Integrity: High](https://img.shields.io/badge/I-High-orange?style=flat-square&logo=check-circle&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#integrity-levels) [![Availability: Moderate](https://img.shields.io/badge/A-Moderate-yellow?style=flat-square&logo=server&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#availability-levels)  
-**📅 Effective Date:** 2025-09-18  
-**⏰ Next Review:** 2026-09-18  
+**📅 Effective Date:** 2026-04-20  
+**⏰ Next Review:** 2027-04-20  
 **🎯 Framework Compliance:** [![ISO 27001](https://img.shields.io/badge/ISO_27001-2022_Aligned-blue?style=flat-square&logo=iso&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) [![NIST CSF 2.0](https://img.shields.io/badge/NIST_CSF-2.0_Aligned-green?style=flat-square&logo=nist&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) [![CIS Controls](https://img.shields.io/badge/CIS_Controls-v8.1_Aligned-orange?style=flat-square&logo=cisecurity&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md)

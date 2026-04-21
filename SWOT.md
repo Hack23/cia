@@ -11,13 +11,14 @@
 
 <p align="center">
   <a href="#"><img src="https://img.shields.io/badge/Owner-CEO-0A66C2?style=for-the-badge" alt="Owner"/></a>
-  <a href="#"><img src="https://img.shields.io/badge/Version-1.0-555?style=for-the-badge" alt="Version"/></a>
-  <a href="#"><img src="https://img.shields.io/badge/Effective-2025--09--18-success?style=for-the-badge" alt="Effective Date"/></a>
+  <a href="#"><img src="https://img.shields.io/badge/Version-1.1-555?style=for-the-badge" alt="Version"/></a>
+  <a href="#"><img src="https://img.shields.io/badge/Effective-2026--04--20-success?style=for-the-badge" alt="Effective Date"/></a>
   <a href="#"><img src="https://img.shields.io/badge/Review-Annual-orange?style=for-the-badge" alt="Review Cycle"/></a>
 </p>
 
-**📋 Document Owner:** CEO | **📄 Version:** 1.0 | **📅 Last Updated:** 2025-09-18 (UTC)  
-**🔄 Review Cycle:** Annual | **⏰ Next Review:** 2026-09-18
+**📋 Document Owner:** CEO | **📄 Version:** 1.1 | **📅 Last Updated:** 2026-04-20 (UTC)  
+**🔄 Review Cycle:** Annual | **⏰ Next Review:** 2027-04-20  
+**🏷️ Classification:** Public (Open Civic Transparency Platform)
 
 ---
 
@@ -202,15 +203,15 @@ mindmap
 
 The Citizen Intelligence Agency has established several key strengths that provide a solid foundation for its political transparency mission:
 
-1. **Comprehensive Political Data**: The platform successfully integrates multiple sources of political data including Parliament API, Election Authority data, and government body financial information, providing a holistic view of the Swedish political landscape.
+1. **Comprehensive Political Data**: The platform successfully integrates multiple sources of political data including Riksdagen Open Data API, Swedish Election Authority data, and government body financial information, providing a holistic view of the Swedish political landscape.
 
-2. **Robust Data Visualization**: Through well-designed dashboards, charts, and comparative displays, the platform makes complex political data accessible and meaningful to users of varying technical backgrounds.
+2. **Robust Security Posture**: OpenSSF Scorecard **7.2/10**, SLSA Build Level **3**, CII Best Practices passing (project **770**), **zero critical CVEs in 5+ years**, and 13 active CI/CD workflows including CodeQL and ZAP DAST; OWASP Dependency-Check is available as an on-demand Maven security scan rather than a workflow-enforced control.
 
-3. **Modular Component Architecture**: The application employs a consistent Spring/Vaadin architecture with well-defined component hierarchies, clear separation of concerns, and reusable UI patterns that enhance maintainability.
+3. **Modular Component Architecture**: The application employs a consistent Spring 5.3.39/Vaadin 8.14.4 architecture with **49 Maven modules**, ~1,509 Java files, 110+ database views, clear separation of concerns, and reusable UI patterns that enhance maintainability.
 
-4. **End-to-End Political Tracking**: The comprehensive coverage spans from individual politicians to committees, parties, and government bodies, enabling users to track activities across the entire political process.
+4. **Advanced Security Controls**: Implemented MFA (optional enrollment), Drools 10.1.0 brute-force attack detection, Spring Security 5.8.16, Passay 2.0.0 password validation, Bouncy Castle 1.84 cryptography, PostgreSQL 18 with pgaudit/pgcrypto/pgvector.
 
-5. **Non-partisan Approach**: The platform maintains an objective stance, using consistent methodologies to evaluate political activities regardless of party or ideology, enhancing credibility and trustworthiness.
+5. **Non-partisan Approach**: The platform maintains an objective stance, using consistent Drools-based risk rules and methodologies to evaluate political activities regardless of party or ideology, enhancing credibility and trustworthiness.
 
 ## Weaknesses
 
@@ -243,13 +244,13 @@ mindmap
 
 Several weaknesses present challenges for the ongoing development and support of the platform:
 
-1. **Legacy Technology Stack**: The platform relies on aging frameworks and components including Vaadin 8 and Spring 5.x that will eventually reach EOL, creating future migration challenges as outlined in the [End-of-Life Strategy](End-of-Life-Strategy.md).
+1. **Legacy Technology Stack**: The platform relies on Vaadin **8.14.4** (community EOL concerns), Spring **5.3.39.hack23java25** (forked for Java 25/26 support), Hibernate **5.6.15.Final** (JPA 2.x), and JUnit 4, creating future migration challenges as outlined in the [End-of-Life Strategy](End-of-Life-Strategy.md).
 
-2. **Limited Mobile Support**: The current UI implementation is primarily designed for desktop use with limited responsive design, creating a sub-optimal experience for the growing segment of mobile users.
+2. **Single-Region Deployment**: AWS infrastructure currently deployed in single region (eu-north-1), creating disaster recovery complexity despite Multi-AZ architecture.
 
-3. **Manual Data Processing**: Despite some automation, significant manual effort is required to process and integrate data from various political sources, causing delays in data updates and resource constraints.
+3. **Manual Data Processing**: Despite some automation, significant manual effort is required to process and integrate data from various political sources (Riksdagen, Election Authority, World Bank, ESV), causing delays in data updates and resource constraints.
 
-4. **Sparse Documentation**: While improving, there are still gaps in documentation for APIs, architecture, and developer onboarding, creating potential barriers to new contributor engagement.
+4. **Mobile Experience**: The current Vaadin 8 UI implementation is primarily designed for desktop use with limited responsive design, creating a sub-optimal experience for mobile users.
 
 5. **Resource Constraints**: As a volunteer-driven project with limited funding, the platform faces challenges in maintaining consistent development velocity and supporting user growth.
 
@@ -284,13 +285,13 @@ mindmap
 
 Looking forward, several opportunities exist for growth and enhancement:
 
-1. **AI-Enhanced Analytics**: As detailed in the [Future Mindmap](FUTURE_MINDMAP.md), incorporating machine learning and AI could provide predictive analytics, automated pattern detection, and enhanced political insights beyond what is currently possible.
+1. **AI-Enhanced Analytics**: As detailed in the [Future Mindmap](FUTURE_MINDMAP.md) and [Future Security Architecture](FUTURE_SECURITY_ARCHITECTURE.md), incorporating machine learning, AI-augmented threat detection, and automated pattern discovery could provide predictive analytics beyond current Drools rule-based capabilities.
 
-2. **Political API Ecosystem**: Developing a comprehensive API would enable third-party developers, researchers, and organizations to build on the platform's data, extending reach and impact.
+2. **Post-Quantum Cryptography Migration**: Transition from classical RSA 4096-bit to PQC algorithms (CRYSTALS-Kyber, CRYSTALS-Dilithium) as outlined in [Future Security Architecture](FUTURE_SECURITY_ARCHITECTURE.md), positioning the platform ahead of quantum computing threats.
 
-3. **International Expansion**: Extending coverage to other Nordic countries, the EU Parliament, or creating comparative political analysis tools would significantly increase the platform's relevance and user base.
+3. **International Expansion**: Extending coverage to European Parliament (via MCP integration project under development), other Nordic countries, or creating comparative political analysis tools would significantly increase the platform's relevance and user base.
 
-4. **Business Intelligence Integration**: Creating connections with business intelligence tools and developing features for policy impact assessment could open new use cases for corporate and organizational users.
+4. **Vaadin 24 Migration**: Upgrading from Vaadin 8.14.4 to Vaadin 24 would enable modern responsive design, improved mobile support, and long-term vendor support.
 
 5. **Civic Education Partnerships**: Collaborating with educational institutions, journalism outlets, and civic engagement programs could boost adoption and strengthen the platform's role in democratic transparency.
 
@@ -327,41 +328,42 @@ Several external threats could impact the project's success:
 
 1. **Competing Political Platforms**: Commercial products, government platforms, and media tools offering similar functionality could challenge the platform's user adoption and relevance.
 
-2. **Data Source Changes**: The platform's reliance on external data APIs creates vulnerability to changes in those sources, including format changes, API deprecations, or access restrictions.
+2. **Data Source API Stability**: The platform's reliance on external data APIs (Riksdagen, Election Authority, World Bank, ESV) creates vulnerability to changes, including format changes, API deprecations, or access restrictions.
 
-3. **Technical Debt Growth**: As detailed in the [End-of-Life Strategy](End-of-Life-Strategy.md), the aging technology stack creates growing technical debt that will eventually require significant investment to address.
+3. **Technical Debt Growth**: As detailed in the [End-of-Life Strategy](End-of-Life-Strategy.md), the Spring 5.x fork (hack23java25) and Vaadin 8 community support creates growing technical debt requiring migration planning.
 
-4. **Political API Limitations**: Issues with the quality, timeliness, or completeness of political data from source APIs can affect the platform's accuracy and value.
+4. **Supply Chain Vulnerabilities**: Despite OpenSSF Scorecard 7.2/10 and zero critical CVEs in 5+ years, continuous vigilance against supply chain attacks remains critical (see [THREAT_MODEL.md](THREAT_MODEL.md)).
 
-5. **Volunteer Resource Challenges**: The volunteer-driven nature of the project creates risks around consistent development progress, knowledge retention, and long-term maintenance capacity.
+5. **EU Cyber Resilience Act Deadlines**: CRA compliance requirements and timelines (see [CRA-ASSESSMENT.md](CRA-ASSESSMENT.md)) create regulatory pressure for continuous security posture improvement.
 
 ## Strategic Focus Areas
 
 Based on the SWOT analysis, the following strategic focus areas emerge as priorities:
 
 1. **Modernize Critical Architecture Components**:
-   - Maintain current dependency versions and apply security patches promptly
+   - Maintain current dependency versions (Java 26, PostgreSQL 18) and apply security patches promptly
+   - Plan Vaadin 8 → Vaadin 24 migration for long-term vendor support
    - Invest in AI-enhanced analytics capabilities as described in [Future Architecture](FUTURE_ARCHITECTURE.md)
-   - Evaluate selective modernization of UI components
-   - Strengthen security implementation as outlined in [Financial Security Plan](FinancialSecurityPlan.md)
+   - Strengthen security implementation as outlined in [Financial Security Plan](FinancialSecurityPlan.md) and [Security Architecture](SECURITY_ARCHITECTURE.md)
 
 2. **Enhance Data Processing Automation**:
-   - Improve data ingestion pipelines from political sources
+   - Improve data ingestion pipelines from Riksdagen, Election Authority, World Bank, ESV
    - Implement advanced data validation and error handling
-   - Create monitoring for data source changes
+   - Create monitoring for data source API changes
 
 3. **Prepare for AI/ML Integration**:
-   - Develop data structures supporting future ML capabilities
-   - Identify high-value analytics use cases
-   - Create roadmap for [Future Architecture](FUTURE_MINDMAP.md) implementation
+   - Develop data structures supporting future ML capabilities (see [Future Data Model](FUTURE_DATA_MODEL.md))
+   - Identify high-value analytics use cases beyond current Drools rules
+   - Create roadmap for [Future Mindmap](FUTURE_MINDMAP.md) implementation
 
-4. **Strengthen Documentation and Community**:
-   - Complete comprehensive API documentation
-   - Enhance developer onboarding materials
-   - Create contributor engagement program
+4. **Strengthen Security & Compliance**:
+   - Maintain OpenSSF Scorecard > 7.0, SLSA 3, zero critical CVEs
+   - Execute CRA conformity assessment per [CRA-ASSESSMENT.md](CRA-ASSESSMENT.md)
+   - Implement PQC migration roadmap per [Future Security Architecture](FUTURE_SECURITY_ARCHITECTURE.md)
 
 5. **Optimize Mobile Experience**:
-   - Improve responsive design implementation
+   - Improve responsive design implementation within Vaadin 8 constraints
+   - Plan mobile-first design for Vaadin 24 migration
    - Prioritize mobile-friendly features
    - Consider progressive web app capabilities
 
