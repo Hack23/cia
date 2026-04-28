@@ -60,6 +60,17 @@ This document serves as the primary entry point for the Citizen Intelligence Age
 
 </div>
 
+### 🌍 Hack23 Civic Tech Ecosystem (cross-repo architecture context)
+
+CIA is the canonical data backbone for several sibling Hack23 projects. Architectural decisions in this repository must consider downstream consumers and shared ISMS controls:
+
+| Project | Role | Architectural relationship |
+|---------|------|----------------------------|
+| 🗳️ [Riksdagsmonitor](https://github.com/Hack23/riksdagsmonitor) ([live](https://riksdagsmonitor.com)) | Sweden — public news & dashboards in 14 languages | **Downstream consumer** — pulls CIA JSON exports nightly |
+| 🏛️ [EU Parliament Monitor](https://github.com/Hack23/euparliamentmonitor) ([live](https://euparliamentmonitor.com)) | European Parliament — political intelligence newsroom | Sibling architecture pattern (TypeScript + agentic newsroom) |
+| 🤖 [European Parliament MCP Server](https://github.com/Hack23/European-Parliament-MCP-Server) | EP Open Data MCP (60+ tools) for AI agents | Reference for MCP integration patterns |
+| 🛡️ [Hack23 ISMS-PUBLIC](https://github.com/Hack23/ISMS-PUBLIC) | Apex Information Security Management System | All architecture decisions are governed by these policies |
+
 ## 🌐 C4 System Context Diagram
 
 This diagram illustrates how different stakeholders interact with the Citizen Intelligence Agency system and the external data sources required for political intelligence analysis. For a conceptual overview of these relationships, see the [Mindmap](MINDMAP.md).

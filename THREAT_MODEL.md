@@ -68,6 +68,15 @@ Integrated with [🎯 Hack23 AB Threat Modeling Policy](https://github.com/Hack2
 | [📋 Business Continuity Plan](BCPPlan.md) | Resilience | RTO/RPO targets and recovery procedures |
 | [💼 Business Product Document](BUSINESS_PRODUCT_DOCUMENT.md) | Business | Data analytics and risk intelligence products |
 
+### **🌍 Hack23 Civic Tech Ecosystem (cross-repo threat context)**
+
+| Project | Threat-modelling relevance |
+|---------|----------------------------|
+| 🗳️ [Riksdagsmonitor](https://github.com/Hack23/riksdagsmonitor) ([live](https://riksdagsmonitor.com)) | Downstream consumer of CIA exports — share trust boundary at JSON export specs |
+| 🏛️ [EU Parliament Monitor](https://github.com/Hack23/euparliamentmonitor) ([live](https://euparliamentmonitor.com)) | Sibling political-intelligence platform — shared OSINT threat patterns |
+| 🤖 [European Parliament MCP Server](https://github.com/Hack23/European-Parliament-MCP-Server) | Reference for MCP-server attack-surface analysis (OWASP LLM applies) |
+| 🛡️ [Hack23 ISMS-PUBLIC](https://github.com/Hack23/ISMS-PUBLIC) | Apex policies governing this threat model (Information Security Policy, Threat Modeling Policy) |
+
 ---
 
 ## 📊 System Classification & Operating Profile
