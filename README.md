@@ -93,7 +93,7 @@ CIA is the **canonical data backbone** for Hack23's growing portfolio of democra
 |:--------|:-----|:------|:------:|
 | 🕵️ **[Citizen Intelligence Agency (this repo)](https://github.com/Hack23/cia)** | Sweden — full data backbone, 110 DB views, 50 risk rules, JSON export specifications | Java 26 / Spring / Vaadin / PostgreSQL 18 | [![Scorecard](https://api.securityscorecards.dev/projects/github.com/Hack23/cia/badge)](https://scorecard.dev/viewer/?uri=github.com/Hack23/cia) |
 | 🗳️ **[Riksdagsmonitor](https://github.com/Hack23/riksdagsmonitor)** · [riksdagsmonitor.com](https://riksdagsmonitor.com) | Sweden — public news & dashboards, AI agentic newsroom (14 languages), consumes CIA exports nightly | TypeScript / Vite / Chart.js / D3 / GitHub Actions Agentic Workflows | [![Scorecard](https://api.securityscorecards.dev/projects/github.com/Hack23/riksdagsmonitor/badge)](https://scorecard.dev/viewer/?uri=github.com/Hack23/riksdagsmonitor) |
-| 🏛️ **[EU Parliament Monitor](https://github.com/Hack23/euparliamentmonitor)** · [euparliamentmonitor.com](https://euparliamentmonitor.com) | European Parliament — political intelligence, AI newsroom (14 languages) | TypeScript / Vite / gh-aw Agentic Workflows | [![Scorecard](https://api.securityscorecards.dev/projects/github.com/Hack23/euparliamentmonitor/badge)](https://scorecard.dev/viewer/?uri=github.com/Hack23/euparliamentmonitor) |
+| 🏛️ **[EU Parliament Monitor](https://github.com/Hack23/euparliamentmonitor)** · [euparliamentmonitor.com](https://euparliamentmonitor.com) | European Parliament — political intelligence, AI newsroom (14 languages) | TypeScript / Vite / GitHub Actions Agentic Workflows | [![Scorecard](https://api.securityscorecards.dev/projects/github.com/Hack23/euparliamentmonitor/badge)](https://scorecard.dev/viewer/?uri=github.com/Hack23/euparliamentmonitor) |
 | 🤖 **[European Parliament MCP Server](https://github.com/Hack23/European-Parliament-MCP-Server)** | EP Open Data MCP server — 60+ tools, OSINT analytics for AI agents | TypeScript / Model Context Protocol | [![Scorecard](https://api.securityscorecards.dev/projects/github.com/Hack23/European-Parliament-MCP-Server/badge)](https://scorecard.dev/viewer/?uri=github.com/Hack23/European-Parliament-MCP-Server) |
 | 🛡️ **[Hack23 ISMS-PUBLIC](https://github.com/Hack23/ISMS-PUBLIC)** | The apex Information Security Management System — 32+ public policies governing all repositories | Markdown / Mermaid / GitHub-native | — |
 | 🌐 **[Hack23 Homepage](https://github.com/Hack23/homepage)** · [hack23.com](https://hack23.com) | Corporate site, blog, agent biographies, [feature showcase](https://hack23.com/cia-features.html) | TypeScript / Static | — |
@@ -644,18 +644,11 @@ Developer [George Dorn](https://github.com/Hack23/homepage/blob/master/.github/a
 
 ## 📊 Project Classification (per ISMS Classification Framework)
 
+> See the descriptive [Classification table](#classification-per-hack23-classification-framework) above for confidentiality, integrity, availability, privacy and RTO/RPO levels with rationale. The formal badges below cover project type, Business Impact Analysis (BIA) and strategic position.
+
 ### 🎯 Project type
 [![Project Type](https://img.shields.io/badge/Type-Data_Analytics-orange?style=for-the-badge&logo=chart-line&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#project-type-classifications)
 [![Process Type](https://img.shields.io/badge/Process-Operations-brown?style=for-the-badge&logo=cogs&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#project-type-classifications)
-
-### 🔒 Security classification
-[![Confidentiality](https://img.shields.io/badge/Confidentiality-Public-lightgrey?style=for-the-badge&logo=shield&logoColor=black)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#confidentiality-levels)
-[![Integrity](https://img.shields.io/badge/Integrity-High-orange?style=for-the-badge&logo=check-circle&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#integrity-levels)
-[![Availability](https://img.shields.io/badge/Availability-Moderate-yellow?style=for-the-badge&logo=server&logoColor=black)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#availability-levels)
-
-### ⏱️ Business continuity
-[![RTO](https://img.shields.io/badge/RTO-High_(1--4hrs)-yellow?style=for-the-badge&logo=clock&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#rto-classifications)
-[![RPO](https://img.shields.io/badge/RPO-Hourly_(1--4hrs)-lightgreen?style=for-the-badge&logo=database&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#rpo-classifications)
 
 ### 💰 Business impact analysis matrix
 
@@ -792,10 +785,7 @@ Copyright © 2008–2026 **Hack23 AB** (Org.nr 559534-7807). Licensed under the 
 
 ---
 
-**📋 Project Classification:**  
-**🏷️ Classification:** [![Confidentiality: Public](https://img.shields.io/badge/C-Public-lightgrey?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#confidentiality-levels) [![Integrity: High](https://img.shields.io/badge/I-High-orange?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#integrity-levels) [![Availability: Moderate](https://img.shields.io/badge/A-Moderate-yellow?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#availability-levels)  
-**📊 Project Type:** Data Analytics Platform (OSINT) | **⚙️ Process Type:** Operations  
-**🎯 Framework Compliance:** [![ISO 27001](https://img.shields.io/badge/ISO_27001-2022_Aligned-blue?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) [![NIST CSF 2.0](https://img.shields.io/badge/NIST_CSF-2.0_Aligned-green?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) [![CIS Controls](https://img.shields.io/badge/CIS_Controls-v8.1_Aligned-orange?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) [![AWS Well-Architected](https://img.shields.io/badge/AWS-Well_Architected-orange?style=flat-square)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md)
+**📋 Project Classification:** see the [Project Classification](#-project-classification-per-isms-classification-framework) section above for the full BIA matrix and strategic position. Summary: **Data Analytics Platform (OSINT)** · Operations · Confidentiality 🟢 Public · Integrity 🟠 High · Availability 🟡 Moderate · Aligned with **ISO 27001:2022 · NIST CSF 2.0 · CIS Controls v8.1 · AWS Well-Architected**.
 
 ---
 
