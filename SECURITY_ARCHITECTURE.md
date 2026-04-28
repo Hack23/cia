@@ -68,6 +68,15 @@ This document outlines the comprehensive security architecture of the Citizen In
 | [📋 Business Continuity Plan](BCPPlan.md) | Resilience | RTO/RPO targets and recovery procedures |
 | [💼 Business Product Document](BUSINESS_PRODUCT_DOCUMENT.md) | Business | Data analytics and risk intelligence products |
 
+### 🌍 Hack23 Civic Tech Ecosystem (cross-repo security context)
+
+| Project | Security relationship |
+|---------|----------------------|
+| 🗳️ [Riksdagsmonitor](https://github.com/Hack23/riksdagsmonitor) ([live](https://riksdagsmonitor.com)) | Downstream consumer — security boundary at CIA's public JSON export specs |
+| 🏛️ [EU Parliament Monitor](https://github.com/Hack23/euparliamentmonitor) ([live](https://euparliamentmonitor.com)) | Sibling platform — shared ISMS controls and Hack23 secure-development policy |
+| 🤖 [European Parliament MCP Server](https://github.com/Hack23/European-Parliament-MCP-Server) | Reference MCP-server hardening (OWASP LLM, Hack23 AI Policy) |
+| 🛡️ [Hack23 ISMS-PUBLIC](https://github.com/Hack23/ISMS-PUBLIC) | Apex policies (Information Security Policy, Network Security, Cryptography, Access Control) governing this architecture |
+
 ## 🔑 Authentication Architecture
 
 Our multi-layered authentication and authorization process includes MFA (implemented with optional enrollment), login blocking, and role-based access control powered by Spring Security 5.8.16.
