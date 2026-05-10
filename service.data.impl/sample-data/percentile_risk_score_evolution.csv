@@ -1,10 +1,10 @@
 column_name,data_type,distinct_count,min_value,max_value,p1,p10,p25,median,p75,p90,p99
-absence_rate,numeric,400,0.00,100.00,0,0,0,0,22.22,50,100
-rebel_rate,numeric,97,0.00,100.00,0,0,0,0,0,0,2.5
-ballot_count,bigint,237,5,3690,8,14,18,53,99,136,789.899999999996
+absence_rate,numeric,405,0.00,100.00,0,0,0,0,21.95,49.06,100
+rebel_rate,numeric,101,0.00,100.00,0,0,0,0,0,0,2.64440000000002
+ballot_count,bigint,240,5,3690,8,13,18,50,90,136,812.459999999999
 document_count,bigint,79,0,205,0,0,0,0,1,7,39
 violation_count,bigint,13,0,13,0,0,0,0,0,0,7
-violation_categories,bigint,7,0,6,0,0,0,0,0,0,4
-risk_score,numeric,574,0.00,60.00,0,10,10,10,17.7,25,40
-prev_risk_score,numeric,504,0.00,48.33,0,5,10,10,16.43,24.4,40
-risk_score_change,numeric,1641,-40.00,48.33,-26.362,-11.67,-5,0,6.18,13.8,29.9619999999999
+violation_categories,bigint,6,0,6,0,0,0,0,0,0,4
+risk_score,numeric,531,0.00,53.21,0,7.41700000000008,10,10,18,24.75,40
+prev_risk_score,numeric,524,0.00,53.21,0,4.91000000000001,10,10,16.59,24.4,40
+risk_score_change,numeric,1623,-40.00,48.33,-25.8938,-11.67,-5.15,0,6.0675,13.33,26.67

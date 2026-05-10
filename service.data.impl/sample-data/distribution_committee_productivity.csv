@@ -1,19 +1,13 @@
 committee_name,total_documents,propositions_count,reports_count,total_members,docs_per_member,productivity_level
-Konstitutionsutskottet,73,1,70,47,0.96,HIGHLY_PRODUCTIVE
-Civilutskottet,63,0,63,45,0.96,HIGHLY_PRODUCTIVE
+Konstitutionsutskottet,73,1,70,47,0.89,HIGHLY_PRODUCTIVE
+Civilutskottet,63,0,63,45,0.98,HIGHLY_PRODUCTIVE
 Miljö- och jordbruksutskottet,52,0,52,47,0.62,HIGHLY_PRODUCTIVE
-Näringsutskottet,50,2,48,45,0.60,HIGHLY_PRODUCTIVE
+Näringsutskottet,47,2,45,45,0.58,HIGHLY_PRODUCTIVE
 Trafikutskottet,42,1,41,46,0.52,HIGHLY_PRODUCTIVE
 Utrikesutskottet,41,2,39,50,0.46,PRODUCTIVE
 Arbetsmarknadsutskottet,27,1,26,44,0.32,PRODUCTIVE
-Socialutskottet,0,0,0,45,0.00,INACTIVE
-EU-nämnden,0,0,0,99,0.00,INACTIVE
-Kulturutskottet,0,0,0,45,0.00,INACTIVE
-Skatteutskottet,0,0,0,45,0.00,INACTIVE
-Utbildningsutskottet,0,0,0,44,0.00,INACTIVE
-Finansutskottet,0,0,0,46,0.00,INACTIVE
 Försvarsutskottet,0,0,0,48,0.00,INACTIVE
-Socialförsäkringsutskottet,0,0,0,44,0.00,INACTIVE
+Socialförsäkringsutskottet,0,0,0,45,0.00,INACTIVE
 Justitieutskottet,0,0,0,44,0.00,INACTIVE
 Socialutskottet,0,0,0,0,0.00,INACTIVE
 Bostadsutskottet,0,0,0,0,0.00,INACTIVE
@@ -31,3 +25,9 @@ Sammansatta utrikes- och socialutskottet,0,0,0,0,0.00,INACTIVE
 Riksdagen,0,0,0,0,0.00,INACTIVE
 Näringsutskottet,0,0,0,0,0.00,INACTIVE
 Skatteutskottet,0,0,0,0,0.00,INACTIVE
+Socialutskottet,0,0,0,45,0.00,INACTIVE
+EU-nämnden,0,0,0,99,0.00,INACTIVE
+Kulturutskottet,0,0,0,45,0.00,INACTIVE
+Skatteutskottet,0,0,0,45,0.00,INACTIVE
+Utbildningsutskottet,0,0,0,43,0.00,INACTIVE
+Finansutskottet,0,0,0,46,0.00,INACTIVE

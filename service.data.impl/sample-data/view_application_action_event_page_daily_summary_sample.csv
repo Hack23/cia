@@ -1,11 +1,11 @@
 embedded_id_page,embedded_id_created_date,hits,rank_percentage,rank,rn
-adminapplicationconfiguration,2026-03-21 00:00:00,1,1,5,1
-adminmonitoring,2026-03-21 00:00:00,2,0.25,2,2
-AdminMonitoringView,2026-04-11 00:00:00,2,0.5277777777777778,20,1
-adminlanguage,2026-04-11 00:00:00,2,0.5277777777777778,20,2
+AdminDataQualityView,2026-04-11 00:00:00,1,0.8055555555555556,30,1
+committeeranking,2026-04-11 00:00:00,7,0.2777777777777778,11,2
 userhome,2026-04-17 00:00:00,1,0.5,2,1
-main,2026-04-17 00:00:00,2,0,1,2
-userhome,2026-04-18 00:00:00,1,0.25,2,1
-main,2026-04-18 00:00:00,2,0,1,2
-adminagentoperation,2026-04-19 00:00:00,1,0.5,2,1
-userhome,2026-04-19 00:00:00,1,0.5,2,2
+adminagentoperation,2026-04-17 00:00:00,1,0.5,2,2
+adminmonitoring,2026-04-18 00:00:00,1,0.25,2,1
+userhome,2026-04-18 00:00:00,1,0.25,2,2
+userhome,2026-04-19 00:00:00,1,0.5,2,1
+adminagentoperation,2026-04-19 00:00:00,1,0.5,2,2
+documents,2026-05-10 00:00:00,1,0.5,2,1
+politicianranking,2026-05-10 00:00:00,1,0.5,2,2

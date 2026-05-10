@@ -1,13 +1,13 @@
 party_number,party_name,party_id,website,registered_date,head_count,total_documents,avg_documents_per_member,documents_last_year,very_high_activity_members,high_activity_members,medium_activity_members,low_activity_members,party_focused_members,committee_focused_members,individual_focused_members,avg_collaboration_percentage
-4,Centerpartiet,C,www.centerpartiet.se,1995-05-18,256,21618,84.4,1023,42,24,10,16,9,27,56,1.6
-68,Kristdemokraterna,KD,www.kristdemokraterna.se,1996-08-29,128,25692,200.7,468,50,22,13,21,10,62,30,2.8
-2,Arbetarepartiet-Socialdemokraterna,S,www.socialdemokraterna.se,1956-08-02,854,74108,86.8,2903,131,109,61,123,6,7,390,0.7
-55,Miljöpartiet de gröna,MP,www.mp.se,1985-02-04,143,20125,140.7,1354,42,25,19,19,27,29,46,1.6
+1,Moderaterna,M,www.moderat.se,2013-09-06,470,52490,111.7,1882,97,75,44,94,17,64,223,1.5
+110,Sverigedemokraterna,SD,www.sverigedemokraterna.se,1991-02-08,125,20454,163.6,989,39,19,30,22,6,57,47,0.0
+4,Centerpartiet,C,www.centerpartiet.se,1995-05-18,256,21618,84.4,985,42,24,10,16,9,27,56,1.6
 3,Liberalerna,L,www.liberalerna.se,2015-11-30,72,13398,186.1,330,26,13,4,21,12,15,32,2.2
+68,Kristdemokraterna,KD,www.kristdemokraterna.se,1996-08-29,128,25692,200.7,468,50,22,13,21,10,62,30,2.8
+2,Arbetarepartiet-Socialdemokraterna,S,www.socialdemokraterna.se,1956-08-02,855,74122,86.7,2862,131,109,61,123,6,7,390,0.7
 524,Piratpartiet,PP,www.piratpartiet.se,2006-02-15,2,0,0.0,0,0,0,0,0,0,0,0,0.0
-1,Moderaterna,M,www.moderat.se,2013-09-06,470,52484,111.7,1884,97,75,44,94,17,64,223,1.5
 170,NyDemokrati,NYD,"",1991-02-15,24,0,0.0,0,0,0,0,0,0,0,0,0.0
-5,Vänsterpartiet,V,www.vansterpartiet.se,1990-06-15,139,28262,203.3,1105,56,19,14,11,67,32,1,1.6
-232323,Politiskt Vilde,-,"",1971-01-01,29,4090,141.0,311,7,7,6,4,3,8,13,1.7
+55,Miljöpartiet de gröna,MP,www.mp.se,1985-02-04,143,20137,140.8,1316,42,25,19,19,27,29,46,1.6
 3,Folkpartiet liberalerna,FP,www.folkpartiet.se,1990-12-17,191,7389,38.7,0,17,14,4,4,8,9,22,2.2
-110,Sverigedemokraterna,SD,www.sverigedemokraterna.se,1991-02-08,125,20454,163.6,993,39,19,30,22,6,57,47,0.0
+5,Vänsterpartiet,V,www.vansterpartiet.se,1990-06-15,138,28012,203.0,1050,55,19,14,11,66,32,1,1.6
+232323,Politiskt Vilde,-,"",1971-01-01,30,4363,145.4,334,8,7,6,4,4,8,13,1.6

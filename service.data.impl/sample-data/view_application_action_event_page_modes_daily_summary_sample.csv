@@ -1,11 +1,11 @@
 embedded_id_page,embedded_id_page_mode,embedded_id_created_date,hits,rank_percentage,rank,rn
-adminapplicationconfiguration,"",2026-03-21 00:00:00,1,1,5,1
-userhome,OVERVIEW,2026-03-21 00:00:00,2,0.25,2,2
-ministry,GOVERNMENT_BODIES_HEADCOUNT,2026-04-11 00:00:00,1,0.2857142857142857,33,1
-document,DOCUMENTDATA,2026-04-11 00:00:00,1,0.2857142857142857,33,2
-userhome,OVERVIEW,2026-04-17 00:00:00,1,0.5,2,1
-main,Overview,2026-04-17 00:00:00,2,0,1,2
+party,DOCUENTACTIVITY,2026-04-11 00:00:00,1,0.2857142857142857,33,1
+committee,DOCUMENT_HISTORY,2026-04-11 00:00:00,1,0.2857142857142857,33,2
+adminagentoperation,"",2026-04-17 00:00:00,1,0.5,2,1
+userhome,OVERVIEW,2026-04-17 00:00:00,1,0.5,2,2
 adminapplicationconfiguration,"",2026-04-18 00:00:00,1,0.25,2,1
-adminmonitoring,"",2026-04-18 00:00:00,1,0.25,2,2
-main,Overview,2026-04-19 00:00:00,2,0,1,1
-userhome,OVERVIEW,2026-04-19 00:00:00,1,0.5,2,2
+adminagentoperation,"",2026-04-18 00:00:00,1,0.25,2,2
+adminagentoperation,"",2026-04-19 00:00:00,1,0.5,2,1
+main,Overview,2026-04-19 00:00:00,2,0,1,2
+main,Overview,2026-05-10 00:00:00,2,0,1,1
+documents,OVERVIEW,2026-05-10 00:00:00,1,0.5,2,2

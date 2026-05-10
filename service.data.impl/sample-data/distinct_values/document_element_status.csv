@@ -1,42 +1,43 @@
 value,count
-"",112353
-Klar,40441
+"",112629
+Klar,40524
 Ank T,25591
-Besvarad,22076
+Besvarad,22177
 korrekturläst,22058
-inträffat,20707
-Inkommen,20562
+inträffat,20782
+Inkommen,20633
 Trycklov,10630
 hämtad,6708
-Webbpublicering,4817
-Hänvisad,4133
-planerat,3132
+Webbpublicering,4879
+Hänvisad,4144
+planerat,3202
 hämtad_2,2564
-Publicerad,2482
-Skickad,1848
-justerat,1834
+Publicerad,2500
+Skickad,1868
+justerat,1846
 titel,1536
 ok,1526
-Återtagen,1132
+Återtagen,1137
 Tidigare riksdagsledamot,1116
 DokTextExtraktor,893
 saknas,474
 Avslutad,456
-Avslag,427
+Avslag,428
 Inga uppdrag,405
-Tjänstgörande riksdagsledamot,328
-Utgången,319
+Tjänstgörande riksdagsledamot,329
+Tillgänglig ersättare,327
+Utgången,320
 ANKT,292
 slutlig,283
+doktextextraktor,281
 Inte besvarad,271
-doktextextraktor,270
 Original,262
-Pågående,253
+Pågående,256
 digitaliserad,225
 Tidigare ersättare,202
+Status saknas,177
 Granskad,173
 Upphävd,139
-Tillgänglig ersättare,133
 Reviderad kallelse o,128
 Kallelse och föredra,125
 Avslutad 2008,124
@@ -52,9 +53,9 @@ preliminär,95
 Avslutad 2010,90
 Avslutad 2011,87
 Avslutad 2002,80
+Gällande,80
 Avslutad 2017,79
 Avslutad 2021,79
-Gällande,79
 Avslutad 2018,78
 Avslutad 2012,77
 Avslutad 2013,70
@@ -67,7 +68,6 @@ Avslutad 2001,57
 fel,53
 Avslutad 2019,50
 Bifall,34
-Status saknas,32
 Avgången riksdagsledamot,30
 felkonverterat,28
 Tidigare europaparlamentariker,25
@@ -85,11 +85,9 @@ Förfallen,12
 Delvis bifall,9
 LagdTillHandlingarna,6
 Tidigare riksrevisor i Riksrevisionen,6
-Tjänstgörande ersättare,5
 Utan åtgärd,5
 Tidigare justitieombudsman i Riksdagens ombudsmän,4
 Tidigare ställföreträdande ombudsman i Riksdagens ombudsmän,4
-Tjänstledig riksdagsledamot,4
 Avliden  1989-05-08,3
 Delvis avslag,3
 Ledamot i Riksbanksfullmäktige,3
@@ -98,6 +96,8 @@ Tidigare ledamot i Nämnden för lön till riksdagens ombudsmän och riksrevisor
 Tidigare ledamot i Riksbanksfullmäktige,3
 Tidigare riksrevisor med administrativt ansvar i Riksrevisionen,3
 Tidigare utrikesminister,3
+Tjänstgörande ersättare,3
+Tjänstledig riksdagsledamot,3
 Undanröjande/återför,3
 hï¿½mtad,3
 ojusterat,3
@@ -115,7 +115,6 @@ Ledamot i Riksdagens arvodesnämnd,2
 Ledamot i Statsrådsarvodesnämnden,2
 Ledamot i Styrelsen för Stiftelsen Riksbankens Jubileumsfond,2
 Partisekreterare,2
-Preliminär,2
 Reviderad kallelse 2,2
 Ställföreträdande justitieombudsman i Riksdagens ombudsmän,2
 Suppleant i Riksbanksfullmäktige,2

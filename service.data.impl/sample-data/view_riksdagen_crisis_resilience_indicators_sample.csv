@@ -1,408 +1,410 @@
 person_id,first_name,last_name,party,crisis_period_votes,crisis_absence_rate,crisis_party_discipline,normal_period_votes,normal_absence_rate,absence_rate_change,resilience_score,resilience_classification,pressure_performance_assessment
-0502688311316,Anna,Vikström,S,3618,18.85,99.92,652,6.60,12.26,68.8118,RESILIENT,Good crisis response - reliable during high-activity periods
-0546731406922,Rebecka,Le Moine,MP,2775,35.82,99.96,460,21.96,13.86,50.2808,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0482689573825,Björn,Wiechel,S,3980,23.52,99.97,708,21.47,2.05,74.4086,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0440673458216,Ulrika,Liljeberg,C,1309,12.83,99.92,257,9.34,3.50,83.5937,RESILIENT,Good crisis response - reliable during high-activity periods
-0880018341619,Thomas,Morell,SD,3185,15.79,100.00,534,11.99,3.81,80.3995,RESILIENT,Good crisis response - reliable during high-activity periods
-023767922422,Mats,Persson,L,3465,32.61,99.94,647,29.68,2.94,64.3940,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0184968091618,Jan,Riise,MP,1309,8.33,99.92,257,16.34,-8.02,83.5812,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0409655917321,Jakob,Olofsgård,L,1946,15.72,100.00,331,11.18,4.55,79.7291,RESILIENT,Good crisis response - reliable during high-activity periods
-0860364634014,Mattias,Ottosson,S,4695,17.10,100.00,832,11.42,5.69,77.2117,RESILIENT,Good crisis response - reliable during high-activity periods
-065105536026,Niklas,Karlsson,S,4695,24.83,100.00,832,13.70,11.13,64.0321,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0947572086414,Anne-Li,Sjölund,C,2120,14.01,100.00,383,12.27,1.74,84.2527,RESILIENT,Good crisis response - reliable during high-activity periods
-0706528359123,Linus,Sköld,S,3950,28.03,99.95,615,17.07,10.95,60.9719,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0930305890123,Sara-Lena,Bjälkö,-,250,0.00,61.20,552,9.60,-9.60,70.3986,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0599661454115,Lena,Bäckelin,S,293,0.00,100.00,111,0.00,0.00,100.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0475778011711,Hans,Ekström,S,6283,21.76,99.90,1105,15.57,6.19,71.9559,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0348383585915,Marielle,Lahti,MP,324,30.25,100.00,55,20.00,10.25,59.5062,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0852475703226,Lorena,Delgado Varas,-,250,17.20,83.60,534,22.10,-4.90,61.5026,RESILIENT,Good crisis response - reliable during high-activity periods
-0371013828421,Lars,Larsson,SD,0,,,3,0.00,,,INSUFFICIENT_DATA,Insufficient crisis period data for assessment
-0130789484021,Mattias,Bäckström Johansson,SD,4695,21.83,99.94,832,13.10,8.73,69.3736,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0204443909416,Johan,Hedin,C,3297,31.82,100.00,574,12.89,18.92,49.2584,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0254021157518,Lars,Andersson,SD,3185,26.31,99.97,534,8.99,17.32,56.3357,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0613297818326,Mathias,Tegnér,S,4063,22.10,100.00,747,16.60,5.50,72.3959,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0369212790927,Sofia,Skönnbrink,S,1309,24.14,100.00,257,10.89,13.25,62.6138,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0721509806321,Nooshi,Dadgostar,V,4695,32.93,100.00,730,28.49,4.44,62.6359,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0545733815610,Patrick,Reslow,SD,3185,31.08,100.00,1105,10.41,20.68,48.2408,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0211757295524,Josef,Fransson,SD,5763,17.56,99.90,1050,15.05,2.51,79.8229,RESILIENT,Good crisis response - reliable during high-activity periods
-0340418158820,Daniel,Persson,SD,1309,7.18,100.00,257,3.89,3.29,89.5289,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-055257333723,Oscar,Sjöstedt,SD,4695,20.06,100.00,832,10.70,9.37,70.5693,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0627450126815,Kajsa,Fredholm,V,1309,11.31,100.00,257,4.28,7.03,81.6675,RESILIENT,Good crisis response - reliable during high-activity periods
-0545733815610,Patrick,Reslow,SD,578,0.69,98.27,1105,10.41,-9.72,87.8627,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0522240580423,Arin,Karapet,-,3132,27.27,99.94,534,21.35,5.92,66.7506,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-033935884729,Martina,Johansson,C,3185,26.75,99.94,534,12.73,14.02,59.1705,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0692076685824,Camilla,Hansén,MP,3101,23.80,99.87,511,22.70,1.10,74.9740,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0132818093422,Rickard,Nordin,C,5683,24.99,99.93,1014,21.50,3.49,71.4550,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0779329190517,Kjell,Jansson,M,3185,29.45,100.00,534,12.17,17.28,53.2712,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-082139988919,Kerstin,Hermansson,C,103,7.77,100.00,1,0.00,7.77,84.4660,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0313390540217,Ingela,Nylund Watz,S,6283,31.77,99.98,1105,25.52,6.25,61.9679,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-051207517226,Jimmie,Åkesson,SD,6192,64.89,99.98,1052,59.70,5.19,44.7895,LOW_RESILIENCE,Poor crisis response - high absence during high-activity periods
-0986091320811,Catarina,Deremar,C,2423,30.33,99.96,353,10.48,19.85,49.7717,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0183544538819,Patrik,Jönsson,SD,3185,20.16,100.00,559,12.70,7.46,72.3873,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0554852839719,Mikael,Dahlqvist,S,4695,17.42,99.87,832,11.54,5.88,76.5651,RESILIENT,Good crisis response - reliable during high-activity periods
-0861521539920,Aron,Emilsson,SD,4695,26.18,99.96,760,21.58,4.60,69.1828,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0249730539015,Anders,Karlsson,C,1309,10.16,99.85,210,15.71,-5.55,84.1329,RESILIENT,Good crisis response - reliable during high-activity periods
-0378597308227,Camilla,Brodin,KD,3185,25.49,99.97,534,10.86,14.63,59.8410,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0947134226212,Markus,Kauppinen,S,318,14.78,100.00,51,27.45,-12.67,72.5490,RESILIENT,Good crisis response - reliable during high-activity periods
-0526748040023,Ludvig,Aspling,SD,3128,36.41,99.87,534,19.66,16.75,46.7090,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0793372891224,Noria,Manouchi,M,3185,31.05,99.97,534,21.35,9.70,59.2133,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-098412828516,Magdalena,Andersson,S,1309,62.26,100.00,257,45.91,16.35,33.6531,LOW_RESILIENCE,Poor crisis response - high absence during high-activity periods
-0358514648113,Marléne,Lund Kopparklint,-,3132,44.60,99.97,534,33.15,11.46,43.9060,LOW_RESILIENCE,Poor crisis response - high absence during high-activity periods
-025967059622,Magnus,Manhammar,S,4121,28.22,100.00,775,18.32,9.90,61.8800,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0905254899611,Louise,Thunström,S,1309,14.29,99.77,257,11.67,2.61,82.8725,RESILIENT,Good crisis response - reliable during high-activity periods
-0970709885516,Inga-Lill,Sjöblom,S,1566,33.40,100.00,384,20.83,12.56,54.0390,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0202626512110,Lars-Ingvar,Ljungman,M,250,0.00,100.00,72,0.00,0.00,100.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0961483563503,Gudrun,Nordborg,V,2466,36.58,99.88,354,38.14,-1.56,61.7428,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0358278412329,Björn,Petersson,S,2335,39.70,100.00,343,25.66,14.04,46.2555,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0653578338415,Agneta,Nilsson,S,568,0.00,99.82,75,0.00,0.00,99.8239,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-028954589415,Ann-Sofie,Alm,M,3185,37.90,99.97,534,24.91,12.99,49.0822,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0744993950910,Anders,Ygeman,S,5626,9.70,99.77,1281,11.24,-1.54,88.5277,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0845133742919,Lili,André,KD,1309,9.24,100.00,257,5.84,3.41,87.3492,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0456680171315,Charlotte,Quensel,SD,3185,18.08,99.97,534,7.87,10.22,71.6642,RESILIENT,Good crisis response - reliable during high-activity periods
-0389795960120,Martin,Marmgren,MP,637,21.04,100.00,16,0.00,21.04,57.9278,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0204240926023,Markus,Wiechel,SD,5469,24.30,99.95,910,23.52,0.78,74.8604,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0709911904721,Johanna,Rantsi,M,1522,4.80,100.00,257,0.00,4.80,90.4074,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0112333043027,Rasmus,Giertz,SD,1309,7.79,99.92,257,10.89,-3.10,89.0287,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0810852280213,Marie-Louise,Hänel Sandström,M,3185,26.94,100.00,534,12.73,14.20,58.8565,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0371882294919,Carita,Boulwén,SD,1309,15.36,100.00,257,17.90,-2.54,82.1012,RESILIENT,Good crisis response - reliable during high-activity periods
-0990587970528,Zinaida,Kajevic,S,324,0.00,100.00,31,45.16,-45.16,70.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-088461404416,Richard,Herrey,M,671,12.07,100.00,49,32.65,-20.58,67.3469,RESILIENT,Good crisis response - reliable during high-activity periods
-0977592683711,Magnus,Jacobsson,KD,3185,32.06,99.97,534,26.78,5.28,62.6346,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0226631365426,Mikael,Larsson,C,3185,26.22,100.00,534,15.73,10.49,63.2971,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0144048894712,Ellen,Juntti,M,5919,16.96,99.95,1093,8.42,8.55,74.4419,RESILIENT,Good crisis response - reliable during high-activity periods
-0607691439013,Karin,Enström,M,7420,22.49,99.99,1583,22.74,-0.25,77.2449,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0496341906327,Alexandra,Völker,S,4060,23.79,100.00,709,24.12,-0.33,75.8815,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0506541436524,Sanne,Lennström,S,4234,23.71,100.00,684,15.35,8.36,67.9253,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0984153507725,Gustaf,Göthberg,M,1309,23.83,100.00,257,42.41,-18.58,57.5875,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0426843954410,Ulrik,Bergman,M,12,0.00,100.00,34,0.00,0.00,100.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0537400268911,Caroline,Helmersson Olsson,S,7058,15.84,99.99,1468,10.08,5.76,78.3872,RESILIENT,Good crisis response - reliable during high-activity periods
-0333193598116,Bo,Broman,SD,3185,29.64,100.00,534,18.91,10.73,59.6360,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0768554866215,Katja,Nyberg,-,3107,23.40,100.00,534,15.73,7.67,68.9328,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0737824098113,Magnus,Berntsson,KD,1309,9.40,100.00,257,15.56,-6.17,84.4358,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-065701062615,Runar,Filper,SD,4695,26.24,99.98,832,12.02,14.22,59.5166,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0331791853028,Yasmine,Eriksson,SD,3185,30.17,100.00,534,20.41,9.76,60.0666,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0589561178823,Peter,Hedberg,S,1309,6.04,100.00,257,21.79,-15.75,78.2101,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0504851635310,Daniel,Helldén,MP,1309,25.90,100.00,257,26.85,-0.95,73.1518,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0509415296421,Kjell-Arne,Ottosson,KD,3185,33.09,100.00,534,22.66,10.43,56.4739,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0161616238120,Lina,Nordquist,L,3185,37.17,100.00,534,28.46,8.71,54.1159,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0980092192122,Joar,Forssell,L,3007,25.11,99.97,479,17.95,7.15,67.7047,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0469384565811,Anders,Alftberg,SD,1309,2.44,100.00,257,19.46,-17.01,80.5447,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0720250789315,Mats,Wiking,S,3185,29.73,99.97,534,16.10,13.63,56.6072,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0694917698222,Michael,Rubbestad,SD,3185,37.36,100.00,534,19.66,17.70,44.9376,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0178323535715,Johnny,Svedin,SD,1309,2.98,100.00,257,12.84,-9.86,87.1595,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0737666060225,Joakim,Järrebring,S,3185,30.24,99.97,534,19.29,10.95,58.7860,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0388994689418,Malin,Östh,V,638,5.80,100.00,149,10.74,-4.94,89.2617,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0819601620927,Annika,Hirvonen,MP,3771,24.87,99.95,699,14.02,10.85,64.2189,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0838085832923,Ann-Sofie,Lifvenhage,M,2922,31.86,100.00,485,19.59,12.27,55.8642,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0678597762924,Martin,Westmont,SD,1309,0.00,100.00,257,12.84,-12.84,87.1595,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0323000187920,Solange,Olame Bayibsa,S,520,79.23,100.00,55,32.73,46.50,20.0000,LOW_RESILIENCE,Poor crisis response - high absence during high-activity periods
-0316505710324,Janine,Alm Ericson,MP,4236,25.66,99.95,799,18.15,7.51,66.7785,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0729710260118,Helena,Bouveng,M,7232,18.63,99.93,1505,13.29,5.34,75.9688,RESILIENT,Good crisis response - reliable during high-activity periods
-0671571847522,Mattias,Eriksson Falk,SD,1309,26.13,100.00,257,33.85,-7.73,66.1479,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0964730940415,Johan,Andersson,S,6283,17.01,99.98,1105,10.59,6.43,76.5440,RESILIENT,Good crisis response - reliable during high-activity periods
-0344222203323,Dennis,Dioukarev,SD,4695,18.79,100.00,832,7.81,10.97,70.2406,RESILIENT,Good crisis response - reliable during high-activity periods
-0879782396219,Olle,Thorell,S,7071,27.51,99.96,1450,20.28,7.23,65.2200,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0283284978818,Markus,Kallifatides,S,1309,6.19,100.00,257,3.50,2.69,91.1261,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0604604418610,Jacob,Risberg,MP,1309,8.33,99.92,257,25.29,-16.96,74.6318,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0610162335824,Niklas,Sigvardsson,S,1309,2.75,99.92,257,5.45,-2.70,94.4761,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0937688366013,Peter,Hultqvist,S,3846,17.71,99.87,930,11.94,5.77,76.3921,RESILIENT,Good crisis response - reliable during high-activity periods
-0304498908019,Gudrun,Brunegård,KD,3055,31.95,99.93,485,22.47,9.47,58.5135,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0538387395826,Mats,Green,M,4695,22.17,99.98,832,18.27,3.90,73.9029,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0648224557612,Åsa,Karlsson,S,3031,31.61,100.00,521,20.73,10.88,57.5159,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-086684470825,Tobias,Andersson,SD,3185,18.18,99.97,534,8.99,9.19,72.5994,RESILIENT,Good crisis response - reliable during high-activity periods
-0534870997412,Åsa,Hartzell,M,306,0.00,100.00,97,4.12,-4.12,95.8763,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0641953830512,Magnus,Persson,SD,4695,14.95,99.98,832,13.34,1.61,83.4159,RESILIENT,Good crisis response - reliable during high-activity periods
-0760500234712,Monica,Haider,S,4695,26.03,99.98,832,13.58,12.45,61.5051,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0452755722723,Björn,Söder,SD,6283,28.28,100.00,1105,24.98,3.31,68.4120,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0523902030928,Aylin,Nouri,S,2838,36.50,99.96,433,27.94,8.56,54.9002,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0191189790215,Peter,Ollén,M,1309,8.48,100.00,257,8.56,-0.08,91.4397,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0985426914829,Anna,Lasses,C,1309,20.17,99.92,257,10.89,9.27,70.4824,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0710595759638,Aida,Birinxhiku,S,1309,2.22,100.00,257,1.17,1.05,96.7365,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0521260619925,Sofia,Amloh,S,1946,11.25,100.00,331,12.39,-1.13,87.6133,RESILIENT,Good crisis response - reliable during high-activity periods
-0766496753128,Fredrik,Malm,L,6795,25.53,99.93,1419,20.23,5.31,69.0850,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0497217816024,Markus,Selin,S,3185,18.08,99.97,534,11.99,6.10,75.7841,RESILIENT,Good crisis response - reliable during high-activity periods
-0448973586529,Adrian,Magnusson,S,1309,7.41,100.00,257,5.45,1.96,90.6270,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0992473266516,Larry,Söder,KD,4529,16.25,99.98,779,12.97,3.29,80.4416,RESILIENT,Good crisis response - reliable during high-activity periods
-0105632258713,Boriana,Åberg,M,6389,29.49,99.98,1151,19.11,10.37,60.1218,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0373223420310,Niclas,Malmberg,MP,1510,6.89,100.00,298,0.00,6.89,86.2252,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-071293048118,Thomas,Ragnarsson,M,1309,4.51,100.00,257,3.89,0.62,94.8765,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0803753212716,Richard,Jomshof,SD,6283,27.69,99.98,1105,17.92,9.78,62.5151,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0161597857912,Tuve,Skånberg,KD,6626,18.26,99.89,1143,11.11,7.15,74.4827,RESILIENT,Good crisis response - reliable during high-activity periods
-0279488554424,Alexander,Christiansson,SD,3185,33.94,99.97,534,13.30,20.64,45.3838,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0628005785225,Jörgen,Berglund,M,3185,25.87,100.00,534,19.66,6.21,67.9204,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0525562399327,Caroline,Högström,M,1054,16.32,100.00,257,5.45,10.87,72.8099,RESILIENT,Good crisis response - reliable during high-activity periods
-0174490514929,Marcus,Andersson,S,624,8.65,100.00,82,0.00,8.65,82.6923,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0653904370212,Fredrik,Olovsson,S,7605,16.42,99.91,1649,11.76,4.66,78.8258,RESILIENT,Good crisis response - reliable during high-activity periods
-0492644357418,Per,Söderlund,SD,3185,29.51,100.00,485,21.24,8.28,62.2104,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0522054204918,Mattias,Karlsson,M,3185,35.32,100.00,534,21.91,13.41,51.2665,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0951905661227,Christofer,Bergenblock,C,1309,1.99,100.00,257,10.89,-8.91,89.1051,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0456522027421,Linnéa,Wickman,S,1309,15.74,100.00,257,22.57,-6.83,77.4319,RESILIENT,Good crisis response - reliable during high-activity periods
-0962410717322,Sultan,Kayhan,S,2683,30.19,99.89,377,10.88,19.31,50.3833,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0519740099915,Saila,Quicklund,M,6283,10.65,99.98,1105,6.79,3.86,85.4759,RESILIENT,Good crisis response - reliable during high-activity periods
-0792733370419,Magnus,Oscarsson,KD,4695,29.61,99.89,832,16.71,12.90,57.3883,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0257313105220,Arber,Gashi,S,638,10.19,100.00,149,7.38,2.81,87.0064,RESILIENT,Good crisis response - reliable during high-activity periods
-0398471271026,Frida,Tånghag,V,251,0.00,100.00,26,0.00,0.00,100.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0389220391128,Christian,Carlsson,KD,2166,25.48,100.00,327,14.98,10.50,64.0152,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0488332307829,Abraham,Halef,S,532,78.95,100.00,126,25.40,53.55,20.0000,LOW_RESILIENCE,Poor crisis response - high absence during high-activity periods
-0866055333028,Alexandra,Anstrell,M,3234,32.37,99.97,574,17.60,14.78,52.8154,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0545733815610,Patrick,Reslow,SD,2520,12.70,99.96,1105,10.41,2.29,84.9707,RESILIENT,Good crisis response - reliable during high-activity periods
-0103624617217,Helén,Pettersson,S,7232,22.23,99.99,1505,14.95,7.28,70.4673,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0899169869710,Helena,Gellerman,L,3185,35.32,100.00,534,21.72,13.60,51.0792,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0466653728712,Denis,Begic,S,3185,38.15,100.00,534,21.91,16.24,45.6150,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0170585430421,Jimmy,Ståhl,SD,4695,21.81,99.94,832,8.77,13.04,65.0893,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0395154929710,Anders,Frimert,S,637,8.63,100.00,41,0.00,8.63,82.7316,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0939158389321,Samuel,Gonzalez Westling,V,1309,17.72,100.00,257,26.07,-8.35,73.9300,RESILIENT,Good crisis response - reliable during high-activity periods
-0765747165821,Marcus,Jonsson,KD,0,,,47,2.13,,,INSUFFICIENT_DATA,Insufficient crisis period data for assessment
-0410231576416,Lars,Johnsson,M,1309,9.17,100.00,257,0.00,9.17,81.6654,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0236597884217,Rose-Marie,Carlsson,S,1427,13.81,99.93,306,16.34,-2.53,83.5901,RESILIENT,Good crisis response - reliable during high-activity periods
-0966063008623,Leonid,Yurkovskiy,SD,1309,7.79,100.00,257,5.06,2.73,89.4740,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0972636989226,Dzenan,Cisija,S,1309,9.17,100.00,257,1.95,7.22,83.6109,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0655418111118,Laila,Olsen,S,271,13.28,100.00,31,0.00,13.28,73.4317,RESILIENT,Good crisis response - reliable during high-activity periods
-0121939297619,Jamal,El-Haj,-,3153,29.91,99.94,689,10.16,19.75,50.2802,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
 0645111757928,Elin,Gustafsson,S,1876,41.95,100.00,277,18.77,23.18,34.8706,LOW_RESILIENCE,Poor crisis response - high absence during high-activity periods
-0836001490919,Ulrika,Heie,C,7232,23.26,99.99,1505,26.38,-3.12,73.6074,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0665360289423,Fredrik,Stenberg,S,708,20.06,100.00,86,0.00,20.06,59.8870,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0859909330720,Sanna,Backeskog,S,1309,16.20,100.00,257,10.12,6.08,77.7256,RESILIENT,Good crisis response - reliable during high-activity periods
-0776705932527,Ciczie,Weidby,V,3185,29.45,100.00,534,11.24,18.21,52.3349,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0606863154419,Mats,Berglund,MP,2224,35.70,100.00,348,19.54,16.16,48.1374,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0494843794418,Martin,Ådahl,C,3185,34.32,99.81,534,26.97,7.35,58.1437,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-083953568015,Malin,Höglund,M,1352,4.96,100.00,309,14.56,-9.61,85.4369,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0256716955026,Serkan,Köse,S,4430,21.58,100.00,832,13.46,8.12,70.3013,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0963046628824,Christian,Lindefjärd,SD,638,2.35,100.00,149,0.67,1.68,95.9689,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0652497579621,Johanna,Haraldsson,S,4695,18.74,100.00,832,10.58,8.17,73.0902,RESILIENT,Good crisis response - reliable during high-activity periods
-030110584526,Caroline,Täljeblad,V,0,,,19,42.11,,,INSUFFICIENT_DATA,Insufficient crisis period data for assessment
-0246927519019,Karin,Rågsjö,V,4695,15.36,100.00,832,13.94,1.41,83.2288,RESILIENT,Good crisis response - reliable during high-activity periods
-011548866929,Elin,Nilsson,L,1309,17.19,100.00,257,14.79,2.40,80.4086,RESILIENT,Good crisis response - reliable during high-activity periods
-0427321850912,Lars Mejern,Larsson,S,7379,18.24,99.96,1541,13.37,4.87,76.8454,RESILIENT,Good crisis response - reliable during high-activity periods
-0472349361027,Kalle,Olsson,S,4402,24.65,99.98,708,20.90,3.74,71.5855,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0290003389021,Chris,Dahlqvist,SD,250,0.00,100.00,72,9.72,-9.72,90.2778,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0254695027922,Malcolm Momodou,Jallow,V,3650,43.51,100.00,634,30.76,12.75,43.7434,LOW_RESILIENCE,Poor crisis response - high absence during high-activity periods
-0663840649717,Anette,Rangdag,SD,520,9.42,99.81,55,14.55,-5.12,85.2622,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0955748436811,Robert,Stenkvist,SD,4695,10.76,99.94,832,4.45,6.31,82.8710,RESILIENT,Good crisis response - reliable during high-activity periods
-0875221317013,Gunilla,Carlsson,S,8884,18.65,99.97,1800,15.83,2.82,78.4965,RESILIENT,Good crisis response - reliable during high-activity periods
-0494242537816,Hans,Eklind,KD,3185,30.58,100.00,534,17.79,12.79,56.6286,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0362779191527,Erik,Hellsborn,SD,1309,2.75,100.00,257,3.11,-0.36,96.8872,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-037781229619,Staffan,Eklöf,SD,3185,28.32,100.00,534,11.61,16.71,54.9700,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0970259744617,Margareta,Cederfelt,M,7232,35.16,99.96,1505,32.96,2.21,62.5890,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-091303475611,Eric,Palmqvist,SD,3185,29.45,99.94,534,19.10,10.35,60.1372,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0157618290428,Rashid,Farivar,SD,1309,6.88,100.00,257,15.56,-8.69,84.4358,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0615175917521,Kent,Kumpula,SD,893,14.56,100.00,123,13.01,1.55,83.8928,RESILIENT,Good crisis response - reliable during high-activity periods
-0831039938224,Adam,Marttinen,SD,4820,22.05,99.96,853,15.01,7.05,70.8565,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0630820052511,Per-Arne,Håkansson,S,4695,16.14,99.96,832,10.10,6.05,77.7639,RESILIENT,Good crisis response - reliable during high-activity periods
-0248492534018,Pia,Trollehjelm,SD,568,4.58,100.00,72,5.56,-0.98,94.4444,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0903081277919,Helena,Vilhelmsson,C,3185,31.77,100.00,534,27.15,4.62,63.6057,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-041911485722,Magdalena,Thuresson,M,1823,36.81,100.00,428,15.19,21.62,41.5720,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0694273653613,Margareta,Fransson,MP,410,0.49,100.00,74,0.00,0.49,99.0244,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0516528386117,Patrik,Björck,S,7232,18.22,99.93,1505,10.37,7.86,73.8472,RESILIENT,Good crisis response - reliable during high-activity periods
-0122987223112,Lotta,Johnsson Fornarve,V,4695,27.05,99.91,832,20.19,6.86,66.0070,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0828721176319,Sten,Bergheden,M,7232,16.14,100.00,1505,6.84,9.29,74.5706,RESILIENT,Good crisis response - reliable during high-activity periods
-0360187680814,Mats,Hellhoff,SD,638,0.00,100.00,149,0.00,0.00,100.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0112806493429,Fredrik,Saweståhl,M,546,5.68,100.00,77,0.00,5.68,88.6447,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0198917587520,Maj,Karlsson,V,4695,37.29,100.00,832,15.26,22.03,40.6744,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0473783431010,Morgan,Johansson,S,3423,15.66,99.85,828,17.87,-2.22,81.9795,RESILIENT,Good crisis response - reliable during high-activity periods
-0665485817222,Daniel,Bäckström,C,4687,23.45,99.98,769,17.95,5.50,71.0284,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0796312429425,Viktor,Wärnick,M,3185,31.43,100.00,534,24.72,6.71,61.8620,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0822010116020,Jim,Svensk Larm,S,324,16.36,100.00,61,6.56,9.80,73.8413,RESILIENT,Good crisis response - reliable during high-activity periods
-0591020192311,Ulf,Lindholm,SD,1309,6.19,100.00,257,2.72,3.46,90.3479,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0926214745119,Heléne,Björklund,S,3185,33.97,99.97,534,18.54,15.43,50.5644,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0588282566419,Lars,Beckman,M,5615,20.89,99.98,917,10.47,10.42,68.6702,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0202577142527,Matheus,Enholm,SD,3185,29.89,100.00,534,13.86,16.03,54.0775,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0256404677510,Cecilia,Engström,KD,1617,29.87,100.00,304,9.54,20.33,49.7992,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0121939297619,Jamal,El-Haj,-,3153,29.91,99.94,698,10.03,19.88,50.1492,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0140985614421,Peder,Björk,S,1347,3.79,100.00,266,10.15,-6.36,89.8496,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0587736055221,Niels,Paarup-Petersen,C,2876,30.18,99.97,531,20.34,9.84,59.9426,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0616721755222,Louise,Meijer,M,2648,27.83,100.00,442,18.10,9.73,62.4349,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0652497579621,Johanna,Haraldsson,S,4733,18.59,100.00,841,10.46,8.13,73.2780,RESILIENT,Good crisis response - reliable during high-activity periods
+0281670919717,Jörgen,Grubb,SD,3223,23.95,100.00,543,9.94,14.01,62.0391,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0526748040023,Ludvig,Aspling,SD,3166,35.98,99.87,543,19.34,16.64,47.2587,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
 0624994476012,Nermina,Mizimovic,S,286,0.00,99.30,101,29.70,-29.70,69.5977,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-069534526423,Mathias,Bengtsson,KD,1309,18.79,100.00,257,12.84,5.95,75.2545,RESILIENT,Good crisis response - reliable during high-activity periods
-0240670797111,Björn,Tidland,SD,1309,1.76,100.00,257,7.39,-5.64,92.6070,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0926477102420,Cecilia,Rönn,L,1309,10.70,100.00,257,21.40,-10.71,78.5992,RESILIENT,Good crisis response - reliable during high-activity periods
-0228027853620,Vasiliki,Tsouplaki,V,3650,32.60,99.95,622,22.19,10.42,56.9262,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0511863596121,Erica,Nådin,S,411,4.38,100.00,33,0.00,4.38,91.2409,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0440225263920,Robert,Olesen,S,449,6.68,100.00,72,27.78,-21.10,72.2222,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0576122429317,Martin,Melin,L,1163,15.05,100.00,255,7.06,7.99,76.9642,RESILIENT,Good crisis response - reliable during high-activity periods
-0327372175911,Fredrik,Ahlstedt,M,1309,8.33,100.00,257,5.06,3.27,88.4044,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0845783625227,Arwin,Sohrabi,S,73,0.00,100.00,0,,,70.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-049290762318,ClasGöran,Carlsson,S,3929,32.27,99.97,650,15.23,17.04,50.6596,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0619928872229,Laila,Naraghi,S,3790,35.28,100.00,618,27.51,7.77,56.9540,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0852475703226,Lorena,Delgado Varas,-,2935,37.31,99.97,534,22.10,15.21,47.4466,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0281670919717,Jörgen,Grubb,SD,3185,24.24,100.00,534,10.11,14.13,61.6351,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0140985614421,Peder,Björk,S,1309,3.90,100.00,257,10.51,-6.61,89.4942,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0376461485627,Henrik,Edin,L,284,0.00,100.00,0,,,70.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0161972600410,Elsa,Widding,-,178,30.34,100.00,257,30.74,-0.40,69.2607,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0262411569110,Helene,Odenjung,L,623,21.35,100.00,72,0.00,21.35,57.3034,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0987246082523,Paula,Örn,S,347,10.66,100.00,101,3.96,6.70,82.6347,RESILIENT,Good crisis response - reliable during high-activity periods
-0406831930624,Henrik,Vinge,SD,3185,43.01,99.94,534,31.46,11.55,45.3696,LOW_RESILIENCE,Poor crisis response - high absence during high-activity periods
-0832311880029,Erik,Ottoson,M,4661,19.87,99.94,781,9.60,10.26,69.8047,RESILIENT,Good crisis response - reliable during high-activity periods
-027964311318,Karin,Sundin,S,1309,9.47,100.00,257,18.29,-8.82,81.7121,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0301987597720,Liza-Maria,Norlin,KD,457,14.44,99.78,149,14.09,0.35,84.9911,RESILIENT,Good crisis response - reliable during high-activity periods
-0163772273014,Anna,Vedin,M,151,0.00,100.00,12,0.00,0.00,100.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0130640724922,Clara,Aranda,SD,3185,29.58,99.97,534,17.42,12.16,58.2321,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0940980416614,Jan,Ericson,M,7232,16.52,99.96,1505,8.17,8.35,75.0837,RESILIENT,Good crisis response - reliable during high-activity periods
-0245113256029,Daniel,Vencu Velasquez Castro,S,1309,13.37,100.00,257,11.67,1.70,84.9352,RESILIENT,Good crisis response - reliable during high-activity periods
-0457722435319,Tomas,Kronståhl,S,2797,36.15,99.93,438,13.24,22.90,40.8788,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0229627943828,Jytte,Guteland,S,1309,6.57,100.00,257,11.28,-4.71,88.7160,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0938171000810,Annette,Rydell,S,324,0.00,100.00,57,12.28,-12.28,87.7193,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0564126739422,Åsa,Coenraads,M,4974,16.10,99.94,901,6.99,9.11,74.7244,RESILIENT,Good crisis response - reliable during high-activity periods
-0800956862429,Gulan,Avci,L,3765,34.16,99.89,691,21.56,12.59,53.1433,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0265240520811,Leif,Gripestam,M,61,0.00,100.00,52,0.00,0.00,100.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0559925283228,Teres,Lindberg,S,4654,27.01,99.89,810,16.91,10.10,62.7881,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0591055036519,Mauricio,Rojas,L,3369,15.32,99.85,738,10.16,5.15,79.3820,RESILIENT,Good crisis response - reliable during high-activity periods
-0111697351426,Louise,Eklund,L,1309,9.24,99.92,257,15.56,-6.32,84.3594,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0250583732424,Jesper,Skalberg Karlsson,M,2819,7.88,99.96,526,5.32,2.55,89.5375,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0430865615328,Linda,Lindberg,SD,3185,39.34,99.91,534,22.10,17.24,43.3219,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0973782197017,Mikael,Oscarsson,KD,8884,28.86,99.62,1800,23.22,5.64,65.1178,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0926002991620,Pontus,Andersson Garpvall,SD,1946,7.55,99.95,273,2.56,4.99,87.4048,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0930305890123,Sara-Lena,Bjälkö,-,2569,12.26,99.77,552,9.60,2.66,84.8447,RESILIENT,Good crisis response - reliable during high-activity periods
-0161972600410,Elsa,Widding,-,1131,34.31,84.53,257,30.74,3.57,46.6544,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0530425150220,Annika,Strandhäll,S,2137,49.65,99.72,444,40.09,9.56,40.5112,LOW_RESILIENCE,Poor crisis response - high absence during high-activity periods
-0376395541120,Joakim,Sandell,S,2655,31.34,99.92,534,10.67,20.66,47.9246,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0920901966627,Tony,Haddou,V,2934,40.15,99.97,508,20.28,19.87,39.9416,LOW_RESILIENCE,Poor crisis response - high absence during high-activity periods
-0999976269027,Amanda,Palmstierna,MP,1851,60.99,100.00,349,27.79,33.20,20.0000,LOW_RESILIENCE,Poor crisis response - high absence during high-activity periods
-0906620634423,Eleonore,Lundkvist,M,255,0.00,100.00,0,,,70.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-025877594729,John,Widegren,M,3227,21.48,100.00,585,18.29,3.18,75.3405,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0965245623824,Nicklas,Attefjord,MP,459,70.15,100.00,55,1.82,68.33,20.0000,LOW_RESILIENCE,Poor crisis response - high absence during high-activity periods
-0338088431726,Sara,Gille,SD,2470,41.78,100.00,406,15.52,26.26,31.9545,LOW_RESILIENCE,Poor crisis response - high absence during high-activity periods
-0237055280513,Roland,Utbult,KD,6074,24.98,100.00,1105,17.10,7.87,67.1535,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0285527517421,Caroline,Nordengrip,SD,1876,51.44,100.00,277,23.47,27.97,22.0265,LOW_RESILIENCE,Poor crisis response - high absence during high-activity periods
-0522240580423,Arin,Karapet,-,53,0.00,79.25,534,21.35,-21.35,58.6517,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0780214960516,Eva,Lindh,S,3826,30.71,100.00,586,24.23,6.48,62.8102,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0825441263617,Birger,Lahti,V,4695,23.32,99.98,832,12.50,10.82,65.8333,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0222102752213,Stefan,Olsson,M,1309,14.59,100.00,257,8.56,6.03,79.3777,RESILIENT,Good crisis response - reliable during high-activity periods
-0557180142229,Fredrik,Lindahl,SD,3185,29.83,100.00,534,22.85,6.98,63.1918,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0831636664429,Mattias,Karlsson,SD,6283,25.86,99.98,1105,23.53,2.33,71.7866,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0481460392727,Jessica,Wetterling,V,3185,22.42,100.00,534,15.92,6.50,71.0824,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0983984918111,Matilda,Ernkrans,S,6783,10.64,99.94,1504,10.90,-0.26,89.0368,RESILIENT,Good crisis response - reliable during high-activity periods
-0138741628520,Angelika,Bengtsson,SD,4348,19.69,99.95,789,12.55,7.14,73.1271,RESILIENT,Good crisis response - reliable during high-activity periods
-02910042914,Carina,Ödebrink,S,3185,32.34,100.00,534,21.91,10.43,57.2319,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-066036027425,Mikael,Damsgaard,M,2774,28.08,99.96,485,11.75,16.33,55.5521,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0395762282903,Elsemarie,Bjellqvist,S,637,4.40,100.00,41,0.00,4.40,91.2088,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0604811710522,Ida,Drougge,M,4235,24.44,99.95,792,17.93,6.51,69.0037,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0747883322423,Amir,Jawad,L,73,26.03,100.00,0,,,43.9726,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0381853591928,Malte,Tängmark Roos,MP,768,2.34,100.00,72,0.00,2.34,95.3125,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0251136832626,Muharrem,Demirok,C,1309,34.61,100.00,257,26.46,8.15,57.2460,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0412502344925,Ida,Ekeroth Clausson,S,997,9.73,100.00,258,8.14,1.59,88.6812,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0802091197024,Andrea,Andersson Tay,V,1309,6.65,100.00,257,0.00,6.65,86.7074,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0992867772421,Nils,Seye Larsen,MP,638,13.79,100.00,112,12.50,1.29,84.9138,RESILIENT,Good crisis response - reliable during high-activity periods
-0910803550317,Lena,Johansson,S,1309,6.80,100.00,257,3.11,3.69,89.5147,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-025158809026,Ida,Gabrielsson,V,3185,45.18,99.97,534,37.45,7.73,47.0607,LOW_RESILIENCE,Poor crisis response - high absence during high-activity periods
-036926802512,Blåvitt,Elofsson,S,568,0.18,99.82,72,4.17,-3.99,95.6573,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0407081382317,Anna-Caren,Sätherberg,S,4058,25.21,99.93,791,14.41,10.80,63.9193,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0576619284416,Aphram,Melki,C,637,6.59,100.00,66,10.61,-4.01,89.3939,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0506482805418,Isak,From,S,6283,18.84,99.94,1105,6.24,12.60,68.4917,RESILIENT,Good crisis response - reliable during high-activity periods
-0770363683317,Malin,Björk,C,1927,14.89,99.95,279,18.64,-3.74,81.3101,RESILIENT,Good crisis response - reliable during high-activity periods
-0372414474424,Oskar,Svärd,M,1309,5.42,100.00,257,5.45,-0.02,94.5525,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0503363679811,Stefan,Plath,SD,637,12.72,99.84,71,18.31,-5.59,81.5332,RESILIENT,Good crisis response - reliable during high-activity periods
-0345062474310,Mona,Olin,SD,1309,12.15,100.00,257,5.84,6.31,81.5432,RESILIENT,Good crisis response - reliable during high-activity periods
-0127744006318,Cecilia,Gustafsson,M,250,22.00,100.00,72,9.72,12.28,65.7222,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0229350341619,Ilona,Szatmári Waldau,V,3185,32.06,99.97,534,12.36,19.70,48.2151,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0397073482210,Camilla,Mårtensen,L,1230,25.61,100.00,185,14.59,11.02,63.3751,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0985943148917,Victoria,Tiblom,SD,1309,19.48,99.85,257,18.29,1.19,79.1741,RESILIENT,Good crisis response - reliable during high-activity periods
-0853395328224,Lena,Hallengren,S,4605,21.35,99.85,1118,22.00,-0.66,77.8444,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0640627133410,Elisabeth,Falkhaven,MP,1876,40.25,100.00,277,22.02,18.22,41.5313,LOW_RESILIENCE,Poor crisis response - high absence during high-activity periods
-0584183916016,Ulf,Holm,MP,4517,3.30,98.96,1063,4.80,-1.50,94.1617,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-010392780417,Marie,Olsson,S,1368,14.18,100.00,249,1.61,12.57,73.2439,RESILIENT,Good crisis response - reliable during high-activity periods
-0877778793323,Johan,Büser,S,4695,28.39,99.91,832,31.37,-2.98,68.5446,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0418929039326,Patrik,Lundqvist,S,4371,25.49,99.98,728,13.32,12.16,62.3290,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-037561614928,Lawen,Redar,S,4695,25.58,99.85,832,20.31,5.27,69.0026,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0502490570219,Kristina,Axén Olin,M,3185,25.53,100.00,534,13.11,12.42,62.0568,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0360160202728,Emma,Ahlström Köster,M,1596,20.49,100.00,279,9.68,10.81,68.7000,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0834510274913,Charlotte,Nordström,M,1309,12.61,100.00,257,5.06,7.55,79.8483,RESILIENT,Good crisis response - reliable during high-activity periods
-0837394708917,Anders,Ådahl,C,1309,14.51,100.00,257,9.34,5.18,80.3087,RESILIENT,Good crisis response - reliable during high-activity periods
-0847676507229,Stina,Larsson,C,1622,18.93,100.00,304,21.71,-2.78,78.2895,RESILIENT,Good crisis response - reliable during high-activity periods
-0888807074321,Amanda,Lind,MP,1309,38.58,99.85,257,25.29,13.29,47.9809,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0717363246311,Jessica,Stegrud,SD,1309,22.92,100.00,257,38.52,-15.60,61.4786,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0671241874717,Elisabeth,Björnsdotter Rahm,M,3464,29.04,100.00,550,21.64,7.41,63.5532,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0136268785826,Nima,Gholam Ali Pour,SD,1309,2.44,100.00,257,1.17,1.28,96.2781,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0427836082425,Fredrik,Lindstål,C,19,0.00,100.00,52,5.77,-5.77,94.2308,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0802546764724,Åsa,Westlund,S,4423,26.23,99.98,769,11.96,14.26,59.4879,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0227531635413,Lars,Püss,M,3533,30.74,100.00,624,9.46,21.28,47.9776,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0922497728524,Ardalan,Shekarabi,S,1823,16.13,99.95,320,9.38,6.75,77.0656,RESILIENT,Good crisis response - reliable during high-activity periods
-0203877548421,Malin,Larsson,S,3185,25.40,100.00,534,13.48,11.92,62.6825,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0364687971222,Alireza,Akhondi,C,3185,29.54,99.84,534,25.28,4.26,66.0344,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0410640630411,Ulrik,Nilsson,M,2897,9.18,100.00,530,18.49,-9.31,81.5094,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0229760896014,Anders,W Jonsson,C,6283,25.83,99.95,1105,26.24,-0.41,73.7079,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-048561486727,Isabell,Mixter,V,1309,16.35,100.00,257,16.73,-0.38,83.2685,RESILIENT,Good crisis response - reliable during high-activity periods
-0474290584024,Azadeh,Rojhan,S,4534,26.11,99.93,777,24.45,1.66,72.1592,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0294138886823,Martin,Kinnunen,SD,4695,24.79,99.79,832,14.06,10.73,64.2648,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0612916684825,Johan,Löfstrand,S,8446,19.60,99.92,1772,16.65,2.95,77.3748,RESILIENT,Good crisis response - reliable during high-activity periods
-019430605328,Josefin,Malmqvist,M,2873,36.96,100.00,461,20.82,16.14,46.8946,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0499755198526,Mattias,Jonsson,S,6283,25.80,99.92,1105,15.11,10.69,63.4340,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0210444373111,Katarina,Luhr,MP,1309,12.15,100.00,257,1.95,10.20,77.6522,RESILIENT,Good crisis response - reliable during high-activity periods
-0911916463828,Fredrik,Lundh Sammeli,S,6865,21.79,99.97,1266,18.40,3.39,74.7919,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0509830681123,Ida,Karkiainen,S,3910,20.64,100.00,725,12.14,8.50,70.8592,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0802606848923,Mariya,Voyvodova,S,316,8.54,100.00,12,0.00,8.54,82.9114,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0468956880528,Mikael,Eskilandersson,SD,4695,16.68,100.00,832,8.17,8.50,74.8184,RESILIENT,Good crisis response - reliable during high-activity periods
-0121015874810,Torsten,Elofsson,KD,1309,15.74,100.00,257,15.18,0.56,83.7007,RESILIENT,Good crisis response - reliable during high-activity periods
-039102787629,Oliver,Rosengren,M,1309,10.08,100.00,257,4.28,5.80,84.1121,RESILIENT,Good crisis response - reliable during high-activity periods
-0412148992926,Hanna,Westerén,S,4230,21.37,100.00,705,13.05,8.32,70.3073,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0150200797210,Mats,Sander,M,2076,24.37,99.90,546,20.15,4.23,71.3026,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-025931369428,Jonas,Andersson,SD,3185,29.39,100.00,534,10.30,19.09,51.5241,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
 0563922839001,Katarina,Olofsson,SD,57,0.00,100.00,0,,,70.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0119672047211,Madeleine,Atlas,C,250,0.00,100.00,35,0.00,0.00,100.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-02658325625,Angelica,Lundberg,SD,3185,25.81,99.94,534,26.22,-0.41,73.7200,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0890152141226,Nadja,Awad,V,1309,9.85,100.00,257,6.61,3.24,86.9051,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0121939297619,Jamal,El-Haj,-,976,7.07,89.04,689,10.16,-3.09,78.8772,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0287315215921,Mona,Smedman,C,292,12.67,100.00,63,11.11,1.56,85.7686,RESILIENT,Good crisis response - reliable during high-activity periods
-0273506284025,Edward,Riedl,M,6283,14.15,99.95,1105,13.85,0.30,85.4998,RESILIENT,Good crisis response - reliable during high-activity periods
-0602744999917,Elisabeth,Thand Ringqvist,C,1309,25.52,100.00,257,29.18,-3.67,70.8171,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0442073683012,Zara,Leghissa,S,1309,6.26,100.00,257,7.78,-1.52,92.2179,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0803790353229,Azra,Muranovic,S,991,29.57,100.00,206,24.27,5.29,65.1397,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0425115010020,Kadir,Kasirga,S,1742,10.22,99.94,408,9.80,0.41,89.3102,RESILIENT,Good crisis response - reliable during high-activity periods
-0111479807829,Anna,Wallentheim,S,4611,20.80,100.00,777,14.54,6.25,72.9469,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0855286184126,Jessica,Rodén,S,1309,14.97,99.92,257,15.95,-0.98,83.9703,RESILIENT,Good crisis response - reliable during high-activity periods
-07012286624,Daniel,Riazat,-,250,5.60,80.80,832,15.14,-9.54,65.6558,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0271338654822,Ola,Möller,S,3185,30.96,100.00,519,14.26,16.70,52.3430,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0618938634020,Marcus,Wennerström,S,205,7.80,100.00,51,0.00,7.80,84.3902,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0587736055221,Niels,Paarup-Petersen,C,2838,30.58,99.96,522,20.69,9.90,59.4846,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0309480686522,Leila,Ali Elmi,MP,3185,39.00,99.97,512,30.86,8.14,52.8374,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0768554866215,Katja,Nyberg,-,78,100.00,100.00,534,15.73,84.27,20.0000,LOW_RESILIENCE,Poor crisis response - high absence during high-activity periods
-0764949934324,Ulrika,Heindorff,M,2287,31.79,100.00,443,23.70,8.09,60.1253,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0515213566019,Lars,Isacsson,S,1309,7.72,99.92,257,13.23,-5.51,86.6940,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0341628241813,Marianne,Fundahn,S,4695,23.79,100.00,832,14.78,9.01,67.2011,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0973350087929,Patrik,Karlson,L,943,23.12,100.00,149,22.82,0.30,76.5834,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-014744660015,Mikael,Damberg,S,5305,23.41,99.92,1215,23.29,0.12,76.3930,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0469084171710,Ulrika,Westerlund,MP,1309,17.11,100.00,257,6.61,10.50,72.3902,RESILIENT,Good crisis response - reliable during high-activity periods
-0119851690521,David,Perez,SD,2123,16.39,100.00,331,10.57,5.82,77.7902,RESILIENT,Good crisis response - reliable during high-activity periods
-0783069490115,Mirja,Räihä,S,1309,5.58,99.92,257,12.45,-6.87,87.4722,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0220064764318,Camilla,Brunsberg,M,1309,18.79,100.00,204,6.86,11.93,69.2768,RESILIENT,Good crisis response - reliable during high-activity periods
-0405594274208,Ewa,Pihl Krabbe,S,1309,2.37,100.00,257,9.34,-6.97,90.6615,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0880137451720,Emma,Nohrén,MP,2819,24.12,99.86,555,8.29,15.83,59.9023,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0911067396229,Mattias,Vepsä,S,3718,29.32,100.00,481,24.74,4.58,66.1065,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0932000030511,Maria,Stockhaus,M,4695,25.60,99.83,832,17.43,8.17,66.0541,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0339894357417,Jennie,Nilsson,S,5993,8.34,99.82,1351,5.77,2.57,88.9038,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0315499690028,Teresa,Carvalho,S,4081,22.52,100.00,775,17.42,5.10,72.3814,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-075747847023,Gustaf,Lantz,S,3184,24.75,99.97,504,13.29,11.46,63.7648,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0274462857213,Petter,Löberg,S,4779,19.79,99.94,832,14.18,5.61,74.5300,RESILIENT,Good crisis response - reliable during high-activity periods
-0512009811316,Lena,Malm,S,250,0.40,99.20,0,,,68.8000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0433422973328,Kristoffer,Lindberg,S,1309,18.49,100.00,300,19.33,-0.85,80.6667,RESILIENT,Good crisis response - reliable during high-activity periods
+0246927519019,Karin,Rågsjö,V,4733,15.23,100.00,841,13.79,1.44,83.3262,RESILIENT,Good crisis response - reliable during high-activity periods
+0911067396229,Mattias,Vepsä,S,3756,29.02,100.00,490,24.29,4.73,66.2452,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0522240580423,Arin,Karapet,-,3132,27.27,99.94,543,20.99,6.27,66.3968,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0525562399327,Caroline,Högström,M,1092,18.04,100.00,266,5.26,12.78,69.1826,RESILIENT,Good crisis response - reliable during high-activity periods
+0962410717322,Sultan,Kayhan,S,2683,30.19,99.89,377,10.88,19.31,50.3833,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0860364634014,Mattias,Ottosson,S,4733,16.97,100.00,841,11.30,5.67,77.3641,RESILIENT,Good crisis response - reliable during high-activity periods
+0202626512110,Lars-Ingvar,Ljungman,M,288,4.51,100.00,79,8.86,-4.35,91.1392,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0251136832626,Muharrem,Demirok,C,1347,33.63,100.00,266,25.56,8.07,58.3033,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0903081277919,Helena,Vilhelmsson,C,3223,31.40,100.00,543,26.70,4.70,63.9049,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0545733815610,Patrick,Reslow,SD,3223,30.72,100.00,1114,10.32,20.39,48.8897,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0880137451720,Emma,Nohrén,MP,2857,23.80,99.86,564,8.16,15.65,60.4136,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+010643534813,Eric,Westroth,SD,3223,26.22,100.00,543,12.89,13.33,60.4557,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0130640724922,Clara,Aranda,SD,3223,29.23,99.97,543,17.13,12.10,58.6412,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0591055036519,Mauricio,Rojas,L,3407,15.15,99.85,747,10.04,5.11,79.6028,RESILIENT,Good crisis response - reliable during high-activity periods
+0236597884217,Rose-Marie,Carlsson,S,1465,13.45,99.93,315,15.87,-2.43,84.0587,RESILIENT,Good crisis response - reliable during high-activity periods
+0607691439013,Karin,Enström,M,7458,22.38,99.99,1592,22.61,-0.23,77.3735,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0852475703226,Lorena,Delgado Varas,-,288,14.93,78.13,543,21.73,-6.80,58.2689,RESILIENT,Good crisis response - reliable during high-activity periods
+025877594729,John,Widegren,M,3265,21.23,100.00,594,18.01,3.21,75.5632,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0904448094023,Linus,Lakso,MP,1023,16.32,100.00,211,8.06,8.27,75.4078,RESILIENT,Good crisis response - reliable during high-activity periods
+0161972600410,Elsa,Widding,-,178,30.34,100.00,266,29.70,0.64,69.0251,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0452755722723,Björn,Söder,SD,6321,28.11,100.00,1114,24.78,3.34,68.5503,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0855286184126,Jessica,Rodén,S,1347,14.55,99.93,266,15.41,-0.86,84.5122,RESILIENT,Good crisis response - reliable during high-activity periods
+0521260619925,Sofia,Amloh,S,1984,12.30,100.00,340,12.06,0.24,87.4620,RESILIENT,Good crisis response - reliable during high-activity periods
+0588282566419,Lars,Beckman,M,5653,20.77,99.98,926,10.37,10.40,68.8140,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0932000030511,Maria,Stockhaus,M,4733,25.40,99.83,841,17.24,8.15,66.2800,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
 0244552157217,Annelie,Sjöberg,SD,0,,,28,0.00,,,INSUFFICIENT_DATA,Insufficient crisis period data for assessment
-0603366539729,Malin,Danielsson,L,2774,26.39,99.96,415,24.58,1.81,71.7665,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0503029811325,David,Josefsson,M,3185,28.60,99.97,437,16.93,11.67,59.6966,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0749416304126,Marie,Nicholson,M,1309,14.74,100.00,257,24.90,-10.16,75.0973,RESILIENT,Good crisis response - reliable during high-activity periods
-0828001951212,Ingemar,Kihlström,KD,3185,33.41,100.00,534,12.17,21.23,45.3591,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-07921826010,Anna-Belle,Strömberg,S,1946,12.49,100.00,331,5.74,6.75,80.7659,RESILIENT,Good crisis response - reliable during high-activity periods
-084624777218,Helena,Lindahl,C,6283,19.34,99.90,1105,15.20,4.13,76.4323,RESILIENT,Good crisis response - reliable during high-activity periods
-0742883909221,John,E Weinerhall,M,3185,26.28,100.00,534,26.03,0.25,73.4711,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-035234573112,Anna-Lena,Hedberg,SD,1239,21.39,100.00,244,38.11,-16.73,61.8852,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0644591005314,Crister,Spets,SD,535,0.00,99.81,136,7.35,-7.35,92.4601,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-07012286624,Daniel,Riazat,-,4445,23.44,100.00,832,15.14,8.30,68.2601,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0722683622001,Lars,Jilmstad,M,1959,39.25,99.95,228,23.25,16.01,44.6851,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0598792324417,Ulrika,Jörgensen,M,1876,39.50,100.00,277,24.91,14.59,45.9119,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0810201628512,Ann-Charlotte,Hammar Johnsson,M,7232,18.56,99.99,1505,8.84,9.72,71.7106,RESILIENT,Good crisis response - reliable during high-activity periods
-012547905113,Christina,Nilsson,SD,0,,,21,0.00,,,INSUFFICIENT_DATA,Insufficient crisis period data for assessment
-0358514648113,Marléne,Lund Kopparklint,-,53,0.00,79.25,534,33.15,-33.15,50.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0575283695521,Helena,Storckenfeldt,M,2774,29.81,100.00,485,19.79,10.02,60.1687,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0153782796218,Ulf,Rexefjord,SD,71,0.00,100.00,0,,,70.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-04571388712,Adam,Reuterskiöld,M,1309,13.90,100.00,257,13.23,0.67,85.4221,RESILIENT,Good crisis response - reliable during high-activity periods
-0386912710815,Mats,Arkhem,SD,1309,0.84,100.00,257,6.61,-5.77,93.3852,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0376353897112,Leif,Nysmed,S,4318,23.95,99.98,801,15.98,7.97,68.0643,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0892978334516,Michael,Anefur,KD,1824,40.30,100.00,333,24.62,15.67,44.0325,LOW_RESILIENCE,Poor crisis response - high absence during high-activity periods
-0512645510895,Jonathan,Svensson,S,985,0.00,100.00,200,3.00,-3.00,97.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0411459873625,Hanna,Gunnarsson,V,3185,8.54,99.97,534,4.49,4.05,87.3829,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0904448094023,Linus,Lakso,MP,985,14.42,100.00,202,8.42,6.00,79.5834,RESILIENT,Good crisis response - reliable during high-activity periods
-0148424181819,Ann-Christine,Frohm,SD,3185,21.29,99.97,534,16.29,5.00,73.6862,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0296384583518,Åsa,Eriksson,S,3811,31.23,99.95,685,14.16,17.06,51.6573,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0682989845822,Håkan,Svenneling,V,4695,32.40,99.91,832,22.12,10.28,57.2379,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0667220767927,Erik,Ezelius,S,4383,27.65,99.95,749,18.29,9.36,62.9408,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-010643534813,Eric,Westroth,SD,3185,25.34,100.00,534,13.11,12.23,62.4336,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0773497241728,Roger,Hedlund,SD,4695,28.86,99.98,832,15.38,13.48,57.6423,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
-0307835692938,Emelie,Nyman,C,347,18.16,100.00,12,0.00,18.16,63.6888,RESILIENT,Good crisis response - reliable during high-activity periods
-0764422217512,Lars,Engsund,M,1309,1.76,100.00,257,2.33,-0.58,97.6654,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
-0146133946627,Andreas,Lennkvist Manriquez,V,985,6.70,100.00,263,10.65,-3.95,89.3536,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0456680171315,Charlotte,Quensel,SD,3223,18.27,99.97,543,7.73,10.54,71.1540,RESILIENT,Good crisis response - reliable during high-activity periods
+0947572086414,Anne-Li,Sjölund,C,2158,14.92,100.00,392,11.99,2.93,82.1473,RESILIENT,Good crisis response - reliable during high-activity periods
+0222102752213,Stefan,Olsson,M,1347,14.18,100.00,266,8.27,5.91,79.9114,RESILIENT,Good crisis response - reliable during high-activity periods
+0425115010020,Kadir,Kasirga,S,1780,10.00,99.94,417,9.59,0.41,89.5361,RESILIENT,Good crisis response - reliable during high-activity periods
+086684470825,Tobias,Andersson,SD,3223,17.96,99.97,543,8.84,9.12,72.8795,RESILIENT,Good crisis response - reliable during high-activity periods
+0111697351426,Louise,Eklund,L,1347,8.98,99.93,266,15.04,-6.05,84.8882,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0271338654822,Ola,Möller,S,3223,30.59,100.00,528,14.02,16.58,52.8299,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0412502344925,Ida,Ekeroth Clausson,S,1035,9.37,100.00,267,7.87,1.51,89.1212,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0503363679811,Stefan,Plath,SD,637,12.72,99.84,71,18.31,-5.59,81.5332,RESILIENT,Good crisis response - reliable during high-activity periods
+0802546764724,Åsa,Westlund,S,4461,26.00,99.98,778,11.83,14.18,59.7965,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0339894357417,Jennie,Nilsson,S,6031,8.29,99.82,1360,5.74,2.56,88.9719,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0313390540217,Ingela,Nylund Watz,S,6321,31.97,99.98,1114,25.31,6.66,61.3528,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0678597762924,Martin,Westmont,SD,1347,0.00,100.00,266,12.41,-12.41,87.5940,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0920901966627,Tony,Haddou,V,2972,39.64,99.97,517,19.92,19.71,40.6158,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0316505710324,Janine,Alm Ericson,MP,4274,25.74,99.95,808,17.95,7.79,66.4247,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0890152141226,Nadja,Awad,V,1347,10.54,100.00,266,6.39,4.15,85.3071,RESILIENT,Good crisis response - reliable during high-activity periods
+0111479807829,Anna,Wallentheim,S,4649,20.63,100.00,786,14.38,6.25,73.1204,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0819601620927,Annika,Hirvonen,MP,3809,25.28,99.95,708,13.98,11.30,63.3661,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+07012286624,Daniel,Riazat,-,288,4.86,75.35,841,14.98,-10.12,65.0178,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0410231576416,Lars,Johnsson,M,1347,8.91,100.00,266,0.00,8.91,82.1826,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0161616238120,Lina,Nordquist,L,3223,36.74,100.00,543,27.99,8.74,54.5207,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0488332307829,Abraham,Halef,S,532,78.95,100.00,126,25.40,53.55,20.0000,LOW_RESILIENCE,Poor crisis response - high absence during high-activity periods
+0576122429317,Martin,Melin,L,1201,16.65,100.00,264,6.82,9.83,73.5126,RESILIENT,Good crisis response - reliable during high-activity periods
+0405594274208,Ewa,Pihl Krabbe,S,1347,2.30,100.00,266,9.02,-6.72,90.9774,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0256716955026,Serkan,Köse,S,4468,21.40,100.00,841,13.32,8.08,70.5243,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0157618290428,Rashid,Farivar,SD,1347,6.68,100.00,266,15.04,-8.36,84.9624,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0494242537816,Hans,Eklind,KD,3223,31.00,100.00,543,17.50,13.50,55.5035,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0248492534018,Pia,Trollehjelm,SD,606,4.29,100.00,81,4.94,-0.65,95.0617,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
 094145171913,Unni,Björnerfors,SD,347,5.48,100.00,43,0.00,5.48,89.0490,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0910803550317,Lena,Johansson,S,1347,6.61,100.00,266,3.01,3.60,89.7930,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0655418111118,Laila,Olsen,S,271,13.28,100.00,31,0.00,13.28,73.4317,RESILIENT,Good crisis response - reliable during high-activity periods
+0564126739422,Åsa,Coenraads,M,4974,16.10,99.94,901,6.99,9.11,74.7244,RESILIENT,Good crisis response - reliable during high-activity periods
+0274462857213,Petter,Löberg,S,4817,19.64,99.94,841,14.03,5.61,74.6911,RESILIENT,Good crisis response - reliable during high-activity periods
+0802091197024,Andrea,Andersson Tay,V,1347,6.46,100.00,266,0.00,6.46,87.0824,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0279488554424,Alexander,Christiansson,SD,3223,33.54,99.97,543,13.08,20.46,45.9641,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0323000187920,Solange,Olame Bayibsa,S,520,79.23,100.00,55,32.73,46.50,20.0000,LOW_RESILIENCE,Poor crisis response - high absence during high-activity periods
+0412148992926,Hanna,Westerén,S,4268,21.18,100.00,714,12.89,8.30,70.5234,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0837394708917,Anders,Ådahl,C,1347,14.11,100.00,266,9.02,5.08,80.8117,RESILIENT,Good crisis response - reliable during high-activity periods
+027964311318,Karin,Sundin,S,1347,9.21,100.00,266,17.67,-8.46,82.3308,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0499755198526,Mattias,Jonsson,S,6321,26.04,99.92,1114,14.99,11.05,62.8316,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0448973586529,Adrian,Magnusson,S,1347,7.20,100.00,266,5.26,1.94,90.8608,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+019430605328,Josefin,Malmqvist,M,2911,36.48,100.00,470,20.43,16.06,47.4609,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0720250789315,Mats,Wiking,S,3223,29.38,99.97,543,15.84,13.54,57.0418,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0511863596121,Erica,Nådin,S,411,4.38,100.00,33,0.00,4.38,91.2409,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0926214745119,Heléne,Björklund,S,3223,33.57,99.97,543,18.23,15.34,51.0586,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0522240580423,Arin,Karapet,-,91,0.00,85.71,543,20.99,-20.99,64.7198,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0474290584024,Azadeh,Rojhan,S,4572,26.44,99.93,786,24.17,2.27,71.2203,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0338088431726,Sara,Gille,SD,2508,41.15,100.00,415,15.18,25.97,32.8841,LOW_RESILIENCE,Poor crisis response - high absence during high-activity periods
+0348383585915,Marielle,Lahti,MP,324,30.25,100.00,55,20.00,10.25,59.5062,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0283284978818,Markus,Kallifatides,S,1347,6.01,100.00,266,3.38,2.63,91.3567,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+07921826010,Anna-Belle,Strömberg,S,1984,12.25,100.00,340,5.59,6.66,81.0923,RESILIENT,Good crisis response - reliable during high-activity periods
+0469084171710,Ulrika,Westerlund,MP,1347,17.59,100.00,266,6.39,11.20,71.2017,RESILIENT,Good crisis response - reliable during high-activity periods
+0604604418610,Jacob,Risberg,MP,1347,10.91,99.93,266,24.44,-13.52,75.4897,RESILIENT,Good crisis response - reliable during high-activity periods
+0202577142527,Matheus,Enholm,SD,3223,29.54,100.00,543,13.63,15.91,54.5526,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0598792324417,Ulrika,Jörgensen,M,1876,39.50,100.00,277,24.91,14.59,45.9119,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0710595759638,Aida,Birinxhiku,S,1347,2.15,100.00,266,1.13,1.03,96.8220,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+049290762318,ClasGöran,Carlsson,S,3929,32.27,99.97,650,15.23,17.04,50.6596,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0506482805418,Isak,From,S,6321,19.13,99.94,1114,6.19,12.93,67.8772,RESILIENT,Good crisis response - reliable during high-activity periods
+0386912710815,Mats,Arkhem,SD,1347,0.82,100.00,266,6.39,-5.57,93.6090,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0184968091618,Jan,Riise,MP,1347,8.09,99.93,266,15.79,-7.70,84.1363,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0358278412329,Björn,Petersson,S,2335,39.70,100.00,343,25.66,14.04,46.2555,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0170585430421,Jimmy,Ståhl,SD,4733,21.64,99.94,841,8.68,12.96,65.3461,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0468956880528,Mikael,Eskilandersson,SD,4733,16.54,100.00,841,8.09,8.46,74.9988,RESILIENT,Good crisis response - reliable during high-activity periods
+0497217816024,Markus,Selin,S,3223,17.87,99.97,543,11.79,6.09,76.0122,RESILIENT,Good crisis response - reliable during high-activity periods
+041911485722,Magdalena,Thuresson,M,1861,38.10,100.00,437,14.87,23.22,38.6785,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0877778793323,Johan,Büser,S,4733,28.69,99.92,841,31.03,-2.34,68.8810,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0861521539920,Aron,Emilsson,SD,4733,26.49,99.96,769,21.33,5.17,68.2945,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0980092192122,Joar,Forssell,L,3045,25.65,99.97,488,17.62,8.03,66.2929,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0153782796218,Ulf,Rexefjord,SD,71,0.00,100.00,0,,,70.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0256404677510,Cecilia,Engström,KD,1655,30.69,100.00,313,9.27,21.43,47.8754,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+088461404416,Richard,Herrey,M,671,12.07,100.00,49,32.65,-20.58,67.3469,RESILIENT,Good crisis response - reliable during high-activity periods
+0397073482210,Camilla,Mårtensen,L,1230,25.61,100.00,185,14.59,11.02,63.3751,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+055257333723,Oscar,Sjöstedt,SD,4733,19.90,100.00,841,10.58,9.32,70.7770,RESILIENT,Good crisis response - reliable during high-activity periods
+0613297818326,Mathias,Tegnér,S,4101,21.90,100.00,756,16.40,5.49,72.6079,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0341628241813,Marianne,Fundahn,S,4733,24.40,100.00,841,14.63,9.78,65.8192,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+048561486727,Isabell,Mixter,V,1347,16.85,100.00,266,16.17,0.69,82.4609,RESILIENT,Good crisis response - reliable during high-activity periods
+0937688366013,Peter,Hultqvist,S,3884,17.53,99.87,939,11.82,5.71,76.6254,RESILIENT,Good crisis response - reliable during high-activity periods
+0985426914829,Anna,Lasses,C,1347,19.60,99.93,266,10.53,9.07,71.2539,RESILIENT,Good crisis response - reliable during high-activity periods
+0947134226212,Markus,Kauppinen,S,318,14.78,100.00,51,27.45,-12.67,72.5490,RESILIENT,Good crisis response - reliable during high-activity periods
+0831039938224,Adam,Marttinen,SD,4858,21.88,99.96,862,14.85,7.03,71.0452,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0440225263920,Robert,Olesen,S,487,6.16,100.00,81,24.69,-18.53,75.3086,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0694917698222,Michael,Rubbestad,SD,3223,38.10,100.00,543,19.34,18.76,43.1347,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0905254899611,Louise,Thunström,S,1347,13.88,99.78,266,11.28,2.60,83.2901,RESILIENT,Good crisis response - reliable during high-activity periods
+0972636989226,Dzenan,Cisija,S,1347,8.91,100.00,266,1.88,7.03,84.0623,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0875221317013,Gunilla,Carlsson,S,8922,19.00,99.97,1809,15.75,3.24,77.7250,RESILIENT,Good crisis response - reliable during high-activity periods
+0888807074321,Amanda,Lind,MP,1347,37.49,99.70,266,24.44,13.05,49.1577,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0783069490115,Mirja,Räihä,S,1347,5.42,99.93,266,12.03,-6.61,87.8957,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0389220391128,Christian,Carlsson,KD,2204,25.05,100.00,336,14.58,10.46,64.4926,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0847676507229,Stina,Larsson,C,1660,18.49,100.00,313,21.09,-2.59,78.9137,RESILIENT,Good crisis response - reliable during high-activity periods
+0985943148917,Victoria,Tiblom,SD,1347,20.79,99.85,266,17.67,3.12,75.9468,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0721509806321,Nooshi,Dadgostar,V,4733,32.94,100.00,739,28.15,4.79,62.2683,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0628005785225,Jörgen,Berglund,M,3223,25.57,100.00,543,19.34,6.23,68.2045,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0512645510895,Jonathan,Svensson,S,1023,0.00,100.00,209,2.87,-2.87,97.1292,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0800956862429,Gulan,Avci,L,3803,34.16,99.89,700,21.29,12.87,52.8660,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0537400268911,Caroline,Helmersson Olsson,S,7096,15.76,99.99,1477,10.02,5.74,78.4955,RESILIENT,Good crisis response - reliable during high-activity periods
+0963046628824,Christian,Lindefjärd,SD,676,2.22,100.00,158,0.63,1.59,96.1950,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0984153507725,Gustaf,Göthberg,M,1347,25.02,100.00,266,40.98,-15.96,59.0226,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0519740099915,Saila,Quicklund,M,6321,10.58,99.98,1114,6.73,3.85,85.5491,RESILIENT,Good crisis response - reliable during high-activity periods
+037561614928,Lawen,Redar,S,4733,25.65,99.85,841,20.10,5.55,68.6478,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0150200797210,Mats,Sander,M,2076,24.37,99.90,546,20.15,4.23,71.3026,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0955748436811,Robert,Stenkvist,SD,4733,10.67,99.94,841,4.40,6.27,82.9966,RESILIENT,Good crisis response - reliable during high-activity periods
+075747847023,Gustaf,Lantz,S,3222,24.46,99.97,513,13.06,11.40,64.1157,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0161597857912,Tuve,Skånberg,KD,6626,18.26,99.89,1143,11.11,7.15,74.4827,RESILIENT,Good crisis response - reliable during high-activity periods
+0406831930624,Henrik,Vinge,SD,3223,42.51,99.94,543,30.94,11.57,45.8632,LOW_RESILIENCE,Poor crisis response - high absence during high-activity periods
+0121015874810,Torsten,Elofsson,KD,1347,15.29,100.00,266,14.66,0.63,84.0752,RESILIENT,Good crisis response - reliable during high-activity periods
+0926477102420,Cecilia,Rönn,L,1347,11.36,100.00,266,20.68,-9.32,79.3233,RESILIENT,Good crisis response - reliable during high-activity periods
+0440673458216,Ulrika,Liljeberg,C,1347,14.33,99.93,266,9.02,5.31,80.2920,RESILIENT,Good crisis response - reliable during high-activity periods
+0792733370419,Magnus,Oscarsson,KD,4733,29.64,99.89,841,16.53,13.11,57.1364,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0369212790927,Sofia,Skönnbrink,S,1347,23.46,100.00,266,10.53,12.93,63.6072,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0146133946627,Andreas,Lennkvist Manriquez,V,1023,6.45,100.00,272,10.29,-3.84,89.7059,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0600069352021,Fredrik,Kärrholm,M,815,28.22,100.00,257,35.41,-7.19,64.5914,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0315499690028,Teresa,Carvalho,S,4119,23.23,100.00,784,17.22,6.01,70.7518,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0930305890123,Sara-Lena,Bjälkö,-,2569,12.26,99.77,561,9.45,2.81,84.6907,RESILIENT,Good crisis response - reliable during high-activity periods
+0729710260118,Helena,Bouveng,M,7270,18.53,99.93,1514,13.21,5.32,76.0849,RESILIENT,Good crisis response - reliable during high-activity periods
+0191189790215,Peter,Ollén,M,1347,11.06,100.00,266,8.27,2.79,86.1474,RESILIENT,Good crisis response - reliable during high-activity periods
+0825441263617,Birger,Lahti,V,4733,23.66,99.98,841,12.37,11.30,65.0178,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0254695027922,Malcolm Momodou,Jallow,-,13,0.00,46.15,643,30.33,-30.33,50.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0899169869710,Helena,Gellerman,L,3223,35.31,100.00,543,21.36,13.95,50.7454,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0203877548421,Malin,Larsson,S,3223,25.10,100.00,543,13.26,11.84,63.0580,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+039102787629,Oliver,Rosengren,M,1347,10.76,100.00,266,4.14,6.63,82.6060,RESILIENT,Good crisis response - reliable during high-activity periods
+0503029811325,David,Josefsson,M,3223,28.27,99.97,446,16.59,11.67,60.0297,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0845133742919,Lili,André,KD,1347,8.98,100.00,266,5.64,3.34,87.6732,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0644591005314,Crister,Spets,SD,535,0.00,99.81,136,7.35,-7.35,92.4601,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0105632258713,Boriana,Åberg,M,6427,29.70,99.98,1160,18.97,10.74,59.5443,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+030110584526,Caroline,Täljeblad,V,0,,,19,42.11,,,INSUFFICIENT_DATA,Insufficient crisis period data for assessment
+0178323535715,Johnny,Svedin,SD,1347,2.90,100.00,266,12.41,-9.51,87.5940,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0964730940415,Johan,Andersson,S,6321,16.91,99.98,1114,10.50,6.41,76.6631,RESILIENT,Good crisis response - reliable during high-activity periods
+0333193598116,Bo,Broman,SD,3223,29.32,100.00,543,18.60,10.72,59.9594,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0360160202728,Emma,Ahlström Köster,M,1634,20.01,100.00,288,9.38,10.64,69.3505,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+098412828516,Magdalena,Andersson,S,1347,63.33,100.00,266,44.36,18.97,31.0350,LOW_RESILIENCE,Poor crisis response - high absence during high-activity periods
+0502490570219,Kristina,Axén Olin,M,3223,25.22,100.00,543,12.89,12.33,62.4415,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0930305890123,Sara-Lena,Bjälkö,-,288,0.00,65.63,561,9.45,-9.45,70.5526,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+02658325625,Angelica,Lundberg,SD,3223,25.50,99.94,543,25.78,-0.28,74.1553,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0990587970528,Zinaida,Kajevic,S,324,0.00,100.00,31,45.16,-45.16,70.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0961483563503,Gudrun,Nordborg,V,2504,37.54,99.88,363,37.19,0.35,61.9904,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0671241874717,Elisabeth,Björnsdotter Rahm,M,3464,29.04,100.00,550,21.64,7.41,63.5532,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0174490514929,Marcus,Andersson,S,624,8.65,100.00,82,0.00,8.65,82.6923,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0999976269027,Amanda,Palmstierna,MP,1889,59.77,100.00,358,27.09,32.67,20.0000,LOW_RESILIENCE,Poor crisis response - high absence during high-activity periods
+0395154929710,Anders,Frimert,S,637,8.63,100.00,41,0.00,8.63,82.7316,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0770363683317,Malin,Björk,C,1965,14.61,99.90,288,18.06,-3.45,81.8427,RESILIENT,Good crisis response - reliable during high-activity periods
+0372414474424,Oskar,Svärd,M,1347,5.27,100.00,266,5.26,0.01,94.7212,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+036926802512,Blåvitt,Elofsson,S,606,0.17,99.83,81,3.70,-3.54,96.1313,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+011548866929,Elin,Nilsson,L,1347,16.70,100.00,266,14.29,2.42,80.8781,RESILIENT,Good crisis response - reliable during high-activity periods
+0627450126815,Kajsa,Fredholm,V,1347,10.99,100.00,266,4.14,6.85,82.1606,RESILIENT,Good crisis response - reliable during high-activity periods
+0939158389321,Samuel,Gonzalez Westling,V,1347,18.19,100.00,266,25.19,-7.00,74.8120,RESILIENT,Good crisis response - reliable during high-activity periods
+0973782197017,Mikael,Oscarsson,KD,8922,28.74,99.62,1809,23.11,5.63,65.2497,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0466653728712,Denis,Begic,S,3223,38.47,100.00,543,21.55,16.93,44.6000,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0983984918111,Matilda,Ernkrans,S,6821,10.58,99.94,1513,10.84,-0.25,89.1020,RESILIENT,Good crisis response - reliable during high-activity periods
+0892978334516,Michael,Anefur,KD,1824,40.30,100.00,333,24.62,15.67,44.0325,LOW_RESILIENCE,Poor crisis response - high absence during high-activity periods
+02910042914,Carina,Ödebrink,S,3223,31.96,100.00,543,21.55,10.41,57.6314,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0911916463828,Fredrik,Lundh Sammeli,S,6903,21.67,99.97,1275,18.27,3.40,74.9021,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0340418158820,Daniel,Persson,SD,1347,6.98,100.00,266,3.76,3.22,89.8025,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0640627133410,Elisabeth,Falkhaven,MP,1876,40.25,100.00,277,22.02,18.22,41.5313,LOW_RESILIENCE,Poor crisis response - high absence during high-activity periods
+0307835692938,Emelie,Nyman,C,347,18.16,100.00,12,0.00,18.16,63.6888,RESILIENT,Good crisis response - reliable during high-activity periods
+065701062615,Runar,Filper,SD,4733,26.03,99.98,841,11.89,14.14,59.8095,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0389795960120,Martin,Marmgren,MP,637,21.04,100.00,16,0.00,21.04,57.9278,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0682989845822,Håkan,Svenneling,V,4733,32.66,99.92,841,21.88,10.79,56.4657,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0530425150220,Annika,Strandhäll,S,2175,48.78,99.68,453,39.29,9.49,41.4085,LOW_RESILIENCE,Poor crisis response - high absence during high-activity periods
+0442073683012,Zara,Leghissa,S,1347,6.09,100.00,266,7.52,-1.43,92.4812,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0764422217512,Lars,Engsund,M,1347,1.71,100.00,266,2.26,-0.55,97.7444,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0612916684825,Johan,Löfstrand,S,8484,19.51,99.92,1781,16.56,2.94,77.4666,RESILIENT,Good crisis response - reliable during high-activity periods
+0853395328224,Lena,Hallengren,S,4643,21.45,99.85,1127,21.83,-0.38,78.0214,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0922497728524,Ardalan,Shekarabi,S,1861,15.80,99.95,329,9.12,6.68,77.4689,RESILIENT,Good crisis response - reliable during high-activity periods
+0603366539729,Malin,Danielsson,L,2812,27.38,99.96,424,24.06,3.33,69.2558,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0273506284025,Edward,Riedl,M,6321,14.06,99.95,1114,13.73,0.33,85.5584,RESILIENT,Good crisis response - reliable during high-activity periods
+0765747165821,Marcus,Jonsson,KD,0,,,47,2.13,,,INSUFFICIENT_DATA,Insufficient crisis period data for assessment
+0987246082523,Paula,Örn,S,347,10.66,100.00,101,3.96,6.70,82.6347,RESILIENT,Good crisis response - reliable during high-activity periods
+065105536026,Niklas,Karlsson,S,4733,24.64,100.00,841,13.56,11.08,64.2842,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0832311880029,Erik,Ottoson,M,4699,19.71,99.94,790,9.49,10.21,70.0172,RESILIENT,Good crisis response - reliable during high-activity periods
+0427836082425,Fredrik,Lindstål,C,19,0.00,100.00,52,5.77,-5.77,94.2308,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0938171000810,Annette,Rydell,S,324,0.00,100.00,57,12.28,-12.28,87.7193,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0407081382317,Anna-Caren,Sätherberg,S,4096,24.98,99.93,800,14.25,10.73,64.2256,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0132818093422,Rickard,Nordin,C,5721,25.05,99.93,1023,21.31,3.74,71.1438,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0294138886823,Martin,Kinnunen,SD,4733,25.12,99.79,841,13.91,11.21,63.4578,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0240670797111,Björn,Tidland,SD,1347,1.71,100.00,266,7.14,-5.44,92.8571,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0254021157518,Lars,Andersson,SD,3223,26.00,99.97,543,8.84,17.16,56.8075,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0880018341619,Thomas,Morell,SD,3223,15.61,100.00,543,11.79,3.82,80.5732,RESILIENT,Good crisis response - reliable during high-activity periods
+0409655917321,Jakob,Olofsgård,L,1984,16.08,100.00,340,10.88,5.20,78.7251,RESILIENT,Good crisis response - reliable during high-activity periods
+0665485817222,Daniel,Bäckström,C,4725,23.26,99.98,778,17.74,5.52,71.1981,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0653904370212,Fredrik,Olovsson,S,7643,16.34,99.91,1658,11.70,4.64,78.9258,RESILIENT,Good crisis response - reliable during high-activity periods
+0810852280213,Marie-Louise,Hänel Sandström,M,3223,26.62,100.00,543,12.52,14.10,59.2807,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+082139988919,Kerstin,Hermansson,C,103,7.77,100.00,1,0.00,7.77,84.4660,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0204240926023,Markus,Wiechel,SD,5507,24.82,99.95,919,23.29,1.54,73.5858,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+07012286624,Daniel,Riazat,-,4445,23.44,100.00,841,14.98,8.46,68.0980,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0376395541120,Joakim,Sandell,S,2693,30.89,99.93,543,10.50,20.40,48.6331,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0822010116020,Jim,Svensk Larm,S,324,16.36,100.00,61,6.56,9.80,73.8413,RESILIENT,Good crisis response - reliable during high-activity periods
+0604811710522,Ida,Drougge,M,4273,24.22,99.95,801,17.73,6.49,69.2373,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0456522027421,Linnéa,Wickman,S,1347,15.29,100.00,266,21.80,-6.51,78.1955,RESILIENT,Good crisis response - reliable during high-activity periods
+0358514648113,Marléne,Lund Kopparklint,-,3132,44.60,99.97,543,32.60,12.01,43.3566,LOW_RESILIENCE,Poor crisis response - high absence during high-activity periods
+0538387395826,Mats,Green,M,4733,21.99,99.98,841,18.07,3.92,74.0636,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0482689573825,Björn,Wiechel,S,4018,23.62,99.98,717,21.20,2.42,73.9371,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0144048894712,Ellen,Juntti,M,5957,17.07,99.93,1102,8.35,8.72,74.1366,RESILIENT,Good crisis response - reliable during high-activity periods
+0747883322423,Amir,Jawad,L,73,26.03,100.00,0,,,43.9726,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0606863154419,Mats,Berglund,MP,2262,36.21,100.00,357,19.05,17.16,46.6338,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0254695027922,Malcolm Momodou,Jallow,-,3675,43.89,100.00,643,30.33,13.56,42.5443,LOW_RESILIENCE,Poor crisis response - high absence during high-activity periods
+0411459873625,Hanna,Gunnarsson,V,3223,9.22,99.97,543,4.42,4.80,85.9588,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0245113256029,Daniel,Vencu Velasquez Castro,S,1347,13.96,100.00,266,11.28,2.68,83.3643,RESILIENT,Good crisis response - reliable during high-activity periods
+0228027853620,Vasiliki,Tsouplaki,V,3688,32.62,99.95,631,21.87,10.75,56.5772,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0926002991620,Pontus,Andersson Garpvall,SD,1984,7.41,99.95,282,2.48,4.93,87.6133,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0265240520811,Leif,Gripestam,M,61,0.00,100.00,52,0.00,0.00,100.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0395762282903,Elsemarie,Bjellqvist,S,637,4.40,100.00,41,0.00,4.40,91.2088,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0509415296421,Kjell-Arne,Ottosson,KD,3223,33.88,100.00,543,22.28,11.60,54.5207,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0472349361027,Kalle,Olsson,S,4440,24.44,99.98,717,20.64,3.80,71.7452,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0717363246311,Jessica,Stegrud,SD,1347,22.27,100.00,266,37.22,-14.95,62.7820,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0610162335824,Niklas,Sigvardsson,S,1347,3.64,99.93,266,5.26,-1.63,94.6626,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0970709885516,Inga-Lill,Sjöblom,S,1604,32.61,100.00,393,20.36,12.25,55.1443,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0780214960516,Eva,Lindh,S,3864,30.41,100.00,595,23.87,6.54,63.0477,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0506541436524,Sanne,Lennström,S,4272,23.50,100.00,693,15.15,8.35,68.1478,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0522054204918,Mattias,Karlsson,M,3223,34.91,100.00,543,21.55,13.36,51.7362,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+012547905113,Christina,Nilsson,SD,0,,,21,0.00,,,INSUFFICIENT_DATA,Insufficient crisis period data for assessment
+0378597308227,Camilla,Brodin,KD,3223,25.19,99.97,543,10.68,14.51,60.2625,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0737666060225,Joakim,Järrebring,S,3223,29.88,99.97,543,18.97,10.91,59.1797,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+025158809026,Ida,Gabrielsson,V,3223,45.42,99.97,543,36.83,8.59,45.9543,LOW_RESILIENCE,Poor crisis response - high absence during high-activity periods
+0852475703226,Lorena,Delgado Varas,-,2935,37.31,99.97,543,21.73,15.58,47.0804,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0509830681123,Ida,Karkiainen,S,3948,20.44,100.00,734,11.99,8.45,71.1076,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0430865615328,Linda,Lindberg,SD,3223,38.91,99.91,543,21.73,17.18,43.8223,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+028954589415,Ann-Sofie,Alm,M,3223,38.63,99.97,543,24.49,14.14,47.2053,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0575283695521,Helena,Storckenfeldt,M,2812,30.30,100.00,494,19.43,10.87,58.8358,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+084624777218,Helena,Lindahl,C,6321,19.22,99.89,1114,15.08,4.14,76.5268,RESILIENT,Good crisis response - reliable during high-activity periods
+0828001951212,Ingemar,Kihlström,KD,3223,33.01,100.00,543,11.97,21.04,45.9451,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0764949934324,Ulrika,Heindorff,M,2325,31.27,100.00,452,23.23,8.04,60.6925,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0828721176319,Sten,Bergheden,M,7270,16.05,100.00,1514,6.80,9.25,74.6986,RESILIENT,Good crisis response - reliable during high-activity periods
+0183544538819,Patrik,Jönsson,SD,3223,19.92,100.00,568,12.50,7.42,72.6613,RESILIENT,Good crisis response - reliable during high-activity periods
+0859909330720,Sanna,Backeskog,S,1347,15.74,100.00,266,9.77,5.96,78.2971,RESILIENT,Good crisis response - reliable during high-activity periods
+0992867772421,Nils,Seye Larsen,MP,676,13.02,100.00,121,11.57,1.45,85.5347,RESILIENT,Good crisis response - reliable during high-activity periods
+0285527517421,Caroline,Nordengrip,SD,1876,51.44,100.00,277,23.47,27.97,22.0265,LOW_RESILIENCE,Poor crisis response - high absence during high-activity periods
+0376461485627,Henrik,Edin,L,284,0.00,100.00,0,,,70.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0970259744617,Margareta,Cederfelt,M,7270,35.32,99.96,1514,32.76,2.56,62.0731,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+091303475611,Eric,Palmqvist,SD,3223,29.10,99.94,543,18.78,10.32,60.5158,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0648224557612,Åsa,Karlsson,S,3069,31.22,100.00,530,20.38,10.84,57.9466,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+023767922422,Mats,Persson,L,3503,32.26,99.94,656,29.27,2.99,64.6951,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0492644357418,Per,Söderlund,SD,3223,29.94,100.00,494,20.85,9.09,60.9681,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0103624617217,Helén,Pettersson,S,7270,22.64,99.99,1514,14.86,7.78,69.5656,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+083953568015,Malin,Höglund,M,1390,4.82,100.00,318,14.15,-9.33,85.8491,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0290003389021,Chris,Dahlqvist,SD,288,0.00,100.00,81,8.64,-8.64,91.3580,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0344222203323,Dennis,Dioukarev,SD,4733,19.16,100.00,841,7.73,11.43,69.4023,RESILIENT,Good crisis response - reliable during high-activity periods
+0663840649717,Anette,Rangdag,SD,520,9.42,99.81,55,14.55,-5.12,85.2622,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0249730539015,Anders,Karlsson,C,1347,9.87,99.85,219,15.07,-5.19,84.7830,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0973350087929,Patrik,Karlson,L,981,22.22,100.00,158,21.52,0.70,77.0745,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0127744006318,Cecilia,Gustafsson,M,288,23.61,100.00,81,8.64,14.97,61.4198,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0966063008623,Leonid,Yurkovskiy,SD,1347,9.43,100.00,266,4.89,4.54,86.0305,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0667220767927,Erik,Ezelius,S,4421,27.41,99.95,758,18.07,9.34,63.1994,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0502688311316,Anna,Vikström,S,3656,18.65,99.92,661,6.51,12.15,69.1147,RESILIENT,Good crisis response - reliable during high-activity periods
+0119672047211,Madeleine,Atlas,C,288,0.00,100.00,44,0.00,0.00,100.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0692076685824,Camilla,Hansén,MP,3139,23.51,99.87,520,22.31,1.20,75.1589,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0584183916016,Ulf,Holm,MP,4555,3.27,98.97,1072,4.76,-1.49,94.2107,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0589561178823,Peter,Hedberg,S,1347,5.86,100.00,266,21.05,-15.19,78.9474,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0358514648113,Marléne,Lund Kopparklint,-,91,0.00,85.71,543,32.60,-32.60,55.7143,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0845783625227,Arwin,Sohrabi,S,73,0.00,100.00,0,,,70.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0112333043027,Rasmus,Giertz,SD,1347,8.54,99.93,266,10.53,-1.99,89.3994,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+010392780417,Marie,Olsson,S,1406,13.80,100.00,258,1.55,12.25,73.9544,RESILIENT,Good crisis response - reliable during high-activity periods
+0768554866215,Katja,Nyberg,-,116,67.24,98.28,543,15.47,51.77,18.2759,LOW_RESILIENCE,Poor crisis response - high absence during high-activity periods
+0706528359123,Linus,Sköld,S,3988,27.76,99.95,624,16.83,10.93,61.2602,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0496341906327,Alexandra,Völker,S,4098,23.57,100.00,718,23.82,-0.24,76.1838,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0138741628520,Angelika,Bengtsson,SD,4386,19.52,99.95,798,12.41,7.11,73.3271,RESILIENT,Good crisis response - reliable during high-activity periods
+0810201628512,Ann-Charlotte,Hammar Johnsson,M,7270,18.46,99.99,1514,8.78,9.67,71.8521,RESILIENT,Good crisis response - reliable during high-activity periods
+0226631365426,Mikael,Larsson,C,3223,25.91,100.00,543,15.47,10.44,63.6545,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0615175917521,Kent,Kumpula,SD,931,13.96,100.00,132,12.12,1.84,84.1943,RESILIENT,Good crisis response - reliable during high-activity periods
+0618938634020,Marcus,Wennerström,S,205,7.80,100.00,51,0.00,7.80,84.3902,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0802606848923,Mariya,Voyvodova,S,316,8.54,100.00,12,0.00,8.54,82.9114,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0237055280513,Roland,Utbult,KD,6112,24.82,100.00,1114,16.97,7.85,67.3258,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0136268785826,Nima,Gholam Ali Pour,SD,1347,2.38,100.00,266,1.13,1.25,96.3765,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0599661454115,Lena,Bäckelin,S,293,0.00,100.00,111,0.00,0.00,100.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0831636664429,Mattias,Karlsson,SD,6321,25.71,99.98,1114,23.34,2.37,71.9076,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0163772273014,Anna,Vedin,M,151,0.00,100.00,12,0.00,0.00,100.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0992473266516,Larry,Söder,KD,4567,16.12,99.98,788,12.82,3.30,80.5641,RESILIENT,Good crisis response - reliable during high-activity periods
+0866055333028,Alexandra,Anstrell,M,3272,32.00,99.97,583,17.32,14.67,53.2961,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0229627943828,Jytte,Guteland,S,1347,7.35,100.00,266,10.90,-3.55,89.0977,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0744993950910,Anders,Ygeman,S,5664,9.66,99.77,1290,11.16,-1.51,88.6077,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0545733815610,Patrick,Reslow,SD,2520,12.70,99.96,1114,10.32,2.38,84.8867,RESILIENT,Good crisis response - reliable during high-activity periods
+0709911904721,Johanna,Rantsi,M,1560,6.28,100.00,266,0.00,6.28,87.4359,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0836001490919,Ulrika,Heie,C,7270,23.14,99.99,1514,26.22,-3.09,73.7643,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+069534526423,Mathias,Bengtsson,KD,1347,18.26,100.00,266,12.41,5.86,75.8804,RESILIENT,Good crisis response - reliable during high-activity periods
+0512009811316,Lena,Malm,S,288,0.35,99.31,9,0.00,0.35,98.6111,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0760500234712,Monica,Haider,S,4733,25.82,99.98,841,13.44,12.38,61.7778,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0986091320811,Catarina,Deremar,C,2461,29.87,99.96,362,10.22,19.64,50.4485,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0546731406922,Rebecka,Le Moine,MP,2813,35.34,99.96,469,21.54,13.80,50.8278,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0559925283228,Teres,Lindberg,S,4654,27.01,99.89,810,16.91,10.10,62.7881,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0779329190517,Kjell,Jansson,M,3223,29.10,100.00,543,11.97,17.13,53.7639,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0737824098113,Magnus,Berntsson,KD,1347,11.95,100.00,266,15.04,-3.09,84.9624,RESILIENT,Good crisis response - reliable during high-activity periods
+0198917587520,Maj,Karlsson,V,4733,37.27,100.00,841,15.10,22.17,40.5606,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0694273653613,Margareta,Fransson,MP,410,0.49,100.00,74,0.00,0.49,99.0244,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0940980416614,Jan,Ericson,M,7270,16.96,99.96,1514,8.12,8.84,74.1627,RESILIENT,Good crisis response - reliable during high-activity periods
+0951905661227,Christofer,Bergenblock,C,1347,2.90,100.00,266,10.53,-7.63,89.4737,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0469384565811,Anders,Alftberg,SD,1347,2.38,100.00,266,18.80,-16.42,81.2030,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0331791853028,Yasmine,Eriksson,SD,3223,30.22,100.00,543,20.07,10.15,59.6331,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0373223420310,Niclas,Malmberg,MP,1510,6.89,100.00,298,0.00,6.89,86.2252,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+051207517226,Jimmie,Åkesson,SD,6230,65.10,99.98,1061,59.19,5.91,44.0691,LOW_RESILIENCE,Poor crisis response - high absence during high-activity periods
+0309480686522,Leila,Ali Elmi,MP,3223,38.54,99.97,521,30.33,8.21,53.2242,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0376353897112,Leif,Nysmed,S,4356,24.31,99.98,810,15.80,8.51,67.1569,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0838085832923,Ann-Sofie,Lifvenhage,M,2960,31.45,100.00,494,19.23,12.22,56.3254,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0834510274913,Charlotte,Nordström,M,1347,14.11,100.00,266,4.89,9.22,76.6764,RESILIENT,Good crisis response - reliable during high-activity periods
+0475778011711,Hans,Ekström,S,6321,21.63,99.91,1114,15.44,6.19,72.0923,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0776705932527,Ciczie,Weidby,V,3223,29.17,100.00,543,11.05,18.12,52.7190,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0210444373111,Katarina,Luhr,MP,1347,11.80,100.00,266,1.88,9.92,78.2717,RESILIENT,Good crisis response - reliable during high-activity periods
+0906620634423,Eleonore,Lundkvist,M,255,0.00,100.00,0,,,70.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0773497241728,Roger,Hedlund,SD,4733,28.63,99.98,841,15.22,13.41,57.9413,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0426843954410,Ulrik,Bergman,M,12,0.00,100.00,34,0.00,0.00,100.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0457722435319,Tomas,Kronståhl,S,2835,36.54,99.93,447,12.98,23.57,39.8184,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0630820052511,Per-Arne,Håkansson,S,4733,16.02,99.94,841,9.99,6.03,77.8943,RESILIENT,Good crisis response - reliable during high-activity periods
+0211757295524,Josef,Fransson,SD,5801,17.45,99.90,1059,14.92,2.53,79.9258,RESILIENT,Good crisis response - reliable during high-activity periods
+0742883909221,John,E Weinerhall,M,3223,25.97,100.00,543,25.60,0.37,73.6593,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+033935884729,Martina,Johansson,C,3223,26.43,99.94,543,12.52,13.91,59.5910,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0749416304126,Marie,Nicholson,M,1347,14.33,100.00,266,24.06,-9.73,75.9398,RESILIENT,Good crisis response - reliable during high-activity periods
+0591020192311,Ulf,Lindholm,SD,1347,6.01,100.00,266,2.63,3.38,90.6049,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0481460392727,Jessica,Wetterling,V,3223,22.56,100.00,543,15.65,6.90,70.5405,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0665360289423,Fredrik,Stenberg,S,708,20.06,100.00,86,0.00,20.06,59.8870,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0516528386117,Patrik,Björck,S,7270,18.13,99.92,1514,10.30,7.83,73.9627,RESILIENT,Good crisis response - reliable during high-activity periods
+0602744999917,Elisabeth,Thand Ringqvist,C,1347,27.62,100.00,266,28.20,-0.58,71.8045,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0653578338415,Agneta,Nilsson,S,606,0.00,99.83,84,0.00,0.00,99.8350,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0803753212716,Richard,Jomshof,SD,6321,27.53,99.98,1114,17.77,9.75,62.7034,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0220064764318,Camilla,Brunsberg,M,1347,18.26,100.00,213,6.57,11.69,70.0472,RESILIENT,Good crisis response - reliable during high-activity periods
+0534870997412,Åsa,Hartzell,M,306,0.00,100.00,97,4.12,-4.12,95.8763,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+066036027425,Mikael,Damsgaard,M,2812,27.70,99.96,494,11.54,16.16,56.0975,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0229760896014,Anders,W Jonsson,C,6321,25.88,99.95,1114,26.03,-0.15,73.9202,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0494843794418,Martin,Ådahl,C,3223,33.97,99.81,543,26.52,7.46,58.3841,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0364687971222,Alireza,Akhondi,C,3223,29.20,99.84,543,24.86,4.33,66.3139,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0977592683711,Magnus,Jacobsson,KD,3223,32.45,99.97,543,26.34,6.12,61.3957,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0410640630411,Ulrik,Nilsson,M,2935,9.06,100.00,539,18.18,-9.12,81.8182,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0523902030928,Aylin,Nouri,S,2876,36.02,99.97,442,27.38,8.65,55.2963,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+035234573112,Anna-Lena,Hedberg,SD,1277,21.77,100.00,253,36.76,-14.99,63.2411,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0345062474310,Mona,Olin,SD,1347,11.80,100.00,266,5.64,6.16,82.0311,RESILIENT,Good crisis response - reliable during high-activity periods
+0473783431010,Morgan,Johansson,S,3461,16.58,99.86,837,17.68,-1.10,82.1733,RESILIENT,Good crisis response - reliable during high-activity periods
+025931369428,Jonas,Andersson,SD,3223,29.04,100.00,543,10.13,18.91,52.0464,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0803790353229,Azra,Muranovic,S,1029,28.47,100.00,215,23.26,5.22,66.3073,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0427321850912,Lars Mejern,Larsson,S,7417,18.15,99.96,1550,13.29,4.86,76.9549,RESILIENT,Good crisis response - reliable during high-activity periods
+0250583732424,Jesper,Skalberg Karlsson,M,2857,7.77,99.96,535,5.23,2.54,89.6579,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0130789484021,Mattias,Bäckström Johansson,SD,4733,21.93,99.94,841,12.96,8.97,69.0351,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0304498908019,Gudrun,Brunegård,KD,3093,31.56,99.94,494,22.06,9.49,58.8899,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0119851690521,David,Perez,SD,2161,16.10,100.00,340,10.29,5.81,78.0868,RESILIENT,Good crisis response - reliable during high-activity periods
+0576619284416,Aphram,Melki,C,637,6.59,100.00,66,10.61,-4.01,89.3939,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0371882294919,Carita,Boulwén,SD,1347,14.92,100.00,266,17.29,-2.37,82.7068,RESILIENT,Good crisis response - reliable during high-activity periods
+0287315215921,Mona,Smedman,C,292,12.67,100.00,63,11.11,1.56,85.7686,RESILIENT,Good crisis response - reliable during high-activity periods
+0227531635413,Lars,Püss,M,3571,30.41,100.00,633,9.32,21.09,48.4974,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0641953830512,Magnus,Persson,SD,4733,14.83,99.98,841,13.20,1.63,83.5134,RESILIENT,Good crisis response - reliable during high-activity periods
+0879782396219,Olle,Thorell,S,7109,27.36,99.96,1459,20.15,7.21,65.3892,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+025967059622,Magnus,Manhammar,S,4159,27.96,100.00,784,18.11,9.85,62.1853,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0148424181819,Ann-Christine,Frohm,SD,3223,21.04,99.97,543,16.02,5.01,73.9185,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0418929039326,Patrik,Lundqvist,S,4409,25.27,99.98,737,13.16,12.11,62.6058,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0515213566019,Lars,Isacsson,S,1347,8.46,99.93,266,12.78,-4.32,87.1438,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0619928872229,Laila,Naraghi,S,3828,34.93,100.00,627,27.11,7.81,57.2595,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0112806493429,Fredrik,Saweståhl,M,546,5.68,100.00,77,0.00,5.68,88.6447,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0504851635310,Daniel,Helldén,MP,1347,25.17,100.00,266,25.94,-0.77,74.0602,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0360187680814,Mats,Hellhoff,SD,676,0.00,100.00,158,0.00,0.00,100.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0766496753128,Fredrik,Malm,L,6833,25.76,99.93,1428,20.10,5.66,68.5102,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0327372175911,Fredrik,Ahlstedt,M,1347,8.09,100.00,266,4.89,3.20,88.7031,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0722683622001,Lars,Jilmstad,M,1997,38.51,99.95,237,22.36,16.14,45.2973,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0204443909416,Johan,Hedin,C,3297,31.82,100.00,574,12.89,18.92,49.2584,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0121939297619,Jamal,El-Haj,-,1014,6.80,87.48,698,10.03,-3.22,77.4467,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0768554866215,Katja,Nyberg,-,3107,23.40,100.00,543,15.47,7.93,68.6721,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0433422973328,Kristoffer,Lindberg,S,1347,19.82,100.00,309,18.77,1.05,79.1266,RESILIENT,Good crisis response - reliable during high-activity periods
+0122987223112,Lotta,Johnsson Fornarve,V,4733,26.83,99.92,841,19.98,6.86,66.2260,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+071293048118,Thomas,Ragnarsson,M,1347,4.38,100.00,266,3.76,0.62,94.9992,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0296384583518,Åsa,Eriksson,S,3849,30.92,99.95,694,13.98,16.94,52.0907,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0965245623824,Nicklas,Attefjord,MP,459,70.15,100.00,55,1.82,68.33,20.0000,LOW_RESILIENCE,Poor crisis response - high absence during high-activity periods
+0793372891224,Noria,Manouchi,M,3223,31.09,99.97,543,20.99,10.09,58.7854,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0545733815610,Patrick,Reslow,SD,578,0.69,98.27,1114,10.32,-9.63,87.9467,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+014744660015,Mikael,Damberg,S,5343,23.49,99.93,1224,23.12,0.37,76.0687,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0671571847522,Mattias,Eriksson Falk,SD,1347,26.35,100.00,266,32.71,-6.35,67.2932,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0161972600410,Elsa,Widding,-,1169,33.19,85.03,266,29.70,3.49,48.3477,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0371013828421,Lars,Larsson,SD,0,,,3,0.00,,,INSUFFICIENT_DATA,Insufficient crisis period data for assessment
+0557180142229,Fredrik,Lindahl,SD,3223,29.48,100.00,543,22.47,7.01,63.5165,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0398471271026,Frida,Tånghag,V,251,0.00,100.00,26,0.00,0.00,100.0000,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+037781229619,Staffan,Eklöf,SD,3223,27.99,100.00,543,11.42,16.57,55.4454,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0796312429425,Viktor,Wärnick,M,3223,31.06,100.00,543,24.31,6.75,62.1934,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+04571388712,Adam,Reuterskiöld,M,1347,13.51,100.00,266,12.78,0.73,85.7589,RESILIENT,Good crisis response - reliable during high-activity periods
+0229350341619,Ilona,Szatmári Waldau,V,3223,31.68,99.97,543,12.15,19.52,48.7665,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
+0388994689418,Malin,Östh,V,676,5.47,100.00,158,10.13,-4.65,89.8734,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0362779191527,Erik,Hellsborn,SD,1347,2.67,100.00,266,3.01,-0.33,96.9925,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0554852839719,Mikael,Dahlqvist,S,4733,17.28,99.87,841,11.41,5.87,76.7224,RESILIENT,Good crisis response - reliable during high-activity periods
+0381853591928,Malte,Tängmark Roos,MP,806,5.33,100.00,81,2.47,2.87,91.7992,HIGHLY_RESILIENT,Highly engaged during crisis periods - strong institutional resilience
+0301987597720,Liza-Maria,Norlin,KD,457,14.44,99.78,149,14.09,0.35,84.9911,RESILIENT,Good crisis response - reliable during high-activity periods
+0262411569110,Helene,Odenjung,L,661,22.09,100.00,81,0.00,22.09,55.8245,MODERATE_RESILIENCE,Moderate crisis engagement - some absence during critical votes
