@@ -16,7 +16,7 @@ graph TB
     A --> E[Coalition]
     A --> F[Trends]
     
-    B --> B1[Name, Logo]
+    B --> B1["Name, Logo"]
     B --> B2[Ideology]
     B --> B3[Leadership]
     
@@ -335,9 +335,9 @@ graph TB
     Sweden --> Central[Central: 156]
     Sweden --> South[Southern: 161]
     
-    North --> N1[Strong: C, S]
-    Central --> C1[Strong: M, S]
-    South --> S1[Strong: SD, M]
+    North --> N1["Strong: C, S"]
+    Central --> C1["Strong: M, S"]
+    South --> S1["Strong: SD, M"]
     
     style Sweden fill:#006AA7,color:#fff
     style North fill:#FECC00
@@ -395,7 +395,7 @@ graph TB
     Supp --> SD[SD: 73]
     
     Opp[Opposition: 169] --> S[S: 107]
-    Opp --> Others[V, C, MP: 62]
+    Opp --> Others["V, C, MP: 62"]
     
     style Riks fill:#006AA7,color:#fff
     style Gov fill:#52BDEC

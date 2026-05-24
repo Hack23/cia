@@ -85,37 +85,37 @@ Our multi-layered authentication and authorization process includes MFA (impleme
 flowchart TD
     subgraph "Authentication Flow"
         direction TB
-        A[👤 User] -->|"1️⃣ Login Request"| B[🔐 Authentication Service]
-        B -->|"2️⃣ Validate"| C{✓ Valid?}
+        A["👤 User"] -->|"1️⃣ Login Request"| B["🔐 Authentication Service"]
+        B -->|"2️⃣ Validate"| C{"✓ Valid?"}
         
-        C -->|"❌ No"| D[🚫 Login Blocking]
-        D -->|"Check Status"| E{🔍 Blocked?}
-        E -->|"✓ Yes"| F[⛔ Access Denied]
-        E -->|"❌ No"| G[⚠️ Auth Error]
+        C -->|"❌ No"| D["🚫 Login Blocking"]
+        D -->|"Check Status"| E{"🔍 Blocked?"}
+        E -->|"✓ Yes"| F["⛔ Access Denied"]
+        E -->|"❌ No"| G["⚠️ Auth Error"]
         
-        C -->|"✓ Yes"| H[🔢 MFA Verification]
-        H -->|"Validate Code"| I{✓ Valid?}
-        I -->|"❌ No"| J[⚠️ MFA Error]
-        I -->|"✓ Yes"| K[✅ Authentication Success]
+        C -->|"✓ Yes"| H["🔢 MFA Verification"]
+        H -->|"Validate Code"| I{"✓ Valid?"}
+        I -->|"❌ No"| J["⚠️ MFA Error"]
+        I -->|"✓ Yes"| K["✅ Authentication Success"]
         
-        K -->|"Create"| L[🔑 Security Context]
-        L -->|"Establish"| M[👤 User Session]
-        M -->|"Log"| N[📊 Session Tracking]
+        K -->|"Create"| L["🔑 Security Context"]
+        L -->|"Establish"| M["👤 User Session"]
+        M -->|"Log"| N["📊 Session Tracking"]
     end
 
     subgraph "Authorization Flow"
         direction TB
-        M -->|"1️⃣ Request Resource"| O[🛡️ Security Filter]
-        O -->|"2️⃣ Check Permission"| P{✓ Authorized?}
-        P -->|"❌ No"| Q[⛔ Access Denied]
-        P -->|"✓ Yes"| R[✅ Access Granted]
+        M -->|"1️⃣ Request Resource"| O["🛡️ Security Filter"]
+        O -->|"2️⃣ Check Permission"| P{"✓ Authorized?"}
+        P -->|"❌ No"| Q["⛔ Access Denied"]
+        P -->|"✓ Yes"| R["✅ Access Granted"]
         
-        R -->|"Method Access"| S[🔒 Security Annotation]
-        S -->|"Role Check"| T{✓ Has Role?}
-        T -->|"❌ No"| U[⚠️ Security Exception]
-        T -->|"✓ Yes"| V[✅ Execute Method]
+        R -->|"Method Access"| S["🔒 Security Annotation"]
+        S -->|"Role Check"| T{"✓ Has Role?"}
+        T -->|"❌ No"| U["⚠️ Security Exception"]
+        T -->|"✓ Yes"| V["✅ Execute Method"]
         
-        Q & U -->|"Log"| W[📝 Auth Event]
+        Q & U -->|"Log"| W["📝 Auth Event"]
     end
     
     style A fill:#2979FF,stroke:#0D47A1,stroke-width:2px,color:white,font-weight:bold
@@ -159,23 +159,23 @@ Our auditing system provides comprehensive traceability and data integrity prote
 flowchart TD
     subgraph "Javers Data Auditing"
         direction TB
-        A[👤 User] -->|"Action"| B[⚙️ Service Layer]
-        B -->|"Persist"| C[(💾 Database)]
+        A["👤 User"] -->|"Action"| B["⚙️ Service Layer"]
+        B -->|"Persist"| C[("💾 Database")]
         
-        B -.->|"Intercept"| D[📝 Javers AOP]
-        D -->|"Extract"| E[👤 Author Context]
-        D -->|"Capture"| F[📊 Change Metadata]
+        B -.->|"Intercept"| D["📝 Javers AOP"]
+        D -->|"Extract"| E["👤 Author Context"]
+        D -->|"Capture"| F["📊 Change Metadata"]
         
-        F -->|"Record"| G[📋 Entity Changes]
-        F -->|"Record"| H[📋 Property Changes]
-        F -->|"Record"| I[📋 Value Diff]
+        F -->|"Record"| G["📋 Entity Changes"]
+        F -->|"Record"| H["📋 Property Changes"]
+        F -->|"Record"| I["📋 Value Diff"]
         
-        G & H & I -->|"Store"| J[(📜 Audit Database)]
+        G & H & I -->|"Store"| J[("📜 Audit Database")]
         
-        K[🔍 Audit Queries] -->|"Access"| J
-        K -->|"Return"| L[👁️ Change History]
-        K -->|"Return"| M[📊 Author Activity]
-        K -->|"Return"| N[⏱️ Timeline View]
+        K["🔍 Audit Queries"] -->|"Access"| J
+        K -->|"Return"| L["👁️ Change History"]
+        K -->|"Return"| M["📊 Author Activity"]
+        K -->|"Return"| N["⏱️ Timeline View"]
     end
     
     style A fill:#2979FF,stroke:#0D47A1,stroke-width:2px,color:white,font-weight:bold
@@ -243,28 +243,28 @@ Our comprehensive user activity tracking system records all user sessions and ac
 flowchart TD
     subgraph "User Activity Tracking"
         direction TB
-        A[👤 User] -->|"Login"| B[🔑 Authentication]
-        B -->|"Create"| C[📝 ApplicationSession]
+        A["👤 User"] -->|"Login"| B["🔑 Authentication"]
+        B -->|"Create"| C["📝 ApplicationSession"]
         
-        A -->|"Interact"| D[🖱️ Page/Component]
-        D -->|"Generate"| E[📊 ApplicationActionEvent]
+        A -->|"Interact"| D["🖱️ Page/Component"]
+        D -->|"Generate"| E["📊 ApplicationActionEvent"]
         E -->|"Associated with"| C
         
-        C -->|"Contains"| F[📋 Session Metadata]
-        F -->|"Records"| G[👤 User Identifier]
-        F -->|"Records"| H[🌐 IP Information]
-        F -->|"Records"| I[🌍 Browser/OS]
-        F -->|"Records"| J[⏰ Time Data]
+        C -->|"Contains"| F["📋 Session Metadata"]
+        F -->|"Records"| G["👤 User Identifier"]
+        F -->|"Records"| H["🌐 IP Information"]
+        F -->|"Records"| I["🌍 Browser/OS"]
+        F -->|"Records"| J["⏰ Time Data"]
         
-        E -->|"Contains"| K[📋 Action Metadata]
-        K -->|"Records"| L[🔍 Operation Type]
-        K -->|"Records"| M[📄 Page/Element]
-        K -->|"Records"| N[⚙️ Action Details]
-        K -->|"Records"| O[⏱️ Timestamp]
+        E -->|"Contains"| K["📋 Action Metadata"]
+        K -->|"Records"| L["🔍 Operation Type"]
+        K -->|"Records"| M["📄 Page/Element"]
+        K -->|"Records"| N["⚙️ Action Details"]
+        K -->|"Records"| O["⏱️ Timestamp"]
         
-        C & E -->|"Store"| P[(💾 Tracking Database)]
-        P -->|"Security Analysis"| Q[🔍 Security Alerts]
-        P -->|"Pattern Analysis"| R[📊 Usage Analytics]
+        C & E -->|"Store"| P[("💾 Tracking Database")]
+        P -->|"Security Analysis"| Q["🔍 Security Alerts"]
+        P -->|"Pattern Analysis"| R["📊 Usage Analytics"]
     end
     
     style A fill:#2979FF,stroke:#0D47A1,stroke-width:2px,color:white,font-weight:bold
@@ -343,32 +343,32 @@ Our security event monitoring system captures, analyzes, and responds to securit
 flowchart TD
     subgraph "Security Event Monitoring"
         direction TB
-        A[🔓 Authentication<br>Events] --> B[🔑 Login Success]
-        A --> C[⚠️ Login Failure]
+        A["🔓 Authentication<br>Events"] --> B["🔑 Login Success"]
+        A --> C["⚠️ Login Failure"]
         
-        D[🛡️ Authorization<br>Events] --> E[✅ Access Granted]
-        D --> F[⛔ Access Denied]
+        D["🛡️ Authorization<br>Events"] --> E["✅ Access Granted"]
+        D --> F["⛔ Access Denied"]
         
-        G[⚙️ System<br>Events] --> H[🚀 Startup]
-        G --> I[🛑 Shutdown]
-        G --> J[⚠️ Error]
+        G["⚙️ System<br>Events"] --> H["🚀 Startup"]
+        G --> I["🛑 Shutdown"]
+        G --> J["⚠️ Error"]
         
-        B & C & E & F & H & I & J -->|"Generate"| K[📝 ApplicationActionEvent]
+        B & C & E & F & H & I & J -->|"Generate"| K["📝 ApplicationActionEvent"]
         
-        K -->|"Contains"| L[📋 Event Metadata]
-        L -->|"Records"| M[🔍 Event Type]
-        L -->|"Records"| N[👤 User ID]
-        L -->|"Records"| O[🔗 Session ID]
-        L -->|"Records"| P[🌐 IP Information]
-        L -->|"Records"| Q[⏱️ Timestamp]
+        K -->|"Contains"| L["📋 Event Metadata"]
+        L -->|"Records"| M["🔍 Event Type"]
+        L -->|"Records"| N["👤 User ID"]
+        L -->|"Records"| O["🔗 Session ID"]
+        L -->|"Records"| P["🌐 IP Information"]
+        L -->|"Records"| Q["⏱️ Timestamp"]
         
-        K -->|"Analyzed by"| R[🚨 Security Rules]
-        R -->|"May Trigger"| S[⚡ Security Alert]
-        S -->|"If Critical"| T[👥 Admin Notification]
+        K -->|"Analyzed by"| R["🚨 Security Rules"]
+        R -->|"May Trigger"| S["⚡ Security Alert"]
+        S -->|"If Critical"| T["👥 Admin Notification"]
         
-        K -->|"Store"| U[(💾 Event Database)]
-        U -->|"Security Analysis"| V[📊 Security Dashboard]
-        U -->|"Compliance"| W[📋 Audit Reports]
+        K -->|"Store"| U[("💾 Event Database")]
+        U -->|"Security Analysis"| V["📊 Security Dashboard"]
+        U -->|"Compliance"| W["📋 Audit Reports"]
     end
     
     style A,D,G fill:#2979FF,stroke:#0D47A1,stroke-width:2px,color:white,font-weight:bold
@@ -459,21 +459,21 @@ Our defense-in-depth network architecture implements multiple security layers.
 ```mermaid
 graph TD
     subgraph "Multi-Layer Network Security"
-        A[🌐 Internet] -->|"HTTPS Only"| B[🛡️ AWS WAF]
-        B -->|"Filtered Traffic"| C[⚖️ Load Balancer]
+        A["🌐 Internet"] -->|"HTTPS Only"| B["🛡️ AWS WAF"]
+        B -->|"Filtered Traffic"| C["⚖️ Load Balancer"]
         
         subgraph "Security Zones"
-            C -->|"Public Zone"| D[🌐 Public Subnets]
-            D -->|"NAT Gateway"| E[🔒 Private App Subnets]
-            E -->|"DB Traffic"| F[🔐 Private DB Subnets]
+            C -->|"Public Zone"| D["🌐 Public Subnets"]
+            D -->|"NAT Gateway"| E["🔒 Private App Subnets"]
+            E -->|"DB Traffic"| F["🔐 Private DB Subnets"]
         end
         
-        G[☁️ VPC Endpoints] -.->|"Private AWS Access"| E
+        G["☁️ VPC Endpoints"] -.->|"Private AWS Access"| E
     end
     
-    D -->|"Host"| H[🔍 Bastion]
-    E -->|"Host"| I[🖥️ EC2 Instances]
-    F -->|"Host"| J[(💾 RDS Database)]
+    D -->|"Host"| H["🔍 Bastion"]
+    E -->|"Host"| I["🖥️ EC2 Instances"]
+    F -->|"Host"| J[("💾 RDS Database")]
     
     style A fill:#2979FF,stroke:#0D47A1,stroke-width:2px,color:white,font-weight:bold
     style B fill:#FF3D00,stroke:#BF360C,stroke-width:2px,color:white,font-weight:bold
@@ -504,7 +504,7 @@ VPC Endpoints provide secure, private access to AWS services without internet ex
 ```mermaid
 flowchart LR
     subgraph "Private AWS Access"
-        A[🔒 Private Subnets] --> B[🔌 VPC Endpoints]
+        A["🔒 Private Subnets"] --> B["🔌 VPC Endpoints"]
         
         B --> C[S3]
         B --> D[Secrets<br>Manager]
@@ -512,8 +512,8 @@ flowchart LR
         B --> F[CloudWatch]
         B --> G[KMS]
         
-        H[🚪 Interface<br>Endpoints] -.-> B
-        I[🔄 Gateway<br>Endpoints] -.-> B
+        H["🚪 Interface<br>Endpoints"] -.-> B
+        I["🔄 Gateway<br>Endpoints"] -.-> B
     end
     
     style A fill:#00C853,stroke:#007E33,stroke-width:2px,color:white,font-weight:bold
@@ -537,27 +537,27 @@ Our multi-AZ architecture ensures both security and resilience against infrastru
 
 ```mermaid
 graph TD
-    A[⚖️ Load Balancer] --> B[🌐 Public Subnets]
+    A["⚖️ Load Balancer"] --> B["🌐 Public Subnets"]
     
     subgraph "Availability Zone A"
-        B --> |"Zone A"| C[🚪 NAT<br>Gateway A]
-        C --> D[🔒 Private<br>App A]
-        D --> E[🔐 Private<br>DB A]
-        E --> F[(💾 Primary<br>DB)]
+        B --> |"Zone A"| C["🚪 NAT<br>Gateway A"]
+        C --> D["🔒 Private<br>App A"]
+        D --> E["🔐 Private<br>DB A"]
+        E --> F[("💾 Primary<br>DB")]
     end
     
     subgraph "Availability Zone B"
-        B --> |"Zone B"| G[🚪 NAT<br>Gateway B]
-        G --> H[🔒 Private<br>App B]
-        H --> I[🔐 Private<br>DB B]
-        I --> J[(💾 Standby<br>DB)]
+        B --> |"Zone B"| G["🚪 NAT<br>Gateway B"]
+        G --> H["🔒 Private<br>App B"]
+        H --> I["🔐 Private<br>DB B"]
+        I --> J[("💾 Standby<br>DB")]
     end
     
     subgraph "Availability Zone C"
-        B --> |"Zone C"| K[🚪 NAT<br>Gateway C]
-        K --> L[🔒 Private<br>App C]
-        L --> M[🔐 Private<br>DB C]
-        M --> N[(💾 Read<br>Replica)]
+        B --> |"Zone C"| K["🚪 NAT<br>Gateway C"]
+        K --> L["🔒 Private<br>App C"]
+        L --> M["🔐 Private<br>DB C"]
+        M --> N[("💾 Read<br>Replica")]
     end
     
     style A fill:#00C853,stroke:#007E33,stroke-width:2px,color:white,font-weight:bold
@@ -584,18 +584,18 @@ Our comprehensive data protection strategy secures data throughout its lifecycle
 ```mermaid
 flowchart TD
     subgraph "Data Protection Strategy"
-        A[👤 User] <-->|"🔒 TLS 1.3"| B[⚖️ Load Balancer]
-        B <-->|"🔒 TLS 1.2+"| C[🖥️ Application]
-        C <-->|"🔒 TLS 1.2+"| D[(💾 Database)]
+        A["👤 User"] <-->|"🔒 TLS 1.3"| B["⚖️ Load Balancer"]
+        B <-->|"🔒 TLS 1.2+"| C["🖥️ Application"]
+        C <-->|"🔒 TLS 1.2+"| D[("💾 Database")]
         
-        E[🗝️ Secrets<br>Manager] -->|"Secure Credentials"| C
-        F[🔑 KMS] -->|"Encryption Keys"| G[🔐 Encrypted<br>Storage]
+        E["🗝️ Secrets<br>Manager"] -->|"Secure Credentials"| C
+        F["🔑 KMS"] -->|"Encryption Keys"| G["🔐 Encrypted<br>Storage"]
         
         G --> D
-        G --> H[📦 S3 Buckets]
-        G --> I[💿 EBS Volumes]
+        G --> H["📦 S3 Buckets"]
+        G --> I["💿 EBS Volumes"]
         
-        J[🔄 Automatic<br>Rotation] -->|"Update"| E
+        J["🔄 Automatic<br>Rotation"] -->|"Update"| E
     end
     
     style A fill:#2979FF,stroke:#0D47A1,stroke-width:2px,color:white,font-weight:bold
@@ -624,26 +624,26 @@ Our AWS security infrastructure provides comprehensive protection at all levels.
 ```mermaid
 graph TD
     subgraph "Defense Layers"
-        A[🌐 Internet] --> B[🛡️ Edge Security]
-        B --> C[🔒 Network Security]
-        C --> D[👤 Identity Security]
-        D --> E[👁️ Monitoring & Detection]
+        A["🌐 Internet"] --> B["🛡️ Edge Security"]
+        B --> C["🔒 Network Security"]
+        C --> D["👤 Identity Security"]
+        D --> E["👁️ Monitoring & Detection"]
     end
     
-    B --> F[🔰 Shield]
-    B --> G[🧱 WAF]
+    B --> F["🔰 Shield"]
+    B --> G["🧱 WAF"]
     
-    C --> H[🕸️ VPC]
-    C --> I[🚧 Security Groups]
-    C --> J[🔍 Network ACLs]
+    C --> H["🕸️ VPC"]
+    C --> I["🚧 Security Groups"]
+    C --> J["🔍 Network ACLs"]
     
-    D --> K[👥 IAM]
-    D --> L[🎭 Roles]
-    D --> M[📜 Policies]
+    D --> K["👥 IAM"]
+    D --> L["🎭 Roles"]
+    D --> M["📜 Policies"]
     
-    E --> N[🕵️ GuardDuty]
-    E --> O[📊 CloudTrail]
-    E --> P[📈 Security Hub]
+    E --> N["🕵️ GuardDuty"]
+    E --> O["📊 CloudTrail"]
+    E --> P["📈 Security Hub"]
     
     style A fill:#2979FF,stroke:#0D47A1,stroke-width:2px,color:white,font-weight:bold
     style B,C,D,E fill:#00C853,stroke:#007E33,stroke-width:2px,color:white,font-weight:bold
@@ -670,21 +670,21 @@ Our security architecture aligns with AWS Foundational Security Best Practices (
 ```mermaid
 flowchart TD
     subgraph "AWS FSBP Framework"
-        A[🏗️ Foundational<br>Controls] --> B[⚙️ Config]
-        A --> C[📊 Security Hub]
+        A["🏗️ Foundational<br>Controls"] --> B["⚙️ Config"]
+        A --> C["📊 Security Hub"]
         
-        D[🔍 Threat Detection] --> E[🕵️ GuardDuty]
-        D --> F[🔎 Inspector]
-        D --> G[🔍 Detective]
+        D["🔍 Threat Detection"] --> E["🕵️ GuardDuty"]
+        D --> F["🔎 Inspector"]
+        D --> G["🔍 Detective"]
         
-        H[🔒 Data Protection] --> I[🔑 KMS]
-        H --> J[🔐 Secrets Manager]
+        H["🔒 Data Protection"] --> I["🔑 KMS"]
+        H --> J["🔐 Secrets Manager"]
         
-        K[👥 Identity & Access] --> L[👤 IAM]
-        K --> M[🔑 Access Analyzer]
+        K["👥 Identity & Access"] --> L["👤 IAM"]
+        K --> M["🔑 Access Analyzer"]
         
-        N[⚠️ Incident Response] --> O[📊 CloudWatch]
-        N --> P[🔌 EventBridge]
+        N["⚠️ Incident Response"] --> O["📊 CloudWatch"]
+        N --> P["🔌 EventBridge"]
     end
     
     style A,D,H,K,N fill:#2979FF,stroke:#0D47A1,stroke-width:2px,color:white,font-weight:bold
@@ -736,21 +736,21 @@ Our threat detection and investigation capabilities combine multiple AWS securit
 ```mermaid
 flowchart TD
     subgraph "Threat Detection & Investigation"
-        A[🔍 Threat<br>Detection] --> B[🕵️ GuardDuty]
-        A --> C[🔎 Inspector]
+        A["🔍 Threat<br>Detection"] --> B["🕵️ GuardDuty"]
+        A --> C["🔎 Inspector"]
         
-        B --> D[⚠️ Findings]
+        B --> D["⚠️ Findings"]
         C --> D
         
-        D --> E[📊 Security Hub]
-        E --> F[🔎 Detective]
+        D --> E["📊 Security Hub"]
+        E --> F["🔎 Detective"]
         
-        F --> G[🔍 Root Cause<br>Analysis]
-        F --> H[🕸️ Entity<br>Relationships]
-        F --> I[⏱️ Timeline<br>Analysis]
+        F --> G["🔍 Root Cause<br>Analysis"]
+        F --> H["🕸️ Entity<br>Relationships"]
+        F --> I["⏱️ Timeline<br>Analysis"]
         
-        G & H & I --> J[👥 Security<br>Team]
-        J --> K[⚡ Incident<br>Response]
+        G & H & I --> J["👥 Security<br>Team"]
+        J --> K["⚡ Incident<br>Response"]
     end
     
     style A fill:#2979FF,stroke:#0D47A1,stroke-width:2px,color:white,font-weight:bold
@@ -823,28 +823,28 @@ Our vulnerability management program combines Amazon Inspector with additional s
 ```mermaid
 flowchart TD
     subgraph "Vulnerability Management System"
-        A[🔎 Vulnerability<br>Sources] --> B[🔍 Amazon<br>Inspector]
-        A --> C[🛠️ Security<br>Scanners]
-        A --> D[📊 Security<br>Hub]
+        A["🔎 Vulnerability<br>Sources"] --> B["🔍 Amazon<br>Inspector"]
+        A --> C["🛠️ Security<br>Scanners"]
+        A --> D["📊 Security<br>Hub"]
         
-        B --> E[🔍 EC2<br>Vulnerabilities]
-        B --> F[🔍 Container<br>Vulnerabilities]
-        B --> G[🔍 Lambda<br>Vulnerabilities]
+        B --> E["🔍 EC2<br>Vulnerabilities"]
+        B --> F["🔍 Container<br>Vulnerabilities"]
+        B --> G["🔍 Lambda<br>Vulnerabilities"]
         
-        E & F & G --> H[📋 Vulnerability<br>Database]
-        H --> I[🔄 Prioritization<br>Engine]
+        E & F & G --> H["📋 Vulnerability<br>Database"]
+        H --> I["🔄 Prioritization<br>Engine"]
         
-        I --> J[🚨 Critical]
-        I --> K[⚠️ High]
-        I --> L[📝 Medium]
+        I --> J["🚨 Critical"]
+        I --> K["⚠️ High"]
+        I --> L["📝 Medium"]
         I --> M[ℹ️ Low]
         
-        J & K --> N[🔧 Immediate<br>Remediation]
-        L --> O[🗓️ Scheduled<br>Remediation]
+        J & K --> N["🔧 Immediate<br>Remediation"]
+        L --> O["🗓️ Scheduled<br>Remediation"]
         
-        N & O --> P[⚙️ Patch<br>Management]
-        P --> Q[✅ Verification]
-        Q --> R[📊 Compliance<br>Reports]
+        N & O --> P["⚙️ Patch<br>Management"]
+        P --> Q["✅ Verification"]
+        Q --> R["📊 Compliance<br>Reports"]
     end
     
     style A fill:#2979FF,stroke:#0D47A1,stroke-width:2px,color:white,font-weight:bold
@@ -923,23 +923,23 @@ Our resilience and operational readiness strategy ensures the system can withsta
 ```mermaid
 flowchart TD
     subgraph "Resilience & Operational Readiness"
-        A[🏗️ AWS Resilience<br>Hub] --> B[📊 Resilience<br>Assessment]
-        B --> C[🔍 Resilience<br>Score]
+        A["🏗️ AWS Resilience<br>Hub"] --> B["📊 Resilience<br>Assessment"]
+        B --> C["🔍 Resilience<br>Score"]
         
-        C --> D[📝 Recovery Time<br>Objective]
-        C --> E[📝 Recovery Point<br>Objective]
+        C --> D["📝 Recovery Time<br>Objective"]
+        C --> E["📝 Recovery Point<br>Objective"]
         
-        F[🔄 Resilience<br>Testing] --> G[🧪 Chaos<br>Engineering]
-        F --> H[🔄 Failover<br>Testing]
-        F --> I[🚨 DR<br>Exercises]
+        F["🔄 Resilience<br>Testing"] --> G["🧪 Chaos<br>Engineering"]
+        F --> H["🔄 Failover<br>Testing"]
+        F --> I["🚨 DR<br>Exercises"]
         
-        J[⚡ Incident<br>Response] --> K[📑 Runbooks]
-        J --> L[👥 Response<br>Teams]
-        J --> M[🔄 Automated<br>Recovery]
+        J["⚡ Incident<br>Response"] --> K["📑 Runbooks"]
+        J --> L["👥 Response<br>Teams"]
+        J --> M["🔄 Automated<br>Recovery"]
         
-        N[📊 Business<br>Continuity] --> O[🔄 Multi-AZ<br>Architecture]
-        N --> P[🌐 Multi-Region<br>Strategy]
-        N --> Q[📋 Recovery<br>Plans]
+        N["📊 Business<br>Continuity"] --> O["🔄 Multi-AZ<br>Architecture"]
+        N --> P["🌐 Multi-Region<br>Strategy"]
+        N --> Q["📋 Recovery<br>Plans"]
     end
     
     style A fill:#2979FF,stroke:#0D47A1,stroke-width:2px,color:white,font-weight:bold
@@ -1031,24 +1031,24 @@ Our configuration and compliance management system ensures that all resources ma
 ```mermaid
 flowchart TD
     subgraph "Configuration & Compliance Management"
-        A[⚙️ AWS Config] --> B[📝 Resource<br>Inventory]
-        A --> C[📊 Configuration<br>History]
-        A --> D[🔍 Compliance<br>Rules]
+        A["⚙️ AWS Config"] --> B["📝 Resource<br>Inventory"]
+        A --> C["📊 Configuration<br>History"]
+        A --> D["🔍 Compliance<br>Rules"]
         
-        D --> E[📋 AWS Managed<br>Rules]
-        D --> F[📝 Custom<br>Rules]
+        D --> E["📋 AWS Managed<br>Rules"]
+        D --> F["📝 Custom<br>Rules"]
         
-        E & F --> G[🔍 Continuous<br>Evaluation]
-        G --> H[⚠️ Non-Compliant<br>Resources]
-        H --> I[🔄 Auto<br>Remediation]
+        E & F --> G["🔍 Continuous<br>Evaluation"]
+        G --> H["⚠️ Non-Compliant<br>Resources"]
+        H --> I["🔄 Auto<br>Remediation"]
         
-        J[🏛️ Compliance<br>Frameworks] --> K[📊 NIST CSF]
-        J --> L[📊 ISO 27001]
-        J --> M[📊 CIS Benchmarks]
+        J["🏛️ Compliance<br>Frameworks"] --> K["📊 NIST CSF"]
+        J --> L["📊 ISO 27001"]
+        J --> M["📊 CIS Benchmarks"]
         
-        K & L & M --> N[📑 Compliance<br>Reporting]
-        N --> O[👁️ Executive<br>Dashboard]
-        N --> P[📋 Audit<br>Evidence]
+        K & L & M --> N["📑 Compliance<br>Reporting"]
+        N --> O["👁️ Executive<br>Dashboard"]
+        N --> P["📋 Audit<br>Evidence"]
     end
     
     style A fill:#2979FF,stroke:#0D47A1,stroke-width:2px,color:white,font-weight:bold
@@ -1118,22 +1118,22 @@ Our comprehensive monitoring and analytics system provides real-time visibility 
 ```mermaid
 flowchart TD
     subgraph "Security Monitoring & Analytics"
-        A[📊 Log Sources] --> B[📈 CloudWatch]
-        A --> C[🔍 VPC Flow Logs]
-        A --> D[🔑 CloudTrail]
-        A --> E[📋 Application Logs]
+        A["📊 Log Sources"] --> B["📈 CloudWatch"]
+        A --> C["🔍 VPC Flow Logs"]
+        A --> D["🔑 CloudTrail"]
+        A --> E["📋 Application Logs"]
         
-        B & C & D & E --> F[🔍 Security Lake]
-        F --> G[📊 Normalized<br>OCSF Format]
+        B & C & D & E --> F["🔍 Security Lake"]
+        F --> G["📊 Normalized<br>OCSF Format"]
         
-        G --> H[🔎 Security<br>Analytics]
-        H --> I[🚨 Real-time<br>Alerting]
-        H --> J[🔍 Threat<br>Hunting]
-        H --> K[📊 Trend<br>Analysis]
+        G --> H["🔎 Security<br>Analytics"]
+        H --> I["🚨 Real-time<br>Alerting"]
+        H --> J["🔍 Threat<br>Hunting"]
+        H --> K["📊 Trend<br>Analysis"]
         
-        L[📑 Reporting] --> M[📈 Executive<br>Dashboards]
-        L --> N[📝 Compliance<br>Reports]
-        L --> O[🔎 Incident<br>Analysis]
+        L["📑 Reporting"] --> M["📈 Executive<br>Dashboards"]
+        L --> N["📝 Compliance<br>Reports"]
+        L --> O["🔎 Incident<br>Analysis"]
     end
     
     style A,B,C,D,E fill:#2979FF,stroke:#0D47A1,stroke-width:2px,color:white,font-weight:bold
@@ -1206,17 +1206,17 @@ Our automated security maintenance system ensures continuous protection through 
 ```mermaid
 flowchart TD
     subgraph "Automated Security Maintenance"
-        A[⏱️ Maintenance<br>Window] --> B[🔄 Automated<br>Operations]
+        A["⏱️ Maintenance<br>Window"] --> B["🔄 Automated<br>Operations"]
         
-        B --> C[🔍 Security<br>Scanning]
-        B --> D[🛠️ Patch<br>Management]
-        B --> E[🔄 Agent<br>Updates]
-        B --> F[📊 Inventory<br>Collection]
+        B --> C["🔍 Security<br>Scanning"]
+        B --> D["🛠️ Patch<br>Management"]
+        B --> E["🔄 Agent<br>Updates"]
+        B --> F["📊 Inventory<br>Collection"]
         
-        C --> G[📝 Findings]
-        D --> H[📊 Compliance<br>Status]
+        C --> G["📝 Findings"]
+        D --> H["📊 Compliance<br>Status"]
         
-        G & H --> I[📦 S3 Artifact<br>Storage]
+        G & H --> I["📦 S3 Artifact<br>Storage"]
     end
     
     style A fill:#FFD600,stroke:#FF8F00,stroke-width:2px,color:black,font-weight:bold
@@ -1302,19 +1302,19 @@ Our application implements robust security controls at the code level.
 ```mermaid
 flowchart LR
     subgraph "Application Security Controls"
-        A[🛡️ Spring<br>Security] --> B[🔐 Authentication]
-        A --> C[🔑 Authorization]
-        A --> D[🔒 Headers]
-        A --> E[🛑 Input<br>Validation]
+        A["🛡️ Spring<br>Security"] --> B["🔐 Authentication"]
+        A --> C["🔑 Authorization"]
+        A --> D["🔒 Headers"]
+        A --> E["🛑 Input<br>Validation"]
         
-        B --> F[👤 MFA]
-        B --> G[🚫 Brute Force<br>Protection]
+        B --> F["👤 MFA"]
+        B --> G["🚫 Brute Force<br>Protection"]
         
-        C --> H[🎭 Role-Based<br>Access]
-        C --> I[📝 Method<br>Security]
+        C --> H["🎭 Role-Based<br>Access"]
+        C --> I["📝 Method<br>Security"]
         
-        D --> J[🔐 Content<br>Security]
-        D --> K[📌 HSTS]
+        D --> J["🔐 Content<br>Security"]
+        D --> K["📌 HSTS"]
     end
     
     style A fill:#673AB7,stroke:#311B92,stroke-width:2px,color:white,font-weight:bold
@@ -1361,19 +1361,19 @@ Our security architecture aligns with key compliance frameworks.
 ```mermaid
 graph TD
     subgraph "Compliance Integration"
-        A[🏛️ Compliance<br>Framework] --> B[🔍 NIST CSF]
-        A --> C[🔐 ISO 27001]
+        A["🏛️ Compliance<br>Framework"] --> B["🔍 NIST CSF"]
+        A --> C["🔐 ISO 27001"]
         
-        B --> D[👁️ Identify]
-        B --> E[🛡️ Protect]
-        B --> F[🔎 Detect]
-        B --> G[⚡ Respond]
-        B --> H[🔄 Recover]
+        B --> D["👁️ Identify"]
+        B --> E["🛡️ Protect"]
+        B --> F["🔎 Detect"]
+        B --> G["⚡ Respond"]
+        B --> H["🔄 Recover"]
         
-        C --> I[👥 Access<br>Control]
-        C --> J[🔒 Cryptography]
-        C --> K[⚙️ Operations]
-        C --> L[📡 Communications]
+        C --> I["👥 Access<br>Control"]
+        C --> J["🔒 Cryptography"]
+        C --> K["⚙️ Operations"]
+        C --> L["📡 Communications"]
     end
     
     style A fill:#673AB7,stroke:#311B92,stroke-width:2px,color:white,font-weight:bold
@@ -1456,51 +1456,51 @@ Our security architecture aligns with the AWS Well-Architected Framework pillars
 ```mermaid
 flowchart TD
     subgraph "AWS Well-Architected Framework"
-        A[🏛️ Well-Architected<br>Framework] 
+        A["🏛️ Well-Architected<br>Framework"] 
         
-        A --> B[🔒 Security]
-        A --> C[💪 Reliability]
-        A --> D[⚙️ Operational<br>Excellence]
-        A --> E[🚀 Performance<br>Efficiency]
-        A --> F[💰 Cost<br>Optimization]
-        A --> G[♻️ Sustainability]
+        A --> B["🔒 Security"]
+        A --> C["💪 Reliability"]
+        A --> D["⚙️ Operational<br>Excellence"]
+        A --> E["🚀 Performance<br>Efficiency"]
+        A --> F["💰 Cost<br>Optimization"]
+        A --> G["♻️ Sustainability"]
         
-        B --> B1[🔐 Identity & Access<br>Management]
-        B --> B2[🔍 Detection<br>Controls]
-        B --> B3[🛡️ Infrastructure<br>Protection]
-        B --> B4[📊 Data<br>Protection]
-        B --> B5[⚡ Incident<br>Response]
+        B --> B1["🔐 Identity & Access<br>Management"]
+        B --> B2["🔍 Detection<br>Controls"]
+        B --> B3["🛡️ Infrastructure<br>Protection"]
+        B --> B4["📊 Data<br>Protection"]
+        B --> B5["⚡ Incident<br>Response"]
         
-        B1 --> H1[🔑 MFA & RBAC]
-        B1 --> H2[👥 IAM Best<br>Practices]
+        B1 --> H1["🔑 MFA & RBAC"]
+        B1 --> H2["👥 IAM Best<br>Practices"]
         
-        B2 --> I1[🕵️ GuardDuty]
-        B2 --> I2[📊 Security Hub]
-        B2 --> I3[📝 Application<br>Action Tracking]
+        B2 --> I1["🕵️ GuardDuty"]
+        B2 --> I2["📊 Security Hub"]
+        B2 --> I3["📝 Application<br>Action Tracking"]
         
-        B3 --> J1[🧱 WAF]
-        B3 --> J2[🌐 Network<br>Segmentation]
-        B3 --> J3[🔌 VPC<br>Endpoints]
+        B3 --> J1["🧱 WAF"]
+        B3 --> J2["🌐 Network<br>Segmentation"]
+        B3 --> J3["🔌 VPC<br>Endpoints"]
         
-        B4 --> K1[🔐 Encryption]
-        B4 --> K2[📜 Javers<br>Auditing]
-        B4 --> K3[🗝️ Secrets<br>Manager]
+        B4 --> K1["🔐 Encryption"]
+        B4 --> K2["📜 Javers<br>Auditing"]
+        B4 --> K3["🗝️ Secrets<br>Manager"]
         
-        B5 --> L1[🔎 Detective]
-        B5 --> L2[⚙️ Automated<br>Remediation]
+        B5 --> L1["🔎 Detective"]
+        B5 --> L2["⚙️ Automated<br>Remediation"]
         
-        C --> C1[🏗️ Multi-AZ<br>Architecture]
-        C --> C2[📊 AWS<br>Resilience Hub]
+        C --> C1["🏗️ Multi-AZ<br>Architecture"]
+        C --> C2["📊 AWS<br>Resilience Hub"]
         
-        D --> D1[🤖 Automated<br>Security Ops]
-        D --> D2[📋 Config<br>Management]
+        D --> D1["🤖 Automated<br>Security Ops"]
+        D --> D2["📋 Config<br>Management"]
         
-        E --> E1[🔌 Private<br>Endpoints]
-        E --> E2[🔄 Service<br>Optimizations]
+        E --> E1["🔌 Private<br>Endpoints"]
+        E --> E2["🔄 Service<br>Optimizations"]
         
-        F --> F1[🔍 Right-Sized<br>Controls]
+        F --> F1["🔍 Right-Sized<br>Controls"]
         
-        G --> G1[♻️ Resource<br>Efficiency]
+        G --> G1["♻️ Resource<br>Efficiency"]
     end
     
     style A fill:#2979FF,stroke:#0D47A1,stroke-width:2px,color:white,font-weight:bold

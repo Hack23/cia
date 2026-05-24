@@ -38,10 +38,10 @@ graph TB
     end
     
     subgraph "Structured Analytic Techniques"
-        C --> D[Decomposition & Visualization]
+        C --> D["Decomposition & Visualization"]
         C --> E[Idea Generation]
-        C --> F[Hypothesis Generation & Testing]
-        C --> G[Scenarios & Indicators]
+        C --> F["Hypothesis Generation & Testing"]
+        C --> G["Scenarios & Indicators"]
         C --> H[Challenge Analysis]
     end
     

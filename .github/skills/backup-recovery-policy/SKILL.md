@@ -43,35 +43,35 @@ Do NOT skip for:
 
 ```mermaid
 graph TD
-    START[💾 Backup Need] --> CLASSIFY{🏷️ Data Classification?}
+    START["💾 Backup Need"] --> CLASSIFY{"🏷️ Data Classification?"}
     
-    CLASSIFY -->|RESTRICTED| CRITICAL[🔴 Critical Backup<br/>Continuous Replication]
-    CLASSIFY -->|CONFIDENTIAL| HIGH[🟠 High Priority<br/>Hourly Backups]
-    CLASSIFY -->|INTERNAL| MEDIUM[🟡 Medium Priority<br/>Daily Backups]
-    CLASSIFY -->|PUBLIC| STANDARD[🟢 Standard<br/>Weekly Backups]
+    CLASSIFY -->|RESTRICTED| CRITICAL["🔴 Critical Backup<br/>Continuous Replication"]
+    CLASSIFY -->|CONFIDENTIAL| HIGH["🟠 High Priority<br/>Hourly Backups"]
+    CLASSIFY -->|INTERNAL| MEDIUM["🟡 Medium Priority<br/>Daily Backups"]
+    CLASSIFY -->|PUBLIC| STANDARD["🟢 Standard<br/>Weekly Backups"]
     
-    CRITICAL --> IMPACT{📊 Business Impact?}
+    CRITICAL --> IMPACT{"📊 Business Impact?"}
     HIGH --> IMPACT
     MEDIUM --> IMPACT
     STANDARD --> IMPACT
     
-    IMPACT -->|Financial System| FINANCE[💰 Financial Data<br/>7-year retention]
-    IMPACT -->|Core Operations| CORE[🏗️ Core Systems<br/>1-year retention]
-    IMPACT -->|Support Functions| SUPPORT[🛠️ Support Systems<br/>3-month retention]
+    IMPACT -->|Financial System| FINANCE["💰 Financial Data<br/>7-year retention"]
+    IMPACT -->|Core Operations| CORE["🏗️ Core Systems<br/>1-year retention"]
+    IMPACT -->|Support Functions| SUPPORT["🛠️ Support Systems<br/>3-month retention"]
     
-    FINANCE --> METHOD{🔧 Backup Method?}
+    FINANCE --> METHOD{"🔧 Backup Method?"}
     CORE --> METHOD
     SUPPORT --> METHOD
     
-    METHOD -->|Database| RDS[📊 AWS RDS<br/>Automated Snapshots]
-    METHOD -->|Files| S3[📁 AWS S3<br/>Versioning + Lifecycle]
-    METHOD -->|Infrastructure| IaC[🏗️ Infrastructure as Code<br/>Git + CloudFormation]
+    METHOD -->|Database| RDS["📊 AWS RDS<br/>Automated Snapshots"]
+    METHOD -->|Files| S3["📁 AWS S3<br/>Versioning + Lifecycle"]
+    METHOD -->|Infrastructure| IaC["🏗️ Infrastructure as Code<br/>Git + CloudFormation"]
     
-    RDS --> TEST[🧪 Quarterly Restore Test]
+    RDS --> TEST["🧪 Quarterly Restore Test"]
     S3 --> TEST
     IaC --> TEST
     
-    TEST --> MONITOR[📈 Monitoring & Alerts]
+    TEST --> MONITOR["📈 Monitoring & Alerts"]
     
     style CRITICAL fill:#D32F2F
     style HIGH fill:#FF9800

@@ -84,10 +84,10 @@ This diagram shows the complete intelligence pipeline from OSINT collection thro
 %%{init: {"theme":"base", "themeVariables": { "fontSize":"12px"}}}%%
 flowchart TB
     subgraph COLLECTION["🔍 OSINT Collection Layer"]
-        API1[📡 Riksdagen API<br/>Parliamentary Data]
-        API2[📊 Election Authority<br/>Electoral Data]
-        API3[💰 World Bank<br/>Economic Data]
-        API4[🏛️ Financial Authority<br/>Government Finance]
+        API1["📡 Riksdagen API<br/>Parliamentary Data"]
+        API2["📊 Election Authority<br/>Electoral Data"]
+        API3["💰 World Bank<br/>Economic Data"]
+        API4["🏛️ Financial Authority<br/>Government Finance"]
     end
     
     subgraph DATABASE["🗄️ Database Views - 110 Total"]

@@ -280,7 +280,7 @@ flowchart TB
 
     subgraph "Human Oversight Layer"
         HO1[Strategic Direction Setting]
-        HO2[Ethics & Values Governance]
+        HO2["Ethics & Values Governance"]
         HO3[Accountability Review]
         HO4[Democratic Mission Alignment]
     end

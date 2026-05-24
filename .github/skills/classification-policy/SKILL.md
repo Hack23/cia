@@ -35,23 +35,23 @@ Do NOT skip for:
 ```mermaid
 graph TD
     subgraph Classification["🏷️ Classification Tiers"]
-        RESTRICTED[🔴 RESTRICTED<br/>Extreme Confidentiality<br/>National Security Level]
-        CONFIDENTIAL[🟠 CONFIDENTIAL<br/>High Confidentiality<br/>Business Sensitive]
-        INTERNAL[🟡 INTERNAL<br/>Moderate Confidentiality<br/>Company Use Only]
-        PUBLIC[🟢 PUBLIC<br/>No Confidentiality<br/>Publicly Accessible]
+        RESTRICTED["🔴 RESTRICTED<br/>Extreme Confidentiality<br/>National Security Level"]
+        CONFIDENTIAL["🟠 CONFIDENTIAL<br/>High Confidentiality<br/>Business Sensitive"]
+        INTERNAL["🟡 INTERNAL<br/>Moderate Confidentiality<br/>Company Use Only"]
+        PUBLIC["🟢 PUBLIC<br/>No Confidentiality<br/>Publicly Accessible"]
     end
     
     subgraph CIA["🛡️ CIA Triad Mapping"]
-        CONF[🔒 Confidentiality<br/>Data Secrecy]
-        INT[✅ Integrity<br/>Data Accuracy]
-        AVAIL[⏱️ Availability<br/>Data Access]
+        CONF["🔒 Confidentiality<br/>Data Secrecy"]
+        INT["✅ Integrity<br/>Data Accuracy"]
+        AVAIL["⏱️ Availability<br/>Data Access"]
     end
     
     subgraph Controls["🔐 Security Controls"]
-        ENCRYPTION[🔐 Encryption Requirements]
-        ACCESS[🚪 Access Controls]
-        AUDIT[📊 Audit Logging]
-        RETENTION[📅 Retention Policy]
+        ENCRYPTION["🔐 Encryption Requirements"]
+        ACCESS["🚪 Access Controls"]
+        AUDIT["📊 Audit Logging"]
+        RETENTION["📅 Retention Policy"]
     end
     
     RESTRICTED --> CONF
@@ -415,27 +415,27 @@ Use this decision tree to classify information:
 
 ```mermaid
 graph TD
-    START[🏷️ Start Classification] --> Q1{Contains credentials,<br/>encryption keys,<br/>or PII?}
+    START["🏷️ Start Classification"] --> Q1{"Contains credentials,<br/>encryption keys,<br/>or PII?"}
     
-    Q1 -->|Yes| RESTRICTED[🔴 RESTRICTED]
+    Q1 -->|Yes| RESTRICTED["🔴 RESTRICTED"]
     Q1 -->|No| Q2{Business-sensitive or<br/>competitive advantage<br/>if disclosed?}
     
     Q2 -->|Yes| Q3{Significant financial<br/>or legal impact<br/>if disclosed?}
     Q2 -->|No| Q4{Already publicly<br/>available or<br/>approved for release?}
     
-    Q3 -->|Yes| CONFIDENTIAL[🟠 CONFIDENTIAL]
-    Q3 -->|No| INTERNAL[🟡 INTERNAL]
+    Q3 -->|Yes| CONFIDENTIAL["🟠 CONFIDENTIAL"]
+    Q3 -->|No| INTERNAL["🟡 INTERNAL"]
     
-    Q4 -->|Yes| PUBLIC[🟢 PUBLIC]
+    Q4 -->|Yes| PUBLIC["🟢 PUBLIC"]
     Q4 -->|No| INTERNAL
     
-    RESTRICTED --> R_CONTROLS[🔐 Maximum Security:<br/>• AES-256 encryption<br/>• MFA required<br/>• Never log<br/>• Immediate disposal]
+    RESTRICTED --> R_CONTROLS["🔐 Maximum Security:<br/>• AES-256 encryption<br/>• MFA required<br/>• Never log<br/>• Immediate disposal"]
     
-    CONFIDENTIAL --> C_CONTROLS[🛡️ High Security:<br/>• Encryption recommended<br/>• RBAC enforced<br/>• Access logging<br/>• Quarterly reviews]
+    CONFIDENTIAL --> C_CONTROLS["🛡️ High Security:<br/>• Encryption recommended<br/>• RBAC enforced<br/>• Access logging<br/>• Quarterly reviews"]
     
-    INTERNAL --> I_CONTROLS[🚪 Standard Security:<br/>• Authentication required<br/>• Internal use only<br/>• Standard retention<br/>• Basic logging]
+    INTERNAL --> I_CONTROLS["🚪 Standard Security:<br/>• Authentication required<br/>• Internal use only<br/>• Standard retention<br/>• Basic logging"]
     
-    PUBLIC --> P_CONTROLS[🌐 Public Access:<br/>• No restrictions<br/>• Integrity focus<br/>• High availability<br/>• Public distribution OK]
+    PUBLIC --> P_CONTROLS["🌐 Public Access:<br/>• No restrictions<br/>• Integrity focus<br/>• High availability<br/>• Public distribution OK"]
     
     style RESTRICTED fill:#D32F2F
     style CONFIDENTIAL fill:#FF9800

@@ -61,9 +61,9 @@ This document provides comprehensive intelligence analysis documentation for all
 ```mermaid
 graph TB
     subgraph "Intelligence Collection Layer"
-        A[📡 Riksdagen API] --> B[Data Aggregation]
-        C[📊 Election Authority] --> B
-        D[💰 Financial Data] --> B
+        A["📡 Riksdagen API"] --> B[Data Aggregation]
+        C["📊 Election Authority"] --> B
+        D["💰 Financial Data"] --> B
     end
     
     subgraph "Analysis Engine"
@@ -74,9 +74,9 @@ graph TB
     end
     
     subgraph "Intelligence Products"
-        F --> I[🔴 Risk Assessments]
-        G --> J[📈 Scorecards]
-        H --> K[⚠️ Warning Indicators]
+        F --> I["🔴 Risk Assessments"]
+        G --> J["📈 Scorecards"]
+        H --> K["⚠️ Warning Indicators"]
     end
     
     style A fill:#e1f5ff
@@ -95,9 +95,9 @@ graph TB
 ```mermaid
 graph LR
     A[Detection] --> B{Severity Assessment}
-    B -->|Salience 10-49| C[🟡 MINOR]
-    B -->|Salience 50-99| D[🟠 MAJOR]
-    B -->|Salience 100+| E[🔴 CRITICAL]
+    B -->|Salience 10-49| C["🟡 MINOR"]
+    B -->|Salience 50-99| D["🟠 MAJOR"]
+    B -->|Salience 100+| E["🔴 CRITICAL"]
     
     C --> F[Early Warning]
     D --> G[Significant Concern]
@@ -122,11 +122,11 @@ graph LR
 ```mermaid
 graph TB
     subgraph "Politician Intelligence Collection"
-        A[👤 Individual Profile] --> B{Behavior Monitoring}
-        B --> C[📊 Attendance Tracking]
-        B --> D[🗳️ Voting Analysis]
-        B --> E[📄 Productivity Metrics]
-        B --> F[🤝 Collaboration Patterns]
+        A["👤 Individual Profile"] --> B{Behavior Monitoring}
+        B --> C["📊 Attendance Tracking"]
+        B --> D["🗳️ Voting Analysis"]
+        B --> E["📄 Productivity Metrics"]
+        B --> F["🤝 Collaboration Patterns"]
     end
     
     subgraph "Risk Detection"
@@ -137,11 +137,11 @@ graph TB
     end
     
     subgraph "Intelligence Assessment"
-        G --> K[🔴 Risk Profile]
+        G --> K["🔴 Risk Profile"]
         H --> K
         I --> K
         J --> K
-        K --> L[📋 Intelligence Report]
+        K --> L["📋 Intelligence Report"]
     end
     
     style A fill:#e1f5ff
@@ -173,10 +173,10 @@ graph TB
 ```mermaid
 flowchart TD
     A[Politician Voting Data] --> B{Absence Analysis}
-    B -->|Daily: 100% absent| C[🟡 MINOR: Complete Daily Absence]
-    B -->|Monthly: ≥20% absent| D[🟠 MAJOR: Chronic Monthly Absence]
-    B -->|Annual: 20-30% absent| E[🔴 CRITICAL: Sustained Absenteeism]
-    B -->|Annual: ≥30% absent| F[🔴 CRITICAL: Extreme Absenteeism]
+    B -->|Daily: 100% absent| C["🟡 MINOR: Complete Daily Absence"]
+    B -->|Monthly: ≥20% absent| D["🟠 MAJOR: Chronic Monthly Absence"]
+    B -->|Annual: 20-30% absent| E["🔴 CRITICAL: Sustained Absenteeism"]
+    B -->|Annual: ≥30% absent| F["🔴 CRITICAL: Extreme Absenteeism"]
     
     C --> G[Resource Tag: PoliticianLazy]
     D --> G
@@ -226,9 +226,9 @@ flowchart TD
 ```mermaid
 flowchart TD
     A[Annual Voting Summary] --> B{Win Rate Analysis}
-    B -->|<30% win rate| C[🟡 MINOR: Low Win Rate]
-    B -->|<20% win rate| D[🟠 MAJOR: Very Low Win Rate]
-    B -->|<10% win rate| E[🔴 CRITICAL: Critically Low Win Rate]
+    B -->|<30% win rate| C["🟡 MINOR: Low Win Rate"]
+    B -->|<20% win rate| D["🟠 MAJOR: Very Low Win Rate"]
+    B -->|<10% win rate| E["🔴 CRITICAL: Critically Low Win Rate"]
     
     C --> F[Opposition/Minority Status]
     D --> F
@@ -278,9 +278,9 @@ flowchart TD
 ```mermaid
 flowchart TD
     A[Party Affiliation Check] --> B[Annual Rebel Vote %]
-    B -->|5-10% rebel| C[🟡 MINOR: Frequent Rebel Voting]
-    B -->|10-20% rebel| D[🟠 MAJOR: Very High Rebel Voting]
-    B -->|≥20% rebel| E[🔴 CRITICAL: Extreme Rebel Voting]
+    B -->|5-10% rebel| C["🟡 MINOR: Frequent Rebel Voting"]
+    B -->|10-20% rebel| D["🟠 MAJOR: Very High Rebel Voting"]
+    B -->|≥20% rebel| E["🔴 CRITICAL: Extreme Rebel Voting"]
     
     C --> F[Ideological Independence]
     D --> G[Factional Conflict]
@@ -288,7 +288,7 @@ flowchart TD
     
     F --> I[Monitor Coalition Stress]
     G --> I
-    H --> J[⚠️ Coalition Stability Warning]
+    H --> J["⚠️ Coalition Stability Warning"]
     
     style C fill:#fff9cc
     style D fill:#ffe6cc
@@ -331,15 +331,15 @@ flowchart TD
 ```mermaid
 flowchart TD
     A[Historical Baseline] --> B{Trend Comparison}
-    B -->|Monthly absence > Annual +10%| C[🟠 MAJOR: Worsening Absenteeism]
-    B -->|Monthly win < Annual -15%| D[🟠 MAJOR: Decreasing Effectiveness]
-    B -->|Monthly: 15% absent + 8% abstain| E[🔴 CRITICAL: Disengagement Pattern]
-    B -->|Monthly rebel > Annual +5%| F[🟠 MAJOR: Escalating Rebel Behavior]
+    B -->|Monthly absence > Annual +10%| C["🟠 MAJOR: Worsening Absenteeism"]
+    B -->|Monthly win < Annual -15%| D["🟠 MAJOR: Decreasing Effectiveness"]
+    B -->|Monthly: 15% absent + 8% abstain| E["🔴 CRITICAL: Disengagement Pattern"]
+    B -->|Monthly rebel > Annual +5%| F["🟠 MAJOR: Escalating Rebel Behavior"]
     
-    C --> G[⚠️ Burnout Warning]
+    C --> G["⚠️ Burnout Warning"]
     D --> G
-    E --> H[🚨 Crisis Indicator]
-    F --> I[📊 Factional Shift]
+    E --> H["🚨 Crisis Indicator"]
+    F --> I["📊 Factional Shift"]
     
     style C fill:#ffe6cc
     style D fill:#ffe6cc
@@ -372,17 +372,17 @@ flowchart TD
 ```mermaid
 flowchart TD
     A[Multi-Factor Analysis] --> B{Risk Combination}
-    B -->|Low effectiveness + High absence| C[🔴 CRITICAL: High Risk Profile]
-    B -->|Rebel behavior + Low effectiveness| D[🟠 MAJOR: Rebel with Low Impact]
-    B -->|High absence + Low effect + High rebel| E[🔴 CRITICAL: Triple Risk Profile]
-    B -->|High rebel + High presence| F[🟠 MAJOR: Consistent Rebel]
-    B -->|High absence + High abstention| G[🟠 MAJOR: Avoidance Pattern]
+    B -->|Low effectiveness + High absence| C["🔴 CRITICAL: High Risk Profile"]
+    B -->|Rebel behavior + Low effectiveness| D["🟠 MAJOR: Rebel with Low Impact"]
+    B -->|High absence + Low effect + High rebel| E["🔴 CRITICAL: Triple Risk Profile"]
+    B -->|High rebel + High presence| F["🟠 MAJOR: Consistent Rebel"]
+    B -->|High absence + High abstention| G["🟠 MAJOR: Avoidance Pattern"]
     
-    C --> H[🚨 Accountability Crisis]
+    C --> H["🚨 Accountability Crisis"]
     E --> H
-    D --> I[📊 Marginalized Dissenter]
-    F --> J[🎯 Principled Opposition]
-    G --> K[⚠️ Strategic Withdrawal]
+    D --> I["📊 Marginalized Dissenter"]
+    F --> J["🎯 Principled Opposition"]
+    G --> K["⚠️ Strategic Withdrawal"]
     
     style C fill:#ffcccc
     style E fill:#ffcccc
@@ -414,15 +414,15 @@ flowchart TD
 ```mermaid
 flowchart TD
     A[Abstention Rate Analysis] --> B{Pattern Detection}
-    B -->|6-10% abstention| C[🟠 MAJOR: Concerning Abstention]
-    B -->|≥10% abstention| D[🔴 CRITICAL: Critical Abstention]
-    B -->|High abstention + High presence| E[🟠 MAJOR: Strategic Abstention]
-    B -->|High abstention + Moderate effectiveness| F[🟠 MAJOR: Indecision Pattern]
+    B -->|6-10% abstention| C["🟠 MAJOR: Concerning Abstention"]
+    B -->|≥10% abstention| D["🔴 CRITICAL: Critical Abstention"]
+    B -->|High abstention + High presence| E["🟠 MAJOR: Strategic Abstention"]
+    B -->|High abstention + Moderate effectiveness| F["🟠 MAJOR: Indecision Pattern"]
     
     C --> G[Controversial Vote Avoidance]
     D --> H[Systemic Indecision]
-    E --> I[🎯 Strategic Positioning]
-    F --> J[⚠️ Conflict Avoidance]
+    E --> I["🎯 Strategic Positioning"]
+    F --> J["⚠️ Conflict Avoidance"]
     
     style C fill:#ffe6cc
     style D fill:#ffcccc
@@ -453,14 +453,14 @@ flowchart TD
 ```mermaid
 flowchart TD
     A[Engagement Metrics] --> B{Participation Analysis}
-    B -->|<100 votes/year + 15% absent| C[🟠 MAJOR: Minimal Engagement]
-    B -->|<50 votes/year| D[🔴 CRITICAL: Critically Low Engagement]
-    B -->|25%+ combined absence + abstention| E[🔴 CRITICAL: Avoidance Pattern]
-    B -->|Present but <22% win rate| F[🟠 MAJOR: Low Impact Presence]
-    B -->|<10 votes/month + 30% absent| G[🟠 MAJOR: Marginal Participation]
+    B -->|<100 votes/year + 15% absent| C["🟠 MAJOR: Minimal Engagement"]
+    B -->|<50 votes/year| D["🔴 CRITICAL: Critically Low Engagement"]
+    B -->|25%+ combined absence + abstention| E["🔴 CRITICAL: Avoidance Pattern"]
+    B -->|Present but <22% win rate| F["🟠 MAJOR: Low Impact Presence"]
+    B -->|<10 votes/month + 30% absent| G["🟠 MAJOR: Marginal Participation"]
     
-    C --> H[⚠️ Disengagement Warning]
-    D --> I[🚨 Non-Functional Representative]
+    C --> H["⚠️ Disengagement Warning"]
+    D --> I["🚨 Non-Functional Representative"]
     E --> I
     F --> J[Ineffective Participation]
     G --> H
@@ -495,16 +495,16 @@ flowchart TD
 ```mermaid
 flowchart TD
     A[Document Production] --> B{Productivity Analysis}
-    B -->|<5 docs last year| C[🟡 MINOR: Very Low Productivity]
-    B -->|0 docs last year| D[🟠 MAJOR: No Productivity]
-    B -->|>2 years active + <3 avg docs/year| E[🔴 CRITICAL: Chronically Low]
+    B -->|<5 docs last year| C["🟡 MINOR: Very Low Productivity"]
+    B -->|0 docs last year| D["🟠 MAJOR: No Productivity"]
+    B -->|>2 years active + <3 avg docs/year| E["🔴 CRITICAL: Chronically Low"]
     
     C --> F[Limited Policy Initiative]
     D --> G[No Legislative Contribution]
-    E --> H[🚨 Systemic Underperformance]
+    E --> H["🚨 Systemic Underperformance"]
     
     F --> I[Monitor for Specialization]
-    G --> J[⚠️ Accountability Gap]
+    G --> J["⚠️ Accountability Gap"]
     H --> J
     
     style C fill:#fff9cc
@@ -536,16 +536,16 @@ flowchart TD
 ```mermaid
 flowchart TD
     A[Collaboration Metrics] --> B{Cross-Party Analysis}
-    B -->|<20% collaboration + >10 docs| C[🟡 MINOR: Low Collaboration]
-    B -->|<10% collaboration + >10 docs| D[🟠 MAJOR: Very Low Collaboration]
-    B -->|0 multi-party motions + >20 docs| E[🔴 CRITICAL: No Multi-Party Collaboration]
+    B -->|<20% collaboration + >10 docs| C["🟡 MINOR: Low Collaboration"]
+    B -->|<10% collaboration + >10 docs| D["🟠 MAJOR: Very Low Collaboration"]
+    B -->|0 multi-party motions + >20 docs| E["🔴 CRITICAL: No Multi-Party Collaboration"]
     
     C --> F[Partisan Focus]
     D --> G[Ideological Isolation]
-    E --> H[🚨 Complete Isolation]
+    E --> H["🚨 Complete Isolation"]
     
     F --> I[Monitor Coalition Capacity]
-    G --> J[⚠️ Extremism Indicator]
+    G --> J["⚠️ Extremism Indicator"]
     H --> J
     
     style C fill:#fff9cc
@@ -576,13 +576,13 @@ flowchart TD
 ```mermaid
 flowchart TD
     A[Participation Dimensions] --> B{Multi-Factor Assessment}
-    B -->|>10% abstention annually| C[🟡 MINOR: High Abstention]
-    B -->|≥15% absent + <30% win rate| D[🟠 MAJOR: Low Participation & Effectiveness]
-    B -->|≥25% absent + <20% win rate| E[🔴 CRITICAL: Extreme Combined Risk]
+    B -->|>10% abstention annually| C["🟡 MINOR: High Abstention"]
+    B -->|≥15% absent + <30% win rate| D["🟠 MAJOR: Low Participation & Effectiveness"]
+    B -->|≥25% absent + <20% win rate| E["🔴 CRITICAL: Extreme Combined Risk"]
     
     C --> F[Strategic or Indecision]
-    D --> G[⚠️ Accountability Concern]
-    E --> H[🚨 Democratic Failure]
+    D --> G["⚠️ Accountability Concern"]
+    E --> H["🚨 Democratic Failure"]
     
     style C fill:#fff9cc
     style D fill:#ffe6cc
@@ -666,11 +666,11 @@ flowchart TD
 ```mermaid
 graph TB
     subgraph "Party-Level OSINT"
-        A[🎯 Party Profile] --> B{Organizational Monitoring}
-        B --> C[📊 Member Aggregation]
-        B --> D[🗳️ Collective Voting]
-        B --> E[📄 Legislative Output]
-        B --> F[🤝 Coalition Behavior]
+        A["🎯 Party Profile"] --> B{Organizational Monitoring}
+        B --> C["📊 Member Aggregation"]
+        B --> D["🗳️ Collective Voting"]
+        B --> E["📄 Legislative Output"]
+        B --> F["🤝 Coalition Behavior"]
     end
     
     subgraph "Risk Assessment"
@@ -681,11 +681,11 @@ graph TB
     end
     
     subgraph "Strategic Intelligence"
-        G --> K[🔴 Party Risk Profile]
+        G --> K["🔴 Party Risk Profile"]
         H --> K
         I --> K
         J --> K
-        K --> L[📋 Coalition Stability Report]
+        K --> L["📋 Coalition Stability Report"]
     end
     
     style A fill:#cce5ff
@@ -766,10 +766,10 @@ graph TB
 ```mermaid
 graph TB
     subgraph "Committee OSINT"
-        A[🏛️ Committee Profile] --> B{Structural Analysis}
-        B --> C[👥 Membership]
-        B --> D[📄 Document Output]
-        B --> E[🎯 Leadership]
+        A["🏛️ Committee Profile"] --> B{Structural Analysis}
+        B --> C["👥 Membership"]
+        B --> D["📄 Document Output"]
+        B --> E["🎯 Leadership"]
     end
     
     subgraph "Performance Metrics"
@@ -779,10 +779,10 @@ graph TB
     end
     
     subgraph "Risk Intelligence"
-        F --> I[🔴 Committee Risk Profile]
+        F --> I["🔴 Committee Risk Profile"]
         G --> I
         H --> I
-        I --> J[📋 Legislative Capacity Report]
+        I --> J["📋 Legislative Capacity Report"]
     end
     
     style A fill:#ccffcc
@@ -854,10 +854,10 @@ graph TB
 ```mermaid
 graph TB
     subgraph "Ministry OSINT"
-        A[👔 Ministry Profile] --> B{Executive Monitoring}
-        B --> C[📊 Government Output]
-        B --> D[👥 Ministerial Staffing]
-        B --> E[⚖️ Legislative Initiative]
+        A["👔 Ministry Profile"] --> B{Executive Monitoring}
+        B --> C["📊 Government Output"]
+        B --> D["👥 Ministerial Staffing"]
+        B --> E["⚖️ Legislative Initiative"]
     end
     
     subgraph "Performance Assessment"
@@ -867,10 +867,10 @@ graph TB
     end
     
     subgraph "Government Intelligence"
-        F --> I[🔴 Ministry Risk Profile]
+        F --> I["🔴 Ministry Risk Profile"]
         G --> I
         H --> I
-        I --> J[📋 Government Effectiveness Report]
+        I --> J["📋 Government Effectiveness Report"]
     end
     
     style A fill:#fff4cc
@@ -933,11 +933,11 @@ graph TB
 ```mermaid
 graph TB
     subgraph "Decision Intelligence OSINT"
-        A[📄 DOCUMENT_PROPOSAL_DATA] --> B{Decision Analysis}
-        B --> C[🏛️ Party Decisions]
-        B --> D[👤 Politician Proposals]
-        B --> E[🏢 Ministry Policies]
-        B --> F[📅 Temporal Patterns]
+        A["📄 DOCUMENT_PROPOSAL_DATA"] --> B{Decision Analysis}
+        B --> C["🏛️ Party Decisions"]
+        B --> D["👤 Politician Proposals"]
+        B --> E["🏢 Ministry Policies"]
+        B --> F["📅 Temporal Patterns"]
     end
     
     subgraph "Risk Detection"
@@ -948,12 +948,12 @@ graph TB
     end
     
     subgraph "Intelligence Products"
-        G --> K[🔴 Decision Risk Profile]
+        G --> K["🔴 Decision Risk Profile"]
         H --> K
         I --> K
         J --> K
-        K --> L[📋 Legislative Effectiveness Report]
-        K --> M[⚠️ Coalition Stability Warning]
+        K --> L["📋 Legislative Effectiveness Report"]
+        K --> M["⚠️ Coalition Stability Warning"]
     end
     
     style A fill:#e1f5ff
@@ -1456,10 +1456,10 @@ ORDER BY alignment_rate ASC;
 ```mermaid
 graph TB
     subgraph "Data Sources"
-        A[📡 Riksdagen API] --> B[Real-time Parliamentary Data]
-        C[📊 Election Authority] --> D[Historical Electoral Data]
-        E[💰 Financial Authority] --> F[Government Budget Data]
-        G[📰 Media Sources] --> H[Public Coverage Data]
+        A["📡 Riksdagen API"] --> B[Real-time Parliamentary Data]
+        C["📊 Election Authority"] --> D[Historical Electoral Data]
+        E["💰 Financial Authority"] --> F[Government Budget Data]
+        G["📰 Media Sources"] --> H[Public Coverage Data]
     end
     
     subgraph "Collection Process"
@@ -1592,11 +1592,11 @@ graph TB
 
 ```mermaid
 graph LR
-    A[Risk Rules Engine] --> B[📊 Political Scorecards]
-    A --> C[⚠️ Risk Assessments]
-    A --> D[📈 Trend Reports]
-    A --> E[🎯 Coalition Analysis]
-    A --> F[📋 Accountability Metrics]
+    A[Risk Rules Engine] --> B["📊 Political Scorecards"]
+    A --> C["⚠️ Risk Assessments"]
+    A --> D["📈 Trend Reports"]
+    A --> E["🎯 Coalition Analysis"]
+    A --> F["📋 Accountability Metrics"]
     
     B --> G[Individual Performance]
     C --> H[Democratic Health]
@@ -1621,10 +1621,10 @@ graph LR
 ```mermaid
 graph TB
     A[OSINT Operations] --> B{Ethical Review}
-    B --> C[✅ Public Data Only]
-    B --> D[✅ Transparency]
-    B --> E[✅ Neutrality]
-    B --> F[✅ Privacy Respect]
+    B --> C["✅ Public Data Only"]
+    B --> D["✅ Transparency"]
+    B --> E["✅ Neutrality"]
+    B --> F["✅ Privacy Respect"]
     
     C --> G[No Private Communications]
     D --> H[Open Source Rules]
@@ -1662,7 +1662,7 @@ graph LR
     D --> F
     E --> F
     
-    F --> G[🛡️ Democratic Protection]
+    F --> G["🛡️ Democratic Protection"]
     
     style B fill:#e1f5ff
     style F fill:#ffeb99
@@ -1848,10 +1848,10 @@ graph LR
 ```mermaid
 graph TB
     A[Current Rules Engine] --> B{Future Enhancements}
-    B --> C[🤖 Machine Learning]
-    B --> D[🌐 Network Analysis]
-    B --> E[💬 Sentiment Analysis]
-    B --> F[🔮 Predictive Models]
+    B --> C["🤖 Machine Learning"]
+    B --> D["🌐 Network Analysis"]
+    B --> E["💬 Sentiment Analysis"]
+    B --> F["🔮 Predictive Models"]
     
     C --> G[Threshold Optimization]
     D --> H[Coalition Mapping]

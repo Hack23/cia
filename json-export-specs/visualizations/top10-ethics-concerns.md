@@ -39,10 +39,10 @@ graph TB
     STATUS --> PENDING[Pending Review]
     
     ACTIVE --> A1[5 politicians<br/>Ongoing inquiries<br/>Awaiting findings]
-    ACTIVE --> A2[⚠️ High priority<br/>Media attention<br/>Potential sanctions]
+    ACTIVE --> A2["⚠️ High priority<br/>Media attention<br/>Potential sanctions"]
     
     CLOSED --> C1[3 politicians<br/>Violations confirmed<br/>Sanctions applied]
-    C1 --> C2[❌ Proven misconduct<br/>Reputational damage<br/>Electoral impact]
+    C1 --> C2["❌ Proven misconduct<br/>Reputational damage<br/>Electoral impact"]
     
     PENDING --> P1[2 politicians<br/>Initial complaints<br/>Under review]
     P1 --> P2[�� Monitoring<br/>Evidence gathering<br/>Outcome uncertain]
@@ -62,13 +62,13 @@ graph LR
     A --> D[Moderate 40-60]
     A --> E[Minor <40]
     
-    B --> B1[⛔ Resignation warranted<br/>Criminal referral<br/>Party expulsion risk]
+    B --> B1["⛔ Resignation warranted<br/>Criminal referral<br/>Party expulsion risk"]
     
-    C --> C1[⚠️ Formal sanctions<br/>Committee removal<br/>Public censure]
+    C --> C1["⚠️ Formal sanctions<br/>Committee removal<br/>Public censure"]
     
-    D --> D1[📊 Warning issued<br/>Corrective action<br/>Monitoring required]
+    D --> D1["📊 Warning issued<br/>Corrective action<br/>Monitoring required"]
     
-    E --> E1[✅ Minor infraction<br/>Counseling<br/>No formal action]
+    E --> E1["✅ Minor infraction<br/>Counseling<br/>No formal action"]
     
     style A fill:#3498db,stroke:#2980b9,color:#fff
     style B fill:#e74c3c,stroke:#c0392b,color:#fff

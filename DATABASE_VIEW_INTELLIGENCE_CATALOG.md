@@ -272,7 +272,7 @@ graph TB
     end
     
     subgraph "Application Layer"
-        E --> F1[Audit & Tracking<br/>5+ views]
+        E --> F1["Audit & Tracking<br/>5+ views"]
         E --> F2[User Analytics<br/>4+ views]
     end
     

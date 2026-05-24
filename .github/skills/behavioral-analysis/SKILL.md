@@ -38,11 +38,11 @@ The CIA platform analyzes five core behavioral dimensions to create comprehensiv
 ```mermaid
 graph TB
     subgraph "Behavioral Intelligence Collection"
-        A1[🗳️ Voting Behavior<br/>3.5M+ votes analyzed<br/>Deviation tracking]
-        A2[👥 Social Networks<br/>Collaboration patterns<br/>Influence metrics]
-        A3[📄 Productivity Signals<br/>Document authorship<br/>Committee activity]
-        A4[🎤 Communication Style<br/>Speech analysis<br/>Rhetoric patterns]
-        A5[⏱️ Temporal Patterns<br/>Attendance trends<br/>Engagement cycles]
+        A1["🗳️ Voting Behavior<br/>3.5M+ votes analyzed<br/>Deviation tracking"]
+        A2["👥 Social Networks<br/>Collaboration patterns<br/>Influence metrics"]
+        A3["📄 Productivity Signals<br/>Document authorship<br/>Committee activity"]
+        A4["🎤 Communication Style<br/>Speech analysis<br/>Rhetoric patterns"]
+        A5["⏱️ Temporal Patterns<br/>Attendance trends<br/>Engagement cycles"]
     end
     
     subgraph "Psychological Analysis"
@@ -62,7 +62,7 @@ graph TB
     end
     
     subgraph "Intelligence Product"
-        C1 & C2 & C3 & C4 & C5 --> D[🧠 Behavioral Profile]
+        C1 & C2 & C3 & C4 & C5 --> D["🧠 Behavioral Profile"]
         D --> E[Predictive Insights]
         D --> F[Risk Indicators]
         D --> G[Leadership Assessment]

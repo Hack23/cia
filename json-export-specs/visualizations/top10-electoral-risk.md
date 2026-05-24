@@ -66,11 +66,11 @@ graph LR
     A --> C[High 60-80]
     A --> D[Moderate 40-60]
     
-    B --> B1[⛔ Likely to lose<br/>3 politicians<br/>Immediate intervention]
+    B --> B1["⛔ Likely to lose<br/>3 politicians<br/>Immediate intervention"]
     
-    C --> C1[⚠️ Vulnerable<br/>7 politicians<br/>Enhanced campaign]
+    C --> C1["⚠️ Vulnerable<br/>7 politicians<br/>Enhanced campaign"]
     
-    D --> D1[📊 At risk<br/>15 politicians<br/>Monitor closely]
+    D --> D1["📊 At risk<br/>15 politicians<br/>Monitor closely"]
     
     style A fill:#3498db,stroke:#2980b9,color:#fff
     style B fill:#e74c3c,stroke:#c0392b,color:#fff

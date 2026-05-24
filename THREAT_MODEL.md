@@ -132,23 +132,23 @@ Following [Hack23 AB Asset-Centric Threat Modeling](https://github.com/Hack23/IS
 }%%
 flowchart TB
     subgraph CROWN_JEWELS["💎 Crown Jewels"]
-        ANALYTICAL[📊 Analytical Integrity<br/>Political Rankings & Metrics]
-        SOURCE[🧠 Source Code<br/>Algorithms & Business Logic]
-        DATA[🗄️ Political Data<br/>Parliament & Election Records]
+        ANALYTICAL["📊 Analytical Integrity<br/>Political Rankings & Metrics"]
+        SOURCE["🧠 Source Code<br/>Algorithms & Business Logic"]
+        DATA["🗄️ Political Data<br/>Parliament & Election Records"]
     end
     
     subgraph ATTACK_VECTORS["⚔️ Primary Attack Vectors"]
-        DATA_POISON[💉 Data Poisoning]
-        CODE_INJECT[💻 Code Injection]
-        PRIVILEGE_ESC[⬆️ Privilege Escalation]
-        SUPPLY_CHAIN[🔗 Supply Chain Attack]
+        DATA_POISON["💉 Data Poisoning"]
+        CODE_INJECT["💻 Code Injection"]
+        PRIVILEGE_ESC["⬆️ Privilege Escalation"]
+        SUPPLY_CHAIN["🔗 Supply Chain Attack"]
     end
     
     subgraph THREAT_AGENTS["👥 Key Threat Agents"]
-        NATION_STATE[🏛️ Nation-State Actors<br/>Political Interference]
-        CYBER_CRIME[💰 Cybercriminals<br/>Data Monetization]
-        HACKTIVISTS[🎭 Hacktivists<br/>Political Agenda]
-        INSIDER[👤 Malicious Insider<br/>Privileged Access]
+        NATION_STATE["🏛️ Nation-State Actors<br/>Political Interference"]
+        CYBER_CRIME["💰 Cybercriminals<br/>Data Monetization"]
+        HACKTIVISTS["🎭 Hacktivists<br/>Political Agenda"]
+        INSIDER["👤 Malicious Insider<br/>Privileged Access"]
     end
     
     DATA_POISON --> ANALYTICAL
@@ -189,32 +189,32 @@ Following [Architecture-Centric Threat Modeling](https://github.com/Hack23/ISMS-
 }%%
 flowchart TB
     subgraph TRUST_BOUNDARY_1["🌐 Internet/DMZ Trust Boundary"]
-        EXT[(🌍 Public Open Data Sources)]
-        USER[👤 Public/Registered Users]
+        EXT[("🌍 Public Open Data Sources")]
+        USER["👤 Public/Registered Users"]
     end
     
     subgraph TRUST_BOUNDARY_2["🛡️ AWS Security Boundary"]
-        WAF[🛡️ AWS WAF]
-        ALB[⚖️ Application Load Balancer]
+        WAF["🛡️ AWS WAF"]
+        ALB["⚖️ Application Load Balancer"]
     end
     
     subgraph TRUST_BOUNDARY_3["🔒 Application Trust Boundary"]
-        IMPORT[🔄 Import Services]
-        VALID[✅ Schema + Validation]
-        APP[🌐 Spring/Vaadin App]
-        AUTH[🔐 Security Module]
+        IMPORT["🔄 Import Services"]
+        VALID["✅ Schema + Validation"]
+        APP["🌐 Spring/Vaadin App"]
+        AUTH["🔐 Security Module"]
     end
     
     subgraph TRUST_BOUNDARY_4["🗄️ Data Trust Boundary"]
-        DB[(💾 PostgreSQL 18<br/>pgaudit/pgcrypto/pgvector)]
-        SESS[🔑 Session Store/Audit]
-        LOGS[(📋 Audit & Metrics)]
+        DB[("💾 PostgreSQL 18<br/>pgaudit/pgcrypto/pgvector")]
+        SESS["🔑 Session Store/Audit"]
+        LOGS[("📋 Audit & Metrics")]
     end
     
     subgraph TRUST_BOUNDARY_5["☁️ AWS Security Services"]
-        GUARDDUTY[🔍 GuardDuty]
-        SECURITYHUB[🛡️ Security Hub]
-        KMS[🔐 AWS KMS]
+        GUARDDUTY["🔍 GuardDuty"]
+        SECURITYHUB["🛡️ Security Hub"]
+        KMS["🔐 AWS KMS"]
     end
     
     EXT -->|🎯 T1: API Abuse| IMPORT
@@ -357,36 +357,36 @@ The MITRE ATT&CK Navigator provides interactive visualization of threat coverage
   }
 }%%
 flowchart TD
-    GOAL[🎯 Compromise CIA Platform<br/>Political Data Integrity]
+    GOAL["🎯 Compromise CIA Platform<br/>Political Data Integrity"]
     
-    GOAL --> PATH1[🚪 External Web Attack]
-    GOAL --> PATH2[🔒 Internal Access Abuse]
-    GOAL --> PATH3[🔗 Supply Chain Compromise]
-    GOAL --> PATH4[☁️ Infrastructure Attack]
+    GOAL --> PATH1["🚪 External Web Attack"]
+    GOAL --> PATH2["🔒 Internal Access Abuse"]
+    GOAL --> PATH3["🔗 Supply Chain Compromise"]
+    GOAL --> PATH4["☁️ Infrastructure Attack"]
     
-    PATH1 --> EXT1[🌐 Web Application Exploit]
-    PATH1 --> EXT2[🔌 API Abuse]
-    PATH1 --> EXT3[📧 Social Engineering]
+    PATH1 --> EXT1["🌐 Web Application Exploit"]
+    PATH1 --> EXT2["🔌 API Abuse"]
+    PATH1 --> EXT3["📧 Social Engineering"]
     
-    EXT1 --> EXT1A[🔍 XSS/CSRF Attack]
-    EXT1 --> EXT1B[💉 SQL Injection]
-    EXT1A --> EXT1A1[🎯 Session Hijacking]
-    EXT1B --> EXT1B1[🗄️ Database Compromise]
+    EXT1 --> EXT1A["🔍 XSS/CSRF Attack"]
+    EXT1 --> EXT1B["💉 SQL Injection"]
+    EXT1A --> EXT1A1["🎯 Session Hijacking"]
+    EXT1B --> EXT1B1["🗄️ Database Compromise"]
     
-    PATH2 --> INT1[👤 Privileged User Abuse]
-    PATH2 --> INT2[🔑 Credential Theft]
-    INT1 --> INT1A[📊 Data Manipulation]
-    INT2 --> INT2A[⬆️ Privilege Escalation]
+    PATH2 --> INT1["👤 Privileged User Abuse"]
+    PATH2 --> INT2["🔑 Credential Theft"]
+    INT1 --> INT1A["📊 Data Manipulation"]
+    INT2 --> INT2A["⬆️ Privilege Escalation"]
     
-    PATH3 --> SUP1[📦 Dependency Poisoning]
-    PATH3 --> SUP2[🔧 Build Tool Compromise]
-    SUP1 --> SUP1A[🦠 Malicious Code Injection]
-    SUP2 --> SUP2A[🏗️ Build Process Tampering]
+    PATH3 --> SUP1["📦 Dependency Poisoning"]
+    PATH3 --> SUP2["🔧 Build Tool Compromise"]
+    SUP1 --> SUP1A["🦠 Malicious Code Injection"]
+    SUP2 --> SUP2A["🏗️ Build Process Tampering"]
     
-    PATH4 --> INF1[☁️ AWS Service Compromise]
-    PATH4 --> INF2[🔐 Key Management Attack]
-    INF1 --> INF1A[🗄️ RDS Direct Access]
-    INF2 --> INF2A[🔓 Encryption Bypass]
+    PATH4 --> INF1["☁️ AWS Service Compromise"]
+    PATH4 --> INF2["🔐 Key Management Attack"]
+    INF1 --> INF1A["🗄️ RDS Direct Access"]
+    INF2 --> INF2A["🔓 Encryption Bypass"]
     
     style GOAL fill:#d32f2f,color:#fff
     style PATH1 fill:#ff5722,color:#fff
@@ -484,37 +484,37 @@ Aligned with [Security Architecture](SECURITY_ARCHITECTURE.md) implementation:
 }%%
 flowchart TB
     subgraph PERIMETER["🌐 Perimeter Security"]
-        DNS[🌍 Route 53 DNS Security]
-        WAF[🛡️ AWS WAF Protection]
-        DDOS[⚡ AWS Shield DDoS]
+        DNS["🌍 Route 53 DNS Security"]
+        WAF["🛡️ AWS WAF Protection"]
+        DDOS["⚡ AWS Shield DDoS"]
     end
     
     subgraph NETWORK["🔒 Network Security"]
-        VPC[🏛️ VPC Isolation]
-        NACL[🚪 Network ACLs]
-        SG[🛡️ Security Groups]
-        TLS[🔐 TLS Encryption]
+        VPC["🏛️ VPC Isolation"]
+        NACL["🚪 Network ACLs"]
+        SG["🛡️ Security Groups"]
+        TLS["🔐 TLS Encryption"]
     end
     
     subgraph APPLICATION["📱 Application Security"]
-        AUTH[🔑 Spring Security 5.8.16<br/>MFA + Drools BruteForce]
-        RBAC[👥 Role-Based Access]
-        INPUT[✅ Input Validation]
-        HEADERS[📋 Security Headers]
+        AUTH["🔑 Spring Security 5.8.16<br/>MFA + Drools BruteForce"]
+        RBAC["👥 Role-Based Access"]
+        INPUT["✅ Input Validation"]
+        HEADERS["📋 Security Headers"]
     end
     
     subgraph DATA["🗄️ Data Security"]
-        ENCRYPT[🔐 Encryption at Rest]
-        TRANSIT[🔒 Encryption in Transit]
-        BACKUP[💾 Secure Backups]
-        AUDIT[📋 Audit Logging]
+        ENCRYPT["🔐 Encryption at Rest"]
+        TRANSIT["🔒 Encryption in Transit"]
+        BACKUP["💾 Secure Backups"]
+        AUDIT["📋 Audit Logging"]
     end
     
     subgraph MONITORING["📊 Security Monitoring"]
-        GUARDDUTY[🔍 GuardDuty]
-        SECURITYHUB[🛡️ Security Hub]
-        CLOUDWATCH[📈 CloudWatch]
-        INSPECTOR[🔍 Inspector]
+        GUARDDUTY["🔍 GuardDuty"]
+        SECURITYHUB["🛡️ Security Hub"]
+        CLOUDWATCH["📈 CloudWatch"]
+        INSPECTOR["🔍 Inspector"]
     end
     
     DNS --> WAF
@@ -570,13 +570,13 @@ Following [Hack23 AB Workshop Framework](https://github.com/Hack23/ISMS-PUBLIC/b
   }
 }%%
 flowchart LR
-    PRE[📋 Pre-Workshop Prep] --> ENUM[🎯 Asset & Trust Boundary Enumeration]
-    ENUM --> THREATS[🔍 Threat Identification<br/>STRIDE + MITRE ATT&CK]
-    THREATS --> MAP[⚖️ Risk & Scenario Mapping]
-    MAP --> PLAN[🛡️ Mitigation & Control Plan]
-    PLAN --> INTEG[🔧 Pipeline Integration]
-    INTEG --> MON[📊 Monitoring & Metrics]
-    MON --> REVIEW[🔄 Annual / Event Review]
+    PRE["📋 Pre-Workshop Prep"] --> ENUM["🎯 Asset & Trust Boundary Enumeration"]
+    ENUM --> THREATS["🔍 Threat Identification<br/>STRIDE + MITRE ATT&CK"]
+    THREATS --> MAP["⚖️ Risk & Scenario Mapping"]
+    MAP --> PLAN["🛡️ Mitigation & Control Plan"]
+    PLAN --> INTEG["🔧 Pipeline Integration"]
+    INTEG --> MON["📊 Monitoring & Metrics"]
+    MON --> REVIEW["🔄 Annual / Event Review"]
     REVIEW --> THREATS
 ```
 
@@ -714,24 +714,24 @@ Following [Hack23 AB Scenario-Centric Modeling](https://github.com/Hack23/ISMS-P
 }%%
 flowchart TD
     subgraph PERSONAS["👥 Political Threat Personas"]
-        FOREIGN_STATE[🏛️ Foreign State Actor<br/>High Resources, Strategic Patience]
-        DOMESTIC_EXTREMIST[🎭 Domestic Extremist<br/>High Motivation, Targeted Attacks]
-        POLITICAL_OPERATIVE[🎯 Political Operative<br/>Medium Resources, Election Timing]
-        CORPORATE_INFLUENCER[💼 Corporate Influencer<br/>Financial Resources, Policy Focus]
+        FOREIGN_STATE["🏛️ Foreign State Actor<br/>High Resources, Strategic Patience"]
+        DOMESTIC_EXTREMIST["🎭 Domestic Extremist<br/>High Motivation, Targeted Attacks"]
+        POLITICAL_OPERATIVE["🎯 Political Operative<br/>Medium Resources, Election Timing"]
+        CORPORATE_INFLUENCER["💼 Corporate Influencer<br/>Financial Resources, Policy Focus"]
     end
     
     subgraph METHODS["⚔️ Political Attack Methods"]
-        DISINFORMATION[📰 Disinformation Campaigns]
-        DATA_MANIPULATION[📊 Data Manipulation]
-        TIMING_ATTACKS[⏰ Strategic Timing Attacks]
-        PERCEPTION_WARFARE[🧠 Perception Warfare]
+        DISINFORMATION["📰 Disinformation Campaigns"]
+        DATA_MANIPULATION["📊 Data Manipulation"]
+        TIMING_ATTACKS["⏰ Strategic Timing Attacks"]
+        PERCEPTION_WARFARE["🧠 Perception Warfare"]
     end
     
     subgraph TARGETS["🎯 Democratic Targets"]
-        ELECTION_INTEGRITY[🗳️ Election Integrity]
-        POLITICAL_TRUST[🤝 Political Trust]
-        DEMOCRATIC_PROCESS[🏛️ Democratic Process]
-        CIVIC_ENGAGEMENT[👥 Civic Engagement]
+        ELECTION_INTEGRITY["🗳️ Election Integrity"]
+        POLITICAL_TRUST["🤝 Political Trust"]
+        DEMOCRATIC_PROCESS["🏛️ Democratic Process"]
+        CIVIC_ENGAGEMENT["👥 Civic Engagement"]
     end
     
     FOREIGN_STATE --> DISINFORMATION

@@ -57,7 +57,7 @@ graph TB
 ```mermaid
 graph LR
     A[Controversial Votes] --> B[Immigration]
-    A --> C[Crime & Justice]
+    A --> C["Crime & Justice"]
     A --> D[Climate Policy]
     A --> E[Social Issues]
     

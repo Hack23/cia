@@ -340,7 +340,7 @@ Use this flowchart to determine correct naming for **NEW** documentation files:
 ```mermaid
 graph TD
     A[New Documentation File] --> B{Standard Repo File?}
-    B -->|Yes| C[Use standard name<br/>README.md, SECURITY.md, etc.]
+    B -->|Yes| C["Use standard name<br/>README.md, SECURITY.md, etc."]
     B -->|No| D{Living or Historical?}
     
     D -->|Living| E{What Type?}

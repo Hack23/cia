@@ -71,21 +71,21 @@ flowchart TB
     end
     
     subgraph PROFESSIONAL["💼 Professional Products"]
-        API[📡 Political Intelligence API]
-        ANALYTICS[📊 Advanced Analytics Suite]
-        REPORTS[📋 Custom Report Generator]
+        API["📡 Political Intelligence API"]
+        ANALYTICS["📊 Advanced Analytics Suite"]
+        REPORTS["📋 Custom Report Generator"]
     end
     
     subgraph ENTERPRISE["🏢 Enterprise Solutions"]
-        PLATFORM[🎯 White-Label Platform]
-        INTEGRATION[🔗 System Integration Services]
-        CONSULTING[🤝 Intelligence Consulting]
+        PLATFORM["🎯 White-Label Platform"]
+        INTEGRATION["🔗 System Integration Services"]
+        CONSULTING["🤝 Intelligence Consulting"]
     end
     
     subgraph SPECIALIZED["🔬 Specialized Products"]
-        RISK[⚠️ Risk Intelligence Feed]
-        PREDICTIVE[🔮 Predictive Analytics]
-        COMPLIANCE[✅ Compliance Monitoring]
+        RISK["⚠️ Risk Intelligence Feed"]
+        PREDICTIVE["🔮 Predictive Analytics"]
+        COMPLIANCE["✅ Compliance Monitoring"]
     end
     
     FREE --> PROFESSIONAL
@@ -1062,7 +1062,7 @@ flowchart LR
     C --> D[JSON Specs<br/>5 schemas<br/>Markdown format]
     D --> E[API Endpoints<br/>REST API<br/>CDN Static Files]
     E --> F[Product Features<br/>6 Product Lines<br/>20+ Features]
-    F --> G[Customer Segments<br/>Political Consulting<br/>Media & Journalism<br/>Academic Research<br/>Corporate Affairs<br/>Government Transparency]
+    F --> G["Customer Segments<br/>Political Consulting<br/>Media & Journalism<br/>Academic Research<br/>Corporate Affairs<br/>Government Transparency"]
 ```
 
 ### Schema Coverage by Product Line
@@ -1644,7 +1644,7 @@ Data Format:
   }
 }%%
 flowchart TB
-    CLIENT[Client Systems<br/>CRM, BI, Data Warehouse] <--> API[CIA REST API<br/>OAuth 2.0 + API Keys]
+    CLIENT["Client Systems<br/>CRM, BI, Data Warehouse"] <--> API[CIA REST API<br/>OAuth 2.0 + API Keys]
     API <--> PLATFORM[White-Label Platform<br/>Custom Branding + Domain]
     PLATFORM <--> DB[(PostgreSQL Database<br/>110 Views + Custom Views)]
     DB <--> EXPORT[JSON Export System<br/>json-export-specs/]
@@ -2775,7 +2775,7 @@ flowchart TB
     
     subgraph CUSTOMERS["👥 Customer Segments"]
         CONSULTING[Political Consulting<br/>€15M TAM]
-        MEDIA[Media & Journalism<br/>€8M TAM]
+        MEDIA["Media & Journalism<br/>€8M TAM"]
         ACADEMIC[Academic Research<br/>€5M TAM]
         CORPORATE[Corporate Affairs<br/>€12M TAM]
         FINANCE[Financial Services<br/>€20M+ TAM]

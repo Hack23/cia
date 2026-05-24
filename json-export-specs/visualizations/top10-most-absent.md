@@ -25,13 +25,13 @@ graph TD
     A --> C[High 30-40%]
     A --> D[Elevated 20-30%]
     
-    B --> B1[⛔ Immediate Action<br/>Re-election risk: Very High<br/>Constituents neglected]
+    B --> B1["⛔ Immediate Action<br/>Re-election risk: Very High<br/>Constituents neglected"]
     B --> B2[Examples: 2 politicians<br/>Party discipline required]
     
-    C --> C1[⚠️ Warning Level<br/>Re-election risk: High<br/>Media scrutiny likely]
+    C --> C1["⚠️ Warning Level<br/>Re-election risk: High<br/>Media scrutiny likely"]
     C --> C2[Examples: 3 politicians<br/>Improvement needed]
     
-    D --> D1[📊 Monitor<br/>Re-election risk: Moderate<br/>Acceptable with justification]
+    D --> D1["📊 Monitor<br/>Re-election risk: Moderate<br/>Acceptable with justification"]
     D --> D2[Examples: 5 politicians<br/>Watch for trends]
     
     style A fill:#3498db,stroke:#2980b9,color:#fff
@@ -75,13 +75,13 @@ graph LR
     A --> D[Committee Work]
     A --> E[Party Reputation]
     
-    B --> B1[❌ Reduced accessibility<br/>Fewer constituency meetings<br/>Lower responsiveness]
+    B --> B1["❌ Reduced accessibility<br/>Fewer constituency meetings<br/>Lower responsiveness"]
     
-    C --> C1[❌ Missed votes<br/>Reduced influence<br/>Policy gaps]
+    C --> C1["❌ Missed votes<br/>Reduced influence<br/>Policy gaps"]
     
-    D --> D1[❌ Committee delays<br/>Quorum issues<br/>Expertise loss]
+    D --> D1["❌ Committee delays<br/>Quorum issues<br/>Expertise loss"]
     
-    E --> E1[❌ Negative media<br/>Voter dissatisfaction<br/>Party embarrassment]
+    E --> E1["❌ Negative media<br/>Voter dissatisfaction<br/>Party embarrassment"]
     
     style A fill:#3498db,stroke:#2980b9,color:#fff
     style B fill:#e74c3c,stroke:#c0392b,color:#fff
@@ -99,13 +99,13 @@ graph TB
     REASONS --> UNDOC[Undocumented]
     
     HEALTH --> H1[Medical leave<br/>Long-term illness<br/>Recovery periods]
-    HEALTH --> H2[✅ Legitimate<br/>Sympathy factor<br/>Low risk]
+    HEALTH --> H2["✅ Legitimate<br/>Sympathy factor<br/>Low risk"]
     
     OTHER --> O1[Government posts<br/>International duties<br/>Party leadership]
-    OTHER --> O2[⚠️ Acceptable<br/>Explanation needed<br/>Moderate risk]
+    OTHER --> O2["⚠️ Acceptable<br/>Explanation needed<br/>Moderate risk"]
     
     UNDOC --> U1[No explanation<br/>Pattern of absence<br/>Unexcused]
-    UNDOC --> U2[❌ Unacceptable<br/>Accountability issue<br/>High risk]
+    UNDOC --> U2["❌ Unacceptable<br/>Accountability issue<br/>High risk"]
     
     style REASONS fill:#3498db,stroke:#2980b9,color:#fff
     style HEALTH fill:#27ae60,stroke:#2ecc71,color:#fff

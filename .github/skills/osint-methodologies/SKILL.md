@@ -37,10 +37,10 @@ The CIA platform integrates four high-integrity OSINT sources to create comprehe
 ```mermaid
 graph TB
     subgraph "OSINT Sources"
-        A1[📡 Riksdagen API<br/>98.5% completeness<br/>3.5M+ votes, 89K documents]
-        A2[📊 Election Authority<br/>99.2% completeness<br/>1970-present electoral data]
-        A3[💰 World Bank<br/>94.1% completeness<br/>598K indicators, 211 countries]
-        A4[🏛️ Financial Authority ESV<br/>97.8% completeness<br/>Monthly updates]
+        A1["📡 Riksdagen API<br/>98.5% completeness<br/>3.5M+ votes, 89K documents"]
+        A2["📊 Election Authority<br/>99.2% completeness<br/>1970-present electoral data"]
+        A3["💰 World Bank<br/>94.1% completeness<br/>598K indicators, 211 countries"]
+        A4["🏛️ Financial Authority ESV<br/>97.8% completeness<br/>Monthly updates"]
     end
     
     subgraph "Collection Layer"
@@ -65,7 +65,7 @@ graph TB
     end
     
     subgraph "Quality Metrics"
-        J --> K[📊 Quality Dashboard]
+        J --> K["📊 Quality Dashboard"]
         K --> L[Completeness: 97.4%]
         K --> M[Accuracy: 99.1%]
         K --> N[Timeliness: 24h lag]

@@ -26,13 +26,13 @@ graph TB
     LOYALTY --> LOYALIST[Loyalists >85%]
     
     REBEL --> R1[Frequent defections<br/>Cross-party votes<br/>Public dissent]
-    R1 --> R2[⚠️ Party discipline issue<br/>Unpredictable voting<br/>Coalition risk]
+    R1 --> R2["⚠️ Party discipline issue<br/>Unpredictable voting<br/>Coalition risk"]
     
     INDEPENDENT --> I1[Occasional rebellion<br/>Selective dissent<br/>Principled votes]
-    I1 --> I2[✅ Acceptable range<br/>Conscience votes<br/>Authentic representation]
+    I1 --> I2["✅ Acceptable range<br/>Conscience votes<br/>Authentic representation"]
     
     LOYALIST --> L1[Consistent party line<br/>Reliable voting<br/>Rare defection]
-    L1 --> L2[✅ High discipline<br/>Predictable behavior<br/>Party asset]
+    L1 --> L2["✅ High discipline<br/>Predictable behavior<br/>Party asset"]
     
     style LOYALTY fill:#3498db,stroke:#2980b9,color:#fff
     style REBEL fill:#e74c3c,stroke:#c0392b,color:#fff

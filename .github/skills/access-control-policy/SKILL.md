@@ -35,24 +35,24 @@ Do NOT skip for:
 ```mermaid
 graph TD
     subgraph Identity["🔐 Identity Provider"]
-        PRIMARY[Primary IdP<br/>🔐 MFA Enforced<br/>Central Authentication]
+        PRIMARY["Primary IdP<br/>🔐 MFA Enforced<br/>Central Authentication"]
     end
     
     subgraph Cloud["☁️ Cloud Infrastructure"]
-        IDC[AWS Identity Center<br/>🔐 SSO + MFA]
-        IAM[IAM Roles<br/>🛡️ Least Privilege]
-        ACCOUNTS[AWS Accounts<br/>📊 Federated Access]
+        IDC["AWS Identity Center<br/>🔐 SSO + MFA"]
+        IAM["IAM Roles<br/>🛡️ Least Privilege"]
+        ACCOUNTS["AWS Accounts<br/>📊 Federated Access"]
     end
     
     subgraph Dev["📝 Development"]
-        GITHUB[GitHub Organization<br/>🔐 MFA Required]
-        CICD[CI/CD Pipeline<br/>🔑 Service Accounts]
+        GITHUB["GitHub Organization<br/>🔐 MFA Required"]
+        CICD["CI/CD Pipeline<br/>🔑 Service Accounts"]
     end
     
     subgraph Business["💼 Business Systems"]
-        FINANCE[Financial Systems<br/>💰 Hardware Token]
-        MARKETING[Marketing Tools<br/>📱 Platform MFA]
-        SECURITY[Security Tools<br/>🛡️ Enhanced MFA]
+        FINANCE["Financial Systems<br/>💰 Hardware Token"]
+        MARKETING["Marketing Tools<br/>📱 Platform MFA"]
+        SECURITY["Security Tools<br/>🛡️ Enhanced MFA"]
     end
     
     PRIMARY --> IDC
@@ -224,23 +224,23 @@ public class PartyFinancialService {
 ```mermaid
 graph TD
     subgraph Access["🔐 Access Levels"]
-        ADMIN[Admin Access<br/>🚨 Break-Glass]
-        PRIVILEGED[Privileged Data<br/>💰 Financial Systems]
-        STANDARD[Standard Access<br/>📊 Business Data]
-        PUBLIC[Public Access<br/>🌐 No Authentication]
+        ADMIN["Admin Access<br/>🚨 Break-Glass"]
+        PRIVILEGED["Privileged Data<br/>💰 Financial Systems"]
+        STANDARD["Standard Access<br/>📊 Business Data"]
+        PUBLIC["Public Access<br/>🌐 No Authentication"]
     end
     
     subgraph MFA["🔑 MFA Methods"]
-        HARDWARE[Hardware Token<br/>🔐 FIDO2, YubiKey]
-        TOTP[TOTP App<br/>📱 Authenticator]
-        SMS[SMS Backup<br/>📞 Secondary]
-        PLATFORM[Platform Native<br/>🏢 GitHub, AWS]
+        HARDWARE["Hardware Token<br/>🔐 FIDO2, YubiKey"]
+        TOTP["TOTP App<br/>📱 Authenticator"]
+        SMS["SMS Backup<br/>📞 Secondary"]
+        PLATFORM["Platform Native<br/>🏢 GitHub, AWS"]
     end
     
     subgraph Verify["✅ Verification"]
-        CONTINUOUS[Continuous Verification<br/>⏱️ Session Monitoring]
-        PERIODIC[Periodic Re-auth<br/>🔄 Timeout-Based]
-        ONETIME[One-Time Verification<br/>✅ Login Only]
+        CONTINUOUS["Continuous Verification<br/>⏱️ Session Monitoring"]
+        PERIODIC["Periodic Re-auth<br/>🔄 Timeout-Based"]
+        ONETIME["One-Time Verification<br/>✅ Login Only"]
     end
     
     ADMIN --> HARDWARE
@@ -439,28 +439,28 @@ public class SessionConfig {
 
 ```mermaid
 graph TD
-    START[🔍 Start Access Review] --> EXTRACT[📊 Extract Access Data]
+    START["🔍 Start Access Review"] --> EXTRACT["📊 Extract Access Data"]
     
-    EXTRACT --> ANALYZE{📈 Analysis}
+    EXTRACT --> ANALYZE{"📈 Analysis"}
     
-    ANALYZE --> DORMANT[🚫 Identify Dormant Accounts<br/>>90 days no activity]
-    ANALYZE --> EXCESSIVE[⚠️ Identify Excessive Permissions<br/>More than role requires]
-    ANALYZE --> SEGREGATION[🔀 Check Segregation of Duties<br/>Incompatible roles]
+    ANALYZE --> DORMANT["🚫 Identify Dormant Accounts<br/>>90 days no activity"]
+    ANALYZE --> EXCESSIVE["⚠️ Identify Excessive Permissions<br/>More than role requires"]
+    ANALYZE --> SEGREGATION["🔀 Check Segregation of Duties<br/>Incompatible roles"]
     
-    DORMANT --> REVIEW{👤 CEO Review}
+    DORMANT --> REVIEW{"👤 CEO Review"}
     EXCESSIVE --> REVIEW
     SEGREGATION --> REVIEW
     
-    REVIEW -->|Revoke| REVOKE[🔒 Revoke Access]
-    REVIEW -->|Retain| DOCUMENT[📝 Document Justification]
-    REVIEW -->|Modify| ADJUST[⚙️ Adjust Permissions]
+    REVIEW -->|Revoke| REVOKE["🔒 Revoke Access"]
+    REVIEW -->|Retain| DOCUMENT["📝 Document Justification"]
+    REVIEW -->|Modify| ADJUST["⚙️ Adjust Permissions"]
     
-    REVOKE --> AUDIT[📋 Audit Trail]
+    REVOKE --> AUDIT["📋 Audit Trail"]
     DOCUMENT --> AUDIT
     ADJUST --> AUDIT
     
-    AUDIT --> REPORT[📊 Review Report]
-    REPORT --> STORE[💾 Store Evidence]
+    AUDIT --> REPORT["📊 Review Report"]
+    REPORT --> STORE["💾 Store Evidence"]
     
     style START fill:#1565C0
     style REVIEW fill:#FF9800

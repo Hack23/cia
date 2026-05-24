@@ -36,22 +36,22 @@ Every Hack23 project **must** include a system context diagram showing:
 C4Context
     title CIA Platform - System Context
 
-    Person(citizen, "Citizen", "Swedish citizen seeking political transparency")
-    Person(analyst, "Political Analyst", "Researches political patterns")
+    Person("citizen, #quot;Citizen#quot;, #quot;Swedish citizen seeking political transparency#quot;")
+    Person("analyst, #quot;Political Analyst#quot;, #quot;Researches political patterns#quot;")
 
-    System(cia, "CIA Platform", "Political intelligence and analysis")
+    System("cia, #quot;CIA Platform#quot;, #quot;Political intelligence and analysis#quot;")
 
-    System_Ext(riksdag, "Riksdagen API", "Swedish Parliament open data")
-    System_Ext(val, "Val.se", "Swedish Election Authority")
-    System_Ext(worldbank, "World Bank", "Economic indicators")
-    System_Ext(esv, "ESV", "Swedish financial data")
+    System_Ext("riksdag, #quot;Riksdagen API#quot;, #quot;Swedish Parliament open data#quot;")
+    System_Ext("val, #quot;Val.se#quot;, #quot;Swedish Election Authority#quot;")
+    System_Ext("worldbank, #quot;World Bank#quot;, #quot;Economic indicators#quot;")
+    System_Ext("esv, #quot;ESV#quot;, #quot;Swedish financial data#quot;")
 
-    Rel(citizen, cia, "Views political data", "HTTPS")
-    Rel(analyst, cia, "Analyzes political trends", "HTTPS")
-    Rel(cia, riksdag, "Fetches parliament data", "HTTPS/JSON")
-    Rel(cia, val, "Fetches election data", "HTTPS/JSON")
-    Rel(cia, worldbank, "Fetches economic data", "HTTPS/JSON")
-    Rel(cia, esv, "Fetches financial data", "HTTPS/JSON")
+    Rel("citizen, cia, #quot;Views political data#quot;, #quot;HTTPS#quot;")
+    Rel("analyst, cia, #quot;Analyzes political trends#quot;, #quot;HTTPS#quot;")
+    Rel("cia, riksdag, #quot;Fetches parliament data#quot;, #quot;HTTPS/JSON#quot;")
+    Rel("cia, val, #quot;Fetches election data#quot;, #quot;HTTPS/JSON#quot;")
+    Rel("cia, worldbank, #quot;Fetches economic data#quot;, #quot;HTTPS/JSON#quot;")
+    Rel("cia, esv, #quot;Fetches financial data#quot;, #quot;HTTPS/JSON#quot;")
 ```
 
 ### Level 2: Container Diagram
@@ -62,12 +62,12 @@ Show major deployable units:
 C4Container
     title CIA Platform - Container Diagram
 
-    Container(webapp, "Web Application", "Vaadin/Spring", "Political data dashboards")
-    ContainerDb(db, "PostgreSQL", "Database", "Political data store")
-    Container(agent, "Data Agent", "Spring Integration", "Data import pipelines")
+    Container("webapp, #quot;Web Application#quot;, #quot;Vaadin/Spring#quot;, #quot;Political data dashboards#quot;")
+    ContainerDb("db, #quot;PostgreSQL#quot;, #quot;Database#quot;, #quot;Political data store#quot;")
+    Container("agent, #quot;Data Agent#quot;, #quot;Spring Integration#quot;, #quot;Data import pipelines#quot;")
 
-    Rel(webapp, db, "Reads/Writes", "JDBC/JPA")
-    Rel(agent, db, "Writes imported data", "JDBC/JPA")
+    Rel("webapp, db, #quot;Reads/Writes#quot;, #quot;JDBC/JPA#quot;")
+    Rel("agent, db, #quot;Writes imported data#quot;, #quot;JDBC/JPA#quot;")
 ```
 
 ### Level 3: Component Diagram

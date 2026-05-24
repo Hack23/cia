@@ -39,11 +39,11 @@ The CIA platform monitors Swedish parliamentary activities across five critical 
 ```mermaid
 graph TB
     subgraph "Legislative Data Collection"
-        A1[🗳️ Voting Records<br/>3.5M+ votes<br/>1971-present]
-        A2[📄 Bill Tracking<br/>89K+ documents<br/>Full lifecycle]
-        A3[👥 Committee Activity<br/>15 committees<br/>Productivity metrics]
-        A4[🔍 Oversight Actions<br/>Questions, interpellations<br/>Accountability measures]
-        A5[🤝 Cross-Party Collaboration<br/>Co-authorship networks<br/>Coalition patterns]
+        A1["🗳️ Voting Records<br/>3.5M+ votes<br/>1971-present"]
+        A2["📄 Bill Tracking<br/>89K+ documents<br/>Full lifecycle"]
+        A3["👥 Committee Activity<br/>15 committees<br/>Productivity metrics"]
+        A4["🔍 Oversight Actions<br/>Questions, interpellations<br/>Accountability measures"]
+        A5["🤝 Cross-Party Collaboration<br/>Co-authorship networks<br/>Coalition patterns"]
     end
     
     subgraph "Legislative Intelligence Analysis"
@@ -63,7 +63,7 @@ graph TB
     end
     
     subgraph "Strategic Intelligence"
-        C1 & C2 & C3 & C4 & C5 --> D[📊 Legislative Dashboard]
+        C1 & C2 & C3 & C4 & C5 --> D["📊 Legislative Dashboard"]
         D --> E[Policy Outcome Predictions]
         D --> F[Institutional Risk Assessment]
         D --> G[Coalition Stability Forecasts]

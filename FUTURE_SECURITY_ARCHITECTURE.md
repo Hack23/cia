@@ -54,7 +54,7 @@ flowchart TB
     end
 
     subgraph "Application Security"
-        INPUT[Input Validation & Sanitization]
+        INPUT["Input Validation & Sanitization"]
         XSS[XSS Prevention — Output Encoding]
         SQLI[SQL Injection Prevention — Parameterized Queries]
         CSRF[CSRF Token Protection]
@@ -124,7 +124,7 @@ flowchart TB
 ```mermaid
 flowchart LR
     subgraph "Zero Trust Principles"
-        ZT1[Never Trust, Always Verify]
+        ZT1["Never Trust, Always Verify"]
         ZT2[Least Privilege Access]
         ZT3[Assume Breach]
         ZT4[Micro-Segmentation]
@@ -187,7 +187,7 @@ flowchart TB
     end
 
     subgraph "AI Agent Security Framework — 2028"
-        AF1[Agent Authentication & Authorization]
+        AF1["Agent Authentication & Authorization"]
         AF2[Agent Activity Monitoring]
         AF3[Agent Sandbox Isolation]
         AF4[Agent Behavioral Bounds Enforcement]
@@ -310,8 +310,8 @@ flowchart TB
 
     subgraph "Human Oversight & Governance"
         HO1[Security Strategy Direction]
-        HO2[Ethics & Values Governance]
-        HO3[Accountability & Transparency Review]
+        HO2["Ethics & Values Governance"]
+        HO3["Accountability & Transparency Review"]
         HO4[Democratic Mission Alignment]
     end
 

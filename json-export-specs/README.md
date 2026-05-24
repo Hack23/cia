@@ -143,7 +143,7 @@ The CIA JSON Export System transforms the comprehensive political intelligence d
 graph TB
     subgraph "📊 Data Source Layer"
         DB[(PostgreSQL Database<br/>85 Views)]
-        VIEWS[Intelligence Views<br/>Politicians, Parties,<br/>Ministries, Committees]
+        VIEWS["Intelligence Views<br/>Politicians, Parties,<br/>Ministries, Committees"]
     end
     
     subgraph "🔄 Export Pipeline"
@@ -154,7 +154,7 @@ graph TB
     
     subgraph "📦 Storage Layer"
         S3[S3 Bucket<br/>Static JSON Files]
-        VERSIONS[Version Control<br/>v1, v2, latest]
+        VERSIONS["Version Control<br/>v1, v2, latest"]
     end
     
     subgraph "🌐 CDN Distribution"

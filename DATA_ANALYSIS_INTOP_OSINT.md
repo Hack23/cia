@@ -131,10 +131,10 @@ The CIA platform integrates four primary open-source intelligence sources to cre
 ```mermaid
 graph TB
     subgraph "OSINT Collection Layer"
-        A1[📡 Riksdagen API<br/>Swedish Parliament] --> B[Data Aggregation Layer]
-        A2[📊 Election Authority<br/>Valmyndigheten] --> B
-        A3[💰 World Bank<br/>Open Data] --> B
-        A4[🏛️ Financial Authority<br/>ESV] --> B
+        A1["📡 Riksdagen API<br/>Swedish Parliament"] --> B[Data Aggregation Layer]
+        A2["📊 Election Authority<br/>Valmyndigheten"] --> B
+        A3["💰 World Bank<br/>Open Data"] --> B
+        A4["🏛️ Financial Authority<br/>ESV"] --> B
     end
     
     subgraph "Data Processing Pipeline"
@@ -1194,7 +1194,7 @@ graph TB
     end
     
     subgraph "Potential Coalition Stress"
-        C[C - Centre Party<br/>⚠️ Lower alignment]
+        C["C - Centre Party<br/>⚠️ Lower alignment"]
         M ---|"87.3%<br/>🟡 Moderate"| C
         C ---|"82.1%<br/>🟡 Moderate"| L
     end
@@ -1934,17 +1934,17 @@ Anomaly detection is critical for identifying politicians exhibiting unusual beh
 graph TB
     A[Behavioral Data] --> B{Anomaly Detection Method}
     
-    B --> C1[Parametric Methods<br/>Z-Score, T-Test]
-    B --> C2[Non-Parametric Methods<br/>IQR, Percentile]
-    B --> C3[Machine Learning<br/>Isolation Forest, DBSCAN]
+    B --> C1["Parametric Methods<br/>Z-Score, T-Test"]
+    B --> C2["Non-Parametric Methods<br/>IQR, Percentile"]
+    B --> C3["Machine Learning<br/>Isolation Forest, DBSCAN"]
     B --> C4[Time Series Methods<br/>Seasonal Decomposition]
     
     C1 & C2 & C3 & C4 --> D[Anomaly Scores]
     D --> E{Severity Classification}
     
-    E --> F1[🟢 Normal<br/>Score < 2σ]
-    E --> F2[🟡 Moderate Anomaly<br/>Score 2-3σ]
-    E --> F3[🔴 Severe Anomaly<br/>Score > 3σ]
+    E --> F1["🟢 Normal<br/>Score < 2σ"]
+    E --> F2["🟡 Moderate Anomaly<br/>Score 2-3σ"]
+    E --> F3["🔴 Severe Anomaly<br/>Score > 3σ"]
     
     style A fill:#e1f5ff,stroke:#333,stroke-width:2px
     style B fill:#ffeb99,stroke:#333,stroke-width:2px
@@ -2302,18 +2302,18 @@ print(f"\nOutlier politicians:\n{outliers}")
 ```mermaid
 graph TB
     subgraph "Cluster 0: High Performers"
-        A1[Politician A<br/>Att: 85%, Prod: 15]
-        A2[Politician B<br/>Att: 87%, Prod: 18]
-        A3[Politician C<br/>Att: 86%, Prod: 16]
+        A1["Politician A<br/>Att: 85%, Prod: 15"]
+        A2["Politician B<br/>Att: 87%, Prod: 18"]
+        A3["Politician C<br/>Att: 86%, Prod: 16"]
     end
     
     subgraph "Cluster 1: Moderate Performers"
-        B1[Politician D<br/>Att: 72%, Prod: 8]
-        B2[Politician E<br/>Att: 75%, Prod: 9]
+        B1["Politician D<br/>Att: 72%, Prod: 8"]
+        B2["Politician E<br/>Att: 75%, Prod: 9"]
     end
     
-    O1[Outlier: Politician F<br/>Att: 45%, Prod: 2<br/>🔴 ANOMALY]
-    O2[Outlier: Politician G<br/>Att: 52%, Prod: 3<br/>🔴 ANOMALY]
+    O1["Outlier: Politician F<br/>Att: 45%, Prod: 2<br/>🔴 ANOMALY"]
+    O2["Outlier: Politician G<br/>Att: 52%, Prod: 3<br/>🔴 ANOMALY"]
     
     style A1 fill:#ccffcc,stroke:#333,stroke-width:2px
     style A2 fill:#ccffcc,stroke:#333,stroke-width:2px
@@ -2688,7 +2688,7 @@ graph TB
     end
     
     subgraph "Cluster 4: Declining Partnership"
-        C[C - Centre Party<br/>⚠️ Weak Cooperation<br/>Alignment: 82%]
+        C["C - Centre Party<br/>⚠️ Weak Cooperation<br/>Alignment: 82%"]
         
         M ---|Declining Cooperation<br/>82.1% aligned<br/>-4.5% trend| C
         S ---|Coalition Breakdown<br/>42.1% aligned<br/>-18.5% trend| C
@@ -3826,14 +3826,14 @@ graph TB
     D --> G{Opposition Defections}
     E --> H{Opposition Defections}
     
-    F -->|0-2 defectors<br/>Prob: 70%| I[✅ PASS<br/>89% confidence]
-    F -->|3+ defectors<br/>Prob: 30%| J[✅ PASS<br/>95% confidence]
+    F -->|0-2 defectors<br/>Prob: 70%| I["✅ PASS<br/>89% confidence"]
+    F -->|3+ defectors<br/>Prob: 30%| J["✅ PASS<br/>95% confidence"]
     
-    G -->|0 defectors<br/>Prob: 40%| K[❌ FAIL<br/>52% confidence]
-    G -->|1-3 defectors<br/>Prob: 60%| L[✅ PASS<br/>68% confidence]
+    G -->|0 defectors<br/>Prob: 40%| K["❌ FAIL<br/>52% confidence"]
+    G -->|1-3 defectors<br/>Prob: 60%| L["✅ PASS<br/>68% confidence"]
     
-    H -->|0-2 defectors<br/>Prob: 80%| M[❌ FAIL<br/>85% confidence]
-    H -->|3+ defectors<br/>Prob: 20%| N[⚠️ TIE<br/>50% confidence]
+    H -->|0-2 defectors<br/>Prob: 80%| M["❌ FAIL<br/>85% confidence"]
+    H -->|3+ defectors<br/>Prob: 20%| N["⚠️ TIE<br/>50% confidence"]
     
     style I fill:#90EE90,stroke:#333,stroke-width:2px
     style J fill:#90EE90,stroke:#333,stroke-width:3px
@@ -4899,8 +4899,8 @@ graph LR
         B3[Left-Green<br/>33 MPs]
     end
     
-    C1[Karin Centralist<br/>🌉 BRIDGE]
-    C2[Per Moderate<br/>🌉 BRIDGE]
+    C1["Karin Centralist<br/>🌉 BRIDGE"]
+    C2["Per Moderate<br/>🌉 BRIDGE"]
     
     A1 --- C1
     A2 --- C1
@@ -5085,7 +5085,7 @@ Defense Committee,C (Centre),1
 %%{init: {"theme":"base"}}%%
 graph TB
     subgraph "Annie Lööf Network Position"
-        AL[Annie Lööf<br/>Centre Party<br/>⭐⭐⭐⭐⭐ Power Broker]
+        AL["Annie Lööf<br/>Centre Party<br/>⭐⭐⭐⭐⭐ Power Broker"]
         
         subgraph "Committee Positions (5 committees)"
             FIN[Finance Committee<br/>Vice Chair]
@@ -7307,9 +7307,9 @@ For complete documentation of all 110 views, see:
 graph LR
     A[Risk Detection] --> B{Salience Score}
     
-    B -->|10-49| C[🟡 MINOR]
-    B -->|50-99| D[🟠 MAJOR]
-    B -->|100+| E[🔴 CRITICAL]
+    B -->|10-49| C["🟡 MINOR"]
+    B -->|50-99| D["🟠 MAJOR"]
+    B -->|100+| E["🔴 CRITICAL"]
     
     C --> F[Early Warning<br/>Monitoring Required]
     D --> G[Significant Concern<br/>Investigation Required]
@@ -7386,7 +7386,7 @@ graph TB
     B --> C6[Collaboration Index<br/>Multi-party work %]
     
     C1 & C2 & C3 & C4 & C5 & C6 --> D[Composite Score]
-    D --> E[Performance Grade<br/>A, B, C, D, F]
+    D --> E["Performance Grade<br/>A, B, C, D, F"]
     
     style A fill:#e1f5ff,stroke:#333,stroke-width:2px
     style B fill:#ffeb99,stroke:#333,stroke-width:2px
@@ -7430,9 +7430,9 @@ graph TB
     C1 & C2 & C3 & C4 --> D[Stability Score]
     D --> E[Risk Level]
     
-    E --> F1[🟢 STABLE<br/>Score 80-100]
-    E --> F2[🟡 MODERATE<br/>Score 60-79]
-    E --> F3[🔴 UNSTABLE<br/>Score <60]
+    E --> F1["🟢 STABLE<br/>Score 80-100"]
+    E --> F2["🟡 MODERATE<br/>Score 60-79"]
+    E --> F3["🔴 UNSTABLE<br/>Score <60"]
     
     style A fill:#e1f5ff,stroke:#333,stroke-width:2px
     style B fill:#ffeb99,stroke:#333,stroke-width:2px
@@ -7791,18 +7791,18 @@ graph TB
     A[OSINT Operations] --> B{Ethical Review}
     
     B --> C1[Privacy Protection]
-    B --> C2[Consent & Legitimacy]
+    B --> C2["Consent & Legitimacy"]
     B --> C3[Transparency]
     B --> C4[Neutrality]
     B --> C5[Accuracy]
     B --> C6[Responsibility]
     
-    C1 --> D[✓ Public Data Only<br/>✓ GDPR Compliant<br/>✗ No Personal Surveillance]
-    C2 --> E[✓ Public Figures<br/>✓ Legitimate Interest<br/>✗ No Private Life]
-    C3 --> F[✓ Open Methodology<br/>✓ Documented Rules<br/>✓ Reproducible]
-    C4 --> G[✓ Non-Partisan<br/>✓ All Parties Equal<br/>✗ No Manipulation]
-    C5 --> H[✓ Fact-Checked<br/>✓ Source Verified<br/>✓ Errors Corrected]
-    C6 --> I[✓ Democratic Values<br/>✓ Accountability<br/>✗ Not Weaponized]
+    C1 --> D["✓ Public Data Only<br/>✓ GDPR Compliant<br/>✗ No Personal Surveillance"]
+    C2 --> E["✓ Public Figures<br/>✓ Legitimate Interest<br/>✗ No Private Life"]
+    C3 --> F["✓ Open Methodology<br/>✓ Documented Rules<br/>✓ Reproducible"]
+    C4 --> G["✓ Non-Partisan<br/>✓ All Parties Equal<br/>✗ No Manipulation"]
+    C5 --> H["✓ Fact-Checked<br/>✓ Source Verified<br/>✓ Errors Corrected"]
+    C6 --> I["✓ Democratic Values<br/>✓ Accountability<br/>✗ Not Weaponized"]
     
     style A fill:#e1f5ff,stroke:#333,stroke-width:2px
     style B fill:#ffeb99,stroke:#333,stroke-width:2px
@@ -8756,7 +8756,7 @@ xychart-beta
 ```mermaid
 graph TB
     A[Polling Data<br/>12-month average] --> E[Ensemble Model]
-    B[Economic Indicators<br/>GDP, Unemployment] --> E
+    B["Economic Indicators<br/>GDP, Unemployment"] --> E
     C[Government Approval<br/>Performance ratings] --> E
     D[Historical Patterns<br/>Electoral cycles] --> E
     
@@ -8766,7 +8766,7 @@ graph TB
     E --> F4[Expert Adjustment<br/>Weight: 25%]
     
     F1 & F2 & F3 & F4 --> G[Weighted Forecast]
-    G --> H[Confidence Intervals<br/>95%, 80%, 50%]
+    G --> H["Confidence Intervals<br/>95%, 80%, 50%"]
     
     style A fill:#e1f5ff,stroke:#333,stroke-width:2px
     style B fill:#e1f5ff,stroke:#333,stroke-width:2px
@@ -8871,9 +8871,9 @@ graph TB
     C1 & C2 & C3 & C4 & C5 --> D[Crisis Performance Score]
     D --> E{Performance Grade}
     
-    E --> F1[🟢 Excellent<br/>Score 85-100]
-    E --> F2[🟡 Adequate<br/>Score 65-84]
-    E --> F3[🔴 Poor<br/>Score <65]
+    E --> F1["🟢 Excellent<br/>Score 85-100"]
+    E --> F2["🟡 Adequate<br/>Score 65-84"]
+    E --> F3["🔴 Poor<br/>Score <65"]
     
     style A fill:#ffcccc,stroke:#333,stroke-width:2px
     style B fill:#ffeb99,stroke:#333,stroke-width:2px
@@ -9236,9 +9236,9 @@ graph TB
     C1 & C2 & C3 & C4 --> D[Collaboration Score]
     D --> E{Classification}
     
-    E --> F1[🟢 Bridge-Builder<br/>Score 70-100]
-    E --> F2[🟡 Moderate Collaborator<br/>Score 40-69]
-    E --> F3[🔴 Partisan<br/>Score 0-39]
+    E --> F1["🟢 Bridge-Builder<br/>Score 70-100"]
+    E --> F2["🟡 Moderate Collaborator<br/>Score 40-69"]
+    E --> F3["🔴 Partisan<br/>Score 0-39"]
     
     style A fill:#e1f5ff,stroke:#333,stroke-width:2px
     style B fill:#ffeb99,stroke:#333,stroke-width:2px
@@ -9426,7 +9426,7 @@ graph TB
     D --> E{Pass Quality Threshold?}
     
     E -->|Yes| F[Publish Intelligence]
-    E -->|No| G[Revise & Resubmit]
+    E -->|No| G["Revise & Resubmit"]
     
     F --> H[Post-Publication Monitoring]
     G --> A

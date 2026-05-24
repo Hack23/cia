@@ -32,7 +32,7 @@ Do NOT use for:
 
 ```mermaid
 graph TB
-    REPO[📦 Repository] --> BADGES[🎖️ Security Badges]
+    REPO["📦 Repository"] --> BADGES["🎖️ Security Badges"]
     
     BADGES --> OSS[OpenSSF Scorecard<br/>Target: ≥7.0]
     BADGES --> CII[CII Best Practices<br/>Minimum: Passing]
@@ -60,14 +60,14 @@ graph TB
     
     LICENSE --> FOSSA_SCAN[Automated License Scan<br/>Attribution Management<br/>Compliance Reports]
     
-    BRANCH --> EVIDENCE[📊 Public Evidence]
+    BRANCH --> EVIDENCE["📊 Public Evidence"]
     SIGNED --> EVIDENCE
     QUALITY_CII --> EVIDENCE
     BUILD_INTEGRITY --> EVIDENCE
     SONAR_METRICS --> EVIDENCE
     FOSSA_SCAN --> EVIDENCE
     
-    EVIDENCE --> CLIENTS[🤝 Client Trust<br/>Competitive Advantage]
+    EVIDENCE --> CLIENTS["🤝 Client Trust<br/>Competitive Advantage"]
     
     style REPO fill:#1565C0,stroke:#0D47A1,stroke-width:3px,color:#fff
     style BADGES fill:#4CAF50,stroke:#2E7D32,stroke-width:2px,color:#fff

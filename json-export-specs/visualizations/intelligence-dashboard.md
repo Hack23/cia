@@ -15,10 +15,10 @@ graph LR
     A --> D[Analytics Engine]
     A --> E[Risk Detection]
     
-    B --> B1[✅ Operational<br/>99.2% uptime]
-    C --> C1[✅ Healthy<br/>Hourly refresh]
-    D --> D1[⚠️ Warning<br/>High load]
-    E --> E1[✅ Active<br/>45 rules running]
+    B --> B1["✅ Operational<br/>99.2% uptime"]
+    C --> C1["✅ Healthy<br/>Hourly refresh"]
+    D --> D1["⚠️ Warning<br/>High load"]
+    E --> E1["✅ Active<br/>45 rules running"]
     
     style A fill:#3498db,stroke:#2980b9,color:#fff
     style B fill:#27ae60,stroke:#2ecc71,color:#fff
@@ -109,7 +109,7 @@ graph TB
     RISK --> R2[Updated: Hourly<br/>45 risk rules<br/>3 severity levels]
     
     NETWORK --> N1[Network graphs<br/>Influence metrics<br/>Centrality scores]
-    NETWORK --> N2[Updated: Daily<br/>12,547 relationships<br/>87 key influencers]
+    NETWORK --> N2["Updated: Daily<br/>12,547 relationships<br/>87 key influencers"]
     
     TREND --> T1[Monthly reports<br/>Behavioral patterns<br/>Historical analysis]
     TREND --> T2[Updated: Weekly<br/>156 trend indicators<br/>24-month lookback]
@@ -277,12 +277,12 @@ graph TB
     DB --> HEALTH[Health]
     
     SIZE --> S1[Total: 12.5 GB<br/>Views: 85<br/>Tables: 156]
-    PERF --> P1[Query time: 45ms avg<br/>Throughput: 1,200/sec<br/>Cache hit: 92%]
+    PERF --> P1["Query time: 45ms avg<br/>Throughput: 1,200/sec<br/>Cache hit: 92%"]
     HEALTH --> H1[Connections: 78/200<br/>Replication: Current<br/>Backup: Daily]
     
-    S1 --> SR1{✅ Normal}
-    P1 --> PR1{✅ Good}
-    H1 --> HR1{✅ Healthy}
+    S1 --> SR1{"✅ Normal"}
+    P1 --> PR1{"✅ Good"}
+    H1 --> HR1{"✅ Healthy"}
     
     style DB fill:#3498db,stroke:#2980b9,color:#fff
     style SIZE fill:#9b59b6,stroke:#8e44ad,color:#fff
