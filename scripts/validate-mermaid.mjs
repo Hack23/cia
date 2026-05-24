@@ -32,6 +32,13 @@ const REPO = path.resolve(process.argv[2] || path.join(__dirname, '..'));
 const WORK = process.env.MERMAID_WORK || path.join(REPO, '.mermaid-validate');
 const IGNORE = new Set(['node_modules', 'target', 'dist', 'build', '.git', '.mermaid-validate']);
 
+// Safety guard: ensure WORK is under the repo or matches expected .mermaid-* pattern
+const resolvedWork = path.resolve(WORK);
+if (!resolvedWork.startsWith(REPO + path.sep) && !path.basename(resolvedWork).startsWith('.mermaid-')) {
+  console.error(`Error: MERMAID_WORK (${resolvedWork}) is not under the repository root and does not match .mermaid-* pattern.`);
+  process.exit(2);
+}
+
 // Resolve mmdc binary - prefer local node_modules, then ancestor node_modules, then PATH
 function resolveMmdc() {
   const candidates = [
@@ -95,6 +102,10 @@ async function main() {
         });
         results.push({ file: path.relative(REPO, file), idx, line, ok: true });
       } catch (e) {
+        if (e.code === 'ENOENT') {
+          console.error(`Error: mmdc not found at '${MMDC}'. Install @mermaid-js/mermaid-cli or set MMDC env var.`);
+          process.exit(2);
+        }
         const errMsg = (e.stderr || e.stdout || e.message || '').toString();
         results.push({
           file: path.relative(REPO, file),

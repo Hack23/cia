@@ -16,7 +16,7 @@ all our architecture, security, and intelligence documentation.
 
 ## 1. Tooling
 
-Two scripts live under [`scripts/`](./scripts/):
+Three scripts live under [`scripts/`](./scripts/):
 
 | Script | Purpose |
 |---|---|

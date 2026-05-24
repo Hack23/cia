@@ -96,13 +96,13 @@ async function main() {
 
         const faRe =
           /[\[(](?!")([^\[\]()]*?fa:fa-[a-zA-Z0-9-]+[^\[\]()]*?)[\])]/g;
-        let lm;
-        while ((lm = faRe.exec(line)) !== null) {
+        while (faRe.exec(line) !== null) {
           issues.unquotedFaIcons.push({ file: rel, line: lineNo, snippet: line.trim() });
         }
 
         const nodeLabelRe =
           /[A-Za-z_][A-Za-z0-9_]*\s*[\[(]([^"\[\]()][^\[\]()]*?)[\])]/g;
+        let lm;
         while ((lm = nodeLabelRe.exec(line)) !== null) {
           if (EMOJI.test(lm[1])) {
             issues.unquotedEmoji.push({ file: rel, line: lineNo, snippet: line.trim() });
@@ -118,7 +118,7 @@ async function main() {
 
         const ampRe = /[\[(]([^"\[\]()][^\[\]()]*&[^\[\]()]*?)[\])]/g;
         while ((lm = ampRe.exec(line)) !== null) {
-          if (!lm[1].startsWith('"') && !lm[1].includes('&amp;')) {
+          if (!lm[1].startsWith('"')) {
             issues.ampersandInLabel.push({ file: rel, line: lineNo, snippet: line.trim() });
           }
         }

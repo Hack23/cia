@@ -54,31 +54,31 @@ The 2026 architecture builds on the current Java 21/Spring/Vaadin/PostgreSQL sta
 C4Context
   title CIA Platform Architecture — 2026 Vision
 
-  Person("citizen, #quot;Citizen Analyst#quot;, #quot;Uses platform for political research and transparency insights#quot;")
-  Person("researcher, #quot;Political Researcher#quot;, #quot;Conducts deep analysis of political patterns and trends#quot;")
-  Person("developer, #quot;Developer#quot;, #quot;Maintains and extends the platform with AI-assisted tooling#quot;")
+  Person(citizen, "Citizen Analyst", "Uses platform for political research and transparency insights")
+  Person(researcher, "Political Researcher", "Conducts deep analysis of political patterns and trends")
+  Person(developer, "Developer", "Maintains and extends the platform with AI-assisted tooling")
 
-  System("cia, #quot;Citizen Intelligence Agency#quot;, #quot;AI-enhanced political intelligence platform with LLM-powered analytics, GitHub Copilot agent-assisted development, and comprehensive Swedish political data analysis#quot;")
+  System(cia, "Citizen Intelligence Agency", "AI-enhanced political intelligence platform with LLM-powered analytics, GitHub Copilot agent-assisted development, and comprehensive Swedish political data analysis")
 
-  System_Ext("riksdagen, #quot;Swedish Parliament API#quot;, #quot;Parliamentary data: members, votes, documents, committees#quot;")
-  System_Ext("election, #quot;Swedish Election Authority#quot;, #quot;Election results, party data, voter turnout#quot;")
-  System_Ext("worldbank, #quot;World Bank Open Data#quot;, #quot;Economic indicators and demographic data#quot;")
-  System_Ext("esv, #quot;Swedish Financial Authority#quot;, #quot;Government finances and agency budgets#quot;")
-  System_Ext("llmService, #quot;LLM Service Layer#quot;, #quot;Anthropic Opus 4.6 / competitor models for text analysis and summarization#quot;")
-  System_Ext("copilotAgents, #quot;GitHub Copilot Agents#quot;, #quot;AI-assisted development, code review, documentation generation#quot;")
+  System_Ext(riksdagen, "Swedish Parliament API", "Parliamentary data: members, votes, documents, committees")
+  System_Ext(election, "Swedish Election Authority", "Election results, party data, voter turnout")
+  System_Ext(worldbank, "World Bank Open Data", "Economic indicators and demographic data")
+  System_Ext(esv, "Swedish Financial Authority", "Government finances and agency budgets")
+  System_Ext(llmService, "LLM Service Layer", "Anthropic Opus 4.6 / competitor models for text analysis and summarization")
+  System_Ext(copilotAgents, "GitHub Copilot Agents", "AI-assisted development, code review, documentation generation")
 
-  Rel("citizen, cia, #quot;Explores political data, views analytics dashboards#quot;")
-  Rel("researcher, cia, #quot;Queries political datasets, analyzes voting patterns#quot;")
-  Rel("developer, cia, #quot;Develops features with AI-assisted tooling#quot;")
+  Rel(citizen, cia, "Explores political data, views analytics dashboards")
+  Rel(researcher, cia, "Queries political datasets, analyzes voting patterns")
+  Rel(developer, cia, "Develops features with AI-assisted tooling")
 
-  Rel("cia, riksdagen, #quot;Imports parliamentary data via REST API#quot;")
-  Rel("cia, election, #quot;Imports election and party data#quot;")
-  Rel("cia, worldbank, #quot;Imports economic indicators#quot;")
-  Rel("cia, esv, #quot;Imports government financial data#quot;")
-  Rel("cia, llmService, #quot;Sends political texts for analysis and summarization#quot;")
-  Rel("developer, copilotAgents, #quot;Leverages AI agents for development tasks#quot;")
+  Rel(cia, riksdagen, "Imports parliamentary data via REST API")
+  Rel(cia, election, "Imports election and party data")
+  Rel(cia, worldbank, "Imports economic indicators")
+  Rel(cia, esv, "Imports government financial data")
+  Rel(cia, llmService, "Sends political texts for analysis and summarization")
+  Rel(developer, copilotAgents, "Leverages AI agents for development tasks")
 
-  UpdateLayoutConfig("$c4ShapeInRow=#quot;3#quot;, $c4BoundaryInRow=#quot;1#quot;")
+  UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
 ```
 
 ### 2026 Container Architecture
@@ -87,35 +87,35 @@ C4Context
 C4Container
   title CIA Container Architecture — 2026
 
-  Person("user, #quot;Platform User#quot;, #quot;Citizens, researchers, journalists#quot;")
+  Person(user, "Platform User", "Citizens, researchers, journalists")
 
-  System_Boundary("ciaPlatform, #quot;CIA Platform#quot;") {
-    Container("webApp, #quot;Web Application#quot;, #quot;Vaadin 24 / Java 21#quot;, #quot;Interactive political data dashboards and analysis views#quot;")
-    Container("apiLayer, #quot;REST API Layer#quot;, #quot;Spring MVC#quot;, #quot;Programmatic data access and integration endpoints#quot;")
-    Container("serviceLayer, #quot;Service Layer#quot;, #quot;Spring Framework#quot;, #quot;Business logic, data processing, analytics computation#quot;")
-    Container("aiModule, #quot;AI Analysis Module#quot;, #quot;Spring + LLM Client#quot;, #quot;LLM-powered text summarization, sentiment analysis, political speech parsing#quot;")
-    Container("dataImport, #quot;Data Import Services#quot;, #quot;Spring Integration#quot;, #quot;Scheduled import from external political data sources#quot;")
-    Container("analyticsEngine, #quot;Analytics Engine#quot;, #quot;Java 21 + SQL#quot;, #quot;Risk scoring, voting pattern analysis, performance metrics#quot;")
-    ContainerDb("postgres, #quot;PostgreSQL 18#quot;, #quot;PostgreSQL#quot;, #quot;Political data store with materialized views and intelligence analytics#quot;")
-    ContainerDb("cache, #quot;Application Cache#quot;, #quot;Spring Cache / Ehcache#quot;, #quot;Frequently accessed data and computed analytics#quot;")
+  System_Boundary(ciaPlatform, "CIA Platform") {
+    Container(webApp, "Web Application", "Vaadin 24 / Java 21", "Interactive political data dashboards and analysis views")
+    Container(apiLayer, "REST API Layer", "Spring MVC", "Programmatic data access and integration endpoints")
+    Container(serviceLayer, "Service Layer", "Spring Framework", "Business logic, data processing, analytics computation")
+    Container(aiModule, "AI Analysis Module", "Spring + LLM Client", "LLM-powered text summarization, sentiment analysis, political speech parsing")
+    Container(dataImport, "Data Import Services", "Spring Integration", "Scheduled import from external political data sources")
+    Container(analyticsEngine, "Analytics Engine", "Java 21 + SQL", "Risk scoring, voting pattern analysis, performance metrics")
+    ContainerDb(postgres, "PostgreSQL 18", "PostgreSQL", "Political data store with materialized views and intelligence analytics")
+    ContainerDb(cache, "Application Cache", "Spring Cache / Ehcache", "Frequently accessed data and computed analytics")
   }
 
-  System_Ext("llm, #quot;LLM Services#quot;, #quot;Anthropic / OpenAI / Open-source models#quot;")
-  System_Ext("dataSources, #quot;External Data Sources#quot;, #quot;Riksdagen, Election Authority, World Bank, ESV#quot;")
+  System_Ext(llm, "LLM Services", "Anthropic / OpenAI / Open-source models")
+  System_Ext(dataSources, "External Data Sources", "Riksdagen, Election Authority, World Bank, ESV")
 
-  Rel("user, webApp, #quot;Interacts with dashboards#quot;, #quot;HTTPS#quot;")
-  Rel("user, apiLayer, #quot;Queries data programmatically#quot;, #quot;REST/JSON#quot;")
-  Rel("webApp, serviceLayer, #quot;Delegates business operations#quot;")
-  Rel("apiLayer, serviceLayer, #quot;Routes API requests#quot;")
-  Rel("serviceLayer, analyticsEngine, #quot;Requests analytics computations#quot;")
-  Rel("serviceLayer, aiModule, #quot;Requests AI-powered analysis#quot;")
-  Rel("serviceLayer, postgres, #quot;Reads/writes political data#quot;, #quot;JDBC/JPA#quot;")
-  Rel("serviceLayer, cache, #quot;Caches computed results#quot;")
-  Rel("dataImport, dataSources, #quot;Scheduled data imports#quot;, #quot;REST/XML#quot;")
-  Rel("dataImport, postgres, #quot;Stores imported data#quot;")
-  Rel("aiModule, llm, #quot;Sends text for analysis#quot;, #quot;API#quot;")
+  Rel(user, webApp, "Interacts with dashboards", "HTTPS")
+  Rel(user, apiLayer, "Queries data programmatically", "REST/JSON")
+  Rel(webApp, serviceLayer, "Delegates business operations")
+  Rel(apiLayer, serviceLayer, "Routes API requests")
+  Rel(serviceLayer, analyticsEngine, "Requests analytics computations")
+  Rel(serviceLayer, aiModule, "Requests AI-powered analysis")
+  Rel(serviceLayer, postgres, "Reads/writes political data", "JDBC/JPA")
+  Rel(serviceLayer, cache, "Caches computed results")
+  Rel(dataImport, dataSources, "Scheduled data imports", "REST/XML")
+  Rel(dataImport, postgres, "Stores imported data")
+  Rel(aiModule, llm, "Sends text for analysis", "API")
 
-  UpdateLayoutConfig("$c4ShapeInRow=#quot;3#quot;, $c4BoundaryInRow=#quot;1#quot;")
+  UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
 ```
 
 ### 2026 Key Enhancements
@@ -137,27 +137,27 @@ As LLMs mature with annual major upgrades and multi-modal capabilities become st
 C4Context
   title CIA Platform Architecture — 2027–2029 Evolution
 
-  Person("citizen, #quot;Engaged Citizen#quot;, #quot;Natural language interaction with political data#quot;")
-  Person("researcher, #quot;Intelligence Analyst#quot;, #quot;Leverages AI-assisted pattern recognition and predictive models#quot;")
-  Person("journalist, #quot;Investigative Journalist#quot;, #quot;Uses AI-powered cross-referencing and anomaly detection#quot;")
+  Person(citizen, "Engaged Citizen", "Natural language interaction with political data")
+  Person(researcher, "Intelligence Analyst", "Leverages AI-assisted pattern recognition and predictive models")
+  Person(journalist, "Investigative Journalist", "Uses AI-powered cross-referencing and anomaly detection")
 
-  System("cia, #quot;CIA Intelligent Analytics Platform#quot;, #quot;AI-native political intelligence with natural language queries, predictive analytics, and automated insight generation#quot;")
+  System(cia, "CIA Intelligent Analytics Platform", "AI-native political intelligence with natural language queries, predictive analytics, and automated insight generation")
 
-  System_Ext("multiModalAI, #quot;Multi-Modal AI Services#quot;, #quot;Next-gen LLMs with 1M+ token context, reasoning chains, and specialized political models#quot;")
-  System_Ext("aiAgents, #quot;Autonomous AI Agents#quot;, #quot;Persistent AI agents for continuous parliamentary monitoring and analysis#quot;")
-  System_Ext("dataSources, #quot;Expanded Data Sources#quot;, #quot;Nordic parliaments, EU Parliament, media feeds, social media APIs#quot;")
-  System_Ext("mcp, #quot;MCP Server Ecosystem#quot;, #quot;Model Context Protocol servers for structured data access#quot;")
+  System_Ext(multiModalAI, "Multi-Modal AI Services", "Next-gen LLMs with 1M+ token context, reasoning chains, and specialized political models")
+  System_Ext(aiAgents, "Autonomous AI Agents", "Persistent AI agents for continuous parliamentary monitoring and analysis")
+  System_Ext(dataSources, "Expanded Data Sources", "Nordic parliaments, EU Parliament, media feeds, social media APIs")
+  System_Ext(mcp, "MCP Server Ecosystem", "Model Context Protocol servers for structured data access")
 
-  Rel("citizen, cia, #quot;Asks questions in natural language, receives personalized insights#quot;")
-  Rel("researcher, cia, #quot;Runs predictive models, analyzes cross-party dynamics#quot;")
-  Rel("journalist, cia, #quot;Investigates anomalies, tracks legislative influence#quot;")
+  Rel(citizen, cia, "Asks questions in natural language, receives personalized insights")
+  Rel(researcher, cia, "Runs predictive models, analyzes cross-party dynamics")
+  Rel(journalist, cia, "Investigates anomalies, tracks legislative influence")
 
-  Rel("cia, multiModalAI, #quot;Processes text, audio, and video from parliamentary sessions#quot;")
-  Rel("cia, aiAgents, #quot;Deploys autonomous monitoring agents#quot;")
-  Rel("cia, dataSources, #quot;Integrates expanded political data sources#quot;")
-  Rel("cia, mcp, #quot;Exposes structured political data via MCP#quot;")
+  Rel(cia, multiModalAI, "Processes text, audio, and video from parliamentary sessions")
+  Rel(cia, aiAgents, "Deploys autonomous monitoring agents")
+  Rel(cia, dataSources, "Integrates expanded political data sources")
+  Rel(cia, mcp, "Exposes structured political data via MCP")
 
-  UpdateLayoutConfig("$c4ShapeInRow=#quot;3#quot;, $c4BoundaryInRow=#quot;1#quot;")
+  UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
 ```
 
 ### 2027–2029 Architectural Shifts
@@ -179,24 +179,24 @@ With proto-AGI capabilities emerging, the platform becomes increasingly autonomo
 C4Context
   title CIA Platform Architecture — 2030–2033 Autonomous Intelligence
 
-  Person("citizen, #quot;Democratic Participant#quot;, #quot;Receives proactive political insights and personalized governance reports#quot;")
-  Person("policymaker, #quot;Policy Analyst#quot;, #quot;Leverages AI-simulated policy outcomes for evidence-based decisions#quot;")
+  Person(citizen, "Democratic Participant", "Receives proactive political insights and personalized governance reports")
+  Person(policymaker, "Policy Analyst", "Leverages AI-simulated policy outcomes for evidence-based decisions")
 
-  System("cia, #quot;CIA Autonomous Intelligence Platform#quot;, #quot;Self-evolving political intelligence with predictive governance modeling, automated reporting, and global democratic health monitoring#quot;")
+  System(cia, "CIA Autonomous Intelligence Platform", "Self-evolving political intelligence with predictive governance modeling, automated reporting, and global democratic health monitoring")
 
-  System_Ext("agiServices, #quot;Advanced AI / Proto-AGI Services#quot;, #quot;Broad-domain reasoning, autonomous research, causal inference#quot;")
-  System_Ext("globalGov, #quot;Global Governance Data Network#quot;, #quot;Real-time feeds from democratic institutions worldwide#quot;")
-  System_Ext("simulation, #quot;Policy Simulation Engine#quot;, #quot;Monte Carlo and agent-based policy outcome modeling#quot;")
-  System_Ext("citizenInterface, #quot;Citizen Engagement Layer#quot;, #quot;Personalized political briefings, conversational AI, notification systems#quot;")
+  System_Ext(agiServices, "Advanced AI / Proto-AGI Services", "Broad-domain reasoning, autonomous research, causal inference")
+  System_Ext(globalGov, "Global Governance Data Network", "Real-time feeds from democratic institutions worldwide")
+  System_Ext(simulation, "Policy Simulation Engine", "Monte Carlo and agent-based policy outcome modeling")
+  System_Ext(citizenInterface, "Citizen Engagement Layer", "Personalized political briefings, conversational AI, notification systems")
 
-  Rel("citizen, citizenInterface, #quot;Receives personalized political intelligence#quot;")
-  Rel("citizenInterface, cia, #quot;Delivers tailored insights#quot;")
-  Rel("policymaker, cia, #quot;Simulates policy outcomes, analyzes governance effectiveness#quot;")
-  Rel("cia, agiServices, #quot;Leverages advanced reasoning for complex political analysis#quot;")
-  Rel("cia, globalGov, #quot;Monitors democratic institutions globally#quot;")
-  Rel("cia, simulation, #quot;Runs policy impact simulations#quot;")
+  Rel(citizen, citizenInterface, "Receives personalized political intelligence")
+  Rel(citizenInterface, cia, "Delivers tailored insights")
+  Rel(policymaker, cia, "Simulates policy outcomes, analyzes governance effectiveness")
+  Rel(cia, agiServices, "Leverages advanced reasoning for complex political analysis")
+  Rel(cia, globalGov, "Monitors democratic institutions globally")
+  Rel(cia, simulation, "Runs policy impact simulations")
 
-  UpdateLayoutConfig("$c4ShapeInRow=#quot;3#quot;, $c4BoundaryInRow=#quot;1#quot;")
+  UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
 ```
 
 ### 2030–2033 Capability Matrix
@@ -218,24 +218,24 @@ Assuming AGI or near-AGI capabilities are achieved by the mid-2030s, the Citizen
 C4Context
   title CIA Platform Architecture — 2034–2037 Democratic Intelligence Ecosystem
 
-  Person("citizen, #quot;Empowered Citizen#quot;, #quot;Continuous, AI-mediated democratic engagement and political literacy#quot;")
-  Person("institution, #quot;Democratic Institution#quot;, #quot;Uses AI-verified transparency and accountability frameworks#quot;")
+  Person(citizen, "Empowered Citizen", "Continuous, AI-mediated democratic engagement and political literacy")
+  Person(institution, "Democratic Institution", "Uses AI-verified transparency and accountability frameworks")
 
-  System("cia, #quot;CIA Democratic Intelligence Ecosystem#quot;, #quot;AGI-enhanced political intelligence serving as infrastructure for democratic accountability, transparency, and citizen empowerment#quot;")
+  System(cia, "CIA Democratic Intelligence Ecosystem", "AGI-enhanced political intelligence serving as infrastructure for democratic accountability, transparency, and citizen empowerment")
 
-  System_Ext("agiCore, #quot;AGI Services#quot;, #quot;General-purpose AI reasoning, autonomous research, knowledge synthesis#quot;")
-  System_Ext("globalDemocracy, #quot;Global Democracy Network#quot;, #quot;Federated network of democratic transparency platforms worldwide#quot;")
-  System_Ext("verificationLayer, #quot;AI Verification & Trust#quot;, #quot;Cryptographic verification of AI-generated analysis, provenance tracking, bias detection#quot;")
-  System_Ext("educationPlatform, #quot;Civic Education Platform#quot;, #quot;AI-personalized political literacy and democratic participation training#quot;")
+  System_Ext(agiCore, "AGI Services", "General-purpose AI reasoning, autonomous research, knowledge synthesis")
+  System_Ext(globalDemocracy, "Global Democracy Network", "Federated network of democratic transparency platforms worldwide")
+  System_Ext(verificationLayer, "AI Verification & Trust", "Cryptographic verification of AI-generated analysis, provenance tracking, bias detection")
+  System_Ext(educationPlatform, "Civic Education Platform", "AI-personalized political literacy and democratic participation training")
 
-  Rel("citizen, cia, #quot;Engages with democracy through AI-enhanced transparency tools#quot;")
-  Rel("institution, cia, #quot;Provides data, receives accountability insights#quot;")
-  Rel("cia, agiCore, #quot;Leverages AGI for deep political reasoning and synthesis#quot;")
-  Rel("cia, globalDemocracy, #quot;Participates in federated democratic intelligence network#quot;")
-  Rel("cia, verificationLayer, #quot;Ensures AI analysis integrity and trustworthiness#quot;")
-  Rel("cia, educationPlatform, #quot;Powers personalized civic education#quot;")
+  Rel(citizen, cia, "Engages with democracy through AI-enhanced transparency tools")
+  Rel(institution, cia, "Provides data, receives accountability insights")
+  Rel(cia, agiCore, "Leverages AGI for deep political reasoning and synthesis")
+  Rel(cia, globalDemocracy, "Participates in federated democratic intelligence network")
+  Rel(cia, verificationLayer, "Ensures AI analysis integrity and trustworthiness")
+  Rel(cia, educationPlatform, "Powers personalized civic education")
 
-  UpdateLayoutConfig("$c4ShapeInRow=#quot;3#quot;, $c4BoundaryInRow=#quot;1#quot;")
+  UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
 ```
 
 ### 2034–2037 Transformative Capabilities

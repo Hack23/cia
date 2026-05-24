@@ -4,7 +4,7 @@
 # Renders every ```mermaid block in every *.md file in the repository via the
 # official @mermaid-js/mermaid-cli and fails if any diagram does not render.
 # Runs on every PR that touches a markdown file, on every push to master, and
-# nightly to catch regressions caused by upstream Mermaid releases.
+# weekly to catch regressions caused by upstream Mermaid releases.
 #
 # See MERMAID_STYLE_GUIDE.md for the conventions this workflow enforces.
 name: Validate Mermaid Diagrams
@@ -64,7 +64,7 @@ jobs:
         run: |
           mkdir -p .mermaid-tools
           cd .mermaid-tools
-          npm init -y > /dev/null
+          echo '{"name":"mermaid-tools","private":true}' > package.json
           npm install --no-audit --no-fund @mermaid-js/mermaid-cli
 
       - name: Run mermaid validator

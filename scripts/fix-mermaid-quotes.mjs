@@ -7,11 +7,14 @@
  *   - Emoji (Unicode pictographs / symbols)
  *   - `&` (ampersand)
  *   - `(` `)` parentheses
- *   - `:` colon
  *   - `;` semicolon
  *   - `,` comma
- *   - `<` `>` (outside `<br/>` which is allowed in mermaid)
  *   - `fa:fa-…` Font Awesome icon syntax
+ *
+ * Note: C4 diagram blocks (C4Context, C4Container, C4Component, C4Dynamic,
+ * C4Deployment) are skipped entirely because their macro syntax (e.g.
+ * `Person(id, "Label", "Desc")`) uses parentheses as function-call delimiters,
+ * not node-label brackets.
  *
  * Rules
  * -----
@@ -167,6 +170,9 @@ async function* walk(dir) {
 
 const fence = /(```mermaid\s*\n)([\s\S]*?)(```)/g;
 
+// C4 diagram types use function-call syntax, not node-label brackets
+const C4_TYPES = /^\s*(?:C4Context|C4Container|C4Component|C4Dynamic|C4Deployment)\b/m;
+
 async function main() {
   const files = [];
   for await (const f of walk(REPO)) files.push(f);
@@ -179,6 +185,7 @@ async function main() {
     const src = await readFile(file, 'utf8');
     let fileChanges = 0;
     const out = src.replace(fence, (_full, open, body, close) => {
+      if (C4_TYPES.test(body)) return open + body + close;
       const { code, changes } = rewriteBlock(body);
       fileChanges += changes;
       return open + code + close;
