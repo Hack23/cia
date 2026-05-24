@@ -154,6 +154,8 @@ When you need consistent typography and curved edges, prepend:
   'lineColor':'#333333',
   'fontFamily':'Inter, Segoe UI, sans-serif'
 }}}%%
+graph LR
+    A["Themed node"] --> B["Another node"]
 ```
 
 For diagrams where you only need the palette without overriding text/edge
