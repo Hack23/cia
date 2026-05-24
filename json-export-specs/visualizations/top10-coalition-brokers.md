@@ -53,13 +53,13 @@ graph LR
     A --> D[Compromise Artists]
     
     B --> B1[Deep expertise<br/>Respected authority<br/>Issue leadership]
-    B --> B2[Example: Finance,<br/>Defense, Environment]
+    B --> B2["Example: Finance,<br/>Defense, Environment"]
     
     C --> C1[Personal networks<br/>Trust building<br/>Social capital]
-    C --> C2[Example: Committee chairs,<br/>Long-serving members]
+    C --> C2["Example: Committee chairs,<br/>Long-serving members"]
     
     D --> D1[Pragmatic approach<br/>Solution-oriented<br/>Middle ground]
-    D --> D2[Example: Centrist parties,<br/>Swing voters]
+    D --> D2["Example: Centrist parties,<br/>Swing voters"]
     
     style A fill:#3498db,stroke:#2980b9,color:#fff
     style B fill:#9b59b6,stroke:#8e44ad,color:#fff
@@ -117,10 +117,10 @@ pie title "Top Brokers by Party"
 
 ```mermaid
 graph TD
-    ISSUES[Coalition Building Areas] --> BUDGET[Budget & Finance]
-    ISSUES --> SECURITY[Security & Defense]
+    ISSUES[Coalition Building Areas] --> BUDGET["Budget & Finance"]
+    ISSUES --> SECURITY["Security & Defense"]
     ISSUES --> SOCIAL[Social Policy]
-    ISSUES --> CLIMATE[Climate & Energy]
+    ISSUES --> CLIMATE["Climate & Energy"]
     
     BUDGET --> BU1[Broad consensus needed<br/>Coalition critical<br/>High broker activity]
     
@@ -243,7 +243,7 @@ graph TB
     
     BUDGET --> B1[Annual budget negotiations<br/>Multi-party compromises<br/>Broker facilitation]
     
-    POLICY --> P1[Healthcare, defense, energy<br/>Cross-party solutions<br/>Broker leadership]
+    POLICY --> P1["Healthcare, defense, energy<br/>Cross-party solutions<br/>Broker leadership"]
     
     T1 --> OUTCOME[Government Stability]
     B1 --> OUTCOME

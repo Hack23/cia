@@ -38,11 +38,11 @@ The CIA platform analyzes political communication across five critical dimension
 ```mermaid
 graph TB
     subgraph "Communication Intelligence Collection"
-        A1[📝 Parliamentary Documents<br/>89K+ documents<br/>Motions, interpellations, bills]
-        A2[🎤 Debate Transcripts<br/>Parliamentary speeches<br/>Committee testimony]
-        A3[📰 Media Coverage<br/>News articles, press releases<br/>Social media posts]
-        A4[🗳️ Voting Records<br/>Action-rhetoric alignment<br/>Behavior vs. statements]
-        A5[🤝 Coalition Messaging<br/>Party coordination<br/>Message discipline]
+        A1["📝 Parliamentary Documents<br/>89K+ documents<br/>Motions, interpellations, bills"]
+        A2["🎤 Debate Transcripts<br/>Parliamentary speeches<br/>Committee testimony"]
+        A3["📰 Media Coverage<br/>News articles, press releases<br/>Social media posts"]
+        A4["🗳️ Voting Records<br/>Action-rhetoric alignment<br/>Behavior vs. statements"]
+        A5["🤝 Coalition Messaging<br/>Party coordination<br/>Message discipline"]
     end
     
     subgraph "Communication Analysis"
@@ -62,7 +62,7 @@ graph TB
     end
     
     subgraph "Strategic Intelligence"
-        C1 & C2 & C3 & C4 & C5 --> D[📊 Communication Profile]
+        C1 & C2 & C3 & C4 & C5 --> D["📊 Communication Profile"]
         D --> E[Influence Assessment]
         D --> F[Disinformation Detection]
         D --> G[Counter-Narrative Strategy]

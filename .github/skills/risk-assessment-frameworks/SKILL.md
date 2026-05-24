@@ -39,10 +39,10 @@ The CIA platform integrates four layers of risk intelligence to create comprehen
 ```mermaid
 graph TB
     subgraph "Layer 1: Data Collection"
-        A1[🗳️ Behavioral Data<br/>3.5M+ votes, attendance<br/>Productivity metrics]
-        A2[💰 Financial Data<br/>World Bank, ESV<br/>Economic indicators]
-        A3[📊 Democracy Indices<br/>V-Dem, Freedom House<br/>International benchmarks]
-        A4[📰 Media Coverage<br/>Sentiment analysis<br/>Scandal tracking]
+        A1["🗳️ Behavioral Data<br/>3.5M+ votes, attendance<br/>Productivity metrics"]
+        A2["💰 Financial Data<br/>World Bank, ESV<br/>Economic indicators"]
+        A3["📊 Democracy Indices<br/>V-Dem, Freedom House<br/>International benchmarks"]
+        A4["📰 Media Coverage<br/>Sentiment analysis<br/>Scandal tracking"]
     end
     
     subgraph "Layer 2: Risk Rules Engine (Drools)"
@@ -60,7 +60,7 @@ graph TB
     end
     
     subgraph "Layer 4: Risk Intelligence"
-        C1 & C2 & C3 & C4 --> D[🎯 Composite Risk Score]
+        C1 & C2 & C3 & C4 --> D["🎯 Composite Risk Score"]
         D --> E[Early Warning Alerts]
         D --> F[Risk Mitigation Strategies]
         D --> G[Intelligence Priorities]

@@ -275,7 +275,7 @@ graph TD
     SUCCESS[Success Factors] --> TALENT[Natural Talent]
     SUCCESS --> WORK[Work Ethic]
     SUCCESS --> NETWORK[Network]
-    SUCCESS --> TIMING[Timing & Luck]
+    SUCCESS --> TIMING["Timing & Luck"]
     
     TALENT --> T1[Intelligence<br/>Communication skills<br/>Political instinct]
     

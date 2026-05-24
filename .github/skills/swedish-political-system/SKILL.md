@@ -569,7 +569,7 @@ ORDER BY vote_count DESC;
 ```mermaid
 graph LR
     A[Government] <--> B[Employers<br/>Svenskt Näringsliv]
-    A <--> C[Labor Unions<br/>LO, TCO, SACO]
+    A <--> C["Labor Unions<br/>LO, TCO, SACO"]
     B <--> C
     
     style A fill:#ffe6cc

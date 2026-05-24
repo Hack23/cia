@@ -533,7 +533,7 @@ flowchart LR
     G --> C
     
     F --> H[4. Documentation Update]
-    H --> I[✅ Pipeline Complete]
+    H --> I["✅ Pipeline Complete"]
     
     style A fill:#3498db,color:#fff
     style C fill:#9b59b6,color:#fff

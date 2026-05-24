@@ -32,15 +32,15 @@ Do NOT use for:
 
 ```mermaid
 graph TB
-    CEO[👨‍💼 CEO/Founder<br/>Strategic Oversight]
+    CEO["👨‍💼 CEO/Founder<br/>Strategic Oversight"]
     
     subgraph AI_AGENTS["🤖 Specialist AI Agent Ecosystem"]
-        SEC_ARCH[🔐 Security Architect Agent<br/>Architecture design & review]
-        DEV_SEC[💻 DevSecOps Agent<br/>CI/CD security integration]
-        TEST_SEC[🧪 Security Testing Agent<br/>SAST/DAST/Fuzzing]
-        DOC_SEC[📚 Documentation Agent<br/>Policy & procedure creation]
-        BIZ_SEC[💼 Business Agent<br/>Risk/value alignment]
-        MARKET_SEC[📢 Marketing Agent<br/>Security posture communication]
+        SEC_ARCH["🔐 Security Architect Agent<br/>Architecture design & review"]
+        DEV_SEC["💻 DevSecOps Agent<br/>CI/CD security integration"]
+        TEST_SEC["🧪 Security Testing Agent<br/>SAST/DAST/Fuzzing"]
+        DOC_SEC["📚 Documentation Agent<br/>Policy & procedure creation"]
+        BIZ_SEC["💼 Business Agent<br/>Risk/value alignment"]
+        MARKET_SEC["📢 Marketing Agent<br/>Security posture communication"]
     end
     
     CEO --> SEC_ARCH
@@ -50,21 +50,21 @@ graph TB
     CEO --> BIZ_SEC
     CEO --> MARKET_SEC
     
-    SEC_ARCH --> ARCH_OUT[📋 SECURITY_ARCHITECTURE.md<br/>THREAT_MODEL.md]
-    DEV_SEC --> CICD_OUT[⚙️ GitHub Actions Workflows<br/>Security Gates]
-    TEST_SEC --> TEST_OUT[🧪 CodeQL / OWASP ZAP<br/>Vulnerability Reports]
-    DOC_SEC --> DOC_OUT[📖 ISMS Policies<br/>Compliance Evidence]
-    BIZ_SEC --> BIZ_OUT[💰 Risk Register<br/>Business Impact Analysis]
-    MARKET_SEC --> MARKET_OUT[🏆 Security Badges<br/>Public Metrics]
+    SEC_ARCH --> ARCH_OUT["📋 SECURITY_ARCHITECTURE.md<br/>THREAT_MODEL.md"]
+    DEV_SEC --> CICD_OUT["⚙️ GitHub Actions Workflows<br/>Security Gates"]
+    TEST_SEC --> TEST_OUT["🧪 CodeQL / OWASP ZAP<br/>Vulnerability Reports"]
+    DOC_SEC --> DOC_OUT["📖 ISMS Policies<br/>Compliance Evidence"]
+    BIZ_SEC --> BIZ_OUT["💰 Risk Register<br/>Business Impact Analysis"]
+    MARKET_SEC --> MARKET_OUT["🏆 Security Badges<br/>Public Metrics"]
     
-    ARCH_OUT --> EVIDENCE[🎖️ Public Evidence<br/>OpenSSF Scorecard<br/>CII Best Practices<br/>SLSA Level 3]
+    ARCH_OUT --> EVIDENCE["🎖️ Public Evidence<br/>OpenSSF Scorecard<br/>CII Best Practices<br/>SLSA Level 3"]
     CICD_OUT --> EVIDENCE
     TEST_OUT --> EVIDENCE
     DOC_OUT --> EVIDENCE
     BIZ_OUT --> EVIDENCE
     MARKET_OUT --> EVIDENCE
     
-    EVIDENCE --> CLIENTS[🤝 Client Demonstration<br/>Competitive Advantage]
+    EVIDENCE --> CLIENTS["🤝 Client Demonstration<br/>Competitive Advantage"]
     
     style CEO fill:#1565C0,stroke:#0D47A1,stroke-width:3px,color:#fff
     style AI_AGENTS fill:#4CAF50,stroke:#2E7D32,stroke-width:2px
@@ -84,35 +84,35 @@ Use this decision tree when designing security controls for new products:
 
 ```mermaid
 flowchart TD
-    START[🎯 New Product/Service] --> CLASS{What is the<br/>Confidentiality<br/>Classification?}
+    START["🎯 New Product/Service"] --> CLASS{What is the<br/>Confidentiality<br/>Classification?}
     
-    CLASS -->|Low| LOW_CONF[⚪ Low Confidentiality<br/>Public data only]
-    CLASS -->|Moderate| MOD_CONF[🟡 Moderate Confidentiality<br/>User accounts/data]
-    CLASS -->|High/Very High| HIGH_CONF[🔴 High/Very High<br/>Sensitive operations]
+    CLASS -->|Low| LOW_CONF["⚪ Low Confidentiality<br/>Public data only"]
+    CLASS -->|Moderate| MOD_CONF["🟡 Moderate Confidentiality<br/>User accounts/data"]
+    CLASS -->|High/Very High| HIGH_CONF["🔴 High/Very High<br/>Sensitive operations"]
     
     LOW_CONF --> AUTH_LOW{Does app process<br/>user-specific data?}
-    AUTH_LOW -->|No| NO_AUTH[❌ No Authentication<br/>✅ TLS 1.3 Required<br/>Example: CIA CM, Black Trigram]
-    AUTH_LOW -->|Yes| BASIC_AUTH[🔐 Basic Authentication<br/>Username/Password]
+    AUTH_LOW -->|No| NO_AUTH["❌ No Authentication<br/>✅ TLS 1.3 Required<br/>Example: CIA CM, Black Trigram"]
+    AUTH_LOW -->|Yes| BASIC_AUTH["🔐 Basic Authentication<br/>Username/Password"]
     
-    MOD_CONF --> AUTH_MOD[🔐 Full Authentication Stack]
-    AUTH_MOD --> MFA[✅ MFA Required<br/>✅ RBAC<br/>✅ Session Management<br/>✅ Audit Logging]
+    MOD_CONF --> AUTH_MOD["🔐 Full Authentication Stack"]
+    AUTH_MOD --> MFA["✅ MFA Required<br/>✅ RBAC<br/>✅ Session Management<br/>✅ Audit Logging"]
     
-    HIGH_CONF --> AUTH_HIGH[🔐 Enhanced Security]
-    AUTH_HIGH --> ENHANCED[✅ MFA Mandatory<br/>✅ Fine-grained RBAC<br/>✅ Comprehensive Audit<br/>✅ Encryption at Rest<br/>Example: CIA Platform]
+    HIGH_CONF --> AUTH_HIGH["🔐 Enhanced Security"]
+    AUTH_HIGH --> ENHANCED["✅ MFA Mandatory<br/>✅ Fine-grained RBAC<br/>✅ Comprehensive Audit<br/>✅ Encryption at Rest<br/>Example: CIA Platform"]
     
-    NO_AUTH --> RATIONALE_LOW[📋 Document Risk Acceptance<br/>Update Risk Register<br/>Reference Classification Framework]
-    BASIC_AUTH --> RATIONALE_MOD[📋 Document Control Selection<br/>Map to Classification Framework]
-    MFA --> RATIONALE_HIGH[📋 Full Security Architecture<br/>SECURITY_ARCHITECTURE.md]
+    NO_AUTH --> RATIONALE_LOW["📋 Document Risk Acceptance<br/>Update Risk Register<br/>Reference Classification Framework"]
+    BASIC_AUTH --> RATIONALE_MOD["📋 Document Control Selection<br/>Map to Classification Framework"]
+    MFA --> RATIONALE_HIGH["📋 Full Security Architecture<br/>SECURITY_ARCHITECTURE.md"]
     ENHANCED --> RATIONALE_HIGH
     
-    RATIONALE_LOW --> VERIFY[🧪 Verification Required]
+    RATIONALE_LOW --> VERIFY["🧪 Verification Required"]
     RATIONALE_MOD --> VERIFY
     RATIONALE_HIGH --> VERIFY
     
-    VERIFY --> V1[✅ SECURITY_ARCHITECTURE.md created]
-    VERIFY --> V2[✅ THREAT_MODEL.md completed]
-    VERIFY --> V3[✅ Risk Register updated]
-    VERIFY --> V4[✅ Classification badges in README]
+    VERIFY --> V1["✅ SECURITY_ARCHITECTURE.md created"]
+    VERIFY --> V2["✅ THREAT_MODEL.md completed"]
+    VERIFY --> V3["✅ Risk Register updated"]
+    VERIFY --> V4["✅ Classification badges in README"]
     
     style START fill:#1565C0,stroke:#0D47A1,stroke-width:2px,color:#fff
     style LOW_CONF fill:#9E9E9E,stroke:#616161,stroke-width:2px
@@ -196,7 +196,7 @@ graph TB
     end
     
     subgraph LAYER6["👥 Layer 6: Application Security"]
-        APP[Authentication & Authorization<br/>Input Validation<br/>Session Management]
+        APP["Authentication & Authorization<br/>Input Validation<br/>Session Management"]
     end
     
     subgraph LAYER5["🔐 Layer 5: Data Security"]

@@ -47,9 +47,9 @@ flowchart TB
 
     subgraph "Data Import Layer — Spring Integration"
         I1[REST Client with Retry + Circuit Breaker]
-        I2[XML/JSON Parsing & Validation]
+        I2["XML/JSON Parsing & Validation"]
         I3[Data Quality Check]
-        I4[Entity Mapping & Persistence]
+        I4["Entity Mapping & Persistence"]
     end
 
     subgraph "AI Analysis Layer — 2026 Enhancement"
@@ -113,10 +113,10 @@ flowchart LR
     end
 
     subgraph "LLM Processing — Anthropic Opus 4.6"
-        L1[Text Preprocessing & Chunking]
+        L1["Text Preprocessing & Chunking"]
         L2[Summary Generation]
         L3[Key Topic Extraction]
-        L4[Sentiment & Stance Analysis]
+        L4["Sentiment & Stance Analysis"]
         L5[Impact Assessment]
         L6[Vector Embedding Creation]
     end
@@ -169,7 +169,7 @@ flowchart TB
         RT1[Live Transcript Generation]
         RT2[Speaker Identification]
         RT3[Real-Time Sentiment Tracking]
-        RT4[Topic Detection & Classification]
+        RT4["Topic Detection & Classification"]
         RT5[Anomaly Alert Generation]
     end
 
@@ -235,7 +235,7 @@ flowchart TB
     end
 
     subgraph "Data Harmonization — AI-Powered"
-        H1[Schema Mapping & Translation]
+        H1["Schema Mapping & Translation"]
         H2[Entity Resolution Across Parliaments]
         H3[Standardized Political Ontology Mapping]
         H4[Cross-Language NLP Processing]
@@ -287,7 +287,7 @@ flowchart TB
 
     subgraph "Quality & Verification"
         QV1[Automated Fact Checking]
-        QV2[Bias Detection & Mitigation]
+        QV2["Bias Detection & Mitigation"]
         QV3[Confidence Scoring]
         QV4[Human Review Queue]
     end
@@ -335,7 +335,7 @@ flowchart TB
 
     subgraph "Verification & Trust Layer"
         VT1[Cryptographic Analysis Provenance]
-        VT2[Automated Bias Detection & Correction]
+        VT2["Automated Bias Detection & Correction"]
         VT3[Multi-Source Cross-Verification]
         VT4[Democratic Ethics Compliance Check]
     end

@@ -34,8 +34,8 @@ graph TB
     end
     
     subgraph "Knowledge & Culture"
-        EDU[Education Committee<br/>17 members<br/>Schools & universities]
-        KRU[Cultural Affairs<br/>17 members<br/>Arts & heritage]
+        EDU["Education Committee<br/>17 members<br/>Schools & universities"]
+        KRU["Cultural Affairs<br/>17 members<br/>Arts & heritage"]
     end
     
     FIN -->|Budget coordination| DEF

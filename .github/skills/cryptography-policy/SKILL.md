@@ -43,42 +43,42 @@ Do NOT use for:
   }
 }%%
 flowchart TD
-    START[🔒 Cryptography Need] --> TYPE{📊 Data State?}
+    START["🔒 Cryptography Need"] --> TYPE{"📊 Data State?"}
     
-    TYPE -->|At Rest| REST[💾 Data at Rest<br/>Storage Encryption]
-    TYPE -->|In Transit| TRANSIT[🌐 Data in Transit<br/>TLS/HTTPS]
-    TYPE -->|In Use| USE[🔐 Data in Use<br/>Application Encryption]
+    TYPE -->|At Rest| REST["💾 Data at Rest<br/>Storage Encryption"]
+    TYPE -->|In Transit| TRANSIT["🌐 Data in Transit<br/>TLS/HTTPS"]
+    TYPE -->|In Use| USE["🔐 Data in Use<br/>Application Encryption"]
     
-    REST --> CLASS{🏷️ Data Classification?}
-    TRANSIT --> PROTOCOL{📡 Protocol?}
-    USE --> ALGO{🔑 Algorithm Type?}
+    REST --> CLASS{"🏷️ Data Classification?"}
+    TRANSIT --> PROTOCOL{"📡 Protocol?"}
+    USE --> ALGO{"🔑 Algorithm Type?"}
     
-    CLASS -->|Extreme/High| AES256[🔐 AES-256-GCM<br/>Customer Managed Keys]
-    CLASS -->|Standard/Low| AES128[🔐 AES-256<br/>Service Managed Keys]
+    CLASS -->|Extreme/High| AES256["🔐 AES-256-GCM<br/>Customer Managed Keys"]
+    CLASS -->|Standard/Low| AES128["🔐 AES-256<br/>Service Managed Keys"]
     
-    PROTOCOL -->|Web/API| HTTPS[🌐 HTTPS/TLS 1.3<br/>Strong Ciphers]
-    PROTOCOL -->|Database| DBSSL[🗄️ Database SSL/TLS<br/>PostgreSQL SSL]
-    PROTOCOL -->|Email| SMTPTLS[📧 SMTP + TLS<br/>S/MIME Optional]
+    PROTOCOL -->|Web/API| HTTPS["🌐 HTTPS/TLS 1.3<br/>Strong Ciphers"]
+    PROTOCOL -->|Database| DBSSL["🗄️ Database SSL/TLS<br/>PostgreSQL SSL"]
+    PROTOCOL -->|Email| SMTPTLS["📧 SMTP + TLS<br/>S/MIME Optional"]
     
-    ALGO -->|Symmetric| SYM[🔐 AES-256-GCM<br/>Authenticated Encryption]
-    ALGO -->|Asymmetric| ASYM[🔑 RSA-4096 or Ed25519<br/>Public Key Crypto]
+    ALGO -->|Symmetric| SYM["🔐 AES-256-GCM<br/>Authenticated Encryption"]
+    ALGO -->|Asymmetric| ASYM["🔑 RSA-4096 or Ed25519<br/>Public Key Crypto"]
     ALGO -->|Hashing| HASH[#️⃣ SHA-256 or bcrypt<br/>Secure Hashing]
     
-    AES256 --> KMS[🔑 AWS KMS<br/>Key Management]
+    AES256 --> KMS["🔑 AWS KMS<br/>Key Management"]
     AES128 --> KMS
     SYM --> KMS
-    ASYM --> KEYSTORE[🏦 Key Storage<br/>HSM or Secrets Manager]
-    HASH --> IMPL[✅ Implementation]
+    ASYM --> KEYSTORE["🏦 Key Storage<br/>HSM or Secrets Manager"]
+    HASH --> IMPL["✅ Implementation"]
     
-    HTTPS --> TLS[✅ TLS Configuration]
+    HTTPS --> TLS["✅ TLS Configuration"]
     DBSSL --> TLS
     SMTPTLS --> TLS
     
-    KMS --> ROTATION[🔄 Key Rotation<br/>Annual Minimum]
+    KMS --> ROTATION["🔄 Key Rotation<br/>Annual Minimum"]
     KEYSTORE --> ROTATION
-    TLS --> CERT[📜 Certificate Management<br/>90-day Renewal]
+    TLS --> CERT["📜 Certificate Management<br/>90-day Renewal"]
     
-    ROTATION --> AUDIT[📊 Audit Logging<br/>All Key Operations]
+    ROTATION --> AUDIT["📊 Audit Logging<br/>All Key Operations"]
     CERT --> AUDIT
     IMPL --> AUDIT
     

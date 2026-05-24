@@ -78,7 +78,7 @@ The CIA project implements a multi-stage CI/CD pipeline with comprehensive quali
 
 ```mermaid
 graph LR
-    A[Code Push] --> B[Build & Test]
+    A[Code Push] --> B["Build & Test"]
     B --> C[SCA Scan]
     C --> D[CodeQL Scan]
     D --> E[Quality Gate]
@@ -165,9 +165,9 @@ flowchart TB
 
     subgraph "Continuous Deployment"
         direction TB
-        Release[Release Trigger] --> BuildTest[Prepare & Test]
+        Release[Release Trigger] --> BuildTest["Prepare & Test"]
         BuildTest --> SetVersion[Set Version]
-        SetVersion --> BuildPackage[Build & Package]
+        SetVersion --> BuildPackage["Build & Package"]
         BuildPackage --> GenerateSBOM[Generate SBOM]
         GenerateSBOM --> Attestations[Create Attestations]
         Attestations --> CreateRelease[Create GitHub Release]

@@ -32,44 +32,44 @@ Do NOT use for:
 
 ```mermaid
 flowchart TD
-    START[🎯 Risk Assessment<br/>Initiation] --> IDENTIFY[📋 Risk Identification<br/>Assets • Threats • Vulnerabilities]
+    START["🎯 Risk Assessment<br/>Initiation"] --> IDENTIFY["📋 Risk Identification<br/>Assets • Threats • Vulnerabilities"]
     
-    IDENTIFY --> ANALYZE[🔍 Risk Analysis]
+    IDENTIFY --> ANALYZE["🔍 Risk Analysis"]
     
-    ANALYZE --> LIKELIHOOD[📊 Likelihood Assessment<br/>Historical + Industry + Expert]
-    ANALYZE --> IMPACT[💰 Impact Assessment<br/>Financial • Operational • Reputational]
+    ANALYZE --> LIKELIHOOD["📊 Likelihood Assessment<br/>Historical + Industry + Expert"]
+    ANALYZE --> IMPACT["💰 Impact Assessment<br/>Financial • Operational • Reputational"]
     
-    LIKELIHOOD --> CALC[🔢 Risk Score Calculation<br/>Probability × Impact × 100]
+    LIKELIHOOD --> CALC["🔢 Risk Score Calculation<br/>Probability × Impact × 100"]
     IMPACT --> CALC
     
     CALC --> CATEGORY{Risk Level?}
     
-    CATEGORY -->|400-600| CRITICAL[🔴 Critical Risk<br/>Immediate action required]
-    CATEGORY -->|200-399| HIGH[🟠 High Risk<br/>Priority mitigation needed]
-    CATEGORY -->|100-199| MEDIUM[🟡 Medium Risk<br/>Planned controls required]
-    CATEGORY -->|50-99| LOW[🟢 Low Risk<br/>Monitor and accept]
-    CATEGORY -->|1-49| MINIMAL[⚪ Minimal Risk<br/>Accept risk]
+    CATEGORY -->|400-600| CRITICAL["🔴 Critical Risk<br/>Immediate action required"]
+    CATEGORY -->|200-399| HIGH["🟠 High Risk<br/>Priority mitigation needed"]
+    CATEGORY -->|100-199| MEDIUM["🟡 Medium Risk<br/>Planned controls required"]
+    CATEGORY -->|50-99| LOW["🟢 Low Risk<br/>Monitor and accept"]
+    CATEGORY -->|1-49| MINIMAL["⚪ Minimal Risk<br/>Accept risk"]
     
     CRITICAL --> TREAT{Treatment<br/>Decision}
     HIGH --> TREAT
     MEDIUM --> TREAT
-    LOW --> ACCEPT[✅ Accept Risk<br/>Document in Risk Register]
+    LOW --> ACCEPT["✅ Accept Risk<br/>Document in Risk Register"]
     MINIMAL --> ACCEPT
     
-    TREAT -->|Reduce| MITIGATE[🛡️ Implement Controls<br/>Reduce likelihood or impact]
-    TREAT -->|Transfer| TRANSFER[🤝 Insurance/Outsource<br/>Share financial burden]
-    TREAT -->|Avoid| AVOID[🚫 Eliminate Activity<br/>Remove risk source]
-    TREAT -->|Accept| ACCEPT_HIGH[📋 Document Acceptance<br/>CEO approval required]
+    TREAT -->|Reduce| MITIGATE["🛡️ Implement Controls<br/>Reduce likelihood or impact"]
+    TREAT -->|Transfer| TRANSFER["🤝 Insurance/Outsource<br/>Share financial burden"]
+    TREAT -->|Avoid| AVOID["🚫 Eliminate Activity<br/>Remove risk source"]
+    TREAT -->|Accept| ACCEPT_HIGH["📋 Document Acceptance<br/>CEO approval required"]
     
-    MITIGATE --> RESIDUAL[📉 Residual Risk<br/>Reassessment]
+    MITIGATE --> RESIDUAL["📉 Residual Risk<br/>Reassessment"]
     TRANSFER --> RESIDUAL
     AVOID --> RESIDUAL
     ACCEPT_HIGH --> RESIDUAL
-    ACCEPT --> REGISTER[📊 Risk Register<br/>Tracking & Monitoring]
+    ACCEPT --> REGISTER["📊 Risk Register<br/>Tracking & Monitoring"]
     
     RESIDUAL --> REGISTER
     
-    REGISTER --> REVIEW[🔄 Periodic Review<br/>Quarterly/Annual]
+    REGISTER --> REVIEW["🔄 Periodic Review<br/>Quarterly/Annual"]
     REVIEW --> START
     
     style START fill:#1565C0,stroke:#0D47A1,stroke-width:3px,color:#fff
@@ -221,36 +221,36 @@ ale = sle * aro  # €126K annually
 
 ```mermaid
 graph TB
-    RISK[📊 Risk Identified<br/>with Score] --> EVAL{Risk Level?}
+    RISK["📊 Risk Identified<br/>with Score"] --> EVAL{Risk Level?}
     
-    EVAL -->|Critical/High<br/>400-600, 200-399| HIGH_TREAT[🎯 Treatment Required]
-    EVAL -->|Medium<br/>100-199| MED_TREAT[⚖️ Treatment Evaluation]
-    EVAL -->|Low/Minimal<br/>1-99| LOW_TREAT[✅ Consider Acceptance]
+    EVAL -->|Critical/High<br/>400-600, 200-399| HIGH_TREAT["🎯 Treatment Required"]
+    EVAL -->|Medium<br/>100-199| MED_TREAT["⚖️ Treatment Evaluation"]
+    EVAL -->|Low/Minimal<br/>1-99| LOW_TREAT["✅ Consider Acceptance"]
     
     HIGH_TREAT --> OPTIONS1[Treatment Options]
     MED_TREAT --> OPTIONS2[Treatment Options]
     LOW_TREAT --> ACCEPT_DIRECT[Accept Risk<br/>Document in Risk Register]
     
-    OPTIONS1 --> MITIGATE1[🛡️ Mitigate<br/>Implement controls]
-    OPTIONS1 --> TRANSFER1[🤝 Transfer<br/>Insurance/Outsource]
-    OPTIONS1 --> AVOID1[🚫 Avoid<br/>Eliminate activity]
+    OPTIONS1 --> MITIGATE1["🛡️ Mitigate<br/>Implement controls"]
+    OPTIONS1 --> TRANSFER1["🤝 Transfer<br/>Insurance/Outsource"]
+    OPTIONS1 --> AVOID1["🚫 Avoid<br/>Eliminate activity"]
     
-    OPTIONS2 --> MITIGATE2[🛡️ Mitigate<br/>Cost-benefit analysis]
-    OPTIONS2 --> ACCEPT2[📋 Accept<br/>Document rationale]
+    OPTIONS2 --> MITIGATE2["🛡️ Mitigate<br/>Cost-benefit analysis"]
+    OPTIONS2 --> ACCEPT2["📋 Accept<br/>Document rationale"]
     
     MITIGATE1 --> COST_BENEFIT{Control Cost<br/>vs ALE?}
     TRANSFER1 --> COST_BENEFIT
     MITIGATE2 --> COST_BENEFIT
     
-    COST_BENEFIT -->|Control < ALE| IMPLEMENT[✅ Implement Control]
-    COST_BENEFIT -->|Control > ALE| ACCEPT_COST[📋 Accept Risk<br/>Document decision]
+    COST_BENEFIT -->|Control < ALE| IMPLEMENT["✅ Implement Control"]
+    COST_BENEFIT -->|Control > ALE| ACCEPT_COST["📋 Accept Risk<br/>Document decision"]
     
     AVOID1 --> BUSINESS{Business<br/>Impact?}
-    BUSINESS -->|Acceptable| ELIMINATE[🚫 Eliminate Risk]
-    BUSINESS -->|Unacceptable| FIND_ALT[🔄 Find Alternative]
+    BUSINESS -->|Acceptable| ELIMINATE["🚫 Eliminate Risk"]
+    BUSINESS -->|Unacceptable| FIND_ALT["🔄 Find Alternative"]
     
-    IMPLEMENT --> RESIDUAL[📉 Residual Risk<br/>Assessment]
-    ACCEPT2 --> REGISTER[📊 Risk Register]
+    IMPLEMENT --> RESIDUAL["📉 Residual Risk<br/>Assessment"]
+    ACCEPT2 --> REGISTER["📊 Risk Register"]
     ACCEPT_COST --> REGISTER
     ACCEPT_DIRECT --> REGISTER
     ELIMINATE --> REGISTER

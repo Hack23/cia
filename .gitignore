@@ -38,3 +38,7 @@ json-export-specs/__pycache__/
 # Generated validation reports
 json-export-specs/FIELD_COMPLETENESS_REPORT.md
 __pycache__/
+
+# Mermaid validation reports (scripts/validate-mermaid.mjs)
+.mermaid-validate/
+.mermaid-tools/

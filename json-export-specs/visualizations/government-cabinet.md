@@ -86,8 +86,8 @@ graph TB
     SUPP --> SD[Sweden Democrats SD<br/>73 seats<br/>External support]
     
     M --> M1[Prime Minister<br/>Most ministers<br/>Economic policy lead]
-    KD --> KD1[Deputy PM<br/>Energy & rural<br/>Social affairs]
-    L --> L1[Education & climate<br/>Liberal reforms<br/>Green transition]
+    KD --> KD1["Deputy PM<br/>Energy & rural<br/>Social affairs"]
+    L --> L1["Education & climate<br/>Liberal reforms<br/>Green transition"]
     
     SD --> SD1[Support on budget<br/>No cabinet posts<br/>Influence on policy]
     
@@ -238,11 +238,11 @@ graph LR
 graph TB
     TIDO[Tidö Agreement<br/>73-point program] --> POL[Policy Areas]
     
-    POL --> CRIME[Crime & Justice<br/>18 points]
-    POL --> ENERGY[Energy & Climate<br/>12 points]
-    POL --> WELFARE[Welfare & Health<br/>15 points]
+    POL --> CRIME["Crime & Justice<br/>18 points"]
+    POL --> ENERGY["Energy & Climate<br/>12 points"]
+    POL --> WELFARE["Welfare & Health<br/>15 points"]
     POL --> EDU[Education<br/>10 points]
-    POL --> ECO[Economy & Tax<br/>18 points]
+    POL --> ECO["Economy & Tax<br/>18 points"]
     
     CRIME --> C1[Implemented: 12<br/>Progress: 67%]
     ENERGY --> E1[Implemented: 8<br/>Progress: 67%]

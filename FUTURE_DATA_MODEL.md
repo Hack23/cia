@@ -269,10 +269,10 @@ graph TD
     end
 
     subgraph "AI-Enhanced Storage"
-        K[Vector Store - Embeddings & Similarity]
-        L[Graph Store - Relationships & Networks]
+        K["Vector Store - Embeddings & Similarity"]
+        L["Graph Store - Relationships & Networks"]
         M[Time-Series Store - Political Trends]
-        N[Document Store - Full-Text & Media]
+        N["Document Store - Full-Text & Media"]
     end
 
     G --> K
@@ -321,7 +321,7 @@ graph TD
 
     subgraph "Verification & Trust"
         F[Cryptographic Provenance Chain]
-        G[Bias Detection & Correction]
+        G["Bias Detection & Correction"]
         H[Source Credibility Scoring]
         I[Human Oversight Interface]
     end

@@ -102,26 +102,26 @@ The CIA platform implements a comprehensive security architecture aligned with A
 ```mermaid
 graph TB
     subgraph "🏢 Organizational Level - ISMS-PUBLIC"
-        A[📋 ISMS Policy Framework]
-        B[🔐 Information Security Policy]
-        C[⚙️ Secure Development Policy]
-        D[🚨 Incident Response Plan]
-        E[🔑 Access Control Policy]
+        A["📋 ISMS Policy Framework"]
+        B["🔐 Information Security Policy"]
+        C["⚙️ Secure Development Policy"]
+        D["🚨 Incident Response Plan"]
+        E["🔑 Access Control Policy"]
     end
     
     subgraph "🏛️ Platform Level - CIA Repository"
-        F[🛡️ Security Architecture]
-        G[🎯 Threat Model]
-        H[🏗️ System Architecture]
-        I[📋 CRA Assessment]
-        J[⚡ Workflows]
+        F["🛡️ Security Architecture"]
+        G["🎯 Threat Model"]
+        H["🏗️ System Architecture"]
+        I["📋 CRA Assessment"]
+        J["⚡ Workflows"]
     end
     
     subgraph "🔧 Implementation Level"
-        K[💻 Source Code]
-        L[🔒 Security Controls]
-        M[📊 Monitoring]
-        N[🧪 Testing]
+        K["💻 Source Code"]
+        L["🔒 Security Controls"]
+        M["📊 Monitoring"]
+        N["🧪 Testing"]
     end
     
     A --> F
@@ -253,34 +253,34 @@ The CIA platform implements multiple security layers aligned with ISMS policies:
 ```mermaid
 graph TB
     subgraph "🌐 Perimeter Layer"
-        A[🛡️ AWS WAF]
-        B[🔒 CloudFront CDN]
-        C[🌐 Route 53 DNS]
+        A["🛡️ AWS WAF"]
+        B["🔒 CloudFront CDN"]
+        C["🌐 Route 53 DNS"]
     end
     
     subgraph "🔑 Authentication Layer"
-        D[🔐 Spring Security]
-        E[🔢 MFA/OTP]
-        F[🚫 Login Blocking]
+        D["🔐 Spring Security"]
+        E["🔢 MFA/OTP"]
+        F["🚫 Login Blocking"]
     end
     
     subgraph "🏗️ Application Layer"
-        G[✅ Input Validation]
-        H[🔒 CSRF Protection]
-        I[📋 Security Headers]
-        J[🎯 Method-Level @Secured]
+        G["✅ Input Validation"]
+        H["🔒 CSRF Protection"]
+        I["📋 Security Headers"]
+        J["🎯 Method-Level @Secured"]
     end
     
     subgraph "💾 Data Layer"
-        K[🗄️ Encrypted RDS]
-        L[📊 Audit Logging]
-        M[💾 Automated Backups]
+        K["🗄️ Encrypted RDS"]
+        L["📊 Audit Logging"]
+        M["💾 Automated Backups"]
     end
     
     subgraph "🔍 Monitoring Layer"
-        N[🕵️ GuardDuty]
-        O[🛡️ Security Hub]
-        P[📈 CloudWatch]
+        N["🕵️ GuardDuty"]
+        O["🛡️ Security Hub"]
+        P["📈 CloudWatch"]
     end
     
     A --> D
@@ -330,9 +330,9 @@ The CIA platform's security controls align with multiple international framework
 
 ```mermaid
 mindmap
-  root((🔐 CIA<br/>Compliance))
+  root(("🔐 CIA<br/>Compliance"))
     ISO 27001:2022
-      ::icon(🏛️)
+      ::icon("🏛️")
       A.5 Organizational Controls
       A.8 Asset Management
       A.9 Access Control
@@ -345,7 +345,7 @@ mindmap
       Recover
       Govern
     CIS Controls v8.1
-      ::icon(🛡️)
+      ::icon("🛡️")
       18 Critical Controls
       Cyber Defense
       Data Protection
@@ -355,12 +355,12 @@ mindmap
       Annex V Documentation
       Conformity Assessment
     GDPR
-      ::icon(🔒)
+      ::icon("🔒")
       Data Protection
       Privacy by Design
       Breach Notification
     NIS2 Directive
-      ::icon(🌐)
+      ::icon("🌐")
       Risk Management
       Incident Handling
       Supply Chain Security
@@ -430,14 +430,14 @@ The CIA platform provides continuous evidence of security control effectiveness 
 
 ```mermaid
 graph LR
-    A[📊 Metrics Collection] -->|Weekly| B[📈 Analysis]
-    B -->|Monthly| C[🔍 Review]
-    C -->|Quarterly| D[📋 ISMS Update]
-    D -->|Continuous| E[✅ Implementation]
+    A["📊 Metrics Collection"] -->|Weekly| B["📈 Analysis"]
+    B -->|Monthly| C["🔍 Review"]
+    C -->|Quarterly| D["📋 ISMS Update"]
+    D -->|Continuous| E["✅ Implementation"]
     E -->|Real-time| A
     
-    C -->|Findings| F[🚨 Incident Response]
-    C -->|Gaps| G[🎯 Risk Management]
+    C -->|Findings| F["🚨 Incident Response"]
+    C -->|Gaps| G["🎯 Risk Management"]
     
     style A fill:#00BCD4,stroke:#0097A7,stroke-width:2px,color:white
     style B fill:#4CAF50,stroke:#2E7D32,stroke-width:2px,color:white

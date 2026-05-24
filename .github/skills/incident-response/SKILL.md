@@ -43,41 +43,41 @@ Do NOT use for:
   }
 }%%
 flowchart TD
-    DETECT[🔍 Incident Detected] --> VALIDATE{✅ Confirmed<br/>Security Incident?}
+    DETECT["🔍 Incident Detected"] --> VALIDATE{"✅ Confirmed<br/>Security Incident?"}
     
-    VALIDATE -->|YES| CLASSIFY{🏷️ Classify Severity}
-    VALIDATE -->|NO| FALSE[📋 False Positive<br/>Document & Close]
+    VALIDATE -->|YES| CLASSIFY{"🏷️ Classify Severity"}
+    VALIDATE -->|NO| FALSE["📋 False Positive<br/>Document & Close"]
     
-    CLASSIFY -->|🔴 Critical<br/>€10K+ daily loss| S1[🔴 S1: Critical Response<br/>RTO: 30 min<br/>All Stakeholders]
-    CLASSIFY -->|🟠 High<br/>€5-10K daily loss| S2[🟠 S2: High Response<br/>RTO: 1 hour<br/>Key Stakeholders]
-    CLASSIFY -->|🟡 Medium<br/>€1-5K daily loss| S3[🟡 S3: Medium Response<br/>RTO: 4 hours<br/>Internal Only]
-    CLASSIFY -->|🟢 Low<br/><€1K daily loss| S4[🟢 S4: Low Response<br/>RTO: 24 hours<br/>Documentation]
+    CLASSIFY -->|🔴 Critical<br/>€10K+ daily loss| S1["🔴 S1: Critical Response<br/>RTO: 30 min<br/>All Stakeholders"]
+    CLASSIFY -->|🟠 High<br/>€5-10K daily loss| S2["🟠 S2: High Response<br/>RTO: 1 hour<br/>Key Stakeholders"]
+    CLASSIFY -->|🟡 Medium<br/>€1-5K daily loss| S3["🟡 S3: Medium Response<br/>RTO: 4 hours<br/>Internal Only"]
+    CLASSIFY -->|🟢 Low<br/><€1K daily loss| S4["🟢 S4: Low Response<br/>RTO: 24 hours<br/>Documentation"]
     
-    S1 --> ACTIVATE[🚨 Activate Response Team<br/>CEO + Specialists]
+    S1 --> ACTIVATE["🚨 Activate Response Team<br/>CEO + Specialists"]
     S2 --> ACTIVATE
     S3 --> ACTIVATE
     S4 --> ACTIVATE
     
-    ACTIVATE --> CONTAIN[🛡️ Containment<br/>Isolate & Preserve]
-    CONTAIN --> INVESTIGATE[🔬 Investigation<br/>Root Cause Analysis]
-    INVESTIGATE --> REMEDIATE[🔧 Remediation<br/>Fix & Restore]
-    REMEDIATE --> VALIDATE_FIX{✅ Validated?}
+    ACTIVATE --> CONTAIN["🛡️ Containment<br/>Isolate & Preserve"]
+    CONTAIN --> INVESTIGATE["🔬 Investigation<br/>Root Cause Analysis"]
+    INVESTIGATE --> REMEDIATE["🔧 Remediation<br/>Fix & Restore"]
+    REMEDIATE --> VALIDATE_FIX{"✅ Validated?"}
     
     VALIDATE_FIX -->|NO| REMEDIATE
-    VALIDATE_FIX -->|YES| NOTIFY{📢 External<br/>Notification<br/>Required?}
+    VALIDATE_FIX -->|YES| NOTIFY{"📢 External<br/>Notification<br/>Required?"}
     
-    NOTIFY -->|YES - GDPR| GDPR[📢 GDPR Notification<br/>72-hour deadline]
-    NOTIFY -->|YES - NIS2| NIS2[📢 NIS2 Notification<br/>24-hour initial]
-    NOTIFY -->|YES - Customers| CUSTOMER[📢 Customer Notice<br/>Per SLA]
+    NOTIFY -->|YES - GDPR| GDPR["📢 GDPR Notification<br/>72-hour deadline"]
+    NOTIFY -->|YES - NIS2| NIS2["📢 NIS2 Notification<br/>24-hour initial"]
+    NOTIFY -->|YES - Customers| CUSTOMER["📢 Customer Notice<br/>Per SLA"]
     NOTIFY -->|NO| DOCUMENT
     
-    GDPR --> DOCUMENT[📝 Incident Report]
+    GDPR --> DOCUMENT["📝 Incident Report"]
     NIS2 --> DOCUMENT
     CUSTOMER --> DOCUMENT
     
-    DOCUMENT --> LESSONS[📈 Lessons Learned<br/>Process Improvement]
-    LESSONS --> CLOSE[✅ Close Incident<br/>Archive Evidence]
-    CLOSE --> MONITOR[🔄 Continuous Monitoring]
+    DOCUMENT --> LESSONS["📈 Lessons Learned<br/>Process Improvement"]
+    LESSONS --> CLOSE["✅ Close Incident<br/>Archive Evidence"]
+    CLOSE --> MONITOR["🔄 Continuous Monitoring"]
     
     style DETECT fill:#2196F3,color:#fff
     style S1 fill:#D32F2F,color:#fff

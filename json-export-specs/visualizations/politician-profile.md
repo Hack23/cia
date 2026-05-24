@@ -16,8 +16,8 @@ graph TB
     A --> E[Intelligence]
     A --> F[Time Series]
     
-    B --> B1[Name, Photo]
-    B --> B2[Party, Role]
+    B --> B1["Name, Photo"]
+    B --> B2["Party, Role"]
     B --> B3[Contact Info]
     
     C --> C1[Attendance]
@@ -136,8 +136,8 @@ stateDiagram-v2
 
 ```mermaid
 graph LR
-    A[Photo] --- B[Name & Party]
-    B --- C[Role & Status]
+    A[Photo] --- B["Name & Party"]
+    B --- C["Role & Status"]
     C --- D[Contact Info]
     
     style A fill:#0173B2

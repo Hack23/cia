@@ -31,7 +31,7 @@ Do NOT use for:
 
 ```mermaid
 mindmap
-  root((✅ ISMS Compliance))
+  root(("✅ ISMS Compliance"))
     ISO_27001_2022(("🔵 ISO 27001:2022"))
       A5_Organizational(("🟢 A.5 Organizational"))
       A6_People(("🟡 A.6 People"))
