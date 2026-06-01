@@ -52,7 +52,7 @@ See [README.md - Deployment Options](README.md#deployment-options) for deploymen
 
 - **Current Runtime**: Java 26 GA (Temurin) — production runtime as of April 2026
 - **Source Compatibility**: Java 21 LTS — source compilation level maintained for stability and broad library compatibility
-- **Build Tool**: Maven 3.9.15
+- **Build Tool**: Maven 3.9.16
 - **JVM Monitoring**: Regularly evaluate compatibility with new JVM versions.
 - **EOL Trigger**: The project will officially end when updates require Jakarta namespaces for continued compatibility.
 
