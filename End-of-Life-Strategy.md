@@ -52,7 +52,7 @@ See [README.md - Deployment Options](README.md#deployment-options) for deploymen
 
 - **Current Runtime**: Java 26 GA (Temurin) — production runtime as of April 2026
 - **Source Compatibility**: Java 21 LTS — source compilation level maintained for stability and broad library compatibility
-- **Build Tool**: Maven 3.9.15
+- **Build Tool**: Maven 3.9.16
 - **JVM Monitoring**: Regularly evaluate compatibility with new JVM versions.
 - **EOL Trigger**: The project will officially end when updates require Jakarta namespaces for continued compatibility.
 
@@ -148,7 +148,7 @@ For a conceptual overview of how these components interact, see the [System Mind
 | **Monitoring**              | [JavaMelody 1.99.4](https://github.com/javamelody/javamelody), [AWS SDK 1.12.797 for CloudWatch](https://aws.amazon.com/cloudwatch/) | Active                      |
 | **Testing**                 | [JUnit 4.13.2](https://junit.org/junit4/), [Mockito](https://site.mockito.org/), [Spring Test](https://spring.io/projects/spring-framework), [Selenium WebDriver](https://www.selenium.dev/documentation/) | JUnit 4: Legacy but maintained; Mockito Active |
 | **Utilities**               | [Apache Commons](https://commons.apache.org/), [Google Guava 33.6.0-jre](https://github.com/google/guava), [SLF4J 2.0.17](http://www.slf4j.org/), [Logback 1.5.32](http://logback.qos.ch/), [Jackson 2.21.2](https://github.com/FasterXML/jackson) | Active                      |
-| **Build & Dependency Management** | [Maven 3.9.15](https://maven.apache.org/)                                                   | Active                      |
+| **Build & Dependency Management** | [Maven 3.9.16](https://maven.apache.org/)                                                   | Active                      |
 
 ---
 
