@@ -166,10 +166,10 @@ jobs:
             ~/.m2/wrapper
             ~/.sonar/cache
           # Include Maven version in key for isolation
-          key: ${{ runner.os }}-maven-3.9.15-${{ hashFiles('**/pom.xml', '.mvn/**') }}
+          key: ${{ runner.os }}-maven-3.9.16-${{ hashFiles('**/pom.xml', '.mvn/**') }}
           restore-keys: |
-            ${{ runner.os }}-maven-3.9.15-${{ hashFiles('**/pom.xml') }}
-            ${{ runner.os }}-maven-3.9.15-
+            ${{ runner.os }}-maven-3.9.16-${{ hashFiles('**/pom.xml') }}
+            ${{ runner.os }}-maven-3.9.16-
             ${{ runner.os }}-maven-
       - name: Cache APT packages
         uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
@@ -402,7 +402,7 @@ jobs:
       - name: Set up Maven
         uses: stCarolas/setup-maven@d6af6abeda15e98926a57b5aa970a96bb37f97d1 # v5
         with:
-          maven-version: 3.9.15
+          maven-version: 3.9.16
 
       - name: Build with Maven
         run: mvn -B clean install --file pom.xml -Prelease-site,all-modules -DskipTests -DfailIfNoTests=false -Dsurefire.failIfNoSpecifiedTests=false -Dspdx.skip=true -Dmaven.wagon.http.retryHandler.count=3 -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 -Dmaven.wagon.http.pool=true
