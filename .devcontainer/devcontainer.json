@@ -55,14 +55,14 @@
   },
   "features": {
     "ghcr.io/devcontainers/features/java:1": {
-      "version": "21",
+      "version": "26",
       "distribution": "open",
       "installMaven": true,
-      "mavenVersion": "3.9.15",
+      "mavenVersion": "3.9.16",
       "installAnt": true
     },
     "ghcr.io/devcontainers/features/node:1": {
-      "version": "20"
+      "version": "26"
     },
     "ghcr.io/devcontainers/features/docker-in-docker:2": {
       "version": "latest",
