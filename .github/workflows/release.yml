@@ -79,6 +79,9 @@ jobs:
           rekor.sigstore.dev:443
           release-drafter.github.io:443
           release-assets.githubusercontent.com:443
+          motd.ubuntu.com:443
+          dl.google.com:443
+
 
     - name: Checkout repository
       uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
