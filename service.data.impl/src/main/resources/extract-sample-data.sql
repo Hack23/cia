@@ -106,15 +106,15 @@
 -- Set statement timeout for individual extraction queries
 -- This prevents individual queries from hanging indefinitely
 -- The shell script provides overall timeout protection
-SET statement_timeout = '240s';  -- Increased from 30s to 120s for complex views
+SET statement_timeout = '2400s';  -- Increased from 30s to 120s for complex views
 SET lock_timeout = '30s';        -- Wait max 30s for locks
-SET idle_in_transaction_session_timeout = '180s';  -- Kill idle transactions after 3 minutes
+SET idle_in_transaction_session_timeout = '300s';  -- Kill idle transactions after 3 minutes
 
 \echo '=================================================='
 \echo 'CIA Sample Data Extraction'
 \echo 'Started:' `date`
-\echo 'Statement timeout: 240s per query'
-\echo 'Lock timeout: 30s'
+\echo 'Statement timeout: 2400s per query'
+\echo 'Lock timeout: 300s'
 \echo '=================================================='
 
 -- ============================================================================

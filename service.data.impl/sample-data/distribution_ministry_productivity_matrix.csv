@@ -1,13 +1,13 @@
 ministry_name,year,documents_produced,propositions,government_bills,unique_contributors,performance_assessment
-Justitiedepartementet,2026,39,39,0,6,High-performing ministry
-Finansdepartementet,2026,34,34,0,6,High-performing ministry
-Landsbygds- och infrastrukturdepartementet,2026,15,15,0,5,High-performing ministry
-Klimat- och näringslivsdepartementet,2026,15,15,0,9,High-performing ministry
-Socialdepartementet,2026,14,14,0,8,Standard ministry performance
-Utbildningsdepartementet,2026,12,12,0,3,Standard ministry performance
-Utrikesdepartementet,2026,10,10,0,6,Standard ministry performance
-Försvarsdepartementet,2026,7,7,0,4,Standard ministry performance
-Arbetsmarknadsdepartementet,2026,4,4,0,5,Underperforming ministry - review needed
+Justitiedepartementet,2026,47,47,0,6,High-performing ministry
+Finansdepartementet,2026,42,42,0,6,High-performing ministry
+Landsbygds- och infrastrukturdepartementet,2026,18,18,0,6,High-performing ministry
+Socialdepartementet,2026,18,18,0,8,High-performing ministry
+Klimat- och näringslivsdepartementet,2026,16,16,0,9,Standard ministry performance
+Utrikesdepartementet,2026,13,13,0,7,Standard ministry performance
+Utbildningsdepartementet,2026,13,13,0,4,Standard ministry performance
+Försvarsdepartementet,2026,8,8,0,6,Standard ministry performance
+Arbetsmarknadsdepartementet,2026,5,5,0,6,Underperforming ministry - review needed
 Statsrådsberedningen,2026,3,3,0,3,Underperforming ministry - review needed
 Kulturdepartementet,2026,1,1,0,2,Underperforming ministry - review needed
 Finansdepartementet,2025,65,65,0,6,High-performing ministry
@@ -32,10 +32,10 @@ Utbildningsdepartementet,2024,7,7,0,6,Standard ministry performance
 Arbetsmarknadsdepartementet,2024,5,5,0,4,Underperforming ministry - review needed
 Kulturdepartementet,2024,4,4,0,3,Underperforming ministry - review needed
 Statsrådsberedningen,2024,4,4,0,3,Underperforming ministry - review needed
-Finansdepartementet,2023,34,34,0,7,High-performing ministry
-Justitiedepartementet,2023,18,18,0,6,High-performing ministry
-Socialdepartementet,2023,11,11,0,7,High-performing ministry
-Klimat- och näringslivsdepartementet,2023,10,10,0,4,Standard ministry performance
+Finansdepartementet,2023,29,29,0,7,High-performing ministry
+Justitiedepartementet,2023,15,15,0,6,High-performing ministry
+Socialdepartementet,2023,10,10,0,7,High-performing ministry
+Klimat- och näringslivsdepartementet,2023,8,8,0,4,Standard ministry performance
 Utbildningsdepartementet,2023,4,4,0,3,Standard ministry performance
 Landsbygds- och infrastrukturdepartementet,2023,4,4,0,3,Standard ministry performance
 Försvarsdepartementet,2023,2,2,0,4,Standard ministry performance

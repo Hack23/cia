@@ -1,7 +1,5 @@
 embedded_id_page,embedded_id_element_id,embedded_id_created_date,hits,rank_percentage,rank,rn
-adminapplicationsession,1057537,2026-04-11 00:00:00,1,0,1,1
-ministryranking,DATAGRID,2026-04-11 00:00:00,1,0.09090909090909091,2,2
-main,LOGIN,2026-04-17 00:00:00,1,0,1,1
-main,LOGIN,2026-04-18 00:00:00,1,0,1,1
-main,LOGIN,2026-04-19 00:00:00,1,0,1,1
 politicianranking,DATAGRID,2026-05-10 00:00:00,1,0,1,1
+politicianranking,DATAGRID,2026-06-05 00:00:00,1,0,1,1
+ministryranking,CURRENTMINISTRIESLEADERSCORECARD,2026-06-05 00:00:00,1,0,1,2
+main,LOGIN,2026-06-06 00:00:00,1,0,1,1

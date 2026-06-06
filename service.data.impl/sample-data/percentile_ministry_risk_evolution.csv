@@ -2,9 +2,9 @@ column_name,data_type,distinct_count,min_value,max_value,p1,p10,p25,median,p75,p
 year,numeric,3,2024,2026,2024,2024,2024.75,2025,2025.25,2026,2026
 quarter,numeric,4,1,4,1,1,1.75,2.5,3.25,4,4
 documents_produced,bigint,9,0,216,0,0,0,0,0,0,106.200000000001
-legislative_count,bigint,8,0,16,0,0,0,0,0,0,13.66
-active_members,bigint,8,0,170,0,0,0,0,0,0,87.7500000000009
-document_trend,bigint,8,-196,140,-51.01,0,0,0,0,0,47.9200000000003
-legislative_trend,bigint,8,-12,11,-4.32,0,0,0,0,0,4.98000000000008
-staffing_trend,bigint,8,-141,117,-61.34,0,0,0,0,0,48.2000000000005
+legislative_count,bigint,9,0,16,0,0,0,0,0,0,13.66
+active_members,bigint,9,0,170,0,0,0,0,0,0,87.7500000000009
+document_trend,bigint,8,-196,140,-48.33,0,0,0,0,0,47.9200000000003
+legislative_trend,bigint,8,-10,11,-4.32,0,0,0,0,0,4.98000000000008
+staffing_trend,bigint,8,-141,117,-51.96,0,0,0,0,0,48.2000000000005
 rolling_avg_documents,numeric,8,0.00000000000000000000,113.0000000000000000,0,0,0,0,0,0,84.9600000000002

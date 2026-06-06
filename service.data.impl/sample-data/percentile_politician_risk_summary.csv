@@ -1,12 +1,12 @@
 column_name,data_type,distinct_count,min_value,max_value,p1,p10,p25,median,p75,p90,p99
 total_violations,bigint,14,0,13,0,0,3,5,7,9,12
-absenteeism_violations,bigint,9,0,8,0,0,1,2,4,6,8
+absenteeism_violations,bigint,10,0,9,0,0,1,2,4,6,8
 effectiveness_violations,bigint,3,0,2,0,0,1,1,1,1,1
 discipline_violations,bigint,2,0,1,0,0,0,1,1,1,1
 productivity_violations,bigint,2,0,1,0,0,0,0,0,1,1
 collaboration_violations,bigint,2,0,1,0,0,0,0,0,0,1
-annual_absence_rate,numeric,232,0,93.69,0,0,4.66,12.01,18.94,25.362,42.0116
-annual_rebel_rate,numeric,35,0.00,31.16,0,0,0,0,0.12,0.31,12.6611999999998
-annual_vote_count,bigint,55,0,966,0,0,834,966,966,966,966
+annual_absence_rate,numeric,226,0.00,100.00,0,0,3.99,10.68,16.96,24.128,42.04
+annual_rebel_rate,numeric,37,0.00,33.23,0,0,0,0,0.13,0.31,13.1255999999999
+annual_vote_count,bigint,58,0,954,0,0,862,954,954,954,954
 documents_last_year,bigint,2,0,1,0,0,0,0,0,0,1
-risk_score,numeric,326,10.00,50.13,10,10,19.52,24.35,28.65,33.598,41.7048
+risk_score,numeric,308,10.00,48.06,10,10,19.21,24.11,28.25,32.866,41.2864

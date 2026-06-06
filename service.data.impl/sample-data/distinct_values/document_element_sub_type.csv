@@ -1,38 +1,38 @@
 value,count
-"",134894
-Enskild motion,75767
+"",135392
+Enskild motion,75775
 föredragningslista,15961
-huvudvotering,15409
-Kommittémotion,14878
-Protokoll,13813
-bet,8946
-vo,7787
-Sammanträde,5146
-prop,4542
-sfst,3972
+huvudvotering,15502
+Kommittémotion,14916
+Protokoll,13894
+bet,8961
+vo,7892
+Sammanträde,5337
+prop,4547
+sfst,3996
 Partimotion,1961
 Flerpartimotion,1440
-COM,1376
-skr,1188
-Särskilt protokoll,1065
-yttr,761
-KU-anmälan,615
+COM,1378
+skr,1192
+Särskilt protokoll,1073
+yttr,766
+KU-anmälan,618
 ou,588
-fs,573
-ap,567
+ap,581
+fs,579
 -,483
-ip,427
-Granskning,423
+Granskning,439
+ip,432
 Departements-PM,378
 Verksamhetsberättelser,356
 utl,325
-ss,311
-vi,293
-se,277
-redog,252
-pd,244
-st,199
-zz,190
+ss,312
+vi,300
+se,279
+redog,253
+pd,247
+st,209
+zz,195
 ar,163
 Ändring,138
 re,121
@@ -76,9 +76,9 @@ Uppföljningsaktivite,10
 Utfrågningsprotokoll,10
 protokoll,10
 JOIN,8
+Offentligt,8
 debate,8
 ko,8
-Offentligt,7
 Utbildningsfilm,6
 URD,5
 arbete,4
@@ -90,6 +90,7 @@ bl,3
 CM,2
 EU-frågor,2
 Introduktion för nya ledamöter,2
+Offentligt sammanträde,2
 Register,2
 ha,2
 interpellation,2

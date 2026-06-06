@@ -1,9 +1,9 @@
 org_code,name,assessment_period,period_end,year,quarter,documents_produced,legislative_count,active_members,document_trend,legislative_trend,staffing_trend,rolling_avg_documents,risk_level,risk_assessment,time_bucket,rn
-Jo,Jordbruksdepartementet,2026-04-01 00:00:00,2026-06-30,2026,2,0,0,0,0,0,0,0.00000000000000000000,CRITICAL,Critical: No activity detected - immediate review required,2026-04-01 00:00:00,1
-L,Landsbygdsdepartementet,2026-01-01 00:00:00,2026-03-31,2026,1,0,0,0,0,0,0,0.00000000000000000000,CRITICAL,Critical: No activity detected - immediate review required,2026-01-01 00:00:00,1
-Jo,Jordbruksdepartementet,2025-10-01 00:00:00,2025-12-31,2025,4,0,0,0,0,0,0,0.00000000000000000000,CRITICAL,Critical: No activity detected - immediate review required,2025-10-01 00:00:00,1
-Jo,Jordbruksdepartementet,2025-07-01 00:00:00,2025-09-30,2025,3,0,0,0,0,0,0,0.00000000000000000000,CRITICAL,Critical: No activity detected - immediate review required,2025-07-01 00:00:00,1
-LI,Landsbygds- och infrastrukturdepartementet,2025-04-01 00:00:00,2025-06-30,2025,2,0,0,0,0,0,0,0.00000000000000000000,CRITICAL,Critical: No activity detected - immediate review required,2025-04-01 00:00:00,1
-M  t.o.m. 1 jan-07,Miljö- och samhällsbyggnadsdepartementet,2025-01-01 00:00:00,2025-03-31,2025,1,0,0,0,0,0,0,0.00000000000000000000,CRITICAL,Critical: No activity detected - immediate review required,2025-01-01 00:00:00,1
-M t.o.m. 31 dec 2014,Miljödepartementet,2024-10-01 00:00:00,2024-12-31,2024,4,0,0,0,0,0,0,0.00000000000000000000,CRITICAL,Critical: No activity detected - immediate review required,2024-10-01 00:00:00,1
-Ju,Justitiedepartementet,2024-07-01 00:00:00,2024-09-30,2024,3,0,0,0,0,0,0,0.00000000000000000000,CRITICAL,Critical: No activity detected - immediate review required,2024-07-01 00:00:00,1
+S,Socialdepartementet,2026-04-01 00:00:00,2026-06-30,2026,2,0,0,0,0,0,0,0.00000000000000000000,CRITICAL,Critical: No activity detected - immediate review required,2026-04-01 00:00:00,1
+U,Utbildningsdepartementet,2026-01-01 00:00:00,2026-03-31,2026,1,0,0,0,0,0,0,0.00000000000000000000,CRITICAL,Critical: No activity detected - immediate review required,2026-01-01 00:00:00,1
+M  t.o.m. 1 jan-07,Miljö- och samhällsbyggnadsdepartementet,2025-10-01 00:00:00,2025-12-31,2025,4,0,0,0,0,0,0,0.00000000000000000000,CRITICAL,Critical: No activity detected - immediate review required,2025-10-01 00:00:00,1
+Fi,Finansdepartementet,2025-07-01 00:00:00,2025-09-30,2025,3,0,0,0,0,0,0,0.00000000000000000000,CRITICAL,Critical: No activity detected - immediate review required,2025-07-01 00:00:00,1
+Ku,Kulturdepartementet,2025-04-01 00:00:00,2025-06-30,2025,2,12,8,18,-5,-7,7,63.7500000000000000,LOW,Medium Risk: Standard operations with minor concerns,2025-04-01 00:00:00,1
+M t.o.m. 31 dec 2014,Miljödepartementet,2025-01-01 00:00:00,2025-03-31,2025,1,0,0,0,0,0,0,0.00000000000000000000,CRITICAL,Critical: No activity detected - immediate review required,2025-01-01 00:00:00,1
+Fö,Försvarsdepartementet,2024-10-01 00:00:00,2024-12-31,2024,4,0,0,0,0,0,0,0.00000000000000000000,CRITICAL,Critical: No activity detected - immediate review required,2024-10-01 00:00:00,1
+M,Miljö- och energidepartementet,2024-07-01 00:00:00,2024-09-30,2024,3,0,0,0,0,0,0,0.00000000000000000000,CRITICAL,Critical: No activity detected - immediate review required,2024-07-01 00:00:00,1

@@ -1,6 +1,6 @@
 year,quarter,risk_level,ministry_count,avg_documents
 2026,2,CRITICAL,20,0.00
-2026,2,HIGH,1,1.00
+2026,2,MEDIUM,1,5.00
 2026,1,CRITICAL,20,0.00
 2026,1,ELEVATED,1,20.00
 2025,4,CRITICAL,20,0.00

@@ -1,29 +1,29 @@
 value,count
-"",5353
-Sammansatta utrikes- och försvarsutskottet,1784
-EU-nämnden,1213
-Utrikesutskottet,1106
-Skatteutskottet,1078
-Finansutskottet,1064
-Utbildningsutskottet,1059
+"",5358
+Sammansatta utrikes- och försvarsutskottet,1818
+EU-nämnden,1214
+Utrikesutskottet,1112
+Skatteutskottet,1080
+Finansutskottet,1065
+Utbildningsutskottet,1060
 Näringsutskottet,1051
-Arbetsmarknadsutskottet,1036
-Socialutskottet,1029
+Arbetsmarknadsutskottet,1037
+Socialutskottet,1030
 Justitieutskottet,1023
 Konstitutionsutskottet,1021
-Socialförsäkringsutskottet,1014
-Trafikutskottet,1005
+Socialförsäkringsutskottet,1016
+Trafikutskottet,1007
 Nordiska rådets svenska delegation,1001
 Miljö- och jordbruksutskottet,999
 Kulturutskottet,988
-Försvarsutskottet,928
+Försvarsutskottet,929
 Civilutskottet,733
 Krigsdelegationen,593
 Valberedningen,387
 Bostadsutskottet,281
 Utrikesnämnden,275
 Lagutskottet,257
-Riksdagsstyrelsen,233
+Riksdagsstyrelsen,235
 Riksbanksfullmäktige,191
 Sammansatta konstitutions- och utrikesutskottet,189
 Riksdagens delegation till OSSE:s parlamentariska församling,174
@@ -99,6 +99,7 @@ Mats Hellström,9
 Thomas Julin,9
 Tobias Billström,9
 Ardalan Shekarabi,8
+Jakob Forssmed,8
 Anita Gradin,7
 Birgitta Ohlsson,7
 Carl Bildt,7
@@ -131,7 +132,6 @@ Göran Hägglund,5
 Göran Persson,5
 Hillevi Engström,5
 Hillevi Larsson,5
-Jakob Forssmed,5
 Julia Kronlid,5
 Karl-Erik Svartberg,5
 Lena Hjelm-Wallén,5
@@ -183,6 +183,7 @@ Aylin Nouri,3
 Birger Rosqvist,3
 Bo Finnkvist,3
 Bosse Ringholm,3
+Camilla Brunsberg,3
 Carl-Oskar Bohlin,3
 Cristina Husmark Pehrsson,3
 Elisabeth Svantesson,3
@@ -205,6 +206,7 @@ Maria Ferm,3
 Marita Ulvskog,3
 Mats Persson,3
 Nämnden för prövning av statsråds och vissa andra befattningshavares övergångsrestriktioner,3
+Patrik Lundqvist,3
 Rasmus Ling,3
 Romina Pourmokhtari,3
 Tobias Krantz,3
@@ -234,7 +236,6 @@ Birgitta Hambraeus,2
 Björn Samuelson,2
 Bo Lundgren,2
 Börje Hörnlund,2
-Camilla Brunsberg,2
 Caroline Szyber,2
 Christian Carlsson,2
 Daniel Bäckström,2
@@ -304,7 +305,6 @@ Monica Andersson,2
 Niklas Wykman,2
 Nyamko Sabuni,2
 Ola Möller,2
-Patrik Lundqvist,2
 Paul Lestander,2
 Per Bill,2
 Per Landgren,2
@@ -818,6 +818,7 @@ Jens Eriksson,1
 Jerry Martinger,1
 Jessika Roswall,1
 Jim Svensk Larm 2022-11-01 - 2023-10-29,1
+Jim Svensk Larm 2026-05-22 - 2026-06-23,1
 Joanna Lewerentz 2023-01-30 - 2023-05-21,1
 "Joanna Lewerentz 2024-04-22 - 2024-09-06, Fredrik Saweståhl 2024-09-06 - 2025-05-11",1
 Joar Forssell,1
@@ -983,6 +984,7 @@ Magnus Resare 2022-10-18 - 2026-09-28,1
 Majvi Andersson 1997-01-21 - 1997-05-30,1
 Malin Björk,1
 Malin Höglund 2020-08-31 - 2021-02-01,1
+Malte Tängmark Roos,1
 Marcus Andersson 2022-11-14 - 2023-05-14,1
 Marcus Andersson 2025-02-16 - 2025-11-09,1
 Marcus Jonsson 2020-01-14 - 2020-02-20,1
@@ -1087,6 +1089,7 @@ Mikael Sandström 2006-10-06 - 2006-10-12,1
 "Mikael Sandström 2006-10-06 - 2006-10-12, Eva Öhbom Ekdahl 2006-10-12 - 2006-10-17",1
 Mildred Thulin 2007-01-26 - 2007-05-13,1
 Mildred Thulin 2008-02-04 - 2008-06-27,1
+Mohamed Yassin 2026-05-19 - 2026-06-19,1
 Mohamoud M. Enow 2012-11-19 - 2013-03-31  Föräldraledighet,1
 Mona Berglund Nilsson 1989-10-16 - 1989-11-23,1
 Mona Nyberg 1998-01-20 - 1998-05-31,1
@@ -1263,6 +1266,7 @@ Thomas Strand 2005-08-01 - 2005-09-30,1
 Thomas Östros,1
 Thommy Ohlsson 1992-11-16 - 1992-12-16,1
 Thor Mattisson 1988-11-07 - 1989-01-07,1
+Timothy Tréville 2026-06-01 - 2026-06-30,1
 Tina Ghasemi Liljekvist,1
 "Tobias Sjö 2013-03-04 - 2013-03-31, Mohamoud M. Enow 2013-04-01 - 2013-04-28",1
 Tomas Agenberg 2004-11-01 - 2005-04-10,1
@@ -1309,6 +1313,7 @@ Vivianne Franzén 1992-11-13 - 1992-12-13,1
 Vivianne Franzén 1993-11-18 - 1993-12-17,1
 Walburga Habsburg Douglas,1
 Willemo Carlsson 2008-11-01 - 2009-04-30,1
+Yasmine Eriksson,1
 "Yilmaz Kerimo 1999-10-01 - 2002-09-30, Mariam Osman Sherifay 2002-09-30 - 2002-10-09, Niclas Lindberg 2002-10-10 - 2002-10-20, Britta Lejon 2002-10-21 - 2004-06-14, Niclas Lindberg 2004-06-15 - 2004-12-31, Mariam Osman Sherifay 2005-01-01 - 2006-10-02",1
 Ylva Annerstedt,1
 Yngve Wernersson 1991-10-05 - 1991-11-29,1
@@ -1323,6 +1328,7 @@ Zinaida Kajevic 2023-11-27 - 2024-01-30,1
 "Åke Wictorsson 1985-09-30 - 1988-10-03, Lars Gustafsson 1988-10-03 - 1990-06-13, Ines Uusmann 1990-06-14 - 1991-09-30",1
 Åsa Coenraads 2024-10-11 - 2024-12-01,1
 Åsa Coenraads 2024-12-02 - 2025-01-12,1
+Åsa Coenraads 2026-06-08 - 2026-07-07,1
 Åsa Eriksson 2016-08-15 - 2017-04-01,1
 Åsa Eriksson 2017-10-09 - 2018-03-14  Föräldraledighet,1
 "Åsa Eriksson 2018-03-20 - 2018-03-21, Mikael Peterson 2018-03-22 - 2018-04-29  Föräldraledighet",1
