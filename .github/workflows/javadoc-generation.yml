@@ -23,7 +23,7 @@ env:
 jobs:
   javadoc-generation:
     name: Generate Javadoc Documentation
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 60
     permissions:
       contents: write     # Needed for checkout and potential deployment

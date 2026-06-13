@@ -208,7 +208,7 @@ flowchart TB
 **Workflow:** `Verify and Release` (`release.yml`)  
 **Trigger:** Manual workflow dispatch with version input  
 **Duration:** ~15-20 minutes  
-**Runtime:** Ubuntu 24.04, JDK 26 (Temurin), Maven 3.9.15, PostgreSQL 18
+**Runtime:** Ubuntu 26.04, JDK 26 (Temurin), Maven 3.9.15, PostgreSQL 18
 
 **Quality Gates:**
 - ✅ Maven build success (Java 26, source 21)
