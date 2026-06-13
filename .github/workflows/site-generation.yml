@@ -14,7 +14,7 @@ env:
 jobs:
   site-generation:
     name: Generate Complete Maven Site
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 120
     permissions:
       contents: write     # Needed for checkout and potential site deployment
