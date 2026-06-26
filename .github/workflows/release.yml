@@ -277,7 +277,7 @@ jobs:
     # Generate SBOM attestation for DEB package (actions/attest with sbom-path replaces deprecated actions/attest-sbom)
     - name: Generate SBOM attestation for deb package
       id: attestsbom_deb
-      uses: actions/attest@59d89421af93a897026c735860bf21b6eb4f7b26 # v4.1.0
+      uses: actions/attest@a1948c3f048ba23858d222213b7c278aabede763 # v4.1.1
       with:
         subject-path: 'cia-dist-deb/target/cia-dist-deb-${{ github.event.inputs.release }}.all.deb'
         sbom-path: 'cia-dist-deb/target/cia-dist-deb-${{ github.event.inputs.release }}.all.deb.spdx.json'
@@ -298,7 +298,7 @@ jobs:
     # Generate SBOM attestation for WAR (actions/attest with sbom-path replaces deprecated actions/attest-sbom)
     - name: Generate SBOM attestation for WAR
       id: attestsbom_war
-      uses: actions/attest@59d89421af93a897026c735860bf21b6eb4f7b26 # v4.1.0
+      uses: actions/attest@a1948c3f048ba23858d222213b7c278aabede763 # v4.1.1
       with:
         subject-path: 'citizen-intelligence-agency/target/citizen-intelligence-agency-${{ github.event.inputs.release }}.war'
         sbom-path: 'citizen-intelligence-agency/target/citizen-intelligence-agency-${{ github.event.inputs.release }}.war.spdx.json'
