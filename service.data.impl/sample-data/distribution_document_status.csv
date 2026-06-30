@@ -1,29 +1,30 @@
 status,doc_count,percentage
-Klar,43973,40.03
-Ank T,25409,23.13
-"",19770,18.00
-Trycklov,10618,9.67
-Webbpublicering,4233,3.85
+Klar,44467,40.46
+Ank T,25409,23.12
+"",20054,18.25
+Trycklov,10618,9.66
+Webbpublicering,4271,3.89
 hämtad_2,2520,2.29
-Hänvisad,680,0.62
 saknas,471,0.43
-inträffat,336,0.31
+Hänvisad,332,0.30
 Utgången,321,0.29
 ANKT,292,0.27
 Original,262,0.24
 hämtad,235,0.21
 digitaliserad,223,0.20
 DokTextExtraktor,132,0.12
-planerat,125,0.11
-Granskad,73,0.07
+planerat,95,0.09
 Distribution.UttagMo,22,0.02
 fel,15,0.01
 felkonverterat,11,0.01
+Granskad,11,0.01
 LagdTillHandlingarna,7,0.01
 Inkommen,4,0.00
 doktextextraktor,4,0.00
 Pågår,3,0.00
+inträffat,2,0.00
 html saknas,2,0.00
+63717,1,0.00
 63718,1,0.00
 63719,1,0.00
 63720,1,0.00
@@ -107,7 +108,6 @@ AnkT,1,0.00
 Utgår,1,0.00
 ank T,1,0.00
 publicerat,1,0.00
-slutfört,1,0.00
 titel,1,0.00
 63681,1,0.00
 63682,1,0.00
@@ -129,7 +129,7 @@ titel,1,0.00
 63707,1,0.00
 63708,1,0.00
 63709,1,0.00
+63710,1,0.00
 63711,1,0.00
 63712,1,0.00
 63716,1,0.00
-63717,1,0.00

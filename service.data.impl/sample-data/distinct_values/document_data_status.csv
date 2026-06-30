@@ -1,29 +1,29 @@
 value,count
-Klar,43973
+Klar,44467
 Ank T,25409
-"",19770
+"",20054
 Trycklov,10618
-Webbpublicering,4233
+Webbpublicering,4271
 hämtad_2,2520
-Hänvisad,680
 saknas,471
-inträffat,336
+Hänvisad,332
 Utgången,321
 ANKT,292
 Original,262
 hämtad,235
 digitaliserad,223
 DokTextExtraktor,132
-planerat,125
-Granskad,73
+planerat,95
 Distribution.UttagMo,22
 fel,15
+Granskad,11
 felkonverterat,11
 LagdTillHandlingarna,7
 Inkommen,4
 doktextextraktor,4
 Pågår,3
 html saknas,2
+inträffat,2
 63681,1
 63682,1
 63683,1
@@ -44,6 +44,7 @@ html saknas,2
 63707,1
 63708,1
 63709,1
+63710,1
 63711,1
 63712,1
 63716,1
@@ -131,5 +132,4 @@ AnkT,1
 Utgår,1
 ank T,1
 publicerat,1
-slutfört,1
 titel,1

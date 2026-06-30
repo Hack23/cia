@@ -1,5 +1,5 @@
 column_name,data_type,distinct_count,min_value,max_value,p1,p10,p25,median,p75,p90,p99
-total_rebellions,bigint,83,1,399,1,1,3,12,27,41,96.7199999999998
-strong_consensus_rebellions,bigint,26,0,54,0,0,1,2,4,8,19.3599999999999
+total_rebellions,bigint,82,1,443,1,1,3,12,27,41,100.519999999999
+strong_consensus_rebellions,bigint,27,0,54,0,0,1,2,4,8,19.3599999999999
 very_strong_consensus_rebellions,bigint,9,0,9,0,0,0,0,1,1,4
-avg_consensus_strength_rebelled_against,numeric,864,15.00,98.48,41.042,47.106,51.79,58.85,69.33,81.988,90.554
+avg_consensus_strength_rebelled_against,numeric,866,15.00,98.48,41.042,47.106,51.7,58.87,69.38,81.988,90.554

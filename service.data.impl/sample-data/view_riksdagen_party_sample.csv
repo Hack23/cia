@@ -1,13 +1,13 @@
 party_number,party_name,party_id,website,registered_date,head_count,total_documents,avg_documents_per_member,documents_last_year,very_high_activity_members,high_activity_members,medium_activity_members,low_activity_members,party_focused_members,committee_focused_members,individual_focused_members,avg_collaboration_percentage
-524,Piratpartiet,PP,www.piratpartiet.se,2006-02-15,2,0,0.0,0,0,0,0,0,0,0,0,0.0
-68,Kristdemokraterna,KD,www.kristdemokraterna.se,1996-08-29,129,25706,199.3,478,50,22,13,21,10,62,30,2.8
-4,Centerpartiet,C,www.centerpartiet.se,1995-05-18,256,21706,84.8,1071,42,24,11,15,9,27,56,1.6
-5,Vänsterpartiet,V,www.vansterpartiet.se,1990-06-15,138,28161,204.1,1199,55,20,14,10,66,32,1,1.6
-55,Miljöpartiet de gröna,MP,www.mp.se,1985-02-04,144,20276,140.8,1455,42,25,19,20,27,30,46,1.6
-1,Moderaterna,M,www.moderat.se,2013-09-06,470,52522,111.7,1885,97,75,44,94,17,64,223,1.5
-2,Arbetarepartiet-Socialdemokraterna,S,www.socialdemokraterna.se,1956-08-02,855,74228,86.8,2968,131,109,61,125,6,9,390,0.7
-232323,Politiskt Vilde,-,"",1971-01-01,30,4402,146.7,373,8,7,6,4,3,9,13,1.6
+110,Sverigedemokraterna,SD,www.sverigedemokraterna.se,1991-02-08,128,20463,159.9,984,39,19,30,22,6,57,47,0.0
 3,Folkpartiet liberalerna,FP,www.folkpartiet.se,1990-12-17,191,7389,38.7,0,17,14,4,4,8,9,22,2.2
-3,Liberalerna,L,www.liberalerna.se,2015-11-30,72,13412,186.3,341,26,13,5,20,12,15,32,2.2
+524,Piratpartiet,PP,www.piratpartiet.se,2006-02-15,2,0,0.0,0,0,0,0,0,0,0,0,0.0
+1,Moderaterna,M,www.moderat.se,2013-09-06,470,52552,111.8,1886,97,75,44,94,17,64,223,1.5
+4,Centerpartiet,C,www.centerpartiet.se,1995-05-18,256,21710,84.8,1069,42,24,11,15,9,27,56,1.6
+2,Arbetarepartiet-Socialdemokraterna,S,www.socialdemokraterna.se,1956-08-02,855,74276,86.9,3003,131,109,61,125,6,9,390,0.7
+68,Kristdemokraterna,KD,www.kristdemokraterna.se,1996-08-29,129,25713,199.3,481,50,22,13,21,10,62,30,2.8
+55,Miljöpartiet de gröna,MP,www.mp.se,1985-02-04,144,20303,141.0,1453,42,25,19,20,29,28,46,1.6
+232323,Politiskt Vilde,-,"",1971-01-01,30,4402,146.7,367,8,7,6,4,3,9,13,1.6
+5,Vänsterpartiet,V,www.vansterpartiet.se,1990-06-15,138,28190,204.3,1182,55,20,14,10,66,32,1,1.6
+3,Liberalerna,L,www.liberalerna.se,2015-11-30,72,13413,186.3,341,26,13,5,20,12,15,32,2.2
 170,NyDemokrati,NYD,"",1991-02-15,24,0,0.0,0,0,0,0,0,0,0,0,0.0
-110,Sverigedemokraterna,SD,www.sverigedemokraterna.se,1991-02-08,127,20463,161.1,994,39,19,30,22,6,57,47,0.0

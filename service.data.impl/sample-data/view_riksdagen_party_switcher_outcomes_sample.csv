@@ -1,285 +1,285 @@
 person_id,first_name,last_name,previous_party,new_party,transition_date,next_election,months_until_next_election,total_subsequent_assignments,total_days_served_after_switch,continued_as_active_mp,served_in_next_election,attained_leadership_post_switch,post_switch_roles,current_status
-0787533297400,Björn,von Sydow,KD,RS,2002-10-24,2006-09-17,46,15,18440,1,1,1,"Ledamot, Ordförande, Riksdagsledamot, Suppleant, Vice ordförande",Tidigare riksdagsledamot
-0552248175312,Berit,Högman,KD,S,2012-02-29,2014-09-14,30,8,11541,1,1,0,"Ersättare, Förste vice gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
-069436402021,Tomas,Tobé,RS,M,2012-09-01,2014-09-14,24,16,9486,1,1,1,"Andre vice ordförande, Förste vice gruppledare, Ledamot, Ordförande, Partisekreterare, Riksdagsledamot, Suppleant",Europaparlamentariker
-0607691439013,Karin,Enström,KD,M,2022-10-19,2026-09-13,46,10,8174,0,1,1,"Ledamot, Ordförande, Partisekreterare, Suppleant",Tjänstgörande riksdagsledamot
-0831636664429,Mattias,Karlsson,SD,RS,2014-10-07,2018-09-09,47,28,37240,1,1,1,"Ledamot, Ordförande, Riksdagsledamot, Suppleant, Vice ordförande",Tjänstgörande riksdagsledamot
-0161616238120,Lina,Nordquist,L,KD,2022-11-17,2026-09-13,45,1,1426,0,1,0,Ledamot,Tjänstgörande riksdagsledamot
-0584659199514,Göran,Hägglund,KD,S,2006-10-06,2010-09-19,47,8,9350,1,1,0,"Ledamot, Riksdagsledamot, Socialminister, Suppleant",Tidigare riksdagsledamot
-0331967573912,Maria,Larsson,RS,KD,2006-10-17,2010-09-19,47,3,4360,0,1,0,"Ledamot, Riksdagsledamot",Tidigare riksdagsledamot
-0530425150220,Annika,Strandhäll,S,M,2021-11-30,2022-09-11,9,9,5058,1,1,0,"Klimat- och miljöminister, Ledamot, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
-0406831930624,Henrik,Vinge,SD,RS,2020-10-01,2022-09-11,23,8,7478,1,1,1,"Ledamot, Ordförande, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
-0463606088610,Bertil,Kjellberg,M,RS,2008-04-04,2010-09-19,29,3,3100,0,1,0,"Ersättare, Ledamot",Tidigare riksdagsledamot
-0181942435301,Ingela,Thalén,S,KD,1990-05-31,2002-09-15,147,18,13060,1,1,1,"Ledamot, Ordförande, Riksdagsledamot, Socialminister, Statsråd, Suppleant",Tidigare riksdagsledamot
-0853395328224,Lena,Hallengren,KD,S,2018-03-08,2018-09-09,6,13,10494,1,1,1,"Gruppledare, Ledamot, Riksdagsledamot, Socialminister, Statsråd, Vice ordförande",Tjänstgörande riksdagsledamot
+098412828516,Magdalena,Andersson,S,KD,2022-10-11,2026-09-13,47,4,4352,1,1,0,"Förste vice ordförande, Ledamot, Riksdagsledamot",Tjänstgörande riksdagsledamot
+0512357753412,Britt,Bohlin Olsson,KD,RS,2000-07-01,2002-09-15,26,7,12835,1,1,1,"Ledamot, Ordförande, Riksdagsledamot, Suppleant, Vice ordförande",Tidigare riksdagsledamot
+0946889218011,Jan-Evert,Rådhström,RS,KD,2010-10-19,2014-09-14,46,1,1441,0,1,0,Ledamot,Tidigare riksdagsledamot
+0652944607906,Cristina,Husmark Pehrsson,KD,S,2006-10-06,2010-09-19,47,14,8482,1,1,1,"Ledamot, Riksdagsledamot, Statsråd, Suppleant, Vice ordförande",Tidigare riksdagsledamot
+0415959965211,Mia,Sydow Mölleby,V,KD,2014-10-14,2018-09-09,46,11,23746,1,1,1,"Gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
+0667220767927,Erik,Ezelius,S,RS,2019-02-07,2022-09-11,43,20,26624,1,1,1,"Deputerad, Ersättare, Förste vice gruppledare, Ledamot, Ordförande, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
+0292756653724,Henrik,von Sydow,KD,RS,2012-11-01,2014-09-14,22,1,697,0,1,0,Ersättare,Tidigare riksdagsledamot
+0800956862429,Gulan,Avci,L,KD,2022-11-17,2026-09-13,45,6,3480,0,0,0,"Ledamot, Suppleant",Avgången riksdagsledamot
+0552248175312,Berit,Högman,S,RS,2012-03-23,2014-09-14,29,7,10598,1,1,0,"Ersättare, Förste vice gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
+0980316377627,Lars,Hjälmered,RS,KD,2018-10-09,2022-09-11,47,7,15393,1,1,1,"Andre vice ordförande, Ledamot, Ordförande, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
+014744660015,Mikael,Damberg,S,RS,2012-02-24,2014-09-14,30,20,14972,1,1,1,"Finansminister, Gruppledare, Ledamot, Närings- och innovationsminister, Ordförande, Riksdagsledamot, Statsråd, Suppleant, Vice ordförande",Tjänstgörande riksdagsledamot
+0798417016112,Kristina,Zakrisson,RS,KD,2002-10-15,2006-09-17,47,12,11662,1,1,0,"Andre vice ordförande, Ersättare, Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
+0607691439013,Karin,Enström,RS,M,2022-10-19,2026-09-13,46,10,8198,0,1,1,"Ledamot, Ordförande, Partisekreterare, Suppleant",Tjänstgörande riksdagsledamot
+0789353702707,Mats,Lindberg,KD,RS,2000-07-01,2002-09-15,26,1,242,0,0,0,Ledamot,Tidigare riksdagsledamot
+0630022377501,Bengt,Westerberg,S,KD,1994-10-18,2002-09-15,94,2,1535,0,0,1,"Ledamot, Vice ordförande",Tidigare riksdagsledamot
+0224712677012,Johan,Pehrson,RS,L,2019-06-28,2022-09-11,38,12,17517,1,1,1,"Arbetsmarknads- och integrationsminister, Gruppledare, Ledamot, Partiledare, Riksdagsledamot, Suppleant, Tillförordnad partiledare, Utbildningsminister",Avgången riksdagsledamot
+0388920259006,Inger,René,KD,RS,2000-07-01,2002-09-15,26,12,14600,1,1,1,"Deputerad, Ledamot, Ordförande, Riksdagsledamot, Suppleant, Vice ordförande",Tidigare riksdagsledamot
+0584659199514,Göran,Hägglund,RS,S,2006-10-06,2010-09-19,47,8,9350,1,1,0,"Ledamot, Riksdagsledamot, Socialminister, Suppleant",Tidigare riksdagsledamot
+0334816698724,Karolina,Skog,MP,RS,2021-02-25,2022-09-11,18,1,319,0,0,0,Ersättare,Tidigare riksdagsledamot
+0229760896014,Anders,W Jonsson,KD,RS,2014-10-07,2018-09-09,47,14,26314,1,1,0,"Ledamot, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
+0475643059428,Jonny,Cato,C,KD,2025-09-04,2026-09-13,12,1,86,0,0,0,Ledamot,Avgången riksdagsledamot
+0202577142527,Matheus,Enholm,SD,RS,2025-02-14,2026-09-13,18,7,936,0,1,0,"Deputerad, Ersättare, Förste vice gruppledare, Suppleant",Tjänstgörande riksdagsledamot
 037063714405,Anders,Björck,KD,RS,2000-07-01,2002-09-15,26,3,1328,1,1,0,"Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
-TEST_PERSON_001,Test,Partibytare,S,M,2011-07-01,2014-09-14,38,1,1279,0,1,0,Ledamot,Tidigare riksdagsledamot
-0446541913415,Allan,Widman,RS,FP,2006-10-11,2010-09-19,47,47,39409,1,1,1,"Deputerad, Ersättare, Förste vice gruppledare, Ledamot, Ordförande, Riksdagsledamot, Suppleant, Vice ordförande",Tidigare riksdagsledamot
+014744660015,Mikael,Damberg,KD,S,2012-02-23,2014-09-14,30,21,15921,1,1,1,"Finansminister, Gruppledare, Ledamot, Närings- och innovationsminister, Ordförande, Riksdagsledamot, Statsråd, Suppleant, Vice ordförande",Tjänstgörande riksdagsledamot
+0792716417210,Lars,Bäckström,KD,RS,2000-07-01,2002-09-15,26,5,6751,1,1,0,"Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
+0371688419616,Lars,Ohly,KD,V,2004-02-20,2006-09-17,30,16,19147,1,1,1,"Gruppledare, Ledamot, Partiledare, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
+0452755722723,Björn,Söder,SD,RS,2018-10-02,2022-09-11,47,29,32382,1,1,1,"Deputerad, Ersättare, Ledamot, Ordförande, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
+0463606088610,Bertil,Kjellberg,M,KD,2006-10-24,2010-09-19,46,4,5982,0,1,0,"Ersättare, Ledamot, Suppleant",Tidigare riksdagsledamot
+0316505710324,Janine,Alm Ericson,MP,RS,2019-02-15,2022-09-11,42,24,24938,1,1,1,"Deputerad, Ersättare, Förste vice gruppledare, Gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
 0796071663617,Acko,Ankarberg Johansson,KD,S,2022-10-18,2026-09-13,46,4,2120,1,0,0,"Riksdagsledamot, Sjukvårdsminister, Statsråd",Avgången riksdagsledamot
-0529963707818,Martin,Nilsson,RS,KD,2002-10-15,2006-09-17,47,5,4357,1,1,0,"Deputerad, Ledamot, Riksdagsledamot",Tidigare riksdagsledamot
-039655712615,Margareta,Pålsson,RS,KD,2006-10-17,2010-09-19,47,5,6476,1,1,1,"Förste vice gruppledare, Ledamot, Ordförande, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
-014744660015,Mikael,Damberg,KD,RS,2012-02-24,2014-09-14,30,20,14972,1,1,1,"Finansminister, Gruppledare, Ledamot, Närings- och innovationsminister, Ordförande, Riksdagsledamot, Statsråd, Suppleant, Vice ordförande",Tjänstgörande riksdagsledamot
-0836001490919,Ulrika,Heie,C,RS,2014-10-07,2018-09-09,47,13,31828,1,1,1,"Ersättare, Förste vice gruppledare, Gruppledare, Ledamot, Ordförande, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
-0602744999917,Elisabeth,Thand Ringqvist,C,RS,2024-01-01,2026-09-13,32,6,2731,0,1,1,"Andre vice gruppledare, Ersättare, Förste vice gruppledare, Gruppledare, Ledamot, Partiledare",Tjänstgörande riksdagsledamot
-0522460069116,Cecilia,Magnusson,M,RS,2010-10-12,2014-09-14,47,9,15138,1,1,0,"Deputerad, Ersättare, Kvittningsperson, Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
-0982795248728,Jakob,Forssmed,KD,S,2022-10-18,2026-09-13,46,4,2881,0,1,0,"Riksdagsledamot, Socialminister",Socialminister
-0202577142527,Matheus,Enholm,KD,RS,2025-02-14,2026-09-13,18,5,805,0,1,0,"Deputerad, Ersättare, Suppleant",Tjänstgörande riksdagsledamot
-0406831930624,Henrik,Vinge,KD,SD,2019-04-01,2022-09-11,41,12,20535,1,1,1,"Förste vice gruppledare, Gruppledare, Ledamot, Ordförande, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
+0406831930624,Henrik,Vinge,SD,RS,2020-10-01,2022-09-11,23,8,7478,1,1,1,"Ledamot, Ordförande, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
 0251136832626,Muharrem,Demirok,C,KD,2023-02-09,2026-09-13,43,2,2108,0,1,0,Ledamot,Tjänstgörande riksdagsledamot
-TEST_PERSON_002,Anna,Testsson,V,MP,2015-04-01,2018-09-09,41,2,2830,0,1,0,Ledamot,Tidigare riksdagsledamot
+0602744999917,Elisabeth,Thand Ringqvist,C,RS,2024-01-01,2026-09-13,32,6,2755,0,1,1,"Andre vice gruppledare, Ersättare, Förste vice gruppledare, Gruppledare, Ledamot, Partiledare",Tjänstgörande riksdagsledamot
+0462699892622,Maria,Ferm,RS,KD,2014-10-14,2018-09-09,46,22,15842,1,1,1,"Ersättare, Förste vice gruppledare, Gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
 0951854268017,Åsa,Romson,MP,M,2015-01-01,2018-09-09,44,4,1717,1,0,1,"Klimat- och miljöminister, Ledamot, Ordförande, Riksdagsledamot",Tidigare riksdagsledamot
+0457308547314,Karin,Svensson Smith,V,MP,2006-11-14,2010-09-19,46,2,2904,1,0,1,"Ledamot, Ordförande, Riksdagsledamot",Tidigare riksdagsledamot
+0384833975200,Bo,Könberg,S,RS,2002-10-08,2006-09-17,47,2,7066,0,0,0,"Ledamot, Suppleant",Tidigare riksdagsledamot
+0462699892622,Maria,Ferm,MP,KD,2014-10-14,2018-09-09,46,22,15842,1,1,1,"Ersättare, Förste vice gruppledare, Gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
+0415959965211,Mia,Sydow Mölleby,KD,RS,2018-10-02,2022-09-11,47,7,16387,0,1,0,"Ledamot, Suppleant",Tidigare riksdagsledamot
+0199751900210,Annelie,Karlsson,S,RS,2018-04-10,2018-09-09,4,13,26645,1,1,1,"Ersättare, Förste vice gruppledare, Gruppledare, Ledamot, Riksdagsledamot, Suppleant, Vice ordförande",Tidigare riksdagsledamot
+031414803913,Maria,Wetterstrand,MP,KD,2002-10-15,2006-09-17,47,13,11968,1,1,1,"Ledamot, Riksdagsledamot, Suppleant, Vice ordförande",Tidigare riksdagsledamot
+0938901612810,Fredrik,Reinfeldt,RS,M,2003-10-25,2006-09-17,34,9,12628,1,1,1,"Ledamot, Partiledare, Riksdagsledamot, Statsminister",Tidigare riksdagsledamot
+0744993950910,Anders,Ygeman,KD,RS,2017-08-31,2018-09-09,12,20,9740,1,1,1,"Ledamot, Ordförande, Riksdagsledamot, Statsråd, Suppleant, Vice ordförande",Tjänstgörande riksdagsledamot
+0875221317013,Gunilla,Carlsson,KD,S,2022-09-26,2026-09-13,47,9,9556,1,1,1,"Ersättare, Gruppledare, Ledamot, Personlig suppleant, Riksdagsledamot, Suppleant, Vice ordförande",Tjänstgörande riksdagsledamot
+0888807074321,Amanda,Lind,MP,KD,2025-11-25,2026-09-13,9,1,322,0,1,0,Ledamot,Tjänstgörande riksdagsledamot
+0473783431010,Morgan,Johansson,RS,KD,2010-10-19,2014-09-14,46,25,18855,1,1,1,"Deputerad, Justitie- och inrikesminister, Justitie- och migrationsminister, Ledamot, Ordförande, Riksdagsledamot, Suppleant, Vice ordförande",Tjänstgörande riksdagsledamot
+0831636664429,Mattias,Karlsson,RS,KD,2014-10-14,2018-09-09,46,27,33977,1,1,1,"Ledamot, Ordförande, Riksdagsledamot, Suppleant, Vice ordförande",Tjänstgörande riksdagsledamot
+0331967573912,Maria,Larsson,RS,S,2006-10-06,2010-09-19,47,4,8738,0,1,0,"Ledamot, Riksdagsledamot, Statsråd",Tidigare riksdagsledamot
+0482927154110,Leif,Jakobsson,KD,S,2008-06-05,2010-09-19,27,10,10640,1,1,1,"Förste vice gruppledare, Ledamot, Riksdagsledamot, Suppleant, Vice ordförande",Tidigare riksdagsledamot
+0793372891224,Noria,Manouchi,RS,KD,2022-11-15,2026-09-13,45,6,4314,0,1,0,"Ledamot, Suppleant",Tjänstgörande riksdagsledamot
+0104804820009,Per,Unckel,KD,RS,2000-07-01,2002-09-15,26,8,1712,1,1,1,"Deputerad, Ledamot, Ordförande, Riksdagsledamot, Suppleant",Avliden  2011-09-20
+0275724540919,Erik,Ullenhag,KD,L,2015-11-24,2018-09-09,33,1,196,0,0,1,Gruppledare,Tidigare riksdagsledamot
+0116084827614,Mehmet,Kaplan,RS,MP,2010-10-19,2014-09-14,46,8,6849,0,1,1,"Förste vice gruppledare, Gruppledare, Ledamot, Statsråd, Suppleant",Tidigare riksdagsledamot
+0334816698724,Karolina,Skog,M,MP,2021-02-22,2022-09-11,18,2,641,0,0,0,"Ersättare, Förste vice gruppledare",Tidigare riksdagsledamot
+0781520322912,Jörgen,Hellman,S,KD,2016-11-09,2018-09-09,22,8,16409,1,1,1,"Ledamot, Ordförande, Revisor, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
+012053331219,Anna,Kinberg Batra,M,KD,2010-10-19,2014-09-14,46,13,10173,1,1,1,"Gruppledare, Ledamot, Partiledare, Riksdagsledamot, Suppleant, Vice ordförande",Tidigare riksdagsledamot
+0430865615328,Linda,Lindberg,RS,KD,2023-04-18,2026-09-13,40,6,6599,0,1,1,"Gruppledare, Ledamot, Suppleant",Tjänstgörande riksdagsledamot
+039655712615,Margareta,Pålsson,RS,KD,2006-10-17,2010-09-19,47,5,6476,1,1,1,"Förste vice gruppledare, Ledamot, Ordförande, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
+0530425150220,Annika,Strandhäll,S,M,2021-11-30,2022-09-11,9,9,5058,1,1,0,"Klimat- och miljöminister, Ledamot, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
+0228027853620,Vasiliki,Tsouplaki,V,RS,2022-10-04,2026-09-13,47,2,5836,0,1,0,"Ersättare, Ledamot, Suppleant",Tjänstgörande riksdagsledamot
+0522054204918,Mattias,Karlsson,M,RS,2022-10-27,2026-09-13,46,4,3578,0,1,1,"Ledamot, Ordförande",Tjänstgörande riksdagsledamot
+0446541913415,Allan,Widman,RS,FP,2006-10-11,2010-09-19,47,47,39409,1,1,1,"Deputerad, Ersättare, Förste vice gruppledare, Ledamot, Ordförande, Riksdagsledamot, Suppleant, Vice ordförande",Tidigare riksdagsledamot
+0665485817222,Daniel,Bäckström,C,RS,2022-10-04,2026-09-13,47,13,6495,1,1,1,"Gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
+0228027853620,Vasiliki,Tsouplaki,RS,KD,2022-10-11,2026-09-13,47,1,1463,0,1,0,Ledamot,Tjänstgörande riksdagsledamot
+0475643059428,Jonny,Cato,C,RS,2025-09-01,2026-09-13,12,2,264,0,0,0,"Ersättare, Förste vice gruppledare, Ledamot",Avgången riksdagsledamot
+0911490574010,Isabella,Lövin,MP,M,2019-01-21,2022-09-11,43,3,2570,0,0,0,"Ledamot, Miljö- och klimatminister",Europaparlamentariker
+0607691439013,Karin,Enström,KD,RS,2018-10-02,2022-09-11,47,21,30559,1,1,1,"Ersättare, Ledamot, Ordförande, Partisekreterare, Riksdagsledamot, Suppleant, Vice ordförande",Tjänstgörande riksdagsledamot
+0411459873625,Hanna,Gunnarsson,V,RS,2020-02-07,2022-09-11,31,25,21439,1,1,0,"Deputerad, Ersättare, Kvittningsperson, Ledamot, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
+0634917636517,Margareta,Israelsson,RS,KD,2006-10-17,2010-09-19,47,1,1448,0,1,0,Ledamot,Tidigare riksdagsledamot
+0199751900210,Annelie,Karlsson,RS,KD,2019-01-31,2022-09-11,43,8,21671,0,1,1,"Ersättare, Gruppledare, Ledamot, Suppleant, Vice ordförande",Tidigare riksdagsledamot
+0505599928316,Carl Fredrik,Graf,KD,RS,2000-07-01,2002-09-15,26,1,821,0,1,0,Suppleant,Tidigare riksdagsledamot
+0628005785225,Jörgen,Berglund,M,RS,2024-10-18,2026-09-13,22,5,854,0,1,0,"Deputerad, Ledamot",Tjänstgörande riksdagsledamot
+0667220767927,Erik,Ezelius,RS,KD,2022-06-10,2022-09-11,3,14,8445,1,1,1,"Deputerad, Ersättare, Ledamot, Ordförande, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
+0284192765516,Tomas,Eneroth,KD,RS,2014-10-07,2018-09-09,47,25,15636,1,1,1,"Ersättare, Infrastrukturminister, Ledamot, Ordförande, Riksdagsledamot, Statsråd, Suppleant, Vice ordförande",Avgången riksdagsledamot
+0962841101917,Annika,Qarlsson,RS,C,2006-10-11,2010-09-19,47,15,29540,1,1,0,"Förste vice gruppledare, Förste vice ordförande, Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
+0332067570917,Berit,Andnor,KD,RS,2000-07-01,2002-09-15,26,11,10408,1,1,1,"Ledamot, Ordförande, Riksdagsledamot, Socialminister, Statsråd, Vice ordförande",Tidigare riksdagsledamot
+0956595590924,Tobias,Billström,KD,RS,2017-10-13,2018-09-09,10,13,22495,1,1,0,"Ledamot, Riksdagsledamot, Suppleant, Utrikesminister",Avgången riksdagsledamot
 0482927154110,Leif,Jakobsson,RS,S,2008-06-05,2010-09-19,27,10,10640,1,1,1,"Förste vice gruppledare, Ledamot, Riksdagsledamot, Suppleant, Vice ordförande",Tidigare riksdagsledamot
 0824721092613,Carina,Moberg,KD,S,2011-04-12,2014-09-14,41,6,1660,0,0,1,"Gruppledare, Ledamot, Suppleant, Vice ordförande",Avliden  2012-08-15
-0371414788216,Lars,Lindblad,RS,M,2006-10-11,2010-09-19,47,4,5350,1,1,1,"Gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
-014744660015,Mikael,Damberg,KD,S,2012-02-23,2014-09-14,30,21,15921,1,1,1,"Finansminister, Gruppledare, Ledamot, Närings- och innovationsminister, Ordförande, Riksdagsledamot, Statsråd, Suppleant, Vice ordförande",Tjänstgörande riksdagsledamot
-0875221317013,Gunilla,Carlsson,KD,RS,2022-10-04,2026-09-13,47,8,8060,0,1,1,"Ersättare, Ledamot, Personlig suppleant, Suppleant, Vice ordförande",Tjänstgörande riksdagsledamot
-0744993950910,Anders,Ygeman,KD,RS,2017-08-31,2018-09-09,12,20,9740,1,1,1,"Ledamot, Ordförande, Riksdagsledamot, Statsråd, Suppleant, Vice ordförande",Tjänstgörande riksdagsledamot
-0430865615328,Linda,Lindberg,RS,KD,2023-04-18,2026-09-13,40,6,6575,0,1,1,"Gruppledare, Ledamot, Suppleant",Tjänstgörande riksdagsledamot
-0956444284814,Per,Bolund,MP,M,2021-02-05,2022-09-11,19,10,3707,1,1,0,"Ledamot, Miljö- och klimatminister, Riksdagsledamot, Suppleant",Avgången riksdagsledamot
-0772402807013,Sven-Olof,Sällström,SD,KD,2014-10-14,2018-09-09,46,21,31213,1,1,1,"Deputerad, Ledamot, Riksdagsledamot, Suppleant, Vice ordförande",Avliden  2024-03-14
-0939158389321,Samuel,Gonzalez Westling,V,RS,2022-10-04,2026-09-13,47,9,6930,0,1,0,"Ledamot, Suppleant",Tjänstgörande riksdagsledamot
-0452755722723,Björn,Söder,SD,KD,2010-10-19,2014-09-14,46,53,57845,1,1,1,"Andre vice talman, Deputerad, Ersättare, Ledamot, Ordförande, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
-0462699892622,Maria,Ferm,RS,KD,2014-10-14,2018-09-09,46,22,15842,1,1,1,"Ersättare, Förste vice gruppledare, Gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
-0745549193810,Stefan,Attefall,RS,S,2010-10-06,2014-09-14,47,2,4368,0,1,0,"Riksdagsledamot, Statsråd, Suppleant",Tidigare riksdagsledamot
-0640669898710,Gunvor,G Ericson,MP,RS,2011-09-19,2014-09-14,35,6,4375,0,1,0,"Ersättare, Förste vice gruppledare, Ledamot, Suppleant",Tidigare riksdagsledamot
-0224712677012,Johan,Pehrson,RS,KD,2006-10-17,2010-09-19,47,31,43697,1,1,1,"Arbetsmarknads- och integrationsminister, Gruppledare, Ledamot, Partiledare, Personlig suppleant, Riksdagsledamot, Suppleant, Tillförordnad partiledare, Utbildningsminister",Avgången riksdagsledamot
-0284192765516,Tomas,Eneroth,S,RS,2014-10-07,2018-09-09,47,25,15636,1,1,1,"Ersättare, Infrastrukturminister, Ledamot, Ordförande, Riksdagsledamot, Statsråd, Suppleant, Vice ordförande",Avgången riksdagsledamot
-011731125914,Ylva,Johansson,S,KD,2007-05-11,2010-09-19,40,9,9221,1,1,1,"Arbetsmarknads- och etableringsminister, Arbetsmarknadsminister, Ledamot, Riksdagsledamot, Vice ordförande",Tidigare riksdagsledamot
-0229760896014,Anders,W Jonsson,KD,RS,2014-10-07,2018-09-09,47,14,26314,1,1,0,"Ledamot, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
-0130789484021,Mattias,Bäckström Johansson,SD,KD,2020-04-08,2022-09-11,29,8,10280,1,1,1,"Ersättare, Ledamot, Partisekreterare, Riksdagsledamot, Suppleant, Tillförordnad partisekreterare",Tjänstgörande riksdagsledamot
-0603490586517,Jan,Björklund,KD,L,2015-11-24,2018-09-09,33,6,3005,1,1,1,"Ledamot, Partiledare, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
-0980316377627,Lars,Hjälmered,RS,KD,2018-10-09,2022-09-11,47,7,15393,1,1,1,"Andre vice ordförande, Ledamot, Ordförande, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
-0202577142527,Matheus,Enholm,SD,KD,2022-10-11,2026-09-13,47,12,7276,0,1,1,"Deputerad, Ersättare, Ledamot, Suppleant, Vice ordförande",Tjänstgörande riksdagsledamot
-0383111552218,Jonas,Sjöstedt,V,KD,2012-02-14,2014-09-14,31,16,19007,1,1,0,"Ledamot, Riksdagsledamot, Suppleant",Europaparlamentariker
-0980681611418,Hans,Wallmark,KD,RS,2015-01-28,2018-09-09,43,48,33088,1,1,1,"Deputerad, Ersättare, Ledamot, Ordförande, Riksdagsledamot, Suppleant, Vice ordförande",Avgången riksdagsledamot
-0430865615328,Linda,Lindberg,SD,KD,2023-04-18,2026-09-13,40,6,6575,0,1,1,"Gruppledare, Ledamot, Suppleant",Tjänstgörande riksdagsledamot
-0199751900210,Annelie,Karlsson,S,KD,2019-01-31,2022-09-11,43,8,21671,0,1,1,"Ersättare, Gruppledare, Ledamot, Suppleant, Vice ordförande",Tidigare riksdagsledamot
-0512357753412,Britt,Bohlin Olsson,KD,RS,2000-07-01,2002-09-15,26,7,12835,1,1,1,"Ledamot, Ordförande, Riksdagsledamot, Suppleant, Vice ordförande",Tidigare riksdagsledamot
-0584659199514,Göran,Hägglund,RS,S,2006-10-06,2010-09-19,47,8,9350,1,1,0,"Ledamot, Riksdagsledamot, Socialminister, Suppleant",Tidigare riksdagsledamot
-0992420223820,Jessica,Rosencrantz,M,RS,2022-10-27,2026-09-13,46,12,4174,1,1,1,"EU-minister, Ledamot, Ordförande, Riksdagsledamot, Statsråd, Suppleant",EU-minister
-0798417016112,Kristina,Zakrisson,RS,KD,2002-10-15,2006-09-17,47,12,11662,1,1,0,"Andre vice ordförande, Ersättare, Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
-0630824497414,Jessica,Polfjärd,RS,KD,2016-03-18,2018-09-09,29,9,6115,1,1,1,"Ledamot, Ordförande, Riksdagsledamot, Suppleant, Vice ordförande",Europaparlamentariker
-0567830387107,Birgitta,Dahl,KD,RS,2000-07-01,2002-09-15,26,1,821,0,1,0,Ledamot,Avliden  2024-11-26
-0630824497414,Jessica,Polfjärd,M,KD,2016-03-18,2018-09-09,29,9,6115,1,1,1,"Ledamot, Ordförande, Riksdagsledamot, Suppleant, Vice ordförande",Europaparlamentariker
-0714307225418,Sven-Erik,Österberg,S,RS,2008-06-05,2010-09-19,27,10,9129,1,1,1,"Gruppledare, Ledamot, Riksdagsledamot, Vice ordförande",Tidigare riksdagsledamot
-0638497389621,Julia,Kronlid,KD,SD,2022-01-01,2022-09-11,8,6,6112,1,1,0,"Andre vice gruppledare, Andre vice ordförande, Andre vice talman, Ledamot, Riksdagsledamot, Suppleant",Andre vice talman (tjänstgörande riksdagsledamot)
-0667220767927,Erik,Ezelius,S,RS,2019-02-07,2022-09-11,43,20,26624,1,1,1,"Deputerad, Ersättare, Förste vice gruppledare, Ledamot, Ordförande, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
-0992420223820,Jessica,Rosencrantz,M,KD,2022-11-15,2026-09-13,45,11,3490,1,1,1,"EU-minister, Ledamot, Ordförande, Riksdagsledamot, Statsråd, Suppleant",EU-minister
-0463606088610,Bertil,Kjellberg,KD,RS,2008-04-04,2010-09-19,29,3,3100,0,1,0,"Ersättare, Ledamot",Tidigare riksdagsledamot
-0959102638818,Roger,Tiefensee,RS,KD,2006-10-17,2010-09-19,47,16,13633,1,1,1,"Gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
-064601872511,Catharina,Elmsäter-Svärd,KD,RS,2006-10-10,2010-09-19,47,9,3686,1,0,1,"Infrastruktur- och försvarsminister, Ledamot, Ordförande, Riksdagsledamot, Statsråd, Suppleant, Vice ordförande",Tidigare riksdagsledamot
-0638497389621,Julia,Kronlid,KD,RS,2018-10-02,2022-09-11,47,10,23987,1,1,0,"Andre vice gruppledare, Andre vice ordförande, Andre vice talman, Ersättare, Ledamot, Riksdagsledamot, Suppleant",Andre vice talman (tjänstgörande riksdagsledamot)
-0922497728524,Ardalan,Shekarabi,S,KD,2022-10-11,2026-09-13,47,6,4344,1,1,1,"Ledamot, Riksdagsledamot, Vice ordförande",Tjänstgörande riksdagsledamot
-069436402021,Tomas,Tobé,RS,KD,2010-10-19,2014-09-14,46,18,11398,1,1,1,"Andre vice ordförande, Förste vice gruppledare, Ledamot, Ordförande, Partisekreterare, Riksdagsledamot, Suppleant",Europaparlamentariker
-0198917587520,Maj,Karlsson,V,KD,2017-06-16,2018-09-09,14,16,26642,1,1,1,"Ersättare, Gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
-0193303720505,Anita,Johansson,KD,RS,2000-07-01,2002-09-15,26,6,8205,1,1,1,"Ledamot, Riksdagsledamot, Suppleant, Vice ordförande",Tidigare riksdagsledamot
-0781648625615,Peter,Rådberg,KD,MP,2010-10-25,2014-09-14,46,11,2755,0,1,0,"Deputerad, Kvittningsperson, Suppleant",Tidigare riksdagsledamot
-0275724540919,Erik,Ullenhag,KD,L,2015-11-24,2018-09-09,33,1,196,0,0,1,Gruppledare,Tidigare riksdagsledamot
-0452755722723,Björn,Söder,KD,RS,2018-10-02,2022-09-11,47,29,32382,1,1,1,"Deputerad, Ersättare, Ledamot, Ordförande, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
-0899112324519,Elisabeth,Svantesson,KD,RS,2021-02-04,2022-09-11,19,6,3558,1,1,1,"Ersättare, Finansminister, Ledamot, Ordförande, Riksdagsledamot",Finansminister
-0415959965211,Mia,Sydow Mölleby,KD,RS,2018-10-02,2022-09-11,47,7,16387,0,1,0,"Ledamot, Suppleant",Tidigare riksdagsledamot
-0116084827614,Mehmet,Kaplan,RS,MP,2010-10-19,2014-09-14,46,8,6849,0,1,1,"Förste vice gruppledare, Gruppledare, Ledamot, Statsråd, Suppleant",Tidigare riksdagsledamot
-0847676507229,Stina,Larsson,RS,C,2026-01-07,2026-09-13,8,1,150,0,1,0,Förste vice gruppledare,Tjänstgörande riksdagsledamot
-0238588409223,Gustav,Fridolin,MP,KD,2011-09-19,2014-09-14,35,12,5586,1,1,0,"Ledamot, Riksdagsledamot, Utbildningsminister",Tidigare riksdagsledamot
-0819601620927,Annika,Hirvonen,MP,RS,2019-11-29,2022-09-11,33,22,26387,1,1,1,"Ersättare, Förste vice gruppledare, Gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
-0552248175312,Berit,Högman,KD,RS,2012-03-23,2014-09-14,29,7,10598,1,1,0,"Ersättare, Förste vice gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
-0793372891224,Noria,Manouchi,M,KD,2022-11-15,2026-09-13,45,6,4314,0,1,0,"Ledamot, Suppleant",Tjänstgörande riksdagsledamot
-0275724540919,Erik,Ullenhag,KD,FP,2014-10-04,2018-09-09,47,4,2572,1,0,1,"Gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
-0694917698222,Michael,Rubbestad,RS,SD,2023-04-26,2026-09-13,40,8,4937,0,0,0,"Ersättare, Förste vice gruppledare, Ledamot, Suppleant",Avgången riksdagsledamot
-0338458649710,Anti,Avsan,RS,KD,2015-03-12,2018-09-09,41,1,1292,0,1,0,Ledamot,Tidigare riksdagsledamot
-0938901612810,Fredrik,Reinfeldt,RS,KD,2002-10-15,2006-09-17,47,11,15171,1,1,1,"Ledamot, Partiledare, Riksdagsledamot, Statsminister, Suppleant",Tidigare riksdagsledamot
-0552248175312,Berit,Högman,S,RS,2012-03-23,2014-09-14,29,7,10598,1,1,0,"Ersättare, Förste vice gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
-0430865615328,Linda,Lindberg,RS,SD,2022-10-25,2026-09-13,46,8,6931,0,1,1,"Förste vice gruppledare, Gruppledare, Ledamot, Suppleant",Tjänstgörande riksdagsledamot
-0634917636517,Margareta,Israelsson,RS,KD,2006-10-17,2010-09-19,47,1,1448,0,1,0,Ledamot,Tidigare riksdagsledamot
-012053331219,Anna,Kinberg Batra,M,RS,2010-10-12,2014-09-14,47,14,14533,1,1,1,"Gruppledare, Ledamot, Ordförande, Partiledare, Riksdagsledamot, Suppleant, Vice ordförande",Tidigare riksdagsledamot
-0800956862429,Gulan,Avci,L,KD,2022-11-17,2026-09-13,45,6,3480,0,0,0,"Ledamot, Suppleant",Tjänstgörande riksdagsledamot
-0793372891224,Noria,Manouchi,RS,KD,2022-11-15,2026-09-13,45,6,4314,0,1,0,"Ledamot, Suppleant",Tjänstgörande riksdagsledamot
-0224712677012,Johan,Pehrson,RS,FP,2006-10-11,2010-09-19,47,32,45151,1,1,1,"Arbetsmarknads- och integrationsminister, Gruppledare, Ledamot, Partiledare, Personlig suppleant, Riksdagsledamot, Suppleant, Tillförordnad partiledare, Utbildningsminister",Avgången riksdagsledamot
-0607691439013,Karin,Enström,KD,RS,2018-10-02,2022-09-11,47,21,30535,1,1,1,"Ersättare, Ledamot, Ordförande, Partisekreterare, Riksdagsledamot, Suppleant, Vice ordförande",Tjänstgörande riksdagsledamot
-0956595590924,Tobias,Billström,M,RS,2017-10-13,2018-09-09,10,13,22495,1,1,0,"Ledamot, Riksdagsledamot, Suppleant, Utrikesminister",Avgången riksdagsledamot
-0956595590924,Tobias,Billström,KD,RS,2017-10-13,2018-09-09,10,13,22495,1,1,0,"Ledamot, Riksdagsledamot, Suppleant, Utrikesminister",Avgången riksdagsledamot
-0819601620927,Annika,Hirvonen,MP,KD,2021-03-05,2022-09-11,18,18,15046,1,1,1,"Ersättare, Förste vice gruppledare, Gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
-0911916463828,Fredrik,Lundh Sammeli,KD,RS,2025-04-22,2026-09-13,16,1,532,0,1,0,Ersättare,Tjänstgörande riksdagsledamot
-0980681611418,Hans,Wallmark,KD,M,2015-01-20,2018-09-09,43,49,35166,1,1,1,"Deputerad, Ersättare, Förste vice gruppledare, Ledamot, Ordförande, Riksdagsledamot, Suppleant, Vice ordförande",Avgången riksdagsledamot
-0482927154110,Leif,Jakobsson,KD,S,2008-06-05,2010-09-19,27,10,10640,1,1,1,"Förste vice gruppledare, Ledamot, Riksdagsledamot, Suppleant, Vice ordförande",Tidigare riksdagsledamot
 0332067570917,Berit,Andnor,KD,S,2002-09-30,2006-09-17,47,10,9567,1,1,1,"Ledamot, Ordförande, Riksdagsledamot, Socialminister, Statsråd, Vice ordförande",Tidigare riksdagsledamot
-0473783431010,Morgan,Johansson,S,KD,2010-10-19,2014-09-14,46,25,18855,1,1,1,"Deputerad, Justitie- och inrikesminister, Justitie- och migrationsminister, Ledamot, Ordförande, Riksdagsledamot, Suppleant, Vice ordförande",Tjänstgörande riksdagsledamot
-0956595590924,Tobias,Billström,KD,M,2017-10-03,2018-09-09,11,15,24684,1,1,1,"Gruppledare, Ledamot, Riksdagsledamot, Suppleant, Utrikesminister",Avgången riksdagsledamot
-0332067570917,Berit,Andnor,RS,S,2002-09-30,2006-09-17,47,10,9567,1,1,1,"Ledamot, Ordförande, Riksdagsledamot, Socialminister, Statsråd, Vice ordförande",Tidigare riksdagsledamot
-0411459873625,Hanna,Gunnarsson,V,RS,2020-02-07,2022-09-11,31,25,21415,1,1,0,"Deputerad, Ersättare, Kvittningsperson, Ledamot, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
-0714307225418,Sven-Erik,Österberg,KD,S,2008-06-03,2010-09-19,27,11,9982,1,1,1,"Gruppledare, Ledamot, Riksdagsledamot, Vice ordförande",Tidigare riksdagsledamot
-031005479013,Per,Westerberg,KD,RS,2002-10-08,2006-09-17,47,8,15464,1,1,1,"Förste vice talman, Ledamot, Ordförande, Riksdagsledamot, Suppleant, Talman",Tidigare riksdagsledamot
-0584659199514,Göran,Hägglund,KD,RS,2000-07-01,2002-09-15,26,15,19481,1,1,1,"Ledamot, Ordförande, Partiledare, Riksdagsledamot, Socialminister, Suppleant",Tidigare riksdagsledamot
-0463606088610,Bertil,Kjellberg,M,KD,2006-10-24,2010-09-19,46,4,5982,0,1,0,"Ersättare, Ledamot, Suppleant",Tidigare riksdagsledamot
-0714307225418,Sven-Erik,Österberg,KD,RS,2008-06-05,2010-09-19,27,10,9129,1,1,1,"Gruppledare, Ledamot, Riksdagsledamot, Vice ordförande",Tidigare riksdagsledamot
-0760437424714,Magdalena,Andersson,KD,RS,2006-12-15,2010-09-19,45,6,5240,1,1,0,"Deputerad, Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
-0667220767927,Erik,Ezelius,S,KD,2022-06-10,2022-09-11,3,14,8445,1,1,1,"Deputerad, Ersättare, Ledamot, Ordförande, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
-0199751900210,Annelie,Karlsson,S,RS,2018-04-10,2018-09-09,4,13,26645,1,1,1,"Ersättare, Förste vice gruppledare, Gruppledare, Ledamot, Riksdagsledamot, Suppleant, Vice ordförande",Tidigare riksdagsledamot
-0802546764724,Åsa,Westlund,KD,RS,2022-10-04,2026-09-13,47,5,3675,0,1,1,"Ledamot, Vice ordförande",Tjänstgörande riksdagsledamot
-0183788551910,Åsa,Torstensson,KD,C,2010-10-25,2014-09-14,46,5,3254,0,1,0,"Kvittningsperson, Ledamot, Suppleant",Tidigare riksdagsledamot
-0502770250503,Göran,Magnusson,RS,KD,2002-10-15,2006-09-17,47,3,3093,0,1,1,"Andre vice ordförande, Ledamot, Ordförande",Tidigare riksdagsledamot
-0959102638818,Roger,Tiefensee,C,KD,2006-10-17,2010-09-19,47,16,13633,1,1,1,"Gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
-0371688419616,Lars,Ohly,KD,V,2004-02-20,2006-09-17,30,16,19147,1,1,1,"Gruppledare, Ledamot, Partiledare, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
-0371414788216,Lars,Lindblad,M,KD,2006-10-17,2010-09-19,47,3,3896,1,1,0,"Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
-0665485817222,Daniel,Bäckström,C,RS,2022-10-04,2026-09-13,47,13,6471,1,1,1,"Gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
-0803753212716,Richard,Jomshof,KD,SD,2015-02-26,2018-09-09,42,15,23446,1,1,1,"Ledamot, Ordförande, Partisekreterare, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
-012053331219,Anna,Kinberg Batra,M,KD,2010-10-19,2014-09-14,46,13,10173,1,1,1,"Gruppledare, Ledamot, Partiledare, Riksdagsledamot, Suppleant, Vice ordförande",Tidigare riksdagsledamot
-0411459873625,Hanna,Gunnarsson,RS,KD,2022-04-29,2022-09-11,4,15,8688,1,1,0,"Deputerad, Kvittningsperson, Ledamot, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
-0332067570917,Berit,Andnor,KD,RS,2000-07-01,2002-09-15,26,11,10408,1,1,1,"Ledamot, Ordförande, Riksdagsledamot, Socialminister, Statsråd, Vice ordförande",Tidigare riksdagsledamot
-0334816698724,Karolina,Skog,M,RS,2021-02-25,2022-09-11,18,1,319,0,0,0,Ersättare,Tidigare riksdagsledamot
-0446541913415,Allan,Widman,RS,KD,2006-10-17,2010-09-19,47,46,37955,1,1,1,"Deputerad, Ersättare, Förste vice gruppledare, Ledamot, Ordförande, Riksdagsledamot, Suppleant, Vice ordförande",Tidigare riksdagsledamot
 0638497389621,Julia,Kronlid,RS,SD,2022-01-01,2022-09-11,8,6,6112,1,1,0,"Andre vice gruppledare, Andre vice ordförande, Andre vice talman, Ledamot, Riksdagsledamot, Suppleant",Andre vice talman (tjänstgörande riksdagsledamot)
-0940980416614,Jan,Ericson,KD,RS,2022-11-08,2026-09-13,46,1,1428,0,1,0,Ersättare,Tjänstgörande riksdagsledamot
-0334816698724,Karolina,Skog,M,MP,2021-02-22,2022-09-11,18,2,641,0,0,0,"Ersättare, Förste vice gruppledare",Tidigare riksdagsledamot
-0938901612810,Fredrik,Reinfeldt,RS,M,2003-10-25,2006-09-17,34,9,12628,1,1,1,"Ledamot, Partiledare, Riksdagsledamot, Statsminister",Tidigare riksdagsledamot
-0792716417210,Lars,Bäckström,KD,RS,2000-07-01,2002-09-15,26,5,6751,1,1,0,"Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
-0875221317013,Gunilla,Carlsson,S,RS,2022-10-04,2026-09-13,47,8,8060,0,1,1,"Ersättare, Ledamot, Personlig suppleant, Suppleant, Vice ordförande",Tjänstgörande riksdagsledamot
-0831636664429,Mattias,Karlsson,RS,KD,2014-10-14,2018-09-09,46,27,33977,1,1,1,"Ledamot, Ordförande, Riksdagsledamot, Suppleant, Vice ordförande",Tjänstgörande riksdagsledamot
-0229760896014,Anders,W Jonsson,C,KD,2011-10-19,2014-09-14,34,18,33616,1,1,1,"Gruppledare, Ledamot, Ordförande, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
-0198917587520,Maj,Karlsson,V,RS,2018-10-02,2022-09-11,47,14,23236,1,1,1,"Ersättare, Gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
-0262017901513,Beatrice,Ask,KD,RS,2000-07-01,2002-09-15,26,28,23272,1,1,1,"Deputerad, Justitieminister, Ledamot, Ordförande, Riksdagsledamot, Suppleant, Vice ordförande",Tidigare riksdagsledamot
-098412828516,Magdalena,Andersson,S,KD,2022-10-11,2026-09-13,47,4,4352,1,1,0,"Förste vice ordförande, Ledamot, Riksdagsledamot",Tjänstgörande riksdagsledamot
-0667220767927,Erik,Ezelius,RS,KD,2022-06-10,2022-09-11,3,14,8445,1,1,1,"Deputerad, Ersättare, Ledamot, Ordförande, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
-0962841101917,Annika,Qarlsson,RS,C,2006-10-11,2010-09-19,47,15,29540,1,1,0,"Förste vice gruppledare, Förste vice ordförande, Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
-0612916684825,Johan,Löfstrand,RS,S,2022-10-07,2026-09-13,47,2,2799,0,1,0,"Förste vice gruppledare, Ledamot",Tjänstgörande riksdagsledamot
-0901257862125,Hans,Linde,V,KD,2010-10-19,2014-09-14,46,21,6657,1,1,1,"Deputerad, Gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
-0731442709013,Christer,Nylander,L,KD,2016-06-09,2018-09-09,27,6,16102,1,1,1,"Ledamot, Ordförande, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
-042839539117,Alice,Åström,V,KD,2006-10-17,2010-09-19,47,2,2120,0,1,0,"Ledamot, Suppleant",Tidigare riksdagsledamot
-023767922422,Mats,Persson,L,KD,2022-10-11,2026-09-13,47,6,3585,1,1,0,"Arbetsmarknads- och integrationsminister, Ledamot, Riksdagsledamot, Suppleant, Utbildningsminister",Tjänstgörande riksdagsledamot
-0584183916016,Ulf,Holm,MP,KD,2025-10-10,2026-09-13,11,3,1277,0,0,0,"Deputerad, Ersättare, Extra suppleant, Ledamot, Suppleant",Tillgänglig ersättare
-0714579775816,Ewa,Thalén Finné,RS,KD,2013-01-22,2014-09-14,19,8,10222,1,1,0,"Förste vice talman, Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
-0630824497414,Jessica,Polfjärd,RS,M,2015-01-13,2018-09-09,43,13,12054,1,1,1,"Gruppledare, Ledamot, Ordförande, Riksdagsledamot, Suppleant, Vice ordförande",Europaparlamentariker
-0224712677012,Johan,Pehrson,FP,KD,2006-10-17,2010-09-19,47,31,43697,1,1,1,"Arbetsmarknads- och integrationsminister, Gruppledare, Ledamot, Partiledare, Personlig suppleant, Riksdagsledamot, Suppleant, Tillförordnad partiledare, Utbildningsminister",Avgången riksdagsledamot
-0505599928316,Carl Fredrik,Graf,KD,RS,2000-07-01,2002-09-15,26,1,821,0,1,0,Suppleant,Tidigare riksdagsledamot
-0522054204918,Mattias,Karlsson,M,KD,2022-11-15,2026-09-13,45,3,2138,0,1,1,"Ledamot, Ordförande",Tjänstgörande riksdagsledamot
-0628005785225,Jörgen,Berglund,M,RS,2024-10-18,2026-09-13,22,5,854,0,1,0,"Deputerad, Ledamot",Tjänstgörande riksdagsledamot
-0946889218011,Jan-Evert,Rådhström,RS,KD,2010-10-19,2014-09-14,46,1,1441,0,1,0,Ledamot,Tidigare riksdagsledamot
+0222691314314,Ulf,Kristersson,S,M,2017-10-01,2018-09-09,11,11,23949,1,1,1,"Ledamot, Partiledare, Riksdagsledamot, Statsminister, Suppleant",Statsminister
+0224712677012,Johan,Pehrson,RS,FP,2006-10-11,2010-09-19,47,32,45151,1,1,1,"Arbetsmarknads- och integrationsminister, Gruppledare, Ledamot, Partiledare, Personlig suppleant, Riksdagsledamot, Suppleant, Tillförordnad partiledare, Utbildningsminister",Avgången riksdagsledamot
+0199751900210,Annelie,Karlsson,S,KD,2019-01-31,2022-09-11,43,8,21671,0,1,1,"Ersättare, Gruppledare, Ledamot, Suppleant, Vice ordförande",Tidigare riksdagsledamot
 0836001490919,Ulrika,Heie,RS,KD,2014-10-14,2018-09-09,46,12,28924,1,1,1,"Ersättare, Förste vice gruppledare, Gruppledare, Ledamot, Ordförande, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
-0652944607906,Cristina,Husmark Pehrsson,KD,S,2006-10-06,2010-09-19,47,14,8482,1,1,1,"Ledamot, Riksdagsledamot, Statsråd, Suppleant, Vice ordförande",Tidigare riksdagsledamot
-0157062733618,Jonas,Eriksson,MP,RS,2014-10-07,2018-09-09,47,22,11555,1,1,1,"Ersättare, Förste vice gruppledare, Gruppledare, Ledamot, Ordförande, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
-0928223863802,Berit,Jóhannesson,KD,RS,2002-10-08,2006-09-17,47,10,5208,0,1,0,"Deputerad, Ledamot, Suppleant",Tidigare riksdagsledamot
+0522054204918,Mattias,Karlsson,M,KD,2022-11-15,2026-09-13,45,3,2138,0,1,1,"Ledamot, Ordförande",Tjänstgörande riksdagsledamot
+0721509806321,Nooshi,Dadgostar,KD,V,2020-10-31,2022-09-11,22,7,8739,1,1,1,"Ledamot, Partiledare, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
+0824721092613,Carina,Moberg,KD,RS,2011-05-03,2014-09-14,40,5,1343,0,0,1,"Ledamot, Suppleant, Vice ordförande",Avliden  2012-08-15
+0718034011110,Jessika,Roswall,RS,KD,2018-10-09,2022-09-11,47,18,20144,1,1,1,"Andre vice ordförande, Förste vice gruppledare, Ledamot, Ordförande, Riksdagsledamot, Statsråd, Suppleant",Avgången riksdagsledamot
 0504851635310,Daniel,Helldén,MP,KD,2024-01-01,2026-09-13,32,1,2161,0,1,0,"Ledamot, Suppleant",Tjänstgörande riksdagsledamot
-0371414788216,Lars,Lindblad,RS,KD,2006-10-17,2010-09-19,47,3,3896,1,1,0,"Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
-0789353702707,Mats,Lindberg,KD,RS,2000-07-01,2002-09-15,26,1,242,0,0,0,Ledamot,Tidigare riksdagsledamot
-0793372891224,Noria,Manouchi,M,RS,2022-10-27,2026-09-13,46,7,5754,0,1,0,"Ersättare, Ledamot, Suppleant",Tjänstgörande riksdagsledamot
-0959102638818,Roger,Tiefensee,RS,C,2006-10-11,2010-09-19,47,17,15087,1,1,1,"Gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
+0714307225418,Sven-Erik,Österberg,KD,S,2008-06-03,2010-09-19,27,11,9982,1,1,1,"Gruppledare, Ledamot, Riksdagsledamot, Vice ordförande",Tidigare riksdagsledamot
+0638497389621,Julia,Kronlid,KD,SD,2022-01-01,2022-09-11,8,6,6112,1,1,0,"Andre vice gruppledare, Andre vice ordförande, Andre vice talman, Ledamot, Riksdagsledamot, Suppleant",Andre vice talman (tjänstgörande riksdagsledamot)
+014744660015,Mikael,Damberg,KD,RS,2012-02-24,2014-09-14,30,20,14972,1,1,1,"Finansminister, Gruppledare, Ledamot, Närings- och innovationsminister, Ordförande, Riksdagsledamot, Statsråd, Suppleant, Vice ordförande",Tjänstgörande riksdagsledamot
 0853395328224,Lena,Hallengren,S,RS,2022-10-11,2026-09-13,47,5,5308,1,1,1,"Ledamot, Riksdagsledamot, Vice ordförande",Tjänstgörande riksdagsledamot
-0130789484021,Mattias,Bäckström Johansson,KD,RS,2020-10-01,2022-09-11,23,7,9366,1,1,1,"Ersättare, Ledamot, Partisekreterare, Riksdagsledamot, Suppleant, Tillförordnad partisekreterare",Tjänstgörande riksdagsledamot
-0602744999917,Elisabeth,Thand Ringqvist,C,KD,2024-01-01,2026-09-13,32,6,2731,0,1,1,"Andre vice gruppledare, Ersättare, Förste vice gruppledare, Gruppledare, Ledamot, Partiledare",Tjänstgörande riksdagsledamot
-0607691439013,Karin,Enström,RS,M,2022-10-19,2026-09-13,46,10,8174,0,1,1,"Ledamot, Ordförande, Partisekreterare, Suppleant",Tjänstgörande riksdagsledamot
-0457308547314,Karin,Svensson Smith,V,MP,2006-11-14,2010-09-19,46,2,2904,1,0,1,"Ledamot, Ordförande, Riksdagsledamot",Tidigare riksdagsledamot
-0462699892622,Maria,Ferm,MP,KD,2014-10-14,2018-09-09,46,22,15842,1,1,1,"Ersättare, Förste vice gruppledare, Gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
-0331967573912,Maria,Larsson,RS,S,2006-10-06,2010-09-19,47,4,8738,0,1,0,"Ledamot, Riksdagsledamot, Statsråd",Tidigare riksdagsledamot
-0628005785225,Jörgen,Berglund,KD,M,2022-11-24,2026-09-13,45,9,2981,0,1,0,"Deputerad, Förste vice gruppledare, Kvittningsperson, Ledamot",Tjänstgörande riksdagsledamot
-0292756653724,Henrik,von Sydow,KD,RS,2012-11-01,2014-09-14,22,1,697,0,1,0,Ersättare,Tidigare riksdagsledamot
-0891731772016,Mats,Gerdau,RS,KD,2010-10-19,2014-09-14,46,2,1579,0,0,0,"Ledamot, Suppleant",Tidigare riksdagsledamot
-0446541913415,Allan,Widman,FP,KD,2006-10-17,2010-09-19,47,46,37955,1,1,1,"Deputerad, Ersättare, Förste vice gruppledare, Ledamot, Ordförande, Riksdagsledamot, Suppleant, Vice ordförande",Tidigare riksdagsledamot
-0888807074321,Amanda,Lind,MP,KD,2025-11-25,2026-09-13,9,1,322,0,1,0,Ledamot,Tjänstgörande riksdagsledamot
-0819601620927,Annika,Hirvonen,RS,KD,2021-03-05,2022-09-11,18,18,15046,1,1,1,"Ersättare, Förste vice gruppledare, Gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
-0384833975200,Bo,Könberg,RS,KD,2002-10-15,2006-09-17,47,1,2346,0,0,0,"Ledamot, Suppleant",Tidigare riksdagsledamot
-0962841101917,Annika,Qarlsson,RS,KD,2006-10-17,2010-09-19,47,14,28086,1,1,0,"Förste vice ordförande, Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
-051207517226,Jimmie,Åkesson,SD,KD,2010-10-19,2014-09-14,46,11,11983,1,1,0,"Ledamot, Riksdagsledamot",Tjänstgörande riksdagsledamot
-0603490586517,Jan,Björklund,FP,KD,2014-10-14,2018-09-09,46,7,4461,1,1,1,"Ledamot, Partiledare, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
-0996403729104,Tone,Tingsgård,KD,RS,2006-10-10,2010-09-19,47,4,6869,0,1,1,"Ersättare, Ledamot, Suppleant, Vice ordförande",Tidigare riksdagsledamot
-0545733815610,Patrick,Reslow,M,SD,2018-11-07,2022-09-11,46,6,16186,1,1,0,"Ledamot, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
-0388920259006,Inger,René,KD,RS,2000-07-01,2002-09-15,26,12,14600,1,1,1,"Deputerad, Ledamot, Ordförande, Riksdagsledamot, Suppleant, Vice ordförande",Tidigare riksdagsledamot
-0522460069116,Cecilia,Magnusson,RS,KD,2010-10-19,2014-09-14,46,8,12940,1,1,0,"Deputerad, Ersättare, Kvittningsperson, Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
-0938901612810,Fredrik,Reinfeldt,KD,M,2003-10-25,2006-09-17,34,9,12628,1,1,1,"Ledamot, Partiledare, Riksdagsledamot, Statsminister",Tidigare riksdagsledamot
-0288805051019,Lars,Johansson,KD,RS,2010-10-12,2014-09-14,47,3,3359,0,1,0,"Ersättare, Ledamot",Tidigare riksdagsledamot
-0284192765516,Tomas,Eneroth,KD,S,2014-10-04,2018-09-09,47,26,16663,1,1,1,"Ersättare, Gruppledare, Infrastrukturminister, Ledamot, Ordförande, Riksdagsledamot, Statsråd, Suppleant, Vice ordförande",Avgången riksdagsledamot
-0446973363306,Lennart,Nilsson,KD,RS,2002-10-08,2006-09-17,47,2,8709,0,1,0,"Ledamot, Suppleant",Avliden  2025-06-10
-0541320528015,Nina,Lundström,FP,RS,2012-09-27,2014-09-14,23,19,22606,1,1,1,"Ersättare, Extra suppleant, Förste vice gruppledare, Ledamot, Riksdagsledamot, Statsrådsersättare, Suppleant, Vice ordförande",Tidigare riksdagsledamot
-0460690753617,Pia,Nilsson,RS,KD,2014-10-14,2018-09-09,46,6,18672,1,1,0,"Ersättare, Ledamot, Personlig suppleant, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
-0745549193810,Stefan,Attefall,KD,S,2010-10-06,2014-09-14,47,2,4368,0,1,0,"Riksdagsledamot, Statsråd, Suppleant",Tidigare riksdagsledamot
-0411459873625,Hanna,Gunnarsson,V,KD,2022-04-29,2022-09-11,4,15,8688,1,1,0,"Deputerad, Kvittningsperson, Ledamot, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
-0744993950910,Anders,Ygeman,KD,S,2017-08-08,2018-09-09,13,21,10281,1,1,1,"Gruppledare, Ledamot, Ordförande, Riksdagsledamot, Statsråd, Suppleant, Vice ordförande",Tjänstgörande riksdagsledamot
-0229760896014,Anders,W Jonsson,C,RS,2014-10-07,2018-09-09,47,14,26314,1,1,0,"Ledamot, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
-0316505710324,Janine,Alm Ericson,MP,RS,2019-02-15,2022-09-11,42,24,24938,1,1,1,"Deputerad, Ersättare, Förste vice gruppledare, Gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
-0473783431010,Morgan,Johansson,S,RS,2006-10-10,2010-09-19,47,34,25372,1,1,1,"Deputerad, Justitie- och inrikesminister, Justitie- och migrationsminister, Ledamot, Ordförande, Riksdagsledamot, Suppleant, Vice ordförande",Tjänstgörande riksdagsledamot
-0758652610,Maria,Arnholm,L,KD,2018-10-09,2022-09-11,47,4,542,0,0,0,"Ledamot, Suppleant",Tidigare riksdagsledamot
+0371414788216,Lars,Lindblad,RS,M,2006-10-11,2010-09-19,47,4,5350,1,1,1,"Gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
+0939158389321,Samuel,Gonzalez Westling,RS,KD,2022-10-11,2026-09-13,47,8,5101,0,1,0,"Ledamot, Suppleant",Tjänstgörande riksdagsledamot
 0522460069116,Cecilia,Magnusson,M,KD,2010-10-19,2014-09-14,46,8,12940,1,1,0,"Deputerad, Ersättare, Kvittningsperson, Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
-0612916684825,Johan,Löfstrand,KD,S,2022-10-07,2026-09-13,47,2,2799,0,1,0,"Förste vice gruppledare, Ledamot",Tjänstgörande riksdagsledamot
-0612916684825,Johan,Löfstrand,KD,RS,2022-10-04,2026-09-13,47,3,7172,0,1,0,"Förste vice gruppledare, Ledamot, Suppleant",Tjänstgörande riksdagsledamot
-0665485817222,Daniel,Bäckström,C,KD,2022-10-11,2026-09-13,47,12,5309,1,1,1,"Gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
-0893004490313,Cecilia,Widegren,RS,KD,2010-10-19,2014-09-14,46,30,29903,1,1,1,"Deputerad, Ersättare, Ledamot, Ordförande, Riksdagsledamot, Suppleant, Vice ordförande",Tidigare riksdagsledamot
-0130789484021,Mattias,Bäckström Johansson,SD,RS,2020-10-01,2022-09-11,23,7,9366,1,1,1,"Ersättare, Ledamot, Partisekreterare, Riksdagsledamot, Suppleant, Tillförordnad partisekreterare",Tjänstgörande riksdagsledamot
-0721509806321,Nooshi,Dadgostar,KD,V,2020-10-31,2022-09-11,22,7,8715,1,1,1,"Ledamot, Partiledare, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
-014744660015,Mikael,Damberg,S,RS,2012-02-24,2014-09-14,30,20,14972,1,1,1,"Finansminister, Gruppledare, Ledamot, Närings- och innovationsminister, Ordförande, Riksdagsledamot, Statsråd, Suppleant, Vice ordförande",Tjänstgörande riksdagsledamot
-0603753860213,Carina,Ståhl Herrstedt,SD,RS,2022-10-04,2026-09-13,47,4,3405,0,0,0,"Ersättare, Kvittningsperson, Ledamot",Avgången riksdagsledamot
-0836001490919,Ulrika,Heie,C,KD,2014-10-14,2018-09-09,46,12,28924,1,1,1,"Ersättare, Förste vice gruppledare, Gruppledare, Ledamot, Ordförande, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
-0718034011110,Jessika,Roswall,RS,M,2020-09-29,2022-09-11,23,7,2278,1,1,1,"Förste vice gruppledare, Ledamot, Ordförande, Riksdagsledamot, Statsråd, Suppleant",Avgången riksdagsledamot
-0157062733618,Jonas,Eriksson,RS,KD,2014-10-14,2018-09-09,46,21,9986,1,1,1,"Ersättare, Förste vice gruppledare, Gruppledare, Ledamot, Ordförande, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
-0482927154110,Leif,Jakobsson,RS,KD,2002-02-15,2002-09-15,7,18,22604,1,1,1,"Förste vice gruppledare, Ledamot, Riksdagsledamot, Suppleant, Vice ordförande",Tidigare riksdagsledamot
-0222691314314,Ulf,Kristersson,S,KD,2017-12-14,2018-09-09,8,9,20437,1,1,0,"Ledamot, Riksdagsledamot, Statsminister, Suppleant",Statsminister
-0384833975200,Bo,Könberg,S,RS,2002-10-08,2006-09-17,47,2,7066,0,0,0,"Ledamot, Suppleant",Tidigare riksdagsledamot
-0956444284814,Per,Bolund,MP,KD,2020-01-23,2022-09-11,31,11,4697,1,1,0,"Ledamot, Miljö- och klimatminister, Riksdagsledamot, Suppleant",Avgången riksdagsledamot
-031414803913,Maria,Wetterstrand,MP,KD,2002-10-15,2006-09-17,47,13,11968,1,1,1,"Ledamot, Riksdagsledamot, Suppleant, Vice ordförande",Tidigare riksdagsledamot
-0462699892622,Maria,Ferm,MP,RS,2014-10-07,2018-09-09,47,23,16189,1,1,1,"Ersättare, Förste vice gruppledare, Gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
-0475643059428,Jonny,Cato,RS,KD,2025-09-04,2026-09-13,12,1,86,0,0,0,Ledamot,Avgången riksdagsledamot
-0316505710324,Janine,Alm Ericson,KD,RS,2019-02-15,2022-09-11,42,24,24938,1,1,1,"Deputerad, Ersättare, Förste vice gruppledare, Gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
-0228027853620,Vasiliki,Tsouplaki,RS,KD,2022-10-11,2026-09-13,47,1,1463,0,1,0,Ledamot,Tjänstgörande riksdagsledamot
-0962841101917,Annika,Qarlsson,C,KD,2006-10-17,2010-09-19,47,14,28086,1,1,0,"Förste vice ordförande, Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
-0222691314314,Ulf,Kristersson,M,KD,2017-12-14,2018-09-09,8,9,20437,1,1,0,"Ledamot, Riksdagsledamot, Statsminister, Suppleant",Statsminister
-012053331219,Anna,Kinberg Batra,RS,KD,2010-10-19,2014-09-14,46,13,10173,1,1,1,"Gruppledare, Ledamot, Partiledare, Riksdagsledamot, Suppleant, Vice ordförande",Tidigare riksdagsledamot
-0222691314314,Ulf,Kristersson,S,M,2017-10-01,2018-09-09,11,11,23921,1,1,1,"Ledamot, Partiledare, Riksdagsledamot, Statsminister, Suppleant",Statsminister
-0980681611418,Hans,Wallmark,M,RS,2015-01-28,2018-09-09,43,48,33088,1,1,1,"Deputerad, Ersättare, Ledamot, Ordförande, Riksdagsledamot, Suppleant, Vice ordförande",Avgången riksdagsledamot
-0618560932311,Hillevi,Engström,RS,KD,2008-05-09,2010-09-19,28,8,4197,1,1,0,"Arbetsmarknadsminister, Ledamot, Riksdagsledamot, Statsråd, Suppleant",Tidigare riksdagsledamot
-0202577142527,Matheus,Enholm,SD,RS,2025-02-14,2026-09-13,18,5,805,0,1,0,"Deputerad, Ersättare, Suppleant",Tjänstgörande riksdagsledamot
-0853395328224,Lena,Hallengren,KD,RS,2022-10-11,2026-09-13,47,5,5308,1,1,1,"Ledamot, Riksdagsledamot, Vice ordförande",Tjänstgörande riksdagsledamot
-0628005785225,Jörgen,Berglund,KD,RS,2024-10-18,2026-09-13,22,5,854,0,1,0,"Deputerad, Ledamot",Tjänstgörande riksdagsledamot
-039655712615,Margareta,Pålsson,KD,M,2008-03-12,2010-09-19,30,4,5013,1,1,1,"Förste vice gruppledare, Ledamot, Ordförande, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
-0658668232410,Per,Bill,RS,KD,2010-10-19,2014-09-14,46,4,3473,1,1,1,"Ersättare, Ledamot, Ordförande, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
-0824721092613,Carina,Moberg,S,RS,2011-05-03,2014-09-14,40,5,1343,0,0,1,"Ledamot, Suppleant, Vice ordförande",Avliden  2012-08-15
-0284192765516,Tomas,Eneroth,KD,RS,2014-10-07,2018-09-09,47,25,15636,1,1,1,"Ersättare, Infrastrukturminister, Ledamot, Ordförande, Riksdagsledamot, Statsråd, Suppleant, Vice ordförande",Avgången riksdagsledamot
-0880452278816,Mikaela,Valtersson,MP,RS,2010-10-12,2014-09-14,47,1,1014,0,0,0,"Ledamot, Suppleant",Tidigare riksdagsledamot
+0430865615328,Linda,Lindberg,SD,KD,2023-04-18,2026-09-13,40,6,6599,0,1,1,"Gruppledare, Ledamot, Suppleant",Tjänstgörande riksdagsledamot
+0831636664429,Mattias,Karlsson,SD,RS,2014-10-07,2018-09-09,47,28,37240,1,1,1,"Ledamot, Ordförande, Riksdagsledamot, Suppleant, Vice ordförande",Tjänstgörande riksdagsledamot
+039655712615,Margareta,Pålsson,RS,M,2008-03-12,2010-09-19,30,4,5013,1,1,1,"Förste vice gruppledare, Ledamot, Ordförande, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
+0665485817222,Daniel,Bäckström,C,KD,2022-10-11,2026-09-13,47,12,5333,1,1,1,"Gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
+0284192765516,Tomas,Eneroth,KD,S,2014-10-04,2018-09-09,47,26,16663,1,1,1,"Ersättare, Gruppledare, Infrastrukturminister, Ledamot, Ordförande, Riksdagsledamot, Statsråd, Suppleant, Vice ordförande",Avgången riksdagsledamot
 0939158389321,Samuel,Gonzalez Westling,V,KD,2022-10-11,2026-09-13,47,8,5101,0,1,0,"Ledamot, Suppleant",Tjänstgörande riksdagsledamot
+0534173087404,Carin,Lundberg,KD,RS,2002-10-24,2006-09-17,46,2,2902,0,1,0,"Ledamot, Suppleant",Tidigare riksdagsledamot
 0406831930624,Henrik,Vinge,KD,RS,2020-10-01,2022-09-11,23,8,7478,1,1,1,"Ledamot, Ordförande, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
-0522054204918,Mattias,Karlsson,M,RS,2022-10-27,2026-09-13,46,4,3578,0,1,1,"Ledamot, Ordförande",Tjänstgörande riksdagsledamot
-0228027853620,Vasiliki,Tsouplaki,V,RS,2022-10-04,2026-09-13,47,2,5836,0,1,0,"Ersättare, Ledamot, Suppleant",Tjänstgörande riksdagsledamot
-0104804820009,Per,Unckel,KD,RS,2000-07-01,2002-09-15,26,8,1712,1,1,1,"Deputerad, Ledamot, Ordförande, Riksdagsledamot, Suppleant",Avliden  2011-09-20
-0925652297119,Per,Ramhorn,SD,RS,2014-10-07,2018-09-09,47,9,23006,1,1,0,"Ersättare, Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
-0522054204918,Mattias,Karlsson,RS,KD,2022-11-15,2026-09-13,45,3,2138,0,1,1,"Ledamot, Ordförande",Tjänstgörande riksdagsledamot
-0992420223820,Jessica,Rosencrantz,RS,KD,2022-11-15,2026-09-13,45,11,3490,1,1,1,"EU-minister, Ledamot, Ordförande, Riksdagsledamot, Statsråd, Suppleant",EU-minister
-0814945477312,Gunilla,Wahlén,V,KD,2006-10-17,2010-09-19,47,7,1874,0,1,0,"Deputerad, Ledamot, Suppleant",Tidigare riksdagsledamot
+0714307225418,Sven-Erik,Österberg,KD,RS,2008-06-05,2010-09-19,27,10,9129,1,1,1,"Gruppledare, Ledamot, Riksdagsledamot, Vice ordförande",Tidigare riksdagsledamot
+0529963707818,Martin,Nilsson,RS,KD,2002-10-15,2006-09-17,47,5,4357,1,1,0,"Deputerad, Ledamot, Riksdagsledamot",Tidigare riksdagsledamot
+0238588409223,Gustav,Fridolin,MP,KD,2011-09-19,2014-09-14,35,12,5586,1,1,0,"Ledamot, Riksdagsledamot, Utbildningsminister",Tidigare riksdagsledamot
+0744993950910,Anders,Ygeman,KD,S,2017-08-08,2018-09-09,13,21,10281,1,1,1,"Gruppledare, Ledamot, Ordförande, Riksdagsledamot, Statsråd, Suppleant, Vice ordförande",Tjänstgörande riksdagsledamot
+0612916684825,Johan,Löfstrand,KD,S,2022-10-07,2026-09-13,47,2,2823,0,1,0,"Förste vice gruppledare, Ledamot",Tjänstgörande riksdagsledamot
+0157062733618,Jonas,Eriksson,RS,KD,2014-10-14,2018-09-09,46,21,9986,1,1,1,"Ersättare, Förste vice gruppledare, Gruppledare, Ledamot, Ordförande, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
+0157062733618,Jonas,Eriksson,MP,RS,2014-10-07,2018-09-09,47,22,11555,1,1,1,"Ersättare, Förste vice gruppledare, Gruppledare, Ledamot, Ordförande, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
+0745549193810,Stefan,Attefall,RS,KD,2002-10-15,2006-09-17,47,12,17956,1,1,1,"Gruppledare, Ledamot, Ordförande, Riksdagsledamot, Statsråd, Suppleant",Tidigare riksdagsledamot
+0628005785225,Jörgen,Berglund,KD,RS,2024-10-18,2026-09-13,22,5,854,0,1,0,"Deputerad, Ledamot",Tjänstgörande riksdagsledamot
+0831636664429,Mattias,Karlsson,SD,KD,2014-10-14,2018-09-09,46,27,33977,1,1,1,"Ledamot, Ordförande, Riksdagsledamot, Suppleant, Vice ordförande",Tjänstgörande riksdagsledamot
+0718034011110,Jessika,Roswall,KD,M,2020-09-29,2022-09-11,23,7,2278,1,1,1,"Förste vice gruppledare, Ledamot, Ordförande, Riksdagsledamot, Statsråd, Suppleant",Avgången riksdagsledamot
+0992420223820,Jessica,Rosencrantz,RS,KD,2022-11-15,2026-09-13,45,11,3494,1,1,1,"EU-minister, Ledamot, Ordförande, Riksdagsledamot, Statsråd, Suppleant",EU-minister
+0411459873625,Hanna,Gunnarsson,RS,KD,2022-04-29,2022-09-11,4,15,8712,1,1,0,"Deputerad, Kvittningsperson, Ledamot, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
+0959102638818,Roger,Tiefensee,RS,KD,2006-10-17,2010-09-19,47,16,13633,1,1,1,"Gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
+0980681611418,Hans,Wallmark,KD,M,2015-01-20,2018-09-09,43,49,35166,1,1,1,"Deputerad, Ersättare, Förste vice gruppledare, Ledamot, Ordförande, Riksdagsledamot, Suppleant, Vice ordförande",Avgången riksdagsledamot
+011731125914,Ylva,Johansson,S,KD,2007-05-11,2010-09-19,40,9,9221,1,1,1,"Arbetsmarknads- och etableringsminister, Arbetsmarknadsminister, Ledamot, Riksdagsledamot, Vice ordförande",Tidigare riksdagsledamot
+0692076685824,Camilla,Hansén,MP,RS,2022-11-10,2026-09-13,46,7,5968,0,1,0,"Ersättare, Förste vice gruppledare, Kvittningsperson, Suppleant",Tjänstgörande riksdagsledamot
+0202577142527,Matheus,Enholm,SD,KD,2022-10-11,2026-09-13,47,14,7298,0,1,1,"Deputerad, Ersättare, Förste vice gruppledare, Ledamot, Suppleant, Vice ordförande",Tjänstgörande riksdagsledamot
+0411459873625,Hanna,Gunnarsson,V,KD,2022-04-29,2022-09-11,4,15,8712,1,1,0,"Deputerad, Kvittningsperson, Ledamot, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
+0819601620927,Annika,Hirvonen,MP,KD,2021-03-05,2022-09-11,18,18,15070,1,1,1,"Ersättare, Förste vice gruppledare, Gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
+0395613047500,Linnéa,Darell,RS,KD,2002-10-15,2006-09-17,47,1,2896,0,1,0,"Ledamot, Suppleant",Tidigare riksdagsledamot
+0956444284814,Per,Bolund,MP,KD,2020-01-23,2022-09-11,31,11,4697,1,1,0,"Ledamot, Miljö- och klimatminister, Riksdagsledamot, Suppleant",Avgången riksdagsledamot
+012053331219,Anna,Kinberg Batra,M,RS,2010-10-12,2014-09-14,47,14,14533,1,1,1,"Gruppledare, Ledamot, Ordförande, Partiledare, Riksdagsledamot, Suppleant, Vice ordförande",Tidigare riksdagsledamot
+0956595590924,Tobias,Billström,KD,M,2017-10-03,2018-09-09,11,15,24684,1,1,1,"Gruppledare, Ledamot, Riksdagsledamot, Suppleant, Utrikesminister",Avgången riksdagsledamot
+0956595590924,Tobias,Billström,M,RS,2017-10-13,2018-09-09,10,13,22495,1,1,0,"Ledamot, Riksdagsledamot, Suppleant, Utrikesminister",Avgången riksdagsledamot
+0665485817222,Daniel,Bäckström,RS,KD,2022-10-11,2026-09-13,47,12,5333,1,1,1,"Gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
+0222691314314,Ulf,Kristersson,S,KD,2017-12-14,2018-09-09,8,9,20441,1,1,0,"Ledamot, Riksdagsledamot, Statsminister, Suppleant",Statsminister
+0714307225418,Sven-Erik,Österberg,S,RS,2008-06-05,2010-09-19,27,10,9129,1,1,1,"Gruppledare, Ledamot, Riksdagsledamot, Vice ordförande",Tidigare riksdagsledamot
+0658668232410,Per,Bill,RS,KD,2010-10-19,2014-09-14,46,4,3473,1,1,1,"Ersättare, Ledamot, Ordförande, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
+0630824497414,Jessica,Polfjärd,RS,KD,2016-03-18,2018-09-09,29,9,6115,1,1,1,"Ledamot, Ordförande, Riksdagsledamot, Suppleant, Vice ordförande",Europaparlamentariker
+0452755722723,Björn,Söder,KD,RS,2018-10-02,2022-09-11,47,29,32382,1,1,1,"Deputerad, Ersättare, Ledamot, Ordförande, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
+0482927154110,Leif,Jakobsson,RS,KD,2002-02-15,2002-09-15,7,18,22604,1,1,1,"Förste vice gruppledare, Ledamot, Riksdagsledamot, Suppleant, Vice ordförande",Tidigare riksdagsledamot
+0383111552218,Jonas,Sjöstedt,V,KD,2012-02-14,2014-09-14,31,16,19007,1,1,0,"Ledamot, Riksdagsledamot, Suppleant",Europaparlamentariker
+0612916684825,Johan,Löfstrand,RS,S,2022-10-07,2026-09-13,47,2,2823,0,1,0,"Förste vice gruppledare, Ledamot",Tjänstgörande riksdagsledamot
+0628005785225,Jörgen,Berglund,KD,M,2022-11-24,2026-09-13,45,9,3005,0,1,0,"Deputerad, Förste vice gruppledare, Kvittningsperson, Ledamot",Tjänstgörande riksdagsledamot
+TEST_PERSON_001,Test,Partibytare,S,M,2011-07-01,2014-09-14,38,1,1279,0,1,0,Ledamot,Tidigare riksdagsledamot
+0222691314314,Ulf,Kristersson,M,KD,2017-12-14,2018-09-09,8,9,20441,1,1,0,"Ledamot, Riksdagsledamot, Statsminister, Suppleant",Statsminister
+0836001490919,Ulrika,Heie,C,RS,2014-10-07,2018-09-09,47,13,31828,1,1,1,"Ersättare, Förste vice gruppledare, Gruppledare, Ledamot, Ordförande, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
+0446541913415,Allan,Widman,FP,KD,2006-10-17,2010-09-19,47,46,37955,1,1,1,"Deputerad, Ersättare, Förste vice gruppledare, Ledamot, Ordförande, Riksdagsledamot, Suppleant, Vice ordförande",Tidigare riksdagsledamot
+0744993950910,Anders,Ygeman,S,RS,2017-08-31,2018-09-09,12,20,9740,1,1,1,"Ledamot, Ordförande, Riksdagsledamot, Statsråd, Suppleant, Vice ordförande",Tjänstgörande riksdagsledamot
+0911916463828,Fredrik,Lundh Sammeli,KD,RS,2025-04-22,2026-09-13,16,1,532,0,1,0,Ersättare,Tjänstgörande riksdagsledamot
+0992420223820,Jessica,Rosencrantz,M,KD,2022-11-15,2026-09-13,45,11,3494,1,1,1,"EU-minister, Ledamot, Ordförande, Riksdagsledamot, Statsråd, Suppleant",EU-minister
+0338458649710,Anti,Avsan,RS,KD,2015-03-12,2018-09-09,41,1,1292,0,1,0,Ledamot,Tidigare riksdagsledamot
+0552248175312,Berit,Högman,KD,RS,2012-03-23,2014-09-14,29,7,10598,1,1,0,"Ersättare, Förste vice gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
+0928223863802,Berit,Jóhannesson,KD,RS,2002-10-08,2006-09-17,47,10,5208,0,1,0,"Deputerad, Ledamot, Suppleant",Tidigare riksdagsledamot
+0399430895200,Sven,Hulterström,KD,RS,2000-07-01,2002-09-15,26,2,735,0,1,0,"Ledamot, Suppleant",Tidigare riksdagsledamot
+0640669898710,Gunvor,G Ericson,MP,RS,2011-09-19,2014-09-14,35,6,4375,0,1,0,"Ersättare, Förste vice gruppledare, Ledamot, Suppleant",Tidigare riksdagsledamot
+0714579775816,Ewa,Thalén Finné,RS,KD,2013-01-22,2014-09-14,19,8,10222,1,1,0,"Förste vice talman, Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
+0745549193810,Stefan,Attefall,RS,S,2010-10-06,2014-09-14,47,2,4368,0,1,0,"Riksdagsledamot, Statsråd, Suppleant",Tidigare riksdagsledamot
+031005479013,Per,Westerberg,KD,RS,2002-10-08,2006-09-17,47,8,15464,1,1,1,"Förste vice talman, Ledamot, Ordförande, Riksdagsledamot, Suppleant, Talman",Tidigare riksdagsledamot
+0430865615328,Linda,Lindberg,RS,SD,2022-10-25,2026-09-13,46,8,6955,0,1,1,"Förste vice gruppledare, Gruppledare, Ledamot, Suppleant",Tjänstgörande riksdagsledamot
+0603490586517,Jan,Björklund,KD,L,2015-11-24,2018-09-09,33,6,3005,1,1,1,"Ledamot, Partiledare, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
+0371414788216,Lars,Lindblad,M,KD,2006-10-17,2010-09-19,47,3,3896,1,1,0,"Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
 086684470825,Tobias,Andersson,RS,SD,2022-10-25,2026-09-13,46,2,841,0,0,0,"Andre vice gruppledare, Ersättare",Tjänstgörande riksdagsledamot
 0198917587520,Maj,Karlsson,KD,RS,2018-10-02,2022-09-11,47,14,23236,1,1,1,"Ersättare, Gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
-069436402021,Tomas,Tobé,KD,M,2012-09-01,2014-09-14,24,16,9486,1,1,1,"Andre vice ordförande, Förste vice gruppledare, Ledamot, Ordförande, Partisekreterare, Riksdagsledamot, Suppleant",Europaparlamentariker
-0875221317013,Gunilla,Carlsson,KD,S,2022-09-26,2026-09-13,47,9,9556,1,1,1,"Ersättare, Gruppledare, Ledamot, Personlig suppleant, Riksdagsledamot, Suppleant, Vice ordförande",Tjänstgörande riksdagsledamot
-0637028706011,Bodil,Ceballos,MP,KD,2010-10-19,2014-09-14,46,12,6052,0,1,0,"Deputerad, Kvittningsperson, Ledamot, Suppleant",Tidigare riksdagsledamot
-0534173087404,Carin,Lundberg,KD,RS,2002-10-24,2006-09-17,46,2,2902,0,1,0,"Ledamot, Suppleant",Tidigare riksdagsledamot
-0665485817222,Daniel,Bäckström,RS,KD,2022-10-11,2026-09-13,47,12,5309,1,1,1,"Gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
-0415959965211,Mia,Sydow Mölleby,V,KD,2014-10-14,2018-09-09,46,11,23746,1,1,1,"Gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
+TEST_PERSON_002,Anna,Testsson,V,MP,2015-04-01,2018-09-09,41,2,2830,0,1,0,Ledamot,Tidigare riksdagsledamot
+0781648625615,Peter,Rådberg,KD,MP,2010-10-25,2014-09-14,46,11,2755,0,1,0,"Deputerad, Kvittningsperson, Suppleant",Tidigare riksdagsledamot
+0161616238120,Lina,Nordquist,L,KD,2022-11-17,2026-09-13,45,2,1530,0,1,0,"Ledamot, Suppleant",Tjänstgörande riksdagsledamot
+0959102638818,Roger,Tiefensee,RS,C,2006-10-11,2010-09-19,47,17,15087,1,1,1,"Gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
+0938901612810,Fredrik,Reinfeldt,KD,M,2003-10-25,2006-09-17,34,9,12628,1,1,1,"Ledamot, Partiledare, Riksdagsledamot, Statsminister",Tidigare riksdagsledamot
+0284192765516,Tomas,Eneroth,S,RS,2014-10-07,2018-09-09,47,25,15636,1,1,1,"Ersättare, Infrastrukturminister, Ledamot, Ordförande, Riksdagsledamot, Statsråd, Suppleant, Vice ordförande",Avgången riksdagsledamot
+0819601620927,Annika,Hirvonen,MP,RS,2019-11-29,2022-09-11,33,22,26411,1,1,1,"Ersättare, Förste vice gruppledare, Gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
+069436402021,Tomas,Tobé,RS,KD,2010-10-19,2014-09-14,46,18,11398,1,1,1,"Andre vice ordförande, Förste vice gruppledare, Ledamot, Ordförande, Partisekreterare, Riksdagsledamot, Suppleant",Europaparlamentariker
+0980681611418,Hans,Wallmark,KD,RS,2015-01-28,2018-09-09,43,48,33088,1,1,1,"Deputerad, Ersättare, Ledamot, Ordförande, Riksdagsledamot, Suppleant, Vice ordförande",Avgången riksdagsledamot
 0956444284814,Per,Bolund,KD,M,2021-02-05,2022-09-11,19,10,3707,1,1,0,"Ledamot, Miljö- och klimatminister, Riksdagsledamot, Suppleant",Avgången riksdagsledamot
-0399430895200,Sven,Hulterström,KD,RS,2000-07-01,2002-09-15,26,2,735,0,1,0,"Ledamot, Suppleant",Tidigare riksdagsledamot
-0334816698724,Karolina,Skog,MP,RS,2021-02-25,2022-09-11,18,1,319,0,0,0,Ersättare,Tidigare riksdagsledamot
-0831636664429,Mattias,Karlsson,SD,KD,2014-10-14,2018-09-09,46,27,33977,1,1,1,"Ledamot, Ordförande, Riksdagsledamot, Suppleant, Vice ordförande",Tjänstgörande riksdagsledamot
-0911490574010,Isabella,Lövin,MP,M,2019-01-21,2022-09-11,43,3,2570,0,0,0,"Ledamot, Miljö- och klimatminister",Europaparlamentariker
-0806338394516,Mona,Sahlin,KD,S,2007-03-17,2010-09-19,42,5,4635,1,1,1,"Ledamot, Partiledare, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
-0824721092613,Carina,Moberg,KD,RS,2011-05-03,2014-09-14,40,5,1343,0,0,1,"Ledamot, Suppleant, Vice ordförande",Avliden  2012-08-15
-0475643059428,Jonny,Cato,C,KD,2025-09-04,2026-09-13,12,1,86,0,0,0,Ledamot,Avgången riksdagsledamot
-0157062733618,Jonas,Eriksson,MP,KD,2014-10-14,2018-09-09,46,21,9986,1,1,1,"Ersättare, Förste vice gruppledare, Gruppledare, Ledamot, Ordförande, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
-0692076685824,Camilla,Hansén,MP,RS,2022-11-10,2026-09-13,46,7,5944,0,1,0,"Ersättare, Förste vice gruppledare, Kvittningsperson, Suppleant",Tjänstgörande riksdagsledamot
-039655712615,Margareta,Pålsson,RS,M,2008-03-12,2010-09-19,30,4,5013,1,1,1,"Förste vice gruppledare, Ledamot, Ordförande, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
+0853395328224,Lena,Hallengren,KD,S,2018-03-08,2018-09-09,6,13,10518,1,1,1,"Gruppledare, Ledamot, Riksdagsledamot, Socialminister, Statsråd, Vice ordförande",Tjänstgörande riksdagsledamot
+0130789484021,Mattias,Bäckström Johansson,SD,RS,2020-10-01,2022-09-11,23,7,9390,1,1,1,"Ersättare, Ledamot, Partisekreterare, Riksdagsledamot, Suppleant, Tillförordnad partisekreterare",Tjänstgörande riksdagsledamot
+0891731772016,Mats,Gerdau,RS,KD,2010-10-19,2014-09-14,46,2,1579,0,0,0,"Ledamot, Suppleant",Tidigare riksdagsledamot
+0331967573912,Maria,Larsson,RS,KD,2006-10-17,2010-09-19,47,3,4360,0,1,0,"Ledamot, Riksdagsledamot",Tidigare riksdagsledamot
 0415959965211,Mia,Sydow Mölleby,V,RS,2018-10-02,2022-09-11,47,7,16387,0,1,0,"Ledamot, Suppleant",Tidigare riksdagsledamot
-0483316376813,Mikael,Odenberg,RS,KD,2003-11-24,2006-09-17,33,5,3108,1,1,0,"Försvarsminister, Ledamot, Riksdagsledamot",Tidigare riksdagsledamot
-0744993950910,Anders,Ygeman,S,RS,2017-08-31,2018-09-09,12,20,9740,1,1,1,"Ledamot, Ordförande, Riksdagsledamot, Statsråd, Suppleant, Vice ordförande",Tjänstgörande riksdagsledamot
-0452755722723,Björn,Söder,SD,RS,2018-10-02,2022-09-11,47,29,32382,1,1,1,"Deputerad, Ersättare, Ledamot, Ordförande, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
-0745549193810,Stefan,Attefall,RS,KD,2002-10-15,2006-09-17,47,12,17956,1,1,1,"Gruppledare, Ledamot, Ordförande, Riksdagsledamot, Statsråd, Suppleant",Tidigare riksdagsledamot
+0875221317013,Gunilla,Carlsson,S,RS,2022-10-04,2026-09-13,47,8,8060,0,1,1,"Ersättare, Ledamot, Personlig suppleant, Suppleant, Vice ordförande",Tjänstgörande riksdagsledamot
+0406831930624,Henrik,Vinge,KD,SD,2019-04-01,2022-09-11,41,12,20535,1,1,1,"Förste vice gruppledare, Gruppledare, Ledamot, Ordförande, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
+0475643059428,Jonny,Cato,RS,KD,2025-09-04,2026-09-13,12,1,86,0,0,0,Ledamot,Avgången riksdagsledamot
+0824721092613,Carina,Moberg,S,RS,2011-05-03,2014-09-14,40,5,1343,0,0,1,"Ledamot, Suppleant, Vice ordförande",Avliden  2012-08-15
+0638497389621,Julia,Kronlid,KD,RS,2018-10-02,2022-09-11,47,10,23987,1,1,0,"Andre vice gruppledare, Andre vice ordförande, Andre vice talman, Ersättare, Ledamot, Riksdagsledamot, Suppleant",Andre vice talman (tjänstgörande riksdagsledamot)
+0545733815610,Patrick,Reslow,M,SD,2018-11-07,2022-09-11,46,6,16186,1,1,0,"Ledamot, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
+0157062733618,Jonas,Eriksson,MP,KD,2014-10-14,2018-09-09,46,21,9986,1,1,1,"Ersättare, Förste vice gruppledare, Gruppledare, Ledamot, Ordförande, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
+0956444284814,Per,Bolund,MP,M,2021-02-05,2022-09-11,19,10,3707,1,1,0,"Ledamot, Miljö- och klimatminister, Riksdagsledamot, Suppleant",Avgången riksdagsledamot
+0760437424714,Magdalena,Andersson,KD,RS,2006-12-15,2010-09-19,45,6,5240,1,1,0,"Deputerad, Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
+0552248175312,Berit,Högman,KD,S,2012-02-29,2014-09-14,30,8,11541,1,1,0,"Ersättare, Förste vice gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
+0502770250503,Göran,Magnusson,RS,KD,2002-10-15,2006-09-17,47,3,3093,0,1,1,"Andre vice ordförande, Ledamot, Ordförande",Tidigare riksdagsledamot
+0667220767927,Erik,Ezelius,S,KD,2022-06-10,2022-09-11,3,14,8445,1,1,1,"Deputerad, Ersättare, Ledamot, Ordförande, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
 0973474532717,Ibrahim,Baylan,KD,M,2015-01-01,2018-09-09,44,8,4088,1,1,0,"Näringsminister, Riksdagsledamot, Statsråd, Suppleant",Tidigare riksdagsledamot
-0744139167426,Rasmus,Ling,MP,RS,2022-01-13,2022-09-11,7,15,7156,1,1,1,"Ersättare, Förste vice gruppledare, Gruppledare, Ledamot, Riksdagsledamot, Suppleant",Avgången riksdagsledamot
-0110600080618,Håkan,Juholt,KD,S,2011-03-25,2014-09-14,41,7,2859,1,1,1,"Ledamot, Partiledare, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
-0473783431010,Morgan,Johansson,RS,KD,2010-10-19,2014-09-14,46,25,18855,1,1,1,"Deputerad, Justitie- och inrikesminister, Justitie- och migrationsminister, Ledamot, Ordförande, Riksdagsledamot, Suppleant, Vice ordförande",Tjänstgörande riksdagsledamot
-0939158389321,Samuel,Gonzalez Westling,RS,KD,2022-10-11,2026-09-13,47,8,5101,0,1,0,"Ledamot, Suppleant",Tjänstgörande riksdagsledamot
-0331967573912,Maria,Larsson,S,KD,2006-10-17,2010-09-19,47,3,4360,0,1,0,"Ledamot, Riksdagsledamot",Tidigare riksdagsledamot
-0395613047500,Linnéa,Darell,RS,KD,2002-10-15,2006-09-17,47,1,2896,0,1,0,"Ledamot, Suppleant",Tidigare riksdagsledamot
-0718034011110,Jessika,Roswall,KD,M,2020-09-29,2022-09-11,23,7,2278,1,1,1,"Förste vice gruppledare, Ledamot, Ordförande, Riksdagsledamot, Statsråd, Suppleant",Avgången riksdagsledamot
-0718034011110,Jessika,Roswall,RS,KD,2018-10-09,2022-09-11,47,18,20144,1,1,1,"Andre vice ordförande, Förste vice gruppledare, Ledamot, Ordförande, Riksdagsledamot, Statsråd, Suppleant",Avgången riksdagsledamot
 0224712677012,Johan,Pehrson,KD,L,2019-06-28,2022-09-11,38,12,17517,1,1,1,"Arbetsmarknads- och integrationsminister, Gruppledare, Ledamot, Partiledare, Riksdagsledamot, Suppleant, Tillförordnad partiledare, Utbildningsminister",Avgången riksdagsledamot
-0224712677012,Johan,Pehrson,RS,L,2019-06-28,2022-09-11,38,12,17517,1,1,1,"Arbetsmarknads- och integrationsminister, Gruppledare, Ledamot, Partiledare, Riksdagsledamot, Suppleant, Tillförordnad partiledare, Utbildningsminister",Avgången riksdagsledamot
-0228027853620,Vasiliki,Tsouplaki,V,KD,2022-10-11,2026-09-13,47,1,1463,0,1,0,Ledamot,Tjänstgörande riksdagsledamot
-0199751900210,Annelie,Karlsson,RS,KD,2019-01-31,2022-09-11,43,8,21671,0,1,1,"Ersättare, Gruppledare, Ledamot, Suppleant, Vice ordförande",Tidigare riksdagsledamot
-0475643059428,Jonny,Cato,C,RS,2025-09-01,2026-09-13,12,2,264,0,0,0,"Ersättare, Förste vice gruppledare, Ledamot",Avgången riksdagsledamot
-0349986646724,Märta,Stenevi,MP,KD,2022-10-11,2026-09-13,47,6,4468,1,0,0,"Ledamot, Riksdagsledamot, Suppleant",Avgången riksdagsledamot
-0781520322912,Jörgen,Hellman,S,KD,2016-11-09,2018-09-09,22,8,16409,1,1,1,"Ledamot, Ordförande, Revisor, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
-0630022377501,Bengt,Westerberg,S,KD,1994-10-18,2002-09-15,94,2,1535,0,0,1,"Ledamot, Vice ordförande",Tidigare riksdagsledamot
+0224712677012,Johan,Pehrson,FP,KD,2006-10-17,2010-09-19,47,31,43697,1,1,1,"Arbetsmarknads- och integrationsminister, Gruppledare, Ledamot, Partiledare, Personlig suppleant, Riksdagsledamot, Suppleant, Tillförordnad partiledare, Utbildningsminister",Avgången riksdagsledamot
+0603490586517,Jan,Björklund,FP,KD,2014-10-14,2018-09-09,46,7,4461,1,1,1,"Ledamot, Partiledare, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
+042839539117,Alice,Åström,V,KD,2006-10-17,2010-09-19,47,2,2120,0,1,0,"Ledamot, Suppleant",Tidigare riksdagsledamot
+0959102638818,Roger,Tiefensee,C,KD,2006-10-17,2010-09-19,47,16,13633,1,1,1,"Gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
+0603753860213,Carina,Ståhl Herrstedt,SD,RS,2022-10-04,2026-09-13,47,4,3405,0,0,0,"Ersättare, Kvittningsperson, Ledamot",Avgången riksdagsledamot
+0847676507229,Stina,Larsson,RS,C,2026-01-07,2026-09-13,8,1,174,0,1,0,Förste vice gruppledare,Tjänstgörande riksdagsledamot
+0446973363306,Lennart,Nilsson,KD,RS,2002-10-08,2006-09-17,47,2,8709,0,1,0,"Ledamot, Suppleant",Avliden  2025-06-10
+0793372891224,Noria,Manouchi,M,KD,2022-11-15,2026-09-13,45,6,4314,0,1,0,"Ledamot, Suppleant",Tjänstgörande riksdagsledamot
 0384833975200,Bo,Könberg,S,KD,2002-10-15,2006-09-17,47,1,2346,0,0,0,"Ledamot, Suppleant",Tidigare riksdagsledamot
+0371414788216,Lars,Lindblad,RS,KD,2006-10-17,2010-09-19,47,3,3896,1,1,0,"Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
+0772402807013,Sven-Olof,Sällström,SD,KD,2014-10-14,2018-09-09,46,21,31213,1,1,1,"Deputerad, Ledamot, Riksdagsledamot, Suppleant, Vice ordförande",Avliden  2024-03-14
+0228027853620,Vasiliki,Tsouplaki,V,KD,2022-10-11,2026-09-13,47,1,1463,0,1,0,Ledamot,Tjänstgörande riksdagsledamot
+0262017901513,Beatrice,Ask,KD,RS,2000-07-01,2002-09-15,26,28,23272,1,1,1,"Deputerad, Justitieminister, Ledamot, Ordförande, Riksdagsledamot, Suppleant, Vice ordförande",Tidigare riksdagsledamot
+0224712677012,Johan,Pehrson,RS,KD,2006-10-17,2010-09-19,47,31,43697,1,1,1,"Arbetsmarknads- och integrationsminister, Gruppledare, Ledamot, Partiledare, Personlig suppleant, Riksdagsledamot, Suppleant, Tillförordnad partiledare, Utbildningsminister",Avgången riksdagsledamot
+0612916684825,Johan,Löfstrand,KD,RS,2022-10-04,2026-09-13,47,3,7196,0,1,0,"Förste vice gruppledare, Ledamot, Suppleant",Tjänstgörande riksdagsledamot
+0745549193810,Stefan,Attefall,KD,S,2010-10-06,2014-09-14,47,2,4368,0,1,0,"Riksdagsledamot, Statsråd, Suppleant",Tidigare riksdagsledamot
+0803753212716,Richard,Jomshof,KD,SD,2015-02-26,2018-09-09,42,15,23446,1,1,1,"Ledamot, Ordförande, Partisekreterare, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
+0836001490919,Ulrika,Heie,C,KD,2014-10-14,2018-09-09,46,12,28924,1,1,1,"Ersättare, Förste vice gruppledare, Gruppledare, Ledamot, Ordförande, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
+0787533297400,Björn,von Sydow,KD,RS,2002-10-24,2006-09-17,46,15,18440,1,1,1,"Ledamot, Ordförande, Riksdagsledamot, Suppleant, Vice ordförande",Tidigare riksdagsledamot
+0922497728524,Ardalan,Shekarabi,S,KD,2022-10-11,2026-09-13,47,6,4344,1,1,1,"Ledamot, Riksdagsledamot, Vice ordförande",Tjänstgörande riksdagsledamot
+069436402021,Tomas,Tobé,RS,M,2012-09-01,2014-09-14,24,16,9486,1,1,1,"Andre vice ordförande, Förste vice gruppledare, Ledamot, Ordförande, Partisekreterare, Riksdagsledamot, Suppleant",Europaparlamentariker
+0758652610,Maria,Arnholm,L,KD,2018-10-09,2022-09-11,47,4,542,0,0,0,"Ledamot, Suppleant",Tidigare riksdagsledamot
+0982795248728,Jakob,Forssmed,KD,S,2022-10-18,2026-09-13,46,4,2885,0,1,0,"Riksdagsledamot, Socialminister",Socialminister
+064601872511,Catharina,Elmsäter-Svärd,KD,RS,2006-10-10,2010-09-19,47,9,3686,1,0,1,"Infrastruktur- och försvarsminister, Ledamot, Ordförande, Riksdagsledamot, Statsråd, Suppleant, Vice ordförande",Tidigare riksdagsledamot
+0198917587520,Maj,Karlsson,V,KD,2017-06-16,2018-09-09,14,16,26642,1,1,1,"Ersättare, Gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
+0130789484021,Mattias,Bäckström Johansson,KD,RS,2020-10-01,2022-09-11,23,7,9390,1,1,1,"Ersättare, Ledamot, Partisekreterare, Riksdagsledamot, Suppleant, Tillförordnad partisekreterare",Tjänstgörande riksdagsledamot
+0198917587520,Maj,Karlsson,V,RS,2018-10-02,2022-09-11,47,14,23236,1,1,1,"Ersättare, Gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
+0875221317013,Gunilla,Carlsson,KD,RS,2022-10-04,2026-09-13,47,8,8060,0,1,1,"Ersättare, Ledamot, Personlig suppleant, Suppleant, Vice ordförande",Tjänstgörande riksdagsledamot
+0637028706011,Bodil,Ceballos,MP,KD,2010-10-19,2014-09-14,46,12,6052,0,1,0,"Deputerad, Kvittningsperson, Ledamot, Suppleant",Tidigare riksdagsledamot
+0473783431010,Morgan,Johansson,S,RS,2006-10-10,2010-09-19,47,34,25372,1,1,1,"Deputerad, Justitie- och inrikesminister, Justitie- och migrationsminister, Ledamot, Ordförande, Riksdagsledamot, Suppleant, Vice ordförande",Tjänstgörande riksdagsledamot
+0331967573912,Maria,Larsson,S,KD,2006-10-17,2010-09-19,47,3,4360,0,1,0,"Ledamot, Riksdagsledamot",Tidigare riksdagsledamot
+0384833975200,Bo,Könberg,RS,KD,2002-10-15,2006-09-17,47,1,2346,0,0,0,"Ledamot, Suppleant",Tidigare riksdagsledamot
+0819601620927,Annika,Hirvonen,RS,KD,2021-03-05,2022-09-11,18,18,15070,1,1,1,"Ersättare, Förste vice gruppledare, Gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
+0602744999917,Elisabeth,Thand Ringqvist,C,KD,2024-01-01,2026-09-13,32,6,2755,0,1,1,"Andre vice gruppledare, Ersättare, Förste vice gruppledare, Gruppledare, Ledamot, Partiledare",Tjänstgörande riksdagsledamot
+0731442709013,Christer,Nylander,L,KD,2016-06-09,2018-09-09,27,6,16102,1,1,1,"Ledamot, Ordförande, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
+0940980416614,Jan,Ericson,KD,RS,2022-11-08,2026-09-13,46,1,1428,0,1,0,Ersättare,Tjänstgörande riksdagsledamot
+0899112324519,Elisabeth,Svantesson,KD,RS,2021-02-04,2022-09-11,19,6,3562,1,1,1,"Ersättare, Finansminister, Ledamot, Ordförande, Riksdagsledamot",Finansminister
+0334816698724,Karolina,Skog,M,RS,2021-02-25,2022-09-11,18,1,319,0,0,0,Ersättare,Tidigare riksdagsledamot
+0630824497414,Jessica,Polfjärd,M,KD,2016-03-18,2018-09-09,29,9,6115,1,1,1,"Ledamot, Ordförande, Riksdagsledamot, Suppleant, Vice ordförande",Europaparlamentariker
+0584183916016,Ulf,Holm,MP,KD,2025-10-10,2026-09-13,11,3,1277,0,0,0,"Deputerad, Ersättare, Extra suppleant, Ledamot, Suppleant",Tillgänglig ersättare
+0460690753617,Pia,Nilsson,RS,KD,2014-10-14,2018-09-09,46,6,18672,1,1,0,"Ersättare, Ledamot, Personlig suppleant, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
+012053331219,Anna,Kinberg Batra,RS,KD,2010-10-19,2014-09-14,46,13,10173,1,1,1,"Gruppledare, Ledamot, Partiledare, Riksdagsledamot, Suppleant, Vice ordförande",Tidigare riksdagsledamot
+0452755722723,Björn,Söder,SD,KD,2010-10-19,2014-09-14,46,53,57845,1,1,1,"Andre vice talman, Deputerad, Ersättare, Ledamot, Ordförande, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
+0938901612810,Fredrik,Reinfeldt,RS,KD,2002-10-15,2006-09-17,47,11,15171,1,1,1,"Ledamot, Partiledare, Riksdagsledamot, Statsminister, Suppleant",Tidigare riksdagsledamot
+0446541913415,Allan,Widman,RS,KD,2006-10-17,2010-09-19,47,46,37955,1,1,1,"Deputerad, Ersättare, Förste vice gruppledare, Ledamot, Ordförande, Riksdagsledamot, Suppleant, Vice ordförande",Tidigare riksdagsledamot
+0996403729104,Tone,Tingsgård,KD,RS,2006-10-10,2010-09-19,47,4,6869,0,1,1,"Ersättare, Ledamot, Suppleant, Vice ordförande",Tidigare riksdagsledamot
+0463606088610,Bertil,Kjellberg,M,RS,2008-04-04,2010-09-19,29,3,3100,0,1,0,"Ersättare, Ledamot",Tidigare riksdagsledamot
+0332067570917,Berit,Andnor,RS,S,2002-09-30,2006-09-17,47,10,9567,1,1,1,"Ledamot, Ordförande, Riksdagsledamot, Socialminister, Statsråd, Vice ordförande",Tidigare riksdagsledamot
+0814945477312,Gunilla,Wahlén,V,KD,2006-10-17,2010-09-19,47,7,1874,0,1,0,"Deputerad, Ledamot, Suppleant",Tidigare riksdagsledamot
+0202577142527,Matheus,Enholm,KD,RS,2025-02-14,2026-09-13,18,7,936,0,1,0,"Deputerad, Ersättare, Förste vice gruppledare, Suppleant",Tjänstgörande riksdagsledamot
+0893004490313,Cecilia,Widegren,RS,KD,2010-10-19,2014-09-14,46,30,29903,1,1,1,"Deputerad, Ersättare, Ledamot, Ordförande, Riksdagsledamot, Suppleant, Vice ordförande",Tidigare riksdagsledamot
+0806338394516,Mona,Sahlin,KD,S,2007-03-17,2010-09-19,42,5,4635,1,1,1,"Ledamot, Partiledare, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
+0880452278816,Mikaela,Valtersson,MP,RS,2010-10-12,2014-09-14,47,1,1014,0,0,0,"Ledamot, Suppleant",Tidigare riksdagsledamot
+0130789484021,Mattias,Bäckström Johansson,SD,KD,2020-04-08,2022-09-11,29,8,10304,1,1,1,"Ersättare, Ledamot, Partisekreterare, Riksdagsledamot, Suppleant, Tillförordnad partisekreterare",Tjänstgörande riksdagsledamot
+0193303720505,Anita,Johansson,KD,RS,2000-07-01,2002-09-15,26,6,8205,1,1,1,"Ledamot, Riksdagsledamot, Suppleant, Vice ordförande",Tidigare riksdagsledamot
+0607691439013,Karin,Enström,KD,M,2022-10-19,2026-09-13,46,10,8198,0,1,1,"Ledamot, Ordförande, Partisekreterare, Suppleant",Tjänstgörande riksdagsledamot
+0181942435301,Ingela,Thalén,S,KD,1990-05-31,2002-09-15,147,18,13060,1,1,1,"Ledamot, Ordförande, Riksdagsledamot, Socialminister, Statsråd, Suppleant",Tidigare riksdagsledamot
+0473783431010,Morgan,Johansson,S,KD,2010-10-19,2014-09-14,46,25,18855,1,1,1,"Deputerad, Justitie- och inrikesminister, Justitie- och migrationsminister, Ledamot, Ordförande, Riksdagsledamot, Suppleant, Vice ordförande",Tjänstgörande riksdagsledamot
+0630824497414,Jessica,Polfjärd,RS,M,2015-01-13,2018-09-09,43,13,12054,1,1,1,"Gruppledare, Ledamot, Ordförande, Riksdagsledamot, Suppleant, Vice ordförande",Europaparlamentariker
+0229760896014,Anders,W Jonsson,C,KD,2011-10-19,2014-09-14,34,18,33616,1,1,1,"Gruppledare, Ledamot, Ordförande, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
+0962841101917,Annika,Qarlsson,RS,KD,2006-10-17,2010-09-19,47,14,28086,1,1,0,"Förste vice ordförande, Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
+0901257862125,Hans,Linde,V,KD,2010-10-19,2014-09-14,46,21,6657,1,1,1,"Deputerad, Gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
+0584659199514,Göran,Hägglund,KD,RS,2000-07-01,2002-09-15,26,15,19481,1,1,1,"Ledamot, Ordförande, Partiledare, Riksdagsledamot, Socialminister, Suppleant",Tidigare riksdagsledamot
+0110600080618,Håkan,Juholt,KD,S,2011-03-25,2014-09-14,41,7,2859,1,1,1,"Ledamot, Partiledare, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
+0483316376813,Mikael,Odenberg,RS,KD,2003-11-24,2006-09-17,33,5,3108,1,1,0,"Försvarsminister, Ledamot, Riksdagsledamot",Tidigare riksdagsledamot
+0802546764724,Åsa,Westlund,KD,RS,2022-10-04,2026-09-13,47,5,3675,0,1,1,"Ledamot, Vice ordförande",Tjänstgörande riksdagsledamot
+0980681611418,Hans,Wallmark,M,RS,2015-01-28,2018-09-09,43,48,33088,1,1,1,"Deputerad, Ersättare, Ledamot, Ordförande, Riksdagsledamot, Suppleant, Vice ordförande",Avgången riksdagsledamot
+0522054204918,Mattias,Karlsson,RS,KD,2022-11-15,2026-09-13,45,3,2138,0,1,1,"Ledamot, Ordförande",Tjänstgörande riksdagsledamot
+0962841101917,Annika,Qarlsson,C,KD,2006-10-17,2010-09-19,47,14,28086,1,1,0,"Förste vice ordförande, Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
+0694917698222,Michael,Rubbestad,RS,SD,2023-04-26,2026-09-13,40,8,4937,0,0,0,"Ersättare, Förste vice gruppledare, Ledamot, Suppleant",Avgången riksdagsledamot
+0584659199514,Göran,Hägglund,KD,S,2006-10-06,2010-09-19,47,8,9350,1,1,0,"Ledamot, Riksdagsledamot, Socialminister, Suppleant",Tidigare riksdagsledamot
+0618560932311,Hillevi,Engström,RS,KD,2008-05-09,2010-09-19,28,8,4197,1,1,0,"Arbetsmarknadsminister, Ledamot, Riksdagsledamot, Statsråd, Suppleant",Tidigare riksdagsledamot
+0229760896014,Anders,W Jonsson,C,RS,2014-10-07,2018-09-09,47,14,26314,1,1,0,"Ledamot, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
+0744139167426,Rasmus,Ling,MP,RS,2022-01-13,2022-09-11,7,15,7156,1,1,1,"Ersättare, Förste vice gruppledare, Gruppledare, Ledamot, Riksdagsledamot, Suppleant",Avgången riksdagsledamot
+0316505710324,Janine,Alm Ericson,KD,RS,2019-02-15,2022-09-11,42,24,24938,1,1,1,"Deputerad, Ersättare, Förste vice gruppledare, Gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tjänstgörande riksdagsledamot
+0183788551910,Åsa,Torstensson,KD,C,2010-10-25,2014-09-14,46,5,3254,0,1,0,"Kvittningsperson, Ledamot, Suppleant",Tidigare riksdagsledamot
+0275724540919,Erik,Ullenhag,KD,FP,2014-10-04,2018-09-09,47,4,2572,1,0,1,"Gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
+0925652297119,Per,Ramhorn,SD,RS,2014-10-07,2018-09-09,47,9,23006,1,1,0,"Ersättare, Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
+0522460069116,Cecilia,Magnusson,M,RS,2010-10-12,2014-09-14,47,9,15138,1,1,0,"Deputerad, Ersättare, Kvittningsperson, Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
+0522460069116,Cecilia,Magnusson,RS,KD,2010-10-19,2014-09-14,46,8,12940,1,1,0,"Deputerad, Ersättare, Kvittningsperson, Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
+039655712615,Margareta,Pålsson,KD,M,2008-03-12,2010-09-19,30,4,5013,1,1,1,"Förste vice gruppledare, Ledamot, Ordförande, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
+0567830387107,Birgitta,Dahl,KD,RS,2000-07-01,2002-09-15,26,1,821,0,1,0,Ledamot,Avliden  2024-11-26
+0718034011110,Jessika,Roswall,RS,M,2020-09-29,2022-09-11,23,7,2278,1,1,1,"Förste vice gruppledare, Ledamot, Ordförande, Riksdagsledamot, Statsråd, Suppleant",Avgången riksdagsledamot
+0793372891224,Noria,Manouchi,M,RS,2022-10-27,2026-09-13,46,7,5754,0,1,0,"Ersättare, Ledamot, Suppleant",Tjänstgörande riksdagsledamot
+0992420223820,Jessica,Rosencrantz,M,RS,2022-10-27,2026-09-13,46,12,4178,1,1,1,"EU-minister, Ledamot, Ordförande, Riksdagsledamot, Statsråd, Suppleant",EU-minister
+069436402021,Tomas,Tobé,KD,M,2012-09-01,2014-09-14,24,16,9486,1,1,1,"Andre vice ordförande, Förste vice gruppledare, Ledamot, Ordförande, Partisekreterare, Riksdagsledamot, Suppleant",Europaparlamentariker
+023767922422,Mats,Persson,L,KD,2022-10-11,2026-09-13,47,7,3584,1,1,0,"Arbetsmarknads- och integrationsminister, Ledamot, Riksdagsledamot, Suppleant, Utbildningsminister",Tjänstgörande riksdagsledamot
+0853395328224,Lena,Hallengren,KD,RS,2022-10-11,2026-09-13,47,5,5308,1,1,1,"Ledamot, Riksdagsledamot, Vice ordförande",Tjänstgörande riksdagsledamot
+0939158389321,Samuel,Gonzalez Westling,V,RS,2022-10-04,2026-09-13,47,9,6930,0,1,0,"Ledamot, Suppleant",Tjänstgörande riksdagsledamot
+0462699892622,Maria,Ferm,MP,RS,2014-10-07,2018-09-09,47,23,16189,1,1,1,"Ersättare, Förste vice gruppledare, Gruppledare, Ledamot, Riksdagsledamot, Suppleant",Tidigare riksdagsledamot
+051207517226,Jimmie,Åkesson,SD,KD,2010-10-19,2014-09-14,46,11,11983,1,1,0,"Ledamot, Riksdagsledamot",Tjänstgörande riksdagsledamot
+0463606088610,Bertil,Kjellberg,KD,RS,2008-04-04,2010-09-19,29,3,3100,0,1,0,"Ersättare, Ledamot",Tidigare riksdagsledamot
+0288805051019,Lars,Johansson,KD,RS,2010-10-12,2014-09-14,47,3,3359,0,1,0,"Ersättare, Ledamot",Tidigare riksdagsledamot
+0541320528015,Nina,Lundström,FP,RS,2012-09-27,2014-09-14,23,19,22606,1,1,1,"Ersättare, Extra suppleant, Förste vice gruppledare, Ledamot, Riksdagsledamot, Statsrådsersättare, Suppleant, Vice ordförande",Tidigare riksdagsledamot
+0349986646724,Märta,Stenevi,MP,KD,2022-10-11,2026-09-13,47,6,4468,1,0,0,"Ledamot, Riksdagsledamot, Suppleant",Avgången riksdagsledamot

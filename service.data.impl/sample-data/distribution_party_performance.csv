@@ -1,13 +1,13 @@
 party,party_name,active_members,inactive_members,documents_last_year,motions_last_year,propositions_last_year,docs_per_member,performance_level
-S,Arbetarepartiet-Socialdemokraterna,131,621,898,898,0,6.85,GOOD
-SD,Sverigedemokraterna,79,38,685,685,0,8.67,GOOD
-M,Moderaterna,70,320,1226,973,253,17.51,EXCELLENT
+S,Arbetarepartiet-Socialdemokraterna,134,621,901,901,0,6.72,GOOD
+SD,Sverigedemokraterna,80,38,683,683,0,8.54,GOOD
+M,Moderaterna,69,320,1228,973,255,17.80,EXCELLENT
 C,Centerpartiet,29,202,428,428,0,14.76,GOOD
-MP,Miljöpartiet de gröna,25,106,273,273,0,10.92,GOOD
-V,Vänsterpartiet,23,101,167,167,0,7.26,GOOD
-KD,Kristdemokraterna,20,89,413,318,95,20.65,EXCELLENT
-L,Liberalerna,19,40,241,168,73,12.68,EXCELLENT
--,Politiskt Vilde,9,20,337,337,0,37.44,GOOD
+MP,Miljöpartiet de gröna,26,106,271,271,0,10.42,GOOD
+V,Vänsterpartiet,23,101,164,164,0,7.13,GOOD
+KD,Kristdemokraterna,21,89,416,318,98,19.81,EXCELLENT
+L,Liberalerna,18,41,241,168,73,13.39,EXCELLENT
+-,Politiskt Vilde,9,20,334,334,0,37.11,GOOD
 FP,Folkpartiet liberalerna,0,171,0,0,0,0.00,BELOW_AVERAGE
 JL,Junilistan,0,0,0,0,0,0.00,BELOW_AVERAGE
 K,Kommunistiska Partiet,0,0,0,0,0,0.00,BELOW_AVERAGE

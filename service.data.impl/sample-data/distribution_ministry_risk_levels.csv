@@ -1,5 +1,5 @@
 risk_level,period_count,percentage,avg_documents
 CRITICAL,160,95.24,0.00
-MEDIUM,1,0.60,5.00
-ELEVATED,2,1.19,18.50
+MEDIUM,1,0.60,6.00
+ELEVATED,2,1.19,19.50
 LOW,5,2.98,106.00

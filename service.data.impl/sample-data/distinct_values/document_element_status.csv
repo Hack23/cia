@@ -1,37 +1,37 @@
 value,count
-"",112997
-Klar,40700
+"",113394
+Klar,40915
 Ank T,25591
-Besvarad,22290
+Besvarad,22404
 korrekturläst,22058
-inträffat,20898
-Inkommen,20709
+inträffat,21024
+Inkommen,20770
 Trycklov,10630
 hämtad,6708
-Webbpublicering,4977
-Hänvisad,4159
-planerat,3349
+Webbpublicering,5013
+Hänvisad,4106
+planerat,3377
 hämtad_2,2564
-Publicerad,2528
-Skickad,1888
-justerat,1861
+Publicerad,2552
+justerat,1876
+Skickad,1854
 titel,1536
 ok,1526
-Återtagen,1150
+Återtagen,1160
 Tidigare riksdagsledamot,1112
 DokTextExtraktor,893
 saknas,474
 Avslutad,456
-Avslag,434
+Avslag,435
 Inga uppdrag,405
-Tjänstgörande riksdagsledamot,327
-Tillgänglig ersättare,323
+Tjänstgörande riksdagsledamot,330
+Tillgänglig ersättare,326
 Utgången,321
-doktextextraktor,300
+doktextextraktor,318
 ANKT,292
 slutlig,283
-Inte besvarad,271
-Pågående,265
+Pågående,282
+Inte besvarad,272
 Original,262
 digitaliserad,225
 Tidigare ersättare,202
@@ -44,7 +44,6 @@ Avslutad 2005,116
 Avslutad 2004,111
 Avslutad 2003,109
 Avslutad 2006,104
-Granskad,101
 Avvisat,100
 Avslutad 2007,98
 Avslutad 2009,98
@@ -52,8 +51,8 @@ Avslutad 2015,98
 preliminär,95
 Avslutad 2010,90
 Avslutad 2011,87
+Gällande,81
 Avslutad 2002,80
-Gällande,80
 Avslutad 2017,79
 Avslutad 2021,79
 Avslutad 2018,78
@@ -68,7 +67,8 @@ Avslutad 2001,57
 fel,53
 Avslutad 2019,50
 Bifall,34
-Avgången riksdagsledamot,31
+Granskad,34
+Avgången riksdagsledamot,32
 felkonverterat,28
 Tidigare europaparlamentariker,25
 Utskick 2,25
@@ -85,8 +85,6 @@ Förfallen,12
 Delvis bifall,9
 LagdTillHandlingarna,7
 Tidigare riksrevisor i Riksrevisionen,6
-Tjänstgörande ersättare,5
-Tjänstledig riksdagsledamot,5
 Utan åtgärd,5
 Tidigare justitieombudsman i Riksdagens ombudsmän,4
 Tidigare ställföreträdande ombudsman i Riksdagens ombudsmän,4
@@ -94,7 +92,6 @@ Avliden  1989-05-08,3
 Delvis avslag,3
 Justitieombudsman i Riksdagens ombudsmän,3
 Ledamot i Riksbanksfullmäktige,3
-Preliminär,3
 Pågår,3
 Tidigare ledamot i Nämnden för lön till riksdagens ombudsmän och riksrevisorn,3
 Tidigare ledamot i Riksbanksfullmäktige,3
@@ -126,6 +123,8 @@ Tidigare kulturminister,2
 Tidigare ledamot i Riksdagens arvodesnämnd,2
 Tidigare näringsminister,2
 Tidigare ordförande i Riksdagens ansvarsnämnd,2
+Tjänstgörande ersättare,2
+Tjänstledig riksdagsledamot,2
 html saknas,2
 63681,1
 63682,1
@@ -233,7 +232,7 @@ html saknas,2
 63928,1
 Andre vice talman (tjänstgörande riksdagsledamot),1
 AnkT,1
-Arbetsmarknadsminister och vikarierande klimat- och miljöminister,1
+Arbetsmarknadsminister,1
 Avliden  1989-05-06,1
 Avliden  1990-02-16,1
 Avliden  1991-01-23,1
@@ -492,7 +491,6 @@ Tidigare ordförande i Valprövningsnämnden,1
 Tidigare utbildningsminister,1
 Tidigare vice ordförande i Riksdagens ansvarsnämnd,1
 Tjänstgörande talmansersättare,1
-Tjänstledig ersättare,1
 Tredje vice talman (tjänstgörande riksdagsledamot),1
 Utbildnings- och integrationsminister,1
 Utgår,1

@@ -1,7 +1,9 @@
 embedded_id_page,embedded_id_created_date,hits,rank_percentage,rank,rn
-main,2026-05-10 00:00:00,2,0,1,1
-politicianranking,2026-05-10 00:00:00,1,0.5,2,2
-politicianranking,2026-06-05 00:00:00,1,0,1,1
-main,2026-06-05 00:00:00,1,0,1,2
+main,2026-06-05 00:00:00,1,0,1,1
+ministryranking,2026-06-05 00:00:00,1,0,1,2
 adminagentoperation,2026-06-06 00:00:00,1,0.5,2,1
-userhome,2026-06-06 00:00:00,1,0.5,2,2
+main,2026-06-06 00:00:00,3,0,1,2
+main,2026-06-21 00:00:00,2,0,1,1
+adminagentoperation,2026-06-21 00:00:00,1,0.5,2,2
+adminagentoperation,2026-06-30 00:00:00,1,0.25,2,1
+main,2026-06-30 00:00:00,3,0,1,2

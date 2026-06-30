@@ -1,7 +1,9 @@
 embedded_id_page,embedded_id_page_mode,embedded_id_created_date,hits,rank_percentage,rank,rn
-politicianranking,Overview,2026-05-10 00:00:00,1,0.5,2,1
-main,Overview,2026-05-10 00:00:00,2,0,1,2
 main,Overview,2026-06-05 00:00:00,1,0,1,1
-ministryranking,CHARTS,2026-06-05 00:00:00,1,0,1,2
-adminagentoperation,"",2026-06-06 00:00:00,1,0.5,2,1
-userhome,OVERVIEW,2026-06-06 00:00:00,1,0.5,2,2
+politicianranking,Overview,2026-06-05 00:00:00,1,0,1,2
+userhome,OVERVIEW,2026-06-06 00:00:00,1,0.5,2,1
+main,Overview,2026-06-06 00:00:00,3,0,1,2
+userhome,OVERVIEW,2026-06-21 00:00:00,1,0.5,2,1
+adminagentoperation,"",2026-06-21 00:00:00,1,0.5,2,2
+userhome,OVERVIEW,2026-06-30 00:00:00,1,0.25,2,1
+adminagentoperation,"",2026-06-30 00:00:00,1,0.25,2,2

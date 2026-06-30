@@ -1,33 +1,33 @@
 embedded_id_detail,embedded_id_org_code,total_assignments,first_assignment_date,last_assignment_date,current_member_size,active,total_days_served,total_leadership_positions,current_leadership_positions,total_substitute_positions,current_substitute_positions,current_regular_members,total_documents,documents_last_year,avg_documents_per_member,total_committee_motions,total_follow_up_motions,activity_level
-Sammansatta utrikes- och socialutskottet,USoU,31,2005-02-15,2005-03-16,0,f,899,2,0,14,0,0,0,0,0,0,0,Inactive
-Bostadsutskottet,BoU,281,1983-10-04,2006-10-02,0,f,260797,11,0,169,0,0,2875,0,7.6,1339,0,Inactive
-Sammansatta konstitutions- och utrikesutskottet,KUU,189,2001-03-27,2009-05-06,0,f,41999,12,0,102,0,0,8,0,0,0,0,Inactive
-"Sammansatta utrikes-, miljö- och jordbruksutskottet",UMJU,35,2003-02-18,2003-05-21,0,f,3218,3,0,18,0,0,1,0,0,0,0,Inactive
-Utbildningsutskottet,UbU,1060,1979-10-01,2026-09-28,44,t,865464,40,2,775,27,15,23710,844,20.5,7117,0,Very High
-Sammansatta utrikes- och försvarsutskottet,UFöU,1818,1995-10-26,2026-06-04,0,f,107320,118,0,915,0,0,69,3,0,0,0,Low
-Socialförsäkringsutskottet,SfU,1016,1976-10-04,2026-09-28,47,t,842698,31,2,771,30,15,17054,722,15.9,7152,8,Very High
-Näringsutskottet,NU,1050,1976-10-04,2026-09-28,45,t,873332,43,2,771,28,15,19533,779,17.3,6912,5,Very High
-Socialutskottet,sou,1,1989-01-13,1989-01-13,0,f,0,0,0,0,0,0,0,0,0,0,0,Inactive
-EES-utskottet,EU,80,1992-05-26,1993-06-04,0,f,28184,4,0,48,0,0,0,0,0,0,0,Inactive
-Finansutskottet,FiU,1065,1976-10-04,2026-09-28,47,t,866065,37,2,790,30,15,14224,532,13.3,4532,72,Very High
-Riksdagen,M,1,2011-07-01,2014-12-31,0,f,1279,0,0,0,0,0,72,0,0,0,0,Inactive
-Miljö- och jordbruksutskottet,MJU,999,1976-10-04,2026-09-28,47,t,853262,38,2,744,30,15,22531,1015,20.2,7241,0,Very High
-Arbetsmarknadsutskottet,AU,1037,1976-10-04,2026-09-28,45,t,865340,39,2,771,28,15,15057,441,14.6,4284,1,Very High
-Sammansatta civil- och kulturutskottet,CKrU,38,2018-03-13,2018-05-24,0,f,2670,2,0,21,0,0,1,0,0,0,0,Inactive
-Utrikesutskottet,UU,1112,1976-10-04,2026-09-28,50,t,688096,39,2,826,33,15,16391,495,16.7,7646,0,Very High
-Konstitutionsutskottet,KU,1021,1976-10-04,2026-09-28,47,t,627349,34,2,759,31,14,15521,634,13.7,5022,0,Very High
 Sammansatta justitie- och socialutskottet,JuSoU,64,2006-02-09,2008-05-07,0,f,5248,5,0,28,0,0,0,0,0,0,0,Inactive
-Riksdagen,MP,2,2015-04-01,2022-12-31,0,f,2830,0,0,0,0,0,0,0,0,0,0,Inactive
-Socialutskottet,SoU,1029,1976-10-04,2026-09-28,46,t,858883,29,2,777,29,15,30306,1222,25.6,9053,5,Very High
-Justitieutskottet,JuU,1023,1982-10-04,2026-09-28,44,t,837559,39,2,760,27,15,20543,882,18.1,7906,0,Very High
-Kulturutskottet,KrU,988,1976-10-04,2026-09-28,45,t,852888,33,2,744,28,15,12492,364,12.0,5002,0,Very High
-EU-nämnden,EUN,1214,1995-01-01,2026-09-28,100,t,978460,35,2,964,83,15,0,0,0,0,0,Inactive
+Miljö- och jordbruksutskottet,MJU,999,1976-10-04,2026-09-28,47,t,854390,38,2,744,30,15,22531,1014,20.2,7241,0,Very High
+Socialutskottet,sou,1,1989-01-13,1989-01-13,0,f,0,0,0,0,0,0,0,0,0,0,0,Inactive
+Socialförsäkringsutskottet,SfU,1017,1976-10-04,2026-09-28,44,t,843780,31,2,772,27,15,17069,729,15.9,7165,8,Very High
+Skatteutskottet,SkU,1078,1976-10-04,2026-09-28,45,t,834841,33,2,798,28,15,15492,475,14.1,4373,0,Very High
+Kulturutskottet,KrU,988,1976-10-04,2026-09-28,45,t,853968,33,2,744,28,15,12492,340,12.0,5002,0,Very High
+EU-nämnden,EUN,1218,1995-01-01,2026-09-28,102,t,980884,35,2,968,85,15,0,0,0,0,0,Inactive
+Sammansatta utrikes- och socialutskottet,USoU,31,2005-02-15,2005-03-16,0,f,899,2,0,14,0,0,0,0,0,0,0,Inactive
+Sammansatta utrikes- och försvarsutskottet,UFöU,1818,1995-10-26,2026-06-04,0,f,107320,118,0,915,0,0,69,3,0,0,0,Low
+Näringsutskottet,NU,1050,1976-10-04,2026-09-28,45,t,874412,43,2,771,28,15,19533,779,17.3,6912,5,Very High
+Sammansatta civil- och kulturutskottet,CKrU,38,2018-03-13,2018-05-24,0,f,2670,2,0,21,0,0,1,0,0,0,0,Inactive
+Arbetsmarknadsutskottet,AU,1037,1976-10-04,2026-09-28,44,t,866409,39,2,771,27,15,15057,440,14.6,4284,1,Very High
 Skatteutskottet,sku,2,1988-10-11,1991-09-29,0,f,1083,0,0,1,0,0,0,0,0,0,0,Inactive
-Riksdagen,S,1,2008-01-01,2011-06-30,0,f,1276,0,0,0,0,0,295,0,0,0,0,Inactive
-Civilutskottet,CU,733,2006-10-10,2026-09-28,45,t,563134,21,2,576,28,15,12865,847,14.8,3844,0,Very High
+Sammansatta konstitutions- och utrikesutskottet,KUU,189,2001-03-27,2009-05-06,0,f,41999,12,0,102,0,0,8,0,0,0,0,Inactive
+EES-utskottet,EU,80,1992-05-26,1993-06-04,0,f,28184,4,0,48,0,0,0,0,0,0,0,Inactive
+Utrikesutskottet,UU,1113,1976-10-04,2026-09-28,49,t,689284,39,2,827,32,15,16404,508,16.7,7659,0,Very High
 Näringsutskottet,nu,1,1988-11-07,1991-09-29,0,f,1056,0,0,1,0,0,0,0,0,0,0,Inactive
-Skatteutskottet,SkU,1078,1976-10-04,2026-09-28,47,t,833735,33,2,798,30,15,15492,475,14.1,4373,0,Very High
+Utbildningsutskottet,UbU,1060,1979-10-01,2026-09-28,44,t,866520,40,2,775,27,15,23710,843,20.5,7117,0,Very High
 Riksdagen,V,1,2012-01-01,2015-03-31,0,f,1185,0,0,0,0,0,0,0,0,0,0,Inactive
-Trafikutskottet,TU,1007,1976-10-04,2026-09-28,45,t,849664,29,2,767,28,15,22303,1014,18.9,4189,0,Very High
+Civilutskottet,CU,735,2006-10-10,2026-09-28,45,t,564212,21,2,577,28,15,12865,812,14.8,3844,0,Very High
+Socialutskottet,SoU,1029,1976-10-04,2026-09-28,45,t,859976,29,2,777,28,15,30327,1237,25.6,9072,5,Very High
+Riksdagen,MP,2,2015-04-01,2022-12-31,0,f,2830,0,0,0,0,0,0,0,0,0,0,Inactive
+"Sammansatta utrikes-, miljö- och jordbruksutskottet",UMJU,35,2003-02-18,2003-05-21,0,f,3218,3,0,18,0,0,1,0,0,0,0,Inactive
+Riksdagen,M,1,2011-07-01,2014-12-31,0,f,1279,0,0,0,0,0,72,0,0,0,0,Inactive
+Konstitutionsutskottet,KU,1026,1976-10-04,2026-09-28,46,t,628474,34,2,763,29,15,15524,614,13.7,5022,0,Very High
+Bostadsutskottet,BoU,281,1983-10-04,2006-10-02,0,f,260797,11,0,169,0,0,2875,0,7.6,1339,0,Inactive
 Lagutskottet,LU,257,1976-10-04,2006-10-02,0,f,252407,12,0,158,0,0,3933,0,9.6,1915,0,Inactive
-Försvarsutskottet,FöU,929,1976-10-04,2026-09-28,48,t,641020,30,2,706,31,15,6162,329,7.1,2631,0,Very High
+Försvarsutskottet,FöU,930,1976-10-04,2026-09-28,47,t,642160,30,2,706,30,15,6162,329,7.1,2631,0,Very High
+Trafikutskottet,TU,1007,1976-10-04,2026-09-28,45,t,850744,29,2,767,28,15,22303,1007,18.9,4189,0,Very High
+Finansutskottet,FiU,1065,1976-10-04,2026-09-28,46,t,867186,37,2,790,29,15,14280,588,13.4,4540,72,Very High
+Riksdagen,S,1,2008-01-01,2011-06-30,0,f,1276,0,0,0,0,0,295,0,0,0,0,Inactive
+Justitieutskottet,JuU,1023,1982-10-04,2026-09-28,44,t,838615,39,2,760,27,15,20551,875,18.1,7913,0,Very High

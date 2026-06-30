@@ -16,7 +16,7 @@ year,document_type,doc_count
 2005,prop,178
 2005,bet,105
 2006,mot,2757
-2006,bet,1585
+2006,bet,1586
 2006,prop,183
 2006,kammakt,8
 2007,mot,3529
@@ -79,6 +79,6 @@ year,document_type,doc_count
 2025,mot,4020
 2025,bet,380
 2025,prop,217
-2026,mot,318
-2026,bet,234
-2026,prop,184
+2026,mot,332
+2026,bet,242
+2026,prop,203
