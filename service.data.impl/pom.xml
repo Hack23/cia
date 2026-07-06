@@ -274,6 +274,10 @@
           <artifactId>hibernate-core</artifactId>
         </exclusion>
         <exclusion>
+          <groupId>org.hibernate.orm</groupId>
+          <artifactId>hibernate-core</artifactId>
+        </exclusion>
+        <exclusion>
           <groupId>org.springframework</groupId>
           <artifactId>spring-tx</artifactId>
         </exclusion>
