@@ -9,6 +9,9 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "daily"
+    cooldown:
+      default-days: 0
+      exclude: "*"
     groups:
       junit:
         patterns:
@@ -22,8 +25,14 @@ updates:
     directory: /
     schedule:
       interval: daily
+    cooldown:
+      default-days: 0
+      exclude: "*"
 
   - package-ecosystem: docker
     directory: /.devcontainer
+    cooldown:
+      default-days: 0
+      exclude: "*"    
     schedule:
       interval: daily
