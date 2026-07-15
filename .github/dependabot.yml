@@ -10,8 +10,8 @@ updates:
     schedule:
       interval: "daily"
     cooldown:
-      default-days: 0
-      exclude: "*"
+      default-days: 1
+      exclude: ["*"]
     groups:
       junit:
         patterns:
@@ -26,13 +26,13 @@ updates:
     schedule:
       interval: daily
     cooldown:
-      default-days: 0
-      exclude: "*"
+      default-days: 1
+      exclude: ["*"]
 
   - package-ecosystem: docker
     directory: /.devcontainer
     cooldown:
-      default-days: 0
-      exclude: "*"    
+      default-days: 1
+      exclude: ["*"]
     schedule:
       interval: daily
