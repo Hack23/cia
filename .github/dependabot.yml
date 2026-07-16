@@ -28,6 +28,16 @@ updates:
     cooldown:
       default-days: 1
       exclude: ["*"]
+    groups:
+      github-actions:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
+    labels:
+      - "dependencies"
+      - "github-actions"
 
   - package-ecosystem: docker
     directory: /.devcontainer
