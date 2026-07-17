@@ -25,7 +25,6 @@ jobs:
       actions: read      # Basic read access to actions
       issues: write       # Updated to write for release-drafter
       pull-requests: write    # Updated to write for release-drafter      
-      pages: read
       attestations: write # Required to create and persist attestations
     strategy:
       fail-fast: false
