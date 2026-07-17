@@ -26,6 +26,10 @@ jobs:
       issues: write       # Updated to write for release-drafter
       pull-requests: write    # Updated to write for release-drafter      
       attestations: write # Required to create and persist attestations
+      security-events: write  # Needed for SBOM attestation
+      packages: write     # Needed for publishing packages
+      statuses: write    # Required for commit statuses updated by actions
+      deployments: write
     strategy:
       fail-fast: false
 
