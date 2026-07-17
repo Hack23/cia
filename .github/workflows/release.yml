@@ -21,15 +21,11 @@ jobs:
       cancel-in-progress: true
     permissions:
       contents: write     # Needed for checkout, git-auto-commit-action, and creating releases
-      packages: write     # Needed for publishing packages
       id-token: write    # Required for SLSA provenance and SBOM attestation
       actions: read      # Basic read access to actions
-      security-events: write  # Needed for SBOM attestation
-      statuses: write    # Required for commit statuses updated by actions
       issues: write       # Updated to write for release-drafter
       pull-requests: write    # Updated to write for release-drafter      
       pages: read
-      deployments: write
       attestations: write # Required to create and persist attestations
     strategy:
       fail-fast: false

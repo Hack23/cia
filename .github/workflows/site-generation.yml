@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-26.04
     timeout-minutes: 120
     permissions:
-      contents: write     # Needed for checkout and potential site deployment
+      contents: read      # Needed for checkout
       pages: write        # Needed for GitHub Pages deployment
       id-token: write     # Required for attestation
       actions: read       # Basic read access to actions
