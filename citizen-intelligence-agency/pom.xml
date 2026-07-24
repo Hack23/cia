@@ -83,7 +83,7 @@
     <dependency>
       <groupId>nl.basjes.parse.useragent</groupId>
       <artifactId>yauaa</artifactId>
-      <version>8.1.1</version>
+      <version>8.2.0</version>
       <exclusions>
         <exclusion>
           <groupId>org.apache.commons</groupId>
