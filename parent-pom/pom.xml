@@ -123,7 +123,7 @@
     <cia.project.versions.xmlbeans>5.3.0</cia.project.versions.xmlbeans>
     <cia.project.versions.antlr>2.7.7</cia.project.versions.antlr>
     <cia.project.versions.jdom>2.0.6</cia.project.versions.jdom>
-    <cia.project.versions.plexus.utils>4.0.3</cia.project.versions.plexus.utils>
+    <cia.project.versions.plexus.utils>4.1.0</cia.project.versions.plexus.utils>
     <cia.project.versions.jaxb2.commons>0.13.1</cia.project.versions.jaxb2.commons>
     <cia.project.versions.hyperjaxb3>0.6.2</cia.project.versions.hyperjaxb3>
     <cia.project.versions.hyperjaxb3.plugin>0.6.2</cia.project.versions.hyperjaxb3.plugin>
@@ -853,7 +853,7 @@
             <dependency>
               <groupId>org.codehaus.plexus</groupId>
               <artifactId>plexus-utils</artifactId>
-              <version>4.0.3</version>
+              <version>4.1.0</version>
             </dependency>
           </dependencies>
         </plugin>
