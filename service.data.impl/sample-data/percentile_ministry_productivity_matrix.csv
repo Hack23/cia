@@ -1,11 +1,11 @@
 column_name,data_type,distinct_count,min_value,max_value,p1,p10,p25,median,p75,p90,p99
 year,numeric,4,2023,2026,2023,2023,2024,2025,2025.5,2026,2026
-documents_produced,bigint,25,1,65,1.42,2.2,4,9,18.5,43.6,60.8
-propositions,bigint,25,1,65,1.42,2.2,4,9,18.5,43.6,60.8
+documents_produced,bigint,23,1,65,1,2.2,4,9,18.5,44.4,61.64
+propositions,bigint,23,1,65,1,2.2,4,9,18.5,44.4,61.64
 government_bills,bigint,1,0,0,0,0,0,0,0,0,0
-unique_contributors,bigint,8,2,9,2,3,4,6,6.5,7.8,9
+unique_contributors,bigint,8,2,9,2,3,4,6,7,7.8,9
 median_documents,double precision,4,3.5,14,3.5,3.5,9,10,12,14,14
-avg_documents,numeric,4,6.8000000000000000,19.6363636363636364,6.8,6.8,16.6363636363636,18.4545454545455,19.0454545454545,19.6363636363636,19.6363636363636
+avg_documents,numeric,4,6.5000000000000000,19.6363636363636364,6.5,6.5,16.6363636363636,18.9090909090909,19.2727272727273,19.6363636363636,19.6363636363636
 p25_documents,double precision,4,2,7,2,2,6,6.5,6.75,7,7
-p75_documents,double precision,4,8,24.5,8,8,17.5,20.5,22.5,24.5,24.5
-pct_vs_average,numeric,35,-89.16,282.35,-87.5346,-78.896,-70.59,-41.18,17.65,149.652,260.7914
+p75_documents,double precision,4,8,24.5,8,8,17.5,21.5,23,24.5,24.5
+pct_vs_average,numeric,35,-89.42,284.62,-87.446,-83.23,-69.59,-38.46,23.08,149.564,262.108

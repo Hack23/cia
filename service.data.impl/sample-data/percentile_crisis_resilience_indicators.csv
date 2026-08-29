@@ -1,8 +1,8 @@
 column_name,data_type,distinct_count,min_value,max_value,p1,p10,p25,median,p75,p90,p99
-crisis_period_votes,bigint,194,0,9069,1.56,347,1494,2629.5,4026,5604.8,7599.67
-crisis_absence_rate,numeric,353,0.00,79.23,0,2.14,9.24,19.06,27.47,33.46,56.9704
+crisis_period_votes,bigint,195,0,9069,1.68,347,1494,2651,4021,5588.4,7599.26
+crisis_absence_rate,numeric,354,0.00,79.23,0,2.14,9.2825,19.085,27.695,33.445,56.9542
 crisis_party_discipline,numeric,36,46.54,100.00,83.97,99.88,99.95,100,100,100,100
-normal_period_votes,bigint,169,0,1800,0,58.2,257,483,721,1084,1577.54
-normal_absence_rate,numeric,302,0.00,59.70,0,2.33,9.34,14.02,20.9,26.24,42.11
-absence_rate_change,numeric,368,-45.16,68.33,-23.373,-6.525,0,5.305,9.6325,14.955,27.704
-resilience_score,numeric,389,20.0000,100.0000,23.070304,51.19636,62.8308,72.6832,83.6889,89.73964,100
+normal_period_votes,bigint,169,0,1800,0,58.6,257,485,717,1081,1577.12
+normal_absence_rate,numeric,303,0.00,59.70,0,2.353,9.34,14.04,20.8825,26.238,42.0898
+absence_rate_change,numeric,369,-45.16,68.33,-23.3064,-6.468,0,5.34,9.61,14.946,27.7012
+resilience_score,numeric,390,20.0000,100.0000,23.164767,51.21633,62.798775,72.6464,83.6662,89.68907,100

@@ -1,20 +1,20 @@
 value,count
-"",113394
+"",113426
 Klar,40915
 Ank T,25591
-Besvarad,22404
+Besvarad,22413
 korrekturläst,22058
 inträffat,21024
-Inkommen,20770
+Inkommen,20781
 Trycklov,10630
 hämtad,6708
 Webbpublicering,5013
 Hänvisad,4106
-planerat,3377
+planerat,3384
 hämtad_2,2564
-Publicerad,2552
-justerat,1876
-Skickad,1854
+Publicerad,2553
+justerat,1878
+Skickad,1853
 titel,1536
 ok,1526
 Återtagen,1160
@@ -24,10 +24,10 @@ saknas,474
 Avslutad,456
 Avslag,435
 Inga uppdrag,405
-Tjänstgörande riksdagsledamot,330
-Tillgänglig ersättare,326
+Tjänstgörande riksdagsledamot,331
+Tillgänglig ersättare,327
 Utgången,321
-doktextextraktor,318
+doktextextraktor,321
 ANKT,292
 slutlig,283
 Pågående,282
@@ -123,8 +123,6 @@ Tidigare kulturminister,2
 Tidigare ledamot i Riksdagens arvodesnämnd,2
 Tidigare näringsminister,2
 Tidigare ordförande i Riksdagens ansvarsnämnd,2
-Tjänstgörande ersättare,2
-Tjänstledig riksdagsledamot,2
 html saknas,2
 63681,1
 63682,1
@@ -490,7 +488,9 @@ Tidigare ordförande i Styrelsen för Stiftelsen Riksbankens Jubileumsfond,1
 Tidigare ordförande i Valprövningsnämnden,1
 Tidigare utbildningsminister,1
 Tidigare vice ordförande i Riksdagens ansvarsnämnd,1
+Tjänstgörande ersättare,1
 Tjänstgörande talmansersättare,1
+Tjänstledig riksdagsledamot,1
 Tredje vice talman (tjänstgörande riksdagsledamot),1
 Utbildnings- och integrationsminister,1
 Utgår,1

@@ -380,15 +380,15 @@ year,committee,doc_count
 2011,KrU,135
 2011,FI,96
 2011,FöU,48
-2011,N,25
 2011,Ju,25
+2011,N,25
 2011,UD,17
 2011,S,15
 2011,U,11
 2011,M,10
 2011,L,6
-2011,Fö,5
 2011,A,5
+2011,Fö,5
 2011,UFöU,4
 2011,SB,3
 2011,Ku,1
@@ -803,19 +803,19 @@ year,committee,doc_count
 2026,SfU,69
 2026,JuU,59
 2026,CU,57
-2026,Justitiedepartementet,55
-2026,FiU,49
+2026,Justitiedepartementet,57
+2026,FiU,51
+2026,Finansdepartementet,45
 2026,SoU,44
 2026,UbU,44
-2026,Finansdepartementet,44
-2026,UU,41
+2026,UU,42
 2026,MJU,40
 2026,NU,40
 2026,KU,28
 2026,FöU,27
 2026,SkU,25
+2026,Socialdepartementet,25
 2026,TU,24
-2026,Socialdepartementet,23
 2026,Landsbygds- och infrastrukturdepartementet,18
 2026,Klimat- och näringslivsdepartementet,16
 2026,AU,15

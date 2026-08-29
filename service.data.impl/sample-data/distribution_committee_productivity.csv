@@ -1,11 +1,11 @@
 committee_name,total_documents,propositions_count,reports_count,total_members,docs_per_member,productivity_level
-Konstitutionsutskottet,78,1,73,46,0.91,HIGHLY_PRODUCTIVE
-Civilutskottet,62,0,62,45,0.91,HIGHLY_PRODUCTIVE
+Konstitutionsutskottet,78,1,73,45,0.93,HIGHLY_PRODUCTIVE
+Civilutskottet,62,0,62,45,0.89,HIGHLY_PRODUCTIVE
 Miljö- och jordbruksutskottet,51,0,51,47,0.60,HIGHLY_PRODUCTIVE
-Näringsutskottet,43,2,41,45,0.58,HIGHLY_PRODUCTIVE
 Utrikesutskottet,42,2,40,49,0.49,HIGHLY_PRODUCTIVE
-Trafikutskottet,41,0,41,45,0.53,HIGHLY_PRODUCTIVE
-Arbetsmarknadsutskottet,26,0,26,44,0.30,PRODUCTIVE
+Trafikutskottet,41,0,41,44,0.45,HIGHLY_PRODUCTIVE
+Näringsutskottet,41,2,39,45,0.42,PRODUCTIVE
+Arbetsmarknadsutskottet,23,0,23,44,0.23,BELOW_AVERAGE
 Försvarsutskottet,0,0,0,47,0.00,INACTIVE
 Socialförsäkringsutskottet,0,0,0,44,0.00,INACTIVE
 Justitieutskottet,0,0,0,44,0.00,INACTIVE

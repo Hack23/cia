@@ -2,11 +2,13 @@ party,committee,decision_year,decision_count,total_decisions,avg_approval_rate
 -,Avslag,2025,5,5,0.00
 -,Avslag,2024,16,31,0.00
 -,Avslag,2023,10,25,0.00
+C,Avslag,2026,2,2,0.00
 C,Avslag,2025,176,257,0.00
 C,Avslag,2024,431,850,0.00
 C,BifallDelvis,2024,3,3,100.00
 C,Avslag,2023,367,845,0.00
 C,BifallDelvis,2023,3,3,100.00
+KD,Bifall,2026,1,1,100.00
 KD,Avslag,2025,2,2,0.00
 KD,Bifall,2025,38,50,100.00
 KD,"Bifall,Bifall",2025,1,1,100.00
@@ -22,6 +24,7 @@ L,Avslag,2024,54,73,0.00
 L,Bifall,2024,11,13,100.00
 L,Avslag,2023,68,85,0.00
 L,Bifall,2023,13,15,100.00
+M,Bifall,2026,3,5,100.00
 M,Avslag,2025,22,26,0.00
 M,Bifall,2025,92,181,100.00
 M,"Bifall,Bifall",2025,1,1,100.00
@@ -34,7 +37,7 @@ M,Avslag,2023,384,889,0.00
 M,Bifall,2023,90,173,100.00
 M,BifallDelvis,2023,3,3,100.00
 MP,"",2026,20,20,0.00
-MP,Avslag,2026,23,23,0.00
+MP,Avslag,2026,31,31,0.00
 MP,Avslag,2025,315,455,0.00
 MP,Avslag,2024,470,1141,0.00
 MP,Avslag,2023,390,894,0.00

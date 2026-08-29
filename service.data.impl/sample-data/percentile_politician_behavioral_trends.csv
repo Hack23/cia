@@ -7,8 +7,8 @@ avg_no_rate,numeric,76,8.74,34.76,13.1,15.05,15.76,17.08,19.14,21.25,29.79
 avg_abstain_rate,numeric,76,0.00,16.99,2.42,3.22,4.15,7.71,11.14,11.99,12.82
 avg_win_rate,numeric,719,0.00,100.00,0,27.226,39.5,55.6,84.57,100,100
 avg_rebel_rate,numeric,92,0.00,68.80,0,0,0,0,0,0,2.33
-violation_count,bigint,14,0,13,0,0,0,0,0,0,7
-violation_types,bigint,7,0,6,0,0,0,0,0,0,4
+violation_count,bigint,1,0,0,0,0,0,0,0,0,0
+violation_types,bigint,1,0,0,0,0,0,0,0,0,0
 absence_trend,numeric,106,-16.71,4.90,-16.62,-1.61,-0.94,0.07,1.15,2.62,2.85
 win_rate_trend,numeric,1831,-100.00,100.00,-66.67,-33,-15.43,0,14.34,31.282,71.4538
 rebel_rate_trend,numeric,142,-43.42,45.60,-1.1122,0,0,0,0,0,1.5
