@@ -924,7 +924,7 @@
             <dependency>
               <groupId>org.apache.bcel</groupId>
               <artifactId>bcel</artifactId>
-              <version>6.12.0</version>
+              <version>6.13.0</version>
             </dependency>
           </dependencies>
         </plugin>
