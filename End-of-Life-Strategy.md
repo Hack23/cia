@@ -66,9 +66,9 @@ See [README.md - Deployment Options](README.md#deployment-options) for deploymen
 | **Java 23** | 🔵 Compatible | Feature | March 2025 | No changes required |
 | **Java 24** | 🔵 Compatible | Feature | September 2025 | No changes required |
 | **Java 25** | 🟡 Compatible | LTS | September 2031 | LTS milestone — supported runtime |
-| **Java 26** | 🟡 Compatible | Feature | March 2027 | Previous runtime — retained for compatibility |
-| **Java 27** | 🟢 **Current Build Runtime** | Feature | March 2028 (est.) | **Current CI/CD runtime** |
-| **Java 28** | 🔮 Projected | Feature | September 2028 (est.) | Compatibility testing planned |
+| **Java 26** | 🟡 Compatible | Feature | September 2026 | Previous runtime — retained for compatibility |
+| **Java 27** | 🟢 **Current Build Runtime** | Feature | March 2027 | **Current CI/CD runtime** |
+| **Java 28** | 🔮 Projected | Feature | September 2027 | Compatibility testing planned |
 | **Java 29** | 🔮 Projected | LTS | September 2034 (est.) | Next LTS after 25 — planned runtime upgrade |
 | **Java 30** | 🔮 Projected | Feature | March 2029 (est.) | Feature release |
 | **Java 31** | 🔮 Projected | Feature | September 2029 (est.) | Feature release |
