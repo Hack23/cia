@@ -1448,7 +1448,7 @@
           java.base/sun.nio.ch=ALL-UNNAMED
           --add-exports java.base/jdk.internal.ref=ALL-UNNAMED --add-opens
           java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED
-          --add-opens java.base/java.util=ALL-UNNAMED</testAdditionalRuntimeArgLine>
+          --add-opens java.base/java.util=ALL-UNNAMED -Dio.netty.noUnsafe=false</testAdditionalRuntimeArgLine>
         <jdk.src.version>21</jdk.src.version>
         <jdk.target.version>21</jdk.target.version>
         <forbiddenapis.skip>true</forbiddenapis.skip>
@@ -1465,7 +1465,41 @@
           java.base/sun.nio.ch=ALL-UNNAMED
           --add-exports java.base/jdk.internal.ref=ALL-UNNAMED --add-opens
           java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED
-          --add-opens java.base/java.util=ALL-UNNAMED</testAdditionalRuntimeArgLine>
+          --add-opens java.base/java.util=ALL-UNNAMED -Dio.netty.noUnsafe=false</testAdditionalRuntimeArgLine>
+        <jdk.src.version>21</jdk.src.version>
+        <jdk.target.version>21</jdk.target.version>
+        <forbiddenapis.skip>true</forbiddenapis.skip>
+      </properties>
+    </profile>
+    <profile>
+      <id>java27</id>
+      <activation>
+        <jdk>27</jdk>
+      </activation>
+      <properties>
+        <testAdditionalRuntimeArgLine>-XX:+EnableDynamicAgentLoading
+          --enable-native-access=ALL-UNNAMED --add-exports
+          java.base/sun.nio.ch=ALL-UNNAMED
+          --add-exports java.base/jdk.internal.ref=ALL-UNNAMED --add-opens
+          java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED
+          --add-opens java.base/java.util=ALL-UNNAMED -Dio.netty.noUnsafe=false</testAdditionalRuntimeArgLine>
+        <jdk.src.version>21</jdk.src.version>
+        <jdk.target.version>21</jdk.target.version>
+        <forbiddenapis.skip>true</forbiddenapis.skip>
+      </properties>
+    </profile>
+    <profile>
+      <id>java28</id>
+      <activation>
+        <jdk>28</jdk>
+      </activation>
+      <properties>
+        <testAdditionalRuntimeArgLine>-XX:+EnableDynamicAgentLoading
+          --enable-native-access=ALL-UNNAMED --add-exports
+          java.base/sun.nio.ch=ALL-UNNAMED
+          --add-exports java.base/jdk.internal.ref=ALL-UNNAMED --add-opens
+          java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.lang.reflect=ALL-UNNAMED
+          --add-opens java.base/java.util=ALL-UNNAMED -Dio.netty.noUnsafe=false</testAdditionalRuntimeArgLine>
         <jdk.src.version>21</jdk.src.version>
         <jdk.target.version>21</jdk.target.version>
         <forbiddenapis.skip>true</forbiddenapis.skip>

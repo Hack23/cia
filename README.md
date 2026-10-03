@@ -358,9 +358,9 @@ CIA's intelligence operations (INTOP) and OSINT capabilities are documented and 
 
 | Component | Version | Purpose |
 |:----------|:-------:|:--------|
-| **Java JDK** | 26 (Temurin) | Runtime — [Adoptium](https://adoptium.net/) |
+| **Java JDK** | 27 (Temurin) | Runtime — [Adoptium](https://adoptium.net/) |
 | **Java Source** | 21 | Source compatibility — Maven compiler |
-| **Maven** | 3.9.15+ | Build automation — [Maven](https://maven.apache.org/install.html) |
+| **Maven** | 3.10.0+ | Build automation — [Maven](https://maven.apache.org/install.html) |
 | **Node.js** | 24+ | Copilot MCP servers, Playwright testing |
 | **PostgreSQL** | 18 | Database with `pgaudit`, `pgcrypto`, `pg_stat_statements` |
 
@@ -408,7 +408,7 @@ mvn spring-boot:run
 | **Monitoring** | [JavaMelody](https://github.com/javamelody/javamelody) · [AWS SDK CloudWatch](https://aws.amazon.com/cloudwatch/) |
 | **Testing** | [JUnit](https://junit.org/) · [Mockito](https://site.mockito.org/) · [Spring Test](https://docs.spring.io/spring-framework/docs/current/reference/html/testing.html) · [Selenium WebDriver](https://www.selenium.dev/) · [Playwright](https://playwright.dev/) |
 | **Utilities** | [Apache Commons](https://commons.apache.org/) · [Google Guava](https://guava.dev/) · [SLF4J](http://www.slf4j.org/) · [Logback](https://logback.qos.ch/) · [Jackson](https://github.com/FasterXML/jackson) |
-| **Build** | [Apache Maven 3.9.15+](https://maven.apache.org/) — 49+ modules |
+| **Build** | [Apache Maven 3.10.0+](https://maven.apache.org/) — 49+ modules |
 | **CI / CD** | [GitHub Actions](https://github.com/Hack23/cia/actions) · [SonarCloud](https://sonarcloud.io/project/overview?id=Hack23_cia) · [CodeQL](https://github.com/Hack23/cia/security/code-scanning) · [OWASP ZAP](https://www.zaproxy.org/) · [Dependabot](https://github.com/Hack23/cia/security/dependabot) · [Step Security Harden-Runner](https://github.com/step-security/harden-runner) |
 
 For the full stack and current versions, see [`techstack.yml`](techstack.yml) and the per-module Maven sites at [hack23.github.io/cia/](https://hack23.github.io/cia/).
@@ -589,9 +589,9 @@ CIA uses **GitHub Copilot custom agents and skills** as first-class development 
 |:--------|:--------|:-----:|
 | 🤖 **Custom agents** | [`.github/agents/README.md`](.github/agents/README.md) | **6** |
 | 🧠 **Skills library** | [`.github/skills/README.md`](.github/skills/README.md) | **80+** |
-| ⚙️ **Workflows** | [`.github/workflows/`](.github/workflows/) | 13 |
+| ⚙️ **Workflows** | [`.github/workflows/`](.github/workflows/) | 14 |
 | 🔌 **MCP servers** | [`.github/copilot-mcp-config.json`](.github/copilot-mcp-config.json) | github · filesystem · memory · sequential-thinking · playwright |
-| 📋 **Setup contract** | [`.github/workflows/copilot-setup-steps.yml`](.github/workflows/copilot-setup-steps.yml) | Java 26 · Maven 3.9.15 · PostgreSQL 18 |
+| 📋 **Setup contract** | [`.github/workflows/copilot-setup-steps.yml`](.github/workflows/copilot-setup-steps.yml) | Java 27 · Maven 3.10.0 · PostgreSQL 18 |
 
 ### Available agents
 

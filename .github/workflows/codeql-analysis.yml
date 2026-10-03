@@ -15,7 +15,7 @@ on:
     - cron: "0 4 * * 3"
 
 env:
-  javaVersion: java26
+  javaVersion: java27
 
 permissions: read-all
 
@@ -112,11 +112,11 @@ jobs:
       #   make bootstrap
       #   make release
 
-      - name: Set up JDK 26
+      - name: Set up JDK 27
         uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
         with:
           distribution: "temurin"
-          java-version: "26"
+          java-version: "27"
           # Disable built-in cache - we use optimized manual caching below
           cache: ""
 
@@ -129,10 +129,10 @@ jobs:
             ~/.m2/wrapper
             ~/.sonar/cache
           # Include Maven version in key for isolation
-          key: ${{ runner.os }}-maven-3.9.16-${{ hashFiles('**/pom.xml', '.mvn/**') }}
+          key: ${{ runner.os }}-maven-3.10.0-${{ hashFiles('**/pom.xml', '.mvn/**') }}
           restore-keys: |
-            ${{ runner.os }}-maven-3.9.16-${{ hashFiles('**/pom.xml') }}
-            ${{ runner.os }}-maven-3.9.16-
+            ${{ runner.os }}-maven-3.10.0-${{ hashFiles('**/pom.xml') }}
+            ${{ runner.os }}-maven-3.10.0-
             ${{ runner.os }}-maven-
 
       - name: Cache APT packages
@@ -293,7 +293,7 @@ jobs:
       - name: Set up Maven
         uses: stCarolas/setup-maven@d6af6abeda15e98926a57b5aa970a96bb37f97d1 # v5
         with:
-          maven-version: 3.9.16
+          maven-version: 3.10.0
 
       - name: Build with Maven
         run: mvn -B clean install --file pom.xml -Prelease-site,all-modules -DskipTests -DfailIfNoTests=false -Dsurefire.failIfNoSpecifiedTests=false -Dspdx.skip=true -Dmaven.wagon.http.retryHandler.count=3 -Dmaven.wagon.httpconnectionManager.ttlSeconds=120 -Dmaven.wagon.http.pool=true

@@ -11,13 +11,13 @@
 
 <p align="center">
   <a href="#"><img src="https://img.shields.io/badge/Owner-CEO-0A66C2?style=for-the-badge" alt="Owner"/></a>
-  <a href="#"><img src="https://img.shields.io/badge/Version-1.1-555?style=for-the-badge" alt="Version"/></a>
-  <a href="#"><img src="https://img.shields.io/badge/Effective-2026--04--20-success?style=for-the-badge" alt="Effective Date"/></a>
+  <a href="#"><img src="https://img.shields.io/badge/Version-1.2-555?style=for-the-badge" alt="Version"/></a>
+  <a href="#"><img src="https://img.shields.io/badge/Effective-2026--10--03-success?style=for-the-badge" alt="Effective Date"/></a>
   <a href="#"><img src="https://img.shields.io/badge/Review-Annual-orange?style=for-the-badge" alt="Review Cycle"/></a>
 </p>
 
-**📋 Document Owner:** CEO | **📄 Version:** 1.1 | **📅 Last Updated:** 2026-04-20 (UTC)  
-**🔄 Review Cycle:** Annual | **⏰ Next Review:** 2027-04-20
+**📋 Document Owner:** CEO | **📄 Version:** 1.2 | **📅 Last Updated:** 2026-10-03 (UTC)
+**🔄 Review Cycle:** Annual | **⏰ Next Review:** 2027-10-03
 **🏷️ Classification:** Public (Open Civic Transparency Platform)
 
 ---
@@ -118,7 +118,7 @@ graph LR
 
 ## 🔄 Workflow Overview
 
-The CIA project uses GitHub Actions for automation with 13 distinct workflows organized into three functional categories:
+The CIA project uses GitHub Actions for automation with 14 distinct workflows organized into three functional categories:
 
 ### Core CI/CD Workflows (6 workflows)
 1. **🚀 Verify & Release** (`release.yml`): Builds, tests, and releases new versions with comprehensive security checks, SLSA 3 attestations, and CycloneDX SBOM
@@ -128,16 +128,17 @@ The CIA project uses GitHub Actions for automation with 13 distinct workflows or
 5. **🔒 ZAP Scan** (`zap-scan.yml`): OWASP ZAP dynamic application security testing (DAST)
 6. **🏷️ PR Labeler** (`labeler.yml`): Applies automated labels to pull requests based on paths
 
-### Data Quality & Validation Workflows (4 workflows)
+### Data Quality & Validation Workflows (5 workflows)
 7. **📊 Generate Intelligence Changelog** (`generate-intelligence-changelog.yml`): Auto-generates `CHANGELOG_INTELLIGENCE.md` from commits
 8. **✅ Validate Field Completeness** (`validate-field-completeness.yml`): Validates JSON export field completeness against schemas
 9. **🔍 Validate JSON Schemas** (`validate-json-schemas.yml`): Validates JSON export schema files
 10. **📚 Validate View Documentation** (`validate-view-documentation.yml`): Ensures database view documentation (`DATABASE_VIEW_INTELLIGENCE_CATALOG.md`) matches 110 actual views
+11. **🧭 Validate Mermaid** (`validate-mermaid.yml`): Validates Mermaid diagrams in repository documentation
 
 ### Infrastructure & Documentation Workflows (3 workflows)
-11. **🤖 Copilot Setup Steps** (`copilot-setup-steps.yml`): Configures GitHub Copilot agent environment (JDK 26, Maven 3.9.15, PostgreSQL 18, Node 24, MCP servers)
-12. **📖 JavaDoc Generation** (`javadoc-generation.yml`): Generates and publishes JavaDoc to GitHub Pages
-13. **📄 Site Generation** (`site-generation.yml`): Maven site generation with JaCoCo coverage reports
+12. **🤖 Copilot Setup Steps** (`copilot-setup-steps.yml`): Configures GitHub Copilot agent environment (JDK 27, Maven 3.10.0, PostgreSQL 18, Node 24, MCP servers)
+13. **📖 JavaDoc Generation** (`javadoc-generation.yml`): Generates and publishes JavaDoc to GitHub Pages
+14. **📄 Site Generation** (`site-generation.yml`): Maven site generation with JaCoCo coverage reports
 
 ## Workflow Relationships
 
@@ -208,10 +209,10 @@ flowchart TB
 **Workflow:** `Verify and Release` (`release.yml`)  
 **Trigger:** Manual workflow dispatch with version input  
 **Duration:** ~15-20 minutes  
-**Runtime:** Ubuntu 26.04, JDK 26 (Temurin), Maven 3.9.15, PostgreSQL 18
+**Runtime:** Ubuntu 26.04, JDK 27 (Temurin), Maven 3.10.0, PostgreSQL 18
 
 **Quality Gates:**
-- ✅ Maven build success (Java 26, source 21)
+- ✅ Maven build success (Java 27, source 21)
 - ✅ All modules compile successfully
 - ✅ Unit tests pass (207+ tests across modules)
 - ✅ Integration tests pass
@@ -820,11 +821,11 @@ The GitHub Actions workflows use several key configuration patterns:
 
 ## JDK Configuration
 
-The project's workflows are configured to use JDK 26 for building and testing:
+The project's Maven workflows are configured to use JDK 27 and Maven 3.10.0 for building and testing:
 
 ```mermaid
 graph TD
-    A[JDK Configuration] --> B[Java 26]
+    A[JDK Configuration] --> B[Java 27]
     B --> C[Temurin Distribution]
     C --> D[Maven Build]
     D --> E[Compatibility with Spring]

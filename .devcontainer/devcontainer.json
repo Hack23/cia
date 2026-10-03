@@ -55,10 +55,10 @@
   },
   "features": {
     "ghcr.io/devcontainers/features/java:1": {
-      "version": "26",
+      "version": "27",
       "distribution": "open",
       "installMaven": true,
-      "mavenVersion": "3.9.16",
+      "mavenVersion": "3.10.0",
       "installAnt": true
     },
     "ghcr.io/devcontainers/features/node:1": {
