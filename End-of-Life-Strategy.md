@@ -11,13 +11,13 @@
 
 <p align="center">
   <a href="#"><img src="https://img.shields.io/badge/Owner-CEO-0A66C2?style=for-the-badge" alt="Owner"/></a>
-  <a href="#"><img src="https://img.shields.io/badge/Version-2.1-555?style=for-the-badge" alt="Version"/></a>
-  <a href="#"><img src="https://img.shields.io/badge/Effective-2026--04--20-success?style=for-the-badge" alt="Effective Date"/></a>
+  <a href="#"><img src="https://img.shields.io/badge/Version-2.2-555?style=for-the-badge" alt="Version"/></a>
+  <a href="#"><img src="https://img.shields.io/badge/Effective-2026--10--03-success?style=for-the-badge" alt="Effective Date"/></a>
   <a href="#"><img src="https://img.shields.io/badge/Review-Annual-orange?style=for-the-badge" alt="Review Cycle"/></a>
 </p>
 
-**📋 Document Owner:** CEO | **📄 Version:** 2.1 | **📅 Last Updated:** 2026-04-20 (UTC)  
-**🔄 Review Cycle:** Annual | **⏰ Next Review:** 2027-04-20
+**📋 Document Owner:** CEO | **📄 Version:** 2.2 | **📅 Last Updated:** 2026-10-03 (UTC)
+**🔄 Review Cycle:** Annual | **⏰ Next Review:** 2027-10-03
 **🏷️ Classification:** Public (Open Civic Transparency Platform)
 
 ---
@@ -38,9 +38,9 @@ For the current feature set that will be maintained under this strategy, see the
 
 ## Jetty 12 EE8 Web Server
 
-- **Current Web Server**: The project uses **Jetty 12.1.8** with **EE8 environment** (Servlet 4.0, `javax.servlet` namespace).
+- **Current Web Server**: The project uses **Jetty 12.1.13** with **EE8 environment** (Servlet 4.0, `javax.servlet` namespace).
 - **EOL for Jetty 12**: Scheduled for **2028** ([endoflife.date](https://endoflife.date/eclipse-jetty)).
-- **Migration Completed**: Jetty 10 → Jetty 12.1.8 EE8 migration was completed in early 2026, allowing the project to remain on `javax.servlet` without moving to Jakarta namespaces while benefiting from Jetty 12's actively maintained codebase and security updates.
+- **Migration Completed**: Jetty 10 → Jetty 12 EE8 migration was completed in early 2026, allowing the project to remain on `javax.servlet` without moving to Jakarta namespaces while benefiting from Jetty 12's actively maintained codebase and security updates.
 
 See [README.md - Deployment Options](README.md#deployment-options) for deployment considerations.
 
@@ -50,10 +50,10 @@ See [README.md - Deployment Options](README.md#deployment-options) for deploymen
 
 ### JVM Compatibility
 
-- **Current Runtime**: Java 26 GA (Temurin) — production runtime as of April 2026
+- **Current Build Runtime**: Java 27 (Temurin) — current CI/CD runtime
 - **Source Compatibility**: Java 21 LTS — source compilation level maintained for stability and broad library compatibility
-- **Build Tool**: Maven 3.9.16
-- **CI/CD Runner**: Ubuntu 26.04 — GitHub Actions runner OS as of June 2026
+- **Build Tool**: Maven 3.10.0
+- **CI/CD Runner**: Ubuntu 26.04 — GitHub Actions runner OS
 - **JVM Monitoring**: Regularly evaluate compatibility with new JVM versions.
 - **EOL Trigger**: The project will officially end when updates require Jakarta namespaces for continued compatibility.
 
@@ -65,10 +65,10 @@ See [README.md - Deployment Options](README.md#deployment-options) for deploymen
 | **Java 22** | 🔵 Compatible | Feature | March 2025 | No changes required |
 | **Java 23** | 🔵 Compatible | Feature | March 2025 | No changes required |
 | **Java 24** | 🔵 Compatible | Feature | September 2025 | No changes required |
-| **Java 25** | 🟡 Compatible | LTS | September 2031 | LTS milestone — previously used as runtime |
-| **Java 26** | 🟢 **Current Runtime** | Feature | March 2027 | **Active production runtime** — used in CI/CD and deployments |
-| **Java 27** | 🔮 Projected | Feature | March 2028 (est.) | Feature release — compatibility testing planned |
-| **Java 28** | 🔮 Projected | Feature | September 2028 (est.) | Feature release |
+| **Java 25** | 🟡 Compatible | LTS | September 2031 | LTS milestone — supported runtime |
+| **Java 26** | 🟡 Compatible | Feature | March 2027 | Previous runtime — retained for compatibility |
+| **Java 27** | 🟢 **Current Build Runtime** | Feature | March 2028 (est.) | **Current CI/CD runtime** |
+| **Java 28** | 🔮 Projected | Feature | September 2028 (est.) | Compatibility testing planned |
 | **Java 29** | 🔮 Projected | LTS | September 2034 (est.) | Next LTS after 25 — planned runtime upgrade |
 | **Java 30** | 🔮 Projected | Feature | March 2029 (est.) | Feature release |
 | **Java 31** | 🔮 Projected | Feature | September 2029 (est.) | Feature release |
@@ -137,19 +137,19 @@ For a conceptual overview of how these components interact, see the [System Mind
 
 | **Category**                | **Technologies**                                                                                   | **EOL**                     |
 |-----------------------------|----------------------------------------------------------------------------------------------------|-----------------------------|
-| **Core Framework**          | [Spring Framework 5.3.39](https://spring.io/projects/spring-framework) (hack23java25 fork)         | Maintained via custom fork  |
-| **Security**                | [Spring Security 5.8.16](https://spring.io/projects/spring-security), [Bouncy Castle 1.84](https://www.bouncycastle.org/), [Passay 2.0.0](https://www.passay.org/) | Aligns with Spring 5.x |
-| **Data Access**             | [Hibernate 5.6.15.Final](https://hibernate.org/), JPA 2.x, [PostgreSQL 18](https://www.postgresql.org/), JDBC 42.7.10 | Hibernate 5.x: Ended; PostgreSQL 18: **Nov 2029** |
-| **Transaction Management**  | [Narayana](https://narayana.io/)                                                                   | Active                      |
-| **Data Auditing**           | [Javers 7.11.0](https://javers.org/)                                                               | Active                      |
-| **Business Rules Engine**   | [Drools 10.1.0](https://www.drools.org/)                                                           | Active                      |
+| **Core Framework**          | [Spring Framework 5.3.39.hack23java25](https://spring.io/projects/spring-framework) (Hack23 fork)    | Maintained via custom fork  |
+| **Security**                | [Spring Security 5.8.16](https://spring.io/projects/spring-security), [Bouncy Castle 1.86](https://www.bouncycastle.org/), [Passay 2.0.0](https://www.passay.org/) | Aligns with Spring 5.x |
+| **Data Access**             | [Hibernate 5.6.15.Final](https://hibernate.org/), JPA 2.x, [PostgreSQL 18](https://www.postgresql.org/), JDBC 42.7.13 | Hibernate 5.x: Ended; PostgreSQL 18: **Nov 2029** |
+| **Transaction Management**  | [Narayana 5.13.1.Final](https://narayana.io/)                                                       | Active                      |
+| **Data Auditing**           | [Javers 7.11.8](https://javers.org/)                                                               | Active                      |
+| **Business Rules Engine**   | [Drools 10.2.0](https://www.drools.org/)                                                           | Active                      |
 | **Messaging**               | [ActiveMQ Artemis](https://activemq.apache.org/components/artemis/), [Spring JMS](https://spring.io/projects/spring-jms) | Active                      |
 | **Web/UI Layer**            | [Vaadin 8.14.4](https://vaadin.com/docs/latest/guide/vaadin-8/overview), Vaadin Sass Compiler      | Reached EOL; commercial support available |
-| **Web Server**              | [Jetty 12.1.8](https://www.eclipse.org/jetty/) (EE8 — Servlet 4.0, `javax.servlet`)                | Jetty 12 EOL: **2028** |
+| **Web Server**              | [Jetty 12.1.13](https://www.eclipse.org/jetty/) (EE8 — Servlet 4.0, `javax.servlet`)               | Jetty 12 EOL: **2028** |
 | **Monitoring**              | [JavaMelody 1.99.4](https://github.com/javamelody/javamelody), [AWS SDK 1.12.797 for CloudWatch](https://aws.amazon.com/cloudwatch/) | Active                      |
-| **Testing**                 | [JUnit 4.13.2](https://junit.org/junit4/), [Mockito](https://site.mockito.org/), [Spring Test](https://spring.io/projects/spring-framework), [Selenium WebDriver](https://www.selenium.dev/documentation/) | JUnit 4: Legacy but maintained; Mockito Active |
-| **Utilities**               | [Apache Commons](https://commons.apache.org/), [Google Guava 33.6.0-jre](https://github.com/google/guava), [SLF4J 2.0.17](http://www.slf4j.org/), [Logback 1.5.32](http://logback.qos.ch/), [Jackson 2.21.2](https://github.com/FasterXML/jackson) | Active                      |
-| **Build & Dependency Management** | [Maven 3.9.16](https://maven.apache.org/)                                                   | Active                      |
+| **Testing**                 | [JUnit 4.13.2](https://junit.org/junit4/), [Mockito](https://site.mockito.org/), [Spring Test](https://spring.io/projects/spring-framework), [Selenium WebDriver 4.50.0](https://www.selenium.dev/documentation/) | JUnit 4: Legacy but maintained; Mockito Active |
+| **Utilities**               | [Apache Commons](https://commons.apache.org/), [Google Guava 33.7.2-jre](https://github.com/google/guava), [SLF4J 2.0.20](http://www.slf4j.org/), [Logback 1.6.5](http://logback.qos.ch/), [Jackson 2.22.3](https://github.com/FasterXML/jackson) | Active                      |
+| **Build & Dependency Management** | [Maven 3.10.0](https://maven.apache.org/)                                                   | Active                      |
 
 ---
 
@@ -193,6 +193,6 @@ For a conceptual overview of how these components interact, see the [System Mind
 **✅ Approved by:** James Pether Sörling, CEO  
 **📤 Distribution:** Public  
 **🏷️ Classification:** [![Confidentiality: Public](https://img.shields.io/badge/C-Public-lightgrey?style=flat-square&logo=shield&logoColor=black)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#confidentiality-levels) [![Integrity: Moderate](https://img.shields.io/badge/I-Moderate-yellow?style=flat-square&logo=check-circle&logoColor=black)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#integrity-levels) [![Availability: Standard](https://img.shields.io/badge/A-Standard-lightgreen?style=flat-square&logo=server&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md#availability-levels)  
-**📅 Effective Date:** 2026-04-20  
-**⏰ Next Review:** 2027-04-20  
+**📅 Effective Date:** 2026-10-03
+**⏰ Next Review:** 2027-10-03
 **🎯 Framework Compliance:** [![ISO 27001](https://img.shields.io/badge/ISO_27001-2022_Aligned-blue?style=flat-square&logo=iso&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) [![NIST CSF 2.0](https://img.shields.io/badge/NIST_CSF-2.0_Aligned-green?style=flat-square&logo=nist&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) [![CIS Controls](https://img.shields.io/badge/CIS_Controls-v8.1_Aligned-orange?style=flat-square&logo=cisecurity&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md) [![AWS Well-Architected](https://img.shields.io/badge/AWS-Well_Architected-orange?style=flat-square&logo=amazon-aws&logoColor=white)](https://github.com/Hack23/ISMS-PUBLIC/blob/main/CLASSIFICATION.md)
