@@ -13,7 +13,8 @@ JETTY_RUN=/opt/cia/cia-base/
 JETTY_PID=/opt/cia/cia-base/cia.pid
 JETTY_START_LOG=/opt/cia/cia-base/cia-start.log
 JETTY_USER=cia
-JAVA_OPTIONS="-server -Xmx4096m -Xms4096m"
+# Artemis releases direct ByteBuffers through Netty's Unsafe cleaner on Java 25+.
+JAVA_OPTIONS="-server -Xmx4096m -Xms4096m -Dio.netty.noUnsafe=false"
 JAVAMELODY=""
 #JAVAMELODY=" -Djavamelody.cloudwatch-namespace=Hack23"
 JETTY_ARGS="$JAVA_OPTIONS $JAVAMELODY -Djetty.http.port=2323 -Djetty.http.host=0.0.0.0 -Djavamelody.system-actions-enabled=true -Djava.awt.headless=true -Djavamelody.storage-directory=/opt/cia/javamelody/ -Dorg.apache.activemq.SERIALIZABLE_PACKAGES=com.hack23.cia,java.util,java.lang,java.math,org.apache -Dnetworkaddress.cache.ttl=10"
