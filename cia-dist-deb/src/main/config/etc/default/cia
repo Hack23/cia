@@ -1,7 +1,7 @@
 # /etc/default/cia
 #
 
-JAVA_HOME=/usr/lib/jvm/jdk-21
+JAVA_HOME=/usr/lib/jvm/jdk-25
 
 CIA_APP_ENCRYPTION_PASSWORD="allhaildiscordia"
 export CIA_APP_ENCRYPTION_PASSWORD
