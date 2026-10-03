@@ -23,7 +23,7 @@
   <a href="#"><img src="https://img.shields.io/badge/Owner-CEO-0A66C2?style=for-the-badge" alt="Owner"/></a>
   <a href="#"><img src="https://img.shields.io/badge/Classification-Public-success?style=for-the-badge" alt="Classification"/></a>
   <a href="#"><img src="https://img.shields.io/badge/Source-Java_21-blue?style=for-the-badge&logo=openjdk" alt="Java Source"/></a>
-  <a href="#"><img src="https://img.shields.io/badge/Runtime-Java_26-brightgreen?style=for-the-badge&logo=openjdk" alt="Java Runtime"/></a>
+  <a href="#"><img src="https://img.shields.io/badge/Runtime-Java_27-brightgreen?style=for-the-badge&logo=openjdk" alt="Java Runtime"/></a>
   <a href="#"><img src="https://img.shields.io/badge/Review-Annual-orange?style=for-the-badge" alt="Review Cycle"/></a>
 </p>
 
@@ -350,7 +350,8 @@ CIA's intelligence operations (INTOP) and OSINT capabilities are documented and 
 |:------------|:-------|:------|
 | ![JDK-21](https://img.shields.io/badge/JDK-21-brightgreen.svg) | **Source Level (LTS)** | Maven `maven.compiler.source` / `target` = 21 |
 | ![JDK-25](https://img.shields.io/badge/JDK-25-brightgreen.svg) | Compatible (LTS) | Previous production runtime |
-| ![JDK-26](https://img.shields.io/badge/JDK-26-brightgreen.svg) | **Current Runtime** | Active production runtime |
+| ![JDK-26](https://img.shields.io/badge/JDK-26-brightgreen.svg) | Compatible | Previous production runtime |
+| ![JDK-27](https://img.shields.io/badge/JDK-27-brightgreen.svg) | **Current Runtime** | Active production runtime |
 
 </div>
 
