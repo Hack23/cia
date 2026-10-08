@@ -35,7 +35,7 @@ jobs:
 
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@351661ca32ac09a36dc5ee2d536e3128f2a3c8ed # v2.22.0
+        uses: step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25 # v2.22.1
         with:
           egress-policy: audit
           allowed-endpoints: >
@@ -80,7 +80,7 @@ jobs:
           fetch-depth: 2
       - name: Run Checkov action
         id: checkov
-        uses: bridgecrewio/checkov-action@a76233b2c1d4a820a9dc68be350c473a4a9dceec # master
+        uses: bridgecrewio/checkov-action@c13aafd679d3814a25067d10fcaf98c4f7594931 # master
         with:
           file: cia-dist-cloudformation/src/main/resources/cia-dist-cloudformation.json
           skip_check: CKV_AWS_111,CKV_AWS_109,CKV_AWS_149,CKV_AWS_364,CKV_AWS_161,CKV_AWS_118,CKV_AWS_111
