@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/devcontainers/java:25-bookworm@sha256:2e8493e722bcb611bef3834ad09028a4e7521ea3287a12d7ef8e47e9da0fe659
+FROM mcr.microsoft.com/devcontainers/java:25-bookworm@sha256:dbe16b1cb6d1c8f7dafca66ca456baafe380f025a00b213eaa0d6418862f2f65
 
 # Install all packages in a single layer to reduce image size
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
